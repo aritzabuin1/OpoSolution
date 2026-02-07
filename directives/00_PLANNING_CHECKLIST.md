@@ -166,7 +166,6 @@ Use this as starting point, then adjust based on specific project needs.
 **When to apply**: External API calls, network ops, DB connections  
 **When NOT to apply**: Operations not safe to retry (non-idempotent writes)  
 **Implementation**: Max 3-5 attempts, exponential delay (1s, 2s, 4s, 8s), jitter, respect rate limits
-**Technical Reference**: Follow directives/00_RELIABILITY_SOP.md
 ---
 
 ### 13. Timeouts ⏰

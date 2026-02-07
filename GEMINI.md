@@ -49,14 +49,16 @@
 | **"¿nos falta algo?"** / **"revisar requirements"** | Re-read `directives/00_PLANNING_CHECKLIST.md` | Check gaps vs enterprise standards |
 | **Task keyword** ("webhook", "scraping", "email", etc) | Search `directives/[task].md` | Find existing SOP before coding |
 | **After finishing implementation** | `directives/00_ARITZ_DOCUMENTATION.md` | Update knowledge base |
-| **User asks about documentation** | `directives/00_ARITZ_DOCUMENTATION.md` | Understand how to maintain ARITZ.md | **"¿cuánto va a costar?"** / **"optimizar tokens"** | 'directives/00_COST_OBSERVABILITY.md' | Ensure financial sustainability
-| **"He terminado"** / **"hacer tests"** | 'directives/00_TESTING_STANDARDS.md' | Verify "Definition of Done"
-| **"Cambiamos X por Y"** / **"Decisión técnica"** | 'directives/00_ADR_TEMPLATE.md' | Document architectural change (ADR)
-| **"privacy"** / **"GDPR"** / **"data handling"** | 'directives/00_DATA_GOVERNANCE.md' |Ensure compliance with enterprise data standards
-| **"evals"** / **"benchmark"** / **"precision"**  | 'directives/00_EVALUATION_PROTOCOLS.md' | Validate LLM performance before deployment
-| **"delegate"** / **"spawn"** / **"subagent"** | 'directives/00_SUBAGENT_ORCHESTRATION.md' | Execute orchestration protocol 
-| **"deploy"** / **"production"** / **"rollback"** | 'directives/00_DEPLOYMENT_PROTOCOL.md' | Ensure safe delivery to production
-| **"install"** / **"package"** / **"pip"** | 'directives/00_DEPENDENCY_MANAGEMENT.md' | Maintain security and license compliance
+| **User asks about documentation** | `directives/00_ARITZ_DOCUMENTATION.md` | Understand how to maintain ARITZ.md |
+| **"¿cuánto va a costar?"** / **"optimizar tokens"** | `directives/00_COST_OBSERVABILITY.md` | Ensure financial sustainability |
+| **"He terminado"** / **"hacer tests"** | `directives/00_TESTING_STANDARDS.md` | Verify "Definition of Done" |
+| **"Cambiamos X por Y"** / **"Decisión técnica"** | `directives/00_ADR_TEMPLATE.md` | Document architectural change (ADR) |
+| **"privacy"** / **"GDPR"** / **"data handling"** | `directives/00_DATA_GOVERNANCE.md` | Ensure compliance with enterprise data standards |
+| **"evals"** / **"benchmark"** / **"precision"** | `directives/00_EVALUATION_PROTOCOLS.md` | Validate LLM performance before deployment |
+| **"delegate"** / **"spawn"** / **"subagent"** | `directives/00_SUBAGENT_ORCHESTRATION.md` | Execute orchestration protocol |
+| **"deploy"** / **"production"** / **"rollback"** | `directives/00_DEPLOYMENT_PROTOCOL.md` | Ensure safe delivery to production |
+| **"install"** / **"package"** / **"pip"** | `directives/00_DEPENDENCY_MANAGEMENT.md` | Maintain security and license compliance |
+| **"rotate"** / **"leaked"** / **"compromised"** | `directives/00_SECRETS_ROTATION.md` | Emergency response and rotation policy |
 
 ---
 

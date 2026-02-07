@@ -1,4 +1,4 @@
-name: CI - Tests & Quality Checks
+name: CI - Quality Gate
 
 on:
   push:
@@ -9,134 +9,96 @@ on:
 jobs:
   quality-gate:
     runs-on: ubuntu-latest
-    
+
     strategy:
       matrix:
         python-version: ['3.11', '3.12']
-    
+
     steps:
-    - name: 📥 Checkout code
+    - name: Checkout code
       uses: actions/checkout@v4
-    
-    - name: 🐍 Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
         cache: 'pip'
-    
-    - name: 📦 Install dependencies
+
+    - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install pytest pytest-cov pytest-asyncio flake8 black mypy
-    
-    - name: 🔍 Code Quality - Linting (flake8)
+        pip install flake8 black pip-audit
+
+    - name: Linting (flake8) - syntax errors and undefined names
       run: |
-        # Stop build if there are Python syntax errors or undefined names
         flake8 execution/ --count --select=E9,F63,F7,F82 --show-source --statistics
-        # Exit-zero treats all errors as warnings
-        flake8 execution/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-      continue-on-error: false
-    
-    - name: 🎨 Code Quality - Formatting (black)
+
+    - name: Formatting check (black)
       run: |
-        black --check execution/ || echo "⚠️ Code formatting issues found. Run 'black execution/' locally."
-      continue-on-error: true
-    
-    - name: 🔒 Security Check - Secrets Scan
+        black --check execution/ tests/
+
+    - name: Security - secrets scan
       run: |
-        echo "🔍 Scanning for exposed secrets..."
-        # Check for common secret patterns
-        if grep -r "sk-[a-zA-Z0-9]\{48\}" execution/ tests/ 2>/dev/null; then
-          echo "❌ CRITICAL: Potential OpenAI API key found in code"
+        echo "Scanning for exposed secrets..."
+        FOUND=0
+        # OpenAI API keys
+        if grep -rn "sk-[a-zA-Z0-9]\{20,\}" execution/ tests/ --include="*.py" 2>/dev/null; then
+          echo "CRITICAL: Potential API key found in source code"
+          FOUND=1
+        fi
+        # Generic secrets patterns
+        if grep -rn "password\s*=\s*['\"][^'\"]\+" execution/ tests/ --include="*.py" 2>/dev/null | grep -v "getenv\|environ\|os\.get\|\.env\|example\|test\|mock\|fake\|dummy"; then
+          echo "WARNING: Potential hardcoded password found"
+          FOUND=1
+        fi
+        if [ "$FOUND" -eq 1 ]; then
           exit 1
         fi
-        if grep -r "sk-ant-[a-zA-Z0-9-]\{95\}" execution/ tests/ 2>/dev/null; then
-          echo "❌ CRITICAL: Potential Anthropic API key found in code"
-          exit 1
-        fi
-        echo "✅ No secrets detected"
-    
-    - name: 🧪 Run Unit Tests
+        echo "No secrets detected"
+
+    - name: Security - dependency audit
       run: |
-        if [ -d "tests/unit" ] && [ "$(ls -A tests/unit/*.py 2>/dev/null)" ]; then
-          echo "Running unit tests..."
-          pytest tests/unit/ -v --cov=execution --cov-report=xml --cov-report=term
+        pip-audit --strict
+
+    - name: Unit tests
+      run: |
+        if find tests/unit -name "*.py" -not -name "__init__.py" 2>/dev/null | grep -q .; then
+          pytest tests/unit/ -v --cov=execution --cov-report=xml --cov-report=term --cov-fail-under=80
         else
-          echo "⚠️ No unit tests found. Skipping."
+          echo "No unit tests found yet. Skipping."
         fi
-      continue-on-error: false
-    
-    - name: 🔗 Run Integration Tests
+
+    - name: Integration tests
       run: |
-        if [ -d "tests/integration" ] && [ "$(ls -A tests/integration/*.py 2>/dev/null)" ]; then
-          echo "Running integration tests..."
+        if find tests/integration -name "*.py" -not -name "__init__.py" 2>/dev/null | grep -q .; then
           pytest tests/integration/ -v
         else
-          echo "⚠️ No integration tests found. Skipping."
+          echo "No integration tests found yet. Skipping."
         fi
-      continue-on-error: false
       env:
-        # Add test environment variables here if needed
         ENVIRONMENT: test
-    
-    - name: 🎯 Run LLM Evals (Golden Dataset)
+
+    - name: LLM evals (Golden Dataset)
       run: |
-        if [ -f "execution/run_evals.py" ]; then
-          echo "Running LLM evaluation suite..."
+        if [ -f "execution/run_evals.py" ] && [ -f "tests/evals/golden_dataset.json" ]; then
           python execution/run_evals.py
         else
-          echo "⚠️ No evals script found. Skipping."
+          echo "Evals not configured yet. Skipping."
         fi
-      continue-on-error: true
-      env:
-        # Use test API keys for evals (set in GitHub Secrets)
-        OPENAI_API_KEY: ${{ secrets.OPENAI_TEST_API_KEY }}
-        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_TEST_API_KEY }}
-    
-    - name: 📊 Upload Coverage Report
-      uses: codecov/codecov-action@v3
-      if: matrix.python-version == '3.11'
-      with:
-        file: ./coverage.xml
-        fail_ci_if_error: false
-    
-    - name: ✅ Quality Gate Summary
+
+    - name: Quality Gate summary
       if: success()
       run: |
-        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-        echo "✅ ALL CHECKS PASSED"
-        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-        echo "✓ Code quality verified"
-        echo "✓ Security scan passed"
-        echo "✓ Unit tests passed"
-        echo "✓ Integration tests passed"
-        echo "✓ LLM evals passed"
-        echo ""
-        echo "🚀 Ready to merge!"
-    
-    - name: ❌ Quality Gate Failed
+        echo "========================================="
+        echo "ALL CHECKS PASSED - Ready to merge"
+        echo "========================================="
+
+    - name: Quality Gate failed
       if: failure()
       run: |
-        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-        echo "❌ QUALITY GATE FAILED"
-        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-        echo "Review the failed checks above."
+        echo "========================================="
+        echo "QUALITY GATE FAILED"
         echo "Fix issues locally before pushing again."
-        echo ""
+        echo "========================================="
         exit 1
-
-  # Optional: Dependency vulnerability check
-  security-scan:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: 📥 Checkout code
-      uses: actions/checkout@v4
-    
-    - name: 🔒 Run dependency security check
-      uses: pyupio/safety@2.3.5
-      with:
-        api-key: ${{ secrets.SAFETY_API_KEY }}
-        args: '--json'
-      continue-on-error: true

@@ -49,19 +49,16 @@ class EvalSuite:
     def run_test(self, test_case: Dict) -> EvalResult:
         """
         Run a single test case
-        
+
         Test case format:
         {
             "id": "test_001",
-            "name": "Temperature anomaly alert",
-            "input": {
-                "temperature": 88,
-                "optimal_range": [90, 92],
-                "coffee_type": "espresso"
-            },
+            "name": "Descriptive test name",
+            "input": { ... },
             "expected_output": {
-                "alert_type": "quality",
-                "contains": ["88°C", "90-92°C", "Ajusta"]
+                "exact": {"key": "expected_value"},
+                "contains": ["substring1", "substring2"],
+                "type": {"key": "str"}
             }
         }
         """
@@ -98,13 +95,13 @@ class EvalSuite:
     def _mock_function(self, input_data: Dict) -> Dict:
         """
         TODO: Replace this with your actual function
-        
-        This is a placeholder that returns mock data.
+
+        This is a placeholder that returns mock data for template demonstration.
         """
         return {
-            "alert_type": "quality",
-            "message": f"Temperature at {input_data['temperature']}°C",
-            "recommendation": "Adjust temperature"
+            "status": "processed",
+            "input_keys": list(input_data.keys()),
+            "message": "Mock response - replace _mock_function with your actual logic"
         }
     
     def _validate_output(self, actual: Dict, expected: Dict) -> bool:
@@ -129,10 +126,13 @@ class EvalSuite:
                 if substring not in actual_str:
                     return False
         
-        # Check types
+        # Check types (safe mapping, no eval)
+        SAFE_TYPE_MAP = {"str": str, "int": int, "float": float, "dict": dict, "list": list, "bool": bool}
         if 'type' in expected:
             for key, expected_type in expected['type'].items():
-                if not isinstance(actual.get(key), eval(expected_type)):
+                if expected_type not in SAFE_TYPE_MAP:
+                    raise ValueError(f"Unsupported type '{expected_type}'. Allowed: {list(SAFE_TYPE_MAP.keys())}")
+                if not isinstance(actual.get(key), SAFE_TYPE_MAP[expected_type]):
                     return False
         
         return True

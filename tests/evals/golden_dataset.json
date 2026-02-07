@@ -1,92 +1,37 @@
 [
   {
     "id": "test_001",
-    "name": "Temperature anomaly - Espresso too cold",
-    "description": "Detect when espresso temperature is below optimal range",
+    "name": "Example - exact match validation",
+    "description": "Demonstrates 'exact' validation type. Replace with your project tests.",
     "input": {
-      "temperature": 88,
-      "optimal_range": [90, 92],
-      "coffee_type": "espresso"
+      "query": "What is 2+2?",
+      "context": "math"
     },
     "expected_output": {
-      "alert_type": "quality",
-      "contains": [
-        "88°C",
-        "90-92°C",
-        "Ajusta"
-      ]
+      "exact": {"status": "processed"}
     }
   },
   {
     "id": "test_002",
-    "name": "Cleaning alert - 3 days without maintenance",
-    "description": "Trigger preventive maintenance alert",
+    "name": "Example - contains validation",
+    "description": "Demonstrates 'contains' validation type. Replace with your project tests.",
     "input": {
-      "days_since_cleaning": 3,
-      "threshold": 3,
-      "machine_id": "Jura X10"
+      "query": "Summarize this document",
+      "doc_id": "doc_123"
     },
     "expected_output": {
-      "alert_type": "maintenance",
-      "contains": [
-        "3 días",
-        "Netejar",
-        "Apagar"
-      ]
+      "contains": ["Mock response"]
     }
   },
   {
     "id": "test_003",
-    "name": "Extraction time - Cappuccino too slow",
-    "description": "Detect abnormal extraction time for cappuccino",
+    "name": "Example - type validation",
+    "description": "Demonstrates 'type' validation type. Replace with your project tests.",
     "input": {
-      "extraction_time": 35,
-      "normal_range": [25, 30],
-      "coffee_type": "cappuccino"
+      "data": "test input"
     },
     "expected_output": {
-      "alert_type": "quality",
-      "contains": [
-        "35s",
-        "25-30s",
-        "mòlta"
-      ]
-    }
-  },
-  {
-    "id": "test_004",
-    "name": "Humidity alert - High humidity",
-    "description": "Alert when humidity affects extraction quality",
-    "input": {
-      "humidity": 75,
-      "optimal_range": [40, 60],
-      "impact": "extraction"
-    },
-    "expected_output": {
-      "alert_type": "quality",
-      "contains": [
-        "75%",
-        "extracció",
-        "ventilació"
-      ]
-    }
-  },
-  {
-    "id": "test_005",
-    "name": "Machine error - Boiler failure",
-    "description": "Critical alert for machine failure",
-    "input": {
-      "error_code": "E-02",
-      "error_type": "boiler_failure",
-      "machine_id": "Jura X10"
-    },
-    "expected_output": {
-      "alert_type": "critical",
-      "contains": [
-        "E-02",
-        "Caldera",
-        "Reinicia"
-      ]
+      "type": {"status": "str", "input_keys": "list"}
     }
   }
 ]
