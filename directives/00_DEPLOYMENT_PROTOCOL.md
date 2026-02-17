@@ -35,3 +35,28 @@
 3. Check logs for unexpected errors (first 15 minutes)
 4. Confirm monitoring/alerting is active
 5. Notify stakeholders of successful deployment
+
+## 5. Database Migration Workflow
+
+Database schema changes are among the highest-risk operations in production. Follow this procedure for EVERY migration:
+
+### Pre-Deploy
+1. **Write migration** in versioned directory (e.g., `supabase/migrations/`, `alembic/versions/`, `prisma/migrations/`)
+2. **Write rollback script** for every migration (revert the change)
+3. **Test migration on staging** — apply, verify schema, verify app works
+4. **Test rollback on staging** — revert, verify schema returns to previous state, verify app works
+
+### Safe Migration Patterns
+- **Adding a column**: Add with DEFAULT value → deploy code that uses it → safe
+- **Removing a column**: Deploy code that no longer uses it → wait 1 release → drop column (2-phase deploy)
+- **Renaming a column**: Add new column → deploy code that writes to both → migrate data → deploy code that reads from new → drop old column
+- **Adding an index**: Create index CONCURRENTLY (non-blocking) when supported
+
+### Dangerous Operations (require extra caution)
+- `DROP TABLE` / `DROP COLUMN` — verify no code references it, have backup
+- `ALTER COLUMN TYPE` — may lock table, test on staging with production-sized data
+- `TRUNCATE` — irreversible, require explicit approval
+
+### CI Integration
+- Migration files should be validated in CI (syntax check, test apply + rollback)
+- Never deploy migration + code change that depends on it in the same release if migration can fail

@@ -62,3 +62,49 @@ HTTP 200 (healthy) / HTTP 503 (unhealthy)
 
 - Los health checks NO deben exponer información interna del sistema (versiones, IPs, configuración).
 - Implementar también un endpoint `/ready` separado si el servicio tiene fase de warm-up.
+
+## 5. PII Redaction in Logs
+
+Logging is essential for debugging, but logs that contain PII create compliance liability (GDPR, CCPA) and security risks if logs are compromised.
+
+### Mandatory Redaction
+- Create a `redactPII(logEntry)` function that replaces sensitive fields before writing to any log destination.
+- Fields to redact: `email`, `full_name`, `name`, `Authorization` header, `token`, `password`, `api_key`, user-generated text content.
+- Replacement: `[REDACTED]` for single values, `[TRUNCATED:50chars]` for long text fields (keep first 50 chars for debugging context).
+
+### Implementation Pattern
+```
+// Example (language-agnostic)
+function redactPII(obj):
+    for each field in SENSITIVE_FIELDS:
+        if obj contains field:
+            obj[field] = "[REDACTED]"
+    for each field in TEXT_FIELDS:
+        if obj contains field and length > 50:
+            obj[field] = obj[field].substring(0, 50) + "...[TRUNCATED]"
+    return obj
+```
+
+### Rules
+- NEVER log full request/response bodies of endpoints that handle PII (user profiles, auth, text submissions).
+- Log only metadata: status code, duration, request size, response size.
+- In development: redaction can be relaxed for debugging (but never commit logs with real PII).
+- **Test**: Write a test that submits a request with PII → verify PII does NOT appear in log output.
+
+## 6. Cost Alert Implementation
+
+For systems that consume paid APIs (LLMs, embeddings, TTS/STT), cost monitoring must be MORE than a line in a document — it needs executable code.
+
+### Mandatory Steps
+1. **Log consumption**: After every paid API call, log `input_tokens`, `output_tokens`, `model`, `estimated_cost` to a persistent store (database table, not just stdout).
+2. **Track daily totals**: Create a `api_usage_log` table with fields: `timestamp`, `endpoint`, `user_id`, `tokens_in`, `tokens_out`, `cost_estimated`, `model`.
+3. **Alert mechanism**: Implement a check (cron job, pre-request check, or webhook) that triggers when daily cost exceeds a threshold.
+4. **Define thresholds**: Document alert levels (e.g., $10/day = warning, $30/day = pause endpoints, $100/day = emergency).
+
+### Anti-Pattern
+"We'll track costs in a markdown file" is NOT cost monitoring. It's a hope and a prayer. The markdown file documents estimates and actuals. The CODE enforces limits.
+
+### Minimum Viable Implementation
+- After each LLM call: `INSERT INTO api_usage_log (timestamp, endpoint, tokens_in, tokens_out, cost_estimated, model)`
+- Daily cron: `SELECT SUM(cost_estimated) FROM api_usage_log WHERE timestamp > today()` → if > threshold → send alert email
+- Alternatively: check before each request if user has exceeded their daily quota

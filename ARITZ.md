@@ -1,6 +1,6 @@
 # Knowledge Base - Aritz
 
-Última actualización: Febrero 2025
+Última actualización: Febrero 2026
 
 ---
 
@@ -21,7 +21,7 @@ Este documento es mi base de conocimiento acumulativa. Aquí documento TODO lo q
 ## Índice de Proyectos
 
 1. [Proyecto Ejemplo: Automatización Due Diligence](#proyecto-ejemplo-automatización-due-diligence---enero-2025) ← Ejemplo ilustrativo
-2. [Próximos proyectos se añadirán aquí...]
+2. [Proyecto OPTEK: Plataforma IA para Opositores](#proyecto-optek-plataforma-ia-para-opositores---febrero-2026) ← Primer proyecto real
 
 ---
 
@@ -293,6 +293,260 @@ async def analyze(request: DocumentAnalysisRequest):
 
 ---
 
+## Proyecto OPTEK: Plataforma IA para Opositores — Febrero 2026
+
+### Resumen del Proyecto
+
+PWA de entrenamiento para opositores españoles usando IA (Claude API) con verificación determinista de citas legales. Primera oposición: Auxiliar Administrativo del Estado (25 temas, 3 leyes core en MVP: CE, LPAC, LRJSP → 72% del temario cubierto). Modelo de negocio: freemium (5 tests + 2 correcciones gratis) + compra por tema (4.99€ perpetuo) + pack oposición (29.99€ perpetuo) + premium (12.99€/mes). Stack: Next.js 14 (App Router) + Tailwind + shadcn/ui + Supabase + Claude API + Stripe + PWA.
+
+**Diferenciador clave**: Verificación determinista — cada cita legal generada por Claude se verifica con código tradicional (regex + BD lookup) ANTES de mostrarse al usuario. No confiamos en que la IA sea precisa; confiamos en que nuestro CÓDIGO lo verifique.
+
+**Estado actual**: Fase de planificación completada. PLAN.md de 1447 líneas como spec ejecutable para Claude Code. 0 líneas de código de producto.
+
+### 1. QUÉ HICIMOS - Fase de Planificación
+
+#### Arquitectura de Documentación Ejecutable (PLAN.md como Spec)
+
+**Qué**: PLAN.md de 1447 líneas con 158+ tareas en Fase 0, cada una con criterios de aceptación verificables, creado para que Claude Code lo ejecute autónomamente como si fuera una spec de producto.
+
+**Por qué**: Con 1 persona + IA como motor de desarrollo, el cuello de botella no es escribir código sino tener una spec lo suficientemente detallada para que la IA la ejecute sin ambigüedad. Cada tarea ambigua = código inconsistente.
+
+**Cómo**: Cada tarea del PLAN.md incluye:
+- Descripción precisa de qué hacer (comando exacto o patrón de código)
+- Criterios de aceptación verificables (ej: "`pnpm build` compila sin errores")
+- Dependencias explícitas entre tareas (ej: "§0.5 requiere §0.4 completado")
+- Referencias a directives específicas cuando aplica (ej: "Seguir `opoia_security.md §1` para regex PII")
+
+**Resultado**: Timeline estimado reducido de 22 semanas (plan original manual) a 4-5 semanas con Claude Code. El PLAN.md actúa como contrato entre el humano (decisiones) y la IA (ejecución).
+
+#### Sistema de Verificación Determinista como Diferenciador de Producto
+
+**Qué**: Diseño completo de una capa de código (NO IA) que verifica cada cita legal antes de mostrarse al usuario. Documentada en directive dedicada de 800+ líneas (`opoia_verification.md`).
+
+**Por qué**: El mercado de oposiciones online (OpositaTest, etc.) usa preguntas estáticas escritas por humanos. OPTEK genera preguntas con IA, pero la IA puede alucinar citas legales. La verificación determinista convierte una debilidad (IA puede equivocarse) en fortaleza (sistema que GARANTIZA precisión).
+
+**Cómo**: Pipeline de 4 pasos:
+1. `extractCitations(text)` — Regex para extraer citas en múltiples formatos ("Art. 53.1.a LPAC", "artículo catorce CE", etc.)
+2. `verifyCitation(citation)` — Lookup en BD: ¿existe este artículo en la legislación ingestada?
+3. `verifyContentMatch(citation, claim, realArticle)` — ¿El contenido citado (plazos, órganos, conceptos) coincide con el texto real del artículo?
+4. `verifyAllCitations(content)` — Orquestador: score = citas_verificadas / total. Si score < umbral → regenerar pregunta.
+
+**Resultado**: Diseño completo con tests unitarios especificados para cada función. La v1 usa regex + diccionario de aliases (>80% resolución sin IA). La v2 (post-MVP) añade normalización semántica con Claude para el 20% restante.
+
+#### Modelo de Pricing con Behavioral Economics (v3 — 3 iteraciones)
+
+**Qué**: Modelo de monetización "Progresión por Tema" (Ownership-First) diseñado con principios de behavioral economics, tras 3 iteraciones que descartaron micro-compras (v1), modelo híbrido (v2), y llegaron al modelo actual (v3).
+
+**Por qué**: El mercado español de oposiciones tiene psicología específica: subscription fatigue (67% de españoles quieren una sola app para gestionar suscripciones), sensibilidad al precio (opositores estudian a tiempo completo), pero disposición a invertir en ventaja competitiva.
+
+**Cómo**: Aplicación de 6 principios de behavioral economics:
+1. **Anti-suscripción como diferenciador** — OpositaTest cobra 7.99-15.99€/mes. OPTEK vende temas como propiedad perpetua ("No pagas por tiempo, pagas por dominio").
+2. **Loss Aversion + Zeigarnik** (Kahneman & Tversky, 1979) — Free tier muestra resultados pero blur CSS bloquea explicaciones en tests 4-5. El usuario VE que falló pero NO puede ver el porqué.
+3. **Anchoring** (Tversky & Kahneman, 1974) — Pack 29.99€ junto a "Academia: desde 150€/mes" y "25 temas × 4.99€ = 124.75€".
+4. **Decoy Effect** (Huber, Payne & Puto, 1982) — Tema Individual 4.99€ hace que Pack 29.99€ sea irresistible (>6 temas y ya sale mejor).
+5. **IKEA Effect + Goal Gradient** (Norton/Ariely 2012, Hull 1932) — Progreso tema a tema que el usuario siente como propio.
+6. **Endowment Effect** (Thaler, 1980) — 5 tests gratis generan mapa de fortalezas/debilidades que el usuario siente como propio.
+
+**Resultado**: Modelo validado analíticamente con márgenes positivos en todos los tiers. Documentado en ADR-0009 con 3 versiones y justificación completa.
+
+#### Naming con Ciencia (OpoIA → OPTEK)
+
+**Qué**: Rebranding del nombre original "OpoIA" a "OPTEK" usando phonosemantics y sound symbolism.
+
+**Por qué**: "OpoIA" tiene un problema fonético crítico en español: suena similar a "polla" (coloquial para pene). Esto haría la marca inviable para marketing en España (TikTok, foros, boca a boca).
+
+**Cómo**: Evaluación de 10 candidatos aplicando:
+- **Phonosemantics** (Hinton, Nichols & Ohala, 1994): consonantes plosivas (/p/, /t/, /k/) se asocian con precisión, velocidad y solidez. OPTEK tiene 3 plosivas en 2 sílabas.
+- **Sound Symbolism** (Klink, 2000): vocales posteriores (/o/) se asocian con productos robustos. Combinación O-E transmite estabilidad + modernidad.
+- **Brevedad**: 2 sílabas, 5 letras (comparable a Slack, Stripe, Vercel).
+- **Reconocimiento**: "Opo" inmediatamente reconocible por opositores. "-tek" evoca tecnología sin atarse a "IA" (que puede ser moda pasajera en branding).
+
+**Resultado**: OPTEK elegido. Tagline: "Tecnología que aprueba contigo". Sin connotaciones negativas en español, inglés, francés o portugués. Dominio optek.es disponible.
+
+### 2. DECISIONES ARQUITECTÓNICAS
+
+#### Next.js 14 + Supabase + Claude API (no FastAPI + PostgreSQL separados)
+
+**Decisión**: Monorepo frontend+backend con Next.js 14 App Router, Supabase como BaaS completo.
+
+**Alternativas consideradas**:
+- FastAPI backend + React SPA separada (mi stack previo en Due Diligence)
+- Django + DRF + React
+- Remix + Prisma + PostgreSQL propio
+
+**Razones**:
+- Un solo codebase para 1 persona + IA — no mantener 2 repos, 2 deploys, 2 stacks
+- Supabase incluye auth + PostgreSQL + pgvector + storage + realtime sin gestionar infra
+- Vercel deploy instantáneo (git push → producción en segundos)
+- Next.js App Router = server components + API routes en el mismo proyecto
+- shadcn/ui = componentes accesibles sin vendor lock-in (son archivos, no dependencias)
+
+**Trade-offs**:
+- Ventajas: Velocidad de desarrollo extrema, 0 DevOps, TypeScript end-to-end
+- Desventajas: Menos control sobre backend que FastAPI, vendor lock-in parcial con Supabase (mitigado: SQL standard + export disponible), Vercel pricing puede escalar
+
+**Resultado**: Pendiente de validar en implementación. La decisión se tomó priorizando velocidad de desarrollo sobre control granular.
+
+#### PWA vs App Nativa (ADR-0013)
+
+**Decisión**: PWA-first, sin publicar en stores durante MVP.
+
+**Alternativas**: React Native, Flutter, Capacitor/Ionic.
+
+**Razones**:
+- Sin Apple/Google tax: 3% Stripe vs 15-30% stores (en tema a 4.99€, la store se llevaría 0.75-1.50€ vs 0.15€ de Stripe)
+- Deploy instantáneo vs 2-7 días revisión de App Store
+- SEO: Google indexa la PWA, no una app nativa (canal de adquisición principal)
+- Un solo codebase: React Native/Flutter duplicaría el tiempo de desarrollo
+- El 95% del uso es formularios + texto — no necesita APIs nativas
+
+**Trade-offs**:
+- iOS Safari tiene limitaciones (push notifications solo desde iOS 16.4+, service worker limitado)
+- Instalación menos intuitiva que "Descargar de App Store"
+- Mitigación: tutorial visual in-app para instalación. Considerar TWA para Google Play cuando >1000 usuarios.
+
+#### MVP con 3 leyes, no 7 (ADR-0014)
+
+**Decisión**: Solo CE (Constitución), LPAC (Ley 39/2015), LRJSP (Ley 40/2015) en MVP.
+
+**Razones**: 3 leyes cubren ~72% del temario de Auxiliar Administrativo. Suficiente para validar el producto. Las 4 restantes (TREBEP, LTBG, LCSP, LOPDGDD) se añaden post-validación en sprints de 1-2 semanas cada una.
+
+**Trade-offs**: El 28% del temario no cubierto puede hacer que el producto parezca "incompleto" vs OpositaTest. Mitigación: comunicar transparentemente "Beta con 3 leyes core. Más leyes próximamente." El diferenciador (verificación determinista) compensa la menor cobertura.
+
+### 3. PROBLEMAS RESUELTOS
+
+#### Análisis Crítico de Informe de Seguridad Automatizado (Gemini, 22 hallazgos)
+
+**Problema**: Gemini analizó el proyecto y generó 22 "hallazgos de seguridad" que parecían todos críticos. Si los hubiéramos incorporado todos sin análisis, habríamos añadido ~20h de trabajo innecesario y complejidad.
+
+**Causa raíz**: Las auditorías automatizadas de IA sufren de:
+- Falsos positivos: reportan problemas que ya están cubiertos en otra sección del documento
+- Falta de contexto: no entienden que ciertas features están fuera del scope del MVP
+- Sesgo alarmista: todo parece "crítico" para generar valor percibido
+
+**Solución**: Análisis manual de cada hallazgo contra la documentación real:
+- **7 genuinos** (32%): Hard cap 30 tests/día Pack, INSERT-first webhook, circuit breaker Claude, negative lookbehind regex PII, convención .down.sql, UNIQUE constraint legislacion, useRef doble-click
+- **8 ya cubiertos** (36%): Gemini no leyó bien — §1.5.2 ya cubría regex, §1.16.6 ya tenía expiración 24h, §1.15.2 ya verificaba firma webhook, etc.
+- **4 irrelevantes para MVP** (18%): Dashboard admin, Quality Score monitoring, audio packs — features eliminadas del MVP
+- **3 exagerados** (14%): Rate limit por IP compartida, prompt injection throttling — edge cases que no justifican complejidad en MVP
+
+**Prevención futura**: Siempre contrastar hallazgos automatizados con la documentación real. Crear checklist: ¿Ya está cubierto? ¿Es relevante para el scope actual? ¿El fix justifica la complejidad? Nunca incorporar hallazgos de IA a ciegas.
+
+### 4. OPTIMIZACIONES Y MEJORAS
+
+#### Reducción de Scope: 22 semanas → 4-5 semanas
+
+**Situación inicial**: PLAN.md original con 5 fases, 22 semanas, features como simulador oral (Whisper + TTS), audio-learning (ElevenLabs), plan adaptativo, IPR, rankings, alertas BOE email, 7 leyes.
+
+**Cambio realizado**: Análisis riguroso de qué features son necesarias para VALIDAR el mercado vs cuáles son nice-to-have:
+- Eliminado: Simulador oral, audio-learning, plan adaptativo, IPR, rankings, alertas BOE email, segunda oposición, gamificación avanzada, verificación v2
+- Simplificado: Flashcards (SM-2 → intervalos fijos), BOE monitor (cron → manual), OAuth (Google → solo Magic Link), load test (50 → 10 concurrentes)
+- Reducido: 7 leyes → 3 leyes (72% cobertura suficiente para validar)
+
+**Impacto**:
+- Timeline: 22 semanas → 4-5 semanas (con Claude Code como desarrollador)
+- Complejidad: Eliminadas 3 integraciones complejas (Whisper, ElevenLabs, Google OAuth)
+- Riesgo: Validar con lo mínimo antes de invertir en features secundarias
+
+**Aplicabilidad**: En cualquier proyecto, antes de añadir features, preguntarse: "¿Esto es necesario para VALIDAR la hipótesis de negocio, o es decoración?" Si no es necesario para la validación → post-MVP.
+
+### 5. LECCIONES APRENDIDAS
+
+- **El plan ES el producto antes del código**: Con 1 persona + IA, invertir 2-3 días en un PLAN.md ultra-detallado con criterios de aceptación reduce el timeline de desarrollo de meses a semanas. Sin spec clara, la IA improvisa y produce código inconsistente. Con spec detallada, la IA ejecuta como un senior developer.
+
+- **Naming science funciona**: Phonosemantics y sound symbolism (Klink 2000, Lowrey & Shrum 2007) no son teoría académica inútil — son herramientas prácticas para branding que cualquier emprendedor puede aplicar. Consonantes plosivas para precisión, vocales para robustez, brevedad para recall.
+
+- **Behavioral economics en pricing es diferenciador competitivo**: No basta con poner un precio "razonable". El mercado español de oposiciones tiene psicología específica (subscription fatigue, sensibilidad al precio, inversión en ventaja competitiva). Aplicar Loss Aversion, Anchoring, Decoy Effect, IKEA Effect convierte el pricing en una ventaja competitiva, no solo un número.
+
+- **Auditorías IA tienen ~50% falsos positivos**: Contrastar SIEMPRE cada hallazgo con la documentación real antes de actuar. Las IAs auditoras tienen sesgo alarmista y no leen contexto completo. 7 de 22 hallazgos genuinos = 32% de precisión.
+
+- **Claude Code como desarrollador principal cambia las reglas**: Lo que un humano tarda 10-14 semanas, Claude Code ejecuta en 4-5 semanas. Pero el cuello de botella se mueve del código a: (1) calidad de la spec, (2) decisiones humanas, (3) validación de datos, (4) cuentas/infra que solo el humano puede crear.
+
+- **Primero el stack más simple**: Supabase Free tier cubre MVP. No necesitas Redis, no necesitas Kubernetes, no necesitas microservicios. Un monolito Next.js + Supabase es suficiente para validar con 100 usuarios. Optimizar cuando tengas el problema, no antes.
+
+- **El scope mínimo viable es más pequeño de lo que crees**: 3 leyes cubren 72% del temario. No necesitas 7 leyes para validar. No necesitas simulador oral para saber si la gente paga por tests verificados. Cada feature añadida sin validación de mercado es riesgo puro.
+
+### 6. HERRAMIENTAS Y CONFIGURACIONES ÚTILES
+
+#### Claude Code como Motor de Desarrollo
+
+**Para qué sirve**: Ejecutar un PLAN.md completo como spec, generando todo el código del proyecto de forma autónoma.
+
+**Cómo configurar**:
+1. CLAUDE.md con workflow plan-first obligatorio (nunca código sin plan aprobado)
+2. Directives como SOPs: cada tarea repetible tiene su procedimiento documentado
+3. PLAN.md como spec ejecutable: cada tarea con criterios de aceptación verificables
+4. ARITZ.md como knowledge base: lecciones aprendidas se acumulan entre proyectos
+
+**Gotchas**:
+- Necesita tareas con criterios de aceptación EXPLÍCITOS. "Haz el auth" → código inconsistente. "Email + Magic Link, middleware en `/(dashboard)/*`, redirect a `/login` si no autenticado, test: usuario no autenticado → redirect 302" → código correcto.
+- El contexto se pierde entre sesiones largas. Usar `/compact` y resumir estado frecuentemente.
+- Rate limits de Claude Code pueden interrumpir sprints largos. Planificar tareas en bloques.
+
+#### Anthropic Claude API (para el producto OPTEK)
+
+**Para qué sirve**: Generación de preguntas de test, corrección de desarrollos, generación de flashcards.
+
+**Configuración por endpoint**:
+- GENERATE_TEST: Claude Sonnet, temperature 0.3 (precisión máxima), ~0.04€/test
+- CORRECT_DESARROLLO: Claude Sonnet, temperature 0.4 (algo de creatividad en feedback), ~0.03€/corrección
+- Timeout: 30s, retry max 2 con exponential backoff
+- Circuit breaker: CLOSED→OPEN tras 5 fallos consecutivos, reset tras 60s
+
+**Gotchas**:
+- Necesita DPA (Data Processing Agreement) para usuarios europeos (GDPR). Verificar en anthropic.com/legal ANTES de escribir código.
+- Las respuestas JSON de Claude a veces no parsean correctamente. Siempre validar con Zod schema + retry 1 vez si falla parse.
+- Temperature importa MUCHO para tests legales: 0.3 es óptimo (más bajo = respuestas repetitivas, más alto = alucinaciones).
+
+#### Supabase como Backend Completo
+
+**Para qué sirve**: Auth (email + Magic Link) + PostgreSQL + pgvector (embeddings 1536d) + Storage + RLS (Row Level Security) + auto-generación de types TypeScript.
+
+**Configuración clave**:
+- Region: EU (Frankfurt o London) para GDPR
+- Auth: Email + Magic Link habilitado, Google OAuth deshabilitado en MVP
+- pgvector: `CREATE EXTENSION vector` para embeddings de legislación
+- RLS: Habilitado en TODAS las tablas con datos de usuario
+- Connection pooling: PgBouncer Transaction mode (port 6543)
+
+**Gotchas**:
+- Free tier: 500MB BD, 50MB storage, 2 proyectos max. Suficiente para MVP con ~100 usuarios.
+- Auto-generación de types: `pnpm supabase gen types typescript` — ejecutar cada vez que cambie el schema.
+- RLS mal configurado = agujero de seguridad. Siempre verificar: "Usuario A puede ver datos de Usuario B?" → debe ser NO.
+- Las migrations van en `supabase/migrations/` con convención `YYYYMMDD_name.sql` + `YYYYMMDD_name.down.sql` (rollback obligatorio).
+
+#### Stack Técnico OPTEK (Next.js 14 ecosystem)
+
+**Frontend**: Next.js 14 App Router + Tailwind CSS + shadcn/ui
+- shadcn/ui: componentes copiados al proyecto (no dependencia npm) → customización total
+- Server Components por defecto, Client Components solo cuando se necesita interactividad
+- PWA: serwist/next-pwa para service worker + manifest.json
+
+**Pagos**: Stripe
+- 3 productos: Tema Individual (4.99€ one-time), Pack Oposición (29.99€ one-time), Premium (12.99€/mo recurring)
+- Webhook con patrón INSERT-first para idempotencia (INSERT stripe_event_id UNIQUE, catch duplicate → skip)
+- Customer Portal para gestión de suscripciones
+
+**Observabilidad**: Pino (logs) + Sentry (errors) + Upstash Redis (rate limiting)
+- Pino: JSON en producción, pretty en desarrollo
+- Sentry: traces_sample_rate=0.1, captura errores + performance
+- Upstash: rate limiting por user_id (no por IP) en endpoints `/api/ai/*`
+
+### Métricas del Proyecto (Fase Planificación)
+
+| Métrica | Valor |
+|---------|-------|
+| Líneas de documentación | ~5000+ (PLAN.md + 14 ADRs + 15 directives) |
+| ADRs creados | 14 |
+| Directives específicas OPTEK | 5 (prompts, RAG, verificación, seguridad, incidentes) |
+| Iteraciones pricing | 3 versiones (micro-compras → híbrido → Ownership-First) |
+| Candidatos naming evaluados | 10 (con phonosemantics) |
+| Hallazgos seguridad analizados | 22 (7 genuinos incorporados) |
+| Timeline estimado MVP | 4-5 semanas con Claude Code |
+| Cobertura temario en MVP | 72% (3 de 7 leyes) |
+
+---
+
 ## Patrones y Best Practices Acumulados
 
 ### Gestión de Costes LLM
@@ -329,9 +583,12 @@ def track_llm_cost(tokens_used, model="gpt-4"):
 - Best practice: Siempre implementar retries con exponential backoff
 
 **Anthropic (Claude)**:
-- Usado en: (Próximos proyectos)
-- Ventajas conocidas: Context window más largo (100K+), mejor en análisis de docs largos
-- A explorar: Prompt caching nativo, pricing vs OpenAI
+- Usado en: OPTEK (producto: generación tests + corrección desarrollos), Claude Code (desarrollo del proyecto)
+- Modelo producto: Claude Sonnet (coste/calidad óptimo). Temperature 0.3 tests, 0.4 correcciones.
+- Coste: ~0.04€/test, ~0.03€/corrección. Modelo viable con free tier + compras.
+- Context window 200K+ ideal para legislación larga
+- Gotchas: Necesita DPA para GDPR. JSON output a veces no parsea → validar con Zod + retry.
+- Claude Code: Ejecuta PLAN.md como spec. Reduce timeline 70% vs desarrollo manual.
 
 ### Infrastructure
 
@@ -348,47 +605,86 @@ def track_llm_cost(tokens_used, model="gpt-4"):
 
 ### Frameworks y Librerías
 
-**FastAPI**:
+**FastAPI** (Python backend):
 - Por qué preferimos: Async support, Pydantic validation, auto-docs, type safety
 - Patrones comunes: Router-based structure, dependency injection, middleware para logging/auth
 - Gotchas: Async/await learning curve, menos middleware ecosystem que Flask
+- Cuándo usar: APIs Python standalone, microservicios, proyectos con procesamiento pesado
 
-**Pydantic**:
+**Next.js 14** (Full-stack TypeScript):
+- Usado en: OPTEK
+- Por qué: App Router + Server Components + API Routes en un solo codebase. Ideal para 1 persona + IA.
+- Patrones: Route groups `(auth)`, `(dashboard)`, `(marketing)` para layouts independientes. Server Components por defecto, Client solo con interactividad.
+- Deploy: Vercel (git push → producción en segundos, preview por PR)
+- Gotchas: Server vs Client Component confusion al principio. Middleware solo para auth/redirects, no lógica compleja.
+- Cuándo usar: Proyectos web full-stack donde velocidad de desarrollo es prioridad.
+
+**Supabase** (BaaS):
+- Usado en: OPTEK
+- Para qué: Auth + PostgreSQL + pgvector + Storage + RLS + Realtime
+- Ventajas: 0 DevOps, EU region (GDPR), auto-gen TypeScript types, RLS nativo
+- Gotchas: Free tier 500MB BD. Migrations con convención .down.sql obligatoria. RLS mal configurado = vulnerabilidad.
+- Cuándo usar: MVPs y productos donde no necesitas control total del backend.
+
+**shadcn/ui** (Component library):
+- Usado en: OPTEK
+- Para qué: Componentes UI accesibles (Radix primitives) copiados al proyecto
+- Ventaja: No es dependencia npm — son archivos que modificas directamente
+- Cuándo usar: Siempre que uses React/Next.js. No hay razón para no usarlo.
+
+**Stripe** (Pagos):
+- Usado en: OPTEK
+- Para qué: Pagos one-time + suscripciones + Customer Portal
+- Patrón webhook: INSERT-first con UNIQUE constraint para idempotencia
+- Gotchas: Test mode vs Live mode (diferentes API keys). Webhook signature SIEMPRE verificar.
+- Comisión: ~3% vs 15-30% stores
+
+**Pydantic** (Python validation):
 - Para qué: Input/output validation, config management
 - Best practice: Define models para TODO lo que cruza API boundary
 - Gotchas: v2 breaking changes, validators pueden ser confusos al inicio
 
-**PyPDF2 / pdfplumber**:
-- Para qué: PDF parsing y text extraction
-- Experiencia: PyPDF2 fallaba con PDFs complejos, pdfplumber más robusto pero más lento
-- Recomendación: pdfplumber para producción, PyPDF2 solo para PDFs simples
+**Zod** (TypeScript validation):
+- Usado en: OPTEK
+- Para qué: Equivalente TypeScript de Pydantic. Validar inputs de API, outputs de Claude.
+- Best practice: Definir schemas para todo JSON que entra/sale del sistema.
+- Ventaja: Type inference automática (z.infer<typeof schema> genera el type)
 
 ---
 
 ## Métricas y KPIs a Mejorar
 
-**Trackeados desde proyecto Due Diligence**:
+**Trackeados desde Due Diligence + OPTEK**:
 
-- **Tiempo medio de implementación**: 
-  - Actual: ~3 semanas para MVP cliente-facing
-  - Objetivo: Reducir a 2 semanas con mejor reutilización de patrones
+- **Tiempo medio de implementación**:
+  - Due Diligence: ~3 semanas para MVP (desarrollo manual)
+  - OPTEK: Estimado 4-5 semanas con Claude Code (proyecto más complejo: PWA + pagos + RAG + verificación)
+  - Objetivo: Reducir a 3 semanas proyectos equivalentes con mejor reutilización de specs
 
-- **Tasa de bugs en producción**: 
-  - Actual: 2-3 bugs menores por proyecto en primeras 2 semanas
-  - Objetivo: <1 bug por proyecto (mejor testing + validación)
+- **Tasa de bugs en producción**:
+  - Due Diligence: 2-3 bugs menores en primeras 2 semanas
+  - OPTEK: Pendiente (no en producción aún)
+  - Objetivo: <1 bug por proyecto (testing >80% + CI/CD + evals)
 
-- **Coste medio de operación LLM**: 
-  - Actual: $73/mes post-optimización (Due Diligence)
-  - Objetivo: Mantener <$100/mes en proyectos similares
+- **Coste medio de operación LLM**:
+  - Due Diligence: $73/mes post-optimización (OpenAI GPT-4)
+  - OPTEK estimado: ~$50-80/mes con 100 usuarios (Claude Sonnet más económico que GPT-4)
+  - Objetivo: Mantener <$100/mes hasta 500 usuarios
 
-- **Coverage de tests**: 
-  - Actual: 67% (Due Diligence)
-  - Objetivo: >80% para código crítico
+- **Coverage de tests**:
+  - Due Diligence: 67%
+  - OPTEK objetivo: >80% en lib/ (código crítico: verificación, Claude integration, Stripe)
+  - Mejora: CI/CD con threshold 80% desde día 1 (no retrofit)
 
-- **Satisfacción cliente**: 
-  - Actual: 9/10 (Due Diligence)
-  - Objetivo: Mantener >8/10
+- **Calidad de planificación** (nuevo KPI):
+  - OPTEK: 1447 líneas de spec, 158+ tareas con criterios de aceptación
+  - Objetivo: Cada proyecto futuro tiene PLAN.md ejecutable antes de escribir código
+  - Métrica: % de tareas completadas sin ambigüedad en primera ejecución
+
+- **Velocidad de análisis de seguridad** (nuevo KPI):
+  - OPTEK: 22 hallazgos → 7 genuinos identificados en ~2h
+  - Objetivo: Crear checklist reutilizable para futuros análisis de seguridad
 
 ---
 
-**Nota para el agente**: Este documento DEBE actualizarse después de cada implementación significativa. Ver `directives/00_ARITZ_DOCUMENTATION.md` para instrucciones detalladas de cómo mantener este archivo. El proyecto de ejemplo arriba ilustra el nivel de detalle esperado para proyectos reales.
+**Nota para el agente**: Este documento DEBE actualizarse después de cada implementación significativa. Ver `directives/00_ARITZ_DOCUMENTATION.md` para instrucciones detalladas de cómo mantener este archivo. El proyecto OPTEK arriba es el estándar de calidad para documentación de proyectos reales.

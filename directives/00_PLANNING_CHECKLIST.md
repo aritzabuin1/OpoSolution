@@ -13,8 +13,8 @@ Use this to determine which requirements apply:
 | Project Type | Core Requirements | Advanced Requirements |
 |--------------|-------------------|----------------------|
 | **Internal MVP** (quick prototype, no users) | 1, 2, 3, 5, 6, 19 | None |
-| **Client-Facing** (external users, moderate stakes) | 1-8, 11, 13, 19 | 9, 10, 12, 14, 20 |
-| **Enterprise Production** (high stakes, compliance) | ALL Core (1-8) | ALL Advanced (9-20) |
+| **Client-Facing** (external users, moderate stakes) | 1-8, 11, 13, 19, 21-25 | 9, 10, 12, 14, 20 |
+| **Enterprise Production** (high stakes, compliance) | ALL Core (1-8, 21-25) | ALL Advanced (9-20) |
 
 Use this as starting point, then adjust based on specific project needs.
 
@@ -32,6 +32,12 @@ Use this as starting point, then adjust based on specific project needs.
 - What should retry vs fail fast?
 
 **Implementation**: Try-catch blocks, specific error types, meaningful messages, different handling for expected vs unexpected
+
+**Standard Error Response Format (REQUIRED for APIs)**:
+- Define a consistent error schema: `{ code: string, message: string, status: number, requestId: string }`
+- Document error codes per endpoint (400, 401, 429, 503) with user-friendly messages in the user's language
+- Create a wrapper function (e.g., `withErrorHandling()`) to enforce consistency across all API routes
+- Never expose internal error details (stack traces, SQL errors) to users
 
 ---
 
@@ -158,6 +164,13 @@ Use this as starting point, then adjust based on specific project needs.
 **When NOT to apply**: Internal tools, trusted users  
 **Implementation**: Track requests per user/IP, return 429 + retry-after, different limits per endpoint, grace for burst
 
+**Implementation Details (REQUIRED — not just "add rate limiting")**:
+- Specify the **library** (e.g., @upstash/ratelimit, express-rate-limit, django-ratelimit)
+- Specify the **state storage** (Redis, database table, in-memory — and why)
+- Document **limits per endpoint** in a table (endpoint, limit, window, justification)
+- Include **429 response format** with Retry-After header
+- **Test**: Simulate exceeding the limit → verify 429 is returned
+
 ---
 
 ### 12. Retries & Exponential Backoff ⏱️
@@ -234,6 +247,77 @@ Use this as starting point, then adjust based on specific project needs.
 **When to apply**: Production LLM systems, A/B testing  
 **When NOT to apply**: Prototypes, stable prompts  
 **Implementation**: Version number/hash per prompt, store with each call, tag outputs, compare metrics across versions
+
+---
+
+### 21. Rate Limiting Implementation Details 🚦
+**What**: Concrete implementation plan for rate limiting, not just "add rate limiting"
+**Why**: Vague rate limiting = no rate limiting. Attackers and runaway costs don't wait for you to figure it out.
+**When to apply**: ANY system with paid API calls or public endpoints
+**Questions**:
+- Which library/service will enforce limits?
+- Where is state stored (Redis, DB, in-memory)?
+- What are the limits per endpoint?
+- What response does the user get when limited?
+
+**Implementation**: See §11 for implementation details checklist.
+
+---
+
+### 22. Database Migration Strategy 🗃️
+**What**: Documented procedure for safely changing database schema after first deployment
+**Why**: Without migrations, schema changes in production risk data loss or downtime
+**When to apply**: ANY system with a persistent database
+**When NOT to apply**: Ephemeral databases, serverless with no schema
+**Questions**:
+- What tool manages migrations? (Supabase CLI, Flyway, Prisma, Alembic, Django)
+- Where are migration files stored? (versioned directory)
+- How to rollback a failed migration?
+
+**Implementation**: Migration tool configured, versioned migration directory, procedure: write migration → test on staging → write rollback script → test rollback → deploy. NEVER DROP COLUMN without verifying code no longer uses it (deploy in 2 phases).
+
+---
+
+### 23. Error Response Standardization 📋
+**What**: Unified error response format across all API endpoints
+**Why**: Without standard format, frontends can't handle errors gracefully and users see raw JSON or generic "500 error"
+**When to apply**: ANY system with API endpoints consumed by a frontend or external clients
+**Questions**:
+- What fields does every error response include?
+- What error codes exist per endpoint?
+- Are error messages in the user's language?
+
+**Implementation**: See §1 Error Handling for format details. Create error type definition, helper function, and wrapper for all API routes.
+
+---
+
+### 24. XSS Prevention 🛡️
+**What**: Prevent Cross-Site Scripting attacks when storing/displaying user-generated text
+**Why**: User submits `<script>stealToken()</script>` → stored in DB → rendered → token stolen
+**When to apply**: ANY app that stores and displays user-generated text
+**When NOT to apply**: Backend-only services, no user content
+**Questions**:
+- Where does user text enter the system?
+- Where is it rendered/displayed?
+- Is any user text rendered with `innerHTML` or equivalent?
+
+**Implementation**: Sanitization library (DOMPurify, bleach, etc.), apply BEFORE storing in DB, configure CSP headers, test with common XSS payloads (`<img src=x onerror="...">`, `<script>alert(1)</script>`, event handlers).
+
+---
+
+### 25. Backup & Disaster Recovery 💾
+**What**: Documented backup strategy with tested restore procedure
+**Why**: Databases fail. Accidental deletions happen. Without tested backups, data loss is permanent.
+**When to apply**: ANY system with important persistent data
+**When NOT to apply**: Ephemeral data, fully reproducible state
+**Questions**:
+- What is the backup frequency? (daily, hourly, continuous)
+- What is the retention period? (7 days, 30 days, 1 year)
+- What is the RTO (Recovery Time Objective)?
+- What is the RPO (Recovery Point Objective)?
+- Has a restore been tested?
+
+**Implementation**: Automated backups documented (frequency, retention, provider), restore procedure tested quarterly, RTO/RPO defined and documented, critical data exported separately (e.g., curated datasets in version control).
 
 ---
 
