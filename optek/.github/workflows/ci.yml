@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    name: Lint · Types · Test · Audit · Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: optek/pnpm-lock.yaml
+
+      - name: Install dependencies
+        working-directory: optek
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        working-directory: optek
+        run: pnpm lint
+
+      - name: Type check
+        working-directory: optek
+        run: pnpm type-check
+
+      - name: Test with coverage
+        working-directory: optek
+        run: pnpm test:coverage
+        # Threshold 80% en lib/ai/ y lib/utils/ definido en vitest.config.ts
+
+      - name: Security audit
+        working-directory: optek
+        run: pnpm audit --audit-level=high
+
+      - name: Build
+        working-directory: optek
+        run: pnpm build
+        env:
+          # Variables mínimas para que Next.js build pase sin errores
+          NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder

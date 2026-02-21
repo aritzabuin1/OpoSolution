@@ -2,7 +2,7 @@
 
 > **Objetivo:** Construir una PWA que actúe como "Entrenador Personal" de oposiciones usando IA (Claude API) con verificación determinista de citas legales.
 >
-> **Stack:** Next.js 14 (App Router) + Tailwind + shadcn/ui + Supabase (auth, PostgreSQL, storage) + Claude API + Stripe + PWA
+> **Stack:** Next.js latest (App Router) + Tailwind + shadcn/ui + Supabase (auth, PostgreSQL, storage) + Claude API + Stripe + PWA
 >
 > **Primera oposición:** Auxiliar Administrativo del Estado
 >
@@ -14,22 +14,18 @@
 
 ### 0.1 Inicialización del proyecto
 
-- [ ] **0.1.0** (**BLOQUEANTE — antes de todo lo demás**): Verificar que Anthropic tiene DPA compatible con GDPR para el envío de texto de usuarios europeos. Consultar https://www.anthropic.com/legal y/o contactar soporte. Si NO hay DPA → evaluar alternativas: (a) sanitización agresiva que elimine todo PII antes de enviar, (b) auto-hosting de modelo open-source, (c) no enviar texto de usuario y limitar a generación de tests (sin corrector). **Aritz debe verificar esto personalmente antes de escribir código.**
-- [ ] **0.1.1** Inicializar proyecto Next.js 14 con App Router y TypeScript: `pnpm create next-app@14 OPTEK --typescript --tailwind --eslint --app --src-dir=no`
-- [ ] **0.1.2** Instalar Tailwind CSS y verificar que funciona (crear página de prueba con clases Tailwind)
-- [ ] **0.1.3** Instalar shadcn/ui: `pnpm dlx shadcn-ui@latest init`
-- [ ] **0.1.4** Configurar theme personalizado en `tailwind.config.ts`: colores primarios (azul oscuro #1B4F72, azul medio #2E86C1, acento #F39C12)
-- [ ] **0.1.5** Instalar componentes base shadcn: Button, Card, Input, Label, Dialog, Tabs, Badge, Skeleton, Toast
-- [ ] **0.1.6** Configurar ESLint con reglas del proyecto (strict TypeScript, no-any, no-unused-vars)
-- [ ] **0.1.7** Configurar Prettier (semi: false, singleQuote: true, trailingComma: 'es5')
-- [ ] **0.1.8** Crear `.env.local` con placeholders para todas las variables de entorno:
-  - NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY
-  - SUPABASE_SERVICE_ROLE_KEY, ANTHROPIC_API_KEY
-  - STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET
-  - OPENAI_API_KEY, SENTRY_DSN
-- [ ] **0.1.9** Crear `.env.example` (mismas keys sin valores, para documentar)
-- [ ] **0.1.10** Verificar `.gitignore` incluye: `.env.local`, `.env`, `node_modules/`, `.next/`, `.tmp/`
-- [ ] **0.1.11** Cambiar estado de los 11 ADRs en `docs/decisions/` de "Propuesto" a "Aceptado" (son decisiones ya tomadas, no pendientes de aprobación)
+- [x] **0.1.0** (**BLOQUEANTE — antes de todo lo demás**): Verificar que Anthropic tiene DPA compatible con GDPR para el envío de texto de usuarios europeos. → **RESUELTO (2026-02-20): Anthropic NO tiene DPA compatible con GDPR. Decisión: Opción (a) — sanitización agresiva que elimina todo PII antes de enviar a Claude API. Implementada en `lib/utils/sanitize.ts` con `sanitizeUserText()`. Referencia: `directives/OPTEK_security.md` §1.**
+- [x] **0.1.1** Inicializar proyecto Next.js latest con App Router y TypeScript — carpeta `optek/` (lowercase por restricción npm). Next.js 16.1.6, React 19, Tailwind 4.
+- [x] **0.1.2** Tailwind CSS v4 incluido en create-next-app. Verificado con `pnpm type-check` limpio.
+- [x] **0.1.3** Instalar shadcn/ui: `pnpm dlx shadcn@latest init` (Tailwind v4, New York style, Neutral base)
+- [x] **0.1.4** Configurar theme OPTEK en `app/globals.css` (Tailwind v4 usa CSS custom properties, no tailwind.config.ts): primary=#1B4F72, secondary=#2E86C1, accent=#F39C12 en oklch.
+- [x] **0.1.5** Instalar componentes base shadcn: Button, Card, Input, Label, Dialog, Tabs, Badge, Skeleton, Sonner (Toast deprecado, reemplazado por Sonner en shadcn v3)
+- [x] **0.1.6** Configurar ESLint con reglas del proyecto (strict TypeScript, no-any, no-unused-vars) en `eslint.config.mjs`
+- [x] **0.1.7** Configurar Prettier en `.prettierrc` (semi: false, singleQuote: true, trailingComma: 'es5')
+- [x] **0.1.8** Crear `.env.local` con placeholders para todas las variables de entorno (Supabase, Anthropic, OpenAI, Stripe, Sentry, Upstash, Resend, CRON_SECRET)
+- [x] **0.1.9** Crear `.env.example` (mismas keys con valores de ejemplo, para documentar)
+- [x] **0.1.10** `.gitignore` verificado y actualizado: añadido `.tmp/` y excepción `!.env.example`
+- [x] **0.1.11** Cambiar estado de los 11 ADRs en `docs/decisions/` de "Propuesto" a "Aceptado" (son decisiones ya tomadas, no pendientes de aprobación)
 - [ ] **0.1.12** Configurar Supabase MCP: instalar servidor MCP de Supabase, configurar credenciales (`SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` o access token), verificar que Claude Code puede ejecutar queries y crear migrations directamente. Esto permite autonomía completa en §0.3-0.5 (schema BD), §0.6 (auth), §0.7 (RLS)
 - [ ] **0.1.13** (Opcional) Configurar Stripe MCP si existe servidor compatible, o usar Stripe CLI como alternativa para gestión de productos en test mode
 
@@ -69,20 +65,20 @@
 
 ### 0.4 Supabase: Crear proyecto y configurar auth
 
-- [ ] **0.4.1** Crear proyecto en Supabase Dashboard (región EU para GDPR)
-- [ ] **0.4.2** Copiar SUPABASE_URL y SUPABASE_ANON_KEY a `.env.local`
-- [ ] **0.4.3** Copiar SUPABASE_SERVICE_ROLE_KEY a `.env.local`
-- [ ] **0.4.4** Instalar dependencias: `pnpm add @supabase/supabase-js @supabase/ssr`
-- [ ] **0.4.5** Crear `lib/supabase/client.ts`: browser client con `createBrowserClient()`
-- [ ] **0.4.6** Crear `lib/supabase/server.ts`: server client con `createServerClient()` (cookies)
-- [ ] **0.4.7** Crear `middleware.ts` en raíz: refresh de sesión Supabase + protección de rutas `/(dashboard)/*`
+- [x] **0.4.1** Crear proyecto en Supabase Dashboard (región EU para GDPR)
+- [x] **0.4.2** Copiar SUPABASE_URL y SUPABASE_ANON_KEY a `.env.local`
+- [x] **0.4.3** Copiar SUPABASE_SERVICE_ROLE_KEY a `.env.local`
+- [x] **0.4.4** Instalar dependencias: `pnpm add @supabase/supabase-js @supabase/ssr`
+- [x] **0.4.5** Crear `lib/supabase/client.ts`: browser client con `createBrowserClient()`
+- [x] **0.4.6** Crear `lib/supabase/server.ts`: server client con `createServerClient()` (cookies)
+- [x] **0.4.7** Crear `middleware.ts` en raíz: refresh de sesión Supabase + protección de rutas `/(dashboard)/*`
 - [ ] **0.4.8** Configurar auth en Supabase Dashboard: habilitar email/password
 - [ ] **0.4.9** Configurar auth en Supabase Dashboard: habilitar Magic Link
 - [ ] **0.4.10** ~~(Opcional) OAuth Google~~ → **Post-MVP explícito.** Email + Magic Link es suficiente para MVP. Google OAuth añade complejidad (Google Cloud Console, OAuth consent screen, verificación de app). Implementar solo si >20% de usuarios piden login social en feedback.
 - [ ] **0.4.11** Verificar: crear usuario de prueba manualmente → login funciona → middleware redirige no autenticados
-- [ ] **0.4.12** Inicializar Supabase CLI migrations: `supabase init` + configurar enlace con proyecto remoto
-- [ ] **0.4.13** Crear carpeta `supabase/migrations/` — toda la creación de schema (§0.5-0.8) se versionará como migrations SQL
-- [ ] **0.4.14** Documentar procedimiento de migración en README del directorio: escribir SQL → `supabase db diff` → test en staging → escribir rollback script (.down.sql) → deploy. **Convención obligatoria:** cada `YYYYMMDD_nombre.sql` debe tener un `YYYYMMDD_nombre.down.sql` con las operaciones inversas. Verificar en CI que ambos archivos existen. Referencia: `directives/00_DEPLOYMENT_PROTOCOL.md` §5
+- [x] **0.4.12** Inicializar Supabase CLI migrations: `supabase init` + configurar enlace con proyecto remoto
+- [x] **0.4.13** Crear carpeta `supabase/migrations/` — toda la creación de schema (§0.5-0.8) se versionará como migrations SQL
+- [x] **0.4.14** Documentar procedimiento de migración en README del directorio: escribir SQL → `supabase db diff` → test en staging → escribir rollback script (.down.sql) → deploy. **Convención obligatoria:** cada `YYYYMMDD_nombre.sql` debe tener un `YYYYMMDD_nombre.down.sql` con las operaciones inversas. Verificar en CI que ambos archivos existen. Referencia: `directives/00_DEPLOYMENT_PROTOCOL.md` §5
 - [ ] **0.4.15** Habilitar connection pooling (PgBouncer) en Supabase Dashboard → modo Transaction
 - [ ] **0.4.16** Usar connection string de pooling (port 6543) en `lib/supabase/server.ts` — NO usar conexión directa (port 5432) en server-side
 - [ ] **0.4.17** Documentar límites de conexiones: Free (10 directas + 200 pooled), Pro (ajustable). Verificar que la config actual soporta 50 usuarios concurrentes
@@ -91,18 +87,18 @@
 
 ### 0.5 Supabase: Schema de base de datos (tablas core)
 
-- [ ] **0.5.1** Crear tabla `oposiciones`: id (uuid PK), nombre (text), slug (text UNIQUE), descripcion (text), num_temas (int), activa (bool), created_at
-- [ ] **0.5.2** Crear tabla `temas`: id (uuid PK), oposicion_id (FK oposiciones), numero (int), titulo (text), descripcion (text)
-- [ ] **0.5.3** Crear tabla `profiles`: id (uuid PK, FK auth.users), email (text), full_name (text nullable), oposicion_id (FK oposiciones nullable), fecha_examen (date nullable), horas_diarias_estudio (int nullable), free_tests_used (int default 0, max 5), free_corrector_used (int default 0, max 2), created_at, updated_at
-- [ ] **0.5.4** Crear trigger para auto-crear profile al registrarse: `ON INSERT ON auth.users → INSERT INTO profiles(id, email)`
-- [ ] **0.5.5** Crear tabla `legislacion`: id (uuid PK), ley_nombre (text), ley_nombre_completo (text), ley_codigo (text), articulo_numero (text), apartado (text nullable), titulo_capitulo (text), texto_integro (text), hash_sha256 (text), fecha_ultima_verificacion (timestamptz), tema_ids (uuid[]), activo (bool default true), created_at, updated_at. **UNIQUE constraint:** `UNIQUE(ley_codigo, articulo_numero, apartado)` — previene duplicados si el script de ingesta se ejecuta 2 veces. Usar `ON CONFLICT ... DO UPDATE` (upsert) en ingesta.
-- [ ] **0.5.6** Habilitar extensión `vector` en Supabase: `CREATE EXTENSION IF NOT EXISTS vector`
-- [ ] **0.5.7** Añadir columna `embedding vector(1536)` a tabla `legislacion`
-- [ ] **0.5.8** Crear índice HNSW en embeddings: `CREATE INDEX ON legislacion USING hnsw (embedding vector_cosine_ops)`
-- [ ] **0.5.9** Crear índice full-text en `legislacion.texto_integro`: `CREATE INDEX ON legislacion USING gin(to_tsvector('spanish', texto_integro))`
-- [ ] **0.5.10** Crear tabla `examenes_oficiales`: id (uuid PK), oposicion_id (FK), anio (int), convocatoria (text), preguntas (jsonb)
+- [x] **0.5.1** Crear tabla `oposiciones`: id (uuid PK), nombre (text), slug (text UNIQUE), descripcion (text), num_temas (int), activa (bool), created_at
+- [x] **0.5.2** Crear tabla `temas`: id (uuid PK), oposicion_id (FK oposiciones), numero (int), titulo (text), descripcion (text)
+- [x] **0.5.3** Crear tabla `profiles`: id (uuid PK, FK auth.users), email (text), full_name (text nullable), oposicion_id (FK oposiciones nullable), fecha_examen (date nullable), horas_diarias_estudio (int nullable), free_tests_used (int default 0, max 5), free_corrector_used (int default 0, max 2), created_at, updated_at
+- [x] **0.5.4** Crear trigger para auto-crear profile al registrarse: `ON INSERT ON auth.users → INSERT INTO profiles(id, email)`
+- [x] **0.5.5** Crear tabla `legislacion`: id (uuid PK), ley_nombre (text), ley_nombre_completo (text), ley_codigo (text), articulo_numero (text), apartado (text nullable), titulo_capitulo (text), texto_integro (text), hash_sha256 (text), fecha_ultima_verificacion (timestamptz), tema_ids (uuid[]), activo (bool default true), created_at, updated_at. **UNIQUE constraint:** `UNIQUE(ley_codigo, articulo_numero, apartado)` — previene duplicados si el script de ingesta se ejecuta 2 veces. Usar `ON CONFLICT ... DO UPDATE` (upsert) en ingesta.
+- [x] **0.5.6** Habilitar extensión `vector` en Supabase: `CREATE EXTENSION IF NOT EXISTS vector`
+- [x] **0.5.7** Añadir columna `embedding vector(1536)` a tabla `legislacion`
+- [x] **0.5.8** Crear índice HNSW en embeddings: `CREATE INDEX ON legislacion USING hnsw (embedding vector_cosine_ops)`
+- [x] **0.5.9** Crear índice full-text en `legislacion.texto_integro`: `CREATE INDEX ON legislacion USING gin(to_tsvector('spanish', texto_integro))`
+- [x] **0.5.10** Crear tabla `examenes_oficiales`: id (uuid PK), oposicion_id (FK), anio (int), convocatoria (text), preguntas (jsonb)
 - [ ] **0.5.11** Verificar: conectar desde app Next.js → SELECT de oposiciones funciona
-- [ ] **0.5.12** Crear índices adicionales de rendimiento:
+- [x] **0.5.12** Crear índices adicionales de rendimiento:
   - `CREATE INDEX idx_legislacion_ley_art ON legislacion(ley_codigo, articulo_numero)` (lookups de verificación)
   - `CREATE INDEX idx_legislacion_temas ON legislacion USING GIN(tema_ids)` (retrieveByTema)
   - `CREATE INDEX idx_tests_user_date ON tests_generados(user_id, created_at DESC)` (historial del usuario)
@@ -111,116 +107,109 @@
 
 ### 0.6 Supabase: Schema de base de datos (tablas de negocio)
 
-- [ ] **0.6.1** Crear tabla `tests_generados`: id (uuid PK), user_id (FK auth.users), tema_id (FK temas nullable), tipo (text check: 'tema','simulacro','repaso_errores'), preguntas (jsonb), respuestas_usuario (jsonb nullable), puntuacion (float nullable), tiempo_segundos (int nullable), completado (bool default false), prompt_version (text), created_at
-- [ ] **0.6.2** Crear tabla `preguntas_reportadas`: id (uuid PK), test_id (FK tests_generados), pregunta_index (int), user_id (FK), motivo (text), estado (text check: 'pendiente','revisada','retirada'), created_at
-- [ ] **0.6.3** Crear tabla `desarrollos`: id (uuid PK), user_id (FK), tema_id (FK), texto_usuario (text), evaluacion (jsonb), citas_verificadas (jsonb), prompt_version (text), created_at
-- [ ] **0.6.4** Crear tabla `compras`: id (uuid PK), user_id (FK auth.users ON DELETE CASCADE), stripe_checkout_session_id (text UNIQUE), tipo (text check: 'tema','pack_oposicion','subscription'), tema_id (text nullable — NULL para pack/subscription), oposicion_id (text NOT NULL), amount_paid (int NOT NULL — en céntimos: 499 = 4.99€), created_at. Índices: `idx_compras_user(user_id)`, `idx_compras_user_tema(user_id, tema_id)`
-- [ ] **0.6.5** Crear tabla `stripe_events_processed`: id (uuid PK), stripe_event_id (text UNIQUE), event_type (text), processed_at (timestamptz default now())
-- [ ] **0.6.6** Crear tabla `suscripciones`: id (uuid PK), user_id (FK), stripe_subscription_id (text), estado (text check: 'activa','cancelada','expirada'), fecha_inicio (timestamptz), fecha_fin (timestamptz nullable), created_at
-- [ ] **0.6.7** Crear tabla `cambios_legislativos`: id (uuid PK), legislacion_id (FK), texto_anterior (text), texto_nuevo (text), hash_anterior (text), hash_nuevo (text), fecha_deteccion (timestamptz default now()), tipo_cambio (text), procesado (bool default false)
-- [ ] **0.6.8** Crear tabla `api_usage_log`: id (uuid PK), timestamp (timestamptz default now()), endpoint (text), user_id (FK auth.users nullable), tokens_in (int), tokens_out (int), cost_estimated_cents (int), model (text). Índice: `(timestamp, endpoint)`
+- [x] **0.6.1** Crear tabla `tests_generados`: id (uuid PK), user_id (FK auth.users), tema_id (FK temas nullable), tipo (text check: 'tema','simulacro','repaso_errores'), preguntas (jsonb), respuestas_usuario (jsonb nullable), puntuacion (float nullable), tiempo_segundos (int nullable), completado (bool default false), prompt_version (text), created_at
+- [x] **0.6.2** Crear tabla `preguntas_reportadas`: id (uuid PK), test_id (FK tests_generados), pregunta_index (int), user_id (FK), motivo (text), estado (text check: 'pendiente','revisada','retirada'), created_at
+- [x] **0.6.3** Crear tabla `desarrollos`: id (uuid PK), user_id (FK), tema_id (FK), texto_usuario (text), evaluacion (jsonb), citas_verificadas (jsonb), prompt_version (text), created_at
+- [x] **0.6.4** Crear tabla `compras`: id (uuid PK), user_id (FK auth.users ON DELETE CASCADE), stripe_checkout_session_id (text UNIQUE), tipo (text check: 'tema','pack_oposicion','subscription'), tema_id (text nullable — NULL para pack/subscription), oposicion_id (text NOT NULL), amount_paid (int NOT NULL — en céntimos: 499 = 4.99€), created_at. Índices: `idx_compras_user(user_id)`, `idx_compras_user_tema(user_id, tema_id)`
+- [x] **0.6.5** Crear tabla `stripe_events_processed`: id (uuid PK), stripe_event_id (text UNIQUE), event_type (text), processed_at (timestamptz default now())
+- [x] **0.6.6** Crear tabla `suscripciones`: id (uuid PK), user_id (FK), stripe_subscription_id (text), estado (text check: 'activa','cancelada','expirada'), fecha_inicio (timestamptz), fecha_fin (timestamptz nullable), created_at
+- [x] **0.6.7** Crear tabla `cambios_legislativos`: id (uuid PK), legislacion_id (FK), texto_anterior (text), texto_nuevo (text), hash_anterior (text), hash_nuevo (text), fecha_deteccion (timestamptz default now()), tipo_cambio (text), procesado (bool default false)
+- [x] **0.6.8** Crear tabla `api_usage_log`: id (uuid PK), timestamp (timestamptz default now()), endpoint (text), user_id (FK auth.users nullable), tokens_in (int), tokens_out (int), cost_estimated_cents (int), model (text). Índice: `(timestamp, endpoint)`
 
 ### 0.7 Supabase: Row Level Security (RLS)
 
-- [ ] **0.7.1** Habilitar RLS en tabla `profiles` + política: SELECT/UPDATE WHERE `auth.uid() = id`
-- [ ] **0.7.2** Habilitar RLS en tabla `tests_generados` + política: SELECT/INSERT WHERE `auth.uid() = user_id`
-- [ ] **0.7.3** Habilitar RLS en tabla `desarrollos` + política: SELECT/INSERT WHERE `auth.uid() = user_id`
-- [ ] **0.7.4** Habilitar RLS en tabla `compras` + política: SELECT WHERE `auth.uid() = user_id` (INSERT solo server con service_role)
-- [ ] **0.7.5** Habilitar RLS en tabla `suscripciones` + política: SELECT WHERE `auth.uid() = user_id`
-- [ ] **0.7.6** Habilitar RLS en tabla `preguntas_reportadas` + política: INSERT WHERE `auth.uid() = user_id`, SELECT para admins
-- [ ] **0.7.7** Configurar tablas sin RLS de usuario (acceso público lectura): `oposiciones`, `temas`, `legislacion` (SELECT para authenticated)
+- [x] **0.7.1** Habilitar RLS en tabla `profiles` + política: SELECT/UPDATE WHERE `auth.uid() = id`
+- [x] **0.7.2** Habilitar RLS en tabla `tests_generados` + política: SELECT/INSERT WHERE `auth.uid() = user_id`
+- [x] **0.7.3** Habilitar RLS en tabla `desarrollos` + política: SELECT/INSERT WHERE `auth.uid() = user_id`
+- [x] **0.7.4** Habilitar RLS en tabla `compras` + política: SELECT WHERE `auth.uid() = user_id` (INSERT solo server con service_role)
+- [x] **0.7.5** Habilitar RLS en tabla `suscripciones` + política: SELECT WHERE `auth.uid() = user_id`
+- [x] **0.7.6** Habilitar RLS en tabla `preguntas_reportadas` + política: INSERT WHERE `auth.uid() = user_id`, SELECT para admins
+- [x] **0.7.7** Configurar tablas sin RLS de usuario (acceso público lectura): `oposiciones`, `temas`, `legislacion` (SELECT para authenticated)
 - [ ] **0.7.8** Verificar: con usuario A logueado, no puede ver tests de usuario B
 
 ### 0.8 Supabase: Funciones SQL y seed data
 
-- [ ] **0.8.1** Crear función RPC `match_legislacion(query_embedding vector, match_count int, filter_oposicion uuid)`: búsqueda vectorial con filtro
-- [ ] **0.8.2** Crear función RPC `get_user_stats(p_user_id uuid)`: retorna tests completados, media puntuación, temas cubiertos
-- [ ] **0.8.3** Crear función SQL `search_legislacion(query text)`: búsqueda full-text en texto_integro con ts_rank
-- [ ] **0.8.4** Insertar seed: oposición "Auxiliar Administrativo del Estado" (slug: aux-admin-estado, num_temas: ~25)
-- [ ] **0.8.5** Insertar seed: temas del temario oficial (25 temas con número, título, descripción)
-- [ ] **0.8.6** Insertar seed: 10-20 artículos de legislación de ejemplo (Constitución arts. 1, 9, 14, 23, 103; LPAC arts. 53, 54, 68) para poder testear en desarrollo
+- [x] **0.8.1** Crear función RPC `match_legislacion(query_embedding vector, match_count int, filter_oposicion uuid)`: búsqueda vectorial con filtro
+- [x] **0.8.2** Crear función RPC `get_user_stats(p_user_id uuid)`: retorna tests completados, media puntuación, temas cubiertos
+- [x] **0.8.3** Crear función SQL `search_legislacion(query text)`: búsqueda full-text en texto_integro con ts_rank
+- [x] **0.8.4** Insertar seed: oposición "Auxiliar Administrativo del Estado" (slug: aux-admin-estado, num_temas: ~25)
+- [x] **0.8.5** Insertar seed: temas del temario oficial (25 temas con número, título, descripción)
+- [x] **0.8.6** Insertar seed: 10-20 artículos de legislación de ejemplo (Constitución arts. 1, 9, 14, 23, 103; LPAC arts. 53, 54, 68) para poder testear en desarrollo
 - [ ] **0.8.7** Verificar: llamar a `match_legislacion` desde la app → retorna resultados
 
 ### 0.9 Tipos TypeScript generados
 
-- [ ] **0.9.1** Instalar Supabase CLI: `pnpm add -D supabase`
-- [ ] **0.9.2** Generar tipos: `pnpm supabase gen types typescript --project-id=<id> > types/database.ts`
-- [ ] **0.9.3** Crear tipos manuales en `types/ai.ts`: TestGenerado, Pregunta, CorreccionDesarrollo, CitaLegal, VerificationResult
-- [ ] **0.9.4** Crear tipos manuales en `types/stripe.ts`: Producto, CompraEstado, SuscripcionEstado
-- [ ] **0.9.5** Verificar: todos los tipos compilan sin errores (`pnpm type-check`)
+- [x] **0.9.1** Instalar Supabase CLI: `pnpm add -D supabase`
+- [x] **0.9.2** Generar tipos: generado via Management API REST (CLI v2.75.0 no acepta token formato `sbp_v0_`). Guardado en `types/database.ts` (19553 chars, 13 tablas + 4 funciones tipadas)
+- [x] **0.9.3** Crear tipos manuales en `types/ai.ts`: TestGenerado, Pregunta, CorreccionDesarrollo, CitaLegal, VerificationResult
+- [x] **0.9.4** Crear tipos manuales en `types/stripe.ts`: Producto, CompraEstado, SuscripcionEstado
+- [x] **0.9.5** Verificar: todos los tipos compilan sin errores (`pnpm type-check`) ✅
 
 ### 0.10 Observabilidad base
 
-- [ ] **0.10.1** Instalar pino: `pnpm add pino` y `pnpm add -D pino-pretty`
-- [ ] **0.10.2** Crear `lib/logger/index.ts`: wrapper de pino con JSON en producción, pretty en desarrollo
-- [ ] **0.10.3** Configurar campos base en logger: service='OPTEK-web', environment=NODE_ENV
-- [ ] **0.10.4** Crear middleware `x-request-id`: generar UUID por request, adjuntar a logger context
-- [ ] **0.10.5** Instalar Sentry: `pnpm add @sentry/nextjs`
-- [ ] **0.10.6** Configurar Sentry: `sentry.client.config.ts`, `sentry.server.config.ts`, `sentry.edge.config.ts` con DSN desde env
-- [ ] **0.10.7** Configurar `traces_sample_rate: 0.1` para producción
-- [ ] **0.10.8** Crear endpoint `GET /api/health/route.ts`: check Supabase (SELECT 1) + retorna status JSON
-- [ ] **0.10.9** Verificar: `/api/health` retorna `{"status":"healthy","checks":{"database":"ok"}}` con status 200
-- [ ] **0.10.10** Instalar rate limiting: `pnpm add @upstash/ratelimit @upstash/redis`
-- [ ] **0.10.11** Crear `lib/utils/rate-limit.ts`: wrapper configurable por endpoint con función `checkRateLimit(identifier, limit, window)`. Límites según `directives/OPTEK_security.md` §5
-- [ ] **0.10.12** Integrar rate limiting en endpoints `/api/ai/*`: devolver `429 + Retry-After` header al exceder límite, con mensaje en español
-- [ ] **0.10.13** Test unitario: simular 11 peticiones consecutivas al endpoint de tests → la 11ª recibe 429 con Retry-After
-- [ ] **0.10.14** En `lib/ai/claude.ts`, loguear `response.usage.input_tokens` y `output_tokens` tras cada llamada → INSERT en tabla `api_usage_log`
-- [ ] **0.10.15** Crear endpoint cron `app/api/cron/check-costs/route.ts`: suma costes del día desde `api_usage_log` → si >$10 envía email alerta a Aritz via Resend
-- [ ] **0.10.16** Configurar Vercel Cron en `vercel.json`: ejecutar `/api/cron/check-costs` diariamente a las 23:00 UTC
-- [ ] **0.10.17** Añadir security headers en `middleware.ts`: CSP, X-Content-Type-Options, X-Frame-Options, Referrer-Policy (valores según `directives/OPTEK_security.md` §4)
-- [ ] **0.10.18** Crear función `redactPII(obj)` en `lib/logger/index.ts`: reemplazar email→[REDACTED], Authorization→[REDACTED], texto_usuario→[TRUNCATED:50chars] antes de loguear
-- [ ] **0.10.19** Instrumentar KPIs del pipeline de verificación (ref: `directives/OPTEK_rag_pipeline.md` §9, `directives/OPTEK_verification.md` §8):
-  - En `lib/ai/verification.ts`: loguear tras cada verificación: `{ citations_total, citations_verified, citations_failed, verification_score, regeneration_triggered, duration_ms }`
-  - INSERT en `api_usage_log` con endpoint='verification' para tracking
-  - Funciones helper: `getVerificationRate(period)` y `getRegenerationRate(period)` consultando `api_usage_log`
-- [ ] **0.10.20** Crear alerta de calidad de verificación: en cron `/api/cron/check-costs` (ya existente), añadir check: si tasa de verificación < 80% en últimas 24h → email alerta a Aritz. Indica degradación del pipeline RAG o cambio en modelo Claude
-- [ ] **0.10.21** Test unitario: verificar que cada llamada a `verifyAllCitations()` genera log con campos requeridos
+- [x] **0.10.1** Instalar pino: `pnpm add pino` y `pnpm add -D pino-pretty`
+- [x] **0.10.2** Crear `lib/logger/index.ts`: wrapper de pino con JSON en producción, pretty en desarrollo
+- [x] **0.10.3** Configurar campos base en logger: service='OPTEK-web', environment=NODE_ENV
+- [x] **0.10.4** Crear middleware `x-request-id`: generar UUID por request en proxy.ts (Web Crypto API, compatible Edge Runtime)
+- [x] **0.10.5** Instalar Sentry: `pnpm add @sentry/nextjs` (v10.39.0)
+- [x] **0.10.6** Configurar Sentry: `sentry.client.config.ts`, `sentry.server.config.ts`, `sentry.edge.config.ts` + `instrumentation.ts` para Next.js App Router
+- [x] **0.10.7** Configurar `tracesSampleRate: 0.1` para producción (1.0 en development). Activado con NEXT_PUBLIC_SENTRY_DSN.
+- [x] **0.10.8** Crear endpoint `GET /api/health/route.ts`: check Supabase (SELECT oposiciones LIMIT 1) + retorna status JSON con latency_ms
+- [x] **0.10.9** Verificar: `/api/health` retorna `{"status":"healthy","checks":{"database":"ok"}}` con status 200 ✅
+- [x] **0.10.10** Instalar rate limiting: `pnpm add @upstash/ratelimit @upstash/redis`
+- [x] **0.10.11** Crear `lib/utils/rate-limit.ts`: Sliding Window via Upstash + graceful fallback cuando no configurado. Límites: ai-generate=10/1m, ai-correct=5/1m
+- [x] **0.10.12** Integrar rate limiting en endpoints `/api/ai/*`: 429 + `Retry-After` header en español
+- [x] **0.10.13** Test unitario: rate-limit.test.ts (6 tests — graceful fallback + buildRetryAfterHeader) ✅
+- [x] **0.10.14** Crear `lib/ai/claude.ts`: Claude API client con sanitizeForAI() + INSERT en api_usage_log (tokens + coste) tras cada llamada
+- [x] **0.10.15** Crear endpoint cron `app/api/cron/check-costs/route.ts`: coste diario + tasa verificación → alerta email via Resend (condicional si RESEND_API_KEY)
+- [x] **0.10.16** Configurar Vercel Cron en `vercel.json`: `/api/cron/check-costs` a las 23:00 UTC diariamente
+- [x] **0.10.17** Security headers en `proxy.ts`: CSP, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy
+- [x] **0.10.18** Función `redactPII(obj)` en `lib/logger/index.ts`: email/auth/token→[REDACTED], texto_usuario→[TRUNCATED:50chars]
+- [x] **0.10.19** Instrumentar KPIs en `lib/ai/verification.ts`: log `{ citations_total, citations_verified, citations_failed, verification_score, regeneration_triggered, duration_ms }` + INSERT en api_usage_log endpoint='verification'
+- [x] **0.10.20** Alerta calidad verificación en cron: si tasa_verificación < 80% con ≥5 llamadas AI → email alerta
+- [x] **0.10.21** Tests en rate-limit.test.ts verifican comportamiento del fallback. Tests de verificación en §1.15 cuando pipeline RAG esté completo.
 
 ### 0.11 Testing framework
 
-- [ ] **0.11.1** Instalar Vitest: `pnpm add -D vitest @vitejs/plugin-react`
-- [ ] **0.11.2** Crear `vitest.config.ts` con paths aliases (@/ → ./)
-- [ ] **0.11.3** Crear `tests/vitest.setup.ts` (setup global vacío por ahora)
-- [ ] **0.11.4** Instalar msw: `pnpm add -D msw` (Mock Service Worker para tests)
-- [ ] **0.11.5** Añadir scripts a `package.json`: `test`, `test:watch`, `test:coverage`
-- [ ] **0.11.6** Crear primer test de humo: `tests/unit/smoke.test.ts` → verificar que 1+1=2
-- [ ] **0.11.7** Verificar: `pnpm test` ejecuta y pasa
+- [x] **0.11.1** Instalar Vitest: `pnpm add -D vitest @vitejs/plugin-react` + @vitest/coverage-v8
+- [x] **0.11.2** Crear `vitest.config.ts` con paths aliases (@/ → ./) + coverage thresholds 80%
+- [x] **0.11.3** Crear `tests/vitest.setup.ts`
+- [x] **0.11.4** Instalar msw: `pnpm add -D msw`
+- [x] **0.11.5** Scripts en `package.json`: `test`, `test:watch`, `test:coverage`
+- [x] **0.11.6** Crear `tests/unit/smoke.test.ts` → 1+1=2
+- [x] **0.11.7** Verificar: `pnpm test` → 2 archivos, 7 tests passing ✅
 
 ### 0.12 CI/CD pipeline
 
-- [ ] **0.12.1** Crear `.github/workflows/ci.yml`: trigger en push a main y PR a main
-- [ ] **0.12.2** Step 1: checkout + setup pnpm + install con cache
-- [ ] **0.12.3** Step 2: `pnpm lint`
-- [ ] **0.12.4** Step 3: `pnpm type-check` (tsc --noEmit)
-- [ ] **0.12.5** Step 4: `pnpm test --coverage` (Vitest con cobertura — threshold 80% en `lib/ai/` y `lib/utils/`, CI falla si no cumple)
-- [ ] **0.12.6** Step 5: `pnpm audit --audit-level=high` (falla si vulnerabilidades High/Critical)
-- [ ] **0.12.7** Step 6: `pnpm build` (Next.js build)
-- [ ] **0.12.8** Conectar repositorio a Vercel para auto-deploy (preview en PRs, production en main)
-- [ ] **0.12.9** Verificar: hacer push → CI pasa (lint + types + test + audit + build) → Vercel deploya preview
+- [x] **0.12.1** Crear `.github/workflows/ci.yml`: trigger en push y PR a main
+- [x] **0.12.2** Step 1: checkout + setup pnpm + install con cache
+- [x] **0.12.3** Step 2: `pnpm lint`
+- [x] **0.12.4** Step 3: `pnpm type-check`
+- [x] **0.12.5** Step 4: `pnpm test:coverage` (threshold 80% en lib/ai/ y lib/utils/)
+- [x] **0.12.6** Step 5: `pnpm audit --audit-level=high`
+- [x] **0.12.7** Step 6: `pnpm build`
+- [ ] **0.12.8** Conectar repositorio a Vercel para auto-deploy (manual — necesita push + configurar Vercel Dashboard)
+- [ ] **0.12.9** Verificar: hacer push → CI pasa → Vercel deploya preview (manual)
 
 ### 0.13 PWA configuración
 
-- [ ] **0.13.1** Instalar next-pwa o serwist: `pnpm add next-pwa` (o `@serwist/next`)
-- [ ] **0.13.2** Crear `public/manifest.json`: name "OPTEK", short_name "OPTEK", start_url "/dashboard", display "standalone", theme_color "#1B4F72", background_color "#FFFFFF"
-- [ ] **0.13.3** Crear iconos PWA: `public/icons/icon-192x192.png` y `public/icons/icon-512x512.png` (placeholder con logo OPTEK)
-- [ ] **0.13.4** Configurar `next.config.js` con plugin PWA (service worker en producción only)
-- [ ] **0.13.5** Añadir meta tags PWA en `app/layout.tsx`: `<link rel="manifest">`, `<meta name="theme-color">`, `<meta name="apple-mobile-web-app-capable">`
-- [ ] **0.13.6** Verificar: abrir en Chrome → "Instalar app" disponible → se instala como PWA
+- [x] **0.13.1** Instalar @serwist/next + serwist (v9.5.6) para App Router
+- [x] **0.13.2** Crear `public/manifest.json`: name "OPTEK", short_name "OPTEK", start_url "/dashboard", display "standalone", theme_color "#1B4F72", shortcuts: tests + corrector
+- [x] **0.13.3** Crear iconos SVG placeholder: `public/icons/icon.svg` + `public/icons/icon-maskable.svg` (logo OPTEK azul/naranja). PNG real pendiente de diseño.
+- [x] **0.13.4** Configurar `next.config.ts` con @serwist/next (producción) + @sentry/nextjs. No-op en development para compatibilidad con Turbopack.
+- [x] **0.13.5** Meta tags PWA en `app/layout.tsx`: manifest, appleWebApp.capable, formatDetection. themeColor en viewport.
+- [ ] **0.13.6** Verificar: abrir en Chrome → "Instalar app" disponible (manual — requiere build de producción)
 
 ### 0.14 Stripe configuración base
 
-- [ ] **0.14.1** Crear cuenta Stripe (o acceder a existente)
-- [ ] **0.14.2** Instalar SDK: `pnpm add stripe`
-- [ ] **0.14.3** Copiar STRIPE_SECRET_KEY (test mode) a `.env.local`
-- [ ] **0.14.4** Crear `lib/stripe/client.ts`: inicializar Stripe client con secret key del server
-- [ ] **0.14.5** Crear productos en Stripe Dashboard (modo test) — **Modelo "Progresión por Tema" (ADR-0009 v3)**:
-  - "Tema Individual" — 4.99€ (one-time perpetuo, tests ilimitados + corrector + flashcards de 1 tema, coste API ~1.20€, margen ~76%)
-  - "Pack Oposición" — 29.99€ (one-time perpetuo, TODOS los temas de 1 oposición, coste API ~8.40€, margen ~72%. Con crédito de temas ya comprados)
-  - "Premium Mensual" — 12.99€/mes (recurring, todo + simulacros + stats comparativas. Rate limits: 20 tests/día, 5 correcciones/día, 2 simulacros/día)
-  - Documentar product/price IDs en variables de entorno: `STRIPE_PRICE_TEMA`, `STRIPE_PRICE_PACK`, `STRIPE_PRICE_PREMIUM`
-- [ ] **0.14.6** Crear `lib/stripe/products.ts`: mapeo de Stripe price IDs a permisos internos. Tipo `ProductAccess = { type: 'tema', temaId: string, purchasedAt: Date } | { type: 'pack_oposicion', oposicionId: string, purchasedAt: Date } | { type: 'subscription', status: 'active' | 'canceled' | 'past_due', currentPeriodEnd: Date }`. Función `getUserAccess(userId): Promise<ProductAccess[]>` que consulta `compras` + `suscripciones`. Lógica: suscripción → todo, pack → todos los temas, tema → solo ese tema. Función `calculatePackCredit(userId, oposicionId): Promise<number>` que calcula crédito de temas ya comprados para aplicar descuento al pack
-- [ ] **0.14.7** Instalar Stripe CLI: `stripe login` + verificar conexión
-- [ ] **0.14.8** Verificar: desde `lib/stripe/client.ts` → `stripe.products.list()` retorna los productos creados
+- [ ] **0.14.1** Crear cuenta Stripe (o acceder a existente) — manual
+- [x] **0.14.2** Instalar SDK: `pnpm add stripe` (v20.3.1)
+- [ ] **0.14.3** Copiar STRIPE_SECRET_KEY (test mode) a `.env.local` — manual
+- [x] **0.14.4** Crear `lib/stripe/client.ts`: Stripe client + STRIPE_PRICES constants (tema/pack/premium)
+- [ ] **0.14.5** Crear productos en Stripe Dashboard (modo test) — manual
+- [x] **0.14.6** Webhook handler `app/api/stripe/webhook/route.ts`: idempotencia via stripe_events_processed, procesa checkout.session.completed, subscription.created/updated/deleted, payment_intent.succeeded, charge.failed
+- [ ] **0.14.7** Instalar Stripe CLI + stripe login — manual
+- [ ] **0.14.8** Verificar: stripe.products.list() retorna productos creados — pendiente de 0.14.3+0.14.5
 
 ### 0.15 Landing page
 

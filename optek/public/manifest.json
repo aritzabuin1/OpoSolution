@@ -1,0 +1,39 @@
+{
+  "name": "OPTEK — Entrena tu oposición",
+  "short_name": "OPTEK",
+  "description": "Plataforma de entrenamiento inteligente para opositores con IA.",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#1B4F72",
+  "background_color": "#FFFFFF",
+  "lang": "es",
+  "scope": "/",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Nuevo test",
+      "url": "/tests",
+      "description": "Generar un test de práctica"
+    },
+    {
+      "name": "Corrector",
+      "url": "/corrector",
+      "description": "Corregir un desarrollo"
+    }
+  ]
+}

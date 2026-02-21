@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Fondo completo sin bordes para versión maskable (safe zone = 80% central) -->
+  <rect width="512" height="512" fill="#1B4F72"/>
+  <text
+    x="256"
+    y="310"
+    text-anchor="middle"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="220"
+    font-weight="800"
+    fill="#F39C12"
+    letter-spacing="-8"
+  >OK</text>
+  <text
+    x="256"
+    y="390"
+    text-anchor="middle"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="60"
+    font-weight="600"
+    fill="#FFFFFF"
+    opacity="0.85"
+    letter-spacing="10"
+  >OPTEK</text>
+</svg>
