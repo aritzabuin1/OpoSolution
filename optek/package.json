@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "vercel-build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
     "type-check": "tsc --noEmit",
