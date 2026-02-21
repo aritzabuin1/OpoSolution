@@ -1,14 +1,8 @@
 import type { NextConfig } from 'next'
-import path from 'path'
 import { withSentryConfig } from '@sentry/nextjs'
 import withSerwist from '@serwist/next'
 
-const nextConfig: NextConfig = {
-  turbopack: {
-    // Fijar el root al directorio optek para evitar conflicto con lockfile del workspace raíz
-    root: path.resolve(__dirname),
-  },
-}
+const nextConfig: NextConfig = {}
 
 // PWA — Serwist (desactivado en development para compatibilidad con Turbopack)
 const applyPWA =
