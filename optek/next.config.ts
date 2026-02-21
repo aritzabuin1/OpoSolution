@@ -14,6 +14,9 @@ const applyPWA =
 export default withSentryConfig(applyPWA(nextConfig), {
   silent: !process.env.CI,
   widenClientFileUpload: true,
-  disableLogger: true,
-  automaticVercelMonitors: false,
+  webpack: {
+    // Reemplaza los deprecated disableLogger y automaticVercelMonitors
+    treeshake: { removeDebugLogging: true },
+    automaticVercelMonitors: false,
+  },
 })
