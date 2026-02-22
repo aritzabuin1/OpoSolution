@@ -56,12 +56,41 @@ export async function proxy(request: NextRequest) {
     pathname.startsWith('/tests') ||
     pathname.startsWith('/corrector') ||
     pathname.startsWith('/simulacros') ||
-    pathname.startsWith('/cuenta')
+    pathname.startsWith('/cuenta') ||
+    pathname.startsWith('/primer-test')
 
   if (isDashboardRoute && !user) {
     const loginUrl = new URL('/login', request.url)
     loginUrl.searchParams.set('redirect', pathname)
     return NextResponse.redirect(loginUrl)
+  }
+
+  // ── 2b. Redirect onboarding → /primer-test si oposicion_id es null ────────
+  // Solo si: usuario autenticado + ruta dashboard + NO está en /primer-test.
+  // Cookie `optek_onboarded` como cache para evitar DB query en cada request.
+  if (isDashboardRoute && user && !pathname.startsWith('/primer-test')) {
+    const onboardedCookie = request.cookies.get('optek_onboarded')
+
+    if (!onboardedCookie) {
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('oposicion_id')
+        .eq('id', user.id)
+        .single()
+
+      if (!profile?.oposicion_id) {
+        return NextResponse.redirect(new URL('/primer-test', request.url))
+      }
+
+      // Usuario ya tiene oposicion_id — establece cookie para evitar futuros DB checks
+      response.cookies.set('optek_onboarded', '1', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 60 * 60 * 24 * 365,
+        path: '/',
+        sameSite: 'lax',
+      })
+    }
   }
 
   // Redirigir usuarios autenticados que intenten ir a /login o /register
