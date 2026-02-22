@@ -83,8 +83,13 @@ export default function TerminosPage() {
                 tema. Acceso durante 6 meses desde la fecha de compra.
               </li>
               <li>
+                <strong className="text-foreground">Pack Oposición:</strong> Pago único por
+                oposición completa. Incluye todos los temas, tests, correcciones y simulacros.
+                Acceso durante 12 meses desde la fecha de compra.
+              </li>
+              <li>
                 <strong className="text-foreground">Plan Premium:</strong> Suscripción mensual.
-                Renovación automática hasta cancelación.
+                Acceso a todas las oposiciones. Renovación automática hasta cancelación.
               </li>
             </ul>
             <p className="mt-3">

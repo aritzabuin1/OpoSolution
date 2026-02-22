@@ -9,7 +9,6 @@ import {
   Zap,
   ShieldCheck,
   BookOpen,
-  ClipboardList,
   ArrowRight,
   Star,
 } from 'lucide-react'
@@ -86,10 +85,10 @@ const plans = [
   {
     name: 'Gratis',
     price: '0€',
-    period: 'siempre',
+    period: 'para siempre',
     badge: null,
     features: [
-      '5 tests al mes',
+      '5 tests de prueba',
       '2 correcciones de desarrollo',
       'Verificación de citas incluida',
       'Sin tarjeta de crédito',
@@ -101,32 +100,32 @@ const plans = [
   {
     name: 'Por tema',
     price: '4,99€',
-    period: 'por tema',
-    badge: 'Más popular',
+    period: 'pago único',
+    badge: null,
     features: [
       'Tests ilimitados de un tema',
-      'Correcciones ilimitadas',
+      '+5 correcciones IA',
       'Verificación garantizada',
-      'Acceso durante 6 meses',
+      'Sin suscripción — pago único',
     ],
     cta: 'Comprar tema',
     href: '/register',
-    variant: 'default' as const,
+    variant: 'outline' as const,
   },
   {
-    name: 'Premium',
-    price: '19,99€',
-    period: '/mes',
-    badge: null,
+    name: 'Pack Oposición',
+    price: '34,99€',
+    period: 'pago único',
+    badge: 'Más popular',
     features: [
-      'Todo ilimitado',
-      'Todas las oposiciones',
+      'Tests ilimitados de todo el temario',
+      '+20 correcciones IA',
       'Simulacros completos',
-      'Soporte prioritario',
+      'Sin suscripción — pago único',
     ],
-    cta: 'Empezar Premium',
+    cta: 'Comprar pack',
     href: '/register',
-    variant: 'outline' as const,
+    variant: 'default' as const,
   },
 ]
 
@@ -140,8 +139,8 @@ const faqs = [
     a: 'En esta versión inicial preparamos Auxiliar Administrativo del Estado (convocatoria TAC). Próximamente añadiremos más oposiciones del Cuerpo General de la Administración del Estado y Administraciones locales.',
   },
   {
-    q: '¿Puedo cancelar el plan Premium cuando quiera?',
-    a: 'Sí, puedes cancelar en cualquier momento desde tu cuenta. No hay permanencia ni penalizaciones. El acceso continúa hasta el final del período ya pagado.',
+    q: '¿Qué pasa cuando agoto mis correcciones?',
+    a: 'Puedes recargar correcciones desde 8,99€ (+15 correcciones) directamente desde tu panel, sin necesidad de contratar nada nuevo. Los tests de tipo test siguen siendo ilimitados — las correcciones son el único recurso limitado.',
   },
   {
     q: '¿La IA puede equivocarse?',
@@ -149,7 +148,7 @@ const faqs = [
   },
   {
     q: '¿Qué incluye exactamente el plan gratuito?',
-    a: 'El plan gratuito incluye 5 tests de tipo test al mes y 2 correcciones de desarrollos escritos, con verificación de citas incluida en ambos. No necesitas tarjeta de crédito para empezar.',
+    a: 'El plan gratuito incluye 5 tests de prueba y 2 correcciones de desarrollos escritos (en total, no al mes), con verificación de citas incluida en ambos. No necesitas tarjeta de crédito para empezar.',
   },
   {
     q: '¿Con qué frecuencia se actualiza la legislación?',
@@ -209,7 +208,7 @@ export default function LandingPage() {
             </Link>
           </div>
           <p className="mt-4 text-xs text-muted-foreground">
-            5 tests gratuitos · Sin compromiso · Cancela cuando quieras
+            5 tests gratuitos · Sin tarjeta · Sin suscripción
           </p>
         </div>
       </section>
@@ -294,16 +293,17 @@ export default function LandingPage() {
 
       {/* ─── Pricing ──────────────────────────────────────────────────── */}
       <section id="precios" className="py-20">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
               Precios
             </Badge>
             <h2 className="text-3xl font-bold tracking-tight">
-              Empieza gratis. Paga solo si apruebas.
+              Empieza gratis. Paga solo por lo que necesitas.
             </h2>
             <p className="mt-3 text-muted-foreground">
-              Sin suscripciones obligatorias. Paga por lo que usas.
+              Sin permanencias. Sin suscripción. Pago único — acceso para siempre.
+              ¿Te quedas sin correcciones? Recárgalas desde 8,99€.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-3">

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { stripe } from '@/lib/stripe/client'
+import { stripe, CORRECTIONS_GRANTED } from '@/lib/stripe/client'
 import { createServiceClient } from '@/lib/supabase/server'
 import { logger } from '@/lib/logger'
 
@@ -96,15 +96,30 @@ async function handleStripeEvent(
       const session = event.data.object as Stripe.Checkout.Session
       if (session.payment_status !== 'paid') break
 
+      const userId = session.metadata?.user_id ?? ''
+      const tipo = (session.metadata?.tipo ?? 'tema') as keyof typeof CORRECTIONS_GRANTED
+
+      // 1. Registrar compra
       await supabase.from('compras').insert({
-        user_id: session.metadata?.user_id ?? '',
+        user_id: userId,
         oposicion_id: session.metadata?.oposicion_id ?? '',
         tema_id: session.metadata?.tema_id ?? null,
         stripe_checkout_session_id: session.id,
-        tipo: session.metadata?.tipo ?? 'tema',
+        tipo,
         amount_paid: session.amount_total ?? 0,
       })
-      log.info({ sessionId: session.id }, 'Compra registrada')
+
+      // 2. Otorgar correcciones según tipo de producto (ADR-0010)
+      const correctionsToGrant = CORRECTIONS_GRANTED[tipo] ?? 0
+      if (correctionsToGrant > 0) {
+        await supabase.rpc('grant_corrections', {
+          p_user_id: userId,
+          p_amount: correctionsToGrant,
+        })
+        log.info({ sessionId: session.id, tipo, correctionsToGrant }, 'Correcciones otorgadas')
+      }
+
+      log.info({ sessionId: session.id, tipo }, 'Compra registrada')
       break
     }
 

@@ -327,6 +327,7 @@ export type Database = {
       }
       profiles: {
         Row: {
+          corrections_balance: number
           created_at: string
           email: string
           fecha_examen: string | null
@@ -339,6 +340,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          corrections_balance?: number
           created_at?: string
           email: string
           fecha_examen?: string | null
@@ -351,6 +353,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          corrections_balance?: number
           created_at?: string
           email?: string
           fecha_examen?: string | null
@@ -520,6 +523,10 @@ export type Database = {
           tests_completados: number
         }[]
       }
+      grant_corrections: {
+        Args: { p_user_id: string; p_amount: number }
+        Returns: undefined
+      }
       increment_free_corrector: {
         Args: { p_max?: number; p_user_id: string }
         Returns: boolean
@@ -557,6 +564,18 @@ export type Database = {
           texto_integro: string
           titulo_capitulo: string
         }[]
+      }
+      use_correction: {
+        Args: { p_user_id: string }
+        Returns: boolean
+      }
+      use_free_correction: {
+        Args: { p_user_id: string }
+        Returns: boolean
+      }
+      use_free_test: {
+        Args: { p_user_id: string }
+        Returns: boolean
       }
     }
     Enums: {
