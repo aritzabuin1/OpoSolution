@@ -297,11 +297,11 @@ async def analyze(request: DocumentAnalysisRequest):
 
 ### Resumen del Proyecto
 
-PWA de entrenamiento para opositores españoles usando IA (Claude API) con verificación determinista de citas legales. Primera oposición: Auxiliar Administrativo del Estado (25 temas, 3 leyes core en MVP: CE, LPAC, LRJSP → 72% del temario cubierto). Modelo de negocio: freemium (5 tests + 2 correcciones gratis) + compra por tema (4.99€ perpetuo) + pack oposición (29.99€ perpetuo) + premium (12.99€/mes). Stack: Next.js 14 (App Router) + Tailwind + shadcn/ui + Supabase + Claude API + Stripe + PWA.
+PWA de entrenamiento para opositores españoles usando IA (Claude API) con verificación determinista de citas legales. Primera oposición: Auxiliar Administrativo del Estado (25 temas, 3 leyes core en MVP: CE, LPAC, LRJSP → 72% del temario cubierto). **Modelo de negocio (ADR-0010 — Fuel Tank)**: freemium (5 tests + 2 correcciones totales) + por tema (4.99€ one-time, +5 correcciones) + Pack Oposición (34.99€ one-time, +20 correcciones) + Recarga (8.99€ one-time, +15 correcciones). **Sin suscripciones.** Stack: Next.js 14 (App Router) + Tailwind + shadcn/ui + Supabase + Claude API (Haiku para tests, Sonnet para correcciones) + Stripe + PWA.
 
 **Diferenciador clave**: Verificación determinista — cada cita legal generada por Claude se verifica con código tradicional (regex + BD lookup) ANTES de mostrarse al usuario. No confiamos en que la IA sea precisa; confiamos en que nuestro CÓDIGO lo verifique.
 
-**Estado actual**: Fase de planificación completada. PLAN.md de 1447 líneas como spec ejecutable para Claude Code. 0 líneas de código de producto.
+**Estado actual (Feb 2026)**: Fase 0 completada y desplegada en Vercel. Landing, auth UI, onboarding, paywall 402 implementados. Migración 006 (corrections_balance + 4 RPCs atómicas) aplicada. Fase 1A (RAG + verificación determinista) es el siguiente bloque.
 
 ### 1. QUÉ HICIMOS - Fase de Planificación
 
@@ -333,21 +333,31 @@ PWA de entrenamiento para opositores españoles usando IA (Claude API) con verif
 
 **Resultado**: Diseño completo con tests unitarios especificados para cada función. La v1 usa regex + diccionario de aliases (>80% resolución sin IA). La v2 (post-MVP) añade normalización semántica con Claude para el 20% restante.
 
-#### Modelo de Pricing con Behavioral Economics (v3 — 3 iteraciones)
+#### Modelo de Pricing Fuel Tank (ADR-0010 — iteración final)
 
-**Qué**: Modelo de monetización "Progresión por Tema" (Ownership-First) diseñado con principios de behavioral economics, tras 3 iteraciones que descartaron micro-compras (v1), modelo híbrido (v2), y llegaron al modelo actual (v3).
+**Qué**: Modelo de monetización one-time sin suscripciones. "Fuel Tank": las correcciones son combustible — cuando se agotan, el usuario recarga. Los tests son ilimitados (baratos con Haiku). 4 productos: Gratis, Por Tema (4.99€), Pack Oposición (34.99€), Recarga (8.99€).
 
-**Por qué**: El mercado español de oposiciones tiene psicología específica: subscription fatigue (67% de españoles quieren una sola app para gestionar suscripciones), sensibilidad al precio (opositores estudian a tiempo completo), pero disposición a invertir en ventaja competitiva.
+**Por qué**: El mercado español tiene subscription fatigue severa. Los opositores rechazan activamente nuevas suscripciones mensuales. Además, la economía unitaria de tests (Haiku, ~0.005€/test) vs correcciones (Sonnet, ~0.035€/corrección) permite tests ilimitados sin perder dinero. Las correcciones son el recurso escaso que genera recurrencia (Recarga).
 
-**Cómo**: Aplicación de 6 principios de behavioral economics:
-1. **Anti-suscripción como diferenciador** — OpositaTest cobra 7.99-15.99€/mes. OPTEK vende temas como propiedad perpetua ("No pagas por tiempo, pagas por dominio").
-2. **Loss Aversion + Zeigarnik** (Kahneman & Tversky, 1979) — Free tier muestra resultados pero blur CSS bloquea explicaciones en tests 4-5. El usuario VE que falló pero NO puede ver el porqué.
-3. **Anchoring** (Tversky & Kahneman, 1974) — Pack 29.99€ junto a "Academia: desde 150€/mes" y "25 temas × 4.99€ = 124.75€".
-4. **Decoy Effect** (Huber, Payne & Puto, 1982) — Tema Individual 4.99€ hace que Pack 29.99€ sea irresistible (>6 temas y ya sale mejor).
-5. **IKEA Effect + Goal Gradient** (Norton/Ariely 2012, Hull 1932) — Progreso tema a tema que el usuario siente como propio.
-6. **Endowment Effect** (Thaler, 1980) — 5 tests gratis generan mapa de fortalezas/debilidades que el usuario siente como propio.
+**Behavioral economics aplicados**:
+1. **Endowment Effect** — corrections_balance visible en dashboard. El usuario siente que "posee" combustible. Cuando baja a 3 → compra Recarga sin fricciones.
+2. **Pain of Paying reducido** — 34.99€ one-time activa menos "dolor" a lo largo del tiempo que 12 × 12.99€/año, aunque el total sea mayor.
+3. **Decoy Effect** — Por Tema (4.99€) hace que Pack (34.99€) parezca superior (7 temas × 4.99€ = 34.93€, más todo el temario y 4× correcciones).
+4. **Loss Aversion** — Copy del 402: "¿Te quedas sin correcciones?" (reposición), no "¿Quieres más?" (venta).
+5. **Peak-End Rule** — Paywall llega justo cuando el usuario acaba su primer test (peak de engagement).
 
-**Resultado**: Modelo validado analíticamente con márgenes positivos en todos los tiers. Documentado en ADR-0009 con 3 versiones y justificación completa.
+**Implementación técnica clave**:
+- `corrections_balance` en profiles — saldo visible como "depósito"
+- RPCs atómicas (`use_correction`, `use_free_correction`, `use_free_test`, `grant_corrections`) — previenen race conditions (DDIA Consistency)
+- Webhook Stripe → `grant_corrections(userId, amount)` tras cada compra
+- Paywall HTTP 402 con `upsell` array — frontend muestra modal de recarga
+- Límite silencioso 20 tests/día (Upstash) — safety net económico sin comunicarlo
+
+**Economía unitaria** (escenario pesimista: 20 tests/día):
+- Coste: 20 × 0.005€ × 30 días = 3€/mes. Pack neto: ~33.94€. Payback: ~11 meses pesimista, ~2 meses uso típico.
+- LTV con 2 Recargas/año: 34.99€ + 2 × 8.99€ = 52.97€ sin suscripción.
+
+**Documentado en**: `docs/decisions/ADR-0010-pricing-fuel-tank.md`
 
 #### Naming con Ciencia (OpoIA → OPTEK)
 
@@ -415,6 +425,22 @@ PWA de entrenamiento para opositores españoles usando IA (Claude API) con verif
 
 ### 3. PROBLEMAS RESUELTOS
 
+#### Bug Crítico: .gitignore con patrón no anclado silencia toda la carpeta lib/
+
+**Problema**: 3 deploys consecutivos fallaron en Vercel con `Module not found: Can't resolve '@/lib/supabase/server'`. La causa no era obvia porque los archivos existían localmente y `pnpm build` funcionaba en local.
+
+**Causa raíz**: El `.gitignore` raíz del repo tenía la línea `lib/` (patrón de Python venv). En un repo de Python, esto es correcto. Pero en un monorepo con `optek/lib/`, el patrón no anclado al root silenciaba TODOS los ficheros bajo cualquier `lib/` del repo — incluyendo los 10 ficheros críticos de `optek/lib/`. Git nunca los trackó, Vercel nunca los tenía, el build fallaba.
+
+**Fix**: Cambiar `lib/` → `/lib/` y `lib64/` → `/lib64/` (anchored to repo root). Añadir explícitamente los 10 ficheros con `git add optek/lib/*`.
+
+**Síntomas que llevan a confusión**:
+- `pnpm build` funciona local (los ficheros SÍ existen en disco, solo no en git)
+- `git status` no los muestra como untracked (porque están en .gitignore)
+- El error parece de TypeScript/webpack, no de git
+- 3 intentos de fixes incorrectos (tsconfig baseUrl, turbopack, webpack) antes de encontrar la causa real
+
+**Prevención futura**: En monorepos con múltiples lenguajes, SIEMPRE anclar los patrones de `.gitignore` con `/`. `lib/` → silencia todo. `/lib/` → solo silencia la carpeta lib/ en el root del repo. Verificar que ficheros críticos están tracked con `git ls-files optek/lib/` antes de cada deploy.
+
 #### Análisis Crítico de Informe de Seguridad Automatizado (Gemini, 22 hallazgos)
 
 **Problema**: Gemini analizó el proyecto y generó 22 "hallazgos de seguridad" que parecían todos críticos. Si los hubiéramos incorporado todos sin análisis, habríamos añadido ~20h de trabajo innecesario y complejidad.
@@ -433,6 +459,22 @@ PWA de entrenamiento para opositores españoles usando IA (Claude API) con verif
 **Prevención futura**: Siempre contrastar hallazgos automatizados con la documentación real. Crear checklist: ¿Ya está cubierto? ¿Es relevante para el scope actual? ¿El fix justifica la complejidad? Nunca incorporar hallazgos de IA a ciegas.
 
 ### 4. OPTIMIZACIONES Y MEJORAS
+
+#### Separación de modelos por tipo de tarea: Haiku para tests, Sonnet para correcciones
+
+**Situación**: La primera spec usaba Claude Sonnet para TODO (tests MCQ + correcciones de desarrollo). Sonnet cuesta ~0.018€/test con MCQ típicas.
+
+**Optimización**: Separar por complejidad cognitiva de la tarea:
+- **Tests MCQ** → Claude Haiku 4.5 (`claude-haiku-4-5-20251001`): input $0.80/1M, output $4.00/1M → ~0.005€/test. El MCQ no requiere razonamiento profundo, Haiku es suficiente.
+- **Correcciones de desarrollo** → Claude Sonnet 4.6 (`claude-sonnet-4-6`): input $3.00/1M, output $15.00/1M → ~0.035€/corrección. La evaluación multidimensional de un texto jurídico SÍ requiere el modelo más capaz.
+
+**Impacto económico**:
+- Tests: 72% reducción de coste por test (0.018€ → 0.005€)
+- Hace económicamente viable tests ilimitados: 20 tests/día = 3€/mes de coste
+- Las correcciones, aunque 7× más caras, son el recurso escaso (2 gratis, luego pago) → coste controlado
+- Pack Oposición (34.99€) tiene payback ~2 meses con uso típico
+
+**Implementación**: Dos funciones separadas en `lib/ai/claude.ts`: `callClaude()` (Sonnet, default) y `callClaudeHaiku()` (Haiku, para generate-test). Constantes de coste separadas para logging exacto en `api_usage_log`.
 
 #### Reducción de Scope: 22 semanas → 4-5 semanas
 
@@ -466,6 +508,12 @@ PWA de entrenamiento para opositores españoles usando IA (Claude API) con verif
 
 - **El scope mínimo viable es más pequeño de lo que crees**: 3 leyes cubren 72% del temario. No necesitas 7 leyes para validar. No necesitas simulador oral para saber si la gente paga por tests verificados. Cada feature añadida sin validación de mercado es riesgo puro.
 
+- **Los patrones de `.gitignore` sin anclar son bombas silenciosas en monorepos**: `lib/` silencia toda carpeta `lib/` en cualquier nivel del repo. `/lib/` solo silencia la del root. En monorepos con múltiples lenguajes (Python + Node en el mismo repo), revisar cada patrón de `.gitignore` y añadir `/` para anclarlo. Verificar ficheros críticos con `git ls-files` antes del primer deploy a producción.
+
+- **La separación de modelos por complejidad es economía, no premature optimization**: No uses el mismo modelo para todo. MCQ → Haiku (72% más barato, calidad suficiente). Evaluación compleja → Sonnet (7× más caro, pero necesario). El diferencial de coste permite modelos de negocio que de otro modo no serían viables (tests ilimitados).
+
+- **Sin suscripción puede ser una ventaja competitiva, no una debilidad**: En mercados con subscription fatigue, el modelo "paga una vez, úsalo siempre" genera más conversiones iniciales y menos churn. La recurrencia viene del reabastecimiento natural (Recarga de correcciones), no de una renovación mensual que el usuario puede cancelar.
+
 ### 6. HERRAMIENTAS Y CONFIGURACIONES ÚTILES
 
 #### Claude Code como Motor de Desarrollo
@@ -488,10 +536,11 @@ PWA de entrenamiento para opositores españoles usando IA (Claude API) con verif
 **Para qué sirve**: Generación de preguntas de test, corrección de desarrollos, generación de flashcards.
 
 **Configuración por endpoint**:
-- GENERATE_TEST: Claude Sonnet, temperature 0.3 (precisión máxima), ~0.04€/test
-- CORRECT_DESARROLLO: Claude Sonnet, temperature 0.4 (algo de creatividad en feedback), ~0.03€/corrección
+- GENERATE_TEST: **Claude Haiku 4.5** (`claude-haiku-4-5-20251001`), temperature 0.3, ~0.005€/test
+- CORRECT_DESARROLLO: **Claude Sonnet 4.6** (`claude-sonnet-4-6`), temperature 0.4, ~0.035€/corrección
 - Timeout: 30s, retry max 2 con exponential backoff
 - Circuit breaker: CLOSED→OPEN tras 5 fallos consecutivos, reset tras 60s
+- Separación de costes en `api_usage_log` para monitorización real por endpoint
 
 **Gotchas**:
 - Necesita DPA (Data Processing Agreement) para usuarios europeos (GDPR). Verificar en anthropic.com/legal ANTES de escribir código.
