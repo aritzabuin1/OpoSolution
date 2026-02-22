@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
@@ -10,7 +10,8 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
-export default function LoginPage() {
+// Componente interior que usa useSearchParams — debe ir dentro de <Suspense>
+function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const redirect = searchParams.get('redirect') ?? '/dashboard'
@@ -171,5 +172,14 @@ export default function LoginPage() {
         </div>
       </CardContent>
     </Card>
+  )
+}
+
+// Suspense requerido por Next.js para páginas que usan useSearchParams en static rendering
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="w-full max-w-md h-96 animate-pulse rounded-xl bg-muted" />}>
+      <LoginForm />
+    </Suspense>
   )
 }
