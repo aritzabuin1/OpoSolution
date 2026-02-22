@@ -142,7 +142,8 @@
 - [x] **0.8.5** Insertar seed: temas del temario oficial (25 temas con número, título, descripción) → **PENDIENTE ACTUALIZAR a 28 temas oficiales convocatoria 2025-2026 (ver §0.8.5A)**
 - [x] **0.8.6** Insertar seed: 10-20 artículos de legislación de ejemplo (Constitución arts. 1, 9, 14, 23, 103; LPAC arts. 53, 54, 68) para poder testear en desarrollo
 - [ ] **0.8.4A** Actualizar seed oposición: `UPDATE oposiciones SET num_temas = 28 WHERE slug = 'aux-admin-estado'`
-- [ ] **0.8.5A** Actualizar seed temas: reescribir 28 temas con títulos del temario oficial convocatoria 2025-2026 (Bloque I: temas 1-16, Bloque II: temas 17-28). Añadir columna `bloque` (text: 'I' | 'II') a tabla `temas` si no existe
+- [ ] **0.8.5A** Actualizar seed temas: reescribir 28 temas con títulos del temario oficial convocatoria 2025-2026 (Bloque I: temas 1-16, Bloque II: temas 17-28). Ver §0.8.5B antes de ejecutar este seed.
+- [ ] **0.8.5B** Crear migration `supabase/migrations/20260222_007_temas_bloque.sql`: `ALTER TABLE temas ADD COLUMN IF NOT EXISTS bloque text CHECK (bloque IN ('I','II'))`. Con rollback `.down.sql`: `ALTER TABLE temas DROP COLUMN IF EXISTS bloque`. **Aplicar antes de §0.8.5A** (el seed necesita la columna).
 - [ ] **0.8.7** Verificar: llamar a `match_legislacion` desde la app → retorna resultados
 
 ### 0.9 Tipos TypeScript generados
@@ -343,6 +344,7 @@
 >
 > **Momento:** Pre-Beta. No bloquea la validación del pipeline RAG (que se prueba con Bloque I), pero es OBLIGATORIO antes de reclutar beta testers opositores.
 
+- [ ] **1.3A.0** Crear carpeta `data/ofimatica/` y `data/ofimatica/README.md` documentando el schema JSON esperado para contenido de Bloque II: `{ tema_nombre, tema_numero, bloque, fuente_url, secciones: [{ titulo, contenido }] }`. Incluir instrucciones de encoding (UTF-8), fuentes válidas (Microsoft Learn, INAP, normativa), y ejemplo mínimo. (Mismo patrón que §1.1.0 para `data/legislacion/`.)
 - [ ] **1.3A.1** Crear tabla `conocimiento_tecnico`: id (uuid PK), bloque (text: 'ofimatica','informatica','admin_electronica'), tema_id (FK temas), titulo_seccion (text), contenido (text), fuente_url (text nullable), hash_sha256 (text), embedding vector(1536), activo (bool default true), created_at, updated_at. UNIQUE(bloque, tema_id, titulo_seccion). Crear migration + rollback
 - [ ] **1.3A.2** Habilitar RLS en `conocimiento_tecnico`: SELECT para authenticated (lectura pública como legislación)
 - [ ] **1.3A.3** Crear función RPC `match_conocimiento(query_embedding vector, match_count int, filter_bloque text)`: búsqueda vectorial filtrada por bloque
@@ -778,36 +780,36 @@
 
 > **Decisión:** Rachas y logros básicos ya están en Fase 1B (§1.13B). Rankings requieren masa crítica (>100 usuarios/oposición). Alertas BOE email son prematuras — en MVP el monitor BOE es un script manual ejecutado mensualmente. Toda esta fase se implementa post-validación de mercado.
 
-### 2.7 Gamificación avanzada (extiende §1.13B)
+### 2.8 Gamificación avanzada (extiende §1.13B)
 
-- [ ] **2.7.1** Crear tabla `ranking_semanal`: id, user_id (FK), oposicion_id (FK), semana (date), puntuacion_total (float), posicion (int), percentil (float)
-- [ ] **2.7.2** Implementar logros avanzados (extienden los básicos de §1.13B): `racha_30`, `100_preguntas`, `500_preguntas`, `10_temas_completados`, `todas_notas_sobre_7`
-- [ ] **2.7.3** Crear cron job (Vercel Cron): cada lunes calcular ranking semanal por oposición
-- [ ] **2.7.4** Crear página `/logros/page.tsx`: grid completo de badges (desbloqueados en color, pendientes en gris), con descripción y fecha de desbloqueo
-- [ ] **2.7.5** Crear componente `RankingTable.tsx`: top 20 + posición del usuario resaltada
-- [ ] **2.7.6** Crear página `/ranking/page.tsx`: ranking semanal + mensual, filtro por oposición
-- [ ] **2.7.7** Verificar: completar tests → logros avanzados se desbloquean → ranking se calcula semanalmente
+- [ ] **2.8.1** Crear tabla `ranking_semanal`: id, user_id (FK), oposicion_id (FK), semana (date), puntuacion_total (float), posicion (int), percentil (float)
+- [ ] **2.8.2** Implementar logros avanzados (extienden los básicos de §1.13B): `racha_30`, `100_preguntas`, `500_preguntas`, `10_temas_completados`, `todas_notas_sobre_7`
+- [ ] **2.8.3** Crear cron job (Vercel Cron): cada lunes calcular ranking semanal por oposición
+- [ ] **2.8.4** Crear página `/logros/page.tsx`: grid completo de badges (desbloqueados en color, pendientes en gris), con descripción y fecha de desbloqueo
+- [ ] **2.8.5** Crear componente `RankingTable.tsx`: top 20 + posición del usuario resaltada
+- [ ] **2.8.6** Crear página `/ranking/page.tsx`: ranking semanal + mensual, filtro por oposición
+- [ ] **2.8.7** Verificar: completar tests → logros avanzados se desbloquean → ranking se calcula semanalmente
 
-### 2.8 Monitorización BOE (cron job)
+### 2.9 Monitorización BOE (cron job)
 
-- [ ] **2.8.1** Crear `execution/boe-monitor.ts`: obtener lista de leyes monitorizadas desde BD
-- [ ] **2.8.2** Para cada ley: scraping del BOE (buscar modificaciones publicadas)
-- [ ] **2.8.3** Para cada artículo modificado: normalizar texto → generar hash → comparar con hash almacenado
-- [ ] **2.8.4** Si hash difiere: actualizar texto_integro + hash_sha256 en BD, insertar en cambios_legislativos
-- [ ] **2.8.5** Invalidar preguntas generadas que citan el artículo modificado (flag needs_regeneration)
-- [ ] **2.8.6** Regenerar embeddings del artículo actualizado
-- [ ] **2.8.7** Configurar Vercel Cron: ejecutar diariamente a las 08:00 CET
-- [ ] **2.8.8** Log de ejecución: leyes revisadas, cambios detectados, artículos actualizados
-- [ ] **2.8.9** Test: simular cambio en artículo → verificar detección → verificar invalidación de tests
+- [ ] **2.9.1** Crear `execution/boe-monitor.ts`: obtener lista de leyes monitorizadas desde BD
+- [ ] **2.9.2** Para cada ley: scraping del BOE (buscar modificaciones publicadas)
+- [ ] **2.9.3** Para cada artículo modificado: normalizar texto → generar hash → comparar con hash almacenado
+- [ ] **2.9.4** Si hash difiere: actualizar texto_integro + hash_sha256 en BD, insertar en cambios_legislativos
+- [ ] **2.9.5** Invalidar preguntas generadas que citan el artículo modificado (flag needs_regeneration)
+- [ ] **2.9.6** Regenerar embeddings del artículo actualizado
+- [ ] **2.9.7** Configurar Vercel Cron: ejecutar diariamente a las 08:00 CET
+- [ ] **2.9.8** Log de ejecución: leyes revisadas, cambios detectados, artículos actualizados
+- [ ] **2.9.9** Test: simular cambio en artículo → verificar detección → verificar invalidación de tests
 
-### 2.9 Alertas personalizadas BOE
+### 2.10 Alertas personalizadas BOE
 
-- [ ] **2.9.1** Crear template email en Resend: "Cambio legislativo que afecta a tu temario" con artículo, resumen, CTA
-- [ ] **2.9.2** Integrar envío de email en boe-monitor: cuando se detecta cambio → enviar a usuarios afectados (los que tienen ese tema en su oposición)
-- [ ] **2.9.3** Crear badge en dashboard: "X cambios legislativos pendientes"
-- [ ] **2.9.4** Crear página `/cambios-legislativos/page.tsx`: lista de cambios recientes con antes/después
-- [ ] **2.9.5** Generar mini-test de actualización: 5 preguntas sobre artículo modificado
-- [ ] **2.9.6** Verificar: cambio detectado → email enviado → badge aparece → mini-test generado
+- [ ] **2.10.1** Crear template email en Resend: "Cambio legislativo que afecta a tu temario" con artículo, resumen, CTA
+- [ ] **2.10.2** Integrar envío de email en boe-monitor: cuando se detecta cambio → enviar a usuarios afectados (los que tienen ese tema en su oposición)
+- [ ] **2.10.3** Crear badge en dashboard: "X cambios legislativos pendientes"
+- [ ] **2.10.4** Crear página `/cambios-legislativos/page.tsx`: lista de cambios recientes con antes/después
+- [ ] **2.10.5** Generar mini-test de actualización: 5 preguntas sobre artículo modificado
+- [ ] **2.10.6** Verificar: cambio detectado → email enviado → badge aparece → mini-test generado
 
 ---
 
