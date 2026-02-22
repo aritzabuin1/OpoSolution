@@ -68,6 +68,62 @@ const LEYES = [
     nombre_completo: 'Constitución Española, de 27 de diciembre de 1978',
     archivo: 'constitucion_española_1978.json',
   },
+  // ── Leyes pendientes (§1.1.3-§1.1.6D) ──────────────────────────────────────
+  {
+    codigo: 'BOE-A-2015-8421',
+    nombre: 'TREBEP',
+    nombre_completo:
+      'Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto refundido de la Ley del Estatuto Básico del Empleado Público',
+    archivo: 'trebep_rdl_5_2015.json',
+  },
+  {
+    codigo: 'BOE-A-2013-12887',
+    nombre: 'TRANSPARENCIA',
+    nombre_completo:
+      'Ley 19/2013, de 9 de diciembre, de transparencia, acceso a la información pública y buen gobierno',
+    archivo: 'ley_19_2013_transparencia.json',
+  },
+  {
+    codigo: 'BOE-A-2017-12902',
+    nombre: 'LCSP',
+    nombre_completo:
+      'Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público (Títulos I-II)',
+    archivo: 'ley_9_2017_lcsp_parcial.json',
+  },
+  {
+    codigo: 'BOE-A-2018-16673',
+    nombre: 'LOPDGDD',
+    nombre_completo:
+      'Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales',
+    archivo: 'lo_3_2018_lopdgdd.json',
+  },
+  {
+    codigo: 'BOE-A-1997-25336',
+    nombre: 'LGOB',
+    nombre_completo: 'Ley 50/1997, de 27 de noviembre, del Gobierno',
+    archivo: 'ley_50_1997_gobierno.json',
+  },
+  {
+    codigo: 'BOE-A-2007-6115',
+    nombre: 'LOIGUALDAD',
+    nombre_completo:
+      'Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres',
+    archivo: 'lo_3_2007_igualdad.json',
+  },
+  {
+    codigo: 'BOE-A-2004-21760',
+    nombre: 'LOVIGEN',
+    nombre_completo:
+      'Ley Orgánica 1/2004, de 28 de diciembre, de Medidas de Protección Integral contra la Violencia de Género',
+    archivo: 'lo_1_2004_violencia_genero_parcial.json',
+  },
+  {
+    codigo: 'BOE-A-2023-5366',
+    nombre: 'LGTBI',
+    nombre_completo:
+      'Ley 4/2023, de 28 de febrero, para la igualdad real y efectiva de las personas trans y para la garantía de los derechos de las personas LGTBI',
+    archivo: 'ley_4_2023_lgtbi.json',
+  },
 ] as const
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────

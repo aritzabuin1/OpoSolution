@@ -4,7 +4,13 @@
 >
 > **Stack:** Next.js latest (App Router) + Tailwind + shadcn/ui + Supabase (auth, PostgreSQL, storage) + Claude API + Stripe + PWA
 >
-> **Primera oposición:** Auxiliar Administrativo del Estado
+> **Primera oposición:** Auxiliar Administrativo del Estado (Convocatoria 2025-2026)
+>
+> **Estructura del examen:** 110 preguntas tipo test en 90 minutos. Parte 1: 30 teóricas (Bloque I) + 30 psicotécnicas. Parte 2: 50 teórico-prácticas (Bloque II). Penalización: respuesta errónea descuenta 1/3 del valor de una correcta. Cada parte vale 50 puntos (total: 100).
+>
+> **Temario oficial (28 temas):**
+> - **Bloque I — Organización Pública (16 temas):** 1. CE 1978 | 2. Tribunal Constitucional y Reforma | 3. Cortes Generales | 4. Poder Judicial | 5. Gobierno y Administración | 6. Gobierno Abierto | 7. Transparencia (Ley 19/2013) | 8. AGE | 9. Organización territorial | 10. UE (instituciones) | 11. Procedimiento administrativo (LPAC/LRJSP) | 12. Protección de datos (LOPDGDD) | 13. Personal funcionario (TREBEP) | 14. Derechos y deberes funcionarios | 15. Presupuesto del Estado | 16. Políticas de igualdad LGTBI *(nuevo 2026)*
+> - **Bloque II — Actividad Administrativa y Ofimática (12 temas):** 17. Atención al público | 18. Servicios de información administrativa | 19. Documento, registro y archivo | 20. Administración electrónica | 21. Informática básica | 22. Windows 11 y Copilot *(nuevo 2026)* | 23. Explorador de Windows | 24. Word 365 *(nuevo 2026)* | 25. Excel 365 *(nuevo 2026)* | 26. Access 365 *(nuevo 2026)* | 27. Outlook 365 *(nuevo 2026)* | 28. Red Internet
 >
 > **Principio fundamental:** La IA nunca habla sin artículo exacto delante. Cada cita legal se verifica con código determinista, no con más IA.
 
@@ -132,9 +138,11 @@
 - [x] **0.8.1** Crear función RPC `match_legislacion(query_embedding vector, match_count int, filter_oposicion uuid)`: búsqueda vectorial con filtro
 - [x] **0.8.2** Crear función RPC `get_user_stats(p_user_id uuid)`: retorna tests completados, media puntuación, temas cubiertos
 - [x] **0.8.3** Crear función SQL `search_legislacion(query text)`: búsqueda full-text en texto_integro con ts_rank
-- [x] **0.8.4** Insertar seed: oposición "Auxiliar Administrativo del Estado" (slug: aux-admin-estado, num_temas: ~25)
-- [x] **0.8.5** Insertar seed: temas del temario oficial (25 temas con número, título, descripción)
+- [x] **0.8.4** Insertar seed: oposición "Auxiliar Administrativo del Estado" (slug: aux-admin-estado, num_temas: ~25) → **PENDIENTE ACTUALIZAR a 28 temas (ver §0.8.4A)**
+- [x] **0.8.5** Insertar seed: temas del temario oficial (25 temas con número, título, descripción) → **PENDIENTE ACTUALIZAR a 28 temas oficiales convocatoria 2025-2026 (ver §0.8.5A)**
 - [x] **0.8.6** Insertar seed: 10-20 artículos de legislación de ejemplo (Constitución arts. 1, 9, 14, 23, 103; LPAC arts. 53, 54, 68) para poder testear en desarrollo
+- [ ] **0.8.4A** Actualizar seed oposición: `UPDATE oposiciones SET num_temas = 28 WHERE slug = 'aux-admin-estado'`
+- [ ] **0.8.5A** Actualizar seed temas: reescribir 28 temas con títulos del temario oficial convocatoria 2025-2026 (Bloque I: temas 1-16, Bloque II: temas 17-28). Añadir columna `bloque` (text: 'I' | 'II') a tabla `temas` si no existe
 - [ ] **0.8.7** Verificar: llamar a `match_legislacion` desde la app → retorna resultados
 
 ### 0.9 Tipos TypeScript generados
@@ -282,24 +290,25 @@
 
 > **Estrategia dual:** Automatizar con API OpenData BOE como vía principal (reduce ~80% trabajo manual). Fallback a transcripción manual si el parsing automático falla para alguna ley.
 
-- [ ] **1.1.0** Crear carpeta `data/legislacion/` y `data/README.md` documentando el schema JSON esperado: `{ ley_nombre, ley_codigo, ley_nombre_completo, articulos: [{ numero, apartado?, titulo_capitulo, texto_integro }] }`. Incluir instrucciones de formato, encoding (UTF-8), y ejemplo mínimo.
-- [ ] **1.1.0A** (**AUTOMATIZACIÓN — vía principal**): Crear script `execution/boe-scraper.ts` para obtener legislación estructurada desde la API OpenData del BOE (https://www.boe.es/datosabiertos/):
-  - Endpoint XML/JSON del BOE → parsear estructura de ley → extraer artículos con número, título de capítulo, texto íntegro
-  - Normalizar encoding (UTF-8), eliminar HTML/XML tags del texto
-  - Output: archivos JSON siguiendo el schema de `data/README.md`
-  - Incluir rate limiting hacia el BOE (max 1 req/segundo) y retry con backoff
-  - **Si el parsing de una ley falla:** log warning + marcar para transcripción manual
-- [ ] **1.1.0B** (**PRIORIDAD — validar pipeline con 1 ley**): Ejecutar `boe-scraper.ts` para Ley 39/2015 LPAC como primera ley de prueba → generar `data/legislacion/ley_39_2015_lpac.json`. **Aritz revisa manualmente el output** comparando con BOE original. Si el scraping tiene >5% errores → transcripción manual de esa ley como fallback. Ejecutar pipeline completo (ingesta → embedding → retrieval → generación test → verificación determinista) con solo esta ley. Validar end-to-end ANTES de procesar las 2 leyes restantes.
-- [ ] **1.1.1** Ejecutar `boe-scraper.ts` para Constitución Española (artículos clave: Título Preliminar, Títulos I-IV, VIII) → revisar output
-- [ ] **1.1.2** Ejecutar `boe-scraper.ts` para Ley 40/2015 LRJSP (completa) → revisar output
-- [ ] ~~**1.1.3** TREBEP~~ → **Post-MVP** (ley P1, no crítica para validar)
-- [ ] ~~**1.1.4** Transparencia~~ → **Post-MVP** (ley P1)
-- [ ] ~~**1.1.5** LCSP~~ → **Post-MVP** (ley P1)
-- [ ] ~~**1.1.6** LOPDGDD~~ → **Post-MVP** (ley P1)
+- [x] **1.1.0** Crear carpeta `data/legislacion/` y `data/README.md` documentando el schema JSON esperado: `{ ley_nombre, ley_codigo, ley_nombre_completo, articulos: [{ numero, titulo_articulo, titulo_seccion, texto_integro }] }`. Incluir instrucciones de formato, encoding (UTF-8), y ejemplo mínimo. ✅ 2026-02-22
+- [x] **1.1.0A** (**AUTOMATIZACIÓN — vía principal**): Crear script `execution/boe-scraper.ts` para obtener legislación estructurada desde BOE consolidado (https://www.boe.es/buscar/act.php?id=BOE-A-XXXX-XXXXX). Parser cheerio sobre HTML consolidado → extrae artículos con número, título de capítulo, texto íntegro. Rate limiting 1.5s entre requests. Maneja artículos + disposiciones adicionales/transitorias/finales. ✅ 2026-02-22
+- [x] **1.1.0B** (**PRIORIDAD — validar pipeline con 1 ley**): Ejecutado `boe-scraper.ts` para Ley 39/2015 LPAC → `data/legislacion/ley_39_2015_lpac.json` con **155 artículos, 0 sin texto**. **Aritz: revisar manualmente comparando con BOE original** antes de ejecutar pipeline completo (ingesta → embedding → retrieval → generación test → verificación determinista). ✅ Scraping 2026-02-22
+- [x] **1.1.1** Ejecutado `boe-scraper.ts` para Constitución Española (`BOE-A-1978-31229`) → `data/legislacion/constitucion_española_1978.json` con **184 artículos, 0 sin texto**. ✅ 2026-02-22
+- [x] **1.1.2** Ejecutado `boe-scraper.ts` para Ley 40/2015 LRJSP (`BOE-A-2015-10566`) → `data/legislacion/ley_40_2015_lrjsp.json` con **218 artículos, 0 sin texto**. ✅ 2026-02-22
+- [ ] **1.1.3** Añadir TREBEP (RDL 5/2015, `BOE-A-2015-8421`) al catálogo del scraper → ejecutar → revisar output → `data/legislacion/trebep_rdl_5_2015.json`
+- [ ] **1.1.4** Añadir Ley 19/2013 Transparencia (`BOE-A-2013-12887`) al catálogo → ejecutar → revisar output → `data/legislacion/ley_19_2013_transparencia.json`
+- [ ] **1.1.5** Añadir Ley 9/2017 LCSP (`BOE-A-2017-12902`) al catálogo con flag PARCIAL (solo Títulos I-II) → ejecutar → revisar output → `data/legislacion/ley_9_2017_lcsp_parcial.json`
+- [ ] **1.1.6** Añadir LOPDGDD (LO 3/2018, `BOE-A-2018-16673`) al catálogo → ejecutar → revisar output → `data/legislacion/lo_3_2018_lopdgdd.json`
+- [ ] **1.1.6A** Añadir Ley 50/1997 del Gobierno (`BOE-A-1997-25336`) al catálogo → ejecutar → revisar output → `data/legislacion/ley_50_1997_gobierno.json`
+- [ ] **1.1.6B** Añadir LO 3/2007 Igualdad (`BOE-A-2007-6115`) al catálogo → ejecutar → revisar output → `data/legislacion/lo_3_2007_igualdad.json`
+- [ ] **1.1.6C** Añadir LO 1/2004 Violencia de Género (`BOE-A-2004-21760`) al catálogo con flag PARCIAL (Títulos I-III) → ejecutar → revisar output → `data/legislacion/lo_1_2004_violencia_genero_parcial.json`
+- [ ] **1.1.6D** Añadir Ley 4/2023 LGTBI (`BOE-A-2023-5366`) al catálogo → ejecutar → revisar output → `data/legislacion/ley_4_2023_lgtbi.json`
+- [ ] **1.1.6E** Crear `data/legislacion/tue_tfue.json` manualmente: extracto de TUE y TFUE centrado en instituciones de la UE (Comisión Europea, Consejo, Parlamento Europeo, Tribunal de Justicia UE, BCE). Fuente: EUR-Lex. **Trabajo de Aritz — no es scraping del BOE**
+- [ ] **1.1.6F** Ley 19/2013 ya cubierta en §1.1.4 (Transparencia = Gobierno Abierto). Verificar cobertura tema 6 con el JSON generado → si falta normativa adicional, ampliar con Ley 11/2007 Acceso Electrónico (`BOE-A-2007-12352`)
 - [ ] **1.1.7** Para leyes donde el scraping falló: transcripción manual como fallback. **Trabajo manual de Aritz — solo para leyes que el scraper no pudo parsear correctamente.**
 - [ ] **1.1.8** Verificar calidad: crear script `execution/validate-legislacion.ts` que comprueba integridad de cada JSON (campos requeridos, encoding, texto no vacío, artículos numerados correctamente)
-- [ ] **1.1.9** Mapear cada artículo al tema/temas del temario oficial que cubre
-- [ ] **1.1.10** Verificar: contar artículos por ley, confirmar que cubren todos los 25 temas
+- [ ] **1.1.9** Mapear cada artículo al tema/temas del temario oficial que cubre (28 temas: 16 Bloque I + 12 Bloque II)
+- [ ] **1.1.10** Verificar: contar artículos por ley, confirmar que cubren los 16 temas del Bloque I
 - [ ] **1.1.11** Crear `data/mapeo_temas_legislacion.json`: mapeo de cada artículo a los temas del temario oficial. Formato: `{ "tema_1": ["CE:art_1", "CE:art_9", ...], "tema_2": [...] }`. **Borrador generado por Claude Code usando el texto de los artículos + títulos del temario → Aritz valida y corrige.**
 - [ ] **1.1.12** Verificar cobertura: crear script en `execution/check-mapping-coverage.ts` que compara artículos en `data/legislacion/*.json` con `data/mapeo_temas_legislacion.json` → alertar artículos sin tema asignado y temas sin artículos
 
@@ -325,6 +334,60 @@
 - [ ] **1.3.3** Estructurar cada pregunta: `{enunciado, opciones[4], correcta, justificacion, ley, articulo}`
 - [ ] **1.3.4** Insertar exámenes en tabla `examenes_oficiales`
 - [ ] **1.3.5** Verificar: `SELECT count(*) FROM examenes_oficiales` → al menos 3 exámenes
+
+### 1.3A Ingesta Bloque II: Ofimática, Informática y Administración (pre-Beta)
+
+> **Contexto:** El Bloque II (temas 17-28) cubre administración electrónica, informática básica, Windows 11, Copilot y Microsoft 365 (Word, Excel, Access, Outlook). No hay BOE — las fuentes son documentación oficial de Microsoft y normativa administrativa.
+>
+> **Estrategia:** Scraping controlado de Microsoft Learn/Support (español) + creación manual de contenido estructurado para temas administrativos. Almacenar en tabla `conocimiento_tecnico` (nueva) con embeddings para RAG.
+>
+> **Momento:** Pre-Beta. No bloquea la validación del pipeline RAG (que se prueba con Bloque I), pero es OBLIGATORIO antes de reclutar beta testers opositores.
+
+- [ ] **1.3A.1** Crear tabla `conocimiento_tecnico`: id (uuid PK), bloque (text: 'ofimatica','informatica','admin_electronica'), tema_id (FK temas), titulo_seccion (text), contenido (text), fuente_url (text nullable), hash_sha256 (text), embedding vector(1536), activo (bool default true), created_at, updated_at. UNIQUE(bloque, tema_id, titulo_seccion). Crear migration + rollback
+- [ ] **1.3A.2** Habilitar RLS en `conocimiento_tecnico`: SELECT para authenticated (lectura pública como legislación)
+- [ ] **1.3A.3** Crear función RPC `match_conocimiento(query_embedding vector, match_count int, filter_bloque text)`: búsqueda vectorial filtrada por bloque
+- [ ] **1.3A.4** Crear script `execution/scrape-microsoft-learn.ts`: extrae contenido estructurado de Microsoft Support/Learn en español. Rate limit 1 req/2s. URLs base:
+  - Windows 11: `https://support.microsoft.com/es-es/windows`
+  - Copilot: `https://support.microsoft.com/es-es/copilot`
+  - Word 365: `https://support.microsoft.com/es-es/word`
+  - Excel 365: `https://support.microsoft.com/es-es/excel`
+  - Access 365: `https://support.microsoft.com/es-es/access`
+  - Outlook 365: `https://support.microsoft.com/es-es/outlook`
+- [ ] **1.3A.5** Ejecutar scraping para Word 365 (tema 24) como primera prueba → generar `data/ofimatica/word365.json` → Aritz valida contenido
+- [ ] **1.3A.6** Ejecutar scraping para Excel 365 (tema 25) → revisar
+- [ ] **1.3A.7** Ejecutar scraping para Access 365 (tema 26) → revisar
+- [ ] **1.3A.8** Ejecutar scraping para Outlook 365 (tema 27) → revisar
+- [ ] **1.3A.9** Ejecutar scraping para Windows 11 + Copilot (temas 22-23) → revisar
+- [ ] **1.3A.10** Crear contenido estructurado manualmente para temas administrativos (temas 17-21): atención al público, servicios de información, documento/registro/archivo, administración electrónica, informática básica. Fuentes: normativa administrativa vigente + manuales INAP. **Trabajo de Aritz asistido por IA**
+- [ ] **1.3A.11** Crear contenido para tema 28 (Red Internet): protocolos básicos (TCP/IP, HTTP, DNS), navegadores, seguridad web, correo web
+- [ ] **1.3A.12** Crear script `execution/ingest-conocimiento.ts`: leer JSONs Bloque II → normalizar → hash SHA-256 → generar embedding → insertar en tabla `conocimiento_tecnico`. Mismo patrón que `ingest-legislacion.ts`
+- [ ] **1.3A.13** Ejecutar ingesta completa Bloque II contra Supabase de desarrollo
+- [ ] **1.3A.14** Verificar: `SELECT count(*) FROM conocimiento_tecnico` retorna ≥200 secciones
+- [ ] **1.3A.15** Actualizar `lib/ai/retrieval.ts`: añadir función `retrieveByBloque(temaId, bloque)` que busca en `conocimiento_tecnico`
+- [ ] **1.3A.16** Actualizar `buildContext()`: si tema pertenece a Bloque II → buscar en `conocimiento_tecnico` en lugar de `legislacion`
+- [ ] **1.3A.17** **Guardrail ofimática:** Para preguntas de M365, las opciones de respuesta (distractores) DEBEN estar basadas en menús/atajos reales que existan en el texto indexado. Prohibir al LLM inventar rutas de menú o atajos de teclado. Implementar validación post-generación
+- [ ] **1.3A.18** Test: generar test del tema 25 (Excel 365) → verificar que las preguntas referencian funciones/menús reales
+
+### 1.3B Motor de Psicotécnicos (pre-Beta)
+
+> **Contexto:** 30 de las 110 preguntas del examen son psicotécnicas: aptitudes numéricas, series lógicas, sinónimos/antónimos, y organización de datos. No requieren RAG ni IA generativa — se generan de forma determinista con scripts.
+>
+> **Estrategia:** Generación procedimental con variables aleatorias. La IA solo se usa opcionalmente para generar las explicaciones paso a paso de la solución (o se generan determinísticamente).
+>
+> **Momento:** Pre-Beta. Se puede desarrollar en paralelo a la ingesta de Bloque II.
+
+- [ ] **1.3B.1** Crear tabla `psicotecnicos_config`: id (uuid PK), categoria (text check: 'numerico','series','verbal','organizacion'), subtipo (text), dificultad (int check: 1-3), template_config (jsonb — rangos de variables, patrones), activo (bool default true), created_at
+- [ ] **1.3B.2** Crear `lib/psicotecnicos/numeric.ts`: generador de problemas numéricos (regla de tres, porcentajes, fracciones, proporciones). Input: dificultad (1-3). Output: `{enunciado, opciones[4], correcta, explicacion_pasos}`. Variables aleatorias para infinitas combinaciones
+- [ ] **1.3B.3** Crear `lib/psicotecnicos/series.ts`: generador de series numéricas y alfanuméricas. Patrones configurables (+N, ×N, Fibonacci-like, alternancia, potencias). Variables aleatorias controladas
+- [ ] **1.3B.4** Crear `lib/psicotecnicos/verbal.ts`: banco estático de sinónimos/antónimos/analogías. Crear `data/psicotecnicos/banco_verbal.json` con ≥200 pares de nivel oficial. Selección aleatoria + distractores coherentes. **Aritz revisa el banco**
+- [ ] **1.3B.5** Crear `lib/psicotecnicos/organization.ts`: generador de problemas de ordenación de datos, detección de errores en tablas numéricas, clasificación y organización
+- [ ] **1.3B.6** Crear `lib/psicotecnicos/index.ts`: orquestador `generatePsicotecnicos(count, dificultad)` que genera N preguntas con distribución configurable entre categorías (default: 40% numérico, 25% series, 20% verbal, 15% organización)
+- [ ] **1.3B.7** **Guardrail de dificultad:** Nivel BÁSICO obligatorio (es Auxiliar Administrativo, no Ingeniería). Limitar: números de max 4 cifras, operaciones max 2 pasos, vocabulario estándar no técnico. El reto del examen es la velocidad, no la complejidad
+- [ ] **1.3B.8** Test unitario: generar 100 preguntas numéricas → verificar matemáticamente que la respuesta marcada como correcta es realmente correcta (round-trip validation)
+- [ ] **1.3B.9** Test unitario: generar 50 series → verificar que el siguiente número de la serie sigue el patrón declarado
+- [ ] **1.3B.10** Test unitario: verificar que no se repiten preguntas idénticas en un batch de 30 (diversidad)
+- [ ] **1.3B.11** Integrar en endpoint `/api/ai/generate-test`: si tipo='psicotecnico' → usar motor determinista en lugar de Claude RAG. Coste API = 0€
+- [ ] **1.3B.12** Integrar en simulacros (§2.6): Parte 1 del simulacro completo incluye 30 preguntas psicotécnicas generadas por este motor
 
 ### 1.4 Módulo de recuperación (RAG retrieval)
 
@@ -427,9 +490,9 @@
 - [ ] **1.8.6** Test de integración (con mock): flujo completo corrige desarrollo → retorna 5 dimensiones + citas verificadas
 - [ ] **1.8.7** Crear endpoint POST `/api/ai/correct-desarrollo/route.ts`:
   - Validar input con Zod (texto, temaId)
-  - Verificar auth + acceso (modelo v3): `free_corrector_used < 2 O tiene compra tipo 'tema' para este temaId O tiene compra tipo 'pack_oposicion' O suscripción activa`. Si no tiene acceso → retornar PaywallGate info
+  - Verificar auth + acceso (ADR-0010): `free_corrector_used < 2 O corrections_balance > 0 O tiene compra tipo 'tema' para este temaId O tiene compra tipo 'pack_oposicion'`. Si no tiene acceso → retornar 402 PAYWALL_CORRECTIONS con upsell [recarga 8.99€, pack 34.99€]
   - Check concurrencia: `SELECT id FROM desarrollos WHERE user_id = X AND created_at > NOW() - INTERVAL '30 seconds'`. Si existe → retornar 409 "Ya tienes una corrección en proceso"
-  - Rate limit: 5/día por tema (pack/tema) o 5/día global (premium)
+  - Rate limit: silencioso 5 correcciones/día por usuario (Upstash) — safety net económico
   - Llamar `correctDesarrollo()`
   - Tras corrección exitosa: incrementar `free_corrector_used` (si es usuario free sin compra de este tema)
   - Retornar evaluación JSON
@@ -453,8 +516,7 @@
   - Tests 4-5: renderizar explicaciones con `filter: blur(8px)` + overlay: "Desbloquea la explicación del Art. X comprando este tema — 4.99€ para siempre" (Loss Aversion + Zeigarnik)
   - Test 6+: mostrar PaywallGate con 2 opciones principales + ancla visual ("Academia: desde 150€/mes")
   - Usuarios con tema comprado: "Ilimitado" para ese tema, PaywallGate para otros temas
-  - Usuarios con pack: "Ilimitado — Pack Oposición"
-  - Usuarios premium: "Premium — 20 tests/día" con contador
+  - Usuarios con pack: "Ilimitado — Pack Oposición (límite silencioso 20/día)"
   - Manejar respuesta 409 del backend con mensaje "Ya tienes un test generándose"
 - [ ] **1.9.8** Verificar: página carga, muestra temas, genera test → redirige a `/tests/[id]`
 
@@ -497,7 +559,7 @@
 
 - [ ] **1.13.1** Crear sección resumen: tarjetas con tests realizados (total), nota media, racha de días consecutivos
 - [ ] **1.13.2** Crear gráfico de evolución (últimos 30 días): usar librería ligera (recharts o chart.js) para línea de puntuación
-- [ ] **1.13.3** Crear mapa de temas: grid de 25 temas con color por nota (verde >=7, amarillo 4-7, rojo <4, gris no intentado)
+- [ ] **1.13.3** Crear mapa de temas: grid de 28 temas (16 Bloque I + 12 Bloque II) con color por nota (verde >=7, amarillo 4-7, rojo <4, gris no intentado). Separar visualmente los dos bloques.
 - [ ] **1.13.4** Crear sección "Últimas actividades": lista cronológica de tests + correcciones recientes
 - [ ] **1.13.5** Crear CTAs contextuales: lógica simple basada en datos (ej: tema con peor nota → "Tu punto débil es...")
 - [ ] **1.13.6** Crear accesos directos: botones "Generar test" y "Corregir desarrollo" siempre visibles
@@ -519,7 +581,7 @@
 
 - [ ] **1.14.1** Crear sección "Perfil": nombre (editable), email (readonly), oposición seleccionada, fecha examen (editable)
 - [ ] **1.14.2** Crear sección "Mis compras": lista de compras con fecha, producto, precio, estado
-- [ ] **1.14.3** Crear sección "Suscripción": estado actual, fecha próximo pago, botón "Gestionar suscripción" (→ Stripe Customer Portal)
+- [ ] **1.14.3** Crear sección "Mis correcciones": saldo disponible (`corrections_balance`) visible prominentemente + botón "Comprar recarga (8.99€ → +15 correcciones)" si balance < 5. Sin sección de suscripción — ADR-0010 no tiene suscripciones.
 - [ ] **1.14.4** Crear botón "Exportar mis datos" (→ GET /api/user/export → descarga JSON)
 - [ ] **1.14.5** Crear botón "Eliminar mi cuenta" con doble confirmación → DELETE /api/user/delete → email de confirmación
 - [ ] **1.14.6** Crear botón "Cerrar sesión" → supabase.auth.signOut() → redirect a /login
@@ -685,11 +747,30 @@
 
 ### 2.6 Simulacros cronometrados
 
-- [ ] **2.6.1** Crear página `/simulacros/page.tsx`: selección de simulacro (completo = 60 preguntas, parcial = 30)
-- [ ] **2.6.2** Implementar timer estricto: countdown visible, penalización configurable por incorrectas
-- [ ] **2.6.3** Al finalizar: calcular nota con penalización, guardar resultado en BD
-- [ ] **2.6.4** Vista de resultados de simulacro: nota, tiempo, desglose por tema, comparativa con media de otros usuarios
+> **Formato oficial:** 110 preguntas en 90 minutos. Parte 1: 30 teóricas (Bloque I) + 30 psicotécnicas. Parte 2: 50 teórico-prácticas (Bloque II). Penalización: errónea descuenta 1/3 del valor de correcta. Total: 100 puntos (50 por parte).
+
+- [ ] **2.6.1** Crear página `/simulacros/page.tsx`: selección de simulacro — completo (110 preguntas / 90 min) o parcial (55 preguntas / 45 min)
+- [ ] **2.6.2** Implementar timer estricto: countdown 90 min (o 45 min parcial) con barra de progreso. Auto-submit al agotar tiempo. Audio/vibración de aviso a 10 min y 5 min
+- [ ] **2.6.2A** Estructura del simulacro completo:
+  - **Parte 1** (60 preguntas): 30 preguntas teóricas de Bloque I (RAG + legislación) + 30 preguntas psicotécnicas (motor determinista §1.3B)
+  - **Parte 2** (50 preguntas): 50 preguntas teórico-prácticas de Bloque II (RAG + conocimiento_tecnico)
+  - Cada parte se puntúa sobre 50 puntos. Total sobre 100
+- [ ] **2.6.2B** Sistema de puntuación con penalización: correcta = +1 punto, errónea = -1/3 punto, en blanco = 0. Mostrar desglose al finalizar
+- [ ] **2.6.3** Al finalizar: calcular nota con penalización, guardar resultado en BD con desglose por bloque y categoría
+- [ ] **2.6.4** Vista de resultados de simulacro: nota sobre 100, tiempo empleado, desglose por tema y bloque, comparativa con media de otros usuarios
 - [ ] **2.6.5** Verificar: simulacro completo funciona end-to-end con timer
+
+### 2.7 Feedback de usuarios (sugerencias y mejoras)
+
+> **Valor:** Canal directo para que los opositores envíen sugerencias de mejora, reportes de errores, y solicitudes de funcionalidades. Complementa §0.6.2 (preguntas_reportadas) con feedback general de producto.
+
+- [ ] **2.7.1** Crear tabla `sugerencias`: id (uuid PK), user_id (FK auth.users ON DELETE SET NULL), tipo (text check: 'sugerencia','error','funcionalidad','otro'), mensaje (text NOT NULL, max 2000 chars), pagina_origen (text nullable — URL desde donde se envió), estado (text check: 'recibida','leida','implementada','descartada' default 'recibida'), respuesta_admin (text nullable), created_at, updated_at
+- [ ] **2.7.2** Habilitar RLS en `sugerencias`: INSERT para authenticated (cualquier usuario puede enviar), SELECT WHERE `auth.uid() = user_id` (solo ver las propias)
+- [ ] **2.7.3** Crear endpoint `POST /api/user/feedback/route.ts`: recibe `{tipo, mensaje}`, sanitiza con DOMPurify, valida con Zod (mensaje 10-2000 chars), inserta en BD. Rate limit: 5 sugerencias/día/usuario
+- [ ] **2.7.4** Crear componente `components/shared/FeedbackButton.tsx`: botón flotante (💬) visible en todas las páginas del dashboard. Al clicar → modal con formulario (tipo dropdown + textarea)
+- [ ] **2.7.5** Integrar FeedbackButton en layout del dashboard
+- [ ] **2.7.6** Email automático a Aritz (via Resend) cuando se recibe una sugerencia nueva — condicional si RESEND_API_KEY configurado
+- [ ] **2.7.7** Verificar: usuario envía sugerencia → aparece en BD → email recibido
 
 ---
 
