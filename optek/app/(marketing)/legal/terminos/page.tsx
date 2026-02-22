@@ -75,21 +75,21 @@ export default function TerminosPage() {
           <div className="text-muted-foreground leading-relaxed space-y-2">
             <ul className="list-disc pl-5 space-y-2">
               <li>
-                <strong className="text-foreground">Plan gratuito:</strong> 5 tests/mes y 2
-                correcciones de desarrollo. Sin tarjeta de crédito requerida.
+                <strong className="text-foreground">Plan gratuito:</strong> 5 tests y 2
+                correcciones de desarrollo (en total, no por mes). Sin tarjeta de crédito
+                requerida.
               </li>
               <li>
-                <strong className="text-foreground">Plan por tema:</strong> Pago único por
-                tema. Acceso durante 6 meses desde la fecha de compra.
+                <strong className="text-foreground">Por tema (4,99€):</strong> Pago único.
+                Tests ilimitados de un tema + 5 correcciones IA. Sin caducidad.
               </li>
               <li>
-                <strong className="text-foreground">Pack Oposición:</strong> Pago único por
-                oposición completa. Incluye todos los temas, tests, correcciones y simulacros.
-                Acceso durante 12 meses desde la fecha de compra.
+                <strong className="text-foreground">Pack Oposición (34,99€):</strong> Pago
+                único. Tests ilimitados de todo el temario + 20 correcciones IA. Sin caducidad.
               </li>
               <li>
-                <strong className="text-foreground">Plan Premium:</strong> Suscripción mensual.
-                Acceso a todas las oposiciones. Renovación automática hasta cancelación.
+                <strong className="text-foreground">Recarga de correcciones (8,99€):</strong>{' '}
+                Pago único. Añade +15 correcciones IA a tu saldo. Sin caducidad.
               </li>
             </ul>
             <p className="mt-3">

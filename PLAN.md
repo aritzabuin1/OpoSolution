@@ -403,9 +403,9 @@
 - [ ] **1.7.6** Crear endpoint POST `/api/ai/generate-test/route.ts`:
   - Validar input con Zod (temaId, numPreguntas, dificultad)
   - Verificar auth (middleware Supabase)
-  - Verificar acceso (modelo v3 "Progresión por Tema"): `free_tests_used < 5 O tiene compra tipo 'tema' para este temaId O tiene compra tipo 'pack_oposicion' para esta oposición O suscripción activa`. Si no tiene acceso → retornar PaywallGate info con precios (tema 4.99€, pack 29.99€, premium 12.99€/mes). Si free y test 4-5: flag `blur_explanations: true` en respuesta
+  - Verificar acceso (ADR-0010 Fuel Tank): `free_tests_used < 5 O tiene compra tipo 'tema' para este temaId O tiene compra tipo 'pack'`. Sin suscripción. Si no tiene acceso → retornar 402 con upsell [tema 4.99€, pack 34.99€]. Sin flag blur_explanations (eliminado del modelo).
   - Check concurrencia: `SELECT id FROM tests_generados WHERE user_id = X AND created_at > NOW() - INTERVAL '30 seconds' AND completado = false`. Si existe → retornar 409 "Ya tienes un test generándose"
-  - Rate limit: 10/hora por usuario (todos los tiers). Premium: max 20 tests/día. Pack/Tema: sin límite diario
+  - Rate limit: usuarios pagados → 20 tests/día silencioso (Upstash). Usuarios free → 5/1m anti-spam.
   - Llamar `generateTest()`
   - Tras generación exitosa: incrementar `free_tests_used` (si es usuario free sin compra de este tema)
   - Retornar JSON con streaming status
@@ -484,7 +484,7 @@
 
 - [ ] **1.12.1** Crear componente `components/corrector/EditorView.tsx`: textarea grande (min 500px alto) con contador de palabras
 - [ ] **1.12.2** Crear selector de tema (dropdown con temas de la oposición)
-- [ ] **1.12.3** Crear botón "Corregir mi desarrollo" con loading state animado. Debounce: desactivar (`disabled`) al click con `useState(isCorrecting)`. Verificar acceso v3: si `free_corrector_used >= 2` y sin compra de este tema/pack/suscripción → mostrar PaywallGate ("Compra este tema — 4.99€ para siempre" / "Pack Oposición — 29.99€" / "Premium — 12.99€/mes"). Manejar respuesta 409 con mensaje "Ya tienes una corrección en proceso"
+- [ ] **1.12.3** Crear botón "Corregir mi desarrollo" con loading state animado. Debounce: desactivar (`disabled`) al click con `useState(isCorrecting)`. Verificar acceso (ADR-0010): si `corrections_balance = 0` y `free_corrector_used >= 2` → el backend retorna 402 con upsell [recarga 8.99€, pack 34.99€]. Frontend muestra modal de recarga. Manejar respuesta 409 con "Ya tienes una corrección en proceso".
 - [ ] **1.12.4** Crear componente `components/corrector/FeedbackView.tsx`: nota global prominente + 5 tarjetas de dimensiones expandibles
 - [ ] **1.12.5** Crear tarjeta de dimensión: nombre, nota (0-10 con color), feedback detallado, errores con highlight
 - [ ] **1.12.6** Cada error muestra: texto del usuario citado, corrección sugerida, CitationBadge con artículo
@@ -539,18 +539,18 @@
   - Verificar firma: `stripe.webhooks.constructEvent(body, signature, webhookSecret)`
   - Check idempotencia (**patrón INSERT-first**): `INSERT INTO stripe_events_processed (stripe_event_id, event_type) VALUES (X, Y)` — si lanza UniqueViolation → ya procesado → return 200 (skip). Este patrón es más seguro que SELECT-then-INSERT porque evita race conditions bajo carga.
   - Manejar `checkout.session.completed` → INSERT compras (en transacción con el INSERT de stripe_events_processed)
-  - Manejar `invoice.paid` → actualizar suscripción
-  - Manejar `customer.subscription.deleted` → marcar suscripción como cancelada
-- [ ] **1.15.3** Crear componente `components/shared/PaywallGate.tsx` (modelo v3 — Behavioral Economics):
-  - Layout: 2 tarjetas principales + 1 secundaria:
-    - **Tarjeta 1 (izq):** "Tema Individual — 4.99€ para siempre" (tests + corrector + flashcards de este tema)
-    - **Tarjeta 2 (centro, destacada con badge "Más popular"):** "Pack Oposición — 29.99€ para siempre" (todos los temas). Si tiene temas comprados: mostrar crédito "Ya tienes X temas (X€). Paga solo Y€"
-    - **Tarjeta 3 (derecha, pequeña):** "Premium — 12.99€/mes" (todo + simulacros + stats)
-  - **Ancla visual** arriba: "Academia presencial: desde 150€/mes" (tachado) vs "OPTEK: desde 4.99€ una vez"
-  - **Social proof** debajo: "X opositores ya estudian con OPTEK" (cuando haya datos)
-  - Props: `temaId`, `oposicionId`, `creditAmount?`
-- [ ] **1.15.4** Crear hook `useUserAccess(temaId)`: verifica en BD si usuario tiene acceso a un tema (por compra directa, pack, o suscripción). Retorna `{ hasAccess, accessType, blurExplanations }`
-- [ ] **1.15.5** Integrar PaywallGate en página de tests: si no tiene acceso al tema → PaywallGate. Si free tests 4-5 → blur explicaciones
+  - **Sin suscripciones (ADR-0010):** eliminar handlers invoice.paid y subscription.deleted del MVP.
+- [ ] **1.15.3** Crear componente `components/shared/PaywallGate.tsx` (ADR-0010 — Fuel Tank):
+  - **Contexto TESTS** (code: PAYWALL_TESTS): 2 tarjetas:
+    - Tarjeta 1: "Por tema — 4.99€" (tests ilimitados de 1 tema + 5 correcciones)
+    - Tarjeta 2 (destacada, "Más popular"): "Pack Oposición — 34.99€" (todo el temario + 20 correcciones)
+  - **Contexto CORRECCIONES** (code: PAYWALL_CORRECTIONS): 2 tarjetas:
+    - Tarjeta 1: "Recarga — 8.99€" (+15 correcciones)
+    - Tarjeta 2 (destacada, "Más valor"): "Pack Oposición — 34.99€" (todo + 20 correcciones)
+  - **Ancla visual** arriba: "Academia presencial: desde 150€/mes" vs "OPTEK: desde 4.99€ una vez"
+  - Props: `code: 'PAYWALL_TESTS' | 'PAYWALL_CORRECTIONS'`, `upsell: UpsellOption[]` (viene del 402)
+- [ ] **1.15.4** Crear hook `useUserAccess(temaId)`: verifica en BD si usuario tiene compra (tema o pack). Retorna `{ hasAccess, accessType: 'tema'|'pack'|'free' }`
+- [ ] **1.15.5** Integrar PaywallGate en página de tests: manejar respuesta 402 del backend → mostrar modal PaywallGate
 - [ ] **1.15.6** Integrar PaywallGate en corrector: si no tiene acceso al tema → PaywallGate
 - [ ] **1.15.7** Configurar webhook URL en Stripe Dashboard (producción y test)
 - [ ] **1.15.8** Test con Stripe CLI: `stripe trigger checkout.session.completed` → verificar que compra aparece en BD
@@ -863,20 +863,16 @@
 >
 > **Decisión — Queue management:** No se implementa cola (BullMQ, etc.) en v1. Con 50 usuarios concurrentes y rate limits de 10 tests/hora/user, el máximo teórico es ~8 requests simultáneos a Claude. Sonnet lo gestiona sin cola. Si en Fase 2 (1000 usuarios) hay saturación → evaluar Vercel Queue o BullMQ + Redis.
 >
-> **Decisión — Modelo freemium (v3 — Behavioral Economics):** 5 tests gratis + 2 correcciones gratis (nunca se resetean). Tests 1-3: experiencia completa (preguntas + explicaciones + citas legales). Tests 4-5: preguntas funcionan pero **explicaciones detalladas borrosas** (`filter: blur(8px)` + overlay "Desbloquea la explicación del Art. X comprando este tema"). Flashcards ilimitadas de tests gratis. Sin reset mensual. Tras agotar: PaywallGate con 2 opciones principales: "Tema Individual 4.99€ — para siempre" y "Pack Oposición 29.99€ — todos los temas" (con ancla visual: "Academia: desde 150€/mes"). Premium 12.99€/mes como opción secundaria para power users. Principios activos: Loss Aversion (ve errores sin poder resolverlos), Zeigarnik Effect (tarea incompleta), Endowment Effect (su mapa de progreso), Anchoring (vs academia).
+> **Decisión — Modelo freemium (ADR-0010 — Fuel Tank):** 5 tests totales + 2 correcciones totales gratis (nunca se resetean). Sin blur de explicaciones. Tras agotar tests: 402 PAYWALL_TESTS con upsell [tema 4.99€, pack 34.99€]. Tras agotar correcciones: 402 PAYWALL_CORRECTIONS con upsell [recarga 8.99€, pack 34.99€]. **Sin suscripción mensual.** Ancla visual: "Academia: desde 150€/mes". Principios activos: Endowment Effect (corrections_balance visible), Loss Aversion (copy "¿te quedas sin correcciones?"), Decoy Effect (4.99€ hace irresistible 34.99€).
 >
-> **Decisión — Rate Limits por Tier (Fair Use + Protección de margen):**
+> **Decisión — Rate Limits (ADR-0010):**
 >
-> | Tier | Tests/día | Correcciones/día | Simulacros/día | Tests/hora |
-> |------|-----------|-----------------|----------------|-----------|
-> | Free | 5 total (nunca se resetean) | 2 total | — | — |
-> | Tema Individual | Ilimitado (del tema) | 5 (del tema) | — | 10/hora |
-> | Pack Oposición | **30/día** (todos) | 5 por tema | — | 10/hora |
-> | Premium | 20/día | 5/día | 2/día | 10/hora |
+> | Tier | Tests | Correcciones |
+> |------|-------|-------------|
+> | Free | 5 totales | 2 totales |
+> | Con compra (tema/pack) | Ilimitados + **20/día silencioso** (Upstash) | Según corrections_balance |
 >
-> Razón Premium 20/día (no ilimitado): un usuario a 20 tests + 5 correcciones + 2 simulacros/día cuesta ~1.15€/día = ~34.50€/mes (>12.99€). Pero uso realista (5-8 tests + 1-2 correcciones) = 5-8€/mes → margen 40-60%. El peor caso teórico es imposible sostenerlo 30 días. Rate limits protegen sin penalizar uso normal.
->
-> Implementación: check en endpoint `generate-test` → `SELECT count(*) FROM tests_generados WHERE user_id = X AND created_at > TODAY()`. Si ≥ límite del tier → retornar 429 con mensaje: "Has alcanzado el máximo de tests diarios. ¡Descansa y vuelve mañana!" Monitorizar `api_usage_log` para ajustar post-launch.
+> Límite 20/día: safety net económico. Un usuario a 20 tests/día × 0,005€ × 30 días = 3€/mes de coste (tolerable). Implementado en generate-test route vía Upstash rate limiter, sin comunicar al usuario. Ajustar post-launch según `api_usage_log`.
 
 ### Error Handling
 
@@ -986,18 +982,17 @@ Referencia completa: `directives/OPTEK_prompts.md` §10
 >
 > | Producto | Precio | Coste API estimado | Margen estimado |
 > |----------|--------|-------------------|-----------------|
-> | Tema Individual (4.99€) | 4.99€ | ~1.20€ (30 tests uso medio) | ~76% |
-> | Pack Oposición (29.99€) | 29.99€ | ~8-12€ (80% no completa todos) | 60-72% |
-> | Premium (12.99€/mes) | 12.99€ | ~5-8€ (uso realista 5-8 tests/día) | 40-60% |
+> | Tema Individual (4.99€) | 4.99€ neto ~4.84€ | ~0.15€ (30 tests Haiku) | ~97% |
+> | Pack Oposición (34.99€) | 34.99€ neto ~33.94€ | ~3€/mes pesimista (20 tests/día Haiku) | payback 2 meses uso típico |
+> | Recarga (8.99€) | 8.99€ neto ~8.72€ | ~0.53€ (15 correcciones Sonnet) | ~94% |
 >
-> - **Premium break-even:** 325 tests/mes (10.8/día). Rate limit de 20/día protege margen.
-> - **Pack worst-case:** 750 tests × 0.04€ = 30€ → margen negativo. Pero el 80% no completará todos los temas.
-> - **Producto estrella (Pack):** mayor revenue absoluto (29.99€ vs 4.99€), upsell natural desde temas individuales.
+> - **Pack worst-case** (20 tests/día × 30 días × 0.005€): 3€/mes → pack amortizado en ~11 meses pesimistas, ~2 meses típico.
+> - **Producto estrella (Pack):** mayor revenue absoluto, mejor valor percibido por decoy effect.
+> - **Recurrencia:** Recarga (8.99€) crea LTV sin suscripción. LTV estimado: 34.99€ + 2 × 8.99€ = 52.97€/usuario.
 >
 > **Acción post-launch:** Monitorizar `api_usage_log` para detectar:
-> - Usuarios pack con coste > 25€ total → evaluar si rate limit por tema necesita ajuste
-> - Usuarios premium con coste > 10€/mes → el rate limit de 20/día ya mitiga
-> - Distribución de compras: si >50% compran temas sueltos y <10% pack → considerar bajar pack a 24.99€
+> - Usuarios pack con coste > 30€ total → evaluar ajuste límite silencioso 20/día
+> - Distribución de compras: si >60% compran temas sueltos → considerar bundle 3 temas a 12.99€
 
 ---
 

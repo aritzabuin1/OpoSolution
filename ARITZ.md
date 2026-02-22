@@ -571,10 +571,10 @@ PWA de entrenamiento para opositores españoles usando IA (Claude API) con verif
 - Server Components por defecto, Client Components solo cuando se necesita interactividad
 - PWA: serwist/next-pwa para service worker + manifest.json
 
-**Pagos**: Stripe
-- 3 productos: Tema Individual (4.99€ one-time), Pack Oposición (29.99€ one-time), Premium (12.99€/mo recurring)
-- Webhook con patrón INSERT-first para idempotencia (INSERT stripe_event_id UNIQUE, catch duplicate → skip)
-- Customer Portal para gestión de suscripciones
+**Pagos**: Stripe (ADR-0010 — Fuel Tank, sin suscripciones)
+- 4 productos one-time: Tema Individual (4.99€, +5 corr), Pack Oposición (34.99€, +20 corr), Recarga (8.99€, +15 corr), Gratis (0€, 5 tests + 2 corr totales)
+- Webhook con patrón SELECT-then-INSERT para idempotencia (stripe_events_processed) + grant_corrections RPC tras compra
+- corrections_balance en profiles — depósito de "combustible" visible al usuario
 
 **Observabilidad**: Pino (logs) + Sentry (errors) + Upstash Redis (rate limiting)
 - Pino: JSON en producción, pretty en desarrollo
