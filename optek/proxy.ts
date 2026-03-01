@@ -62,7 +62,9 @@ export async function proxy(request: NextRequest) {
   if (isDashboardRoute && !user) {
     const loginUrl = new URL('/login', request.url)
     loginUrl.searchParams.set('redirect', pathname)
-    return NextResponse.redirect(loginUrl)
+    const redirectRes = NextResponse.redirect(loginUrl)
+    applySecurityHeaders(redirectRes, requestId)
+    return redirectRes
   }
 
   // ── 2b. Redirect onboarding → /primer-test si oposicion_id es null ────────
@@ -79,7 +81,9 @@ export async function proxy(request: NextRequest) {
         .single()
 
       if (!profile?.oposicion_id) {
-        return NextResponse.redirect(new URL('/primer-test', request.url))
+        const onboardRes = NextResponse.redirect(new URL('/primer-test', request.url))
+        applySecurityHeaders(onboardRes, requestId)
+        return onboardRes
       }
 
       // Usuario ya tiene oposicion_id — establece cookie para evitar futuros DB checks
@@ -95,16 +99,28 @@ export async function proxy(request: NextRequest) {
 
   // Redirigir usuarios autenticados que intenten ir a /login o /register
   if ((pathname === '/login' || pathname === '/register') && user) {
-    return NextResponse.redirect(new URL('/dashboard', request.url))
+    const dashRes = NextResponse.redirect(new URL('/dashboard', request.url))
+    applySecurityHeaders(dashRes, requestId)
+    return dashRes
   }
 
   // ── 3. Cabeceras de trazabilidad y seguridad ──────────────────────────────
-  response.headers.set('x-request-id', requestId)
-  response.headers.set('X-Content-Type-Options', 'nosniff')
-  response.headers.set('X-Frame-Options', 'DENY')
-  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
-  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()')
-  response.headers.set(
+  applySecurityHeaders(response, requestId)
+
+  return response
+}
+
+/**
+ * Aplica headers de seguridad a cualquier respuesta (incluyendo redirects).
+ * Llamar SIEMPRE antes de devolver, incluso en early-returns.
+ */
+function applySecurityHeaders(res: NextResponse, requestId: string): void {
+  res.headers.set('x-request-id', requestId)
+  res.headers.set('X-Content-Type-Options', 'nosniff')
+  res.headers.set('X-Frame-Options', 'DENY')
+  res.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
+  res.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()')
+  res.headers.set(
     'Content-Security-Policy',
     [
       "default-src 'self'",
@@ -116,8 +132,6 @@ export async function proxy(request: NextRequest) {
       "frame-ancestors 'none'",
     ].join('; ')
   )
-
-  return response
 }
 
 export const config = {

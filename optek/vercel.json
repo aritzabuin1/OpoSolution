@@ -3,6 +3,10 @@
     {
       "path": "/api/cron/check-costs",
       "schedule": "0 23 * * *"
+    },
+    {
+      "path": "/api/cron/boe-watch",
+      "schedule": "0 7 * * *"
     }
   ]
 }

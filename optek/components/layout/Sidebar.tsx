@@ -2,14 +2,18 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { BookOpen, ClipboardList, FileText, LayoutDashboard, User } from 'lucide-react'
+import { BookOpen, Brain, ClipboardList, FileText, LayoutDashboard, Layers, Target, Trophy, User } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/tests', label: 'Tests', icon: ClipboardList },
+  { href: '/psicotecnicos', label: 'Psicotécnicos', icon: Brain },
   { href: '/corrector', label: 'Corrector', icon: FileText },
   { href: '/simulacros', label: 'Simulacros', icon: BookOpen },
+  { href: '/flashcards', label: 'Flashcards', icon: Layers },
+  { href: '/cazatrampas', label: 'Caza-Trampas', icon: Target },
+  { href: '/logros', label: 'Logros', icon: Trophy },
   { href: '/cuenta', label: 'Mi cuenta', icon: User },
 ]
 

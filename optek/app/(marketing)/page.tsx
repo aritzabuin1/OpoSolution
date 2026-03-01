@@ -174,11 +174,90 @@ const testimonials = [
   },
 ]
 
+// ─── JSON-LD (FAQPage + WebSite) ───────────────────────────────────────────────
+
+const jsonLdFaq = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '¿Cuándo son las oposiciones al Cuerpo Auxiliar Administrativo del Estado?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Las oposiciones al Cuerpo General Auxiliar de la Administración del Estado (TAC) se convocan periódicamente por el Ministerio de Hacienda. Consulta el BOE y la web del INAP para las últimas convocatorias. OPTEK te notifica automáticamente de cambios legislativos relevantes para prepararte siempre con el contenido actualizado.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cuántos temas tiene el temario del Auxiliar Administrativo del Estado?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'El temario del Auxiliar Administrativo del Estado consta de dos bloques: Bloque I (legislación administrativa, con leyes como la CE, LPAC, TREBEP, LOPDGDD, etc.) y Bloque II (ofimática: Word, Excel, Windows, Internet). OPTEK cubre los 28 temas del Bloque I y el Bloque II completo con preguntas verificadas.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿En qué consiste el examen de Auxiliar Administrativo del Estado?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'El examen del Auxiliar Administrativo del Estado (TAC) consta de dos ejercicios: el primero es un test de 100 preguntas tipo test (con penalización: -1/3 por respuesta incorrecta) sobre Bloque I (legislación) y Bloque II (ofimática y psicotécnicos). El tiempo disponible es 90 minutos. OPTEK simula este formato exacto con sus simulacros oficiales INAP.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Qué leyes hay que estudiar para el Auxiliar Administrativo del Estado?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Las principales leyes del Bloque I son: Constitución Española, Ley 39/2015 (LPAC), Ley 40/2015 (LRJSP), RDL 5/2015 TREBEP, LO 3/2018 LOPDGDD, Ley 19/2013 de Transparencia, LO 3/2007 de Igualdad, LO 1/2004 de Violencia de Género, Ley 47/2003 General Presupuestaria y otras. OPTEK genera preguntas con verificación determinista sobre todos estos textos legales.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cómo funciona la penalización en el examen del Auxiliar Administrativo?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'En el examen oficial del Auxiliar Administrativo del Estado, la fórmula de puntuación es: respuesta correcta = +1 punto, respuesta incorrecta = -1/3 punto, respuesta en blanco = 0 puntos. Es importante dejar en blanco las preguntas que no se saben con seguridad. OPTEK aplica esta penalización exacta en sus simulacros para que practiques en condiciones reales.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Los artículos legales que aparecen en OPTEK son exactos?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sí. OPTEK usa verificación determinista: cada cita legal generada por la IA se valida contra la base de datos de legislación oficial antes de mostrártela. Si la cita no existe o es incorrecta, el sistema lo detecta y corrige automáticamente. Sin alucinaciones ni artículos inventados.',
+      },
+    },
+  ],
+}
+
+const jsonLdWebSite = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'OPTEK',
+  url: 'https://optek.es',
+  description:
+    'Plataforma de preparación de oposiciones con IA. Tests personalizados, corrección de desarrollos y simulacros con verificación determinista de citas legales.',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: 'https://optek.es/tests?tema={search_term_string}',
+    'query-input': 'required name=search_term_string',
+  },
+}
+
 // ─── Página ────────────────────────────────────────────────────────────────────
 
 export default function LandingPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
+      />
       {/* ─── Hero ────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-background py-20 sm:py-32">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import type { Database } from '@/types/database'
+import { sendWelcomeEmail } from '@/lib/email/client'
 
 /**
  * GET /auth/callback
@@ -13,6 +14,8 @@ import type { Database } from '@/types/database'
  *
  * Intercambia el `code` por una sesión y redirige al dashboard.
  * En caso de error → /auth/error con reason en query string.
+ *
+ * §1.16.7: envía email de bienvenida en el primer login (created_at < 2 min).
  */
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url)
@@ -39,9 +42,19 @@ export async function GET(request: NextRequest) {
       }
     )
 
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
+    const { error, data } = await supabase.auth.exchangeCodeForSession(code)
 
-    if (!error) {
+    if (!error && data.user) {
+      // Detectar registro nuevo: created_at dentro de los últimos 2 minutos
+      const createdAt = new Date(data.user.created_at).getTime()
+      const isNewUser = Date.now() - createdAt < 2 * 60 * 1000
+
+      if (isNewUser && data.user.email) {
+        // No-op si Resend no está configurado (§1.16 condicional)
+        const nombre = data.user.user_metadata?.full_name as string | undefined
+        void sendWelcomeEmail({ to: data.user.email, nombre })
+      }
+
       return NextResponse.redirect(new URL(next, origin))
     }
   }

@@ -1,7 +1,14 @@
 import Link from 'next/link'
+import { createClient } from '@/lib/supabase/server'
 import { Button } from '@/components/ui/button'
 
-export default function MarketingLayout({ children }: { children: React.ReactNode }) {
+export default async function MarketingLayout({ children }: { children: React.ReactNode }) {
+  // BUG-005 fix: detectar sesión activa para mostrar CTA correcto en el header
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
   return (
     <div className="flex min-h-screen flex-col">
       {/* Public navbar */}
@@ -11,14 +18,24 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
             OPTEK
           </Link>
           <nav className="flex items-center gap-2">
-            <Link href="/login">
-              <Button variant="ghost" size="sm">
-                Iniciar sesión
-              </Button>
-            </Link>
-            <Link href="/register">
-              <Button size="sm">Registrarse gratis</Button>
-            </Link>
+            {user ? (
+              // Usuario autenticado → CTA "Mi dashboard"
+              <Link href="/dashboard">
+                <Button size="sm">Mi dashboard →</Button>
+              </Link>
+            ) : (
+              // Usuario no autenticado → login + registro
+              <>
+                <Link href="/login">
+                  <Button variant="ghost" size="sm">
+                    Iniciar sesión
+                  </Button>
+                </Link>
+                <Link href="/register">
+                  <Button size="sm">Registrarse gratis</Button>
+                </Link>
+              </>
+            )}
           </nav>
         </div>
       </header>

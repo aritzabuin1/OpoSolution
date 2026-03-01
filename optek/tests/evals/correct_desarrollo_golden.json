@@ -1,0 +1,120 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "created": "2026-02-27",
+    "description": "Golden dataset para evaluar el pipeline CORRECT_DESARROLLO. Ref: §1.18.2 PLAN.md",
+    "threshold_quality_score": 0.85,
+    "rubric": {
+      "estructura_valida": "La corrección incluye puntuacion_global (0-10), dimensiones (3), citas_verificadas y mejoras_sugeridas",
+      "puntuacion_coherente": "La puntuacion_global es consistente con las puntuaciones de las dimensiones",
+      "cita_verificada": "Las citas en el feedback son reales y están en la BD",
+      "feedback_especifico": "El feedback menciona elementos concretos del texto del usuario, no genérico",
+      "sin_pii": "El feedback no reproduce PII del texto del usuario (DNI, teléfono, etc.)",
+      "idioma_espanol": "El feedback está en español formal, sin mezclar idiomas"
+    }
+  },
+  "casos": [
+    {
+      "id": "desarrollo_bueno_tema13",
+      "descripcion": "Desarrollo correcto sobre TREBEP — debe recibir nota alta (7-10)",
+      "input": {
+        "temaId": "b0000000-0000-0000-0001-000000000013",
+        "temaNumero": 13,
+        "texto": "Los empleados públicos se clasifican en funcionarios de carrera, funcionarios interinos, personal laboral y personal eventual. Los funcionarios de carrera son aquellos que, en virtud de nombramiento legal, están vinculados a una Administración Pública por una relación estatutaria regulada por el Derecho Administrativo. El acceso a la función pública se rige por los principios constitucionales de igualdad, mérito y capacidad, según establece el artículo 103.3 de la Constitución Española y el artículo 55 del TREBEP. Las pruebas selectivas pueden ser de oposición, concurso-oposición o concurso, siendo la oposición el sistema ordinario. Una vez superado el proceso selectivo, el funcionario adquiere la condición de funcionario en prácticas hasta que tome posesión de su destino definitivo."
+      },
+      "criterios_evaluacion": {
+        "puntuacion_minima": 7.0,
+        "puntuacion_maxima": 10.0,
+        "estructura_valida": true,
+        "nota": "El texto tiene citas correctas (CE art. 103.3 + TREBEP art. 55) y contenido relevante — debe puntuar alto"
+      },
+      "pesos": {
+        "estructura_valida": 0.30,
+        "puntuacion_coherente": 0.30,
+        "feedback_especifico": 0.25,
+        "idioma_espanol": 0.15
+      }
+    },
+    {
+      "id": "desarrollo_malo_citas_incorrectas",
+      "descripcion": "Desarrollo con confusión LPAC/LRJSP y plazos incorrectos — debe puntuar bajo y señalar errores",
+      "input": {
+        "temaId": "b0000000-0000-0000-0001-000000000011",
+        "temaNumero": 11,
+        "texto": "El procedimiento administrativo en España está regulado por la Ley 40/2015, que establece en su artículo 99 que los recursos administrativos deben presentarse en un plazo de 60 días. La notificación defectuosa producirá los efectos plenos según el artículo 123 de la LPAC. El recurso de alzada se interpone ante el órgano superior jerárquico en el plazo establecido por la ley básica de procedimiento del año 2002."
+      },
+      "criterios_evaluacion": {
+        "puntuacion_maxima": 6.0,
+        "estructura_valida": true,
+        "debe_identificar_errores": true,
+        "nota": "El corrector debe identificar confusión LRJSP/LPAC, plazo incorrecto y referencia inexistente a 'ley 2002'"
+      },
+      "pesos": {
+        "estructura_valida": 0.25,
+        "identifica_errores": 0.40,
+        "puntuacion_coherente": 0.20,
+        "feedback_especifico": 0.15
+      }
+    },
+    {
+      "id": "desarrollo_con_pii",
+      "descripcion": "Desarrollo con PII (DNI, teléfono, nombre) — el feedback no debe reproducir el PII",
+      "input": {
+        "temaId": "b0000000-0000-0000-0001-000000000012",
+        "temaNumero": 12,
+        "texto": "Mi nombre es Juan García con DNI 12345678Z y teléfono 666123456. La protección de datos en España se rige por el RGPD (Reglamento UE 2016/679) y la LOPDGDD (LO 3/2018). Los principios fundamentales son la licitud, lealtad y transparencia del tratamiento, la limitación de la finalidad, y la minimización de datos según el artículo 5 del RGPD."
+      },
+      "criterios_evaluacion": {
+        "estructura_valida": true,
+        "sin_pii_en_feedback": true,
+        "output_no_contiene": ["12345678Z", "666123456", "Juan García"],
+        "nota": "El feedback no debe reproducir el DNI, teléfono ni nombre — deben haber sido sanitizados antes de enviar a la IA"
+      },
+      "pesos": {
+        "sin_pii": 0.50,
+        "estructura_valida": 0.25,
+        "feedback_especifico": 0.25
+      }
+    },
+    {
+      "id": "desarrollo_muy_corto",
+      "descripcion": "Desarrollo mínimo (1 frase sobre CE) — feedback constructivo, nota no excelente",
+      "input": {
+        "temaId": "b0000000-0000-0000-0001-000000000001",
+        "temaNumero": 1,
+        "texto": "La Constitución Española de 1978 es la norma suprema del ordenamiento jurídico español."
+      },
+      "criterios_evaluacion": {
+        "estructura_valida": true,
+        "debe_sugerir_ampliar": true,
+        "puntuacion_maxima": 7.0,
+        "nota": "Un desarrollo de 1 frase no puede ser excelente — debe señalar falta de profundidad y sugerir ampliar"
+      },
+      "pesos": {
+        "estructura_valida": 0.30,
+        "puntuacion_coherente": 0.30,
+        "sugiere_mejoras": 0.40
+      }
+    },
+    {
+      "id": "desarrollo_excelente_transparencia",
+      "descripcion": "Desarrollo completo con múltiples citas correctas de Ley 19/2013 — nota alta",
+      "input": {
+        "temaId": "b0000000-0000-0000-0001-000000000007",
+        "temaNumero": 7,
+        "texto": "La Ley 19/2013, de 9 de diciembre, de transparencia, acceso a la información pública y buen gobierno, constituye el principal marco normativo de la transparencia en España. Su artículo 5 establece la obligación de publicidad activa para los sujetos obligados, entre los que se encuentran todas las Administraciones Públicas. El artículo 12 reconoce el derecho de acceso a la información pública a todas las personas, sin necesidad de motivar la solicitud. No obstante, el artículo 14 establece límites a este derecho cuando la información afecte a la seguridad nacional, la investigación o los datos personales. El Consejo de Transparencia y Buen Gobierno, regulado en el artículo 33 de la misma ley, es el organismo encargado de velar por el cumplimiento de las obligaciones de transparencia y resolver las reclamaciones. En cuanto a las sanciones por incumplimiento de las obligaciones de buen gobierno, el artículo 26 establece el régimen disciplinario aplicable a los altos cargos."
+      },
+      "criterios_evaluacion": {
+        "puntuacion_minima": 8.0,
+        "estructura_valida": true,
+        "nota": "Desarrollo completo con citas reales de la Ley 19/2013 — debe recibir nota alta"
+      },
+      "pesos": {
+        "estructura_valida": 0.25,
+        "puntuacion_coherente": 0.30,
+        "cita_verificada": 0.25,
+        "feedback_especifico": 0.20
+      }
+    }
+  ]
+}

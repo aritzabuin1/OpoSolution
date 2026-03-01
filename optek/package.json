@@ -15,7 +15,18 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "scrape:boe": "tsx execution/boe-scraper.ts"
+    "scrape:boe": "tsx execution/boe-scraper.ts",
+    "ingest:legislacion": "tsx --env-file=.env.local execution/ingest-legislacion.ts",
+    "generate:embeddings": "tsx --env-file=.env.local execution/generate-embeddings.ts",
+    "map:themes": "tsx --env-file=.env.local execution/auto-map-themes.ts",
+    "check:coverage": "tsx --env-file=.env.local execution/check-mapping-coverage.ts",
+    "eval:generate": "tsx --env-file=.env.local execution/run-evals.ts generate",
+    "eval:correct": "tsx --env-file=.env.local execution/run-evals.ts correct",
+    "eval:all": "tsx --env-file=.env.local execution/run-evals.ts all",
+    "parse:examenes": "tsx --env-file=.env.local execution/parse-exam-pdf.ts",
+    "ingest:examenes": "tsx --env-file=.env.local execution/ingest-examenes.ts",
+    "scrape:ofimatica": "tsx execution/scrape-microsoft-learn.ts",
+    "ingest:ofimatica": "tsx --env-file=.env.local execution/ingest-conocimiento.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
@@ -31,6 +42,8 @@
     "lucide-react": "^0.575.0",
     "next": "16.1.6",
     "next-themes": "^0.4.6",
+    "openai": "^6.22.0",
+    "pdf-parse": "^2.4.5",
     "pino": "^10.3.1",
     "radix-ui": "^1.4.3",
     "react": "19.2.3",
@@ -39,11 +52,13 @@
     "serwist": "^9.5.6",
     "sonner": "^2.0.7",
     "stripe": "^20.3.1",
-    "tailwind-merge": "^3.5.0"
+    "tailwind-merge": "^3.5.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/pdf-parse": "^1.1.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^5.1.4",

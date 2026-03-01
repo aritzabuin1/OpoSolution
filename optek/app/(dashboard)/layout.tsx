@@ -1,6 +1,7 @@
 import { Sidebar } from '@/components/layout/Sidebar'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
+import { FeedbackButton } from '@/components/shared/FeedbackButton'
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -19,6 +20,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </div>
 
       <Footer />
+
+      {/* §2.7.5 — Botón flotante de feedback (visible en todo el dashboard) */}
+      <FeedbackButton />
     </div>
   )
 }

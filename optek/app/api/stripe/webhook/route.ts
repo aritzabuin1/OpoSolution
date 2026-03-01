@@ -46,27 +46,27 @@ export async function POST(request: NextRequest) {
   const supabase = await createServiceClient()
   const log = logger.child({ eventId: event.id, eventType: event.type })
 
-  // DDIA Consistency: check idempotencia
-  const { data: existing } = await supabase
+  // DDIA Consistency: idempotencia via INSERT-first con ON CONFLICT
+  // Si el evento ya existe → conflicto en UNIQUE(stripe_event_id) → skip.
+  // Esto elimina la race condition del SELECT-then-INSERT.
+  const { error: insertIdempotencyError } = await supabase
     .from('stripe_events_processed')
-    .select('id')
-    .eq('stripe_event_id', event.id)
-    .maybeSingle()
+    .insert({ stripe_event_id: event.id, event_type: event.type })
 
-  if (existing) {
-    log.info('Stripe event already processed — skipping (idempotent)')
-    return NextResponse.json({ received: true, status: 'already_processed' })
+  if (insertIdempotencyError) {
+    // Código 23505 = unique_violation en PostgreSQL
+    if (insertIdempotencyError.code === '23505') {
+      log.info('Stripe event already processed — skipping (idempotent)')
+      return NextResponse.json({ received: true, status: 'already_processed' })
+    }
+    // Otro error de BD → dejar que Stripe reintente
+    log.error({ err: insertIdempotencyError }, 'Stripe webhook: error al registrar idempotency')
+    return NextResponse.json({ error: 'DB error' }, { status: 500 })
   }
 
-  // Procesar
+  // Procesar DESPUÉS de marcar como recibido
   try {
     await handleStripeEvent(event, supabase, log)
-
-    // Marcar como procesado SOLO tras éxito
-    await supabase
-      .from('stripe_events_processed')
-      .insert({ stripe_event_id: event.id, event_type: event.type })
-
     return NextResponse.json({ received: true })
   } catch (err) {
     log.error({ err }, 'Stripe webhook handler failed — Stripe will retry')

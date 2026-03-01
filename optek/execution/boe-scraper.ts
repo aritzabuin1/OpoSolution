@@ -70,7 +70,7 @@ const LEYES = [
   },
   // ── Leyes pendientes (§1.1.3-§1.1.6D) ──────────────────────────────────────
   {
-    codigo: 'BOE-A-2015-8421',
+    codigo: 'BOE-A-2015-11719',
     nombre: 'TREBEP',
     nombre_completo:
       'Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto refundido de la Ley del Estatuto Básico del Empleado Público',
@@ -124,6 +124,28 @@ const LEYES = [
       'Ley 4/2023, de 28 de febrero, para la igualdad real y efectiva de las personas trans y para la garantía de los derechos de las personas LGTBI',
     archivo: 'ley_4_2023_lgtbi.json',
   },
+  // ── Leyes pendientes (§1.1.6G-§1.1.6I) ─────────────────────────────────────
+  {
+    codigo: 'BOE-A-1979-23709',
+    nombre: 'LOTC',
+    nombre_completo:
+      'Ley Orgánica 2/1979, de 3 de octubre, del Tribunal Constitucional',
+    archivo: 'lo_2_1979_lotc.json',
+  },
+  {
+    codigo: 'BOE-A-1985-12666',
+    nombre: 'LOPJ',
+    nombre_completo:
+      'Ley Orgánica 6/1985, de 1 de julio, del Poder Judicial (Libros I-III)',
+    archivo: 'lo_6_1985_lopj_parcial.json',
+  },
+  {
+    codigo: 'BOE-A-2003-21614',
+    nombre: 'LGP',
+    nombre_completo:
+      'Ley 47/2003, de 26 de noviembre, General Presupuestaria',
+    archivo: 'ley_47_2003_lgp.json',
+  },
 ] as const
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -132,7 +154,7 @@ function sleep(ms: number) {
   return new Promise<void>((resolve) => setTimeout(resolve, ms))
 }
 
-async function fetchHTML(boeId: string): Promise<string> {
+export async function fetchHTML(boeId: string): Promise<string> {
   const url = `${BOE_BASE}${boeId}`
   console.log(`  GET ${url}`)
 
@@ -171,7 +193,7 @@ async function fetchHTML(boeId: string): Promise<string> {
 //
 // Blocks are siblings, never nested in each other.
 
-function parseLey(html: string, ley: (typeof LEYES)[number]): LeyJSON {
+export function parseLey(html: string, ley: (typeof LEYES)[number]): LeyJSON {
   const $ = cheerio.load(html)
   const articulos: Articulo[] = []
 

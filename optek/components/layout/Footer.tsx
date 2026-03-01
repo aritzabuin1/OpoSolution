@@ -12,6 +12,9 @@ export function Footer() {
           <Link href="/legal/terminos" className="hover:text-foreground transition-colors">
             Términos
           </Link>
+          <Link href="/legal/cookies" className="hover:text-foreground transition-colors">
+            Cookies
+          </Link>
           <a href="mailto:soporte@optek.es" className="hover:text-foreground transition-colors">
             Contacto
           </a>

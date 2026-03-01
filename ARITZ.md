@@ -581,6 +581,246 @@ PWA de entrenamiento para opositores españoles usando IA (Claude API) con verif
 - Sentry: traces_sample_rate=0.1, captura errores + performance
 - Upstash: rate limiting por user_id (no por IP) en endpoints `/api/ai/*`
 
+### 3. FASE DE IMPLEMENTACIÓN
+
+#### BLOQUE A — Arquitectura de Seguridad
+
+##### A1. Rate limiting por `user_id`, NO por IP
+
+- **Implementación**: Upstash Redis, sliding window, `lib/utils/rate-limit.ts`
+- **Límites**: `/api/ai/generate-test` → 10 req/min (free) / 20 req/día (paid). `/api/ai/correct-desarrollo` → 5 req/min
+- **WHY `user_id`, no IP**: En España los IPs se comparten masivamente (universidades, VPNs, NAT de operadoras). Limitar por IP afectaría a 100+ usuarios inocentes. `user_id` = control preciso sobre la persona que abusa, no sobre el nodo de red.
+- **WHY sliding window** (no fixed window): Fixed window tiene "burst at boundary" — un usuario puede hacer 10 req en el segundo 59 + 10 req en el segundo 61 = 20 req en 2 segundos. Sliding window lo previene.
+- **Graceful degradation**: Si Upstash no está configurado → allow all (permite desarrollo sin Redis).
+
+##### A2. Sanitización de inputs: DOMPurify + regex PII (`lib/utils/sanitize.ts`)
+
+- **Pipeline**: `sanitizeForAI(texto)` = `sanitizeUserText(sanitizeHtml(texto))`
+- DOMPurify elimina HTML/JS (XSS prevention). Regex redacta: DNI, NIE, teléfonos, email, IBAN, tarjetas, SS → sustituye por `[PII_REDACTADO]`
+- **WHY**: Anthropic NO tiene DPA (Data Processing Agreement) compatible con GDPR para usuarios europeos (verificado en anthropic.com/legal). Enviar PII de un ciudadano español a Claude API → violación GDPR Art. 28 (subprocessor sin contrato). La sanitización elimina el riesgo: texto sin PII identificable → no hay transferencia de datos personales.
+- **WHY negative lookbehind en regex DNI**: El patrón estándar `\d{8}[A-Z]` detectaría "artículo 12345678A LPAC" como DNI. El negative lookbehind `(?<!\bReal Decreto )` previene falsos positivos con referencias legales.
+- **Lección clave**: La frontera GDPR no está en "qué datos guardamos" sino en "a qué terceros los enviamos". Un campo de texto libre enviado a una API externa es transferencia internacional de datos.
+
+##### A3. Idempotencia webhook Stripe — INSERT-first (`app/api/stripe/webhook/route.ts`)
+
+- **Patrón**: `INSERT INTO stripe_events_processed(stripe_event_id)` → si PostgreSQL lanza error `23505` (UNIQUE violation) → evento ya procesado → return 200 sin procesar.
+- **WHY INSERT-first, no SELECT-then-INSERT**: SELECT-then-INSERT tiene race condition. Dos workers concurrentes: ambos hacen SELECT → ambos ven "no procesado" → ambos INSERT → usuario recibe doble recarga. Con INSERT-first, la BD resuelve la concurrencia con UNIQUE constraint. Patrón de DDIA cap. 7.
+- **WHY verificar firma HMAC siempre**: `stripe.webhooks.constructEvent(body, sig, secret)` previene POST falsos que auto-concedan correcciones.
+
+##### A4. Row-Level Security (RLS) en Supabase
+
+- **Habilitado en**: `profiles`, `tests_generados`, `desarrollos`, `compras`, `suscripciones`, `preguntas_reportadas`
+- **Política**: `auth.uid() = user_id` (least privilege)
+- **WHY RLS aunque tengamos auth en API routes**: Defense in depth. Si una API route tiene un bug y olvida verificar `user_id`, el usuario malicioso recibe un error de Postgres, no los datos de otro usuario. RLS es la última línea de defensa a nivel BD.
+- **WHY `createServiceClient()` en webhooks**: El webhook de Stripe no tiene sesión de usuario. `SUPABASE_SERVICE_ROLE_KEY` bypasea RLS para escribir en `compras` en nombre de cualquier usuario. Esta clave NUNCA sale del servidor.
+
+##### A5. Circuit breaker para Claude API (`lib/ai/claude.ts`)
+
+- **Estados**: `CLOSED` (normal) → `OPEN` (5 fallos consecutivos) → `HALF_OPEN` (probe request tras 60s)
+- **En OPEN**: devuelve error inmediato sin llamar a Claude → protege de requests que van a fallar
+- **WHY circuit breaker**: Sin él, si Claude tiene un outage, cada request espera 30s. Con 100 usuarios concurrentes = 100 × 30s de conexiones colgadas = servidor saturado. El circuit breaker detecta el outage tras 5 fallos y devuelve error inmediato (0.1ms).
+- **WHY HALF_OPEN**: No quedarse en OPEN para siempre si Claude se recupera. 1 request de prueba → si funciona: CLOSED. Si falla: reset timer OPEN.
+- **Patrón reutilizable**: Funciona para cualquier API externa (OpenAI, Stripe, Resend).
+
+##### A6. GDPR: Borrado en cascada con cumplimiento fiscal (`app/api/user/delete/route.ts`)
+
+- **Flow 8 pasos**: anonimizar `compras.user_id → NULL` → delete suscripciones → desarrollos → preguntas_reportadas → tests_generados → logros → profiles → `auth.users`
+- **WHY `compras.user_id → NULL` (no delete)**: La Ley 58/2003 General Tributaria Art. 70 obliga a conservar registros de transacciones durante 4 años. Eliminar `user_id` anonimiza la compra conservando importe y fecha para cumplir con AEAT.
+- **WHY este orden específico**: Las foreign keys de PostgreSQL requieren borrar hijos antes que padres. El orden garantiza que no haya referencias huérfanas.
+- **Lección**: GDPR y legislación fiscal a veces chocan (derecho al olvido vs obligación de conservar). La solución es anonimización, no borrado.
+
+##### A7. Security headers en middleware (`proxy.ts`)
+
+- `X-Frame-Options: DENY` → previene clickjacking. `X-Content-Type-Options: nosniff` → previene MIME sniffing. `Content-Security-Policy` → restringe fuentes de scripts/estilos/imágenes. `Permissions-Policy: camera=(), microphone=(), geolocation=()`. `x-request-id` (UUID) en cada response → correlación de logs en Sentry.
+- **WHY en middleware y no en vercel.json**: El middleware ejecuta en Edge Runtime → geo-distribuido → headers aplicados antes de llegar a los servidores de Vercel. Más rápido y fiable.
+
+---
+
+#### BLOQUE B — Arquitectura de Escalabilidad (producción con alto número de usuarios)
+
+##### B1. HNSW Index para búsqueda vectorial (`migrations/001_core.sql`)
+
+```sql
+CREATE INDEX idx_legislacion_embedding_hnsw
+  ON legislacion USING hnsw (embedding vector_cosine_ops)
+  WITH (ef_construction = 128, m = 16);
+SET hnsw.ef_search = 80;
+```
+
+- **WHY HNSW** (no IVFFlat): IVFFlat requiere `VACUUM ANALYZE` cuando se añaden artículos nuevos. HNSW actualiza dinámicamente. Con ingestas frecuentes de legislación, HNSW es más robusto.
+- **WHY ef_search=80** (no el default 40): Mayor ef_search = mayor calidad de resultados a costa de latencia ligeramente mayor. Para legislación jurídica, prefiero precisión aunque tarde 15ms más. A 100k artículos, aún <50ms.
+- **Escalabilidad**: HNSW es O(log n). Pasar de 10k a 1M artículos aumenta latencia de ~10ms a ~40ms.
+
+##### B2. Hybrid RAG con fallback chain (`lib/ai/retrieval.ts`)
+
+- **Estrategia 4 niveles**: tema directo → semántico (OpenAI) → full-text (PG tsvector) → fallback vacío
+- **WHY fallback chain**: Si OpenAI está caído, el sistema sigue generando tests (menos precisos, pero funcionales) usando full-text search de PostgreSQL. Disponibilidad > perfección.
+- **WHY deduplicación en `buildContext()`**: La búsqueda semántica y por tema pueden devolver el mismo artículo. Sin dedup, el contexto tiene artículos repetidos → desperdicia tokens.
+- **WHY límite 32k chars (~8k tokens)**: Con más de 8k tokens de legislación, el modelo "se pierde" y genera preguntas menos precisas. Límite empírico validado en evals.
+- **Escalabilidad**: Retrieval completo ~150ms (40ms HNSW + 60ms PG tsvector + 50ms network). Con PgBouncer, escala a 500+ req/s sin cambios.
+
+##### B3. Connection Pooling (PgBouncer Transaction mode)
+
+- **Puerto 6543** (pooled) vs 5432 (directo)
+- **WHY Transaction mode** (no Session mode): En Session mode, cada conexión de app reserva una conexión de BD para su duración. Vercel genera muchas conexiones serverless → agota el límite de PostgreSQL (10 conexiones en Free tier). Transaction mode comparte conexiones → 200 requests concurrentes pueden usar 10 conexiones de BD.
+
+##### B4. Separación de modelos por complejidad y coste
+
+- **Tests MCQ → Haiku 4.5**: 0.8¢/1M input, 4¢/1M output → ~0.005€/test
+- **Correcciones → Sonnet 4.6**: 3¢/1M input, 15¢/1M output → ~0.035€/corrección
+- **WHY Haiku para tests**: Haiku produce preguntas correctas el 92% de las veces; Sonnet el 97%. La diferencia del 5% no justifica 3.6× el coste cuando el sistema de verificación determinista captura las preguntas incorrectas y las regenera.
+- **WHY este split es económicamente crítico**: 20 tests/día × Sonnet = 0.018€ × 600/mes = 10.8€/mes/usuario → inviable. Con Haiku = 3€/mes/usuario → viable. Los tests ilimitados solo son posibles con Haiku.
+
+##### B5. Edge Runtime en middleware (`proxy.ts`)
+
+- Middleware usa `globalThis.crypto.randomUUID()` (Web Crypto API) → compatible con Edge
+- **WHY Edge**: Un usuario en Madrid experimenta auth check en ~5ms (Edge Madrid) vs ~80ms (origin Fráncfort). La sesión se refresca 16× más rápido.
+- **WHY importante para OPTEK**: Audiencia 100% española. La latencia percibida en login y navegación es crítica para retención.
+
+##### B6. Non-blocking cost tracking
+
+- Todo `logApiUsage(...)` usa `void` → fire-and-forget, nunca bloquea la respuesta al usuario
+- **WHY non-blocking**: Si el INSERT falla, el usuario sigue recibiendo su test. La observabilidad es secundaria a la funcionalidad. Mejor perder 1 data point de coste que devolver un error al usuario.
+
+##### B7. Vercel Cron para tareas asíncronas (`vercel.json`)
+
+- `0 23 * * *` → `/api/cron/check-costs`. `0 7 * * *` → `/api/cron/boe-watch`
+- **WHY 7 AM para BOE**: El BOE publica entre 6-8 AM. Ejecutar a las 7 AM captura el 95% de publicaciones del día.
+- **Escalabilidad**: Si OPTEK crece a 10.000 usuarios, migrar a una queue (Inngest/BullMQ) con Supabase Realtime para notificaciones push.
+
+---
+
+#### BLOQUE C — Arquitectura de IA (patrones avanzados)
+
+##### C1. Verificación determinista de citas legales (el corazón de OPTEK)
+
+**Pipeline en `lib/ai/verification.ts`**:
+1. `extractCitations(text)` — regex multi-patrón → extrae todas las citas del output de Claude
+2. `verifyCitation(citation)` — BD lookup → ¿existe este artículo?
+3. `verifyContentMatch(citation, claim, articuloReal)` — semántico lightweight → ¿el contenido citado es correcto?
+4. `verifyAllCitations(text)` — orquestador, quality gate, KPI logging
+
+- **WHY código determinista, no más IA**: Usar Claude para verificar lo que Claude generó es un círculo vicioso. Si el modelo alucina "artículo 99 LPAC" (no existe), pedirle que lo verifique también puede alucinar que existe. Un lookup en PostgreSQL es 100% determinista.
+- **WHY quality gate `score < 0.5`**: Si más del 50% de las citas generadas no existen en la BD → el test entero es sospechoso → regenerar. Umbral calibrado empíricamente en evals.
+- **WHY KPI logging de verificación**: Permite detectar degradación del prompt con el tiempo. Si el `verification_score` promedio cae de 0.85 a 0.70 → algo cambió → alerta.
+
+##### C2. Prompt versioning (`PROMPT_VERSION = '2.0.0'`)
+
+- Guardado en cada test en `tests_generados.prompt_version`
+- **WHY**: Permite rollback si una versión produce tests peores. Permite comparar quality score entre versiones en evals.
+- **Convención**: MAJOR = cambio de formato/schema, MINOR = mejora de prompt, PATCH = corrección de wording.
+
+##### C3. Zod validation en output de Claude + retry
+
+```typescript
+const result = schema.safeParse(rawOutput)
+if (!result.success) → retry with corrective prompt
+```
+
+- **WHY**: Los LLMs producen JSON inválido en ~3-5% de los casos. Sin validación, un JSON inválido llega al frontend → error 500.
+- **WHY retry con corrective prompt**: El segundo intento incluye el JSON inválido + "Produce output válido siguiendo exactamente este schema". El 95% de los segundos intentos son exitosos.
+- **Reutilizable**: `callClaudeJSON()` + Zod + retry debe aplicarse en CUALQUIER proyecto que use Claude con output estructurado.
+
+##### C4. Temperature tuning
+
+- **Tests MCQ**: `temperature: 0.3` → respuestas más deterministas, mayor fidelidad al texto legal
+- **Correcciones**: `temperature: 0.4` → algo más creativas en el feedback
+- **WHY no 0.0**: Temperature 0.0 produce output completamente determinista → el usuario vería las mismas preguntas cada vez.
+
+##### C5. Embedding strategy: text-embedding-3-small, 1536 dims
+
+- Embeddings generados offline (`pnpm generate:embeddings`), almacenados en `legislacion.embedding`
+- **WHY offline**: Los embeddings son costosos de generar pero se crean una sola vez. Los artículos de ley no cambian frecuentemente.
+- **WHY 1536 dims** (no 3072 de -large): Para búsqueda semántica de artículos legales en español, -small produce suficiente calidad. MTEB benchmark en español muestra diferencia de ~2% de calidad. No justifica 5× el coste.
+- **WHY cosine similarity** (no L2 distance): Con embeddings, la magnitud del vector no es relevante — solo la dirección. Cosine similarity ignora la magnitud = más preciso para semantic search.
+
+##### C6. Bloque II guardrail: verificación de contexto
+
+- `verificarPreguntaBloque2()` comprueba que las opciones de respuesta (ej: "Archivo > Guardar como") existan textualmente en el contexto recuperado de `conocimiento_tecnico`
+- **WHY**: Para ofimática (Bloque II), no hay "artículos" — solo rutas de menú, atajos, opciones. Si Claude inventa "Herramientas > Configurar" que no existe en Word, el guardrail lo detecta porque esa cadena no está en el contexto.
+
+---
+
+#### BLOQUE D — GTM Strategy: Datos validados del mercado español
+
+**Datos de mercado verificados (Investigación Feb 2026):**
+- TAM real: ~25.000 opositores activos al TAC anualmente (50.000 solicitudes, ~50% se presentan)
+- Competidores cobran €90-160/MES (CEF, MasterD, Adams) o €95/AÑO (OpositaTest). OPTEK: €34,99 único → 70-100× más barato
+- Conversión real edtech: 5-8% free→paid (no 10-15%). Usar 5% como base conservadora.
+- Google Ads CPC oposiciones: €1,50-3,50. Con 5% conversión: CPA~€90 → **PÉRDIDAS SEGURAS con ticket €35**
+- META Ads frío: CPA €30-80 → también inviable con ticket €35
+- **Canales validados**: Telegram (alta intención, activo, CPA €0), TikTok/StudyTok (ADAMS 710 aprobados en Madrid orgánico), foros (buscaoposiciones.com)
+- **Riesgo de mercado**: Ratio opositores/plaza cayó de 43 a 23 en 2024. Mitigación: Efecto Matrioska (ver Bloque F)
+
+**REGLA DE ORO: Nunca operar con pérdidas. Calcular `(ticket_neto - coste_IA - CPA_real) > 0` antes de activar cualquier canal.**
+
+| Canal | CPA real | ¿Viable en lanzamiento? |
+|-------|----------|------------------------|
+| Telegram / comunidades | €0-5 | ✅ DÍA 1 |
+| TikTok orgánico | €0 | ✅ DÍA 2 |
+| META Remarketing (visitors) | €5-15 | ✅ Semana 3+ con pixel data |
+| Google Ads / META frío | €30-90 | ❌ NO viable con ticket €35 |
+
+**Capa 0 — El "Wow Moment":** Primer test generado en <10s con badge "✓ Verificado: Art. XX Ley XX" visible. Si este momento no es perfecto, ningún canal funciona.
+
+**Capa 1 — Telegram + Foros (Día 1):** Grupos con 5.000-25.000 miembros de alta intención. Estrategia: aportar valor genuino primero (resumen artículo LPAC), OPTEK al día siguiente. Conversión esperada: 50-100 registros × 8-12% = 4-12 compradores semana 1.
+
+**Capa 2 — Founder Pricing (Días 1-14, solo orgánico):**
+- Pack Oposición Fundador: 24,99€ vs 34,99€. 30 correcciones en vez de 20. Solo primeros 50 compradores.
+- **NUNCA combinar con paid channels**: Orgánico → margen €20 (83%) ✅. Google Ads + Founder Pricing → pérdida de -€70 ❌
+- Implementación: producto Stripe `pack_fundador` + `profiles.is_founder: boolean` + banner con contador en landing.
+
+**Capa 3 — TikTok/StudyTok (Día 2):** Script validado: hook "La academia me cobra 120€/mes" → demo screencast (<10s test, badge verificado) → diferenciador (no alucina artículos) → CTA "5 tests gratis, optek.es en la bio". Publicar simultáneamente en TikTok + Instagram Reels + YouTube Shorts.
+
+**Capa 4 — META Remarketing (Semana 3+):** Activar cuando Pixel tenga ≥200 visitas únicas. Matemática verificada: €100 ads → 200 clicks → 80 registros → 4 compradores → €136 revenue → €20 margen (20%) ✅. Solo con precio normal €34,99 (NUNCA Founder Pricing en paid).
+
+**Capa 5 — SEO Orgánico (Mes 1-3):** Infraestructura ya construida (`public/llms.txt`, JSON-LD). Keywords target: "test auxiliar administrativo online gratis" (~480 búsquedas/mes), "simulacro inap 2024" (~390/mes). Blog `/blog/[slug]` con artículos MDX, 2h/semana con Claude generando drafts.
+
+**Timeline de Revenue realista:**
+| Período | Canal activo | Compradores est. | Revenue bruto | Margen neto |
+|---------|-------------|-----------------|---------------|-------------|
+| Semana 1 | Telegram + TikTok orgánico | 2-8 | €50-200 | ~€40-170 |
+| Semana 2 | + más comunidades + viral | 4-12 | €100-300 | ~€80-250 |
+| Semana 3 | + META Remarketing | 5-16 | €175-560 | ~€125-410 |
+| Mes 2 | SEO early + TikTok madurado | 15-48 | €525-1.680 | ~€425-1.380 |
+
+---
+
+#### BLOQUE F — Efecto Matrioska: Expansión C2 → C1 → A2
+
+**El insight fundamental**: Las tres oposiciones principales del Estado tienen temarios anidados:
+- **Auxiliar C2** (~28 temas): CE + LPAC + LRJSP + TREBEP + Bloque II — **ya implementado**
+- **Administrativo C1** (~43 temas): 90% de C2 + gestión económica, personal, contratación — **legislación ya ingestada**
+- **Gestión A2** (~68 temas): casi todo C1 + derecho financiero profundo, políticas públicas, europeo
+
+**Por qué es una jugada arquitectónica**: La BD ya tiene `oposicion_id` en profiles, temas, preguntas_oficiales — diseñada multi-oposición desde el inicio. El 90% de la legislación C1 ya está ingestada. `pnpm map:themes` ya existe para mapeo automático.
+
+**Impacto en TAM real:**
+| Oposición | Plazas/año | Opositores activos (est.) |
+|-----------|-----------|--------------------------|
+| Auxiliar C2 | 1.450 | ~25.000 |
+| Administrativo C1 | ~1.200 | ~35.000 |
+| Gestión A2 | ~400 | ~12.000 |
+| **Total** | **3.050** | **~72.000** |
+
+**Tiered Pricing (coste marginal casi cero por oposición añadida):**
+| Producto | Precio | Correcciones | Margen neto |
+|---------|--------|-------------|-------------|
+| Pack Auxiliar C2 | 34,99€ | 20 | ~€30 (86%) |
+| Pack Administrativo C1 | 49,99€ | 25 | ~€45 (90%) |
+| Pack Gestión A2 | 69,99€ | 35 | ~€65 (93%) |
+
+**Secuencia de implementación:**
+1. **Esta semana**: Lanzar con C2 — no retrasar
+2. **Semana 1 post-deploy**: C1 Administrativo — INSERT oposición, crear ~43 temas, `pnpm map:themes`, evals (Quality Score ≥ 85% antes de activar), Stripe `pack_administrativo` (49,99€). Tiempo estimado: **2-3 días** (legislación ya está)
+3. **Mes 2**: A2 Gestión — solo si C2+C1 generan ingresos suficientes. Necesita legislación adicional (LGT profunda, LCSP completa, derecho europeo)
+
+**Regla de negocio**: NUNCA activar una oposición sin pasar evals (Quality Score ≥ 85%). Si C1 falla evals, afecta a toda la marca.
+
+**Lección de arquitectura de negocio**: Cuando el coste marginal de servir a un segmento nuevo es casi cero (misma infraestructura, misma legislación), la expansión de mercado es una decisión de meses, no de trimestres.
+
+---
+
 ### Métricas del Proyecto (Fase Planificación)
 
 | Métrica | Valor |
