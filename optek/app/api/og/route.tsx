@@ -26,8 +26,6 @@
 import { ImageResponse } from 'next/og'
 import type { NextRequest } from 'next/server'
 
-export const runtime = 'edge'
-
 // Paleta OpoRuta
 const NAVY = '#1B4F72'
 const LIGHT_BLUE = '#A9CCE3'

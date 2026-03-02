@@ -354,7 +354,11 @@ async function main() {
   console.log('━'.repeat(60))
 }
 
-main().catch((err) => {
-  console.error('Fatal error:', err)
-  process.exit(1)
-})
+// Ensure main() only runs if called via CLI (e.g., `tsx execution/boe-scraper.ts`)
+// and not when imported as a module (e.g., in api/cron/boe-watch/route.ts)
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((err) => {
+    console.error('Fatal error:', err)
+    process.exit(1)
+  })
+}

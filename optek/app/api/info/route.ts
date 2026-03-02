@@ -12,8 +12,6 @@
 
 import { NextResponse } from 'next/server'
 
-export const runtime = 'edge'
-
 export function GET() {
   return NextResponse.json({
     name: 'OpoRuta',
@@ -27,9 +25,8 @@ export function GET() {
     ],
     pricing: {
       free: '5 tests + 2 correcciones sin tarjeta de crédito',
-      tema: '4,99€ pago único — tests ilimitados de un tema específico',
       pack_completo: '34,99€ pago único — temario completo + 20 correcciones + simulacros',
-      recarga_correcciones: '8,99€ — +15 correcciones adicionales',
+      recarga_correcciones: '8,99€ — +10 correcciones adicionales',
       nota: 'Sin suscripción mensual. Pago único con acceso para siempre.',
     },
     features: [
