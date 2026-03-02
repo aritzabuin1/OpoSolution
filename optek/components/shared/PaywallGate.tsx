@@ -15,6 +15,7 @@
  */
 
 import { useState } from 'react'
+import { toast } from 'sonner'
 import {
   Dialog,
   DialogContent,
@@ -107,8 +108,7 @@ export function PaywallGate({ open, onClose, code, temaId, oposicionId }: Paywal
       const { url } = await res.json() as { url: string }
       if (url) window.location.href = url
     } catch (err) {
-      // En producción usar un toast — por ahora alert simplificado
-      alert(err instanceof Error ? err.message : 'Error al iniciar el pago. Intenta de nuevo.')
+      toast.error(err instanceof Error ? err.message : 'Error al iniciar el pago. Intenta de nuevo.')
     } finally {
       setLoading(null)
     }
