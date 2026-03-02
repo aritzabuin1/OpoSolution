@@ -641,16 +641,19 @@
 - [x] **1.15.9** Implementar Stripe Customer Portal: endpoint POST `/api/stripe/portal/route.ts` ✅ 2026-02-27
 - [ ] **1.15.10** Verificar flujo completo: click comprar → Stripe Checkout → pago → webhook → acceso desbloqueado
 
-### 1.16 Proveedor de email transaccional
+### 1.16 Proveedor de email transaccional y Configuración Auth Producción
 
 - [ ] **1.16.1** Crear cuenta en Resend (free tier: 3000 emails/mes) *(manual)*
 - [x] **1.16.2** Instalar SDK: `pnpm add resend` ✅ 2026-02-27
-- [ ] **1.16.3** Configurar dominio de envío en Resend (verificar DNS) *(manual)*
+- [ ] **1.16.3** Configurar dominio de envío (`oporuta.es`) en Resend (Añadir registros TXT/MX en DNS y verificar) *(manual)*
 - [x] **1.16.4** Crear `lib/email/client.ts`: wrapper de Resend con from="OPTEK <noreply@optek.es>". Condicional: no-op si RESEND_API_KEY no está configurado ✅ 2026-02-27
 - [x] **1.16.5** Crear template email de bienvenida: saludo + 5 tests gratuitos + CTA primer test. `sendWelcomeEmail()` → disparado desde `auth/callback/route.ts` cuando `created_at < 2 min` ✅ 2026-02-27
 - [x] **1.16.5A** Implementar llamada a `sendWelcomeEmail()` en `app/auth/callback/route.ts`: importar función desde `lib/email/client.ts`, calcular si `Date.now() - new Date(session.user.created_at).getTime() < 120_000` (usuario nuevo en últimos 2 min) → llamar fire-and-forget (no await, no bloquear redirect). Sin este wiring el email nunca se envía aunque la función esté implementada.
 - [x] **1.16.6** Crear template email de confirmación de eliminación: link confirmación con token (24h expiración), aviso retención fiscal. `sendDeletionConfirmEmail()` ✅ 2026-02-27
 - [ ] **1.16.7** Verificar: registro de usuario → recibe email de bienvenida *(manual — requiere RESEND_API_KEY y DNS configurados)*
+- [ ] **1.16.8** Supabase Dashboard: Cambiar Site URL a `https://oporuta.es` y añadir Redirect URLs (`https://oporuta.es/**` y `http://localhost:3000/**`) para evitar que el Auth link caiga a localhost. *(manual)*
+- [ ] **1.16.9** Supabase Dashboard: Configurar Custom SMTP con Resend (Host: smtp.resend.com, Port: 465, User: resend, Sender: noreply@oporuta.es) para que lleguen los emails de Auth con branding. *(manual)*
+- [ ] **1.16.10** Supabase Dashboard: Personalizar Email Templates (Confirm signup y Magic Link) con branding y copy de OpoRuta. *(manual)*
 
 ### 1.17 Implementar GDPR endpoints
 
@@ -1500,6 +1503,46 @@
 - [x] **2.20.12** Test unitario `tests/unit/reto-diario.test.ts`: idempotencia (reto existente → no llama GPT), race condition 23505, generación exitosa. ✅ 2026-03-01 — 5 tests
 - [x] **2.20.13** Test unitario: sin artículos → lanza error; artículos cortos → lanza error. ✅ 2026-03-01 (en mismo archivo, describe §2.20.13 Errores)
 - [ ] **2.20.14** Verificar flujo completo: aplicar migration 020 → cron genera reto → usuario abre página → juega → comparte. [MANUAL — Aritz, requiere migration 020 aplicada en Supabase remoto]
+
+---
+
+### 2.21 Pricing Fix — Eliminar tier "tema" + Recarga 10 correcciones ✅ 2026-03-02
+
+- [x] **2.21.1** Eliminar tier `tema` (4,99€) de STRIPE_PRICES, CORRECTIONS_GRANTED, z.enum checkout, PaywallGate, landing page. ✅ 2026-03-02
+- [x] **2.21.2** Corregir CORRECTIONS_GRANTED.recarga: 15 → 10. Actualizar PaywallGate y FAQ landing. ✅ 2026-03-02
+- [x] **2.21.3** Webhook bug fix: metadata?.tipo → metadata?.tier, fallback 'tema' → 'pack'. ✅ 2026-03-02
+- [x] **2.21.4** pnpm type-check + pnpm test limpios. ✅ 2026-03-02
+
+---
+
+### 2.22 Founder Pricing Scarcity — Límite 20 plazas con enforcement backend ✅ 2026-03-02
+
+- [x] **2.22.1** FOUNDER_LIMIT movido a lib/stripe/client.ts como fuente única de verdad. ✅ 2026-03-02
+- [x] **2.22.2** Checkout route: HTTP 410 si límite de fundadores alcanzado. ✅ 2026-03-02
+- [x] **2.22.3** Landing page importa FOUNDER_LIMIT del lib. ✅ 2026-03-02
+
+---
+
+### 2.23 Infrastructure Monitor — Semáforos BD/MAU/Upstash/IA ✅ 2026-03-02
+
+- [x] **2.23.1** Migration 023: RPC get_db_size_bytes(). ✅ 2026-03-02
+- [x] **2.23.2** lib/admin/infrastructure.ts: getInfraMetrics() unstable_cache 5 min. ✅ 2026-03-02
+- [x] **2.23.3** app/api/admin/infrastructure/route.ts: GET admin-only. ✅ 2026-03-02
+- [x] **2.23.4** app/(admin)/infrastructure/page.tsx: 4 cards semáforo. ✅ 2026-03-02
+- [x] **2.23.5** Economics page: semaphore card. Admin layout: link Infrastructure. ✅ 2026-03-02
+- [x] **2.23.6** lib/admin/cost-check.ts: lógica extraída + boe-watch piggyback (restaura alerting diario sin 3er cron). ✅ 2026-03-02
+- [ ] **2.23.7** [MANUAL — Aritz] Aplicar migration 023 en Supabase Dashboard.
+
+---
+
+### 2.24 Pre-launch Security & UX Hardening ✅ 2026-03-02
+
+- [x] **2.24.1** proxy.ts: 7 rutas protegidas faltantes + HSTS + CSP openai.com/facebook. ✅ 2026-03-02
+- [x] **2.24.2** auth/callback: validar next param — open redirect eliminado. ✅ 2026-03-02
+- [x] **2.24.3** app/not-found.tsx + app/error.tsx + (dashboard)/error.tsx + (dashboard)/loading.tsx. ✅ 2026-03-02
+- [x] **2.24.4** pnpm audit: 0 vulnerabilidades (overrides hono/minimatch/rollup, todos devDeps). ✅ 2026-03-02
+- [x] **2.24.5** Flujo recuperación contraseña: forgot-password + reset-password + link en login. ✅ 2026-03-02
+- [x] **2.24.6** PaywallGate: alert() → toast.error(). ✅ 2026-03-02
 
 ---
 
