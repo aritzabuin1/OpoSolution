@@ -91,3 +91,7 @@ dmypy.json
 # OS
 Thumbs.db
 desktop.ini
+
+# Next.js generated files (no commitear — se regeneran en build)
+optek/public/sw.js
+optek/public/sw.js.map

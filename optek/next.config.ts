@@ -4,11 +4,11 @@ import withSerwist from '@serwist/next'
 
 const nextConfig: NextConfig = {}
 
-// PWA — Serwist (desactivado en development para compatibilidad con Turbopack)
-const applyPWA =
-  process.env.NODE_ENV === 'development'
-    ? (config: NextConfig) => config
-    : withSerwist({ swSrc: 'app/sw.ts', swDest: 'public/sw.js' })
+// PWA — Serwist desactivado temporalmente (causa "Internal Error" en Vercel al deployar)
+// Re-activar cuando se resuelva la compatibilidad Serwist + Vercel output
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const _withSerwistDisabled = withSerwist
+const applyPWA = (config: NextConfig) => config
 
 // Sentry — requiere NEXT_PUBLIC_SENTRY_DSN en .env.local para activarse
 export default withSentryConfig(applyPWA(nextConfig), {

@@ -1,0 +1,6 @@
+# Excluir directorios de procesamiento local — no necesarios en Vercel
+data/
+directives/
+agents/
+monitoring/
+.tmp/
