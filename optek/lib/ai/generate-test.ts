@@ -123,12 +123,19 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
       TestGeneradoRawSchema,
       {
         model: GPT_MINI_MODEL,
-        maxTokens: 4000,
+        // 16000 tokens: reasoning models (gpt-5-mini) consumen ~4000 en razonamiento interno
+        // + ~3000-4000 para el JSON de salida (10-30 preguntas). Margen amplio necesario.
+        maxTokens: 16000,
         endpoint: 'generate-test',
         userId,
         requestId,
       }
     )
+
+    // Truncar a 'needed' exacto — reasoning models pueden sobre-generar
+    if (rawTest.preguntas.length > needed) {
+      rawTest.preguntas = rawTest.preguntas.slice(0, needed)
+    }
 
     log.info(
       { attempt, preguntasRaw: rawTest.preguntas.length, esBloqueII },

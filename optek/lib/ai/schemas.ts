@@ -28,7 +28,11 @@ export const CitaLegalSchema = z.object({
 export const PreguntaSchema = z.object({
   enunciado: z.string().min(10),
   opciones: z.tuple([z.string(), z.string(), z.string(), z.string()]),
-  correcta: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]),
+  // z.preprocess: reasoning models devuelven "0"|"1"|"2"|"3" (string) → coerce a number primero
+  correcta: z.preprocess(
+    (val) => (typeof val === 'string' ? parseInt(val, 10) : val),
+    z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)])
+  ),
   explicacion: z.string().min(10),
   /** Cita legal verificada. Ausente en preguntas de Bloque II (ofimática) y psicotécnicas. */
   cita: CitaLegalSchema.optional(),
@@ -53,13 +57,14 @@ export const TestGeneradoRawSchema = z.object({
  * Incluye tres dimensiones de evaluación para feedback granular.
  */
 export const CorreccionDesarrolloRawSchema = z.object({
-  puntuacion: z.number().min(0).max(10),
+  // z.coerce.number(): reasoning models devuelven "7.5" (string) → coerce a número
+  puntuacion: z.coerce.number().min(0).max(10),
   feedback: z.string().min(20),
   mejoras: z.array(z.string()).min(1).max(5),
   citas_usadas: z.array(CitaLegalSchema),
-  dimension_juridica: z.number().min(0).max(10),
-  dimension_argumentacion: z.number().min(0).max(10),
-  dimension_estructura: z.number().min(0).max(10),
+  dimension_juridica: z.coerce.number().min(0).max(10),
+  dimension_argumentacion: z.coerce.number().min(0).max(10),
+  dimension_estructura: z.coerce.number().min(0).max(10),
 })
 
 // ─── §2.12 Caza-Trampas ───────────────────────────────────────────────────────

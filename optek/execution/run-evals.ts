@@ -210,6 +210,57 @@ function scoreGenerateTest(
     rejected ? aprobados.push('rechaza_correctamente') : fallados.push('rechaza_correctamente')
   }
 
+  // relevancia: ≥80% de preguntas tienen enunciado ≥40 chars con contexto jurídico/técnico
+  if ('relevancia' in pesos && output && typeof output === 'object' && 'preguntas' in output) {
+    type PregRel = { enunciado?: string }
+    const preguntas = (output as { preguntas: PregRel[] }).preguntas
+    const legalWords = ['según', 'artículo', 'ley', 'procedimiento', 'administración',
+      'tribunal', 'plazo', 'resolución', 'norma', 'reglamento', 'recurso',
+      'acto', 'órgano', 'función', 'competencia', 'microsoft', 'office',
+      'word', 'excel', 'access', 'archivo', 'formato', 'función']
+    const relevantes = preguntas.filter(p =>
+      typeof p.enunciado === 'string' &&
+      p.enunciado.length >= 35 &&
+      legalWords.some(w => p.enunciado!.toLowerCase().includes(w))
+    )
+    const ratio = preguntas.length > 0 ? relevantes.length / preguntas.length : 0
+    ratio >= 0.75
+      ? aprobados.push('relevancia')
+      : fallados.push(`relevancia (ratio ${(ratio * 100).toFixed(0)}%)`)
+  }
+
+  // opciones_plausibles: todas las opciones de cada pregunta son distintas y ≥3 chars
+  if ('opciones_plausibles' in pesos && output && typeof output === 'object' && 'preguntas' in output) {
+    type PregOps = { opciones?: unknown[] }
+    const preguntas = (output as { preguntas: PregOps[] }).preguntas
+    const plausibles = preguntas.filter(p => {
+      if (!Array.isArray(p.opciones) || p.opciones.length !== 4) return false
+      const ops = p.opciones as string[]
+      const distinct = new Set(ops.map(o => String(o).toLowerCase().trim())).size === 4
+      const longEnough = ops.every(o => typeof o === 'string' && o.trim().length >= 3)
+      return distinct && longEnough
+    })
+    const ratio = preguntas.length > 0 ? plausibles.length / preguntas.length : 0
+    ratio >= 0.9
+      ? aprobados.push('opciones_plausibles')
+      : fallados.push(`opciones_plausibles (ratio ${(ratio * 100).toFixed(0)}%)`)
+  }
+
+  // sin_inventar_citas: ≥70% de preguntas tienen cita Y textoExacto ≤ 120 chars
+  if ('sin_inventar_citas' in pesos && output && typeof output === 'object' && 'preguntas' in output) {
+    type PregCita = { cita?: { textoExacto?: string; ley?: string } }
+    const preguntas = (output as { preguntas: PregCita[] }).preguntas
+    const conCita = preguntas.filter(p => p.cita?.textoExacto)
+    const citasCorrectas = conCita.filter(p => {
+      const t = p.cita?.textoExacto ?? ''
+      return t.length >= 10 && t.length <= 130
+    })
+    const tienenCita = conCita.length / Math.max(preguntas.length, 1)
+    const citasOk = conCita.length > 0 ? citasCorrectas.length / conCita.length : 1
+    const ok = tienenCita >= 0.7 && citasOk >= 0.8
+    ok ? aprobados.push('sin_inventar_citas') : fallados.push(`sin_inventar_citas (tienenCita=${(tienenCita * 100).toFixed(0)}%, citasOk=${(citasOk * 100).toFixed(0)}%)`)
+  }
+
   let score = 0
   let total = 0
   for (const [crit, peso] of Object.entries(pesos)) {
@@ -227,22 +278,32 @@ function scoreCorrectDesarrollo(
   const aprobados: string[] = []
   const fallados: string[] = []
 
-  // estructura_valida
+  // estructura_valida — campos del schema CorreccionDesarrolloRawSchema
   if ('estructura_valida' in pesos) {
-    type Out = { puntuacion_global?: unknown; dimensiones?: unknown; mejoras_sugeridas?: unknown }
+    type Out = {
+      puntuacion?: unknown
+      dimension_juridica?: unknown
+      dimension_argumentacion?: unknown
+      dimension_estructura?: unknown
+      mejoras?: unknown
+      feedback?: unknown
+    }
     const o = output as Out
     const valid =
       o !== null &&
       typeof o === 'object' &&
-      typeof o.puntuacion_global === 'number' &&
-      Array.isArray(o.dimensiones) &&
-      Array.isArray(o.mejoras_sugeridas)
+      typeof o.puntuacion === 'number' &&
+      typeof o.dimension_juridica === 'number' &&
+      typeof o.dimension_argumentacion === 'number' &&
+      typeof o.dimension_estructura === 'number' &&
+      Array.isArray(o.mejoras) &&
+      typeof o.feedback === 'string'
     valid ? aprobados.push('estructura_valida') : fallados.push('estructura_valida')
   }
 
-  // puntuacion_coherente
+  // puntuacion_coherente — usa campo 'puntuacion' (no 'puntuacion_global')
   if ('puntuacion_coherente' in pesos && output && typeof output === 'object') {
-    const p = (output as { puntuacion_global?: number }).puntuacion_global
+    const p = (output as { puntuacion?: number }).puntuacion
     const minP = criterios.puntuacion_minima as number | undefined
     const maxP = criterios.puntuacion_maxima as number | undefined
     if (typeof p === 'number') {
@@ -269,9 +330,9 @@ function scoreCorrectDesarrollo(
     }
   }
 
-  // feedback_especifico (≥100 chars en feedback_global)
+  // feedback_especifico (≥100 chars en campo 'feedback')
   if ('feedback_especifico' in pesos && output && typeof output === 'object') {
-    const fg = (output as { feedback_global?: string }).feedback_global ?? ''
+    const fg = (output as { feedback?: string }).feedback ?? ''
     fg.length >= 100
       ? aprobados.push('feedback_especifico')
       : fallados.push('feedback_especifico (muy corto)')
@@ -283,6 +344,35 @@ function scoreCorrectDesarrollo(
     const words = ['según', 'artículo', 'ley', 'puntuación', 'corrección', 'mejoras']
     const hasSpanish = words.some((w) => out.includes(w))
     hasSpanish ? aprobados.push('idioma_espanol') : fallados.push('idioma_espanol')
+  }
+
+  // identifica_errores: el feedback o mejoras mencionan errores concretos
+  if ('identifica_errores' in pesos && output && typeof output === 'object') {
+    const feedback = ((output as { feedback?: string }).feedback ?? '').toLowerCase()
+    const mejoras = (output as { mejoras?: string[] }).mejoras ?? []
+    const errorWords = ['error', 'incorrecto', 'erróneo', 'confunde', 'confusión',
+      'equivoca', 'inexacto', 'impreciso', 'falta', 'omite', 'incorrectamente',
+      'incompleto', 'equivocado', 'no es correcto', 'no está', 'debería']
+    const hasError = errorWords.some(w => feedback.includes(w)) ||
+      mejoras.some(m => errorWords.some(w => m.toLowerCase().includes(w)))
+    hasError ? aprobados.push('identifica_errores') : fallados.push('identifica_errores')
+  }
+
+  // sugiere_mejoras: mejoras con ≥1 item específico (≥20 chars)
+  if ('sugiere_mejoras' in pesos && output && typeof output === 'object') {
+    const mejoras = (output as { mejoras?: string[] }).mejoras ?? []
+    const especificas = mejoras.filter(m => typeof m === 'string' && m.trim().length >= 20)
+    especificas.length >= 1
+      ? aprobados.push('sugiere_mejoras')
+      : fallados.push(`sugiere_mejoras (${especificas.length} específicas)`)
+  }
+
+  // cita_verificada: el corrector usa al menos 1 cita legal propia
+  if ('cita_verificada' in pesos && output && typeof output === 'object') {
+    const citas = (output as { citas_usadas?: unknown[] }).citas_usadas ?? []
+    citas.length > 0
+      ? aprobados.push('cita_verificada')
+      : fallados.push('cita_verificada (sin citas)')
   }
 
   let score = 0
@@ -345,8 +435,16 @@ async function runGenerateTestEvals(): Promise<EvalReport> {
           SYSTEM_GENERATE_TEST,
           userPrompt,
           TestGeneradoRawSchema,
-          { model: 'gpt-5-mini', maxTokens: 4000, endpoint: 'eval:generate-test' }
+          { model: 'gpt-5-mini', maxTokens: 16000, endpoint: 'eval:generate-test' }
         )
+
+        // Truncar a numPreguntas exacto — reasoning models pueden sobre-generar
+        const numP = caso.input.numPreguntas as number
+        if (output && typeof output === 'object' && 'preguntas' in output &&
+          Array.isArray((output as { preguntas: unknown[] }).preguntas)) {
+          (output as { preguntas: unknown[] }).preguntas =
+            (output as { preguntas: unknown[] }).preguntas.slice(0, numP)
+        }
       }
     } catch (err) {
       error = err instanceof Error ? err.message : String(err)
@@ -436,7 +534,7 @@ async function runCorrectDesarrolloEvals(): Promise<EvalReport> {
         SYSTEM_CORRECT_DESARROLLO,
         userPrompt,
         CorreccionDesarrolloRawSchema,
-        { model: 'gpt-5', maxTokens: 3000, endpoint: 'eval:correct-desarrollo' }
+        { model: 'gpt-5', maxTokens: 8000, endpoint: 'eval:correct-desarrollo' }
       )
     } catch (err) {
       error = err instanceof Error ? err.message : String(err)

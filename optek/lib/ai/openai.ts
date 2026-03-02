@@ -180,8 +180,22 @@ export async function callGPT(
     onSuccess()
     void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents })
 
-    const text = response.choices[0]?.message?.content
-    if (!text) throw new Error('GPT returned empty content')
+    const choice = response.choices[0]
+    const text = choice?.message?.content
+    if (!text) {
+      // Diagnóstico: reasoning models agota tokens en razonamiento interno → content=null
+      log.error({
+        endpoint,
+        finishReason: choice?.finish_reason,
+        refusal: choice?.message?.refusal,
+        tokensIn,
+        tokensOut,
+        maxTokens,
+        // @ts-expect-error — completion_tokens_details solo en modelos reasoning
+        reasoningTokens: response.usage?.completion_tokens_details?.reasoning_tokens,
+      }, 'GPT returned empty content — diagnóstico')
+      throw new Error('GPT returned empty content')
+    }
     return text
   } catch (err) {
     const latencyMs = Date.now() - start
@@ -234,8 +248,21 @@ export async function callGPTMini(
     onSuccess()
     void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents })
 
-    const text = response.choices[0]?.message?.content
-    if (!text) throw new Error('GPT-mini returned empty content')
+    const choice = response.choices[0]
+    const text = choice?.message?.content
+    if (!text) {
+      log.error({
+        endpoint,
+        finishReason: choice?.finish_reason,
+        refusal: choice?.message?.refusal,
+        tokensIn,
+        tokensOut,
+        maxTokens,
+        // @ts-expect-error — completion_tokens_details solo en modelos reasoning
+        reasoningTokens: response.usage?.completion_tokens_details?.reasoning_tokens,
+      }, 'GPT-mini returned empty content — diagnóstico')
+      throw new Error('GPT-mini returned empty content')
+    }
     return text
   } catch (err) {
     const latencyMs = Date.now() - start

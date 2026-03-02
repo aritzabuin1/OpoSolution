@@ -35,6 +35,8 @@ REGLAS OBLIGATORIAS:
 5. Responde ÚNICAMENTE con JSON válido siguiendo el schema indicado.
 6. Dificultad: sigue las instrucciones del usuario (fácil/media/difícil).
 7. Los plazos, números y porcentajes deben ser EXACTAMENTE los del texto legal.
+8. CRÍTICO: Genera EXACTAMENTE el número de preguntas indicado. Ni una más, ni una menos.
+9. El campo "correcta" DEBE ser un número entero: 0, 1, 2 o 3 (no una cadena de texto).
 
 FORMATO DE RESPUESTA (JSON estricto):
 {
@@ -110,12 +112,21 @@ CRITERIOS DE EVALUACIÓN (puntuación 0-10 cada dimensión):
 - dimension_argumentacion: coherencia y profundidad del razonamiento
 - dimension_estructura: organización, claridad y presentación
 
+CALIBRACIÓN DE PUNTUACIONES (escala de referencia):
+- 4-5: Conocimiento básico pero con errores graves de concepto o citas muy incorrectas.
+- 6: Conocimiento suficiente con errores menores o imprecisiones notables.
+- 7: Buen conocimiento. Cita artículos relevantes. Pocos errores menores. (La mayoría de buenos opositores)
+- 8: Muy buen conocimiento. Desarrollo estructurado, citas precisas, argumentación sólida.
+- 9-10: Excelente. Dominio completo, citas perfectas, argumentación magistral.
+
 REGLAS:
 1. Si el opositor cita un artículo, verifica que la afirmación sea coherente con ese artículo.
 2. Señala errores jurídicos concretos (confusión de plazos, órganos incorrectos, etc.).
 3. Las "mejoras" deben ser accionables y específicas (máximo 5).
 4. "citas_usadas" son las citas legales que TÚ usas para fundamentar la corrección.
 5. Responde ÚNICAMENTE con JSON válido.
+6. CRÍTICO: "puntuacion", "dimension_juridica", "dimension_argumentacion" y "dimension_estructura" deben ser números decimales JSON (ej: 7.5), NUNCA cadenas de texto (NO "7.5").
+7. El "feedback" debe ser detallado y constructivo, mínimo 150 caracteres.
 
 FORMATO DE RESPUESTA (JSON estricto):
 {

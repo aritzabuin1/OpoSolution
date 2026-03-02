@@ -112,7 +112,9 @@ export async function correctDesarrollo(
     CorreccionDesarrolloRawSchema,
     {
       model: GPT_MODEL,
-      maxTokens: 2000,
+      // 8000 tokens: gpt-5 (reasoning model) usa ~3000-5000 en razonamiento interno
+      // + ~1500-2000 para el JSON de corrección. Margen necesario para evitar null content.
+      maxTokens: 8000,
       endpoint: 'correct-desarrollo',
       userId,
       requestId,
