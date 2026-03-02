@@ -674,9 +674,9 @@
 - [x] **1.18.1** Crear `tests/evals/generate_test_golden.json` con 5 casos (normal Tema1, normal Tema11 difícil, borde poca legislación, adversarial SQL injection, adversarial instrucciones sistema) ✅ 2026-02-27
 - [x] **1.18.2** Crear `tests/evals/correct_desarrollo_golden.json` con 5 casos (desarrollo bueno, citas incorrectas, con PII, muy corto, excelente multitema) ✅ 2026-02-27
 - [x] **1.18.3** Crear `execution/run-evals.ts`: framework con evaluadores por criterio + pesos + Quality Score + reporte JSON. Scripts: `pnpm eval:generate`, `pnpm eval:correct`, `pnpm eval:all`. UUID resolution dinámica por `temaNumero` via `resolveByNumero()` — golden dataset funciona en cualquier entorno. Bug `import * as dotenv from 'fs'` eliminado. ✅ 2026-03-02
-- [ ] **1.18.4** Ejecutar evals: GENERATE_TEST Quality Score > 85%
-- [ ] **1.18.5** Ejecutar evals: CORRECT_DESARROLLO Quality Score > 85%
-- [ ] **1.18.6** Si score < 85%: iterar prompts hasta alcanzar threshold
+- [x] **1.18.4** Ejecutar evals: GENERATE_TEST Quality Score > 85% — **100%** ✅ 2026-03-03
+- [x] **1.18.5** Ejecutar evals: CORRECT_DESARROLLO Quality Score > 85% — **88%** ✅ 2026-03-03
+- [x] **1.18.6** Si score < 85%: iterar prompts hasta alcanzar threshold — implementados criterios faltantes (relevancia, opciones_plausibles, sin_inventar_citas, identifica_errores, sugiere_mejoras, cita_verificada); fix timeout reasoning models (120s, maxTokens 16k/8k); calibración scoring. ✅ 2026-03-03
 - [x] **1.18.7** Crear `tests/evals/adversarial_inputs.json` con 8 ataques: prompt injection directo, XML tags falsos, JSON injection, input largo, instrucciones en inglés, PII injection, SQL injection en temaId, y marcadores ###SYSTEM###. ✅ 2026-02-27
 - [ ] **1.18.8** Ejecutar evals adversariales: NINGÚN ataque genera output fuera del schema Zod o con información incorrecta/peligrosa
 
