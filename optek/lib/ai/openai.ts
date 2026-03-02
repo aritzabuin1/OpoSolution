@@ -9,7 +9,7 @@ import { logger } from '@/lib/logger'
  * Espejo funcional de lib/ai/claude.ts — misma interfaz, diferente proveedor.
  *
  * DDIA Principles aplicados:
- *   Reliability    → maxRetries=2 con exponential backoff (built-in SDK), timeout 30s
+ *   Reliability    → maxRetries=1 con exponential backoff (built-in SDK), timeout 120s
  *                  → Circuit Breaker separado del de Claude (fallos independientes)
  *   Consistency    → sanitizeForAI() elimina PII antes de enviar (GDPR ADR-0009)
  *   Observability  → INSERT en api_usage_log tras cada llamada (coste en tiempo real)
@@ -26,10 +26,12 @@ import { logger } from '@/lib/logger'
  */
 
 // DDIA Reliability: singleton con maxRetries + timeout globales
+// timeout: 120s — gpt-5-mini tarda ~80s para generar 4000 tokens (50 tokens/s)
+// 30s era insuficiente y causaba APIConnectionTimeoutError en generación de tests completos
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
-  timeout: 30_000,  // 30s máx — previene requests colgados
-  maxRetries: 2,    // exponential backoff automático en 429/5xx
+  timeout: 120_000,  // 120s máx — suficiente para 4000 tokens de salida
+  maxRetries: 1,     // 1 retry: con 120s/intento, 2 reintentos = 6 min → demasiado largo
 })
 
 // Modelos canónicos
