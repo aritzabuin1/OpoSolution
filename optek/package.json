@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "vercel-build": "next build --webpack",
+    "vercel-build": "next build",
     "start": "next start",
     "lint": "eslint",
     "type-check": "tsc --noEmit",
@@ -25,6 +25,7 @@
     "eval:all": "tsx --env-file=.env.local execution/run-evals.ts all",
     "parse:examenes": "tsx --env-file=.env.local execution/parse-exam-pdf.ts",
     "ingest:examenes": "tsx --env-file=.env.local execution/ingest-examenes.ts",
+    "build:radar": "tsx --env-file=.env.local execution/build-radar-tribunal.ts",
     "scrape:ofimatica": "tsx execution/scrape-microsoft-learn.ts",
     "ingest:ofimatica": "tsx --env-file=.env.local execution/ingest-conocimiento.ts"
   },
@@ -34,6 +35,7 @@
     "@serwist/next": "^9.5.6",
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.97.0",
+    "@tailwindcss/typography": "^0.5.19",
     "@upstash/ratelimit": "^2.0.8",
     "@upstash/redis": "^1.36.2",
     "class-variance-authority": "^0.7.1",
