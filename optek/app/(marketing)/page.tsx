@@ -14,6 +14,7 @@ import {
   Users,
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
+import { FOUNDER_LIMIT } from '@/lib/stripe/client'
 import { JsonLd } from '@/components/shared/JsonLd'
 
 export const metadata: Metadata = {
@@ -221,9 +222,7 @@ const jsonLdFaq = {
 
 // §2.17.4-5 Organization + WebSite → inyectados globalmente en app/layout.tsx
 
-// ─── Constantes Founder Pricing ────────────────────────────────────────────────
-
-const FOUNDER_LIMIT = 50
+// FOUNDER_LIMIT importado de lib/stripe/client.ts (fuente única de verdad)
 
 // ─── Página ────────────────────────────────────────────────────────────────────
 

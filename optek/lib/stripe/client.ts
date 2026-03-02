@@ -35,3 +35,7 @@ export const CORRECTIONS_GRANTED: Record<StripePriceTier, number> = {
   recarga:  10,
   fundador: 30,
 }
+
+// Número máximo de plazas de Fundador (escasez real — enforcement en checkout route)
+// Cambiar aquí actualiza tanto el banner de la landing como el bloqueo de Stripe
+export const FOUNDER_LIMIT = 20

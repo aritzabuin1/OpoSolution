@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { stripe, STRIPE_PRICES, type StripePriceTier } from '@/lib/stripe/client'
-import { createClient } from '@/lib/supabase/server'
+import { stripe, STRIPE_PRICES, FOUNDER_LIMIT, type StripePriceTier } from '@/lib/stripe/client'
+import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { logger } from '@/lib/logger'
 
 /**
@@ -42,6 +42,19 @@ export async function POST(request: NextRequest) {
   }
 
   const { tier, temaId, oposicionId } = body
+
+  // Para tier fundador: verificar que quedan plazas disponibles
+  if (tier === 'fundador') {
+    const serviceClient = await createServiceClient()
+    const { count } = await serviceClient
+      .from('profiles')
+      .select('*', { count: 'exact', head: true })
+      .eq('is_founder', true)
+    if ((count ?? 0) >= FOUNDER_LIMIT) {
+      log.warn({ count, limit: FOUNDER_LIMIT }, 'Plazas fundador agotadas')
+      return NextResponse.json({ error: 'Las plazas de Fundador se han agotado. Puedes adquirir el Pack Oposición al precio normal.' }, { status: 410 })
+    }
+  }
 
   // Verificar que el precio está configurado en env
   const priceId = STRIPE_PRICES[tier as StripePriceTier]
