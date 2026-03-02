@@ -3,12 +3,12 @@ import { createServerClient } from '@supabase/ssr'
 import type { Database } from '@/types/database'
 
 /**
- * Proxy (middleware) de Next.js 16 — OPTEK
+ * Proxy (middleware) de Next.js 16 — OpoRuta
  *
  * Responsabilidades:
  * 1. Refresh automático de sesión Supabase (access token 1h, refresh 7d)
  * 2. Protección de rutas /(dashboard)/* → redirige a /login si no autenticado
- * 3. Security headers (CSP, X-Frame-Options, etc.)
+ * 3. Security headers (CSP, HSTS, X-Frame-Options, etc.)
  * 4. x-request-id por request para trazabilidad
  *
  * DDIA Reliability: el refresh de token es idempotente — si falla, el usuario
@@ -57,7 +57,14 @@ export async function proxy(request: NextRequest) {
     pathname.startsWith('/corrector') ||
     pathname.startsWith('/simulacros') ||
     pathname.startsWith('/cuenta') ||
-    pathname.startsWith('/primer-test')
+    pathname.startsWith('/primer-test') ||
+    pathname.startsWith('/psicotecnicos') ||
+    pathname.startsWith('/flashcards') ||
+    pathname.startsWith('/logros') ||
+    pathname.startsWith('/radar') ||
+    pathname.startsWith('/reto-diario') ||
+    pathname.startsWith('/cazatrampas') ||
+    pathname.startsWith('/admin') // defense-in-depth (layout also checks is_admin)
 
   if (isDashboardRoute && !user) {
     const loginUrl = new URL('/login', request.url)
@@ -120,15 +127,18 @@ function applySecurityHeaders(res: NextResponse, requestId: string): void {
   res.headers.set('X-Frame-Options', 'DENY')
   res.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
   res.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()')
+  // HSTS: 2 años, incluir subdominios, preload-ready
+  res.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload')
   res.headers.set(
     'Content-Security-Policy',
     [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
-      "img-src 'self' data: blob:",
-      "connect-src 'self' https://*.supabase.co https://api.anthropic.com",
+      "img-src 'self' data: blob: https://www.facebook.com",
+      // OpenAI para tests/caza-trampas/reto-diario, Anthropic para corrector
+      "connect-src 'self' https://*.supabase.co https://api.openai.com https://api.anthropic.com",
       "frame-ancestors 'none'",
     ].join('; ')
   )
