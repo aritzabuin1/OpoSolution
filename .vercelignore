@@ -1,6 +1,11 @@
-# Excluir directorios de procesamiento local — no necesarios en Vercel
-data/
+# Archivos de trabajo local — no necesarios en Vercel
+# IMPORTANTE: NO excluir data/psicotecnicos/ — banco_verbal.json se importa en build
 directives/
 agents/
 monitoring/
 .tmp/
+
+# PDFs de exámenes (grandes, no usados en el build de Next.js)
+data/examenes/
+data/legislacion/
+data/ofimatica/
