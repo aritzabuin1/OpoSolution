@@ -115,6 +115,15 @@ function LoginForm() {
               <Button type="submit" className="w-full" disabled={loading}>
                 {loading ? 'Entrando…' : 'Iniciar sesión'}
               </Button>
+
+              <div className="text-center">
+                <Link
+                  href="/forgot-password"
+                  className="text-sm text-muted-foreground hover:text-primary hover:underline transition-colors"
+                >
+                  ¿Olvidaste tu contraseña?
+                </Link>
+              </div>
             </form>
           </TabsContent>
 
