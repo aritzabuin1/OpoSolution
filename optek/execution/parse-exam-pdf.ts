@@ -193,7 +193,7 @@ function parsePlantilla(text: string): Map<number, 0 | 1 | 2 | 3> {
   return mapa
 }
 
-// ─── Parsing con Claude Haiku (fallback) ──────────────────────────────────────
+// ─── Parsing con Claude Haiku (fallback texto) ────────────────────────────────
 
 async function parseWithClaude(
   pdfText: string,
@@ -264,6 +264,88 @@ REGLAS:
   })
 }
 
+// ─── Parsing con Claude Vision (PDFs escaneados) ─────────────────────────────
+
+/**
+ * Usa la API de documentos de Claude para parsear PDFs escaneados (imagen-based).
+ * Activado cuando pdf-parse extrae < 500 chars (texto vacío = PDF escaneado).
+ *
+ * Anthropic API soporta `{ type: "document", source: { type: "base64", ... } }`
+ * en el bloque de contenido, lo que permite a Claude "ver" el PDF directamente.
+ *
+ * Coste ~0.002€ por examen de 60-100 preguntas con claude-haiku-4-5-20251001.
+ */
+async function parseScannedPdfWithClaude(
+  pdfBuffer: Buffer,
+  anno: string,
+  modelo: string
+): Promise<Partial<PreguntaParsed>[]> {
+  const apiKey = process.env.ANTHROPIC_API_KEY
+  if (!apiKey) {
+    console.error('⚠️  ANTHROPIC_API_KEY no configurada. No se puede procesar PDF escaneado.')
+    return []
+  }
+
+  const client = new Anthropic({ apiKey })
+  console.log(`  🔍 PDF escaneado detectado — usando Claude Vision (${anno} modelo ${modelo})...`)
+
+  const pdfBase64 = pdfBuffer.toString('base64')
+
+  const EXTRACTION_SYSTEM = `Eres un extractor de preguntas de examen tipo test. Analiza el PDF adjunto y extrae TODAS las preguntas numeradas con sus 4 opciones.
+
+REGLAS:
+- Devuelve SOLO JSON válido, sin texto adicional ni markdown
+- Formato exacto: {"preguntas": [{"numero": 1, "enunciado": "...", "opciones": ["texto opción A", "texto opción B", "texto opción C", "texto opción D"]}]}
+- opciones siempre debe tener exactamente 4 elementos (A, B, C, D en ese orden)
+- NO añadas campo "correcta" — se cruza con la plantilla de respuestas por separado
+- Incluye el texto completo de cada opción, sin las letras a)/b)/c)/d) iniciales
+- Si una pregunta tiene opciones en varias líneas, concaténalas en una sola cadena
+- Numera desde 1 hasta el total de preguntas sin saltar números`
+
+  try {
+    const response = await client.messages.create({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 8192,
+      temperature: 0,
+      system: EXTRACTION_SYSTEM,
+      messages: [
+        {
+          role: 'user',
+          content: [
+            {
+              type: 'document',
+              source: {
+                type: 'base64',
+                media_type: 'application/pdf',
+                data: pdfBase64,
+              },
+            } as unknown as { type: 'text'; text: string }, // Cast necesario hasta que los tipos SDK se actualicen
+            {
+              type: 'text',
+              text: `Extrae todas las preguntas numeradas del examen ${anno}${modelo !== 'único' ? ` modelo ${modelo}` : ''}.`,
+            },
+          ],
+        },
+      ],
+    })
+
+    const content = response.content[0]
+    if (content.type !== 'text') return []
+
+    // Limpiar posible markdown code fence
+    const jsonText = content.text.replace(/```json\n?|\n?```/g, '').trim()
+    const parsed = JSON.parse(jsonText) as { preguntas: Partial<PreguntaParsed>[] }
+    const preguntas = parsed.preguntas ?? []
+
+    console.log(`  ✅ Claude Vision extrajo ${preguntas.length} preguntas`)
+    return preguntas
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err)
+    console.error(`  ❌ Error en Claude Vision: ${msg}`)
+    return []
+  }
+}
+
 // ─── Procesador de un examen ──────────────────────────────────────────────────
 
 async function processExamen(
@@ -287,33 +369,44 @@ async function processExamen(
 
   console.log(`  📝 Texto extraído: ${cuestionarioText.length.toLocaleString()} chars`)
 
-  // 2. Parsing determinista
-  let preguntas = parseWithRegex(cuestionarioText)
-  console.log(`  🔍 Parsing regex: ${preguntas.length} preguntas detectadas`)
+  // Detectar PDF escaneado (imagen) — texto extraído muy corto o vacío
+  const IS_SCANNED_PDF = cuestionarioText.trim().length < 500
 
-  // 3. Fallback a Claude si regex no encuentra suficientes preguntas.
-  //    "Suficiente" = secuencia completa sin huecos (1..N) O ≥30 preguntas si la secuencia
-  //    comienza desde 1. Exámenes como 2024 tienen solo 40 preguntas y eso es completo.
-  const isSequenceComplete = (() => {
-    if (preguntas.length === 0) return false
-    const nums = (preguntas as { numero?: number }[])
-      .map((p) => p.numero!)
-      .filter(Boolean)
-      .sort((a, b) => a - b)
-    // Completo si empieza en 1 y no hay huecos > 2
-    if (nums[0] !== 1) return false
-    for (let i = 1; i < nums.length; i++) {
-      if (nums[i] - nums[i - 1] > 2) return false // hueco mayor de 2 → incompleto
+  let preguntas: Partial<PreguntaParsed>[] = []
+
+  if (IS_SCANNED_PDF) {
+    // 2a. PDF escaneado: usar Claude Vision con la API de documentos
+    console.log(`  ⚠️  PDF escaneado detectado (${cuestionarioText.trim().length} chars de texto)`)
+    preguntas = await parseScannedPdfWithClaude(cuestionarioBuffer, anno, modelo ?? 'único')
+  } else {
+    // 2b. PDF con texto: parsing determinista
+    preguntas = parseWithRegex(cuestionarioText)
+    console.log(`  🔍 Parsing regex: ${preguntas.length} preguntas detectadas`)
+
+    // 3. Fallback a Claude si regex no encuentra suficientes preguntas.
+    //    "Suficiente" = secuencia completa sin huecos (1..N) O ≥30 preguntas si la secuencia
+    //    comienza desde 1. Exámenes como 2024 tienen solo 40 preguntas y eso es completo.
+    const isSequenceComplete = (() => {
+      if (preguntas.length === 0) return false
+      const nums = (preguntas as { numero?: number }[])
+        .map((p) => p.numero!)
+        .filter(Boolean)
+        .sort((a, b) => a - b)
+      // Completo si empieza en 1 y no hay huecos > 2
+      if (nums[0] !== 1) return false
+      for (let i = 1; i < nums.length; i++) {
+        if (nums[i] - nums[i - 1] > 2) return false // hueco mayor de 2 → incompleto
+      }
+      return nums.length >= 30 // mínimo absoluto de preguntas
+    })()
+
+    if (!isSequenceComplete) {
+      console.log(
+        `  ⚡ Secuencia incompleta (${preguntas.length} preguntas) — activando fallback Claude Haiku`
+      )
+      preguntas = await parseWithClaude(cuestionarioText, anno, modelo ?? 'único')
+      console.log(`  🤖 Claude Haiku: ${preguntas.length} preguntas detectadas`)
     }
-    return nums.length >= 30 // mínimo absoluto de preguntas
-  })()
-
-  if (!isSequenceComplete) {
-    console.log(
-      `  ⚡ Secuencia incompleta (${preguntas.length} preguntas) — activando fallback Claude Haiku`
-    )
-    preguntas = await parseWithClaude(cuestionarioText, anno, modelo ?? 'único')
-    console.log(`  🤖 Claude Haiku: ${preguntas.length} preguntas detectadas`)
   }
 
   if (preguntas.length === 0) {

@@ -21,7 +21,6 @@
 
 import * as fs from 'fs'
 import * as path from 'path'
-import * as dotenv from 'fs'
 import { fileURLToPath } from 'url'
 import { createClient } from '@supabase/supabase-js'
 import type { Database } from '../types/database'
@@ -107,8 +106,9 @@ function getAdminClient() {
   })
 }
 
-// Caché de títulos de temas para no hacer N queries
+// Caché de títulos y UUIDs de temas para no hacer N queries
 const temaCache = new Map<string, string>()
+const temaUuidCache = new Map<number, string>()
 
 async function getTemaTitulo(temaId: string): Promise<string> {
   if (temaCache.has(temaId)) return temaCache.get(temaId)!
@@ -120,6 +120,30 @@ async function getTemaTitulo(temaId: string): Promise<string> {
     return titulo
   } catch {
     return `Tema ${temaId.slice(0, 8)}`
+  }
+}
+
+/**
+ * Resuelve el UUID real de un tema desde su número de temario.
+ * Los golden datasets usan UUIDs placeholder (b0000000-...) —
+ * esta función los sustituye por los UUIDs reales de la BD.
+ *
+ * Si el tema no existe en BD, devuelve el temaId original (fallback seguro).
+ */
+async function resolveByNumero(numero: number, fallbackId: string): Promise<string> {
+  if (temaUuidCache.has(numero)) return temaUuidCache.get(numero)!
+  try {
+    const supabase = getAdminClient()
+    const { data } = await supabase
+      .from('temas')
+      .select('id')
+      .eq('numero', numero)
+      .maybeSingle()
+    const uuid = data ? (data as { id: string }).id : fallbackId
+    temaUuidCache.set(numero, uuid)
+    return uuid
+  } catch {
+    return fallbackId
   }
 }
 
@@ -299,9 +323,15 @@ async function runGenerateTestEvals(): Promise<EvalReport> {
           output = null // UUID válido pero no existe en BD → error esperado
         }
       } else {
+        // Resolver UUID real desde temaNumero (los golden datasets usan placeholders)
+        const temaNumero = caso.input.temaNumero as number | undefined
+        const resolvedId = temaNumero !== undefined
+          ? await resolveByNumero(temaNumero, temaId)
+          : temaId
+
         // Caso real: ejecutar pipeline completo (sin guardar en BD)
-        const temaTitulo = await getTemaTitulo(temaId)
-        const ctx = await buildContext(temaId)
+        const temaTitulo = await getTemaTitulo(resolvedId)
+        const ctx = await buildContext(resolvedId)
         const contextoLegislativo = formatContext(ctx)
 
         const userPrompt = buildGenerateTestPrompt({
@@ -384,9 +414,15 @@ async function runCorrectDesarrolloEvals(): Promise<EvalReport> {
     try {
       const temaId = caso.input.temaId as string
       const texto = caso.input.texto as string
-      const temaTitulo = await getTemaTitulo(temaId)
 
-      const ctx = await buildContext(temaId, texto)
+      // Resolver UUID real desde temaNumero (los golden datasets usan placeholders)
+      const temaNumero = caso.input.temaNumero as number | undefined
+      const resolvedId = temaNumero !== undefined
+        ? await resolveByNumero(temaNumero, temaId)
+        : temaId
+
+      const temaTitulo = await getTemaTitulo(resolvedId)
+      const ctx = await buildContext(resolvedId, texto)
       const contextoLegislativo = formatContext(ctx)
       const textoSanitizado = sanitizeForAI(texto)
 
