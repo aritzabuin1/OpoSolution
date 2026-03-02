@@ -377,6 +377,52 @@ export async function retrieveByExamenOficial(
   return ((data ?? []) as unknown[]) as PreguntaOficialContext[]
 }
 
+// ─── 6b. retrieveExamples — preguntas oficiales INAP como ejemplos de estilo ──
+
+/**
+ * Recupera preguntas de exámenes oficiales del INAP para un tema dado.
+ * Se usan como ejemplos de estilo en el prompt de generación — para que el
+ * modelo entienda cómo pregunta realmente el tribunal (nivel, redacción, trampas).
+ *
+ * @param temaId  UUID del tema del temario
+ * @param limit   Máximo de ejemplos (default: 3 — suficiente para calibrar sin sobrecargar el contexto)
+ * @returns       Texto formateado listo para insertar en el prompt, o '' si no hay datos
+ */
+export async function retrieveExamples(temaId: string, limit = 3): Promise<string> {
+  const supabase = getUntypedClient()
+
+  const { data, error } = await supabase
+    .from('preguntas_oficiales')
+    .select('numero, enunciado, opciones, correcta')
+    .eq('tema_id', temaId)
+    .limit(limit)
+
+  if (error || !data || (data as unknown[]).length === 0) {
+    return ''
+  }
+
+  const preguntas = data as {
+    numero: number
+    enunciado: string
+    opciones: string[]
+    correcta: number
+  }[]
+
+  const letras = ['A', 'B', 'C', 'D']
+
+  const formatted = preguntas
+    .map((p, i) => {
+      const opcLines = p.opciones
+        .map((op: string, idx: number) => `   ${letras[idx]}) ${op}`)
+        .join('\n')
+      const respuesta = letras[p.correcta]
+      return `${i + 1}. ${p.enunciado}\n${opcLines}\n   [Respuesta: ${respuesta}]`
+    })
+    .join('\n\n')
+
+  return `EJEMPLOS REALES DEL INAP (calibrar estilo y nivel — no copiar contenido):\n${formatted}`
+}
+
 // ─── 7. buildContext — contexto completo para Claude ─────────────────────────
 
 /**

@@ -29,13 +29,15 @@ vi.mock('openai', () => {
   return { default: OpenAIMock }
 })
 
-// Mock retrieval — buildContext y formatContext
+// Mock retrieval — buildContext, formatContext y retrieveExamples
 const mockBuildContext = vi.fn()
 const mockFormatContext = vi.fn()
+const mockRetrieveExamples = vi.fn()
 
 vi.mock('@/lib/ai/retrieval', () => ({
   buildContext: (...args: unknown[]) => mockBuildContext(...args),
   formatContext: (...args: unknown[]) => mockFormatContext(...args),
+  retrieveExamples: (...args: unknown[]) => mockRetrieveExamples(...args),
 }))
 
 // Mock verification — extractCitations, verifyCitation, verifyContentMatch
@@ -177,6 +179,8 @@ function setupBase() {
   // Retrieval: siempre retorna contexto fixture
   mockBuildContext.mockResolvedValue(CONTEXT_FIXTURE)
   mockFormatContext.mockReturnValue('=== CONTEXTO LEGISLATIVO MOCK ===')
+  // §1.4.4: ejemplos INAP — por defecto vacío (la mayoría de temas no tienen aún)
+  mockRetrieveExamples.mockResolvedValue('')
 
   // Temas: retorna título
   mockTemasSelectSingle.mockResolvedValue({
@@ -217,7 +221,7 @@ describe('§1.7.4 — generateTest: flujo completo', () => {
 
     expect(result.id).toBe('test-guardado-uuid')
     expect(result.temaId).toBe(TEMA_ID)
-    expect(result.promptVersion).toBe('2.0.0')
+    expect(result.promptVersion).toBe('2.1.0')
     expect(result.preguntas).toHaveLength(3)
     expect(result.createdAt).toMatch(/^\d{4}-\d{2}-\d{2}T/)
   })

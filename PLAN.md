@@ -434,7 +434,7 @@
 - [x] **1.4.1** Crear `lib/ai/retrieval.ts` con función `retrieveByTema(temaId: string, limit: number)`: SELECT legislacion WHERE tema_ids @> ARRAY[temaId] + fallback semántico automático. 2026-02-23
 - [x] **1.4.2** Crear función `retrieveBySemantic(query: string, limit: number)`: generar embedding de query → llamar RPC `match_legislacion` + fallback full-text. 2026-02-23
 - [x] **1.4.3** Crear función `retrieveByArticle(leyCodigo: string, articuloNumero: string)`: SELECT exacto por ley_codigo + articulo_numero. 2026-02-23
-- [ ] **1.4.4** Crear función `retrieveExamples(oposicionId: string, temaId: string, limit: number)`: SELECT de examenes_oficiales filtrado — **pendiente hasta §1.3 (exámenes oficiales)**
+- [x] **1.4.4** Crear función `retrieveExamples(temaId: string, limit: number)`: SELECT de `preguntas_oficiales` filtrado por `tema_id`. Retorna string formateado con ≤3 preguntas reales INAP (enunciado + opciones + respuesta). Se pasa como `ejemplosExamen` a `buildGenerateTestPrompt` para calibrar estilo. Solo para Bloque I. PROMPT_VERSION bumped a 2.1.0. ✅ 2026-03-02
 - [x] **1.4.5** Crear función `buildContext(temaId: string, query?: string)`: combina retrieveByTema + retrieveBySemantic, formatea como texto para Claude, limita a ~8000 tokens. También `formatContext()`. 2026-02-23
 - [x] **1.4.6** Test unitario: `retrieveByTema` para tema 1 (Constitución) retorna artículos de CE. 2026-02-23
 - [x] **1.4.7** Test unitario: `retrieveBySemantic` para "plazo recurso alzada" retorna artículos relevantes de LPAC. 2026-02-23
@@ -673,7 +673,7 @@
 
 - [x] **1.18.1** Crear `tests/evals/generate_test_golden.json` con 5 casos (normal Tema1, normal Tema11 difícil, borde poca legislación, adversarial SQL injection, adversarial instrucciones sistema) ✅ 2026-02-27
 - [x] **1.18.2** Crear `tests/evals/correct_desarrollo_golden.json` con 5 casos (desarrollo bueno, citas incorrectas, con PII, muy corto, excelente multitema) ✅ 2026-02-27
-- [x] **1.18.3** Crear `execution/run-evals.ts`: framework con evaluadores por criterio + pesos + Quality Score + reporte JSON. Scripts: `pnpm eval:generate`, `pnpm eval:correct`, `pnpm eval:all`. **⚠️ Pendiente: sustituir temaId placeholders por UUIDs reales de BD antes de ejecutar evals reales.** ✅ 2026-02-27
+- [x] **1.18.3** Crear `execution/run-evals.ts`: framework con evaluadores por criterio + pesos + Quality Score + reporte JSON. Scripts: `pnpm eval:generate`, `pnpm eval:correct`, `pnpm eval:all`. UUID resolution dinámica por `temaNumero` via `resolveByNumero()` — golden dataset funciona en cualquier entorno. Bug `import * as dotenv from 'fs'` eliminado. ✅ 2026-03-02
 - [ ] **1.18.4** Ejecutar evals: GENERATE_TEST Quality Score > 85%
 - [ ] **1.18.5** Ejecutar evals: CORRECT_DESARROLLO Quality Score > 85%
 - [ ] **1.18.6** Si score < 85%: iterar prompts hasta alcanzar threshold

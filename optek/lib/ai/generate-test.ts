@@ -24,7 +24,7 @@
  *   Observability → logging de cada round con verified/needed/total
  */
 
-import { buildContext, formatContext } from '@/lib/ai/retrieval'
+import { buildContext, formatContext, retrieveExamples } from '@/lib/ai/retrieval'
 import { callGPTJSON } from '@/lib/ai/openai'
 import {
   SYSTEM_GENERATE_TEST,
@@ -54,8 +54,9 @@ interface ChildLogger {
  * Bump this when making significant changes to prompts or pipeline logic.
  * 2.0.0: Soporte Bloque II (ofimática) con prompt dedicado + guardrail de contexto.
  *        `cita` ahora opcional en PreguntaSchema.
+ * 2.1.0: §1.4.4 — ejemplos reales INAP en prompt Bloque I (retrieveExamples).
  */
-export const PROMPT_VERSION = '2.0.0'
+export const PROMPT_VERSION = '2.1.0'
 
 const MAX_RETRIES    = 2
 const GPT_MINI_MODEL = 'gpt-5-mini'
@@ -84,7 +85,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   const log = requestId ? logger.child({ requestId }) : logger
   const start = Date.now()
 
-  // ── 1. Contexto RAG + título del tema ─────────────────────────────────────
+  // ── 1. Contexto RAG + título del tema + ejemplos INAP ─────────────────────
 
   const [ctx, temaTitulo] = await Promise.all([
     buildContext(temaId, undefined, userId), // §2.11: userId habilita weakness-weighted RAG
@@ -93,6 +94,9 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
 
   const contexto = formatContext(ctx)
   const { esBloqueII, temaNumero } = ctx
+
+  // §1.4.4: ejemplos de preguntas oficiales INAP para calibrar estilo (solo Bloque I)
+  const ejemplosExamen = esBloqueII ? '' : await retrieveExamples(temaId, 3)
 
   log.info(
     { temaId, tokensEstimados: ctx.tokensEstimados, strategy: ctx.strategy, temaTitulo, esBloqueII, temaNumero },
@@ -111,7 +115,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
     const systemPrompt = esBloqueII ? SYSTEM_GENERATE_TEST_BLOQUE2 : SYSTEM_GENERATE_TEST
     const userPrompt = esBloqueII
       ? buildGenerateTestBloque2Prompt({ contextoTecnico: contexto, numPreguntas: needed, dificultad, temaTitulo })
-      : buildGenerateTestPrompt({ contextoLegislativo: contexto, numPreguntas: needed, dificultad, temaTitulo })
+      : buildGenerateTestPrompt({ contextoLegislativo: contexto, numPreguntas: needed, dificultad, temaTitulo, ejemplosExamen })
 
     const rawTest = await callGPTJSON(
       systemPrompt,

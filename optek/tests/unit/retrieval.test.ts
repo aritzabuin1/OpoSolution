@@ -286,3 +286,58 @@ describe('buildContext — §2.11 Weakness-Weighted RAG', () => {
     expect(rpcCalls).not.toContain('get_user_weak_articles')
   })
 })
+
+// ─── §1.4.4 retrieveExamples ──────────────────────────────────────────────────
+
+describe('retrieveExamples — §1.4.4', () => {
+  beforeEach(() => vi.resetAllMocks())
+
+  it('retorna string formateado con preguntas reales cuando hay datos', async () => {
+    const preguntasFixture = [
+      {
+        numero: 3,
+        enunciado: '¿Cuál es el plazo máximo para resolver un procedimiento administrativo?',
+        opciones: ['1 mes', '3 meses', '6 meses', '1 año'],
+        correcta: 1,
+      },
+      {
+        numero: 7,
+        enunciado: '¿Qué organismo fiscaliza el gasto público del Estado?',
+        opciones: ['El Consejo de Estado', 'El Tribunal de Cuentas', 'El Tribunal Constitucional', 'La IGAE'],
+        correcta: 1,
+      },
+    ]
+
+    mockSupabaseSelect.mockResolvedValueOnce({ data: preguntasFixture, error: null })
+
+    const { retrieveExamples } = await import('@/lib/ai/retrieval')
+    const result = await retrieveExamples('tema-uuid-lpac', 2)
+
+    expect(result).toContain('EJEMPLOS REALES DEL INAP')
+    expect(result).toContain('plazo máximo para resolver')
+    expect(result).toContain('B) 3 meses')
+    expect(result).toContain('[Respuesta: B]')
+    expect(result).toContain('Tribunal de Cuentas')
+  })
+
+  it('retorna string vacío cuando no hay preguntas oficiales para el tema', async () => {
+    mockSupabaseSelect.mockResolvedValueOnce({ data: [], error: null })
+
+    const { retrieveExamples } = await import('@/lib/ai/retrieval')
+    const result = await retrieveExamples('tema-nuevo-uuid', 3)
+
+    expect(result).toBe('')
+  })
+
+  it('retorna string vacío en caso de error de BD', async () => {
+    mockSupabaseSelect.mockResolvedValueOnce({
+      data: null,
+      error: { message: 'relation does not exist', code: '42P01' },
+    })
+
+    const { retrieveExamples } = await import('@/lib/ai/retrieval')
+    const result = await retrieveExamples('tema-uuid-error', 3)
+
+    expect(result).toBe('')
+  })
+})

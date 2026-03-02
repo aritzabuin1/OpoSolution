@@ -143,8 +143,9 @@ export function buildGenerateTestPrompt(params: {
   numPreguntas: number
   dificultad: 'facil' | 'media' | 'dificil'
   temaTitulo: string
+  ejemplosExamen?: string
 }): string {
-  const { contextoLegislativo, numPreguntas, dificultad, temaTitulo } = params
+  const { contextoLegislativo, numPreguntas, dificultad, temaTitulo, ejemplosExamen } = params
 
   const dificultadLabel: Record<typeof dificultad, string> = {
     facil: 'FÁCIL — preguntas directas sobre definiciones y conceptos básicos',
@@ -153,10 +154,14 @@ export function buildGenerateTestPrompt(params: {
       'DIFÍCIL — preguntas sobre excepciones, plazos específicos y casos complejos',
   }
 
+  const ejemplosSection = ejemplosExamen
+    ? `\n${ejemplosExamen}\n`
+    : ''
+
   return `TEMA: ${temaTitulo}
 NÚMERO DE PREGUNTAS: ${numPreguntas}
 DIFICULTAD: ${dificultadLabel[dificultad]}
-
+${ejemplosSection}
 CONTEXTO LEGISLATIVO (usa ÚNICAMENTE este texto para formular las preguntas):
 ---
 ${contextoLegislativo}
