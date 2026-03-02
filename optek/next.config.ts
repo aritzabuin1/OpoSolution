@@ -14,6 +14,17 @@ const applyPWA =
 export default withSentryConfig(applyPWA(nextConfig), {
   silent: !process.env.CI,
   widenClientFileUpload: true,
+  bundleSizeOptimizations: {
+    excludeDebugStatements: true,
+    excludeReplayIframe: true,
+    excludeReplayWorker: true,
+  },
+  disableLogger: true,
+  // Disable sourcemap upload in Vercel to prevent "Internal Error" timeouts
+  // We don't have an auth token configured anyway
+  sourcemaps: {
+    disable: true,
+  },
   webpack: {
     // Reemplaza los deprecated disableLogger y automaticVercelMonitors
     treeshake: { removeDebugLogging: true },
