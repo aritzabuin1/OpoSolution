@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Política de Privacidad — OPTEK',
-  description: 'Información sobre cómo OPTEK trata tus datos personales conforme al RGPD.',
+  title: 'Política de Privacidad — OpoRuta',
+  description: 'Información sobre cómo OpoRuta trata tus datos personales conforme al RGPD.',
 }
 
 export default function PrivacidadPage() {
@@ -26,10 +26,10 @@ export default function PrivacidadPage() {
           <h2 className="text-xl font-semibold mb-3">1. Responsable del tratamiento</h2>
           <p className="text-muted-foreground leading-relaxed">
             El responsable del tratamiento de sus datos personales es el titular del servicio
-            OPTEK, con domicilio en España. Para cualquier consulta relativa a privacidad,
+            OpoRuta, con domicilio en España. Para cualquier consulta relativa a privacidad,
             puede contactar en:{' '}
-            <a href="mailto:privacidad@optek.es" className="text-primary hover:underline">
-              privacidad@optek.es
+            <a href="mailto:privacidad@oporuta.es" className="text-primary hover:underline">
+              privacidad@oporuta.es
             </a>
           </p>
         </section>
@@ -60,7 +60,7 @@ export default function PrivacidadPage() {
               </li>
               <li>
                 <strong className="text-foreground">Datos de pago:</strong> Gestionados
-                íntegramente por Stripe. OPTEK no almacena números de tarjeta ni datos de pago.
+                íntegramente por Stripe. OpoRuta no almacena números de tarjeta ni datos de pago.
               </li>
             </ul>
           </div>
@@ -72,7 +72,7 @@ export default function PrivacidadPage() {
             El tratamiento de tus datos se basa en el Art. 6.1 del Reglamento General de
             Protección de Datos (RGPD/GDPR): (a) consentimiento para datos opcionales, (b)
             ejecución del contrato de servicio para datos necesarios para el funcionamiento de
-            OPTEK, y (f) interés legítimo para datos de seguridad y prevención de fraude.
+            OpoRuta, y (f) interés legítimo para datos de seguridad y prevención de fraude.
           </p>
         </section>
 
@@ -88,7 +88,7 @@ export default function PrivacidadPage() {
         <section>
           <h2 className="text-xl font-semibold mb-3">5. Terceros con acceso a datos</h2>
           <div className="space-y-3 text-muted-foreground leading-relaxed">
-            <p>OPTEK comparte datos con los siguientes terceros proveedores:</p>
+            <p>OpoRuta comparte datos con los siguientes terceros proveedores:</p>
             <ul className="list-disc pl-5 space-y-3">
               <li>
                 <strong className="text-foreground">Supabase</strong> (Supabase Inc., EE.UU.):
@@ -128,8 +128,8 @@ export default function PrivacidadPage() {
             </ul>
             <p className="mt-3">
               Para ejercer tus derechos, escríbenos a{' '}
-              <a href="mailto:privacidad@optek.es" className="text-primary hover:underline">
-                privacidad@optek.es
+              <a href="mailto:privacidad@oporuta.es" className="text-primary hover:underline">
+                privacidad@oporuta.es
               </a>
               . Responderemos en un plazo máximo de 30 días. También puedes presentar una
               reclamación ante la Agencia Española de Protección de Datos (AEPD) en{' '}
@@ -155,8 +155,8 @@ export default function PrivacidadPage() {
           <h2 className="text-xl font-semibold mb-3">8. Contacto</h2>
           <p className="text-muted-foreground leading-relaxed">
             Para cualquier consulta sobre privacidad o protección de datos, contáctanos en{' '}
-            <a href="mailto:privacidad@optek.es" className="text-primary hover:underline">
-              privacidad@optek.es
+            <a href="mailto:privacidad@oporuta.es" className="text-primary hover:underline">
+              privacidad@oporuta.es
             </a>.
           </p>
         </section>

@@ -7,7 +7,7 @@
  * Dos contextos: TESTS (cuando agota los 5 tests gratis) y CORRECTIONS (sin correcciones).
  *
  * Diseño basado en ADR-0010 (Fuel Tank / Stripe):
- *   - Ancla visual: "Academia presencial: desde 150€/mes" vs "OPTEK desde 4.99€"
+ *   - Ancla visual: "Academia presencial: desde 150€/mes" vs "OpoRuta desde 8.99€"
  *   - Tarjeta destacada: Pack Oposición (mayor valor percibido)
  *   - Opción individual: más accesible psicológicamente
  *
@@ -38,7 +38,7 @@ interface PaywallGateProps {
 }
 
 interface PricingOption {
-  tier: 'tema' | 'pack' | 'recarga'
+  tier: 'pack' | 'recarga'
   label: string
   price: string
   description: string
@@ -49,13 +49,6 @@ interface PricingOption {
 // ─── Pricing options por contexto ─────────────────────────────────────────────
 
 const OPTIONS_TESTS: PricingOption[] = [
-  {
-    tier: 'tema',
-    label: 'Por tema',
-    price: '4,99€',
-    description: 'Tests ilimitados de 1 tema para siempre',
-    corrections: '+ 5 correcciones incluidas',
-  },
   {
     tier: 'pack',
     label: 'Pack Oposición',
@@ -71,7 +64,7 @@ const OPTIONS_CORRECTIONS: PricingOption[] = [
     tier: 'recarga',
     label: 'Recarga',
     price: '8,99€',
-    description: '+15 correcciones adicionales',
+    description: '+10 correcciones adicionales',
     corrections: 'Para tu cuenta existente',
   },
   {
@@ -133,7 +126,7 @@ export function PaywallGate({ open, onClose, code, temaId, oposicionId }: Paywal
         <div className="rounded-lg bg-muted/50 px-4 py-2 text-center text-sm text-muted-foreground">
           <span className="line-through text-destructive/60">Academia presencial: desde 150€/mes</span>
           {' · '}
-          <span className="font-semibold text-foreground">OPTEK: desde 4,99€ una sola vez</span>
+          <span className="font-semibold text-foreground">OpoRuta: desde 8,99€ una sola vez</span>
         </div>
 
         {/* Opciones de precio */}

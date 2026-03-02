@@ -59,7 +59,7 @@ interface PreguntaParsed {
 interface ExamenParsed {
   convocatoria: string
   anno: number
-  turno: 'libre' | 'interna'
+  turno: 'libre' | 'interna' | 'extraordinaria'
   modelo: string | null
   fuente_url: string | null
   total_preguntas: number
@@ -101,21 +101,29 @@ async function ingestExamen(
   )
 
   // 1. Upsert examen_oficial
+  //    TODO: incluir campo `modelo` tras aplicar migration 021
+  //    (ALTER TABLE examenes_oficiales ADD COLUMN modelo text)
+  //    Hasta entonces, exámenes con modelo A y B del mismo año comparten registro
+  //    (el segundo upsert sobreescribe al primero). Se corrige re-ingesta tras migration 021.
+  const upsertRow: Record<string, unknown> = {
+    oposicion_id: oposicionId,
+    anio: examenParsed.anno,
+    convocatoria: examenParsed.turno,
+    fuente_url: examenParsed.fuente_url,
+    activo: true,
+  }
+
+  // Incluir modelo solo si la columna existe en el schema
+  // (tras aplicar migration 021 en Supabase Dashboard)
+  // Para activar: descomentar la siguiente línea y cambiar onConflict
+  // upsertRow.modelo = examenParsed.modelo ?? null
+
   const { data: examenRow, error: examenError } = await (supabase as ReturnType<typeof createClient>)
     .from('examenes_oficiales')
-    .upsert(
-      {
-        oposicion_id: oposicionId,
-        anio: examenParsed.anno,
-        convocatoria: examenParsed.turno,
-        fuente_url: examenParsed.fuente_url,
-        activo: true,
-      },
-      {
-        onConflict: 'oposicion_id,anio,convocatoria',
-        ignoreDuplicates: false,
-      }
-    )
+    .upsert(upsertRow, {
+      onConflict: 'oposicion_id,anio,convocatoria',
+      ignoreDuplicates: false,
+    })
     .select('id')
     .single()
 
@@ -174,15 +182,21 @@ function discoverParsedJsons(targetAnno?: string): JsonDescubierto[] {
 
   if (!fs.existsSync(EXAMENES_DIR)) return results
 
-  const annos = targetAnno
-    ? [targetAnno]
-    : fs.readdirSync(EXAMENES_DIR).filter((f) => /^\d{4}$/.test(f))
+  // Soporta YYYY y YYYY_ext (convocatoria extraordinaria)
+  const allFolders = fs.readdirSync(EXAMENES_DIR).filter((f) => /^\d{4}(_ext)?$/.test(f))
+  const folders = targetAnno
+    ? allFolders.filter((f) => f === targetAnno || f === `${targetAnno}_ext`)
+    : allFolders
 
-  for (const anno of annos) {
-    const annoDir = path.join(EXAMENES_DIR, anno)
+  for (const folder of folders) {
+    const annoDir = path.join(EXAMENES_DIR, folder)
     if (!fs.existsSync(annoDir) || !fs.statSync(annoDir).isDirectory()) continue
 
-    const jsonFiles = fs.readdirSync(annoDir).filter((f) => f.startsWith('parsed') && f.endsWith('.json'))
+    const anno = folder.replace('_ext', '')
+    const jsonFiles = fs
+      .readdirSync(annoDir)
+      .filter((f) => f.startsWith('parsed') && f.endsWith('.json'))
+
     for (const jsonFile of jsonFiles) {
       results.push({ anno, filePath: path.join(annoDir, jsonFile) })
     }

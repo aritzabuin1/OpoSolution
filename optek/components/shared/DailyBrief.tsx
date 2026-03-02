@@ -84,7 +84,7 @@ export async function DailyBrief({ userId, rachaActual, totalTests, temaDebil }:
         <div className="flex items-start gap-3 rounded-lg border border-primary/20 bg-primary/5 px-4 py-3">
           <Star className="h-4 w-4 text-primary shrink-0 mt-0.5" />
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold">¡Bienvenido a OPTEK!</p>
+            <p className="text-sm font-semibold">¡Bienvenido a OpoRuta!</p>
             <p className="text-xs text-muted-foreground mt-0.5">
               Genera tu primer test de práctica para empezar a progresar.
             </p>

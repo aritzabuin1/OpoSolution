@@ -1,7 +1,7 @@
 {
-  "name": "OPTEK — Entrena tu oposición",
-  "short_name": "OPTEK",
-  "description": "Plataforma de entrenamiento inteligente para opositores con IA.",
+  "name": "OpoRuta — El camino al aprobado",
+  "short_name": "OpoRuta",
+  "description": "Prepara tu oposición con IA verificada. Tests, simulacros y el Radar del Tribunal.",
   "start_url": "/dashboard",
   "display": "standalone",
   "orientation": "portrait-primary",

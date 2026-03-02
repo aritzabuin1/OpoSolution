@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Política de Cookies — OPTEK',
-  description: 'Información sobre las cookies que utiliza OPTEK.',
+  title: 'Política de Cookies — OpoRuta',
+  description: 'Información sobre las cookies que utiliza OpoRuta.',
 }
 
 export default function CookiesPage() {
@@ -109,7 +109,7 @@ export default function CookiesPage() {
           <p className="text-muted-foreground leading-relaxed">
             Puedes gestionar o eliminar las cookies desde la configuración de tu navegador.
             Ten en cuenta que deshabilitar las cookies técnicas puede impedir el correcto
-            funcionamiento de OPTEK (no podrás mantener la sesión iniciada).
+            funcionamiento de OpoRuta (no podrás mantener la sesión iniciada).
           </p>
           <ul className="mt-3 list-disc pl-5 space-y-1 text-sm text-muted-foreground">
             <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Chrome</a></li>
@@ -126,8 +126,8 @@ export default function CookiesPage() {
               política de privacidad
             </Link>
             . Para cualquier duda, escríbenos a{' '}
-            <a href="mailto:privacidad@optek.es" className="text-primary hover:underline">
-              privacidad@optek.es
+            <a href="mailto:privacidad@oporuta.es" className="text-primary hover:underline">
+              privacidad@oporuta.es
             </a>.
           </p>
         </section>

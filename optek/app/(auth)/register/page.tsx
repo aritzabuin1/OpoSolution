@@ -63,7 +63,7 @@ export default function RegisterPage() {
           <h2 className="text-xl font-bold">¡Casi listo!</h2>
           <p className="text-sm text-muted-foreground leading-relaxed">
             Te hemos enviado un email de verificación a <strong>{email}</strong>.
-            Haz clic en el enlace del email para activar tu cuenta y acceder a OPTEK.
+            Haz clic en el enlace del email para activar tu cuenta y acceder a OpoRuta.
           </p>
           <p className="text-xs text-muted-foreground">
             ¿No lo encuentras? Revisa la carpeta de spam.

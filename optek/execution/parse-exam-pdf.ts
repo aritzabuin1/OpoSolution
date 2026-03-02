@@ -23,8 +23,17 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import { fileURLToPath } from 'url'
-import pdfParse from 'pdf-parse'
+import { PDFParse, VerbosityLevel } from 'pdf-parse'
 import Anthropic from '@anthropic-ai/sdk'
+
+// Helper: extrae texto plano de un Buffer PDF usando pdf-parse v2
+async function extractPdfText(buffer: Buffer): Promise<string> {
+  const parser = new PDFParse({ data: new Uint8Array(buffer), verbosity: VerbosityLevel.ERRORS })
+  await parser.load()
+  const result = await parser.getText()
+  await parser.destroy()
+  return result.text
+}
 
 // ─── Rutas ────────────────────────────────────────────────────────────────────
 
@@ -63,7 +72,7 @@ interface PreguntaParsed {
 interface ExamenParsed {
   convocatoria: string
   anno: number
-  turno: 'libre' | 'interna'
+  turno: 'libre' | 'interna' | 'extraordinaria'
   modelo: string | null
   fuente_url: string | null
   total_preguntas: number
@@ -74,42 +83,86 @@ interface ExamenParsed {
 
 /**
  * Intenta extraer preguntas de texto raw con patrones regex.
- * Formato habitual BOE: "1.- Enunciado\nA) Opción\nB) Opción\n..."
+ * Soporta tres formatos de opciones encontrados en exámenes españoles:
+ *
+ *   Formato 1 — Una opción por línea (2019 mayoría, 2022):
+ *     "1. Enunciado\na) Opción\nb) Opción\nc) Opción\nd) Opción"
+ *
+ *   Formato 2 — Dos opciones por línea, comprimido (2019 algunas):
+ *     "1. Enunciado\na) Opt1. b) Opt2.\nc) Opt3. d) Opt4."
+ *
+ *   Formato 3 — Opciones multilínea (2024):
+ *     "1. Enunciado\na) Texto largo que\ncontinúa aquí.\nb) Otra opción"
+ *
+ * Estrategia: divide en bloques por número de pregunta, luego usa un
+ * patrón unificado con flag `s` (dotAll) para extraer opciones independientemente
+ * del formato. El lookahead `(?=\s+[letra]\))` localiza el límite entre opciones
+ * tanto si la siguiente opción está en la misma línea como en la siguiente.
  */
 function parseWithRegex(text: string): Partial<PreguntaParsed>[] {
-  const preguntas: Partial<PreguntaParsed>[] = []
-
-  // Normalizar saltos de línea y eliminar encabezados de página
+  // 1. Limpiar texto
   const cleanText = text
     .replace(/\r\n/g, '\n')
     .replace(/\n{3,}/g, '\n\n')
+    // Encabezados MINISTERIO / CUERPO GENERAL
     .replace(/MINISTERIO[^\n]*/g, '')
     .replace(/CUERPO GENERAL[^\n]*/g, '')
-    .replace(/Página \d+ de \d+[^\n]*/g, '')
+    // Encabezados tipo "Página N de M" y variantes
+    .replace(/Página \d+ de \d+[^\n]*/gi, '')
+    // Encabezados 2024: "2024 - AUX-P – MODELO A Página 1 de 7"
+    .replace(/\d{4}\s*[-–]\s*AUX-[^\n]*/g, '')
+    // Marcadores de página pdf-parse: "-- N of M --"
+    .replace(/^--\s*\d+\s*of\s*\d+\s*--$/gm, '')
+    // Eliminar líneas de sólo guiones/puntos (separadores de página)
+    .replace(/^[\s.\-_]{5,}$/gm, '')
+    // Eliminar sección "Preguntas de reserva" (preguntas numeradas 1-N que
+    // generan conflictos con las preguntas reales del examen)
+    .replace(/Preguntas de reserva[\s\S]*/i, '')
 
-  // Patrón: número seguido de punto/guión/paréntesis + enunciado + opciones A/B/C/D
-  const preguntaPattern =
-    /(\d{1,3})[.\-)\s]+([^\n]+(?:\n(?![A-D][).]\s).*)*)\s*A[).]\s*([^\n]+)\s*B[).]\s*([^\n]+)\s*C[).]\s*([^\n]+)\s*D[).]\s*([^\n]+)/gim
+  // 2. Dividir en bloques: cada bloque empieza con "N. " o "N) " al inicio de línea
+  const blocks = cleanText.split(/\n(?=\d{1,3}[.)]\s)/).filter(Boolean)
 
-  let match: RegExpExecArray | null
-  while ((match = preguntaPattern.exec(cleanText)) !== null) {
-    const numero = parseInt(match[1])
-    if (numero < 1 || numero > 150) continue // sanity check
+  const preguntas: Partial<PreguntaParsed>[] = []
 
+  for (const block of blocks) {
+    // 3. Extraer número de pregunta y enunciado (todo antes de la primera opción a/A)
+    //    La primera opción SIEMPRE empieza en su propia línea (\n a/A) )
+    const headerMatch = block.match(/^(\d{1,3})[.)]\s+([\s\S]+?)(?=\n[a-dA-D]\)\s?)/i)
+    if (!headerMatch) continue
+
+    const numero = parseInt(headerMatch[1])
+    if (numero < 1 || numero > 150) continue
+
+    const enunciado = headerMatch[2].replace(/\n/g, ' ').trim()
+
+    // 4. Extraer opciones con patrón unificado (flag `s` = dotAll, '.' incluye '\n').
+    //    Lookahead (?=\s+[letra]\)) encuentra el límite entre opciones independientemente
+    //    de si están en la misma línea o en líneas distintas.
+    //    - Formato comprimido: "a) X. b) Y." → \s+ = ' ', [bB]\) = 'b)'
+    //    - Formato multilínea: "a) X\ncontinúa.\nb) Y" → \s+ = '\n', [bB]\) = 'b)'
+    const optA = block.match(/[aA]\)\s*(.+?)(?=\s+[bBcCdD]\))/is)?.[1]
+    const optB = block.match(/[bB]\)\s*(.+?)(?=\s+[cCdD]\))/is)?.[1]
+    const optC = block.match(/[cC]\)\s*(.+?)(?=\s+[dD]\))/is)?.[1]
+    // Opción D: captura hasta el final del bloque (sin lookahead)
+    const optD = block.match(/[dD]\)\s*([\s\S]+)/i)?.[1]
+
+    if (!optA || !optB || !optC || !optD) continue
+
+    const clean = (s: string) => s.replace(/\n/g, ' ').trim()
     preguntas.push({
       numero,
-      enunciado: match[2].replace(/\n/g, ' ').trim(),
-      opciones: [
-        match[3].trim(),
-        match[4].trim(),
-        match[5].trim(),
-        match[6].trim(),
-      ] as [string, string, string, string],
+      enunciado,
+      opciones: [clean(optA), clean(optB), clean(optC), clean(optD)] as [
+        string,
+        string,
+        string,
+        string,
+      ],
       tema_numero: null,
     })
   }
 
-  // Eliminar duplicados (el regex puede matchear partes solapadas)
+  // 5. Eliminar duplicados
   const seen = new Set<number>()
   return preguntas.filter((p) => {
     if (!p.numero || seen.has(p.numero)) return false
@@ -215,11 +268,13 @@ REGLAS:
 
 async function processExamen(
   anno: string,
+  turno: 'libre' | 'interna' | 'extraordinaria',
   modelo: string | null,
   cuestionarioPdf: string,
   plantillaPdf: string | null
 ): Promise<ExamenParsed | null> {
-  console.log(`\n📄 Procesando examen ${anno}${modelo ? ` modelo ${modelo}` : ''}...`)
+  const turnoLabel = turno !== 'libre' ? ` (${turno})` : ''
+  console.log(`\n📄 Procesando examen ${anno}${turnoLabel}${modelo ? ` modelo ${modelo}` : ''}...`)
 
   if (!fs.existsSync(cuestionarioPdf)) {
     console.warn(`  ⚠️  PDF no encontrado: ${cuestionarioPdf}`)
@@ -228,8 +283,7 @@ async function processExamen(
 
   // 1. Parsear cuestionario
   const cuestionarioBuffer = fs.readFileSync(cuestionarioPdf)
-  const cuestionarioData = await pdfParse(cuestionarioBuffer)
-  const cuestionarioText = cuestionarioData.text
+  const cuestionarioText = await extractPdfText(cuestionarioBuffer)
 
   console.log(`  📝 Texto extraído: ${cuestionarioText.length.toLocaleString()} chars`)
 
@@ -237,9 +291,27 @@ async function processExamen(
   let preguntas = parseWithRegex(cuestionarioText)
   console.log(`  🔍 Parsing regex: ${preguntas.length} preguntas detectadas`)
 
-  // 3. Fallback a Claude si regex no encuentra suficientes preguntas
-  if (preguntas.length < 50) {
-    console.log(`  ⚡ <50 preguntas con regex — activando fallback Claude Haiku`)
+  // 3. Fallback a Claude si regex no encuentra suficientes preguntas.
+  //    "Suficiente" = secuencia completa sin huecos (1..N) O ≥30 preguntas si la secuencia
+  //    comienza desde 1. Exámenes como 2024 tienen solo 40 preguntas y eso es completo.
+  const isSequenceComplete = (() => {
+    if (preguntas.length === 0) return false
+    const nums = (preguntas as { numero?: number }[])
+      .map((p) => p.numero!)
+      .filter(Boolean)
+      .sort((a, b) => a - b)
+    // Completo si empieza en 1 y no hay huecos > 2
+    if (nums[0] !== 1) return false
+    for (let i = 1; i < nums.length; i++) {
+      if (nums[i] - nums[i - 1] > 2) return false // hueco mayor de 2 → incompleto
+    }
+    return nums.length >= 30 // mínimo absoluto de preguntas
+  })()
+
+  if (!isSequenceComplete) {
+    console.log(
+      `  ⚡ Secuencia incompleta (${preguntas.length} preguntas) — activando fallback Claude Haiku`
+    )
     preguntas = await parseWithClaude(cuestionarioText, anno, modelo ?? 'único')
     console.log(`  🤖 Claude Haiku: ${preguntas.length} preguntas detectadas`)
   }
@@ -253,8 +325,8 @@ async function processExamen(
   let plantilla = new Map<number, 0 | 1 | 2 | 3>()
   if (plantillaPdf && fs.existsSync(plantillaPdf)) {
     const plantillaBuffer = fs.readFileSync(plantillaPdf)
-    const plantillaData = await pdfParse(plantillaBuffer)
-    plantilla = parsePlantilla(plantillaData.text)
+    const plantillaText = await extractPdfText(plantillaBuffer)
+    plantilla = parsePlantilla(plantillaText)
     console.log(`  ✅ Plantilla de respuestas: ${plantilla.size} respuestas`)
   } else {
     console.warn(`  ⚠️  Sin plantilla de respuestas — correcta = 0 por defecto`)
@@ -277,7 +349,7 @@ async function processExamen(
   return {
     convocatoria: anno,
     anno: parseInt(anno),
-    turno: 'libre',
+    turno,
     modelo,
     fuente_url: null, // Añadir manualmente si se conoce la URL
     total_preguntas: preguntasCompletas.length,
@@ -289,12 +361,22 @@ async function processExamen(
 
 interface ExamenDescubierto {
   anno: string
+  turno: 'libre' | 'interna' | 'extraordinaria'
   modelo: string | null
   cuestionarioPdf: string
   plantillaPdf: string | null
   outputJson: string
 }
 
+/**
+ * Descubre exámenes disponibles en data/examenes/.
+ * Soporta carpetas:
+ *   YYYY/           → turno 'libre'
+ *   YYYY_ext/       → turno 'extraordinaria' (ej: 2019_ext/)
+ * Cuestionarios: cualquier archivo que contenga 'examen' o 'cuestionario' (case-insensitive) + .pdf
+ * Plantillas: cualquier archivo que contenga 'plantilla' + .pdf
+ * Modelo: detectado vía modelo_a / modelo_b en el nombre del archivo.
+ */
 function discoverExamenes(targetAnno?: string, targetModelo?: string): ExamenDescubierto[] {
   const examenes: ExamenDescubierto[] = []
 
@@ -303,17 +385,26 @@ function discoverExamenes(targetAnno?: string, targetModelo?: string): ExamenDes
     return []
   }
 
-  const annos = targetAnno
-    ? [targetAnno]
-    : fs.readdirSync(EXAMENES_DIR).filter((f) => /^\d{4}$/.test(f))
+  // Carpetas válidas: YYYY o YYYY_ext
+  const allFolders = fs.readdirSync(EXAMENES_DIR).filter((f) => /^\d{4}(_ext)?$/.test(f))
+  const folders = targetAnno
+    ? allFolders.filter((f) => f === targetAnno || f === `${targetAnno}_ext`)
+    : allFolders
 
-  for (const anno of annos) {
-    const annoDir = path.join(EXAMENES_DIR, anno)
+  for (const folder of folders) {
+    const annoDir = path.join(EXAMENES_DIR, folder)
     if (!fs.statSync(annoDir).isDirectory()) continue
+
+    // Extraer anno real y turno de la carpeta
+    const isExt = folder.endsWith('_ext')
+    const anno = isExt ? folder.replace('_ext', '') : folder
+    const turno: 'libre' | 'extraordinaria' = isExt ? 'extraordinaria' : 'libre'
 
     const files = fs.readdirSync(annoDir)
     const cuestionarios = files.filter(
-      (f) => f.toLowerCase().includes('examen') && f.endsWith('.pdf')
+      (f) =>
+        (f.toLowerCase().includes('examen') || f.toLowerCase().includes('cuestionario')) &&
+        f.endsWith('.pdf')
     )
 
     for (const cuestionario of cuestionarios) {
@@ -323,15 +414,25 @@ function discoverExamenes(targetAnno?: string, targetModelo?: string): ExamenDes
 
       if (targetModelo && modelo?.toLowerCase() !== targetModelo.toLowerCase()) continue
 
-      // Buscar plantilla correspondiente
+      // Buscar plantilla correspondiente (con o sin letra de modelo)
       const plantillaName = modelo
-        ? files.find((f) => f.toLowerCase().includes('plantilla') && f.toLowerCase().includes(modelo.toLowerCase()) && f.endsWith('.pdf'))
+        ? files.find(
+            (f) =>
+              f.toLowerCase().includes('plantilla') &&
+              f.toLowerCase().includes(modelo.toLowerCase()) &&
+              f.endsWith('.pdf')
+          )
         : files.find((f) => f.toLowerCase().includes('plantilla') && f.endsWith('.pdf'))
 
-      const outputName = modelo ? `parsed_${modelo.toLowerCase()}.json` : 'parsed.json'
+      const outputName = modelo
+        ? `parsed_${modelo.toLowerCase()}.json`
+        : turno === 'extraordinaria'
+        ? 'parsed_ext.json'
+        : 'parsed.json'
 
       examenes.push({
         anno,
+        turno,
         modelo,
         cuestionarioPdf: path.join(annoDir, cuestionario),
         plantillaPdf: plantillaName ? path.join(annoDir, plantillaName) : null,
@@ -367,6 +468,7 @@ async function main() {
   for (const examen of examenes) {
     const resultado = await processExamen(
       examen.anno,
+      examen.turno,
       examen.modelo,
       examen.cuestionarioPdf,
       examen.plantillaPdf

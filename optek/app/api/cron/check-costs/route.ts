@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/server'
 import { logger } from '@/lib/logger'
+import { getInfraMetrics } from '@/lib/admin/infrastructure'
 
 /**
  * GET /api/cron/check-costs
@@ -10,7 +11,7 @@ import { logger } from '@/lib/logger'
  *  2. Calcula tasa de verificación del pipeline RAG
  *  3. Envía alertas via Resend si: coste > $10 O verificación < 80%
  *
- * Ref: directives/OPTEK_cost_observability.md §3
+ * Ref: directives/OpoRuta_cost_observability.md §3
  *      PLAN.md §0.10.15, §0.10.20
  *
  * Seguridad: Vercel Cron pasa el CRON_SECRET en Authorization header.
@@ -18,7 +19,7 @@ import { logger } from '@/lib/logger'
 
 const DAILY_COST_ALERT_USD = 10.0
 const VERIFICATION_RATE_ALERT_THRESHOLD = 0.8
-const ALERT_TO_EMAIL = process.env.ALERT_EMAIL ?? 'aritz@optek.app'
+const ALERT_TO_EMAIL = process.env.ALERT_EMAIL ?? 'aritz@oporuta.es'
 
 export async function GET(request: NextRequest) {
   // Verificar CRON_SECRET — Vercel lo pasa como "Bearer <secret>"
@@ -68,14 +69,33 @@ export async function GET(request: NextRequest) {
       'Daily cost check completed'
     )
 
-    // ── 3. Alertas ───────────────────────────────────────────────────────────
-    if (costAlert || verificationAlert) {
+    // ── 3. §2.23 — Infrastructure RED/YELLOW check ───────────────────────────
+    const infra = await getInfraMetrics()
+    const infraAlerts: string[] = []
+
+    if (infra.db.status !== 'ok')
+      infraAlerts.push(`${infra.db.status === 'error' ? '🔴' : '🟡'} BD: ${infra.db.pct.toFixed(1)}% de 500 MB`)
+    if (infra.auth.status !== 'ok')
+      infraAlerts.push(`${infra.auth.status === 'error' ? '🔴' : '🟡'} MAU: ${infra.auth.mau30d.toLocaleString()} de 50.000`)
+    if (infra.upstash.status !== 'ok')
+      infraAlerts.push(`${infra.upstash.status === 'error' ? '🔴' : '🟡'} Upstash: ~${infra.upstash.estimatedCmdsDay.toLocaleString()} cmd/día`)
+    if (infra.ai.status !== 'ok')
+      infraAlerts.push(`${infra.ai.status === 'error' ? '🔴' : '🟡'} Costes IA mes: €${infra.ai.costsMonth.toFixed(2)}`)
+
+    log.info(
+      { infraSemaphore: infra.semaphore, infraAlerts },
+      'Infrastructure check completed'
+    )
+
+    // ── 4. Alertas ───────────────────────────────────────────────────────────
+    if (costAlert || verificationAlert || infraAlerts.length > 0) {
       await sendAlertEmail({
         today,
         totalCostUSD,
         costAlert,
         verificationRate,
         verificationAlert,
+        infraAlerts,
       })
     }
 
@@ -86,6 +106,8 @@ export async function GET(request: NextRequest) {
       verification_rate: Number(verificationRate.toFixed(3)),
       verification_alert: verificationAlert,
       ai_calls_today: aiRows.length,
+      infra_semaphore: infra.semaphore,
+      infra_alerts: infraAlerts,
     })
   } catch (err) {
     log.error({ err }, 'Cron check-costs failed')
@@ -101,6 +123,7 @@ async function sendAlertEmail(params: {
   costAlert: boolean
   verificationRate: number
   verificationAlert: boolean
+  infraAlerts: string[]
 }) {
   if (!process.env.RESEND_API_KEY) {
     logger.warn(
@@ -124,17 +147,18 @@ async function sendAlertEmail(params: {
       `🔍 TASA VERIFICACIÓN: ${(params.verificationRate * 100).toFixed(1)}% (umbral: ${(VERIFICATION_RATE_ALERT_THRESHOLD * 100).toFixed(0)}%)`
     )
   }
+  alerts.push(...params.infraAlerts)
 
   await resend.emails.send({
-    from: 'OPTEK Alerts <alerts@optek.app>',
+    from: 'OpoRuta Alerts <alerts@oporuta.es>',
     to: [ALERT_TO_EMAIL],
-    subject: `⚠️ OPTEK Alert — ${params.today}`,
+    subject: `⚠️ OpoRuta Alert — ${params.today}`,
     html: `
-      <h2>Alertas OPTEK — ${params.today}</h2>
+      <h2>Alertas OpoRuta — ${params.today}</h2>
       <ul>${alerts.map((a) => `<li>${a}</li>`).join('')}</ul>
       <p>Revisa <a href="https://supabase.com/dashboard/project/yaxfgdvnfirazrguiykz/editor">api_usage_log</a> para más detalles.</p>
     `,
-    text: `Alertas OPTEK ${params.today}:\n\n${alerts.join('\n')}`,
+    text: `Alertas OpoRuta ${params.today}:\n\n${alerts.join('\n')}`,
   })
 
   logger.info({ alerts }, 'Alert email sent via Resend')

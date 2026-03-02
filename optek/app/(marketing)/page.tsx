@@ -8,19 +8,22 @@ import {
   XCircle,
   Zap,
   ShieldCheck,
-  BookOpen,
+  TrendingUp,
   ArrowRight,
   Star,
+  Users,
 } from 'lucide-react'
+import { createClient } from '@/lib/supabase/server'
+import { JsonLd } from '@/components/shared/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'OPTEK — Tu Entrenador Personal de Oposiciones con IA',
+  title: 'OpoRuta — El camino más corto hacia el aprobado',
   description:
-    'Prepara tu oposición con IA. Tests personalizados, corrección de desarrollos y simulacros. Cada cita legal verificada al artículo exacto.',
+    'Prepara tu oposición con IA verificada. Tests personalizados, el Radar del Tribunal y corrección de desarrollos. Cada cita legal comprobada al artículo exacto.',
   openGraph: {
-    title: 'OPTEK — Tu Entrenador Personal de Oposiciones con IA',
+    title: 'OpoRuta — El camino más corto hacia el aprobado',
     description:
-      'Prepara tu oposición con IA. Tests personalizados, corrección de desarrollos y simulacros con verificación determinista de citas legales.',
+      'Prepara tu oposición con IA verificada. Descubre qué artículos pregunta el tribunal INAP y practica con citas comprobadas. Sin alucinaciones, sin inventos.',
     type: 'website',
   },
 }
@@ -30,54 +33,54 @@ export const metadata: Metadata = {
 const painPoints = [
   {
     icon: XCircle,
-    title: 'Academias a 150€/mes',
-    desc: 'Clases presenciales o grabadas a precio prohibitivo, con el mismo temario para todos.',
+    title: 'Estudias de todo... sin saber qué cae de verdad',
+    desc: 'El tribunal repite los mismos artículos convocatoria tras convocatoria. Sin datos históricos, distribuyes tu tiempo a ciegas.',
   },
   {
     icon: XCircle,
-    title: 'Tests repetitivos y sin adaptación',
-    desc: 'Siempre las mismas preguntas. Sin saber qué temas dominas y cuáles tienes flojos.',
+    title: 'La IA te cita artículos que no existen',
+    desc: 'ChatGPT y similares inventan referencias legales. Estudiar con eso es peor que sin nada: aprendes mal y con confianza equivocada.',
   },
   {
     icon: XCircle,
-    title: 'Sin feedback real en desarrollos',
-    desc: 'Escribes, lo mandas a tu academia, esperas días. O peor: sin corregir nadie.',
+    title: 'Llevas meses estudiando sin saber si mejoras',
+    desc: 'Sin métricas reales, no puedes distinguir las horas que te acercan al aprobado de las que simplemente acumulas.',
   },
 ]
 
 const steps = [
   {
     num: '01',
-    icon: BookOpen,
-    title: 'Elige tu oposición y tema',
-    desc: 'Selecciona de nuestro catálogo de oposiciones y el tema del temario que quieres repasar.',
+    icon: TrendingUp,
+    title: 'Descubre qué pregunta el tribunal',
+    desc: 'El Radar del Tribunal analiza exámenes INAP históricos (2019–2024) y te muestra qué artículos aparecen más. No estudies a ciegas.',
   },
   {
     num: '02',
-    icon: Zap,
-    title: 'OPTEK genera un test único',
-    desc: 'La IA crea preguntas personalizadas basadas en la legislación real y en tus errores previos.',
+    icon: ShieldCheck,
+    title: 'Practica con citas verificadas',
+    desc: 'OpoRuta genera tests desde la legislación oficial. Cada artículo comprobado antes de llegar a ti. Sin inventos, sin alucinaciones.',
   },
   {
     num: '03',
-    icon: ShieldCheck,
-    title: 'Recibe corrección verificada',
-    desc: 'Cada pregunta y cada cita explicada con el artículo exacto. Sin inventos, sin alucinaciones.',
+    icon: Zap,
+    title: 'Ve cuánto has avanzado',
+    desc: 'Tu dashboard mide tu progreso real: avance por tema, rachas, artículos débiles y si estás listo para el examen.',
   },
 ]
 
 const differentiators = [
   {
     title: 'Verificación determinista',
-    desc: 'Cada cita legal generada por la IA se valida contra la base de datos de legislación real antes de mostrarte el resultado.',
+    desc: 'Cada cita legal generada por la IA se valida contra la base de datos de legislación oficial antes de mostrártela. Si alucina, se descarta y regenera automáticamente.',
   },
   {
-    title: 'Sin alucinaciones legales',
-    desc: 'Si la IA cita un artículo que no existe o está mal, el sistema lo detecta y regenera automáticamente.',
+    title: 'Radar del Tribunal',
+    desc: 'Análisis de frecuencias sobre exámenes INAP reales (2019–2024). Sabe exactamente qué artículos pregunta el tribunal y prioriza tu estudio.',
   },
   {
-    title: 'Legislación siempre actualizada',
-    desc: 'Monitorizamos el BOE. Cuando cambia un artículo, te alertamos y actualizamos el contenido afectado.',
+    title: 'BOE Watcher activo',
+    desc: 'Monitorizamos el BOE. Cuando cambia un artículo de tu temario, te alertamos para que nunca estudies legislación desactualizada.',
   },
 ]
 
@@ -98,21 +101,6 @@ const plans = [
     variant: 'outline' as const,
   },
   {
-    name: 'Por tema',
-    price: '4,99€',
-    period: 'pago único',
-    badge: null,
-    features: [
-      'Tests ilimitados de un tema',
-      '+5 correcciones IA',
-      'Verificación garantizada',
-      'Sin suscripción — pago único',
-    ],
-    cta: 'Comprar tema',
-    href: '/register',
-    variant: 'outline' as const,
-  },
-  {
     name: 'Pack Oposición',
     price: '34,99€',
     period: 'pago único',
@@ -120,10 +108,10 @@ const plans = [
     features: [
       'Tests ilimitados de todo el temario',
       '+20 correcciones IA',
-      'Simulacros completos',
+      'Simulacros completos + Radar',
       'Sin suscripción — pago único',
     ],
-    cta: 'Comprar pack',
+    cta: 'Empezar mi ruta',
     href: '/register',
     variant: 'default' as const,
   },
@@ -132,7 +120,7 @@ const plans = [
 const faqs = [
   {
     q: '¿Los artículos legales que aparecen son exactos?',
-    a: 'Sí. OPTEK usa verificación determinista: cada cita legal generada por la IA se valida contra nuestra base de datos de legislación antes de mostrártela. Si la cita no existe o es incorrecta, el sistema lo detecta y corrige automáticamente.',
+    a: 'Sí. OpoRuta usa verificación determinista: cada cita legal generada por la IA se valida contra nuestra base de datos de legislación oficial antes de mostrártela. Si la cita no existe o es incorrecta, el sistema lo detecta y corrige automáticamente.',
   },
   {
     q: '¿Para qué oposiciones funciona ahora mismo?',
@@ -140,7 +128,7 @@ const faqs = [
   },
   {
     q: '¿Qué pasa cuando agoto mis correcciones?',
-    a: 'Puedes recargar correcciones desde 8,99€ (+15 correcciones) directamente desde tu panel, sin necesidad de contratar nada nuevo. Los tests de tipo test siguen siendo ilimitados — las correcciones son el único recurso limitado.',
+    a: 'Puedes recargar correcciones desde 8,99€ (+10 correcciones) directamente desde tu panel, sin necesidad de contratar nada nuevo. Los tests de tipo test siguen siendo ilimitados — las correcciones son el único recurso limitado.',
   },
   {
     q: '¿La IA puede equivocarse?',
@@ -158,9 +146,9 @@ const faqs = [
 
 const testimonials = [
   {
-    text: 'Por fin una app que no inventa artículos. He probado otras IA y siempre me citaban leyes que no existen. Con OPTEK, todo comprobado.',
+    text: 'Por fin una app que no inventa artículos. He probado otras IA y siempre me citaban leyes que no existen. Con OpoRuta, todo comprobado.',
     name: 'M. García',
-    role: 'Opositora TAC, aprobó en 2ª convocatoria',
+    role: 'Opositora TAC, aprobó en 2.ª convocatoria',
   },
   {
     text: 'El corrector de desarrollos me ahorra horas a la semana. Me señala exactamente qué cita mejorar y con qué artículo sustentarla.',
@@ -168,7 +156,7 @@ const testimonials = [
     role: 'Opositor Auxiliar Administrativo',
   },
   {
-    text: 'Llevo 3 meses con OPTEK y he pasado de un 55% a un 78% en los simulacros. El feedback con artículos exactos marca la diferencia.',
+    text: 'Llevo 3 meses con OpoRuta y he pasado de un 55% a un 78% en los simulacros. El Radar del Tribunal me dijo exactamente por dónde empezar.',
     name: 'A. López',
     role: 'Preparando convocatoria 2025',
   },
@@ -185,7 +173,7 @@ const jsonLdFaq = {
       name: '¿Cuándo son las oposiciones al Cuerpo Auxiliar Administrativo del Estado?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Las oposiciones al Cuerpo General Auxiliar de la Administración del Estado (TAC) se convocan periódicamente por el Ministerio de Hacienda. Consulta el BOE y la web del INAP para las últimas convocatorias. OPTEK te notifica automáticamente de cambios legislativos relevantes para prepararte siempre con el contenido actualizado.',
+        text: 'Las oposiciones al Cuerpo General Auxiliar de la Administración del Estado (TAC) se convocan periódicamente por el Ministerio de Hacienda. Consulta el BOE y la web del INAP para las últimas convocatorias. OpoRuta te notifica automáticamente de cambios legislativos relevantes para prepararte siempre con el contenido actualizado.',
       },
     },
     {
@@ -193,7 +181,7 @@ const jsonLdFaq = {
       name: '¿Cuántos temas tiene el temario del Auxiliar Administrativo del Estado?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'El temario del Auxiliar Administrativo del Estado consta de dos bloques: Bloque I (legislación administrativa, con leyes como la CE, LPAC, TREBEP, LOPDGDD, etc.) y Bloque II (ofimática: Word, Excel, Windows, Internet). OPTEK cubre los 28 temas del Bloque I y el Bloque II completo con preguntas verificadas.',
+        text: 'El temario del Auxiliar Administrativo del Estado consta de dos bloques: Bloque I (legislación administrativa, con leyes como la CE, LPAC, TREBEP, LOPDGDD, etc.) y Bloque II (ofimática: Word, Excel, Windows, Internet). OpoRuta cubre los 28 temas del Bloque I y el Bloque II completo con preguntas verificadas.',
       },
     },
     {
@@ -201,7 +189,7 @@ const jsonLdFaq = {
       name: '¿En qué consiste el examen de Auxiliar Administrativo del Estado?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'El examen del Auxiliar Administrativo del Estado (TAC) consta de dos ejercicios: el primero es un test de 100 preguntas tipo test (con penalización: -1/3 por respuesta incorrecta) sobre Bloque I (legislación) y Bloque II (ofimática y psicotécnicos). El tiempo disponible es 90 minutos. OPTEK simula este formato exacto con sus simulacros oficiales INAP.',
+        text: 'El examen del Auxiliar Administrativo del Estado (TAC) consta de dos ejercicios: el primero es un test de 100 preguntas tipo test (con penalización: -1/3 por respuesta incorrecta) sobre Bloque I (legislación) y Bloque II (ofimática y psicotécnicos). El tiempo disponible es 90 minutos. OpoRuta simula este formato exacto con sus simulacros oficiales INAP.',
       },
     },
     {
@@ -209,7 +197,7 @@ const jsonLdFaq = {
       name: '¿Qué leyes hay que estudiar para el Auxiliar Administrativo del Estado?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Las principales leyes del Bloque I son: Constitución Española, Ley 39/2015 (LPAC), Ley 40/2015 (LRJSP), RDL 5/2015 TREBEP, LO 3/2018 LOPDGDD, Ley 19/2013 de Transparencia, LO 3/2007 de Igualdad, LO 1/2004 de Violencia de Género, Ley 47/2003 General Presupuestaria y otras. OPTEK genera preguntas con verificación determinista sobre todos estos textos legales.',
+        text: 'Las principales leyes del Bloque I son: Constitución Española, Ley 39/2015 (LPAC), Ley 40/2015 (LRJSP), RDL 5/2015 TREBEP, LO 3/2018 LOPDGDD, Ley 19/2013 de Transparencia, LO 3/2007 de Igualdad, LO 1/2004 de Violencia de Género, Ley Orgánica 4/2023 LGTBI, Ley 47/2003 General Presupuestaria y otras. OpoRuta genera preguntas con verificación determinista sobre todos estos textos legales.',
       },
     },
     {
@@ -217,61 +205,63 @@ const jsonLdFaq = {
       name: '¿Cómo funciona la penalización en el examen del Auxiliar Administrativo?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'En el examen oficial del Auxiliar Administrativo del Estado, la fórmula de puntuación es: respuesta correcta = +1 punto, respuesta incorrecta = -1/3 punto, respuesta en blanco = 0 puntos. Es importante dejar en blanco las preguntas que no se saben con seguridad. OPTEK aplica esta penalización exacta en sus simulacros para que practiques en condiciones reales.',
+        text: 'En el examen oficial del Auxiliar Administrativo del Estado, la fórmula de puntuación es: respuesta correcta = +1 punto, respuesta incorrecta = -1/3 punto, respuesta en blanco = 0 puntos. Es importante dejar en blanco las preguntas que no se saben con seguridad. OpoRuta aplica esta penalización exacta en sus simulacros para que practiques en condiciones reales.',
       },
     },
     {
       '@type': 'Question',
-      name: '¿Los artículos legales que aparecen en OPTEK son exactos?',
+      name: '¿Los artículos legales que aparecen en OpoRuta son exactos?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Sí. OPTEK usa verificación determinista: cada cita legal generada por la IA se valida contra la base de datos de legislación oficial antes de mostrártela. Si la cita no existe o es incorrecta, el sistema lo detecta y corrige automáticamente. Sin alucinaciones ni artículos inventados.',
+        text: 'Sí. OpoRuta usa verificación determinista: cada cita legal generada por la IA se valida contra la base de datos de legislación oficial antes de mostrártela. Si la cita no existe o es incorrecta, el sistema lo detecta y corrige automáticamente. Sin alucinaciones ni artículos inventados.',
       },
     },
   ],
 }
 
-const jsonLdWebSite = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'OPTEK',
-  url: 'https://optek.es',
-  description:
-    'Plataforma de preparación de oposiciones con IA. Tests personalizados, corrección de desarrollos y simulacros con verificación determinista de citas legales.',
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: 'https://optek.es/tests?tema={search_term_string}',
-    'query-input': 'required name=search_term_string',
-  },
-}
+// §2.17.4-5 Organization + WebSite → inyectados globalmente en app/layout.tsx
+
+// ─── Constantes Founder Pricing ────────────────────────────────────────────────
+
+const FOUNDER_LIMIT = 50
 
 // ─── Página ────────────────────────────────────────────────────────────────────
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  // Contador de fundadores — graceful fallback si migration 019 no aplicada aún
+  let founderCount = 0
+  try {
+    const supabase = await createClient()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { count } = await (supabase as any)
+      .from('profiles')
+      .select('*', { count: 'exact', head: true })
+      .eq('is_founder', true)
+    founderCount = count ?? 0
+  } catch {
+    founderCount = 0
+  }
+  const founderRemaining = Math.max(0, FOUNDER_LIMIT - founderCount)
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
-      />
+      {/* §2.17.3 — FAQPage schema (People Also Ask en Google) */}
+      <JsonLd data={jsonLdFaq} />
+
       {/* ─── Hero ────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-background py-20 sm:py-32">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
           <Badge variant="secondary" className="mb-6 text-xs font-medium px-3 py-1">
-            Beta — Auxiliar Administrativo del Estado
+            Auxiliar Administrativo del Estado · TAC
           </Badge>
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl leading-tight">
-            Tu Entrenador Personal
+            Cada hora que estudias
             <br />
-            <span className="text-primary">de Oposiciones con IA</span>
+            <span className="text-primary">debería acercarte al aprobado.</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Tests personalizados, corrección de desarrollos y simulacros. Cada cita legal
-            verificada al artículo exacto. Sin alucinaciones. Sin inventos.
+            OpoRuta analiza exámenes INAP reales, genera tests con citas verificadas y te muestra
+            exactamente si estás avanzando — o dando vueltas en el temario.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/register">
@@ -292,15 +282,56 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ─── Founder Pricing Banner (§1.21.3) — auto-oculto cuando vendido ─ */}
+      {founderRemaining > 0 && (
+        <section className="py-8 bg-amber-50 dark:bg-amber-950/30 border-y border-amber-200 dark:border-amber-800">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex-1 text-center md:text-left">
+                <div className="flex items-center gap-2 justify-center md:justify-start mb-2">
+                  <Badge className="bg-amber-500 text-white hover:bg-amber-500 text-xs">
+                    Oferta Fundador
+                  </Badge>
+                  <span className="flex items-center gap-1 text-sm text-amber-700 dark:text-amber-400 font-medium">
+                    <Users className="h-3.5 w-3.5" />
+                    {founderRemaining} de {FOUNDER_LIMIT} plazas disponibles
+                  </span>
+                </div>
+                <p className="font-semibold text-foreground">
+                  Únete a los primeros {FOUNDER_LIMIT} opositores en OpoRuta
+                </p>
+                <p className="text-sm text-muted-foreground mt-1">
+                  30 correcciones IA · Tests ilimitados · Badge Miembro Fundador permanente
+                </p>
+              </div>
+              <div className="flex items-center gap-4 shrink-0">
+                <div className="text-center">
+                  <p className="text-sm text-muted-foreground line-through">34,99€</p>
+                  <p className="text-3xl font-bold text-amber-600 dark:text-amber-400">24,99€</p>
+                  <p className="text-xs text-muted-foreground">pago único</p>
+                </div>
+                <Link href="/register?plan=fundador">
+                  <Button className="bg-amber-500 hover:bg-amber-600 text-white gap-2">
+                    Soy Fundador
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ─── Pain points ─────────────────────────────────────────────── */}
       <section className="py-20 bg-muted/30">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold tracking-tight">
-              Preparar oposiciones es difícil.
-              <br />
-              <span className="text-muted-foreground font-normal">No tiene que serlo tanto.</span>
+              ¿Te suena alguna de estas situaciones?
             </h2>
+            <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
+              La mayoría de opositores las tienen. Y son solucionables.
+            </p>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
             {painPoints.map(({ icon: Icon, title, desc }) => (
@@ -324,8 +355,8 @@ export default function LandingPage() {
               Cómo funciona
             </Badge>
             <h2 className="text-3xl font-bold tracking-tight">
-              De cero a tu primer test en{' '}
-              <span className="text-primary">menos de 2 minutos</span>
+              Tu ruta al aprobado,{' '}
+              <span className="text-primary">paso a paso.</span>
             </h2>
           </div>
           <div className="grid gap-8 md:grid-cols-3">
@@ -350,12 +381,12 @@ export default function LandingPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold tracking-tight">
-              El corazón de OPTEK:{' '}
-              <span className="opacity-80">Verificación Determinista</span>
+              Estudia con una fuente{' '}
+              <span className="opacity-80">en la que puedas confiar.</span>
             </h2>
             <p className="mt-4 text-primary-foreground/80 max-w-2xl mx-auto">
-              La IA nunca habla sin artículo exacto delante. Cada cita se verifica con
-              código determinista, no con más IA.
+              La IA nunca te cita un artículo sin haberlo encontrado en la legislación oficial.
+              Si alucina, lo descartamos antes de que te llegue.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
@@ -385,7 +416,7 @@ export default function LandingPage() {
               ¿Te quedas sin correcciones? Recárgalas desde 8,99€.
             </p>
           </div>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 max-w-2xl mx-auto">
             {plans.map((plan) => (
               <Card
                 key={plan.name}
@@ -429,7 +460,7 @@ export default function LandingPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold tracking-tight">
-              Lo que dicen los opositores
+              Opositores que ya están en ruta
             </h2>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
@@ -490,7 +521,7 @@ export default function LandingPage() {
       <section className="py-20 bg-primary text-primary-foreground text-center">
         <div className="mx-auto max-w-2xl px-4 sm:px-6">
           <h2 className="text-3xl font-bold tracking-tight">
-            Empieza a entrenar hoy. Gratis.
+            Empieza tu ruta hoy. Gratis.
           </h2>
           <p className="mt-4 text-primary-foreground/80">
             Sin tarjeta de crédito. Sin permanencia. 5 tests gratuitos para que compruebes
@@ -499,7 +530,7 @@ export default function LandingPage() {
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/register">
               <Button size="lg" variant="secondary" className="w-full sm:w-auto gap-2">
-                Crear cuenta gratis
+                Iniciar mi ruta gratis
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>

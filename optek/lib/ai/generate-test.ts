@@ -87,7 +87,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   // ── 1. Contexto RAG + título del tema ─────────────────────────────────────
 
   const [ctx, temaTitulo] = await Promise.all([
-    buildContext(temaId),
+    buildContext(temaId, undefined, userId), // §2.11: userId habilita weakness-weighted RAG
     fetchTemaTitulo(temaId),
   ])
 
@@ -405,7 +405,7 @@ async function fetchTemaTitulo(temaId: string): Promise<string> {
 /** Guarda el test generado en la tabla tests_generados. */
 async function saveTestToDB(params: {
   userId: string
-  temaId: string
+  temaId: string | null
   preguntas: Pregunta[]
   tipo?: string
 }): Promise<string> {
@@ -515,5 +515,122 @@ export async function generateFlashTest(
     .eq('id', cambioId)
 
   logger.info({ cambioId, articuloId, testId, userId }, '[generateFlashTest] flash test creado')
+  return testId
+}
+
+// ─── generateTopFrecuentesTest ────────────────────────────────────────────────
+
+/**
+ * §2.14.4 — Genera un test de 10 preguntas con los artículos más frecuentes en exámenes INAP.
+ *
+ * A diferencia de generateTest() que usa RAG por tema, este modo fuerza el contexto
+ * con los top 20 artículos de `frecuencias_articulos`. El usuario practica exactamente
+ * lo que el tribunal ha preguntado históricamente.
+ *
+ * Guarda en tests_generados con tipo='radar' (sin tema_id específico).
+ *
+ * @param userId UUID del usuario que solicita el test
+ * @returns testId UUID del test guardado en BD
+ */
+export async function generateTopFrecuentesTest(userId: string): Promise<string> {
+  const supabase = await createServiceClient()
+
+  // 1. Cargar top 20 artículos del radar con su texto completo
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: radarRows, error: radarErr } = await (supabase as any)
+    .from('radar_tribunal_view')
+    .select('legislacion_id, articulo_numero, ley_nombre, ley_codigo, titulo_capitulo, resumen, num_apariciones')
+    .limit(20)
+
+  if (radarErr) {
+    throw new Error(`[generateTopFrecuentesTest] Error cargando radar: ${radarErr.message}`)
+  }
+
+  if (!radarRows || radarRows.length === 0) {
+    throw new Error(
+      '[generateTopFrecuentesTest] La tabla frecuencias_articulos está vacía. ' +
+      'Ejecuta `pnpm build:radar` primero.'
+    )
+  }
+
+  type RadarRow = {
+    legislacion_id: string
+    articulo_numero: string
+    ley_nombre: string
+    ley_codigo: string
+    titulo_capitulo: string | null
+    resumen: string
+    num_apariciones: number
+  }
+  const rows = radarRows as RadarRow[]
+
+  // 2. Cargar texto completo de esos artículos (el resumen es solo 200 chars)
+  const legIds = rows.map((r) => r.legislacion_id)
+  const { data: articulos } = await supabase
+    .from('legislacion')
+    .select('id, texto_integro, ley_nombre, articulo_numero, ley_codigo')
+    .in('id', legIds)
+
+  // Indexar por id para acceso rápido
+  const articuloMap = new Map(
+    (articulos ?? []).map((a) => [a.id, a])
+  )
+
+  // 3. Construir contexto forzado con los top artículos (máximo 32k chars)
+  const contextParts: string[] = []
+  let totalChars = 0
+  const MAX_CHARS = 32_000
+
+  for (const row of rows) {
+    const art = articuloMap.get(row.legislacion_id)
+    const texto = art?.texto_integro ?? row.resumen
+    const bloque = `[${row.ley_nombre} — Art. ${row.articulo_numero} (${row.num_apariciones}× en exámenes INAP)]\n${texto}`
+    if (totalChars + bloque.length > MAX_CHARS) break
+    contextParts.push(bloque)
+    totalChars += bloque.length
+  }
+
+  const contextoLegislativo = contextParts.join('\n\n---\n\n')
+
+  logger.info(
+    { articulos: contextParts.length, chars: totalChars, userId },
+    '[generateTopFrecuentesTest] contexto forzado construido'
+  )
+
+  // 4. Generar 10 preguntas MCQ (dificultad media, mix de los artículos más frecuentes)
+  const rawTest = await callGPTJSON(
+    SYSTEM_GENERATE_TEST,
+    buildGenerateTestPrompt({
+      contextoLegislativo,
+      numPreguntas: 10,
+      dificultad: 'media',
+      temaTitulo: 'Top artículos más frecuentes en exámenes INAP',
+    }),
+    TestGeneradoRawSchema,
+    {
+      model: GPT_MINI_MODEL,
+      maxTokens: 4000,
+      endpoint: 'generate-radar-test',
+      userId,
+    }
+  )
+
+  // 5. Verificar preguntas (mismo pipeline Bloque I)
+  const preguntasVerificadas = await verifyPreguntas(rawTest.preguntas, logger)
+
+  if (preguntasVerificadas.length === 0) {
+    throw new Error('[generateTopFrecuentesTest] No se pudieron verificar preguntas del radar')
+  }
+
+  const preguntas = preguntasVerificadas.slice(0, 10)
+
+  // 6. Guardar con tipo='radar', sin tema_id (cross-tema por definición)
+  const testId = await saveTestToDB({ userId, temaId: null, preguntas, tipo: 'radar' })
+
+  logger.info(
+    { testId, preguntas: preguntas.length, radarArticulos: rows.length, userId },
+    '[generateTopFrecuentesTest] test radar generado y guardado'
+  )
+
   return testId
 }

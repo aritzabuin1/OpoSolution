@@ -105,10 +105,100 @@ export async function POST(
       supabase: sb,
       log,
     })
+
+    // §2.11 — Registrar preguntas incorrectas para Weakness-Weighted RAG
+    void trackWeaknessBackground({
+      testId,
+      preguntas: testData.preguntas as Pregunta[],
+      respuestas,
+      supabase: sb,
+      log,
+    })
   }
 
   log.info({ userId: user.id, puntuacion, nuevosLogros }, 'Test finalizado')
   return NextResponse.json({ ok: true, puntuacion, nuevosLogros }, { status: 200 })
+}
+
+// ─── Weakness-Weighted RAG tracking (§2.11) ───────────────────────────────────
+
+interface WeaknessTrackParams {
+  testId: string
+  preguntas: Pregunta[]
+  respuestas: (number | null)[]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  supabase: any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  log: any
+}
+
+/**
+ * Registra en `tests_generados.preguntas_incorrectas` los artículos legales
+ * de las preguntas respondidas incorrectamente (solo Bloque I con cita).
+ * Esto alimenta el Weakness-Weighted RAG: en futuros tests, buildContext
+ * boosteará estos artículos al inicio del contexto.
+ */
+async function trackWeaknessBackground({
+  testId,
+  preguntas,
+  respuestas,
+  supabase,
+  log,
+}: WeaknessTrackParams) {
+  try {
+    // Filtrar preguntas incorrectas con cita legal (solo Bloque I)
+    const incorrectas = preguntas
+      .map((p, i) => ({ p, respuesta: respuestas[i] }))
+      .filter(({ p, respuesta }) => respuesta !== null && respuesta !== p.correcta && p.cita)
+
+    if (incorrectas.length === 0) return
+
+    // Lookup batch: obtener legislacion_id para cada cita incorrecta
+    const lookupResults = await Promise.allSettled(
+      incorrectas.map(async ({ p }) => {
+        const { data } = await supabase
+          .from('legislacion')
+          .select('id, ley_codigo, articulo_numero')
+          .eq('ley_codigo', p.cita!.ley)
+          .eq('articulo_numero', p.cita!.articulo)
+          .maybeSingle()
+
+        if (!data) return null
+        return {
+          legislacion_id: data.id as string,
+          articulo_numero: data.articulo_numero as string,
+          ley_codigo: data.ley_codigo as string,
+        }
+      })
+    )
+
+    const incorrectasData = lookupResults
+      .filter(
+        (
+          r
+        ): r is PromiseFulfilledResult<{
+          legislacion_id: string
+          articulo_numero: string
+          ley_codigo: string
+        }> => r.status === 'fulfilled' && r.value !== null
+      )
+      .map((r) => r.value)
+
+    if (incorrectasData.length === 0) return
+
+    await supabase
+      .from('tests_generados')
+      .update({ preguntas_incorrectas: incorrectasData })
+      .eq('id', testId)
+
+    log.info(
+      { testId, count: incorrectasData.length },
+      '[weakness-rag] preguntas_incorrectas actualizadas'
+    )
+  } catch (err) {
+    // Nunca propagar errores en background — el usuario ya tiene su resultado
+    log.warn({ err, testId }, '[weakness-rag] Error al registrar preguntas incorrectas')
+  }
 }
 
 // ─── Flashcard background generation ─────────────────────────────────────────

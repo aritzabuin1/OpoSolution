@@ -9,7 +9,7 @@ import { logger } from '@/lib/logger'
  *
  * Crea una Stripe Checkout Session y retorna la URL de pago.
  *
- * Body: { tier: 'tema'|'pack'|'recarga', temaId?: string }
+ * Body: { tier: 'pack'|'recarga'|'fundador', temaId?: string }
  *
  * El userId se obtiene de la sesión Supabase (no del body — previene suplantación).
  * Los metadata de Stripe se usan en el webhook para completar la compra.
@@ -18,7 +18,7 @@ import { logger } from '@/lib/logger'
  */
 
 const BodySchema = z.object({
-  tier: z.enum(['tema', 'pack', 'recarga']),
+  tier: z.enum(['pack', 'recarga', 'fundador']),
   temaId: z.string().uuid().optional(),
   oposicionId: z.string().uuid().optional(),
 })
@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Producto no disponible' }, { status: 503 })
   }
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://optek.es'
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
   try {
     const session = await stripe.checkout.sessions.create({

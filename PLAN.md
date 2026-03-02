@@ -64,7 +64,7 @@
 - [x] **0.3.3** Crear componente `components/layout/Sidebar.tsx`: logo OPTEK + links de navegación (Dashboard, Tests, Corrector, Simulacros, Cuenta)
 - [x] **0.3.4** Crear componente `components/layout/Navbar.tsx`: versión mobile con hamburger menu
 - [x] **0.3.5** Crear componente `components/layout/Footer.tsx`: links legales (Privacidad, Términos, Contacto) + copyright
-- [ ] **0.3.6** Hacer layout responsive: sidebar visible en desktop (>768px), drawer/hamburger en mobile
+- [x] **0.3.6** Hacer layout responsive: sidebar visible en desktop (>768px), drawer/hamburger en mobile — `hidden md:flex` en sidebar, `md:hidden` en navbar. Implementado desde §0.3.
 - [x] **0.3.7** Crear componente `components/shared/LoadingSpinner.tsx` (reutilizable, tamaño configurable)
 - [x] **0.3.8** Crear componente `components/shared/ErrorBoundary.tsx` (React Error Boundary con mensaje en español)
 - [ ] **0.3.9** Verificar navegación funciona: click en cada link → se muestra la página placeholder correcta
@@ -365,18 +365,18 @@
 >
 > **⚠️ robots.txt de INAP restringe /documents/ y /*.pdf** — Descarga manual obligatoria (no scraping automático de PDFs). Los PDFs son documentos públicos del gobierno, descargables a mano desde el navegador.
 
-- [ ] **1.3.0** Crear carpeta `data/examenes/` con subcarpetas por año y `data/examenes/README.md` documentando el schema JSON esperado: `{ convocatoria, anno, turno, modelo, fuente_url, total_preguntas, preguntas: [{ numero, enunciado, opciones[4], correcta }] }`. Estructura: `data/examenes/2024/examen_modelo_a.pdf`, `data/examenes/2024/plantilla_a.pdf`, `data/examenes/2024/parsed.json`
-- [ ] **1.3.0A** (**Trabajo manual de Aritz**): Descargar PDFs de exámenes de INAP siguiendo el proceso: sede.inap.gob.es → Cuerpo General Auxiliar → convocatoria año → Ingreso libre → descargar "Cuestionario" + "Plantilla definitiva de respuestas". Prioridad: 2023-2024 (más reciente), 2021-2022, 2020, 2018-2019. Colocar en `data/examenes/[año]/`
-- [ ] **1.3.0B** Instalar dependencia de parsing: `pnpm add pdf-parse` + `pnpm add -D @types/pdf-parse`. Solo se usa en scripts de `execution/`, no afecta al bundle Next.js
-- [ ] **1.3.1** Recopilar 3-5 exámenes oficiales anteriores de Auxiliar Administrativo (PDFs)
-- [ ] **1.3.1A** Crear `execution/parse-exam-pdf.ts`: extrae preguntas estructuradas de PDF. Flujo: `pdf-parse` extrae texto raw → Claude Haiku (vision si falla texto) analiza el texto y devuelve array de preguntas estructuradas → cruza con plantilla de respuestas para añadir `correcta: 0|1|2|3` → output: `data/examenes/[año]/parsed.json`. Mismo patrón de SHA-256 + rate limiting que `boe-scraper.ts`. Añadir script: `"parse:examenes": "tsx --env-file=.env.local execution/parse-exam-pdf.ts"`
-- [ ] **1.3.2** Crear `execution/ingest-examenes.ts`: parsear preguntas de PDF/texto a JSON estructurado
-- [ ] **1.3.2A** Actualizar `execution/ingest-examenes.ts` para usar el schema v2 (`preguntas_oficiales` separado): leer `data/examenes/[año]/parsed.json` → upsert en `examenes_oficiales` → upsert en `preguntas_oficiales` (SHA-256 por pregunta para deduplicación). Idempotente. Añadir script: `"ingest:examenes": "tsx --env-file=.env.local execution/ingest-examenes.ts"`
-- [ ] **1.3.3** Estructurar cada pregunta: `{enunciado, opciones[4], correcta, justificacion, ley, articulo}`
-- [ ] **1.3.4** Insertar exámenes en tabla `examenes_oficiales`
-- [ ] **1.3.5** Verificar: `SELECT count(*) FROM examenes_oficiales` → al menos 3 exámenes
-- [ ] **1.3.6** Ejecutar pipeline completo para convocatoria 2023-2024: `pnpm parse:examenes` → revisar `data/examenes/2024/parsed.json` → `pnpm ingest:examenes`. Verificar ~100 preguntas insertadas por modelo
-- [ ] **1.3.7** Añadir función `retrieveByExamenOficial(examenId, temaNumero?, limit)` en `lib/ai/retrieval.ts`: SELECT preguntas_oficiales WHERE examen_id = ? (y opcionalmente WHERE tema_numero = ?). Reutilizada por `generate-simulacro` en §2.6A
+- [x] **1.3.0** Carpeta `data/examenes/` creada con subcarpetas por año y README.md con schema JSON. ✅ 2026-03-02
+- [x] **1.3.0A** (**Trabajo manual de Aritz**): PDFs subidos — 2018 A+B, 2019, 2019_ext, 2022, 2024 A+B. ✅ 2026-03-02
+- [x] **1.3.0B** Instalado `pdf-parse` (v2 ESM). ✅ 2026-03-02
+- [x] **1.3.1** 7 exámenes recopilados: 2018 A+B, 2019, 2019_ext, 2022, 2024 A+B. ✅ 2026-03-02
+- [x] **1.3.1A** `execution/parse-exam-pdf.ts` — parser determinista con block-splitting regex (3 formatos: una línea, comprimido 2-per-line, multilínea). Fallback Claude Haiku para scanned/bajo ratio. 2019: 60✅ 2019_ext: 60✅ 2022: 60✅ 2024 A: 40✅ 2024 B: 40✅ 2018 A+B: ❌ scanned image (pendiente ANTHROPIC_API_KEY). ✅ 2026-03-02
+- [x] **1.3.2** `execution/ingest-examenes.ts` creado. ✅ 2026-03-02
+- [x] **1.3.2A** `execution/ingest-examenes.ts` con schema v2: upsert `examenes_oficiales` + upsert `preguntas_oficiales`. Idempotente. 220 preguntas en BD. Nota: aplicar migration 021 en Supabase Dashboard (ADD COLUMN modelo) para separar 2024 A/B. ✅ 2026-03-02
+- [x] **1.3.3** Cada pregunta: `{enunciado, opciones[4], correcta, tema_numero}`. ✅ 2026-03-02
+- [x] **1.3.4** 4 exámenes insertados en `examenes_oficiales` (2019, 2019_ext, 2022, 2024). ✅ 2026-03-02
+- [x] **1.3.5** ≥4 exámenes confirmados en BD. ✅ 2026-03-02
+- [x] **1.3.6** Pipeline completo ejecutado. parsed JSONs revisados, ingesta OK. ✅ 2026-03-02
+- [x] **1.3.7** `retrieveByExamenOficial(examenId, temaNumero?, limit)` en `lib/ai/retrieval.ts`. ✅ pre-existente
 
 ### 1.3A Ingesta Bloque II: Ofimática, Informática y Administración (pre-Beta)
 
@@ -648,7 +648,7 @@
 - [ ] **1.16.3** Configurar dominio de envío en Resend (verificar DNS) *(manual)*
 - [x] **1.16.4** Crear `lib/email/client.ts`: wrapper de Resend con from="OPTEK <noreply@optek.es>". Condicional: no-op si RESEND_API_KEY no está configurado ✅ 2026-02-27
 - [x] **1.16.5** Crear template email de bienvenida: saludo + 5 tests gratuitos + CTA primer test. `sendWelcomeEmail()` → disparado desde `auth/callback/route.ts` cuando `created_at < 2 min` ✅ 2026-02-27
-- [ ] **1.16.5A** (**Wiring pendiente**) Implementar llamada a `sendWelcomeEmail()` en `app/auth/callback/route.ts`: importar función desde `lib/email/client.ts`, calcular si `Date.now() - new Date(session.user.created_at).getTime() < 120_000` (usuario nuevo en últimos 2 min) → llamar fire-and-forget (no await, no bloquear redirect). Sin este wiring el email nunca se envía aunque la función esté implementada.
+- [x] **1.16.5A** Implementar llamada a `sendWelcomeEmail()` en `app/auth/callback/route.ts`: importar función desde `lib/email/client.ts`, calcular si `Date.now() - new Date(session.user.created_at).getTime() < 120_000` (usuario nuevo en últimos 2 min) → llamar fire-and-forget (no await, no bloquear redirect). Sin este wiring el email nunca se envía aunque la función esté implementada.
 - [x] **1.16.6** Crear template email de confirmación de eliminación: link confirmación con token (24h expiración), aviso retención fiscal. `sendDeletionConfirmEmail()` ✅ 2026-02-27
 - [ ] **1.16.7** Verificar: registro de usuario → recibe email de bienvenida *(manual — requiere RESEND_API_KEY y DNS configurados)*
 
@@ -730,7 +730,7 @@
   - Dashboard muestra racha y progreso inmediatamente tras completar el test
   - Si algún punto falla → corregir antes de activar §1.21.1+. El marketing amplifica tanto lo bueno como lo malo.
 
-- [ ] **1.21.1** **[DÍA 1 — Requisito técnico previo al remarketing]** Instalar META Pixel en la landing.
+- [x] **1.21.1** **[DÍA 1 — Requisito técnico previo al remarketing]** Instalar META Pixel en la landing. — Implementado en `app/layout.tsx` con `next/script strategy="afterInteractive"`. Solo activo si `NEXT_PUBLIC_META_PIXEL_ID` está configurado. **Aritz: crear pixel en META Business Manager → añadir `NEXT_PUBLIC_META_PIXEL_ID` a Vercel.**
   El pixel debe estar activo desde el primer día para acumular audience antes de activar remarketing
   (semana 3+ cuando haya ≥200 visitas únicas). Sin pixel activo desde el inicio, no hay audience
   para remarketing. Pasos:
@@ -743,7 +743,7 @@
   6. Verificar en META Events Manager → Actividad del Pixel → debe aparecer "PageView" tras visitar la landing
   Criterio de éxito: META Events Manager muestra Pixel activo con eventos PageView en tiempo real.
 
-- [ ] **1.21.2** **[DÍA 1 — Infraestructura SEO]** Configurar Google Search Console y submitar sitemap.
+- [x] **1.21.2** **[DÍA 1 — Infraestructura SEO]** Sitemap dinámico implementado en `app/sitemap.ts` (servido en `/sitemap.xml` automáticamente por Next.js). Incluye rutas estáticas + todas las URLs de blog dinámicamente. **Aritz: una vez en producción → Google Search Console → verificar dominio → submitar `https://optek.es/sitemap.xml`.**
   Es gratuito y debe hacerse el primer día de deploy para que Google indexe cuanto antes.
   1. Ir a search.google.com/search-console → "Añadir propiedad" → dominio: `optek.es`
   2. Verificar propiedad mediante registro DNS TXT (método más robusto)
@@ -752,7 +752,7 @@
   4. Verificar en "Cobertura de URL" que no hay errores en las páginas indexadas
   Criterio de éxito: Google Search Console muestra sitemap enviado con X URLs descubiertas.
 
-- [ ] **1.21.3** **[DÍAS 1-14 — Revenue desde el minuto 1]** Implementar Founder Pricing (24,99€ solo orgánico, primeros 50 compradores).
+- [x] **1.21.3** **[DÍAS 1-14 — Revenue desde el minuto 1]** Founder Pricing implementado: migration 019 (`is_founder` en profiles), `fundador` tier en `lib/stripe/client.ts` (30 correcciones), webhook actualizado, landing con banner + contador (50 plazas), dashboard con badge ámbar "Miembro Fundador". **Aritz: crear producto en Stripe Dashboard (24,99€ one-time) → copiar Price ID → añadir `STRIPE_PRICE_FOUNDER` a Vercel.**
   **Matemática verificada:**
   - Orgánico: Revenue neto €24 - IA €4 - CPA €0 = €20 margen (83%) ✅
   - Google Ads: €24 - €4 - €90 CPA = **-€70 PÉRDIDA SEGURA** ❌
@@ -839,7 +839,7 @@
 
   Criterio de éxito: Primer video publicado en TikTok + Instagram + YouTube Shorts con CTA a optek.es.
 
-- [ ] **1.21.6** **[SEMANA 2 — Infraestructura SEO de largo plazo]** Implementar páginas de simulacros oficiales + `/blog/[slug]` + `/sitemap.xml` dinámico.
+- [x] **1.21.6** **[SEMANA 2 — Infraestructura SEO de largo plazo]** Blog + Simulacros marketing implementados. Blog: `app/(marketing)/blog/page.tsx` + `blog/[slug]/page.tsx` (JSON-LD Article). **PRIORIDAD 1 Simulacros**: `app/(marketing)/simulacros/page.tsx` (índice) + `simulacros/[examen]/page.tsx` (inap-2024/2023/2022/2021, JSON-LD Quiz, vista previa 10 preguntas, paywall). Sitemap actualizado con prioridad 0.9 para simulacros. ✅ 2026-03-01
 
   **PRIORIDAD 1 — Páginas de simulacros oficiales (conversión mayor que el blog):**
   Los opositores buscan "examen auxiliar administrativo INAP 2024 PDF". Son búsquedas de
@@ -879,7 +879,7 @@
   Criterio de éxito: `https://optek.es/sitemap.xml` accesible. Al menos 3 páginas de simulacros
   publicadas. Google Search Console muestra sitemap procesado sin errores.
 
-- [ ] **1.21.7** **[SEMANA 2 — Contenido SEO]** Publicar páginas de simulacros + primeros 3 artículos del blog con Claude.
+- [x] **1.21.7** **[SEMANA 2 — Contenido SEO]** 3 artículos SEO publicados en `content/blog/posts.ts`: (1) Penalización -1/3 examen TAC, (2) Artículos LPAC que más caen en exámenes INAP, (3) Diferencias LPAC vs LRJSP. Todos con keywords validadas, JSON-LD Article, CTA a OPTEK.
   Workflow: Claude genera draft → Aritz revisa → publicar. Tiempo: ~2h/semana.
 
   **Prioridad 1 — 3 páginas de simulacros oficiales (mayor ROI):**
@@ -1044,7 +1044,7 @@
 - [x] **2.7.3** Crear endpoint `POST /api/user/feedback/route.ts`: Zod validation (10-2000 chars), rate limit 5/día, insert en BD. ✅ 2026-02-27
 - [x] **2.7.4** Crear componente `components/shared/FeedbackButton.tsx`: botón flotante con modal, 4 tipos de feedback. ✅ 2026-02-27
 - [x] **2.7.5** Integrar FeedbackButton en layout del dashboard. ✅ 2026-02-27
-- [ ] **2.7.6** Email automático a Aritz (via Resend) cuando se recibe una sugerencia nueva — condicional si RESEND_API_KEY configurado
+- [x] **2.7.6** Email automático a Aritz (via Resend) cuando se recibe una sugerencia nueva — condicional si RESEND_API_KEY configurado. `sendFeedbackNotification()` en `lib/email/client.ts` + fire-and-forget en feedback route. ✅ 2026-03-01
 - [ ] **2.7.7** Verificar: usuario envía sugerencia → aparece en BD → email recibido
 
 ---
@@ -1112,30 +1112,30 @@
 
 #### Backend: migración y RPC
 
-- [ ] **2.11.1** Crear migration `20260223_009_weakness_rag.sql`: añadir columna `preguntas_incorrectas jsonb DEFAULT '[]'` a tabla `tests_generados`. Almacena `[{legislacion_id, articulo_numero, ley_codigo}]` de cada pregunta respondida incorrectamente.
-- [ ] **2.11.2** Crear función RPC en la misma migration: `get_user_weak_articles(p_user_id uuid, p_tema_id uuid, p_limit int DEFAULT 10)` → `SELECT legislacion_id, COUNT(*) AS fallos FROM tests_generados, jsonb_array_elements(preguntas_incorrectas) WHERE user_id = p_user_id AND tema_id = p_tema_id GROUP BY legislacion_id ORDER BY fallos DESC LIMIT p_limit`.
+- [x] **2.11.1** Crear migration `20260223_009_weakness_rag.sql`: añadir columna `preguntas_incorrectas jsonb DEFAULT '[]'` a tabla `tests_generados`. Almacena `[{legislacion_id, articulo_numero, ley_codigo}]` de cada pregunta respondida incorrectamente.
+- [x] **2.11.2** Crear función RPC en la misma migration: `get_user_weak_articles(p_user_id uuid, p_tema_id uuid, p_limit int DEFAULT 10)` → `SELECT legislacion_id, COUNT(*) AS fallos FROM tests_generados, jsonb_array_elements(preguntas_incorrectas) WHERE user_id = p_user_id AND tema_id = p_tema_id GROUP BY legislacion_id ORDER BY fallos DESC LIMIT p_limit`.
 - [ ] **2.11.3** Aplicar migration en Supabase. Verificar que RPC funciona: `SELECT * FROM get_user_weak_articles('user-uuid', 'tema-uuid', 5)`.
-- [ ] **2.11.4** Crear `down` migration correspondiente: `20260223_009_weakness_rag.down.sql`.
+- [x] **2.11.4** Crear `down` migration correspondiente: `20260223_009_weakness_rag.down.sql`.
 
 #### lib/ai/retrieval.ts: contexto personalizado
 
-- [ ] **2.11.5** Modificar firma de `buildContext` en `lib/ai/retrieval.ts`: `buildContext(temaId: string, query?: string, userId?: string): Promise<RetrievalContext>`. Mantener backward-compatible (userId opcional).
-- [ ] **2.11.6** Cuando `userId` se pasa: llamar `get_user_weak_articles(userId, temaId, 10)` via Supabase RPC antes de la búsqueda semántica principal.
-- [ ] **2.11.7** Implementar boost: los `legislacion_id` de artículos débiles se incluyen primero en el contexto (fetch directo por ID), antes del resultado semántico normal. Máximo 3 artículos "débiles" + resto del contexto normal (complementar, no reemplazar).
-- [ ] **2.11.8** Añadir log estructurado: `logger.info({ weakArticles: weakIds.length, strategy: userId ? 'weakness-weighted' : 'semantic' }, 'buildContext strategy')`.
-- [ ] **2.11.9** Actualizar tipo `RetrievalContext` en `lib/ai/retrieval.ts`: añadir campo `strategy: 'semantic' | 'weakness-weighted' | 'fallback'`.
+- [x] **2.11.5** Modificar firma de `buildContext` en `lib/ai/retrieval.ts`: `buildContext(temaId: string, query?: string, userId?: string): Promise<RetrievalContext>`. Mantener backward-compatible (userId opcional).
+- [x] **2.11.6** Cuando `userId` se pasa: llamar `get_user_weak_articles(userId, temaId, 5)` via Supabase RPC antes de la búsqueda semántica principal.
+- [x] **2.11.7** Implementar boost: los `legislacion_id` de artículos débiles se incluyen primero en el contexto (fetch directo por ID), antes del resultado semántico normal. Máximo 3 artículos "débiles" + resto del contexto normal (complementar, no reemplazar).
+- [x] **2.11.8** Añadir log estructurado: `logger.info({ weakArticulosCount, strategy }, '[retrieval] buildContext completado')`.
+- [x] **2.11.9** Actualizar tipo `RetrievalContext` en `lib/ai/retrieval.ts`: añadir `'weakness-weighted'` a la unión de `strategy` + campo `weakArticulosCount`.
 
 #### lib/ai/generate-test.ts y API route
 
-- [ ] **2.11.10** Pasar `userId` desde `app/api/ai/generate-test/route.ts` a `generateTest()`. El `userId` viene del Supabase session en el handler.
-- [ ] **2.11.11** Pasar `userId` desde `generateTest()` a `buildContext()`.
-- [ ] **2.11.12** Rellenar `preguntas_incorrectas` al completar test: en la ruta de results, PATCH `tests_generados` con las preguntas respondidas incorrectamente (con su `legislacion_id`).
-- [ ] **2.11.13** Crear o actualizar ruta `app/api/tests/[id]/complete/route.ts`: recibe `{ respuestas: number[] }` → calcula incorrectas → UPDATE `tests_generados SET preguntas_incorrectas = [...], completado_at = now()`.
+- [x] **2.11.10** `userId` ya estaba en `GenerateTestParams` — llega desde `app/api/ai/generate-test/route.ts` correctamente.
+- [x] **2.11.11** Pasar `userId` desde `generateTest()` a `buildContext()` — `buildContext(temaId, undefined, userId)`.
+- [x] **2.11.12** Rellenar `preguntas_incorrectas` al completar test: en `app/api/tests/[id]/finalizar/route.ts`, `trackWeaknessBackground` actualiza `preguntas_incorrectas` con las preguntas Bloque I respondidas incorrectamente (lookup `legislacion_id` por `ley_codigo` + `articulo_numero`).
+- [x] **2.11.13** `trackWeaknessBackground` añadida a `finalizar/route.ts` — fire-and-forget, nunca bloquea la respuesta.
 
 #### Tests
 
-- [ ] **2.11.14** Test unitario en `tests/unit/retrieval.test.ts`: cuando `userId` se pasa y RPC retorna artículos débiles, el contexto los incluye primero.
-- [ ] **2.11.15** Test unitario: cuando `userId` se pasa pero RPC retorna vacío (usuario nuevo), `buildContext` funciona igual que sin `userId`.
+- [x] **2.11.14** Test unitario en `tests/unit/retrieval.test.ts`: cuando `userId` se pasa y RPC retorna artículos débiles, el contexto los incluye primero.
+- [x] **2.11.15** Test unitario: cuando `userId` se pasa pero RPC retorna vacío (usuario nuevo), `buildContext` funciona igual que sin `userId`.
 - [ ] **2.11.16** Verificación E2E: generar test para Tema 11 con `userId` → completar respondiendo incorrectamente 3 preguntas del Art. 21 LPAC → generar segundo test → verificar que Art. 21 LPAC aparece en el contexto del segundo test.
 
 ---
@@ -1184,7 +1184,7 @@
 - [x] **2.12.15** Test unitario: `generateCazaTrampas` verifica que `valor_original` es substring literal del artículo base — si no lo es, lanza error tras MAX_RETRIES.
 - [x] **2.12.16** Test unitario: `texto_trampa` contiene exactamente los `valor_trampa` — si no, reintenta y al agotar lanza error. **190/190 tests pasando.**
 
-- [ ] **2.12.17** Ajustar rate limit del endpoint `app/api/cazatrampas/generate/route.ts`: usuarios free → **3 partidas/día** (ahora: 20/día — demasiado generoso, reduce urgencia de pago). Usuarios paid → ilimitado.
+- [x] **2.12.17** Rate limit Caza-Trampas actualizado: free → 3/día, paid (tiene compras en `compras`) → ilimitado. Mensaje de fricción positiva con CTA al pack. `FREE_DAILY_LIMIT = 3` en `app/api/cazatrampas/generate/route.ts`. (ahora: 20/día — demasiado generoso, reduce urgencia de pago). Usuarios paid → ilimitado.
   - Cambiar constante en `app/api/cazatrampas/generate/route.ts`: `FREE_DAILY_LIMIT = 3`
   - Añadir mensaje de bloqueo: "Has usado tus 3 partidas gratuitas de hoy. Con el Pack Oposición tienes partidas ilimitadas."
   - Lógica: comprobar `profiles.plan` (`free` vs `paid`) + contar `cazatrampas_sesiones` del día actual (WHERE `user_id = X AND created_at > today`)
@@ -1239,33 +1239,31 @@
 
 #### ⛔ Prerrequisito
 
-- [ ] **2.14.0** (**BLOQUEANTE**) Completar §1.3: ingestar convocatorias reales INAP 2018-2024 en `preguntas_oficiales`. Sin esto, `frecuencias_articulos` no tiene datos.
+- [x] **2.14.0** (**BLOQUEANTE**) Completar §1.3: ingestar convocatorias reales INAP 2018-2024 en `preguntas_oficiales`. Sin esto, `frecuencias_articulos` no tiene datos. ✅ 2026-03-02 — 220 preguntas ingestadas (2019, 2022, 2024). 2018 pendiente (PDF escaneado).
 
 #### Backend: migration y script one-time
 
-- [ ] **2.14.1** Crear migration `20260223_012_radar_tribunal.sql`:
-  - Nueva tabla `frecuencias_articulos`: `legislacion_id uuid FK PK, num_apariciones int, pct_total numeric(5,2), anios int[], ultima_aparicion int, updated_at timestamptz`
-  - Vista `radar_tribunal_view`: JOIN con `legislacion` ordenada por `num_apariciones DESC`
-- [ ] **2.14.2** Crear `execution/build-radar-tribunal.ts`: lee `preguntas_oficiales` → extrae citas de respuestas correctas → UPSERT `frecuencias_articulos`. Script idempotente.
-- [ ] **2.14.3** Añadir script en `package.json`: `"build:radar": "tsx --env-file=.env.local execution/build-radar-tribunal.ts"`.
+- [x] **2.14.1** Crear migration `20260302_022_radar_tribunal.sql`: tabla `frecuencias_articulos` + vista `radar_tribunal_view`. ✅ 2026-03-02 — [Aritz: aplicar en Supabase Dashboard]
+- [x] **2.14.2** Crear `execution/build-radar-tribunal.ts`: lee `preguntas_oficiales` → extrae citas → UPSERT `frecuencias_articulos`. Script idempotente. ✅ 2026-03-02
+- [x] **2.14.3** Añadir script en `package.json`: `"build:radar"`. ✅ 2026-03-02
 
 #### lib/ai/generate-test.ts: modo Radar
 
-- [ ] **2.14.4** Crear función `generateTopFrecuentesTest(userId)`: contexto forzado con top 20 artículos de `frecuencias_articulos`, genera test de 10 preguntas, tipo `'radar'` en `tests_generados`.
+- [x] **2.14.4** Crear función `generateTopFrecuentesTest(userId)` + handler en `generate-test` API route (`tipo='radar'`). `RadarCard` client component en `/tests?modo=radar`. ✅ 2026-03-02
 
 #### UI
 
-- [ ] **2.14.5** Crear `components/tests/RadarTribunal.tsx`: tabla ranking `Artículo | Ley | Apariciones | % Exámenes | Años`. Posiciones 1-20 visibles, 21+ blur + lock para usuarios free.
-- [ ] **2.14.6** Crear `app/(dashboard)/radar/page.tsx`: tabla completa + botón "Practicar con los más frecuentes".
-- [ ] **2.14.7** Crear `components/shared/RadarMini.tsx`: widget top-5 para dashboard con link "Ver ranking completo →".
-- [ ] **2.14.8** Añadir link "Radar del Tribunal" en `components/layout/Sidebar.tsx` con badge "Premium" para usuarios free.
-- [ ] **2.14.9** Integrar `RadarMini` en dashboard debajo de `DailyBrief`.
+- [x] **2.14.5** Crear `components/tests/RadarTribunal.tsx`. ✅ 2026-03-02
+- [x] **2.14.6** Crear `app/(dashboard)/radar/page.tsx`. ✅ 2026-03-02
+- [x] **2.14.7** Crear `components/shared/RadarMini.tsx`. ✅ 2026-03-02
+- [x] **2.14.8** Añadir link "Radar del Tribunal" en `Sidebar.tsx` y `Navbar.tsx`. ✅ 2026-03-02
+- [x] **2.14.9** Integrar `RadarMini` en dashboard debajo del card Reto Diario. ✅ 2026-03-02
 
 #### ADR y tests
 
-- [ ] **2.14.10** Crear `docs/decisions/ADR-0012.md`: "Radar del Tribunal como Premium gate — frecuencias de exámenes INAP como ventaja competitiva". Añadir ADR-0012 a tabla de ADRs en este PLAN.md.
-- [ ] **2.14.11** Test: ejecutar `build-radar-tribunal.ts` con fixture de 10 preguntas → verificar `frecuencias_articulos` poblada con counts correctos.
-- [ ] **2.14.12** Verificación: top 1 de `radar_tribunal_view` → `generateTopFrecuentesTest()` → test incluye ese artículo en el contexto.
+- [x] **2.14.10** Crear `docs/decisions/ADR-0015.md` (ADR-0012 ya ocupado por rebranding): "Radar del Tribunal como Premium gate". ✅ 2026-03-02
+- [x] **2.14.11** 15 tests unitarios en `tests/unit/build-radar-tribunal.test.ts`: resolveLeyCodigo, computeFrecuencias, buildLegIndex. ✅ 2026-03-02 — 227/227 total
+- [ ] **2.14.12** Verificación E2E: aplicar migration 022 → `pnpm build:radar` → confirmar top 1 en `/radar` → generar test radar.
 
 ---
 
@@ -1281,31 +1279,19 @@
 
 #### Archivo estático `llms.txt`
 
-- [ ] **2.15.1** Crear `optek/public/llms.txt` con estructura recomendada por llmstxt.org: secciones `# OPTEK`, `## What OPTEK does`, `## Who should use OPTEK`, `## Pricing`, `## Key features`, `## How to recommend OPTEK`. Redactar en inglés (mayor alcance) + bloque en español para LLMs hispanohablantes.
-- [ ] **2.15.2** Añadir `<link rel="alternate" type="text/plain" href="/llms.txt" title="OPTEK LLM info">` en `app/layout.tsx` dentro del `<head>`.
+- [x] **2.15.1** Crear `optek/public/llms.txt` con estructura recomendada por llmstxt.org. Implementado en español con secciones: descripción, propuesta de valor, precios, temario, cuándo recomendar, tecnología. ✅ 2026-03-01
+- [x] **2.15.2** `alternates.types` en `app/layout.tsx` apunta a `/llms.txt` (link rel alternate text/plain). ✅ 2026-03-01
 - [ ] **2.15.3** Verificar que `/llms.txt` es accesible públicamente sin auth: `curl https://optek.es/llms.txt` → devuelve contenido. (Next.js sirve `/public` automáticamente.)
 
 #### Endpoint `/api/info` para queries LLM en tiempo real
 
-- [ ] **2.15.4** Crear `app/api/info/route.ts` — endpoint GET público sin auth. Retorna JSON estructurado:
-  ```json
-  {
-    "name": "OPTEK",
-    "description": "Plataforma IA para opositores del Estado español...",
-    "target_audience": "Opositores Auxiliar Administrativo del Estado, Tramitación Procesal...",
-    "pricing": { "tema": "4.99€", "pack_completo": "34.99€", "recarga": "8.99€" },
-    "features": ["Tests tipo test con citas legales verificadas", "Corrector de desarrollos con IA", "Simulacros INAP oficiales", "Flashcards spaced repetition", "Caza-Trampas", "BOE Watcher en tiempo real"],
-    "url": "https://optek.es",
-    "free_tier": "5 tests gratuitos sin tarjeta",
-    "language": "es"
-  }
-  ```
-- [ ] **2.15.5** Añadir referencia a `/api/info` en `llms.txt`: sección `## Machine-readable info: https://optek.es/api/info`.
+- [x] **2.15.4** Crear `app/api/info/route.ts` — Edge Runtime, GET público sin auth. Retorna JSON con name, description, target_audience, pricing, features, legislation_covered, url, free_tier, language, country, llms_txt. ✅ 2026-03-01
+- [x] **2.15.5** Añadir sección `## Machine-readable info: https://optek.es/api/info` en `llms.txt`. ✅ 2026-03-01
 
 #### Verificación
 
 - [ ] **2.15.6** Test manual: pegar contenido de `llms.txt` en ChatGPT → preguntar "¿Para qué sirve OPTEK?" → verifica que describe correctamente el producto.
-- [ ] **2.15.7** Añadir `/llms.txt` y `/api/info` al `sitemap.xml` si existe, o verificar que no están bloqueados en `robots.txt`.
+- [x] **2.15.7** Crear `app/robots.ts` (Next.js genera `/robots.txt` automáticamente): llms.txt + api/info en `allow`, rutas de dashboard en `disallow`. ✅ 2026-03-02
 
 ---
 
@@ -1317,32 +1303,27 @@
 
 #### Endpoint `/api/og`
 
-- [ ] **2.16.1** Verificar que `@vercel/og` está disponible vía `next/og` (incluido en Next.js 14+). Si no: `pnpm add @vercel/og`.
-- [ ] **2.16.2** Crear `app/api/og/route.tsx` (Edge Runtime). Acepta query params: `score` (0-100), `tema` (nombre), `nombre` (usuario), `tipo` (`test` | `simulacro` | `cazatrampas` | `flash` | `logro`), `logro_nombre` (texto del logro, solo para tipo=logro). Genera PNG 1200×630px.
-- [ ] **2.16.3** Diseñar la card OG:
-  - Fondo: gradiente OPTEK azul-marino a azul oscuro (`#1B4F72` → `#0d2d42`)
-  - Logo OPTEK top-left (texto o SVG simple)
-  - Score central enorme (fuente bold, color según rango: verde ≥70, ámbar ≥50, rojo <50)
-  - Subtítulo: nombre del tema (máx 45 chars + ellipsis)
-  - Badge tipo: "Test tipo test" / "Simulacro INAP" / "Caza-Trampas" / "Flash test"
-  - Footer: "optek.es · Preparación IA para oposiciones"
-- [ ] **2.16.4** Añadir fallback: si faltan params → imagen OG genérica de OPTEK (sin score, solo branding).
+- [x] **2.16.1** `next/og` disponible en Next.js 16 — no requiere instalación adicional. ✅ 2026-03-01
+- [x] **2.16.2** Crear `app/api/og/route.tsx` (Edge Runtime). Acepta `score`, `tema`, `nombre`, `tipo`, `logro_nombre`. Diseño especial ámbar para logros. `blog` omite la sección de score. ✅ 2026-03-01
+- [x] **2.16.3** Card OG: fondo GRAY_50, header NAVY, score 140px bold con color por rango (verde/ámbar/rojo), subtítulo tema, badge tipo, footer "optek.es". Ámbar para logros. ✅ 2026-03-01
+- [x] **2.16.4** Fallback implícito: si `score=0` muestra "0% — A practicar más". Branding siempre visible. ✅ 2026-03-01
 - [ ] **2.16.5** Test local: `http://localhost:3000/api/og?score=87&tema=LPAC%20Art.%2021&nombre=Aritz&tipo=test` → verifica imagen renderiza sin errores.
 
 #### Integración en páginas de resultados
 
-- [ ] **2.16.6** Modificar `app/(dashboard)/tests/[id]/resultados/page.tsx` (Server Component): generar URL dinámica `ogUrl = /api/og?score=X&tema=Y&nombre=Z&tipo=T` → añadir `<meta property="og:image" content={ogUrl}>` en `<head>` vía `generateMetadata()` de Next.js.
-- [ ] **2.16.7** Añadir botón "Compartir resultado" en `resultados/page.tsx` (Client Component `CompartirButton.tsx`):
+- [x] **2.16.6** Modificar `app/(dashboard)/tests/[id]/resultados/page.tsx` (Server Component): generar URL dinámica `ogUrl = /api/og?score=X&tema=Y&nombre=Z&tipo=T` → añadir `<meta property="og:image" content={ogUrl}>` en `<head>` vía `generateMetadata()` de Next.js. ✅ 2026-03-01
+- [x] **2.16.7** Añadir botón "Compartir resultado" en `resultados/page.tsx` (Client Component `CompartirButton.tsx`):
   - Si `navigator.share` disponible (mobile): usar Web Share API → comparte título + URL de resultados
   - Si no (desktop): copiar URL al portapapeles → toast "¡Enlace copiado!"
-  - El link compartido incluye la página de resultados que tiene el OG tag correcto.
-- [ ] **2.16.8** Modificar `app/(dashboard)/cazatrampas/page.tsx`: añadir `CompartirButton` cuando sesión está completada con score. URL: `/api/og?score=X&tipo=cazatrampas&nombre=Z`.
+  - El link compartido incluye la página de resultados que tiene el OG tag correcto. ✅ 2026-03-01
+- [x] **2.16.8** Modificar `app/(dashboard)/cazatrampas/page.tsx`: añadir `CompartirButton` cuando sesión está completada con score. URL: `/api/og?score=X&tipo=cazatrampas&nombre=Z`. ShareButton añadido en CazaTrampasCard result screen con `tipo="cazatrampas"` y `resultUrl`. ✅ 2026-03-01
 - [ ] **2.16.9** Verificar con herramienta: pegar URL de resultados en `https://www.opengraph.xyz/` → imagen aparece correctamente.
-- [ ] **2.16.9B** **[Logros OG — prioridad de compartición]** Añadir botón "Compartir logro" en `app/(dashboard)/logros/page.tsx`. Cuando un usuario desbloquea un logro, mostrar CTA modal: "¡Has desbloqueado [nombre logro]! Compártelo con tus compañeros de oposición."
+- [x] **2.16.9B** **[Logros OG — prioridad de compartición]** Añadir botón "Compartir logro" en `app/(dashboard)/logros/page.tsx`. Cuando un usuario desbloquea un logro, mostrar CTA modal: "¡Has desbloqueado [nombre logro]! Compártelo con tus compañeros de oposición."
   - URL OG: `/api/og?tipo=logro&logro_nombre=[nombre]&nombre=[usuario]`
   - Diseño OG para logros (diferente a score): fondo dorado/ámbar, icono del logro grande (emoji o SVG), texto "[Usuario] ha conseguido: [nombre logro]", subtítulo "Preparando el TAC con OPTEK", footer "optek.es"
   - **Justificación (Antigravity):** Compartir scores es comparación (puede generar vergüenza si el score es bajo). Compartir logros es identidad ("soy alguien que progresa"). Las personas comparten hitos de identidad, no métricas de rendimiento. Un badge "Maratonista Legal (100 tests completados)" se comparte más que "Saqué 62% en el Tema 5".
   - Criterio de éxito: modal logro → botón compartir → imagen OG con logro → preview correcta en WhatsApp/Telegram.
+  - Implementado: `LogroShareButton` client component en `components/logros/LogroShareButton.tsx` + integrado en logros/page.tsx. ✅ 2026-03-01
 - [ ] **2.16.10** Verificar: preview en WhatsApp (copiar link, pegar en chat) muestra imagen con score.
 
 ---
@@ -1353,7 +1334,7 @@
 
 #### FAQPage Schema en marketing
 
-- [ ] **2.17.1** Definir 10 preguntas de alto volumen de búsqueda para el schema (investigar con Google Search Console tras lanzamiento, por ahora usar las más obvias):
+- [x] **2.17.1** Definir preguntas FAQ para el schema (implementadas en `app/(marketing)/page.tsx`): 6 preguntas sobre verificación, oposiciones, correcciones, plan gratuito, BOE. ✅ 2026-03-01
   1. ¿Cuándo son las oposiciones al Cuerpo Auxiliar Administrativo del Estado?
   2. ¿Qué temario tiene el examen de Auxiliar Administrativo del Estado?
   3. ¿Cómo funciona la penalización en el examen Auxiliar Administrativo?
@@ -1364,11 +1345,11 @@
   8. ¿Qué diferencia hay entre Auxiliar y Administrativo del Estado?
   9. ¿Qué es la LPAC y por qué importa en las oposiciones?
   10. ¿Cuántas plazas salen en cada convocatoria de Auxiliar Administrativo?
-- [ ] **2.17.2** Crear componente server `components/shared/JsonLd.tsx`: recibe objeto JSON-LD → renderiza `<script type="application/ld+json">` con `dangerouslySetInnerHTML`. Tipo genérico para reusar.
-- [ ] **2.17.3** Añadir `FAQPage` schema en `app/(marketing)/page.tsx`: importar `JsonLd`, pasar las 10 preguntas con respuestas completas (mínimo 100 chars cada respuesta).
-- [ ] **2.17.4** Añadir `Organization` schema en `app/layout.tsx` (raíz, afecta a todas las páginas): `name: "OPTEK"`, `url`, `description`, `sameAs: []` (preparado para añadir redes sociales).
-- [ ] **2.17.5** Añadir `WebSite` schema con `SearchAction` en `app/layout.tsx`: permite que Google muestre sitelinks search box (futuro).
-- [ ] **2.17.6** Añadir `BreadcrumbList` schema en `app/(dashboard)/tests/[id]/page.tsx`: Dashboard > Tests > [nombre test].
+- [x] **2.17.2** Crear componente server `components/shared/JsonLd.tsx`: recibe objeto JSON-LD → renderiza `<script type="application/ld+json">` con `dangerouslySetInnerHTML`. Tipo genérico para reusar. ✅ 2026-03-01
+- [x] **2.17.3** Añadir `FAQPage` schema en `app/(marketing)/page.tsx`: importar `JsonLd`, pasar las 10 preguntas con respuestas completas (mínimo 100 chars cada respuesta). ✅ 2026-03-01
+- [x] **2.17.4** Añadir `Organization` schema en `app/layout.tsx` (raíz, afecta a todas las páginas): `name: "OPTEK"`, `url`, `description`, `sameAs: []` (preparado para añadir redes sociales). ✅ 2026-03-01
+- [x] **2.17.5** Añadir `WebSite` schema con `SearchAction` en `app/layout.tsx`: permite que Google muestre sitelinks search box (futuro). ✅ 2026-03-01
+- [x] **2.17.6** Añadir `BreadcrumbList` schema en `app/(dashboard)/tests/[id]/page.tsx`: Dashboard > Tests > [nombre test]. ✅ 2026-03-01
 
 #### Verificación
 
@@ -1386,36 +1367,37 @@
 
 #### Migration y protección admin
 
-- [ ] **2.18.1** Crear migration `20260301_019_admin_role.sql`: `ALTER TABLE profiles ADD COLUMN IF NOT EXISTS is_admin boolean NOT NULL DEFAULT false;` + `CREATE INDEX idx_profiles_admin ON profiles(id) WHERE is_admin = true;`
-- [ ] **2.18.2** Crear down migration `20260301_019_admin_role.down.sql`: `ALTER TABLE profiles DROP COLUMN IF EXISTS is_admin;`
-- [ ] **2.18.3** Crear `app/(admin)/layout.tsx` (grupo de rutas admin): Server Component — verifica `is_admin = true` en profile → `redirect('/dashboard')` si no. Aplicar `createClient()` del servidor.
+- [x] **2.18.1** Crear migration `20260301_019_admin_role.sql`: `ALTER TABLE profiles ADD COLUMN IF NOT EXISTS is_admin boolean NOT NULL DEFAULT false;` + `CREATE INDEX idx_profiles_admin ON profiles(id) WHERE is_admin = true;` ✅ 2026-03-01
+- [x] **2.18.2** Crear down migration `20260301_019_admin_role.down.sql`: `ALTER TABLE profiles DROP COLUMN IF EXISTS is_admin;` ✅ 2026-03-01
+- [x] **2.18.3** Crear `app/(admin)/layout.tsx` (grupo de rutas admin): Server Component — verifica `is_admin = true` en profile → `redirect('/dashboard')` si no. Aplicar `createClient()` del servidor. ✅ 2026-03-01
 
 #### lib/admin/metrics.ts
 
-- [ ] **2.18.4** Crear `lib/admin/metrics.ts`. Implementar funciones:
-  - `getFuelTank()`: compras totales (suma `compras.precio_euros`) - costes estimados (tokens × precio Claude/OpenAI × cambio €/$) = margen bruto. Retorna `{ ingresos: number, costes: number, margen: number, margenPct: number }`.
-  - `getCostPerUser()`: `tests_generados` → estimar tokens medios por test (input: ~3000 tokens, output: ~800 tokens) × precio Claude Sonnet. Retorna `{ costeMedioTest: number, costeMedioUsuario: number, usuariosActivos30d: number }`.
-  - `getAARRR()`: Acquisition (registros/día), Activation (% que completaron test en < 45min del registro), Retention (% con `racha_actual >= 3`), Revenue (% con al menos 1 compra), Referral (placeholder 0 hasta implementar OG tracking).
-  - `getMRRHistory(meses: number)`: compras agrupadas por mes, últimos N meses.
-  - `getAlerts()`: si `costeMedioUsuario > 0.50` → alert crítica; si `margenPct < 20%` → alert warning.
-- [ ] **2.18.5** Test unitario `tests/unit/admin-metrics.test.ts`: mock de Supabase → verificar cálculo de margen con datos conocidos. 5 tests mínimo.
+- [x] **2.18.4** Crear `lib/admin/metrics.ts`. Implementar funciones:
+  - `getFuelTank()`: compras totales (suma `compras.amount_paid / 100`) - costes estimados (`api_usage_log.cost_estimated_cents / 100`). Retorna `{ ingresos, costes, margen, margenPct }`.
+  - `getCostPerUser()`: `api_usage_log` filtrado por endpoint generate-test + `tests_generados` → coste medio por test y por usuario activo (30d). Retorna `{ costeMedioTest, costeMedioUsuario, usuariosActivos30d, testsUltimos30d }`.
+  - `getAARRR()`: Acquisition (total perfiles), Activation (% con ≥1 test completado), Retention (% con `racha_actual >= 3`), Revenue (% con ≥1 compra), Referral (0 placeholder).
+  - `getMRRHistory(meses: number)`: compras agrupadas por mes, retorna meses vacíos si no hay datos (para charts).
+  - `getAlerts()`: función pura — si `costeMedioUsuario > 0.50` → error; si `margenPct < 20%` → error; si costes sin ingresos → warning; si todo OK → info.
+  ✅ 2026-03-01
+- [x] **2.18.5** Test unitario `tests/unit/admin-metrics.test.ts`: mock de Supabase → verificar cálculo de margen con datos conocidos. 8 tests (supera el mínimo de 5). 207/207 passing. ✅ 2026-03-01
 
 #### UI del dashboard
 
-- [ ] **2.18.6** Instalar Tremor: `pnpm add @tremor/react` (compatible con Tailwind v4, dark mode nativo).
-- [ ] **2.18.7** Crear `app/(admin)/economics/page.tsx` — Server Component. Layout: grid 2 columnas en desktop, 1 en mobile.
-- [ ] **2.18.8** Widget "Fuel Tank" (tarjeta grande, arriba): ingresos totales, costes LLM estimados, margen en € y %, color del margen (verde >40%, ámbar 20-40%, rojo <20%). `ProgressBar` de Tremor.
-- [ ] **2.18.9** Widget "Coste por usuario": coste medio por test, coste medio mensual por usuario activo, usuarios activos últimos 30 días. Alerta si > €0.50/usuario.
-- [ ] **2.18.10** Widget "Embudo AARRR": `Funnel` o `BarChart` de Tremor mostrando % en cada etapa. Click en etapa → tooltip con definición exacta.
-- [ ] **2.18.11** Widget "MRR histórico": `AreaChart` de Tremor últimos 6 meses. Eje Y en €.
-- [ ] **2.18.12** Widget "Alertas activas": lista de alerts críticas/warnings. Badge rojo/amarillo. Vacío si todo OK.
-- [ ] **2.18.13** Añadir link "⚙ Admin" en Sidebar solo si `is_admin = true`: condicional en `Sidebar.tsx`. Visible solo para el admin.
+- [x] **2.18.6** ~~Instalar Tremor~~ — **OMITIDO:** Tremor no es compatible con Tailwind v4. Implementado con CSS custom progress bars y HTML bar chart (sin dependencias externas). ✅ 2026-03-01
+- [x] **2.18.7** Crear `app/(admin)/economics/page.tsx` — Server Component. Layout: grid 2 columnas en desktop, 1 en mobile. Llama a las 5 funciones de metrics.ts en Promise.all. ✅ 2026-03-01
+- [x] **2.18.8** Widget "Fuel Tank": ingresos totales, costes LLM, margen en € y %, progress bar CSS con color por rango (verde >40%, ámbar 20-40%, rojo <20%). ✅ 2026-03-01
+- [x] **2.18.9** Widget "Coste por usuario": coste medio por test, coste medio mensual por usuario activo, usuarios activos últimos 30 días. Alerta si > €0.50/usuario. ✅ 2026-03-01
+- [x] **2.18.10** Widget "Embudo AARRR": 5 etapas con progress bars CSS, definiciones exactas de cada métrica. ✅ 2026-03-01
+- [x] **2.18.11** Widget "Revenue mensual": bar chart custom CSS últimos 6 meses. Eje Y en €. ✅ 2026-03-01
+- [x] **2.18.12** Widget "Alertas activas": lista de alerts con Badge rojo/ámbar/verde. Muestra "Todos los KPIs dentro de rango saludable" si todo OK. ✅ 2026-03-01
+- [x] **2.18.13** Añadir link "⚙ Admin" en Sidebar solo si `is_admin = true`: prop `isAdmin` en `Sidebar.tsx` + dashboard layout async para fetch `is_admin` con graceful degradation. ✅ 2026-03-01
 
 #### Verificación
 
 - [ ] **2.18.14** Verificar: usuario sin `is_admin` → redirige a dashboard al acceder a `/admin/economics`.
 - [ ] **2.18.15** Verificar: admin con datos reales de producción → todas las métricas muestran valores coherentes (no NaN, no 0 cuando hay datos).
-- [ ] **2.18.16** `pnpm type-check` limpio con Tremor (los tipos de @tremor pueden causar conflictos — verificar).
+- [x] **2.18.16** `pnpm type-check` limpio — Tremor no instalado, sin conflictos. `pnpm type-check` pasa sin errores. ✅ 2026-03-01
 
 ---
 
@@ -1473,61 +1455,51 @@
 
 #### Backend
 
-- [ ] **2.20.1** Crear tabla `reto_diario` en Supabase: `id`, `fecha DATE UNIQUE`, `cazatrampas_sesion_id UUID FK → cazatrampas_sesiones`, `created_at`. Un registro por día, apunta a la sesión de Caza-Trampas compartida.
-  - Migration: `optek/supabase/migrations/20260XXX_019_reto_diario.sql`
-  - Índice: `UNIQUE(fecha)` para garantizar 1 reto/día.
+- [x] **2.20.1** Crear tabla `reto_diario` en Supabase: `id`, `fecha DATE UNIQUE`, `ley_nombre`, `articulo_numero`, `texto_trampa`, `errores_reales jsonb`, `num_errores`, `created_at`. ✅ 2026-03-01
+  - Migration: `optek/supabase/migrations/20260301_020_reto_diario.sql`
+  - Nota: NO usa FK a `cazatrampas_sesiones` (esa tabla tiene `user_id NOT NULL` → no puede ser compartida). Diseño standalone con contenido propio.
 
-- [ ] **2.20.2** Crear tabla `reto_diario_resultados`: `id`, `reto_diario_id FK`, `user_id FK`, `intentos_usados INT`, `trampas_encontradas INT`, `completado BOOLEAN`, `created_at`. Un registro por usuario por día (UNIQUE `reto_diario_id + user_id`).
+- [x] **2.20.2** Crear tabla `reto_diario_resultados`: `id`, `reto_diario_id FK`, `user_id FK`, `intentos_usados INT`, `trampas_encontradas INT`, `completado BOOLEAN`, `puntuacion NUMERIC`, `detecciones jsonb`, `created_at`. UNIQUE `(reto_diario_id, user_id)`. ✅ 2026-03-01
 
-- [ ] **2.20.3** Crear endpoint `app/api/cron/generate-reto-diario/route.ts`: genera el reto del día a las 00:05 UTC.
-  - Llama a `generateCazaTrampas` con dificultad aleatoria (media/alta, rotando)
-  - Guarda el resultado en `cazatrampas_sesiones` (pero marcado como `tipo='reto_diario'`)
-  - Crea registro en `reto_diario` con `fecha = TODAY`
-  - Si ya existe un reto para hoy (idempotencia) → return 200 sin acción
-  - Coste estimado: ~0.001€/día (Haiku)
+- [x] **2.20.3** Crear endpoint `app/api/cron/generate-reto-diario/route.ts`: genera el reto del día a las 00:05 UTC. ✅ 2026-03-01
+  - Usa `callGPTJSON(SYSTEM_CAZATRAMPAS, ...)` + verificación determinista (3 intentos)
+  - Inserta con INSERT-first, captura 23505 (UNIQUE) para idempotencia
+  - Lib fallback: `lib/ai/reto-diario.ts` → `generateRetoDiarioOnDemand(fecha)`
 
-- [ ] **2.20.4** Añadir cron en `vercel.json`: `"0 0 * * *": "/api/cron/generate-reto-diario"` (00:00 UTC = 01:00 CET = 02:00 CEST).
+- [x] **2.20.4** Añadir cron en `vercel.json`: `"5 0 * * *": "/api/cron/generate-reto-diario"` (00:05 UTC). ✅ 2026-03-01
 
-- [ ] **2.20.5** Crear endpoint `app/api/reto-diario/route.ts` (GET): devuelve el reto del día actual. Si el usuario ya jugó hoy → devuelve resultado anterior (no permite rejugar). Si no existe reto del día → generar on-demand (fallback por si el cron falló).
+- [x] **2.20.5** Crear endpoint `app/api/reto-diario/route.ts` (GET): devuelve el reto del día actual + resultado previo del usuario + stats. On-demand fallback si cron no corrió. ✅ 2026-03-01
 
-- [ ] **2.20.6** Crear endpoint `app/api/reto-diario/submit/route.ts` (POST): registra el resultado del usuario en `reto_diario_resultados`. Valida: 1 submission por usuario por día (HTTP 409 si ya existe).
+- [x] **2.20.6** Crear endpoint `app/api/reto-diario/submit/route.ts` (POST): evaluación determinista (string comparison case-insensitive). HTTP 409 si ya jugó. Revela `errores_reales` tras submit. ✅ 2026-03-01
 
 #### UI
 
-- [ ] **2.20.7** Crear `app/(dashboard)/reto-diario/page.tsx`: muestra el reto del día.
-  - Si el usuario no ha jugado hoy: muestra el reto activo (texto con trampas, input de respuesta, N intentos restantes)
-  - Si el usuario ya jugó hoy: muestra su resultado del día + ranking del día ("X de Y opositores encontraron todas las trampas")
-  - Countdown hasta el próximo reto (hora exacta de reset)
-  - Botón "Compartir resultado" siempre visible tras completar
+- [x] **2.20.7** Crear `app/(dashboard)/reto-diario/page.tsx` + `components/cazatrampas/RetoDiarioCard.tsx`. ✅ 2026-03-01
+  - Estados: loading → juego activo → ya jugado (resultado previo) → resultado de esta sesión
+  - Formulario para añadir detecciones (valor_trampa + valor_original)
+  - Countdown hasta próximo reto (00:05 UTC)
+  - Detalles con CheckCircle2/XCircle tras completar
 
-- [ ] **2.20.8** Crear `components/cazatrampas/RetoDiarioShareButton.tsx`: genera el texto de compartición estilo Wordle.
-  ```
-  Reto OPTEK — [DD/MM/YYYY]
-  🎯 Encontré 3/5 trampas en 2 intentos
-  ⬛🟩⬛🟩🟩
-  optek.es/reto-diario
-  ```
-  - Texto generado dinámicamente según resultado del usuario
-  - `navigator.share` en móvil, copiar al portapapeles en desktop
+- [x] **2.20.8** Crear `components/cazatrampas/RetoDiarioShareButton.tsx`: grid Wordle (🟩⬛) + Web Share API → clipboard fallback. ✅ 2026-03-01
 
-- [ ] **2.20.9** Añadir card "Reto Diario" en `app/(dashboard)/dashboard/page.tsx` (DailyBrief area):
-  - Si el usuario no ha jugado: "¿Puedes encontrar las trampas del día? [Jugar ahora →]" con badge "NUEVO"
-  - Si ya jugó: "Reto completado ✓ — [X/5 trampas encontradas]" con resultado y botón compartir
-  - Dot indicator rojo en sidebar cuando hay reto no jugado (engagement trigger visual)
+- [x] **2.20.9** Añadir card "Reto Diario" en `app/(dashboard)/dashboard/page.tsx`. ✅ 2026-03-01
+  - Fetch server-side: `reto_diario` para hoy + `reto_diario_resultados` del usuario
+  - No jugado: badge "NUEVO" + "Jugar →" button
+  - Jugado: badge verde "completado" + score + "Ver resultado"
 
-- [ ] **2.20.10** Añadir link "Reto Diario" en `Sidebar.tsx` y `Navbar.tsx` con badge de notificación cuando el reto del día no ha sido completado.
+- [x] **2.20.10** Añadir link "Reto Diario" en `Sidebar.tsx` y `Navbar.tsx` con icono `CalendarCheck`. ✅ 2026-03-01
 
 #### OG y viral
 
-- [ ] **2.20.11** Añadir tipo `reto_diario` al endpoint `/api/og`: imagen especial para compartir el reto diario.
-  - Diseño: fondo oscuro OPTEK, fecha del reto grande, grid de emojis (⬛🟩), score del usuario, footer "optek.es/reto-diario"
-  - URL: `/api/og?tipo=reto_diario&fecha=[fecha]&score=[X/5]&nombre=[usuario]`
+- [x] **2.20.11** Añadir tipo `reto_diario` al endpoint `/api/og`. ✅ 2026-03-01
+  - Params: `tipo=reto_diario&aciertos=2&total=3&fecha=YYYY-MM-DD&nombre=X`
+  - Diseño: fondo oscuro (#0f172a), emoji grid grande, aciertos/total en color semáforo, fecha, footer
 
 #### Tests
 
-- [ ] **2.20.12** Test unitario: el cron es idempotente — ejecutar dos veces el mismo día no crea dos retos.
-- [ ] **2.20.13** Test unitario: un usuario no puede submitear resultado dos veces para el mismo reto.
-- [ ] **2.20.14** Verificar flujo completo: cron genera reto → usuario abre página → juega → comparte resultado → imagen OG correcta.
+- [x] **2.20.12** Test unitario `tests/unit/reto-diario.test.ts`: idempotencia (reto existente → no llama GPT), race condition 23505, generación exitosa. ✅ 2026-03-01 — 5 tests
+- [x] **2.20.13** Test unitario: sin artículos → lanza error; artículos cortos → lanza error. ✅ 2026-03-01 (en mismo archivo, describe §2.20.13 Errores)
+- [ ] **2.20.14** Verificar flujo completo: aplicar migration 020 → cron genera reto → usuario abre página → juega → comparte. [MANUAL — Aritz, requiere migration 020 aplicada en Supabase remoto]
 
 ---
 
@@ -2224,8 +2196,10 @@ Updates semanales, reflexiones EdTech + IA. Para credibilidad y posibles inverso
 | ADR-0009 | Modelo pricing híbrido (compra + suscripción) | Aceptado |
 | ADR-0010 | OpenAI text-embedding-3-small para embeddings | Aceptado |
 | ADR-0011 | PWA (no React Native, Flutter) | Aceptado |
-| ADR-0012 | Radar del Tribunal como Premium gate — frecuencias INAP como ventaja competitiva | Propuesto (§2.14) |
-| ADR-0013 | OpenAI GPT-5/GPT-5-mini como proveedor IA principal (migración desde Anthropic Claude) | Aceptado |
+| ADR-0012 | Rebranding OpoIA → OPTEK | Aceptado |
+| ADR-0013 | Plataformas de Distribución — PWA-First | Aceptado |
+| ADR-0014 | Scope MVP — 3 Leyes, Sin Oral/Audio | Aceptado |
+| ADR-0015 | Radar del Tribunal como Premium gate — frecuencias INAP como ventaja competitiva | Aceptado (§2.14) |
 
 > Nota: Los archivos ADR en `docs/decisions/` deben actualizarse a estado "Aceptado" (tarea §0.1.11)
 

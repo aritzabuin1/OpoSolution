@@ -250,7 +250,8 @@ describe('§1.7.4 — generateTest: flujo completo', () => {
       userId: USER_ID,
     })
 
-    expect(mockBuildContext).toHaveBeenCalledWith('tema-especifico-123')
+    // §2.11: buildContext ahora recibe (temaId, query?, userId?) — weakness-weighted RAG
+    expect(mockBuildContext).toHaveBeenCalledWith('tema-especifico-123', undefined, USER_ID)
   })
 
   it('guarda el test en BD (INSERT a tests_generados)', async () => {

@@ -38,7 +38,7 @@ export async function POST() {
     )
   }
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://optek.es'
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
   try {
     const session = await stripe.billingPortal.sessions.create({

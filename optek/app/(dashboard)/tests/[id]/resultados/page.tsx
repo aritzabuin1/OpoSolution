@@ -1,5 +1,5 @@
 /**
- * app/(dashboard)/tests/[id]/resultados/page.tsx — §1.11, §2.6A.9
+ * app/(dashboard)/tests/[id]/resultados/page.tsx — §1.11, §2.6A.9, §2.16.6
  *
  * Vista de resultados post-test.
  * Server Component: carga el test (completado=true) desde Supabase.
@@ -7,11 +7,15 @@
  * §2.6A.9: Para simulacros con examen_oficial_id, muestra puntuación con
  * penalización oficial: correcta = +1, incorrecta = -1/3, en blanco = 0.
  * Coexiste con la puntuación porcentual estándar.
+ *
+ * §2.16.6: generateMetadata genera OG image dinámica para compartir en
+ * WhatsApp, Telegram, Twitter/X. Usa /api/og con score, tema y tipo.
  */
 
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
@@ -20,6 +24,44 @@ import { ExplicarErroresPanel } from '@/components/simulacros/ExplicarErroresPan
 import { CheckCircle2, XCircle, Clock, BarChart3, TrendingUp, Trophy } from 'lucide-react'
 import type { Pregunta } from '@/types/ai'
 import { ShareButton } from '@/components/shared/ShareButton'
+
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
+
+// ─── §2.16.6 — generateMetadata con OG dinámica ───────────────────────────────
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params
+  const supabase = await createServiceClient()
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data } = await (supabase as any)
+    .from('tests_generados')
+    .select('puntuacion, tipo, examen_oficial_id, temas(titulo)')
+    .eq('id', id)
+    .eq('completado', true)
+    .single()
+
+  if (!data) return {}
+
+  const score = data.puntuacion ?? 0
+  const esSimulacro = data.tipo === 'simulacro' && !!data.examen_oficial_id
+  const tipo = esSimulacro ? 'simulacro' : 'test'
+  const tema = esSimulacro
+    ? 'Simulacro Oficial INAP'
+    : ((data.temas as { titulo: string } | null)?.titulo ?? '')
+
+  const ogUrl = `${APP_URL}/api/og?score=${score}&tema=${encodeURIComponent(tema)}&tipo=${tipo}`
+
+  return {
+    openGraph: {
+      images: [{ url: ogUrl, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      images: [ogUrl],
+    },
+  }
+}
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 

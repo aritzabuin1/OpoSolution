@@ -34,11 +34,13 @@ export interface ArticuloContext {
 export interface RetrievalContext {
   articulos: ArticuloContext[]
   tokensEstimados: number
-  strategy: 'tema_ids' | 'semantic' | 'hybrid'
+  strategy: 'tema_ids' | 'semantic' | 'hybrid' | 'weakness-weighted'
   /** true cuando el tema pertenece al Bloque II (temas 17-28: ofimática, informática, admin electrónica) */
   esBloqueII: boolean
   /** Número del tema (17-28 para Bloque II, 1-16 para Bloque I) */
   temaNumero: number | null
+  /** Número de artículos débiles del usuario incluidos al inicio del contexto (§2.11) */
+  weakArticulosCount?: number
 }
 
 // ─── Config ───────────────────────────────────────────────────────────────────
@@ -406,7 +408,8 @@ function getBloqueForTema(temaNumero: number): 'ofimatica' | 'informatica' | 'ad
 
 export async function buildContext(
   temaId: string,
-  query?: string
+  query?: string,
+  userId?: string
 ): Promise<RetrievalContext> {
   const start = Date.now()
   const supabase = getSupabaseClient()
@@ -423,9 +426,11 @@ export async function buildContext(
 
   let articulos: ArticuloContext[] = []
   let strategy: RetrievalContext['strategy'] = 'tema_ids'
+  let weakArticulosCount = 0
 
   if (esBloqueII) {
     // ── Bloque II: buscar en conocimiento_tecnico ─────────────────────────────
+    // El Weakness RAG no aplica a Bloque II (no hay legislacion_id en preguntas técnicas)
     const bloque = getBloqueForTema(temaNumero!)
     const secciones = await retrieveByBloque(temaId, bloque, 15)
 
@@ -449,29 +454,75 @@ export async function buildContext(
       '[retrieval] buildContext Bloque II'
     )
   } else {
-    // ── Bloque I: buscar en legislacion (comportamiento original) ─────────────
+    // ── Bloque I: buscar en legislacion ──────────────────────────────────────
+
+    // §2.11 Weakness-Weighted RAG: artículos donde el usuario ha fallado más
+    let weakArticulos: ArticuloContext[] = []
+    if (userId) {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const { data: weakData } = await (supabase as any).rpc('get_user_weak_articles', {
+          p_user_id: userId,
+          p_tema_id: temaId,
+          p_limit: 5,
+        })
+
+        if (weakData && Array.isArray(weakData) && weakData.length > 0) {
+          // Tomar los 3 más fallados y recuperar su contenido completo
+          const topWeakIds = (weakData as Array<{ legislacion_id: string; fallos: number }>)
+            .slice(0, 3)
+            .map((w) => w.legislacion_id)
+
+          const { data: byId } = await supabase
+            .from('legislacion')
+            .select(
+              'id, ley_nombre, ley_codigo, articulo_numero, apartado, titulo_capitulo, texto_integro'
+            )
+            .in('id', topWeakIds)
+            .eq('activo', true)
+            .limit(topWeakIds.length)
+
+          if (byId && byId.length > 0) {
+            weakArticulos = byId as ArticuloContext[]
+            weakArticulosCount = weakArticulos.length
+          }
+        }
+      } catch (err) {
+        // Degradación elegante: si el RPC falla, seguir con retrieval normal
+        logger.warn(
+          { userId, temaId, err },
+          '[retrieval] get_user_weak_articles falló — continuando sin weakness boost'
+        )
+      }
+    }
+
+    // Retrieval normal
     const [byTema, bySemantic] = await Promise.all([
       retrieveByTema(temaId, 15),
       query ? retrieveBySemantic(query, 8) : Promise.resolve([]),
     ])
 
-    const seen = new Set<string>()
-    const combined: ArticuloContext[] = []
+    // Dedup: artículos débiles primero; luego resultados normales excluyendo duplicados
+    const weakIds = new Set(weakArticulos.map((a) => a.id))
+    const normalSeen = new Set<string>()
+    const normalDeduped: ArticuloContext[] = []
     for (const art of [...byTema, ...bySemantic]) {
-      if (!seen.has(art.id)) {
-        seen.add(art.id)
-        combined.push(art)
+      if (!weakIds.has(art.id) && !normalSeen.has(art.id)) {
+        normalSeen.add(art.id)
+        normalDeduped.push(art)
       }
     }
 
-    strategy =
-      byTema.length > 0 && bySemantic.length > 0
+    const hasWeak = weakArticulos.length > 0
+    strategy = hasWeak
+      ? 'weakness-weighted'
+      : byTema.length > 0 && bySemantic.length > 0
         ? 'hybrid'
         : bySemantic.length > 0
           ? 'semantic'
           : 'tema_ids'
 
-    articulos = combined
+    articulos = [...weakArticulos, ...normalDeduped]
   }
 
   // Truncar para no exceder el límite de contexto
@@ -492,8 +543,10 @@ export async function buildContext(
       temaId,
       temaNumero,
       esBloqueII,
+      userId: userId ? userId.slice(0, 8) : undefined,
       query: query?.slice(0, 50),
       articulos: articulosTruncados.length,
+      weakArticulosCount,
       tokensEstimados,
       strategy,
       durationMs: Date.now() - start,
@@ -501,7 +554,14 @@ export async function buildContext(
     '[retrieval] buildContext completado'
   )
 
-  return { articulos: articulosTruncados, tokensEstimados, strategy, esBloqueII, temaNumero }
+  return {
+    articulos: articulosTruncados,
+    tokensEstimados,
+    strategy,
+    esBloqueII,
+    temaNumero,
+    weakArticulosCount,
+  }
 }
 
 // ─── Helpers de formateo ──────────────────────────────────────────────────────

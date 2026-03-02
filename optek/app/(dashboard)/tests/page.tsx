@@ -20,7 +20,8 @@ import { createClient } from '@/lib/supabase/server'
 import { TemaCard } from '@/components/tests/TemaCard'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
-import { ClipboardCheck, Lock } from 'lucide-react'
+import { ClipboardCheck, Lock, TrendingUp } from 'lucide-react'
+import { RadarCard } from '@/components/tests/RadarCard'
 
 // ─── Mapping estático: ley_codigo → números de tema que cubre ─────────────────
 // Se actualiza cuando se indexan nuevas leyes en data/legislacion/
@@ -72,7 +73,13 @@ interface TestAnterior {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default async function TestsPage() {
+export default async function TestsPage({
+  searchParams,
+}: {
+  searchParams?: Promise<Record<string, string>>
+}) {
+  const params = await (searchParams ?? Promise.resolve({} as Record<string, string>))
+  const modoRadar = (params as Record<string, string>).modo === 'radar'
   const supabase = await createClient()
 
   // ── Auth ──────────────────────────────────────────────────────────────────
@@ -139,6 +146,11 @@ export default async function TestsPage() {
           Genera tests personalizados con citas legales verificadas
         </p>
       </div>
+
+      {/* Radar del Tribunal card — §2.14.4 (visible cuando viene de /radar) */}
+      {modoRadar && (
+        <RadarCard hasPaidAccess={hasPaidAccess} />
+      )}
 
       {/* Banner freemium */}
       {!hasPaidAccess && (

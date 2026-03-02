@@ -1,29 +1,33 @@
 'use client'
 
 /**
- * components/shared/ShareButton.tsx — §Idea B (viral loop)
+ * components/shared/ShareButton.tsx — §Idea B (viral loop), §2.16.8
  *
- * Botón de compartir resultado de test.
+ * Botón de compartir resultado de test o sesión de Caza-Trampas.
  * Usa Web Share API si el navegador la soporta (móvil/Android/iOS).
  * Fallback: copia el enlace al portapapeles y muestra confirmación.
+ *
+ * testId: para tests/simulacros (construye URL /tests/[id]/resultados)
+ * resultUrl: override de URL (para cazatrampas y otros sin página de resultado)
  */
 
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Share2, Check, Copy } from 'lucide-react'
+import { Share2, Check } from 'lucide-react'
 
 interface ShareButtonProps {
   score: number
   tema: string
   nombre?: string
   tipo?: 'test' | 'simulacro' | 'cazatrampas'
-  testId: string
+  testId?: string
+  resultUrl?: string
 }
 
-export function ShareButton({ score, tema, nombre, tipo = 'test', testId }: ShareButtonProps) {
+export function ShareButton({ score, tema, nombre, tipo = 'test', testId, resultUrl: resultUrlProp }: ShareButtonProps) {
   const [copied, setCopied] = useState(false)
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://optek.es'
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
   // URL de la imagen OG
   const ogParams = new URLSearchParams({
@@ -34,8 +38,10 @@ export function ShareButton({ score, tema, nombre, tipo = 'test', testId }: Shar
   })
   const ogImageUrl = `${appUrl}/api/og?${ogParams.toString()}`
 
-  // URL del resultado (lleva de vuelta a la página de resultados)
-  const resultUrl = `${appUrl}/tests/${testId}/resultados`
+  // URL del resultado — override > testId path > app root
+  const resultUrl =
+    resultUrlProp ??
+    (testId ? `${appUrl}/tests/${testId}/resultados` : appUrl)
 
   const tipoLabel =
     tipo === 'simulacro' ? 'Simulacro Oficial INAP' :
@@ -43,7 +49,7 @@ export function ShareButton({ score, tema, nombre, tipo = 'test', testId }: Shar
     'test'
 
   const shareText =
-    `He sacado ${score}% en ${tema ? `"${tema}"` : `un ${tipoLabel}`} en OPTEK 🎯\n` +
+    `He sacado ${score}% en ${tema ? `"${tema}"` : `un ${tipoLabel}`} en OpoRuta 🎯\n` +
     `Prepara tus oposiciones con IA verificada: ${resultUrl}`
 
   async function handleShare() {
@@ -51,7 +57,7 @@ export function ShareButton({ score, tema, nombre, tipo = 'test', testId }: Shar
     if (typeof navigator !== 'undefined' && navigator.share) {
       try {
         await navigator.share({
-          title: `${score}% en OPTEK — ${tema || tipoLabel}`,
+          title: `${score}% en OpoRuta — ${tema || tipoLabel}`,
           text: shareText,
           url: resultUrl,
         })

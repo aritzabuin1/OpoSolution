@@ -15,7 +15,7 @@ export const logger = pino({
   level: isDev ? 'debug' : 'info',
   browser: { asObject: true },
   base: {
-    service: 'OPTEK-web',
+    service: 'oporuta-web',
     environment: process.env.NODE_ENV ?? 'development',
   },
   transport: isDev

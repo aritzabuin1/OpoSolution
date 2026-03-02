@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { BookOpen, Brain, ClipboardList, FileText, LayoutDashboard, Layers, Menu, Target, Trophy, User, X } from 'lucide-react'
+import { BookOpen, Brain, CalendarCheck, ClipboardList, FileText, LayoutDashboard, Layers, Menu, Target, TrendingUp, Trophy, User, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { NotificationBell } from '@/components/shared/NotificationBell'
 
@@ -15,6 +15,8 @@ const navItems = [
   { href: '/simulacros', label: 'Simulacros', icon: BookOpen },
   { href: '/flashcards', label: 'Flashcards', icon: Layers },
   { href: '/cazatrampas', label: 'Caza-Trampas', icon: Target },
+  { href: '/reto-diario', label: 'Reto Diario', icon: CalendarCheck },
+  { href: '/radar', label: 'Radar Tribunal', icon: TrendingUp },
   { href: '/logros', label: 'Logros', icon: Trophy },
   { href: '/cuenta', label: 'Mi cuenta', icon: User },
 ]
@@ -26,7 +28,7 @@ export function Navbar() {
   return (
     <header className="border-b bg-card px-4 py-3 md:hidden">
       <div className="flex items-center justify-between">
-        <span className="text-lg font-bold text-primary">OPTEK</span>
+        <span className="text-lg font-bold text-primary">OpoRuta</span>
         <div className="flex items-center gap-1">
           <NotificationBell />
           <button

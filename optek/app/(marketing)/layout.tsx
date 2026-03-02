@@ -15,7 +15,7 @@ export default async function MarketingLayout({ children }: { children: React.Re
       <header className="sticky top-0 z-50 border-b bg-white/90 backdrop-blur-sm">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
           <Link href="/" className="text-xl font-bold text-primary tracking-tight">
-            OPTEK
+            OpoRuta
           </Link>
           <nav className="flex items-center gap-2">
             {user ? (
@@ -47,9 +47,9 @@ export default async function MarketingLayout({ children }: { children: React.Re
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid gap-8 sm:grid-cols-3">
             <div>
-              <span className="text-lg font-bold text-primary">OPTEK</span>
+              <span className="text-lg font-bold text-primary">OpoRuta</span>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                Tu entrenador personal de oposiciones con IA. Cada cita legal verificada al artículo exacto.
+                El camino más corto hacia el aprobado. Cada cita legal verificada al artículo exacto.
               </p>
             </div>
             <div>
@@ -94,7 +94,7 @@ export default async function MarketingLayout({ children }: { children: React.Re
             </div>
           </div>
           <div className="mt-8 border-t pt-8 text-center text-xs text-muted-foreground">
-            © {new Date().getFullYear()} OPTEK. Todos los derechos reservados. · Hecho en España 🇪🇸
+            © {new Date().getFullYear()} OpoRuta. Todos los derechos reservados. · Hecho en España 🇪🇸
           </div>
         </div>
       </footer>

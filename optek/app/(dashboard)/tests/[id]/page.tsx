@@ -13,6 +13,9 @@ import { TestRunner } from '@/components/tests/TestRunner'
 import { Badge } from '@/components/ui/badge'
 import { Trophy } from 'lucide-react'
 import type { Pregunta } from '@/types/ai'
+import { JsonLd } from '@/components/shared/JsonLd'
+
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
 interface TestDetailPageProps {
   params: Promise<{ id: string }>
@@ -53,7 +56,20 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
   // §2.6.2 — Tiempo límite: 90 min para simulacros, sin límite para tests de práctica
   const tiempoLimite = esSimulacro ? 90 * 60 : undefined
 
+  // §2.17.6 — BreadcrumbList schema
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Dashboard', item: `${APP_URL}/dashboard` },
+      { '@type': 'ListItem', position: 2, name: 'Tests', item: `${APP_URL}/tests` },
+      { '@type': 'ListItem', position: 3, name: temaTitulo, item: `${APP_URL}/tests/${id}` },
+    ],
+  }
+
   return (
+    <>
+      <JsonLd data={breadcrumbSchema} />
     <div className="mx-auto max-w-2xl space-y-6 pb-12">
       {/* Cabecera contextual para simulacros oficiales */}
       {esSimulacro && (
@@ -73,5 +89,6 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
         tiempoLimiteSegundos={tiempoLimite}
       />
     </div>
+    </>
   )
 }

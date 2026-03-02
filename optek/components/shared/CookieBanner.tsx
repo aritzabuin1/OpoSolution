@@ -50,7 +50,7 @@ export function CookieBanner() {
     >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium mb-1">🍪 Cookies en OPTEK</p>
+          <p className="text-sm font-medium mb-1">🍪 Cookies en OpoRuta</p>
           <p className="text-xs text-muted-foreground leading-relaxed">
             Usamos cookies técnicas necesarias para el funcionamiento del servicio (sesión).
             No usamos cookies de analítica ni publicidad.{' '}

@@ -15,7 +15,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         </Link>
         <div className="ml-auto">
           <Link href="/" className="text-lg font-bold text-primary tracking-tight">
-            OPTEK
+            OpoRuta
           </Link>
         </div>
       </header>

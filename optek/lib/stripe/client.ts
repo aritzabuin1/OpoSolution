@@ -6,12 +6,13 @@ import Stripe from 'stripe'
  * NUNCA importar en componentes cliente — contiene STRIPE_SECRET_KEY.
  * Usar solo en API routes, Server Actions y server components.
  *
- * Modelo de pricing OPTEK (ADR-0010 — Fuel Tank):
- *   STRIPE_PRICE_TEMA     → Tema Individual   4.99€  one-time  → +5 correcciones
+ * Modelo de pricing OpoRuta (ADR-0010 — Fuel Tank):
  *   STRIPE_PRICE_PACK     → Pack Oposición   34.99€  one-time  → +20 correcciones
- *   STRIPE_PRICE_RECARGA  → Recarga          8.99€   one-time  → +15 correcciones
+ *   STRIPE_PRICE_RECARGA  → Recarga           8.99€  one-time  → +10 correcciones
+ *   STRIPE_PRICE_FOUNDER  → Pack Fundador    24.99€  one-time  → +30 correcciones + is_founder badge
  *
  * Tests: ilimitados para usuarios con compra. Límite silencioso 20/día vía Upstash.
+ * Caza-Trampas: 3/día free, ilimitado paid (§2.12.17).
  * Sin suscripciones. Sin caducidad. Pago único.
  */
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -21,16 +22,16 @@ export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 // ─── Constantes de productos ──────────────────────────────────────────────────
 
 export const STRIPE_PRICES = {
-  tema:    process.env.STRIPE_PRICE_TEMA    ?? '', // 4.99€  one-time
-  pack:    process.env.STRIPE_PRICE_PACK    ?? '', // 34.99€ one-time
-  recarga: process.env.STRIPE_PRICE_RECARGA ?? '', // 8.99€  one-time
+  pack:     process.env.STRIPE_PRICE_PACK     ?? '', // 34.99€ one-time → +20 correcciones
+  recarga:  process.env.STRIPE_PRICE_RECARGA  ?? '', // 8.99€  one-time → +10 correcciones
+  fundador: process.env.STRIPE_PRICE_FOUNDER  ?? '', // 24.99€ one-time → +30 correcciones + is_founder badge (§1.21.3)
 } as const
 
 export type StripePriceTier = keyof typeof STRIPE_PRICES
 
 // Correcciones que otorga cada producto al comprarse
 export const CORRECTIONS_GRANTED: Record<StripePriceTier, number> = {
-  tema:    5,
-  pack:    20,
-  recarga: 15,
+  pack:     20,
+  recarga:  10,
+  fundador: 30,
 }

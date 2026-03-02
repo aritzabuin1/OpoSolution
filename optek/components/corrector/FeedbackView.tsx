@@ -176,7 +176,7 @@ export function FeedbackView({ resultado }: FeedbackViewProps) {
             ))}
           </div>
           <p className="text-xs text-muted-foreground">
-            Las citas verificadas se han encontrado en la base de datos legislativa de OPTEK.
+            Las citas verificadas se han encontrado en la base de datos legislativa de OpoRuta.
           </p>
         </div>
       )}

@@ -69,7 +69,7 @@ function LoginForm() {
     <Card className="w-full max-w-md">
       <CardHeader className="text-center">
         <CardTitle className="text-2xl">Bienvenido de vuelta</CardTitle>
-        <CardDescription>Accede a tu cuenta OPTEK</CardDescription>
+        <CardDescription>Accede a tu cuenta OpoRuta</CardDescription>
       </CardHeader>
       <CardContent>
         <Tabs defaultValue="password">

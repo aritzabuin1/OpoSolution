@@ -97,7 +97,7 @@ async function handleStripeEvent(
       if (session.payment_status !== 'paid') break
 
       const userId = session.metadata?.user_id ?? ''
-      const tipo = (session.metadata?.tipo ?? 'tema') as keyof typeof CORRECTIONS_GRANTED
+      const tipo = (session.metadata?.tier ?? 'pack') as keyof typeof CORRECTIONS_GRANTED
 
       // 1. Registrar compra
       await supabase.from('compras').insert({
@@ -117,6 +117,17 @@ async function handleStripeEvent(
           p_amount: correctionsToGrant,
         })
         log.info({ sessionId: session.id, tipo, correctionsToGrant }, 'Correcciones otorgadas')
+      }
+
+      // 3. Founder Pricing (§1.21.3): activar badge permanente is_founder
+      // Cast necesario hasta que migration 019 se aplique en remoto y se regeneren tipos
+      if (tipo === 'fundador') {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        await (supabase as any)
+          .from('profiles')
+          .update({ is_founder: true })
+          .eq('id', userId)
+        log.info({ sessionId: session.id, userId }, 'Founder badge activado')
       }
 
       log.info({ sessionId: session.id, tipo }, 'Compra registrada')

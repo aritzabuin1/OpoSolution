@@ -1,9 +1,9 @@
 /**
- * app/(dashboard)/logros/page.tsx — §2.8.4
+ * app/(dashboard)/logros/page.tsx — §2.8.4, §2.16.9B
  *
  * Página completa de logros del usuario.
  * Muestra todos los badges del catálogo:
- *   - Desbloqueados: en color con fecha
+ *   - Desbloqueados: en color con fecha + botón compartir (§2.16.9B)
  *   - Pendientes: en gris con descripción
  *
  * Server Component.
@@ -14,6 +14,7 @@ import { createClient } from '@/lib/supabase/server'
 import { LOGROS_CATALOG } from '@/lib/utils/streaks'
 import { Trophy } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
+import { LogroShareButton } from '@/components/logros/LogroShareButton'
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
@@ -25,6 +26,8 @@ export default async function LogrosPage() {
   } = await supabase.auth.getUser()
 
   if (!user) redirect('/login')
+
+  const userName = user.user_metadata?.full_name as string | undefined
 
   // Cargar logros desbloqueados del usuario
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -85,7 +88,7 @@ export default async function LogrosPage() {
                   className="flex items-start gap-3 rounded-xl border border-primary/20 bg-primary/5 p-4"
                 >
                   <span className="text-3xl leading-none shrink-0">{logro.emoji}</span>
-                  <div className="min-w-0">
+                  <div className="min-w-0 flex-1">
                     <p className="font-semibold text-sm leading-snug">{logro.titulo}</p>
                     <p className="text-xs text-muted-foreground mt-0.5 leading-snug">
                       {logro.descripcion}
@@ -95,6 +98,12 @@ export default async function LogrosPage() {
                         ✓ Desbloqueado el {fecha}
                       </p>
                     )}
+                    {/* §2.16.9B — Compartir logro */}
+                    <LogroShareButton
+                      logroTitulo={logro.titulo}
+                      logroEmoji={logro.emoji}
+                      userName={userName}
+                    />
                   </div>
                 </div>
               )

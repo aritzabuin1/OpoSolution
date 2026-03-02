@@ -62,7 +62,7 @@ export function FeedbackButton() {
 
       if (res.ok) {
         toast.success('¡Gracias por tu feedback!', {
-          description: 'Lo tendremos en cuenta para mejorar OPTEK.',
+          description: 'Lo tendremos en cuenta para mejorar OpoRuta.',
         })
         setMensaje('')
         setTipo('sugerencia')

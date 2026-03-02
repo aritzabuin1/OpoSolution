@@ -192,3 +192,97 @@ describe('formatArticulo', () => {
     expect(formatted).toContain('TÍTULO PRELIMINAR')
   })
 })
+
+// ─── §2.11 Weakness-Weighted RAG ─────────────────────────────────────────────
+
+describe('buildContext — §2.11 Weakness-Weighted RAG', () => {
+  // vi.resetAllMocks() (no clearAllMocks) para vaciar la cola de mockOnce
+  // entre tests y evitar que valores residuales sangren entre casos.
+  beforeEach(() => vi.resetAllMocks())
+
+  const articuloDebil: ArticuloContext = {
+    id: 'uuid-lpac-21',
+    ley_nombre: 'LPAC',
+    ley_codigo: 'BOE-A-2015-10565',
+    articulo_numero: '21',
+    apartado: null,
+    titulo_capitulo: 'TÍTULO IV | CAPÍTULO I',
+    texto_integro: 'La Administración está obligada a dictar resolución expresa...',
+  }
+
+  it('cuando userId se pasa y RPC retorna artículos débiles, aparecen primero en el contexto', async () => {
+    // Flujo con weakness boost (query=undefined → no retrieveBySemantic):
+    //   1. temas.select (maybySingle) → tema número 1 (Bloque I)
+    //   2. rpc('get_user_weak_articles') → [{legislacion_id: 'uuid-lpac-21', fallos: 5}]
+    //   3. legislacion.select.in.eq.limit → [articuloDebil]
+    //   4. retrieveByTema: legislacion.select.contains.eq.limit → [articuloCE1]
+    mockSupabaseSelect
+      .mockResolvedValueOnce({ data: { numero: 1 }, error: null })  // 1. temas lookup
+      .mockResolvedValueOnce({ data: [articuloDebil], error: null }) // 3. legislacion.in (débiles)
+      .mockResolvedValueOnce({ data: [articuloCE1], error: null })   // 4. retrieveByTema
+
+    mockRpc.mockResolvedValueOnce({
+      data: [{ legislacion_id: 'uuid-lpac-21', fallos: 5 }],
+      error: null,
+    }) // 2. get_user_weak_articles
+
+    const { buildContext } = await import('@/lib/ai/retrieval')
+    const ctx = await buildContext('tema-uuid-bloque1', undefined, 'user-uuid-123')
+
+    expect(ctx.strategy).toBe('weakness-weighted')
+    expect(ctx.weakArticulosCount).toBe(1)
+    // El artículo débil debe aparecer PRIMERO
+    expect(ctx.articulos[0].id).toBe('uuid-lpac-21')
+    expect(ctx.articulos[0].articulo_numero).toBe('21')
+  })
+
+  it('cuando userId se pasa pero RPC retorna vacío, buildContext funciona igual que sin userId', async () => {
+    // Usuario nuevo: sin preguntas incorrectas → RPC devuelve []
+    mockSupabaseSelect
+      .mockResolvedValueOnce({ data: { numero: 5 }, error: null }) // temas lookup
+      .mockResolvedValueOnce({ data: [articuloCE1], error: null }) // retrieveByTema
+
+    mockRpc
+      .mockResolvedValueOnce({ data: [], error: null })                          // get_user_weak_articles
+      .mockResolvedValueOnce({ data: [articuloLPAC53], error: null })            // match_legislacion
+
+    const { buildContext } = await import('@/lib/ai/retrieval')
+    const ctx = await buildContext('tema-uuid-5', undefined, 'user-nuevo-uuid')
+
+    expect(ctx.strategy).not.toBe('weakness-weighted')
+    expect(ctx.weakArticulosCount).toBe(0)
+    expect(ctx.articulos.length).toBeGreaterThan(0)
+  })
+
+  it('cuando RPC falla, buildContext degrada con gracia y retorna contexto normal', async () => {
+    mockSupabaseSelect
+      .mockResolvedValueOnce({ data: { numero: 3 }, error: null }) // temas lookup
+      .mockResolvedValueOnce({ data: [articuloCE1], error: null }) // retrieveByTema
+
+    mockRpc
+      .mockRejectedValueOnce(new Error('RPC not found')) // get_user_weak_articles → error
+      .mockResolvedValueOnce({ data: [], error: null })  // match_legislacion fallback
+
+    const { buildContext } = await import('@/lib/ai/retrieval')
+    // No debe lanzar excepción
+    const ctx = await buildContext('tema-uuid-3', undefined, 'user-uuid-fallo')
+
+    expect(ctx.articulos.length).toBeGreaterThan(0)
+    expect(ctx.strategy).not.toBe('weakness-weighted')
+  })
+
+  it('cuando NO se pasa userId, no llama a get_user_weak_articles', async () => {
+    mockSupabaseSelect
+      .mockResolvedValueOnce({ data: { numero: 2 }, error: null }) // temas lookup
+      .mockResolvedValueOnce({ data: [articuloCE1], error: null }) // retrieveByTema
+
+    mockRpc.mockResolvedValue({ data: [], error: null }) // solo llamadas semánticas
+
+    const { buildContext } = await import('@/lib/ai/retrieval')
+    await buildContext('tema-uuid-2')
+
+    // get_user_weak_articles NO debe haberse llamado
+    const rpcCalls = (mockRpc.mock.calls as string[][]).map(([name]) => name)
+    expect(rpcCalls).not.toContain('get_user_weak_articles')
+  })
+})

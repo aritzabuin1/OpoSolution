@@ -19,6 +19,7 @@ import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { ShareButton } from '@/components/shared/ShareButton'
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
 
@@ -179,9 +180,18 @@ export function CazaTrampasCard({
             </div>
           ))}
 
-          <Button className="w-full" onClick={onNuevaSesion}>
-            Nuevo ejercicio
-          </Button>
+          {/* §2.16.8 — Compartir resultado Caza-Trampas */}
+          <div className="flex gap-2">
+            <ShareButton
+              score={resultado.puntuacion}
+              tema={`${leyNombre} — Art. ${articuloNumero}`}
+              tipo="cazatrampas"
+              resultUrl={`${process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'}/cazatrampas`}
+            />
+            <Button className="flex-1" onClick={onNuevaSesion}>
+              Nuevo ejercicio
+            </Button>
+          </div>
         </CardContent>
       </Card>
     )

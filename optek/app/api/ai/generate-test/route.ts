@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
-import { generateTest } from '@/lib/ai/generate-test'
+import { generateTest, generateTopFrecuentesTest } from '@/lib/ai/generate-test'
 import { generatePsicotecnicos } from '@/lib/psicotecnicos/index'
 import { logger } from '@/lib/logger'
 import type { Json } from '@/types/database'
@@ -31,7 +31,7 @@ import type { Pregunta } from '@/types/ai'
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
 const GenerateTestInputSchema = z.object({
-  tipo: z.enum(['tema', 'psicotecnico']).optional().default('tema'),
+  tipo: z.enum(['tema', 'psicotecnico', 'radar']).optional().default('tema'),
   temaId: z.string().regex(UUID_REGEX, 'temaId debe ser un UUID válido').optional(),
   numPreguntas: z
     .number()
@@ -42,7 +42,7 @@ const GenerateTestInputSchema = z.object({
     error: 'dificultad debe ser facil, media o dificil',
   }),
 }).refine(
-  (data) => data.tipo === 'psicotecnico' || !!data.temaId,
+  (data) => data.tipo === 'psicotecnico' || data.tipo === 'radar' || !!data.temaId,
   { message: 'temaId es requerido para tests de tipo tema', path: ['temaId'] }
 )
 
@@ -183,7 +183,7 @@ export async function POST(request: NextRequest) {
   // ── 5. Generar test ────────────────────────────────────────────────────────
   log.info({ userId: user.id, tipo, temaId, numPreguntas, dificultad, hasPaidAccess }, 'Iniciando generación de test')
 
-  // ── 5A. Motor determinista de psicotécnicos (coste API = 0€) ──────────────
+  // ── 5A. Motor determinista de psicotécnicos (coste API €0) ────────────────
   if (tipo === 'psicotecnico') {
     try {
       const dificultadNum = dificultad === 'facil' ? 1 : dificultad === 'media' ? 2 : 3
@@ -244,7 +244,52 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  // ── 5B. Motor IA (RAG + Claude/OpenAI) ────────────────────────────────────
+  // ── 5B. Radar del Tribunal (top artículos frecuentes — §2.14.4) ─────────────
+  if (tipo === 'radar') {
+    // Radar es una feature Premium: solo usuarios de pago
+    if (!hasPaidAccess) {
+      return NextResponse.json(
+        { error: 'El Radar del Tribunal es una función Premium.', code: 'PAYWALL_RADAR' },
+        { status: 402 }
+      )
+    }
+    try {
+      const testId = await generateTopFrecuentesTest(user.id)
+
+      // Cargar el test recién creado para devolverlo completo al cliente
+      const { data: testRow } = await serviceSupabase
+        .from('tests_generados')
+        .select('id, preguntas, created_at, prompt_version')
+        .eq('id', testId)
+        .single()
+
+      log.info({ userId: user.id, testId }, 'Test radar generado correctamente')
+
+      return NextResponse.json({
+        id: testId,
+        preguntas: testRow?.preguntas ?? [],
+        temaId: null,
+        promptVersion: testRow?.prompt_version ?? '2.0.0',
+        createdAt: testRow?.created_at ?? new Date().toISOString(),
+      }, { status: 200 })
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Error desconocido'
+      log.error({ err, userId: user.id }, 'Error al generar test radar')
+
+      if (message.includes('frecuencias_articulos está vacía')) {
+        return NextResponse.json(
+          { error: 'El Radar aún no tiene datos. El administrador debe ejecutar `pnpm build:radar`.' },
+          { status: 503 }
+        )
+      }
+      return NextResponse.json(
+        { error: 'Error al generar el test de radar. Por favor inténtalo de nuevo.' },
+        { status: 500 }
+      )
+    }
+  }
+
+  // ── 5C. Motor IA (RAG + Claude/OpenAI) ────────────────────────────────────
   try {
     const test = await generateTest({
       temaId: temaId!,

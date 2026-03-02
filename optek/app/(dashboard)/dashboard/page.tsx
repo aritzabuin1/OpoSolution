@@ -17,9 +17,10 @@
 
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { ClipboardCheck, FileText, Flame, Target, TrendingUp, Zap } from 'lucide-react'
+import { CalendarCheck, CheckCircle2, ClipboardCheck, FileText, Flame, Star, Target, TrendingUp, Zap } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { StatsCard } from '@/components/dashboard/StatsCard'
 import { TopicMap } from '@/components/dashboard/TopicMap'
@@ -28,6 +29,7 @@ import { ActivityFeed } from '@/components/dashboard/ActivityFeed'
 import { LogrosGrid } from '@/components/dashboard/LogrosGrid'
 import { DashboardGreeting } from '@/components/dashboard/DashboardGreeting'
 import { DailyBrief } from '@/components/shared/DailyBrief'
+import RadarMini from '@/components/shared/RadarMini'
 
 // ─── Tipos locales ─────────────────────────────────────────────────────────────
 
@@ -65,6 +67,14 @@ export default async function DashboardPage() {
     .eq('id', user.id)
     .single()
 
+  // is_founder — migration 019 (best-effort: null hasta aplicar)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: founderData } = await (supabase as any)
+    .from('profiles')
+    .select('is_founder')
+    .eq('id', user.id)
+    .single() as { data: { is_founder: boolean } | null }
+
   // Racha — columnas de migration 008 (best-effort: si no se ha aplicado, devuelve null y usamos 0)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: rachaData } = await (supabase as any)
@@ -96,6 +106,29 @@ export default async function DashboardPage() {
     .select('id, numero, titulo')
     .eq('oposicion_id', profile?.oposicion_id ?? '')
     .order('numero')
+
+  // Reto Diario — estado de hoy (migration 020, best-effort)
+  const today = new Date().toISOString().slice(0, 10)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: retoHoy } = await (supabase as any)
+    .from('reto_diario')
+    .select('id, num_errores, ley_nombre, articulo_numero')
+    .eq('fecha', today)
+    .maybeSingle() as {
+      data: { id: string; num_errores: number; ley_nombre: string; articulo_numero: string } | null
+    }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: retoDiarioResult } = retoHoy
+    ? await (supabase as any)
+        .from('reto_diario_resultados')
+        .select('trampas_encontradas, puntuacion')
+        .eq('reto_diario_id', retoHoy.id)
+        .eq('user_id', user.id)
+        .maybeSingle() as {
+          data: { trampas_encontradas: number; puntuacion: number } | null
+        }
+    : { data: null }
 
   // Logros — tabla añadida en migration 008 (cast necesario hasta regenerar tipos)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -208,13 +241,67 @@ export default async function DashboardPage() {
         }
       />
 
+      {/* ── 0b. Reto Diario — §2.20.9 ────────────────────────────────────── */}
+      {retoHoy && (
+        <Card className={retoDiarioResult
+          ? 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950/30'
+          : 'border-primary/30 bg-primary/5'
+        }>
+          <CardContent className="flex items-center justify-between gap-4 py-4">
+            <div className="flex items-center gap-3">
+              <CalendarCheck className={`h-8 w-8 shrink-0 ${retoDiarioResult ? 'text-green-600' : 'text-primary'}`} />
+              <div>
+                {retoDiarioResult ? (
+                  <>
+                    <p className="text-sm font-semibold text-green-700 dark:text-green-400 flex items-center gap-1">
+                      <CheckCircle2 className="h-4 w-4" />
+                      Reto de hoy completado
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {retoDiarioResult.trampas_encontradas}/{retoHoy.num_errores} trampas encontradas
+                      {' '}— {Math.round(retoDiarioResult.puntuacion)}%
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p className="text-sm font-semibold flex items-center gap-2">
+                      Reto Diario
+                      <Badge className="text-xs px-1.5 py-0.5 bg-primary text-primary-foreground">NUEVO</Badge>
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      ¿Puedes encontrar las {retoHoy.num_errores} trampas del artículo de hoy?
+                    </p>
+                  </>
+                )}
+              </div>
+            </div>
+            <Button asChild size="sm" variant={retoDiarioResult ? 'outline' : 'default'} className="shrink-0">
+              <Link href="/reto-diario">
+                {retoDiarioResult ? 'Ver resultado' : 'Jugar →'}
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* ── 0c. Radar Mini — §2.14.9 ──────────────────────────────────────── */}
+      <RadarMini />
+
       {/* ── 1. Cabecera ───────────────────────────────────────────────────── */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         {/* DashboardGreeting es Client Component para evitar hydration mismatch con getHours() */}
-        <DashboardGreeting
-          nombre={nombreUsuario}
-          diasParaExamen={diasParaExamen}
-        />
+        <div className="flex items-center gap-3 flex-wrap">
+          <DashboardGreeting
+            nombre={nombreUsuario}
+            diasParaExamen={diasParaExamen}
+          />
+          {founderData?.is_founder && (
+            <Badge className="bg-amber-500 hover:bg-amber-500 text-white gap-1 text-xs">
+              <Star className="h-3 w-3 fill-white" />
+              Miembro Fundador
+            </Badge>
+          )}
+        </div>
 
         {/* CTAs rápidos */}
         <div className="flex gap-2 flex-wrap">

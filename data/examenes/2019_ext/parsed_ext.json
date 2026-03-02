@@ -1,0 +1,730 @@
+{
+  "convocatoria": "2019",
+  "anno": 2019,
+  "turno": "extraordinaria",
+  "modelo": null,
+  "fuente_url": null,
+  "total_preguntas": 60,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "El artículo 108 de la Constitución Española (en adelante CE) dispone que el Gobierno responde en su gestión política:",
+      "opciones": [
+        "Solidariamente ante el Congreso de los Diputados.",
+        "Solidariamente ante el Congreso de los Diputados y ante el Senado.",
+        "Solidariamente ante el Rey.",
+        "Solidariamente ante el Presidente del Gobierno."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 2,
+      "enunciado": "De conformidad con la CE, España se constituye en un Estado social y democrático de Derecho, que propugna como valores superiores de su ordenamiento jurídico:",
+      "opciones": [
+        "La libertad, la igualdad y la fraternidad.",
+        "La libertad de expresión, libertad de cátedra y libertad sindical.",
+        "La libertad, la justicia, la igualdad y el pluralismo político.",
+        "La dignidad humana, la libertad, la democracia, la igualdad, Estado de Derecho y respeto a los derechos humanos."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 3,
+      "enunciado": "Según el artículo 168.1 de la CE, cuando se propusiere la revisión total de la Constitución, se procederá:",
+      "opciones": [
+        "A la aprobación del principio por mayoría absoluta de cada Cámara, y a la disolución inmediata de las Cortes.",
+        "A la aprobación del principio por mayoría simple de cada Cámara, y a la disolución inmediata de las Cortes.",
+        "A la aprobación del principio por mayoría de dos tercios de cada Cámara, y a la disolución inmediata de las Cortes.",
+        "A la aprobación del principio por mayoría de tres quintos de cada Cámara, y a la disolución inmediata de las Cortes."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 4,
+      "enunciado": "Según el artículo 78 de la CE, la composición de la Diputación Permanente de cada una de las cámaras estará integrada por un mínimo de:",
+      "opciones": [
+        "Quince miembros.",
+        "Dieciocho miembros.",
+        "Veintiún miembros.",
+        "Veinticinco miembros."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 5,
+      "enunciado": "Señale cuál de los siguientes órganos forma parte del Poder Judicial:",
+      "opciones": [
+        "El Tribunal Constitucional.",
+        "El Tribunal de Cuentas.",
+        "El Consejo de Estado.",
+        "La Audiencia Nacional."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 6,
+      "enunciado": "Según el artículo 2 de la Ley 50/1997, de 27 de noviembre, del Gobierno, es función del Presidente del Gobierno:",
+      "opciones": [
+        "Dirigir la política de defensa y ejercer respecto de las Fuerzas Armadas las funciones previstas en la legislación reguladora de la defensa nacional y de la organización militar.",
+        "Aprobar el proyecto de Ley de Presupuestos Generales del Estado.",
+        "Disponer la emisión de Deuda Pública cuando haya sido autorizado por una ley.",
+        "El archivo y custodia de las convocatorias, órdenes del día y actas de las reuniones del Consejo de Ministros."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 7,
+      "enunciado": "De conformidad con la Ley 50/1997, la creación, modificación o supresión de los órganos directivos de los departamentos ministeriales corresponde a:",
+      "opciones": [
+        "El Consejo de Ministros.",
+        "El Presidente del Gobierno.",
+        "El titular del departamento ministerial.",
+        "El Secretario de Estado correspondiente."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 8,
+      "enunciado": "Conforme al artículo 55 de la Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público son órganos superiores:",
+      "opciones": [
+        "Los Ministros, los Secretarios de Estado y los Subsecretarios.",
+        "Los Ministros, los Secretarios de Estado y los Directores Generales.",
+        "Los Ministros y los Secretarios de Estado.",
+        "Los Ministros, los Secretarios de Estado y los Secretarios Generales."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 9,
+      "enunciado": "Señale la respuesta INCORRECTA en relación con el Consejo de Transparencia y Buen Gobierno:",
+      "opciones": [
+        "Tiene personalidad jurídica propia y plena capacidad de obrar.",
+        "Entre sus funciones se encuentra la de evaluar el grado de aplicación de la Ley 19/2013, de 9 de diciembre, de transparencia, acceso a la información pública y buen gobierno.",
+        "Con carácter general, los puestos de trabajo del Consejo de Transparencia y Buen Gobierno serán desempeñados por funcionarios públicos.",
+        "Actúa con autonomía y plena independencia en el cumplimiento de sus fines y está adscrito al Ministerio de la Presidencia, Relaciones con las Cortes y Memoria Democrática."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 10,
+      "enunciado": "Según el Tratado de Funcionamiento de la Unión Europea, ¿qué institución europea velará por que se apliquen los Tratados y las medidas adoptadas por las instituciones en virtud de éstos y supervisará la aplicación del Derecho de la Unión bajo el control del Tribunal de Justicia de la Unión Europea?",
+      "opciones": [
+        "El Parlamento Europeo",
+        "El Consejo de la Unión Europea.",
+        "La Comisión Europea.",
+        "El Consejo Europeo"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 11,
+      "enunciado": "El mandato de la Comisión Europea será de:",
+      "opciones": [
+        "3 años.",
+        "4 años.",
+        "5 años.",
+        "6 años."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 12,
+      "enunciado": "El Tribunal de Justicia de la Unión Europea (TJUE) tiene su sede en:",
+      "opciones": [
+        "Bruselas.",
+        "La Haya.",
+        "Luxemburgo.",
+        "Estrasburgo.     2019 AUX-LI - EXTRAORDINARIO"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 13,
+      "enunciado": "Según la Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas, ¿qué supone la inderogabilidad singular del acto administrativo?",
+      "opciones": [
+        "Que los actos de las Administraciones Públicas serán ejecutivos con arreglo a lo dispuesto en esta Ley.",
+        "Que los actos de las Administraciones Públicas se presumirán válidos y producirán efectos desde la fecha en que se dicten, salvo que en ellos se disponga otra cosa.",
+        "Que las Administraciones Públicas podrán adoptar las medidas que consideren necesarias para la protección de los datos personales que consten en las resoluciones y actos administrativos, cuando éstos tengan por destinatarios a más de un interesado.",
+        "Que las resoluciones administrativas de carácter particular no podrán vulnerar lo establecido en una disposición de carácter general, aunque aquéllas procedan de un órgano de igual o superior jerarquía al que dictó la disposición general."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 14,
+      "enunciado": "Según el artículo 42 de la Ley 39/2015, cuando la notificación se practique en el domicilio del interesado y éste no se encuentre presente, podrá hacerse cargo de la misma cualquier persona que se encuentre en el domicilio, siempre que haga constar su identidad y sea mayor de:",
+      "opciones": [
+        "12 años.",
+        "14 años.",
+        "16 años.",
+        "18 años."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 15,
+      "enunciado": "Conforme a la Ley 39/2015, ¿qué órgano es competente para resolver un recurso potestativo de reposición?",
+      "opciones": [
+        "El órgano que dictó el acto administrativo recurrido.",
+        "El superior jerárquico del órgano que dictó el acto administrativo recurrido.",
+        "El órgano del orden jurisdiccional contencioso-administrativo que fuera competente para conocer del asunto conforme con la Ley 29/1998, de 13 de julio, reguladora de la Jurisdicción Contencioso-administrativa.",
+        "El órgano que dictó el acto administrativo o el superior jerárquico del órgano que dictó el acto recurrido, en función de la materia recurrida."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 16,
+      "enunciado": "De conformidad con el artículo 75 de la Ley 40/2015, a los Subdelegados del Gobierno les corresponde:",
+      "opciones": [
+        "Mantener las necesarias relaciones de cooperación y coordinación de la Administración General del Estado y sus Organismos públicos con la de la Comunidad Autónoma y con las correspondientes Entidades locales en el ámbito de la provincia.",
+        "Velar por el cumplimiento de las competencias atribuidas constitucionalmente al Estado y por la correcta aplicación de su normativa, promoviendo o interponiendo, según corresponda, conflictos de jurisdicción, conflictos de atribuciones, recursos y demás acciones legalmente procedentes.",
+        "Participar en las Comisiones mixtas de transferencias y en las Comisiones bilaterales de cooperación, así como en otros órganos de cooperación de naturaleza similar cuando se determine.",
+        "Informar las medidas de optimización de recursos humanos y materiales en su ámbito territorial, especialmente las que afecten a más de un Departamento."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 17,
+      "enunciado": "En el caso de reclamaciones en materia de responsabilidad patrimonial del Estado por el funcionamiento anormal de la Administración de Justicia, será preceptivo el informe del Consejo General del Poder Judicial, que será evacuado en el plazo máximo de:",
+      "opciones": [
+        "Seis meses, quedando suspendido el plazo para dictar resolución por el tiempo que medie entre la solicitud del informe y su recepción y no pudiendo exceder dicho plazo de los citados seis meses.",
+        "Tres meses, quedando suspendido el plazo para dictar resolución por el tiempo que medie entre la solicitud del informe y su recepción y no pudiendo exceder dicho plazo de los citados tres meses.",
+        "Un mes, quedando suspendido el plazo para dictar resolución por el tiempo que medie entre la solicitud del informe y su recepción y no pudiendo exceder dicho plazo del citado mes.",
+        "Dos meses, quedando suspendido el plazo para dictar resolución por el tiempo que medie entre la solicitud del informe y su recepción y no pudiendo exceder dicho plazo de los citados dos meses."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 18,
+      "enunciado": "Según el Real Decreto 1720/2007, de 21 de diciembre, por el que se aprueba el Reglamento de desarrollo de la Ley Orgánica 15/1999, de 13 de diciembre, de protección de datos de carácter personal, la persona física o jurídica, de naturaleza pública o privada, u órgano administrativo, que decide sobre la finalidad, contenido y uso del tratamiento de datos es:",
+      "opciones": [
+        "El responsable del fichero.",
+        "El encargado del tratamiento.",
+        "El propietario del fichero.",
+        "El consultor del tratamiento."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 19,
+      "enunciado": "De acuerdo con el Capítulo I del Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el Texto Refundido del Estatuto Básico del Empleado Público (en adelante TREBEP), el funcionario de carrera es:",
+      "opciones": [
+        "Quien, en virtud de contrato de trabajo formalizado por escrito presta servicios retribuidos para las Administraciones Públicas.",
+        "Quien, en virtud de nombramiento legal, está vinculado a una Administración Pública por una relación laboral para el desempeño de servicios profesionales retribuidos de carácter permanente.",
+        "Quien, en virtud de nombramiento legal, está vinculado a una Administración Pública por una relación estatutaria regulada por el Derecho Administrativo para el desempeño de servicios profesionales retribuidos de carácter permanente.",
+        "Quien desarrolla funciones directivas profesionales en las Administraciones Públicas, definidas como tales en las normas específicas de cada Administración."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 20,
+      "enunciado": "Forman parte de las retribuciones de los funcionarios públicos:",
+      "opciones": [
+        "Las dietas.",
+        "Las gratificaciones extraordinarias.",
+        "Las asistencias por colaboración en actividades de formación y perfeccionamiento.",
+        "Las indemnizaciones por traslado de residencia.     2019 AUX-LI - EXTRAORDINARIO"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 21,
+      "enunciado": "Según el artículo 75 del TREBEP, los cuerpos y escalas de funcionarios se crean, modifican y suprimen por:",
+      "opciones": [
+        "Ley de las Cortes Generales o de las asambleas legislativas de las Comunidades Autónomas.",
+        "Orden ministerial del Ministerio al que esté adscrito el Cuerpo.",
+        "Instrucción del Subsecretario del Ministerio de Hacienda y Función Pública.",
+        "Por Real Decreto del Consejo de Ministros."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 22,
+      "enunciado": "El régimen de mutualismo administrativo previsto en el Real Decreto Legislativo 4/2000, de 23 de junio, por el que se aprueba el texto refundido de la Ley sobre Seguridad Social de los Funcionarios Civiles del Estado, se gestionará y prestará a través de:",
+      "opciones": [
+        "Tesorería General de la Seguridad Social.",
+        "Mutualidad General de Funcionarios Civiles del Estado.",
+        "Instituto Nacional de la Seguridad Social.",
+        "Ministerio de Hacienda y Función Pública."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 23,
+      "enunciado": "Una vez alcanzada la edad de jubilación forzosa, los funcionarios de la Administración General del Estado podrán solicitar la prolongación de la permanencia en el servicio activo como máximo hasta que cumplan la edad de:",
+      "opciones": [
+        "Setenta y cinco años.",
+        "Setenta años.",
+        "Sesenta y siete años y medio.",
+        "Sesenta y cinco años."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 24,
+      "enunciado": "De acuerdo con el artículo 29 de la Ley 47/2003, de 26 de noviembre, General Presupuestaria (en adelante LGP), los escenarios presupuestarios plurianuales contendrán la distribución orgánica de los recursos disponibles y se desarrollarán en programas plurianuales, referidos a:",
+      "opciones": [
+        "Los dos ejercicios siguientes.",
+        "Los tres ejercicios siguientes.",
+        "Los cuatro ejercicios siguientes.",
+        "los cinco ejercicios siguientes."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 25,
+      "enunciado": "Conforme con el artículo 135 de la CE, el Estado y las Comunidades Autónomas para emitir deuda pública deberán estar autorizados por:",
+      "opciones": [
+        "Ley.",
+        "Real Decreto.",
+        "Orden de la Comisión Delegada de Asuntos Económicos.",
+        "Orden del Ministerio de Hacienda y Función Pública."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 26,
+      "enunciado": "De acuerdo con la LGP, las transferencias de créditos:",
+      "opciones": [
+        "Establecen un plazo semestral para reconocer las obligaciones, pasado el cual se anulan los créditos correspondientes.",
+        "Son incrementos de créditos derivados de ingresos imprevistos.",
+        "Son traspasos de dotaciones entre créditos.",
+        "Son minoraciones de créditos para hacer frente al pago de la Deuda Pública."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 27,
+      "enunciado": "De acuerdo con la LGP, en relación con la prórroga de los Presupuestos Generales del Estado, ¿cuál de las siguientes afirmaciones es correcta?",
+      "opciones": [
+        "Si la Ley de Presupuestos Generales del Gobierno no se aprueba antes del mes de febrero del ejercicio económico correspondiente, se considerarán automáticamente prorrogados los presupuestos iniciales del ejercicio anterior hasta la aprobación y publicación de unos nuevos en el Boletín Oficial del Estado.",
+        "La prórroga afectará a todos los créditos para gastos, salvo los referidos a la Deuda Pública.",
+        "En el caso de reorganizaciones administrativas, la estructura presupuestaria del presupuesto prorrogado permanecerá sin alteración.",
+        "La prórroga no afectará a los créditos para gastos correspondientes a programas o actuaciones que terminen en el ejercicio cuyos presupuestos se prorrogan o para obligaciones que se extingan en el mismo."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 28,
+      "enunciado": "De acuerdo con la LGP, podrán tramitarse propuestas de pagos presupuestarios y librarse fondos con el carácter de a justificar:",
+      "opciones": [
+        "Para la provisión de fondos de carácter extrapresupuestario y permanente que se realicen a pagadurías, cajas y habilitaciones para la atención inmediata y posterior aplicación al capítulo de gastos corrientes.",
+        "Cuando, excepcionalmente, no pueda aportarse la documentación justificativa de las obligaciones en el momento del reconocimiento de la obligación.",
+        "Previa autorización del Ministerio de Hacienda y Función Pública, en aquellos expedientes de contratación cuyas bases prevean pagos en el exterior.",
+        "Cuando, una vez autorizada la correspondiente retención de crédito, se acordase el pago de una subvención nominativa."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 29,
+      "enunciado": "Según el artículo 107 de la CE, el supremo órgano consultivo del Gobierno es:",
+      "opciones": [
+        "El Consejo Económico y Social.",
+        "El Consejo de Estado.",
+        "El Tribunal Constitucional.",
+        "El Consejo General del Poder Judicial."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 30,
+      "enunciado": "De acuerdo con el artículo 6 de la Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres, ¿qué se considera discriminación directa por razón de sexo?",
+      "opciones": [
+        "La situación en que una disposición aparentemente neutra pone a personas de un sexo en desventaja particular con respecto a personas del otro.",
+        "La situación en que un criterio aparentemente neutro pone a personas de un sexo en desventaja particular con respecto a personas del otro.",
+        "La situación en que se encuentra una persona que sea, haya sido o pudiera ser tratada, en atención a su sexo, de manera menos favorable que otra en situación comparable.",
+        "La situación en que una práctica aparentemente neutra pone a personas de un sexo en desventaja particular con respecto a personas del otro.     2019 AUX-LI - EXTRAORDINARIO"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 31,
+      "enunciado": "Dadas las siguientes equivalencias: A = 1; R = 3; T = 6; S = 8, indique cuál es la palabra siguiente: 31863E13.",
+      "opciones": [
+        "RASTREAR.",
+        "RETRASAR.",
+        "RASTRERA.",
+        "ARRASTRE."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 32,
+      "enunciado": "En el archivador de una escuela se guardan las fichas del personal docente en el armario D; las fichas del personal no docente en el ND; y las de los alumnos en el A. En cada armario se guardan las fichas ordenadas alfabéticamente por apellidos en 8 cajones: el cajón 1 empieza por la letra A; el 2 por la D; el 3 por la G; el 4 por la J; el 5 por la N; el 6 por la P; el 7 por la T; y el 8 por la W. ¿En qué ubicación estará “López, Agustín”, que es personal no docente?",
+      "opciones": [
+        "ND3.",
+        "ND4.",
+        "N5.",
+        "ND5."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 33,
+      "enunciado": "Halla el valor de x en la siguiente ecuación: 5 (4x + 22) = - x",
+      "opciones": [
+        "4,82",
+        "0,18",
+        "- 6,83",
+        "- 5,24"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 34,
+      "enunciado": "Un grupo de cuatro deportistas reparten los gastos de alquiler de las instalaciones que utilizan, según el tiempo de uso de cada uno. Estos tiempos son el 12, 16, 29 y 43 % respectivamente. El gasto del que más uso ha hecho de las instalaciones asciende a 300 €. ¿Cuánto le corresponde al que menos uso ha hecho de las instalaciones?",
+      "opciones": [
+        "102,65 €.",
+        "83,72 €.",
+        "75,20 €.",
+        "93,14 €."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 35,
+      "enunciado": "En unas instalaciones hay 122 metros cuadrados de césped, 89 metros cuadrados de arboleda y 137 metros cuadrados de plantas. El presupuesto de jardinería es de 6 € el metro cuadrado de césped, 3 € el de arboleda y 5 € el de plantas. ¿Cuál será el presupuesto total de jardinería?",
+      "opciones": [
+        "1.822 €.",
+        "977 €.",
+        "1.435 €.",
+        "1.684 €."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 36,
+      "enunciado": "¿Cuál de las siguientes palabras tiene un significado más parecido a la palabra CONVENIO?",
+      "opciones": [
+        "Desacuerdo.",
+        "Tratado.",
+        "Disensión.",
+        "Discordia."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 37,
+      "enunciado": "¿Qué pareja de SINÓNIMOS es INCORRECTA?",
+      "opciones": [
+        "Astuto – Sagaz.",
+        "Prudente – Cauteloso.",
+        "Cambiable – Estable.",
+        "Indomable – Indómito."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 38,
+      "enunciado": "Indique, entre las siguientes palabras, cuál es el antónimo de la palabra PROSPERIDAD:",
+      "opciones": [
+        "Aventura.",
+        "Importancia.",
+        "Desdicha.",
+        "Caracola."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 39,
+      "enunciado": "¿Qué par de palabras NO mantiene la relación que encontramos entre BOTELLA y LIQUIDO?",
+      "opciones": [
+        "Billetera y Dinero.",
+        "Calle y Semáforo.",
+        "Televisor y Cama.",
+        "Bandera y Asta."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 40,
+      "enunciado": "Señale qué palabra corresponde a la definición “Cuerpo que despide luz”:",
+      "opciones": [
+        "Asa.",
+        "Lámpara.",
+        "Corriente.",
+        "Luz."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 41,
+      "enunciado": "Señale qué palabra se corresponde con la definición “Que se deja adivinar o vislumbrar sin declararse o manifestarse”:",
+      "opciones": [
+        "Transparente.",
+        "Ventana.",
+        "Foco.",
+        "Color."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 42,
+      "enunciado": "Señale qué definición es la que se corresponde con la palabra SENSIBILIDAD:",
+      "opciones": [
+        "Inducir con fuerza a alguien a una acción.",
+        "Sentimiento de afecto, inclinación y entrega a alguien o algo.",
+        "Facultad de sentir, propia de los seres animados.",
+        "Falta de vigor o fuerza física."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 43,
+      "enunciado": "Señale el número de errores ortográficos en la frase siguiente: Se orijinó un gran incendío despues de qué fumadores inconcientes tiraran coliyas en el bosque.",
+      "opciones": [
+        "6",
+        "3",
+        "4",
+        "2"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 44,
+      "enunciado": "¿Qué serie indica el orden alfabético correcto de las siguientes palabras?",
+      "opciones": [
+        "Cartel, Carácter, Cartuchera, Cárcel, Cartílago.",
+        "Carácter, Cárcel, Cartel, Cartílago, Cartuchera.",
+        "Carácter, Cartel, Cárcel, Cartílago, Cartuchera.",
+        "Cárcel, Carácter, Cartel, Cartílago, Cartuchera."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 45,
+      "enunciado": "Una familia lleva el registro de pagos por orden alfabético. La carpeta 1 comienza por “A&1 Internet Esla, S.L.U.”; el 2 por “Biostampa & Partners, S.L.”; el 3 por “Edredones, S.L.”; el 4 por “Madrileña gas y luz”; el 5 por “Red gasolineras”; el 6 por “Vidrios, S.L.\" ¿En qué carpeta se coloca a Mercados Unidos, S.A.\"?",
+      "opciones": [
+        "En la carpeta 1.",
+        "En la carpeta 4.",
+        "En la carpeta 5.",
+        "En la carpeta 2.     2019 AUX-LI - EXTRAORDINARIO 46 a 51. En la tabla siguiente se exponen los datos obrantes en una empresa sobre los trabajos de digitalización que debe realizar, describiendo sus características principales que deberán ser tenidas en cuenta. En relación con ella deberá responder una serie de cuestiones: Tabla Digitalización Título Autor Año primera publicación Forma Materia Imágenes (Sí o No constan) Calidad del original Revisión Estado de la Digitalización Diccionario biográfico americano Cortés, José Domingo 1876 Facsímil Diccionario Sí Media Terminada Terminada Breve diccionario valenciano-castellano Ros, Carlos 1739 Libro Diccionario Sí Baja En proceso En proceso Carácter convencional del ritmo Mariner Bigorra, Sebastián 2006 Documento Retórica y Poética No Alta Terminada Aprobada Diccionario Castellano-Valenciano Lamarca, Luis 1839 Libro Diccionario No Media En proceso Aprobada Diccionario histórico abreviado Ladvocat, Jean-Baptiste 1753 Manuscrito Diccionario Sí Alta Terminada En espera Dictionarium ex hispaniensi in latinum sermonem Nebrija, Antonio de 1581 Facsímil Diccionario No Media Terminada En proceso El Lenguaje poético como lenguaje absoluto Lázaro Carreter, Fernando 2011 Documento Retórica y Poética No Alta En proceso Aprobada Manual de retórica y poética Milà i Fontanals, Manuel 1848 Manuscrito Retórica y Poética Sí Baja Terminada Terminada Oratoria sacra seu Modus concionandi Diego de Estella (O.F.M.) 1772 Facsímil Retórica y Poética Sí Alta Terminada Terminada Rhetorica Mayans y Siscar, Gregorio 1752 Facsímil Retórica y Poética Sí Baja En proceso En espera"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 46,
+      "enunciado": "¿Cuántos títulos de materia Diccionario tienen la revisión terminada?",
+      "opciones": [
+        "3",
+        "5",
+        "2",
+        "1"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 47,
+      "enunciado": "¿Cuántos títulos publicados por primera vez en el siglo XVIII cuentan con imágenes y su forma es facsímil?",
+      "opciones": [
+        "1",
+        "4",
+        "2",
+        "3"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 48,
+      "enunciado": "¿Cuál es la fecha de la primera publicación de un facsímil con imágenes, la revisión terminada y cuya materia es Retórica y Poética?",
+      "opciones": [
+        "1876",
+        "1581",
+        "1772",
+        "1752"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 49,
+      "enunciado": "¿Cuál es la fecha de la primera publicación de un diccionario, cuya forma no es Libro, cuya calidad original es media y cuya digitalización está en proceso?",
+      "opciones": [
+        "1876",
+        "1839",
+        "1753",
+        "1581"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 50,
+      "enunciado": "¿Cuál de los siguientes títulos tiene forma facsímil, su calidad original es media y cuya digitalización está terminada?",
+      "opciones": [
+        "Diccionario biográfico americano.",
+        "Dictionarium ex hispaniensi in latinum sermonem.",
+        "Rhetorica.",
+        "Diccionario histórico abreviado."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 51,
+      "enunciado": "¿Cuál es la forma del título que tiene la primera fecha de publicación en el siglo XIX, que es un diccionario y no tiene imágenes?",
+      "opciones": [
+        "Facsímil.",
+        "Libro.",
+        "Documento.",
+        "Manuscrito."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 52,
+      "enunciado": "Dadas las siguientes equivalencias: b=1111, c=0111, d=0011, f=0001, g=1000, h=1100, ¿qué serie de letras corresponde a la siguiente serie de números: 1100001111110111?",
+      "opciones": [
+        "h-f-b-d",
+        "c-b-g-h",
+        "f-d-g-c",
+        "h-d-b-c"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 53,
+      "enunciado": "Si las consonantes mayúsculas valen 2, las vocales minúsculas valen -1, las consonantes minúsculas valen 1 y las vocales mayúsculas valen 3, ¿cuánto vale la palabra “Atasco”?",
+      "opciones": [
+        "8",
+        "6",
+        "4",
+        "10"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 54,
+      "enunciado": "Halla el valor de x en la siguiente ecuación: 15 (3x - 4) = -x",
+      "opciones": [
+        "2,24",
+        "1,22",
+        "1,36",
+        "1,83     2019 AUX-LI - EXTRAORDINARIO 55 a 60. En la siguiente tabla se ofrecen los datos económicos de una empresa en cuanto al número de turistas y al número de distintos tipos de excursiones realizadas en diversos meses del año de actividad. Suponiendo que, para los siguientes meses, cada turista ha realizado los tres tipos de excursiones (temáticas, autobús y barco), responda a las preguntas realizadas en base a estos datos: Tabla Excursiones Mes Turistas Excursiones temáticas Excursiones autobús Excursiones barco Marzo 5.785 482 231 317 Abril 5.935 421 111 209 Mayo 5.739 368 164 217 Junio 7.465 409 227 129 Julio 7.630 585 275 341 Agosto 6.102 567 183 326 Septiembre 5.817 346 184 125 Octubre 6.028 305 132 138 Noviembre 5.699 298 169 224 Diciembre 6.420 256 158 253"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 55,
+      "enunciado": "De los siguientes, ¿en qué mes hubo un mayor ratio de turistas por excursión temática?",
+      "opciones": [
+        "Junio.",
+        "Octubre.",
+        "Noviembre.",
+        "Diciembre."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 56,
+      "enunciado": "De los siguientes, ¿en qué mes hubo un menor ratio de turistas respecto al total de excursiones realizadas en el mismo mes?",
+      "opciones": [
+        "Octubre.",
+        "Junio.",
+        "Septiembre.",
+        "Abril."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 57,
+      "enunciado": "¿En qué mes de los siguientes hubo un mayor porcentaje de excursiones en barco respecto al total de excursiones del mes?",
+      "opciones": [
+        "Agosto.",
+        "Julio.",
+        "Marzo.",
+        "Diciembre."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 58,
+      "enunciado": "¿En cuál de estos meses hubo más excursiones?",
+      "opciones": [
+        "Agosto.",
+        "Julio.",
+        "Marzo.",
+        "Junio."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 59,
+      "enunciado": "¿En cuál de estos meses hubo un porcentaje de turistas mayor respecto al total?",
+      "opciones": [
+        "Agosto.",
+        "Julio.",
+        "Marzo.",
+        "Junio."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 60,
+      "enunciado": "¿Cuál es la media de turistas en el conjunto de los meses contemplados en la tabla Excursiones?",
+      "opciones": [
+        "6.436",
+        "6.262",
+        "4.206",
+        "5.635"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    }
+  ]
+}
