@@ -7,8 +7,11 @@
  * Si no hay exámenes cargados, muestra empty state informativo.
  */
 
+import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+
+export const metadata: Metadata = { title: 'Simulacros INAP' }
 import { SimulacroCard } from '@/components/simulacros/SimulacroCard'
 import { SimulacroMixtoCard } from '@/components/simulacros/SimulacroMixtoCard'
 import { Badge } from '@/components/ui/badge'

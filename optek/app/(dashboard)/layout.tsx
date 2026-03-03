@@ -1,8 +1,17 @@
+import type { Metadata } from 'next'
 import { Sidebar } from '@/components/layout/Sidebar'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { FeedbackButton } from '@/components/shared/FeedbackButton'
 import { createClient } from '@/lib/supabase/server'
+
+export const metadata: Metadata = {
+  title: {
+    default: 'Dashboard — OpoRuta',
+    template: '%s — OpoRuta',
+  },
+  robots: { index: false, follow: false },
+}
 
 // §2.18.13 — Server Component: fetch is_admin para mostrar link de admin en Sidebar
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {

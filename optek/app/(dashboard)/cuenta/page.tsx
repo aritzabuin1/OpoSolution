@@ -12,8 +12,11 @@
  * Server Component para fetch de datos. Componentes de acción son Client.
  */
 
+import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { ShoppingBag, Zap } from 'lucide-react'
+
+export const metadata: Metadata = { title: 'Mi Cuenta' }
 import { createClient } from '@/lib/supabase/server'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'

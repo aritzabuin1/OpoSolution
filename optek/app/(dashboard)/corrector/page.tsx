@@ -5,9 +5,12 @@
  * Server Component: carga temas, perfil y correcciones anteriores.
  */
 
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+
+export const metadata: Metadata = { title: 'Corrector de Desarrollos' }
 import { EditorView } from '@/components/corrector/EditorView'
 import { Card, CardContent } from '@/components/ui/card'
 import { ClipboardList } from 'lucide-react'

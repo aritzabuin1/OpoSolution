@@ -14,9 +14,12 @@
  *   - tests anteriores: últimos 5 tests_generados completados
  */
 
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+
+export const metadata: Metadata = { title: 'Tests de práctica' }
 import { TemaCard } from '@/components/tests/TemaCard'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
