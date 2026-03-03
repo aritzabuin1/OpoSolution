@@ -7,8 +7,9 @@
  * muestra una cabecera contextual "Simulacro Oficial INAP".
  */
 
+import type { Metadata } from 'next'
 import { notFound, redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { TestRunner } from '@/components/tests/TestRunner'
 import { Badge } from '@/components/ui/badge'
 import { Trophy, RefreshCw } from 'lucide-react'
@@ -19,6 +20,28 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
 interface TestDetailPageProps {
   params: Promise<{ id: string }>
+}
+
+export async function generateMetadata({ params }: TestDetailPageProps): Promise<Metadata> {
+  const { id } = await params
+  const supabase = await createServiceClient()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data } = await (supabase as any)
+    .from('tests_generados')
+    .select('tipo, examen_oficial_id, temas(titulo)')
+    .eq('id', id)
+    .single()
+
+  if (!data) return {}
+
+  const title =
+    data.tipo === 'simulacro' && data.examen_oficial_id
+      ? 'Simulacro INAP'
+      : data.tipo === 'repaso_errores'
+      ? 'Repaso de errores'
+      : (data.temas as { titulo: string } | null)?.titulo ?? 'Test de práctica'
+
+  return { title }
 }
 
 export default async function TestDetailPage({ params }: TestDetailPageProps) {
