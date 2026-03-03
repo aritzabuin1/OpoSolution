@@ -556,7 +556,11 @@ export default async function LandingPage() {
             </Link>
           </div>
           <div className="grid gap-4 sm:grid-cols-3">
-            {blogPosts.slice(0, 3).map((post) => (
+            {([
+              'como-preparar-oposicion-auxiliar-administrativo-estado-guia',
+              'penalizacion-examen-auxiliar-administrativo',
+              'articulos-lpac-que-mas-caen-examen-inap',
+            ].map((slug) => blogPosts.find((p) => p.slug === slug)).filter((p): p is typeof blogPosts[0] => !!p)).map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
                 <Card className="h-full hover:border-primary/40 transition-colors">
                   <CardContent className="pt-5 pb-5">
