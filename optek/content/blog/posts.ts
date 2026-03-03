@@ -254,6 +254,265 @@ export const blogPosts: BlogPost[] = [
     `.trim(),
   },
 
+  // ─── Post 4 ────────────────────────────────────────────────────────────────
+  {
+    slug: 'psicotecnicas-examen-auxiliar-administrativo-estado',
+    title: 'Psicotécnicas en el examen del Auxiliar Administrativo del Estado: tipos, ejemplos y cómo practicarlas',
+    description:
+      'Guía completa sobre las pruebas psicotécnicas del examen TAC: ortografía, sinónimos, series numéricas, comprensión verbal y razonamiento. Con ejemplos reales y estrategias de resolución.',
+    date: '2026-03-03',
+    keywords: [
+      'psicotécnicas auxiliar administrativo estado',
+      'test psicotécnico TAC',
+      'pruebas psicotécnicas oposición TAC',
+      'series numéricas oposición auxiliar administrativo',
+      'ortografía examen auxiliar administrativo',
+    ],
+    content: `
+<h2>¿Qué son las pruebas psicotécnicas en el examen TAC?</h2>
+<p>
+  El examen del Cuerpo General Auxiliar de la Administración del Estado (TAC) incluye
+  una prueba de conocimientos prácticos que combina dos bloques: el Bloque I (legislación)
+  y el Bloque II (conocimientos prácticos de ofimática y psicotécnicas).
+  Dentro del Bloque II, los ejercicios psicotécnicos evalúan capacidades cognitivas
+  que se consideran necesarias para el puesto: razonamiento verbal, numérico y perceptivo.
+</p>
+<p>
+  A diferencia del Bloque I (donde el estudio es principalmente memorístico), las
+  psicotécnicas se mejoran principalmente con <strong>práctica repetida</strong>.
+  No se "estudia" la regla del término siguiente de una serie — se automatiza el
+  proceso resolviendo cientos de ellas.
+</p>
+
+<h2>Tipos de psicotécnicas en el examen TAC</h2>
+
+<h3>1. Ortografía y uso del lenguaje</h3>
+<p>
+  Son las más fáciles de mejorar con práctica. El examinador presenta frases o palabras
+  con posibles errores ortográficos y el opositor debe identificar la opción correcta.
+  Errores frecuentes:
+</p>
+<ul>
+  <li>Uso de <em>b/v</em>: "absorber" vs "abzorber", "volver" vs "bolber"</li>
+  <li>Uso de <em>h</em>: "habitar" vs "avitar", "ahora" vs "aora"</li>
+  <li>Tildación de palabras esdrújulas, llanas y agudas</li>
+  <li>Uso correcto de <em>g/j</em>: "gerente" vs "jerente"</li>
+</ul>
+<p>
+  Estrategia: lee en voz alta la opción que dudas. Nuestro oído suele detectar lo que
+  el ojo pasa por alto. Para las tildes, recuerda siempre la regla antes de mirar las opciones.
+</p>
+
+<h3>2. Sinónimos y antónimos</h3>
+<p>
+  El examinador presenta una palabra y pide identificar su sinónimo o antónimo entre
+  cuatro opciones. No es un test de vocabulario avanzado — las palabras suelen ser de
+  uso común pero con significados sutilmente distintos.
+</p>
+<p>
+  Ejemplo: "Sinónimo de RETICENTE: a) Entusiasta  b) Reluctante  c) Decidido  d) Nervioso"
+  — Respuesta: <strong>b) Reluctante</strong>.
+</p>
+<p>
+  Estrategia: si no conoces la palabra exacta, elimina las opciones que claramente
+  están en la dirección contraria. En este caso, "Entusiasta" y "Decidido" tienen
+  connotación positiva/activa mientras que "reticente" es negativo → descarta.
+</p>
+
+<h3>3. Series numéricas</h3>
+<p>
+  Se presenta una secuencia de números con un patrón oculto y hay que encontrar
+  el siguiente (o el que falta). Los patrones más frecuentes son:
+</p>
+<ul>
+  <li><strong>Progresiones aritméticas:</strong> 2, 5, 8, 11, __ (diferencia constante +3 → 14)</li>
+  <li><strong>Progresiones geométricas:</strong> 3, 6, 12, 24, __ (×2 → 48)</li>
+  <li><strong>Series de diferencias:</strong> 1, 2, 4, 7, 11, __ (diferencias: +1, +2, +3, +4 → +5 → 16)</li>
+  <li><strong>Series alternadas:</strong> 1, 10, 2, 9, 3, 8, __ (dos series entrelazadas → 4)</li>
+  <li><strong>Series cuadráticas:</strong> 1, 4, 9, 16, 25, __ (n² → 36)</li>
+</ul>
+<p>
+  Estrategia: calcula siempre las diferencias entre términos consecutivos primero.
+  Si las diferencias no son constantes, calcula las diferencias de las diferencias
+  (segunda derivada). En un 80% de los casos esto revela el patrón.
+</p>
+
+<h3>4. Comprensión verbal y razonamiento analógico</h3>
+<p>
+  "LIBRO es a BIBLIOTECA como CUADRO es a ___": a) Museo  b) Pintor  c) Lienzo  d) Arte
+  — Respuesta: <strong>a) Museo</strong> (lugar donde se conserva/exhibe).
+</p>
+<p>
+  El razonamiento analógico mide la capacidad de identificar relaciones entre conceptos.
+  Las categorías más frecuentes son: continente/contenido, parte/todo, creador/obra,
+  herramienta/uso, antónimos, jerarquía.
+</p>
+
+<h3>5. Razonamiento espacial y series de figuras</h3>
+<p>
+  Aunque menos frecuente que las numéricas, pueden aparecer secuencias de figuras
+  geométricas que siguen un patrón de rotación, reflexión o transformación. Aquí
+  la práctica visual es fundamental: el cerebro aprende a reconocer estos patrones
+  de forma automática tras resolver suficientes ejemplos.
+</p>
+
+<h2>Cuánto tiempo dedicar a cada tipo</h2>
+<ul>
+  <li><strong>Ortografía:</strong> 15 min/día durante 2 semanas → mejora rápida garantizada</li>
+  <li><strong>Sinónimos:</strong> 10 min/día de lectura de textos variados + tests específicos</li>
+  <li><strong>Series numéricas:</strong> 20 min/día durante 3-4 semanas (el progreso es exponencial)</li>
+  <li><strong>Razonamiento analógico:</strong> 10 min/día, más fácil de dominar que las series</li>
+</ul>
+<p>
+  La clave es la <strong>práctica diaria y constante</strong>, no las sesiones maratonianas.
+  El cerebro necesita repetición distribuida para automatizar los patrones.
+</p>
+
+<h2>Practica psicotécnicas con OpoRuta</h2>
+<p>
+  OpoRuta incluye un motor específico de psicotécnicas que genera ejercicios al nivel
+  del examen TAC: ortografía con distractores realistas, series numéricas con los
+  patrones más frecuentes en exámenes INAP, y razonamiento analógico con las
+  categorías habituales.
+</p>
+<p>
+  Los primeros 5 tests son completamente gratuitos. Sin tarjeta de crédito.
+</p>
+    `.trim(),
+  },
+
+  // ─── Post 5 ────────────────────────────────────────────────────────────────
+  {
+    slug: 'temario-auxiliar-administrativo-estado-2025-2026',
+    title: 'Temario completo del Auxiliar Administrativo del Estado 2025-2026: los 28 temas del TAC',
+    description:
+      'Resumen del temario oficial del Cuerpo General Auxiliar de la AGE: Bloque I (legislación, 24 temas) y Bloque II (ofimática y psicotécnicas, 4 temas). Qué estudiar primero y cómo organizarlo.',
+    date: '2026-03-03',
+    keywords: [
+      'temario auxiliar administrativo estado 2025',
+      'temas oposición TAC auxiliar administrativo',
+      'bloque I bloque II auxiliar administrativo',
+      'cuerpo general auxiliar AGE temario',
+      'oposiciones auxiliar administrativo estado 2026',
+    ],
+    content: `
+<h2>El temario oficial del Auxiliar Administrativo del Estado</h2>
+<p>
+  El temario del Cuerpo General Auxiliar de la Administración del Estado (TAC/AGE) se divide
+  en <strong>dos bloques</strong> con un total de 28 temas. El examen consta de 100 preguntas
+  tipo test con penalización −1/3, y el temario es el mismo para las convocatorias de
+  2025 y 2026 (salvo modificación del BOE).
+</p>
+<p>
+  Aquí tienes el resumen completo de los 28 temas, con indicación de su peso habitual
+  en los exámenes oficiales del INAP.
+</p>
+
+<h2>Bloque I — Organización pública (24 temas)</h2>
+
+<h3>Grupo 1: Constitución Española (Temas 1-3)</h3>
+<ul>
+  <li><strong>T1:</strong> La Constitución Española de 1978. Principios generales. Derechos y deberes fundamentales.</li>
+  <li><strong>T2:</strong> La Corona. Las Cortes Generales. El Gobierno y la Administración. El Poder Judicial.</li>
+  <li><strong>T3:</strong> La organización territorial del Estado. Las Comunidades Autónomas.</li>
+</ul>
+<p>
+  <em>Peso estimado: 8-12 preguntas en exámenes recientes del INAP. La CE es la fuente
+  más examinada junto con la LPAC.</em>
+</p>
+
+<h3>Grupo 2: Administración General del Estado (Temas 4-7)</h3>
+<ul>
+  <li><strong>T4:</strong> La Administración General del Estado. La Ley 40/2015 (LRJSP). Principios de actuación.</li>
+  <li><strong>T5:</strong> Los órganos superiores y directivos de la AGE. Ministerios, Secretarías de Estado, Subsecretarías.</li>
+  <li><strong>T6:</strong> Los organismos públicos: Organismos Autónomos, Entidades Públicas Empresariales, Agencias Estatales.</li>
+  <li><strong>T7:</strong> La Administración periférica del Estado. Delegaciones del Gobierno. Subdelegaciones.</li>
+</ul>
+
+<h3>Grupo 3: Procedimiento Administrativo (Temas 8-11)</h3>
+<ul>
+  <li><strong>T8:</strong> El acto administrativo. Concepto, clases, elementos y eficacia.</li>
+  <li><strong>T9:</strong> El procedimiento administrativo común (LPAC). Iniciación, ordenación, instrucción y terminación.</li>
+  <li><strong>T10:</strong> Los recursos administrativos: alzada, reposición y extraordinario de revisión.</li>
+  <li><strong>T11:</strong> Las notificaciones. La revisión de oficio. La responsabilidad patrimonial.</li>
+</ul>
+<p>
+  <em>Peso estimado: 10-15 preguntas. El Bloque LPAC/LRJSP suele ser el mayor grupo
+  de preguntas en cualquier convocatoria TAC.</em>
+</p>
+
+<h3>Grupo 4: Función Pública (Temas 12-15)</h3>
+<ul>
+  <li><strong>T12:</strong> Los funcionarios públicos. El Real Decreto Legislativo 5/2015 (TREBEP). Clases de personal.</li>
+  <li><strong>T13:</strong> Adquisición y pérdida de la condición de funcionario. Situaciones administrativas.</li>
+  <li><strong>T14:</strong> Derechos y deberes de los funcionarios. Código de conducta.</li>
+  <li><strong>T15:</strong> Régimen disciplinario. Infracciones y sanciones. Incompatibilidades.</li>
+</ul>
+
+<h3>Grupo 5: Unión Europea (Temas 16-18)</h3>
+<ul>
+  <li><strong>T16:</strong> La Unión Europea. Instituciones y órganos principales.</li>
+  <li><strong>T17:</strong> El Derecho de la Unión Europea. Reglamentos, Directivas, Decisiones.</li>
+  <li><strong>T18:</strong> Políticas de la UE. Fondos estructurales. El presupuesto europeo.</li>
+</ul>
+
+<h3>Grupo 6: Hacienda y Presupuesto (Temas 19-21)</h3>
+<ul>
+  <li><strong>T19:</strong> La Hacienda Pública estatal. La Ley General Presupuestaria.</li>
+  <li><strong>T20:</strong> Los Presupuestos Generales del Estado. Principios presupuestarios. Fases.</li>
+  <li><strong>T21:</strong> El control financiero. La Intervención General. El Tribunal de Cuentas.</li>
+</ul>
+
+<h3>Grupo 7: Legislación específica (Temas 22-24)</h3>
+<ul>
+  <li><strong>T22:</strong> Igualdad de género. La Ley Orgánica 3/2007. El Plan de Igualdad en la AGE.</li>
+  <li><strong>T23:</strong> Protección de datos. El Reglamento (UE) 2016/679 (RGPD) y la LOPDGDD.</li>
+  <li><strong>T24:</strong> Transparencia y buen gobierno. La Ley 19/2013. El Portal de Transparencia.</li>
+</ul>
+
+<h2>Bloque II — Actividad administrativa (4 temas)</h2>
+<ul>
+  <li><strong>T25:</strong> Ofimática: Microsoft Word. Procesamiento de textos, estilos, combinar correspondencia.</li>
+  <li><strong>T26:</strong> Ofimática: Microsoft Excel. Hojas de cálculo, fórmulas, tablas dinámicas.</li>
+  <li><strong>T27:</strong> Sistemas operativos: Windows. Gestión de archivos, redes, configuración.</li>
+  <li><strong>T28:</strong> Pruebas psicotécnicas. Razonamiento verbal, numérico y abstracto.</li>
+</ul>
+
+<h2>Cómo organizar el estudio</h2>
+<ol>
+  <li>
+    <strong>Empieza por los temas de alto rendimiento:</strong> T1-T3 (CE), T9-T11 (LPAC/LRJSP)
+    y T12-T14 (TREBEP). Estos temas representan entre el 40% y el 50% de las preguntas
+    en exámenes recientes.
+  </li>
+  <li>
+    <strong>Paraleliza el Bloque II:</strong> Dedica 15-20 minutos al día a psicotécnicas
+    (T28) y a repasar funciones concretas de Word/Excel (T25-T26). El Bloque II no se
+    estudia — se practica.
+  </li>
+  <li>
+    <strong>Temas de menor rendimiento:</strong> T16-T18 (UE) y T19-T21 (Hacienda) suelen
+    generar menos preguntas. Estúdialos en la fase final, cuando tengas los temas clave dominados.
+  </li>
+  <li>
+    <strong>Haz tests por tema desde el día 1:</strong> Leer sin testar es la forma más
+    lenta de preparar una oposición. Cada vez que terminas un tema, genera 10 preguntas
+    tipo test sobre él.
+  </li>
+</ol>
+
+<h2>Practica el temario completo con OpoRuta</h2>
+<p>
+  OpoRuta cubre los 28 temas del TAC con preguntas tipo test generadas por IA y verificadas
+  con cita legal exacta. Puedes generar tests por tema, por bloque, o simular el examen
+  completo con 100 preguntas y penalización real.
+</p>
+<p>
+  Los primeros 5 tests son completamente gratuitos — sin tarjeta de crédito.
+</p>
+    `.trim(),
+  },
+
   // ─── Post 3 ────────────────────────────────────────────────────────────────
   {
     slug: 'diferencias-lpac-lrjsp-auxiliar-administrativo',
@@ -372,6 +631,177 @@ export const blogPosts: BlogPost[] = [
     <tr><td>Iniciativa legislativa</td><td>Relaciones interadministrativas</td></tr>
   </tbody>
 </table>
+    `.trim(),
+  },
+
+  // ─── Post 6 ────────────────────────────────────────────────────────────────
+  {
+    slug: 'constitucion-espanola-preguntas-examen-auxiliar-administrativo',
+    title: 'La Constitución Española en el examen TAC: artículos clave y preguntas más frecuentes',
+    description:
+      'Los artículos de la Constitución Española que más se examinan en las oposiciones del Auxiliar Administrativo del Estado: derechos fundamentales, órganos constitucionales y estructura del Estado.',
+    date: '2026-03-03',
+    keywords: [
+      'Constitución española examen auxiliar administrativo',
+      'artículos CE oposición TAC',
+      'preguntas Constitución española INAP',
+      'derechos fundamentales examen auxiliar administrativo',
+      'tema 1 auxiliar administrativo estado',
+    ],
+    content: `
+<h2>La Constitución Española: el punto de partida del temario TAC</h2>
+<p>
+  La Constitución Española de 1978 es la norma suprema del ordenamiento jurídico español
+  y también el punto de partida del temario del Cuerpo General Auxiliar del Estado.
+  Los Temas 1, 2 y 3 del temario oficial giran en torno a ella, y en exámenes recientes
+  del INAP entre <strong>8 y 14 preguntas</strong> de las 100 totales provienen
+  directamente de la CE.
+</p>
+<p>
+  La CE tiene 169 artículos organizados en un Título Preliminar y diez Títulos.
+  No es necesario memorizar todos — pero sí dominar con precisión los artículos
+  que el INAP examina de forma sistemática.
+</p>
+
+<h2>Artículos de la CE más examinados en el TAC</h2>
+
+<h3>Artículo 1 — España como Estado social y democrático de Derecho</h3>
+<p>
+  "España se constituye en un Estado social y democrático de Derecho, que propugna
+  como valores superiores de su ordenamiento jurídico la libertad, la justicia, la
+  igualdad y el pluralismo político."
+</p>
+<p>
+  Pregunta frecuente: "¿Cuáles son los valores superiores del ordenamiento jurídico
+  español según el Art. 1.1 CE?" — Los cuatro valores en el orden exacto.
+</p>
+
+<h3>Artículo 2 — La nación española y las Comunidades Autónomas</h3>
+<p>
+  "La Constitución se fundamenta en la indisoluble unidad de la Nación española,
+  patria común e indivisible de todos los españoles, y reconoce y garantiza el derecho
+  a la autonomía de las nacionalidades y regiones que la integran."
+</p>
+<p>
+  Trampa clásica: la CE "reconoce" la autonomía, no la "crea". La potestad de
+  autonomía preexiste a la Constitución.
+</p>
+
+<h3>Artículos 14-29 — Derechos fundamentales y libertades públicas</h3>
+<p>
+  Esta sección (Sección 1.ª del Capítulo II del Título I) contiene los derechos
+  con mayor protección jurídica: recurso de amparo ante el Tribunal Constitucional
+  y desarrollo mediante Ley Orgánica. Los más examinados:
+</p>
+<ul>
+  <li><strong>Art. 14:</strong> Igualdad ante la ley. Prohibición de discriminación.</li>
+  <li><strong>Art. 16:</strong> Libertad ideológica, religiosa y de culto. Aconfesionalidad del Estado.</li>
+  <li><strong>Art. 18:</strong> Derecho al honor, intimidad, propia imagen e inviolabilidad del domicilio.</li>
+  <li><strong>Art. 20:</strong> Libertad de expresión, información, cátedra y producción artística.</li>
+  <li><strong>Art. 23:</strong> Derecho de participación política y acceso a cargos públicos.</li>
+  <li><strong>Art. 24:</strong> Tutela judicial efectiva. Derecho a no declarar contra uno mismo.</li>
+  <li><strong>Art. 28:</strong> Libertad sindical y derecho de huelga.</li>
+</ul>
+
+<h3>Artículos 30-38 — Derechos y deberes de los ciudadanos</h3>
+<p>
+  Con protección inferior (refuerzo legislativo pero no Ley Orgánica ni amparo):
+</p>
+<ul>
+  <li><strong>Art. 30:</strong> Deber de defender España. Objeción de conciencia.</li>
+  <li><strong>Art. 31:</strong> Deber de contribuir al sostenimiento del gasto público.</li>
+  <li><strong>Art. 35:</strong> Derecho y deber al trabajo. Libre elección de profesión u oficio.</li>
+  <li><strong>Art. 38:</strong> Libertad de empresa en el marco de la economía de mercado.</li>
+</ul>
+
+<h3>Artículo 56 — El Rey</h3>
+<p>
+  "El Rey es el Jefe del Estado, símbolo de su unidad y permanencia, arbitra y modera
+  el funcionamiento regular de las instituciones, asume la más alta representación del
+  Estado español en las relaciones internacionales..."
+</p>
+<p>
+  El artículo 62 CE enumera las funciones del Rey. El artículo 65 regula el presupuesto
+  de la Casa Real. Ambos son fuente habitual de preguntas.
+</p>
+
+<h3>Artículos 66-80 — Las Cortes Generales</h3>
+<ul>
+  <li><strong>Art. 66:</strong> Las Cortes representan al pueblo español y están formadas por el Congreso y el Senado.</li>
+  <li><strong>Art. 68:</strong> Congreso: entre 300 y 400 diputados (<strong>actualmente 350</strong>), mandato de 4 años.</li>
+  <li><strong>Art. 69:</strong> Senado: Cámara de representación territorial.</li>
+  <li><strong>Art. 72:</strong> Autonomía de las Cámaras: reglamentos propios, presupuesto autónomo.</li>
+</ul>
+
+<h3>Artículo 97 — El Gobierno</h3>
+<p>
+  "El Gobierno dirige la política interior y exterior, la Administración civil y militar
+  y la defensa del Estado. Ejerce la función ejecutiva y la potestad reglamentaria de
+  acuerdo con la Constitución y las leyes."
+</p>
+<p>
+  El artículo 98 establece la composición del Gobierno (Presidente, Vicepresidentes,
+  Ministros y demás miembros que establezca la ley). Muy examinado junto con el
+  artículo 100 (nombramiento de Ministros: a propuesta del Presidente, por el Rey).
+</p>
+
+<h3>Artículo 103 — La Administración Pública</h3>
+<p>
+  "La Administración Pública sirve con objetividad los intereses generales y actúa
+  de acuerdo con los principios de eficacia, jerarquía, descentralización,
+  desconcentración y coordinación, con sometimiento pleno a la ley y al Derecho."
+</p>
+<p>
+  Este artículo es el fundamento constitucional de toda la LRJSP. Memoriza los
+  cinco principios en orden: eficacia, jerarquía, descentralización,
+  desconcentración y coordinación.
+</p>
+
+<h3>Artículo 117 — El Poder Judicial</h3>
+<p>
+  "La justicia emana del pueblo y se administra en nombre del Rey por Jueces y
+  Magistrados integrantes del Poder Judicial, independientes, inamovibles, responsables
+  y sometidos únicamente al imperio de la ley."
+</p>
+<p>
+  El Tribunal Supremo (art. 123) y el Tribunal Constitucional (arts. 159-165)
+  son fuente de preguntas frecuentes. El TC tiene <strong>12 magistrados</strong>
+  con mandato de <strong>9 años</strong>, renovándose por tercios cada 3 años.
+</p>
+
+<h2>Técnica de estudio para la CE en el examen TAC</h2>
+<ol>
+  <li>
+    <strong>Aprende la estructura primero:</strong> Título Preliminar + 10 Títulos.
+    Saber en qué Título está cada materia te permite descartar opciones incorrectas
+    aunque no recuerdes el artículo exacto.
+  </li>
+  <li>
+    <strong>Memoriza números clave:</strong> 350 diputados (art. 68), 12 magistrados
+    TC (art. 159), mandato 4 años (Congreso/Presidente), 9 años (magistrados TC).
+  </li>
+  <li>
+    <strong>Distingue la Sección 1.ª (derechos fundamentales) de la Sección 2.ª
+    (derechos y deberes):</strong> la diferencia de protección jurídica es pregunta
+    directa habitual.
+  </li>
+  <li>
+    <strong>Practica preguntas literales:</strong> el INAP suele pedir el artículo
+    exacto o la redacción exacta de la CE. No te conformes con "entender" el concepto:
+    memoriza las frases clave.
+  </li>
+</ol>
+
+<h2>Practica los temas constitucionales con OpoRuta</h2>
+<p>
+  OpoRuta genera preguntas tipo test sobre artículos específicos de la Constitución
+  Española con la misma dificultad y formato que los exámenes oficiales del INAP.
+  Cada pregunta incluye la cita del artículo exacto para que puedas verificar
+  la fuente y reforzar la memorización.
+</p>
+<p>
+  Puedes empezar con los Temas 1-3 (CE) de forma completamente gratuita.
+</p>
     `.trim(),
   },
 ]

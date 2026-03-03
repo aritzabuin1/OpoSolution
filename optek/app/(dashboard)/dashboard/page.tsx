@@ -30,6 +30,7 @@ import { LogrosGrid } from '@/components/dashboard/LogrosGrid'
 import { DashboardGreeting } from '@/components/dashboard/DashboardGreeting'
 import { DailyBrief } from '@/components/shared/DailyBrief'
 import RadarMini from '@/components/shared/RadarMini'
+import { calcularIPR } from '@/lib/utils/ipr'
 
 // ─── Tipos locales ─────────────────────────────────────────────────────────────
 
@@ -226,6 +227,15 @@ export default async function DashboardPage() {
   const nombreUsuario = profile?.full_name?.split(' ')[0] ?? 'opositor'
   const rachaActual = rachaData?.racha_actual ?? 0
 
+  // §2.5 — IPR: Índice Personal de Rendimiento (sin migration — cálculo puro)
+  const ipr = calcularIPR(
+    testsCompletados.map((t) => ({
+      puntuacion: t.puntuacion ?? 0,
+      created_at: t.created_at,
+    })),
+    rachaActual
+  )
+
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-8">
 
@@ -355,6 +365,63 @@ export default async function DashboardPage() {
           sub="disponibles"
         />
       </div>
+
+      {/* ── 2b. IPR card — §2.5 ──────────────────────────────────────────── */}
+      {ipr && (
+        <Card className={`border ${
+          ipr.nivel === 'preparado' ? 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950/20'
+          : ipr.nivel === 'avanzado' ? 'border-primary/20 bg-primary/3'
+          : 'border-border bg-card'
+        }`}>
+          <CardContent className="py-4">
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <div className="flex items-center gap-3">
+                <div className={`text-3xl font-bold tabular-nums ${
+                  ipr.nivel === 'preparado' ? 'text-green-600'
+                  : ipr.nivel === 'avanzado' ? 'text-primary'
+                  : ipr.nivel === 'aprendiendo' ? 'text-amber-600'
+                  : 'text-muted-foreground'
+                }`}>
+                  {ipr.score}
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-semibold">IPR — Índice de Preparación</span>
+                    <span className="text-xs px-1.5 py-0.5 rounded-full font-medium capitalize
+                      bg-muted text-muted-foreground">
+                      {ipr.nivel}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {ipr.tendencia === 'subiendo' ? '↑' : ipr.tendencia === 'bajando' ? '↓' : '→'}{' '}
+                      {ipr.tendencia}
+                    </span>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-0.5">{ipr.mensaje}</p>
+                </div>
+              </div>
+              {/* Barra de progreso */}
+              <div className="w-full sm:w-48 shrink-0">
+                <div className="h-2 rounded-full bg-muted overflow-hidden">
+                  <div
+                    className={`h-full rounded-full transition-all ${
+                      ipr.nivel === 'preparado' ? 'bg-green-500'
+                      : ipr.nivel === 'avanzado' ? 'bg-primary'
+                      : ipr.nivel === 'aprendiendo' ? 'bg-amber-500'
+                      : 'bg-muted-foreground'
+                    }`}
+                    style={{ width: `${ipr.score}%` }}
+                  />
+                </div>
+                <div className="flex justify-between text-[10px] text-muted-foreground mt-1">
+                  <span>0</span>
+                  <span>Aprobado: ~75</span>
+                  <span>100</span>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* ── 3. Gráfico de evolución ──────────────────────────────────────── */}
       <Card>

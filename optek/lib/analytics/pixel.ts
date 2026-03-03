@@ -49,3 +49,20 @@ export function trackPixelEvent(
     // Silently fail — analytics should never break the app
   }
 }
+
+/**
+ * Dispara StartTrial exactamente una vez por navegador/usuario.
+ * Usar tras generar el primer test exitoso (cualquier tipo).
+ * Usa localStorage como deduplicación — no depende del servidor.
+ */
+export function trackStartTrialOnce(): void {
+  if (typeof window === 'undefined') return
+  const LS_KEY = 'oporuta_trial_started'
+  try {
+    if (localStorage.getItem(LS_KEY)) return
+    localStorage.setItem(LS_KEY, '1')
+    trackPixelEvent('StartTrial')
+  } catch {
+    // localStorage may be blocked (private mode) — fail silently
+  }
+}

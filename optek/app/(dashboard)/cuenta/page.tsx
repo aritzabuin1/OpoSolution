@@ -128,10 +128,7 @@ export default async function CuentaPage() {
             <div className="mt-4 p-3 rounded-lg bg-muted text-sm">
               <p className="font-medium">Recarga de correcciones</p>
               <p className="text-muted-foreground text-xs mt-0.5">
-                +15 correcciones · 8,99€ · pago único
-              </p>
-              <p className="text-xs text-muted-foreground mt-1">
-                Disponible próximamente — el sistema de pagos se activa en breve.
+                +10 correcciones · 8,99€ · pago único
               </p>
             </div>
           )}

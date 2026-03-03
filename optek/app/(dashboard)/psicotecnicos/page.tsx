@@ -15,6 +15,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Brain, ChevronRight, Loader2, Zap } from 'lucide-react'
+import { trackStartTrialOnce } from '@/lib/analytics/pixel'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
@@ -89,6 +90,7 @@ export default function PsicotecnicosPage() {
         return
       }
 
+      trackStartTrialOnce() // §1.20.4
       router.push(`/tests/${data.id}`)
     } catch {
       setError('Error de conexión. Comprueba tu internet e inténtalo de nuevo.')

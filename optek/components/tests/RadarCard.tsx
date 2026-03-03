@@ -17,6 +17,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import type { TestGenerado } from '@/types/ai'
+import { trackStartTrialOnce } from '@/lib/analytics/pixel'
 
 interface RadarCardProps {
   hasPaidAccess: boolean
@@ -47,6 +48,7 @@ export function RadarCard({ hasPaidAccess }: RadarCardProps) {
 
       if (res.ok) {
         const test: TestGenerado = await res.json()
+        trackStartTrialOnce() // §1.20.4
         router.push(`/tests/${test.id}`)
         return
       }

@@ -29,6 +29,7 @@ import { Button } from '@/components/ui/button'
 import { LoadingState } from '@/components/shared/LoadingState'
 import { PaywallGate } from '@/components/shared/PaywallGate'
 import type { TestGenerado } from '@/types/ai'
+import { trackStartTrialOnce } from '@/lib/analytics/pixel'
 
 // ─── Tipos ───────────────────────────────────────────────────────────────────
 
@@ -95,6 +96,7 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, hasLegislacion = 
 
       if (res.ok) {
         const test: TestGenerado = await res.json()
+        trackStartTrialOnce() // §1.20.4 — fires only on first test ever
         router.push(`/tests/${test.id}`)
         return // no re-habilitamos el botón — navegamos fuera
       }
