@@ -9,12 +9,15 @@
  * Server Component.
  */
 
+import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { LOGROS_CATALOG } from '@/lib/utils/streaks'
 import { Trophy } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { LogroShareButton } from '@/components/logros/LogroShareButton'
+
+export const metadata: Metadata = { title: 'Mis Logros' }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 

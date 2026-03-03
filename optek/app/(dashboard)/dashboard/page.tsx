@@ -15,9 +15,12 @@
  * Server Component. Todos los datos se fetch en el servidor.
  */
 
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { CalendarCheck, CheckCircle2, ClipboardCheck, FileText, Flame, Layers, Star, Target, TrendingUp, Trophy, Zap } from 'lucide-react'
+
+export const metadata: Metadata = { title: 'Mi Dashboard' }
 import { createClient } from '@/lib/supabase/server'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
