@@ -52,6 +52,13 @@ interface PricingOption {
 
 const OPTIONS_TESTS: PricingOption[] = [
   {
+    tier: 'recarga',
+    label: 'Entrada básica',
+    price: '8,99€',
+    description: 'Tests ilimitados + 10 correcciones IA',
+    corrections: 'La opción más accesible',
+  },
+  {
     tier: 'pack',
     label: 'Pack Oposición',
     price: '34,99€',

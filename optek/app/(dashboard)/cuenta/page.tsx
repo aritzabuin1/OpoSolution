@@ -19,6 +19,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { ProfileForm } from '@/components/cuenta/ProfileForm'
 import { AccountActions } from '@/components/cuenta/AccountActions'
+import { BuyButton } from '@/components/cuenta/BuyButton'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -83,10 +84,24 @@ export default async function CuentaPage() {
     }
 
   const balance = profile?.corrections_balance ?? 0
+  const hasPurchases = (compras?.length ?? 0) > 0
 
   return (
     <div className="max-w-3xl mx-auto p-6 space-y-8">
       <h1 className="text-2xl font-bold">Mi cuenta</h1>
+
+      {/* ── CTA Pack — solo usuarios free sin compras ─────────────────────── */}
+      {!hasPurchases && (
+        <div className="rounded-xl border border-primary/30 bg-primary/5 p-5 flex items-center justify-between gap-4">
+          <div>
+            <p className="font-semibold text-sm">Desbloquea tests ilimitados</p>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              Pack Oposición — 34,99€ · tests ilimitados + 20 correcciones IA · sin suscripción
+            </p>
+          </div>
+          <BuyButton tier="pack" label="Comprar" variant="default" />
+        </div>
+      )}
 
       {/* ── §1.14.1 Perfil ────────────────────────────────────────────────── */}
       <Card>
@@ -125,11 +140,14 @@ export default async function CuentaPage() {
             </div>
           </div>
           {balance < 5 && (
-            <div className="mt-4 p-3 rounded-lg bg-muted text-sm">
-              <p className="font-medium">Recarga de correcciones</p>
-              <p className="text-muted-foreground text-xs mt-0.5">
-                +10 correcciones · 8,99€ · pago único
-              </p>
+            <div className="mt-4 p-3 rounded-lg bg-muted text-sm flex items-center justify-between gap-4">
+              <div>
+                <p className="font-medium">Recarga de correcciones</p>
+                <p className="text-muted-foreground text-xs mt-0.5">
+                  +10 correcciones · 8,99€ · pago único
+                </p>
+              </div>
+              <BuyButton tier="recarga" label="Comprar ahora" variant="default" />
             </div>
           )}
         </CardContent>
