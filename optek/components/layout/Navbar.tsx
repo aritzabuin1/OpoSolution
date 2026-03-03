@@ -50,7 +50,7 @@ export function Navbar() {
               onClick={() => setOpen(false)}
               className={cn(
                 'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
-                pathname === href
+                pathname === href || pathname.startsWith(href + '/')
                   ? 'bg-primary text-primary-foreground'
                   : 'text-muted-foreground hover:bg-muted hover:text-foreground'
               )}
