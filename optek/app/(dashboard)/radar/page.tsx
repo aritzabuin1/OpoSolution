@@ -9,6 +9,7 @@
  * Server Component.
  */
 
+import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { TrendingUp, Info } from 'lucide-react'
@@ -17,8 +18,8 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import RadarTribunal, { type RadarArticulo } from '@/components/tests/RadarTribunal'
 
-export const metadata = {
-  title: 'Radar del Tribunal | OpoRuta',
+export const metadata: Metadata = {
+  title: 'Radar del Tribunal',
   description: 'Los artículos que más caen en exámenes INAP reales. Practica lo que el tribunal pregunta.',
 }
 

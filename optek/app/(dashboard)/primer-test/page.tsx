@@ -1,6 +1,9 @@
+import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { PrimerTestSelector } from '@/components/shared/PrimerTestSelector'
+
+export const metadata: Metadata = { title: 'Empieza tu primera prueba' }
 
 /**
  * /primer-test — Onboarding: seleccionar oposición
