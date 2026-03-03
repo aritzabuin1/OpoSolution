@@ -18,6 +18,12 @@ export default async function MarketingLayout({ children }: { children: React.Re
             OpoRuta
           </Link>
           <nav className="flex items-center gap-2">
+            <Link href="/blog" className="hidden sm:block text-sm text-muted-foreground hover:text-foreground transition-colors px-2">
+              Blog
+            </Link>
+            <Link href="/examenes-oficiales" className="hidden sm:block text-sm text-muted-foreground hover:text-foreground transition-colors px-2">
+              Simulacros INAP
+            </Link>
             {user ? (
               // Usuario autenticado → CTA "Mi dashboard"
               <Link href="/dashboard">
@@ -63,6 +69,16 @@ export default async function MarketingLayout({ children }: { children: React.Re
                 <li>
                   <Link href="/#precios" className="hover:text-foreground transition-colors">
                     Precios
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/examenes-oficiales" className="hover:text-foreground transition-colors">
+                    Simulacros INAP Oficiales
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blog" className="hover:text-foreground transition-colors">
+                    Blog y guías
                   </Link>
                 </li>
                 <li>
