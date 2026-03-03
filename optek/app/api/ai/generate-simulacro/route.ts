@@ -8,11 +8,15 @@ import type { Json } from '@/types/database'
 import type { Pregunta } from '@/types/ai'
 
 /**
- * POST /api/ai/generate-simulacro — §2.6A.1 + §1.3B.13
+ * POST /api/ai/generate-simulacro — §2.6A.1 + §1.3B.13 + §2.6.1
  *
  * Genera un simulacro a partir de preguntas_oficiales (sin llamada a IA).
  * §1.3B.13: si incluirPsicotecnicos=true, genera 30 psicotécnicas y las
  * añade al inicio del test (simulando la estructura real del examen INAP).
+ *
+ * §2.6.1 — modo='mixto': mezcla preguntas de TODAS las convocatorias disponibles
+ *   (2019, 2022, 2024), sin requerir examenId ni anno. Ideal para practicar con
+ *   variedad máxima de preguntas reales del INAP.
  *
  * Estructura examen real:
  *   Parte 1: 30 psicotécnicas + N teóricas de convocatoria
@@ -35,11 +39,20 @@ const GenerateSimulacroSchema = z
     incluirPsicotecnicos: z.boolean().optional().default(false),
     /** Dificultad de las psicotécnicas: 1 fácil, 2 media, 3 difícil */
     dificultadPsico: z.union([z.literal(1), z.literal(2), z.literal(3)]).optional().default(2),
+    /**
+     * §2.6.1 — modo de generación:
+     * - 'anio' (default): usa examenId o anno (convocatoria específica)
+     * - 'mixto': mezcla preguntas de TODAS las convocatorias disponibles
+     */
+    modo: z.enum(['anio', 'mixto']).optional().default('anio'),
   })
-  .refine((d) => d.examenId !== undefined || d.anno !== undefined, {
-    message: 'Debes indicar examenId o anno',
-    path: ['examenId'],
-  })
+  .refine(
+    (d) => d.modo === 'mixto' || d.examenId !== undefined || d.anno !== undefined,
+    {
+      message: 'Debes indicar examenId, anno, o modo=mixto',
+      path: ['examenId'],
+    }
+  )
 
 // ─── Handler ──────────────────────────────────────────────────────────────────
 
@@ -74,7 +87,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: `Input inválido: ${errores}` }, { status: 400 })
   }
 
-  const { examenId, anno, numPreguntas, incluirPsicotecnicos, dificultadPsico } = parsed.data
+  const { examenId, anno, numPreguntas, incluirPsicotecnicos, dificultadPsico, modo } = parsed.data
 
   // ── 3. Rate limit silencioso: 10 simulacros/día ───────────────────────────
   const rateLimit = await checkRateLimit(user.id, 'simulacro-daily', 10, '24 h')
@@ -89,59 +102,114 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  // ── 4. Buscar el examen ───────────────────────────────────────────────────
+  // ── 4. Buscar examen/s y cargar preguntas ────────────────────────────────
   type ExamenRow = { id: string; anio: number; convocatoria: string }
-  let examen: ExamenRow | null = null
+  type PreguntaRow = { id: string; numero: number; enunciado: string; opciones: unknown; correcta: unknown; dificultad: unknown }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const examenesTable = (supabase as any).from('examenes_oficiales')
-
-  if (examenId) {
-    const { data } = await examenesTable
-      .select('id, anio, convocatoria')
-      .eq('id', examenId)
-      .eq('activo', true)
-      .single()
-    examen = data as ExamenRow | null
-  } else {
-    const { data } = await examenesTable
-      .select('id, anio, convocatoria')
-      .eq('anio', anno!)
-      .eq('activo', true)
-      .order('convocatoria')
-      .limit(1)
-      .maybeSingle()
-    examen = data as ExamenRow | null
-  }
-
-  if (!examen) {
-    return NextResponse.json(
-      { error: 'Examen no encontrado o no disponible.' },
-      { status: 404 }
-    )
-  }
-
-  // ── 5. Cargar preguntas_oficiales ─────────────────────────────────────────
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const preguntasTable = (supabase as any).from('preguntas_oficiales')
-  const { data: preguntasData, error: pregError } = await preguntasTable
-    .select('id, numero, enunciado, opciones, correcta, dificultad')
-    .eq('examen_id', examen.id)
-    .order('numero')
 
-  if (pregError) {
-    log.error({ err: pregError, examenId: examen.id }, '[generate-simulacro] error fetching preguntas')
-    return NextResponse.json(
-      { error: 'Error al cargar las preguntas del examen.' },
-      { status: 500 }
+  // Examen usado para metadata en BD (el primer examen en modo mixto)
+  let examen: ExamenRow | null = null
+  let preguntasData: PreguntaRow[] | null = null
+
+  if (modo === 'mixto') {
+    // §2.6.1 — cargar preguntas de TODAS las convocatorias activas
+    const { data: todosExamenes } = await examenesTable
+      .select('id, anio, convocatoria')
+      .eq('activo', true)
+      .order('anio', { ascending: false })
+
+    if (!todosExamenes || todosExamenes.length === 0) {
+      return NextResponse.json(
+        { error: 'No hay convocatorias disponibles todavía.' },
+        { status: 404 }
+      )
+    }
+
+    // Cargar preguntas de todos los exámenes en paralelo
+    const pregResultados = await Promise.all(
+      (todosExamenes as ExamenRow[]).map((ex) =>
+        preguntasTable
+          .select('id, numero, enunciado, opciones, correcta, dificultad')
+          .eq('examen_id', ex.id)
+      )
     )
+    const todasPreguntas = pregResultados.flatMap((r: { data: PreguntaRow[] | null }) => r.data ?? [])
+
+    if (todasPreguntas.length === 0) {
+      return NextResponse.json(
+        { error: 'No hay preguntas disponibles todavía.' },
+        { status: 404 }
+      )
+    }
+
+    // Usar el examen más reciente como referencia en BD
+    examen = (todosExamenes as ExamenRow[])[0]
+    preguntasData = todasPreguntas
+
+    log.info(
+      { examenes: todosExamenes.length, totalPreguntas: todasPreguntas.length },
+      '[generate-simulacro] modo mixto — combinando todas las convocatorias'
+    )
+  } else {
+    // Modo por año — comportamiento original
+    let examenRow: ExamenRow | null = null
+
+    if (examenId) {
+      const { data } = await examenesTable
+        .select('id, anio, convocatoria')
+        .eq('id', examenId)
+        .eq('activo', true)
+        .single()
+      examenRow = data as ExamenRow | null
+    } else {
+      const { data } = await examenesTable
+        .select('id, anio, convocatoria')
+        .eq('anio', anno!)
+        .eq('activo', true)
+        .order('convocatoria')
+        .limit(1)
+        .maybeSingle()
+      examenRow = data as ExamenRow | null
+    }
+
+    if (!examenRow) {
+      return NextResponse.json(
+        { error: 'Examen no encontrado o no disponible.' },
+        { status: 404 }
+      )
+    }
+    examen = examenRow
+
+    const { data: pregData, error: pregError } = await preguntasTable
+      .select('id, numero, enunciado, opciones, correcta, dificultad')
+      .eq('examen_id', examen.id)
+      .order('numero')
+
+    if (pregError) {
+      log.error({ err: pregError, examenId: examen.id }, '[generate-simulacro] error fetching preguntas')
+      return NextResponse.json(
+        { error: 'Error al cargar las preguntas del examen.' },
+        { status: 500 }
+      )
+    }
+
+    if (!pregData || pregData.length === 0) {
+      return NextResponse.json(
+        { error: 'Este examen no tiene preguntas cargadas todavía.' },
+        { status: 404 }
+      )
+    }
+
+    preguntasData = pregData as PreguntaRow[]
   }
 
-  if (!preguntasData || preguntasData.length === 0) {
-    return NextResponse.json(
-      { error: 'Este examen no tiene preguntas cargadas todavía.' },
-      { status: 404 }
-    )
+  // Garantía de tipo — examen y preguntasData siempre tienen valor en este punto
+  if (!examen || !preguntasData) {
+    return NextResponse.json({ error: 'Error interno al cargar los datos.' }, { status: 500 })
   }
 
   // ── 6. Selección aleatoria de preguntas oficiales ─────────────────────────

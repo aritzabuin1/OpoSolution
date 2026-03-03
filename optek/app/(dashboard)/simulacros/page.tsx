@@ -10,6 +10,7 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { SimulacroCard } from '@/components/simulacros/SimulacroCard'
+import { SimulacroMixtoCard } from '@/components/simulacros/SimulacroMixtoCard'
 import { Badge } from '@/components/ui/badge'
 import { Trophy, Info } from 'lucide-react'
 
@@ -74,6 +75,7 @@ export default async function SimulacrosPage() {
   }
 
   const hayExamenes = examenesConCount.length > 0
+  const totalPreguntasCombinadas = examenesConCount.reduce((sum, ex) => sum + ex.numPreguntas, 0)
 
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-8">
@@ -101,12 +103,30 @@ export default async function SimulacrosPage() {
         </p>
       </div>
 
-      {/* Lista de convocatorias */}
       {hayExamenes ? (
-        <div className="space-y-3">
-          {examenesConCount.map((examen) => (
-            <SimulacroCard key={examen.id} examen={examen} />
-          ))}
+        <div className="space-y-6">
+          {/* §2.6.1 — Simulacro Mixto destacado (todas las convocatorias) */}
+          <div className="space-y-2">
+            <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-0.5">
+              Recomendado
+            </h2>
+            <SimulacroMixtoCard
+              totalPreguntas={totalPreguntasCombinadas}
+              numConvocatorias={examenesConCount.length}
+            />
+          </div>
+
+          {/* Convocatorias por año */}
+          <div className="space-y-2">
+            <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-0.5">
+              Por convocatoria
+            </h2>
+            <div className="space-y-3">
+              {examenesConCount.map((examen) => (
+                <SimulacroCard key={examen.id} examen={examen} />
+              ))}
+            </div>
+          </div>
         </div>
       ) : (
         /* Empty state cuando no hay exámenes cargados en BD */
