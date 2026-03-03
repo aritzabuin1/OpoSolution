@@ -804,4 +804,585 @@ export const blogPosts: BlogPost[] = [
 </p>
     `.trim(),
   },
+
+  // ─── Post 7 ────────────────────────────────────────────────────────────────
+  {
+    slug: 'trebep-articulos-clave-examen-auxiliar-administrativo',
+    title: 'TREBEP en el examen TAC: artículos del Estatuto Básico del Empleado Público que más caen',
+    description:
+      'Los artículos del TREBEP que más se examinan en el Auxiliar Administrativo del Estado: derechos, deberes, código ético, situaciones administrativas y acceso a la función pública.',
+    date: '2026-03-03',
+    keywords: [
+      'TREBEP preguntas examen auxiliar administrativo',
+      'estatuto básico empleado público TAC',
+      'artículos TREBEP tipo test INAP',
+      'derechos funcionarios examen oposición',
+      'tema 13 14 auxiliar administrativo estado',
+    ],
+    content: `
+<h2>Por qué el TREBEP es imprescindible para el examen TAC</h2>
+<p>
+  El Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto
+  refundido de la Ley del Estatuto Básico del Empleado Público (TREBEP) es la norma marco
+  que regula la relación de empleo público en España. Para el Cuerpo General Auxiliar del
+  Estado, los <strong>Temas 13 y 14</strong> del temario oficial desarrollan en profundidad
+  el TREBEP: personal al servicio de las Administraciones Públicas, derechos, deberes,
+  código de conducta y régimen disciplinario.
+</p>
+<p>
+  En exámenes recientes del INAP, entre <strong>6 y 10 preguntas</strong> de las 100
+  totales provienen directamente del TREBEP. A diferencia de la LPAC o la CE, las preguntas
+  del TREBEP son habitualmente más conceptuales: piden identificar qué tipo de personal
+  es un funcionario interino, cuáles son los deberes del empleado público, o qué situaciones
+  administrativas existen.
+</p>
+
+<h2>Estructura del TREBEP: lo que necesitas saber</h2>
+<p>El TREBEP tiene 10 Títulos. Para el examen TAC, los más relevantes son:</p>
+<table>
+  <thead><tr><th>Título</th><th>Contenido clave</th></tr></thead>
+  <tbody>
+    <tr><td>Título I (Arts. 1-7)</td><td>Objeto, ámbito de aplicación, clases de personal</td></tr>
+    <tr><td>Título II (Arts. 8-19)</td><td>Personal funcionario, laboral, eventual e interino</td></tr>
+    <tr><td>Título III (Arts. 20-26)</td><td>Derechos individuales y colectivos</td></tr>
+    <tr><td>Título V (Arts. 52-54)</td><td>Deberes de los empleados públicos y código ético</td></tr>
+    <tr><td>Título VI (Arts. 55-62)</td><td>Acceso al empleo público</td></tr>
+    <tr><td>Título VII (Arts. 63-84)</td><td>Ordenación de la actividad profesional</td></tr>
+    <tr><td>Título VIII (Arts. 85-92)</td><td>Situaciones administrativas</td></tr>
+  </tbody>
+</table>
+
+<h2>Los artículos del TREBEP más frecuentes en exámenes INAP</h2>
+
+<h3>Artículo 8 — Concepto y clases de empleados públicos</h3>
+<p>
+  Los empleados públicos se clasifican en cuatro tipos:
+</p>
+<ul>
+  <li><strong>Funcionarios de carrera:</strong> vinculación permanente mediante nombramiento</li>
+  <li><strong>Funcionarios interinos:</strong> nombramiento temporal por razones de necesidad y urgencia</li>
+  <li><strong>Personal laboral:</strong> contrato de trabajo, fijo o temporal</li>
+  <li><strong>Personal eventual:</strong> cargos de confianza o asesoramiento especial, siempre temporal</li>
+</ul>
+<p>
+  Pregunta tipo test habitual: "¿El personal eventual puede acceder a la condición de
+  funcionario de carrera?" — <strong>No</strong>. El puesto eventual cesa automáticamente
+  cuando cesa quien lo nombró.
+</p>
+
+<h3>Artículo 9 — Funcionarios de carrera</h3>
+<p>
+  "Son funcionarios de carrera quienes, en virtud de nombramiento legal, están vinculados
+  a una Administración Pública por una relación estatutaria regulada por el Derecho
+  Administrativo para el desempeño de servicios profesionales retribuidos de carácter
+  permanente."
+</p>
+<p>
+  Importante: la relación es <em>estatutaria</em> (no contractual) y regida por el
+  Derecho Administrativo (no el laboral). Esta distinción es fuente frecuente de trampas.
+</p>
+
+<h3>Artículo 14 — Derechos individuales de los empleados públicos</h3>
+<p>
+  El artículo 14 enumera los derechos individuales. Los más preguntados:
+</p>
+<ul>
+  <li>Derecho a la inamovilidad en la condición de funcionario de carrera</li>
+  <li>Derecho a la carrera profesional y a la promoción interna</li>
+  <li>Derecho a la formación continua y actualización permanente</li>
+  <li>Derecho a recibir protección eficaz en materia de seguridad y salud</li>
+  <li>Derecho a la negociación colectiva y participación en la determinación de condiciones de trabajo</li>
+  <li>Derecho a la jornada de trabajo, permisos y vacaciones</li>
+</ul>
+
+<h3>Artículos 52-54 — Deberes y código de conducta</h3>
+<p>
+  El artículo 52 establece los <strong>deberes básicos</strong>: los empleados públicos
+  deberán desempeñar con diligencia las tareas que tengan asignadas y velar por los
+  intereses generales con sujeción y observancia de la CE y del resto del ordenamiento jurídico.
+</p>
+<p>
+  El <strong>Código de Conducta</strong> (arts. 53-54) incluye los principios éticos
+  (art. 53: objetividad, integridad, neutralidad, responsabilidad, imparcialidad,
+  confidencialidad, dedicación, transparencia, ejemplaridad, austeridad, accesibilidad,
+  honradez, promoción del entorno cultural, medioambiental, igualdad) y los principios
+  de conducta (art. 54).
+</p>
+<p>
+  Trampa frecuente: ¿Los principios éticos y de conducta son lo mismo?
+  <strong>No</strong>: los principios éticos están en el art. 53 y los de conducta en el art. 54.
+</p>
+
+<h3>Artículos 55-62 — Acceso al empleo público</h3>
+<p>
+  El artículo 55 establece los principios de acceso: igualdad, mérito, capacidad y
+  publicidad. El artículo 61 regula los sistemas selectivos: <strong>oposición</strong>
+  (ejercicios eliminatorios), <strong>concurso-oposición</strong> (fase de concurso
+  no eliminatoria + fase de oposición) y <strong>concurso</strong> (solo para promoción interna).
+</p>
+<p>
+  Pregunta tipo test: "¿Cuál es el sistema selectivo ordinario para ingreso en Cuerpos
+  de la Administración General del Estado?" — La <strong>oposición libre</strong>
+  (excepto cuando se justifique la naturaleza de las funciones o se motive en una ley).
+</p>
+
+<h3>Artículos 85-92 — Situaciones administrativas</h3>
+<p>
+  Las situaciones administrativas del funcionario de carrera son fundamentales para el examen:
+</p>
+<ul>
+  <li><strong>Servicio activo (art. 86):</strong> situación ordinaria; presta servicios en su
+    Administración, Cuerpo y puesto</li>
+  <li><strong>Servicios en otras Administraciones (art. 87):</strong> adscripción a otra
+    Administración por comisión de servicios, traslado o transferencia</li>
+  <li><strong>Servicios especiales (art. 88):</strong> cargos de elección popular, altos
+    cargos, organismos internacionales, etc. — reserva del puesto</li>
+  <li><strong>Servicio activo en otro cuerpo (art. 88 bis)</strong></li>
+  <li><strong>Excedencia (art. 89):</strong> voluntaria por interés particular, por cuidado de
+    familiares, por violencia de género, forzosa, etc.</li>
+  <li><strong>Suspensión de funciones (art. 90):</strong> provisional (durante expediente
+    disciplinario) o firme (sanción disciplinaria)</li>
+</ul>
+<p>
+  La excedencia <strong>voluntaria por interés particular</strong> requiere haber prestado
+  servicios efectivos durante los 5 años inmediatamente anteriores y no genera derecho
+  a reserva de puesto (a diferencia de la excedencia por cuidado de familiares).
+</p>
+
+<h2>Tabla resumen: los números que el INAP más examina</h2>
+<table>
+  <thead><tr><th>Dato</th><th>Valor</th><th>Artículo</th></tr></thead>
+  <tbody>
+    <tr><td>Reserva puesto — excedencia por cuidado hijo/familiar</td><td>3 años (hijo) / 2 años (familiar)</td><td>Art. 89.4</td></tr>
+    <tr><td>Permanencia mínima para excedencia voluntaria</td><td>5 años de servicio efectivo</td><td>Art. 89.2</td></tr>
+    <tr><td>Duración suspensión provisional</td><td>Máx. 6 meses (prorrogable si hay causa penal)</td><td>Art. 98</td></tr>
+    <tr><td>Principios de acceso</td><td>Igualdad, mérito, capacidad, publicidad</td><td>Art. 55</td></tr>
+    <tr><td>Tipos de sistemas selectivos</td><td>Oposición / Concurso-oposición / Concurso</td><td>Art. 61</td></tr>
+  </tbody>
+</table>
+
+<h2>Estrategia de estudio para el TREBEP</h2>
+<ol>
+  <li>
+    <strong>Distingue los 4 tipos de personal</strong> (arts. 8-12): es la primera
+    trampa. El personal eventual no es interino ni laboral.
+  </li>
+  <li>
+    <strong>Memoriza los principios éticos del art. 53</strong>: el examen pide a veces
+    si un principio concreto está en el art. 53 o en el art. 54.
+  </li>
+  <li>
+    <strong>Domina las situaciones administrativas</strong> (arts. 85-92): el examen
+    presenta casos prácticos ("¿En qué situación se encuentra un funcionario que...?").
+  </li>
+  <li>
+    <strong>Practica los plazos</strong>: 5 años para excedencia voluntaria, 3 años
+    de reserva de puesto para cuidado de hijos, duración máxima de la suspensión provisional.
+  </li>
+</ol>
+
+<h2>Practica los temas del TREBEP con OpoRuta</h2>
+<p>
+  OpoRuta genera preguntas tipo test sobre artículos específicos del TREBEP con el
+  mismo nivel de detalle que los exámenes oficiales del INAP. Cada pregunta cita el
+  artículo exacto verificado — sin inventos, sin alucinaciones.
+</p>
+<p>
+  Puedes empezar con los Temas 13 y 14 (TREBEP) de forma completamente gratuita.
+</p>
+    `.trim(),
+  },
+
+  // ─── Post 8 ────────────────────────────────────────────────────────────────
+  {
+    slug: 'lopdgdd-proteccion-datos-examen-auxiliar-administrativo',
+    title: 'LOPDGDD y RGPD en el examen TAC: protección de datos para el Auxiliar Administrativo',
+    description:
+      'Lo que necesitas saber de la LOPDGDD y el RGPD para el examen del Auxiliar Administrativo del Estado: derechos ARCO, bases jurídicas, AEPD y artículos más frecuentes.',
+    date: '2026-03-03',
+    keywords: [
+      'LOPDGDD examen auxiliar administrativo',
+      'protección datos RGPD examen INAP',
+      'derechos ARCO examen TAC',
+      'AEPD funcionarios examen oposición',
+      'tema 12 auxiliar administrativo estado protección datos',
+    ],
+    content: `
+<h2>La protección de datos en el temario del Auxiliar Administrativo del Estado</h2>
+<p>
+  La protección de datos personales es el <strong>Tema 12</strong> del temario oficial del
+  Cuerpo General Auxiliar del Estado. Lo regula principalmente la
+  <strong>Ley Orgánica 3/2018, de 5 de diciembre</strong>, de Protección de Datos Personales
+  y garantía de los derechos digitales (LOPDGDD), que adapta al ordenamiento español el
+  Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo (RGPD o GDPR en inglés).
+</p>
+<p>
+  En exámenes recientes del INAP, <strong>entre 3 y 6 preguntas</strong> provienen
+  directamente de este bloque. Las preguntas suelen versar sobre los derechos de los
+  interesados, las bases jurídicas del tratamiento, el Delegado de Protección de Datos
+  y el papel de la Agencia Española de Protección de Datos (AEPD).
+</p>
+
+<h2>El RGPD: marco general europeo</h2>
+<p>
+  El RGPD es el reglamento europeo aplicable desde el <strong>25 de mayo de 2018</strong>
+  en todos los Estados miembros de la UE. Al ser un Reglamento (no una Directiva),
+  es directamente aplicable sin necesidad de transposición nacional. La LOPDGDD lo
+  complementa y adapta a la realidad española.
+</p>
+<p>
+  Concepto central del RGPD: <em>dato personal</em> es "toda información sobre una
+  persona física identificada o identificable". La identificabilidad puede ser directa
+  (nombre, DNI) o indirecta (número de matrícula, dirección IP, datos de localización).
+</p>
+
+<h2>Principios del tratamiento de datos (Art. 5 RGPD)</h2>
+<p>
+  El artículo 5 del RGPD establece los principios que rigen cualquier tratamiento:
+</p>
+<ul>
+  <li><strong>Licitud, lealtad y transparencia:</strong> el interesado debe conocer el tratamiento</li>
+  <li><strong>Limitación de finalidad:</strong> los datos solo pueden usarse para el fin declarado</li>
+  <li><strong>Minimización de datos:</strong> solo recoger lo estrictamente necesario</li>
+  <li><strong>Exactitud:</strong> los datos deben ser correctos y actualizados</li>
+  <li><strong>Limitación del plazo de conservación:</strong> no conservar más tiempo del necesario</li>
+  <li><strong>Integridad y confidencialidad:</strong> garantizar la seguridad del tratamiento</li>
+  <li><strong>Responsabilidad proactiva (accountability):</strong> el responsable debe demostrar el cumplimiento</li>
+</ul>
+
+<h2>Bases jurídicas del tratamiento (Art. 6 RGPD)</h2>
+<p>
+  Todo tratamiento de datos personales debe apoyarse en <strong>al menos una</strong> base jurídica:
+</p>
+<ol>
+  <li>Consentimiento del interesado</li>
+  <li>Ejecución de un contrato del que el interesado es parte</li>
+  <li>Cumplimiento de una obligación legal</li>
+  <li>Protección de intereses vitales</li>
+  <li>Misión realizada en interés público o ejercicio de poderes públicos</li>
+  <li>Interés legítimo del responsable (salvo que prevalezcan los derechos del interesado)</li>
+</ol>
+<p>
+  Pregunta tipo test habitual: "¿Qué base jurídica utiliza la Administración Pública
+  cuando trata datos de ciudadanos para prestarles un servicio?" —
+  <strong>Misión realizada en interés público o ejercicio de poderes públicos</strong>
+  (base 5), o cumplimiento de obligación legal (base 3), según el caso.
+</p>
+
+<h2>Categorías especiales de datos (Art. 9 RGPD)</h2>
+<p>
+  El RGPD prohíbe tratar ciertos datos salvo que concurran excepciones específicas:
+</p>
+<ul>
+  <li>Origen étnico o racial</li>
+  <li>Opiniones políticas</li>
+  <li>Convicciones religiosas o filosóficas</li>
+  <li>Afiliación sindical</li>
+  <li>Datos genéticos y biométricos con propósito identificativo</li>
+  <li>Datos relativos a la salud</li>
+  <li>Vida u orientación sexual</li>
+</ul>
+<p>
+  Trampa clásica: los datos de salud <strong>siempre</strong> son categoría especial
+  (sensibles), independientemente de quién los trate.
+</p>
+
+<h2>Derechos de los interesados (Arts. 15-22 RGPD)</h2>
+<p>
+  El RGPD reconoce los siguientes derechos — popularmente conocidos como "derechos ARCO+"
+  (expansión de los clásicos Acceso, Rectificación, Cancelación, Oposición):
+</p>
+<table>
+  <thead><tr><th>Derecho</th><th>Artículo RGPD</th><th>Descripción</th></tr></thead>
+  <tbody>
+    <tr><td>Acceso</td><td>Art. 15</td><td>Conocer si se tratan datos propios y obtener copia</td></tr>
+    <tr><td>Rectificación</td><td>Art. 16</td><td>Corregir datos inexactos o completar los incompletos</td></tr>
+    <tr><td>Supresión ("olvido")</td><td>Art. 17</td><td>Eliminar datos cuando ya no sean necesarios</td></tr>
+    <tr><td>Limitación del tratamiento</td><td>Art. 18</td><td>Suspender temporalmente el tratamiento</td></tr>
+    <tr><td>Portabilidad</td><td>Art. 20</td><td>Recibir datos en formato estructurado y transferirlos</td></tr>
+    <tr><td>Oposición</td><td>Art. 21</td><td>Oponerse al tratamiento basado en interés legítimo</td></tr>
+    <tr><td>Decisiones automatizadas</td><td>Art. 22</td><td>No ser objeto de decisiones basadas solo en perfilado</td></tr>
+  </tbody>
+</table>
+<p>
+  El plazo general para responder a estos derechos es <strong>1 mes</strong>, prorrogable
+  hasta 3 meses en casos complejos. Es fuente habitual de preguntas.
+</p>
+
+<h2>El Delegado de Protección de Datos (DPD/DPO)</h2>
+<p>
+  El Delegado de Protección de Datos (DPD o DPO en inglés) es figura obligatoria en
+  determinados supuestos establecidos en el artículo 37 del RGPD, entre ellos:
+  autoridades u organismos públicos (excepto tribunales en funciones jurisdiccionales),
+  tratamientos a gran escala de datos sensibles o seguimiento sistemático a gran escala.
+</p>
+<p>
+  Para las Administraciones Públicas, el DPD es <strong>siempre obligatorio</strong>.
+  Sus funciones principales (art. 39 RGPD):
+</p>
+<ul>
+  <li>Informar y asesorar al responsable y a los empleados</li>
+  <li>Supervisar el cumplimiento del RGPD y la política interna</li>
+  <li>Cooperar con la autoridad de control (AEPD en España)</li>
+  <li>Actuar como punto de contacto con la AEPD</li>
+</ul>
+<p>
+  El DPD <strong>no es el responsable del tratamiento</strong> ni toma decisiones sobre
+  los datos: asesora y supervisa. Esta distinción es fuente de trampa.
+</p>
+
+<h2>La Agencia Española de Protección de Datos (AEPD)</h2>
+<p>
+  La AEPD es la autoridad de control independiente en España (art. 45 LOPDGDD),
+  encargada de supervisar el cumplimiento del RGPD y la LOPDGDD. Sus competencias:
+  investigar infracciones, imponer sanciones, tramitar reclamaciones de ciudadanos
+  y dictar resoluciones vinculantes.
+</p>
+<p>
+  La LOPDGDD establece un régimen sancionador con tres niveles:
+</p>
+<ul>
+  <li><strong>Infracciones leves:</strong> hasta 40.000 € para entidades privadas; <em>apercibimiento</em> para Administraciones Públicas</li>
+  <li><strong>Infracciones graves:</strong> hasta 300.000 € (privadas); apercibimiento + publicación en BOE (públicas)</li>
+  <li><strong>Infracciones muy graves:</strong> hasta 20.000.000 € o 4% volumen de negocio mundial (privadas); apercibimiento + comunicación al Parlamento (públicas)</li>
+</ul>
+<p>
+  Dato importante: las Administraciones Públicas <strong>no pueden ser sancionadas con multa</strong>
+  (solo con apercibimiento). Esta excepción es pregunta habitual.
+</p>
+
+<h2>Brechas de seguridad (Arts. 33-34 RGPD)</h2>
+<p>
+  Si se produce una violación de seguridad de datos personales, el responsable debe:
+</p>
+<ul>
+  <li>Notificar a la AEPD en un plazo <strong>máximo de 72 horas</strong> desde que tenga
+    conocimiento (si es probable que suponga riesgo para los interesados)</li>
+  <li>Si entraña alto riesgo para los interesados: notificar también a los propios interesados
+    "sin dilación indebida"</li>
+</ul>
+<p>
+  El plazo de 72 horas es uno de los datos más preguntados de todo el bloque de protección de datos.
+</p>
+
+<h2>Estrategia de estudio</h2>
+<ol>
+  <li>
+    <strong>Distingue RGPD y LOPDGDD:</strong> el RGPD es el marco europeo (directamente aplicable);
+    la LOPDGDD lo complementa en España. Las preguntas del INAP suelen indicar de cuál ley se pregunta.
+  </li>
+  <li>
+    <strong>Memoriza los 7 principios del art. 5 RGPD</strong> y los 6 derechos de los interesados
+    (con sus artículos).
+  </li>
+  <li>
+    <strong>Las 72 horas</strong> para notificar brechas y el <strong>1 mes</strong> para
+    responder derechos son plazos clave.
+  </li>
+  <li>
+    <strong>Administraciones Públicas ≠ multa</strong>: este matiz diferencia al conocedor
+    del tema del que solo lo ha leído por encima.
+  </li>
+</ol>
+
+<h2>Practica protección de datos con OpoRuta</h2>
+<p>
+  OpoRuta genera preguntas tipo test específicas del Tema 12 (Protección de datos) con
+  el mismo nivel de dificultad que los exámenes oficiales del INAP. Cada pregunta está
+  verificada contra el texto íntegro del RGPD y la LOPDGDD.
+</p>
+<p>
+  Empieza gratis — sin tarjeta de crédito — y descubre cuántas preguntas de protección
+  de datos eres capaz de acertar a la primera.
+</p>
+    `.trim(),
+  },
+
+  // ─── Post 9 ────────────────────────────────────────────────────────────────
+  {
+    slug: 'como-preparar-oposicion-auxiliar-administrativo-estado-guia',
+    title: 'Cómo preparar la oposición al Cuerpo General Auxiliar del Estado: guía completa 2025-2026',
+    description:
+      'Guía paso a paso para preparar las oposiciones TAC al Auxiliar Administrativo del Estado en 2025-2026: temario, estructura del examen, métodos de estudio y herramientas útiles.',
+    date: '2026-03-03',
+    keywords: [
+      'cómo preparar oposición auxiliar administrativo estado',
+      'oposición TAC 2025 2026 guía',
+      'temario auxiliar administrativo preparación',
+      'cuánto tiempo estudiar auxiliar administrativo estado',
+      'método estudio oposición TAC',
+    ],
+    content: `
+<h2>¿Qué es el Cuerpo General Auxiliar del Estado (TAC)?</h2>
+<p>
+  El Cuerpo General Auxiliar de la Administración del Estado, comúnmente llamado TAC
+  (Técnico Auxiliar del Estado), es uno de los cuerpos de funcionarios de la Administración
+  General del Estado más solicitados de España. Pertenece al <strong>Subgrupo C2</strong>
+  de clasificación profesional (titulación mínima: Graduado Escolar, ESO o equivalente)
+  y ofrece estabilidad laboral, jornada de 37,5 horas semanales y un sueldo base de
+  aproximadamente 1.200-1.400 € mensuales brutos, más complementos según destino.
+</p>
+<p>
+  La convocatoria 2025-2026 prevé <strong>miles de plazas</strong> a nivel nacional.
+  El proceso selectivo consta de un único examen tipo test de 100 preguntas en 90 minutos
+  más 10 preguntas de reserva, con penalización de -1/3 por respuesta incorrecta.
+</p>
+
+<h2>Estructura del examen TAC 2025-2026</h2>
+<table>
+  <thead><tr><th>Parte</th><th>Nº preguntas</th><th>Contenido</th><th>Puntuación máxima</th></tr></thead>
+  <tbody>
+    <tr><td>Parte 1</td><td>60 preguntas</td><td>30 teóricas (Bloque I) + 30 psicotécnicas</td><td>50 puntos</td></tr>
+    <tr><td>Parte 2</td><td>50 preguntas</td><td>Teórico-prácticas (Bloque II: ofimática)</td><td>50 puntos</td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>110 preguntas</strong> (100 + 10 reserva)</td><td>—</td><td><strong>100 puntos</strong></td></tr>
+  </tbody>
+</table>
+<p>
+  La nota mínima para superar el examen suele ser <strong>50 puntos sobre 100</strong>
+  (sin mínimo por parte en convocatoria ordinaria, aunque esto puede variar según bases).
+  El orden de prelación final incluye el resultado del examen y, en caso de empate,
+  criterios de desempate establecidos en las bases de la convocatoria.
+</p>
+
+<h2>El temario oficial: 28 temas en 2 bloques</h2>
+
+<h3>Bloque I — Organización Pública (16 temas)</h3>
+<p>
+  Este bloque cubre el marco jurídico y organizativo de la Administración española y de la UE:
+</p>
+<ul>
+  <li>Temas 1-3: Constitución Española (CE)</li>
+  <li>Temas 4-5: Poder Judicial y Cortes Generales</li>
+  <li>Tema 6: Gobierno y Administración del Estado</li>
+  <li>Tema 7: Gobierno Abierto y Transparencia (Ley 19/2013)</li>
+  <li>Tema 8: Administración General del Estado (AGE)</li>
+  <li>Tema 9: Organización territorial del Estado</li>
+  <li>Tema 10: Unión Europea (instituciones y funcionamiento)</li>
+  <li>Temas 11-12: LPAC + LRJSP + Protección de datos</li>
+  <li>Temas 13-14: TREBEP (personal funcionario)</li>
+  <li>Tema 15: Presupuesto General del Estado</li>
+  <li>Tema 16: Políticas de igualdad y LGTBI</li>
+</ul>
+
+<h3>Bloque II — Actividad Administrativa y Ofimática (12 temas)</h3>
+<p>
+  Este bloque es eminentemente práctico y tiene el mismo peso que el Bloque I en el examen:
+</p>
+<ul>
+  <li>Temas 17-20: Atención al público, información administrativa, registro y administración electrónica</li>
+  <li>Temas 21-23: Informática básica, Windows 11 y gestión de archivos</li>
+  <li>Temas 24-27: Word 365, Excel 365, Access 365, Outlook 365</li>
+  <li>Tema 28: Red Internet</li>
+</ul>
+
+<h2>¿Cuánto tiempo se necesita para preparar el TAC?</h2>
+<p>
+  La preparación media de quienes aprueban el TAC oscila entre <strong>6 y 18 meses</strong>,
+  con una dedicación diaria de 3 a 5 horas. El tiempo varía enormemente según:
+</p>
+<ul>
+  <li>Formación jurídica previa: quienes tienen estudios en Derecho o Ciencias Políticas
+    pueden reducir el tiempo de Bloque I en un 30-40%</li>
+  <li>Familiaridad con ofimática: quienes usan Word y Excel en su trabajo diario tienen
+    ventaja en el Bloque II</li>
+  <li>Método de estudio: preparar con academia, de forma autodidacta o con herramientas
+    adaptativas marca diferencias significativas</li>
+</ul>
+<p>
+  Una distribución realista para un preparador sin experiencia previa:
+</p>
+<table>
+  <thead><tr><th>Fase</th><th>Duración</th><th>Actividad</th></tr></thead>
+  <tbody>
+    <tr><td>Fase 1</td><td>Meses 1-3</td><td>Primera lectura del temario completo + esquemas</td></tr>
+    <tr><td>Fase 2</td><td>Meses 4-6</td><td>Repaso temario + primeros test por tema</td></tr>
+    <tr><td>Fase 3</td><td>Meses 7-9</td><td>Consolidación: test intensivos + simulacros oficiales</td></tr>
+    <tr><td>Fase 4</td><td>Mes 10+</td><td>Repaso final + simulacros completos cronometrados</td></tr>
+  </tbody>
+</table>
+
+<h2>Método de estudio más eficiente para el TAC</h2>
+
+<h3>1. Aprendizaje espaciado (Spaced Repetition)</h3>
+<p>
+  El método más validado científicamente para memorizar grandes volúmenes de información
+  normativa es el aprendizaje espaciado: repasar cada concepto justo antes de olvidarlo,
+  con intervalos que se amplían progresivamente (1 día → 3 días → 7 días → 2 semanas → 1 mes).
+  Las flashcards implementan este método de forma óptima.
+</p>
+
+<h3>2. Test tipo test desde el día 1</h3>
+<p>
+  Muchos opositores cometen el error de estudiar durante meses antes de hacer su primer
+  test. El retrieval practice (recordar activamente) es más eficaz que releer:
+  hacer una pregunta de test sobre un artículo consolida la memoria mucho más que
+  leerlo tres veces. El objetivo es hacer tests desde la primera semana, aunque
+  se fallen todas las preguntas.
+</p>
+
+<h3>3. Simulacros cronometrados en la recta final</h3>
+<p>
+  Las últimas 6-8 semanas antes del examen deben incluir al menos 1 simulacro completo
+  (100 preguntas, 90 minutos) por semana. La presión del tiempo y la penalización -1/3
+  son factores que solo se aprenden practicando, no estudiando.
+</p>
+
+<h3>4. Enfócate en los artículos de alta frecuencia</h3>
+<p>
+  No todos los artículos de la CE, LPAC o TREBEP tienen la misma probabilidad de
+  aparecer en el examen. El análisis de convocatorias pasadas del INAP muestra que
+  ciertos artículos aparecen en más del 60% de los exámenes. Concentrar el estudio
+  en esos artículos antes de abordar el temario completo aumenta el rendimiento.
+</p>
+
+<h2>Las trampas más comunes en el examen TAC</h2>
+<ul>
+  <li>
+    <strong>Confundir LPAC (Ley 39/2015) y LRJSP (Ley 40/2015):</strong> el examen
+    suele preguntar expresamente "¿En qué ley está regulado...?" Recuerda: LPAC =
+    procedimiento (relación ciudadano-Administración), LRJSP = organización interna.
+  </li>
+  <li>
+    <strong>No aplicar la penalización en los simulacros:</strong> estudiar sin
+    penalización genera estrategias de respuesta incorrectas para el examen real.
+  </li>
+  <li>
+    <strong>Descuidar los psicotécnicos:</strong> representan 30 de las 60 preguntas
+    de la Parte 1 (50% de la parte). Muchos opositores los trabajan tarde porque
+    "no hay que estudiar normativa". Pero las series numéricas, razonamiento abstracto
+    y comprensión verbal requieren práctica sistemática.
+  </li>
+  <li>
+    <strong>Subestimar el Bloque II:</strong> Word, Excel y Access no son "fáciles"
+    si no los practicas con preguntas de nivel examen. La ofimática tiene su propio
+    vocabulario específico que el INAP pregunta de forma muy técnica.
+  </li>
+</ul>
+
+<h2>Herramientas de preparación recomendadas</h2>
+<p>
+  La preparación más eficaz combina varias herramientas:
+</p>
+<ul>
+  <li><strong>Temario oficial o manual de academia:</strong> como base de estudio para la lectura inicial</li>
+  <li><strong>Exámenes oficiales del INAP:</strong> las convocatorias de 2019, 2022 y 2024 son el
+    mejor indicador del nivel y estilo de preguntas real</li>
+  <li><strong>Plataforma de tests adaptativos:</strong> OpoRuta genera preguntas verificadas
+    sobre artículos específicos, detecta tus puntos débiles y refuerza exactamente lo que más necesitas</li>
+  <li><strong>Simulacros cronometrados:</strong> OpoRuta incluye simulacros gratuitos basados en
+    exámenes reales del INAP con penalización -1/3 real</li>
+</ul>
+
+<h2>Empieza a preparar el TAC con OpoRuta</h2>
+<p>
+  OpoRuta es la plataforma de preparación para opositores TAC que genera preguntas tipo test
+  verificadas artículo por artículo: cada pregunta cita el artículo exacto de la ley y OpoRuta
+  verifica que ese artículo existe antes de mostrártela.
+</p>
+<p>
+  Puedes hacer tus primeros 5 tests de forma completamente gratuita, sin tarjeta de crédito.
+  Si la plataforma te ayuda a consolidar conceptos que te cuestan — regístralo.
+</p>
+    `.trim(),
+  },
 ]
