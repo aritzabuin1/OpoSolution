@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
             id: 'recarga',
             name: 'Recarga de correcciones',
             price: '8,99€',
-            description: '+15 correcciones IA',
+            description: '+10 correcciones IA',
           },
           {
             id: 'pack',

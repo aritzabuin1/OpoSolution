@@ -80,16 +80,12 @@ export default function TerminosPage() {
                 requerida.
               </li>
               <li>
-                <strong className="text-foreground">Por tema (4,99€):</strong> Pago único.
-                Tests ilimitados de un tema + 5 correcciones IA. Sin caducidad.
-              </li>
-              <li>
                 <strong className="text-foreground">Pack Oposición (34,99€):</strong> Pago
                 único. Tests ilimitados de todo el temario + 20 correcciones IA. Sin caducidad.
               </li>
               <li>
                 <strong className="text-foreground">Recarga de correcciones (8,99€):</strong>{' '}
-                Pago único. Añade +15 correcciones IA a tu saldo. Sin caducidad.
+                Pago único. Añade +10 correcciones IA a tu saldo. Sin caducidad.
               </li>
             </ul>
             <p className="mt-3">

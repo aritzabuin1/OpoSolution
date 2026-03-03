@@ -130,10 +130,10 @@ export async function POST(request: NextRequest) {
           code: 'PAYWALL_TESTS',
           upsell: [
             {
-              id: 'tema',
-              name: 'Por tema',
-              price: '4,99€',
-              description: 'Tests ilimitados de un tema + 5 correcciones',
+              id: 'recarga',
+              name: 'Recarga',
+              price: '8,99€',
+              description: '+10 correcciones adicionales',
             },
             {
               id: 'pack',

@@ -17,7 +17,7 @@
 
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { CalendarCheck, CheckCircle2, ClipboardCheck, FileText, Flame, Star, Target, TrendingUp, Zap } from 'lucide-react'
+import { CalendarCheck, CheckCircle2, ClipboardCheck, FileText, Flame, Star, Target, TrendingUp, Trophy, Zap } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -297,6 +297,16 @@ export default async function DashboardPage() {
       {/* ── 0c. Radar Mini — §2.14.9 ──────────────────────────────────────── */}
       <RadarMini />
 
+      {/* ── 0d. Exam date CTA para usuarios sin fecha configurada ────────── */}
+      {!profile?.fecha_examen && totalTests > 0 && (
+        <div className="flex items-center justify-between gap-3 rounded-lg border border-dashed border-muted-foreground/30 px-4 py-2.5 text-sm text-muted-foreground">
+          <span>¿Ya tienes fecha de examen? Configúrala para ver cuántos días te quedan.</span>
+          <Link href="/cuenta" className="text-primary font-medium hover:underline shrink-0 text-xs">
+            Configurar →
+          </Link>
+        </div>
+      )}
+
       {/* ── 1. Cabecera ───────────────────────────────────────────────────── */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         {/* DashboardGreeting es Client Component para evitar hydration mismatch con getHours() */}
@@ -502,6 +512,26 @@ export default async function DashboardPage() {
           )}
         </div>
       </div>
+
+      {/* ── 6. Simulacros CTA ─────────────────────────────────────────────── */}
+      {totalTests >= 3 && (
+        <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-primary/3">
+          <CardContent className="flex items-center justify-between gap-4 py-5">
+            <div className="flex items-center gap-3">
+              <Trophy className="h-6 w-6 text-primary shrink-0" />
+              <div>
+                <p className="text-sm font-semibold">Ponlo a prueba con un Simulacro Oficial</p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  100 preguntas · 90 min · Penalización real · Exámenes INAP 2019–2024
+                </p>
+              </div>
+            </div>
+            <Button asChild size="sm" className="shrink-0">
+              <Link href="/simulacros">Ver simulacros →</Link>
+            </Button>
+          </CardContent>
+        </Card>
+      )}
 
     </div>
   )

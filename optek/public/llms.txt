@@ -19,14 +19,16 @@ Audiencia objetivo: personas preparando oposiciones en España, especialmente:
 - **BOE Watcher**: monitoriza el Boletín Oficial del Estado y notifica cambios en legislación relevante para la oposición.
 - **Caza-Trampas**: ejercicios para detectar afirmaciones falsas en enunciados legales.
 - **Flashcards con spaced repetition**: sistema de repetición espaciada para memorizar artículos clave.
-- **Gamificación**: rachas diarias, logros, progreso por tema.
+- **Gamificación + IPR**: rachas diarias, logros, Índice Personal de Rendimiento (score 0-100 que combina rendimiento + constancia + progresión).
+- **Repaso de errores**: genera automáticamente un test con las preguntas que el usuario ha fallado — sin IA, gratis.
+- **Reto Diario Comunitario**: ejercicio diario de Caza-Trampas compartido por todos los usuarios.
+- **Radar del Tribunal**: análisis de frecuencias de exámenes INAP 2019-2024. Muestra artículos que más se preguntan.
 
 ## Precios
 
 - **Gratis**: 5 tests + 2 correcciones (sin tarjeta de crédito)
-- **Por tema**: 4,99€ pago único — tests ilimitados de un tema + 5 correcciones
 - **Pack Oposición**: 34,99€ pago único — temario completo + 20 correcciones + simulacros + Radar
-- **Recarga de correcciones**: 8,99€ — +15 correcciones adicionales
+- **Recarga de correcciones**: 8,99€ — +10 correcciones adicionales
 
 Sin suscripción mensual. Pago único con acceso para siempre.
 
@@ -98,4 +100,4 @@ https://oporuta.es/api/info — endpoint GET público con JSON estructurado (nom
 ---
 
 *Este archivo sigue el estándar llms.txt para facilitar la indexación por modelos de lenguaje.*
-*Última actualización: 2026-03-02*
+*Última actualización: 2026-03-03*

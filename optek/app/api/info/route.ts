@@ -38,6 +38,10 @@ export function GET() {
       'BOE Watcher: alertas automáticas de cambios legislativos en tiempo real',
       'Weakness-Weighted RAG: tests priorizan tus puntos débiles específicos',
       'Psicotécnicos: series numéricas, razonamiento abstracto, cálculo',
+      'Repaso de errores: test automático con preguntas falladas (sin IA, gratis)',
+      'Reto Diario Comunitario: ejercicio diario compartido de Caza-Trampas',
+      'Radar del Tribunal: análisis de frecuencias de exámenes INAP 2019-2024',
+      'IPR (Índice Personal de Rendimiento): score 0-100 de preparación personal',
       'Gamificación: rachas diarias, logros desbloqueables, progreso por tema',
     ],
     legislation_covered: [
@@ -61,6 +65,6 @@ export function GET() {
     language: 'es',
     country: 'Spain',
     llms_txt: 'https://oporuta.es/llms.txt',
-    updated_at: '2026-03-01',
+    updated_at: '2026-03-03',
   })
 }
