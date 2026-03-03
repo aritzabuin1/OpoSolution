@@ -1008,7 +1008,7 @@
 
 > **Formato oficial:** 110 preguntas en 90 minutos. Parte 1: 30 teóricas (Bloque I) + 30 psicotécnicas. Parte 2: 50 teórico-prácticas (Bloque II). Penalización: errónea descuenta 1/3 del valor de correcta. Total: 100 puntos (50 por parte).
 
-- [ ] **2.6.1** Crear página `/simulacros/page.tsx`: selección de simulacro — completo (110 preguntas / 90 min) o parcial (55 preguntas / 45 min)
+- [x] **2.6.1** Crear página `/simulacros/page.tsx` con Simulacro Mixto (§2.6.1) + convocatorias por año. SimulacroMixtoCard llama a `generate-simulacro` con `{ modo: 'mixto' }` — mezcla preguntas de 2019, 2022, 2024 sin IA. ✅ 2026-03-03
 - [x] **2.6.2** Implementar timer estricto: countdown 90 min (o 45 min parcial) con barra de progreso. Auto-submit al agotar tiempo. Audio/vibración de aviso a 10 min y 5 min ✅ 2026-02-27
 - [ ] **2.6.2A** Estructura del simulacro completo:
   - **Parte 1** (60 preguntas): 30 preguntas teóricas de Bloque I (RAG + legislación) + 30 preguntas psicotécnicas (motor determinista §1.3B)
