@@ -16,6 +16,7 @@ import {
 import { createClient } from '@/lib/supabase/server'
 import { FOUNDER_LIMIT } from '@/lib/stripe/client'
 import { JsonLd } from '@/components/shared/JsonLd'
+import { blogPosts } from '@/content/blog/posts'
 
 export const metadata: Metadata = {
   title: 'OpoRuta — El camino más corto hacia el aprobado',
@@ -536,6 +537,49 @@ export default async function LandingPage() {
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{a}</p>
               </details>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Blog snippets ────────────────────────────────────────────── */}
+      <section className="py-16 border-t">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-2xl font-bold tracking-tight">Guías para preparar el TAC</h2>
+              <p className="text-sm text-muted-foreground mt-1">
+                Artículos prácticos escritos por expertos en oposiciones
+              </p>
+            </div>
+            <Link href="/blog" className="text-sm text-primary hover:underline hidden sm:block">
+              Ver todas las guías →
+            </Link>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {blogPosts.slice(0, 3).map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
+                <Card className="h-full hover:border-primary/40 transition-colors">
+                  <CardContent className="pt-5 pb-5">
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                      {post.keywords.slice(0, 2).map((kw) => (
+                        <Badge key={kw} variant="secondary" className="text-[10px]">{kw}</Badge>
+                      ))}
+                    </div>
+                    <p className="text-sm font-medium leading-snug group-hover:text-primary transition-colors line-clamp-3">
+                      {post.title}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-2 line-clamp-2">
+                      {post.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-4 text-center sm:hidden">
+            <Link href="/blog" className="text-sm text-primary hover:underline">
+              Ver todas las guías →
+            </Link>
           </div>
         </div>
       </section>
