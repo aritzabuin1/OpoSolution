@@ -400,6 +400,30 @@ export default async function LandingPage() {
         </div>
       </section>
 
+      {/* ─── Exámenes INAP — internal link for SEO ───────────────────── */}
+      <section className="py-12 bg-muted/20 border-y">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
+          <p className="text-sm font-medium text-muted-foreground mb-4">
+            Practica con exámenes reales del INAP — preguntas oficiales de convocatorias anteriores
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 mb-4">
+            {['inap-2024', 'inap-2022', 'inap-2019'].map((slug) => (
+              <Link key={slug} href={`/examenes-oficiales/${slug}`}>
+                <Badge
+                  variant="outline"
+                  className="text-sm px-3 py-1.5 hover:bg-accent transition-colors cursor-pointer"
+                >
+                  INAP {slug.split('-')[1]}
+                </Badge>
+              </Link>
+            ))}
+          </div>
+          <Link href="/examenes-oficiales" className="text-sm text-primary hover:underline">
+            Ver todos los simulacros oficiales →
+          </Link>
+        </div>
+      </section>
+
       {/* ─── Pricing ──────────────────────────────────────────────────── */}
       <section id="precios" className="py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
