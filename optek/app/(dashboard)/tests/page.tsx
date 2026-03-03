@@ -20,8 +20,9 @@ import { createClient } from '@/lib/supabase/server'
 import { TemaCard } from '@/components/tests/TemaCard'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
-import { ClipboardCheck, Lock, TrendingUp } from 'lucide-react'
+import { ClipboardCheck, Lock, RefreshCw } from 'lucide-react'
 import { RadarCard } from '@/components/tests/RadarCard'
+import { RepasoButton } from '@/components/shared/RepasoButton'
 
 // ─── Mapping estático: ley_codigo → números de tema que cubre ─────────────────
 // Se actualiza cuando se indexan nuevas leyes en data/legislacion/
@@ -214,6 +215,24 @@ export default async function TestsPage({
             No hay temas disponibles aún. El equipo está cargando el temario.
           </p>
         </div>
+      )}
+
+      {/* Repasar errores — §repaso_errores */}
+      {testsAnteriores.length > 0 && (
+        <Card className="border-primary/20 bg-primary/3">
+          <CardContent className="flex items-center justify-between gap-4 py-4">
+            <div className="flex items-center gap-3">
+              <RefreshCw className="h-5 w-5 text-primary shrink-0" />
+              <div>
+                <p className="text-sm font-semibold">Repasar mis errores</p>
+                <p className="text-xs text-muted-foreground">
+                  Test personalizado con las preguntas que has fallado. Gratis.
+                </p>
+              </div>
+            </div>
+            <RepasoButton />
+          </CardContent>
+        </Card>
       )}
 
       {/* Tests anteriores */}

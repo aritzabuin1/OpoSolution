@@ -21,6 +21,17 @@ export interface Pregunta {
   cita?: CitaLegal
   /** Nivel de dificultad de la pregunta (disponible en tests generados tras v1.8.0) */
   dificultad?: 'facil' | 'media' | 'dificil'
+  /**
+   * §2.6.3 — UUID del tema al que pertenece esta pregunta.
+   * Solo presente en preguntas de simulacros (preguntas_oficiales.tema_id).
+   * Null si la pregunta no está mapeada a ningún tema.
+   */
+  temaId?: string | null
+  /**
+   * §2.6.3 — Título del tema (desnormalizado para evitar JOIN en resultados).
+   * Solo presente en preguntas de simulacros con tema_id válido.
+   */
+  temaTitulo?: string | null
 }
 
 export interface TestGenerado {

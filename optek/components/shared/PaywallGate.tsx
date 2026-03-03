@@ -25,6 +25,7 @@ import {
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { trackPixelEvent } from '@/lib/analytics/pixel'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -93,6 +94,8 @@ export function PaywallGate({ open, onClose, code, temaId, oposicionId }: Paywal
 
   async function handleBuy(tier: string) {
     setLoading(tier)
+    // §1.20.4 — Conversion tracking: InitiateCheckout
+    trackPixelEvent('InitiateCheckout', { content_name: tier })
     try {
       const res = await fetch('/api/stripe/checkout', {
         method: 'POST',

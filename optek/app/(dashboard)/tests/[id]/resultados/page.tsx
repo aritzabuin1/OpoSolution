@@ -21,9 +21,10 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { CitationBadge } from '@/components/shared/CitationBadge'
 import { ExplicarErroresPanel } from '@/components/simulacros/ExplicarErroresPanel'
-import { CheckCircle2, XCircle, Clock, BarChart3, TrendingUp, Trophy } from 'lucide-react'
+import { CheckCircle2, XCircle, Clock, BarChart3, TrendingUp, Trophy, BookOpen } from 'lucide-react'
 import type { Pregunta } from '@/types/ai'
 import { ShareButton } from '@/components/shared/ShareButton'
+import { RepasoButton } from '@/components/shared/RepasoButton'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
@@ -125,8 +126,11 @@ export default async function ResultadosPage({ params }: Props) {
   const respuestas = test.respuestas_usuario ?? []
   const puntuacion = test.puntuacion ?? 0
   const esSimulacroOficial = test.tipo === 'simulacro' && !!test.examen_oficial_id
+  const esRepaso = test.tipo === 'repaso_errores'
   const temaTitulo = esSimulacroOficial
     ? 'Simulacro Oficial INAP'
+    : esRepaso
+    ? 'Repaso de errores'
     : (test.temas?.titulo ?? 'Test de práctica')
 
   // ── Cálculos ───────────────────────────────────────────────────────────────
@@ -172,6 +176,27 @@ export default async function ResultadosPage({ params }: Props) {
   const nivelesConDatos = (Object.keys(dificultadStats) as Nivel[]).filter(
     (n) => dificultadStats[n].total > 0
   )
+
+  // ── §2.6.3 — Desglose por tema (solo para simulacros con temaId en preguntas) ──
+  const temaStats = new Map<string, { titulo: string; total: number; aciertos: number }>()
+  preguntas.forEach((p, i) => {
+    if (!p.temaId || !p.temaTitulo) return
+    if (!temaStats.has(p.temaId)) {
+      temaStats.set(p.temaId, { titulo: p.temaTitulo, total: 0, aciertos: 0 })
+    }
+    const stat = temaStats.get(p.temaId)!
+    stat.total++
+    if (respuestas[i] === p.correcta) stat.aciertos++
+  })
+  // Sort by percentage ascending (worst topics first) — at most 10 for readability
+  const temaStatsArr = [...temaStats.values()]
+    .sort((a, b) => {
+      const pctA = a.total > 0 ? a.aciertos / a.total : 1
+      const pctB = b.total > 0 ? b.aciertos / b.total : 1
+      return pctA - pctB
+    })
+    .slice(0, 10)
+  const tieneTemaStats = temaStatsArr.length >= 2
 
   // ─────────────────────────────────────────────────────────────────────────
   return (
@@ -296,6 +321,44 @@ export default async function ResultadosPage({ params }: Props) {
         </section>
       )}
 
+      {/* §2.6.3 — Desglose por tema (solo simulacros con suficientes datos) */}
+      {esSimulacroOficial && tieneTemaStats && (
+        <section>
+          <div className="flex items-center gap-2 mb-3">
+            <BookOpen className="h-4 w-4 text-muted-foreground" />
+            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+              Desglose por tema — de peor a mejor
+            </h2>
+          </div>
+          <div className="grid gap-2">
+            {temaStatsArr.map(({ titulo, total, aciertos }) => {
+              const pct = total > 0 ? Math.round((aciertos / total) * 100) : 0
+              const barColor =
+                pct >= 70 ? 'bg-green-500' : pct >= 50 ? 'bg-amber-500' : 'bg-red-500'
+              return (
+                <div key={titulo} className="flex items-center gap-3">
+                  <span className="w-36 text-xs text-muted-foreground truncate shrink-0" title={titulo}>
+                    {titulo}
+                  </span>
+                  <div className="flex-1 h-2 rounded-full bg-muted overflow-hidden">
+                    <div
+                      className={`h-2 rounded-full transition-all ${barColor}`}
+                      style={{ width: `${pct}%` }}
+                    />
+                  </div>
+                  <span className="w-24 text-xs text-right text-muted-foreground tabular-nums shrink-0">
+                    {aciertos}/{total} ({pct}%)
+                  </span>
+                </div>
+              )
+            })}
+          </div>
+          <p className="text-[11px] text-muted-foreground mt-2">
+            Solo se muestran los temas de las preguntas mapeadas del examen oficial.
+          </p>
+        </section>
+      )}
+
       {/* Tiempo si está disponible */}
       {tiempoStr && (
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -309,6 +372,10 @@ export default async function ResultadosPage({ params }: Props) {
         <Button asChild>
           <Link href="/tests">Nuevo test</Link>
         </Button>
+        {/* §repaso_errores — solo si hay errores y no es ya un repaso */}
+        {errores > 0 && test.tipo !== 'repaso_errores' && (
+          <RepasoButton />
+        )}
         <Button variant="outline" asChild>
           <Link href="/corrector">Prueba el corrector</Link>
         </Button>

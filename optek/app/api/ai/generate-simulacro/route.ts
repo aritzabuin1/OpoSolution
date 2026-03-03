@@ -104,7 +104,12 @@ export async function POST(request: NextRequest) {
 
   // ── 4. Buscar examen/s y cargar preguntas ────────────────────────────────
   type ExamenRow = { id: string; anio: number; convocatoria: string }
-  type PreguntaRow = { id: string; numero: number; enunciado: string; opciones: unknown; correcta: unknown; dificultad: unknown }
+  // §2.6.3: incluimos tema_id para desglose por tema en resultados
+  type PreguntaRow = {
+    id: string; numero: number; enunciado: string
+    opciones: unknown; correcta: unknown; dificultad: unknown
+    tema_id: string | null
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const examenesTable = (supabase as any).from('examenes_oficiales')
@@ -129,11 +134,11 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Cargar preguntas de todos los exámenes en paralelo
+    // Cargar preguntas de todos los exámenes en paralelo (con tema_id para §2.6.3)
     const pregResultados = await Promise.all(
       (todosExamenes as ExamenRow[]).map((ex) =>
         preguntasTable
-          .select('id, numero, enunciado, opciones, correcta, dificultad')
+          .select('id, numero, enunciado, opciones, correcta, dificultad, tema_id')
           .eq('examen_id', ex.id)
       )
     )
@@ -184,8 +189,9 @@ export async function POST(request: NextRequest) {
     }
     examen = examenRow
 
+    // §2.6.3: include tema_id for per-tema breakdown in results
     const { data: pregData, error: pregError } = await preguntasTable
-      .select('id, numero, enunciado, opciones, correcta, dificultad')
+      .select('id, numero, enunciado, opciones, correcta, dificultad, tema_id')
       .eq('examen_id', examen.id)
       .order('numero')
 
@@ -212,6 +218,24 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Error interno al cargar los datos.' }, { status: 500 })
   }
 
+  // ── 5. §2.6.3 — Cargar títulos de temas para desglose en resultados ─────────
+  // Batch-fetch tema titles for all distinct tema_ids (excluding null)
+  const temaIdsDistintos = [
+    ...new Set(preguntasData.map((p) => p.tema_id).filter((id): id is string => id !== null))
+  ]
+  const temaMap = new Map<string, string>()
+  if (temaIdsDistintos.length > 0) {
+    const { data: temasData } = await supabase
+      .from('temas')
+      .select('id, numero, titulo')
+      .in('id', temaIdsDistintos)
+    if (temasData) {
+      for (const t of temasData) {
+        temaMap.set(t.id, `T${t.numero}: ${t.titulo}`)
+      }
+    }
+  }
+
   // ── 6. Selección aleatoria de preguntas oficiales ─────────────────────────
   // Fisher-Yates shuffle para selección sin reemplazo
   const shuffled = [...preguntasData]
@@ -222,8 +246,11 @@ export async function POST(request: NextRequest) {
   const selected = shuffled.slice(0, numPreguntas)
 
   // ── 7. Mapear preguntas oficiales a Pregunta[] ────────────────────────────
+  // §2.6.3: include temaId + temaTitulo for per-tema breakdown in results page
   const preguntasOficiales: Pregunta[] = selected.map((p) => {
     const opciones = p.opciones as string[]
+    const temaId = p.tema_id ?? null
+    const temaTitulo = temaId ? (temaMap.get(temaId) ?? null) : null
     return {
       enunciado: p.enunciado,
       opciones: [
@@ -235,6 +262,8 @@ export async function POST(request: NextRequest) {
       correcta: (p.correcta as 0 | 1 | 2 | 3),
       explicacion: '',
       dificultad: (p.dificultad as 'facil' | 'media' | 'dificil') ?? undefined,
+      temaId,
+      temaTitulo,
     }
   })
 

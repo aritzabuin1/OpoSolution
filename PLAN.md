@@ -1015,8 +1015,8 @@
   - **Parte 2** (50 preguntas): 50 preguntas teórico-prácticas de Bloque II (RAG + conocimiento_tecnico)
   - Cada parte se puntúa sobre 50 puntos. Total sobre 100
 - [ ] **2.6.2B** Sistema de puntuación con penalización: correcta = +1 punto, errónea = -1/3 punto, en blanco = 0. Mostrar desglose al finalizar
-- [ ] **2.6.3** Al finalizar: calcular nota con penalización, guardar resultado en BD con desglose por bloque y categoría
-- [ ] **2.6.4** Vista de resultados de simulacro: nota sobre 100, tiempo empleado, desglose por tema y bloque, comparativa con media de otros usuarios
+- [x] **2.6.3** Al finalizar: calcular nota con penalización, guardar resultado en BD con desglose por bloque y categoría. §2.6.3: temaId + temaTitulo añadidos a Pregunta; generate-simulacro ahora incluye tema_id + batch-fetch titulos temas. ✅ 2026-03-03
+- [x] **2.6.4** Vista de resultados de simulacro: nota sobre 100, tiempo empleado, desglose por tema (ordenado de peor a mejor, hasta 10 temas), penalización oficial. "Comparativa con media" pendiente (requiere masa crítica de usuarios). ✅ 2026-03-03
 - [ ] **2.6.5** Verificar: simulacro completo funciona end-to-end con timer
 
 ### 2.6A Simulacros de Convocatorias Pasadas (INAP Oficial)

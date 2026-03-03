@@ -11,7 +11,7 @@ import { notFound, redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { TestRunner } from '@/components/tests/TestRunner'
 import { Badge } from '@/components/ui/badge'
-import { Trophy } from 'lucide-react'
+import { Trophy, RefreshCw } from 'lucide-react'
 import type { Pregunta } from '@/types/ai'
 import { JsonLd } from '@/components/shared/JsonLd'
 
@@ -49,8 +49,11 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
 
   const preguntas = test.preguntas as unknown as Pregunta[]
   const esSimulacro = test.tipo === 'simulacro' && !!test.examen_oficial_id
+  const esRepaso = test.tipo === 'repaso_errores'
   const temaTitulo = esSimulacro
     ? 'Simulacro Oficial INAP'
+    : esRepaso
+    ? 'Repaso de errores'
     : ((test.temas as { titulo: string } | null)?.titulo ?? 'Test de práctica')
 
   // §2.6.2 — Tiempo límite: 90 min para simulacros, sin límite para tests de práctica
@@ -79,6 +82,17 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
             <span className="text-sm font-medium">Simulacro Oficial INAP</span>
             <Badge variant="secondary" className="text-[10px]">Penalización activa</Badge>
             <Badge variant="outline" className="text-[10px]">90 min</Badge>
+          </div>
+        </div>
+      )}
+
+      {/* Cabecera contextual para repaso de errores */}
+      {esRepaso && (
+        <div className="flex items-center gap-2 rounded-lg bg-amber-50 border border-amber-200 px-4 py-3">
+          <RefreshCw className="h-4 w-4 text-amber-600 shrink-0" />
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-sm font-medium text-amber-800">Repaso de tus errores</span>
+            <Badge variant="secondary" className="text-[10px]">Preguntas que has fallado</Badge>
           </div>
         </div>
       )}
