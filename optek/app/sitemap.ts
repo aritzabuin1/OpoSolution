@@ -23,18 +23,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
-      url: `${APP_URL}/login`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.3,
-    },
-    {
-      url: `${APP_URL}/register`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
-    {
       url: `${APP_URL}/blog`,
       lastModified: now,
       changeFrequency: 'weekly',
@@ -45,6 +33,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.9,
+    },
+    {
+      url: `${APP_URL}/legal/privacidad`,
+      lastModified: now,
+      changeFrequency: 'yearly',
+      priority: 0.2,
+    },
+    {
+      url: `${APP_URL}/legal/terminos`,
+      lastModified: now,
+      changeFrequency: 'yearly',
+      priority: 0.2,
+    },
+    {
+      url: `${APP_URL}/legal/cookies`,
+      lastModified: now,
+      changeFrequency: 'yearly',
+      priority: 0.2,
     },
   ]
 
