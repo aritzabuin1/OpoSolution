@@ -23,6 +23,7 @@
     "eval:generate": "tsx --env-file=.env.local execution/run-evals.ts generate",
     "eval:correct": "tsx --env-file=.env.local execution/run-evals.ts correct",
     "eval:all": "tsx --env-file=.env.local execution/run-evals.ts all",
+    "eval:adversarial": "tsx --env-file=.env.local execution/run-evals.ts adversarial",
     "parse:examenes": "tsx --env-file=.env.local execution/parse-exam-pdf.ts",
     "ingest:examenes": "tsx --env-file=.env.local execution/ingest-examenes.ts",
     "build:radar": "tsx --env-file=.env.local execution/build-radar-tribunal.ts",

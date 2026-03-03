@@ -191,7 +191,6 @@ export async function callGPT(
         tokensIn,
         tokensOut,
         maxTokens,
-        // @ts-expect-error — completion_tokens_details solo en modelos reasoning
         reasoningTokens: response.usage?.completion_tokens_details?.reasoning_tokens,
       }, 'GPT returned empty content — diagnóstico')
       throw new Error('GPT returned empty content')
@@ -258,7 +257,6 @@ export async function callGPTMini(
         tokensIn,
         tokensOut,
         maxTokens,
-        // @ts-expect-error — completion_tokens_details solo en modelos reasoning
         reasoningTokens: response.usage?.completion_tokens_details?.reasoning_tokens,
       }, 'GPT-mini returned empty content — diagnóstico')
       throw new Error('GPT-mini returned empty content')

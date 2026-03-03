@@ -678,7 +678,7 @@
 - [x] **1.18.5** Ejecutar evals: CORRECT_DESARROLLO Quality Score > 85% — **88%** ✅ 2026-03-03
 - [x] **1.18.6** Si score < 85%: iterar prompts hasta alcanzar threshold — implementados criterios faltantes (relevancia, opciones_plausibles, sin_inventar_citas, identifica_errores, sugiere_mejoras, cita_verificada); fix timeout reasoning models (120s, maxTokens 16k/8k); calibración scoring. ✅ 2026-03-03
 - [x] **1.18.7** Crear `tests/evals/adversarial_inputs.json` con 8 ataques: prompt injection directo, XML tags falsos, JSON injection, input largo, instrucciones en inglés, PII injection, SQL injection en temaId, y marcadores ###SYSTEM###. ✅ 2026-02-27
-- [ ] **1.18.8** Ejecutar evals adversariales: NINGÚN ataque genera output fuera del schema Zod o con información incorrecta/peligrosa
+- [x] **1.18.8** Ejecutar evals adversariales: NINGÚN ataque genera output fuera del schema Zod o con información incorrecta/peligrosa. `pnpm eval:adversarial` implementado — 8 ataques (prompt injection, XML tags, JSON injection, input largo, inglés, PII, SQL injection UUID, ###SYSTEM###). adv_004/adv_007 son validación gate (sin llamada GPT). adv_001/adv_002/adv_003/adv_005/adv_006/adv_008 llaman al pipeline real. ✅ 2026-03-02
 
 ### 1.19 Beta testing
 
