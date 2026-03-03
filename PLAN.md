@@ -1546,6 +1546,67 @@
 
 ---
 
+### 2.25 SEO + UX Polish — Pre-launch final ✅ 2026-03-03
+
+> **Objetivo:** Afinar todos los detalles de SEO, metadata y UX que un usuario real percibe antes del lanzamiento.
+
+- [x] **2.25.1** Blog: 9 artículos SEO en `content/blog/posts.ts` (LPAC, LRJSP, penalización, psicotécnicos, simulacros, TREBEP, LOPDGDD, guía TAC). ✅ 2026-03-03
+- [x] **2.25.2** Landing page: sección blog con 3 posts curados por slug (top-of-funnel). ✅ 2026-03-03
+- [x] **2.25.3** Blog post page: reading time estimado (`estimateReadingTime(html)`, ~230 wpm). ✅ 2026-03-03
+- [x] **2.25.4** Sitemap: eliminadas páginas noindex (/login, /register); añadidas legales priority 0.2. ✅ 2026-03-03
+- [x] **2.25.5** Dashboard layout metadata: `template: '%s — OpoRuta'` + robots noindex. Títulos en todas las páginas del dashboard. ✅ 2026-03-03
+- [x] **2.25.6** Flashcards: sesiones por deck individuales (FlashcardSessionStarter props `label` + `variant`). ✅ 2026-03-03
+- [x] **2.25.7** Sidebar desktop: NotificationBell añadida (paridad con navbar mobile). ✅ 2026-03-03
+- [x] **2.25.8** Dashboard: card recordatorio flashcards cuando `pendingCount > 0`. ✅ 2026-03-03
+- [x] **2.25.9** Auth layout: `robots: { index: false, follow: true }`. ✅ 2026-03-03
+- [x] **2.25.10** Marketing layout: Blog + Simulacros INAP en header nav y footer. ✅ 2026-03-03
+- [x] **2.25.11** PaywallGate: entrada recarga (8,99€) en OPTIONS_TESTS como alternativa al pack. ✅ 2026-03-03
+- [x] **2.25.12** Bug fix: radar/page.tsx título duplicado `'Radar del Tribunal | OpoRuta — OpoRuta'` → `'Radar del Tribunal'`. ✅ 2026-03-03
+- [x] **2.25.13** primer-test/page.tsx: metadata faltante añadida `{ title: 'Empieza tu primera prueba' }`. ✅ 2026-03-03
+- [x] **2.25.14** Sidebar + Navbar: active state con `startsWith(href + '/')` para sub-rutas (e.g. `/tests/[id]`). ✅ 2026-03-03
+- [x] **2.25.15** tests/[id]/page.tsx: `generateMetadata` dinámico — browser tab muestra el tema del test. ✅ 2026-03-03
+
+---
+
+## CHECKLIST PRE-LANZAMIENTO — **Aritz: tareas manuales bloqueantes**
+
+> **Estado actual del código:** 100% completo para MVP. Sin más código que escribir.
+> **Bloqueante principal:** ANTHROPIC_API_KEY vacío en Vercel → todas las features IA dan error 500.
+
+### 🔴 CRÍTICO — Bloquea el lanzamiento completamente
+
+- [ ] **P0.1** Configurar `ANTHROPIC_API_KEY` en Vercel (Settings → Environment Variables). Sin esto, tests IA, Caza-Trampas, DailyBrief y Corrector fallan.
+- [ ] **P0.2** Aplicar migrations 016–023 en Supabase Dashboard (SQL Editor → pegar contenido de cada `.sql`):
+  - 016: logros avanzados
+  - 017: cazatrampas_sesiones
+  - 018: notificaciones / cambios_legislativos
+  - 019_admin_role: columna is_admin
+  - 019_founder: columna is_founder
+  - 020: reto_diario + reto_diario_resultados
+  - 021: examenes_oficiales v2 + preguntas_oficiales
+  - 022: frecuencias_articulos (Radar del Tribunal)
+  - 023: RPC get_db_size_bytes (Infrastructure Monitor)
+- [ ] **P0.3** Supabase Auth: configurar Site URL → `https://oporuta.es` + añadir `https://oporuta.es/auth/callback` en Redirect URLs.
+- [ ] **P0.4** Supabase Auth: configurar Resend como SMTP (Settings → Auth → SMTP). Sin esto, los emails de confirmación y magic link no llegan.
+- [ ] **P0.5** Stripe: crear producto `STRIPE_PRICE_FOUNDER` en Dashboard (24,99€, pago único) → añadir Price ID en Vercel env vars.
+
+### 🟡 IMPORTANTE — Funcionalidad degradada sin esto
+
+- [ ] **P1.1** Configurar `NEXT_PUBLIC_META_PIXEL_ID` en Vercel para tracking META (GTM activo, Pixel pendiente).
+- [ ] **P1.2** Tras aplicar migration 022: ejecutar `pnpm build:radar` en local para poblar `frecuencias_articulos` con los 3 exámenes ingestados (2019, 2022, 2024).
+- [ ] **P1.3** Configurar `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN` en Vercel para rate limiting real (actualmente usa fallback permisivo).
+
+### 🟢 POST-LANZAMIENTO (primera semana)
+
+- [ ] **P2.1** Submitir sitemap a Google Search Console: `https://oporuta.es/sitemap.xml`.
+- [ ] **P2.2** Ejecutar `pnpm parse:examenes 2018` → `pnpm ingest:examenes 2018` (requiere ANTHROPIC_API_KEY activo + Vision API).
+- [ ] **P2.3** Ejecutar `pnpm eval:all` con BD real para verificar Quality Score ≥ 85%.
+- [ ] **P2.4** Activar Aritz como admin: `UPDATE profiles SET is_admin = true WHERE email = 'aritzmore1@gmail.com'` en Supabase SQL Editor.
+- [ ] **P2.5** Verificar flujo end-to-end manual: registro → primer test → pago → corrección IA → logro.
+- [ ] **P2.6** Probar OG images: pegar URL resultados en `https://www.opengraph.xyz/` → imagen aparece.
+
+---
+
 ## FASE 3A — SIMULADOR ORAL — **⏸️ POST-MVP COMPLETA**
 
 > **Decisión:** 0 validación de que el mercado quiere simulador oral. Añade Whisper + TTS + grabación = 3 integraciones complejas. Evaluar post-validación cuando haya >200 usuarios activos y feedback que lo demande.
