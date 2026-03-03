@@ -8,8 +8,8 @@ import { blogPosts } from '@/content/blog/posts'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
-// Simulacros oficiales INAP disponibles (§1.21.6 PRIORIDAD 1)
-const SIMULACRO_SLUGS = ['inap-2024', 'inap-2023', 'inap-2022', 'inap-2021']
+// Exámenes oficiales INAP disponibles (§1.21.6 PRIORIDAD 1) — ruta: /examenes-oficiales/[slug]
+const EXAMEN_SLUGS = ['inap-2024', 'inap-2023', 'inap-2022', 'inap-2021']
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
@@ -41,16 +41,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${APP_URL}/simulacros`,
+      url: `${APP_URL}/examenes-oficiales`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
   ]
 
-  // Rutas dinámicas: simulacros oficiales INAP (alta prioridad SEO)
-  const simulacroRoutes: MetadataRoute.Sitemap = SIMULACRO_SLUGS.map((slug) => ({
-    url: `${APP_URL}/simulacros/${slug}`,
+  // Rutas dinámicas: exámenes oficiales INAP (alta prioridad SEO)
+  const examenesRoutes: MetadataRoute.Sitemap = EXAMEN_SLUGS.map((slug) => ({
+    url: `${APP_URL}/examenes-oficiales/${slug}`,
     lastModified: now,
     changeFrequency: 'monthly' as const,
     priority: 0.9,
@@ -64,5 +64,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
-  return [...staticRoutes, ...simulacroRoutes, ...blogRoutes]
+  return [...staticRoutes, ...examenesRoutes, ...blogRoutes]
 }

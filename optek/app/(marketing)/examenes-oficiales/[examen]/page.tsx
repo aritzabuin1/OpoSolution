@@ -1,5 +1,5 @@
 /**
- * app/(marketing)/simulacros/[examen]/page.tsx — §1.21.6 PRIORIDAD 1
+ * app/(marketing)/examenes-oficiales/[examen]/page.tsx — §1.21.6 PRIORIDAD 1
  *
  * Página pública de simulacro oficial INAP para SEO.
  * Muestra las primeras 10 preguntas del examen real (preview gratuita).
@@ -113,11 +113,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: meta.titulo,
       description: meta.description,
       type: 'website',
-      url: `${APP_URL}/simulacros/${examen}`,
+      url: `${APP_URL}/examenes-oficiales/${examen}`,
       images: [{ url: ogUrl, width: 1200, height: 630, alt: meta.titulo }],
     },
     alternates: {
-      canonical: `${APP_URL}/simulacros/${examen}`,
+      canonical: `${APP_URL}/examenes-oficiales/${examen}`,
     },
   }
 }
@@ -170,7 +170,7 @@ export default async function SimulacroExamenPage({ params }: Props) {
     '@type': 'Quiz',
     name: meta.titulo,
     description: meta.description,
-    url: `${APP_URL}/simulacros/${examen}`,
+    url: `${APP_URL}/examenes-oficiales/${examen}`,
     author: { '@type': 'Organization', name: 'OpoRuta', url: APP_URL },
     educationalLevel: 'Professional',
     educationalUse: 'Practice',
@@ -203,7 +203,7 @@ export default async function SimulacroExamenPage({ params }: Props) {
         <nav className="mb-8 flex items-center gap-2 text-sm text-muted-foreground">
           <Link href="/" className="hover:text-foreground transition-colors">OpoRuta</Link>
           <span>/</span>
-          <Link href="/simulacros" className="hover:text-foreground transition-colors">Simulacros</Link>
+          <Link href="/examenes-oficiales" className="hover:text-foreground transition-colors">Simulacros</Link>
           <span>/</span>
           <span className="text-foreground">INAP {meta.anio}</span>
         </nav>
@@ -383,7 +383,7 @@ export default async function SimulacroExamenPage({ params }: Props) {
 
         {/* Otros simulacros */}
         <div className="mt-8">
-          <Link href="/simulacros">
+          <Link href="/examenes-oficiales">
             <Button variant="ghost" size="sm" className="gap-2">
               <BookOpen className="h-4 w-4" />
               Ver todos los simulacros INAP

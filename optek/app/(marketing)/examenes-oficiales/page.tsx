@@ -1,5 +1,5 @@
 /**
- * app/(marketing)/simulacros/page.tsx — §1.21.6 PRIORIDAD 1
+ * app/(marketing)/examenes-oficiales/page.tsx — §1.21.6 PRIORIDAD 1
  *
  * Página índice pública de simulacros INAP para SEO.
  * Hub de todos los exámenes oficiales disponibles.
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description:
       'Practica con preguntas reales de convocatorias INAP anteriores. Explicaciones IA de cada error.',
     type: 'website',
-    url: `${APP_URL}/simulacros`,
+    url: `${APP_URL}/examenes-oficiales`,
     images: [
       {
         url: `${APP_URL}/api/og?tipo=test&tema=${encodeURIComponent('Simulacros INAP Oficiales')}`,
