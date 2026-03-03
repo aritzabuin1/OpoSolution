@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: `${APP_URL}/simulacros`,
+    canonical: `${APP_URL}/examenes-oficiales`,
   },
 }
 
@@ -106,12 +106,12 @@ export default function SimulacrosIndexPage() {
     '@type': 'ItemList',
     name: 'Simulacros Examen INAP — Auxiliar Administrativo del Estado',
     description: 'Lista de exámenes oficiales INAP con preguntas reales para práctica.',
-    url: `${APP_URL}/simulacros`,
+    url: `${APP_URL}/examenes-oficiales`,
     itemListElement: SIMULACROS.filter((s) => s.disponible).map((s, idx) => ({
       '@type': 'ListItem',
       position: idx + 1,
       name: s.titulo,
-      url: `${APP_URL}/simulacros/${s.slug}`,
+      url: `${APP_URL}/examenes-oficiales/${s.slug}`,
     })),
   }
 
@@ -203,7 +203,7 @@ export default function SimulacrosIndexPage() {
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">{sim.descripcion}</p>
                 {sim.disponible ? (
-                  <Link href={`/simulacros/${sim.slug}`}>
+                  <Link href={`/examenes-oficiales/${sim.slug}`}>
                     <Button variant="outline" size="sm" className="gap-2">
                       Ver preguntas
                       <ArrowRight className="h-3.5 w-3.5" />
