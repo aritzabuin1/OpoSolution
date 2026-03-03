@@ -6,9 +6,10 @@
  * Estrategia:
  *   1. pdf-parse extrae texto raw del cuestionario
  *   2. Intento de parsing determinista con regex (rápido, 0€)
- *   3. Si regex falla (<70% preguntas detectadas) → Claude Haiku analiza el texto
- *   4. Cruza con plantilla de respuestas (texto raw) para añadir correcta: 0|1|2|3
- *   5. Output: data/examenes/[año]/parsed_[modelo].json
+ *   3. Si regex falla (<70% preguntas detectadas) → GPT-4o-mini analiza el texto
+ *   4. Si PDF escaneado (texto <500 chars) → GPT-4o Vision via Files API
+ *   5. Cruza con plantilla de respuestas (texto raw) para añadir correcta: 0|1|2|3
+ *   6. Output: data/examenes/[año]/parsed_[modelo].json
  *
  * Uso:
  *   pnpm parse:examenes [año] [modelo]
@@ -17,14 +18,14 @@
  *
  * Variables de entorno requeridas:
  *   SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY
- *   ANTHROPIC_API_KEY (solo si el parsing determinista falla)
+ *   OPENAI_API_KEY (para fallback GPT y Vision en PDFs escaneados)
  */
 
 import * as fs from 'fs'
 import * as path from 'path'
 import { fileURLToPath } from 'url'
 import { PDFParse, VerbosityLevel } from 'pdf-parse'
-import Anthropic from '@anthropic-ai/sdk'
+import OpenAI, { toFile } from 'openai'
 
 // Helper: extrae texto plano de un Buffer PDF usando pdf-parse v2
 async function extractPdfText(buffer: Buffer): Promise<string> {
@@ -193,25 +194,30 @@ function parsePlantilla(text: string): Map<number, 0 | 1 | 2 | 3> {
   return mapa
 }
 
-// ─── Parsing con Claude Haiku (fallback texto) ────────────────────────────────
+// ─── Parsing con GPT-4o-mini (fallback texto) ────────────────────────────────
 
-async function parseWithClaude(
+/**
+ * Fallback: cuando el parsing determinista con regex detecta <30 preguntas,
+ * usa GPT-4o-mini para extraer preguntas del texto raw del PDF.
+ * Coste ~0.001€ por examen.
+ */
+async function parseWithGPT(
   pdfText: string,
   anno: string,
   modelo: string
 ): Promise<Partial<PreguntaParsed>[]> {
-  const apiKey = process.env.ANTHROPIC_API_KEY
+  const apiKey = process.env.OPENAI_API_KEY
   if (!apiKey) {
-    console.error('⚠️  ANTHROPIC_API_KEY no configurada. No se puede usar fallback Claude.')
+    console.error('⚠️  OPENAI_API_KEY no configurada. No se puede usar fallback GPT.')
     return []
   }
 
-  const client = new Anthropic({ apiKey })
-  console.log(`  🤖 Usando Claude Haiku para parsear examen ${anno} modelo ${modelo}...`)
+  const client = new OpenAI({ apiKey, timeout: 120_000, maxRetries: 1 })
+  console.log(`  🤖 Usando GPT-4o-mini para parsear examen ${anno} modelo ${modelo}...`)
 
-  // Procesar en chunks de ~3000 tokens para evitar límites de contexto
-  const CHUNK_SIZE = 10_000 // chars
-  const chunks = []
+  // Procesar en chunks de ~10.000 chars para evitar límites de contexto
+  const CHUNK_SIZE = 10_000
+  const chunks: string[] = []
   for (let i = 0; i < pdfText.length; i += CHUNK_SIZE) {
     chunks.push(pdfText.slice(i, i + CHUNK_SIZE))
   }
@@ -221,11 +227,14 @@ async function parseWithClaude(
   for (let i = 0; i < chunks.length; i++) {
     console.log(`    Procesando chunk ${i + 1}/${chunks.length}...`)
 
-    const response = await client.messages.create({
-      model: 'claude-haiku-4-5-20251001',
+    const response = await client.chat.completions.create({
+      model: 'gpt-4o-mini',
       max_tokens: 4096,
       temperature: 0,
-      system: `Eres un extractor de preguntas de examen. Tu única tarea es extraer preguntas de examen tipo test de texto raw de PDF y devolver JSON.
+      messages: [
+        {
+          role: 'system',
+          content: `Eres un extractor de preguntas de examen. Tu única tarea es extraer preguntas tipo test de texto raw de PDF y devolver JSON.
 
 REGLAS:
 - Devuelve SOLO JSON válido, sin texto adicional
@@ -233,7 +242,7 @@ REGLAS:
 - Si no encuentras preguntas en el texto, devuelve {"preguntas": []}
 - NO añadas campo "correcta" (lo cruzamos con la plantilla de respuestas por separado)
 - opciones siempre debe tener exactamente 4 elementos`,
-      messages: [
+        },
         {
           role: 'user',
           content: `Extrae las preguntas de este fragmento de examen oficial (fragmento ${i + 1}/${chunks.length}):\n\n${chunks[i]}`,
@@ -241,18 +250,18 @@ REGLAS:
       ],
     })
 
-    const content = response.content[0]
-    if (content.type !== 'text') continue
+    const content = response.choices[0]?.message?.content
+    if (!content) continue
 
     try {
-      const parsed = JSON.parse(content.text) as { preguntas: Partial<PreguntaParsed>[] }
+      const parsed = JSON.parse(content) as { preguntas: Partial<PreguntaParsed>[] }
       allPreguntas.push(...(parsed.preguntas ?? []))
     } catch {
       console.warn(`    ⚠️  JSON inválido en chunk ${i + 1}, saltando`)
     }
 
-    // Rate limiting: 1s entre chunks
-    if (i < chunks.length - 1) await new Promise((r) => setTimeout(r, 1000))
+    // Rate limiting: 500ms entre chunks
+    if (i < chunks.length - 1) await new Promise((r) => setTimeout(r, 500))
   }
 
   // Deduplicar por número
@@ -264,85 +273,98 @@ REGLAS:
   })
 }
 
-// ─── Parsing con Claude Vision (PDFs escaneados) ─────────────────────────────
+// ─── Parsing con GPT-4o Vision (PDFs escaneados) ─────────────────────────────
 
 /**
- * Usa la API de documentos de Claude para parsear PDFs escaneados (imagen-based).
- * Activado cuando pdf-parse extrae < 500 chars (texto vacío = PDF escaneado).
+ * Usa la OpenAI Files API + GPT-4o para parsear PDFs escaneados (imagen-based).
+ * Activado cuando pdf-parse extrae < 500 chars (PDF escaneado = sin texto seleccionable).
  *
- * Anthropic API soporta `{ type: "document", source: { type: "base64", ... } }`
- * en el bloque de contenido, lo que permite a Claude "ver" el PDF directamente.
+ * Flujo:
+ *   1. Sube el PDF a OpenAI Files API (purpose: 'user_data')
+ *   2. Referencia el file_id en un mensaje de chat completions
+ *   3. GPT-4o "ve" el PDF completo y extrae todas las preguntas
+ *   4. Elimina el archivo de OpenAI tras el procesamiento
  *
- * Coste ~0.002€ por examen de 60-100 preguntas con claude-haiku-4-5-20251001.
+ * Coste ~0.02-0.05€ por examen de 60-100 preguntas con gpt-4o.
+ * (Solo se ejecuta una vez por examen — los JSONs parsed_*.json persisten)
  */
-async function parseScannedPdfWithClaude(
+async function parseScannedPdfWithOpenAI(
   pdfBuffer: Buffer,
   anno: string,
   modelo: string
 ): Promise<Partial<PreguntaParsed>[]> {
-  const apiKey = process.env.ANTHROPIC_API_KEY
+  const apiKey = process.env.OPENAI_API_KEY
   if (!apiKey) {
-    console.error('⚠️  ANTHROPIC_API_KEY no configurada. No se puede procesar PDF escaneado.')
+    console.error('⚠️  OPENAI_API_KEY no configurada. No se puede procesar PDF escaneado.')
     return []
   }
 
-  const client = new Anthropic({ apiKey })
-  console.log(`  🔍 PDF escaneado detectado — usando Claude Vision (${anno} modelo ${modelo})...`)
+  const client = new OpenAI({ apiKey, timeout: 180_000, maxRetries: 1 })
+  console.log(`  🔍 PDF escaneado — usando GPT-4o Vision via Files API (${anno} modelo ${modelo})...`)
 
-  const pdfBase64 = pdfBuffer.toString('base64')
-
-  const EXTRACTION_SYSTEM = `Eres un extractor de preguntas de examen tipo test. Analiza el PDF adjunto y extrae TODAS las preguntas numeradas con sus 4 opciones.
-
-REGLAS:
-- Devuelve SOLO JSON válido, sin texto adicional ni markdown
-- Formato exacto: {"preguntas": [{"numero": 1, "enunciado": "...", "opciones": ["texto opción A", "texto opción B", "texto opción C", "texto opción D"]}]}
-- opciones siempre debe tener exactamente 4 elementos (A, B, C, D en ese orden)
-- NO añadas campo "correcta" — se cruza con la plantilla de respuestas por separado
-- Incluye el texto completo de cada opción, sin las letras a)/b)/c)/d) iniciales
-- Si una pregunta tiene opciones en varias líneas, concaténalas en una sola cadena
-- Numera desde 1 hasta el total de preguntas sin saltar números`
+  let uploadedFileId: string | null = null
 
   try {
-    const response = await client.messages.create({
-      model: 'claude-haiku-4-5-20251001',
+    // 1. Subir el PDF a OpenAI Files API
+    const uploadedFile = await client.files.create({
+      file: await toFile(pdfBuffer, `exam_${anno}_${modelo}.pdf`, { type: 'application/pdf' }),
+      purpose: 'user_data',
+    })
+    uploadedFileId = uploadedFile.id
+    console.log(`  📤 PDF subido a OpenAI Files: ${uploadedFileId}`)
+
+    // 2. Enviar a GPT-4o con el file_id como contenido
+    const response = await client.chat.completions.create({
+      model: 'gpt-4o',
       max_tokens: 8192,
       temperature: 0,
-      system: EXTRACTION_SYSTEM,
       messages: [
         {
           role: 'user',
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           content: [
             {
-              type: 'document',
-              source: {
-                type: 'base64',
-                media_type: 'application/pdf',
-                data: pdfBase64,
-              },
-            } as unknown as { type: 'text'; text: string }, // Cast necesario hasta que los tipos SDK se actualicen
+              type: 'file',
+              file: { file_id: uploadedFileId },
+            } as unknown as OpenAI.ChatCompletionContentPartText,
             {
               type: 'text',
-              text: `Extrae todas las preguntas numeradas del examen ${anno}${modelo !== 'único' ? ` modelo ${modelo}` : ''}.`,
+              text: `Extrae TODAS las preguntas numeradas del examen oficial español ${anno}${modelo !== 'único' ? ` modelo ${modelo}` : ''}.
+
+REGLAS ESTRICTAS:
+- Devuelve SOLO JSON válido, sin texto adicional ni markdown
+- Formato exacto: {"preguntas": [{"numero": 1, "enunciado": "texto completo", "opciones": ["texto A", "texto B", "texto C", "texto D"]}]}
+- opciones siempre tiene exactamente 4 elementos (A, B, C, D en ese orden)
+- NO incluyas el campo "correcta"
+- Incluye el texto completo de cada opción SIN las letras a)/b)/c)/d) iniciales
+- Si una pregunta ocupa varias líneas, concaténalas en una sola cadena
+- Extrae TODAS las preguntas desde la número 1 hasta la última, sin saltarte ninguna`,
             },
           ],
         },
       ],
     })
 
-    const content = response.content[0]
-    if (content.type !== 'text') return []
+    const content = response.choices[0]?.message?.content
+    if (!content) return []
 
     // Limpiar posible markdown code fence
-    const jsonText = content.text.replace(/```json\n?|\n?```/g, '').trim()
+    const jsonText = content.replace(/```json\n?|\n?```/g, '').trim()
     const parsed = JSON.parse(jsonText) as { preguntas: Partial<PreguntaParsed>[] }
     const preguntas = parsed.preguntas ?? []
 
-    console.log(`  ✅ Claude Vision extrajo ${preguntas.length} preguntas`)
+    console.log(`  ✅ GPT-4o Vision extrajo ${preguntas.length} preguntas`)
     return preguntas
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err)
-    console.error(`  ❌ Error en Claude Vision: ${msg}`)
+    console.error(`  ❌ Error en GPT-4o Vision: ${msg}`)
     return []
+  } finally {
+    // Siempre eliminar el archivo de OpenAI (no acumular archivos)
+    if (uploadedFileId) {
+      await client.files.delete(uploadedFileId).catch(() => {})
+      console.log(`  🗑️  Archivo OpenAI Files eliminado: ${uploadedFileId}`)
+    }
   }
 }
 
@@ -375,15 +397,15 @@ async function processExamen(
   let preguntas: Partial<PreguntaParsed>[] = []
 
   if (IS_SCANNED_PDF) {
-    // 2a. PDF escaneado: usar Claude Vision con la API de documentos
+    // 2a. PDF escaneado: usar GPT-4o Vision via OpenAI Files API
     console.log(`  ⚠️  PDF escaneado detectado (${cuestionarioText.trim().length} chars de texto)`)
-    preguntas = await parseScannedPdfWithClaude(cuestionarioBuffer, anno, modelo ?? 'único')
+    preguntas = await parseScannedPdfWithOpenAI(cuestionarioBuffer, anno, modelo ?? 'único')
   } else {
     // 2b. PDF con texto: parsing determinista
     preguntas = parseWithRegex(cuestionarioText)
     console.log(`  🔍 Parsing regex: ${preguntas.length} preguntas detectadas`)
 
-    // 3. Fallback a Claude si regex no encuentra suficientes preguntas.
+    // 3. Fallback a GPT si regex no encuentra suficientes preguntas.
     //    "Suficiente" = secuencia completa sin huecos (1..N) O ≥30 preguntas si la secuencia
     //    comienza desde 1. Exámenes como 2024 tienen solo 40 preguntas y eso es completo.
     const isSequenceComplete = (() => {
@@ -402,10 +424,10 @@ async function processExamen(
 
     if (!isSequenceComplete) {
       console.log(
-        `  ⚡ Secuencia incompleta (${preguntas.length} preguntas) — activando fallback Claude Haiku`
+        `  ⚡ Secuencia incompleta (${preguntas.length} preguntas) — activando fallback GPT-4o-mini`
       )
-      preguntas = await parseWithClaude(cuestionarioText, anno, modelo ?? 'único')
-      console.log(`  🤖 Claude Haiku: ${preguntas.length} preguntas detectadas`)
+      preguntas = await parseWithGPT(cuestionarioText, anno, modelo ?? 'único')
+      console.log(`  🤖 GPT-4o-mini: ${preguntas.length} preguntas detectadas`)
     }
   }
 
