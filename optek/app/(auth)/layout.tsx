@@ -1,5 +1,14 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: {
+    default: 'Accede a tu cuenta — OpoRuta',
+    template: '%s — OpoRuta',
+  },
+  robots: { index: false, follow: true },
+}
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
