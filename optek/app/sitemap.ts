@@ -9,7 +9,7 @@ import { blogPosts } from '@/content/blog/posts'
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
 // Exámenes oficiales INAP disponibles (§1.21.6 PRIORIDAD 1) — ruta: /examenes-oficiales/[slug]
-const EXAMEN_SLUGS = ['inap-2024', 'inap-2023', 'inap-2022', 'inap-2021']
+const EXAMEN_SLUGS = ['inap-2024', 'inap-2023', 'inap-2022', 'inap-2021', 'inap-2019']
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()

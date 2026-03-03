@@ -76,6 +76,18 @@ const EXAMEN_META: Record<string, {
       'test oposiciones TAC 2021',
     ],
   },
+  'inap-2019': {
+    anio: 2019,
+    titulo: 'Examen Oficial INAP 2019 — Auxiliar Administrativo del Estado',
+    description:
+      'Practica con las preguntas reales del examen oficial INAP 2019 del Cuerpo General Auxiliar de la Administración del Estado. Convocatoria ordinaria con equilibrio entre Bloque I y ofimática. Con respuestas y explicaciones IA.',
+    keywords: [
+      'examen auxiliar administrativo INAP 2019',
+      'simulacro INAP 2019 con respuestas',
+      'preguntas examen auxiliar estado 2019',
+      'test oposiciones TAC 2019',
+    ],
+  },
 }
 
 // ─── Types ────────────────────────────────────────────────────────────────────
