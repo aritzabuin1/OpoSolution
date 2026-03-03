@@ -165,28 +165,53 @@ export default async function FlashcardsPage() {
             Mazos por tema
           </h2>
           <div className="space-y-2">
-            {grupos.map((grupo) => (
-              <Card key={grupo.tema_id ?? '__sin_tema__'} className="hover:border-primary/40 transition-colors">
-                <CardHeader className="py-3 px-4">
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-2 min-w-0">
-                      <Brain className="h-4 w-4 text-primary shrink-0" />
-                      <p className="text-sm font-medium truncate">{grupo.tema_titulo}</p>
-                    </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      {grupo.pendientes > 0 && (
-                        <Badge variant="default" className="text-[10px] bg-primary">
-                          {grupo.pendientes} hoy
+            {grupos.map((grupo) => {
+              const pendientesDeEsteMazo = grupo.cards
+                .filter((c) => c.siguiente_repaso <= today)
+                .map((c) => ({
+                  id: c.id,
+                  frente: c.frente,
+                  reverso: c.reverso,
+                  cita_legal: c.cita_legal as { ley: string; articulo: string; texto_ref: string } | null,
+                  intervalo_dias: c.intervalo_dias,
+                  veces_acertada: c.veces_acertada,
+                  veces_fallada: c.veces_fallada,
+                  tema_titulo: (c.temas as { titulo: string } | null)?.titulo,
+                }))
+              return (
+                <Card key={grupo.tema_id ?? '__sin_tema__'} className="hover:border-primary/40 transition-colors">
+                  <CardHeader className="py-3 px-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <Brain className="h-4 w-4 text-primary shrink-0" />
+                        <p className="text-sm font-medium truncate">{grupo.tema_titulo}</p>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        {grupo.pendientes > 0 ? (
+                          <>
+                            <Badge variant="default" className="text-[10px] bg-primary">
+                              {grupo.pendientes} hoy
+                            </Badge>
+                            <FlashcardSessionStarter
+                              flashcards={pendientesDeEsteMazo}
+                              label={`Repasar ${grupo.pendientes}`}
+                              variant="outline"
+                            />
+                          </>
+                        ) : (
+                          <Badge variant="secondary" className="text-[10px] text-green-700 bg-green-50 border-green-200">
+                            ✓ Al día
+                          </Badge>
+                        )}
+                        <Badge variant="secondary" className="text-[10px]">
+                          {grupo.total}
                         </Badge>
-                      )}
-                      <Badge variant="secondary" className="text-[10px]">
-                        {grupo.total} total
-                      </Badge>
+                      </div>
                     </div>
-                  </div>
-                </CardHeader>
-              </Card>
-            ))}
+                  </CardHeader>
+                </Card>
+              )
+            })}
           </div>
         </section>
       )}

@@ -2,8 +2,9 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { BarChart3, BookOpen, Brain, CalendarCheck, ClipboardList, FileText, LayoutDashboard, Layers, Settings, Target, TrendingUp, Trophy, User } from 'lucide-react'
+import { BarChart3, BookOpen, Brain, CalendarCheck, ClipboardList, FileText, LayoutDashboard, Layers, Target, TrendingUp, Trophy, User } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { NotificationBell } from '@/components/shared/NotificationBell'
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -48,6 +49,12 @@ export function Sidebar({ isAdmin = false }: SidebarProps) {
           </Link>
         ))}
       </nav>
+
+      {/* Notificaciones BOE — campana en sidebar desktop */}
+      <div className="mt-4 border-t pt-4 flex items-center gap-2 px-3">
+        <NotificationBell />
+        <span className="text-xs text-muted-foreground">Notificaciones</span>
+      </div>
 
       {/* §2.18.13 — Admin link, visible solo para admins */}
       {isAdmin && (

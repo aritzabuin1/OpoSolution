@@ -31,20 +31,23 @@ interface FlashcardItem {
 
 interface Props {
   flashcards: FlashcardItem[]
+  label?: string
+  variant?: 'default' | 'outline' | 'secondary'
 }
 
-export function FlashcardSessionStarter({ flashcards }: Props) {
+export function FlashcardSessionStarter({ flashcards, label = 'Iniciar repaso', variant = 'default' }: Props) {
   const [open, setOpen] = useState(false)
 
   return (
     <>
       <Button
         size="sm"
+        variant={variant}
         onClick={() => setOpen(true)}
         className="shrink-0 gap-2"
       >
         <Play className="h-4 w-4" />
-        Iniciar repaso
+        {label}
       </Button>
 
       <Dialog open={open} onOpenChange={setOpen}>
