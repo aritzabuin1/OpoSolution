@@ -42,11 +42,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+function estimateReadingTime(html: string): number {
+  const text = html.replace(/<[^>]+>/g, ' ')
+  const words = text.trim().split(/\s+/).length
+  return Math.max(1, Math.ceil(words / 230))
+}
+
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
   const post = blogPosts.find((p) => p.slug === slug)
   if (!post) notFound()
 
+  const readingTime = estimateReadingTime(post.content)
   const postIndex = blogPosts.findIndex((p) => p.slug === slug)
   const prevPost = postIndex < blogPosts.length - 1 ? blogPosts[postIndex + 1] : null
   const nextPost = postIndex > 0 ? blogPosts[postIndex - 1] : null
@@ -106,7 +113,7 @@ export default async function BlogPostPage({ params }: Props) {
               month: 'long',
               day: 'numeric',
             })}
-            {' '}· OpoRuta
+            {' '}· OpoRuta · {readingTime} min lectura
           </p>
         </header>
 
