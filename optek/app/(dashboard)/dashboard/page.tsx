@@ -17,7 +17,7 @@
 
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { CalendarCheck, CheckCircle2, ClipboardCheck, FileText, Flame, Star, Target, TrendingUp, Trophy, Zap } from 'lucide-react'
+import { CalendarCheck, CheckCircle2, ClipboardCheck, FileText, Flame, Layers, Star, Target, TrendingUp, Trophy, Zap } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -107,6 +107,14 @@ export default async function DashboardPage() {
     .select('id, numero, titulo')
     .eq('oposicion_id', profile?.oposicion_id ?? '')
     .order('numero')
+
+  // Flashcards pendientes de repaso hoy (migration 015 — cast necesario hasta regenerar tipos)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { count: flashcardsPendientes } = await (supabase as any)
+    .from('flashcards')
+    .select('*', { count: 'exact', head: true })
+    .eq('user_id', user.id)
+    .lte('siguiente_repaso', new Date().toISOString()) as { count: number | null }
 
   // Reto Diario — estado de hoy (migration 020, best-effort)
   const today = new Date().toISOString().slice(0, 10)
@@ -289,6 +297,28 @@ export default async function DashboardPage() {
               <Link href="/reto-diario">
                 {retoDiarioResult ? 'Ver resultado' : 'Jugar →'}
               </Link>
+            </Button>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* ── 0b.5 Flashcards pendientes ──────────────────────────────────── */}
+      {(flashcardsPendientes ?? 0) > 0 && (
+        <Card className="border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-950/20">
+          <CardContent className="flex items-center justify-between gap-4 py-4">
+            <div className="flex items-center gap-3">
+              <Layers className="h-6 w-6 text-blue-600 shrink-0" />
+              <div>
+                <p className="text-sm font-semibold text-blue-800 dark:text-blue-300">
+                  {flashcardsPendientes} flashcard{flashcardsPendientes !== 1 ? 's' : ''} pendiente{flashcardsPendientes !== 1 ? 's' : ''} de repaso
+                </p>
+                <p className="text-xs text-blue-600 dark:text-blue-400">
+                  Repasa ahora para consolidar lo aprendido
+                </p>
+              </div>
+            </div>
+            <Button asChild size="sm" variant="outline" className="shrink-0 border-blue-300 text-blue-700 hover:bg-blue-100">
+              <Link href="/flashcards">Repasar →</Link>
             </Button>
           </CardContent>
         </Card>
