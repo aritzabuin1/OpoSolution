@@ -22,9 +22,9 @@ export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 // ─── Constantes de productos ──────────────────────────────────────────────────
 
 export const STRIPE_PRICES = {
-  pack:     process.env.STRIPE_PRICE_PACK     ?? '', // 34.99€ one-time → +20 correcciones
-  recarga:  process.env.STRIPE_PRICE_RECARGA  ?? '', // 8.99€  one-time → +10 correcciones
-  fundador: process.env.STRIPE_PRICE_FOUNDER  ?? '', // 24.99€ one-time → +30 correcciones + is_founder badge (§1.21.3)
+  pack:     process.env.STRIPE_PRICE_PACK     ?? '', // 49.99€ one-time → +20 análisis detallados
+  recarga:  process.env.STRIPE_PRICE_RECARGA  ?? '', // 8.99€  one-time → +10 análisis detallados
+  fundador: process.env.STRIPE_PRICE_FOUNDER  ?? '', // 24.99€ one-time → +30 análisis detallados + is_founder badge (§1.21.3)
 } as const
 
 export type StripePriceTier = keyof typeof STRIPE_PRICES

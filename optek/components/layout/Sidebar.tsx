@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { BarChart3, BookOpen, Brain, CalendarCheck, ClipboardList, FileText, LayoutDashboard, Layers, Target, TrendingUp, Trophy, User } from 'lucide-react'
+import { BarChart3, BookOpen, Brain, CalendarCheck, ClipboardList, LayoutDashboard, Layers, Target, TrendingUp, Trophy, User } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { NotificationBell } from '@/components/shared/NotificationBell'
 
@@ -10,7 +10,6 @@ const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/tests', label: 'Tests', icon: ClipboardList },
   { href: '/psicotecnicos', label: 'Psicotécnicos', icon: Brain },
-  { href: '/corrector', label: 'Corrector', icon: FileText },
   { href: '/simulacros', label: 'Simulacros', icon: BookOpen },
   { href: '/flashcards', label: 'Flashcards', icon: Layers },
   { href: '/cazatrampas', label: 'Caza-Trampas', icon: Target },

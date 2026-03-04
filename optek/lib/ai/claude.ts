@@ -163,18 +163,22 @@ export async function callClaude(
     const response = await anthropic.messages.create({
       model,
       max_tokens: maxTokens,
-      system: systemPrompt,
+      system: systemPrompt ? [{ type: 'text' as const, text: systemPrompt, cache_control: { type: 'ephemeral' as const } }] : undefined,
       messages: [{ role: 'user', content: sanitizedContent }],
     })
 
     const latencyMs = Date.now() - start
     const tokensIn = response.usage.input_tokens
     const tokensOut = response.usage.output_tokens
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const usage = response.usage as any
+    const cacheCreation: number = usage.cache_creation_input_tokens ?? 0
+    const cacheRead: number = usage.cache_read_input_tokens ?? 0
     const costCents = Math.ceil(
       (tokensIn * COST_PER_1K_INPUT_CENTS + tokensOut * COST_PER_1K_OUTPUT_CENTS) / 1000
     )
 
-    log.info({ endpoint, tokensIn, tokensOut, latencyMs, costCents }, 'Claude call OK')
+    log.info({ endpoint, tokensIn, tokensOut, cacheCreation, cacheRead, latencyMs, costCents }, 'Claude call OK')
     onSuccess()
 
     // DDIA Observability: INSERT no-bloqueante — fallo en log no rompe la request
@@ -221,19 +225,23 @@ export async function callClaudeHaiku(
     const response = await anthropic.messages.create({
       model,
       max_tokens: maxTokens,
-      system: systemPrompt,
+      system: systemPrompt ? [{ type: 'text' as const, text: systemPrompt, cache_control: { type: 'ephemeral' as const } }] : undefined,
       messages: [{ role: 'user', content: sanitizedContent }],
     })
 
     const latencyMs = Date.now() - start
     const tokensIn = response.usage.input_tokens
     const tokensOut = response.usage.output_tokens
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const usage = response.usage as any
+    const cacheCreation: number = usage.cache_creation_input_tokens ?? 0
+    const cacheRead: number = usage.cache_read_input_tokens ?? 0
     const costCents = Math.ceil(
       (tokensIn * HAIKU_COST_PER_1K_INPUT_CENTS + tokensOut * HAIKU_COST_PER_1K_OUTPUT_CENTS) /
         1000
     )
 
-    log.info({ endpoint, tokensIn, tokensOut, latencyMs, costCents, model }, 'Haiku call OK')
+    log.info({ endpoint, tokensIn, tokensOut, cacheCreation, cacheRead, latencyMs, costCents, model }, 'Haiku call OK')
     onSuccess()
     void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents })
 

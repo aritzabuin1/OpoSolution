@@ -21,10 +21,12 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { CitationBadge } from '@/components/shared/CitationBadge'
 import { ExplicarErroresPanel } from '@/components/simulacros/ExplicarErroresPanel'
-import { CheckCircle2, XCircle, Clock, BarChart3, TrendingUp, Trophy, BookOpen } from 'lucide-react'
+import { CheckCircle2, XCircle, Clock, BarChart3, TrendingUp, Trophy, BookOpen, Calendar } from 'lucide-react'
 import type { Pregunta } from '@/types/ai'
 import { ShareButton } from '@/components/shared/ShareButton'
 import { RepasoButton } from '@/components/shared/RepasoButton'
+import { calcularNotaSimulacro } from '@/lib/utils/simulacro-ranking'
+import { getAniosConvocatoriaBatch } from '@/lib/utils/cross-reference'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
@@ -90,6 +92,7 @@ interface TestData {
   tiempo_segundos: number | null
   tipo?: string
   examen_oficial_id?: string | null
+  tema_id?: string | null
   temas: { titulo: string } | null
 }
 
@@ -109,11 +112,11 @@ export default async function ResultadosPage({ params }: Props) {
 
   if (!user) redirect('/login')
 
-  // También fetch tipo y examen_oficial_id para §2.6A.9 (penalización)
+  // También fetch tipo, examen_oficial_id y tema_id para penalización, ranking y cross-reference
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data, error } = await (supabase as any)
     .from('tests_generados')
-    .select('id, preguntas, respuestas_usuario, puntuacion, tiempo_segundos, tipo, examen_oficial_id, temas(titulo)')
+    .select('id, preguntas, respuestas_usuario, puntuacion, tiempo_segundos, tipo, examen_oficial_id, tema_id, temas(titulo)')
     .eq('id', id)
     .eq('user_id', user.id)
     .eq('completado', true)
@@ -189,7 +192,8 @@ export default async function ResultadosPage({ params }: Props) {
     if (respuestas[i] === p.correcta) stat.aciertos++
   })
   // Sort by percentage ascending (worst topics first) — at most 10 for readability
-  const temaStatsArr = [...temaStats.values()]
+  const temaStatsArr = [...temaStats.entries()]
+    .map(([temaId, stats]) => ({ temaId, ...stats }))
     .sort((a, b) => {
       const pctA = a.total > 0 ? a.aciertos / a.total : 1
       const pctB = b.total > 0 ? b.aciertos / b.total : 1
@@ -197,6 +201,28 @@ export default async function ResultadosPage({ params }: Props) {
     })
     .slice(0, 10)
   const tieneTemaStats = temaStatsArr.length >= 2
+
+  // ── §2.25.2 — ¿Habría aprobado? (solo simulacros oficiales) ───────────────
+  let examenAnio: number | null = null
+  if (esSimulacroOficial && test.examen_oficial_id) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: examenData } = await (supabase as any)
+      .from('examenes_oficiales')
+      .select('anio')
+      .eq('id', test.examen_oficial_id)
+      .single()
+    examenAnio = (examenData as { anio: number } | null)?.anio ?? null
+  }
+  const rankingResult = esSimulacroOficial
+    ? calcularNotaSimulacro(aciertos, errores, preguntas.length, examenAnio)
+    : null
+
+  // ── §2.25.3 — Referencia cruzada convocatorias ───────────────────────────
+  // Collect temaIds to look up (simulacro temas + regular test tema_id)
+  const temaIdsParaCrossRef = new Set<string>()
+  temaStatsArr.forEach(({ temaId }) => { if (temaId) temaIdsParaCrossRef.add(temaId) })
+  if (test.tema_id) temaIdsParaCrossRef.add(test.tema_id)
+  const crossRefAnios = await getAniosConvocatoriaBatch([...temaIdsParaCrossRef])
 
   // ─────────────────────────────────────────────────────────────────────────
   return (
@@ -248,6 +274,44 @@ export default async function ResultadosPage({ params }: Props) {
           </div>
           <p className="text-[11px] text-amber-700 border-t border-amber-200 pt-2">
             Fórmula oficial: correcta +1 · incorrecta -1/3 · en blanco 0
+          </p>
+        </div>
+      )}
+
+      {/* §2.25.2 — ¿Habrías aprobado? */}
+      {rankingResult && (
+        <div className={`rounded-xl border p-4 space-y-2 ${
+          rankingResult.habriaProbado
+            ? 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950/20'
+            : 'border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-950/20'
+        }`}>
+          <div className="flex items-center gap-2">
+            <Calendar className={`h-4 w-4 shrink-0 ${rankingResult.habriaProbado ? 'text-green-600' : 'text-red-600'}`} />
+            <p className={`text-xs font-semibold uppercase tracking-wide ${rankingResult.habriaProbado ? 'text-green-800 dark:text-green-300' : 'text-red-800 dark:text-red-300'}`}>
+              ¿Habrías aprobado en {rankingResult.anio}?
+            </p>
+          </div>
+          <div className="flex items-end justify-between">
+            <div>
+              <p className={`text-3xl font-extrabold tabular-nums ${rankingResult.habriaProbado ? 'text-green-700' : 'text-red-700'}`}>
+                {rankingResult.habriaProbado ? '✓ SÍ' : '✗ NO'}
+              </p>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                Tu nota: <span className="font-semibold">{rankingResult.tuNota.toFixed(2)}/10</span>
+                {' · '}Corte {rankingResult.anio}: <span className="font-semibold">{rankingResult.corteOficial}/10</span>
+              </p>
+            </div>
+            <div className="text-right">
+              <p className={`text-xl font-bold tabular-nums ${rankingResult.diferencia >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                {rankingResult.diferencia >= 0 ? '+' : ''}{rankingResult.diferencia.toFixed(2)}
+              </p>
+              <p className="text-xs text-muted-foreground">puntos vs corte</p>
+            </div>
+          </div>
+          <p className={`text-xs border-t pt-2 ${rankingResult.habriaProbado ? 'text-green-700 border-green-200' : 'text-red-700 border-red-200'}`}>
+            {rankingResult.habriaProbado
+              ? `¡Enhorabuena! Habrías entrado entre las ${rankingResult.plazas.toLocaleString('es-ES')} plazas de la convocatoria ${rankingResult.anio}.`
+              : `Te faltan ${Math.abs(rankingResult.diferencia).toFixed(2)} puntos para alcanzar el corte de ${rankingResult.anio}. ¡Sigue practicando!`}
           </p>
         </div>
       )}
@@ -330,25 +394,33 @@ export default async function ResultadosPage({ params }: Props) {
               Desglose por tema — de peor a mejor
             </h2>
           </div>
-          <div className="grid gap-2">
-            {temaStatsArr.map(({ titulo, total, aciertos }) => {
+          <div className="grid gap-3">
+            {temaStatsArr.map(({ temaId, titulo, total, aciertos }) => {
               const pct = total > 0 ? Math.round((aciertos / total) * 100) : 0
               const barColor =
                 pct >= 70 ? 'bg-green-500' : pct >= 50 ? 'bg-amber-500' : 'bg-red-500'
+              const aniosCrossRef = crossRefAnios.get(temaId) ?? []
               return (
-                <div key={titulo} className="flex items-center gap-3">
-                  <span className="w-36 text-xs text-muted-foreground truncate shrink-0" title={titulo}>
-                    {titulo}
-                  </span>
-                  <div className="flex-1 h-2 rounded-full bg-muted overflow-hidden">
-                    <div
-                      className={`h-2 rounded-full transition-all ${barColor}`}
-                      style={{ width: `${pct}%` }}
-                    />
+                <div key={titulo}>
+                  <div className="flex items-center gap-3">
+                    <span className="w-36 text-xs text-muted-foreground truncate shrink-0" title={titulo}>
+                      {titulo}
+                    </span>
+                    <div className="flex-1 h-2 rounded-full bg-muted overflow-hidden">
+                      <div
+                        className={`h-2 rounded-full transition-all ${barColor}`}
+                        style={{ width: `${pct}%` }}
+                      />
+                    </div>
+                    <span className="w-24 text-xs text-right text-muted-foreground tabular-nums shrink-0">
+                      {aciertos}/{total} ({pct}%)
+                    </span>
                   </div>
-                  <span className="w-24 text-xs text-right text-muted-foreground tabular-nums shrink-0">
-                    {aciertos}/{total} ({pct}%)
-                  </span>
+                  {aniosCrossRef.length > 0 && (
+                    <p className="text-[10px] text-muted-foreground/70 mt-1 pl-[calc(9rem+0.75rem)]">
+                      Apareció en: {aniosCrossRef.join(', ')}
+                    </p>
+                  )}
                 </div>
               )
             })}
@@ -358,6 +430,21 @@ export default async function ResultadosPage({ params }: Props) {
           </p>
         </section>
       )}
+
+      {/* §2.25.3 — Referencia cruzada para tests normales (no simulacro) */}
+      {!esSimulacroOficial && test.tema_id && (() => {
+        const aniosCrossRef = crossRefAnios.get(test.tema_id!)
+        if (!aniosCrossRef || aniosCrossRef.length === 0) return null
+        return (
+          <div className="flex items-center gap-2 text-sm text-muted-foreground rounded-lg bg-muted/50 px-3 py-2">
+            <Calendar className="h-4 w-4 shrink-0 text-primary" />
+            <span>
+              Este tema ha aparecido en exámenes INAP de:{' '}
+              <span className="font-medium text-foreground">{aniosCrossRef.join(', ')}</span>
+            </span>
+          </div>
+        )
+      })()}
 
       {/* Tiempo si está disponible */}
       {tiempoStr && (

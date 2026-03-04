@@ -10,7 +10,6 @@ import {
   ShieldCheck,
   TrendingUp,
   ArrowRight,
-  Star,
   Users,
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
@@ -94,7 +93,7 @@ const plans = [
     badge: null,
     features: [
       '5 tests de prueba',
-      '2 correcciones de desarrollo',
+      '2 análisis detallados',
       'Verificación de citas incluida',
       'Sin tarjeta de crédito',
     ],
@@ -104,12 +103,12 @@ const plans = [
   },
   {
     name: 'Pack Oposición',
-    price: '34,99€',
+    price: '49,99€',
     period: 'pago único',
     badge: 'Más popular',
     features: [
       'Tests ilimitados de todo el temario',
-      '+20 correcciones IA',
+      '+20 análisis detallados',
       'Simulacros completos + Radar',
       'Sin suscripción — pago único',
     ],
@@ -129,8 +128,8 @@ const faqs = [
     a: 'En esta versión inicial preparamos Auxiliar Administrativo del Estado (convocatoria TAC). Próximamente añadiremos más oposiciones del Cuerpo General de la Administración del Estado y Administraciones locales.',
   },
   {
-    q: '¿Qué pasa cuando agoto mis correcciones?',
-    a: 'Puedes recargar correcciones desde 8,99€ (+10 correcciones) directamente desde tu panel, sin necesidad de contratar nada nuevo. Los tests de tipo test siguen siendo ilimitados — las correcciones son el único recurso limitado.',
+    q: '¿Qué pasa cuando agoto mis análisis detallados?',
+    a: 'Puedes recargar análisis desde 8,99€ (+10 análisis detallados) directamente desde tu panel, sin necesidad de contratar nada nuevo. Los tests de tipo test siguen siendo ilimitados — los análisis detallados son el único recurso limitado.',
   },
   {
     q: '¿La IA puede equivocarse?',
@@ -138,7 +137,7 @@ const faqs = [
   },
   {
     q: '¿Qué incluye exactamente el plan gratuito?',
-    a: 'El plan gratuito incluye 5 tests de prueba y 2 correcciones de desarrollos escritos (en total, no al mes), con verificación de citas incluida en ambos. No necesitas tarjeta de crédito para empezar.',
+    a: 'El plan gratuito incluye 5 tests de prueba y 2 análisis detallados (en total, no al mes), con verificación de citas incluida en ambos. No necesitas tarjeta de crédito para empezar.',
   },
   {
     q: '¿Con qué frecuencia se actualiza la legislación?',
@@ -146,23 +145,6 @@ const faqs = [
   },
 ]
 
-const testimonials = [
-  {
-    text: 'Por fin una app que no inventa artículos. He probado otras IA y siempre me citaban leyes que no existen. Con OpoRuta, todo comprobado.',
-    name: 'M. García',
-    role: 'Opositora TAC, aprobó en 2.ª convocatoria',
-  },
-  {
-    text: 'El corrector de desarrollos me ahorra horas a la semana. Me señala exactamente qué cita mejorar y con qué artículo sustentarla.',
-    name: 'J. Martínez',
-    role: 'Opositor Auxiliar Administrativo',
-  },
-  {
-    text: 'Llevo 3 meses con OpoRuta y he pasado de un 55% a un 78% en los simulacros. El Radar del Tribunal me dijo exactamente por dónde empezar.',
-    name: 'A. López',
-    role: 'Preparando convocatoria 2025',
-  },
-]
 
 // ─── JSON-LD (FAQPage + WebSite) ───────────────────────────────────────────────
 
@@ -294,19 +276,21 @@ export default async function LandingPage() {
                   </Badge>
                   <span className="flex items-center gap-1 text-sm text-amber-700 dark:text-amber-400 font-medium">
                     <Users className="h-3.5 w-3.5" />
-                    {founderRemaining} de {FOUNDER_LIMIT} plazas disponibles
+                    {founderCount > 0
+                      ? `Quedan ${founderRemaining} de ${FOUNDER_LIMIT} plazas`
+                      : `Solo ${FOUNDER_LIMIT} plazas disponibles`}
                   </span>
                 </div>
                 <p className="font-semibold text-foreground">
                   Únete a los primeros {FOUNDER_LIMIT} opositores en OpoRuta
                 </p>
                 <p className="text-sm text-muted-foreground mt-1">
-                  30 correcciones IA · Tests ilimitados · Badge Miembro Fundador permanente
+                  30 análisis detallados · Tests ilimitados · Badge Miembro Fundador permanente
                 </p>
               </div>
               <div className="flex items-center gap-4 shrink-0">
                 <div className="text-center">
-                  <p className="text-sm text-muted-foreground line-through">34,99€</p>
+                  <p className="text-sm text-muted-foreground line-through">49,99€</p>
                   <p className="text-3xl font-bold text-amber-600 dark:text-amber-400">24,99€</p>
                   <p className="text-xs text-muted-foreground">pago único</p>
                 </div>
@@ -437,7 +421,7 @@ export default async function LandingPage() {
             </h2>
             <p className="mt-3 text-muted-foreground">
               Sin permanencias. Sin suscripción. Pago único — acceso para siempre.
-              ¿Te quedas sin correcciones? Recárgalas desde 8,99€.
+              ¿Te quedas sin análisis detallados? Recárgalos desde 8,99€.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-2 max-w-2xl mx-auto">
@@ -479,37 +463,21 @@ export default async function LandingPage() {
         </div>
       </section>
 
-      {/* ─── Social proof ─────────────────────────────────────────────── */}
-      <section className="py-20 bg-muted/30">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold tracking-tight">
-              Opositores que ya están en ruta
-            </h2>
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {testimonials.map(({ text, name, role }) => (
-              <Card key={name}>
-                <CardContent className="pt-6">
-                  <div className="flex gap-0.5 mb-3">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                    &ldquo;{text}&rdquo;
-                  </p>
-                  <div>
-                    <p className="text-sm font-semibold">{name}</p>
-                    <p className="text-xs text-muted-foreground">{role}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          <p className="text-center mt-6 text-xs text-muted-foreground">
-            * Testimonios ilustrativos. Resultados individuales pueden variar.
+      {/* ─── Early adopter CTA ────────────────────────────────────────── */}
+      <section className="py-16 bg-muted/30">
+        <div className="mx-auto max-w-2xl px-4 sm:px-6 text-center">
+          <p className="text-lg font-semibold text-foreground mb-2">
+            Únete a los primeros opositores en probarlo
           </p>
+          <p className="text-sm text-muted-foreground mb-6">
+            Acceso founder disponible ahora — precio especial para los primeros {FOUNDER_LIMIT}.
+          </p>
+          <Link href="/register">
+            <Button size="lg" className="gap-2">
+              Empezar gratis — sin tarjeta
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+          </Link>
         </div>
       </section>
 

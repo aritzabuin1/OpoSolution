@@ -33,6 +33,7 @@ import { LogrosGrid } from '@/components/dashboard/LogrosGrid'
 import { DashboardGreeting } from '@/components/dashboard/DashboardGreeting'
 import { DailyBrief } from '@/components/shared/DailyBrief'
 import RadarMini from '@/components/shared/RadarMini'
+import { MapaDebilidades } from '@/components/shared/MapaDebilidades'
 import { calcularIPR } from '@/lib/utils/ipr'
 
 // ─── Tipos locales ─────────────────────────────────────────────────────────────
@@ -404,7 +405,7 @@ export default async function DashboardPage() {
         <StatsCard
           icon={<Zap className="w-5 h-5 text-purple-500" />}
           value={profile?.corrections_balance ?? 0}
-          label="Correcciones"
+          label="Análisis"
           sub="disponibles"
         />
       </div>
@@ -464,6 +465,11 @@ export default async function DashboardPage() {
             </div>
           </CardContent>
         </Card>
+      )}
+
+      {/* ── 2c. Mapa de debilidades — §2.25.1 ────────────────────────────── */}
+      {temaScores.filter((t) => t.notaMedia !== null && t.testsCount >= 1).length >= 2 && (
+        <MapaDebilidades temaScores={temaScores} />
       )}
 
       {/* ── 3. Gráfico de evolución ──────────────────────────────────────── */}

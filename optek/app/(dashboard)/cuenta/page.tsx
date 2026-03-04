@@ -99,7 +99,7 @@ export default async function CuentaPage() {
           <div>
             <p className="font-semibold text-sm">Desbloquea tests ilimitados</p>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Pack Oposición — 34,99€ · tests ilimitados + 20 correcciones IA · sin suscripción
+              Pack Oposición — 49,99€ · tests ilimitados + 20 análisis detallados · sin suscripción
             </p>
           </div>
           <BuyButton tier="pack" label="Comprar" variant="default" />
@@ -122,22 +122,22 @@ export default async function CuentaPage() {
         </CardContent>
       </Card>
 
-      {/* ── §1.14.3 Balance de correcciones ──────────────────────────────── */}
+      {/* ── §1.14.3 Balance de análisis detallados ──────────────────────── */}
       <Card>
         <CardHeader>
           <CardTitle className="text-base flex items-center gap-2">
             <Zap className="w-4 h-4 text-purple-500" />
-            Correcciones disponibles
+            Análisis detallados disponibles
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center gap-4">
             <span className="text-4xl font-bold">{balance}</span>
             <div>
-              <p className="text-sm text-muted-foreground">correcciones restantes</p>
+              <p className="text-sm text-muted-foreground">análisis detallados restantes</p>
               {balance < 5 && (
                 <p className="text-xs text-amber-600 mt-1">
-                  Quedan pocas — considera recargar
+                  Quedan pocos — considera recargar
                 </p>
               )}
             </div>
@@ -145,9 +145,9 @@ export default async function CuentaPage() {
           {balance < 5 && (
             <div className="mt-4 p-3 rounded-lg bg-muted text-sm flex items-center justify-between gap-4">
               <div>
-                <p className="font-medium">Recarga de correcciones</p>
+                <p className="font-medium">Recarga de análisis detallados</p>
                 <p className="text-muted-foreground text-xs mt-0.5">
-                  +10 correcciones · 8,99€ · pago único
+                  +10 análisis · 8,99€ · pago único
                 </p>
               </div>
               <BuyButton tier="recarga" label="Comprar ahora" variant="default" />

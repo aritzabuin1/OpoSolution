@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { callClaudeHaiku } from '@/lib/ai/claude'
+import { SYSTEM_EXPLAIN_ERRORES } from '@/lib/ai/prompts'
 import { logger } from '@/lib/logger'
 import type { Pregunta, ExplicacionError } from '@/types/ai'
 
@@ -33,24 +34,6 @@ const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12
 const ExplainEroresInputSchema = z.object({
   testId: z.string().regex(UUID_REGEX, 'testId debe ser un UUID válido'),
 })
-
-// ─── System prompt ────────────────────────────────────────────────────────────
-
-const SYSTEM_EXPLAIN_ERRORES = `Eres un experto en oposiciones a la Administración General del Estado española.
-Tu tarea es explicar por qué el opositor se equivocó en cada pregunta de un examen oficial del INAP.
-
-REGLAS:
-1. Para cada pregunta: explica en 1-2 frases por qué la respuesta CORRECTA es correcta.
-2. Menciona brevemente por qué la respuesta del opositor es errónea si ayuda a entenderlo.
-3. Sé concreto, pedagógico y sin adornos.
-4. Responde ÚNICAMENTE con JSON válido.
-
-FORMATO JSON:
-{
-  "explicaciones": [
-    { "numero": 1, "explicacion": "La respuesta correcta es C porque..." }
-  ]
-}` as const
 
 // ─── Handler ──────────────────────────────────────────────────────────────────
 
@@ -161,15 +144,15 @@ export async function POST(request: NextRequest) {
         upsell: [
           {
             id: 'recarga',
-            name: 'Recarga de correcciones',
+            name: 'Recarga de análisis',
             price: '8,99€',
-            description: '+10 correcciones IA',
+            description: '+10 análisis detallados',
           },
           {
             id: 'pack',
             name: 'Pack Oposición',
-            price: '34,99€',
-            description: 'Tests ilimitados + 20 correcciones + simulacros',
+            price: '49,99€',
+            description: 'Tests ilimitados + 20 análisis detallados + simulacros',
             badge: 'Más valor',
           },
         ],
@@ -204,11 +187,11 @@ export async function POST(request: NextRequest) {
     )
     .join('\n\n')
 
-  const userPrompt = `Explica los errores del siguiente examen INAP:
+  const userPrompt = `Explica los errores del siguiente examen INAP usando el método socrático:
 
 ${preguntasTexto}
 
-Responde en JSON con el array "explicaciones" donde cada item tiene "numero" (igual al número de pregunta) y "explicacion".`
+Responde en JSON con el array "explicaciones" donde cada item tiene: "num" (número de pregunta), "empatia", "pregunta_guia", "revelacion" y "anclaje".`
 
   let rawResponse: string
   try {
@@ -236,13 +219,28 @@ Responde en JSON con el array "explicaciones" donde cada item tiene "numero" (ig
     )
   }
 
-  // Parse JSON response
+  // Parse JSON response — handles both socratic (new) and legacy (old) formats
+  type SocraticRaw = { num: number; empatia: string; pregunta_guia: string; revelacion: string; anclaje: string }
+  type LegacyRaw = { numero: number; explicacion: string }
   let explicacionesRaw: Array<{ numero: number; explicacion: string }> = []
   try {
     const jsonMatch = rawResponse.match(/\{[\s\S]*\}/)
     if (!jsonMatch) throw new Error('No JSON found')
-    const parsed2 = JSON.parse(jsonMatch[0]) as { explicaciones: typeof explicacionesRaw }
-    explicacionesRaw = parsed2.explicaciones ?? []
+    const parsed2 = JSON.parse(jsonMatch[0]) as { explicaciones?: Array<SocraticRaw | LegacyRaw> }
+    const items = parsed2.explicaciones ?? []
+    explicacionesRaw = items.map((item) => {
+      if ('empatia' in item) {
+        // Socratic format — combine 4 parts into a formatted string
+        return {
+          numero: item.num,
+          explicacion: [item.empatia, `→ ${item.pregunta_guia}`, item.revelacion, item.anclaje]
+            .filter(Boolean)
+            .join('\n'),
+        }
+      }
+      // Legacy format
+      return { numero: (item as LegacyRaw).numero, explicacion: (item as LegacyRaw).explicacion }
+    })
   } catch {
     log.warn({ rawResponse: rawResponse.slice(0, 200) }, '[explain-errores] JSON parse failed')
     // Fallback: crear explicaciones simples

@@ -3,14 +3,13 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { BookOpen, Brain, CalendarCheck, ClipboardList, FileText, LayoutDashboard, Layers, Menu, Target, TrendingUp, Trophy, User, X } from 'lucide-react'
+import { BookOpen, Brain, CalendarCheck, ClipboardList, LayoutDashboard, Layers, Menu, Target, TrendingUp, Trophy, User, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { NotificationBell } from '@/components/shared/NotificationBell'
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/tests', label: 'Tests', icon: ClipboardList },
-  { href: '/corrector', label: 'Corrector', icon: FileText },
   { href: '/psicotecnicos', label: 'Psicotécnicos', icon: Brain },
   { href: '/simulacros', label: 'Simulacros', icon: BookOpen },
   { href: '/flashcards', label: 'Flashcards', icon: Layers },

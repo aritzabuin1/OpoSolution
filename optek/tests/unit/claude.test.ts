@@ -147,7 +147,13 @@ describe('callClaudeJSON', () => {
 
       expect(mockCreate).toHaveBeenCalledWith(
         expect.objectContaining({
-          system: expect.stringContaining('JSON válido'),
+          // system is now an array with cache_control — verify text contains JSON instruction
+          system: expect.arrayContaining([
+            expect.objectContaining({
+              type: 'text',
+              text: expect.stringContaining('JSON válido'),
+            }),
+          ]),
         })
       )
     })
