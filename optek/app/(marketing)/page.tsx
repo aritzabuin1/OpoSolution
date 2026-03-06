@@ -245,20 +245,7 @@ export default async function LandingPage() {
             Auxiliar Administrativo del Estado · 1.700 plazas
           </Badge>
 
-          {/* Brand mark with gradient + glow */}
-          <div className="relative mb-5 inline-block">
-            <span
-              className="absolute inset-0 text-4xl sm:text-5xl font-black tracking-tight text-primary/20 blur-lg select-none pointer-events-none"
-              aria-hidden="true"
-            >
-              OpoRuta
-            </span>
-            <span className="relative text-4xl sm:text-5xl font-black tracking-tight bg-gradient-to-r from-[#1B4F72] via-[#2563EB] to-[#D4A017] bg-clip-text text-transparent">
-              OpoRuta
-            </span>
-          </div>
-
-          <h1 id="hero-heading" className="text-3xl font-bold tracking-tight text-foreground sm:text-5xl leading-tight">
+          <h1 id="hero-heading" className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl leading-tight">
             Aprueba tu oposición.
             <br />
             <span className="text-primary">Entrena con lo que pregunta el tribunal.</span>

@@ -10,8 +10,16 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
       {/* Public navbar */}
       <header className="sticky top-0 z-50 border-b bg-white/90 backdrop-blur-sm">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-          <Link href="/" className="text-xl font-bold text-primary tracking-tight">
-            OpoRuta
+          <Link href="/" className="relative inline-block group">
+            <span
+              className="absolute inset-0 text-xl font-black tracking-tight text-primary/20 blur-lg select-none pointer-events-none"
+              aria-hidden="true"
+            >
+              OpoRuta
+            </span>
+            <span className="relative text-xl font-black tracking-tight bg-gradient-to-r from-[#1B4F72] via-[#2563EB] to-[#D4A017] bg-clip-text text-transparent">
+              OpoRuta
+            </span>
           </Link>
           <nav className="flex items-center gap-2" aria-label="Navegacion principal">
             <Link href="/blog" className="hidden sm:block text-sm text-muted-foreground hover:text-foreground transition-colors px-2">
