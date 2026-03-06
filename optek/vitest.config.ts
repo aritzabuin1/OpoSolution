@@ -7,6 +7,7 @@ export default defineConfig({
   test: {
     environment: 'node',
     setupFiles: ['./tests/vitest.setup.ts'],
+    exclude: ['tests/e2e/**', 'node_modules/**', '.next/**'],
     coverage: {
       provider: 'v8',
       thresholds: {

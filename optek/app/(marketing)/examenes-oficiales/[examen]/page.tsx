@@ -212,7 +212,7 @@ export default async function SimulacroExamenPage({ params }: Props) {
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 py-12">
         {/* Breadcrumb */}
-        <nav className="mb-8 flex items-center gap-2 text-sm text-muted-foreground">
+        <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-2 text-sm text-muted-foreground">
           <Link href="/" className="hover:text-foreground transition-colors">OpoRuta</Link>
           <span>/</span>
           <Link href="/examenes-oficiales" className="hover:text-foreground transition-colors">Simulacros</Link>

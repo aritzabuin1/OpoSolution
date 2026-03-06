@@ -18,6 +18,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
+import { Suspense } from 'react'
 import { CalendarCheck, CheckCircle2, ClipboardCheck, FileText, Flame, Layers, Star, Target, TrendingUp, Trophy, Zap } from 'lucide-react'
 
 export const metadata: Metadata = { title: 'Mi Dashboard' }
@@ -35,6 +36,8 @@ import { DailyBrief } from '@/components/shared/DailyBrief'
 import RadarMini from '@/components/shared/RadarMini'
 import { MapaDebilidades } from '@/components/shared/MapaDebilidades'
 import { calcularIPR } from '@/lib/utils/ipr'
+import { LoadingSpinner } from '@/components/shared/LoadingSpinner'
+import { ExamCountdownBanner } from '@/components/dashboard/ExamCountdownBanner'
 
 // ─── Tipos locales ─────────────────────────────────────────────────────────────
 
@@ -251,17 +254,27 @@ export default async function DashboardPage() {
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-8">
 
+      {/* ── -1. Exam Countdown Banner ──────────────────────────────────────── */}
+      {diasParaExamen !== null && (
+        <ExamCountdownBanner
+          diasRestantes={diasParaExamen}
+          nombre={nombreUsuario !== 'opositor' ? nombreUsuario : undefined}
+        />
+      )}
+
       {/* ── 0. Daily Brief (above the fold) ──────────────────────────────── */}
-      <DailyBrief
-        userId={user.id}
-        rachaActual={rachaActual}
-        totalTests={totalTests}
-        temaDebil={
-          temaConPeorNota?.notaMedia != null
-            ? { ...temaConPeorNota, notaMedia: temaConPeorNota.notaMedia }
-            : null
-        }
-      />
+      <Suspense fallback={<div className="flex justify-center py-4"><LoadingSpinner /></div>}>
+        <DailyBrief
+          userId={user.id}
+          rachaActual={rachaActual}
+          totalTests={totalTests}
+          temaDebil={
+            temaConPeorNota?.notaMedia != null
+              ? { ...temaConPeorNota, notaMedia: temaConPeorNota.notaMedia }
+              : null
+          }
+        />
+      </Suspense>
 
       {/* ── 0b. Reto Diario — §2.20.9 ────────────────────────────────────── */}
       {retoHoy && (
@@ -329,7 +342,9 @@ export default async function DashboardPage() {
       )}
 
       {/* ── 0c. Radar Mini — §2.14.9 ──────────────────────────────────────── */}
-      <RadarMini />
+      <Suspense fallback={<div className="flex justify-center py-4"><LoadingSpinner /></div>}>
+        <RadarMini />
+      </Suspense>
 
       {/* ── 0d. Exam date CTA para usuarios sin fecha configurada ────────── */}
       {!profile?.fecha_examen && totalTests > 0 && (

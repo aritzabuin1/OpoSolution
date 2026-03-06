@@ -154,20 +154,28 @@ function sleep(ms: number) {
   return new Promise<void>((resolve) => setTimeout(resolve, ms))
 }
 
-export async function fetchHTML(boeId: string): Promise<string> {
+export async function fetchHTML(boeId: string, timeoutMs = 10_000): Promise<string> {
   const url = `${BOE_BASE}${boeId}`
   console.log(`  GET ${url}`)
 
-  const res = await fetch(url, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (compatible; OPTEK-research/1.0; academic use)',
-      Accept: 'text/html,application/xhtml+xml',
-      'Accept-Language': 'es-ES,es;q=0.9',
-    },
-  })
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), timeoutMs)
 
-  if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`)
-  return res.text()
+  try {
+    const res = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; OPTEK-research/1.0; academic use)',
+        Accept: 'text/html,application/xhtml+xml',
+        'Accept-Language': 'es-ES,es;q=0.9',
+      },
+      signal: controller.signal,
+    })
+
+    if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`)
+    return res.text()
+  } finally {
+    clearTimeout(timer)
+  }
 }
 
 // ─── Parser ───────────────────────────────────────────────────────────────────

@@ -209,23 +209,21 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
  * Verifica preguntas de Bloque I: cada pregunta debe tener citas legales válidas en BD.
  */
 async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Promise<Pregunta[]> {
-  const results: Pregunta[] = []
-
-  for (const pregunta of preguntas) {
-    const passes = await verificarPreguntaBloque1(pregunta, log)
-    if (passes) {
-      results.push({
+  const checks = await Promise.all(
+    preguntas.map(async (pregunta) => {
+      const passes = await verificarPreguntaBloque1(pregunta, log)
+      return passes ? {
         enunciado: pregunta.enunciado,
         opciones: pregunta.opciones,
         correcta: pregunta.correcta,
         explicacion: pregunta.explicacion,
         cita: pregunta.cita,
         dificultad: pregunta.dificultad,
-      })
-    }
-  }
+      } as Pregunta : null
+    })
+  )
 
-  return results
+  return checks.filter((p): p is Pregunta => p !== null)
 }
 
 /**

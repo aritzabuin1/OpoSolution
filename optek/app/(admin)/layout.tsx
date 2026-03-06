@@ -2,33 +2,20 @@
  * app/(admin)/layout.tsx — §2.18.3
  *
  * Layout protegido para rutas de administración.
- * Server Component — verifica is_admin = true en el perfil.
+ * Server Component — uses centralized verifyAdmin() for authorization + audit logging.
  * Redirige a /dashboard si el usuario no es admin.
  */
 
 import { redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
+import { verifyAdmin } from '@/lib/admin/auth'
 import Link from 'next/link'
 import { BarChart3, Server, Settings } from 'lucide-react'
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
-  const supabase = await createClient()
+  const { authorized, userId } = await verifyAdmin('(admin)/layout')
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  if (!user) redirect('/login')
-
-  // Verificar is_admin — columna de migration 019
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: profile } = await (supabase as any)
-    .from('profiles')
-    .select('is_admin')
-    .eq('id', user.id)
-    .single()
-
-  if (!profile?.is_admin) redirect('/dashboard')
+  if (!userId) redirect('/login')
+  if (!authorized) redirect('/dashboard')
 
   return (
     <div className="min-h-screen bg-muted/30">
@@ -38,7 +25,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           <Settings className="h-4 w-4 text-muted-foreground" />
           <span className="text-sm font-semibold">OpoRuta Admin</span>
         </div>
-        <nav className="flex items-center gap-4 text-sm">
+        <nav className="flex items-center gap-4 text-sm" aria-label="Navegacion admin">
           <Link
             href="/admin/economics"
             className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
@@ -62,7 +49,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         </nav>
       </header>
 
-      <main className="max-w-5xl mx-auto p-6">
+      <main className="max-w-5xl mx-auto p-6" aria-label="Contenido admin">
         {children}
       </main>
     </div>

@@ -81,7 +81,7 @@ export default async function BlogPostPage({ params }: Props) {
 
       <div className="mx-auto max-w-3xl px-4 sm:px-6 py-12">
         {/* Breadcrumb */}
-        <nav className="mb-8 flex items-center gap-2 text-sm text-muted-foreground">
+        <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-2 text-sm text-muted-foreground">
           <Link href="/" className="hover:text-foreground transition-colors">
             OpoRuta
           </Link>
@@ -149,7 +149,7 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
 
         {/* Navegación entre posts */}
-        <nav className="mt-12 flex flex-col sm:flex-row gap-4 justify-between">
+        <nav aria-label="Navegacion entre articulos" className="mt-12 flex flex-col sm:flex-row gap-4 justify-between">
           {prevPost && (
             <Link
               href={`/blog/${prevPost.slug}`}

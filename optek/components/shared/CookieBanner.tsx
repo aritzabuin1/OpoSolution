@@ -24,6 +24,11 @@ export function CookieBanner() {
     } catch {
       // localStorage puede fallar en contextos restringidos → no mostrar
     }
+
+    // RGPD Art. 7.3: permitir reabrir el banner para cambiar consentimiento
+    function handleReopen() { setVisible(true) }
+    window.addEventListener('oporuta:reopen-cookie-banner', handleReopen)
+    return () => window.removeEventListener('oporuta:reopen-cookie-banner', handleReopen)
   }, [])
 
   function accept() {

@@ -7,98 +7,110 @@
  * Solo visible cuando test.tipo === 'simulacro' y examen_oficial_id IS NOT NULL.
  *
  * Estados:
- *   idle    → muestra botón "Explicar mis errores con IA (1 corrección)"
- *   loading → spinner mientras Claude procesa
- *   done    → acordeón con cada error explicado
- *   error   → mensaje de error con retry
+ *   idle      → muestra botón "Explicar mis errores con IA (1 corrección)"
+ *   loading   → spinner mientras se inicia conexión
+ *   streaming → texto apareciendo token a token (primer token <500ms)
+ *   done      → texto completo con scroll
+ *   error     → mensaje de error con retry
  *
- * Paywall: si sin créditos → muestra mismo modal que TemaCard (PAYWALL_CORRECTIONS).
+ * Paywall: si sin créditos → muestra modal PaywallGate (PAYWALL_CORRECTIONS).
  */
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { toast } from 'sonner'
-import { Sparkles, ChevronDown, XCircle, CheckCircle2, Loader2 } from 'lucide-react'
+import { Sparkles, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { PaywallGate } from '@/components/shared/PaywallGate'
-import type { ExplicacionError } from '@/types/ai'
 
 // ─── Props ────────────────────────────────────────────────────────────────────
 
 export interface ExplicarErroresPanelProps {
   testId: string
   numErrores: number
-  opciones: string[][]  // opciones[i] = array de 4 opciones de la pregunta i
+  opciones: string[][]
 }
 
 // ─── Tipos internos ───────────────────────────────────────────────────────────
 
-type PanelState = 'idle' | 'loading' | 'done' | 'error'
+type PanelState = 'idle' | 'loading' | 'streaming' | 'done' | 'error'
 
 // ─── Componente ──────────────────────────────────────────────────────────────
 
-export function ExplicarErroresPanel({ testId, numErrores, opciones }: ExplicarErroresPanelProps) {
+export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPanelProps) {
   const [state, setState] = useState<PanelState>('idle')
-  const [explicaciones, setExplicaciones] = useState<ExplicacionError[]>([])
-  const [expanded, setExpanded] = useState<Set<number>>(new Set())
+  const [streamedText, setStreamedText] = useState('')
   const [showPaywall, setShowPaywall] = useState(false)
+  const textRef = useRef<HTMLDivElement>(null)
+
+  // Auto-scroll to bottom as text streams
+  useEffect(() => {
+    if (state === 'streaming' && textRef.current) {
+      textRef.current.scrollTop = textRef.current.scrollHeight
+    }
+  }, [streamedText, state])
 
   async function handleExplicar() {
-    if (state === 'loading') return
+    if (state === 'loading' || state === 'streaming') return
     setState('loading')
+    setStreamedText('')
 
     try {
-      const res = await fetch('/api/ai/explain-errores', {
+      const res = await fetch('/api/ai/explain-errores/stream', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ testId }),
       })
 
-      if (res.ok) {
-        const data = await res.json()
-        setExplicaciones(data.explicaciones ?? [])
-        setState('done')
-        return
-      }
+      // Non-streaming error responses (auth, paywall, rate limit)
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
 
-      const data = await res.json().catch(() => ({}))
+        if (res.status === 402) {
+          setShowPaywall(true)
+          setState('idle')
+          return
+        }
 
-      if (res.status === 402) {
-        setShowPaywall(true)
-        setState('idle')
-        return
-      }
+        if (res.status === 503) {
+          toast.error('Servicio no disponible', {
+            description: 'El servicio de IA está ocupado. Inténtalo en un minuto.',
+          })
+          setState('error')
+          return
+        }
 
-      if (res.status === 503) {
-        toast.error('Servicio no disponible', {
-          description: 'El servicio de IA está ocupado. Inténtalo en un minuto.',
+        toast.error('Error al generar explicaciones', {
+          description: data?.error ?? 'Por favor inténtalo de nuevo.',
         })
         setState('error')
         return
       }
 
-      toast.error('Error al generar explicaciones', {
-        description: data?.error ?? 'Por favor inténtalo de nuevo.',
-      })
-      setState('error')
+      // Start reading stream
+      if (!res.body) {
+        setState('error')
+        return
+      }
+
+      setState('streaming')
+      const reader = res.body.getReader()
+      const decoder = new TextDecoder()
+      let accumulated = ''
+
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        accumulated += decoder.decode(value, { stream: true })
+        setStreamedText(accumulated)
+      }
+
+      setState('done')
     } catch {
       toast.error('Error de conexión', {
         description: 'Comprueba tu conexión a internet e inténtalo de nuevo.',
       })
       setState('error')
     }
-  }
-
-  function toggleExpand(numero: number) {
-    setExpanded((prev) => {
-      const next = new Set(prev)
-      if (next.has(numero)) {
-        next.delete(numero)
-      } else {
-        next.add(numero)
-      }
-      return next
-    })
   }
 
   // ── Idle / Error state ──────────────────────────────────────────────────
@@ -138,82 +150,44 @@ export function ExplicarErroresPanel({ testId, numErrores, opciones }: ExplicarE
     )
   }
 
-  // ── Loading state ─────────────────────────────────────────────────────────
+  // ── Loading state (connecting) ──────────────────────────────────────────
   if (state === 'loading') {
     return (
       <div className="rounded-xl border border-primary/20 bg-primary/5 p-6 flex items-center gap-3">
         <Loader2 className="h-5 w-5 animate-spin text-primary shrink-0" />
         <div>
-          <p className="font-medium text-sm">Analizando tus errores...</p>
-          <p className="text-xs text-muted-foreground">Claude está revisando las {numErrores} preguntas falladas</p>
+          <p className="font-medium text-sm">Conectando con el tutor IA...</p>
+          <p className="text-xs text-muted-foreground">Preparando análisis socrático</p>
         </div>
       </div>
     )
   }
 
-  // ── Done state — acordeón de errores ─────────────────────────────────────
+  // ── Streaming / Done state ──────────────────────────────────────────────
   return (
     <section className="space-y-3">
       <div className="flex items-center gap-2">
         <Sparkles className="h-4 w-4 text-primary" />
-        <h2 className="text-sm font-semibold">Análisis de errores con IA</h2>
+        <h2 className="text-sm font-semibold">
+          Análisis de errores con IA
+          {state === 'streaming' && (
+            <span className="ml-2 text-xs font-normal text-muted-foreground">
+              escribiendo...
+            </span>
+          )}
+        </h2>
       </div>
 
-      <div className="space-y-2">
-        {explicaciones.map((exp) => {
-          const isOpen = expanded.has(exp.numero)
-          const opcionesItem = opciones[exp.numero - 1] ?? []
-          return (
-            <Card key={exp.numero} className="border-amber-100">
-              <CardHeader className="pb-2 pt-3">
-                <button
-                  className="flex w-full items-start justify-between gap-2 text-left"
-                  onClick={() => toggleExpand(exp.numero)}
-                  aria-expanded={isOpen}
-                >
-                  <p className="text-sm leading-snug">
-                    <span className="text-muted-foreground mr-1.5">P{exp.numero}.</span>
-                    <span className="font-medium">{exp.enunciado}</span>
-                  </p>
-                  <ChevronDown
-                    className={`h-4 w-4 shrink-0 text-muted-foreground transition-transform mt-0.5 ${isOpen ? 'rotate-180' : ''}`}
-                  />
-                </button>
-              </CardHeader>
-
-              {isOpen && (
-                <CardContent className="space-y-3 pt-0 pb-3">
-                  {/* Tu respuesta vs correcta */}
-                  <div className="space-y-1.5">
-                    <div className="flex items-center gap-2 text-xs">
-                      <XCircle className="h-3.5 w-3.5 shrink-0 text-red-500" />
-                      <span className="text-red-700">
-                        Tu respuesta:{' '}
-                        <span className="font-medium">
-                          {opcionesItem[exp.tuRespuesta] ?? `Opción ${exp.tuRespuesta + 1}`}
-                        </span>
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs">
-                      <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-green-500" />
-                      <span className="text-green-700">
-                        Correcta:{' '}
-                        <span className="font-medium">
-                          {opcionesItem[exp.correcta] ?? `Opción ${exp.correcta + 1}`}
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Explicación IA */}
-                  <p className="text-xs text-foreground leading-relaxed border-l-2 border-primary/30 pl-3 bg-muted/30 py-2 pr-2 rounded-r">
-                    {exp.explicacion}
-                  </p>
-                </CardContent>
-              )}
-            </Card>
-          )
-        })}
+      <div
+        ref={textRef}
+        className="rounded-lg border border-primary/20 bg-muted/30 p-4 max-h-[500px] overflow-y-auto"
+      >
+        <div className="text-sm leading-relaxed whitespace-pre-wrap">
+          {streamedText}
+          {state === 'streaming' && (
+            <span className="inline-block w-2 h-4 bg-primary/60 animate-pulse ml-0.5 align-text-bottom" />
+          )}
+        </div>
       </div>
     </section>
   )

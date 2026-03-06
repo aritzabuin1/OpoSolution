@@ -53,8 +53,11 @@ export interface AdminAlert {
 
 /**
  * Margen bruto real: ingresos totales vs costes estimados de IA.
- * Ingresos: suma de compras.amount_paid (en céntimos × 100 → €).
- * Costes: suma de api_usage_log.cost_estimated_cents / 100 → €.
+ * Ingresos: suma de compras.amount_paid (en centimos / 100 = euros).
+ * Costes: suma de api_usage_log.cost_estimated_cents / 100 = euros.
+ *
+ * Nota: usa select() + reduce en cliente. Para datasets grandes (>10k rows),
+ * migrar a un RPC con SUM() server-side.
  */
 export async function getFuelTank(): Promise<FuelTankMetrics> {
   const supabase = await createServiceClient()

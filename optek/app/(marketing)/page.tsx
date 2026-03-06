@@ -12,10 +12,12 @@ import {
   ArrowRight,
   Users,
 } from 'lucide-react'
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/server'
 import { FOUNDER_LIMIT } from '@/lib/stripe/client'
 import { JsonLd } from '@/components/shared/JsonLd'
+import { RoadHero } from '@/components/marketing/RoadHero'
 import { blogPosts } from '@/content/blog/posts'
+import { unstable_cache } from 'next/cache'
 
 export const metadata: Metadata = {
   title: 'OpoRuta — El camino más corto hacia el aprobado',
@@ -209,20 +211,26 @@ const jsonLdFaq = {
 
 // ─── Página ────────────────────────────────────────────────────────────────────
 
+const getFounderCount = unstable_cache(
+  async () => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const supabase = await createServiceClient() as any
+      const { count } = await supabase
+        .from('profiles')
+        .select('*', { count: 'exact', head: true })
+        .eq('is_founder', true)
+      return count ?? 0
+    } catch {
+      return 0
+    }
+  },
+  ['founder-count'],
+  { revalidate: 300, tags: ['founder-count'] } // Cache 5 minutes
+)
+
 export default async function LandingPage() {
-  // Contador de fundadores — graceful fallback si migration 019 no aplicada aún
-  let founderCount = 0
-  try {
-    const supabase = await createClient()
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { count } = await (supabase as any)
-      .from('profiles')
-      .select('*', { count: 'exact', head: true })
-      .eq('is_founder', true)
-    founderCount = count ?? 0
-  } catch {
-    founderCount = 0
-  }
+  const founderCount = await getFounderCount()
   const founderRemaining = Math.max(0, FOUNDER_LIMIT - founderCount)
 
   return (
@@ -231,12 +239,12 @@ export default async function LandingPage() {
       <JsonLd data={jsonLdFaq} />
 
       {/* ─── Hero ────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-background py-20 sm:py-32">
+      <section aria-labelledby="hero-heading" className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-background py-20 sm:py-32">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
           <Badge variant="secondary" className="mb-6 text-xs font-medium px-3 py-1">
             Auxiliar Administrativo del Estado · TAC
           </Badge>
-          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl leading-tight">
+          <h1 id="hero-heading" className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl leading-tight">
             Cada hora que estudias
             <br />
             <span className="text-primary">debería acercarte al aprobado.</span>
@@ -261,6 +269,9 @@ export default async function LandingPage() {
           <p className="mt-4 text-xs text-muted-foreground">
             5 tests gratuitos · Sin tarjeta · Sin suscripción
           </p>
+
+          {/* Ilustración animada: el camino del opositor */}
+          <RoadHero />
         </div>
       </section>
 
@@ -307,10 +318,10 @@ export default async function LandingPage() {
       )}
 
       {/* ─── Pain points ─────────────────────────────────────────────── */}
-      <section className="py-20 bg-muted/30">
+      <section aria-labelledby="pain-points-heading" className="py-20 bg-muted/30">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold tracking-tight">
+            <h2 id="pain-points-heading" className="text-3xl font-bold tracking-tight">
               ¿Te suena alguna de estas situaciones?
             </h2>
             <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
@@ -332,13 +343,13 @@ export default async function LandingPage() {
       </section>
 
       {/* ─── How it works ─────────────────────────────────────────────── */}
-      <section id="como-funciona" className="py-20">
+      <section id="como-funciona" aria-labelledby="como-funciona-heading" className="py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
               Cómo funciona
             </Badge>
-            <h2 className="text-3xl font-bold tracking-tight">
+            <h2 id="como-funciona-heading" className="text-3xl font-bold tracking-tight">
               Tu ruta al aprobado,{' '}
               <span className="text-primary">paso a paso.</span>
             </h2>
@@ -361,10 +372,10 @@ export default async function LandingPage() {
       </section>
 
       {/* ─── Differentiator ──────────────────────────────────────────── */}
-      <section className="py-20 bg-primary text-primary-foreground">
+      <section aria-labelledby="trust-heading" className="py-20 bg-primary text-primary-foreground">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold tracking-tight">
+            <h2 id="trust-heading" className="text-3xl font-bold tracking-tight">
               Estudia con una fuente{' '}
               <span className="opacity-80">en la que puedas confiar.</span>
             </h2>
@@ -410,13 +421,13 @@ export default async function LandingPage() {
       </section>
 
       {/* ─── Pricing ──────────────────────────────────────────────────── */}
-      <section id="precios" className="py-20">
+      <section id="precios" aria-labelledby="pricing-heading" className="py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
               Precios
             </Badge>
-            <h2 className="text-3xl font-bold tracking-tight">
+            <h2 id="pricing-heading" className="text-3xl font-bold tracking-tight">
               Empieza gratis. Paga solo por lo que necesitas.
             </h2>
             <p className="mt-3 text-muted-foreground">
@@ -482,13 +493,13 @@ export default async function LandingPage() {
       </section>
 
       {/* ─── FAQ ──────────────────────────────────────────────────────── */}
-      <section id="faq" className="py-20">
+      <section id="faq" aria-labelledby="faq-heading" className="py-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
               FAQ
             </Badge>
-            <h2 className="text-3xl font-bold tracking-tight">Preguntas frecuentes</h2>
+            <h2 id="faq-heading" className="text-3xl font-bold tracking-tight">Preguntas frecuentes</h2>
           </div>
           <div className="space-y-3">
             {faqs.map(({ q, a }) => (
@@ -510,11 +521,11 @@ export default async function LandingPage() {
       </section>
 
       {/* ─── Blog snippets ────────────────────────────────────────────── */}
-      <section className="py-16 border-t">
+      <section aria-labelledby="blog-heading" className="py-16 border-t">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="text-2xl font-bold tracking-tight">Guías para preparar el TAC</h2>
+              <h2 id="blog-heading" className="text-2xl font-bold tracking-tight">Guías para preparar el TAC</h2>
               <p className="text-sm text-muted-foreground mt-1">
                 Artículos prácticos escritos por expertos en oposiciones
               </p>
@@ -557,9 +568,9 @@ export default async function LandingPage() {
       </section>
 
       {/* ─── CTA final ────────────────────────────────────────────────── */}
-      <section className="py-20 bg-primary text-primary-foreground text-center">
+      <section aria-labelledby="cta-final-heading" className="py-20 bg-primary text-primary-foreground text-center">
         <div className="mx-auto max-w-2xl px-4 sm:px-6">
-          <h2 className="text-3xl font-bold tracking-tight">
+          <h2 id="cta-final-heading" className="text-3xl font-bold tracking-tight">
             Empieza tu ruta hoy. Gratis.
           </h2>
           <p className="mt-4 text-primary-foreground/80">

@@ -17,7 +17,7 @@ export default function PrivacidadPage() {
 
       <h1 className="text-3xl font-bold tracking-tight mb-2">Política de Privacidad</h1>
       <p className="text-sm text-muted-foreground mb-10">
-        Última actualización: febrero de 2026
+        Última actualización: marzo de 2026
       </p>
 
       <div className="prose prose-sm max-w-none space-y-8 text-foreground">
@@ -78,15 +78,24 @@ export default function PrivacidadPage() {
 
         <section>
           <h2 className="text-xl font-semibold mb-3">4. Conservación de datos</h2>
-          <p className="text-muted-foreground leading-relaxed">
-            Conservamos tus datos mientras tu cuenta esté activa. Si solicitas la eliminación
-            de tu cuenta, tus datos personales serán eliminados en un plazo máximo de 30 días,
-            salvo obligación legal de conservación.
-          </p>
+          <div className="text-muted-foreground leading-relaxed space-y-3">
+            <p>
+              Conservamos tus datos mientras tu cuenta esté activa. Si solicitas la eliminación
+              de tu cuenta, tus datos personales serán eliminados en un plazo máximo de 30 días,
+              salvo obligación legal de conservación.
+            </p>
+            <p>
+              <strong className="text-foreground">Excepción fiscal:</strong> Los registros de
+              compras se anonimizan (se elimina tu identificación) pero se conservan durante
+              4 años para cumplir con la obligación de registro de transacciones establecida en
+              la Ley 58/2003, de 17 de diciembre, General Tributaria (Art. 66). Transcurrido
+              este plazo, se eliminan definitivamente.
+            </p>
+          </div>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold mb-3">5. Terceros con acceso a datos</h2>
+          <h2 className="text-xl font-semibold mb-3">5. Terceros con acceso a datos y transferencias internacionales</h2>
           <div className="space-y-3 text-muted-foreground leading-relaxed">
             <p>OpoRuta comparte datos con los siguientes terceros proveedores:</p>
             <ul className="list-disc pl-5 space-y-3">
@@ -105,13 +114,35 @@ export default function PrivacidadPage() {
                 datos identificativos.
               </li>
               <li>
+                <strong className="text-foreground">OpenAI</strong> (OpenAI LLC, EE.UU.):
+                Generación de retos diarios y procesamiento auxiliar de IA. Los datos enviados
+                no contienen información personal identificable.
+              </li>
+              <li>
                 <strong className="text-foreground">Stripe</strong> (Stripe Inc., EE.UU.):
                 Procesamiento de pagos. Consulta su{' '}
                 <a href="https://stripe.com/es/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
                   política de privacidad
                 </a>.
               </li>
+              <li>
+                <strong className="text-foreground">Vercel</strong> (Vercel Inc., EE.UU.):
+                Alojamiento web y distribución de contenido.
+              </li>
+              <li>
+                <strong className="text-foreground">Resend</strong> (Resend Inc., EE.UU.):
+                Envío de emails transaccionales (confirmación de cuenta, alertas).
+              </li>
             </ul>
+            <p>
+              <strong className="text-foreground">Transferencias internacionales:</strong> Algunos
+              de nuestros proveedores están ubicados en Estados Unidos. Estas transferencias se
+              realizan al amparo del EU-US Data Privacy Framework (Stripe, Vercel) o mediante
+              Cláusulas Contractuales Tipo (SCCs) aprobadas por la Comisión Europea (Art. 46.2.c
+              RGPD) para los proveedores de IA (Anthropic, OpenAI). En todos los casos, los datos
+              personales enviados se minimizan al máximo necesario y se anonimizan cuando es
+              técnicamente posible.
+            </p>
           </div>
         </section>
 

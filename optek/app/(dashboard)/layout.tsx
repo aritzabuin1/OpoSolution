@@ -3,7 +3,7 @@ import { Sidebar } from '@/components/layout/Sidebar'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { FeedbackButton } from '@/components/shared/FeedbackButton'
-import { createClient } from '@/lib/supabase/server'
+import { checkIsAdmin } from '@/lib/admin/auth'
 
 export const metadata: Metadata = {
   title: {
@@ -15,24 +15,7 @@ export const metadata: Metadata = {
 
 // §2.18.13 — Server Component: fetch is_admin para mostrar link de admin en Sidebar
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  let isAdmin = false
-  try {
-    const supabase = await createClient()
-    const { data: { user } } = await supabase.auth.getUser()
-    if (user) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { data: profile } = await (supabase as any)
-        .from('profiles')
-        .select('is_admin')
-        .eq('id', user.id)
-        .single()
-      isAdmin = profile?.is_admin === true
-    }
-  } catch {
-    // Graceful degradation: si la columna is_admin no existe aún (migration pendiente)
-    // o cualquier otro error, simplemente no mostramos el link de admin
-    isAdmin = false
-  }
+  const isAdmin = await checkIsAdmin()
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -46,7 +29,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
         </div>
 
         {/* Main content */}
-        <main className="flex-1 p-6">{children}</main>
+        <main className="flex-1 p-6" aria-label="Contenido principal">{children}</main>
       </div>
 
       <Footer />

@@ -1,14 +1,10 @@
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase/server'
-import { Button } from '@/components/ui/button'
+import { MarketingNavAuth } from '@/components/layout/MarketingNavAuth'
+import { ManageCookiesButton } from '@/components/shared/ManageCookiesButton'
 
-export default async function MarketingLayout({ children }: { children: React.ReactNode }) {
-  // BUG-005 fix: detectar sesión activa para mostrar CTA correcto en el header
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+export const revalidate = 3600 // Cache marketing layout for 1 hour
 
+export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col">
       {/* Public navbar */}
@@ -17,39 +13,22 @@ export default async function MarketingLayout({ children }: { children: React.Re
           <Link href="/" className="text-xl font-bold text-primary tracking-tight">
             OpoRuta
           </Link>
-          <nav className="flex items-center gap-2">
+          <nav className="flex items-center gap-2" aria-label="Navegacion principal">
             <Link href="/blog" className="hidden sm:block text-sm text-muted-foreground hover:text-foreground transition-colors px-2">
               Blog
             </Link>
             <Link href="/examenes-oficiales" className="hidden sm:block text-sm text-muted-foreground hover:text-foreground transition-colors px-2">
               Simulacros INAP
             </Link>
-            {user ? (
-              // Usuario autenticado → CTA "Mi dashboard"
-              <Link href="/dashboard">
-                <Button size="sm">Mi dashboard →</Button>
-              </Link>
-            ) : (
-              // Usuario no autenticado → login + registro
-              <>
-                <Link href="/login">
-                  <Button variant="ghost" size="sm">
-                    Iniciar sesión
-                  </Button>
-                </Link>
-                <Link href="/register">
-                  <Button size="sm">Registrarse gratis</Button>
-                </Link>
-              </>
-            )}
+            <MarketingNavAuth />
           </nav>
         </div>
       </header>
 
-      <main className="flex-1">{children}</main>
+      <main className="flex-1" aria-label="Contenido principal">{children}</main>
 
       {/* Marketing footer */}
-      <footer className="border-t bg-muted/30 py-12">
+      <footer aria-label="Pie de pagina" className="border-t bg-muted/30 py-12">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid gap-8 sm:grid-cols-3">
             <div>
@@ -105,6 +84,9 @@ export default async function MarketingLayout({ children }: { children: React.Re
                   <Link href="/legal/cookies" className="hover:text-foreground transition-colors">
                     Política de cookies
                   </Link>
+                </li>
+                <li>
+                  <ManageCookiesButton />
                 </li>
               </ul>
             </div>

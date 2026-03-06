@@ -4,6 +4,7 @@ import { callGPTJSON } from '@/lib/ai/openai'
 import { SYSTEM_CAZATRAMPAS, buildCazaTrampasPrompt } from '@/lib/ai/prompts'
 import { CazaTrampasRawSchema } from '@/lib/ai/schemas'
 import { logger } from '@/lib/logger'
+import { withTimeout, TimeoutError } from '@/lib/utils/timeout'
 
 /**
  * GET /api/cron/generate-reto-diario — §2.20.3
@@ -76,44 +77,57 @@ export async function GET(request: NextRequest) {
   const articulo = validos[Math.floor(Math.random() * validos.length)]!
   const NUM_ERRORES = 3
 
-  // ── Generar Caza-Trampas con reintentos ───────────────────────────────────
+  // ── Generar Caza-Trampas con reintentos (timeout global 45s) ──────────────
   let textoTrampa = ''
   let erroresVerificados: ReturnType<typeof CazaTrampasRawSchema.parse>['errores_reales'] = []
   let succeeded = false
 
-  for (let attempt = 0; attempt <= 2 && !succeeded; attempt++) {
-    const prompt = buildCazaTrampasPrompt({
-      textoOriginal: articulo.texto_integro,
-      leyNombre: articulo.ley_nombre,
-      articuloNumero: articulo.articulo_numero,
-      numErrores: NUM_ERRORES,
-    })
+  try {
+    await withTimeout(
+      (async () => {
+        for (let attempt = 0; attempt <= 2 && !succeeded; attempt++) {
+          const prompt = buildCazaTrampasPrompt({
+            textoOriginal: articulo.texto_integro,
+            leyNombre: articulo.ley_nombre,
+            articuloNumero: articulo.articulo_numero,
+            numErrores: NUM_ERRORES,
+          })
 
-    const raw = await callGPTJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema)
-    if (!raw) {
-      log.warn({ attempt }, '[reto-diario-cron] GPT devolvió null')
-      continue
-    }
+          const raw = await callGPTJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema)
+          if (!raw) {
+            log.warn({ attempt }, '[reto-diario-cron] GPT devolvió null')
+            continue
+          }
 
-    // Verificación determinista: valor_original debe existir en texto_original
-    const fallos = raw.errores_reales.filter(
-      (e) => !articulo.texto_integro.includes(e.valor_original)
+          // Verificación determinista: valor_original debe existir en texto_original
+          const fallos = raw.errores_reales.filter(
+            (e) => !articulo.texto_integro.includes(e.valor_original)
+          )
+          if (fallos.length > 0) {
+            log.warn({ attempt, fallos: fallos.length }, '[reto-diario-cron] verificación fallida — reintentando')
+            continue
+          }
+
+          // Verificar que texto_trampa contiene los valor_trampa
+          const trampaOk = raw.errores_reales.every((e) => raw.texto_trampa.includes(e.valor_trampa))
+          if (!trampaOk) {
+            log.warn({ attempt }, '[reto-diario-cron] texto_trampa inválido — reintentando')
+            continue
+          }
+
+          textoTrampa = raw.texto_trampa
+          erroresVerificados = raw.errores_reales
+          succeeded = true
+        }
+      })(),
+      45_000,
     )
-    if (fallos.length > 0) {
-      log.warn({ attempt, fallos: fallos.length }, '[reto-diario-cron] verificación fallida — reintentando')
-      continue
+  } catch (err) {
+    if (err instanceof TimeoutError) {
+      log.error('[reto-diario-cron] Timeout generando reto (45s)')
+      return NextResponse.json({ error: 'Timeout generando el reto' }, { status: 504 })
     }
-
-    // Verificar que texto_trampa contiene los valor_trampa
-    const trampaOk = raw.errores_reales.every((e) => raw.texto_trampa.includes(e.valor_trampa))
-    if (!trampaOk) {
-      log.warn({ attempt }, '[reto-diario-cron] texto_trampa inválido — reintentando')
-      continue
-    }
-
-    textoTrampa = raw.texto_trampa
-    erroresVerificados = raw.errores_reales
-    succeeded = true
+    throw err
   }
 
   if (!succeeded) {

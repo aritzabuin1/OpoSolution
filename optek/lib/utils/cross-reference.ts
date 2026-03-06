@@ -57,8 +57,8 @@ export async function getAniosConvocatoriaBatch(
     .in('tema_id', temaIds)
     .limit(500)
 
-  const result = new Map<string, number[]>()
-  if (!data) return result
+  const sets = new Map<string, Set<number>>()
+  if (!data) return new Map()
 
   for (const row of data as Array<{
     tema_id: string
@@ -67,13 +67,13 @@ export async function getAniosConvocatoriaBatch(
     const { tema_id, examenes_oficiales } = row
     const anio = examenes_oficiales?.anio
     if (!tema_id || !anio) continue
-    if (!result.has(tema_id)) result.set(tema_id, [])
-    const arr = result.get(tema_id)!
-    if (!arr.includes(anio)) arr.push(anio)
+    if (!sets.has(tema_id)) sets.set(tema_id, new Set<number>())
+    sets.get(tema_id)!.add(anio)
   }
 
-  // Sort each array
-  for (const [, arr] of result) arr.sort((a, b) => a - b)
+  // Convert Sets to sorted arrays
+  const result = new Map<string, number[]>()
+  for (const [id, s] of sets) result.set(id, [...s].sort((a, b) => a - b))
 
   return result
 }

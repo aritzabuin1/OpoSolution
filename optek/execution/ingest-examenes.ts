@@ -100,23 +100,15 @@ async function ingestExamen(
     `\n📥 Ingesta: ${examenParsed.convocatoria}${examenParsed.modelo ? ` modelo ${examenParsed.modelo}` : ''}`
   )
 
-  // 1. Upsert examen_oficial
-  //    TODO: incluir campo `modelo` tras aplicar migration 021
-  //    (ALTER TABLE examenes_oficiales ADD COLUMN modelo text)
-  //    Hasta entonces, exámenes con modelo A y B del mismo año comparten registro
-  //    (el segundo upsert sobreescribe al primero). Se corrige re-ingesta tras migration 021.
+  // 1. Upsert examen_oficial (migration 021 aplicada: columna `modelo` disponible)
   const upsertRow: Record<string, unknown> = {
     oposicion_id: oposicionId,
     anio: examenParsed.anno,
     convocatoria: examenParsed.turno,
     fuente_url: examenParsed.fuente_url,
+    modelo: examenParsed.modelo ?? null,
     activo: true,
   }
-
-  // Incluir modelo solo si la columna existe en el schema
-  // (tras aplicar migration 021 en Supabase Dashboard)
-  // Para activar: descomentar la siguiente línea y cambiar onConflict
-  // upsertRow.modelo = examenParsed.modelo ?? null
 
   const { data: examenRow, error: examenError } = await (supabase as ReturnType<typeof createClient>)
     .from('examenes_oficiales')

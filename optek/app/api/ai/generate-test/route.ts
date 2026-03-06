@@ -4,9 +4,12 @@ import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { generateTest, generateTopFrecuentesTest } from '@/lib/ai/generate-test'
 import { generatePsicotecnicos } from '@/lib/psicotecnicos/index'
+import { withTimeout, TimeoutError } from '@/lib/utils/timeout'
 import { logger } from '@/lib/logger'
 import type { Json } from '@/types/database'
 import type { Pregunta } from '@/types/ai'
+
+const GENERATE_TIMEOUT_MS = 60_000 // 60s safety net for entire generation flow
 
 /**
  * POST /api/ai/generate-test — §1.7.6
@@ -291,13 +294,16 @@ export async function POST(request: NextRequest) {
 
   // ── 5C. Motor IA (RAG + Claude/OpenAI) ────────────────────────────────────
   try {
-    const test = await generateTest({
-      temaId: temaId!,
-      numPreguntas,
-      dificultad,
-      userId: user.id,
-      requestId,
-    })
+    const test = await withTimeout(
+      generateTest({
+        temaId: temaId!,
+        numPreguntas,
+        dificultad,
+        userId: user.id,
+        requestId,
+      }),
+      GENERATE_TIMEOUT_MS
+    )
 
     // Consumir crédito SOLO tras éxito (BUG-010 fix)
     if (!hasPaidAccess) {
@@ -311,10 +317,18 @@ export async function POST(request: NextRequest) {
     const message = err instanceof Error ? err.message : 'Error desconocido'
     log.error({ err, userId: user.id, temaId }, 'Error al generar test')
 
+    // Error de timeout
+    if (err instanceof TimeoutError) {
+      return NextResponse.json(
+        { error: 'La generacion ha tardado demasiado. Intentalo de nuevo.' },
+        { status: 504 }
+      )
+    }
+
     // Error del circuit breaker
     if (message.includes('temporalmente no disponible')) {
       return NextResponse.json(
-        { error: 'El servicio de IA no está disponible temporalmente. Inténtalo en un minuto.' },
+        { error: 'El servicio de IA no esta disponible temporalmente. Intentalo en un minuto.' },
         { status: 503 }
       )
     }

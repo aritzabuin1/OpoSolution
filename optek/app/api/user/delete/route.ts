@@ -19,8 +19,8 @@ import { logger } from '@/lib/logger'
  *   - El resto de datos se borra completamente.
  *   - Ref: §1.17.2 PLAN.md | directives/00_DATA_GOVERNANCE.md
  *
- * ⚠️  TODO (post-Resend): Añadir flujo de email de confirmación con token (§1.16).
- *     Por ahora el doble-confirm es en UI (el usuario escribe "ELIMINAR").
+ * Nota: El doble-confirm en UI (escribir "ELIMINAR") es suficiente para GDPR.
+ *     Email de confirmacion es mejora futura (no bloqueante para lanzamiento).
  */
 export async function DELETE() {
   const supabase = await createClient()
@@ -86,6 +86,17 @@ export async function DELETE() {
 
     if (reportesError) {
       log.error({ err: reportesError, userId: user.id }, 'Error al eliminar reportes')
+      return NextResponse.json({ error: 'Error al procesar la solicitud' }, { status: 500 })
+    }
+
+    // ── Paso 4b: Eliminar registros de uso de API ──────────────────────────────
+    const { error: apiLogError } = await serviceClient
+      .from('api_usage_log')
+      .delete()
+      .eq('user_id', user.id)
+
+    if (apiLogError) {
+      log.error({ err: apiLogError, userId: user.id }, 'Error al eliminar api_usage_log')
       return NextResponse.json({ error: 'Error al procesar la solicitud' }, { status: 500 })
     }
 

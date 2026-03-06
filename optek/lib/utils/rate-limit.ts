@@ -81,7 +81,15 @@ export async function checkRateLimit(
   const limiter = getLimiter(limit, window)
 
   if (!limiter) {
-    // Graceful fallback: Upstash no configurado → permitir todo
+    // Fail-closed en producción: si Upstash no está disponible, denegar requests
+    // En desarrollo: permitir todo para no bloquear local dev
+    if (process.env.NODE_ENV === 'production') {
+      return {
+        success: false,
+        remaining: 0,
+        resetAt: Math.floor(Date.now() / 1000) + 60,
+      }
+    }
     return {
       success: true,
       remaining: limit,

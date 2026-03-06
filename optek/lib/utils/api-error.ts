@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { ApiError, ErrorCode, ERROR_MESSAGES } from '@/types/api'
 import { randomUUID } from 'crypto'
+import { logger } from '@/lib/logger'
 
 export function createApiError(
   code: ErrorCode,
@@ -27,7 +28,7 @@ export function withErrorHandling(handler: RouteHandler): RouteHandler {
     try {
       return await handler(req)
     } catch (err) {
-      console.error({ requestId, err }, 'Unhandled API error')
+      logger.error({ requestId, err }, 'Unhandled API error')
       const error = createApiError('INTERNAL_ERROR', 500, requestId)
       return NextResponse.json({ data: null, error }, { status: 500 })
     }

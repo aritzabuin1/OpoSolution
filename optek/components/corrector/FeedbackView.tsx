@@ -54,6 +54,8 @@ function DimensionCard({
     <button
       onClick={() => setOpen((v) => !v)}
       className={`w-full rounded-lg border text-left ${bg} transition-all`}
+      aria-expanded={open}
+      aria-label={`${nombre}: ${nota}/10. Pulsa para ${open ? 'contraer' : 'expandir'} detalles`}
     >
       <div className="flex items-center justify-between px-4 py-3">
         <span className="font-medium text-sm">{nombre}</span>

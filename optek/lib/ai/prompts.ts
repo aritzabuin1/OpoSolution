@@ -361,6 +361,23 @@ Art. 5 (Publicidad activa): Los sujetos incluidos en el ámbito de aplicación p
 
 Art. 12 (Derecho de acceso): Todas las personas tienen derecho a acceder a la información pública. Puede limitarse cuando lo requiera: la seguridad nacional, la defensa, las relaciones exteriores, la seguridad pública, la prevención e investigación de ilícitos, la igualdad de las partes en procesos judiciales, las funciones de vigilancia e inspección, los intereses económicos y comerciales, la política económica y monetaria, el secreto profesional, la propiedad intelectual, la confidencialidad en procesos de toma de decisión, la protección del medio ambiente.` as const
 
+/**
+ * Variante streaming del prompt socrático.
+ * Produce texto plano formateado (no JSON) para streaming token-a-token.
+ */
+export const SYSTEM_EXPLAIN_ERRORES_STREAM = SYSTEM_EXPLAIN_ERRORES.replace(
+  /Responde ÚNICAMENTE con JSON válido:[\s\S]*?\}\s*\}/,
+  `Escribe cada explicación con este formato exacto:
+
+**Pregunta N:**
+[empatia]
+→ [pregunta_guia]
+[revelacion]
+[anclaje]
+
+Separa cada pregunta con una línea en blanco. NO uses JSON, escribe texto natural formateado.`
+)
+
 // ─── §2.12 Caza-Trampas ───────────────────────────────────────────────────────
 
 /**

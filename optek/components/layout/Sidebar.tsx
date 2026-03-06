@@ -27,11 +27,11 @@ export function Sidebar({ isAdmin = false }: SidebarProps) {
   const pathname = usePathname()
 
   return (
-    <aside className="flex h-full w-64 flex-col border-r bg-card px-4 py-6">
+    <aside aria-label="Barra lateral" className="flex h-full w-64 flex-col border-r bg-card px-4 py-6">
       <div className="mb-8 px-2">
         <span className="text-xl font-bold tracking-tight text-primary">OpoRuta</span>
       </div>
-      <nav className="flex flex-col gap-1 flex-1">
+      <nav className="flex flex-col gap-1 flex-1" aria-label="Menu principal">
         {navItems.map(({ href, label, icon: Icon }) => (
           <Link
             key={href}

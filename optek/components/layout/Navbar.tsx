@@ -41,7 +41,7 @@ export function Navbar() {
       </div>
 
       {open && (
-        <nav className="mt-3 flex flex-col gap-1">
+        <nav className="mt-3 flex flex-col gap-1" aria-label="Menu principal">
           {navItems.map(({ href, label, icon: Icon }) => (
             <Link
               key={href}

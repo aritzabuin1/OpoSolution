@@ -1,24 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="80" fill="#1B4F72"/>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1B4F72"/>
+      <stop offset="100%" stop-color="#154360"/>
+    </linearGradient>
+  </defs>
+  <!-- Fondo con bordes redondeados -->
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  <!-- Acento superior: linea fina dorada (evoca "ruta/camino") -->
+  <line x1="80" y1="100" x2="432" y2="100" stroke="#F39C12" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+  <!-- Monograma OR -->
   <text
     x="256"
-    y="340"
+    y="350"
     text-anchor="middle"
     font-family="system-ui, -apple-system, sans-serif"
-    font-size="260"
+    font-size="280"
     font-weight="800"
-    fill="#F39C12"
-    letter-spacing="-8"
-  >OK</text>
-  <text
-    x="256"
-    y="420"
-    text-anchor="middle"
-    font-family="system-ui, -apple-system, sans-serif"
-    font-size="72"
-    font-weight="600"
     fill="#FFFFFF"
-    opacity="0.85"
-    letter-spacing="12"
-  >OPTEK</text>
+    letter-spacing="-12"
+  >OR</text>
+  <!-- Punto dorado en la R (acento de marca) -->
+  <circle cx="380" cy="160" r="24" fill="#F39C12"/>
 </svg>

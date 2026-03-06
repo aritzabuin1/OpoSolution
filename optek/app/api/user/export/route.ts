@@ -16,6 +16,7 @@ import { logger } from '@/lib/logger'
  *   - suscripciones: suscripciones activas/pasadas
  *   - preguntas_reportadas: reportes enviados
  *   - logros: logros/achievements desbloqueados
+ *   - api_usage_log: registro de uso de API (observabilidad)
  *
  * Ref: §1.17.1 PLAN.md | directives/00_DATA_GOVERNANCE.md
  */
@@ -44,6 +45,7 @@ export async function GET() {
       suscripcionesResult,
       reportesResult,
       logrosResult,
+      apiUsageResult,
     ] = await Promise.all([
       supabase.from('profiles').select('*').eq('id', user.id).single(),
       supabase
@@ -78,6 +80,11 @@ export async function GET() {
         .select('id, tipo, desbloqueado_en')
         .eq('user_id', user.id)
         .order('desbloqueado_en', { ascending: true }),
+      supabase
+        .from('api_usage_log')
+        .select('id, endpoint, model, tokens_input, tokens_output, cost_estimated_cents, timestamp')
+        .eq('user_id', user.id)
+        .order('timestamp', { ascending: false }),
     ])
 
     const exportData = {
@@ -95,6 +102,7 @@ export async function GET() {
       suscripciones: suscripcionesResult.data ?? [],
       preguntas_reportadas: reportesResult.data ?? [],
       logros: logrosResult.data ?? [],
+      uso_api: apiUsageResult.data ?? [],
     }
 
     log.info(
@@ -107,7 +115,7 @@ export async function GET() {
       'Exportación completada'
     )
 
-    const fileName = `optek-datos-${user.id.slice(0, 8)}-${new Date().toISOString().slice(0, 10)}.json`
+    const fileName = `oporuta-datos-${user.id.slice(0, 8)}-${new Date().toISOString().slice(0, 10)}.json`
 
     return new NextResponse(JSON.stringify(exportData, null, 2), {
       status: 200,

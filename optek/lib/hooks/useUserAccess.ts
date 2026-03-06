@@ -127,7 +127,7 @@ export function useUserAccess(temaId?: string): UserAccessResult {
       })
     }
 
-    checkAccess().catch(console.error)
+    checkAccess().catch(() => { /* auth check failed silently — user sees paywall */ })
 
     return () => {
       cancelled = true
