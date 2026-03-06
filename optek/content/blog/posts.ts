@@ -23,18 +23,18 @@ export const blogPosts: BlogPost[] = [
     slug: 'penalizacion-examen-auxiliar-administrativo',
     title: 'Cómo funciona la penalización -1/3 en el examen Auxiliar Administrativo del Estado',
     description:
-      'Guía completa sobre el sistema de puntuación con penalización del examen TAC: cuándo dejar en blanco, cómo calcular tu nota y cómo practicarlo con simulacros.',
+      'Guía completa sobre el sistema de puntuación con penalización del examen de Auxiliar: cuándo dejar en blanco, cómo calcular tu nota y cómo practicarlo con simulacros.',
     date: '2026-03-01',
     keywords: [
       'penalización examen auxiliar administrativo',
-      'TAC penalización -1/3',
+      'auxiliar administrativo penalización -1/3',
       'puntuación examen INAP',
       'cómo calcular nota oposición',
     ],
     content: `
 <h2>¿Qué es la penalización en el examen del Auxiliar Administrativo del Estado?</h2>
 <p>
-  El examen del Cuerpo General Auxiliar de la Administración del Estado (TAC) aplica un
+  El examen del Cuerpo General Auxiliar de la Administración del Estado (C2) aplica un
   sistema de penalización por respuestas incorrectas. Esto significa que no todas las
   respuestas tienen el mismo valor: acertar suma puntos, pero fallar también resta.
 </p>
@@ -109,7 +109,7 @@ export const blogPosts: BlogPost[] = [
   <li>En la última revisión: deja en blanco las que aún no estás seguro.</li>
 </ol>
 <p>
-  La mayoría de los aprobados del TAC obtienen entre 60 y 75 puntos.
+  La mayoría de los aprobados de Auxiliar obtienen entre 60 y 75 puntos.
   Con 70 preguntas correctas y buena gestión del blanco, estás en ese rango.
 </p>
 
@@ -137,7 +137,7 @@ export const blogPosts: BlogPost[] = [
       'artículos LPAC tipo test',
     ],
     content: `
-<h2>¿Por qué la LPAC es fundamental en el TAC?</h2>
+<h2>¿Por qué la LPAC es fundamental en la oposición de Auxiliar?</h2>
 <p>
   La Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones
   Públicas (LPAC) es, junto con la CE, la ley que más preguntas genera en el examen del
@@ -259,19 +259,19 @@ export const blogPosts: BlogPost[] = [
     slug: 'psicotecnicas-examen-auxiliar-administrativo-estado',
     title: 'Psicotécnicas en el examen del Auxiliar Administrativo del Estado: tipos, ejemplos y cómo practicarlas',
     description:
-      'Guía completa sobre las pruebas psicotécnicas del examen TAC: ortografía, sinónimos, series numéricas, comprensión verbal y razonamiento. Con ejemplos reales y estrategias de resolución.',
+      'Guía completa sobre las pruebas psicotécnicas del examen de Auxiliar: ortografía, sinónimos, series numéricas, comprensión verbal y razonamiento. Con ejemplos reales y estrategias de resolución.',
     date: '2026-03-03',
     keywords: [
       'psicotécnicas auxiliar administrativo estado',
-      'test psicotécnico TAC',
-      'pruebas psicotécnicas oposición TAC',
+      'test psicotécnico auxiliar administrativo',
+      'pruebas psicotécnicas oposición auxiliar estado',
       'series numéricas oposición auxiliar administrativo',
       'ortografía examen auxiliar administrativo',
     ],
     content: `
-<h2>¿Qué son las pruebas psicotécnicas en el examen TAC?</h2>
+<h2>¿Qué son las pruebas psicotécnicas en el examen de Auxiliar?</h2>
 <p>
-  El examen del Cuerpo General Auxiliar de la Administración del Estado (TAC) incluye
+  El examen del Cuerpo General Auxiliar de la Administración del Estado (C2) incluye
   una prueba de conocimientos prácticos que combina dos bloques: el Bloque I (legislación)
   y el Bloque II (conocimientos prácticos de ofimática y psicotécnicas).
   Dentro del Bloque II, los ejercicios psicotécnicos evalúan capacidades cognitivas
@@ -284,7 +284,7 @@ export const blogPosts: BlogPost[] = [
   proceso resolviendo cientos de ellas.
 </p>
 
-<h2>Tipos de psicotécnicas en el examen TAC</h2>
+<h2>Tipos de psicotécnicas en el examen de Auxiliar</h2>
 
 <h3>1. Ortografía y uso del lenguaje</h3>
 <p>
@@ -371,7 +371,7 @@ export const blogPosts: BlogPost[] = [
 <h2>Practica psicotécnicas con OpoRuta</h2>
 <p>
   OpoRuta incluye un motor específico de psicotécnicas que genera ejercicios al nivel
-  del examen TAC: ortografía con distractores realistas, series numéricas con los
+  del examen de Auxiliar: ortografía con distractores realistas, series numéricas con los
   patrones más frecuentes en exámenes INAP, y razonamiento analógico con las
   categorías habituales.
 </p>
@@ -384,13 +384,13 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 5 ────────────────────────────────────────────────────────────────
   {
     slug: 'temario-auxiliar-administrativo-estado-2025-2026',
-    title: 'Temario completo del Auxiliar Administrativo del Estado 2025-2026: los 28 temas del TAC',
+    title: 'Temario completo del Auxiliar Administrativo del Estado 2025-2026: los 28 temas de Auxiliar',
     description:
       'Resumen del temario oficial del Cuerpo General Auxiliar de la AGE: Bloque I — Organización pública (16 temas) y Bloque II — Actividad administrativa y ofimática (12 temas). Qué estudiar primero y cómo organizarlo.',
     date: '2026-03-03',
     keywords: [
       'temario auxiliar administrativo estado 2025',
-      'temas oposición TAC auxiliar administrativo',
+      'temas oposición auxiliar administrativo estado',
       'bloque I bloque II auxiliar administrativo',
       'cuerpo general auxiliar AGE temario',
       'oposiciones auxiliar administrativo estado 2026',
@@ -398,7 +398,7 @@ export const blogPosts: BlogPost[] = [
     content: `
 <h2>El temario oficial del Auxiliar Administrativo del Estado</h2>
 <p>
-  El temario del Cuerpo General Auxiliar de la Administración del Estado (TAC/AGE) se divide
+  El temario del Cuerpo General Auxiliar de la Administración del Estado (C2) se divide
   en <strong>dos bloques</strong> con un total de 28 temas. El examen consta de 110 preguntas
   tipo test (30 teoría + 30 psicotécnicos + 50 ofimática) en 90 minutos, con penalización −1/3. El temario es el mismo para las convocatorias de
   2025 y 2026 (salvo modificación del BOE).
@@ -482,7 +482,7 @@ export const blogPosts: BlogPost[] = [
 
 <h2>Practica el temario completo con OpoRuta</h2>
 <p>
-  OpoRuta cubre los 28 temas del TAC con preguntas tipo test generadas por IA y verificadas
+  OpoRuta cubre los 28 temas de Auxiliar con preguntas tipo test generadas por IA y verificadas
   con cita legal exacta. Puedes generar tests por tema, por bloque, o simular el examen
   completo con 110 preguntas y penalización real.
 </p>
@@ -497,16 +497,16 @@ export const blogPosts: BlogPost[] = [
     slug: 'diferencias-lpac-lrjsp-auxiliar-administrativo',
     title: 'Diferencias entre LPAC y LRJSP para el examen Auxiliar Administrativo del Estado',
     description:
-      'Guía clara para distinguir la Ley 39/2015 (LPAC) y la Ley 40/2015 (LRJSP) en el examen TAC: qué regula cada una y las preguntas trampa más frecuentes.',
+      'Guía clara para distinguir la Ley 39/2015 (LPAC) y la Ley 40/2015 (LRJSP) en el examen de Auxiliar: qué regula cada una y las preguntas trampa más frecuentes.',
     date: '2026-03-01',
     keywords: [
       'diferencia LPAC LRJSP',
       'ley 39/2015 ley 40/2015 auxiliar administrativo',
-      'LPAC vs LRJSP examen TAC',
+      'LPAC vs LRJSP examen de Auxiliar',
       'tema 11 auxiliar administrativo',
     ],
     content: `
-<h2>La confusión más frecuente en el examen TAC</h2>
+<h2>La confusión más frecuente en el examen de Auxiliar</h2>
 <p>
   La distinción entre la Ley 39/2015 (LPAC) y la Ley 40/2015 (LRJSP) es una de las
   trampas más frecuentes en el examen del Auxiliar Administrativo del Estado. Ambas
@@ -616,19 +616,19 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 6 ────────────────────────────────────────────────────────────────
   {
     slug: 'constitucion-espanola-preguntas-examen-auxiliar-administrativo',
-    title: 'La Constitución Española en el examen TAC: artículos clave y preguntas más frecuentes',
+    title: 'La Constitución Española en el examen de Auxiliar: artículos clave y preguntas más frecuentes',
     description:
       'Los artículos de la Constitución Española que más se examinan en las oposiciones del Auxiliar Administrativo del Estado: derechos fundamentales, órganos constitucionales y estructura del Estado.',
     date: '2026-03-03',
     keywords: [
       'Constitución española examen auxiliar administrativo',
-      'artículos CE oposición TAC',
+      'artículos CE oposición auxiliar administrativo',
       'preguntas Constitución española INAP',
       'derechos fundamentales examen auxiliar administrativo',
       'tema 1 auxiliar administrativo estado',
     ],
     content: `
-<h2>La Constitución Española: el punto de partida del temario TAC</h2>
+<h2>La Constitución Española: el punto de partida del temario de Auxiliar</h2>
 <p>
   La Constitución Española de 1978 es la norma suprema del ordenamiento jurídico español
   y también el punto de partida del temario del Cuerpo General Auxiliar del Estado.
@@ -642,7 +642,7 @@ export const blogPosts: BlogPost[] = [
   que el INAP examina de forma sistemática.
 </p>
 
-<h2>Artículos de la CE más examinados en el TAC</h2>
+<h2>Artículos de la CE más examinados en la oposición de Auxiliar</h2>
 
 <h3>Artículo 1 — España como Estado social y democrático de Derecho</h3>
 <p>
@@ -748,7 +748,7 @@ export const blogPosts: BlogPost[] = [
   con mandato de <strong>9 años</strong>, renovándose por tercios cada 3 años.
 </p>
 
-<h2>Técnica de estudio para la CE en el examen TAC</h2>
+<h2>Técnica de estudio para la CE en el examen de Auxiliar</h2>
 <ol>
   <li>
     <strong>Aprende la estructura primero:</strong> Título Preliminar + 10 Títulos.
@@ -787,19 +787,19 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 7 ────────────────────────────────────────────────────────────────
   {
     slug: 'trebep-articulos-clave-examen-auxiliar-administrativo',
-    title: 'TREBEP en el examen TAC: artículos del Estatuto Básico del Empleado Público que más caen',
+    title: 'TREBEP en el examen de Auxiliar: artículos del Estatuto Básico del Empleado Público que más caen',
     description:
       'Los artículos del TREBEP que más se examinan en el Auxiliar Administrativo del Estado: derechos, deberes, código ético, situaciones administrativas y acceso a la función pública.',
     date: '2026-03-03',
     keywords: [
       'TREBEP preguntas examen auxiliar administrativo',
-      'estatuto básico empleado público TAC',
+      'estatuto básico empleado público auxiliar estado',
       'artículos TREBEP tipo test INAP',
       'derechos funcionarios examen oposición',
       'tema 13 14 auxiliar administrativo estado',
     ],
     content: `
-<h2>Por qué el TREBEP es imprescindible para el examen TAC</h2>
+<h2>Por qué el TREBEP es imprescindible para el examen de Auxiliar</h2>
 <p>
   El Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto
   refundido de la Ley del Estatuto Básico del Empleado Público (TREBEP) es la norma marco
@@ -817,7 +817,7 @@ export const blogPosts: BlogPost[] = [
 </p>
 
 <h2>Estructura del TREBEP: lo que necesitas saber</h2>
-<p>El TREBEP tiene 10 Títulos. Para el examen TAC, los más relevantes son:</p>
+<p>El TREBEP tiene 10 Títulos. Para el examen de Auxiliar, los más relevantes son:</p>
 <table>
   <thead><tr><th>Título</th><th>Contenido clave</th></tr></thead>
   <tbody>
@@ -975,14 +975,14 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 8 ────────────────────────────────────────────────────────────────
   {
     slug: 'lopdgdd-proteccion-datos-examen-auxiliar-administrativo',
-    title: 'LOPDGDD y RGPD en el examen TAC: protección de datos para el Auxiliar Administrativo',
+    title: 'LOPDGDD y RGPD en el examen de Auxiliar: protección de datos para el Auxiliar Administrativo',
     description:
       'Lo que necesitas saber de la LOPDGDD y el RGPD para el examen del Auxiliar Administrativo del Estado: derechos ARCO, bases jurídicas, AEPD y artículos más frecuentes.',
     date: '2026-03-03',
     keywords: [
       'LOPDGDD examen auxiliar administrativo',
       'protección datos RGPD examen INAP',
-      'derechos ARCO examen TAC',
+      'derechos ARCO examen de Auxiliar',
       'AEPD funcionarios examen oposición',
       'tema 12 auxiliar administrativo estado protección datos',
     ],
@@ -1182,19 +1182,19 @@ export const blogPosts: BlogPost[] = [
     slug: 'como-preparar-oposicion-auxiliar-administrativo-estado-guia',
     title: 'Cómo preparar la oposición al Cuerpo General Auxiliar del Estado: guía completa 2025-2026',
     description:
-      'Guía paso a paso para preparar las oposiciones TAC al Auxiliar Administrativo del Estado en 2025-2026: temario, estructura del examen, métodos de estudio y herramientas útiles.',
+      'Guía paso a paso para preparar las oposiciones al Auxiliar Administrativo del Estado en 2025-2026: temario, estructura del examen, métodos de estudio y herramientas útiles.',
     date: '2026-03-03',
     keywords: [
       'cómo preparar oposición auxiliar administrativo estado',
-      'oposición TAC 2025 2026 guía',
+      'oposición auxiliar administrativo 2025 2026 guía',
       'temario auxiliar administrativo preparación',
       'cuánto tiempo estudiar auxiliar administrativo estado',
-      'método estudio oposición TAC',
+      'método estudio oposición auxiliar estado',
     ],
     content: `
-<h2>¿Qué es el Cuerpo General Auxiliar del Estado (TAC)?</h2>
+<h2>¿Qué es el Cuerpo General Auxiliar del Estado (C2)?</h2>
 <p>
-  El Cuerpo General Auxiliar de la Administración del Estado, comúnmente llamado TAC
+  El Cuerpo General Auxiliar de la Administración del Estado, perteneciente al grupo C2
   (Técnico Auxiliar del Estado), es uno de los cuerpos de funcionarios de la Administración
   General del Estado más solicitados de España. Pertenece al <strong>Subgrupo C2</strong>
   de clasificación profesional (titulación mínima: Graduado Escolar, ESO o equivalente)
@@ -1209,7 +1209,7 @@ export const blogPosts: BlogPost[] = [
   con penalización de -1/3 por respuesta incorrecta. Dispones de menos de un minuto por pregunta.
 </p>
 
-<h2>Estructura del examen TAC 2025-2026</h2>
+<h2>Estructura del examen de Auxiliar 2025-2026</h2>
 <table>
   <thead><tr><th>Parte</th><th>Nº preguntas</th><th>Contenido</th><th>Puntuación máxima</th></tr></thead>
   <tbody>
@@ -1261,9 +1261,9 @@ export const blogPosts: BlogPost[] = [
   <li>Tema 28: Red Internet</li>
 </ul>
 
-<h2>¿Cuánto tiempo se necesita para preparar el TAC?</h2>
+<h2>¿Cuánto tiempo se necesita para preparar la oposición de Auxiliar?</h2>
 <p>
-  La preparación media de quienes aprueban el TAC oscila entre <strong>6 y 18 meses</strong>,
+  La preparación media de quienes aprueban la oposición de Auxiliar oscila entre <strong>6 y 18 meses</strong>,
   con una dedicación diaria de 3 a 5 horas. El tiempo varía enormemente según:
 </p>
 <ul>
@@ -1287,7 +1287,7 @@ export const blogPosts: BlogPost[] = [
   </tbody>
 </table>
 
-<h2>Método de estudio más eficiente para el TAC</h2>
+<h2>Método de estudio más eficiente para Auxiliar del Estado</h2>
 
 <h3>1. Aprendizaje espaciado (Spaced Repetition)</h3>
 <p>
@@ -1321,7 +1321,7 @@ export const blogPosts: BlogPost[] = [
   en esos artículos antes de abordar el temario completo aumenta el rendimiento.
 </p>
 
-<h2>Las trampas más comunes en el examen TAC</h2>
+<h2>Las trampas más comunes en el examen de Auxiliar</h2>
 <ul>
   <li>
     <strong>Confundir LPAC (Ley 39/2015) y LRJSP (Ley 40/2015):</strong> el examen
@@ -1359,9 +1359,9 @@ export const blogPosts: BlogPost[] = [
     exámenes reales del INAP con penalización -1/3 real</li>
 </ul>
 
-<h2>Empieza a preparar el TAC con OpoRuta</h2>
+<h2>Empieza a preparar la oposición de Auxiliar con OpoRuta</h2>
 <p>
-  OpoRuta es la plataforma de preparación para opositores TAC que genera preguntas tipo test
+  OpoRuta es la plataforma de preparación para opositores de Auxiliar que genera preguntas tipo test
   verificadas artículo por artículo: cada pregunta cita el artículo exacto de la ley y OpoRuta
   verifica que ese artículo existe antes de mostrártela.
 </p>

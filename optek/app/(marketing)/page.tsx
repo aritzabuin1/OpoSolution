@@ -127,7 +127,7 @@ const faqs = [
   },
   {
     q: '¿Para qué oposiciones funciona ahora mismo?',
-    a: 'En esta versión inicial preparamos Auxiliar Administrativo del Estado (convocatoria TAC). Próximamente añadiremos más oposiciones del Cuerpo General de la Administración del Estado y Administraciones locales.',
+    a: 'En esta versión inicial preparamos Auxiliar Administrativo del Estado (C2). Próximamente añadiremos más oposiciones del Cuerpo General de la Administración del Estado y Administraciones locales.',
   },
   {
     q: '¿Qué pasa cuando agoto mis análisis detallados?',
@@ -159,7 +159,7 @@ const jsonLdFaq = {
       name: '¿Cuándo son las oposiciones al Cuerpo Auxiliar Administrativo del Estado?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Las oposiciones al Cuerpo General Auxiliar de la Administración del Estado (TAC) se convocan periódicamente por el Ministerio de Hacienda. Consulta el BOE y la web del INAP para las últimas convocatorias. OpoRuta te notifica automáticamente de cambios legislativos relevantes para prepararte siempre con el contenido actualizado.',
+        text: 'Las oposiciones al Cuerpo General Auxiliar de la Administración del Estado se convocan periódicamente por el Ministerio de Hacienda. Consulta el BOE y la web del INAP para las últimas convocatorias. OpoRuta te notifica automáticamente de cambios legislativos relevantes para prepararte siempre con el contenido actualizado.',
       },
     },
     {
@@ -175,7 +175,7 @@ const jsonLdFaq = {
       name: '¿En qué consiste el examen de Auxiliar Administrativo del Estado?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'El proceso selectivo del Auxiliar Administrativo del Estado (TAC) es de concurso-oposición (RD 651/2025, 1.700 plazas). El examen consta de un ejercicio único con un máximo de 110 preguntas tipo test (más 10 de reserva) en 90 minutos, con penalización -1/3. Se divide en dos partes obligatorias y eliminatorias: Primera parte (máx. 60 preguntas) — 30 de teoría (Bloque I) + 30 psicotécnicas; Segunda parte (máx. 50 preguntas) — Informática y Ofimática (Bloque II: Windows 11, Word 365, Excel 365, Access 365, Outlook 365). Cada parte se califica de 0 a 50 puntos, con un mínimo de 25 puntos por parte para superar. OpoRuta simula este formato exacto.',
+        text: 'El proceso selectivo del Auxiliar Administrativo del Estado es de concurso-oposición (RD 651/2025, 1.700 plazas). El examen consta de un ejercicio único con un máximo de 110 preguntas tipo test (más 10 de reserva) en 90 minutos, con penalización -1/3. Se divide en dos partes obligatorias y eliminatorias: Primera parte (máx. 60 preguntas) — 30 de teoría (Bloque I) + 30 psicotécnicas; Segunda parte (máx. 50 preguntas) — Informática y Ofimática (Bloque II: Windows 11, Word 365, Excel 365, Access 365, Outlook 365). Cada parte se califica de 0 a 50 puntos, con un mínimo de 25 puntos por parte para superar. OpoRuta simula este formato exacto.',
       },
     },
     {
@@ -242,16 +242,30 @@ export default async function LandingPage() {
       <section aria-labelledby="hero-heading" className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-background py-20 sm:py-32">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
           <Badge variant="secondary" className="mb-6 text-xs font-medium px-3 py-1">
-            Auxiliar Administrativo del Estado · TAC
+            Auxiliar Administrativo del Estado · 1.700 plazas
           </Badge>
-          <h1 id="hero-heading" className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl leading-tight">
-            Cada hora que estudias
+
+          {/* Brand mark with gradient + glow */}
+          <div className="relative mb-5 inline-block">
+            <span
+              className="absolute inset-0 text-4xl sm:text-5xl font-black tracking-tight text-primary/20 blur-lg select-none pointer-events-none"
+              aria-hidden="true"
+            >
+              OpoRuta
+            </span>
+            <span className="relative text-4xl sm:text-5xl font-black tracking-tight bg-gradient-to-r from-[#1B4F72] via-[#2563EB] to-[#D4A017] bg-clip-text text-transparent">
+              OpoRuta
+            </span>
+          </div>
+
+          <h1 id="hero-heading" className="text-3xl font-bold tracking-tight text-foreground sm:text-5xl leading-tight">
+            Aprueba tu oposición.
             <br />
-            <span className="text-primary">debería acercarte al aprobado.</span>
+            <span className="text-primary">Entrena con lo que pregunta el tribunal.</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            OpoRuta analiza exámenes INAP reales, genera tests con citas verificadas y te muestra
-            exactamente si estás avanzando — o dando vueltas en el temario.
+            Tests generados desde exámenes INAP reales, con cada cita legal verificada
+            al artículo exacto. Sabrás si estás avanzando — o si necesitas reforzar.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/register">
@@ -525,7 +539,7 @@ export default async function LandingPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 id="blog-heading" className="text-2xl font-bold tracking-tight">Guías para preparar el TAC</h2>
+              <h2 id="blog-heading" className="text-2xl font-bold tracking-tight">Guías para opositores</h2>
               <p className="text-sm text-muted-foreground mt-1">
                 Artículos prácticos escritos por expertos en oposiciones
               </p>

@@ -48,7 +48,7 @@ export function RetoDiarioShareButton({
     `🎯 ${aciertos}/${total} trampas encontradas (${Math.round(puntuacion)}%)`,
     generarGrid(aciertos, total),
     `${appUrl}/reto-diario`,
-    userName ? `Preparando el TAC con @OpoRuta` : 'Preparando el TAC con OpoRuta',
+    userName ? `Preparando Auxiliar del Estado con @OpoRuta` : 'Preparando Auxiliar del Estado con OpoRuta',
   ].join('\n')
 
   const handleShare = async () => {

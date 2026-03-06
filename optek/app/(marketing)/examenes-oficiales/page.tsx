@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   keywords: [
     'simulacro examen INAP auxiliar administrativo',
     'examen oficial INAP preguntas reales',
-    'test oposiciones TAC con respuestas',
+    'test oposiciones auxiliar administrativo con respuestas',
     'simulacro auxiliar estado gratis',
     'examen cuerpo general auxiliar administración',
   ],
@@ -247,7 +247,7 @@ export default function SimulacrosIndexPage() {
             <p>
               Todas las preguntas provienen de los exámenes oficiales publicados por el{' '}
               <strong className="text-foreground">INAP (Instituto Nacional de Administración Pública)</strong>{' '}
-              para el Cuerpo General Auxiliar de la Administración del Estado (TAC).
+              para el Cuerpo General Auxiliar de la Administración del Estado (C2).
             </p>
             <p className="mt-2">
               Los simulacros son gratuitos. Los exámenes oficiales son dominio público.

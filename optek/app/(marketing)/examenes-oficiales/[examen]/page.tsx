@@ -37,7 +37,7 @@ const EXAMEN_META: Record<string, {
       'examen auxiliar administrativo INAP 2024',
       'simulacro INAP 2024 con respuestas',
       'preguntas examen auxiliar estado 2024',
-      'test oposiciones TAC 2024',
+      'test oposiciones auxiliar administrativo 2024',
     ],
   },
   'inap-2023': {
@@ -49,7 +49,7 @@ const EXAMEN_META: Record<string, {
       'examen auxiliar administrativo INAP 2023',
       'simulacro INAP 2023 con respuestas',
       'preguntas examen auxiliar estado 2023',
-      'test oposiciones TAC 2023',
+      'test oposiciones auxiliar administrativo 2023',
     ],
   },
   'inap-2022': {
@@ -61,7 +61,7 @@ const EXAMEN_META: Record<string, {
       'examen auxiliar administrativo INAP 2022',
       'simulacro INAP 2022 con respuestas',
       'preguntas examen auxiliar estado 2022',
-      'test oposiciones TAC 2022',
+      'test oposiciones auxiliar administrativo 2022',
     ],
   },
   'inap-2021': {
@@ -73,7 +73,7 @@ const EXAMEN_META: Record<string, {
       'examen auxiliar administrativo INAP 2021',
       'simulacro INAP 2021 con respuestas',
       'preguntas examen auxiliar estado 2021',
-      'test oposiciones TAC 2021',
+      'test oposiciones auxiliar administrativo 2021',
     ],
   },
   'inap-2019': {
@@ -85,7 +85,7 @@ const EXAMEN_META: Record<string, {
       'examen auxiliar administrativo INAP 2019',
       'simulacro INAP 2019 con respuestas',
       'preguntas examen auxiliar estado 2019',
-      'test oposiciones TAC 2019',
+      'test oposiciones auxiliar administrativo 2019',
     ],
   },
 }

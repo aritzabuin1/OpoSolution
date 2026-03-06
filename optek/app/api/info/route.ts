@@ -18,7 +18,7 @@ export function GET() {
     description:
       'Plataforma IA para preparar oposiciones al Cuerpo General de la Administración del Estado (Auxiliar, Administrativo, Gestión). Tests verificados con legislación real, corrector de desarrollos, simulacros INAP oficiales. Sin alucinaciones legales — cada cita se verifica contra base de datos antes de mostrarla.',
     target_audience: [
-      'Opositores al Auxiliar Administrativo del Estado (TAC / C2)',
+      'Opositores al Auxiliar Administrativo del Estado (C2)',
       'Opositores al Administrativo del Estado (C1)',
       'Opositores al Cuerpo de Gestión de la AGE (A2)',
       'Cualquier opositor a la Administración General del Estado española',

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description:
     'Guías prácticas para preparar el examen del Auxiliar Administrativo del Estado: LPAC, LRJSP, penalización, simulacros y más. Con verificación de citas legales.',
   openGraph: {
-    title: 'Blog OpoRuta — Guías para el TAC',
+    title: 'Blog OpoRuta — Guías para Auxiliar Administrativo del Estado',
     description:
       'Artículos y guías para preparar el Cuerpo General Auxiliar de la Administración del Estado.',
     type: 'website',
@@ -31,7 +31,7 @@ export default function BlogIndexPage() {
           Blog
         </Badge>
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Guías para preparar el TAC
+          Guías para preparar Auxiliar del Estado
         </h1>
         <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
           Artículos prácticos sobre LPAC, LRJSP, psicotécnicos, ofimática y estrategias

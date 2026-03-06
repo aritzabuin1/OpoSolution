@@ -38,7 +38,7 @@ export function LogroShareButton({ logroTitulo, logroEmoji, userName }: LogroSha
 
   const shareText =
     `${logroEmoji} He conseguido el logro "${logroTitulo}" preparando mis oposiciones con OpoRuta.\n` +
-    `Prepara el TAC con IA verificada: ${shareUrl}`
+    `Prepara Auxiliar del Estado con IA verificada: ${shareUrl}`
 
   async function handleShare() {
     if (typeof navigator !== 'undefined' && navigator.share) {
