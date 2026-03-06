@@ -337,24 +337,29 @@ export default async function SimulacroExamenPage({ params }: Props) {
             <div className="space-y-4 mb-8 text-muted-foreground">
               <p>
                 El <strong className="text-foreground">examen oficial INAP {meta.anio}</strong> del
-                Cuerpo General Auxiliar de la Administración del Estado consta de un ejercicio único
-                de <strong className="text-foreground">110 preguntas</strong> tipo test en{' '}
-                <strong className="text-foreground">90 minutos</strong>, divididas en tres bloques:
+                Cuerpo General Auxiliar de la Administración del Estado se realiza mediante un{' '}
+                <strong className="text-foreground">ejercicio único</strong> de{' '}
+                <strong className="text-foreground">110 preguntas</strong> tipo test
+                (más 10 de reserva) en <strong className="text-foreground">90 minutos</strong>.
+                El sistema de selección es de concurso-oposición. El ejercicio se divide en dos partes,
+                ambas obligatorias y eliminatorias:
               </p>
               <ul className="list-disc list-inside space-y-2 ml-2">
                 <li>
-                  <strong className="text-foreground">Bloque 1.1 — Teoría (Organización Pública):</strong> 30 preguntas
+                  <strong className="text-foreground">Primera parte (60 preguntas + 5 reserva):</strong>{' '}
+                  30 de teoría (Bloque I: Constitución, Gobierno, Organización del Estado, Procedimiento Administrativo)
+                  + 30 psicotécnicas (aptitudes administrativas, numéricas, verbales y razonamiento lógico)
                 </li>
                 <li>
-                  <strong className="text-foreground">Bloque 1.2 — Psicotécnicos:</strong> 30 preguntas
-                </li>
-                <li>
-                  <strong className="text-foreground">Bloque 2 — Informática y Ofimática:</strong> 50 preguntas
+                  <strong className="text-foreground">Segunda parte (50 preguntas + 5 reserva):</strong>{' '}
+                  Informática y Ofimática (Bloque II: Windows 11 y Microsoft 365 — Word y Excel)
                 </li>
               </ul>
               <p>
                 Se aplica una penalización de <strong className="text-foreground">-1/3</strong> por
                 cada respuesta incorrecta. Las respuestas en blanco no penalizan.
+                Dispones de menos de un minuto por pregunta para leer, razonar y marcar
+                la respuesta en la hoja de lectura óptica.
               </p>
             </div>
 

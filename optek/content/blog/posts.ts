@@ -1224,20 +1224,23 @@ export const blogPosts: BlogPost[] = [
 </p>
 <p>
   La convocatoria 2025-2026 prevé <strong>miles de plazas</strong> a nivel nacional.
-  El proceso selectivo consta de un único examen tipo test de 110 preguntas en 90 minutos
-  con penalización de -1/3 por respuesta incorrecta.
+  El sistema de selección es de <strong>concurso-oposición</strong> (examen + valoración de méritos,
+  aunque el examen tiene el mayor peso). El proceso selectivo consta de un ejercicio único
+  de <strong>110 preguntas tipo test</strong> (más 10 de reserva) en <strong>90 minutos</strong>,
+  con penalización de -1/3 por respuesta incorrecta. Dispones de menos de un minuto por pregunta.
 </p>
 
 <h2>Estructura del examen TAC 2025-2026</h2>
 <table>
   <thead><tr><th>Parte</th><th>Nº preguntas</th><th>Contenido</th><th>Puntuación máxima</th></tr></thead>
   <tbody>
-    <tr><td>Parte 1</td><td>60 preguntas</td><td>30 teóricas (Bloque I) + 30 psicotécnicas</td><td>50 puntos</td></tr>
-    <tr><td>Parte 2</td><td>50 preguntas</td><td>Teórico-prácticas (Bloque II: ofimática)</td><td>50 puntos</td></tr>
-    <tr><td><strong>Total</strong></td><td><strong>110 preguntas</strong></td><td>Ejercicio único</td><td><strong>100 puntos</strong></td></tr>
+    <tr><td>Primera parte</td><td>60 preguntas (+ 5 reserva)</td><td>30 teóricas (Bloque I) + 30 psicotécnicas</td><td>50 puntos</td></tr>
+    <tr><td>Segunda parte</td><td>50 preguntas (+ 5 reserva)</td><td>Informática y Ofimática (Bloque II: Windows 11, Word, Excel)</td><td>50 puntos</td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>110 preguntas (+ 10 reserva)</strong></td><td>Ejercicio único · 90 minutos</td><td><strong>100 puntos</strong></td></tr>
   </tbody>
 </table>
 <p>
+  Ambas partes son <strong>obligatorias y eliminatorias</strong>.
   La nota mínima para superar el examen suele ser <strong>50 puntos sobre 100</strong>
   (sin mínimo por parte en convocatoria ordinaria, aunque esto puede variar según bases).
   El orden de prelación final incluye el resultado del examen y, en caso de empate,
