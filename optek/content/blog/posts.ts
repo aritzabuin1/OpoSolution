@@ -45,8 +45,8 @@ export const blogPosts: BlogPost[] = [
   <li><strong>Respuesta en blanco:</strong> 0 puntos</li>
 </ul>
 <p>
-  El examen tiene <strong>100 preguntas</strong> de tipo test. La puntuación máxima es 100 puntos.
-  La nota mínima para aprobar cada parte es generalmente 25 puntos sobre 50.
+  El examen consta de <strong>110 preguntas</strong> de tipo test en 90 minutos:
+  30 de teoría, 30 psicotécnicas y 50 de ofimática.
 </p>
 
 <h2>¿Cuándo dejar una pregunta en blanco?</h2>
@@ -116,7 +116,7 @@ export const blogPosts: BlogPost[] = [
 <h2>Practica con simulacros reales</h2>
 <p>
   La única forma de entrenar la penalización correctamente es practicando con el formato
-  exacto del examen: 100 preguntas, tiempo limitado, y la misma penalización.
+  exacto del examen: 110 preguntas, 90 minutos, y la misma penalización.
   OpoRuta ofrece simulacros basados en exámenes oficiales del INAP con el sistema de
   puntuación idéntico al real.
 </p>
@@ -399,8 +399,8 @@ export const blogPosts: BlogPost[] = [
 <h2>El temario oficial del Auxiliar Administrativo del Estado</h2>
 <p>
   El temario del Cuerpo General Auxiliar de la Administración del Estado (TAC/AGE) se divide
-  en <strong>dos bloques</strong> con un total de 28 temas. El examen consta de 100 preguntas
-  tipo test con penalización −1/3, y el temario es el mismo para las convocatorias de
+  en <strong>dos bloques</strong> con un total de 28 temas. El examen consta de 110 preguntas
+  tipo test (30 teoría + 30 psicotécnicos + 50 ofimática) en 90 minutos, con penalización −1/3. El temario es el mismo para las convocatorias de
   2025 y 2026 (salvo modificación del BOE).
 </p>
 <p>
@@ -505,7 +505,7 @@ export const blogPosts: BlogPost[] = [
 <p>
   OpoRuta cubre los 28 temas del TAC con preguntas tipo test generadas por IA y verificadas
   con cita legal exacta. Puedes generar tests por tema, por bloque, o simular el examen
-  completo con 100 preguntas y penalización real.
+  completo con 110 preguntas y penalización real.
 </p>
 <p>
   Los primeros 5 tests son completamente gratuitos — sin tarjeta de crédito.
@@ -1224,8 +1224,8 @@ export const blogPosts: BlogPost[] = [
 </p>
 <p>
   La convocatoria 2025-2026 prevé <strong>miles de plazas</strong> a nivel nacional.
-  El proceso selectivo consta de un único examen tipo test de 100 preguntas en 90 minutos
-  más 10 preguntas de reserva, con penalización de -1/3 por respuesta incorrecta.
+  El proceso selectivo consta de un único examen tipo test de 110 preguntas en 90 minutos
+  con penalización de -1/3 por respuesta incorrecta.
 </p>
 
 <h2>Estructura del examen TAC 2025-2026</h2>
@@ -1234,7 +1234,7 @@ export const blogPosts: BlogPost[] = [
   <tbody>
     <tr><td>Parte 1</td><td>60 preguntas</td><td>30 teóricas (Bloque I) + 30 psicotécnicas</td><td>50 puntos</td></tr>
     <tr><td>Parte 2</td><td>50 preguntas</td><td>Teórico-prácticas (Bloque II: ofimática)</td><td>50 puntos</td></tr>
-    <tr><td><strong>Total</strong></td><td><strong>110 preguntas</strong> (100 + 10 reserva)</td><td>—</td><td><strong>100 puntos</strong></td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>110 preguntas</strong></td><td>Ejercicio único</td><td><strong>100 puntos</strong></td></tr>
   </tbody>
 </table>
 <p>
@@ -1323,7 +1323,7 @@ export const blogPosts: BlogPost[] = [
 <h3>3. Simulacros cronometrados en la recta final</h3>
 <p>
   Las últimas 6-8 semanas antes del examen deben incluir al menos 1 simulacro completo
-  (100 preguntas, 90 minutos) por semana. La presión del tiempo y la penalización -1/3
+  (110 preguntas, 90 minutos) por semana. La presión del tiempo y la penalización -1/3
   son factores que solo se aprenden practicando, no estudiando.
 </p>
 

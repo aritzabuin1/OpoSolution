@@ -175,7 +175,7 @@ const jsonLdFaq = {
       name: '¿En qué consiste el examen de Auxiliar Administrativo del Estado?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'El examen del Auxiliar Administrativo del Estado (TAC) consta de dos ejercicios: el primero es un test de 100 preguntas tipo test (con penalización: -1/3 por respuesta incorrecta) sobre Bloque I (legislación) y Bloque II (ofimática y psicotécnicos). El tiempo disponible es 90 minutos. OpoRuta simula este formato exacto con sus simulacros oficiales INAP.',
+        text: 'El examen del Auxiliar Administrativo del Estado (TAC) consta de un ejercicio único de 110 preguntas tipo test en 90 minutos (con penalización: -1/3 por respuesta incorrecta). Se divide en tres bloques: Bloque 1.1 — Teoría/Organización Pública (30 preguntas), Bloque 1.2 — Psicotécnicos (30 preguntas) y Bloque 2 — Informática y Ofimática (50 preguntas). OpoRuta simula este formato exacto con sus simulacros oficiales INAP.',
       },
     },
     {

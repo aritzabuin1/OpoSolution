@@ -36,8 +36,8 @@ export interface SimulacroCardProps {
 // ─── Constantes ───────────────────────────────────────────────────────────────
 
 const MODOS: { label: string; value: number; description: string }[] = [
-  { label: '100 preguntas', value: 100, description: 'Examen completo (Parte 1 + Parte 2)' },
-  { label: '50 preguntas', value: 50, description: 'Media sesión (Parte 1 o Parte 2)' },
+  { label: '110 preguntas', value: 110, description: 'Examen completo oficial (30 teoría + 30 psico + 50 ofimática)' },
+  { label: '50 preguntas', value: 50, description: 'Media sesión' },
   { label: '20 preguntas', value: 20, description: 'Repaso rápido' },
 ]
 
@@ -58,7 +58,7 @@ export function SimulacroCard({ examen }: SimulacroCardProps) {
   const router = useRouter()
 
   const [expanded, setExpanded] = useState(false)
-  const [numPreguntas, setNumPreguntas] = useState(100)
+  const [numPreguntas, setNumPreguntas] = useState(50)
   const [incluirPsicotecnicos, setIncluirPsicotecnicos] = useState(false)
   const [dificultadPsico, setDificultadPsico] = useState<1 | 2 | 3>(2)
   const [isStarting, setIsStarting] = useState(false)

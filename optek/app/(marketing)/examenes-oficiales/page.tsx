@@ -54,7 +54,7 @@ const SIMULACROS = [
     titulo: 'Examen Oficial INAP 2024',
     descripcion:
       'La convocatoria más reciente. Incluye los nuevos temas sobre Windows 11, Office 365 y LGTBI.',
-    preguntas: '40 preguntas',
+    preguntas: '40 preguntas disponibles',
     disponible: true,
     destacado: true,
   },
@@ -147,7 +147,7 @@ export default function SimulacrosIndexPage() {
             </div>
             <div className="flex items-center gap-1.5 text-muted-foreground">
               <Timer className="h-4 w-4 text-primary" />
-              <span>90 min · formato oficial</span>
+              <span>110 preguntas · 90 min · formato oficial</span>
             </div>
             <div className="flex items-center gap-1.5 text-muted-foreground">
               <BookOpen className="h-4 w-4 text-primary" />
@@ -193,7 +193,7 @@ export default function SimulacrosIndexPage() {
                         </Badge>
                       )}
                     </div>
-                    <p className="text-xs text-muted-foreground">{sim.preguntas} · 90 minutos</p>
+                    <p className="text-xs text-muted-foreground">{sim.preguntas}</p>
                   </div>
                   <span className="text-3xl font-bold text-muted-foreground/30 shrink-0">
                     {sim.anio}

@@ -32,7 +32,7 @@ export interface SimulacroMixtoCardProps {
 // ─── Constantes ───────────────────────────────────────────────────────────────
 
 const MODOS_PREGUNTAS = [
-  { label: '100 preguntas', value: 100, description: 'Examen completo con máxima variedad' },
+  { label: '110 preguntas', value: 110, description: 'Examen completo oficial (30 teoría + 30 psico + 50 ofimática)' },
   { label: '50 preguntas', value: 50, description: 'Sesión media con preguntas mixtas' },
   { label: '20 preguntas', value: 20, description: 'Repaso rápido variado' },
 ] as const
@@ -42,7 +42,7 @@ const MODOS_PREGUNTAS = [
 export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias }: SimulacroMixtoCardProps) {
   const router = useRouter()
 
-  const [numPreguntas, setNumPreguntas] = useState(100)
+  const [numPreguntas, setNumPreguntas] = useState(50)
   const [incluirPsicotecnicos, setIncluirPsicotecnicos] = useState(false)
   const [dificultadPsico, setDificultadPsico] = useState<1 | 2 | 3>(2)
   const [isStarting, setIsStarting] = useState(false)

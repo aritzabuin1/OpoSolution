@@ -240,7 +240,7 @@ export default async function SimulacroExamenPage({ params }: Props) {
             )}
             <div className="flex items-center gap-2 text-sm">
               <Timer className="h-4 w-4 text-primary" />
-              <span><strong>90 minutos</strong> · formato oficial</span>
+              <span><strong>110 preguntas</strong> · 90 minutos · formato oficial</span>
             </div>
             <div className="flex items-center gap-2 text-sm text-green-700 dark:text-green-500">
               <CheckCircle2 className="h-4 w-4" />
@@ -337,17 +337,19 @@ export default async function SimulacroExamenPage({ params }: Props) {
             <div className="space-y-4 mb-8 text-muted-foreground">
               <p>
                 El <strong className="text-foreground">examen oficial INAP {meta.anio}</strong> del
-                Cuerpo General Auxiliar de la Administración del Estado está compuesto por 100 preguntas
-                de tipo test en 90 minutos, divididas en dos partes:
+                Cuerpo General Auxiliar de la Administración del Estado consta de un ejercicio único
+                de <strong className="text-foreground">110 preguntas</strong> tipo test en{' '}
+                <strong className="text-foreground">90 minutos</strong>, divididas en tres bloques:
               </p>
               <ul className="list-disc list-inside space-y-2 ml-2">
                 <li>
-                  <strong className="text-foreground">Parte 1 (50 puntos):</strong> 30 preguntas de
-                  Bloque I (organización pública, legislación) + 30 psicotécnicas
+                  <strong className="text-foreground">Bloque 1.1 — Teoría (Organización Pública):</strong> 30 preguntas
                 </li>
                 <li>
-                  <strong className="text-foreground">Parte 2 (50 puntos):</strong> 50 preguntas de
-                  Bloque II (administración práctica y ofimática)
+                  <strong className="text-foreground">Bloque 1.2 — Psicotécnicos:</strong> 30 preguntas
+                </li>
+                <li>
+                  <strong className="text-foreground">Bloque 2 — Informática y Ofimática:</strong> 50 preguntas
                 </li>
               </ul>
               <p>
