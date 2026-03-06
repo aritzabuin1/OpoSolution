@@ -22,7 +22,7 @@
  */
 
 import { buildContext, formatContext } from '@/lib/ai/retrieval'
-import { callGPTJSON } from '@/lib/ai/openai'
+import { callAIJSON } from '@/lib/ai/provider'
 import { SYSTEM_CORRECT_DESARROLLO, buildCorrectDesarrolloPrompt } from '@/lib/ai/prompts'
 import { CorreccionDesarrolloRawSchema } from '@/lib/ai/schemas'
 import { verifyAllCitations } from '@/lib/ai/verification'
@@ -36,7 +36,7 @@ import type { Json } from '@/types/database'
 
 export const PROMPT_VERSION = '1.8.0'
 
-const GPT_MODEL = 'gpt-5'
+// correct-desarrollo requiere modelo pesado (Sonnet/GPT-5)
 
 // ─── Tipos públicos ───────────────────────────────────────────────────────────
 
@@ -106,14 +106,12 @@ export async function correctDesarrollo(
     temaTitulo,
   })
 
-  const rawCorrection = await callGPTJSON(
+  const rawCorrection = await callAIJSON(
     SYSTEM_CORRECT_DESARROLLO,
     userPrompt,
     CorreccionDesarrolloRawSchema,
     {
-      model: GPT_MODEL,
-      // 8000 tokens: gpt-5 (reasoning model) usa ~3000-5000 en razonamiento interno
-      // + ~1500-2000 para el JSON de corrección. Margen necesario para evitar null content.
+      useHeavyModel: true,
       maxTokens: 8000,
       endpoint: 'correct-desarrollo',
       userId,

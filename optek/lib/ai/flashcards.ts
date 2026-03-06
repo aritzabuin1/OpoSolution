@@ -8,7 +8,7 @@
  */
 
 import { z } from 'zod'
-import { callClaudeHaiku } from '@/lib/ai/claude'
+import { callAIMini } from '@/lib/ai/provider'
 import { logger } from '@/lib/logger'
 import type { Pregunta } from '@/types/ai'
 
@@ -77,7 +77,7 @@ Crea una flashcard de repaso para esta pregunta.`
 
   let rawResponse: string
   try {
-    rawResponse = await callClaudeHaiku(userPrompt, {
+    rawResponse = await callAIMini(userPrompt, {
       systemPrompt: SYSTEM_FLASHCARD,
       maxTokens: 400,
       endpoint: 'generate-flashcard',

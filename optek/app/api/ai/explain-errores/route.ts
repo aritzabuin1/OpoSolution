@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
-import { callClaudeHaiku } from '@/lib/ai/claude'
+import { callAIMini } from '@/lib/ai/provider'
 import { SYSTEM_EXPLAIN_ERRORES } from '@/lib/ai/prompts'
 import { logger } from '@/lib/logger'
 import type { Pregunta, ExplicacionError } from '@/types/ai'
@@ -195,7 +195,7 @@ Responde en JSON con el array "explicaciones" donde cada item tiene: "num" (núm
 
   let rawResponse: string
   try {
-    rawResponse = await callClaudeHaiku(userPrompt, {
+    rawResponse = await callAIMini(userPrompt, {
       systemPrompt: SYSTEM_EXPLAIN_ERRORES,
       maxTokens: 2000,
       endpoint: 'explain-errores',

@@ -12,7 +12,7 @@
  */
 
 import { createServiceClient } from '@/lib/supabase/server'
-import { callGPTJSON } from '@/lib/ai/openai'
+import { callAIJSON } from '@/lib/ai/provider'
 import { SYSTEM_CAZATRAMPAS, buildCazaTrampasPrompt } from '@/lib/ai/prompts'
 import { CazaTrampasRawSchema } from '@/lib/ai/schemas'
 import type { ErrorInyectado } from '@/lib/ai/schemas'
@@ -100,7 +100,7 @@ export async function generateCazaTrampas(
       numErrores,
     })
 
-    const raw = await callGPTJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema)
+    const raw = await callAIJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema)
     if (!raw) {
       logger.warn({ attempt }, '[cazatrampas] GPT devolvió null')
       continue

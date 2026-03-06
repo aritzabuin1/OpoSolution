@@ -2,13 +2,12 @@
  * tests/unit/generate-test.test.ts — OPTEK §1.7.4, §1.7.5, §1.3A.18
  *
  * Tests de integración para generateTest().
- * OpenAI, retrieval, verification y Supabase se mockean completamente.
+ * Provider (callAIJSON), retrieval, verification y Supabase se mockean completamente.
  *
  * Cobertura:
  *   §1.7.4    Flujo completo genera test de N preguntas → verificación → retorna test válido
  *   §1.7.5    Pregunta que no pasa verificación → se filtra y se reintenta
  *   Extra     Sin preguntas verificadas → lanza error descriptivo
- *   Extra     GPT-5-mini se usa (no GPT-5) para mantener coste bajo
  *   §1.3A.18  Bloque II: guardrail verifica contenido en contexto, prompt sin citas legales
  */
 
@@ -17,17 +16,14 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 // ─── Mocks — deben declararse ANTES de los imports bajo test ──────────────────
 
 // vi.hoisted() garantiza disponibilidad antes del hoisting de vi.mock()
-const { mockCreate } = vi.hoisted(() => ({
-  mockCreate: vi.fn(),
+const { mockCallAIJSON } = vi.hoisted(() => ({
+  mockCallAIJSON: vi.fn(),
 }))
 
-// Mock SDK OpenAI — openai.ts lo usa internamente
-vi.mock('openai', () => {
-  function OpenAIMock() {
-    return { chat: { completions: { create: mockCreate } } }
-  }
-  return { default: OpenAIMock }
-})
+// Mock provider — callAIJSON se usa en generate-test.ts
+vi.mock('@/lib/ai/provider', () => ({
+  callAIJSON: mockCallAIJSON,
+}))
 
 // Mock retrieval — buildContext, formatContext y retrieveExamples
 const mockBuildContext = vi.fn()
@@ -165,12 +161,9 @@ function makePreguntaRaw(idx: number) {
   }
 }
 
-/** Respuesta simulada del SDK de OpenAI. Acepta cualquier array de preguntas (Bloque I o II). */
-function buildSDKResponse(preguntas: Array<Record<string, unknown>>) {
-  return {
-    choices: [{ message: { content: JSON.stringify({ preguntas }) }, finish_reason: 'stop' }],
-    usage: { prompt_tokens: 400, completion_tokens: 200 },
-  }
+/** Respuesta simulada de callAIJSON. Acepta cualquier array de preguntas (Bloque I o II). */
+function buildAIResponse(preguntas: Array<Record<string, unknown>>) {
+  return { preguntas }
 }
 
 // ─── Setup base (válido para casi todos los tests) ────────────────────────────
@@ -210,7 +203,7 @@ describe('§1.7.4 — generateTest: flujo completo', () => {
 
   it('retorna TestGenerado con id, preguntas, temaId, promptVersion y createdAt', async () => {
     const preguntas = [makePreguntaRaw(1), makePreguntaRaw(2), makePreguntaRaw(3)]
-    mockCreate.mockResolvedValueOnce(buildSDKResponse(preguntas))
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse(preguntas))
 
     const result = await generateTest({
       temaId: TEMA_ID,
@@ -227,7 +220,7 @@ describe('§1.7.4 — generateTest: flujo completo', () => {
   })
 
   it('las preguntas tienen la estructura correcta (enunciado, opciones, correcta, explicacion, cita)', async () => {
-    mockCreate.mockResolvedValueOnce(buildSDKResponse([makePreguntaRaw(1)]))
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse([makePreguntaRaw(1)]))
 
     const result = await generateTest({
       temaId: TEMA_ID,
@@ -245,7 +238,7 @@ describe('§1.7.4 — generateTest: flujo completo', () => {
   })
 
   it('llama a buildContext con el temaId correcto', async () => {
-    mockCreate.mockResolvedValueOnce(buildSDKResponse([makePreguntaRaw(1)]))
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse([makePreguntaRaw(1)]))
 
     await generateTest({
       temaId: 'tema-especifico-123',
@@ -259,31 +252,21 @@ describe('§1.7.4 — generateTest: flujo completo', () => {
   })
 
   it('guarda el test en BD (INSERT a tests_generados)', async () => {
-    mockCreate.mockResolvedValueOnce(buildSDKResponse([makePreguntaRaw(1)]))
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse([makePreguntaRaw(1)]))
 
     await generateTest({ temaId: TEMA_ID, numPreguntas: 1, dificultad: 'media', userId: USER_ID })
 
     expect(mockInsertSelectSingle).toHaveBeenCalled()
   })
 
-  it('pasa la dificultad al prompt de GPT', async () => {
-    mockCreate.mockResolvedValueOnce(buildSDKResponse([makePreguntaRaw(1)]))
+  it('pasa la dificultad al prompt', async () => {
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse([makePreguntaRaw(1)]))
 
     await generateTest({ temaId: TEMA_ID, numPreguntas: 1, dificultad: 'dificil', userId: USER_ID })
 
-    const callArgs = mockCreate.mock.calls[0][0]
-    // OpenAI: messages[0]=system, messages[1]=user
-    const userMessage = callArgs.messages[1].content as string
-    expect(userMessage).toContain('DIFÍCIL')
-  })
-
-  it('usa GPT-5-mini (no GPT-5) para mantener el coste bajo', async () => {
-    mockCreate.mockResolvedValueOnce(buildSDKResponse([makePreguntaRaw(1)]))
-
-    await generateTest({ temaId: TEMA_ID, numPreguntas: 1, dificultad: 'media', userId: USER_ID })
-
-    const callArgs = mockCreate.mock.calls[0][0]
-    expect(callArgs.model).toBe('gpt-5-mini')
+    // callAIJSON(systemPrompt, userPrompt, schema, options)
+    const userPrompt = mockCallAIJSON.mock.calls[0][1] as string
+    expect(userPrompt).toContain('DIFÍCIL')
   })
 })
 
@@ -323,12 +306,12 @@ describe('§1.7.5 — generateTest: filtrado de preguntas que no pasan verificac
     })
 
     // Ronda 1: 3 preguntas (1 y 3 válidas, 2 inválida) → 2 verificadas de 3
-    mockCreate
-      .mockResolvedValueOnce(buildSDKResponse([
+    mockCallAIJSON
+      .mockResolvedValueOnce(buildAIResponse([
         makePreguntaRaw(1), makePreguntaRaw(2), makePreguntaRaw(3),
       ]))
       // Ronda 2 (reintento — 1 faltante): devuelve 1 pregunta
-      .mockResolvedValueOnce(buildSDKResponse([makePreguntaRaw(4)]))
+      .mockResolvedValueOnce(buildAIResponse([makePreguntaRaw(4)]))
 
     // Reiniciar callCount para que el reintento no interprete pregunta4 como "pregunta 2"
     callCount = 0
@@ -343,7 +326,7 @@ describe('§1.7.5 — generateTest: filtrado de preguntas que no pasan verificac
     // Debe retornar exactamente 3 preguntas (2 de ronda 1 + 1 del reintento)
     expect(result.preguntas).toHaveLength(3)
     // Claude fue llamado 2 veces (ronda inicial + reintento)
-    expect(mockCreate).toHaveBeenCalledTimes(2)
+    expect(mockCallAIJSON).toHaveBeenCalledTimes(2)
   })
 
   it('lanza error descriptivo si todas las preguntas fallan tras MAX_RETRIES', async () => {
@@ -357,7 +340,7 @@ describe('§1.7.5 — generateTest: filtrado de preguntas que no pasan verificac
       error: 'Artículo no encontrado',
     })
 
-    mockCreate.mockResolvedValue(buildSDKResponse([makePreguntaRaw(1)]))
+    mockCallAIJSON.mockResolvedValue(buildAIResponse([makePreguntaRaw(1)]))
 
     await expect(
       generateTest({ temaId: TEMA_ID, numPreguntas: 3, dificultad: 'media', userId: USER_ID })
@@ -382,7 +365,7 @@ describe('§1.7.5 — generateTest: filtrado de preguntas que no pasan verificac
     })
 
     // Todas las preguntas generadas fallan content match → error
-    mockCreate.mockResolvedValue(buildSDKResponse([makePreguntaRaw(1)]))
+    mockCallAIJSON.mockResolvedValue(buildAIResponse([makePreguntaRaw(1)]))
 
     await expect(
       generateTest({ temaId: TEMA_ID, numPreguntas: 1, dificultad: 'media', userId: USER_ID })
@@ -406,7 +389,7 @@ describe('§1.7.5 — generateTest: filtrado de preguntas que no pasan verificac
       details: 'Sin información verificable',
     })
 
-    mockCreate.mockResolvedValueOnce(buildSDKResponse([makePreguntaRaw(1)]))
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse([makePreguntaRaw(1)]))
 
     const result = await generateTest({
       temaId: TEMA_ID,
@@ -448,7 +431,7 @@ describe('§1.3A.18 — generateTest Bloque II: guardrail de contexto técnico',
   it('acepta pregunta cuya opción correcta aparece en el contexto técnico', async () => {
     // "ctrl+b" está en el contexto → debe pasar el guardrail
     const pregunta = makePreguntaOfimatica('Ctrl+B')
-    mockCreate.mockResolvedValueOnce(buildSDKResponse([pregunta]))
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse([pregunta]))
 
     const result = await generateTest({
       temaId: 'tema-word-uuid',
@@ -477,7 +460,7 @@ describe('§1.3A.18 — generateTest Bloque II: guardrail de contexto técnico',
       '=== Word 365 — Atajos ===\nCtrl+B aplica negrita. Ctrl+I aplica cursiva. Ctrl+U aplica subrayado. Para insertar una tabla utiliza la pestaña Insertar y selecciona la opción Tabla en el grupo correspondiente.'
     )
 
-    mockCreate.mockResolvedValue(buildSDKResponse([preguntaInventada]))
+    mockCallAIJSON.mockResolvedValue(buildAIResponse([preguntaInventada]))
 
     await expect(
       generateTest({ temaId: 'tema-word-uuid', numPreguntas: 1, dificultad: 'facil', userId: USER_ID })
@@ -486,7 +469,7 @@ describe('§1.3A.18 — generateTest Bloque II: guardrail de contexto técnico',
 
   it('usa SYSTEM_GENERATE_TEST_BLOQUE2 (no el sistema legal) para Bloque II', async () => {
     const pregunta = makePreguntaOfimatica('Ctrl+B')
-    mockCreate.mockResolvedValueOnce(buildSDKResponse([pregunta]))
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse([pregunta]))
 
     await generateTest({
       temaId: 'tema-word-uuid',
@@ -495,16 +478,16 @@ describe('§1.3A.18 — generateTest Bloque II: guardrail de contexto técnico',
       userId: USER_ID,
     })
 
-    const callArgs = mockCreate.mock.calls[0][0]
-    const systemMessage = callArgs.messages[0].content as string
+    // callAIJSON(systemPrompt, userPrompt, schema, options)
+    const systemPrompt = mockCallAIJSON.mock.calls[0][0] as string
     // El sistema de Bloque II menciona ofimática, no citas de leyes
-    expect(systemMessage).toContain('ofimática')
-    expect(systemMessage).not.toContain('citar el artículo exacto de la ley')
+    expect(systemPrompt).toContain('ofimática')
+    expect(systemPrompt).not.toContain('citar el artículo exacto de la ley')
   })
 
   it('el user prompt de Bloque II usa "CONTEXTO TÉCNICO" en lugar de "CONTEXTO LEGISLATIVO"', async () => {
     const pregunta = makePreguntaOfimatica('Ctrl+B')
-    mockCreate.mockResolvedValueOnce(buildSDKResponse([pregunta]))
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse([pregunta]))
 
     await generateTest({
       temaId: 'tema-word-uuid',
@@ -513,10 +496,10 @@ describe('§1.3A.18 — generateTest Bloque II: guardrail de contexto técnico',
       userId: USER_ID,
     })
 
-    const callArgs = mockCreate.mock.calls[0][0]
-    const userMessage = callArgs.messages[1].content as string
-    expect(userMessage).toContain('CONTEXTO TÉCNICO')
-    expect(userMessage).not.toContain('CONTEXTO LEGISLATIVO')
+    // callAIJSON(systemPrompt, userPrompt, schema, options)
+    const userPrompt = mockCallAIJSON.mock.calls[0][1] as string
+    expect(userPrompt).toContain('CONTEXTO TÉCNICO')
+    expect(userPrompt).not.toContain('CONTEXTO LEGISLATIVO')
   })
 
   it('acepta todas las preguntas en modo lenient cuando el contexto es muy corto', async () => {
@@ -524,7 +507,7 @@ describe('§1.3A.18 — generateTest Bloque II: guardrail de contexto técnico',
     mockFormatContext.mockReturnValue('Contexto corto.')
 
     const pregunta = makePreguntaOfimatica('Alt+X')  // Alt+X no está en el contexto corto
-    mockCreate.mockResolvedValueOnce(buildSDKResponse([pregunta]))
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse([pregunta]))
 
     const result = await generateTest({
       temaId: 'tema-word-uuid',

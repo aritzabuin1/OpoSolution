@@ -2,13 +2,13 @@
  * tests/unit/correct-desarrollo.test.ts — OPTEK §1.8.6
  *
  * Tests de integración para correctDesarrollo().
- * OpenAI, retrieval, verification y Supabase se mockean completamente.
+ * Provider (callAIJSON), retrieval, verification y Supabase se mockean completamente.
  *
  * Cobertura:
  *   §1.8.6  Flujo completo → corrección con 5 dimensiones + citas verificadas
  *   Extra   verificationScore se calcula correctamente
- *   Extra   Sanitización PII se aplica antes de enviar a GPT
- *   Extra   GPT-5 se usa (no GPT-5-mini) para análisis de mayor calidad
+ *   Extra   Sanitización PII se aplica antes de enviar a la IA
+ *   Extra   useHeavyModel=true para análisis de mayor calidad
  *   Extra   Error de BD → lanza error descriptivo
  */
 
@@ -16,14 +16,11 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 // ─── Mocks ────────────────────────────────────────────────────────────────────
 
-const { mockCreate } = vi.hoisted(() => ({ mockCreate: vi.fn() }))
+const { mockCallAIJSON } = vi.hoisted(() => ({ mockCallAIJSON: vi.fn() }))
 
-vi.mock('openai', () => {
-  function OpenAIMock() {
-    return { chat: { completions: { create: mockCreate } } }
-  }
-  return { default: OpenAIMock }
-})
+vi.mock('@/lib/ai/provider', () => ({
+  callAIJSON: mockCallAIJSON,
+}))
 
 // Mock retrieval
 const mockBuildContext = vi.fn()
@@ -138,11 +135,9 @@ const RAW_CORRECTION_PAYLOAD = {
   dimension_estructura: 7,
 }
 
-function buildSDKResponse(payload: unknown) {
-  return {
-    choices: [{ message: { content: JSON.stringify(payload) }, finish_reason: 'stop' }],
-    usage: { prompt_tokens: 800, completion_tokens: 400 },
-  }
+/** callAIJSON retorna el objeto parseado directamente */
+function buildAIResponse(payload: unknown) {
+  return payload
 }
 
 /** VerificationResult para cita válida */
@@ -184,7 +179,7 @@ describe('§1.8.6 — correctDesarrollo: flujo completo', () => {
   })
 
   it('retorna CorreccionDesarrolloResult con todos los campos', async () => {
-    mockCreate.mockResolvedValueOnce(buildSDKResponse(RAW_CORRECTION_PAYLOAD))
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse(RAW_CORRECTION_PAYLOAD))
 
     const result = await correctDesarrollo({
       texto: 'El procedimiento administrativo es un conjunto de actos que sigue la Administración.',
@@ -206,7 +201,7 @@ describe('§1.8.6 — correctDesarrollo: flujo completo', () => {
   })
 
   it('llama a buildContext con el temaId correcto', async () => {
-    mockCreate.mockResolvedValueOnce(buildSDKResponse(RAW_CORRECTION_PAYLOAD))
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse(RAW_CORRECTION_PAYLOAD))
 
     await correctDesarrollo({
       texto: 'Texto de prueba.',
@@ -220,17 +215,18 @@ describe('§1.8.6 — correctDesarrollo: flujo completo', () => {
     )
   })
 
-  it('usa GPT-5 (no GPT-5-mini) para la corrección', async () => {
-    mockCreate.mockResolvedValueOnce(buildSDKResponse(RAW_CORRECTION_PAYLOAD))
+  it('usa useHeavyModel=true para la corrección (modelo pesado)', async () => {
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse(RAW_CORRECTION_PAYLOAD))
 
     await correctDesarrollo({ texto: 'Texto.', temaId: TEMA_ID, userId: USER_ID })
 
-    const callArgs = mockCreate.mock.calls[0][0]
-    expect(callArgs.model).toBe('gpt-5')
+    // callAIJSON(systemPrompt, userPrompt, schema, options)
+    const options = mockCallAIJSON.mock.calls[0][3]
+    expect(options.useHeavyModel).toBe(true)
   })
 
   it('guarda el desarrollo en BD (INSERT a desarrollos)', async () => {
-    mockCreate.mockResolvedValueOnce(buildSDKResponse(RAW_CORRECTION_PAYLOAD))
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse(RAW_CORRECTION_PAYLOAD))
 
     await correctDesarrollo({ texto: 'Texto.', temaId: TEMA_ID, userId: USER_ID })
 
@@ -238,7 +234,7 @@ describe('§1.8.6 — correctDesarrollo: flujo completo', () => {
   })
 
   it('verificationScore = 1 cuando todas las citas están verificadas', async () => {
-    mockCreate.mockResolvedValueOnce(buildSDKResponse(RAW_CORRECTION_PAYLOAD))
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse(RAW_CORRECTION_PAYLOAD))
     mockVerifyAllCitations.mockResolvedValue([CITA_VERIFICADA, CITA_VERIFICADA])
 
     const result = await correctDesarrollo({ texto: 'Texto.', temaId: TEMA_ID, userId: USER_ID })
@@ -247,7 +243,7 @@ describe('§1.8.6 — correctDesarrollo: flujo completo', () => {
   })
 
   it('verificationScore parcial cuando algunas citas fallan', async () => {
-    mockCreate.mockResolvedValueOnce(buildSDKResponse(RAW_CORRECTION_PAYLOAD))
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse(RAW_CORRECTION_PAYLOAD))
     // 1 verificada + 1 no verificada → score 0.5
     mockVerifyAllCitations.mockResolvedValue([CITA_VERIFICADA, CITA_NO_VERIFICADA])
 
@@ -258,7 +254,7 @@ describe('§1.8.6 — correctDesarrollo: flujo completo', () => {
   })
 
   it('verificationScore = 1 cuando no hay citas en el texto (nada que verificar)', async () => {
-    mockCreate.mockResolvedValueOnce(buildSDKResponse(RAW_CORRECTION_PAYLOAD))
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse(RAW_CORRECTION_PAYLOAD))
     mockVerifyAllCitations.mockResolvedValue([])  // sin citas extraídas
 
     const result = await correctDesarrollo({ texto: 'Texto sin citas legales.', temaId: TEMA_ID, userId: USER_ID })
@@ -268,7 +264,7 @@ describe('§1.8.6 — correctDesarrollo: flujo completo', () => {
   })
 
   it('lanza error descriptivo si la BD falla al guardar', async () => {
-    mockCreate.mockResolvedValueOnce(buildSDKResponse(RAW_CORRECTION_PAYLOAD))
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse(RAW_CORRECTION_PAYLOAD))
     mockInsertDesarrolloSingle.mockResolvedValue({
       data: null,
       error: { message: 'connection refused', code: '500' },
@@ -279,20 +275,11 @@ describe('§1.8.6 — correctDesarrollo: flujo completo', () => {
     ).rejects.toThrow(/Error al guardar en BD/)
   })
 
-  it('lanza error si GPT devuelve JSON inválido tras retry', async () => {
-    // Ambos intentos de callGPTJSON devuelven basura
-    mockCreate
-      .mockResolvedValueOnce({
-        choices: [{ message: { content: 'no es json' }, finish_reason: 'stop' }],
-        usage: { prompt_tokens: 100, completion_tokens: 10 },
-      })
-      .mockResolvedValueOnce({
-        choices: [{ message: { content: 'tampoco es json' }, finish_reason: 'stop' }],
-        usage: { prompt_tokens: 100, completion_tokens: 10 },
-      })
+  it('lanza error si callAIJSON falla', async () => {
+    mockCallAIJSON.mockRejectedValueOnce(new Error('callAIJSON: JSON inválido'))
 
     await expect(
       correctDesarrollo({ texto: 'Texto.', temaId: TEMA_ID, userId: USER_ID })
-    ).rejects.toThrow(/callGPTJSON/)
+    ).rejects.toThrow(/callAIJSON/)
   })
 })

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/server'
-import { callGPTJSON } from '@/lib/ai/openai'
+import { callAIJSON } from '@/lib/ai/provider'
 import { SYSTEM_CAZATRAMPAS, buildCazaTrampasPrompt } from '@/lib/ai/prompts'
 import { CazaTrampasRawSchema } from '@/lib/ai/schemas'
 import { logger } from '@/lib/logger'
@@ -99,7 +99,7 @@ export async function GET(request: NextRequest) {
         numErrores: NUM_ERRORES,
       })
 
-      const raw = await callGPTJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema)
+      const raw = await callAIJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema)
 
       if (raw) {
         // Verificación determinista

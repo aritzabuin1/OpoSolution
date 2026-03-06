@@ -7,7 +7,7 @@
  */
 
 import { createServiceClient } from '@/lib/supabase/server'
-import { callGPTJSON } from '@/lib/ai/openai'
+import { callAIJSON } from '@/lib/ai/provider'
 import { SYSTEM_CAZATRAMPAS, buildCazaTrampasPrompt } from '@/lib/ai/prompts'
 import { CazaTrampasRawSchema } from '@/lib/ai/schemas'
 import { logger } from '@/lib/logger'
@@ -75,7 +75,7 @@ export async function generateRetoDiarioOnDemand(fecha: string): Promise<{
       numErrores: NUM_ERRORES,
     })
 
-    const raw = await callGPTJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema)
+    const raw = await callAIJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema)
     if (!raw) { log.warn({ attempt }, 'GPT devolvió null'); continue }
 
     const fallos = raw.errores_reales.filter((e) => !articulo.texto_integro.includes(e.valor_original))

@@ -51,9 +51,9 @@ const mockSingle = vi.fn()
 const mockInsertSelect = vi.fn()
 const mockInsert = vi.fn()
 
-// Mock de callGPTJSON
-vi.mock('@/lib/ai/openai', () => ({
-  callGPTJSON: vi.fn(),
+// Mock de callAIJSON
+vi.mock('@/lib/ai/provider', () => ({
+  callAIJSON: vi.fn(),
 }))
 
 // Mock de prompts
@@ -118,7 +118,7 @@ vi.mock('@/lib/supabase/server', () => ({
 // ─── Import bajo test (DESPUÉS de los mocks) ──────────────────────────────────
 
 import { generateRetoDiarioOnDemand } from '@/lib/ai/reto-diario'
-import { callGPTJSON } from '@/lib/ai/openai'
+import { callAIJSON } from '@/lib/ai/provider'
 
 // ─── Tests ────────────────────────────────────────────────────────────────────
 
@@ -136,14 +136,14 @@ describe('generateRetoDiarioOnDemand — §2.20.12 Idempotencia', () => {
 
     expect(resultado).toEqual(RETO_EXISTENTE)
     // GPT NO debe haberse llamado
-    expect(callGPTJSON).not.toHaveBeenCalled()
+    expect(callAIJSON).not.toHaveBeenCalled()
   })
 
   it('genera el reto si no existe para esa fecha', async () => {
     // Primera consulta (check existencia): no existe
     mockMaybySingle.mockResolvedValueOnce({ data: null, error: null })
     // GPT devuelve resultado válido
-    vi.mocked(callGPTJSON).mockResolvedValueOnce(GPT_RESULTADO)
+    vi.mocked(callAIJSON).mockResolvedValueOnce(GPT_RESULTADO)
     // INSERT exitoso
     mockInsert.mockReturnValue({
       select: () => ({
@@ -153,7 +153,7 @@ describe('generateRetoDiarioOnDemand — §2.20.12 Idempotencia', () => {
 
     const resultado = await generateRetoDiarioOnDemand('2026-03-01')
 
-    expect(callGPTJSON).toHaveBeenCalledTimes(1)
+    expect(callAIJSON).toHaveBeenCalledTimes(1)
     expect(resultado.id).toBe(RETO_EXISTENTE.id)
   })
 
@@ -161,7 +161,7 @@ describe('generateRetoDiarioOnDemand — §2.20.12 Idempotencia', () => {
     // Check inicial: no existe
     mockMaybySingle.mockResolvedValueOnce({ data: null, error: null })
     // GPT OK
-    vi.mocked(callGPTJSON).mockResolvedValueOnce(GPT_RESULTADO)
+    vi.mocked(callAIJSON).mockResolvedValueOnce(GPT_RESULTADO)
     // INSERT falla con 23505 (race condition: otro proceso lo creó antes)
     mockInsert.mockReturnValue({
       select: () => ({

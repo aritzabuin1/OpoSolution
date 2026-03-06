@@ -5,14 +5,14 @@
  *
  * Pipeline Bloque I (legal):
  *   1. buildContext(temaId) → contexto RAG de legislacion
- *   2. callGPTJSON(SYSTEM_GENERATE_TEST) → test raw
+ *   2. callAIJSON(SYSTEM_GENERATE_TEST) → test raw
  *   3. verifyPreguntas → citation check determinista contra BD
  *   4. Si quedan < numPreguntas → reintentar (max 2)
  *   5. Guardar en BD y retornar
  *
  * Pipeline Bloque II (ofimática):
  *   1. buildContext(temaId) → contexto de conocimiento_tecnico
- *   2. callGPTJSON(SYSTEM_GENERATE_TEST_BLOQUE2) → test raw (sin citas legales)
+ *   2. callAIJSON(SYSTEM_GENERATE_TEST_BLOQUE2) → test raw (sin citas legales)
  *   3. guardrailBloque2 → verifica que el contenido de las respuestas
  *      exista en el contexto recuperado (previene inventar rutas de menú)
  *   4. Si quedan < numPreguntas → reintentar
@@ -25,7 +25,7 @@
  */
 
 import { buildContext, formatContext, retrieveExamples } from '@/lib/ai/retrieval'
-import { callGPTJSON } from '@/lib/ai/openai'
+import { callAIJSON } from '@/lib/ai/provider'
 import {
   SYSTEM_GENERATE_TEST,
   SYSTEM_GENERATE_TEST_BLOQUE2,
@@ -59,7 +59,7 @@ interface ChildLogger {
 export const PROMPT_VERSION = '2.1.0'
 
 const MAX_RETRIES    = 2
-const GPT_MINI_MODEL = 'gpt-5-mini'
+// Modelo seleccionado automáticamente por provider.ts (mini/light por defecto)
 
 // ─── Tipos públicos ───────────────────────────────────────────────────────────
 
@@ -117,14 +117,11 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
       ? buildGenerateTestBloque2Prompt({ contextoTecnico: contexto, numPreguntas: needed, dificultad, temaTitulo })
       : buildGenerateTestPrompt({ contextoLegislativo: contexto, numPreguntas: needed, dificultad, temaTitulo, ejemplosExamen })
 
-    const rawTest = await callGPTJSON(
+    const rawTest = await callAIJSON(
       systemPrompt,
       userPrompt,
       TestGeneradoRawSchema,
       {
-        model: GPT_MINI_MODEL,
-        // 16000 tokens: reasoning models (gpt-5-mini) consumen ~4000 en razonamiento interno
-        // + ~3000-4000 para el JSON de salida (10-30 preguntas). Margen amplio necesario.
         maxTokens: 16000,
         endpoint: 'generate-test',
         userId,
@@ -487,7 +484,7 @@ export async function generateFlashTest(
   const temaTitulo = art.titulo_capitulo ?? `Art. ${art.articulo_numero} — ${art.ley_nombre}`
 
   // 3. Generar 3 preguntas MCQ con prompt estándar Bloque I
-  const rawTest = await callGPTJSON(
+  const rawTest = await callAIJSON(
     SYSTEM_GENERATE_TEST,
     buildGenerateTestPrompt({
       contextoLegislativo,
@@ -497,7 +494,6 @@ export async function generateFlashTest(
     }),
     TestGeneradoRawSchema,
     {
-      model: GPT_MINI_MODEL,
       maxTokens: 2000,
       endpoint: 'generate-flash-test',
       userId,
@@ -607,7 +603,7 @@ export async function generateTopFrecuentesTest(userId: string): Promise<string>
   )
 
   // 4. Generar 10 preguntas MCQ (dificultad media, mix de los artículos más frecuentes)
-  const rawTest = await callGPTJSON(
+  const rawTest = await callAIJSON(
     SYSTEM_GENERATE_TEST,
     buildGenerateTestPrompt({
       contextoLegislativo,
@@ -617,7 +613,6 @@ export async function generateTopFrecuentesTest(userId: string): Promise<string>
     }),
     TestGeneradoRawSchema,
     {
-      model: GPT_MINI_MODEL,
       maxTokens: 4000,
       endpoint: 'generate-radar-test',
       userId,

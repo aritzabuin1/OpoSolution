@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
-import { callClaudeStream } from '@/lib/ai/claude'
+import { callAIStream } from '@/lib/ai/provider'
 import { SYSTEM_EXPLAIN_ERRORES_STREAM } from '@/lib/ai/prompts'
 import { logger } from '@/lib/logger'
 import type { Pregunta } from '@/types/ai'
@@ -132,10 +132,9 @@ export async function POST(request: NextRequest) {
     '[explain-errores-stream] iniciando stream'
   )
 
-  let claudeStream: ReadableStream<string>
+  let aiStream: ReadableStream<string>
   try {
-    claudeStream = await callClaudeStream(SYSTEM_EXPLAIN_ERRORES_STREAM, userPrompt, {
-      model: 'claude-haiku-4-5-20251001',
+    aiStream = await callAIStream(SYSTEM_EXPLAIN_ERRORES_STREAM, userPrompt, {
       maxTokens: 2000,
       requestId,
       endpoint: 'explain-errores-stream',
@@ -150,7 +149,7 @@ export async function POST(request: NextRequest) {
   }
 
   // ── 9. Pipe through: encode + deduct credit on completion ───────────────
-  const reader = claudeStream.getReader()
+  const reader = aiStream.getReader()
   const encoder = new TextEncoder()
   const userId = user.id
 

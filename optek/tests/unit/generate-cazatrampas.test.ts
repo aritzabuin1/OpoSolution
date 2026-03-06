@@ -16,14 +16,14 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 // ─── Mocks ────────────────────────────────────────────────────────────────────
 
 // vi.hoisted() garantiza disponibilidad antes del hoisting de vi.mock()
-const { mockCallGPTJSON, mockLimitQuery, mockInsertSingle } = vi.hoisted(() => ({
-  mockCallGPTJSON: vi.fn(),
+const { mockCallAIJSON, mockLimitQuery, mockInsertSingle } = vi.hoisted(() => ({
+  mockCallAIJSON: vi.fn(),
   mockLimitQuery: vi.fn(),
   mockInsertSingle: vi.fn(),
 }))
 
-vi.mock('@/lib/ai/openai', () => ({
-  callGPTJSON: mockCallGPTJSON,
+vi.mock('@/lib/ai/provider', () => ({
+  callAIJSON: mockCallAIJSON,
 }))
 
 // Mock Supabase: la query de legislacion termina con .limit(), la de insert termina con .single()
@@ -145,14 +145,14 @@ describe('generateCazaTrampas — §2.12.15 verificación valor_original', () =>
         },
       ],
     }
-    mockCallGPTJSON.mockResolvedValue(rawInvalido) // siempre devuelve el mismo inválido
+    mockCallAIJSON.mockResolvedValue(rawInvalido) // siempre devuelve el mismo inválido
 
     await expect(
       generateCazaTrampas(USER_ID, undefined, 1)
     ).rejects.toThrow('No se pudo generar Caza-Trampas con errores verificados tras los reintentos')
 
     // Se deben haber hecho MAX_RETRIES+1 = 3 intentos
-    expect(mockCallGPTJSON).toHaveBeenCalledTimes(3)
+    expect(mockCallAIJSON).toHaveBeenCalledTimes(3)
   })
 
   it('éxito si el segundo intento devuelve valor_original válido (primer intento falla)', async () => {
@@ -172,7 +172,7 @@ describe('generateCazaTrampas — §2.12.15 verificación valor_original', () =>
     }
     const rawValido = gptValido()
 
-    mockCallGPTJSON
+    mockCallAIJSON
       .mockResolvedValueOnce(rawInvalido) // intento 0 → falla
       .mockResolvedValueOnce(rawValido)   // intento 1 → OK
 
@@ -180,7 +180,7 @@ describe('generateCazaTrampas — §2.12.15 verificación valor_original', () =>
 
     expect(sesion.id).toBe(SESION_UUID)
     expect(sesion.numErrores).toBe(1)
-    expect(mockCallGPTJSON).toHaveBeenCalledTimes(2)
+    expect(mockCallAIJSON).toHaveBeenCalledTimes(2)
   })
 })
 
@@ -204,13 +204,13 @@ describe('generateCazaTrampas — §2.12.16 verificación texto_trampa contiene 
         },
       ],
     }
-    mockCallGPTJSON.mockResolvedValue(rawInvalido)
+    mockCallAIJSON.mockResolvedValue(rawInvalido)
 
     await expect(
       generateCazaTrampas(USER_ID, undefined, 1)
     ).rejects.toThrow('No se pudo generar Caza-Trampas con errores verificados tras los reintentos')
 
-    expect(mockCallGPTJSON).toHaveBeenCalledTimes(3)
+    expect(mockCallAIJSON).toHaveBeenCalledTimes(3)
   })
 
   it('éxito si el tercer intento (último) cumple ambas verificaciones', async () => {
@@ -225,7 +225,7 @@ describe('generateCazaTrampas — §2.12.16 verificación texto_trampa contiene 
     }
     const rawValido = gptValido()
 
-    mockCallGPTJSON
+    mockCallAIJSON
       .mockResolvedValueOnce(rawTrampaSinValorTrampa) // intento 0 → falla
       .mockResolvedValueOnce(rawTrampaSinValorTrampa) // intento 1 → falla
       .mockResolvedValueOnce(rawValido)               // intento 2 → OK
@@ -235,7 +235,7 @@ describe('generateCazaTrampas — §2.12.16 verificación texto_trampa contiene 
     expect(sesion.texto_trampa).toContain('seis meses')
     expect(sesion.leyNombre).toBe('Ley 39/2015 LPAC')
     expect(sesion.articuloNumero).toBe('14')
-    expect(mockCallGPTJSON).toHaveBeenCalledTimes(3)
+    expect(mockCallAIJSON).toHaveBeenCalledTimes(3)
   })
 })
 
@@ -247,7 +247,7 @@ describe('generateCazaTrampas — happy path', () => {
   it('devuelve CazaTrampasSession correcta con datos del artículo y sesión', async () => {
     setupArticulo()
     setupInsert()
-    mockCallGPTJSON.mockResolvedValue(gptValido())
+    mockCallAIJSON.mockResolvedValue(gptValido())
 
     const sesion = await generateCazaTrampas(USER_ID, undefined, 1)
 
@@ -283,12 +283,12 @@ describe('generateCazaTrampas — happy path', () => {
 
   it('GPT devuelve null en todos los intentos → lanza error', async () => {
     setupArticulo()
-    mockCallGPTJSON.mockResolvedValue(null)
+    mockCallAIJSON.mockResolvedValue(null)
 
     await expect(
       generateCazaTrampas(USER_ID, undefined, 2)
     ).rejects.toThrow('No se pudo generar Caza-Trampas')
 
-    expect(mockCallGPTJSON).toHaveBeenCalledTimes(3)
+    expect(mockCallAIJSON).toHaveBeenCalledTimes(3)
   })
 })

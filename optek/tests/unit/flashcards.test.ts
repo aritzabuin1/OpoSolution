@@ -14,10 +14,10 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import type { Pregunta } from '@/types/ai'
 
-// Mock callClaudeHaiku
-const mockCallClaudeHaiku = vi.fn()
-vi.mock('@/lib/ai/claude', () => ({
-  callClaudeHaiku: (...args: unknown[]) => mockCallClaudeHaiku(...args),
+// Mock callAIMini (provider)
+const mockCallAIMini = vi.fn()
+vi.mock('@/lib/ai/provider', () => ({
+  callAIMini: (...args: unknown[]) => mockCallAIMini(...args),
 }))
 
 vi.mock('@/lib/logger', () => ({
@@ -44,7 +44,7 @@ describe('generateFlashcardFromError', () => {
   })
 
   it('genera flashcard correcta con respuesta JSON válida de Claude', async () => {
-    mockCallClaudeHaiku.mockResolvedValueOnce(JSON.stringify({
+    mockCallAIMini.mockResolvedValueOnce(JSON.stringify({
       frente: '¿Cuál es el plazo para recurso de alzada contra acto expreso?',
       reverso: '1 mes desde la notificación del acto. Art. 122 LPAC.',
       cita_legal: { ley: 'LPAC', articulo: '122', texto_ref: 'Un mes si acto expreso' },
@@ -62,7 +62,7 @@ describe('generateFlashcardFromError', () => {
   })
 
   it('genera flashcard sin cita_legal cuando Claude devuelve null', async () => {
-    mockCallClaudeHaiku.mockResolvedValueOnce(JSON.stringify({
+    mockCallAIMini.mockResolvedValueOnce(JSON.stringify({
       frente: 'Pregunta de repaso sobre ofimática Excel',
       reverso: 'La función BUSCARV busca en la primera columna.',
       cita_legal: null,
@@ -76,7 +76,7 @@ describe('generateFlashcardFromError', () => {
   })
 
   it('fallback a flashcard simple cuando JSON inválido', async () => {
-    mockCallClaudeHaiku.mockResolvedValueOnce('No es JSON, solo texto libre de Claude.')
+    mockCallAIMini.mockResolvedValueOnce('No es JSON, solo texto libre de Claude.')
 
     const { generateFlashcardFromError } = await import('@/lib/ai/flashcards')
     const result = await generateFlashcardFromError(basePregunta, 'tema-3')
@@ -88,7 +88,7 @@ describe('generateFlashcardFromError', () => {
   })
 
   it('fallback cuando schema validation falla (frente demasiado corto)', async () => {
-    mockCallClaudeHaiku.mockResolvedValueOnce(JSON.stringify({
+    mockCallAIMini.mockResolvedValueOnce(JSON.stringify({
       frente: 'Corto', // min 10 chars
       reverso: 'OK respuesta válida y larga.',
       cita_legal: null,
@@ -103,7 +103,7 @@ describe('generateFlashcardFromError', () => {
   })
 
   it('retorna null cuando Claude lanza excepción', async () => {
-    mockCallClaudeHaiku.mockRejectedValueOnce(new Error('API rate limit'))
+    mockCallAIMini.mockRejectedValueOnce(new Error('API rate limit'))
 
     const { generateFlashcardFromError } = await import('@/lib/ai/flashcards')
     const result = await generateFlashcardFromError(basePregunta, 'tema-5')
@@ -112,7 +112,7 @@ describe('generateFlashcardFromError', () => {
   })
 
   it('tema_id null se propaga correctamente', async () => {
-    mockCallClaudeHaiku.mockResolvedValueOnce(JSON.stringify({
+    mockCallAIMini.mockResolvedValueOnce(JSON.stringify({
       frente: 'Pregunta de flashcard sobre legislación',
       reverso: 'Respuesta detallada con fundamento legal.',
       cita_legal: null,
@@ -125,7 +125,7 @@ describe('generateFlashcardFromError', () => {
   })
 
   it('llama a callClaudeHaiku con endpoint correcto', async () => {
-    mockCallClaudeHaiku.mockResolvedValueOnce(JSON.stringify({
+    mockCallAIMini.mockResolvedValueOnce(JSON.stringify({
       frente: 'Pregunta de flashcard sobre legislación',
       reverso: 'Respuesta detallada con fundamento legal.',
       cita_legal: null,
@@ -134,8 +134,8 @@ describe('generateFlashcardFromError', () => {
     const { generateFlashcardFromError } = await import('@/lib/ai/flashcards')
     await generateFlashcardFromError(basePregunta, 'tema-6')
 
-    expect(mockCallClaudeHaiku).toHaveBeenCalledTimes(1)
-    const callArgs = mockCallClaudeHaiku.mock.calls[0]
+    expect(mockCallAIMini).toHaveBeenCalledTimes(1)
+    const callArgs = mockCallAIMini.mock.calls[0]
     expect(callArgs[1].endpoint).toBe('generate-flashcard')
     expect(callArgs[1].userId).toBe('system')
     expect(callArgs[1].maxTokens).toBe(400)
