@@ -78,26 +78,6 @@ const SIMULACROS = [
     disponible: true,
     destacado: false,
   },
-  {
-    slug: 'inap-2021',
-    anio: 2021,
-    titulo: 'Examen Oficial INAP 2021',
-    descripcion:
-      'Convocatoria 2021. Próximamente disponible en OpoRuta.',
-    preguntas: 'Próximamente',
-    disponible: false,
-    destacado: false,
-  },
-  {
-    slug: 'inap-2023',
-    anio: 2023,
-    titulo: 'Examen Oficial INAP 2023',
-    descripcion:
-      'Convocatoria 2023. Próximamente disponible en OpoRuta.',
-    preguntas: 'Próximamente',
-    disponible: false,
-    destacado: false,
-  },
 ]
 
 export default function SimulacrosIndexPage() {
@@ -161,7 +141,7 @@ export default function SimulacrosIndexPage() {
           <div className="flex-1">
             <p className="font-semibold">Practica y recibe explicaciones IA de cada error</p>
             <p className="text-sm text-muted-foreground mt-0.5">
-              5 simulacros gratuitos. Sin tarjeta de crédito.
+              Simulacros gratuitos. Sin tarjeta de crédito.
             </p>
           </div>
           <Link href="/register">

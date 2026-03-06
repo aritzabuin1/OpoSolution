@@ -40,18 +40,6 @@ const EXAMEN_META: Record<string, {
       'test oposiciones auxiliar administrativo 2024',
     ],
   },
-  'inap-2023': {
-    anio: 2023,
-    titulo: 'Examen Oficial INAP 2023 — Auxiliar Administrativo del Estado',
-    description:
-      'Practica con las preguntas reales del examen oficial INAP 2023 del Cuerpo General Auxiliar de la Administración del Estado. Con respuestas y explicaciones IA de cada error.',
-    keywords: [
-      'examen auxiliar administrativo INAP 2023',
-      'simulacro INAP 2023 con respuestas',
-      'preguntas examen auxiliar estado 2023',
-      'test oposiciones auxiliar administrativo 2023',
-    ],
-  },
   'inap-2022': {
     anio: 2022,
     titulo: 'Examen Oficial INAP 2022 — Auxiliar Administrativo del Estado',
@@ -62,18 +50,6 @@ const EXAMEN_META: Record<string, {
       'simulacro INAP 2022 con respuestas',
       'preguntas examen auxiliar estado 2022',
       'test oposiciones auxiliar administrativo 2022',
-    ],
-  },
-  'inap-2021': {
-    anio: 2021,
-    titulo: 'Examen Oficial INAP 2021 — Auxiliar Administrativo del Estado',
-    description:
-      'Practica con las preguntas reales del examen oficial INAP 2021 del Cuerpo General Auxiliar de la Administración del Estado. Con respuestas y explicaciones IA de cada error.',
-    keywords: [
-      'examen auxiliar administrativo INAP 2021',
-      'simulacro INAP 2021 con respuestas',
-      'preguntas examen auxiliar estado 2021',
-      'test oposiciones auxiliar administrativo 2021',
     ],
   },
   'inap-2019': {
