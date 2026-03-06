@@ -339,25 +339,28 @@ export default async function SimulacroExamenPage({ params }: Props) {
                 El <strong className="text-foreground">examen oficial INAP {meta.anio}</strong> del
                 Cuerpo General Auxiliar de la Administración del Estado se realiza mediante un{' '}
                 <strong className="text-foreground">ejercicio único</strong> de{' '}
-                <strong className="text-foreground">110 preguntas</strong> tipo test
+                un máximo de <strong className="text-foreground">110 preguntas</strong> tipo test
                 (más 10 de reserva) en <strong className="text-foreground">90 minutos</strong>.
-                El sistema de selección es de concurso-oposición. El ejercicio se divide en dos partes,
-                ambas obligatorias y eliminatorias:
+                El sistema de selección es de concurso-oposición (RD 651/2025, 1.700 plazas).
+                El ejercicio se divide en dos partes, ambas obligatorias y eliminatorias:
               </p>
               <ul className="list-disc list-inside space-y-2 ml-2">
                 <li>
-                  <strong className="text-foreground">Primera parte (60 preguntas + 5 reserva):</strong>{' '}
+                  <strong className="text-foreground">Primera parte (máx. 60 preguntas + 5 reserva):</strong>{' '}
                   30 de teoría (Bloque I: Constitución, Gobierno, Organización del Estado, Procedimiento Administrativo)
-                  + 30 psicotécnicas (aptitudes administrativas, numéricas, verbales y razonamiento lógico)
+                  + 30 psicotécnicas (aptitudes administrativas, numéricas, verbales y razonamiento lógico).
+                  Se califica de 0 a 50 puntos (mínimo 25 para superar).
                 </li>
                 <li>
-                  <strong className="text-foreground">Segunda parte (50 preguntas + 5 reserva):</strong>{' '}
-                  Informática y Ofimática (Bloque II: Windows 11 y Microsoft 365 — Word y Excel)
+                  <strong className="text-foreground">Segunda parte (máx. 50 preguntas + 5 reserva):</strong>{' '}
+                  Informática y Ofimática (Bloque II: Windows 11 y Microsoft 365 — Word, Excel, Access, Outlook).
+                  Se califica de 0 a 50 puntos (mínimo 25 para superar).
                 </li>
               </ul>
               <p>
-                Se aplica una penalización de <strong className="text-foreground">-1/3</strong> por
-                cada respuesta incorrecta. Las respuestas en blanco no penalizan.
+                Todas las preguntas tienen el mismo valor. Cada contestación errónea se penaliza
+                descontando <strong className="text-foreground">un tercio</strong> del valor de una
+                respuesta correcta. Las respuestas en blanco no penalizan.
                 Dispones de menos de un minuto por pregunta para leer, razonar y marcar
                 la respuesta en la hoja de lectura óptica.
               </p>

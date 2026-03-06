@@ -167,7 +167,7 @@ const jsonLdFaq = {
       name: '¿Cuántos temas tiene el temario del Auxiliar Administrativo del Estado?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'El temario del Auxiliar Administrativo del Estado consta de dos bloques: Bloque I (legislación administrativa, con leyes como la CE, LPAC, TREBEP, LOPDGDD, etc.) y Bloque II (ofimática: Word, Excel, Windows, Internet). OpoRuta cubre los 28 temas del Bloque I y el Bloque II completo con preguntas verificadas.',
+        text: 'El temario del Auxiliar Administrativo del Estado consta de 28 temas en dos bloques: Bloque I — Organización pública (16 temas: CE, LPAC, TREBEP, LOPDGDD, UE, Presupuestos, Igualdad...) y Bloque II — Actividad administrativa y ofimática (12 temas: atención al público, Windows 11, Word 365, Excel 365, Access 365, Outlook 365, Internet). OpoRuta cubre los 28 temas completos con preguntas verificadas.',
       },
     },
     {
@@ -175,7 +175,7 @@ const jsonLdFaq = {
       name: '¿En qué consiste el examen de Auxiliar Administrativo del Estado?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'El proceso selectivo del Auxiliar Administrativo del Estado (TAC) es de concurso-oposición. El examen consta de un ejercicio único de 110 preguntas tipo test (más 10 de reserva) en 90 minutos, con penalización -1/3. Se divide en dos partes obligatorias y eliminatorias: Primera parte (60 preguntas) — 30 de teoría (Bloque I) + 30 psicotécnicas; Segunda parte (50 preguntas) — Informática y Ofimática (Bloque II: Windows 11, Word y Excel). OpoRuta simula este formato exacto con sus simulacros oficiales INAP.',
+        text: 'El proceso selectivo del Auxiliar Administrativo del Estado (TAC) es de concurso-oposición (RD 651/2025, 1.700 plazas). El examen consta de un ejercicio único con un máximo de 110 preguntas tipo test (más 10 de reserva) en 90 minutos, con penalización -1/3. Se divide en dos partes obligatorias y eliminatorias: Primera parte (máx. 60 preguntas) — 30 de teoría (Bloque I) + 30 psicotécnicas; Segunda parte (máx. 50 preguntas) — Informática y Ofimática (Bloque II: Windows 11, Word 365, Excel 365, Access 365, Outlook 365). Cada parte se califica de 0 a 50 puntos, con un mínimo de 25 puntos por parte para superar. OpoRuta simula este formato exacto.',
       },
     },
     {

@@ -386,7 +386,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'temario-auxiliar-administrativo-estado-2025-2026',
     title: 'Temario completo del Auxiliar Administrativo del Estado 2025-2026: los 28 temas del TAC',
     description:
-      'Resumen del temario oficial del Cuerpo General Auxiliar de la AGE: Bloque I (legislación, 24 temas) y Bloque II (ofimática y psicotécnicas, 4 temas). Qué estudiar primero y cómo organizarlo.',
+      'Resumen del temario oficial del Cuerpo General Auxiliar de la AGE: Bloque I — Organización pública (16 temas) y Bloque II — Actividad administrativa y ofimática (12 temas). Qué estudiar primero y cómo organizarlo.',
     date: '2026-03-03',
     keywords: [
       'temario auxiliar administrativo estado 2025',
@@ -408,91 +408,70 @@ export const blogPosts: BlogPost[] = [
   en los exámenes oficiales del INAP.
 </p>
 
-<h2>Bloque I — Organización pública (24 temas)</h2>
-
-<h3>Grupo 1: Constitución Española (Temas 1-3)</h3>
+<h2>Bloque I — Organización pública (16 temas)</h2>
+<p>
+  Estos 16 temas generan las 30 preguntas teóricas de la primera parte del examen.
+  Son los que más peso tienen junto con las psicotécnicas.
+</p>
 <ul>
-  <li><strong>T1:</strong> La Constitución Española de 1978. Principios generales. Derechos y deberes fundamentales.</li>
-  <li><strong>T2:</strong> La Corona. Las Cortes Generales. El Gobierno y la Administración. El Poder Judicial.</li>
-  <li><strong>T3:</strong> La organización territorial del Estado. Las Comunidades Autónomas.</li>
+  <li><strong>T1:</strong> La Constitución Española de 1978. Principios constitucionales y valores superiores. Derechos y deberes fundamentales. Su garantía y suspensión.</li>
+  <li><strong>T2:</strong> El Tribunal Constitucional. La reforma de la Constitución. La Corona: funciones constitucionales del Rey. Sucesión y regencia.</li>
+  <li><strong>T3:</strong> Las Cortes Generales: composición, atribuciones y funcionamiento del Congreso de los Diputados y Senado. El Defensor del Pueblo.</li>
+  <li><strong>T4:</strong> El Poder Judicial. El Consejo General del Poder Judicial. El Tribunal Supremo. La organización judicial española.</li>
+  <li><strong>T5:</strong> El Gobierno y la Administración. El Presidente del Gobierno. El Consejo de Ministros. Designación, causas de cese y responsabilidad del Gobierno.</li>
+  <li><strong>T6:</strong> El Gobierno Abierto: concepto y principios informadores. La Agenda 2030 y los Objetivos de Desarrollo Sostenible.</li>
+  <li><strong>T7:</strong> La Ley 19/2013, de 9 de diciembre, de transparencia, acceso a la información pública y buen gobierno.</li>
+  <li><strong>T8:</strong> La Administración General del Estado. Órganos centrales, superiores y directivos. Órganos territoriales. Otros órganos administrativos. La Administración del Estado en el exterior.</li>
+  <li><strong>T9:</strong> La Organización territorial del Estado. Las Comunidades Autónomas. La Administración local: provincia, municipio e isla.</li>
+  <li><strong>T10:</strong> La organización de la Unión Europea. El Consejo Europeo, el Consejo, el Parlamento Europeo, la Comisión Europea y el Tribunal de Justicia de la UE.</li>
+  <li><strong>T11:</strong> Las Leyes del Procedimiento Administrativo Común (LPAC) y del Régimen Jurídico del Sector Público (LRJSP). El procedimiento administrativo común y sus fases. Revisión de actos. Recursos administrativos. El recurso contencioso-administrativo.</li>
+  <li><strong>T12:</strong> La protección de datos personales y su régimen jurídico: principios, derechos y obligaciones.</li>
+  <li><strong>T13:</strong> El personal funcionario al servicio de las Administraciones públicas: concepto y clases. Régimen jurídico. Registro Central de Personal. OEP. Selección. Provisión de puestos. Situaciones administrativas.</li>
+  <li><strong>T14:</strong> Derechos y deberes de los funcionarios. La carrera administrativa. Promoción interna. Retribuciones e indemnizaciones. Régimen disciplinario. Seguridad Social de los funcionarios.</li>
+  <li><strong>T15:</strong> El presupuesto del Estado en España. Contenido, elaboración y estructura. Fases del ciclo presupuestario.</li>
+  <li><strong>T16:</strong> Políticas de igualdad y contra la violencia de género. Políticas de igualdad de trato y no discriminación de las personas LGTBI. Discapacidad y dependencia: régimen jurídico.</li>
+</ul>
+
+<h2>Bloque II — Actividad administrativa y ofimática (12 temas)</h2>
+<p>
+  Estos 12 temas generan las 50 preguntas de la segunda parte. Las preguntas sobre
+  Windows y Office se refieren a <strong>Windows 11 y Microsoft 365 versión de escritorio</strong>.
+</p>
+<ul>
+  <li><strong>T17:</strong> Atención al público: acogida e información al ciudadano. Atención de personas con discapacidad.</li>
+  <li><strong>T18:</strong> Los servicios de información administrativa. Información general y particular al ciudadano. Iniciativas. Reclamaciones. Quejas. Peticiones.</li>
+  <li><strong>T19:</strong> Concepto de documento, registro y archivo. Funciones del registro y del archivo. Clases de archivo y criterios de ordenación.</li>
+  <li><strong>T20:</strong> Administración electrónica y servicios al ciudadano. Páginas web de carácter público. Servicios telemáticos. Oficinas integradas. Ventanilla única empresarial. El Punto de Acceso General de la AGE.</li>
+  <li><strong>T21:</strong> Informática básica: conceptos fundamentales sobre el hardware y el software. Sistemas de almacenamiento de datos. Sistemas operativos. Nociones básicas de seguridad informática.</li>
+  <li><strong>T22:</strong> Introducción al sistema operativo: el entorno Windows. Ventanas, iconos, menús contextuales, cuadros de diálogo. El escritorio y sus elementos. El menú inicio. Copilot.</li>
+  <li><strong>T23:</strong> El explorador de Windows. Gestión de carpetas y archivos. Operaciones de búsqueda. Herramientas "Este equipo" y "Acceso rápido". Accesorios. Herramientas del sistema.</li>
+  <li><strong>T24:</strong> Procesadores de texto: Word 365. Principales funciones y utilidades. Creación y estructuración del documento. Gestión, grabación, recuperación e impresión de ficheros.</li>
+  <li><strong>T25:</strong> Hojas de cálculo: Excel 365. Principales funciones y utilidades. Libros, hojas y celdas. Fórmulas y funciones. Gráficos. Gestión de datos.</li>
+  <li><strong>T26:</strong> Bases de datos: Access 365. Principales funciones y utilidades. Tablas. Consultas. Formularios. Informes. Relaciones. Importación, vinculación y exportación de datos.</li>
+  <li><strong>T27:</strong> Correo electrónico: Outlook 365. Conceptos elementales y funcionamiento. Enviar, recibir, responder y reenviar mensajes. Reglas de mensaje. Libreta de direcciones.</li>
+  <li><strong>T28:</strong> La Red Internet: origen, evolución y estado actual. Conceptos elementales sobre protocolos y servicios en Internet. Funcionalidades básicas de los navegadores web.</li>
 </ul>
 <p>
-  <em>Peso estimado: 8-12 preguntas en exámenes recientes del INAP. La CE es la fuente
-  más examinada junto con la LPAC.</em>
+  <em>Nota: las pruebas psicotécnicas (30 preguntas en la primera parte) no forman parte
+  del temario como tal — evalúan aptitudes administrativas, numéricas y verbales propias
+  del cuerpo. Se preparan con práctica, no con estudio de temas.</em>
 </p>
-
-<h3>Grupo 2: Administración General del Estado (Temas 4-7)</h3>
-<ul>
-  <li><strong>T4:</strong> La Administración General del Estado. La Ley 40/2015 (LRJSP). Principios de actuación.</li>
-  <li><strong>T5:</strong> Los órganos superiores y directivos de la AGE. Ministerios, Secretarías de Estado, Subsecretarías.</li>
-  <li><strong>T6:</strong> Los organismos públicos: Organismos Autónomos, Entidades Públicas Empresariales, Agencias Estatales.</li>
-  <li><strong>T7:</strong> La Administración periférica del Estado. Delegaciones del Gobierno. Subdelegaciones.</li>
-</ul>
-
-<h3>Grupo 3: Procedimiento Administrativo (Temas 8-11)</h3>
-<ul>
-  <li><strong>T8:</strong> El acto administrativo. Concepto, clases, elementos y eficacia.</li>
-  <li><strong>T9:</strong> El procedimiento administrativo común (LPAC). Iniciación, ordenación, instrucción y terminación.</li>
-  <li><strong>T10:</strong> Los recursos administrativos: alzada, reposición y extraordinario de revisión.</li>
-  <li><strong>T11:</strong> Las notificaciones. La revisión de oficio. La responsabilidad patrimonial.</li>
-</ul>
-<p>
-  <em>Peso estimado: 10-15 preguntas. El Bloque LPAC/LRJSP suele ser el mayor grupo
-  de preguntas en cualquier convocatoria TAC.</em>
-</p>
-
-<h3>Grupo 4: Función Pública (Temas 12-15)</h3>
-<ul>
-  <li><strong>T12:</strong> Los funcionarios públicos. El Real Decreto Legislativo 5/2015 (TREBEP). Clases de personal.</li>
-  <li><strong>T13:</strong> Adquisición y pérdida de la condición de funcionario. Situaciones administrativas.</li>
-  <li><strong>T14:</strong> Derechos y deberes de los funcionarios. Código de conducta.</li>
-  <li><strong>T15:</strong> Régimen disciplinario. Infracciones y sanciones. Incompatibilidades.</li>
-</ul>
-
-<h3>Grupo 5: Unión Europea (Temas 16-18)</h3>
-<ul>
-  <li><strong>T16:</strong> La Unión Europea. Instituciones y órganos principales.</li>
-  <li><strong>T17:</strong> El Derecho de la Unión Europea. Reglamentos, Directivas, Decisiones.</li>
-  <li><strong>T18:</strong> Políticas de la UE. Fondos estructurales. El presupuesto europeo.</li>
-</ul>
-
-<h3>Grupo 6: Hacienda y Presupuesto (Temas 19-21)</h3>
-<ul>
-  <li><strong>T19:</strong> La Hacienda Pública estatal. La Ley General Presupuestaria.</li>
-  <li><strong>T20:</strong> Los Presupuestos Generales del Estado. Principios presupuestarios. Fases.</li>
-  <li><strong>T21:</strong> El control financiero. La Intervención General. El Tribunal de Cuentas.</li>
-</ul>
-
-<h3>Grupo 7: Legislación específica (Temas 22-24)</h3>
-<ul>
-  <li><strong>T22:</strong> Igualdad de género. La Ley Orgánica 3/2007. El Plan de Igualdad en la AGE.</li>
-  <li><strong>T23:</strong> Protección de datos. El Reglamento (UE) 2016/679 (RGPD) y la LOPDGDD.</li>
-  <li><strong>T24:</strong> Transparencia y buen gobierno. La Ley 19/2013. El Portal de Transparencia.</li>
-</ul>
-
-<h2>Bloque II — Actividad administrativa (4 temas)</h2>
-<ul>
-  <li><strong>T25:</strong> Ofimática: Microsoft Word. Procesamiento de textos, estilos, combinar correspondencia.</li>
-  <li><strong>T26:</strong> Ofimática: Microsoft Excel. Hojas de cálculo, fórmulas, tablas dinámicas.</li>
-  <li><strong>T27:</strong> Sistemas operativos: Windows. Gestión de archivos, redes, configuración.</li>
-  <li><strong>T28:</strong> Pruebas psicotécnicas. Razonamiento verbal, numérico y abstracto.</li>
-</ul>
 
 <h2>Cómo organizar el estudio</h2>
 <ol>
   <li>
-    <strong>Empieza por los temas de alto rendimiento:</strong> T1-T3 (CE), T9-T11 (LPAC/LRJSP)
-    y T12-T14 (TREBEP). Estos temas representan entre el 40% y el 50% de las preguntas
-    en exámenes recientes.
+    <strong>Empieza por los temas de alto rendimiento:</strong> T1-T3 (CE), T11 (LPAC/LRJSP)
+    y T13-T14 (TREBEP). Estos temas representan entre el 40% y el 50% de las preguntas
+    teóricas en exámenes recientes.
   </li>
   <li>
     <strong>Paraleliza el Bloque II:</strong> Dedica 15-20 minutos al día a psicotécnicas
-    (T28) y a repasar funciones concretas de Word/Excel (T25-T26). El Bloque II no se
+    y a repasar funciones concretas de Word/Excel (T24-T25). El Bloque II no se
     estudia — se practica.
   </li>
   <li>
-    <strong>Temas de menor rendimiento:</strong> T16-T18 (UE) y T19-T21 (Hacienda) suelen
-    generar menos preguntas. Estúdialos en la fase final, cuando tengas los temas clave dominados.
+    <strong>Temas de menor rendimiento:</strong> T6 (Gobierno Abierto), T10 (UE) y T15 (Presupuesto)
+    suelen generar menos preguntas. Estúdialos en la fase final, cuando tengas los temas clave dominados.
   </li>
   <li>
     <strong>Haz tests por tema desde el día 1:</strong> Leer sin testar es la forma más
@@ -1223,10 +1202,10 @@ export const blogPosts: BlogPost[] = [
   aproximadamente 1.200-1.400 € mensuales brutos, más complementos según destino.
 </p>
 <p>
-  La convocatoria 2025-2026 prevé <strong>miles de plazas</strong> a nivel nacional.
-  El sistema de selección es de <strong>concurso-oposición</strong> (examen + valoración de méritos,
-  aunque el examen tiene el mayor peso). El proceso selectivo consta de un ejercicio único
-  de <strong>110 preguntas tipo test</strong> (más 10 de reserva) en <strong>90 minutos</strong>,
+  La convocatoria 2025-2026 (RD 651/2025) ofrece <strong>1.700 plazas</strong> (código 1146,
+  156 reservadas para discapacidad). El sistema de selección es de <strong>concurso-oposición</strong>
+  (examen + valoración de méritos). El proceso selectivo consta de un ejercicio único con un
+  <strong>máximo de 110 preguntas tipo test</strong> (más 10 de reserva) en <strong>90 minutos</strong>,
   con penalización de -1/3 por respuesta incorrecta. Dispones de menos de un minuto por pregunta.
 </p>
 
@@ -1234,17 +1213,21 @@ export const blogPosts: BlogPost[] = [
 <table>
   <thead><tr><th>Parte</th><th>Nº preguntas</th><th>Contenido</th><th>Puntuación máxima</th></tr></thead>
   <tbody>
-    <tr><td>Primera parte</td><td>60 preguntas (+ 5 reserva)</td><td>30 teóricas (Bloque I) + 30 psicotécnicas</td><td>50 puntos</td></tr>
-    <tr><td>Segunda parte</td><td>50 preguntas (+ 5 reserva)</td><td>Informática y Ofimática (Bloque II: Windows 11, Word, Excel)</td><td>50 puntos</td></tr>
+    <tr><td>Primera parte</td><td>Máx. 60 preguntas (+ 5 reserva)</td><td>30 teóricas (Bloque I) + 30 psicotécnicas</td><td>50 puntos (mín. 25)</td></tr>
+    <tr><td>Segunda parte</td><td>Máx. 50 preguntas (+ 5 reserva)</td><td>Informática y Ofimática (Bloque II: Windows 11, Word/Excel/Access/Outlook 365)</td><td>50 puntos (mín. 25)</td></tr>
     <tr><td><strong>Total</strong></td><td><strong>110 preguntas (+ 10 reserva)</strong></td><td>Ejercicio único · 90 minutos</td><td><strong>100 puntos</strong></td></tr>
   </tbody>
 </table>
 <p>
   Ambas partes son <strong>obligatorias y eliminatorias</strong>.
-  La nota mínima para superar el examen suele ser <strong>50 puntos sobre 100</strong>
-  (sin mínimo por parte en convocatoria ordinaria, aunque esto puede variar según bases).
-  El orden de prelación final incluye el resultado del examen y, en caso de empate,
-  criterios de desempate establecidos en las bases de la convocatoria.
+  Cada parte se califica de 0 a 50 puntos, y es necesario obtener un <strong>mínimo de 25 puntos
+  en cada parte</strong> para superarla. La Comisión Permanente de Selección fijará la puntuación
+  directa mínima (nunca inferior al 30% de la máxima obtenible).
+</p>
+<p>
+  En caso de empate, el orden de prelación es: 1º mayor calificación en la segunda parte;
+  2º mayor número de correctas en la segunda parte; 3º mayor número de correctas en la primera;
+  4º menor número de erróneas en la segunda; 5º menor número de erróneas en la primera.
 </p>
 
 <h2>El temario oficial: 28 temas en 2 bloques</h2>
