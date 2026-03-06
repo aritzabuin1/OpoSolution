@@ -64,6 +64,18 @@ const EXAMEN_META: Record<string, {
       'test oposiciones auxiliar administrativo 2019',
     ],
   },
+  'inap-2018': {
+    anio: 2018,
+    titulo: 'Examen Oficial INAP 2018 — Auxiliar Administrativo del Estado',
+    description:
+      'Practica con las preguntas reales del examen oficial INAP 2018 del Cuerpo General Auxiliar de la Administración del Estado. Convocatoria clásica con enfoque en derecho administrativo y ofimática. Con respuestas y explicaciones IA.',
+    keywords: [
+      'examen auxiliar administrativo INAP 2018',
+      'simulacro INAP 2018 con respuestas',
+      'preguntas examen auxiliar estado 2018',
+      'test oposiciones auxiliar administrativo 2018',
+    ],
+  },
 }
 
 // ─── Types ────────────────────────────────────────────────────────────────────

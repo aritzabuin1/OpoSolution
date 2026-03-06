@@ -16,6 +16,7 @@ import { createServiceClient } from '@/lib/supabase/server'
 import { FOUNDER_LIMIT } from '@/lib/stripe/client'
 import { JsonLd } from '@/components/shared/JsonLd'
 import { RoadHero } from '@/components/marketing/RoadHero'
+import { ExamCountdown } from '@/components/marketing/ExamCountdown'
 import { blogPosts } from '@/content/blog/posts'
 import { unstable_cache } from 'next/cache'
 
@@ -245,6 +246,8 @@ export default async function LandingPage() {
             Auxiliar Administrativo del Estado · 1.700 plazas
           </Badge>
 
+          <ExamCountdown examDate="2026-05-23" />
+
           <h1 id="hero-heading" className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl leading-tight">
             Aprueba tu oposición.
             <br />
@@ -404,7 +407,7 @@ export default async function LandingPage() {
             Practica con exámenes reales del INAP — preguntas oficiales de convocatorias anteriores
           </p>
           <div className="flex flex-wrap justify-center gap-3 mb-4">
-            {['inap-2024', 'inap-2022', 'inap-2019'].map((slug) => (
+            {['inap-2024', 'inap-2022', 'inap-2019', 'inap-2018'].map((slug) => (
               <Link key={slug} href={`/examenes-oficiales/${slug}`}>
                 <Badge
                   variant="outline"

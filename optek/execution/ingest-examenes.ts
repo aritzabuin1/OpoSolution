@@ -110,14 +110,46 @@ async function ingestExamen(
     activo: true,
   }
 
-  const { data: examenRow, error: examenError } = await (supabase as ReturnType<typeof createClient>)
+  // The unique index uses COALESCE(modelo, '') so standard upsert onConflict won't match.
+  // Instead: try select first, then insert or update.
+  const { data: existing } = await (supabase as ReturnType<typeof createClient>)
     .from('examenes_oficiales')
-    .upsert(upsertRow, {
-      onConflict: 'oposicion_id,anio,convocatoria',
-      ignoreDuplicates: false,
-    })
     .select('id')
-    .single()
+    .eq('oposicion_id', oposicionId)
+    .eq('anio', examenParsed.anno)
+    .eq('convocatoria', examenParsed.turno)
+    .then((res) => {
+      // Filter for matching modelo (including null)
+      if (!res.data) return res
+      const filtered = res.data.filter((row: Record<string, unknown>) =>
+        (examenParsed.modelo ?? null) === (row.modelo ?? null)
+      )
+      return { ...res, data: filtered.length > 0 ? filtered : null }
+    })
+
+  let examenRow: { id: string } | null = null
+  let examenError: unknown = null
+
+  if (existing && existing.length > 0) {
+    // Update existing
+    const { data, error } = await (supabase as ReturnType<typeof createClient>)
+      .from('examenes_oficiales')
+      .update({ fuente_url: examenParsed.fuente_url, activo: true })
+      .eq('id', existing[0].id)
+      .select('id')
+      .single()
+    examenRow = data
+    examenError = error
+  } else {
+    // Insert new
+    const { data, error } = await (supabase as ReturnType<typeof createClient>)
+      .from('examenes_oficiales')
+      .insert(upsertRow)
+      .select('id')
+      .single()
+    examenRow = data
+    examenError = error
+  }
 
   if (examenError || !examenRow) {
     console.error('  ❌ Error al insertar examen:', examenError?.message)

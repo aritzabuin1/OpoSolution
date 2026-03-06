@@ -18,7 +18,7 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const metadata: Metadata = {
   title: 'Simulacros Examen INAP — Auxiliar Administrativo del Estado | OpoRuta',
   description:
-    'Practica con exámenes reales del INAP para el Cuerpo General Auxiliar de la Administración del Estado. Convocatorias 2024, 2022, 2019 con preguntas oficiales y explicaciones IA. Completamente gratis.',
+    'Practica con exámenes reales del INAP para el Cuerpo General Auxiliar de la Administración del Estado. Convocatorias 2024, 2022, 2019 y 2018 con preguntas oficiales y explicaciones IA. Completamente gratis.',
   keywords: [
     'simulacro examen INAP auxiliar administrativo',
     'examen oficial INAP preguntas reales',
@@ -75,6 +75,16 @@ const SIMULACROS = [
     descripcion:
       'Convocatoria ordinaria 2019. Clásico del temario con equilibrio entre Bloque I y ofimática.',
     preguntas: '60 preguntas',
+    disponible: true,
+    destacado: false,
+  },
+  {
+    slug: 'inap-2018',
+    anio: 2018,
+    titulo: 'Examen Oficial INAP 2018',
+    descripcion:
+      'Convocatoria 2018. Enfoque clásico en derecho administrativo y ofimática. Modelo A con 46 preguntas recuperadas del examen escaneado.',
+    preguntas: '46 preguntas',
     disponible: true,
     destacado: false,
   },
