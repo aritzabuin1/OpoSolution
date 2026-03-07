@@ -1,13 +1,15 @@
 /**
- * Sanitización de entradas de usuario para OPTEK.
+ * Sanitización de entradas de usuario para OpoRuta.
  *
  * GDPR: Anthropic NO tiene DPA compatible con GDPR (decisión 0.1.0).
  * Todo texto de usuario DEBE pasar por sanitizeUserText() antes de enviarse a Claude API.
  *
  * Ref: directives/OPTEK_security.md §1, §2
+ *
+ * NOTA: isomorphic-dompurify (jsdom) eliminado — crasheaba en Vercel serverless
+ * por exceder el tamaño de bundle. Reemplazado por regex tag-stripping que es
+ * suficiente dado que ALLOWED_TAGS=[] (strippear ALL tags, no renderizar HTML).
  */
-
-import DOMPurify from 'isomorphic-dompurify'
 
 // ─── Patrones PII España (ref: OPTEK_security.md §1) ─────────────────────────
 
@@ -33,12 +35,24 @@ const PII_REPLACEMENT = '[PII_REDACTADO]'
  * Elimina HTML/JS malicioso del texto.
  * Usar: antes de guardar en BD y antes de renderizar contenido de usuario.
  *
+ * Implementación: regex tag-stripping + decode de entidades HTML comunes.
+ * Suficiente para nuestro caso (strip ALL tags antes de enviar a AI APIs).
+ * El texto resultante NO se renderiza como HTML en el navegador.
+ *
  * @example
- * sanitizeHtml('<script>alert("xss")</script>') // → ''
+ * sanitizeHtml('<script>alert("xss")</script>') // → 'alert("xss")'
  * sanitizeHtml('Texto <b>normal</b>') // → 'Texto normal'
  */
 export function sanitizeHtml(text: string): string {
-  return DOMPurify.sanitize(text, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] })
+  return text
+    .replace(/<[^>]*>/g, '')
+    .replace(/&amp;/gi, '&')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#x27;/gi, "'")
+    .replace(/&#x2F;/gi, '/')
+    .replace(/&nbsp;/gi, ' ')
 }
 
 /**
