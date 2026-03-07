@@ -22,12 +22,20 @@ import { logger } from '@/lib/logger'
  *   Sonnet 4.6: Input $3.00/1M  | Output $15.00/1M
  */
 
-// DDIA Reliability: singleton con maxRetries + timeout globales
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY!,
-  timeout: 30_000,  // 30s máx — previene requests colgados
-  maxRetries: 2,    // exponential backoff automático en 429/529
-})
+// DDIA Reliability: lazy singleton — evita crash si ANTHROPIC_API_KEY no está configurada.
+// El cliente se crea en la primera llamada, no al importar el módulo.
+let _anthropic: Anthropic | null = null
+
+function getClient(): Anthropic {
+  if (!_anthropic) {
+    _anthropic = new Anthropic({
+      apiKey: process.env.ANTHROPIC_API_KEY!,
+      timeout: 30_000,  // 30s máx — previene requests colgados
+      maxRetries: 2,    // exponential backoff automático en 429/529
+    })
+  }
+  return _anthropic
+}
 
 // Sonnet 4.6 — para correcciones y tareas complejas
 const SONNET_COST_PER_1K_INPUT_CENTS  = 0.30  // $3.00/1M tokens
@@ -160,7 +168,7 @@ export async function callClaude(
   const sanitizedContent = sanitizeForAI(userContent)
 
   try {
-    const response = await anthropic.messages.create({
+    const response = await getClient().messages.create({
       model,
       max_tokens: maxTokens,
       system: systemPrompt ? [{ type: 'text' as const, text: systemPrompt, cache_control: { type: 'ephemeral' as const } }] : undefined,
@@ -222,7 +230,7 @@ export async function callClaudeHaiku(
   const sanitizedContent = sanitizeForAI(userContent)
 
   try {
-    const response = await anthropic.messages.create({
+    const response = await getClient().messages.create({
       model,
       max_tokens: maxTokens,
       system: systemPrompt ? [{ type: 'text' as const, text: systemPrompt, cache_control: { type: 'ephemeral' as const } }] : undefined,
@@ -357,7 +365,7 @@ export async function callClaudeStream(
 
   const sanitizedContent = sanitizeForAI(userPrompt)
 
-  const stream = anthropic.messages.stream({
+  const stream = getClient().messages.stream({
     model,
     max_tokens: maxTokens,
     system: systemPrompt,

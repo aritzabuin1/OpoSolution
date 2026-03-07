@@ -25,14 +25,20 @@ import { logger } from '@/lib/logger'
  * Claude permanece disponible en lib/ai/claude.ts como fallback manual.
  */
 
-// DDIA Reliability: singleton con maxRetries + timeout globales
-// timeout: 120s — gpt-5-mini tarda ~80s para generar 4000 tokens (50 tokens/s)
-// 30s era insuficiente y causaba APIConnectionTimeoutError en generación de tests completos
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
-  timeout: 120_000,  // 120s máx — suficiente para 4000 tokens de salida
-  maxRetries: 1,     // 1 retry: con 120s/intento, 2 reintentos = 6 min → demasiado largo
-})
+// DDIA Reliability: lazy singleton — evita crash si OPENAI_API_KEY no está configurada.
+// El cliente se crea en la primera llamada, no al importar el módulo.
+let _openai: OpenAI | null = null
+
+function getClient(): OpenAI {
+  if (!_openai) {
+    _openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY!,
+      timeout: 120_000,  // 120s máx — suficiente para 4000 tokens de salida
+      maxRetries: 1,     // 1 retry: con 120s/intento, 2 reintentos = 6 min → demasiado largo
+    })
+  }
+  return _openai
+}
 
 // Modelos canónicos
 export const GPT_MODEL = 'gpt-5'       // para correcciones complejas
@@ -163,7 +169,7 @@ export async function callGPT(
   messages.push({ role: 'user', content: sanitizedContent })
 
   try {
-    const response = await openai.chat.completions.create({
+    const response = await getClient().chat.completions.create({
       model,
       max_completion_tokens: maxTokens,
       messages,
@@ -230,7 +236,7 @@ export async function callGPTMini(
   messages.push({ role: 'user', content: sanitizedContent })
 
   try {
-    const response = await openai.chat.completions.create({
+    const response = await getClient().chat.completions.create({
       model,
       max_completion_tokens: maxTokens,
       messages,
@@ -366,7 +372,7 @@ export async function callGPTStream(
   return new ReadableStream<string>({
     async start(controller) {
       try {
-        const stream = await openai.chat.completions.create(
+        const stream = await getClient().chat.completions.create(
           { model, max_completion_tokens: maxTokens, messages, stream: true },
           { signal: abortController.signal }
         )
