@@ -79,8 +79,12 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
     ? 'Repaso de errores'
     : ((test.temas as { titulo: string } | null)?.titulo ?? 'Test de práctica')
 
-  // §2.6.2 — Tiempo límite: 90 min para simulacros, sin límite para tests de práctica
-  const tiempoLimite = esSimulacro ? 90 * 60 : undefined
+  // §2.6.2 — Tiempo límite proporcional: 110 preguntas = 90 min (examen oficial completo)
+  const FULL_EXAM_QUESTIONS = 110
+  const FULL_EXAM_SECONDS = 90 * 60
+  const tiempoLimite = esSimulacro
+    ? Math.round((preguntas.length / FULL_EXAM_QUESTIONS) * FULL_EXAM_SECONDS)
+    : undefined
 
   // §2.17.6 — BreadcrumbList schema
   const breadcrumbSchema = {
@@ -104,7 +108,7 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-sm font-medium">Simulacro Oficial INAP</span>
             <Badge variant="secondary" className="text-[10px]">Penalización activa</Badge>
-            <Badge variant="outline" className="text-[10px]">90 min</Badge>
+            <Badge variant="outline" className="text-[10px]">{Math.round((preguntas.length / 110) * 90)} min</Badge>
           </div>
         </div>
       )}

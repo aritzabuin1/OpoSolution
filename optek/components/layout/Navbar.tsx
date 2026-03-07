@@ -3,19 +3,32 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { BookOpen, Brain, CalendarCheck, ClipboardList, LayoutDashboard, Layers, Menu, Target, TrendingUp, Trophy, User, X } from 'lucide-react'
+import { BookOpen, Brain, CalendarCheck, ClipboardList, LayoutDashboard, Layers, Lock, Menu, Target, TrendingUp, Trophy, User, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { NotificationBell } from '@/components/shared/NotificationBell'
+import { useIsPremium } from '@/lib/hooks/useIsPremium'
 
-const navItems = [
+/** /tests/[uuid] pages are shared by tests AND simulacros — don't highlight "Tests" for detail pages */
+function isTestDetailPage(pathname: string, href: string): boolean {
+  return href === '/tests' && /^\/tests\/[^/]+/.test(pathname)
+}
+
+interface NavItem {
+  href: string
+  label: string
+  icon: typeof LayoutDashboard
+  premium?: boolean
+}
+
+const navItems: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/tests', label: 'Tests', icon: ClipboardList },
-  { href: '/psicotecnicos', label: 'Psicotécnicos', icon: Brain },
+  { href: '/psicotecnicos', label: 'Psicotecnicos', icon: Brain },
   { href: '/simulacros', label: 'Simulacros', icon: BookOpen },
-  { href: '/flashcards', label: 'Flashcards', icon: Layers },
-  { href: '/cazatrampas', label: 'Caza-Trampas', icon: Target },
+  { href: '/flashcards', label: 'Flashcards', icon: Layers, premium: true },
+  { href: '/cazatrampas', label: 'Caza-Trampas', icon: Target, premium: true },
   { href: '/reto-diario', label: 'Reto Diario', icon: CalendarCheck },
-  { href: '/radar', label: 'Radar Tribunal', icon: TrendingUp },
+  { href: '/radar', label: 'Radar Tribunal', icon: TrendingUp, premium: true },
   { href: '/logros', label: 'Logros', icon: Trophy },
   { href: '/cuenta', label: 'Mi cuenta', icon: User },
 ]
@@ -23,6 +36,7 @@ const navItems = [
 export function Navbar() {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
+  const isPremium = useIsPremium()
 
   return (
     <header className="border-b bg-card px-4 py-3 md:hidden">
@@ -32,7 +46,7 @@ export function Navbar() {
           <NotificationBell />
           <button
             onClick={() => setOpen(!open)}
-            aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+            aria-label={open ? 'Cerrar menu' : 'Abrir menu'}
             className="rounded-md p-1 text-muted-foreground hover:bg-muted"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -42,22 +56,28 @@ export function Navbar() {
 
       {open && (
         <nav className="mt-3 flex flex-col gap-1" aria-label="Menu principal">
-          {navItems.map(({ href, label, icon: Icon }) => (
-            <Link
-              key={href}
-              href={href}
-              onClick={() => setOpen(false)}
-              className={cn(
-                'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
-                pathname === href || pathname.startsWith(href + '/')
-                  ? 'bg-primary text-primary-foreground'
-                  : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-              )}
-            >
-              <Icon className="h-4 w-4" />
-              {label}
-            </Link>
-          ))}
+          {navItems.map(({ href, label, icon: Icon, premium }) => {
+            const isLocked = premium && isPremium === false
+            const isActive = pathname === href || (pathname.startsWith(href + '/') && !isTestDetailPage(pathname, href))
+
+            return (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setOpen(false)}
+                className={cn(
+                  'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                  isActive
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                )}
+              >
+                <Icon className="h-4 w-4" />
+                <span className="flex-1">{label}</span>
+                {isLocked && <Lock className="h-3 w-3 text-amber-500" />}
+              </Link>
+            )
+          })}
         </nav>
       )}
     </header>

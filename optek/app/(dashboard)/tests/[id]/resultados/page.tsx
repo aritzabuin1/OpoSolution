@@ -538,8 +538,8 @@ export default async function ResultadosPage({ params }: Props) {
         </section>
       )}
 
-      {/* Si todo correcto */}
-      {preguntasErroneas.length === 0 && (
+      {/* Si todo correcto (sin errores NI preguntas sin responder) */}
+      {preguntasErroneas.length === 0 && sinResponder === 0 && (
         <div className="rounded-lg border border-green-200 bg-green-50 p-6 text-center space-y-2">
           <CheckCircle2 className="mx-auto h-10 w-10 text-green-500" />
           <p className="font-semibold text-green-800">¡Test perfecto!</p>

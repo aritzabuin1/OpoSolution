@@ -139,17 +139,32 @@ export default function RadarTribunal({ articulos, isPaid, freeLimit = 20 }: Rad
 
       {/* Paywall overlay para usuarios free */}
       {!isPaid && articulos.length > freeLimit && (
-        <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-900/20 p-6 text-center">
-          <Lock className="w-8 h-8 text-amber-500 mx-auto mb-3" />
-          <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">
-            {articulos.length - freeLimit} artículos más en el ranking
-          </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-            Desbloquea el ranking completo y practica con los artículos que más caen en el examen.
-          </p>
-          <Button asChild>
-            <Link href="/cuenta">Desbloquear Radar completo</Link>
-          </Button>
+        <div className="mt-6 rounded-xl border-2 border-amber-300 bg-gradient-to-b from-amber-50 to-white dark:from-amber-900/20 dark:to-gray-900 p-8 text-center space-y-4">
+          <Lock className="w-10 h-10 text-amber-500 mx-auto" />
+          <div>
+            <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100">
+              +{articulos.length - freeLimit} articulos clave ocultos
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 max-w-md mx-auto">
+              Estos son los articulos que el tribunal pregunta una y otra vez.
+              Los opositores que aprueban los conocen. Tu tambien puedes.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 text-xs text-gray-500">
+            <span>Ranking completo de {articulos.length} articulos</span>
+            <span className="hidden sm:inline">·</span>
+            <span>Practica dirigida por frecuencia</span>
+            <span className="hidden sm:inline">·</span>
+            <span>Datos de {[...new Set(articulos.flatMap((a) => a.anios))].length} convocatorias</span>
+          </div>
+          <div className="space-y-2 pt-2">
+            <Button asChild size="lg">
+              <Link href="/cuenta">Desbloquear Radar completo — 49,99 EUR</Link>
+            </Button>
+            <p className="text-xs text-muted-foreground">
+              Pago unico · Incluye tests ilimitados + 20 analisis detallados
+            </p>
+          </div>
         </div>
       )}
     </div>

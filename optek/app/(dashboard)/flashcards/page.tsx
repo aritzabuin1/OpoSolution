@@ -14,7 +14,7 @@ export const metadata: Metadata = { title: 'Mis Flashcards' }
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Brain, BookOpen, Clock, Trophy } from 'lucide-react'
+import { Brain, BookOpen, CheckCircle2, Clock, Lock, Trophy } from 'lucide-react'
 import { FlashcardSessionStarter } from '@/components/flashcards/FlashcardSessionStarter'
 
 // ─── Tipos ───────────────────────────────────────────────────────────────────
@@ -50,6 +50,86 @@ export default async function FlashcardsPage() {
   } = await supabase.auth.getUser()
 
   if (!user) redirect('/login')
+
+  // Check premium status
+  const { data: compra } = await supabase
+    .from('compras')
+    .select('id')
+    .eq('user_id', user.id)
+    .limit(1)
+  const isPaid = (compra?.length ?? 0) > 0
+
+  // Free users: show premium teaser
+  if (!isPaid) {
+    return (
+      <div className="max-w-xl mx-auto py-12 px-4 text-center space-y-6">
+        <div className="relative inline-flex items-center justify-center">
+          <div className="h-20 w-20 rounded-2xl bg-primary/10 flex items-center justify-center">
+            <Brain className="h-10 w-10 text-primary" />
+          </div>
+          <div className="absolute -bottom-1 -right-1 h-7 w-7 rounded-full bg-amber-500 flex items-center justify-center shadow-md">
+            <Lock className="h-3.5 w-3.5 text-white" />
+          </div>
+        </div>
+
+        <div>
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <h1 className="text-2xl font-bold">Flashcards de Repaso Espaciado</h1>
+            <Badge className="bg-amber-500 hover:bg-amber-500 text-white text-xs">Premium</Badge>
+          </div>
+          <p className="text-muted-foreground text-sm max-w-md mx-auto leading-relaxed">
+            Cada test que haces genera automaticamente flashcards de tus errores.
+            El algoritmo de repaso espaciado se adapta a tu ritmo para que no olvides lo importante.
+          </p>
+        </div>
+
+        <div className="text-left max-w-sm mx-auto space-y-2.5">
+          {[
+            'Generacion automatica desde tus errores en tests',
+            'Algoritmo de repaso espaciado (no olvidas nada)',
+            'Organizacion por temas del temario',
+            'Seguimiento de progreso por mazo',
+            'Citas legales incluidas en cada tarjeta',
+          ].map((b) => (
+            <div key={b} className="flex items-start gap-2.5">
+              <CheckCircle2 className="h-4 w-4 text-green-500 shrink-0 mt-0.5" />
+              <span className="text-sm">{b}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Sample preview */}
+        <div className="relative max-w-sm mx-auto">
+          <div className="rounded-xl border bg-card p-4 space-y-2 blur-[2px] select-none pointer-events-none">
+            <div className="flex items-center gap-2">
+              <Brain className="h-4 w-4 text-primary" />
+              <span className="text-sm font-medium">Tema 3: Gobierno y Administracion</span>
+            </div>
+            <div className="h-24 rounded-lg bg-muted flex items-center justify-center text-sm text-muted-foreground">
+              Segun el art. 97 CE, el Gobierno dirige la politica...
+            </div>
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Lock className="h-8 w-8 text-amber-500/80" />
+          </div>
+        </div>
+
+        <div className="space-y-3 pt-2">
+          <div className="rounded-lg bg-muted/50 px-4 py-2 text-sm text-muted-foreground">
+            <span className="line-through text-destructive/60">Academia presencial: desde 150 EUR/mes</span>
+            {' · '}
+            <span className="font-semibold text-foreground">OpoRuta: 49,99 EUR una sola vez</span>
+          </div>
+          <Button asChild size="lg" className="w-full max-w-xs">
+            <Link href="/cuenta">Desbloquear Pack Oposicion</Link>
+          </Button>
+          <p className="text-xs text-muted-foreground">
+            Pago seguro con Stripe · Sin suscripcion · Sin caducidad
+          </p>
+        </div>
+      </div>
+    )
+  }
 
   const today = new Date().toISOString().split('T')[0]!
 
