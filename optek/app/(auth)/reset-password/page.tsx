@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
@@ -13,19 +13,29 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
  * /reset-password
  *
  * Permite al usuario establecer una nueva contraseña.
- * Solo accesible tras hacer clic en el enlace de recuperación:
- *   /auth/callback?code=...&next=/reset-password
+ * Accesible tras hacer clic en el enlace de recuperación:
+ *   /auth/confirm?token_hash=xxx&type=recovery -> redirect here
  *
- * En este punto el usuario ya tiene sesión activa (el callback intercambió
- * el code), por lo que podemos llamar a supabase.auth.updateUser().
+ * En este punto el usuario ya tiene sesión activa (el confirm route
+ * verifico el token), por lo que podemos llamar a updateUser().
  */
 export default function ResetPasswordPage() {
   const router = useRouter()
+  const supabase = createClient()
+
   const [password, setPassword] = useState('')
   const [confirm, setConfirm] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [done, setDone] = useState(false)
+  const [hasSession, setHasSession] = useState<boolean | null>(null) // null = checking
+
+  // Check session on mount
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setHasSession(!!session)
+    })
+  }, [supabase])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -42,20 +52,50 @@ export default function ResetPasswordPage() {
     setLoading(true)
     setError(null)
 
-    const supabase = createClient()
     const { error: updateError } = await supabase.auth.updateUser({ password })
 
     if (updateError) {
-      setError('No se pudo actualizar la contraseña. El enlace puede haber caducado.')
+      console.error('[reset-password] updateUser error:', updateError.message)
+      setError(`No se pudo actualizar la contraseña: ${updateError.message}`)
       setLoading(false)
       return
     }
 
     setDone(true)
     setLoading(false)
-
-    // Redirigir al dashboard después de 2 segundos
     setTimeout(() => router.push('/dashboard'), 2000)
+  }
+
+  // Loading state while checking session
+  if (hasSession === null) {
+    return (
+      <Card className="w-full max-w-md">
+        <CardContent className="pt-8 text-center">
+          <p className="text-sm text-muted-foreground">Verificando sesión...</p>
+        </CardContent>
+      </Card>
+    )
+  }
+
+  // No session — link expired or was never valid
+  if (hasSession === false) {
+    return (
+      <Card className="w-full max-w-md">
+        <CardContent className="pt-8 text-center space-y-4">
+          <div className="text-5xl">🔗</div>
+          <h2 className="text-xl font-bold">Enlace caducado</h2>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Este enlace de recuperación ha caducado o ya fue utilizado.
+            Solicita uno nuevo.
+          </p>
+          <Link href="/forgot-password">
+            <Button variant="outline" className="mt-2">
+              Solicitar nuevo enlace
+            </Button>
+          </Link>
+        </CardContent>
+      </Card>
+    )
   }
 
   if (done) {
@@ -63,9 +103,9 @@ export default function ResetPasswordPage() {
       <Card className="w-full max-w-md">
         <CardContent className="pt-8 text-center space-y-4">
           <div className="text-5xl">✅</div>
-          <h2 className="text-xl font-bold">Contraseña actualizada</h2>
+          <h2 className="text-xl font-bold">Contrasena actualizada</h2>
           <p className="text-sm text-muted-foreground">
-            Tu contraseña se ha cambiado correctamente. Redirigiendo al dashboard…
+            Tu contraseña se ha cambiado correctamente. Redirigiendo al dashboard...
           </p>
         </CardContent>
       </Card>
@@ -116,7 +156,7 @@ export default function ResetPasswordPage() {
           )}
 
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? 'Guardando…' : 'Guardar nueva contraseña'}
+            {loading ? 'Guardando...' : 'Guardar nueva contraseña'}
           </Button>
         </form>
 
