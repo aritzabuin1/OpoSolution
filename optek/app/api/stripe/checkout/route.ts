@@ -71,6 +71,9 @@ export async function POST(request: NextRequest) {
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: `${appUrl}/tests?compra=ok&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${appUrl}/tests?compra=cancelada`,
+      // Métodos de pago: sin payment_method_types → Stripe usa los habilitados
+      // en Dashboard → Settings → Payment methods (modo automático).
+      // Apple Pay / Google Pay aparecen si el dominio está verificado en Dashboard.
       // Metadata que el webhook usa para completar la compra
       metadata: {
         user_id: user.id,
