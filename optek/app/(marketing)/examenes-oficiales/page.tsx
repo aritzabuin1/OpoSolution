@@ -18,7 +18,7 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const metadata: Metadata = {
   title: 'Simulacros Examen INAP — Auxiliar Administrativo del Estado | OpoRuta',
   description:
-    'Practica con exámenes reales del INAP para el Cuerpo General Auxiliar de la Administración del Estado. Convocatorias 2024, 2022, 2019 y 2018 con preguntas oficiales y explicaciones IA. Completamente gratis.',
+    'Practica con exámenes reales del INAP para el Cuerpo General Auxiliar de la Administración del Estado. Convocatorias 2024, 2022, 2019 y 2018 con preguntas oficiales y explicaciones IA. Primer simulacro gratis.',
   keywords: [
     'simulacro examen INAP auxiliar administrativo',
     'examen oficial INAP preguntas reales',
@@ -126,7 +126,7 @@ export default function SimulacrosIndexPage() {
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-lg">
             Practica con preguntas <strong>reales</strong> de convocatorias oficiales del
             Cuerpo General Auxiliar de la Administración del Estado.
-            Completamente gratis.
+            Tu primer simulacro es gratis.
           </p>
 
           {/* Ventajas */}
@@ -151,7 +151,7 @@ export default function SimulacrosIndexPage() {
           <div className="flex-1">
             <p className="font-semibold">Practica y recibe explicaciones IA de cada error</p>
             <p className="text-sm text-muted-foreground mt-0.5">
-              Simulacros gratuitos. Sin tarjeta de crédito.
+              Primer simulacro gratis. Sin tarjeta de crédito.
             </p>
           </div>
           <Link href="/register">
@@ -240,7 +240,7 @@ export default function SimulacrosIndexPage() {
               para el Cuerpo General Auxiliar de la Administración del Estado (C2).
             </p>
             <p className="mt-2">
-              Los simulacros son gratuitos. Los exámenes oficiales son dominio público.
+              Tu primer simulacro es gratis. Los exámenes oficiales son dominio público.
             </p>
           </div>
         </div>

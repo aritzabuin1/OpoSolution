@@ -376,7 +376,7 @@ export const blogPosts: BlogPost[] = [
   categorías habituales.
 </p>
 <p>
-  Los primeros 5 tests son completamente gratuitos. Sin tarjeta de crédito.
+  Empieza gratis con tests en 3 temas de muestra. Sin tarjeta de crédito.
 </p>
     `.trim(),
   },
@@ -1355,8 +1355,8 @@ export const blogPosts: BlogPost[] = [
     mejor indicador del nivel y estilo de preguntas real</li>
   <li><strong>Plataforma de tests adaptativos:</strong> OpoRuta genera preguntas verificadas
     sobre artículos específicos, detecta tus puntos débiles y refuerza exactamente lo que más necesitas</li>
-  <li><strong>Simulacros cronometrados:</strong> OpoRuta incluye simulacros gratuitos basados en
-    exámenes reales del INAP con penalización -1/3 real</li>
+  <li><strong>Simulacros cronometrados:</strong> OpoRuta incluye simulacros basados en
+    exámenes reales del INAP con penalización -1/3 real (primer simulacro gratis)</li>
 </ul>
 
 <h2>Empieza a preparar la oposición de Auxiliar con OpoRuta</h2>

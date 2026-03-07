@@ -106,9 +106,9 @@ const plans = [
     period: 'para siempre',
     badge: null,
     features: [
-      '5 tests de prueba',
+      '5 tests en 3 temas de muestra',
+      '1 simulacro oficial + 3 psicotécnicos',
       '2 análisis detallados',
-      'Verificación de citas incluida',
       'Sin tarjeta de crédito',
     ],
     cta: 'Empezar gratis',
@@ -121,9 +121,9 @@ const plans = [
     period: 'pago único',
     badge: 'Más popular',
     features: [
-      'Tests ilimitados de todo el temario',
-      '+20 análisis detallados',
-      'Simulacros completos + Radar',
+      'Tests ilimitados en los 28 temas',
+      'Simulacros y psicotécnicos ilimitados',
+      '+20 análisis detallados + Radar',
       'Sin suscripción — pago único',
     ],
     cta: 'Empezar mi ruta',
@@ -151,7 +151,7 @@ const faqs = [
   },
   {
     q: '¿Qué incluye exactamente el plan gratuito?',
-    a: 'El plan gratuito incluye 5 tests de prueba y 2 análisis detallados (en total, no al mes), con verificación de citas incluida en ambos. No necesitas tarjeta de crédito para empezar.',
+    a: 'El plan gratuito incluye 5 tests en 3 temas de muestra (Constitución, LPAC y Word), 1 simulacro oficial, 3 psicotécnicos y 2 análisis detallados. No necesitas tarjeta de crédito para empezar.',
   },
   {
     q: '¿Con qué frecuencia se actualiza la legislación?',

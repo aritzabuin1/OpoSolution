@@ -301,7 +301,7 @@ export default async function SimulacroExamenPage({ params }: Props) {
               <p className="text-sm text-muted-foreground mb-6 max-w-md mx-auto">
                 Regístrate para ver las respuestas correctas, practicar el examen completo con
                 penalización real (-1/3) y obtener explicaciones IA de cada error.
-                El primer examen es completamente gratuito.
+                Tu primer simulacro es gratis.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link href="/register">

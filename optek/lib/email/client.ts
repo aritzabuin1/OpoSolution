@@ -57,8 +57,8 @@ function welcomeHtml(nombre: string): string {
               ¡Bienvenido${nombre ? `, ${nombre}` : ''} a tu ruta! 👋
             </h1>
             <p style="margin:0 0 16px;font-size:15px;color:#374151;line-height:1.6;">
-              Tu cuenta en OpoRuta ya está activa. Tienes <strong>5 tests gratuitos</strong> y
-              <strong>2 correcciones gratuitas</strong> para empezar a avanzar hacia el aprobado hoy mismo.
+              Tu cuenta en OpoRuta ya está activa. Tienes <strong>5 tests gratuitos</strong> en 3 temas de muestra,
+              <strong>1 simulacro oficial</strong> y <strong>2 análisis detallados</strong> para empezar a avanzar hacia el aprobado hoy mismo.
             </p>
             <p style="margin:0 0 24px;font-size:15px;color:#374151;line-height:1.6;">
               Tu ruta tiene tres etapas clave:
