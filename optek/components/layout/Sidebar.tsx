@@ -31,11 +31,7 @@ const navItems: NavItem[] = [
     premium: true,
     premiumDesc: 'Tarjetas de repaso espaciado que se adaptan a tu ritmo. Consolida lo aprendido y no olvides nada.',
   },
-  {
-    href: '/cazatrampas', label: 'Caza-Trampas', icon: Target,
-    premium: true,
-    premiumDesc: 'Detecta errores sutiles en textos legales reales. 3 gratis al dia, ilimitados con Premium.',
-  },
+  { href: '/cazatrampas', label: 'Caza-Trampas', icon: Target },
   { href: '/reto-diario', label: 'Reto Diario', icon: CalendarCheck },
   {
     href: '/radar', label: 'Radar Tribunal', icon: TrendingUp,

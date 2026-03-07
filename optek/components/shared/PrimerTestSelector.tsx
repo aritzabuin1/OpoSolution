@@ -58,6 +58,24 @@ export function PrimerTestSelector({ oposiciones, userId }: Props) {
     )
   }
 
+  if (selecting) {
+    const selected = oposiciones.find(op => op.id === selecting)
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
+        <div className="text-center space-y-4">
+          <Loader2 className="h-10 w-10 animate-spin text-primary mx-auto" />
+          <div>
+            <p className="font-semibold text-lg">Preparando tu espacio...</p>
+            {selected && (
+              <p className="text-sm text-muted-foreground mt-1">{selected.nombre}</p>
+            )}
+          </div>
+          <p className="text-xs text-muted-foreground animate-pulse">Un momento, estamos configurando todo para ti</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       {oposiciones.map((op) => (
@@ -66,15 +84,12 @@ export function PrimerTestSelector({ oposiciones, userId }: Props) {
           onClick={() => handleSelect(op)}
           disabled={!!selecting}
           className="text-left"
-          aria-label={`Seleccionar oposición: ${op.nombre}`}
+          aria-label={`Seleccionar oposicion: ${op.nombre}`}
         >
           <Card className="h-full transition-all hover:border-primary hover:shadow-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
             <CardContent className="pt-6 space-y-3">
               <div className="flex items-start justify-between gap-2">
                 <BookOpen className="h-6 w-6 text-primary shrink-0 mt-0.5" />
-                {selecting === op.id && (
-                  <Loader2 className="h-4 w-4 animate-spin text-primary" />
-                )}
               </div>
               <div>
                 <h3 className="font-semibold leading-tight">{op.nombre}</h3>

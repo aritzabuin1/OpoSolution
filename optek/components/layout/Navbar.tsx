@@ -27,7 +27,7 @@ const navItems: NavItem[] = [
   { href: '/psicotecnicos', label: 'Psicotecnicos', icon: Brain },
   { href: '/simulacros', label: 'Simulacros', icon: BookOpen },
   { href: '/flashcards', label: 'Flashcards', icon: Layers, premium: true },
-  { href: '/cazatrampas', label: 'Caza-Trampas', icon: Target, premium: true },
+  { href: '/cazatrampas', label: 'Caza-Trampas', icon: Target },
   { href: '/reto-diario', label: 'Reto Diario', icon: CalendarCheck },
   { href: '/radar', label: 'Radar Tribunal', icon: TrendingUp, premium: true },
   { href: '/logros', label: 'Logros', icon: Trophy },
