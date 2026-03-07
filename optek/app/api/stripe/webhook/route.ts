@@ -97,7 +97,17 @@ async function handleStripeEvent(
       if (session.payment_status !== 'paid') break
 
       const userId = session.metadata?.user_id ?? ''
-      const tipo = (session.metadata?.tier ?? 'pack') as keyof typeof CORRECTIONS_GRANTED
+      const tier = (session.metadata?.tier ?? 'pack') as keyof typeof CORRECTIONS_GRANTED
+
+      // Mapear tier del checkout → tipo que acepta el CHECK constraint de compras
+      // BD: CHECK (tipo IN ('tema', 'pack_oposicion', 'subscription'))
+      // Checkout tiers: 'pack' | 'recarga' | 'fundador'
+      const TIER_TO_DB_TIPO: Record<string, string> = {
+        pack: 'pack_oposicion',
+        recarga: 'pack_oposicion',
+        fundador: 'pack_oposicion',
+      }
+      const dbTipo = TIER_TO_DB_TIPO[tier] ?? 'pack_oposicion'
 
       // 1. Registrar compra
       await supabase.from('compras').insert({
@@ -105,23 +115,22 @@ async function handleStripeEvent(
         oposicion_id: session.metadata?.oposicion_id ?? '',
         tema_id: session.metadata?.tema_id ?? null,
         stripe_checkout_session_id: session.id,
-        tipo,
+        tipo: dbTipo,
         amount_paid: session.amount_total ?? 0,
       })
 
-      // 2. Otorgar correcciones según tipo de producto (ADR-0010)
-      const correctionsToGrant = CORRECTIONS_GRANTED[tipo] ?? 0
+      // 2. Otorgar correcciones según tier de producto (ADR-0010)
+      const correctionsToGrant = CORRECTIONS_GRANTED[tier] ?? 0
       if (correctionsToGrant > 0) {
         await supabase.rpc('grant_corrections', {
           p_user_id: userId,
           p_amount: correctionsToGrant,
         })
-        log.info({ sessionId: session.id, tipo, correctionsToGrant }, 'Correcciones otorgadas')
+        log.info({ sessionId: session.id, tier, correctionsToGrant }, 'Correcciones otorgadas')
       }
 
       // 3. Founder Pricing (§1.21.3): activar badge permanente is_founder
-      // Cast necesario hasta que migration 019 se aplique en remoto y se regeneren tipos
-      if (tipo === 'fundador') {
+      if (tier === 'fundador') {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         await (supabase as any)
           .from('profiles')
@@ -130,7 +139,7 @@ async function handleStripeEvent(
         log.info({ sessionId: session.id, userId }, 'Founder badge activado')
       }
 
-      log.info({ sessionId: session.id, tipo }, 'Compra registrada')
+      log.info({ sessionId: session.id, tier, dbTipo }, 'Compra registrada')
       break
     }
 
