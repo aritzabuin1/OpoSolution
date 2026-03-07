@@ -194,7 +194,21 @@ function AICard({ ai }: { ai: InfraMetrics['ai'] }) {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default async function InfrastructurePage() {
-  const metrics = await getInfraMetrics()
+  let metrics
+  try {
+    metrics = await getInfraMetrics()
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err)
+    return (
+      <div className="space-y-4 p-6">
+        <h1 className="text-2xl font-bold">Infrastructure Monitor</h1>
+        <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          No se pudieron cargar las metricas de infraestructura.
+          <pre className="mt-2 text-xs opacity-60">{msg}</pre>
+        </div>
+      </div>
+    )
+  }
   const mins = minutesAgo(metrics.cachedAt)
 
   return (

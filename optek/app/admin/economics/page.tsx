@@ -58,14 +58,28 @@ function AlertIcon({ nivel }: { nivel: 'error' | 'warning' | 'info' }) {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default async function EconomicsPage() {
-  // Fetch all metrics in parallel
-  const [fuelTank, costPerUser, aarrr, mrrHistory, infra] = await Promise.all([
-    getFuelTank(),
-    getCostPerUser(),
-    getAARRR(),
-    getMRRHistory(6),
-    getInfraMetrics(),
-  ])
+  let fuelTank, costPerUser, aarrr, mrrHistory, infra
+
+  try {
+    ;[fuelTank, costPerUser, aarrr, mrrHistory, infra] = await Promise.all([
+      getFuelTank(),
+      getCostPerUser(),
+      getAARRR(),
+      getMRRHistory(6),
+      getInfraMetrics(),
+    ])
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err)
+    return (
+      <div className="space-y-4 p-6">
+        <h1 className="text-2xl font-bold">Unit Economics Dashboard</h1>
+        <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          No se pudieron cargar las metricas. Probablemente faltan tablas en la BD (migrations pendientes).
+          <pre className="mt-2 text-xs opacity-60">{msg}</pre>
+        </div>
+      </div>
+    )
+  }
 
   const alerts = getAlerts(fuelTank, costPerUser)
 
