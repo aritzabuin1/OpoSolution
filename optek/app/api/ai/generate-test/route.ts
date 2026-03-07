@@ -166,7 +166,7 @@ export async function POST(request: NextRequest) {
             {
               id: 'pack',
               name: 'Pack Oposición',
-              price: '34,99€',
+              price: '49,99€',
               description: 'Tests ilimitados de todo el temario + 20 correcciones',
               badge: 'Más popular',
             },
@@ -273,7 +273,11 @@ export async function POST(request: NextRequest) {
 
       // Consumir crédito psicotécnico (separado de tests IA)
       if (!hasPaidAccess) {
-        void (serviceSupabase as any).rpc('use_free_psico', { p_user_id: user.id })
+        try {
+          await (serviceSupabase as any).rpc('use_free_psico', { p_user_id: user.id })
+        } catch (creditErr) {
+          log.error({ err: creditErr, userId: user.id }, 'Failed to deduct psico credit')
+        }
       }
 
       log.info({ userId: user.id, testId: testRow.id, preguntas: preguntas.length }, 'Test psicotécnico generado')
@@ -354,7 +358,11 @@ export async function POST(request: NextRequest) {
 
     // Consumir crédito SOLO tras éxito (BUG-010 fix)
     if (!hasPaidAccess) {
-      void serviceSupabase.rpc('use_free_test', { p_user_id: user.id })
+      try {
+        await serviceSupabase.rpc('use_free_test', { p_user_id: user.id })
+      } catch (creditErr) {
+        log.error({ err: creditErr, userId: user.id }, 'Failed to deduct free test credit')
+      }
     }
 
     log.info({ userId: user.id, testId: test.id, preguntas: test.preguntas.length }, 'Test generado correctamente')

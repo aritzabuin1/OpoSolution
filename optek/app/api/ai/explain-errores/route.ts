@@ -265,10 +265,14 @@ Responde en JSON con el array "explicaciones" donde cada item tiene: "num" (núm
   }))
 
   // ── 8. Descontar crédito SOLO tras éxito (BUG-010) ────────────────────────
-  if (hasPaidCredit) {
-    void serviceSupabase.rpc('use_correction', { p_user_id: user.id })
-  } else {
-    void serviceSupabase.rpc('use_free_correction', { p_user_id: user.id })
+  try {
+    if (hasPaidCredit) {
+      await serviceSupabase.rpc('use_correction', { p_user_id: user.id })
+    } else {
+      await serviceSupabase.rpc('use_free_correction', { p_user_id: user.id })
+    }
+  } catch (creditErr) {
+    log.error({ err: creditErr, userId: user.id }, 'Failed to deduct correction credit')
   }
 
   log.info(

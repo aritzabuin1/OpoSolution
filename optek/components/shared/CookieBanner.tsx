@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
-const CONSENT_KEY = 'optek_cookie_consent'
+const CONSENT_KEY = 'oporuta_cookie_consent'
 
 /**
  * Banner de consentimiento de cookies (RGPD/LSSI).

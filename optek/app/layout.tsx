@@ -89,7 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {`
               (function(){
                 if(typeof window==='undefined')return;
-                var consent=localStorage.getItem('optek_cookie_consent');
+                var consent=localStorage.getItem('oporuta_cookie_consent');
                 if(consent!=='accepted')return;
                 !function(f,b,e,v,n,t,s)
                 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?

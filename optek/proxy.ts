@@ -76,9 +76,9 @@ export async function proxy(request: NextRequest) {
 
   // ── 2b. Redirect onboarding → /primer-test si oposicion_id es null ────────
   // Solo si: usuario autenticado + ruta dashboard + NO está en /primer-test.
-  // Cookie `optek_onboarded` como cache para evitar DB query en cada request.
+  // Cookie `oporuta_onboarded` como cache para evitar DB query en cada request.
   if (isDashboardRoute && user && !pathname.startsWith('/primer-test')) {
-    const onboardedCookie = request.cookies.get('optek_onboarded')
+    const onboardedCookie = request.cookies.get('oporuta_onboarded')
 
     if (!onboardedCookie) {
       const { data: profile } = await supabase
@@ -94,7 +94,7 @@ export async function proxy(request: NextRequest) {
       }
 
       // Usuario ya tiene oposicion_id — establece cookie para evitar futuros DB checks
-      response.cookies.set('optek_onboarded', '1', {
+      response.cookies.set('oporuta_onboarded', '1', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         maxAge: 60 * 60 * 24 * 365,

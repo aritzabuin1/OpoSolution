@@ -8,7 +8,7 @@
 export function ManageCookiesButton() {
   function handleClick() {
     try {
-      localStorage.removeItem('optek_cookie_consent')
+      localStorage.removeItem('oporuta_cookie_consent')
     } catch { /* no-op */ }
     window.dispatchEvent(new CustomEvent('oporuta:reopen-cookie-banner'))
   }

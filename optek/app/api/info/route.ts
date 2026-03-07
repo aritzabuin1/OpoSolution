@@ -25,7 +25,7 @@ export function GET() {
     ],
     pricing: {
       free: '5 tests + 2 correcciones sin tarjeta de crédito',
-      pack_completo: '34,99€ pago único — temario completo + 20 correcciones + simulacros',
+      pack_completo: '49,99€ pago único — temario completo + 20 análisis detallados + simulacros',
       recarga_correcciones: '8,99€ — +10 correcciones adicionales',
       nota: 'Sin suscripción mensual. Pago único con acceso para siempre.',
     },

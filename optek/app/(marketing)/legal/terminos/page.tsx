@@ -80,7 +80,7 @@ export default function TerminosPage() {
                 requerida.
               </li>
               <li>
-                <strong className="text-foreground">Pack Oposición (34,99€):</strong> Pago
+                <strong className="text-foreground">Pack Oposición (49,99€):</strong> Pago
                 único. Tests ilimitados de todo el temario + 20 correcciones IA. Sin caducidad.
               </li>
               <li>

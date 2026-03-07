@@ -162,10 +162,14 @@ export async function POST(request: NextRequest) {
         const { done, value } = await reader.read()
         if (done) {
           // Stream completed — deduct credit (BUG-010 pattern)
-          if (hasPaidCredit) {
-            void serviceSupabase.rpc('use_correction', { p_user_id: userId })
-          } else {
-            void serviceSupabase.rpc('use_free_correction', { p_user_id: userId })
+          try {
+            if (hasPaidCredit) {
+              await serviceSupabase.rpc('use_correction', { p_user_id: userId })
+            } else {
+              await serviceSupabase.rpc('use_free_correction', { p_user_id: userId })
+            }
+          } catch (creditErr) {
+            log.error({ err: creditErr, userId }, 'Failed to deduct correction credit')
           }
           log.info({ userId, testId }, '[explain-errores-stream] completado')
           controller.close()

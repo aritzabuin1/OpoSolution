@@ -39,7 +39,7 @@ export function PrimerTestSelector({ oposiciones, userId }: Props) {
       .eq('id', userId)
 
     // Marcar onboarding completado en cookie (para evitar DB check en cada request)
-    document.cookie = 'optek_onboarded=1; path=/; max-age=31536000; SameSite=Lax'
+    document.cookie = 'oporuta_onboarded=1; path=/; max-age=31536000; SameSite=Lax'
 
     router.push('/dashboard')
     router.refresh()

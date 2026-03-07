@@ -7,7 +7,7 @@ import Stripe from 'stripe'
  * Usar solo en API routes, Server Actions y server components.
  *
  * Modelo de pricing OpoRuta (ADR-0010 — Fuel Tank):
- *   STRIPE_PRICE_PACK     → Pack Oposición   34.99€  one-time  → +20 correcciones
+ *   STRIPE_PRICE_PACK     → Pack Oposición   49.99€  one-time  → +20 correcciones
  *   STRIPE_PRICE_RECARGA  → Recarga           8.99€  one-time  → +10 correcciones
  *   STRIPE_PRICE_FOUNDER  → Pack Fundador    24.99€  one-time  → +30 correcciones + is_founder badge
  *

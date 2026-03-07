@@ -5,6 +5,9 @@ import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { correctDesarrollo } from '@/lib/ai/correct-desarrollo'
 import { logger } from '@/lib/logger'
 
+// Vercel Hobby max: 60s. Sin esto, el default es 10s y la IA no llega a responder.
+export const maxDuration = 60
+
 /**
  * POST /api/ai/correct-desarrollo — §1.8.7
  *
@@ -114,7 +117,7 @@ export async function POST(request: NextRequest) {
           {
             id: 'pack',
             name: 'Pack Oposición',
-            price: '34,99€',
+            price: '49,99€',
             description: 'Tests ilimitados + 20 correcciones + simulacros',
             badge: 'Más valor',
           },
@@ -167,10 +170,14 @@ export async function POST(request: NextRequest) {
     })
 
     // ── 7b. Descontar crédito SOLO tras éxito (BUG-010 fix) ─────────────────
-    if (hasPaidCredit) {
-      void serviceSupabase.rpc('use_correction', { p_user_id: user.id })
-    } else {
-      void serviceSupabase.rpc('use_free_correction', { p_user_id: user.id })
+    try {
+      if (hasPaidCredit) {
+        await serviceSupabase.rpc('use_correction', { p_user_id: user.id })
+      } else {
+        await serviceSupabase.rpc('use_free_correction', { p_user_id: user.id })
+      }
+    } catch (creditErr) {
+      log.error({ err: creditErr, userId: user.id }, 'Failed to deduct correction credit')
     }
 
     log.info(
