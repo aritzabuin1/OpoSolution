@@ -5,6 +5,9 @@ import { SYSTEM_CAZATRAMPAS, buildCazaTrampasPrompt } from '@/lib/ai/prompts'
 import { CazaTrampasRawSchema } from '@/lib/ai/schemas'
 import { logger } from '@/lib/logger'
 
+// Vercel Hobby max: 60s. AI generation needs 15-40s.
+export const maxDuration = 60
+
 /**
  * GET /api/cron/generate-reto-diario — §2.20.3
  *
@@ -12,7 +15,7 @@ import { logger } from '@/lib/logger'
  * Idempotente: si ya existe un reto para hoy → return 200 sin acción.
  * Invocado por Vercel Cron (vercel.json: "5 0 * * *") a las 00:05 UTC.
  *
- * Vercel Hobby timeout = 10s → single attempt, 8s timeout.
+ * Vercel Hobby max: 60s → single attempt with comfortable timeout.
  * Si falla, el on-demand fallback (lib/ai/reto-diario.ts) genera cuando
  * el usuario visita /api/reto-diario.
  *

@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { logger } from '@/lib/logger'
 
+// Vercel Hobby max: 60s. On-demand reto generation uses AI (fallback when cron misses).
+export const maxDuration = 60
+
 /**
  * GET /api/reto-diario — §2.20.5
  *

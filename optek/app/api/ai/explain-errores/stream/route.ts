@@ -7,6 +7,9 @@ import { SYSTEM_EXPLAIN_ERRORES_STREAM } from '@/lib/ai/prompts'
 import { logger } from '@/lib/logger'
 import type { Pregunta } from '@/types/ai'
 
+// Vercel Hobby max: 60s. Streaming needs connection open for full response.
+export const maxDuration = 60
+
 /**
  * POST /api/ai/explain-errores/stream
  *

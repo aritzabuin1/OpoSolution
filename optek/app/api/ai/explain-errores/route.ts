@@ -7,6 +7,9 @@ import { SYSTEM_EXPLAIN_ERRORES } from '@/lib/ai/prompts'
 import { logger } from '@/lib/logger'
 import type { Pregunta, ExplicacionError } from '@/types/ai'
 
+// Vercel Hobby max: 60s. AI explanation needs 10-30s.
+export const maxDuration = 60
+
 /**
  * POST /api/ai/explain-errores — §2.6A.5
  *

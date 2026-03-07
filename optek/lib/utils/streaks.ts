@@ -18,7 +18,7 @@ export const LOGROS_CATALOG: Record<string, LogroInfo> = {
   primer_test: {
     tipo: 'primer_test',
     titulo: '¡Primer test!',
-    descripcion: 'Completaste tu primer test en OPTEK',
+    descripcion: 'Completaste tu primer test en OpoRuta',
     emoji: '🎯',
   },
   racha_3: {

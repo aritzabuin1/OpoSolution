@@ -10,7 +10,10 @@ import { FREE_TEMA_NUMEROS, FREE_LIMITS } from '@/lib/freemium'
 import type { Json } from '@/types/database'
 import type { Pregunta } from '@/types/ai'
 
-const GENERATE_TIMEOUT_MS = 60_000 // 60s safety net for entire generation flow
+// Vercel Hobby max: 60s. Sin esto, el default es 10s y la IA no llega a responder.
+export const maxDuration = 60
+
+const GENERATE_TIMEOUT_MS = 55_000 // 55s safety net (< maxDuration para respuesta limpia)
 
 /**
  * POST /api/ai/generate-test — §1.7.6

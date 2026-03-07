@@ -6,6 +6,9 @@ import { generateCazaTrampas } from '@/lib/ai/generate-cazatrampas'
 import { logger } from '@/lib/logger'
 import { FREE_LIMITS, PAID_LIMITS } from '@/lib/freemium'
 
+// Vercel Hobby max: 60s. AI generation needs 15-40s.
+export const maxDuration = 60
+
 /**
  * POST /api/cazatrampas/generate — §2.12.9, §2.12.17
  *

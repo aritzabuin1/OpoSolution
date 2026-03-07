@@ -1,5 +1,5 @@
 /**
- * Supabase server client — OPTEK
+ * Supabase server client — OpoRuta
  *
  * Usar en Server Components, API routes y proxy (middleware).
  *

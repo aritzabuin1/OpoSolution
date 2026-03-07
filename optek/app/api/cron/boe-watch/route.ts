@@ -3,6 +3,9 @@ import { watchAllLeyes } from '@/lib/ai/boe-watcher'
 import { runCostCheck, type CostCheckResult } from '@/lib/admin/cost-check'
 import { logger } from '@/lib/logger'
 
+// Vercel Hobby max: 60s. BOE fetch + cost check can take 10-30s.
+export const maxDuration = 60
+
 /**
  * GET /api/cron/boe-watch — §2.13.6 + §2.23 (piggyback)
  *
