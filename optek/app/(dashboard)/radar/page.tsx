@@ -113,9 +113,8 @@ export default async function RadarPage() {
             Radar en construcción
           </h3>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Los datos del radar se generan automáticamente a partir de los exámenes INAP históricos.
-            <br />
-            Aplicar la migration y ejecutar <code className="bg-gray-100 dark:bg-gray-700 px-1 rounded">pnpm build:radar</code> para poblarlo.
+            Los datos del Radar se generan automáticamente a partir de los exámenes INAP históricos.
+            Estamos procesando la información — vuelve a intentarlo en unos minutos.
           </p>
         </div>
       ) : (

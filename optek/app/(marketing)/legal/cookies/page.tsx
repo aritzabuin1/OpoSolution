@@ -58,7 +58,7 @@ export default function CookiesPage() {
                       <td className="py-1.5">7 días</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="py-1.5 pr-4 font-mono">optek_onboarded</td>
+                      <td className="py-1.5 pr-4 font-mono">oporuta_onboarded</td>
                       <td className="py-1.5 pr-4">Estado de onboarding completado</td>
                       <td className="py-1.5">1 año</td>
                     </tr>
@@ -84,7 +84,7 @@ export default function CookiesPage() {
                   </thead>
                   <tbody className="text-muted-foreground">
                     <tr>
-                      <td className="py-1.5 pr-4 font-mono">optek_cookie_consent</td>
+                      <td className="py-1.5 pr-4 font-mono">oporuta_cookie_consent</td>
                       <td className="py-1.5 pr-4">Tu elección sobre cookies</td>
                       <td className="py-1.5">Permanente (localStorage)</td>
                     </tr>

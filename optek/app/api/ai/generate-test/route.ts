@@ -328,7 +328,7 @@ export async function POST(request: NextRequest) {
 
       if (message.includes('frecuencias_articulos está vacía')) {
         return NextResponse.json(
-          { error: 'El Radar aún no tiene datos. El administrador debe ejecutar `pnpm build:radar`.' },
+          { error: 'El Radar aún no tiene datos. Estamos procesando la información, inténtalo más tarde.' },
           { status: 503 }
         )
       }
