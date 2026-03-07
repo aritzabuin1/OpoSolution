@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { logger } from '@/lib/logger'
 import { generateFlashcardFromError } from '@/lib/ai/flashcards'
 import type { Pregunta } from '@/types/ai'
@@ -54,9 +54,11 @@ export async function POST(
 
   const { respuestas, puntuacion } = parsed.data
 
-  // ── Cargar test (para tipo, tema_id y preguntas — necesarios para flashcards) ──
+  // Service client para bypass RLS (no hay UPDATE policy en tests_generados).
+  // Auth ya verificada arriba — el .eq('user_id') asegura ownership.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const sb = supabase as any
+  const sb = (await createServiceClient()) as any
+
   const { data: testData } = await sb
     .from('tests_generados')
     .select('id, tipo, tema_id, preguntas')
@@ -64,7 +66,7 @@ export async function POST(
     .eq('user_id', user.id)
     .single()
 
-  const { error } = await supabase
+  const { error } = await sb
     .from('tests_generados')
     .update({
       respuestas_usuario: respuestas,
