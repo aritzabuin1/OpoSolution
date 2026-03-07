@@ -1,9 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { BarChart3, BookOpen, Brain, CalendarCheck, ClipboardList, LayoutDashboard, Layers, Lock, Target, TrendingUp, Trophy, User } from 'lucide-react'
+import { usePathname, useRouter } from 'next/navigation'
+import { BarChart3, BookOpen, Brain, CalendarCheck, ClipboardList, LayoutDashboard, Layers, Lock, LogOut, Target, TrendingUp, Trophy, User } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { createClient } from '@/lib/supabase/client'
 import { NotificationBell } from '@/components/shared/NotificationBell'
 import { useIsPremium } from '@/lib/hooks/useIsPremium'
 
@@ -51,7 +52,14 @@ interface SidebarProps {
 
 export function Sidebar({ isAdmin = false }: SidebarProps) {
   const pathname = usePathname()
+  const router = useRouter()
   const isPremium = useIsPremium()
+
+  async function handleSignOut() {
+    const supabase = createClient()
+    await supabase.auth.signOut()
+    router.push('/')
+  }
 
   return (
     <aside aria-label="Barra lateral" className="flex h-full w-64 flex-col border-r bg-card px-4 py-6">
@@ -92,10 +100,19 @@ export function Sidebar({ isAdmin = false }: SidebarProps) {
         })}
       </nav>
 
-      {/* Notificaciones BOE — campana en sidebar desktop */}
-      <div className="mt-4 border-t pt-4 flex items-center gap-2 px-3">
-        <NotificationBell />
-        <span className="text-xs text-muted-foreground">Notificaciones</span>
+      {/* Notificaciones BOE + Cerrar sesion */}
+      <div className="mt-4 border-t pt-4 space-y-2 px-3">
+        <div className="flex items-center gap-2">
+          <NotificationBell />
+          <span className="text-xs text-muted-foreground">Notificaciones</span>
+        </div>
+        <button
+          onClick={handleSignOut}
+          className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors w-full"
+        >
+          <LogOut className="h-4 w-4" />
+          Cerrar sesion
+        </button>
       </div>
 
       {/* Admin link, visible solo para admins */}

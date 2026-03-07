@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
-import { BarChart3, Server, ArrowRight } from 'lucide-react'
+import { BarChart3, LineChart, Server, ArrowRight } from 'lucide-react'
 
 export default function AdminPage() {
   return (
@@ -12,7 +12,7 @@ export default function AdminPage() {
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-3">
         <Link href="/admin/economics" className="group">
           <Card className="h-full hover:border-primary/40 transition-colors">
             <CardContent className="pt-6 space-y-3">
@@ -26,6 +26,25 @@ export default function AdminPage() {
                 <h2 className="font-semibold text-lg">Unit Economics</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Ingresos vs costes IA, margen bruto, coste por usuario, embudo AARRR y revenue mensual.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </Link>
+
+        <Link href="/admin/analytics" className="group">
+          <Card className="h-full hover:border-primary/40 transition-colors">
+            <CardContent className="pt-6 space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                  <LineChart className="h-6 w-6 text-primary" />
+                </div>
+                <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+              </div>
+              <div>
+                <h2 className="font-semibold text-lg">Analytics</h2>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Conversion, churn, DAU, engagement por feature, funnel onboarding, feedback y mas.
                 </p>
               </div>
             </CardContent>

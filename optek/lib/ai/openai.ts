@@ -178,9 +178,9 @@ export async function callGPT(
     const latencyMs = Date.now() - start
     const tokensIn = response.usage?.prompt_tokens ?? 0
     const tokensOut = response.usage?.completion_tokens ?? 0
-    const costCents = Math.ceil(
-      (tokensIn * GPT_COST_PER_1K_INPUT_CENTS + tokensOut * GPT_COST_PER_1K_OUTPUT_CENTS) / 1000
-    )
+    const costCents = Math.round(
+      ((tokensIn * GPT_COST_PER_1K_INPUT_CENTS + tokensOut * GPT_COST_PER_1K_OUTPUT_CENTS) / 1000) * 100
+    ) / 100
 
     log.info({ endpoint, tokensIn, tokensOut, latencyMs, costCents }, 'GPT call OK')
     onSuccess()
@@ -245,9 +245,9 @@ export async function callGPTMini(
     const latencyMs = Date.now() - start
     const tokensIn = response.usage?.prompt_tokens ?? 0
     const tokensOut = response.usage?.completion_tokens ?? 0
-    const costCents = Math.ceil(
-      (tokensIn * GPT_MINI_COST_PER_1K_INPUT_CENTS + tokensOut * GPT_MINI_COST_PER_1K_OUTPUT_CENTS) / 1000
-    )
+    const costCents = Math.round(
+      ((tokensIn * GPT_MINI_COST_PER_1K_INPUT_CENTS + tokensOut * GPT_MINI_COST_PER_1K_OUTPUT_CENTS) / 1000) * 100
+    ) / 100
 
     log.info({ endpoint, tokensIn, tokensOut, latencyMs, costCents, model }, 'GPT-mini call OK')
     onSuccess()

@@ -19,7 +19,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { Suspense } from 'react'
-import { CalendarCheck, CheckCircle2, ClipboardCheck, FileText, Flame, Layers, Star, Target, TrendingUp, Trophy, Zap } from 'lucide-react'
+import { CalendarCheck, CheckCircle2, ClipboardCheck, Flame, Layers, LogOut, Star, Target, TrendingUp, Trophy, Zap } from 'lucide-react'
 
 export const metadata: Metadata = { title: 'Mi Dashboard' }
 import { createClient } from '@/lib/supabase/server'
@@ -48,13 +48,6 @@ interface TestRow {
   completado: boolean
   tema_id: string | null
   temas: { titulo: string; numero: number } | null
-}
-
-interface DesarrolloRow {
-  id: string
-  created_at: string
-  evaluacion: { nota: number } | null
-  temas: { titulo: string } | null
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -99,14 +92,6 @@ export default async function DashboardPage() {
     .eq('completado', true)
     .order('created_at', { ascending: false })
     .limit(100) as { data: TestRow[] | null }
-
-  // Desarrollos del usuario
-  const { data: desarrollos } = await supabase
-    .from('desarrollos')
-    .select('id, created_at, evaluacion, temas(titulo)')
-    .eq('user_id', user.id)
-    .order('created_at', { ascending: false })
-    .limit(20) as { data: DesarrolloRow[] | null }
 
   // Temas de la oposición (para el mapa)
   const { data: temas } = await supabase
@@ -199,30 +184,17 @@ export default async function DashboardPage() {
     }
   })
 
-  // Actividad reciente: mezcla de tests + correcciones, ordenados por fecha
+  // Actividad reciente (últimos tests)
   type Actividad =
     | { id: string; tipo: 'test'; fecha: string; titulo: string; puntuacion: number | null }
-    | { id: string; tipo: 'corrector'; fecha: string; titulo: string; nota: number | null }
 
-  const actividadTests: Actividad[] = testsCompletados.slice(0, 5).map((t) => ({
+  const actividades: Actividad[] = testsCompletados.slice(0, 10).map((t) => ({
     id: t.id,
     tipo: 'test',
     fecha: t.created_at,
     titulo: t.temas?.titulo ? `Tema ${t.temas.numero}: ${t.temas.titulo}` : 'Test',
     puntuacion: t.puntuacion,
   }))
-
-  const actividadCorrecciones: Actividad[] = (desarrollos ?? []).slice(0, 5).map((d) => ({
-    id: d.id,
-    tipo: 'corrector',
-    fecha: d.created_at,
-    titulo: d.temas?.titulo ?? 'Desarrollo',
-    nota: (d.evaluacion as { nota?: number } | null)?.nota ?? null,
-  }))
-
-  const actividades = [...actividadTests, ...actividadCorrecciones]
-    .sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime())
-    .slice(0, 10)
 
   // CTA contextual: tema con peor nota
   const temaConPeorNota = temaScores
@@ -381,9 +353,9 @@ export default async function DashboardPage() {
             </Link>
           </Button>
           <Button asChild variant="outline" size="sm">
-            <Link href="/corrector">
-              <FileText className="w-4 h-4 mr-2" />
-              Corregir desarrollo
+            <Link href="/simulacros">
+              <Trophy className="w-4 h-4 mr-2" />
+              Simulacros
             </Link>
           </Button>
         </div>

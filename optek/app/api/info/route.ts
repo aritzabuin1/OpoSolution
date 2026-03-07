@@ -31,7 +31,7 @@ export function GET() {
     },
     features: [
       'Tests tipo test con citas legales verificadas (verificación determinista, sin alucinaciones)',
-      'Corrector de desarrollos escritos con IA (3 dimensiones: fondo, forma, citas)',
+      'Explicacion socratica de errores: la IA te guia con preguntas para que descubras la respuesta correcta',
       'Simulacros oficiales INAP con penalización -1/3 (convocatorias 2018-2024)',
       'Flashcards con spaced repetition adaptado',
       'Modo Caza-Trampas: detecta errores sutiles inyectados en artículos legales reales',

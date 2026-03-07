@@ -1,32 +1,21 @@
 /**
  * components/dashboard/ActivityFeed.tsx — §1.13.4
  *
- * Lista cronológica de tests + correcciones recientes.
- *
+ * Lista cronológica de tests recientes.
  * Server Component.
  */
 
 import Link from 'next/link'
-import { ClipboardCheck, FileText } from 'lucide-react'
+import { ClipboardCheck } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-interface TestActividad {
+interface Actividad {
   id: string
   tipo: 'test'
   fecha: string
   titulo: string
   puntuacion: number | null
 }
-
-interface CorreccionActividad {
-  id: string
-  tipo: 'corrector'
-  fecha: string
-  titulo: string
-  nota: number | null
-}
-
-type Actividad = TestActividad | CorreccionActividad
 
 interface ActivityFeedProps {
   actividades: Actividad[]
@@ -59,44 +48,32 @@ export function ActivityFeed({ actividades }: ActivityFeedProps) {
 
   return (
     <div className="divide-y divide-border">
-      {actividades.map((act) => {
-        const isTest = act.tipo === 'test'
-        const valor = isTest ? (act as TestActividad).puntuacion : (act as CorreccionActividad).nota
-
-        return (
-          <div key={`${act.tipo}-${act.id}`} className="flex items-center gap-3 py-3">
-            <div
-              className={cn(
-                'shrink-0 w-8 h-8 rounded-lg flex items-center justify-center',
-                isTest ? 'bg-blue-100 text-blue-600' : 'bg-purple-100 text-purple-600'
-              )}
-            >
-              {isTest ? <ClipboardCheck className="w-4 h-4" /> : <FileText className="w-4 h-4" />}
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium truncate">{act.titulo}</p>
-              <p className="text-xs text-muted-foreground">{formatFecha(act.fecha)}</p>
-            </div>
-            <div className="shrink-0 text-right">
-              {valor !== null ? (
-                <p className={cn('text-sm font-bold', getPuntuacionColor(valor))}>
-                  {isTest ? `${Math.round(valor)}%` : `${valor.toFixed(1)}/10`}
-                </p>
-              ) : (
-                <p className="text-xs text-muted-foreground">—</p>
-              )}
-              {isTest && (
-                <Link
-                  href={`/tests/${act.id}/resultados`}
-                  className="text-[10px] text-primary hover:underline"
-                >
-                  Ver
-                </Link>
-              )}
-            </div>
+      {actividades.map((act) => (
+        <div key={`test-${act.id}`} className="flex items-center gap-3 py-3">
+          <div className="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center bg-blue-100 text-blue-600">
+            <ClipboardCheck className="w-4 h-4" />
           </div>
-        )
-      })}
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-medium truncate">{act.titulo}</p>
+            <p className="text-xs text-muted-foreground">{formatFecha(act.fecha)}</p>
+          </div>
+          <div className="shrink-0 text-right">
+            {act.puntuacion !== null ? (
+              <p className={cn('text-sm font-bold', getPuntuacionColor(act.puntuacion))}>
+                {Math.round(act.puntuacion)}%
+              </p>
+            ) : (
+              <p className="text-xs text-muted-foreground">—</p>
+            )}
+            <Link
+              href={`/tests/${act.id}/resultados`}
+              className="text-[10px] text-primary hover:underline"
+            >
+              Ver
+            </Link>
+          </div>
+        </div>
+      ))}
     </div>
   )
 }

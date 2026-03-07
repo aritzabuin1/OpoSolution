@@ -9,7 +9,7 @@
 import { redirect } from 'next/navigation'
 import { verifyAdmin } from '@/lib/admin/auth'
 import Link from 'next/link'
-import { BarChart3, Server, Settings } from 'lucide-react'
+import { BarChart3, LineChart, Server, Settings } from 'lucide-react'
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const { authorized, userId } = await verifyAdmin('(admin)/layout')
@@ -32,6 +32,13 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           >
             <BarChart3 className="h-3.5 w-3.5" />
             Economics
+          </Link>
+          <Link
+            href="/admin/analytics"
+            className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <LineChart className="h-3.5 w-3.5" />
+            Analytics
           </Link>
           <Link
             href="/admin/infrastructure"

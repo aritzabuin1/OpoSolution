@@ -182,9 +182,9 @@ export async function callClaude(
     const usage = response.usage as any
     const cacheCreation: number = usage.cache_creation_input_tokens ?? 0
     const cacheRead: number = usage.cache_read_input_tokens ?? 0
-    const costCents = Math.ceil(
-      (tokensIn * COST_PER_1K_INPUT_CENTS + tokensOut * COST_PER_1K_OUTPUT_CENTS) / 1000
-    )
+    const costCents = Math.round(
+      ((tokensIn * COST_PER_1K_INPUT_CENTS + tokensOut * COST_PER_1K_OUTPUT_CENTS) / 1000) * 100
+    ) / 100
 
     log.info({ endpoint, tokensIn, tokensOut, cacheCreation, cacheRead, latencyMs, costCents }, 'Claude call OK')
     onSuccess()
@@ -244,10 +244,9 @@ export async function callClaudeHaiku(
     const usage = response.usage as any
     const cacheCreation: number = usage.cache_creation_input_tokens ?? 0
     const cacheRead: number = usage.cache_read_input_tokens ?? 0
-    const costCents = Math.ceil(
-      (tokensIn * HAIKU_COST_PER_1K_INPUT_CENTS + tokensOut * HAIKU_COST_PER_1K_OUTPUT_CENTS) /
-        1000
-    )
+    const costCents = Math.round(
+      ((tokensIn * HAIKU_COST_PER_1K_INPUT_CENTS + tokensOut * HAIKU_COST_PER_1K_OUTPUT_CENTS) / 1000) * 100
+    ) / 100
 
     log.info({ endpoint, tokensIn, tokensOut, cacheCreation, cacheRead, latencyMs, costCents, model }, 'Haiku call OK')
     onSuccess()

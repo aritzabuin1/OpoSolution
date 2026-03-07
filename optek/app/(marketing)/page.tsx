@@ -24,7 +24,7 @@ import { unstable_cache } from 'next/cache'
 export const metadata: Metadata = {
   title: 'OpoRuta — El camino más corto hacia el aprobado',
   description:
-    'Prepara tu oposición con IA verificada. Tests personalizados, el Radar del Tribunal y corrección de desarrollos. Cada cita legal comprobada al artículo exacto.',
+    'Prepara tu oposición con IA verificada. Tests personalizados, simulacros INAP y el Radar del Tribunal. Cada cita legal comprobada al artículo exacto.',
   openGraph: {
     title: 'OpoRuta — El camino más corto hacia el aprobado',
     description:
