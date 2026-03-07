@@ -6,6 +6,7 @@ import { generateTest, generateTopFrecuentesTest } from '@/lib/ai/generate-test'
 import { generatePsicotecnicos } from '@/lib/psicotecnicos/index'
 import { withTimeout, TimeoutError } from '@/lib/utils/timeout'
 import { logger } from '@/lib/logger'
+import { FREE_TEMA_NUMEROS, FREE_LIMITS } from '@/lib/freemium'
 import type { Json } from '@/types/database'
 import type { Pregunta } from '@/types/ai'
 
@@ -96,6 +97,27 @@ export async function POST(request: NextRequest) {
     .eq('user_id', user.id)
 
   const hasPaidAccess = (purchaseCount ?? 0) > 0
+
+  // ── 3b. Free users: verificar que el tema está permitido ─────────────────
+  if (!hasPaidAccess && tipo === 'tema' && temaId) {
+    const { data: temaRow } = await serviceSupabase
+      .from('temas')
+      .select('numero')
+      .eq('id', temaId)
+      .single()
+
+    const temaNumero = temaRow?.numero ?? 0
+    if (!FREE_TEMA_NUMEROS.includes(temaNumero as typeof FREE_TEMA_NUMEROS[number])) {
+      log.info({ userId: user.id, temaId, temaNumero }, 'Free user tried locked tema — paywall')
+      return NextResponse.json(
+        {
+          error: 'Este tema requiere acceso Premium.',
+          code: 'PAYWALL_TESTS',
+        },
+        { status: 402 }
+      )
+    }
+  }
 
   // ── 4. Verificar créditos disponibles (SIN consumir aún — BUG-010) ────────
   //
@@ -188,6 +210,28 @@ export async function POST(request: NextRequest) {
 
   // ── 5A. Motor determinista de psicotécnicos (coste API €0) ────────────────
   if (tipo === 'psicotecnico') {
+    // Free users: límite de psicotécnicos
+    if (!hasPaidAccess) {
+      const { data: profilePsico } = await serviceSupabase
+        .from('profiles')
+        .select('free_psico_used')
+        .eq('id', user.id)
+        .single()
+
+      const freePsicoUsed = (profilePsico as { free_psico_used?: number } | null)?.free_psico_used ?? 0
+
+      if (freePsicoUsed >= FREE_LIMITS.psicotecnicos) {
+        log.info({ userId: user.id, freePsicoUsed }, 'Free psico quota exhausted — paywall')
+        return NextResponse.json(
+          {
+            error: `Has agotado tus ${FREE_LIMITS.psicotecnicos} tests psicotécnicos gratuitos.`,
+            code: 'PAYWALL_TESTS',
+          },
+          { status: 402 }
+        )
+      }
+    }
+
     try {
       const dificultadNum = dificultad === 'facil' ? 1 : dificultad === 'media' ? 2 : 3
 
@@ -224,9 +268,9 @@ export async function POST(request: NextRequest) {
         )
       }
 
-      // Consumir crédito (mismo comportamiento que tests IA)
+      // Consumir crédito psicotécnico (separado de tests IA)
       if (!hasPaidAccess) {
-        void serviceSupabase.rpc('use_free_test', { p_user_id: user.id })
+        void (serviceSupabase as any).rpc('use_free_psico', { p_user_id: user.id })
       }
 
       log.info({ userId: user.id, testId: testRow.id, preguntas: preguntas.length }, 'Test psicotécnico generado')

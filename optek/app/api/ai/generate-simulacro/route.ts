@@ -4,6 +4,7 @@ import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { generatePsicotecnicos } from '@/lib/psicotecnicos'
 import { logger } from '@/lib/logger'
+import { FREE_LIMITS, PAID_LIMITS } from '@/lib/freemium'
 import type { Json } from '@/types/database'
 import type { Pregunta } from '@/types/ai'
 
@@ -89,17 +90,45 @@ export async function POST(request: NextRequest) {
 
   const { examenId, anno, numPreguntas, incluirPsicotecnicos, dificultadPsico, modo } = parsed.data
 
-  // ── 3. Rate limit silencioso: 10 simulacros/día ───────────────────────────
-  const rateLimit = await checkRateLimit(user.id, 'simulacro-daily', 10, '24 h')
-  if (!rateLimit.success) {
-    log.warn({ userId: user.id }, '[generate-simulacro] daily limit reached')
-    return NextResponse.json(
-      { error: 'Has alcanzado el límite de 10 simulacros diarios. Vuelve mañana.' },
-      {
-        status: 429,
-        headers: { 'Retry-After': buildRetryAfterHeader(rateLimit.resetAt) },
-      }
-    )
+  // ── 3. Freemium gating: free = 1 simulacro lifetime, paid = 10/día ───────
+  const { count: comprasCount } = await supabase
+    .from('compras')
+    .select('id', { count: 'exact', head: true })
+    .eq('user_id', user.id)
+
+  const hasPaidAccess = (comprasCount ?? 0) > 0
+
+  if (hasPaidAccess) {
+    // Paid: rate limit silencioso anti-abuso
+    const rateLimit = await checkRateLimit(user.id, 'simulacro-daily', PAID_LIMITS.simulacrosDay, '24 h')
+    if (!rateLimit.success) {
+      log.warn({ userId: user.id }, '[generate-simulacro] paid daily limit reached')
+      return NextResponse.json(
+        { error: 'Has alcanzado el límite de 10 simulacros diarios. Vuelve mañana.' },
+        { status: 429, headers: { 'Retry-After': buildRetryAfterHeader(rateLimit.resetAt) } }
+      )
+    }
+  } else {
+    // Free: verificar cuota lifetime
+    const serviceSupabaseFree = await createServiceClient()
+    const { data: profileSim } = await serviceSupabaseFree
+      .from('profiles')
+      .select('free_simulacro_used')
+      .eq('id', user.id)
+      .single()
+
+    const freeSimUsed = (profileSim as { free_simulacro_used?: number } | null)?.free_simulacro_used ?? 0
+
+    if (freeSimUsed >= FREE_LIMITS.simulacros) {
+      log.info({ userId: user.id, freeSimUsed }, 'Free simulacro quota exhausted — paywall')
+      return NextResponse.json(
+        {
+          error: `Has agotado tu simulacro gratuito. Desbloquea simulacros ilimitados con el Pack Oposición.`,
+          code: 'PAYWALL_TESTS',
+        },
+        { status: 402 }
+      )
+    }
   }
 
   // ── 4. Buscar examen/s y cargar preguntas ────────────────────────────────
@@ -314,6 +343,11 @@ export async function POST(request: NextRequest) {
       { error: 'Error al guardar el simulacro. Por favor inténtalo de nuevo.' },
       { status: 500 }
     )
+  }
+
+  // Consumir crédito simulacro free tras éxito (BUG-010 pattern)
+  if (!hasPaidAccess) {
+    void (serviceSupabase as any).rpc('use_free_simulacro', { p_user_id: user.id })
   }
 
   log.info(

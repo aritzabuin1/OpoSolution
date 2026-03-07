@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { generateCazaTrampas } from '@/lib/ai/generate-cazatrampas'
 import { logger } from '@/lib/logger'
+import { FREE_LIMITS, PAID_LIMITS } from '@/lib/freemium'
 
 /**
  * POST /api/cazatrampas/generate — §2.12.9, §2.12.17
@@ -19,7 +20,7 @@ import { logger } from '@/lib/logger'
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
-const FREE_DAILY_LIMIT = 3
+const FREE_DAILY_LIMIT = FREE_LIMITS.cazatrampasDay
 
 const GenerateSchema = z.object({
   temaId: z.string().regex(UUID_REGEX).optional(),
@@ -58,7 +59,16 @@ export async function POST(request: NextRequest) {
 
   const isPaid = (comprasCount ?? 0) > 0
 
-  if (!isPaid) {
+  if (isPaid) {
+    // Paid: rate limit silencioso anti-abuso
+    const rateLimit = await checkRateLimit(user.id, 'cazatrampas-paid-daily', PAID_LIMITS.cazatrampasDay, '24 h')
+    if (!rateLimit.success) {
+      return NextResponse.json(
+        { error: 'Has alcanzado el límite diario. Vuelve mañana.' },
+        { status: 429, headers: { 'Retry-After': buildRetryAfterHeader(rateLimit.resetAt) } }
+      )
+    }
+  } else {
     const rateLimit = await checkRateLimit(user.id, 'cazatrampas-daily', FREE_DAILY_LIMIT, '24 h')
     if (!rateLimit.success) {
       return NextResponse.json(

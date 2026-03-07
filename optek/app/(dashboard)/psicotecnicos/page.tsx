@@ -18,6 +18,7 @@ import { Brain, ChevronRight, Loader2, Zap } from 'lucide-react'
 import { trackStartTrialOnce } from '@/lib/analytics/pixel'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { PaywallGate } from '@/components/shared/PaywallGate'
 import { cn } from '@/lib/utils'
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
@@ -67,6 +68,7 @@ export default function PsicotecnicosPage() {
   const [numPreguntas, setNumPreguntas] = useState<number>(10)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [showPaywall, setShowPaywall] = useState(false)
 
   async function handleGenerar() {
     setLoading(true)
@@ -84,6 +86,11 @@ export default function PsicotecnicosPage() {
       })
 
       const data = (await res.json()) as { id?: string; error?: string }
+
+      if (res.status === 402) {
+        setShowPaywall(true)
+        return
+      }
 
       if (!res.ok || !data.id) {
         setError(data.error ?? 'Error al generar el test. Inténtalo de nuevo.')
@@ -115,10 +122,10 @@ export default function PsicotecnicosPage() {
           </div>
         </div>
 
-        {/* Badge gratuito */}
+        {/* Badge info */}
         <div className="flex items-center gap-1.5 text-xs font-medium text-primary">
           <Zap className="h-3.5 w-3.5" />
-          <span>Generación instantánea · No consume créditos gratuitos</span>
+          <span>Generación instantánea · 3 tests gratuitos</span>
         </div>
       </div>
 
@@ -230,6 +237,12 @@ export default function PsicotecnicosPage() {
           </>
         )}
       </Button>
+
+      <PaywallGate
+        open={showPaywall}
+        onClose={() => setShowPaywall(false)}
+        code="PAYWALL_TESTS"
+      />
     </div>
   )
 }

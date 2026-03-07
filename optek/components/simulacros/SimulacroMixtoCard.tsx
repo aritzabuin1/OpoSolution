@@ -19,6 +19,7 @@ import { toast } from 'sonner'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { PaywallGate } from '@/components/shared/PaywallGate'
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
 
@@ -46,6 +47,7 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias }: Simulac
   const [incluirPsicotecnicos, setIncluirPsicotecnicos] = useState(false)
   const [dificultadPsico, setDificultadPsico] = useState<1 | 2 | 3>(2)
   const [isStarting, setIsStarting] = useState(false)
+  const [showPaywall, setShowPaywall] = useState(false)
 
   const isStartingRef = useRef(false)
 
@@ -73,6 +75,11 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias }: Simulac
       }
 
       const data = await res.json().catch(() => ({}))
+
+      if (res.status === 402) {
+        setShowPaywall(true)
+        return
+      }
 
       if (res.status === 429) {
         toast.error('Límite diario alcanzado', {
@@ -230,6 +237,12 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias }: Simulac
           {isStarting ? 'Iniciando...' : 'Iniciar Simulacro Mixto'}
         </Button>
       </CardContent>
+
+      <PaywallGate
+        open={showPaywall}
+        onClose={() => setShowPaywall(false)}
+        code="PAYWALL_TESTS"
+      />
     </Card>
   )
 }

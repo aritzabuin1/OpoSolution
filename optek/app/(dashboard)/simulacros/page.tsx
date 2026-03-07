@@ -97,12 +97,12 @@ export default async function SimulacrosPage() {
         <Trophy className="h-7 w-7 text-primary/60 shrink-0 mt-1" />
       </div>
 
-      {/* Aviso de simulacro gratis */}
-      <div className="flex items-start gap-2 rounded-lg bg-green-50 border border-green-100 px-4 py-3">
-        <Info className="h-4 w-4 text-green-600 shrink-0 mt-0.5" />
-        <p className="text-xs text-green-700">
-          Los simulacros son <strong>completamente gratuitos</strong>.
-          Practica sin límite con exámenes reales del INAP.
+      {/* Aviso de simulacro */}
+      <div className="flex items-start gap-2 rounded-lg bg-blue-50 border border-blue-100 px-4 py-3">
+        <Info className="h-4 w-4 text-blue-600 shrink-0 mt-0.5" />
+        <p className="text-xs text-blue-700">
+          Prueba un simulacro <strong>gratis</strong> con exámenes reales del INAP.
+          Simulacros ilimitados con el Pack Oposición.
         </p>
       </div>
 
@@ -154,7 +154,7 @@ export default async function SimulacrosPage() {
             {[
               { label: 'Convocatorias reales', desc: 'Exámenes oficiales del INAP' },
               { label: 'Penalización real', desc: 'Incorrecta descuenta 1/3' },
-              { label: '100% gratuito', desc: 'Sin créditos ni límites' },
+              { label: '1 simulacro gratis', desc: 'Ilimitados con Premium' },
             ].map((f) => (
               <div key={f.label} className="rounded-lg border p-3 space-y-1 opacity-60">
                 <p className="font-medium text-sm">{f.label}</p>

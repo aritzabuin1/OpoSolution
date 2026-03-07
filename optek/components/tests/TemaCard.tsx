@@ -49,6 +49,8 @@ export interface TemaCardProps {
   freeTestsUsed: number
   /** El tema tiene legislación indexada en el sistema RAG */
   hasLegislacion?: boolean
+  /** El tema está en la lista FREE_TEMA_NUMEROS (accesible para free users) */
+  isFreeAllowed?: boolean
 }
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
@@ -63,7 +65,7 @@ const NUM_PREGUNTAS_OPTIONS: NumPreguntas[] = [10, 20, 30]
 
 // ─── Componente ──────────────────────────────────────────────────────────────
 
-export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, hasLegislacion = false }: TemaCardProps) {
+export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, hasLegislacion = false, isFreeAllowed = true }: TemaCardProps) {
   const router = useRouter()
 
   const [dificultad, setDificultad] = useState<Dificultad>('media')
@@ -75,6 +77,8 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, hasLegislacion = 
   // Bloqueo síncrono — previene doble-click incluso antes del re-render
   const isGeneratingRef = useRef(false)
 
+  // Tema bloqueado: free user + tema no en lista FREE_TEMAS
+  const isLocked = !hasPaidAccess && !isFreeAllowed
   const freeLimitReached = !hasPaidAccess && freeTestsUsed >= 5
 
   async function handleGenerarTest() {
@@ -178,7 +182,7 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, hasLegislacion = 
           </div>
 
           <div className="flex shrink-0 items-center gap-2">
-            {hasLegislacion && (
+            {hasLegislacion && !isLocked && (
               <span
                 title="Legislación verificada indexada"
                 className="flex items-center gap-0.5 rounded-full bg-blue-50 px-1.5 py-0.5 text-[10px] font-medium text-blue-600 border border-blue-200"
@@ -187,7 +191,12 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, hasLegislacion = 
                 Ley
               </span>
             )}
-            {freeLimitReached ? (
+            {isLocked && (
+              <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-medium text-amber-700 border border-amber-200">
+                Premium
+              </span>
+            )}
+            {isLocked || freeLimitReached ? (
               <Lock className="h-4 w-4 text-amber-500" aria-label="Acceso bloqueado" />
             ) : (
               <Unlock className="h-4 w-4 text-green-500" aria-label="Acceso disponible" />
@@ -199,7 +208,28 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, hasLegislacion = 
         </button>
       </CardHeader>
 
-      {expanded && (
+      {expanded && isLocked && (
+        <CardContent className="pt-0">
+          <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 space-y-3">
+            <p className="text-sm font-medium text-amber-900">
+              Este tema requiere acceso Premium
+            </p>
+            <p className="text-xs text-amber-700">
+              Los temas 1 (Constitución), 11 (LPAC) y 17 (Word) son gratuitos.
+              Desbloquea los 28 temas con el Pack Oposición.
+            </p>
+            <Button
+              className="w-full"
+              size="sm"
+              onClick={() => setShowPaywall(true)}
+            >
+              Ver planes
+            </Button>
+          </div>
+        </CardContent>
+      )}
+
+      {expanded && !isLocked && (
         <CardContent className="space-y-4 pt-0">
           {/* Selector de dificultad */}
           <div className="space-y-1.5">

@@ -18,6 +18,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { FREE_TEMA_NUMEROS } from '@/lib/freemium'
 
 export const metadata: Metadata = { title: 'Tests de práctica' }
 import { TemaCard } from '@/components/tests/TemaCard'
@@ -182,6 +183,7 @@ export default async function TestsPage({
                 hasPaidAccess={hasPaidAccess}
                 freeTestsUsed={freeTestsUsed}
                 hasLegislacion={temasConLegislacion.has(tema.numero)}
+                isFreeAllowed={(FREE_TEMA_NUMEROS as readonly number[]).includes(tema.numero)}
               />
             ))}
           </div>
@@ -205,6 +207,7 @@ export default async function TestsPage({
                 hasPaidAccess={hasPaidAccess}
                 freeTestsUsed={freeTestsUsed}
                 hasLegislacion={temasConLegislacion.has(tema.numero)}
+                isFreeAllowed={(FREE_TEMA_NUMEROS as readonly number[]).includes(tema.numero)}
               />
             ))}
           </div>
