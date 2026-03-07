@@ -11,6 +11,7 @@ import {
   TrendingUp,
   ArrowRight,
   Users,
+  MessageCircleQuestion,
 } from 'lucide-react'
 import { createServiceClient } from '@/lib/supabase/server'
 import { FOUNDER_LIMIT } from '@/lib/stripe/client'
@@ -67,6 +68,12 @@ const steps = [
   },
   {
     num: '03',
+    icon: MessageCircleQuestion,
+    title: 'Entiende por qué fallaste',
+    desc: 'Cuando fallas, la IA no te da la respuesta: te hace la pregunta correcta para que llegues tú. Así el artículo se queda grabado.',
+  },
+  {
+    num: '04',
     icon: Zap,
     title: 'Ve cuánto has avanzado',
     desc: 'Tu dashboard mide tu progreso real: avance por tema, rachas, artículos débiles y si estás listo para el examen.',
@@ -81,6 +88,10 @@ const differentiators = [
   {
     title: 'Radar del Tribunal',
     desc: 'Análisis de frecuencias sobre exámenes INAP reales (2019–2024). Sabe exactamente qué artículos pregunta el tribunal y prioriza tu estudio.',
+  },
+  {
+    title: 'Corrección que enseña',
+    desc: 'Cuando fallas, la IA no te suelta la respuesta: te guía con preguntas para que descubras el artículo correcto tú mismo. Aprendes de verdad, no de memoria.',
   },
   {
     title: 'BOE Watcher activo',
@@ -358,7 +369,7 @@ export default async function LandingPage() {
               <span className="text-primary">paso a paso.</span>
             </h2>
           </div>
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map(({ num, icon: Icon, title, desc }) => (
               <div key={num} className="relative text-center">
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 mx-auto mb-4">
@@ -388,7 +399,7 @@ export default async function LandingPage() {
               Si alucina, lo descartamos antes de que te llegue.
             </p>
           </div>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {differentiators.map(({ title, desc }) => (
               <div key={title} className="rounded-xl bg-white/10 p-6">
                 <CheckCircle className="h-6 w-6 mb-3 opacity-80" />
