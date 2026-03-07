@@ -6,14 +6,14 @@ import type { EmailOtpType } from '@supabase/supabase-js'
 import { sendWelcomeEmail } from '@/lib/email/client'
 
 /**
- * GET /auth/confirm?token_hash=xxx&type=email|recovery|invite
+ * GET /auth/confirm?token_hash=xxx&type=email|recovery|magiclink
  *
- * Handles email link verification server-side (token hash flow).
- * Supabase email templates point here instead of the hosted /auth/v1/verify.
+ * Server-side email link verification (token hash flow).
+ * Supabase email templates point here with {{ .TokenHash }}.
  *
- * - type=email (signup confirmation) -> /dashboard
- * - type=recovery (password reset)  -> /reset-password
- * - type=invite                     -> /dashboard
+ * - type=email     -> /dashboard  (signup confirmation)
+ * - type=recovery  -> /reset-password
+ * - type=magiclink -> /dashboard
  */
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url)
@@ -24,6 +24,18 @@ export async function GET(request: NextRequest) {
   if (!tokenHash || !type) {
     return NextResponse.redirect(new URL('/auth/error?reason=missing_params', origin))
   }
+
+  // Determine redirect destination BEFORE verifying (needed for response object)
+  let redirectTo = '/dashboard'
+  if (next && next.startsWith('/') && !next.startsWith('//')) {
+    redirectTo = next
+  } else if (type === 'recovery') {
+    redirectTo = '/reset-password'
+  }
+
+  // Create the redirect response FIRST so we can set cookies on it
+  const redirectUrl = new URL(redirectTo, origin)
+  const response = NextResponse.redirect(redirectUrl)
 
   const cookieStore = await cookies()
 
@@ -36,9 +48,11 @@ export async function GET(request: NextRequest) {
           return cookieStore.getAll()
         },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) =>
+          cookiesToSet.forEach(({ name, value, options }) => {
+            // Set on BOTH cookieStore and response — critical for redirects
             cookieStore.set(name, value, options)
-          )
+            response.cookies.set(name, value, options)
+          })
         },
       },
     }
@@ -53,20 +67,12 @@ export async function GET(request: NextRequest) {
   // Welcome email for new signups
   if (type === 'email' && data.user) {
     const createdAt = new Date(data.user.created_at).getTime()
-    const isNewUser = Date.now() - createdAt < 10 * 60 * 1000 // 10 min window
+    const isNewUser = Date.now() - createdAt < 10 * 60 * 1000
     if (isNewUser && data.user.email) {
       const nombre = data.user.user_metadata?.full_name as string | undefined
       void sendWelcomeEmail({ to: data.user.email, nombre })
     }
   }
 
-  // Determine redirect destination
-  let redirectTo = '/dashboard'
-  if (next && next.startsWith('/') && !next.startsWith('//')) {
-    redirectTo = next
-  } else if (type === 'recovery') {
-    redirectTo = '/reset-password'
-  }
-
-  return NextResponse.redirect(new URL(redirectTo, origin))
+  return response
 }
