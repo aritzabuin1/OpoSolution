@@ -6,7 +6,7 @@ import { generateTest, generateTopFrecuentesTest } from '@/lib/ai/generate-test'
 import { generatePsicotecnicos } from '@/lib/psicotecnicos/index'
 import { withTimeout, TimeoutError } from '@/lib/utils/timeout'
 import { logger } from '@/lib/logger'
-import { FREE_TEMA_NUMEROS, FREE_LIMITS, checkPaidAccess } from '@/lib/freemium'
+import { FREE_TEMA_NUMEROS, FREE_LIMITS, checkPaidAccess, checkIsAdmin } from '@/lib/freemium'
 import type { Json } from '@/types/database'
 import type { Pregunta } from '@/types/ai'
 
@@ -93,7 +93,10 @@ export async function POST(request: NextRequest) {
 
   // ── 3. ¿Tiene acceso de pago? (compra OR is_founder) ──────────────────────
   const serviceSupabase = await createServiceClient()
-  const hasPaidAccess = await checkPaidAccess(serviceSupabase, user.id)
+  const [hasPaidAccess, isAdmin] = await Promise.all([
+    checkPaidAccess(serviceSupabase, user.id),
+    checkIsAdmin(serviceSupabase, user.id),
+  ])
 
   // ── 3b. Free users: verificar que el tema está permitido ─────────────────
   if (!hasPaidAccess && tipo === 'tema' && temaId) {
@@ -133,7 +136,8 @@ export async function POST(request: NextRequest) {
   // DDIA Reliability: el descuento ocurre SOLO tras confirmación de éxito.
   // Si la IA falla, el usuario no pierde su test gratuito.
   // Riesgo TOCTOU residual mínimo: mitigado por anti-spam (paso 3) + concurrencia (paso 4).
-  if (hasPaidAccess) {
+  // Admin skip rate limits (testing sin restricciones)
+  if (hasPaidAccess && !isAdmin) {
     // Usuarios de pago: límite silencioso 20 tests/día
     const rateLimit = await checkRateLimit(user.id, 'ai-generate-daily', 20, '24 h')
     if (!rateLimit.success) {
@@ -146,7 +150,7 @@ export async function POST(request: NextRequest) {
         }
       )
     }
-  } else {
+  } else if (!hasPaidAccess) {
     // Usuarios free: verificar cuota read-only (NO consumir crédito aún)
     const { data: profileFree } = await serviceSupabase
       .from('profiles')

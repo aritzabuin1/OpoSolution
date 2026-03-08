@@ -65,3 +65,21 @@ export async function checkPaidAccess(
 
   return hasPurchase || isFounder || isAdmin
 }
+
+/**
+ * Check if a user is admin (is_admin=true in profiles).
+ * Admin skips rate limits and has unrestricted access for testing.
+ */
+export async function checkIsAdmin(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  supabase: any,
+  userId: string
+): Promise<boolean> {
+  const { data } = await supabase
+    .from('profiles')
+    .select('is_admin')
+    .eq('id', userId)
+    .single()
+
+  return (data as { is_admin?: boolean } | null)?.is_admin === true
+}
