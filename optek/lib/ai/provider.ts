@@ -276,7 +276,7 @@ function callStreamProvider(
   }
   return callGPTStream(system, user, {
     ...toGPTOpts(opts),
-    model: opts.model ?? 'gpt-5-mini',
+    model: opts.model ?? 'gpt-4o-mini',
   })
 }
 

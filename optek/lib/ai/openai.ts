@@ -367,7 +367,7 @@ export async function callGPTStream(
   options: GPTCallOptions = {}
 ): Promise<ReadableStream<string>> {
   const {
-    model = GPT_MODEL,
+    model = GPT_MINI_MODEL,
     maxTokens = 2000,
     requestId,
     endpoint = 'unknown',

@@ -104,6 +104,15 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
         setStreamedText(accumulated)
       }
 
+      // Guard against empty response from AI
+      if (accumulated.trim().length === 0) {
+        toast.error('El análisis no generó contenido', {
+          description: 'Inténtalo de nuevo en unos segundos.',
+        })
+        setState('error')
+        return
+      }
+
       setState('done')
     } catch {
       toast.error('Error de conexión', {
