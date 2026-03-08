@@ -191,6 +191,95 @@ function AICard({ ai }: { ai: InfraMetrics['ai'] }) {
   )
 }
 
+function VercelCard({ vercel }: { vercel: InfraMetrics['vercel'] }) {
+  return (
+    <div className={`rounded-xl border p-5 ${statusBorder(vercel.status)}`}>
+      <div className="flex items-center justify-between mb-1">
+        <span className="font-semibold text-sm">Vercel Invocaciones</span>
+        <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${statusBorder(vercel.status)} ${statusText(vercel.status)}`}>
+          {semaphoreEmoji(vercel.status)} {vercel.status.toUpperCase()}
+        </span>
+      </div>
+      <p className="text-xs text-muted-foreground mb-2">Vercel Hobby: 100.000/mes</p>
+      <p className="text-2xl font-bold">
+        ~{vercel.estimatedInvocationsMonth.toLocaleString()} <span className="text-base font-normal text-muted-foreground">/ {vercel.limitInvocationsMonth.toLocaleString()}</span>
+      </p>
+      <p className="text-sm text-muted-foreground">{vercel.pct.toFixed(1)}% utilizado (estimado)</p>
+      <ProgressBar pct={vercel.pct} status={vercel.status} />
+      {vercel.status !== 'ok' && (
+        <p className={`mt-3 text-sm font-medium ${vercel.status === 'error' ? 'text-red-700' : 'text-amber-700'}`}>
+          {vercel.status === 'error' ? 'URGENTE:' : 'Considera'} Vercel Pro ($20/mes) para 1M invocaciones + 60s timeout
+        </p>
+      )}
+    </div>
+  )
+}
+
+function GrowthCard({ growth, auth }: { growth: InfraMetrics['growth']; auth: InfraMetrics['auth'] }) {
+  return (
+    <div className="rounded-xl border p-5 border-blue-200 bg-blue-50/30">
+      <div className="flex items-center justify-between mb-1">
+        <span className="font-semibold text-sm">Crecimiento</span>
+      </div>
+      <div className="grid grid-cols-2 gap-3 mt-2">
+        <div>
+          <p className="text-xs text-muted-foreground uppercase tracking-wide">Hoy</p>
+          <p className="text-xl font-bold">{growth.newUsersToday}</p>
+          <p className="text-xs text-muted-foreground">nuevos</p>
+        </div>
+        <div>
+          <p className="text-xs text-muted-foreground uppercase tracking-wide">Semana</p>
+          <p className="text-xl font-bold">{growth.newUsersWeek}</p>
+          <p className="text-xs text-muted-foreground">nuevos</p>
+        </div>
+        <div>
+          <p className="text-xs text-muted-foreground uppercase tracking-wide">Total</p>
+          <p className="text-xl font-bold">{growth.totalUsers}</p>
+          <p className="text-xs text-muted-foreground">usuarios</p>
+        </div>
+        <div>
+          <p className="text-xs text-muted-foreground uppercase tracking-wide">DAU</p>
+          <p className="text-xl font-bold">{growth.dauToday}</p>
+          <p className="text-xs text-muted-foreground">activos hoy</p>
+        </div>
+      </div>
+      {growth.daysToMauLimit !== null && growth.daysToMauLimit < 180 && (
+        <p className={`mt-3 text-sm font-medium ${growth.daysToMauLimit < 30 ? 'text-red-700' : growth.daysToMauLimit < 90 ? 'text-amber-700' : 'text-blue-700'}`}>
+          Proyeccion: limite MAU ({auth.limitMAU.toLocaleString()}) en ~{growth.daysToMauLimit} dias
+        </p>
+      )}
+    </div>
+  )
+}
+
+function BusinessCard({ business }: { business: InfraMetrics['business'] }) {
+  return (
+    <div className="rounded-xl border p-5 border-green-200 bg-green-50/30">
+      <div className="flex items-center justify-between mb-1">
+        <span className="font-semibold text-sm">Negocio</span>
+      </div>
+      <div className="grid grid-cols-2 gap-3 mt-2">
+        <div>
+          <p className="text-xs text-muted-foreground uppercase tracking-wide">Compras hoy</p>
+          <p className="text-xl font-bold">{business.purchasesToday}</p>
+        </div>
+        <div>
+          <p className="text-xs text-muted-foreground uppercase tracking-wide">Compras semana</p>
+          <p className="text-xl font-bold">{business.purchasesWeek}</p>
+        </div>
+        <div>
+          <p className="text-xs text-muted-foreground uppercase tracking-wide">Revenue semana</p>
+          <p className="text-xl font-bold">{business.revenueWeekEur.toFixed(2)} EUR</p>
+        </div>
+        <div>
+          <p className="text-xs text-muted-foreground uppercase tracking-wide">Conversion</p>
+          <p className="text-xl font-bold">{business.conversionRatePct.toFixed(1)}%</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default async function InfrastructurePage() {
@@ -216,7 +305,7 @@ export default async function InfrastructurePage() {
       <div>
         <h1 className="text-2xl font-bold">Infrastructure Monitor</h1>
         <p className="text-sm text-muted-foreground mt-1">
-          Semáforos de límites del plan Free. Datos actualizados hace {mins} min.
+          Datos actualizados hace {mins} min.
         </p>
       </div>
 
@@ -230,17 +319,26 @@ export default async function InfrastructurePage() {
         </span>
       </div>
 
-      {/* 2×2 grid */}
+      {/* Infra grid */}
+      <h2 className="text-lg font-semibold">Free Tier Limits</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <DBCard db={metrics.db} />
         <AuthCard auth={metrics.auth} />
         <UpstashCard upstash={metrics.upstash} />
+        <VercelCard vercel={metrics.vercel} />
         <AICard ai={metrics.ai} />
       </div>
 
+      {/* Growth + Business */}
+      <h2 className="text-lg font-semibold">Crecimiento y Negocio</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <GrowthCard growth={metrics.growth} auth={metrics.auth} />
+        <BusinessCard business={metrics.business} />
+      </div>
+
       <p className="text-xs text-muted-foreground">
-        * Datos de Upstash son estimados (DAU × 3 cmd/usuario). Los costes IA se calculan desde api_usage_log.
-        El tamaño de BD y MAU son valores reales desde Supabase.
+        * Vercel y Upstash son estimaciones. Costes IA desde api_usage_log.
+        BD y MAU son valores reales desde Supabase. Alertas se envian a aritzabuin1@gmail.com.
       </p>
     </div>
   )

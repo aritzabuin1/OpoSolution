@@ -27,18 +27,19 @@ vi.mock('@/lib/supabase/server', () => ({
 
 // ─── Helpers de mock ──────────────────────────────────────────────────────────
 
-/** Query que devuelve count (profiles) */
+/** Query que devuelve count (profiles, compras, api_usage_log count) */
 function mockCountQuery(count: number) {
   const chain = {
     select: vi.fn().mockReturnThis(),
     eq: vi.fn().mockReturnThis(),
+    gte: vi.fn().mockReturnThis(),
+    lt: vi.fn().mockReturnThis(),
+    lte: vi.fn().mockReturnThis(),
   }
   const result = { count, data: null, error: null }
   Object.assign(chain, {
     then: (resolve: (v: typeof result) => void) => resolve(result),
   })
-  chain.select.mockReturnValue(chain)
-  chain.eq.mockReturnValue(chain)
   return chain
 }
 
@@ -71,15 +72,29 @@ function setupHappyPath({
   costTodayCents = 100,              // €1 hoy
   costWeekCents = 500,               // €5 semana
   costMonthCents = 2000,             // €20 mes → 'ok'
+  apiCallsMonth = 500,               // Vercel: 500 * 3 = 1.500 → 'ok'
+  newUsersToday = 2,
+  newUsersWeek = 10,
+  newUsersPrevWeek = 8,
+  purchasesToday = 0,
+  purchasesWeek: purchasesWeekData = [] as { amount_paid: number }[],
+  paidUsers = [] as { user_id: string }[],
 } = {}) {
   mockRpc.mockResolvedValue({ data: dbBytes, error: null })
   mockFrom
-    .mockReturnValueOnce(mockCountQuery(registrados))                 // profiles count
-    .mockReturnValueOnce(mockRowsQuery(mauUsers.map(u => ({ user_id: u }))))   // mau 30d
-    .mockReturnValueOnce(mockRowsQuery(dauUsers.map(u => ({ user_id: u }))))   // dau 24h
-    .mockReturnValueOnce(mockRowsQuery([{ cost_estimated_cents: costTodayCents }]))  // ai today
-    .mockReturnValueOnce(mockRowsQuery([{ cost_estimated_cents: costWeekCents }]))   // ai week
-    .mockReturnValueOnce(mockRowsQuery([{ cost_estimated_cents: costMonthCents }]))  // ai month
+    .mockReturnValueOnce(mockCountQuery(registrados))                             // 1. profiles count
+    .mockReturnValueOnce(mockRowsQuery(mauUsers.map(u => ({ user_id: u }))))     // 2. mau 30d
+    .mockReturnValueOnce(mockRowsQuery(dauUsers.map(u => ({ user_id: u }))))     // 3. dau 24h
+    .mockReturnValueOnce(mockRowsQuery([{ cost_estimated_cents: costTodayCents }])) // 4. ai today
+    .mockReturnValueOnce(mockRowsQuery([{ cost_estimated_cents: costWeekCents }]))  // 5. ai week
+    .mockReturnValueOnce(mockRowsQuery([{ cost_estimated_cents: costMonthCents }])) // 6. ai month
+    .mockReturnValueOnce(mockCountQuery(apiCallsMonth))                           // 7. api calls month (vercel)
+    .mockReturnValueOnce(mockCountQuery(newUsersToday))                           // 8. new users today
+    .mockReturnValueOnce(mockCountQuery(newUsersWeek))                            // 9. new users week
+    .mockReturnValueOnce(mockCountQuery(newUsersPrevWeek))                        // 10. new users prev week
+    .mockReturnValueOnce(mockCountQuery(purchasesToday))                          // 11. purchases today
+    .mockReturnValueOnce(mockRowsQuery(purchasesWeekData))                        // 12. purchases week
+    .mockReturnValueOnce(mockRowsQuery(paidUsers))                                // 13. paid users
 }
 
 // ─── Imports bajo test (después de los mocks) ──────────────────────────────────
@@ -232,16 +247,7 @@ describe('getInfraMetrics — AI costs', () => {
   })
 
   it('retorna cero cuando no hay logs de IA', async () => {
-    // Sobreescribir mockFrom para costes vacíos
-    mockRpc.mockResolvedValue({ data: 50 * 1024 * 1024, error: null })
-    mockFrom
-      .mockReturnValueOnce(mockCountQuery(10))
-      .mockReturnValueOnce(mockRowsQuery([{ user_id: 'u1' }]))
-      .mockReturnValueOnce(mockRowsQuery([{ user_id: 'u1' }]))
-      .mockReturnValueOnce(mockRowsQuery([]))   // today: vacío
-      .mockReturnValueOnce(mockRowsQuery([]))   // week: vacío
-      .mockReturnValueOnce(mockRowsQuery([]))   // month: vacío
-
+    setupHappyPath({ costTodayCents: 0, costWeekCents: 0, costMonthCents: 0 })
     const m = await getInfraMetrics()
     expect(m.ai.costsToday).toBe(0)
     expect(m.ai.costsWeek).toBe(0)
@@ -288,5 +294,72 @@ describe('getInfraMetrics — semaphore (worst status)', () => {
     setupHappyPath()
     const m = await getInfraMetrics()
     expect(m.cachedAt).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/)
+  })
+})
+
+describe('getInfraMetrics — Vercel invocations', () => {
+  beforeEach(() => vi.clearAllMocks())
+
+  it('status ok cuando invocaciones estimadas < 70k', async () => {
+    setupHappyPath({ apiCallsMonth: 10_000 }) // 10k * 3 = 30k
+    const m = await getInfraMetrics()
+    expect(m.vercel.status).toBe('ok')
+    expect(m.vercel.estimatedInvocationsMonth).toBe(30_000)
+  })
+
+  it('status warning cuando invocaciones estimadas >= 70k', async () => {
+    setupHappyPath({ apiCallsMonth: 25_000 }) // 25k * 3 = 75k
+    const m = await getInfraMetrics()
+    expect(m.vercel.status).toBe('warning')
+  })
+
+  it('status error cuando invocaciones estimadas >= 90k', async () => {
+    setupHappyPath({ apiCallsMonth: 31_000 }) // 31k * 3 = 93k
+    const m = await getInfraMetrics()
+    expect(m.vercel.status).toBe('error')
+  })
+})
+
+describe('getInfraMetrics — Growth', () => {
+  beforeEach(() => vi.clearAllMocks())
+
+  it('expone metricas de crecimiento', async () => {
+    setupHappyPath({ newUsersToday: 5, newUsersWeek: 20, registrados: 200 })
+    const m = await getInfraMetrics()
+    expect(m.growth.newUsersToday).toBe(5)
+    expect(m.growth.newUsersWeek).toBe(20)
+    expect(m.growth.totalUsers).toBe(200)
+  })
+
+  it('calcula daysToMauLimit cuando hay crecimiento', async () => {
+    setupHappyPath({ newUsersWeek: 70, mauUsers: ['u1', 'u2'] }) // 10/day, 49998 remaining
+    const m = await getInfraMetrics()
+    expect(m.growth.daysToMauLimit).toBeGreaterThan(0)
+    expect(m.growth.daysToMauLimit).toBeLessThan(6000)
+  })
+})
+
+describe('getInfraMetrics — Business', () => {
+  beforeEach(() => vi.clearAllMocks())
+
+  it('expone metricas de negocio', async () => {
+    setupHappyPath({
+      purchasesToday: 2,
+      purchasesWeek: [{ amount_paid: 4999 }, { amount_paid: 899 }],
+      paidUsers: [{ user_id: 'u1' }],
+      registrados: 50,
+    })
+    const m = await getInfraMetrics()
+    expect(m.business.purchasesToday).toBe(2)
+    expect(m.business.purchasesWeek).toBe(2)
+    expect(m.business.revenueWeekEur).toBeCloseTo(58.98, 1)
+    expect(m.business.conversionRatePct).toBe(2) // 1/50 = 2%
+  })
+
+  it('conversion 0% cuando no hay compras', async () => {
+    setupHappyPath({ registrados: 30 })
+    const m = await getInfraMetrics()
+    expect(m.business.conversionRatePct).toBe(0)
+    expect(m.business.revenueWeekEur).toBe(0)
   })
 })

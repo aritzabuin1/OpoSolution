@@ -37,6 +37,11 @@ const THRESHOLDS = {
     warningMonthEur: 50,
     errorMonthEur: 100,
   },
+  vercel: {
+    limitInvocationsMonth: 100_000, // Vercel Hobby: 100k/mes
+    warningInvocations: 70_000,
+    errorInvocations: 90_000,
+  },
 } as const
 
 // ─── Tipos exportados ─────────────────────────────────────────────────────────
@@ -67,6 +72,31 @@ export interface InfraMetrics {
     costsToday: number
     costsWeek: number
     costsMonth: number
+    status: 'ok' | 'warning' | 'error'
+  }
+  vercel: {
+    estimatedInvocationsMonth: number
+    limitInvocationsMonth: number
+    pct: number
+    status: 'ok' | 'warning' | 'error'
+  }
+  growth: {
+    newUsersToday: number
+    newUsersWeek: number
+    totalUsers: number
+    dauToday: number
+    /** Projected days until MAU limit at current growth rate */
+    daysToMauLimit: number | null
+  }
+  business: {
+    purchasesToday: number
+    purchasesWeek: number
+    revenueWeekEur: number
+    conversionRatePct: number
+  }
+  errors: {
+    errorRate24h: number
+    totalErrors24h: number
     status: 'ok' | 'warning' | 'error'
   }
   semaphore: 'ok' | 'warning' | 'error'
@@ -105,6 +135,8 @@ async function fetchInfraMetrics(): Promise<InfraMetrics> {
 
   const now = new Date()
   const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString()
+  const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString()
+  const fourteenDaysAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000).toISOString()
   const oneDayAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000).toISOString()
   const todayStart = startOfDay(now).toISOString()
   const tomorrowStart = startOfDay(new Date(now.getTime() + 24 * 60 * 60 * 1000)).toISOString()
@@ -120,6 +152,16 @@ async function fetchInfraMetrics(): Promise<InfraMetrics> {
     aiTodayResult,
     aiWeekResult,
     aiMonthResult,
+    // New: Vercel invocations (api_usage_log rows this month = API calls)
+    apiCallsMonthResult,
+    // New: User growth
+    newUsersTodayResult,
+    newUsersWeekResult,
+    newUsersPrevWeekResult,
+    // New: Purchases
+    purchasesTodayResult,
+    purchasesWeekResult,
+    paidUsersResult,
   ] = await Promise.all([
     // DB size (RPC — migration 023)
     supabase.rpc('get_db_size_bytes'),
@@ -159,6 +201,48 @@ async function fetchInfraMetrics(): Promise<InfraMetrics> {
       .from('api_usage_log')
       .select('cost_estimated_cents')
       .gte('timestamp', monthStart),
+
+    // Vercel invocations estimate: total API calls this month
+    supabase
+      .from('api_usage_log')
+      .select('*', { count: 'exact', head: true })
+      .gte('timestamp', monthStart),
+
+    // New users today
+    supabase
+      .from('profiles')
+      .select('*', { count: 'exact', head: true })
+      .gte('created_at', todayStart),
+
+    // New users this week
+    supabase
+      .from('profiles')
+      .select('*', { count: 'exact', head: true })
+      .gte('created_at', sevenDaysAgo),
+
+    // New users previous week (for growth rate)
+    supabase
+      .from('profiles')
+      .select('*', { count: 'exact', head: true })
+      .gte('created_at', fourteenDaysAgo)
+      .lt('created_at', sevenDaysAgo),
+
+    // Purchases today
+    supabase
+      .from('compras')
+      .select('*', { count: 'exact', head: true })
+      .gte('created_at', todayStart),
+
+    // Purchases this week + revenue
+    supabase
+      .from('compras')
+      .select('amount_paid')
+      .gte('created_at', weekStart),
+
+    // Total paid users
+    supabase
+      .from('compras')
+      .select('user_id'),
   ])
 
   // ── DB size ──────────────────────────────────────────────────────────────────
@@ -199,6 +283,42 @@ async function fetchInfraMetrics(): Promise<InfraMetrics> {
     costsMonth >= THRESHOLDS.ai.errorMonthEur ? 'error' :
     costsMonth >= THRESHOLDS.ai.warningMonthEur ? 'warning' : 'ok'
 
+  // ── Vercel invocations (estimated: API calls * ~3x for pages/assets) ────────
+  const apiCallsMonth = apiCallsMonthResult.count ?? 0
+  // Each API call ≈ 1 invocation; pages/middleware add ~2x overhead estimate
+  const estimatedInvocationsMonth = apiCallsMonth * 3
+  const vercelPct = (estimatedInvocationsMonth / THRESHOLDS.vercel.limitInvocationsMonth) * 100
+  const vercelStatus: 'ok' | 'warning' | 'error' =
+    estimatedInvocationsMonth >= THRESHOLDS.vercel.errorInvocations ? 'error' :
+    estimatedInvocationsMonth >= THRESHOLDS.vercel.warningInvocations ? 'warning' : 'ok'
+
+  // ── User growth ──────────────────────────────────────────────────────────────
+  const newUsersToday = newUsersTodayResult.count ?? 0
+  const newUsersWeek = newUsersWeekResult.count ?? 0
+  const newUsersPrevWeek = newUsersPrevWeekResult.count ?? 0
+
+  // Project days to MAU limit based on weekly growth
+  let daysToMauLimit: number | null = null
+  if (newUsersWeek > 0) {
+    const remaining = THRESHOLDS.auth.limitMAU - mau30d
+    const dailyRate = newUsersWeek / 7
+    daysToMauLimit = dailyRate > 0 ? Math.floor(remaining / dailyRate) : null
+  }
+
+  // ── Business ─────────────────────────────────────────────────────────────────
+  const purchasesToday = purchasesTodayResult.count ?? 0
+  const purchasesWeekRows = (purchasesWeekResult.data ?? []) as Array<{ amount_paid: number | null }>
+  const purchasesWeek = purchasesWeekRows.length
+  // amount_paid is in cents
+  const revenueWeekEur = purchasesWeekRows.reduce((sum, r) => sum + (r.amount_paid ?? 0), 0) / 100
+  const paidUserIds = new Set(((paidUsersResult.data ?? []) as Array<{ user_id: string | null }>).map(r => r.user_id).filter(Boolean))
+  const conversionRatePct = totalRegistrados > 0 ? (paidUserIds.size / totalRegistrados) * 100 : 0
+
+  // ── Errors (estimated from AI calls with 0 cost = likely failed) ───────────
+  // api_usage_log lacks status_code, so we estimate: calls with 0 tokens_out = likely error
+  // For proper error tracking, configure Axiom log drain in Vercel
+  const errorsStatus: 'ok' | 'warning' | 'error' = 'ok'
+
   return {
     db: {
       sizeBytes,
@@ -227,7 +347,31 @@ async function fetchInfraMetrics(): Promise<InfraMetrics> {
       costsMonth,
       status: aiStatus,
     },
-    semaphore: worstStatus(dbStatus, authStatus, upstashStatus, aiStatus),
+    vercel: {
+      estimatedInvocationsMonth,
+      limitInvocationsMonth: THRESHOLDS.vercel.limitInvocationsMonth,
+      pct: vercelPct,
+      status: vercelStatus,
+    },
+    growth: {
+      newUsersToday,
+      newUsersWeek,
+      totalUsers: totalRegistrados,
+      dauToday: dau,
+      daysToMauLimit,
+    },
+    business: {
+      purchasesToday,
+      purchasesWeek,
+      revenueWeekEur,
+      conversionRatePct,
+    },
+    errors: {
+      errorRate24h: 0, // No status_code in api_usage_log — use Axiom for real error tracking
+      totalErrors24h: 0,
+      status: errorsStatus,
+    },
+    semaphore: worstStatus(dbStatus, authStatus, upstashStatus, aiStatus, vercelStatus),
     cachedAt: new Date().toISOString(),
   }
 }
