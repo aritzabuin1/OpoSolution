@@ -241,22 +241,22 @@ function callJSON<T>(
 export async function callAIStream(
   systemPrompt: string,
   userPrompt: string,
-  options: AICallOptions & { model?: string } = {}
+  options: AICallOptions & { useHeavyModel?: boolean } = {}
 ): Promise<ReadableStream<string>> {
-  const { model: _model, ...aiOpts } = options
+  const { useHeavyModel, ...aiOpts } = options
   const log = aiOpts.requestId ? logger.child({ requestId: aiOpts.requestId }) : logger
 
   if (!isProviderAvailable(PRIMARY) || isProviderCircuitOpen(PRIMARY)) {
     log.warn({ primary: PRIMARY, secondary: SECONDARY }, '[provider] primary unavailable → fallback (stream)')
-    return callStreamProvider(SECONDARY, systemPrompt, userPrompt, options)
+    return callStreamProvider(SECONDARY, systemPrompt, userPrompt, aiOpts, useHeavyModel)
   }
 
   try {
-    return await callStreamProvider(PRIMARY, systemPrompt, userPrompt, options)
+    return await callStreamProvider(PRIMARY, systemPrompt, userPrompt, aiOpts, useHeavyModel)
   } catch (err) {
     if (isCircuitOpenError(err)) {
       log.warn({ primary: PRIMARY, secondary: SECONDARY }, '[provider] primary failed → fallback (stream)')
-      return callStreamProvider(SECONDARY, systemPrompt, userPrompt, options)
+      return callStreamProvider(SECONDARY, systemPrompt, userPrompt, aiOpts, useHeavyModel)
     }
     throw err
   }
@@ -266,17 +266,18 @@ function callStreamProvider(
   provider: AIProvider,
   system: string,
   user: string,
-  opts: AICallOptions & { model?: string }
+  opts: AICallOptions,
+  useHeavy?: boolean
 ): Promise<ReadableStream<string>> {
   if (provider === 'anthropic') {
     return callClaudeStream(system, user, {
       ...toClaudeOpts(opts),
-      model: opts.model ?? 'claude-haiku-4-5-20251001',
+      model: useHeavy ? 'claude-sonnet-4-6' : 'claude-haiku-4-5-20251001',
     })
   }
   return callGPTStream(system, user, {
     ...toGPTOpts(opts),
-    model: opts.model ?? 'gpt-4o-mini',
+    model: useHeavy ? 'gpt-5' : 'gpt-4o-mini',
   })
 }
 

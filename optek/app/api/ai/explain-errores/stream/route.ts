@@ -141,6 +141,7 @@ export async function POST(request: NextRequest) {
       maxTokens: 2000,
       requestId,
       endpoint: 'explain-errores-stream',
+      useHeavyModel: true, // Paid feature — use Sonnet/GPT-5 for quality
     })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Error desconocido'

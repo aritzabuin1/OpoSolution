@@ -192,6 +192,7 @@ export async function POST(request: NextRequest) {
       maxTokens: 2000,
       requestId,
       endpoint: 'generate-roadmap',
+      // Mini model: roadmap follows a structured template with user data, no deep reasoning needed
     })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Error desconocido'
