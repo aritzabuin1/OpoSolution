@@ -37,6 +37,7 @@ REGLAS OBLIGATORIAS:
 7. Los plazos, números y porcentajes deben ser EXACTAMENTE los del texto legal.
 8. CRÍTICO: Genera EXACTAMENTE el número de preguntas indicado. Ni una más, ni una menos.
 9. El campo "correcta" DEBE ser un número entero: 0, 1, 2 o 3 (no una cadena de texto).
+10. NUNCA hagas referencia a tablas, imágenes, esquemas, gráficos ni elementos visuales. El usuario solo ve texto.
 
 FORMATO DE RESPUESTA (JSON estricto):
 {
@@ -79,6 +80,7 @@ REGLAS OBLIGATORIAS:
 5. Responde ÚNICAMENTE con JSON válido siguiendo el schema indicado.
 6. NO incluyas el campo "cita" — no aplica para preguntas de ofimática.
 7. Nivel de dificultad BÁSICO: operaciones cotidianas de oficina, no funcionalidades avanzadas.
+8. NUNCA hagas referencia a tablas, imágenes, esquemas, gráficos ni elementos visuales. El usuario solo ve texto.
 
 FORMATO DE RESPUESTA (JSON estricto, SIN campo "cita"):
 {

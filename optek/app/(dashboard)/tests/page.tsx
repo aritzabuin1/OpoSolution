@@ -95,9 +95,10 @@ export default async function TestsPage({
   if (!user) redirect('/login')
 
   // ── Fetch en paralelo ─────────────────────────────────────────────────────
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [temasResult, profileResult, comprasResult, testsResult, legislacionResult] = await Promise.all([
     supabase.from('temas').select('id, numero, titulo, descripcion').order('numero'),
-    supabase.from('profiles').select('free_tests_used').eq('id', user.id).single(),
+    (supabase as any).from('profiles').select('free_tests_used, is_admin').eq('id', user.id).single(),
     supabase
       .from('compras')
       .select('id', { count: 'exact', head: true })
@@ -116,8 +117,9 @@ export default async function TestsPage({
   ])
 
   const temas = temasResult.data ?? []
-  const freeTestsUsed = profileResult.data?.free_tests_used ?? 0
-  const hasPaidAccess = (comprasResult.count ?? 0) > 0
+  const prof = profileResult.data as { free_tests_used?: number; is_admin?: boolean } | null
+  const freeTestsUsed = prof?.free_tests_used ?? 0
+  const hasPaidAccess = (comprasResult.count ?? 0) > 0 || prof?.is_admin === true
   const testsAnteriores = (testsResult.data ?? []) as TestAnterior[]
 
   // Construir Set de números de tema con legislación indexada

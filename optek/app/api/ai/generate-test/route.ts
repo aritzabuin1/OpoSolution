@@ -394,6 +394,14 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Error de contexto vacío (tema sin legislación/conocimiento indexado)
+    if (message.includes('No hay contenido técnico') || message.includes('No hay legislación indexada')) {
+      return NextResponse.json(
+        { error: message },
+        { status: 422 }
+      )
+    }
+
     return NextResponse.json(
       { error: 'Error al generar el test. Por favor inténtalo de nuevo.' },
       { status: 500 }

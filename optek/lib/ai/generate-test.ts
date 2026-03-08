@@ -59,9 +59,9 @@ interface ChildLogger {
 export const PROMPT_VERSION = '2.1.0'
 
 const MAX_RETRIES    = 1
-// Time budget: stop retrying before hitting Vercel's maxDuration (60s)
-// OpenAI timeout = 25s, so first round ≈ 28s (RAG+AI+verify). Budget allows partial retry.
-const TIME_BUDGET_MS = 50_000
+// Time budget: stop retrying before hitting Vercel's maxDuration (60s).
+// If first call takes >35s, don't retry — there's no time left (55s outer timeout).
+const TIME_BUDGET_MS = 35_000
 // Modelo seleccionado automáticamente por provider.ts (mini/light por defecto)
 
 // ─── Tipos públicos ───────────────────────────────────────────────────────────
@@ -105,6 +105,17 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
     { temaId, tokensEstimados: ctx.tokensEstimados, strategy: ctx.strategy, temaTitulo, esBloqueII, temaNumero },
     '[generateTest] context built'
   )
+
+  // ── 1b. Guard: si no hay contexto, no generar (evita meta-preguntas) ────
+  if (ctx.articulos.length === 0) {
+    throw new Error(
+      esBloqueII
+        ? `No hay contenido técnico disponible para "${temaTitulo}". ` +
+          'La base de conocimiento de ofimática aún no cubre este tema.'
+        : `No hay legislación indexada para "${temaTitulo}". ` +
+          'Prueba con otro tema mientras completamos la base de datos.'
+    )
+  }
 
   // ── 2. Generación + verificación ─────────────────────────────────────────
   //
@@ -259,9 +270,15 @@ async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Prom
     })
 
     // 2. Batch-fetch all referenced articles in ONE query
-    const batchResults = allCitations.length > 0
-      ? await batchVerifyCitations(allCitations)
-      : new Map()
+    let batchResults: Map<string, { verificada: boolean; textoEnBD?: string }>
+    try {
+      batchResults = allCitations.length > 0
+        ? await batchVerifyCitations(allCitations)
+        : new Map()
+    } catch (err) {
+      log.warn({ err, citations: allCitations.length }, '[verification] batch query failed — accepting all')
+      batchResults = new Map()
+    }
 
     // 3. Verify each question in-memory
     const verified: Pregunta[] = []

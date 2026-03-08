@@ -205,7 +205,8 @@ export async function callGPT(
   } catch (err) {
     const latencyMs = Date.now() - start
     log.error({ err, endpoint, latencyMs }, 'GPT call failed')
-    onFailure()
+    // Timeouts = API lenta, NO caída. No contar en circuit breaker.
+    if (!isTimeoutError(err)) onFailure()
     throw err
   }
 }
@@ -271,7 +272,7 @@ export async function callGPTMini(
   } catch (err) {
     const latencyMs = Date.now() - start
     log.error({ err, endpoint, latencyMs, model }, 'GPT-mini call failed')
-    onFailure()
+    if (!isTimeoutError(err)) onFailure()
     throw err
   }
 }
@@ -411,6 +412,19 @@ export async function callGPTStream(
       abortController.abort()
     },
   })
+}
+
+// ─── Timeout detection ───────────────────────────────────────────────────
+
+/** Check if an error is a timeout (slow response, NOT API down) */
+function isTimeoutError(err: unknown): boolean {
+  if (!(err instanceof Error)) return false
+  return (
+    err.name === 'APIConnectionTimeoutError' ||
+    err.name === 'AbortError' ||
+    err.message.toLowerCase().includes('timeout') ||
+    err.message.toLowerCase().includes('timed out')
+  )
 }
 
 // ─── Private helpers ──────────────────────────────────────────────────────────
