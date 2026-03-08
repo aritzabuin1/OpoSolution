@@ -51,14 +51,14 @@ export default async function FlashcardsPage() {
 
   if (!user) redirect('/login')
 
-  // Check premium status (compra OR founder — admin is NOT premium)
+  // Check premium status (compra OR founder OR admin — admin needs full access to test)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [{ data: compra }, { data: profileData }] = await Promise.all([
     supabase.from('compras').select('id').eq('user_id', user.id).limit(1),
-    (supabase as any).from('profiles').select('is_founder').eq('id', user.id).single(),
+    (supabase as any).from('profiles').select('is_founder, is_admin').eq('id', user.id).single(),
   ])
-  const prof = profileData as { is_founder?: boolean } | null
-  const isPaid = (compra?.length ?? 0) > 0 || prof?.is_founder === true
+  const prof = profileData as { is_founder?: boolean; is_admin?: boolean } | null
+  const isPaid = (compra?.length ?? 0) > 0 || prof?.is_founder === true || prof?.is_admin === true
 
   // Free users: show premium teaser
   if (!isPaid) {

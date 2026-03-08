@@ -21,19 +21,20 @@ export function useIsPremium(): boolean | null {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user || cancelled) { if (!cancelled) setIsPremium(false); return }
 
-      // Check compras OR is_founder (founders paid 24.99€ = premium)
-      // NOTE: is_admin does NOT grant premium — admin is a separate role
+      // Check compras OR is_founder OR is_admin (admin needs full access to test)
+      // IMPORTANT: premium does NOT grant admin — admin panel checks is_admin separately
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const [{ data: compraData }, { data: profileData }] = await Promise.all([
         supabase.from('compras').select('id').eq('user_id', user.id).limit(1),
-        (supabase as any).from('profiles').select('is_founder').eq('id', user.id).single(),
+        (supabase as any).from('profiles').select('is_founder, is_admin').eq('id', user.id).single(),
       ])
 
       const hasPurchase = (compraData?.length ?? 0) > 0
-      const prof = profileData as { is_founder?: boolean } | null
+      const prof = profileData as { is_founder?: boolean; is_admin?: boolean } | null
       const isFounder = prof?.is_founder === true
+      const isAdmin = prof?.is_admin === true
 
-      if (!cancelled) setIsPremium(hasPurchase || isFounder)
+      if (!cancelled) setIsPremium(hasPurchase || isFounder || isAdmin)
     }
 
     check().catch(() => { if (!cancelled) setIsPremium(false) })

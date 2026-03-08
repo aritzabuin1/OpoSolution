@@ -32,11 +32,14 @@ export const PAID_LIMITS = {
 } as const
 
 /**
- * Check if a user has paid access (compra OR is_founder).
- * IMPORTANT: is_admin does NOT grant premium — admin is a separate role.
+ * Check if a user has paid access (compra OR is_founder OR is_admin).
+ *
+ * is_admin grants premium access so admins can test all features.
+ * IMPORTANT: premium does NOT grant admin — admin panel checks is_admin separately.
+ * The security boundary is: is_admin → can see admin panel + premium features.
+ *                           premium  → can only see premium features.
  *
  * Use this in ALL API endpoints that need to distinguish free vs paid.
- * Do NOT check only the compras table — founders have no compra record.
  */
 export async function checkPaidAccess(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -50,13 +53,15 @@ export async function checkPaidAccess(
       .eq('user_id', userId),
     supabase
       .from('profiles')
-      .select('is_founder')
+      .select('is_founder, is_admin')
       .eq('id', userId)
       .single(),
   ])
 
   const hasPurchase = (purchaseCount ?? 0) > 0
-  const isFounder = (profileData as { is_founder?: boolean } | null)?.is_founder === true
+  const prof = profileData as { is_founder?: boolean; is_admin?: boolean } | null
+  const isFounder = prof?.is_founder === true
+  const isAdmin = prof?.is_admin === true
 
-  return hasPurchase || isFounder
+  return hasPurchase || isFounder || isAdmin
 }
