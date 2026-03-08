@@ -118,11 +118,12 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
 
   // ── 2. Generación + verificación ─────────────────────────────────────────
   //
-  // Optimización: si numPreguntas > 15, split en llamadas paralelas.
-  // Cada llamada genera un chunk de ~15 preguntas → ambas ejecutan en paralelo
-  // → tiempo total ≈ tiempo de 1 llamada (no 2× secuencial).
+  // Optimización: split en chunks paralelos de máx CHUNK_SIZE preguntas.
+  // gpt-4o-mini tarda ~30s para 10 preguntas → chunks de 10 en paralelo
+  // mantienen el tiempo total ≈ 30s independientemente de numPreguntas.
+  // Vercel Hobby maxDuration=60s, SDK timeout=55s → margen seguro.
 
-  const PARALLEL_THRESHOLD = 15
+  const CHUNK_SIZE = 10
   const systemPrompt = esBloqueII ? SYSTEM_GENERATE_TEST_BLOQUE2 : SYSTEM_GENERATE_TEST
 
   /** Generate a chunk of questions via AI */
@@ -165,24 +166,28 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
       break
     }
 
-    // Generate: parallel split for large requests, single call for small
+    // Generate: split into parallel chunks of CHUNK_SIZE for speed
     let sanitized: PreguntaRaw[]
-    if (needed > PARALLEL_THRESHOLD) {
-      const half = Math.ceil(needed / 2)
-      const [chunk1, chunk2] = await Promise.all([
-        generateChunk(half),
-        generateChunk(needed - half),
-      ])
-      sanitized = [...chunk1, ...chunk2]
-      log.info(
-        { attempt, chunk1: chunk1.length, chunk2: chunk2.length, total: sanitized.length, esBloqueII },
-        '[generateTest] parallel generation complete'
-      )
-    } else {
+    if (needed <= CHUNK_SIZE) {
       sanitized = await generateChunk(needed)
       log.info(
         { attempt, preguntasRaw: sanitized.length, esBloqueII },
-        '[generateTest] single generation complete'
+        '[generateTest] single chunk complete'
+      )
+    } else {
+      // Split into N chunks of CHUNK_SIZE (e.g., 30 → [10, 10, 10])
+      const chunks: number[] = []
+      let remaining = needed
+      while (remaining > 0) {
+        const size = Math.min(CHUNK_SIZE, remaining)
+        chunks.push(size)
+        remaining -= size
+      }
+      const results = await Promise.all(chunks.map((size) => generateChunk(size)))
+      sanitized = results.flat()
+      log.info(
+        { attempt, chunks: chunks.length, sizes: chunks, total: sanitized.length, esBloqueII },
+        '[generateTest] parallel generation complete'
       )
     }
 
