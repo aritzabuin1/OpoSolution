@@ -51,13 +51,14 @@ export default async function FlashcardsPage() {
 
   if (!user) redirect('/login')
 
-  // Check premium status
-  const { data: compra } = await supabase
-    .from('compras')
-    .select('id')
-    .eq('user_id', user.id)
-    .limit(1)
-  const isPaid = (compra?.length ?? 0) > 0
+  // Check premium status (compra OR admin OR founder)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [{ data: compra }, { data: profileData }] = await Promise.all([
+    supabase.from('compras').select('id').eq('user_id', user.id).limit(1),
+    (supabase as any).from('profiles').select('is_admin, is_founder').eq('id', user.id).single(),
+  ])
+  const prof = profileData as { is_admin?: boolean; is_founder?: boolean } | null
+  const isPaid = (compra?.length ?? 0) > 0 || prof?.is_admin === true || prof?.is_founder === true
 
   // Free users: show premium teaser
   if (!isPaid) {

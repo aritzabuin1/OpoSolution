@@ -31,21 +31,14 @@ export default async function RadarPage() {
   } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
-  // Obtener perfil para saber si es paid
-  const { data: profile } = await supabase
-    .from('profiles')
-    .select('id')
-    .eq('id', user.id)
-    .maybeSingle()
-
-  // Verificar si tiene compra activa
-  const { data: compra } = await supabase
-    .from('compras')
-    .select('id')
-    .eq('user_id', user.id)
-    .maybeSingle()
-
-  const isPaid = !!compra
+  // Verificar si tiene compra activa OR es admin/founder
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [{ data: compra }, { data: profileData }] = await Promise.all([
+    supabase.from('compras').select('id').eq('user_id', user.id).maybeSingle(),
+    (supabase as any).from('profiles').select('is_admin, is_founder').eq('id', user.id).single(),
+  ])
+  const prof = profileData as { is_admin?: boolean; is_founder?: boolean } | null
+  const isPaid = !!compra || prof?.is_admin === true || prof?.is_founder === true
 
   // Cargar ranking del radar (todos los artículos con frecuencia)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

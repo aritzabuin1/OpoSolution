@@ -21,13 +21,19 @@ export function useIsPremium(): boolean | null {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user || cancelled) { if (!cancelled) setIsPremium(false); return }
 
-      const { data } = await supabase
-        .from('compras')
-        .select('id')
-        .eq('user_id', user.id)
-        .limit(1)
+      // Check compras OR is_admin OR is_founder
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const [{ data: compraData }, { data: profileData }] = await Promise.all([
+        supabase.from('compras').select('id').eq('user_id', user.id).limit(1),
+        (supabase as any).from('profiles').select('is_admin, is_founder').eq('id', user.id).single(),
+      ])
 
-      if (!cancelled) setIsPremium((data?.length ?? 0) > 0)
+      const hasPurchase = (compraData?.length ?? 0) > 0
+      const prof = profileData as { is_admin?: boolean; is_founder?: boolean } | null
+      const isAdmin = prof?.is_admin === true
+      const isFounder = prof?.is_founder === true
+
+      if (!cancelled) setIsPremium(hasPurchase || isAdmin || isFounder)
     }
 
     check().catch(() => { if (!cancelled) setIsPremium(false) })
