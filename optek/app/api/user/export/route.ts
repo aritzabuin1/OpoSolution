@@ -17,6 +17,10 @@ import { logger } from '@/lib/logger'
  *   - preguntas_reportadas: reportes enviados
  *   - logros: logros/achievements desbloqueados
  *   - api_usage_log: registro de uso de API (observabilidad)
+ *   - flashcards: tarjetas de spaced repetition
+ *   - notificaciones: alertas BOE y sistema
+ *   - cazatrampas_sesiones: ejercicios caza-trampas
+ *   - reto_diario_participaciones: participaciones en reto diario
  *
  * Ref: §1.17.1 PLAN.md | directives/00_DATA_GOVERNANCE.md
  */
@@ -37,6 +41,8 @@ export async function GET() {
 
   try {
     // Consultas en paralelo — todas filtradas por user_id
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const sb = supabase as any
     const [
       profileResult,
       testsResult,
@@ -46,6 +52,10 @@ export async function GET() {
       reportesResult,
       logrosResult,
       apiUsageResult,
+      flashcardsResult,
+      notificacionesResult,
+      cazatrampasResult,
+      retoResult,
     ] = await Promise.all([
       supabase.from('profiles').select('*').eq('id', user.id).single(),
       supabase
@@ -73,9 +83,7 @@ export async function GET() {
         .select('id, test_id, pregunta_index, motivo, estado, created_at')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false }),
-      // Nota: tabla 'logros' se añade en migración 008, tipos TS pendientes de regenerar
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (supabase as any)
+      sb
         .from('logros')
         .select('id, tipo, desbloqueado_en')
         .eq('user_id', user.id)
@@ -85,6 +93,26 @@ export async function GET() {
         .select('id, endpoint, model, tokens_input, tokens_output, cost_estimated_cents, timestamp')
         .eq('user_id', user.id)
         .order('timestamp', { ascending: false }),
+      sb
+        .from('flashcards')
+        .select('id, frente, reverso, cita_legal, intervalo_dias, facilidad, siguiente_repaso, created_at')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false }),
+      sb
+        .from('notificaciones')
+        .select('id, tipo, titulo, mensaje, leida, created_at')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false }),
+      sb
+        .from('cazatrampas_sesiones')
+        .select('id, ley_nombre, articulo_numero, texto_original, texto_trampa, errores_reales, selecciones_usuario, aciertos, completada_at, created_at')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false }),
+      sb
+        .from('reto_diario_participaciones')
+        .select('id, reto_id, selecciones, aciertos, created_at')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false }),
     ])
 
     // Check for Supabase errors on each query — partial export = GDPR violation risk
@@ -97,6 +125,10 @@ export async function GET() {
       reportesResult.error && 'reportes',
       logrosResult.error && 'logros',
       apiUsageResult.error && 'api_usage',
+      flashcardsResult.error && 'flashcards',
+      notificacionesResult.error && 'notificaciones',
+      cazatrampasResult.error && 'cazatrampas',
+      retoResult.error && 'reto_diario',
     ].filter(Boolean) as string[]
 
     if (queryErrors.length > 0) {
@@ -113,6 +145,10 @@ export async function GET() {
             reportes: reportesResult.error?.message,
             logros: (logrosResult as { error?: { message: string } }).error?.message,
             api_usage: apiUsageResult.error?.message,
+            flashcards: flashcardsResult.error?.message,
+            notificaciones: notificacionesResult.error?.message,
+            cazatrampas: cazatrampasResult.error?.message,
+            reto_diario: retoResult.error?.message,
           },
         },
         'Export parcial — algunas tablas fallaron'
@@ -139,6 +175,10 @@ export async function GET() {
       preguntas_reportadas: reportesResult.data ?? [],
       logros: logrosResult.data ?? [],
       uso_api: apiUsageResult.data ?? [],
+      flashcards: flashcardsResult.data ?? [],
+      notificaciones: notificacionesResult.data ?? [],
+      cazatrampas: cazatrampasResult.data ?? [],
+      reto_diario: retoResult.data ?? [],
     }
 
     log.info(

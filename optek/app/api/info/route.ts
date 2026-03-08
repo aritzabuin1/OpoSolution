@@ -24,9 +24,9 @@ export function GET() {
       'Cualquier opositor a la Administración General del Estado española',
     ],
     pricing: {
-      free: '5 tests + 2 correcciones sin tarjeta de crédito',
+      free: '5 tests + 2 análisis detallados sin tarjeta de crédito',
       pack_completo: '49,99€ pago único — temario completo + 20 análisis detallados + simulacros',
-      recarga_correcciones: '8,99€ — +10 correcciones adicionales',
+      recarga: '8,99€ — +10 análisis detallados adicionales',
       nota: 'Sin suscripción mensual. Pago único con acceso para siempre.',
     },
     features: [
@@ -65,6 +65,6 @@ export function GET() {
     language: 'es',
     country: 'Spain',
     llms_txt: 'https://oporuta.es/llms.txt',
-    updated_at: '2026-03-03',
+    updated_at: '2026-03-08',
   })
 }

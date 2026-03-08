@@ -12,9 +12,9 @@ import { logger } from '@/lib/logger'
  * DDIA Consistency: stripe_events_processed como idempotency store.
  *   1. Verificar firma Stripe.
  *   2. SELECT en stripe_events_processed → si ya existe, 200 + skip.
- *   3. Procesar evento.
- *   4. INSERT en stripe_events_processed (tras éxito).
- *   5. Si falla el handler → 500 (Stripe reintentará, no marcamos como procesado).
+ *   3. Procesar evento (handleStripeEvent).
+ *   4. INSERT en stripe_events_processed DESPUÉS del éxito.
+ *   5. Si falla el handler → 500 → Stripe reintenta → no está marcado → se re-procesa.
  *
  * Ref: directives/OPTEK_security.md §6 — verificar firma siempre.
  */
@@ -46,32 +46,41 @@ export async function POST(request: NextRequest) {
   const supabase = await createServiceClient()
   const log = logger.child({ eventId: event.id, eventType: event.type })
 
-  // DDIA Consistency: idempotencia via INSERT-first con ON CONFLICT
-  // Si el evento ya existe → conflicto en UNIQUE(stripe_event_id) → skip.
-  // Esto elimina la race condition del SELECT-then-INSERT.
-  const { error: insertIdempotencyError } = await supabase
+  // DDIA Consistency: SELECT-first idempotencia
+  // 1. Check if already processed → skip
+  // 2. Run handler
+  // 3. INSERT into stripe_events_processed AFTER success
+  // If handler fails → no INSERT → Stripe retries → event is re-processed correctly
+  const { data: existing } = await supabase
     .from('stripe_events_processed')
-    .insert({ stripe_event_id: event.id, event_type: event.type })
+    .select('id')
+    .eq('stripe_event_id', event.id)
+    .maybeSingle()
 
-  if (insertIdempotencyError) {
-    // Código 23505 = unique_violation en PostgreSQL
-    if (insertIdempotencyError.code === '23505') {
-      log.info('Stripe event already processed — skipping (idempotent)')
-      return NextResponse.json({ received: true, status: 'already_processed' })
-    }
-    // Otro error de BD → dejar que Stripe reintente
-    log.error({ err: insertIdempotencyError }, 'Stripe webhook: error al registrar idempotency')
-    return NextResponse.json({ error: 'DB error' }, { status: 500 })
+  if (existing) {
+    log.info('Stripe event already processed — skipping (idempotent)')
+    return NextResponse.json({ received: true, status: 'already_processed' })
   }
 
-  // Procesar DESPUÉS de marcar como recibido
+  // Process event FIRST — only mark as processed on success
   try {
     await handleStripeEvent(event, supabase, log)
-    return NextResponse.json({ received: true })
   } catch (err) {
     log.error({ err }, 'Stripe webhook handler failed — Stripe will retry')
     return NextResponse.json({ error: 'Handler failed' }, { status: 500 })
   }
+
+  // Mark as processed AFTER successful handling
+  const { error: insertIdempotencyError } = await supabase
+    .from('stripe_events_processed')
+    .insert({ stripe_event_id: event.id, event_type: event.type })
+
+  if (insertIdempotencyError && insertIdempotencyError.code !== '23505') {
+    // Non-critical: handler already succeeded, just log the idempotency insert failure
+    log.warn({ err: insertIdempotencyError }, 'Stripe webhook: idempotency insert failed (event already handled)')
+  }
+
+  return NextResponse.json({ received: true })
 }
 
 // ─── Handlers ─────────────────────────────────────────────────────────────────
