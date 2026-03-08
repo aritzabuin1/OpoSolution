@@ -3,8 +3,8 @@
 /**
  * components/simulacros/ExplicarErroresPanel.tsx — §2.6A.6
  *
- * Panel que explica los errores de un simulacro usando Claude Haiku.
- * Solo visible cuando test.tipo === 'simulacro' y examen_oficial_id IS NOT NULL.
+ * Panel de análisis socrático de errores.
+ * Disponible en todos los tests con errores (tema, simulacro, radar, etc.).
  *
  * Estados:
  *   idle      → muestra botón "Explicar mis errores con IA (1 corrección)"
@@ -122,10 +122,11 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
             <Sparkles className="h-5 w-5 text-primary" />
           </div>
           <div>
-            <p className="font-semibold text-sm">Explicar mis errores con IA</p>
+            <p className="font-semibold text-sm">Analizar mis errores con IA</p>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Claude analizará tus {numErrores} error{numErrores !== 1 ? 'es' : ''} y
-              explicará por qué fallaste cada pregunta. Consume 1 corrección.
+              Un tutor IA analizará tus {numErrores} error{numErrores !== 1 ? 'es' : ''} paso a paso:
+              te preguntará por qué crees que fallaste, te guiará al razonamiento correcto y te explicará
+              la base legal. Consume 1 análisis.
             </p>
           </div>
         </div>
@@ -137,7 +138,7 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
           className="w-full sm:w-auto"
         >
           <Sparkles className="h-4 w-4 mr-2" />
-          {state === 'error' ? 'Reintentar' : 'Explicar mis errores (1 corrección)'}
+          {state === 'error' ? 'Reintentar' : 'Analizar mis errores (1 análisis)'}
         </Button>
 
         <PaywallGate

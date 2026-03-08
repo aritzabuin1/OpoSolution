@@ -21,7 +21,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { CitationBadge } from '@/components/shared/CitationBadge'
 import { ExplicarErroresPanel } from '@/components/simulacros/ExplicarErroresPanel'
-import { InformeSimulacroPanel } from '@/components/simulacros/InformeSimulacroPanel'
+// InformeSimulacroPanel removed — will be repositioned as study roadmap in dashboard
 import { CheckCircle2, XCircle, Clock, BarChart3, TrendingUp, Trophy, BookOpen, Calendar } from 'lucide-react'
 import type { Pregunta } from '@/types/ai'
 import { ShareButton } from '@/components/shared/ShareButton'
@@ -469,12 +469,7 @@ export default async function ResultadosPage({ params }: Props) {
         />
       </div>
 
-      {/* Informe personalizado IA del simulacro */}
-      {esSimulacroOficial && (
-        <InformeSimulacroPanel testId={id} />
-      )}
-
-      {/* Panel de explicación IA — disponible en todos los tests con errores */}
+      {/* Panel de análisis socrático IA — único botón premium en resultados */}
       {preguntasErroneas.length > 0 && (
         <ExplicarErroresPanel
           testId={id}
@@ -483,7 +478,7 @@ export default async function ResultadosPage({ params }: Props) {
         />
       )}
 
-      {/* Preguntas falladas */}
+      {/* Preguntas falladas — muestra correcta/incorrecta, SIN explicación */}
       {preguntasErroneas.length > 0 && (
         <section className="space-y-4">
           <h2 className="text-base font-semibold">
@@ -507,7 +502,7 @@ export default async function ResultadosPage({ params }: Props) {
                     )}
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-3 pb-4">
+                <CardContent className="space-y-2 pb-4">
                   {/* Tu respuesta */}
                   {respuesta !== null && (
                     <div className="flex items-center gap-2 text-sm">
@@ -526,14 +521,13 @@ export default async function ResultadosPage({ params }: Props) {
                       <span className="font-medium">{pregunta.opciones[pregunta.correcta]}</span>
                     </span>
                   </div>
-                  {/* Justificación */}
-                  <p className="text-xs text-muted-foreground leading-relaxed border-l-2 border-primary/30 pl-3">
-                    {pregunta.explicacion}
-                  </p>
                 </CardContent>
               </Card>
             ))}
           </div>
+          <p className="text-xs text-center text-muted-foreground">
+            ¿No entiendes por qué has fallado? Usa el análisis con IA de arriba para que te lo explique paso a paso.
+          </p>
         </section>
       )}
 
