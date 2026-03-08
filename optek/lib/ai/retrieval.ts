@@ -45,11 +45,12 @@ export interface RetrievalContext {
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
-// Límite de tokens para el contexto enviado a Claude.
+// Límite de tokens para el contexto enviado a la IA.
 // text-embedding-3-small promedio: ~4 chars/token.
-// 8000 tokens ≈ 32.000 chars de contexto legislativo.
-const MAX_CONTEXT_CHARS = 32_000
-const DEFAULT_RETRIEVAL_LIMIT = 20
+// 4000 tokens ≈ 16.000 chars — suficiente para 8-10 artículos relevantes.
+// Reducido de 32k: contextos más pequeños → AI responde 2× más rápido.
+const MAX_CONTEXT_CHARS = 16_000
+const DEFAULT_RETRIEVAL_LIMIT = 10
 
 // ─── Cliente Supabase singleton (service role para bypass RLS en retrieval) ───
 // Reutilizar el mismo cliente en todas las operaciones de retrieval

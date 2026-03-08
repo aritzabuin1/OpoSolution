@@ -48,3 +48,5 @@ next-env.d.ts
 # test data (never commit)
 test_user.sql
 *_test_user.sql
+
+.vercel

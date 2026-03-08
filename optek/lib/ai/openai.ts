@@ -33,7 +33,7 @@ function getClient(): OpenAI {
   if (!_openai) {
     _openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY!,
-      timeout: 40_000,   // 40s — generación de 10 MCQs puede tardar 15-30s. 40s safety net.
+      timeout: 25_000,   // 25s — fail fast para dejar margen al retry del pipeline (55s total)
       maxRetries: 0,     // 0 retries SDK — nuestro pipeline ya maneja retries a nivel superior
     })
   }

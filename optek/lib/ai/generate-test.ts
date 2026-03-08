@@ -137,7 +137,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
       userPrompt,
       TestGeneradoRawSchema,
       {
-        maxTokens: needed <= 15 ? 8000 : 16000,
+        maxTokens: needed <= 10 ? 3500 : needed <= 15 ? 5000 : 10000,
         endpoint: 'generate-test',
         userId,
         requestId,
