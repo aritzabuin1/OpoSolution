@@ -30,3 +30,33 @@ export const PAID_LIMITS = {
   simulacrosDay: 10,
   cazatrampasDay: 20,
 } as const
+
+/**
+ * Check if a user has paid access (compra OR is_founder).
+ * IMPORTANT: is_admin does NOT grant premium — admin is a separate role.
+ *
+ * Use this in ALL API endpoints that need to distinguish free vs paid.
+ * Do NOT check only the compras table — founders have no compra record.
+ */
+export async function checkPaidAccess(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  supabase: any,
+  userId: string
+): Promise<boolean> {
+  const [{ count: purchaseCount }, { data: profileData }] = await Promise.all([
+    supabase
+      .from('compras')
+      .select('id', { count: 'exact', head: true })
+      .eq('user_id', userId),
+    supabase
+      .from('profiles')
+      .select('is_founder')
+      .eq('id', userId)
+      .single(),
+  ])
+
+  const hasPurchase = (purchaseCount ?? 0) > 0
+  const isFounder = (profileData as { is_founder?: boolean } | null)?.is_founder === true
+
+  return hasPurchase || isFounder
+}

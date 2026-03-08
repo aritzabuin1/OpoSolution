@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { generateCazaTrampas } from '@/lib/ai/generate-cazatrampas'
 import { logger } from '@/lib/logger'
-import { FREE_LIMITS, PAID_LIMITS } from '@/lib/freemium'
+import { FREE_LIMITS, PAID_LIMITS, checkPaidAccess } from '@/lib/freemium'
 
 // Vercel Hobby max: 60s. AI generation needs 15-40s.
 export const maxDuration = 60
@@ -53,14 +53,10 @@ export async function POST(request: NextRequest) {
   const { temaId, numErrores } = parsed.data
 
   // ── Rate limit diferenciado (§2.12.17) ──────────────────────────────────────
-  // Paid users (alguna compra en `compras`) → sin límite
+  // Paid users (compra OR is_founder) → sin límite
   // Free users → FREE_DAILY_LIMIT partidas/día
-  const { count: comprasCount } = await supabase
-    .from('compras')
-    .select('*', { count: 'exact', head: true })
-    .eq('user_id', user.id)
-
-  const isPaid = (comprasCount ?? 0) > 0
+  const svcSupabase = await createServiceClient()
+  const isPaid = await checkPaidAccess(svcSupabase, user.id)
 
   // Free users: numErrores 3 (dificil) requiere Premium
   if (!isPaid && numErrores === 3) {

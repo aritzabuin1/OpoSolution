@@ -6,7 +6,7 @@ import { generateTest, generateTopFrecuentesTest } from '@/lib/ai/generate-test'
 import { generatePsicotecnicos } from '@/lib/psicotecnicos/index'
 import { withTimeout, TimeoutError } from '@/lib/utils/timeout'
 import { logger } from '@/lib/logger'
-import { FREE_TEMA_NUMEROS, FREE_LIMITS } from '@/lib/freemium'
+import { FREE_TEMA_NUMEROS, FREE_LIMITS, checkPaidAccess } from '@/lib/freemium'
 import type { Json } from '@/types/database'
 import type { Pregunta } from '@/types/ai'
 
@@ -91,15 +91,9 @@ export async function POST(request: NextRequest) {
 
   const { tipo, temaId, numPreguntas, dificultad } = parsed.data
 
-  // ── 3. ¿Tiene acceso de pago? ─────────────────────────────────────────────
+  // ── 3. ¿Tiene acceso de pago? (compra OR is_founder) ──────────────────────
   const serviceSupabase = await createServiceClient()
-
-  const { count: purchaseCount } = await supabase
-    .from('compras')
-    .select('id', { count: 'exact', head: true })
-    .eq('user_id', user.id)
-
-  const hasPaidAccess = (purchaseCount ?? 0) > 0
+  const hasPaidAccess = await checkPaidAccess(serviceSupabase, user.id)
 
   // ── 3b. Free users: verificar que el tema está permitido ─────────────────
   if (!hasPaidAccess && tipo === 'tema' && temaId) {

@@ -4,7 +4,7 @@ import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { generatePsicotecnicos } from '@/lib/psicotecnicos'
 import { logger } from '@/lib/logger'
-import { FREE_LIMITS, PAID_LIMITS } from '@/lib/freemium'
+import { FREE_LIMITS, PAID_LIMITS, checkPaidAccess } from '@/lib/freemium'
 import type { Json } from '@/types/database'
 import type { Pregunta } from '@/types/ai'
 
@@ -90,13 +90,9 @@ export async function POST(request: NextRequest) {
 
   const { examenId, anno, numPreguntas, incluirPsicotecnicos, dificultadPsico, modo } = parsed.data
 
-  // ── 3. Freemium gating: free = 1 simulacro lifetime, paid = 10/día ───────
-  const { count: comprasCount } = await supabase
-    .from('compras')
-    .select('id', { count: 'exact', head: true })
-    .eq('user_id', user.id)
-
-  const hasPaidAccess = (comprasCount ?? 0) > 0
+  // ── 3. Freemium gating (compra OR is_founder) ───────────────────────────
+  const serviceSupabase = await createServiceClient()
+  const hasPaidAccess = await checkPaidAccess(serviceSupabase, user.id)
 
   // Free users: máx 20 preguntas por simulacro
   if (!hasPaidAccess && numPreguntas > FREE_LIMITS.simulacroMaxPreguntas) {
@@ -121,8 +117,7 @@ export async function POST(request: NextRequest) {
     }
   } else {
     // Free: verificar cuota lifetime
-    const serviceSupabaseFree = await createServiceClient()
-    const { data: profileSim } = await serviceSupabaseFree
+    const { data: profileSim } = await serviceSupabase
       .from('profiles')
       .select('free_simulacro_used')
       .eq('id', user.id)
@@ -332,8 +327,6 @@ export async function POST(request: NextRequest) {
   }
 
   // ── 8. Guardar en BD ──────────────────────────────────────────────────────
-  const serviceSupabase = await createServiceClient()
-
   const { data: testRow, error: insertError } = await serviceSupabase
     .from('tests_generados')
     .insert({
