@@ -12,11 +12,13 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Loader2, RotateCcw, CheckCircle2, Trophy, Brain } from 'lucide-react'
+import { Loader2, RotateCcw, CheckCircle2, Trophy, Brain, Sparkles } from 'lucide-react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { PaywallGate } from '@/components/shared/PaywallGate'
+import { useAIAnalysis } from '@/lib/hooks/useAIAnalysis'
 import type { CalidadRespuesta } from '@/lib/utils/spaced-repetition'
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
@@ -46,6 +48,8 @@ export function FlashcardReview({ flashcards, onComplete }: FlashcardReviewProps
   const [isFlipped, setIsFlipped] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [completed, setCompleted] = useState<{ total: number; correctas: number }>()
+  const [lastFailedId, setLastFailedId] = useState<string | null>(null)
+  const explanation = useAIAnalysis('/api/ai/explain-flashcard/stream')
 
   const current = cards[currentIdx]
   const totalCards = cards.length
@@ -78,6 +82,13 @@ export function FlashcardReview({ flashcards, onComplete }: FlashcardReviewProps
 
     const esCorrecta = calidad !== 'mal'
 
+    // Si falló, ofrecer explicación profunda
+    if (!esCorrecta) {
+      setLastFailedId(current.id)
+    } else {
+      setLastFailedId(null)
+    }
+
     // Actualizar estado local
     setCards((prev) =>
       prev.map((c, i) =>
@@ -93,9 +104,13 @@ export function FlashcardReview({ flashcards, onComplete }: FlashcardReviewProps
 
     // Avanzar o finalizar
     if (currentIdx < totalCards - 1) {
-      setCurrentIdx((i) => i + 1)
-      setIsFlipped(false)
-    } else {
+      if (esCorrecta) {
+        // Si acertó, avanzar automáticamente
+        setCurrentIdx((i) => i + 1)
+        setIsFlipped(false)
+      }
+      // Si falló, NO avanzar — se muestra botón "Explicar" + "Siguiente"
+    } else if (esCorrecta) {
       // Sesión completada
       const correctas = cards.filter((_, i) =>
         i === currentIdx ? esCorrecta : true
@@ -104,6 +119,18 @@ export function FlashcardReview({ flashcards, onComplete }: FlashcardReviewProps
         total: totalCards,
         correctas: Math.min(correctas, totalCards),
       })
+    }
+  }
+
+  function handleContinue() {
+    setLastFailedId(null)
+    if (currentIdx < totalCards - 1) {
+      setCurrentIdx((i) => i + 1)
+      setIsFlipped(false)
+    } else {
+      // Last card was failed, now continuing to completion
+      const correctas = cards.filter((c) => c.veces_acertada > 0 || c.veces_fallada === 0).length
+      setCompleted({ total: totalCards, correctas: Math.min(correctas, totalCards) })
     }
   }
 
@@ -257,7 +284,70 @@ export function FlashcardReview({ flashcards, onComplete }: FlashcardReviewProps
         </div>
       )}
 
-      {!isFlipped && (
+      {/* Explicación profunda cuando falla */}
+      {lastFailedId && (
+        <div className="space-y-3">
+          {explanation.state === 'idle' || explanation.state === 'error' ? (
+            <div className="flex gap-2">
+              <Button
+                size="sm"
+                variant="outline"
+                className="flex-1 border-primary/30 text-primary"
+                onClick={() => explanation.trigger({ flashcardId: lastFailedId })}
+              >
+                <Sparkles className="h-4 w-4 mr-1.5" />
+                {explanation.state === 'error' ? 'Reintentar' : 'Explicar concepto (1 análisis)'}
+              </Button>
+              <Button size="sm" onClick={handleContinue}>
+                Siguiente
+              </Button>
+            </div>
+          ) : explanation.state === 'loading' ? (
+            <div className="rounded-lg border border-primary/20 bg-primary/5 p-3 flex items-center gap-2">
+              <Loader2 className="h-4 w-4 animate-spin text-primary shrink-0" />
+              <p className="text-sm">Generando explicación...</p>
+            </div>
+          ) : (
+            <>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="h-4 w-4 text-primary" />
+                  <p className="text-sm font-semibold">
+                    Explicación profunda
+                    {explanation.state === 'streaming' && (
+                      <span className="ml-2 text-xs font-normal text-muted-foreground">escribiendo...</span>
+                    )}
+                  </p>
+                </div>
+                <div
+                  ref={explanation.textRef}
+                  className="rounded-lg border border-primary/20 bg-muted/30 p-3 max-h-[300px] overflow-y-auto"
+                >
+                  <div className="text-xs leading-relaxed whitespace-pre-wrap">
+                    {explanation.text}
+                    {explanation.state === 'streaming' && (
+                      <span className="inline-block w-1.5 h-3 bg-primary/60 animate-pulse ml-0.5 align-text-bottom" />
+                    )}
+                  </div>
+                </div>
+              </div>
+              {explanation.state === 'done' && (
+                <Button size="sm" onClick={handleContinue} className="w-full">
+                  Siguiente flashcard
+                </Button>
+              )}
+            </>
+          )}
+        </div>
+      )}
+
+      <PaywallGate
+        open={explanation.showPaywall}
+        onClose={() => explanation.setShowPaywall(false)}
+        code="PAYWALL_CORRECTIONS"
+      />
+
+      {!isFlipped && !lastFailedId && (
         <div className="flex justify-center">
           <Button
             variant="outline"

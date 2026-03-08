@@ -187,7 +187,7 @@ const jsonLdFaq = {
       name: '¿En qué consiste el examen de Auxiliar Administrativo del Estado?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'El proceso selectivo del Auxiliar Administrativo del Estado es de concurso-oposición (RD 651/2025, 1.700 plazas). El examen consta de un ejercicio único con un máximo de 110 preguntas tipo test (más 10 de reserva) en 90 minutos, con penalización -1/3. Se divide en dos partes obligatorias y eliminatorias: Primera parte (máx. 60 preguntas) — 30 de teoría (Bloque I) + 30 psicotécnicas; Segunda parte (máx. 50 preguntas) — Informática y Ofimática (Bloque II: Windows 11, Word 365, Excel 365, Access 365, Outlook 365). Cada parte se califica de 0 a 50 puntos, con un mínimo de 25 puntos por parte para superar. OpoRuta simula este formato exacto.',
+        text: 'El proceso selectivo del Auxiliar Administrativo del Estado es de concurso-oposicion (RD 651/2025, 1.700 plazas). El examen consta de un ejercicio unico con 100 preguntas tipo test puntuables (mas 10 de reserva por si se anula alguna) en 90 minutos, con penalizacion -1/3. Se divide en dos partes obligatorias y eliminatorias: Primera parte (max. 60 preguntas) — 30 de teoria (Bloque I) + 30 psicotecnicas; Segunda parte (max. 50 preguntas) — Informatica y Ofimatica (Bloque II: Windows 11, Word 365, Excel 365, Access 365, Outlook 365). Cada parte se califica de 0 a 50 puntos, con un minimo de 25 puntos por parte para superar. OpoRuta simula este formato exacto.',
       },
     },
     {

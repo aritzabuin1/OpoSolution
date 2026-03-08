@@ -12,15 +12,16 @@
  * Sin paywall — los simulacros son gratuitos.
  */
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { Shuffle, Play, Brain, BookOpen, Lock } from 'lucide-react'
+import { Shuffle, Play, Brain, BookOpen, Lock, Crown } from 'lucide-react'
 import { toast } from 'sonner'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { PaywallGate } from '@/components/shared/PaywallGate'
 import { useIsPremium } from '@/lib/hooks/useIsPremium'
+import { FREE_LIMITS } from '@/lib/freemium'
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
 
@@ -34,7 +35,7 @@ export interface SimulacroMixtoCardProps {
 // ─── Constantes ───────────────────────────────────────────────────────────────
 
 const MODOS_PREGUNTAS = [
-  { label: '110 preguntas', value: 110, description: 'Examen completo oficial (30 teoría + 30 psico + 50 ofimática)' },
+  { label: '100 preguntas', value: 100, description: 'Examen completo oficial (100 puntuables + 10 reserva en el real)' },
   { label: '50 preguntas', value: 50, description: 'Sesión media con preguntas mixtas' },
   { label: '20 preguntas', value: 20, description: 'Repaso rápido variado' },
 ] as const
@@ -45,13 +46,18 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias }: Simulac
   const router = useRouter()
   const isPremium = useIsPremium()
 
-  const [numPreguntas, setNumPreguntas] = useState(50)
+  const [numPreguntas, setNumPreguntas] = useState(20)
   const [incluirPsicotecnicos, setIncluirPsicotecnicos] = useState(false)
   const [dificultadPsico, setDificultadPsico] = useState<1 | 2 | 3>(2)
   const [isStarting, setIsStarting] = useState(false)
   const [showPaywall, setShowPaywall] = useState(false)
 
   const isStartingRef = useRef(false)
+  const isFree = isPremium !== true
+
+  useEffect(() => {
+    if (isPremium === true && numPreguntas === 20) setNumPreguntas(50)
+  }, [isPremium]) // eslint-disable-line react-hooks/exhaustive-deps
 
   async function handleIniciar() {
     if (isStartingRef.current || totalPreguntas === 0) return
@@ -146,20 +152,37 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias }: Simulac
             Número de preguntas
           </label>
           <div className="grid gap-2">
-            {MODOS_PREGUNTAS.map((modo) => (
-              <button
-                key={modo.value}
-                onClick={() => setNumPreguntas(modo.value)}
-                className={`w-full rounded-md border px-3 py-2 text-left text-xs transition-colors ${
-                  numPreguntas === modo.value
-                    ? 'border-primary bg-primary/10 text-primary font-medium'
-                    : 'border-border bg-background text-foreground hover:bg-muted'
-                }`}
-              >
-                <span className="font-medium">{modo.label}</span>
-                <span className="ml-2 text-muted-foreground">— {modo.description}</span>
-              </button>
-            ))}
+            {MODOS_PREGUNTAS.map((modo) => {
+              const lockedMode = isFree && modo.value > FREE_LIMITS.simulacroMaxPreguntas
+              return (
+                <button
+                  key={modo.value}
+                  onClick={() => {
+                    if (lockedMode) { setShowPaywall(true); return }
+                    setNumPreguntas(modo.value)
+                  }}
+                  className={`w-full rounded-md border px-3 py-2 text-left text-xs transition-colors ${
+                    lockedMode
+                      ? 'border-amber-200 bg-amber-50/50 text-amber-800 cursor-not-allowed'
+                      : numPreguntas === modo.value
+                        ? 'border-primary bg-primary/10 text-primary font-medium'
+                        : 'border-border bg-background text-foreground hover:bg-muted'
+                  }`}
+                >
+                  <span className="flex items-center justify-between">
+                    <span>
+                      <span className="font-medium">{modo.label}</span>
+                      <span className="ml-2 text-muted-foreground">— {modo.description}</span>
+                    </span>
+                    {lockedMode && (
+                      <span className="shrink-0 flex items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold text-amber-700">
+                        <Crown className="h-3 w-3" /> Premium
+                      </span>
+                    )}
+                  </span>
+                </button>
+              )
+            })}
           </div>
         </div>
 
@@ -170,11 +193,11 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias }: Simulac
           </label>
           <button
             onClick={() => {
-              if (isPremium === false) { setShowPaywall(true); return }
+              if (isFree) { setShowPaywall(true); return }
               setIncluirPsicotecnicos((v) => !v)
             }}
             className={`w-full flex items-start gap-3 rounded-md border px-3 py-2.5 text-left text-xs transition-colors ${
-              isPremium === false
+              isFree
                 ? 'border-amber-200 bg-amber-50/50 cursor-not-allowed'
                 : incluirPsicotecnicos
                   ? 'border-primary bg-primary/10'
@@ -183,42 +206,42 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias }: Simulac
           >
             <Brain
               className={`h-4 w-4 shrink-0 mt-0.5 ${
-                isPremium === false ? 'text-amber-500' : incluirPsicotecnicos ? 'text-primary' : 'text-muted-foreground'
+                isFree ? 'text-amber-500' : incluirPsicotecnicos ? 'text-primary' : 'text-muted-foreground'
               }`}
             />
             <div className="flex-1">
               <span
                 className={`font-medium ${
-                  isPremium === false ? 'text-amber-800' : incluirPsicotecnicos ? 'text-primary' : 'text-foreground'
+                  isFree ? 'text-amber-800' : incluirPsicotecnicos ? 'text-primary' : 'text-foreground'
                 }`}
               >
                 Modo Examen Real
               </span>
-              {isPremium === false ? (
+              {isFree ? (
                 <span className="ml-1 text-amber-600">— Simula el examen completo con psicotecnicas</span>
               ) : (
                 <span className="ml-1 text-muted-foreground">— Anade 30 psicotecnicas al inicio</span>
               )}
-              {incluirPsicotecnicos && isPremium !== false && (
+              {incluirPsicotecnicos && !isFree && (
                 <span className="ml-1 font-semibold text-primary">
                   ({numPreguntas + 30} preguntas total)
                 </span>
               )}
             </div>
-            {isPremium === false && (
+            {isFree && (
               <span className="shrink-0 flex items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold text-amber-700">
                 <Lock className="h-3 w-3" /> Premium
               </span>
             )}
           </button>
 
-          {isPremium === false && (
+          {isFree && (
             <p className="text-[10px] text-amber-600 pl-1">
               El examen real incluye psicotecnicas — practica como en el dia del examen con Premium
             </p>
           )}
 
-          {incluirPsicotecnicos && isPremium !== false && (
+          {incluirPsicotecnicos && !isFree && (
             <div className="space-y-1.5 pl-1">
               <label className="text-[11px] text-muted-foreground">Dificultad psicotecnicas</label>
               <div className="flex gap-2">

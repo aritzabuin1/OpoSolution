@@ -79,8 +79,9 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
     ? 'Repaso de errores'
     : ((test.temas as { titulo: string } | null)?.titulo ?? 'Test de práctica')
 
-  // §2.6.2 — Tiempo límite proporcional: 110 preguntas = 90 min (examen oficial completo)
-  const FULL_EXAM_QUESTIONS = 110
+  // §2.6.2 — Tiempo límite proporcional: 100 preguntas puntuables = 90 min (examen oficial)
+  // Nota: el cuadernillo tiene 110 (100 puntuables + 10 reserva), pero el tiempo es para las 100
+  const FULL_EXAM_QUESTIONS = 100
   const FULL_EXAM_SECONDS = 90 * 60
   const tiempoLimite = esSimulacro
     ? Math.round((preguntas.length / FULL_EXAM_QUESTIONS) * FULL_EXAM_SECONDS)
@@ -108,7 +109,7 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-sm font-medium">Simulacro Oficial INAP</span>
             <Badge variant="secondary" className="text-[10px]">Penalización activa</Badge>
-            <Badge variant="outline" className="text-[10px]">{Math.round((preguntas.length / 110) * 90)} min</Badge>
+            <Badge variant="outline" className="text-[10px]">{Math.round((preguntas.length / 100) * 90)} min</Badge>
           </div>
         </div>
       )}

@@ -14,8 +14,10 @@ export const FREE_LIMITS = {
   tests: 5,
   /** Tests psicotécnicos (coste IA = 0€, pero creamos necesidad) */
   psicotecnicos: 3,
-  /** Simulacros de examen oficial */
-  simulacros: 1,
+  /** Simulacros de examen oficial (solo 20 preguntas) */
+  simulacros: 3,
+  /** Máximo de preguntas por simulacro para free */
+  simulacroMaxPreguntas: 20,
   /** Caza-trampas por día */
   cazatrampasDay: 3,
   /** Correcciones de desarrollo */

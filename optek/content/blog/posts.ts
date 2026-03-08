@@ -45,8 +45,8 @@ export const blogPosts: BlogPost[] = [
   <li><strong>Respuesta en blanco:</strong> 0 puntos</li>
 </ul>
 <p>
-  El examen consta de <strong>110 preguntas</strong> de tipo test en 90 minutos:
-  30 de teoría, 30 psicotécnicas y 50 de ofimática.
+  El examen consta de <strong>100 preguntas puntuables</strong> (+ 10 de reserva) de tipo test en 90 minutos:
+  30 de teoria, 30 psicotecnicas y 50 de ofimatica.
 </p>
 
 <h2>¿Cuándo dejar una pregunta en blanco?</h2>
@@ -116,7 +116,7 @@ export const blogPosts: BlogPost[] = [
 <h2>Practica con simulacros reales</h2>
 <p>
   La única forma de entrenar la penalización correctamente es practicando con el formato
-  exacto del examen: 110 preguntas, 90 minutos, y la misma penalización.
+  exacto del examen: 100 preguntas, 90 minutos, y la misma penalizacion.
   OpoRuta ofrece simulacros basados en exámenes oficiales del INAP con el sistema de
   puntuación idéntico al real.
 </p>
@@ -399,8 +399,8 @@ export const blogPosts: BlogPost[] = [
 <h2>El temario oficial del Auxiliar Administrativo del Estado</h2>
 <p>
   El temario del Cuerpo General Auxiliar de la Administración del Estado (C2) se divide
-  en <strong>dos bloques</strong> con un total de 28 temas. El examen consta de 110 preguntas
-  tipo test (30 teoría + 30 psicotécnicos + 50 ofimática) en 90 minutos, con penalización −1/3. El temario es el mismo para las convocatorias de
+  en <strong>dos bloques</strong> con un total de 28 temas. El examen consta de <strong>100 preguntas
+  puntuables</strong> tipo test (30 teoría + 30 psicotécnicos + 40 ofimática), más 10 de reserva, en 90 minutos, con penalización −1/3. El temario es el mismo para las convocatorias de
   2025 y 2026 (salvo modificación del BOE).
 </p>
 <p>
@@ -484,7 +484,7 @@ export const blogPosts: BlogPost[] = [
 <p>
   OpoRuta cubre los 28 temas de Auxiliar con preguntas tipo test generadas por IA y verificadas
   con cita legal exacta. Puedes generar tests por tema, por bloque, o simular el examen
-  completo con 110 preguntas y penalización real.
+  completo con 100 preguntas puntuables y penalización real.
 </p>
 <p>
   Los primeros 5 tests son completamente gratuitos — sin tarjeta de crédito.
@@ -1205,7 +1205,7 @@ export const blogPosts: BlogPost[] = [
   La convocatoria 2025-2026 (RD 651/2025) ofrece <strong>1.700 plazas</strong> (código 1146,
   156 reservadas para discapacidad). El sistema de selección es de <strong>concurso-oposición</strong>
   (examen + valoración de méritos). El proceso selectivo consta de un ejercicio único con un
-  <strong>máximo de 110 preguntas tipo test</strong> (más 10 de reserva) en <strong>90 minutos</strong>,
+  <strong>máximo de 100 preguntas puntuables tipo test</strong> (más 10 de reserva) en <strong>90 minutos</strong>,
   con penalización de -1/3 por respuesta incorrecta. Dispones de menos de un minuto por pregunta.
 </p>
 
@@ -1215,7 +1215,7 @@ export const blogPosts: BlogPost[] = [
   <tbody>
     <tr><td>Primera parte</td><td>Máx. 60 preguntas (+ 5 reserva)</td><td>30 teóricas (Bloque I) + 30 psicotécnicas</td><td>50 puntos (mín. 25)</td></tr>
     <tr><td>Segunda parte</td><td>Máx. 50 preguntas (+ 5 reserva)</td><td>Informática y Ofimática (Bloque II: Windows 11, Word/Excel/Access/Outlook 365)</td><td>50 puntos (mín. 25)</td></tr>
-    <tr><td><strong>Total</strong></td><td><strong>110 preguntas (+ 10 reserva)</strong></td><td>Ejercicio único · 90 minutos</td><td><strong>100 puntos</strong></td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>100 preguntas puntuables (+ 10 reserva)</strong></td><td>Ejercicio único · 90 minutos</td><td><strong>100 puntos</strong></td></tr>
   </tbody>
 </table>
 <p>
@@ -1309,7 +1309,7 @@ export const blogPosts: BlogPost[] = [
 <h3>3. Simulacros cronometrados en la recta final</h3>
 <p>
   Las últimas 6-8 semanas antes del examen deben incluir al menos 1 simulacro completo
-  (110 preguntas, 90 minutos) por semana. La presión del tiempo y la penalización -1/3
+  (100 preguntas, 90 minutos) por semana. La presión del tiempo y la penalización -1/3
   son factores que solo se aprenden practicando, no estudiando.
 </p>
 

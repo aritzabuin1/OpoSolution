@@ -548,7 +548,7 @@ export default async function DashboardPage() {
               <div>
                 <p className="text-sm font-semibold">Ponlo a prueba con un Simulacro Oficial</p>
                 <p className="text-xs text-muted-foreground mt-0.5">
-                  110 preguntas · 90 min · Penalización real · Exámenes INAP 2019–2024
+                  100 preguntas · 90 min · Penalización real · Exámenes INAP 2018–2024
                 </p>
               </div>
             </div>

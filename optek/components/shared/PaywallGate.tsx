@@ -52,17 +52,10 @@ interface PricingOption {
 
 const OPTIONS_TESTS: PricingOption[] = [
   {
-    tier: 'recarga',
-    label: 'Entrada básica',
-    price: '8,99€',
-    description: 'Tests ilimitados + 10 análisis detallados',
-    corrections: 'La opción más accesible',
-  },
-  {
     tier: 'pack',
     label: 'Pack Oposición',
     price: '49,99€',
-    description: 'Todo el temario completo (28 temas)',
+    description: 'Todo el temario · simulacros · caza-trampas · radar',
     corrections: '+ 20 análisis detallados incluidos',
     featured: true,
   },
@@ -71,17 +64,10 @@ const OPTIONS_TESTS: PricingOption[] = [
 const OPTIONS_CORRECTIONS: PricingOption[] = [
   {
     tier: 'recarga',
-    label: 'Recarga',
+    label: 'Recarga de análisis',
     price: '8,99€',
     description: '+10 análisis detallados adicionales',
-    corrections: 'Para tu cuenta existente',
-  },
-  {
-    tier: 'pack',
-    label: 'Pack Oposición',
-    price: '49,99€',
-    description: 'Todo el temario + 20 análisis detallados',
-    corrections: 'La opción con más valor',
+    corrections: 'Se añaden a tu cuenta al instante',
     featured: true,
   },
 ]
@@ -136,7 +122,9 @@ export function PaywallGate({ open, onClose, code, temaId, oposicionId }: Paywal
         <div className="rounded-lg bg-muted/50 px-4 py-2 text-center text-sm text-muted-foreground">
           <span className="line-through text-destructive/60">Academia presencial: desde 150€/mes</span>
           {' · '}
-          <span className="font-semibold text-foreground">OpoRuta: desde 8,99€ una sola vez</span>
+          <span className="font-semibold text-foreground">
+            OpoRuta: {code === 'PAYWALL_TESTS' ? '49,99€' : 'desde 8,99€'} una sola vez
+          </span>
         </div>
 
         {/* Opciones de precio */}

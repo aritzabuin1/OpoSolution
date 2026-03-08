@@ -84,6 +84,13 @@ export interface CompletionRate {
   completionPct: number
 }
 
+export interface AnalysisUsageByType {
+  endpoint: string
+  label: string
+  count: number
+  totalCost: number
+}
+
 export interface FeedbackSummary {
   total: number
   byTipo: { tipo: string; count: number }[]
@@ -396,4 +403,44 @@ export async function getFeedbackSummary(): Promise<FeedbackSummary> {
     byEstado: [...estadoCount.entries()].map(([estado, count]) => ({ estado, count })),
     recent: rows.slice(0, 5).map(r => ({ mensaje: r.mensaje, tipo: r.tipo, created_at: r.created_at })),
   }
+}
+
+// ─── 11. Uso de análisis detallados por tipo ─────────────────────────────────
+
+const ANALYSIS_ENDPOINTS: Record<string, string> = {
+  'explain-errores-stream': 'Explicar errores (simulacro)',
+  'explain-errores': 'Explicar errores (batch)',
+  'correct-desarrollo': 'Corrector desarrollo',
+  'analyze-cazatrampas-stream': 'Análisis caza-trampas',
+  'explain-flashcard-stream': 'Explicación flashcard',
+  'informe-simulacro-stream': 'Informe simulacro',
+}
+
+export async function getAnalysisUsageByType(): Promise<AnalysisUsageByType[]> {
+  const supabase = await createServiceClient()
+
+  const endpoints = Object.keys(ANALYSIS_ENDPOINTS)
+  const { data } = await supabase
+    .from('api_usage_log')
+    .select('endpoint, cost_estimated_cents')
+    .in('endpoint', endpoints)
+
+  const rows = (data ?? []) as { endpoint: string; cost_estimated_cents: number }[]
+
+  const grouped = new Map<string, { count: number; totalCost: number }>()
+  for (const r of rows) {
+    const curr = grouped.get(r.endpoint) ?? { count: 0, totalCost: 0 }
+    curr.count++
+    curr.totalCost += r.cost_estimated_cents
+    grouped.set(r.endpoint, curr)
+  }
+
+  return endpoints
+    .map(ep => ({
+      endpoint: ep,
+      label: ANALYSIS_ENDPOINTS[ep],
+      count: grouped.get(ep)?.count ?? 0,
+      totalCost: Math.round((grouped.get(ep)?.totalCost ?? 0)) / 100,
+    }))
+    .sort((a, b) => b.count - a.count)
 }

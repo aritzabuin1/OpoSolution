@@ -98,6 +98,17 @@ export async function POST(request: NextRequest) {
 
   const hasPaidAccess = (comprasCount ?? 0) > 0
 
+  // Free users: máx 20 preguntas por simulacro
+  if (!hasPaidAccess && numPreguntas > FREE_LIMITS.simulacroMaxPreguntas) {
+    return NextResponse.json(
+      {
+        error: `Los simulacros de ${numPreguntas} preguntas requieren acceso Premium. Los usuarios gratuitos pueden hacer simulacros de ${FREE_LIMITS.simulacroMaxPreguntas} preguntas.`,
+        code: 'PAYWALL_TESTS',
+      },
+      { status: 402 }
+    )
+  }
+
   if (hasPaidAccess) {
     // Paid: rate limit silencioso anti-abuso
     const rateLimit = await checkRateLimit(user.id, 'simulacro-daily', PAID_LIMITS.simulacrosDay, '24 h')

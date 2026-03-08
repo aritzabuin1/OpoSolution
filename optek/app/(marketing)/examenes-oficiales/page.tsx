@@ -137,7 +137,7 @@ export default function SimulacrosIndexPage() {
             </div>
             <div className="flex items-center gap-1.5 text-muted-foreground">
               <Timer className="h-4 w-4 text-primary" />
-              <span>110 preguntas · 90 min · formato oficial</span>
+              <span>100 preguntas puntuables · 90 min · formato oficial</span>
             </div>
             <div className="flex items-center gap-1.5 text-muted-foreground">
               <BookOpen className="h-4 w-4 text-primary" />

@@ -133,11 +133,11 @@ describe('calcularNotaSimulacro', () => {
 
   // ─── Total preguntas distinto de 100 ───────────────────────────────────────
 
-  it('funciona con 110 preguntas (examen real)', () => {
-    // 90 aciertos, 10 errores, 110 preguntas
-    // notaRaw = 90 - 10/3 = 86.667 → sobre10 = 86.667/110*10 = 7.88
-    const r = calcularNotaSimulacro(90, 10, 110, 2024)!
-    expect(r.tuNota).toBeCloseTo(7.88, 1)
+  it('funciona con 100 preguntas (examen real)', () => {
+    // 90 aciertos, 10 errores, 100 preguntas
+    // notaRaw = 90 - 10/3 = 86.667 → sobre10 = 86.667/100*10 = 8.67
+    const r = calcularNotaSimulacro(90, 10, 100, 2024)!
+    expect(r.tuNota).toBeCloseTo(8.67, 1)
     expect(r.habriaProbado).toBe(true)
   })
 })

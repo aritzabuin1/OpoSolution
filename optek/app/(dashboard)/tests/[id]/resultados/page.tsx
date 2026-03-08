@@ -21,6 +21,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { CitationBadge } from '@/components/shared/CitationBadge'
 import { ExplicarErroresPanel } from '@/components/simulacros/ExplicarErroresPanel'
+import { InformeSimulacroPanel } from '@/components/simulacros/InformeSimulacroPanel'
 import { CheckCircle2, XCircle, Clock, BarChart3, TrendingUp, Trophy, BookOpen, Calendar } from 'lucide-react'
 import type { Pregunta } from '@/types/ai'
 import { ShareButton } from '@/components/shared/ShareButton'
@@ -474,6 +475,11 @@ export default async function ResultadosPage({ params }: Props) {
           testId={id}
         />
       </div>
+
+      {/* Informe personalizado IA del simulacro */}
+      {esSimulacroOficial && (
+        <InformeSimulacroPanel testId={id} />
+      )}
 
       {/* §2.6A.7 — Panel de explicación IA para simulacros oficiales */}
       {esSimulacroOficial && preguntasErroneas.length > 0 && (

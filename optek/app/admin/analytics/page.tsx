@@ -16,6 +16,7 @@ import {
   getCorrectionsUsage,
   getCompletionRate,
   getFeedbackSummary,
+  getAnalysisUsageByType,
 } from '@/lib/admin/analytics'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -59,10 +60,10 @@ function ScoreColor({ val }: { val: number }) {
 // ─── Page ───────────────────────────────────────────────────────────────────────
 
 export default async function AnalyticsPage() {
-  let conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback
+  let conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage
 
   try {
-    ;[conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback] =
+    ;[conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage] =
       await Promise.all([
         getConversionMetrics(),
         getDAU30d(),
@@ -74,6 +75,7 @@ export default async function AnalyticsPage() {
         getCorrectionsUsage(),
         getCompletionRate(),
         getFeedbackSummary(),
+        getAnalysisUsageByType(),
       ])
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err)
@@ -412,6 +414,38 @@ export default async function AnalyticsPage() {
 
             {feedback.total === 0 && (
               <p className="text-sm text-muted-foreground text-center py-2">Sin feedback recibido aun.</p>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* 11. Uso de analisis por tipo */}
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base">Analisis Detallados por Tipo</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {analysisUsage.length > 0 ? (
+              <>
+                {(() => {
+                  const maxCount = Math.max(...analysisUsage.map((a: { count: number }) => a.count), 1)
+                  return analysisUsage.map((a: { endpoint: string; label: string; count: number; totalCost: number }) => (
+                    <div key={a.endpoint} className="space-y-1">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="text-muted-foreground truncate mr-2">{a.label}</span>
+                        <span className="font-bold shrink-0">
+                          {a.count} <span className="font-normal text-muted-foreground">({a.totalCost.toFixed(2)} EUR)</span>
+                        </span>
+                      </div>
+                      <ProgressBar value={a.count} max={maxCount} color="bg-primary" />
+                    </div>
+                  ))
+                })()}
+                <p className="text-[10px] text-muted-foreground border-t pt-2">
+                  Muestra donde gastan mas analisis los usuarios — util para decidir donde ampliar valor.
+                </p>
+              </>
+            ) : (
+              <p className="text-sm text-muted-foreground text-center py-2">Sin datos de uso aun.</p>
             )}
           </CardContent>
         </Card>

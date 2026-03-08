@@ -14,12 +14,14 @@
  */
 
 import { useState } from 'react'
-import { CheckCircle2, XCircle, Target, AlertTriangle } from 'lucide-react'
+import { CheckCircle2, XCircle, Target, AlertTriangle, Sparkles, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { ShareButton } from '@/components/shared/ShareButton'
+import { PaywallGate } from '@/components/shared/PaywallGate'
+import { useAIAnalysis } from '@/lib/hooks/useAIAnalysis'
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
 
@@ -75,6 +77,7 @@ export function CazaTrampasCard({
   const [currentCorreccion, setCurrentCorreccion] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [resultado, setResultado] = useState<Resultado | null>(null)
+  const analysis = useAIAnalysis('/api/ai/analyze-cazatrampas/stream')
 
   function addDeteccion() {
     const trampa = currentTrampa.trim()
@@ -179,6 +182,63 @@ export function CazaTrampasCard({
               </div>
             </div>
           ))}
+
+          {/* Análisis profundo IA */}
+          {analysis.state === 'idle' || analysis.state === 'error' ? (
+            <div className="rounded-xl border border-dashed border-primary/30 bg-primary/5 p-4 space-y-3">
+              <div className="flex items-start gap-3">
+                <Sparkles className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-semibold text-sm">Análisis profundo de las trampas</p>
+                  <p className="text-xs text-muted-foreground">
+                    La IA explica por qué cada trampa funciona y te da trucos de memoria. Consume 1 análisis.
+                  </p>
+                </div>
+              </div>
+              <Button
+                size="sm"
+                onClick={() => analysis.trigger({ sesionId })}
+                className="w-full"
+              >
+                <Sparkles className="h-4 w-4 mr-2" />
+                {analysis.state === 'error' ? 'Reintentar' : 'Analizar trampas (1 análisis)'}
+              </Button>
+            </div>
+          ) : analysis.state === 'loading' ? (
+            <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 flex items-center gap-3">
+              <Loader2 className="h-5 w-5 animate-spin text-primary shrink-0" />
+              <p className="font-medium text-sm">Analizando trampas...</p>
+            </div>
+          ) : (
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-primary" />
+                <p className="text-sm font-semibold">
+                  Análisis profundo
+                  {analysis.state === 'streaming' && (
+                    <span className="ml-2 text-xs font-normal text-muted-foreground">escribiendo...</span>
+                  )}
+                </p>
+              </div>
+              <div
+                ref={analysis.textRef}
+                className="rounded-lg border border-primary/20 bg-muted/30 p-4 max-h-[400px] overflow-y-auto"
+              >
+                <div className="text-sm leading-relaxed whitespace-pre-wrap">
+                  {analysis.text}
+                  {analysis.state === 'streaming' && (
+                    <span className="inline-block w-2 h-4 bg-primary/60 animate-pulse ml-0.5 align-text-bottom" />
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
+          <PaywallGate
+            open={analysis.showPaywall}
+            onClose={() => analysis.setShowPaywall(false)}
+            code="PAYWALL_CORRECTIONS"
+          />
 
           {/* §2.16.8 — Compartir resultado Caza-Trampas */}
           <div className="flex gap-2">

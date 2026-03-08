@@ -228,7 +228,7 @@ export default async function SimulacroExamenPage({ params }: Props) {
             )}
             <div className="flex items-center gap-2 text-sm">
               <Timer className="h-4 w-4 text-primary" />
-              <span><strong>110 preguntas</strong> · 90 minutos · formato oficial</span>
+              <span><strong>100 preguntas puntuables</strong> · 90 minutos · formato oficial</span>
             </div>
             <div className="flex items-center gap-2 text-sm text-green-700 dark:text-green-500">
               <CheckCircle2 className="h-4 w-4" />
@@ -327,7 +327,7 @@ export default async function SimulacroExamenPage({ params }: Props) {
                 El <strong className="text-foreground">examen oficial INAP {meta.anio}</strong> del
                 Cuerpo General Auxiliar de la Administración del Estado se realiza mediante un{' '}
                 <strong className="text-foreground">ejercicio único</strong> de{' '}
-                un máximo de <strong className="text-foreground">110 preguntas</strong> tipo test
+                un máximo de <strong className="text-foreground">100 preguntas puntuables</strong> tipo test
                 (más 10 de reserva) en <strong className="text-foreground">90 minutos</strong>.
                 El sistema de selección es de concurso-oposición (RD 651/2025, 1.700 plazas).
                 El ejercicio se divide en dos partes, ambas obligatorias y eliminatorias:
