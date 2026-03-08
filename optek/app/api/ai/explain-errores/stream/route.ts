@@ -5,6 +5,7 @@ import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { callAIStream } from '@/lib/ai/provider'
 import { SYSTEM_EXPLAIN_ERRORES_STREAM } from '@/lib/ai/prompts'
 import { logger } from '@/lib/logger'
+import { createSafeStreamResponse } from '@/lib/utils/stream-helpers'
 import type { Pregunta } from '@/types/ai'
 
 // Vercel Hobby max: 60s. Streaming needs connection open for full response.
@@ -152,45 +153,18 @@ export async function POST(request: NextRequest) {
   }
 
   // ── 9. Pipe through: encode + deduct credit on completion ───────────────
-  const reader = aiStream.getReader()
-  const encoder = new TextEncoder()
   const userId = user.id
-
-  const responseStream = new ReadableStream({
-    async pull(controller) {
-      try {
-        const { done, value } = await reader.read()
-        if (done) {
-          // Stream completed — deduct credit (BUG-010 pattern)
-          try {
-            if (hasPaidCredit) {
-              await serviceSupabase.rpc('use_correction', { p_user_id: userId })
-            } else {
-              await serviceSupabase.rpc('use_free_correction', { p_user_id: userId })
-            }
-          } catch (creditErr) {
-            log.error({ err: creditErr, userId }, 'Failed to deduct correction credit')
-          }
-          log.info({ userId, testId }, '[explain-errores-stream] completado')
-          controller.close()
-          return
-        }
-        controller.enqueue(encoder.encode(value))
-      } catch (err) {
-        log.error({ err }, '[explain-errores-stream] error during stream')
-        controller.error(err)
+  return createSafeStreamResponse({
+    aiStream,
+    userId,
+    endpoint: 'explain-errores-stream',
+    context: { testId, errores: erroneas.length },
+    onComplete: async () => {
+      if (hasPaidCredit) {
+        await serviceSupabase.rpc('use_correction', { p_user_id: userId })
+      } else {
+        await serviceSupabase.rpc('use_free_correction', { p_user_id: userId })
       }
-    },
-    cancel() {
-      reader.cancel()
-    },
-  })
-
-  return new Response(responseStream, {
-    headers: {
-      'Content-Type': 'text/plain; charset=utf-8',
-      'Cache-Control': 'no-cache, no-store',
-      'X-Accel-Buffering': 'no',
     },
   })
 }

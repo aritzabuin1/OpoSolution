@@ -5,6 +5,7 @@ import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { callAIStream } from '@/lib/ai/provider'
 import { SYSTEM_INFORME_SIMULACRO } from '@/lib/ai/prompts'
 import { logger } from '@/lib/logger'
+import { createSafeStreamResponse } from '@/lib/utils/stream-helpers'
 import type { Pregunta } from '@/types/ai'
 
 export const maxDuration = 60
@@ -164,42 +165,18 @@ ${erroresDetalle || '  Ninguna'}`
   }
 
   // Pipe + deduct credit on completion
-  const reader = aiStream.getReader()
-  const encoder = new TextEncoder()
   const userId = user.id
-
-  const responseStream = new ReadableStream({
-    async pull(controller) {
-      try {
-        const { done, value } = await reader.read()
-        if (done) {
-          try {
-            if (hasPaidCredit) {
-              await serviceSupabase.rpc('use_correction', { p_user_id: userId })
-            } else {
-              await serviceSupabase.rpc('use_free_correction', { p_user_id: userId })
-            }
-          } catch (creditErr) {
-            log.error({ err: creditErr, userId }, 'Failed to deduct credit')
-          }
-          log.info({ userId, testId }, 'completed')
-          controller.close()
-          return
-        }
-        controller.enqueue(encoder.encode(value))
-      } catch (err) {
-        log.error({ err }, 'error during stream')
-        controller.error(err)
+  return createSafeStreamResponse({
+    aiStream,
+    userId,
+    endpoint: 'informe-simulacro-stream',
+    context: { testId, aciertos, errores },
+    onComplete: async () => {
+      if (hasPaidCredit) {
+        await serviceSupabase.rpc('use_correction', { p_user_id: userId })
+      } else {
+        await serviceSupabase.rpc('use_free_correction', { p_user_id: userId })
       }
-    },
-    cancel() { reader.cancel() },
-  })
-
-  return new Response(responseStream, {
-    headers: {
-      'Content-Type': 'text/plain; charset=utf-8',
-      'Cache-Control': 'no-cache, no-store',
-      'X-Accel-Buffering': 'no',
     },
   })
 }

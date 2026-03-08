@@ -123,11 +123,16 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
     const respuestasActuales = respuestasRef.current
     const puntuacion = calcularPuntuacion(preguntas, respuestasActuales)
 
+    // 30s timeout — finalizar is a quick DB write, should never take long
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 30_000)
+
     try {
       const res = await fetch(`/api/tests/${testId}/finalizar`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ respuestas: respuestasActuales, puntuacion }),
+        signal: controller.signal,
       })
 
       if (res.ok) {
@@ -150,11 +155,18 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
       toast.error('Error al guardar el test', {
         description: data?.error ?? 'Inténtalo de nuevo.',
       })
-    } catch {
-      toast.error('Error de conexión', {
-        description: 'No se pudo guardar el test. Comprueba tu conexión.',
-      })
+    } catch (err) {
+      if (err instanceof DOMException && err.name === 'AbortError') {
+        toast.error('Tiempo de espera agotado', {
+          description: 'El servidor tardó demasiado. Inténtalo de nuevo.',
+        })
+      } else {
+        toast.error('Error de conexión', {
+          description: 'No se pudo guardar el test. Comprueba tu conexión.',
+        })
+      }
     } finally {
+      clearTimeout(timeoutId)
       isFinishingRef.current = false
       setIsFinishing(false)
     }

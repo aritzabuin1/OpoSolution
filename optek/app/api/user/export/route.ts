@@ -87,6 +87,42 @@ export async function GET() {
         .order('timestamp', { ascending: false }),
     ])
 
+    // Check for Supabase errors on each query — partial export = GDPR violation risk
+    const queryErrors = [
+      profileResult.error && 'perfil',
+      testsResult.error && 'tests',
+      desarrollosResult.error && 'correcciones',
+      comprasResult.error && 'compras',
+      suscripcionesResult.error && 'suscripciones',
+      reportesResult.error && 'reportes',
+      logrosResult.error && 'logros',
+      apiUsageResult.error && 'api_usage',
+    ].filter(Boolean) as string[]
+
+    if (queryErrors.length > 0) {
+      log.error(
+        {
+          userId: user.id,
+          failedTables: queryErrors,
+          errors: {
+            perfil: profileResult.error?.message,
+            tests: testsResult.error?.message,
+            correcciones: desarrollosResult.error?.message,
+            compras: comprasResult.error?.message,
+            suscripciones: suscripcionesResult.error?.message,
+            reportes: reportesResult.error?.message,
+            logros: (logrosResult as { error?: { message: string } }).error?.message,
+            api_usage: apiUsageResult.error?.message,
+          },
+        },
+        'Export parcial — algunas tablas fallaron'
+      )
+      return NextResponse.json(
+        { error: `Error al exportar datos de: ${queryErrors.join(', ')}. Inténtalo de nuevo.` },
+        { status: 500 }
+      )
+    }
+
     const exportData = {
       exportado_el: new Date().toISOString(),
       version_schema: '1.0',

@@ -26,16 +26,27 @@ export function useAIAnalysis(endpoint: string) {
     }
   }, [text, state])
 
+  const abortRef = useRef<AbortController | null>(null)
+
   const trigger = useCallback(async (body: Record<string, unknown>) => {
     if (state === 'loading' || state === 'streaming') return
     setState('loading')
     setText('')
+
+    // Cancel any in-flight request
+    abortRef.current?.abort()
+    const controller = new AbortController()
+    abortRef.current = controller
+
+    // 90s timeout — matches Vercel maxDuration=60 + network margin
+    const timeoutId = setTimeout(() => controller.abort(), 90_000)
 
     try {
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
+        signal: controller.signal,
       })
 
       if (!res.ok) {
@@ -80,11 +91,18 @@ export function useAIAnalysis(endpoint: string) {
       }
 
       setState('done')
-    } catch {
+    } catch (err) {
+      // Don't show error toast if user navigated away (intentional abort)
+      if (err instanceof DOMException && err.name === 'AbortError') {
+        setState('idle')
+        return
+      }
       toast.error('Error de conexión', {
         description: 'Comprueba tu conexión a internet e inténtalo de nuevo.',
       })
       setState('error')
+    } finally {
+      clearTimeout(timeoutId)
     }
   }, [endpoint, state])
 
