@@ -26,7 +26,9 @@ interface RadarTribunalProps {
 }
 
 export default function RadarTribunal({ articulos, isPaid, freeLimit = 3 }: RadarTribunalProps) {
-  const visibleArticulos = isPaid ? articulos : articulos.slice(0, freeLimit)
+  // Free users see the LEAST important articles (bottom of ranking)
+  // so they know the tool works but need Premium for the top ones
+  const visibleArticulos = isPaid ? articulos : articulos.slice(-freeLimit)
   const hiddenCount = isPaid ? 0 : Math.max(0, articulos.length - freeLimit)
 
   return (
@@ -53,14 +55,17 @@ export default function RadarTribunal({ articulos, isPaid, freeLimit = 3 }: Rada
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
-            {visibleArticulos.map((art, idx) => (
+            {visibleArticulos.map((art, idx) => {
+              // For free users, show actual ranking position (from bottom of full list)
+              const rankPos = isPaid ? idx + 1 : articulos.length - freeLimit + idx + 1
+              return (
               <tr
                 key={art.legislacion_id}
                 className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               >
                 <td className="px-3 py-3 text-gray-400 font-mono text-xs">
-                  <span className={idx < 3 ? 'font-bold text-amber-500' : ''}>
-                    {idx + 1}
+                  <span className={rankPos <= 3 ? 'font-bold text-amber-500' : ''}>
+                    {rankPos}
                   </span>
                 </td>
                 <td className="px-3 py-3">
@@ -95,7 +100,7 @@ export default function RadarTribunal({ articulos, isPaid, freeLimit = 3 }: Rada
                   </span>
                 </td>
               </tr>
-            ))}
+            )})}
           </tbody>
         </table>
       </div>
@@ -111,11 +116,11 @@ export default function RadarTribunal({ articulos, isPaid, freeLimit = 3 }: Rada
 
           <div>
             <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
-              +{hiddenCount} articulos clave que el tribunal repite
+              Los {hiddenCount} articulos que MAS caen estan ocultos
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 max-w-lg mx-auto">
-              Has visto el top 3. Pero hay <strong>{hiddenCount} articulos mas</strong> que aparecen
-              examen tras examen. Los opositores que aprueban saben exactamente cuales son.
+              Has visto los menos frecuentes. Los articulos del <strong>top del ranking</strong> — los que
+              el tribunal pregunta convocatoria tras convocatoria — solo estan disponibles con Premium.
             </p>
           </div>
 
