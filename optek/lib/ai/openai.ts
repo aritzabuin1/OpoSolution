@@ -33,7 +33,7 @@ function getClient(): OpenAI {
   if (!_openai) {
     _openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY!,
-      timeout: 30_000,   // 30s — gpt-4o-mini is fast, no reasoning overhead
+      timeout: 55_000,   // 55s — must be < Vercel maxDuration (60s)
       maxRetries: 0,     // 0 retries SDK — nuestro pipeline ya maneja retries a nivel superior
     })
   }
