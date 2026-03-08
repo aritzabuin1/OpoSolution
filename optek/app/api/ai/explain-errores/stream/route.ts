@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
-import { checkPaidAccess } from '@/lib/freemium'
+import { checkPaidAccess, checkIsAdmin } from '@/lib/freemium'
 import { callAIStream } from '@/lib/ai/provider'
 import { SYSTEM_EXPLAIN_ERRORES_STREAM } from '@/lib/ai/prompts'
 import { logger } from '@/lib/logger'
@@ -89,32 +89,31 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ explicaciones: [] }, { status: 200 })
   }
 
-  // ── 5. Verificar créditos (SIN descontar) ───────────────────────────────
+  // ── 5. Admin check — admin skips ALL limits ─────────────────────────────
   const serviceSupabase = await createServiceClient()
-  const { data: profileCredits } = await serviceSupabase
-    .from('profiles')
-    .select('corrections_balance, free_corrector_used')
-    .eq('id', user.id)
-    .single()
+  const isAdmin = await checkIsAdmin(serviceSupabase, user.id)
 
-  const hasPaidCredit = (profileCredits?.corrections_balance ?? 0) > 0
-  const hasFreeCredit = !hasPaidCredit && (profileCredits?.free_corrector_used ?? 0) < 2
-  const isPaid = await checkPaidAccess(serviceSupabase, user.id)
+  // ── 6. Verificar créditos (SIN descontar) — admin bypass ───────────────
+  let hasPaidCredit = false
+  let hasFreeCredit = false
 
-  if (!hasPaidCredit && !hasFreeCredit && !isPaid) {
-    return NextResponse.json({
-      error: 'No tienes correcciones disponibles.',
-      code: 'PAYWALL_CORRECTIONS',
-    }, { status: 402 })
-  }
+  if (!isAdmin) {
+    const { data: profileCredits } = await serviceSupabase
+      .from('profiles')
+      .select('corrections_balance, free_corrector_used')
+      .eq('id', user.id)
+      .single()
 
-  // ── 6. Rate limit silencioso: 5/día ─────────────────────────────────────
-  const dailyLimit = await checkRateLimit(user.id, 'ai-explain-daily', 5, '24 h')
-  if (!dailyLimit.success) {
-    return NextResponse.json(
-      { error: 'Límite de 5 explicaciones diarias alcanzado.' },
-      { status: 429, headers: { 'Retry-After': buildRetryAfterHeader(dailyLimit.resetAt) } }
-    )
+    hasPaidCredit = (profileCredits?.corrections_balance ?? 0) > 0
+    hasFreeCredit = !hasPaidCredit && (profileCredits?.free_corrector_used ?? 0) < 2
+    const isPaid = await checkPaidAccess(serviceSupabase, user.id)
+
+    if (!hasPaidCredit && !hasFreeCredit && !isPaid) {
+      return NextResponse.json({
+        error: 'No tienes análisis disponibles.',
+        code: 'PAYWALL_CORRECTIONS',
+      }, { status: 402 })
+    }
   }
 
   // ── 7. Build prompt ─────────────────────────────────────────────────────
@@ -160,6 +159,8 @@ export async function POST(request: NextRequest) {
     endpoint: 'explain-errores-stream',
     context: { testId, errores: erroneas.length },
     onComplete: async () => {
+      // Admin: no credit deduction
+      if (isAdmin) return
       if (hasPaidCredit) {
         await serviceSupabase.rpc('use_correction', { p_user_id: userId })
       } else {

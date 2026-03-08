@@ -116,10 +116,10 @@ export function QuestionView({
         })}
       </div>
 
-      {/* Feedback: justificación + badge */}
+      {/* Feedback: solo correcto/incorrecto + referencia legal (sin explicación) */}
       {showFeedback && (
         <div
-          className={`rounded-lg border p-4 space-y-2 ${
+          className={`rounded-lg border p-3 ${
             esCorrecto
               ? 'border-green-200 bg-green-50'
               : esIncorrecto
@@ -143,12 +143,6 @@ export function QuestionView({
               />
             )}
           </div>
-          <p className="text-sm leading-relaxed text-foreground">{pregunta.explicacion}</p>
-          {pregunta.cita?.textoExacto && (
-            <blockquote className="border-l-2 border-primary/30 pl-3 text-xs italic text-muted-foreground">
-              &ldquo;{pregunta.cita.textoExacto}&rdquo;
-            </blockquote>
-          )}
         </div>
       )}
     </div>

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
-import { checkPaidAccess } from '@/lib/freemium'
+import { checkPaidAccess, checkIsAdmin } from '@/lib/freemium'
 import { callAIStream } from '@/lib/ai/provider'
 import { SYSTEM_ROADMAP } from '@/lib/ai/prompts'
 import { calcularIPR } from '@/lib/utils/ipr'
@@ -58,24 +58,22 @@ export async function POST(request: NextRequest) {
     fecha_examen?: string | null
   } | null
 
-  const hasPaidCredit = (profile?.corrections_balance ?? 0) > 0
-  const hasFreeCredit = !hasPaidCredit && (profile?.free_corrector_used ?? 0) < 2
-  const isPaid = await checkPaidAccess(serviceSupabase, user.id)
+  const isAdmin = await checkIsAdmin(serviceSupabase, user.id)
 
-  if (!hasPaidCredit && !hasFreeCredit && !isPaid) {
-    return NextResponse.json({
-      error: 'No tienes análisis disponibles.',
-      code: 'PAYWALL_CORRECTIONS',
-    }, { status: 402 })
-  }
+  let hasPaidCredit = false
+  let hasFreeCredit = false
 
-  // ── 4. Daily limit: 3/day ─────────────────────────────────────────────
-  const dailyLimit = await checkRateLimit(user.id, 'ai-roadmap-daily', 3, '24 h')
-  if (!dailyLimit.success) {
-    return NextResponse.json(
-      { error: 'Límite de 3 planes de estudio diarios alcanzado.' },
-      { status: 429, headers: { 'Retry-After': buildRetryAfterHeader(dailyLimit.resetAt) } }
-    )
+  if (!isAdmin) {
+    hasPaidCredit = (profile?.corrections_balance ?? 0) > 0
+    hasFreeCredit = !hasPaidCredit && (profile?.free_corrector_used ?? 0) < 2
+    const isPaid = await checkPaidAccess(serviceSupabase, user.id)
+
+    if (!hasPaidCredit && !hasFreeCredit && !isPaid) {
+      return NextResponse.json({
+        error: 'No tienes análisis disponibles.',
+        code: 'PAYWALL_CORRECTIONS',
+      }, { status: 402 })
+    }
   }
 
   // ── 5. Recopilar TODOS los datos del usuario ───────────────────────────
@@ -212,6 +210,7 @@ export async function POST(request: NextRequest) {
     endpoint: 'generate-roadmap',
     context: { totalTests: testsCompletados.length, temasConDatos: temasConDatos.length },
     onComplete: async () => {
+      if (isAdmin) return
       if (hasPaidCredit) {
         await serviceSupabase.rpc('use_correction', { p_user_id: userId })
       } else {
