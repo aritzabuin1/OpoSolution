@@ -4,7 +4,7 @@ import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { generatePsicotecnicos } from '@/lib/psicotecnicos'
 import { logger } from '@/lib/logger'
-import { FREE_LIMITS, PAID_LIMITS, checkPaidAccess } from '@/lib/freemium'
+import { FREE_LIMITS, PAID_LIMITS, checkPaidAccess, checkIsAdmin } from '@/lib/freemium'
 import type { Json } from '@/types/database'
 import type { Pregunta } from '@/types/ai'
 
@@ -92,7 +92,10 @@ export async function POST(request: NextRequest) {
 
   // ── 3. Freemium gating (compra OR is_founder) ───────────────────────────
   const serviceSupabase = await createServiceClient()
-  const hasPaidAccess = await checkPaidAccess(serviceSupabase, user.id)
+  const [hasPaidAccess, isAdmin] = await Promise.all([
+    checkPaidAccess(serviceSupabase, user.id),
+    checkIsAdmin(serviceSupabase, user.id),
+  ])
 
   // Free users: máx 20 preguntas por simulacro
   if (!hasPaidAccess && numPreguntas > FREE_LIMITS.simulacroMaxPreguntas) {
@@ -105,7 +108,7 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  if (hasPaidAccess) {
+  if (hasPaidAccess && !isAdmin) {
     // Paid: rate limit silencioso anti-abuso
     const rateLimit = await checkRateLimit(user.id, 'simulacro-daily', PAID_LIMITS.simulacrosDay, '24 h')
     if (!rateLimit.success) {
@@ -115,7 +118,7 @@ export async function POST(request: NextRequest) {
         { status: 429, headers: { 'Retry-After': buildRetryAfterHeader(rateLimit.resetAt) } }
       )
     }
-  } else {
+  } else if (!hasPaidAccess) {
     // Free: verificar cuota lifetime
     const { data: profileSim } = await serviceSupabase
       .from('profiles')

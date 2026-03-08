@@ -76,8 +76,13 @@ export async function checkRateLimit(
   identifier: string,
   _endpoint: string,
   limit: number,
-  window: Duration
+  window: Duration,
+  options?: { skipForAdmin?: boolean }
 ): Promise<RateLimitResult> {
+  // Admin bypass: skip rate limiting entirely for testing
+  if (options?.skipForAdmin) {
+    return { success: true, remaining: limit, resetAt: Math.floor(Date.now() / 1000) + 60 }
+  }
   const limiter = getLimiter(limit, window)
 
   if (!limiter) {

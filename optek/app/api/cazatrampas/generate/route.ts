@@ -4,7 +4,7 @@ import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { generateCazaTrampas } from '@/lib/ai/generate-cazatrampas'
 import { logger } from '@/lib/logger'
-import { FREE_LIMITS, PAID_LIMITS, checkPaidAccess } from '@/lib/freemium'
+import { FREE_LIMITS, PAID_LIMITS, checkPaidAccess, checkIsAdmin } from '@/lib/freemium'
 
 // Vercel Hobby max: 60s. AI generation needs 15-40s.
 export const maxDuration = 60
@@ -56,7 +56,10 @@ export async function POST(request: NextRequest) {
   // Paid users (compra OR is_founder) → sin límite
   // Free users → FREE_DAILY_LIMIT partidas/día
   const svcSupabase = await createServiceClient()
-  const isPaid = await checkPaidAccess(svcSupabase, user.id)
+  const [isPaid, isAdmin] = await Promise.all([
+    checkPaidAccess(svcSupabase, user.id),
+    checkIsAdmin(svcSupabase, user.id),
+  ])
 
   // Free users: numErrores 3 (dificil) requiere Premium
   if (!isPaid && numErrores === 3) {
@@ -66,7 +69,7 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  if (isPaid) {
+  if (isPaid && !isAdmin) {
     // Paid: rate limit silencioso anti-abuso
     const rateLimit = await checkRateLimit(user.id, 'cazatrampas-paid-daily', PAID_LIMITS.cazatrampasDay, '24 h')
     if (!rateLimit.success) {
@@ -75,7 +78,7 @@ export async function POST(request: NextRequest) {
         { status: 429, headers: { 'Retry-After': buildRetryAfterHeader(rateLimit.resetAt) } }
       )
     }
-  } else {
+  } else if (!isPaid) {
     const rateLimit = await checkRateLimit(user.id, 'cazatrampas-daily', FREE_DAILY_LIMIT, '24 h')
     if (!rateLimit.success) {
       return NextResponse.json(
