@@ -239,6 +239,7 @@ export function RetoDiarioCard() {
               aciertos={resultadoPrevio.trampas_encontradas}
               total={reto.num_errores}
               puntuacion={resultadoPrevio.puntuacion}
+              leyNombre={`${reto.ley_nombre} — Art. ${reto.articulo_numero}`}
             />
           </div>
         </CardContent>
@@ -291,6 +292,7 @@ export function RetoDiarioCard() {
                 aciertos={resultado.aciertos}
                 total={resultado.total}
                 puntuacion={resultado.puntuacion}
+                leyNombre={`${reto.ley_nombre} — Art. ${reto.articulo_numero}`}
               />
             </div>
           </CardContent>
