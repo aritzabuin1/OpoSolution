@@ -86,15 +86,25 @@ export default async function CuentaPage() {
       }[] | null
     }
 
+  // Check premium status: compras OR is_founder OR is_admin
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: profileFlags } = await (supabase as any)
+    .from('profiles')
+    .select('is_founder, is_admin')
+    .eq('id', user.id)
+    .single()
+
+  const flags = profileFlags as { is_founder?: boolean; is_admin?: boolean } | null
   const balance = profile?.corrections_balance ?? 0
   const hasPurchases = (compras?.length ?? 0) > 0
+  const isPremium = hasPurchases || flags?.is_founder === true || flags?.is_admin === true
 
   return (
     <div className="max-w-3xl mx-auto p-6 space-y-8">
       <h1 className="text-2xl font-bold">Mi cuenta</h1>
 
-      {/* ── CTA Pack — solo usuarios free sin compras ─────────────────────── */}
-      {!hasPurchases && (
+      {/* ── CTA — free: pack 49,99€ | premium: recarga 8,99€ si balance bajo ── */}
+      {!isPremium && (
         <div className="rounded-xl border border-primary/30 bg-primary/5 p-5 flex items-center justify-between gap-4">
           <div>
             <p className="font-semibold text-sm">Desbloquea tests ilimitados</p>
@@ -103,6 +113,17 @@ export default async function CuentaPage() {
             </p>
           </div>
           <BuyButton tier="pack" label="Comprar" variant="default" />
+        </div>
+      )}
+      {isPremium && balance < 5 && (
+        <div className="rounded-xl border border-purple-300/30 bg-purple-50/50 dark:bg-purple-950/20 p-5 flex items-center justify-between gap-4">
+          <div>
+            <p className="font-semibold text-sm">Te quedan {balance} análisis</p>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              Recarga — 8,99€ · +10 análisis detallados · pago único
+            </p>
+          </div>
+          <BuyButton tier="recarga" label="Recargar" variant="default" />
         </div>
       )}
 
