@@ -146,15 +146,18 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
       rawTest.preguntas = rawTest.preguntas.slice(0, needed)
     }
 
+    // Sanitizar opciones: recortar, limpiar artefactos de IA, descartar basura
+    const sanitized = sanitizePreguntas(rawTest.preguntas, log)
+
     log.info(
-      { attempt, preguntasRaw: rawTest.preguntas.length, esBloqueII },
+      { attempt, preguntasRaw: rawTest.preguntas.length, afterSanitize: sanitized.length, esBloqueII },
       '[generateTest] raw test received from GPT'
     )
 
     // ── 3–4. Verificar y filtrar preguntas ────────────────────────────────
     const verified = esBloqueII
-      ? verifyPreguntasBloque2(rawTest.preguntas, contexto, log)
-      : await verifyPreguntas(rawTest.preguntas, log)
+      ? verifyPreguntasBloque2(sanitized, contexto, log)
+      : await verifyPreguntas(sanitized, log)
 
     preguntasVerificadas = [...preguntasVerificadas, ...verified]
 
@@ -431,6 +434,91 @@ function verificarPreguntaBloque2(
     '[bloque2-guardrail] pregunta rechazada — contenido no encontrado en contexto'
   )
   return false
+}
+
+// ─── Sanitización de opciones ────────────────────────────────────────────────
+
+/** Max chars for a single MCQ option — anything longer is likely AI garbage */
+const MAX_OPTION_LENGTH = 200
+
+/**
+ * Patterns that indicate AI artifacts leaked into an option:
+ * - File extensions (.pdf, .docx, .html)
+ * - URLs or paths
+ * - Thinking/reasoning tags
+ * - RAG search metadata
+ * - JSON fragments
+ */
+const GARBAGE_PATTERNS = [
+  /\.pdf\b/i,
+  /\.docx?\b/i,
+  /\.html?\b/i,
+  /\.xlsx?\b/i,
+  /https?:\/\//i,
+  /<think|<\/think|<search|<\/search|<result|<citation/i,
+  /\{\s*"[^"]+"\s*:/,                 // JSON object fragment
+  /\[\s*\{/,                           // JSON array fragment
+  /^\s*```/,                           // markdown code block
+  /fuente:|source:|retrieved from/i,   // RAG metadata
+  /\btoken[s]?\b.*\b\d{4,}\b/i,       // token counts
+]
+
+/**
+ * Sanitize AI-generated questions: trim options, reject garbage.
+ * Removes questions where any option looks like AI artifacts or RAG leaks.
+ */
+function sanitizePreguntas(preguntas: PreguntaRaw[], log: ChildLogger): PreguntaRaw[] {
+  return preguntas.filter((p) => {
+    // Trim all text fields
+    p.enunciado = p.enunciado.trim()
+    p.explicacion = p.explicacion.trim()
+    p.opciones = p.opciones.map((o) => o.trim()) as [string, string, string, string]
+
+    // Check each option for garbage
+    for (let i = 0; i < p.opciones.length; i++) {
+      const opt = p.opciones[i]
+
+      // Option too long — likely contains AI reasoning or RAG context
+      if (opt.length > MAX_OPTION_LENGTH) {
+        log.warn(
+          { enunciado: p.enunciado.slice(0, 60), opcion: i, length: opt.length },
+          '[sanitize] option too long — rejecting question'
+        )
+        return false
+      }
+
+      // Option matches garbage pattern
+      for (const pattern of GARBAGE_PATTERNS) {
+        if (pattern.test(opt)) {
+          log.warn(
+            { enunciado: p.enunciado.slice(0, 60), opcion: i, matched: pattern.source, text: opt.slice(0, 80) },
+            '[sanitize] garbage pattern in option — rejecting question'
+          )
+          return false
+        }
+      }
+
+      // Option is empty after trim
+      if (opt.length < 2) {
+        log.warn(
+          { enunciado: p.enunciado.slice(0, 60), opcion: i },
+          '[sanitize] empty option — rejecting question'
+        )
+        return false
+      }
+    }
+
+    // Enunciado too short or too long
+    if (p.enunciado.length < 15 || p.enunciado.length > 1000) {
+      log.warn(
+        { length: p.enunciado.length },
+        '[sanitize] enunciado length out of range — rejecting'
+      )
+      return false
+    }
+
+    return true
+  })
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
