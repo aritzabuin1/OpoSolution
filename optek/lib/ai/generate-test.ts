@@ -88,18 +88,19 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   const log = requestId ? logger.child({ requestId }) : logger
   const start = Date.now()
 
-  // ── 1. Contexto RAG + título del tema + ejemplos INAP ─────────────────────
+  // ── 1. Contexto RAG + título del tema + ejemplos INAP (todo en paralelo) ──
 
-  const [ctx, temaTitulo] = await Promise.all([
+  const [ctx, temaTitulo, ejemplosExamenRaw] = await Promise.all([
     buildContext(temaId, undefined, userId), // §2.11: userId habilita weakness-weighted RAG
     fetchTemaTitulo(temaId),
+    retrieveExamples(temaId, 3),             // §1.4.4: preguntas oficiales INAP
   ])
 
   const contexto = formatContext(ctx)
   const { esBloqueII, temaNumero } = ctx
 
-  // §1.4.4: ejemplos de preguntas oficiales INAP para calibrar estilo (solo Bloque I)
-  const ejemplosExamen = esBloqueII ? '' : await retrieveExamples(temaId, 3)
+  // Solo usar ejemplos en Bloque I (legal), Bloque II no tiene preguntas INAP
+  const ejemplosExamen = esBloqueII ? '' : ejemplosExamenRaw
 
   log.info(
     { temaId, tokensEstimados: ctx.tokensEstimados, strategy: ctx.strategy, temaTitulo, esBloqueII, temaNumero },

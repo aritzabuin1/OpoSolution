@@ -38,6 +38,7 @@ import { MapaDebilidades } from '@/components/shared/MapaDebilidades'
 import { calcularIPR } from '@/lib/utils/ipr'
 import { LoadingSpinner } from '@/components/shared/LoadingSpinner'
 import { ExamCountdownBanner } from '@/components/dashboard/ExamCountdownBanner'
+import { RoadmapCard } from '@/components/dashboard/RoadmapCard'
 
 // ─── Tipos locales ─────────────────────────────────────────────────────────────
 
@@ -458,6 +459,9 @@ export default async function DashboardPage() {
       {temaScores.filter((t) => t.notaMedia !== null && t.testsCount >= 1).length >= 2 && (
         <MapaDebilidades temaScores={temaScores} />
       )}
+
+      {/* ── 2d. Plan de estudio personalizado (roadmap IA) ────────────────── */}
+      {totalTests >= 3 && <RoadmapCard />}
 
       {/* ── 3. Gráfico de evolución ──────────────────────────────────────── */}
       <Card>

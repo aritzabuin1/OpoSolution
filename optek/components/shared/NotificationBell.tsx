@@ -23,7 +23,12 @@ interface Notificacion {
   created_at: string
 }
 
-export function NotificationBell() {
+interface NotificationBellProps {
+  /** When true, renders as a full-width sidebar row with label, dropdown opens right */
+  sidebarMode?: boolean
+}
+
+export function NotificationBell({ sidebarMode = false }: NotificationBellProps) {
   const [notifs, setNotifs] = useState<Notificacion[]>([])
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -80,17 +85,32 @@ export function NotificationBell() {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="relative rounded-md p-1.5 text-muted-foreground hover:bg-muted transition-colors"
+        className={
+          sidebarMode
+            ? 'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors w-full relative'
+            : 'relative rounded-md p-1.5 text-muted-foreground hover:bg-muted transition-colors'
+        }
         aria-label={`Notificaciones${unreadCount > 0 ? ` (${unreadCount} nuevas)` : ''}`}
       >
         <Bell className="h-5 w-5" />
+        {sidebarMode && <span>Notificaciones</span>}
         {unreadCount > 0 && (
-          <span className="absolute top-0.5 right-0.5 h-2 w-2 rounded-full bg-red-500" />
+          <span className={
+            sidebarMode
+              ? 'ml-auto h-5 min-w-5 px-1 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center'
+              : 'absolute top-0.5 right-0.5 h-2 w-2 rounded-full bg-red-500'
+          }>
+            {sidebarMode ? unreadCount : null}
+          </span>
         )}
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-80 rounded-lg border bg-card shadow-lg z-50">
+        <div className={
+          sidebarMode
+            ? 'absolute left-full top-0 ml-2 w-80 rounded-lg border bg-card shadow-lg z-50'
+            : 'absolute right-0 mt-2 w-80 rounded-lg border bg-card shadow-lg z-50'
+        }>
           <div className="flex items-center justify-between border-b px-4 py-2.5">
             <span className="text-sm font-semibold">Notificaciones</span>
             {unreadCount > 0 && (

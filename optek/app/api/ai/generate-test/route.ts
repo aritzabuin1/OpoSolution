@@ -385,7 +385,7 @@ export async function POST(request: NextRequest) {
     // Error de timeout
     if (err instanceof TimeoutError) {
       return NextResponse.json(
-        { error: 'La generacion ha tardado demasiado. Intentalo de nuevo.' },
+        { error: 'La generación ha tardado demasiado. Esto ocurre cuando el servicio de IA está saturado. Inténtalo de nuevo en unos segundos.' },
         { status: 504 }
       )
     }

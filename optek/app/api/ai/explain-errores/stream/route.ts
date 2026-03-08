@@ -76,9 +76,7 @@ export async function POST(request: NextRequest) {
   if (!testData.completado) {
     return NextResponse.json({ error: 'El test aún no está completado.' }, { status: 400 })
   }
-  if (testData.tipo !== 'simulacro' || !testData.examen_oficial_id) {
-    return NextResponse.json({ error: 'Solo disponible para simulacros oficiales.' }, { status: 400 })
-  }
+  // Available for all test types (tema, simulacro, radar, psicotecnico)
 
   const preguntas = testData.preguntas as Pregunta[]
   const respuestas = (testData.respuestas_usuario ?? []) as (number | null)[]
