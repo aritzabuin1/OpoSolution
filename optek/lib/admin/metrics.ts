@@ -20,7 +20,7 @@ export interface FuelTankMetrics {
   ingresos: number       // € recibidos (suma compras.amount_paid / 100)
   costes: number         // € estimados en IA (api_usage_log.cost_estimated_cents / 100)
   margen: number         // ingresos - costes
-  margenPct: number      // (margen / ingresos) * 100 — Infinity si ingresos = 0
+  margenPct: number      // (margen / ingresos) * 100 — -100 si ingresos = 0 y costes > 0, 0 si ambos 0
 }
 
 export interface CostPerUserMetrics {
@@ -77,7 +77,9 @@ export async function getFuelTank(): Promise<FuelTankMetrics> {
     ) / 100
 
   const margen = ingresos - costes
-  const margenPct = ingresos > 0 ? Math.round((margen / ingresos) * 1000) / 10 : 0
+  const margenPct = ingresos > 0
+    ? Math.round((margen / ingresos) * 1000) / 10
+    : costes > 0 ? -100 : 0
 
   return { ingresos, costes, margen, margenPct }
 }

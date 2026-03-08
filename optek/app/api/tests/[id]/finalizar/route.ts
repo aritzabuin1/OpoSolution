@@ -77,11 +77,40 @@ export async function POST(
     .eq('user_id', user.id)
 
   if (error) {
-    log.error({ error }, 'Error al finalizar test')
-    return NextResponse.json(
-      { error: 'Error al guardar el test. Inténtalo de nuevo.' },
-      { status: 500 }
-    )
+    log.error({ error, testId, userId: user.id, puntuacion }, 'Error al finalizar test')
+
+    // BUG-027: DB constraint CHECK (puntuacion BETWEEN 0 AND 10) rechaza valores 0-100.
+    // Fallback: reintentar con puntuacion escalada a 0-10 hasta aplicar migration 027.
+    const isConstraintViolation = error.code === '23514'
+    if (isConstraintViolation) {
+      const puntuacion10 = Math.round(puntuacion / 10 * 10) / 10 // 70→7.0, 100→10.0
+      const { error: retryError } = await sb
+        .from('tests_generados')
+        .update({
+          respuestas_usuario: respuestas,
+          puntuacion: puntuacion10,
+          completado: true,
+        })
+        .eq('id', testId)
+        .eq('user_id', user.id)
+
+      if (!retryError) {
+        log.warn({ testId, original: puntuacion, scaled: puntuacion10 },
+          'Puntuacion escalada 0-10 (constraint legacy) — aplicar migration 027')
+        // Fall through to RPCs and success response
+      } else {
+        log.error({ retryError }, 'Retry con puntuacion escalada también falló')
+        return NextResponse.json(
+          { error: 'Error al guardar el test. Inténtalo de nuevo.' },
+          { status: 500 }
+        )
+      }
+    } else {
+      return NextResponse.json(
+        { error: 'Error al guardar el test. Inténtalo de nuevo.' },
+        { status: 500 }
+      )
+    }
   }
 
   // §1.13B — Actualizar racha + conceder logros (best-effort, no bloqueante)

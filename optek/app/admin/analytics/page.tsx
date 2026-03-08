@@ -208,6 +208,7 @@ export default async function AnalyticsPage() {
                   <div
                     key={point.date}
                     className="flex-1 flex flex-col items-center justify-end group relative"
+                    style={{ height: '100%' }}
                   >
                     <div
                       className={`w-full rounded-t transition-all ${isToday ? 'bg-primary' : 'bg-primary/50'}`}

@@ -78,7 +78,7 @@ describe('getFuelTank', () => {
     expect(result.ingresos).toBe(0)
     expect(result.costes).toBeCloseTo(1.0, 2)
     expect(result.margen).toBeCloseTo(-1.0, 2)
-    expect(result.margenPct).toBe(0) // 0 cuando ingresos = 0
+    expect(result.margenPct).toBe(-100) // -100% cuando ingresos = 0 y costes > 0
   })
 
   it('retorna zeros cuando no hay datos en ninguna tabla', async () => {
@@ -128,7 +128,7 @@ describe('getAlerts', () => {
   })
 
   it('genera alerta warning cuando hay costes pero no ingresos', () => {
-    const fuelTank = { ingresos: 0, costes: 5.50, margen: -5.50, margenPct: 0 }
+    const fuelTank = { ingresos: 0, costes: 5.50, margen: -5.50, margenPct: -100 }
     const costPerUser = { costeMedioTest: 0.005, costeMedioUsuario: 0.05, usuariosActivos30d: 10, testsUltimos30d: 100 }
 
     const alerts = getAlerts(fuelTank, costPerUser)
