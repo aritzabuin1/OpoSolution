@@ -55,8 +55,9 @@ interface ChildLogger {
  * 2.0.0: Soporte Bloque II (ofimática) con prompt dedicado + guardrail de contexto.
  *        `cita` ahora opcional en PreguntaSchema.
  * 2.1.0: §1.4.4 — ejemplos reales INAP en prompt Bloque I (retrieveExamples).
+ * 2.2.0: Explicaciones pedagógicas (cita textual + por qué cada distractor es incorrecto).
  */
-export const PROMPT_VERSION = '2.1.0'
+export const PROMPT_VERSION = '2.2.0'
 
 const MAX_RETRIES    = 1
 // Time budget: stop retrying before hitting Vercel's maxDuration (60s).

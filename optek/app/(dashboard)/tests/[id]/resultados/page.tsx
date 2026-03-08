@@ -25,7 +25,7 @@ import { InformeSimulacroPanel } from '@/components/simulacros/InformeSimulacroP
 import { CheckCircle2, XCircle, Clock, BarChart3, TrendingUp, Trophy, BookOpen, Calendar } from 'lucide-react'
 import type { Pregunta } from '@/types/ai'
 import { ShareButton } from '@/components/shared/ShareButton'
-import { RepasoButton } from '@/components/shared/RepasoButton'
+// RepasoButton removed — confusing UX, repaso logic handled differently
 import { calcularNotaSimulacro } from '@/lib/utils/simulacro-ranking'
 import { getAniosConvocatoriaBatch } from '@/lib/utils/cross-reference'
 
@@ -460,13 +460,6 @@ export default async function ResultadosPage({ params }: Props) {
         <Button asChild>
           <Link href="/tests">Nuevo test</Link>
         </Button>
-        {/* §repaso_errores — solo si hay errores y no es ya un repaso */}
-        {errores > 0 && test.tipo !== 'repaso_errores' && (
-          <RepasoButton />
-        )}
-        <Button variant="outline" asChild>
-          <Link href="/corrector">Prueba el corrector</Link>
-        </Button>
         <ShareButton
           score={puntuacion}
           tema={temaTitulo}
@@ -481,8 +474,8 @@ export default async function ResultadosPage({ params }: Props) {
         <InformeSimulacroPanel testId={id} />
       )}
 
-      {/* §2.6A.7 — Panel de explicación IA para simulacros oficiales */}
-      {esSimulacroOficial && preguntasErroneas.length > 0 && (
+      {/* Panel de explicación IA — disponible en todos los tests con errores */}
+      {preguntasErroneas.length > 0 && (
         <ExplicarErroresPanel
           testId={id}
           numErrores={preguntasErroneas.length}

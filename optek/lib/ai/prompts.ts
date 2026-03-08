@@ -46,7 +46,7 @@ FORMATO DE RESPUESTA (JSON estricto):
       "enunciado": "Según el artículo X de la Ley Y, ...",
       "opciones": ["opción A", "opción B", "opción C", "opción D"],
       "correcta": 0,
-      "explicacion": "La respuesta correcta es A porque el artículo X establece que...",
+      "explicacion": "El artículo X de la Ley Y establece textualmente que '...'. La opción A recoge fielmente este precepto. La opción B es incorrecta porque confunde el plazo de 10 días con 15 días (art. Z). Las opciones C y D no tienen base legal en este artículo.",
       "dificultad": "media",
       "cita": {
         "ley": "LPAC",
@@ -57,7 +57,15 @@ FORMATO DE RESPUESTA (JSON estricto):
   ]
 }
 
-El campo "dificultad" debe coincidir con el nivel solicitado para el test ("facil", "media" o "dificil").` as const
+El campo "dificultad" debe coincidir con el nivel solicitado para el test ("facil", "media" o "dificil").
+
+CALIDAD DE LA EXPLICACIÓN (campo "explicacion"):
+- NUNCA escribas explicaciones genéricas como "La respuesta correcta es A porque el artículo X dice eso".
+- La explicación DEBE ser pedagógica y completa (~3-4 frases):
+  1. Cita textual: transcribe la frase clave del artículo que fundamenta la respuesta.
+  2. Por qué la correcta es correcta: conecta la cita con la opción acertada.
+  3. Por qué las demás son incorrectas: explica brevemente (1 frase) por qué cada distractor falla.
+- El opositor debe aprender algo al leer la explicación, no solo saber cuál era la correcta.` as const
 
 /**
  * System prompt para generación de tests MCQ de Bloque II (ofimática e informática).
@@ -89,13 +97,20 @@ FORMATO DE RESPUESTA (JSON estricto, SIN campo "cita"):
       "enunciado": "¿Cuál es el atajo de teclado para...",
       "opciones": ["Ctrl+B", "Ctrl+I", "Ctrl+U", "Ctrl+N"],
       "correcta": 0,
-      "explicacion": "El atajo Ctrl+B aplica el formato Negrita en Word 365.",
+      "explicacion": "El atajo Ctrl+B aplica formato Negrita en Word 365 (Pestaña Inicio > grupo Fuente). Ctrl+I sería para Cursiva, Ctrl+U para Subrayado. Ctrl+N abre un documento nuevo, no tiene relación con el formato de texto.",
       "dificultad": "facil"
     }
   ]
 }
 
-El campo "dificultad" debe coincidir con el nivel solicitado ("facil", "media" o "dificil").` as const
+El campo "dificultad" debe coincidir con el nivel solicitado ("facil", "media" o "dificil").
+
+CALIDAD DE LA EXPLICACIÓN (campo "explicacion"):
+- NUNCA escribas explicaciones genéricas de 1 frase.
+- La explicación DEBE ser pedagógica (~2-3 frases):
+  1. Explica qué hace la funcionalidad/atajo correcto y dónde encontrarlo.
+  2. Explica brevemente por qué cada distractor es incorrecto (qué hace realmente cada opción falsa).
+- El opositor debe aprender algo útil al leer la explicación.` as const
 
 /**
  * System prompt para corrección de desarrollos escritos.
