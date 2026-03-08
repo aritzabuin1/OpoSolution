@@ -102,7 +102,10 @@ export async function GET(request: NextRequest) {
         numErrores: NUM_ERRORES,
       })
 
-      const raw = await callAIJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema)
+      const raw = await callAIJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema, {
+        maxTokens: 8000, // reasoning model: budget includes reasoning tokens
+        endpoint: 'cron-reto-diario',
+      })
 
       if (raw) {
         // Verificación determinista

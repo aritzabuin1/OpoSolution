@@ -33,7 +33,7 @@ function getClient(): OpenAI {
   if (!_openai) {
     _openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY!,
-      timeout: 25_000,   // 25s — fail fast para dejar margen al retry del pipeline (55s total)
+      timeout: 45_000,   // 45s — reasoning models need more time (gpt-5-mini thinks before responding)
       maxRetries: 0,     // 0 retries SDK — nuestro pipeline ya maneja retries a nivel superior
     })
   }
@@ -223,7 +223,9 @@ export async function callGPTMini(
   userContent: string,
   options: Omit<GPTCallOptions, 'model'> = {}
 ): Promise<string> {
-  const { maxTokens = 1500, systemPrompt, requestId, endpoint = 'unknown', userId } = options
+  // Default 8000: gpt-5-mini is a reasoning model — max_completion_tokens
+  // includes internal reasoning tokens + visible output. 1500 was too low.
+  const { maxTokens = 8000, systemPrompt, requestId, endpoint = 'unknown', userId } = options
   const model = GPT_MINI_MODEL
 
   checkCircuit()

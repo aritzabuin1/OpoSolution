@@ -75,7 +75,10 @@ export async function generateRetoDiarioOnDemand(fecha: string): Promise<{
       numErrores: NUM_ERRORES,
     })
 
-    const raw = await callAIJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema)
+    const raw = await callAIJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema, {
+      maxTokens: 8000, // reasoning model: budget includes reasoning tokens
+      endpoint: 'reto-diario',
+    })
     if (!raw) { log.warn({ attempt }, 'GPT devolvió null'); continue }
 
     const fallos = raw.errores_reales.filter((e) => !articulo.texto_integro.includes(e.valor_original))

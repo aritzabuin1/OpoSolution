@@ -60,8 +60,8 @@ export const PROMPT_VERSION = '2.1.0'
 
 const MAX_RETRIES    = 1
 // Time budget: stop retrying before hitting Vercel's maxDuration (60s).
-// If first call takes >35s, don't retry — there's no time left (55s outer timeout).
-const TIME_BUDGET_MS = 35_000
+// Reasoning models (gpt-5-mini) need more time — single attempt preferred.
+const TIME_BUDGET_MS = 50_000
 // Modelo seleccionado automáticamente por provider.ts (mini/light por defecto)
 
 // ─── Tipos públicos ───────────────────────────────────────────────────────────
@@ -137,7 +137,10 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
       userPrompt,
       TestGeneradoRawSchema,
       {
-        maxTokens: needed <= 10 ? 3500 : needed <= 15 ? 5000 : 10000,
+        // gpt-5-mini es un reasoning model: max_completion_tokens incluye
+        // reasoning tokens internos + output visible. Presupuesto generoso
+        // para evitar truncamiento JSON por agotamiento de tokens.
+        maxTokens: needed <= 5 ? 8000 : needed <= 10 ? 12000 : needed <= 15 ? 16000 : 25000,
         endpoint: 'generate-test',
         userId,
         requestId,
@@ -652,7 +655,7 @@ export async function generateFlashTest(
     }),
     TestGeneradoRawSchema,
     {
-      maxTokens: 2000,
+      maxTokens: 8000, // reasoning model: budget includes reasoning tokens
       endpoint: 'generate-flash-test',
       userId,
     }
@@ -771,7 +774,7 @@ export async function generateTopFrecuentesTest(userId: string): Promise<string>
     }),
     TestGeneradoRawSchema,
     {
-      maxTokens: 4000,
+      maxTokens: 16000, // reasoning model: budget includes reasoning tokens
       endpoint: 'generate-radar-test',
       userId,
     }

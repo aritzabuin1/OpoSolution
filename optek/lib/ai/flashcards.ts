@@ -79,7 +79,7 @@ Crea una flashcard de repaso para esta pregunta.`
   try {
     rawResponse = await callAIMini(userPrompt, {
       systemPrompt: SYSTEM_FLASHCARD,
-      maxTokens: 400,
+      maxTokens: 4000, // reasoning model: budget includes reasoning tokens
       endpoint: 'generate-flashcard',
       userId: 'system',
       requestId: globalThis.crypto.randomUUID(),

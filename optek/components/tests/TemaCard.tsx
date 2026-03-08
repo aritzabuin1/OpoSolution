@@ -88,6 +88,10 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, hasLegislacion = 
     setIsGenerating(true)
 
     try {
+      // 58s timeout — ligeramente bajo el maxDuration de Vercel (60s)
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 58_000)
+
       const res = await fetch('/api/ai/generate-test', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -96,7 +100,10 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, hasLegislacion = 
           numPreguntas,
           dificultad,
         }),
+        signal: controller.signal,
       })
+
+      clearTimeout(timeoutId)
 
       if (res.ok) {
         const test: TestGenerado = await res.json()
@@ -135,11 +142,12 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, hasLegislacion = 
       }
 
       toast.error('Error al generar el test', {
-        description: data?.error ?? 'Por favor inténtalo de nuevo.',
+        description: data?.error ?? `Error ${res.status}. Por favor inténtalo de nuevo.`,
       })
-    } catch {
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Error de red'
       toast.error('Error de conexión', {
-        description: 'Comprueba tu conexión a internet e inténtalo de nuevo.',
+        description: `${msg}. Comprueba tu conexión e inténtalo de nuevo.`,
       })
     } finally {
       isGeneratingRef.current = false
