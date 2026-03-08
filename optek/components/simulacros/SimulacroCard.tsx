@@ -15,12 +15,13 @@
 
 import { useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
-import { CalendarDays, BookOpen, ChevronDown, Play, Brain } from 'lucide-react'
+import { CalendarDays, BookOpen, ChevronDown, Play, Brain, Lock } from 'lucide-react'
 import { toast } from 'sonner'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { PaywallGate } from '@/components/shared/PaywallGate'
+import { useIsPremium } from '@/lib/hooks/useIsPremium'
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
 
@@ -57,6 +58,7 @@ function convocatoriaLabel(convocatoria: string): string {
 
 export function SimulacroCard({ examen }: SimulacroCardProps) {
   const router = useRouter()
+  const isPremium = useIsPremium()
 
   const [expanded, setExpanded] = useState(false)
   const [numPreguntas, setNumPreguntas] = useState(50)
@@ -212,37 +214,63 @@ export function SimulacroCard({ examen }: SimulacroCardProps) {
                   Modo examen
                 </label>
                 <button
-                  onClick={() => setIncluirPsicotecnicos((v) => !v)}
+                  onClick={() => {
+                    if (isPremium === false) { setShowPaywall(true); return }
+                    setIncluirPsicotecnicos((v) => !v)
+                  }}
                   className={`w-full flex items-start gap-3 rounded-md border px-3 py-2.5 text-left text-xs transition-colors ${
-                    incluirPsicotecnicos
-                      ? 'border-primary bg-primary/5'
-                      : 'border-border bg-background hover:bg-muted'
+                    isPremium === false
+                      ? 'border-amber-200 bg-amber-50/50 cursor-not-allowed'
+                      : incluirPsicotecnicos
+                        ? 'border-primary bg-primary/5'
+                        : 'border-border bg-background hover:bg-muted'
                   }`}
                 >
-                  <Brain className={`h-4 w-4 shrink-0 mt-0.5 ${incluirPsicotecnicos ? 'text-primary' : 'text-muted-foreground'}`} />
-                  <div>
-                    <span className={`font-medium ${incluirPsicotecnicos ? 'text-primary' : 'text-foreground'}`}>
+                  <Brain className={`h-4 w-4 shrink-0 mt-0.5 ${
+                    isPremium === false ? 'text-amber-500' : incluirPsicotecnicos ? 'text-primary' : 'text-muted-foreground'
+                  }`} />
+                  <div className="flex-1">
+                    <span className={`font-medium ${
+                      isPremium === false ? 'text-amber-800' : incluirPsicotecnicos ? 'text-primary' : 'text-foreground'
+                    }`}>
                       Modo Examen Real
                     </span>
-                    <span className="ml-1 text-muted-foreground">
-                      — Añade 30 psicotécnicas al inicio
-                    </span>
-                    {incluirPsicotecnicos && (
+                    {isPremium === false ? (
+                      <span className="ml-1 text-amber-600">
+                        — Simula el examen completo con psicotecnicas
+                      </span>
+                    ) : (
+                      <span className="ml-1 text-muted-foreground">
+                        — Anade 30 psicotecnicas al inicio
+                      </span>
+                    )}
+                    {incluirPsicotecnicos && isPremium !== false && (
                       <span className="ml-1 font-semibold text-primary">
                         ({numPreguntas + 30} preguntas total)
                       </span>
                     )}
                   </div>
+                  {isPremium === false && (
+                    <span className="shrink-0 flex items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold text-amber-700">
+                      <Lock className="h-3 w-3" /> Premium
+                    </span>
+                  )}
                 </button>
 
-                {incluirPsicotecnicos && (
+                {isPremium === false && (
+                  <p className="text-[10px] text-amber-600 pl-1">
+                    El examen real incluye psicotecnicas — practica como en el dia del examen con Premium
+                  </p>
+                )}
+
+                {incluirPsicotecnicos && isPremium !== false && (
                   <div className="space-y-1.5 pl-1">
-                    <label className="text-[11px] text-muted-foreground">Dificultad psicotécnicas</label>
+                    <label className="text-[11px] text-muted-foreground">Dificultad psicotecnicas</label>
                     <div className="flex gap-2">
                       {([
-                        { label: 'Fácil', value: 1 as const },
+                        { label: 'Facil', value: 1 as const },
                         { label: 'Media', value: 2 as const },
-                        { label: 'Difícil', value: 3 as const },
+                        { label: 'Dificil', value: 3 as const },
                       ] satisfies { label: string; value: 1 | 2 | 3 }[]).map((d) => (
                         <button
                           key={d.value}
