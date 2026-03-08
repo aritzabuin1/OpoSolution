@@ -23,6 +23,17 @@ import { Badge } from '@/components/ui/badge'
 
 // ─── Helpers ────────────────────────────────────────────────────────────────────
 
+function MetricInfo({ text }: { text: string }) {
+  return (
+    <span className="relative group ml-1.5 inline-flex">
+      <span className="cursor-help text-muted-foreground/50 hover:text-muted-foreground text-xs">ℹ</span>
+      <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block z-50 w-64 rounded-md bg-popover border px-3 py-2 text-xs text-popover-foreground shadow-md leading-relaxed">
+        {text}
+      </span>
+    </span>
+  )
+}
+
 function ProgressBar({ value, max, color }: { value: number; max: number; color: string }) {
   const pct = max > 0 ? Math.min(100, (value / max) * 100) : 0
   return (
@@ -108,7 +119,7 @@ export default async function AnalyticsPage() {
         {/* 1. Conversion Free -> Paid */}
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">Conversion Free → Paid</CardTitle>
+            <CardTitle className="text-base">Conversion Free → Paid <MetricInfo text="Porcentaje de usuarios registrados que han comprado. Benchmark SaaS freemium: 2-5%. Si es <2%, revisar propuesta de valor o pricing." /></CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="text-3xl font-extrabold text-primary">{conversion.conversionPct}%</div>
@@ -134,7 +145,7 @@ export default async function AnalyticsPage() {
         {/* 4. Churn */}
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">Churn (7 dias)</CardTitle>
+            <CardTitle className="text-base">Churn (7 dias) <MetricInfo text="Usuarios que dejaron de usar la app en los ultimos 7 dias, respecto al total que alguna vez hicieron un test. <30% es bueno, >50% es preocupante." /></CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             <div className={`text-3xl font-extrabold ${churn.churnPct > 50 ? 'text-red-600' : churn.churnPct > 30 ? 'text-amber-600' : 'text-green-600'}`}>
@@ -160,7 +171,7 @@ export default async function AnalyticsPage() {
         {/* 9. Completion rate */}
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">Tests Completados</CardTitle>
+            <CardTitle className="text-base">Tests Completados <MetricInfo text="Ratio de tests que se terminan vs se abandonan a mitad. Si muchos se abandonan, puede indicar tests demasiado largos o UX confusa." /></CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="text-3xl font-extrabold">{completion.completionPct}%</div>
@@ -183,7 +194,7 @@ export default async function AnalyticsPage() {
       {/* ── 2. DAU Chart ──────────────────────────────────────────────────── */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-base">Usuarios Activos Diarios (DAU) — ultimos 30 dias</CardTitle>
+          <CardTitle className="text-base">Usuarios Activos Diarios (DAU) — ultimos 30 dias <MetricInfo text="Usuarios Activos Diarios. Muestra tendencia de uso. Picos indican campanas efectivas. Caidas a 0 indican problema tecnico o perdida de interes." /></CardTitle>
         </CardHeader>
         <CardContent>
           {dau.every(d => d.activeUsers === 0) ? (
@@ -224,7 +235,7 @@ export default async function AnalyticsPage() {
         {/* 5. Onboarding Funnel */}
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">Funnel de Onboarding</CardTitle>
+            <CardTitle className="text-base">Funnel de Onboarding <MetricInfo text="Embudo de activacion: cuantos usuarios pasan de registrarse a hacer su primer test, segundo test y comprar. Los drop-offs indican donde se pierden usuarios." /></CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             <FunnelBar label="Registro" value={funnel.registered} total={funnel.registered} desc="registros totales" />
@@ -258,7 +269,7 @@ export default async function AnalyticsPage() {
         {/* 3. Feature Engagement */}
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">Engagement por Feature (30d)</CardTitle>
+            <CardTitle className="text-base">Engagement por Feature (30d) <MetricInfo text="Que funciones usan los usuarios activos (ultimos 30 dias). Ayuda a decidir donde invertir desarrollo y que features promocionar." /></CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             {engagement.map((f) => (
@@ -285,7 +296,7 @@ export default async function AnalyticsPage() {
         {/* 6. Top temas */}
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">Top Temas Mas Generados</CardTitle>
+            <CardTitle className="text-base">Top Temas Mas Generados <MetricInfo text="Los temas mas populares entre los usuarios. Util para priorizar contenido y detectar que partes del temario generan mas demanda." /></CardTitle>
           </CardHeader>
           <CardContent>
             {topTemas.length === 0 ? (
@@ -307,7 +318,7 @@ export default async function AnalyticsPage() {
         {/* 7. Temas con peor puntuacion */}
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">Temas con Peor Puntuacion</CardTitle>
+            <CardTitle className="text-base">Temas con Peor Puntuacion <MetricInfo text="Temas donde los usuarios sacan peor nota media. Indica que temas necesitan mejor contenido o explicaciones mas claras." /></CardTitle>
           </CardHeader>
           <CardContent>
             {temaScores.length === 0 ? (
@@ -334,7 +345,7 @@ export default async function AnalyticsPage() {
         {/* 8. Uso de creditos */}
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">Creditos de Correccion</CardTitle>
+            <CardTitle className="text-base">Creditos de Correccion <MetricInfo text="Saldo de analisis detallados de IA por usuario. Usuarios con 0 creditos son candidatos a comprar recarga. El minimo/maximo ayuda a ver la distribucion." /></CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-3 gap-3">
@@ -368,7 +379,7 @@ export default async function AnalyticsPage() {
         {/* 10. Feedback */}
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">Feedback de Usuarios</CardTitle>
+            <CardTitle className="text-base">Feedback de Usuarios <MetricInfo text="Sugerencias y reportes enviados por usuarios desde el boton flotante. Revisar periodicamente para detectar bugs y oportunidades de mejora." /></CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="flex items-center gap-2">
@@ -421,7 +432,7 @@ export default async function AnalyticsPage() {
         {/* 11. Uso de analisis por tipo */}
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">Analisis Detallados por Tipo</CardTitle>
+            <CardTitle className="text-base">Analisis Detallados por Tipo <MetricInfo text="Desglose de como gastan los usuarios sus analisis de IA: explicar errores, informes de simulacro, flashcards o caza-trampas. Muestra donde aporta mas valor la IA." /></CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             {analysisUsage.length > 0 ? (

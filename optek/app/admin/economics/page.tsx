@@ -2,7 +2,7 @@
  * app/(admin)/economics/page.tsx — §2.18.7
  *
  * Unit Economics Dashboard "Fuel Tank".
- * Responde: ¿OPTEK genera más dinero del que gasta?
+ * Responde: ¿OpoRuta genera más dinero del que gasta?
  *
  * KPIs:
  *   - Fuel Tank: ingresos vs costes IA → margen bruto
@@ -28,6 +28,17 @@ import { AlertTriangle, CheckCircle2, Info, TrendingUp } from 'lucide-react'
 import Link from 'next/link'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
+
+function MetricInfo({ text }: { text: string }) {
+  return (
+    <span className="relative group ml-1.5 inline-flex">
+      <span className="cursor-help text-muted-foreground/50 hover:text-muted-foreground text-xs">ℹ</span>
+      <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block z-50 w-64 rounded-md bg-popover border px-3 py-2 text-xs text-popover-foreground shadow-md leading-relaxed">
+        {text}
+      </span>
+    </span>
+  )
+}
 
 function MarginColor({ pct }: { pct: number }) {
   if (pct >= 40) return <span className="text-green-600 font-bold">{pct.toFixed(1)}%</span>
@@ -138,6 +149,7 @@ export default async function EconomicsPage() {
         <CardHeader className="pb-2">
           <CardTitle className="text-base flex items-center gap-2">
             ⛽ Fuel Tank — Margen Bruto
+            <MetricInfo text="Ingresos de Stripe menos costes de APIs de IA. El margen bruto debe ser >40% para un SaaS saludable. Si baja de 20%, los costes de IA estan comiendo el negocio." />
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -205,7 +217,7 @@ export default async function EconomicsPage() {
         {/* Coste por usuario */}
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">💸 Coste por usuario (30d)</CardTitle>
+            <CardTitle className="text-base">💸 Coste por usuario (30d) <MetricInfo text="Cuanto cuesta en APIs de IA cada test generado y cada usuario activo al mes. Objetivo: <0.01 EUR/test y <0.50 EUR/usuario. Si sube, optimizar prompts o cambiar modelo." /></CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-3">
@@ -259,6 +271,7 @@ export default async function EconomicsPage() {
             <CardTitle className="text-base flex items-center gap-2">
               <TrendingUp className="h-4 w-4" />
               Embudo AARRR
+              <MetricInfo text="Modelo pirata de metricas startup: Acquisition (registros), Activation (usan el producto), Retention (vuelven), Revenue (pagan), Referral (recomiendan). Cada paso debe mejorar." />
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
@@ -324,7 +337,7 @@ export default async function EconomicsPage() {
       {/* ── Revenue mensual (MRR) ─────────────────────────────────────────────── */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-base">📈 Revenue mensual (últimos 6 meses)</CardTitle>
+          <CardTitle className="text-base">📈 Revenue mensual (últimos 6 meses) <MetricInfo text="Ingresos totales por mes desde Stripe. Muestra la tendencia de crecimiento. El badge inferior indica el numero de transacciones por mes." /></CardTitle>
         </CardHeader>
         <CardContent>
           {mrrHistory.every((m) => m.ingresos === 0) ? (
