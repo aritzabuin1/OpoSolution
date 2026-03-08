@@ -169,37 +169,49 @@ export async function GET() {
     }
   }
 
-  // ── 5. Full MCQ generation (1 pregunta, tema real) ────────────────────────
+  // ── 5. AI MCQ generation (sin guardar en BD — health check no tiene userId real)
   {
     const s = Date.now()
     if (!jsonOk || !temaId) {
       results.push({
-        step: '5. Full MCQ (1 pregunta)',
+        step: '5. AI MCQ generation',
         status: 'FAIL',
         ms: 0,
         error: !jsonOk ? 'AI JSON falló (paso 2)' : 'Sin temaId (paso 3)',
       })
     } else {
       try {
-        const { generateTest } = await import('@/lib/ai/generate-test')
-        const test = await generateTest({
-          temaId,
-          numPreguntas: 1,
-          dificultad: 'facil',
-          userId: '00000000-0000-0000-0000-000000000000', // dummy para health check
-          requestId: 'health-check',
-        })
+        const { callAIJSON } = await import('@/lib/ai/provider')
+        const { buildContext, formatContext } = await import('@/lib/ai/retrieval')
+        const { SYSTEM_GENERATE_TEST, buildGenerateTestPrompt } = await import('@/lib/ai/prompts')
+        const { TestGeneradoRawSchema } = await import('@/lib/ai/schemas')
 
+        const ctx = await buildContext(temaId)
+        const contexto = formatContext(ctx)
+
+        const rawTest = await callAIJSON(
+          SYSTEM_GENERATE_TEST,
+          buildGenerateTestPrompt({
+            contextoLegislativo: contexto,
+            numPreguntas: 1,
+            dificultad: 'facil',
+            temaTitulo: 'Health check',
+          }),
+          TestGeneradoRawSchema,
+          { maxTokens: 8000, endpoint: 'health-mcq' }
+        )
+
+        const q = rawTest.preguntas[0]
         results.push({
-          step: '5. Full MCQ (1 pregunta)',
+          step: '5. AI MCQ generation',
           status: 'OK',
           ms: Date.now() - s,
-          detail: `testId=${test.id}, preguntas=${test.preguntas.length}, enunciado="${test.preguntas[0]?.enunciado?.slice(0, 60)}..."`,
+          detail: `${rawTest.preguntas.length} pregunta(s). Enunciado: "${q?.enunciado?.slice(0, 80)}..."`,
         })
       } catch (err) {
         const msg = err instanceof Error ? `${err.name}: ${err.message}` : String(err)
         results.push({
-          step: '5. Full MCQ (1 pregunta)',
+          step: '5. AI MCQ generation',
           status: 'FAIL',
           ms: Date.now() - s,
           error: msg.slice(0, 500),
