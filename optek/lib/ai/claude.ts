@@ -303,15 +303,31 @@ export async function callClaudeJSON<T>(
         callClaude(prompt, { ...options, systemPrompt: sys })
 
   // ── Intento 1 ─────────────────────────────────────────────────────────────
+  const callStart = Date.now()
   const rawResponse = await callFn(userPrompt, jsonSystemPrompt)
 
   const parsed1 = tryParseAndValidate(rawResponse, schema)
   if (parsed1.success) return parsed1.data
 
   // ── Retry con prompt de corrección ────────────────────────────────────────
+  // Solo reintentar si queda tiempo (primera llamada puede haber tardado 20-30s)
+  const firstCallDuration = Date.now() - callStart
+  const MAX_RETRY_BUDGET_MS = 15_000
+
+  if (firstCallDuration > MAX_RETRY_BUDGET_MS) {
+    logger.warn(
+      { parseError: parsed1.error, firstCallMs: firstCallDuration },
+      'callClaudeJSON: respuesta inválida pero sin tiempo para reintentar'
+    )
+    throw new Error(
+      `callClaudeJSON: JSON inválido (sin tiempo para retry, primera llamada ${firstCallDuration}ms). ` +
+      `Error: ${parsed1.error}. Respuesta: ${rawResponse.slice(0, 200)}`
+    )
+  }
+
   logger.warn(
-    { parseError: parsed1.error, attempt: 2 },
-    'callClaudeJSON: respuesta inválida — reintentando'
+    { parseError: parsed1.error, attempt: 2, firstCallMs: firstCallDuration },
+    'callClaudeJSON: respuesta inválida — reintentando (hay tiempo)'
   )
 
   const retryPrompt =

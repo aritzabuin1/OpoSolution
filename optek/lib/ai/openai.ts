@@ -33,7 +33,7 @@ function getClient(): OpenAI {
   if (!_openai) {
     _openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY!,
-      timeout: 25_000,   // 25s — dentro del budget de 60s serverless (deja margen para RAG + verify)
+      timeout: 40_000,   // 40s — generación de 10 MCQs puede tardar 15-30s. 40s safety net.
       maxRetries: 0,     // 0 retries SDK — nuestro pipeline ya maneja retries a nivel superior
     })
   }
@@ -308,16 +308,32 @@ export async function callGPTJSON<T>(
       callGPT(prompt, { ...options, systemPrompt: sys })
 
   // ── Intento 1 ─────────────────────────────────────────────────────────────
+  const callStart = Date.now()
   const rawResponse = await callFn(userPrompt, jsonSystemPrompt)
 
   const parsed1 = tryParseAndValidate(rawResponse, schema)
   if (parsed1.success) return parsed1.data
 
-  // ── Retry con prompt de corrección (1 sola vez) ────────────────────────────
-  // Solo reintentar si el error es de parseo JSON, no de timeout/red
+  // ── Retry con prompt de corrección ────────────────────────────────────────
+  // Solo reintentar si queda tiempo suficiente (la primera llamada puede haber
+  // tardado 20-30s; reintentar consumiría otros 20-30s → blow serverless budget)
+  const firstCallDuration = Date.now() - callStart
+  const MAX_RETRY_BUDGET_MS = 15_000 // only retry if first call was fast (<15s)
+
+  if (firstCallDuration > MAX_RETRY_BUDGET_MS) {
+    logger.warn(
+      { parseError: parsed1.error, firstCallMs: firstCallDuration },
+      'callGPTJSON: respuesta inválida pero sin tiempo para reintentar — lanzando error'
+    )
+    throw new Error(
+      `callGPTJSON: JSON inválido (sin tiempo para retry, primera llamada ${firstCallDuration}ms). ` +
+      `Error: ${parsed1.error}. Respuesta: ${rawResponse.slice(0, 200)}`
+    )
+  }
+
   logger.warn(
-    { parseError: parsed1.error, attempt: 2 },
-    'callGPTJSON: respuesta inválida — reintentando'
+    { parseError: parsed1.error, attempt: 2, firstCallMs: firstCallDuration },
+    'callGPTJSON: respuesta inválida — reintentando (hay tiempo)'
   )
 
   const retryPrompt =
