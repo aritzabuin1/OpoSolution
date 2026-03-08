@@ -538,6 +538,88 @@ export async function verifySingleCitation(cita: CitaLegal): Promise<Verificatio
   return verifyCitation(extracted)
 }
 
+// ─── §1.5.3b — Batch verification (optimized for generate-test pipeline) ─────
+
+/**
+ * Batch-verify multiple citations in a SINGLE DB query instead of N individual queries.
+ * Used by generate-test.ts to verify all questions at once.
+ *
+ * Strategy:
+ *   1. Extract all unique (ley_nombre, articulo_numero) pairs from all citations
+ *   2. ONE query to fetch all matching articles from legislacion
+ *   3. Verify each citation in-memory against the fetched articles
+ *
+ * Performance: 1 DB query instead of 2N (N citations × 2 lookup attempts)
+ */
+export async function batchVerifyCitations(
+  citations: ExtractedCitation[]
+): Promise<Map<string, { verificada: boolean; textoEnBD?: string }>> {
+  const results = new Map<string, { verificada: boolean; textoEnBD?: string }>()
+
+  // Collect all ley_nombre values we need to look up
+  const leyNombres = new Set<string>()
+  for (const c of citations) {
+    if (c.leyResuelta) {
+      leyNombres.add(c.ley)
+    }
+  }
+
+  if (leyNombres.size === 0) return results
+
+  // ONE query: fetch all articles for all referenced laws
+  const supabase = getClient()
+  const { data: articles, error } = await supabase
+    .from('legislacion')
+    .select('ley_nombre, articulo_numero, texto_integro')
+    .in('ley_nombre', Array.from(leyNombres))
+    .eq('activo', true)
+
+  if (error || !articles) {
+    logger.warn({ error: error?.message }, '[batch-verify] DB query failed')
+    return results
+  }
+
+  // Index by "ley_nombre:articulo_numero" for O(1) lookup
+  const articleIndex = new Map<string, string>()
+  for (const art of articles) {
+    articleIndex.set(`${art.ley_nombre}:${art.articulo_numero}`, art.texto_integro)
+  }
+
+  // Verify each citation in-memory
+  for (const c of citations) {
+    const key = c.textoOriginal
+
+    if (!c.leyResuelta) {
+      results.set(key, { verificada: false })
+      continue
+    }
+
+    // Try exact match
+    const exactKey = `${c.ley}:${c.articulo}`
+    const textoExacto = articleIndex.get(exactKey)
+    if (textoExacto) {
+      results.set(key, { verificada: true, textoEnBD: textoExacto })
+      continue
+    }
+
+    // Try variant
+    const variant = buildArticuloVariant(c.articulo)
+    if (variant !== c.articulo) {
+      const variantKey = `${c.ley}:${variant}`
+      const textoVariant = articleIndex.get(variantKey)
+      if (textoVariant) {
+        results.set(key, { verificada: true, textoEnBD: textoVariant })
+        continue
+      }
+    }
+
+    // Accept if law is recognized (lenient mode — BD coverage may be partial)
+    results.set(key, { verificada: resolveLeyNombre(c.ley) !== null })
+  }
+
+  return results
+}
+
 // ─── Private helpers ──────────────────────────────────────────────────────────
 
 async function logVerificationMetrics(params: {

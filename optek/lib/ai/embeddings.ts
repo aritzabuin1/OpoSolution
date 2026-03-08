@@ -22,9 +22,12 @@ export const EMBEDDING_DIMENSIONS = 1536 as const
 
 // ─── Cliente singleton ────────────────────────────────────────────────────────
 
-function getOpenAIClient(): OpenAI {
-  const apiKey = process.env.OPENAI_API_KEY
+let _openai: OpenAI | null = null
 
+function getOpenAIClient(): OpenAI {
+  if (_openai) return _openai
+
+  const apiKey = process.env.OPENAI_API_KEY
   if (!apiKey) {
     throw new Error(
       '[OPTEK] OPENAI_API_KEY no está configurada en las variables de entorno. ' +
@@ -32,7 +35,8 @@ function getOpenAIClient(): OpenAI {
     )
   }
 
-  return new OpenAI({ apiKey })
+  _openai = new OpenAI({ apiKey })
+  return _openai
 }
 
 // ─── API pública ──────────────────────────────────────────────────────────────

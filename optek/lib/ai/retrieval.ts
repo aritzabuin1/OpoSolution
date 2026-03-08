@@ -51,27 +51,32 @@ export interface RetrievalContext {
 const MAX_CONTEXT_CHARS = 32_000
 const DEFAULT_RETRIEVAL_LIMIT = 20
 
-// ─── Cliente Supabase (service role para bypass RLS en retrieval) ─────────────
+// ─── Cliente Supabase singleton (service role para bypass RLS en retrieval) ───
+// Reutilizar el mismo cliente en todas las operaciones de retrieval
+// (antes se creaba uno nuevo en cada función → N clientes por request)
+
+let _supabase: ReturnType<typeof createClient<Database>> | null = null
 
 function getSupabaseClient() {
+  if (_supabase) return _supabase
   const url =
     process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''
   const key =
     process.env.SUPABASE_SERVICE_ROLE_KEY ??
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ??
     ''
-  return createClient<Database>(url, key, {
+  _supabase = createClient<Database>(url, key, {
     auth: { persistSession: false, autoRefreshToken: false },
   })
+  return _supabase
 }
 
-/**
- * Cliente sin tipo para tablas nuevas aún no en types/database.ts
- * (migrations pendientes de aplicar en Supabase remoto).
- * Se elimina este helper cuando se regeneren los tipos.
- */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let _untypedSupabase: ReturnType<typeof createClient<any>> | null = null
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getUntypedClient(): ReturnType<typeof createClient<any>> {
+  if (_untypedSupabase) return _untypedSupabase
   const url =
     process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''
   const key =
@@ -79,9 +84,10 @@ function getUntypedClient(): ReturnType<typeof createClient<any>> {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ??
     ''
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return createClient<any>(url, key, {
+  _untypedSupabase = createClient<any>(url, key, {
     auth: { persistSession: false, autoRefreshToken: false },
   })
+  return _untypedSupabase
 }
 
 // ─── 1. Recuperación por tema (usa tema_ids cuando estén mapeados) ────────────

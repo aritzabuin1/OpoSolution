@@ -33,7 +33,7 @@ import {
   buildGenerateTestBloque2Prompt,
 } from '@/lib/ai/prompts'
 import { TestGeneradoRawSchema } from '@/lib/ai/schemas'
-import { extractCitations, verifyCitation, verifyContentMatch } from '@/lib/ai/verification'
+import { extractCitations, batchVerifyCitations, verifyContentMatch } from '@/lib/ai/verification'
 import { resolveLeyNombre } from '@/lib/ai/citation-aliases'
 import { createServiceClient } from '@/lib/supabase/server'
 import { logger } from '@/lib/logger'
@@ -106,26 +106,17 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
     '[generateTest] context built'
   )
 
-  // ── 2. Bucle de generación + verificación (max MAX_RETRIES reintentos) ────
+  // ── 2. Generación + verificación ─────────────────────────────────────────
+  //
+  // Optimización: si numPreguntas > 15, split en llamadas paralelas.
+  // Cada llamada genera un chunk de ~15 preguntas → ambas ejecutan en paralelo
+  // → tiempo total ≈ tiempo de 1 llamada (no 2× secuencial).
 
-  let preguntasVerificadas: Pregunta[] = []
+  const PARALLEL_THRESHOLD = 15
+  const systemPrompt = esBloqueII ? SYSTEM_GENERATE_TEST_BLOQUE2 : SYSTEM_GENERATE_TEST
 
-  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
-    const needed = numPreguntas - preguntasVerificadas.length
-    if (needed <= 0) break
-
-    // Time budget check: don't start a new round if we're running out of time
-    const elapsed = Date.now() - start
-    if (attempt > 0 && elapsed > TIME_BUDGET_MS) {
-      log.warn(
-        { attempt, elapsedMs: elapsed, timeBudgetMs: TIME_BUDGET_MS, verified: preguntasVerificadas.length },
-        '[generateTest] time budget exceeded — stopping retries with partial results'
-      )
-      break
-    }
-
-    // Seleccionar prompt según bloque
-    const systemPrompt = esBloqueII ? SYSTEM_GENERATE_TEST_BLOQUE2 : SYSTEM_GENERATE_TEST
+  /** Generate a chunk of questions via AI */
+  async function generateChunk(needed: number): Promise<PreguntaRaw[]> {
     const userPrompt = esBloqueII
       ? buildGenerateTestBloque2Prompt({ contextoTecnico: contexto, numPreguntas: needed, dificultad, temaTitulo })
       : buildGenerateTestPrompt({ contextoLegislativo: contexto, numPreguntas: needed, dificultad, temaTitulo, ejemplosExamen })
@@ -135,27 +126,57 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
       userPrompt,
       TestGeneradoRawSchema,
       {
-        maxTokens: 16000,
+        maxTokens: needed <= 15 ? 8000 : 16000,
         endpoint: 'generate-test',
         userId,
         requestId,
       }
     )
+    // Truncar a 'needed' exacto
+    const trimmed = rawTest.preguntas.length > needed
+      ? rawTest.preguntas.slice(0, needed)
+      : rawTest.preguntas
+    return sanitizePreguntas(trimmed, log)
+  }
 
-    // Truncar a 'needed' exacto — reasoning models pueden sobre-generar
-    if (rawTest.preguntas.length > needed) {
-      rawTest.preguntas = rawTest.preguntas.slice(0, needed)
+  let preguntasVerificadas: Pregunta[] = []
+
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    const needed = numPreguntas - preguntasVerificadas.length
+    if (needed <= 0) break
+
+    // Time budget check
+    const elapsed = Date.now() - start
+    if (attempt > 0 && elapsed > TIME_BUDGET_MS) {
+      log.warn(
+        { attempt, elapsedMs: elapsed, timeBudgetMs: TIME_BUDGET_MS, verified: preguntasVerificadas.length },
+        '[generateTest] time budget exceeded — stopping retries with partial results'
+      )
+      break
     }
 
-    // Sanitizar opciones: recortar, limpiar artefactos de IA, descartar basura
-    const sanitized = sanitizePreguntas(rawTest.preguntas, log)
+    // Generate: parallel split for large requests, single call for small
+    let sanitized: PreguntaRaw[]
+    if (needed > PARALLEL_THRESHOLD) {
+      const half = Math.ceil(needed / 2)
+      const [chunk1, chunk2] = await Promise.all([
+        generateChunk(half),
+        generateChunk(needed - half),
+      ])
+      sanitized = [...chunk1, ...chunk2]
+      log.info(
+        { attempt, chunk1: chunk1.length, chunk2: chunk2.length, total: sanitized.length, esBloqueII },
+        '[generateTest] parallel generation complete'
+      )
+    } else {
+      sanitized = await generateChunk(needed)
+      log.info(
+        { attempt, preguntasRaw: sanitized.length, esBloqueII },
+        '[generateTest] single generation complete'
+      )
+    }
 
-    log.info(
-      { attempt, preguntasRaw: rawTest.preguntas.length, afterSanitize: sanitized.length, esBloqueII },
-      '[generateTest] raw test received from GPT'
-    )
-
-    // ── 3–4. Verificar y filtrar preguntas ────────────────────────────────
+    // Verify
     const verified = esBloqueII
       ? verifyPreguntasBloque2(sanitized, contexto, log)
       : await verifyPreguntas(sanitized, log)
@@ -219,43 +240,99 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
 // ─── Verificación Bloque I (citas legales) ────────────────────────────────────
 
 /**
- * Verifica preguntas de Bloque I: cada pregunta debe tener citas legales válidas en BD.
+ * Verifica preguntas de Bloque I usando batch verification (1 DB query para todas).
+ *
+ * Strategy:
+ *   1. Extract all citations from all questions
+ *   2. ONE batch DB query to fetch all referenced articles
+ *   3. Verify each question in-memory against fetched articles
+ *   4. Timeout safety net — if batch query is slow, accept all unverified
  */
 async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Promise<Pregunta[]> {
-  // Race verification against a timeout to avoid exceeding serverless limits
-  const VERIFY_TIMEOUT_MS = 8_000
+  const VERIFY_TIMEOUT_MS = 5_000 // 5s — batch query should be <1s
 
-  const verifyAll = Promise.all(
-    preguntas.map(async (pregunta) => {
-      const passes = await verificarPreguntaBloque1(pregunta, log)
-      return passes ? {
-        enunciado: pregunta.enunciado,
-        opciones: pregunta.opciones,
-        correcta: pregunta.correcta,
-        explicacion: pregunta.explicacion,
-        cita: pregunta.cita,
-        dificultad: pregunta.dificultad,
-      } as Pregunta : null
+  const verifyBatch = async (): Promise<Pregunta[]> => {
+    // 1. Extract all citations from all questions
+    const allCitations = preguntas.flatMap((p) => {
+      const text = `${p.enunciado} ${p.explicacion}`
+      return extractCitations(text)
     })
-  )
 
-  // If verification takes too long, accept all questions unverified
+    // 2. Batch-fetch all referenced articles in ONE query
+    const batchResults = allCitations.length > 0
+      ? await batchVerifyCitations(allCitations)
+      : new Map()
+
+    // 3. Verify each question in-memory
+    const verified: Pregunta[] = []
+    for (const pregunta of preguntas) {
+      const text = `${pregunta.enunciado} ${pregunta.explicacion}`
+      const citasExtraidas = extractCitations(text)
+
+      let passes = true
+
+      if (citasExtraidas.length === 0) {
+        // No citations — check field-level cita if present
+        if (pregunta.cita) {
+          const leyResuelta = resolveLeyNombre(pregunta.cita.ley)
+          if (!leyResuelta) {
+            log.debug({ ley: pregunta.cita.ley }, '[verification] ley no reconocida — rechazando')
+            passes = false
+          }
+        }
+        // No cita field either — accept (question without legal reference)
+      } else {
+        // Check first citation against batch results
+        const citaPrincipal = citasExtraidas[0]
+        const result = batchResults.get(citaPrincipal.textoOriginal)
+
+        if (result && !result.verificada) {
+          // Ley no reconocida and not in BD — reject
+          const leyResuelta = resolveLeyNombre(citaPrincipal.ley)
+          if (!leyResuelta) {
+            log.debug({ cita: citaPrincipal.textoOriginal }, '[verification] cita rechazada')
+            passes = false
+          }
+        }
+
+        // Content match check (deterministic, no DB needed)
+        if (passes && result?.textoEnBD) {
+          const contentMatch = verifyContentMatch(citaPrincipal, text, result.textoEnBD)
+          if (!contentMatch.match && contentMatch.confidence !== 'low') {
+            log.debug({ details: contentMatch.details }, '[verification] contenido inconsistente — rechazando')
+            passes = false
+          }
+        }
+      }
+
+      if (passes) {
+        verified.push({
+          enunciado: pregunta.enunciado,
+          opciones: pregunta.opciones,
+          correcta: pregunta.correcta,
+          explicacion: pregunta.explicacion,
+          cita: pregunta.cita,
+          dificultad: pregunta.dificultad,
+        })
+      }
+    }
+
+    return verified
+  }
+
+  // Timeout safety net
   const TIMEOUT_SENTINEL = Symbol('timeout')
   const timeoutPromise = new Promise<typeof TIMEOUT_SENTINEL>((resolve) =>
     setTimeout(() => {
-      log.warn(
-        { timeoutMs: VERIFY_TIMEOUT_MS, preguntas: preguntas.length },
-        '[verification] timeout reached — accepting all questions unverified'
-      )
+      log.warn({ timeoutMs: VERIFY_TIMEOUT_MS, preguntas: preguntas.length },
+        '[verification] batch timeout — accepting all unverified')
       resolve(TIMEOUT_SENTINEL)
     }, VERIFY_TIMEOUT_MS)
   )
 
-  const raceResult = await Promise.race([verifyAll, timeoutPromise])
+  const raceResult = await Promise.race([verifyBatch(), timeoutPromise])
 
-  // If timeout fired, return all questions as-is (lenient mode)
   if (raceResult === TIMEOUT_SENTINEL) {
-    log.warn({}, '[verification] timeout — returning unverified questions')
     return preguntas.map((p) => ({
       enunciado: p.enunciado,
       opciones: p.opciones,
@@ -266,77 +343,10 @@ async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Prom
     }))
   }
 
-  return raceResult.filter((p): p is Pregunta => p !== null)
+  return raceResult
 }
 
-/**
- * Verifica una pregunta de Bloque I contra la BD de legislacion.
- *
- * Estrategia:
- *   1. Extraer citas del texto (enunciado + explicación)
- *   2. Si no hay citas extraídas: verificar que la ley declarada en "cita" sea reconocida
- *   3. Si hay citas: verificar la primera contra la BD
- *   4. Si verifyContentMatch retorna match=false con confidence≠low: rechazar
- */
-async function verificarPreguntaBloque1(
-  pregunta: PreguntaRaw,
-  log: ChildLogger
-): Promise<boolean> {
-  const textToVerify = `${pregunta.enunciado} ${pregunta.explicacion}`
-  const citasExtraidas = extractCitations(textToVerify)
-
-  if (citasExtraidas.length === 0) {
-    // Sin citas en texto: verificar campo "cita" si existe
-    if (!pregunta.cita) {
-      // Sin citas en ningún campo — aceptar (pregunta sin referencia legal, posible en Bloque I)
-      return true
-    }
-    const leyResuelta = resolveLeyNombre(pregunta.cita.ley)
-    if (!leyResuelta) {
-      log.debug(
-        { ley: pregunta.cita.ley },
-        '[verification] ley no reconocida en campo cita — rechazando pregunta'
-      )
-      return false
-    }
-    return true
-  }
-
-  // Verificar la primera cita extraída
-  const citaPrincipal = citasExtraidas[0]
-  const verResult = await verifyCitation(citaPrincipal)
-
-  if (!verResult.verificada) {
-    // Lenient mode: cobertura de BD puede ser parcial.
-    // Si la ley es reconocida, aceptar con baja confianza.
-    const leyResuelta = resolveLeyNombre(citaPrincipal.ley)
-    if (leyResuelta) {
-      log.debug(
-        { cita: citaPrincipal.textoOriginal },
-        '[verification] artículo no en BD pero ley reconocida — aceptado (cobertura parcial)'
-      )
-      return true
-    }
-    log.debug(
-      { cita: citaPrincipal.textoOriginal, error: verResult.error },
-      '[verification] cita no encontrada en BD — rechazando pregunta'
-    )
-    return false
-  }
-
-  if (verResult.textoEnBD) {
-    const contentMatch = verifyContentMatch(citaPrincipal, textToVerify, verResult.textoEnBD)
-    if (!contentMatch.match && contentMatch.confidence !== 'low') {
-      log.debug(
-        { details: contentMatch.details, confidence: contentMatch.confidence },
-        '[verification] contenido inconsistente — rechazando pregunta'
-      )
-      return false
-    }
-  }
-
-  return true
-}
+// verificarPreguntaBloque1 eliminated — replaced by batch verification in verifyPreguntas
 
 // ─── Verificación Bloque II (guardrail ofimática) ─────────────────────────────
 

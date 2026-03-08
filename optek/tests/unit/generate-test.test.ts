@@ -36,15 +36,15 @@ vi.mock('@/lib/ai/retrieval', () => ({
   retrieveExamples: (...args: unknown[]) => mockRetrieveExamples(...args),
 }))
 
-// Mock verification — extractCitations, verifyCitation, verifyContentMatch
+// Mock verification — extractCitations, batchVerifyCitations, verifyContentMatch
 // Así controlamos exactamente qué preguntas "pasan" la verificación
 const mockExtractCitations = vi.fn()
-const mockVerifyCitation = vi.fn()
+const mockBatchVerifyCitations = vi.fn()
 const mockVerifyContentMatch = vi.fn()
 
 vi.mock('@/lib/ai/verification', () => ({
   extractCitations: (...args: unknown[]) => mockExtractCitations(...args),
-  verifyCitation: (...args: unknown[]) => mockVerifyCitation(...args),
+  batchVerifyCitations: (...args: unknown[]) => mockBatchVerifyCitations(...args),
   verifyContentMatch: (...args: unknown[]) => mockVerifyContentMatch(...args),
 }))
 
@@ -187,9 +187,9 @@ function setupBase() {
     error: null,
   })
 
-  // Verification mocks — por defecto: NO extrae citas (verificación low confidence → pasa)
+  // Verification mocks — por defecto: NO extrae citas (sin citas → acepta pregunta directamente)
   mockExtractCitations.mockReturnValue([])
-  mockVerifyCitation.mockResolvedValue({ verificada: true, cita: {}, textoEnBD: 'texto real' })
+  mockBatchVerifyCitations.mockResolvedValue(new Map())
   mockVerifyContentMatch.mockReturnValue({ match: true, confidence: 'low', details: 'sin info' })
 }
 
@@ -279,31 +279,19 @@ describe('§1.7.5 — generateTest: filtrado de preguntas que no pasan verificac
   })
 
   it('filtra preguntas cuya cita no existe en BD — reintenta y completa el test', async () => {
-    // Primera ronda: GPT devuelve 3 preguntas
-    // Pregunta 1 y 3 → pasan (extractCitations devuelve array vacío → lenient mode con LPAC reconocida)
-    // Pregunta 2 → FALLA (extractCitations devuelve cita de ley DESCONOCIDA → no pasa lenient mode)
-    let callCount = 0
+    // Pregunta 2 → tiene cita con ley DESCONOCIDA → rechazada por verifyPreguntas
+    // Preguntas 1 y 3 → sin citas → aceptadas
     mockExtractCitations.mockImplementation((text: string) => {
-      callCount++
-      // Pregunta 2 (callCount 2): devuelve cita con ley no reconocida → FALLA en lenient mode
       if (text.includes('Pregunta de test número 2')) {
         return [{ ley: 'LEY_DESCONOCIDA', leyRaw: 'LEY_DESCONOCIDA', articulo: '999', textoOriginal: 'artículo 999 LEY_DESCONOCIDA', leyResuelta: false }]
       }
-      // Resto: no extrae citas → pasa directamente (ley reconocida en campo cita)
       return []
     })
 
-    // Verificación: art.999 → falla; cualquier otra → pasa
-    mockVerifyCitation.mockImplementation((citation: { articulo: string }) => {
-      if (citation.articulo === '999') {
-        return Promise.resolve({ verificada: false, cita: citation, error: 'Artículo no encontrado' })
-      }
-      return Promise.resolve({
-        verificada: true,
-        cita: citation,
-        textoEnBD: 'texto del artículo existente en BD',
-      })
-    })
+    // Batch verification: return empty map (ley desconocida won't be found)
+    mockBatchVerifyCitations.mockResolvedValue(new Map([
+      ['artículo 999 LEY_DESCONOCIDA', { verificada: false }],
+    ]))
 
     // Ronda 1: 3 preguntas (1 y 3 válidas, 2 inválida) → 2 verificadas de 3
     mockCallAIJSON
@@ -312,9 +300,6 @@ describe('§1.7.5 — generateTest: filtrado de preguntas que no pasan verificac
       ]))
       // Ronda 2 (reintento — 1 faltante): devuelve 1 pregunta
       .mockResolvedValueOnce(buildAIResponse([makePreguntaRaw(4)]))
-
-    // Reiniciar callCount para que el reintento no interprete pregunta4 como "pregunta 2"
-    callCount = 0
 
     const result = await generateTest({
       temaId: TEMA_ID,
@@ -325,20 +310,18 @@ describe('§1.7.5 — generateTest: filtrado de preguntas que no pasan verificac
 
     // Debe retornar exactamente 3 preguntas (2 de ronda 1 + 1 del reintento)
     expect(result.preguntas).toHaveLength(3)
-    // Claude fue llamado 2 veces (ronda inicial + reintento)
+    // AI fue llamado 2 veces (ronda inicial + reintento)
     expect(mockCallAIJSON).toHaveBeenCalledTimes(2)
   })
 
   it('lanza error descriptivo si todas las preguntas fallan tras MAX_RETRIES', async () => {
-    // TODAS las preguntas tienen citas con ley no reconocida → fallan en lenient mode
+    // TODAS las preguntas tienen citas con ley no reconocida → fallan
     mockExtractCitations.mockReturnValue([
       { ley: 'LEY_DESCONOCIDA', leyRaw: 'LEY_DESCONOCIDA', articulo: '999', textoOriginal: 'artículo 999 LEY_DESCONOCIDA', leyResuelta: false },
     ])
-    mockVerifyCitation.mockResolvedValue({
-      verificada: false,
-      cita: { ley: 'LEY_DESCONOCIDA', articulo: '999' },
-      error: 'Artículo no encontrado',
-    })
+    mockBatchVerifyCitations.mockResolvedValue(new Map([
+      ['artículo 999 LEY_DESCONOCIDA', { verificada: false }],
+    ]))
 
     mockCallAIJSON.mockResolvedValue(buildAIResponse([makePreguntaRaw(1)]))
 
@@ -348,15 +331,13 @@ describe('§1.7.5 — generateTest: filtrado de preguntas que no pasan verificac
   })
 
   it('filtra pregunta cuyo contenido es inconsistente con el artículo real (confidence=high)', async () => {
-    // Extrae cita → cita existe en BD → pero el contenido no coincide (plazo incorrecto)
+    // Cita LPAC art.53 → existe en BD → pero contenido no coincide (plazo incorrecto)
     mockExtractCitations.mockReturnValue([
       { ley: 'LPAC', leyRaw: 'LPAC', articulo: '53', textoOriginal: 'artículo 53 LPAC', leyResuelta: true },
     ])
-    mockVerifyCitation.mockResolvedValue({
-      verificada: true,
-      cita: { ley: 'LPAC', articulo: '53' },
-      textoEnBD: 'El plazo máximo para resolver será de tres meses.',
-    })
+    mockBatchVerifyCitations.mockResolvedValue(new Map([
+      ['artículo 53 LPAC', { verificada: true, textoEnBD: 'El plazo máximo para resolver será de tres meses.' }],
+    ]))
     // ContentMatch: plazo incorrecto → no coincide, confidence=high
     mockVerifyContentMatch.mockReturnValue({
       match: false,
@@ -364,7 +345,6 @@ describe('§1.7.5 — generateTest: filtrado de preguntas que no pasan verificac
       details: 'Plazo 999 días no encontrado en el artículo',
     })
 
-    // Todas las preguntas generadas fallan content match → error
     mockCallAIJSON.mockResolvedValue(buildAIResponse([makePreguntaRaw(1)]))
 
     await expect(
@@ -373,16 +353,13 @@ describe('§1.7.5 — generateTest: filtrado de preguntas que no pasan verificac
   })
 
   it('acepta pregunta con content match confidence=low (sin info verificable)', async () => {
-    // Extrae cita → existe en BD → contenido no match con confidence=LOW → acepta
+    // Cita LPAC art.53 → existe en BD → contenido no match con confidence=LOW → acepta
     mockExtractCitations.mockReturnValue([
       { ley: 'LPAC', leyRaw: 'LPAC', articulo: '53', textoOriginal: 'artículo 53 LPAC', leyResuelta: true },
     ])
-    mockVerifyCitation.mockResolvedValue({
-      verificada: true,
-      cita: { ley: 'LPAC', articulo: '53' },
-      textoEnBD: 'texto del artículo',
-    })
-    // ContentMatch: no match pero confidence=low → se acepta igualmente
+    mockBatchVerifyCitations.mockResolvedValue(new Map([
+      ['artículo 53 LPAC', { verificada: true, textoEnBD: 'texto del artículo' }],
+    ]))
     mockVerifyContentMatch.mockReturnValue({
       match: false,
       confidence: 'low',
@@ -398,7 +375,6 @@ describe('§1.7.5 — generateTest: filtrado de preguntas que no pasan verificac
       userId: USER_ID,
     })
 
-    // Debe pasar la verificación y retornar la pregunta
     expect(result.preguntas).toHaveLength(1)
   })
 })
