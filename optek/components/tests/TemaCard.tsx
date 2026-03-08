@@ -237,20 +237,34 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, hasLegislacion = 
               Dificultad
             </label>
             <div className="flex gap-2">
-              {DIFICULTADES.map(({ value, label }) => (
-                <button
-                  key={value}
-                  onClick={() => setDificultad(value)}
-                  className={`flex-1 rounded-md border py-1.5 text-xs font-medium transition-colors ${
-                    dificultad === value
-                      ? 'border-primary bg-primary text-primary-foreground'
-                      : 'border-border bg-background text-foreground hover:bg-muted'
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
+              {DIFICULTADES.map(({ value, label }) => {
+                const locked = value === 'dificil' && !hasPaidAccess
+                return (
+                  <button
+                    key={value}
+                    onClick={() => {
+                      if (locked) { setShowPaywall(true); return }
+                      setDificultad(value)
+                    }}
+                    className={`flex-1 rounded-md border py-1.5 text-xs font-medium transition-colors relative ${
+                      locked
+                        ? 'border-border bg-muted/50 text-muted-foreground cursor-not-allowed'
+                        : dificultad === value
+                          ? 'border-primary bg-primary text-primary-foreground'
+                          : 'border-border bg-background text-foreground hover:bg-muted'
+                    }`}
+                  >
+                    {label}
+                    {locked && <Lock className="inline-block ml-1 h-3 w-3 text-amber-500" />}
+                  </button>
+                )
+              })}
             </div>
+            {!hasPaidAccess && (
+              <p className="text-[10px] text-amber-600">
+                El nivel Dificil requiere Premium — es el nivel del examen real
+              </p>
+            )}
           </div>
 
           {/* Selector de nº preguntas */}

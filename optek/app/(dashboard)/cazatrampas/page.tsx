@@ -11,12 +11,14 @@
  */
 
 import { useState } from 'react'
-import { Target, AlertTriangle, Zap } from 'lucide-react'
+import { Target, AlertTriangle, Lock, Zap } from 'lucide-react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { CazaTrampasCard } from '@/components/cazatrampas/CazaTrampasCard'
+import { PaywallGate } from '@/components/shared/PaywallGate'
+import { useIsPremium } from '@/lib/hooks/useIsPremium'
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
 
@@ -32,9 +34,11 @@ interface SesionActiva {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function CazaTrampasPage() {
-  const [numErrores, setNumErrores] = useState<1 | 2 | 3>(3)
+  const isPremium = useIsPremium()
+  const [numErrores, setNumErrores] = useState<1 | 2 | 3>(1)
   const [sesionActiva, setSesionActiva] = useState<SesionActiva | null>(null)
   const [isGenerating, setIsGenerating] = useState(false)
+  const [showPaywall, setShowPaywall] = useState(false)
 
   async function handleGenerar() {
     if (isGenerating) return
@@ -119,23 +123,42 @@ export default function CazaTrampasPage() {
               Número de errores a detectar
             </label>
             <div className="flex gap-2">
-              {([1, 2, 3] as const).map((n) => (
-                <button
-                  key={n}
-                  onClick={() => setNumErrores(n)}
-                  className={`flex-1 rounded-md border py-3 text-sm font-medium transition-colors ${
-                    numErrores === n
-                      ? 'border-primary bg-primary/5 text-primary'
-                      : 'border-border text-muted-foreground hover:bg-muted'
-                  }`}
-                >
-                  {n} error{n !== 1 ? 'es' : ''}
-                  {n === 1 && <span className="block text-[10px] font-normal">Fácil</span>}
-                  {n === 2 && <span className="block text-[10px] font-normal">Medio</span>}
-                  {n === 3 && <span className="block text-[10px] font-normal">Difícil</span>}
-                </button>
-              ))}
+              {([1, 2, 3] as const).map((n) => {
+                const locked = n === 3 && isPremium === false
+                return (
+                  <button
+                    key={n}
+                    onClick={() => {
+                      if (locked) { setShowPaywall(true); return }
+                      setNumErrores(n)
+                    }}
+                    className={`flex-1 rounded-md border py-3 text-sm font-medium transition-colors ${
+                      locked
+                        ? 'border-border bg-muted/50 text-muted-foreground cursor-not-allowed'
+                        : numErrores === n
+                          ? 'border-primary bg-primary/5 text-primary'
+                          : 'border-border text-muted-foreground hover:bg-muted'
+                    }`}
+                  >
+                    {n} error{n !== 1 ? 'es' : ''}
+                    {n === 1 && <span className="block text-[10px] font-normal">Facil</span>}
+                    {n === 2 && <span className="block text-[10px] font-normal">Medio</span>}
+                    {n === 3 && (
+                      <span className="block text-[10px] font-normal">
+                        {locked ? (
+                          <>Premium <Lock className="inline h-2.5 w-2.5 text-amber-500" /></>
+                        ) : 'Dificil'}
+                      </span>
+                    )}
+                  </button>
+                )
+              })}
             </div>
+            {isPremium === false && (
+              <p className="text-[10px] text-amber-600">
+                3 errores es el nivel del examen real — desbloquear con Premium
+              </p>
+            )}
           </div>
 
           <Button
@@ -187,6 +210,11 @@ export default function CazaTrampasPage() {
         </div>
       )}
 
+      <PaywallGate
+        open={showPaywall}
+        onClose={() => setShowPaywall(false)}
+        code="PAYWALL_TESTS"
+      />
     </div>
   )
 }

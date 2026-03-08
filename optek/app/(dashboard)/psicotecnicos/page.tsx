@@ -14,11 +14,12 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Brain, ChevronRight, Loader2, Zap } from 'lucide-react'
+import { Brain, ChevronRight, Loader2, Lock, Zap } from 'lucide-react'
 import { trackStartTrialOnce } from '@/lib/analytics/pixel'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { PaywallGate } from '@/components/shared/PaywallGate'
+import { useIsPremium } from '@/lib/hooks/useIsPremium'
 import { cn } from '@/lib/utils'
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
@@ -63,6 +64,7 @@ const NUM_PREGUNTAS_OPTIONS = [5, 10, 15, 20, 30] as const
 
 export default function PsicotecnicosPage() {
   const router = useRouter()
+  const isPremium = useIsPremium()
 
   const [dificultad, setDificultad] = useState<Dificultad>('media')
   const [numPreguntas, setNumPreguntas] = useState<number>(10)
@@ -160,31 +162,54 @@ export default function PsicotecnicosPage() {
       <div className="space-y-3">
         <h2 className="text-sm font-semibold">Nivel de dificultad</h2>
         <div className="grid gap-2">
-          {DIFICULTAD_OPTIONS.map((opt) => (
-            <button
-              key={opt.value}
-              onClick={() => setDificultad(opt.value)}
-              className={cn(
-                'flex items-center justify-between rounded-lg border px-4 py-3 text-left transition-colors',
-                dificultad === opt.value
-                  ? opt.color
-                  : 'border-border bg-background hover:bg-muted'
-              )}
-            >
-              <div>
-                <p className="text-sm font-medium">{opt.label}</p>
-                <p className="text-xs text-muted-foreground">{opt.description}</p>
-              </div>
-              {dificultad === opt.value && (
-                <span
-                  className={cn('rounded-full px-2 py-0.5 text-xs font-semibold', opt.badge)}
-                >
-                  Seleccionado
-                </span>
-              )}
-            </button>
-          ))}
+          {DIFICULTAD_OPTIONS.map((opt) => {
+            const locked = opt.value === 'dificil' && isPremium === false
+            return (
+              <button
+                key={opt.value}
+                onClick={() => {
+                  if (locked) { setShowPaywall(true); return }
+                  setDificultad(opt.value)
+                }}
+                className={cn(
+                  'flex items-center justify-between rounded-lg border px-4 py-3 text-left transition-colors',
+                  locked
+                    ? 'border-border bg-muted/50 cursor-not-allowed'
+                    : dificultad === opt.value
+                      ? opt.color
+                      : 'border-border bg-background hover:bg-muted'
+                )}
+              >
+                <div>
+                  <p className={cn('text-sm font-medium', locked && 'text-muted-foreground')}>
+                    {opt.label}
+                    {locked && <Lock className="inline-block ml-1.5 h-3.5 w-3.5 text-amber-500" />}
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    {locked ? 'Nivel examen real — requiere Premium' : opt.description}
+                  </p>
+                </div>
+                {dificultad === opt.value && !locked && (
+                  <span
+                    className={cn('rounded-full px-2 py-0.5 text-xs font-semibold', opt.badge)}
+                  >
+                    Seleccionado
+                  </span>
+                )}
+                {locked && (
+                  <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold text-amber-700">
+                    Premium
+                  </span>
+                )}
+              </button>
+            )
+          })}
         </div>
+        {isPremium === false && (
+          <p className="text-[10px] text-amber-600">
+            El nivel Dificil es el que aparece en el examen real — desbloquear con Premium
+          </p>
+        )}
       </div>
 
       {/* Selector número de preguntas */}

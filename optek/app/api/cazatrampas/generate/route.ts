@@ -62,6 +62,14 @@ export async function POST(request: NextRequest) {
 
   const isPaid = (comprasCount ?? 0) > 0
 
+  // Free users: numErrores 3 (dificil) requiere Premium
+  if (!isPaid && numErrores === 3) {
+    return NextResponse.json(
+      { error: 'El nivel Dificil (3 errores) requiere acceso Premium.', upgrade: true },
+      { status: 402 }
+    )
+  }
+
   if (isPaid) {
     // Paid: rate limit silencioso anti-abuso
     const rateLimit = await checkRateLimit(user.id, 'cazatrampas-paid-daily', PAID_LIMITS.cazatrampasDay, '24 h')

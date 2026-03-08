@@ -122,6 +122,18 @@ export async function POST(request: NextRequest) {
     }
   }
 
+  // ── 3c. Free users: dificultad 'dificil' requiere Premium ───────────────
+  if (!hasPaidAccess && dificultad === 'dificil') {
+    log.info({ userId: user.id, tipo, dificultad }, 'Free user tried dificil — paywall')
+    return NextResponse.json(
+      {
+        error: 'El nivel Dificil requiere acceso Premium. Es el nivel del examen real.',
+        code: 'PAYWALL_TESTS',
+      },
+      { status: 402 }
+    )
+  }
+
   // ── 4. Verificar créditos disponibles (SIN consumir aún — BUG-010) ────────
   //
   // DDIA Reliability: el descuento ocurre SOLO tras confirmación de éxito.
