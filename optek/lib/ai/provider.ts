@@ -2,10 +2,10 @@
  * lib/ai/provider.ts — Capa unificada de IA con fallback automático
  *
  * ARQUITECTURA:
- *   - Producción: AI_PRIMARY_PROVIDER=anthropic (default)
- *     → Claude Sonnet/Haiku como primario, GPT-5/5-mini como fallback
- *   - Testing:    AI_PRIMARY_PROVIDER=openai
- *     → GPT-5/5-mini como primario, Claude como fallback
+ *   - Explícito: AI_PRIMARY_PROVIDER=anthropic|openai (env var)
+ *   - Auto-detect: si no hay env var, usa el proveedor que tenga API key
+ *     → ANTHROPIC_API_KEY → Claude primario, OpenAI fallback
+ *     → OPENAI_API_KEY (sin Anthropic) → OpenAI primario, Claude fallback
  *
  * RESILIENCIA:
  *   Cada proveedor tiene su propio Circuit Breaker (en claude.ts y openai.ts).
@@ -53,10 +53,23 @@ type AIProvider = 'anthropic' | 'openai'
  * AI_PRIMARY_PROVIDER:
  *   'anthropic' → producción (Claude primario, OpenAI fallback)
  *   'openai'    → testing/pruebas (OpenAI primario, Claude fallback)
+ *
+ * Auto-detect: si la API key del primario está vacía, usar el otro proveedor
+ * directamente para evitar perder tiempo en llamadas que van a fallar.
  */
-const PRIMARY: AIProvider =
-  (process.env.AI_PRIMARY_PROVIDER as AIProvider) ?? 'anthropic'
+function resolvePrimary(): AIProvider {
+  const explicit = process.env.AI_PRIMARY_PROVIDER as AIProvider | undefined
+  if (explicit === 'openai' || explicit === 'anthropic') return explicit
 
+  // Sin env var explícita: elegir según qué API key existe
+  const hasAnthropic = !!process.env.ANTHROPIC_API_KEY
+  const hasOpenAI = !!process.env.OPENAI_API_KEY
+  if (hasAnthropic) return 'anthropic'
+  if (hasOpenAI) return 'openai'
+  return 'anthropic' // fallback default (fallará, pero al menos logea)
+}
+
+const PRIMARY: AIProvider = resolvePrimary()
 const SECONDARY: AIProvider = PRIMARY === 'anthropic' ? 'openai' : 'anthropic'
 
 // ─── Opciones unificadas ──────────────────────────────────────────────────────
@@ -80,6 +93,12 @@ function isProviderCircuitOpen(provider: AIProvider): boolean {
   return openaiCircuit.state === 'OPEN'
 }
 
+/** Check if a provider has its API key configured */
+function isProviderAvailable(provider: AIProvider): boolean {
+  if (provider === 'anthropic') return !!process.env.ANTHROPIC_API_KEY
+  return !!process.env.OPENAI_API_KEY
+}
+
 /** Mapea opciones unificadas a las opciones de cada proveedor. */
 function toClaudeOpts(opts: AICallOptions): ClaudeCallOptions {
   return opts
@@ -101,9 +120,9 @@ export async function callAI(
 ): Promise<string> {
   const log = options.requestId ? logger.child({ requestId: options.requestId }) : logger
 
-  // Si el primario tiene circuit breaker abierto, ir directo al secundario
-  if (isProviderCircuitOpen(PRIMARY)) {
-    log.warn({ primary: PRIMARY, secondary: SECONDARY }, '[provider] primary circuit OPEN → fallback')
+  // Si el primario no tiene API key o circuit breaker abierto → secundario
+  if (!isProviderAvailable(PRIMARY) || isProviderCircuitOpen(PRIMARY)) {
+    log.warn({ primary: PRIMARY, secondary: SECONDARY }, '[provider] primary unavailable → fallback')
     return callHeavy(SECONDARY, userContent, options)
   }
 
@@ -137,8 +156,8 @@ export async function callAIMini(
 ): Promise<string> {
   const log = options.requestId ? logger.child({ requestId: options.requestId }) : logger
 
-  if (isProviderCircuitOpen(PRIMARY)) {
-    log.warn({ primary: PRIMARY, secondary: SECONDARY }, '[provider] primary circuit OPEN → fallback (mini)')
+  if (!isProviderAvailable(PRIMARY) || isProviderCircuitOpen(PRIMARY)) {
+    log.warn({ primary: PRIMARY, secondary: SECONDARY }, '[provider] primary unavailable → fallback (mini)')
     return callLight(SECONDARY, userContent, options)
   }
 
@@ -176,8 +195,8 @@ export async function callAIJSON<T>(
   const { useHeavyModel, ...aiOpts } = options
   const log = aiOpts.requestId ? logger.child({ requestId: aiOpts.requestId }) : logger
 
-  if (isProviderCircuitOpen(PRIMARY)) {
-    log.warn({ primary: PRIMARY, secondary: SECONDARY }, '[provider] primary circuit OPEN → fallback (JSON)')
+  if (!isProviderAvailable(PRIMARY) || isProviderCircuitOpen(PRIMARY)) {
+    log.warn({ primary: PRIMARY, secondary: SECONDARY }, '[provider] primary unavailable → fallback (JSON)')
     return callJSON(SECONDARY, systemPrompt, userPrompt, schema, aiOpts, useHeavyModel)
   }
 
@@ -227,8 +246,8 @@ export async function callAIStream(
   const { model: _model, ...aiOpts } = options
   const log = aiOpts.requestId ? logger.child({ requestId: aiOpts.requestId }) : logger
 
-  if (isProviderCircuitOpen(PRIMARY)) {
-    log.warn({ primary: PRIMARY, secondary: SECONDARY }, '[provider] primary circuit OPEN → fallback (stream)')
+  if (!isProviderAvailable(PRIMARY) || isProviderCircuitOpen(PRIMARY)) {
+    log.warn({ primary: PRIMARY, secondary: SECONDARY }, '[provider] primary unavailable → fallback (stream)')
     return callStreamProvider(SECONDARY, systemPrompt, userPrompt, options)
   }
 

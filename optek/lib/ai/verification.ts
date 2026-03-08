@@ -47,12 +47,19 @@ export interface ContentMatchResult {
 }
 
 // ─── Cliente Supabase (service role para bypass RLS) ─────────────────────────
+// Singleton: reutilizar el mismo cliente en todas las verificaciones de una request
+// (antes se creaba uno nuevo por cada verifyCitation → N clientes para N preguntas)
+
+let _supabase: ReturnType<typeof createClient<Database>> | null = null
 
 function getClient() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL!
-  const key =
-    process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  return createClient<Database>(url, key, { auth: { persistSession: false } })
+  if (!_supabase) {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL!
+    const key =
+      process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    _supabase = createClient<Database>(url, key, { auth: { persistSession: false } })
+  }
+  return _supabase
 }
 
 // ─── Keywords institucionales para verifyContentMatch ────────────────────────

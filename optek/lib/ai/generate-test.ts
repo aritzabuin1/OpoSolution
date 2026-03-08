@@ -60,7 +60,8 @@ export const PROMPT_VERSION = '2.1.0'
 
 const MAX_RETRIES    = 1
 // Time budget: stop retrying before hitting Vercel's maxDuration (60s)
-const TIME_BUDGET_MS = 45_000
+// OpenAI timeout = 25s, so first round ≈ 28s (RAG+AI+verify). Budget allows partial retry.
+const TIME_BUDGET_MS = 50_000
 // Modelo seleccionado automáticamente por provider.ts (mini/light por defecto)
 
 // ─── Tipos públicos ───────────────────────────────────────────────────────────
@@ -222,7 +223,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
  */
 async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Promise<Pregunta[]> {
   // Race verification against a timeout to avoid exceeding serverless limits
-  const VERIFY_TIMEOUT_MS = 15_000
+  const VERIFY_TIMEOUT_MS = 8_000
 
   const verifyAll = Promise.all(
     preguntas.map(async (pregunta) => {

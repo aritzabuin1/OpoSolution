@@ -33,8 +33,8 @@ function getClient(): OpenAI {
   if (!_openai) {
     _openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY!,
-      timeout: 120_000,  // 120s máx — suficiente para 4000 tokens de salida
-      maxRetries: 1,     // 1 retry: con 120s/intento, 2 reintentos = 6 min → demasiado largo
+      timeout: 25_000,   // 25s — dentro del budget de 60s serverless (deja margen para RAG + verify)
+      maxRetries: 0,     // 0 retries SDK — nuestro pipeline ya maneja retries a nivel superior
     })
   }
   return _openai
@@ -313,7 +313,8 @@ export async function callGPTJSON<T>(
   const parsed1 = tryParseAndValidate(rawResponse, schema)
   if (parsed1.success) return parsed1.data
 
-  // ── Retry con prompt de corrección ────────────────────────────────────────
+  // ── Retry con prompt de corrección (1 sola vez) ────────────────────────────
+  // Solo reintentar si el error es de parseo JSON, no de timeout/red
   logger.warn(
     { parseError: parsed1.error, attempt: 2 },
     'callGPTJSON: respuesta inválida — reintentando'
