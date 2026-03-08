@@ -103,7 +103,6 @@ export async function GET(request: NextRequest) {
       })
 
       const raw = await callAIJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema, {
-        maxTokens: 8000, // reasoning model: budget includes reasoning tokens
         endpoint: 'cron-reto-diario',
       })
 

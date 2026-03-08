@@ -101,7 +101,6 @@ export async function generateCazaTrampas(
     })
 
     const raw = await callAIJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema, {
-      maxTokens: 8000, // reasoning model: budget includes reasoning tokens
       endpoint: 'generate-cazatrampas',
     })
     if (!raw) {

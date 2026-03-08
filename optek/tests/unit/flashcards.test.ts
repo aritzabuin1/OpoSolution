@@ -138,6 +138,6 @@ describe('generateFlashcardFromError', () => {
     const callArgs = mockCallAIMini.mock.calls[0]
     expect(callArgs[1].endpoint).toBe('generate-flashcard')
     expect(callArgs[1].userId).toBe('system')
-    expect(callArgs[1].maxTokens).toBe(4000)
+    expect(callArgs[1].maxTokens).toBe(500)
   })
 })

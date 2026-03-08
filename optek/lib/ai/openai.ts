@@ -33,7 +33,7 @@ function getClient(): OpenAI {
   if (!_openai) {
     _openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY!,
-      timeout: 45_000,   // 45s — reasoning models need more time (gpt-5-mini thinks before responding)
+      timeout: 30_000,   // 30s — gpt-4o-mini is fast, no reasoning overhead
       maxRetries: 0,     // 0 retries SDK — nuestro pipeline ya maneja retries a nivel superior
     })
   }
@@ -42,13 +42,13 @@ function getClient(): OpenAI {
 
 // Modelos canónicos
 export const GPT_MODEL = 'gpt-5'       // para correcciones complejas
-export const GPT_MINI_MODEL = 'gpt-5-mini'  // para generación MCQ (barato)
+export const GPT_MINI_MODEL = 'gpt-4o-mini'  // no-reasoning: output tokens = max_completion_tokens (sin overhead)
 
 // gpt-5 — correcciones y análisis complejos
 const GPT_COST_PER_1K_INPUT_CENTS = 0.50  // $5.00/1M tokens
 const GPT_COST_PER_1K_OUTPUT_CENTS = 1.50   // $15.00/1M tokens
 
-// gpt-5-mini — generación de tests MCQ (barato, suficiente)
+// gpt-4o-mini — generación de tests MCQ (barato, no-reasoning)
 const GPT_MINI_COST_PER_1K_INPUT_CENTS = 0.015  // $0.15/1M tokens
 const GPT_MINI_COST_PER_1K_OUTPUT_CENTS = 0.060   // $0.60/1M tokens
 
@@ -223,9 +223,7 @@ export async function callGPTMini(
   userContent: string,
   options: Omit<GPTCallOptions, 'model'> = {}
 ): Promise<string> {
-  // Default 8000: gpt-5-mini is a reasoning model — max_completion_tokens
-  // includes internal reasoning tokens + visible output. 1500 was too low.
-  const { maxTokens = 8000, systemPrompt, requestId, endpoint = 'unknown', userId } = options
+  const { maxTokens = 2000, systemPrompt, requestId, endpoint = 'unknown', userId } = options
   const model = GPT_MINI_MODEL
 
   checkCircuit()

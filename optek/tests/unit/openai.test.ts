@@ -100,14 +100,14 @@ describe('callGPTJSON', () => {
       expect(result).toEqual(validPayload)
     })
 
-    it('llama a GPT-5-mini por defecto (sin options.model especificado)', async () => {
+    it('llama a GPT-4o-mini por defecto (sin options.model especificado)', async () => {
       const validPayload = { nombre: 'CE', valor: 1 }
       mockCreate.mockResolvedValueOnce(buildOpenAIResponse(JSON.stringify(validPayload)))
 
       await callGPTJSON<TestType>('System', 'User', TestSchema)
 
       expect(mockCreate).toHaveBeenCalledWith(
-        expect.objectContaining({ model: 'gpt-5-mini' })
+        expect.objectContaining({ model: 'gpt-4o-mini' })
       )
     })
 

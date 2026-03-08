@@ -76,7 +76,6 @@ export async function generateRetoDiarioOnDemand(fecha: string): Promise<{
     })
 
     const raw = await callAIJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema, {
-      maxTokens: 8000, // reasoning model: budget includes reasoning tokens
       endpoint: 'reto-diario',
     })
     if (!raw) { log.warn({ attempt }, 'GPT devolvió null'); continue }

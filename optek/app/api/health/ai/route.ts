@@ -47,7 +47,7 @@ export async function GET() {
       const { callAIMini } = await import('@/lib/ai/provider')
       const response = await callAIMini('Responde solo la palabra OK.', {
         systemPrompt: 'Responde solo OK.',
-        maxTokens: 2000, // reasoning model needs budget for thinking + output
+        maxTokens: 50,
         endpoint: 'health-ping',
       })
       results.push({
@@ -84,7 +84,7 @@ export async function GET() {
         'Responde SOLO con JSON: {"respuesta": "OK", "numero": 42}',
         'Genera un JSON con los campos "respuesta" (string "OK") y "numero" (number 42).',
         SimpleSchema,
-        { maxTokens: 4000, endpoint: 'health-json' }
+        { maxTokens: 200, endpoint: 'health-json' }
       )
 
       jsonOk = true
