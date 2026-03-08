@@ -58,7 +58,9 @@ interface ChildLogger {
  */
 export const PROMPT_VERSION = '2.1.0'
 
-const MAX_RETRIES    = 2
+const MAX_RETRIES    = 1
+// Time budget: stop retrying before hitting Vercel's maxDuration (60s)
+const TIME_BUDGET_MS = 45_000
 // Modelo seleccionado automáticamente por provider.ts (mini/light por defecto)
 
 // ─── Tipos públicos ───────────────────────────────────────────────────────────
@@ -110,6 +112,16 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
     const needed = numPreguntas - preguntasVerificadas.length
     if (needed <= 0) break
+
+    // Time budget check: don't start a new round if we're running out of time
+    const elapsed = Date.now() - start
+    if (attempt > 0 && elapsed > TIME_BUDGET_MS) {
+      log.warn(
+        { attempt, elapsedMs: elapsed, timeBudgetMs: TIME_BUDGET_MS, verified: preguntasVerificadas.length },
+        '[generateTest] time budget exceeded — stopping retries with partial results'
+      )
+      break
+    }
 
     // Seleccionar prompt según bloque
     const systemPrompt = esBloqueII ? SYSTEM_GENERATE_TEST_BLOQUE2 : SYSTEM_GENERATE_TEST
@@ -206,7 +218,10 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
  * Verifica preguntas de Bloque I: cada pregunta debe tener citas legales válidas en BD.
  */
 async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Promise<Pregunta[]> {
-  const checks = await Promise.all(
+  // Race verification against a timeout to avoid exceeding serverless limits
+  const VERIFY_TIMEOUT_MS = 15_000
+
+  const verifyAll = Promise.all(
     preguntas.map(async (pregunta) => {
       const passes = await verificarPreguntaBloque1(pregunta, log)
       return passes ? {
@@ -220,7 +235,34 @@ async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Prom
     })
   )
 
-  return checks.filter((p): p is Pregunta => p !== null)
+  // If verification takes too long, accept all questions unverified
+  const TIMEOUT_SENTINEL = Symbol('timeout')
+  const timeoutPromise = new Promise<typeof TIMEOUT_SENTINEL>((resolve) =>
+    setTimeout(() => {
+      log.warn(
+        { timeoutMs: VERIFY_TIMEOUT_MS, preguntas: preguntas.length },
+        '[verification] timeout reached — accepting all questions unverified'
+      )
+      resolve(TIMEOUT_SENTINEL)
+    }, VERIFY_TIMEOUT_MS)
+  )
+
+  const raceResult = await Promise.race([verifyAll, timeoutPromise])
+
+  // If timeout fired, return all questions as-is (lenient mode)
+  if (raceResult === TIMEOUT_SENTINEL) {
+    log.warn({}, '[verification] timeout — returning unverified questions')
+    return preguntas.map((p) => ({
+      enunciado: p.enunciado,
+      opciones: p.opciones,
+      correcta: p.correcta,
+      explicacion: p.explicacion,
+      cita: p.cita,
+      dificultad: p.dificultad,
+    }))
+  }
+
+  return raceResult.filter((p): p is Pregunta => p !== null)
 }
 
 /**
