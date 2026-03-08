@@ -118,7 +118,7 @@ export default async function RadarPage() {
           </p>
         </div>
       ) : (
-        <RadarTribunal articulos={articulos} isPaid={isPaid} freeLimit={5} />
+        <RadarTribunal articulos={articulos} isPaid={isPaid} freeLimit={3} />
       )}
 
       {/* Nota metodológica */}
