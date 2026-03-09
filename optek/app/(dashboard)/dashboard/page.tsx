@@ -225,6 +225,23 @@ export default async function DashboardPage() {
     rachaActual
   )
 
+  // ── Build activity data for RoadmapCard auto-detection ────────────────────
+  const testsByTema: Record<number, string[]> = {}
+  for (const test of testsCompletados) {
+    const num = test.temas?.numero
+    if (num == null) continue
+    if (!testsByTema[num]) testsByTema[num] = []
+    testsByTema[num].push(test.created_at)
+  }
+
+  const roadmapActivity = {
+    testsByTema,
+    simulacrosCount: testsCompletados.filter(t => !t.tema_id).length,
+    psicotecnicosCount: 0, // no direct data available here; heuristic
+    cazatrampasCount: 0,
+    flashcardsReviewed: 0,
+  }
+
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-8">
 
@@ -465,7 +482,7 @@ export default async function DashboardPage() {
       )}
 
       {/* ── 2d. Plan de estudio personalizado (roadmap IA) ────────────────── */}
-      {totalTests >= 3 && <RoadmapCard />}
+      {totalTests >= 3 && <RoadmapCard activity={roadmapActivity} />}
 
       {/* ── 3. Gráfico de evolución ──────────────────────────────────────── */}
       <Card>

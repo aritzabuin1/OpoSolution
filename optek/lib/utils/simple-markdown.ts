@@ -16,6 +16,9 @@ export function markdownToHtml(md: string): string {
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
+    // Emoji section headers (lines like "📊 TITLE" or "🎯 TITLE")
+    .replace(/^([\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]+)\s+(.+)$/gmu,
+      '<div class="flex items-center gap-2 mt-5 mb-2"><span class="text-lg">$1</span><span class="font-semibold text-sm">$2</span></div>')
     // Headers (## and ###)
     .replace(/^### (.+)$/gm, '<h4 class="font-semibold text-sm mt-4 mb-1">$1</h4>')
     .replace(/^## (.+)$/gm, '<h3 class="font-semibold text-base mt-5 mb-2">$1</h3>')
@@ -28,7 +31,7 @@ export function markdownToHtml(md: string): string {
     // Unordered list items (- item)
     .replace(/^- (.+)$/gm, '<li class="ml-4 list-disc">$1</li>')
     // Wrap consecutive <li> in <ul>
-    .replace(/((?:<li[^>]*>.*<\/li>\n?)+)/g, '<ul class="space-y-1 my-2">$1</ul>')
+    .replace(/((?:<li[^>]*>.*<\/li>\n?)+)/g, '<ul class="space-y-1.5 my-2">$1</ul>')
     // Numbered list items (1. item)
     .replace(/^\d+\. (.+)$/gm, '<li class="ml-4 list-decimal">$1</li>')
     // Paragraphs: double newline → paragraph break
@@ -40,4 +43,14 @@ export function markdownToHtml(md: string): string {
     .replace(/$/, '</p>')
     // Clean up empty paragraphs
     .replace(/<p class="my-2"><\/p>/g, '')
+}
+
+/** Strip markdown formatting from text (for displaying in UI elements like task labels) */
+export function stripMarkdown(text: string): string {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, '$1') // **bold** → bold
+    .replace(/\*(.+?)\*/g, '$1')     // *italic* → italic
+    .replace(/`(.+?)`/g, '$1')       // `code` → code
+    .replace(/^#+\s+/gm, '')         // ## header → header
+    .trim()
 }

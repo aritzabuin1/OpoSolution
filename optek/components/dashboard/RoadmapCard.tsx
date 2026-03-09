@@ -7,42 +7,105 @@
  * Uses AI streaming to create a plan based on ALL user metrics.
  * Consumes 1 analysis credit.
  *
- * Visual design:
- *   - Plan text rendered with proper markdown formatting (prose CSS)
- *   - Tasks extracted into a visually polished card with checkboxes
+ * Features:
+ *   - Plan text rendered with proper markdown formatting
+ *   - Tasks auto-detected as completed from user activity data
+ *   - Collapsible plan and tasks sections
  *   - Progress bar + completion celebration
  *   - Age indicator nudges update after 7 days
  */
 
 import { useState, useRef, useEffect, useMemo } from 'react'
 import { toast } from 'sonner'
-import { Map, Loader2, RotateCcw, RefreshCw, CheckCircle2, Circle, PartyPopper, Calendar } from 'lucide-react'
+import { Map, Loader2, RotateCcw, RefreshCw, CheckCircle2, Circle, PartyPopper, Calendar, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PaywallGate } from '@/components/shared/PaywallGate'
-import { markdownToHtml } from '@/lib/utils/simple-markdown'
+import { markdownToHtml, stripMarkdown } from '@/lib/utils/simple-markdown'
 
 type CardState = 'idle' | 'loading' | 'streaming' | 'done' | 'error'
 
 const STORAGE_KEY = 'oporuta_roadmap'
-const TASKS_KEY = 'oporuta_roadmap_tasks'
 
 interface SavedRoadmap {
   text: string
   generatedAt: string
 }
 
-/** Extract action items: lines starting with "- Haz/Completa/Practica/Repasa/Realiza/Dedica/Revisa" or any "- " with 15+ chars */
+/** User activity data passed from the server component for auto-detection */
+export interface UserActivity {
+  /** Tests completed by the user: tema number → array of completion dates (ISO strings) */
+  testsByTema: Record<number, string[]>
+  /** Number of simulacros completed */
+  simulacrosCount: number
+  /** Number of psicotecnicos completed */
+  psicotecnicosCount: number
+  /** Number of cazatrampas completed */
+  cazatrampasCount: number
+  /** Number of flashcards reviewed */
+  flashcardsReviewed: number
+}
+
+interface RoadmapCardProps {
+  activity: UserActivity
+}
+
+/** Extract action items: lines starting with action verbs or any "- " with 20+ chars */
 function extractTasks(text: string): string[] {
   return text
     .split('\n')
     .filter(line => {
       const trimmed = line.trim()
-      // Match action-oriented bullet points (verbs that start tasks)
       return /^- (Haz|Completa|Practica|Repasa|Realiza|Dedica|Revisa|Genera|Intenta|Estudia|Usa|Empieza|Termina|Consolida|Refuerza|Alterna|Combina|Incluye|Añade|Simula)/i.test(trimmed)
-        || /^- .{20,}/.test(trimmed) // fallback: any bullet with 20+ chars
+        || /^- .{20,}/.test(trimmed)
     })
     .map(line => line.trim().replace(/^- /, ''))
-    .slice(0, 12) // max 12 tasks for clean UI
+    .slice(0, 12)
+}
+
+/** Extract tema number(s) from a task string, e.g. "Haz 3 tests en Tema 5" → [5] */
+function extractTemaNumbers(task: string): number[] {
+  const matches = [...task.matchAll(/\btema\s+(\d{1,2})\b/gi)]
+  return matches.map(m => parseInt(m[1], 10)).filter(n => n >= 1 && n <= 28)
+}
+
+/** Check if a task is auto-completed based on user activity since plan generation */
+function isTaskAutoCompleted(task: string, activity: UserActivity, generatedAt: string | null): boolean {
+  const lower = task.toLowerCase()
+
+  // If no generation date, can't determine what's new
+  if (!generatedAt) return false
+
+  const temaNumbers = extractTemaNumbers(task)
+
+  // Task mentions specific tema(s) → check if user did tests on those temas since plan was generated
+  if (temaNumbers.length > 0) {
+    return temaNumbers.every(num => {
+      const dates = activity.testsByTema[num] ?? []
+      return dates.some(d => d >= generatedAt)
+    })
+  }
+
+  // Task mentions simulacro → check count (heuristic: at least 1 done since plan)
+  if (/simulacro/i.test(lower)) {
+    return activity.simulacrosCount > 0
+  }
+
+  // Task mentions psicotécnico → check count
+  if (/psicot[eé]cnico/i.test(lower)) {
+    return activity.psicotecnicosCount > 0
+  }
+
+  // Task mentions flashcard → check count
+  if (/flashcard/i.test(lower)) {
+    return activity.flashcardsReviewed > 0
+  }
+
+  // Task mentions caza-trampas → check count
+  if (/caza.?trampa/i.test(lower)) {
+    return activity.cazatrampasCount > 0
+  }
+
+  return false
 }
 
 /** Format date in Spanish */
@@ -82,12 +145,13 @@ function PlanAge({ generatedAt }: { generatedAt: string }) {
   )
 }
 
-export function RoadmapCard() {
+export function RoadmapCard({ activity }: RoadmapCardProps) {
   const [state, setState] = useState<CardState>('idle')
   const [streamedText, setStreamedText] = useState('')
   const [generatedAt, setGeneratedAt] = useState<string | null>(null)
   const [showPaywall, setShowPaywall] = useState(false)
-  const [completedTasks, setCompletedTasks] = useState<Set<number>>(new Set())
+  const [planOpen, setPlanOpen] = useState(true)
+  const [tasksOpen, setTasksOpen] = useState(true)
   const textRef = useRef<HTMLDivElement>(null)
 
   // Load saved roadmap on mount
@@ -99,10 +163,6 @@ export function RoadmapCard() {
         setStreamedText(parsed.text)
         setGeneratedAt(parsed.generatedAt)
         setState('done')
-      }
-      const savedTasks = localStorage.getItem(TASKS_KEY)
-      if (savedTasks) {
-        setCompletedTasks(new Set(JSON.parse(savedTasks)))
       }
     } catch {
       // ignore localStorage errors
@@ -118,32 +178,33 @@ export function RoadmapCard() {
 
   const renderedHtml = useMemo(() => markdownToHtml(streamedText), [streamedText])
   const tasks = useMemo(() => state === 'done' ? extractTasks(streamedText) : [], [streamedText, state])
-  const completedCount = Math.min(completedTasks.size, tasks.length)
+
+  // Auto-detect completed tasks from user activity
+  const completedSet = useMemo(() => {
+    const set = new Set<number>()
+    tasks.forEach((task, idx) => {
+      if (isTaskAutoCompleted(task, activity, generatedAt)) {
+        set.add(idx)
+      }
+    })
+    return set
+  }, [tasks, activity, generatedAt])
+
+  const completedCount = completedSet.size
   const progress = tasks.length > 0 ? (completedCount / tasks.length) * 100 : 0
   const allTasksDone = tasks.length > 0 && completedCount >= tasks.length
-
-  function toggleTask(idx: number) {
-    setCompletedTasks(prev => {
-      const next = new Set(prev)
-      if (next.has(idx)) next.delete(idx)
-      else next.add(idx)
-      localStorage.setItem(TASKS_KEY, JSON.stringify([...next]))
-      return next
-    })
-  }
 
   async function handleGenerate() {
     if (state === 'loading' || state === 'streaming') return
 
-    // Capture previous plan before clearing state (for evolution context)
     const prevPlan = streamedText || null
     const prevDate = generatedAt || null
 
     setState('loading')
     setStreamedText('')
-    setCompletedTasks(new Set())
     setGeneratedAt(null)
-    localStorage.removeItem(TASKS_KEY)
+    setPlanOpen(true)
+    setTasksOpen(true)
 
     const controller = new AbortController()
     const timeout = setTimeout(() => controller.abort(), 50_000)
@@ -207,7 +268,6 @@ export function RoadmapCard() {
         return
       }
 
-      // Save to localStorage for persistence
       const nowIso = new Date().toISOString()
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
         text: accumulated,
@@ -296,7 +356,6 @@ export function RoadmapCard() {
   if (state === 'streaming') {
     return (
       <div className="rounded-xl border border-blue-200 dark:border-blue-800 bg-white dark:bg-gray-900/50 overflow-hidden">
-        {/* Header */}
         <div className="bg-blue-50 dark:bg-blue-950/30 px-5 py-3 border-b border-blue-200 dark:border-blue-800">
           <div className="flex items-center gap-2">
             <Map className="h-4 w-4 text-blue-600 dark:text-blue-400" />
@@ -307,7 +366,6 @@ export function RoadmapCard() {
           </div>
         </div>
 
-        {/* Streaming content */}
         <div
           ref={textRef}
           className="p-5 max-h-[500px] overflow-y-auto"
@@ -326,86 +384,97 @@ export function RoadmapCard() {
     <div className="space-y-4">
       {/* ── Main plan card ───────────────────────────────────────────── */}
       <div className="rounded-xl border border-blue-200 dark:border-blue-800 bg-white dark:bg-gray-900/50 overflow-hidden">
-        {/* Header */}
-        <div className="bg-blue-50 dark:bg-blue-950/30 px-5 py-3 border-b border-blue-200 dark:border-blue-800">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Map className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-              <h2 className="text-sm font-semibold">Tu plan de estudio</h2>
-            </div>
-            {generatedAt && <PlanAge generatedAt={generatedAt} />}
+        {/* Header — clickable to collapse */}
+        <button
+          onClick={() => setPlanOpen(p => !p)}
+          className="w-full bg-blue-50 dark:bg-blue-950/30 px-5 py-3 border-b border-blue-200 dark:border-blue-800 flex items-center justify-between hover:bg-blue-100/50 dark:hover:bg-blue-950/50 transition-colors"
+        >
+          <div className="flex items-center gap-2">
+            <Map className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+            <h2 className="text-sm font-semibold">Tu plan de estudio</h2>
           </div>
-        </div>
+          <div className="flex items-center gap-2">
+            {generatedAt && <PlanAge generatedAt={generatedAt} />}
+            <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${planOpen ? 'rotate-180' : ''}`} />
+          </div>
+        </button>
 
-        {/* Rendered markdown content */}
-        <div className="p-5 max-h-[500px] overflow-y-auto">
-          <div
-            className="text-sm leading-relaxed prose prose-sm prose-gray dark:prose-invert max-w-none
-              prose-headings:text-foreground prose-headings:mt-4 prose-headings:mb-2
-              prose-p:text-foreground prose-p:my-1.5
-              prose-li:text-foreground prose-li:my-0.5
-              prose-strong:text-foreground prose-strong:font-semibold
-              prose-code:text-foreground prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-xs"
-            dangerouslySetInnerHTML={{ __html: renderedHtml }}
-          />
-        </div>
+        {/* Collapsible content */}
+        {planOpen && (
+          <div className="p-5 max-h-[500px] overflow-y-auto">
+            <div
+              className="text-sm leading-relaxed prose prose-sm prose-gray dark:prose-invert max-w-none
+                prose-headings:text-foreground prose-headings:mt-4 prose-headings:mb-2
+                prose-p:text-foreground prose-p:my-1.5
+                prose-li:text-foreground prose-li:my-0.5
+                prose-strong:text-foreground prose-strong:font-semibold
+                prose-code:text-foreground prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-xs"
+              dangerouslySetInnerHTML={{ __html: renderedHtml }}
+            />
+          </div>
+        )}
       </div>
 
       {/* ── Tasks card ───────────────────────────────────────────────── */}
       {tasks.length > 0 && (
         <div className="rounded-xl border border-blue-200 dark:border-blue-800 bg-white dark:bg-gray-900/50 overflow-hidden">
-          {/* Tasks header with progress */}
-          <div className="bg-blue-50 dark:bg-blue-950/30 px-5 py-3 border-b border-blue-200 dark:border-blue-800">
+          {/* Tasks header — clickable to collapse */}
+          <button
+            onClick={() => setTasksOpen(t => !t)}
+            className="w-full bg-blue-50 dark:bg-blue-950/30 px-5 py-3 border-b border-blue-200 dark:border-blue-800 hover:bg-blue-100/50 dark:hover:bg-blue-950/50 transition-colors"
+          >
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                 <h3 className="text-sm font-semibold">Tareas de esta semana</h3>
               </div>
-              <span className="text-xs font-medium text-blue-600 dark:text-blue-400">
-                {completedCount}/{tasks.length} completadas
-              </span>
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-medium text-blue-600 dark:text-blue-400">
+                  {completedCount}/{tasks.length} completadas
+                </span>
+                <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${tasksOpen ? 'rotate-180' : ''}`} />
+              </div>
             </div>
             {/* Progress bar */}
             <div className="h-2 w-full bg-blue-100 dark:bg-blue-900/50 rounded-full overflow-hidden">
               <div
                 className={`h-full rounded-full transition-all duration-500 ease-out ${
-                  allTasksDone
-                    ? 'bg-green-500'
-                    : 'bg-blue-500'
+                  allTasksDone ? 'bg-green-500' : 'bg-blue-500'
                 }`}
                 style={{ width: `${progress}%` }}
               />
             </div>
-          </div>
+          </button>
 
-          {/* Task list */}
-          <div className="divide-y divide-gray-100 dark:divide-gray-800">
-            {tasks.map((task, idx) => {
-              const isDone = completedTasks.has(idx)
-              return (
-                <button
-                  key={idx}
-                  onClick={() => toggleTask(idx)}
-                  className={`flex items-start gap-3 w-full text-left px-5 py-3 transition-colors hover:bg-blue-50/50 dark:hover:bg-blue-950/20 ${
-                    isDone ? 'bg-green-50/30 dark:bg-green-950/10' : ''
-                  }`}
-                >
-                  {isDone ? (
-                    <CheckCircle2 className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
-                  ) : (
-                    <Circle className="h-5 w-5 text-gray-300 dark:text-gray-600 shrink-0 mt-0.5" />
-                  )}
-                  <span className={`text-sm leading-relaxed ${
-                    isDone
-                      ? 'text-muted-foreground line-through'
-                      : 'text-foreground'
-                  }`}>
-                    {task}
-                  </span>
-                </button>
-              )
-            })}
-          </div>
+          {/* Collapsible task list */}
+          {tasksOpen && (
+            <div className="divide-y divide-gray-100 dark:divide-gray-800">
+              {tasks.map((task, idx) => {
+                const isDone = completedSet.has(idx)
+                return (
+                  <div
+                    key={idx}
+                    className={`flex items-start gap-3 px-5 py-3 ${
+                      isDone ? 'bg-green-50/30 dark:bg-green-950/10' : ''
+                    }`}
+                  >
+                    {isDone ? (
+                      <CheckCircle2 className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
+                    ) : (
+                      <Circle className="h-5 w-5 text-gray-300 dark:text-gray-600 shrink-0 mt-0.5" />
+                    )}
+                    <span className={`text-sm leading-relaxed ${
+                      isDone
+                        ? 'text-muted-foreground line-through'
+                        : 'text-foreground'
+                    }`}>
+                      {stripMarkdown(task)}
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
+          )}
 
           {/* All tasks done — celebration */}
           {allTasksDone && (
