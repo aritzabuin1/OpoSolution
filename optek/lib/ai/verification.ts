@@ -172,7 +172,14 @@ export function extractCitations(text: string): ExtractedCitation[] {
     if (seen.has(rm.full)) continue
     seen.add(rm.full)
 
+    // The sigla pattern [A-Z][A-Z0-9]{1,11} is case-insensitive due to /gi flag,
+    // so it captures lowercase verbs like "establece", "menciona", "garantiza".
+    // Filter: if leyRaw is all-lowercase and not a known law → skip (it's a verb, not a sigla).
     const resolved = resolveLeyNombre(rm.leyRaw)
+    if (!resolved && /^[a-záéíóúüñ]+$/i.test(rm.leyRaw) && rm.leyRaw === rm.leyRaw.toLowerCase()) {
+      continue
+    }
+
     citations.push({
       ley: resolved ?? rm.leyRaw,
       leyRaw: rm.leyRaw,

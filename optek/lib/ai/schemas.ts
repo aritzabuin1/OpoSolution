@@ -37,7 +37,15 @@ export const PreguntaSchema = z.object({
   /** Cita legal verificada. Ausente en preguntas de Bloque II (ofimática) y psicotécnicas. */
   cita: CitaLegalSchema.optional(),
   /** Dificultad individual de la pregunta (disponible desde prompt v1.8.0) */
-  dificultad: z.enum(['facil', 'media', 'dificil']).optional(),
+  dificultad: z.preprocess(
+    (val) => {
+      if (typeof val !== 'string') return val
+      // Normalize accented variants from AI: "fácil"→"facil", "difícil"→"dificil"
+      return val.toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // strip diacritics
+    },
+    z.enum(['facil', 'media', 'dificil']).optional()
+  ),
 })
 
 // ─── Test generado (§1.6.6) ──────────────────────────────────────────────────
