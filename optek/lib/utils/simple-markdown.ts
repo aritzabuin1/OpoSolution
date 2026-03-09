@@ -16,8 +16,10 @@ export function markdownToHtml(md: string): string {
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    // Emoji section headers (lines like "📊 TITLE" or "🎯 TITLE")
-    .replace(/^([\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]+)\s+(.+)$/gmu,
+    // Emoji section headers (lines like "📊 TITLE" or "⚠️ TITLE")
+    // Ranges: misc symbols (U+2600-27BF), dingbats (U+2700-27BF), supplemental symbols (U+1F300-1FAFF)
+    // \uFE0F = variation selector (emoji presentation), \u200D = ZWJ — both optional
+    .replace(/^((?:[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2300}-\u{23FF}\u{FE00}-\u{FE0F}\u{200D}])+)\s+(.+)$/gmu,
       '<div class="flex items-center gap-2 mt-5 mb-2"><span class="text-lg">$1</span><span class="font-semibold text-sm">$2</span></div>')
     // Headers (## and ###)
     .replace(/^### (.+)$/gm, '<h4 class="font-semibold text-sm mt-4 mb-1">$1</h4>')
