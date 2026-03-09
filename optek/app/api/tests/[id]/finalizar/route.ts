@@ -125,9 +125,9 @@ export async function POST(
       : []
 
   // §2.2.1 — Auto-generar flashcards en background (fire-and-forget)
-  // Solo para tests tipo 'test' (no psicotécnicos, no simulacros)
+  // Solo para tests tipo 'tema' y 'repaso_errores' (no psicotécnicos, no simulacros)
   // Max 3 flashcards por test para controlar costes
-  if (testData && testData.tipo === 'test') {
+  if (testData && (testData.tipo === 'tema' || testData.tipo === 'repaso_errores')) {
     void generateFlashcardsBackground({
       preguntas: testData.preguntas as Pregunta[],
       respuestas,
