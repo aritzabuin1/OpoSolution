@@ -59,9 +59,8 @@ interface ChildLogger {
  */
 export const PROMPT_VERSION = '2.2.0'
 
-const MAX_RETRIES    = 2
-// Time budget: stop retrying before hitting Vercel's maxDuration (60s).
-const TIME_BUDGET_MS = 50_000
+// Single-pass: no retries. Generate once → verify → return what passes.
+// Retries were the #1 cause of timeouts (each retry = 15-20s extra OpenAI call).
 // Modelo seleccionado automáticamente por provider.ts (mini/light por defecto)
 
 // ─── Tipos públicos ───────────────────────────────────────────────────────────
@@ -154,126 +153,76 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
         requestId,
       }
     )
-    // Truncar a 'needed' exacto
-    const trimmed = rawTest.preguntas.length > needed
-      ? rawTest.preguntas.slice(0, needed)
-      : rawTest.preguntas
-    return sanitizePreguntas(trimmed, log)
+    // Keep all questions — overgeneration is intentional
+    return sanitizePreguntas(rawTest.preguntas, log)
   }
 
-  let preguntasVerificadas: Pregunta[] = []
+  // ── Single-pass with overgeneration ──────────────────────────────────────
+  //
+  // Strategy: generate ~25% MORE questions than requested, all in parallel.
+  // After verification filters out ~15-20%, we still have enough to fulfill
+  // the exact count the user asked for. No retries needed.
+  //
+  // Example: user asks for 20 → we generate 25 → verify → ~21 pass → return 20.
 
-  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
-    const needed = numPreguntas - preguntasVerificadas.length
-    if (needed <= 0) break
+  const OVERGEN_FACTOR = 1.25
+  const toGenerate = Math.ceil(numPreguntas * OVERGEN_FACTOR)
 
-    // Time budget check
-    const elapsed = Date.now() - start
-    if (attempt > 0 && elapsed > TIME_BUDGET_MS) {
-      log.warn(
-        { attempt, elapsedMs: elapsed, timeBudgetMs: TIME_BUDGET_MS, verified: preguntasVerificadas.length },
-        '[generateTest] time budget exceeded — stopping retries with partial results'
-      )
-      break
-    }
+  let sanitized: PreguntaRaw[]
 
-    // Generate: split into parallel chunks of CHUNK_SIZE for speed
-    let sanitized: PreguntaRaw[]
-    if (needed <= CHUNK_SIZE) {
-      try {
-        sanitized = await generateChunk(needed)
-      } catch (err) {
-        log.warn(
-          { attempt, err: err instanceof Error ? err.message : String(err) },
-          '[generateTest] chunk failed'
-        )
-        // On retry attempts with partial results, don't throw — just break
-        if (attempt > 0 && preguntasVerificadas.length > 0) break
-        // First attempt or no results yet — propagate to trigger retry
-        if (attempt < MAX_RETRIES) { continue }
-        throw err
-      }
-      log.info(
-        { attempt, preguntasRaw: sanitized.length, esBloqueII },
-        '[generateTest] single chunk complete'
-      )
-    } else {
-      // Split into N chunks of CHUNK_SIZE (e.g., 30 → [7, 7, 7, 7, 2] for hard)
-      const chunks: number[] = []
-      let remaining = needed
-      while (remaining > 0) {
-        const size = Math.min(CHUNK_SIZE, remaining)
-        chunks.push(size)
-        remaining -= size
-      }
-      // Each chunk is independent — catch errors per-chunk so one failure doesn't kill all
-      const results = await Promise.all(
-        chunks.map(async (size, i) => {
-          try {
-            return await generateChunk(size)
-          } catch (err) {
-            log.warn(
-              { chunk: i, size, err: err instanceof Error ? err.message : String(err) },
-              '[generateTest] chunk failed — continuing with remaining chunks'
-            )
-            return [] as PreguntaRaw[]
-          }
-        })
-      )
-      sanitized = results.flat()
-      log.info(
-        { attempt, chunks: chunks.length, sizes: chunks, total: sanitized.length, esBloqueII },
-        '[generateTest] parallel generation complete'
-      )
-    }
-
-    // Verify
-    const verified = esBloqueII
-      ? verifyPreguntasBloque2(sanitized, contexto, log)
-      : await verifyPreguntas(sanitized, log)
-
-    preguntasVerificadas = [...preguntasVerificadas, ...verified]
-
+  if (toGenerate <= CHUNK_SIZE) {
+    sanitized = await generateChunk(toGenerate)
     log.info(
-      {
-        attempt,
-        needed,
-        verifiedThisRound: verified.length,
-        totalVerified: preguntasVerificadas.length,
-        targetPreguntas: numPreguntas,
-      },
-      '[generateTest] verification round complete'
+      { preguntasRaw: sanitized.length, requested: numPreguntas, generated: toGenerate, esBloqueII },
+      '[generateTest] single chunk complete'
     )
-
-    if (preguntasVerificadas.length >= numPreguntas) break
-
-    if (attempt < MAX_RETRIES) {
-      const missing = numPreguntas - preguntasVerificadas.length
-      log.warn(
-        { attempt, missing, esBloqueII },
-        '[generateTest] insuficientes preguntas verificadas — reintentando'
-      )
+  } else {
+    // Split into parallel chunks (e.g., 25 → [10, 10, 5] or [7, 7, 7, 4] for hard)
+    const chunks: number[] = []
+    let remaining = toGenerate
+    while (remaining > 0) {
+      const size = Math.min(CHUNK_SIZE, remaining)
+      chunks.push(size)
+      remaining -= size
     }
+    const results = await Promise.all(
+      chunks.map(async (size, i) => {
+        try {
+          return await generateChunk(size)
+        } catch (err) {
+          log.warn(
+            { chunk: i, size, err: err instanceof Error ? err.message : String(err) },
+            '[generateTest] chunk failed — continuing with remaining'
+          )
+          return [] as PreguntaRaw[]
+        }
+      })
+    )
+    sanitized = results.flat()
+    log.info(
+      { chunks: chunks.length, sizes: chunks, total: sanitized.length, esBloqueII },
+      '[generateTest] parallel generation complete'
+    )
   }
+
+  // Verify
+  const preguntasVerificadas = esBloqueII
+    ? verifyPreguntasBloque2(sanitized, contexto, log)
+    : await verifyPreguntas(sanitized, log)
+
+  log.info(
+    {
+      generated: sanitized.length,
+      verified: preguntasVerificadas.length,
+      requested: numPreguntas,
+    },
+    '[generateTest] verification complete'
+  )
 
   if (preguntasVerificadas.length === 0) {
     throw new Error(
-      `[generateTest] No se pudieron generar preguntas verificadas para el tema ${temaId} ` +
-        `(${MAX_RETRIES + 1} intentos). El contexto puede estar vacío.`
-    )
-  }
-
-  // Accept partial results — better to return 7/10 than fail entirely.
-  // Log a warning if we couldn't reach the full target.
-  if (preguntasVerificadas.length < numPreguntas) {
-    log.warn(
-      {
-        requested: numPreguntas,
-        generated: preguntasVerificadas.length,
-        temaId,
-        dificultad,
-      },
-      '[generateTest] partial result — returning fewer questions than requested'
+      `[generateTest] Ninguna pregunta verificada para "${temaTitulo}". ` +
+        'Inténtalo de nuevo o prueba con otro tema.'
     )
   }
 

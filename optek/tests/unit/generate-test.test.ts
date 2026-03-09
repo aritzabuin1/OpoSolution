@@ -278,7 +278,7 @@ describe('§1.7.5 — generateTest: filtrado de preguntas que no pasan verificac
     setupBase()
   })
 
-  it('filtra preguntas cuya cita no existe en BD — reintenta y completa el test', async () => {
+  it('filtra preguntas cuya cita no existe en BD — acepta parcial sin reintentar', async () => {
     // Pregunta 2 → tiene cita con ley DESCONOCIDA → rechazada por verifyPreguntas
     // Preguntas 1 y 3 → sin citas → aceptadas
     mockExtractCitations.mockImplementation((text: string) => {
@@ -293,13 +293,11 @@ describe('§1.7.5 — generateTest: filtrado de preguntas que no pasan verificac
       ['artículo 999 LEY_DESCONOCIDA', { verificada: false }],
     ]))
 
-    // Ronda 1: 3 preguntas (1 y 3 válidas, 2 inválida) → 2 verificadas de 3
+    // Single pass: 3 preguntas (1 y 3 válidas, 2 inválida) → 2 verificadas
     mockCallAIJSON
       .mockResolvedValueOnce(buildAIResponse([
         makePreguntaRaw(1), makePreguntaRaw(2), makePreguntaRaw(3),
       ]))
-      // Ronda 2 (reintento — 1 faltante): devuelve 1 pregunta
-      .mockResolvedValueOnce(buildAIResponse([makePreguntaRaw(4)]))
 
     const result = await generateTest({
       temaId: TEMA_ID,
@@ -308,13 +306,13 @@ describe('§1.7.5 — generateTest: filtrado de preguntas que no pasan verificac
       userId: USER_ID,
     })
 
-    // Debe retornar exactamente 3 preguntas (2 de ronda 1 + 1 del reintento)
-    expect(result.preguntas).toHaveLength(3)
-    // AI fue llamado 2 veces (ronda inicial + reintento)
-    expect(mockCallAIJSON).toHaveBeenCalledTimes(2)
+    // Returns partial: 2/3 verified (no retry)
+    expect(result.preguntas).toHaveLength(2)
+    // AI called only once (single-pass, no retries)
+    expect(mockCallAIJSON).toHaveBeenCalledTimes(1)
   })
 
-  it('lanza error descriptivo si todas las preguntas fallan tras MAX_RETRIES', async () => {
+  it('lanza error descriptivo si ninguna pregunta pasa verificación', async () => {
     // TODAS las preguntas tienen citas con ley no reconocida → fallan
     mockExtractCitations.mockReturnValue([
       { ley: 'LEY_DESCONOCIDA', leyRaw: 'LEY_DESCONOCIDA', articulo: '999', textoOriginal: 'artículo 999 LEY_DESCONOCIDA', leyResuelta: false },
@@ -327,7 +325,7 @@ describe('§1.7.5 — generateTest: filtrado de preguntas que no pasan verificac
 
     await expect(
       generateTest({ temaId: TEMA_ID, numPreguntas: 3, dificultad: 'media', userId: USER_ID })
-    ).rejects.toThrow(/No se pudieron generar preguntas verificadas/)
+    ).rejects.toThrow(/Ninguna pregunta verificada/)
   })
 
   it('filtra pregunta cuyo contenido es inconsistente con el artículo real (confidence=high)', async () => {
@@ -349,7 +347,7 @@ describe('§1.7.5 — generateTest: filtrado de preguntas que no pasan verificac
 
     await expect(
       generateTest({ temaId: TEMA_ID, numPreguntas: 1, dificultad: 'media', userId: USER_ID })
-    ).rejects.toThrow(/No se pudieron generar preguntas verificadas/)
+    ).rejects.toThrow(/Ninguna pregunta verificada/)
   })
 
   it('acepta pregunta con content match confidence=low (sin info verificable)', async () => {
@@ -440,7 +438,7 @@ describe('§1.3A.18 — generateTest Bloque II: guardrail de contexto técnico',
 
     await expect(
       generateTest({ temaId: 'tema-word-uuid', numPreguntas: 1, dificultad: 'facil', userId: USER_ID })
-    ).rejects.toThrow(/No se pudieron generar preguntas verificadas/)
+    ).rejects.toThrow(/Ninguna pregunta verificada/)
   })
 
   it('usa SYSTEM_GENERATE_TEST_BLOQUE2 (no el sistema legal) para Bloque II', async () => {
