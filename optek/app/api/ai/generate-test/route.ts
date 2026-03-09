@@ -44,7 +44,7 @@ const GenerateTestInputSchema = z.object({
     .number()
     .int()
     .min(1, 'Mínimo 1 pregunta')
-    .max(20, 'Máximo 20 preguntas'),
+    .max(30, 'Máximo 30 preguntas'),
   dificultad: z.enum(['facil', 'media', 'dificil'], {
     error: 'dificultad debe ser facil, media o dificil',
   }),

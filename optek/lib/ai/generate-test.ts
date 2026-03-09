@@ -124,8 +124,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   // mantienen el tiempo total ≈ 30s independientemente de numPreguntas.
   // Vercel Hobby maxDuration=60s, SDK timeout=55s → margen seguro.
 
-  // Hard questions produce more verbose explanations + citations → smaller chunks, more tokens
-  const CHUNK_SIZE = dificultad === 'dificil' ? 7 : 10
+  const CHUNK_SIZE = 10
   const systemPrompt = esBloqueII ? SYSTEM_GENERATE_TEST_BLOQUE2 : SYSTEM_GENERATE_TEST
 
   /** Compute maxTokens based on chunk size and difficulty */

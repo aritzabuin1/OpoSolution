@@ -8,7 +8,7 @@
  * Funcionalidad:
  *   - Muestra número de tema, título e icono de acceso (libre o bloqueado)
  *   - Selector de dificultad (fácil / media / difícil)
- *   - Selector de número de preguntas (10 / 15 / 20)
+ *   - Selector de número de preguntas (10 / 20 / 30)
  *   - Botón "Generar Test" con protección contra doble-click:
  *       useState(isGenerating) = bloquea re-renders
  *       useRef(isGeneratingRef) = bloquea síncrono (antes del re-render)
@@ -34,7 +34,7 @@ import { trackStartTrialOnce } from '@/lib/analytics/pixel'
 // ─── Tipos ───────────────────────────────────────────────────────────────────
 
 type Dificultad = 'facil' | 'media' | 'dificil'
-type NumPreguntas = 10 | 15 | 20
+type NumPreguntas = 10 | 20 | 30
 
 export interface TemaCardProps {
   tema: {
@@ -59,7 +59,7 @@ const DIFICULTADES: { value: Dificultad; label: string }[] = [
   { value: 'dificil', label: 'Difícil' },
 ]
 
-const NUM_PREGUNTAS_OPTIONS: NumPreguntas[] = [10, 15, 20]
+const NUM_PREGUNTAS_OPTIONS: NumPreguntas[] = [10, 20, 30]
 
 // ─── Componente ──────────────────────────────────────────────────────────────
 
