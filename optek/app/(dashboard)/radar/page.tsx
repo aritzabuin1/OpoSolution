@@ -1,10 +1,10 @@
 /**
  * app/(dashboard)/radar/page.tsx — §2.14.6
  *
- * Radar del Tribunal: ranking de artículos por frecuencia en exámenes INAP.
- * - Top 20 visible para todos los usuarios
- * - 21+ bloqueado para usuarios free (blur + CTA)
- * - Botón "Practicar con los más frecuentes" (§2.14.4)
+ * Radar del Tribunal: dual view — temas (28) + artículos (legislación).
+ * - Radar por Temas: barras horizontales, Bloque I (azul) + Bloque II (verde)
+ * - Detalle por Artículo: tabla existente para drill-down legislación
+ * - Free users: ven bottom items + paywall CTA
  *
  * Server Component.
  */
@@ -12,15 +12,16 @@
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { TrendingUp, Info } from 'lucide-react'
+import { TrendingUp, Info, BookOpen, Scale } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import RadarTribunal, { type RadarArticulo } from '@/components/tests/RadarTribunal'
+import RadarTemas, { type RadarTema } from '@/components/tests/RadarTemas'
 
 export const metadata: Metadata = {
   title: 'Radar del Tribunal',
-  description: 'Los artículos que más caen en exámenes INAP reales. Practica lo que el tribunal pregunta.',
+  description: 'Los temas y artículos que más caen en exámenes INAP reales. Practica lo que el tribunal pregunta.',
 }
 
 export default async function RadarPage() {
@@ -40,22 +41,31 @@ export default async function RadarPage() {
   const prof = profileData as { is_founder?: boolean; is_admin?: boolean } | null
   const isPaid = !!compra || prof?.is_founder === true || prof?.is_admin === true
 
-  // Cargar ranking del radar (todos los artículos con frecuencia)
+  // Load both radar views in parallel
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: radarData } = await (supabase as any)
-    .from('radar_tribunal_view')
-    .select(
-      'legislacion_id, articulo_numero, ley_nombre, ley_codigo, titulo_capitulo, resumen, num_apariciones, pct_total, anios, ultima_aparicion'
-    )
-    .limit(100)
+  const [{ data: temasData }, { data: radarData }] = await Promise.all([
+    (supabase as any)
+      .from('radar_temas_view')
+      .select('tema_id, tema_numero, tema_titulo, num_apariciones, pct_total, anios, ultima_aparicion'),
+    (supabase as any)
+      .from('radar_tribunal_view')
+      .select(
+        'legislacion_id, articulo_numero, ley_nombre, ley_codigo, titulo_capitulo, resumen, num_apariciones, pct_total, anios, ultima_aparicion'
+      )
+      .limit(100),
+  ])
 
+  const temas = ((temasData ?? []) as unknown) as RadarTema[]
   const articulos = ((radarData ?? []) as unknown) as RadarArticulo[]
 
   // Estadísticas para el header
-  const totalArticulos = articulos.length
-  const examenesCubiertos = articulos.length > 0
-    ? [...new Set(articulos.flatMap((a) => a.anios))].sort()
-    : []
+  const allAnios = [
+    ...new Set([
+      ...temas.flatMap((t) => t.anios),
+      ...articulos.flatMap((a) => a.anios),
+    ]),
+  ].sort()
+  const totalPreguntas = temas.reduce((sum, t) => sum + t.num_apariciones, 0)
 
   return (
     <div className="max-w-4xl mx-auto py-8 px-4">
@@ -71,24 +81,33 @@ export default async function RadarPage() {
           </Badge>
         </div>
         <p className="text-gray-600 dark:text-gray-400 text-sm">
-          Artículos que más han caído en exámenes INAP reales. Estudia lo que el tribunal realmente pregunta.
+          Temas y artículos que más han caído en exámenes INAP reales. Estudia lo que el tribunal realmente pregunta.
         </p>
 
         {/* Estadísticas */}
-        {articulos.length > 0 && (
+        {(temas.length > 0 || articulos.length > 0) && (
           <div className="mt-4 flex flex-wrap gap-3">
-            <div className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-sm px-3 py-1.5 rounded-full">
-              {totalArticulos} artículos analizados
-            </div>
-            <div className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-sm px-3 py-1.5 rounded-full">
-              Exámenes: {examenesCubiertos.join(', ')}
-            </div>
+            {temas.length > 0 && (
+              <div className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-sm px-3 py-1.5 rounded-full">
+                {temas.length} temas analizados
+              </div>
+            )}
+            {articulos.length > 0 && (
+              <div className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-sm px-3 py-1.5 rounded-full">
+                {articulos.length} artículos indexados
+              </div>
+            )}
+            {allAnios.length > 0 && (
+              <div className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-sm px-3 py-1.5 rounded-full">
+                Exámenes: {allAnios.join(', ')}
+              </div>
+            )}
           </div>
         )}
       </div>
 
       {/* Botón de práctica */}
-      {articulos.length > 0 && (
+      {(temas.length > 0 || articulos.length > 0) && (
         <div className="mb-6 flex gap-3">
           <Button asChild>
             <Link href="/tests?modo=radar">
@@ -98,8 +117,8 @@ export default async function RadarPage() {
         </div>
       )}
 
-      {/* Tabla del radar */}
-      {articulos.length === 0 ? (
+      {/* No data state */}
+      {temas.length === 0 && articulos.length === 0 && (
         <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50 p-12 text-center">
           <Info className="w-10 h-10 text-gray-300 mx-auto mb-3" />
           <h3 className="font-semibold text-gray-700 dark:text-gray-300 mb-2">
@@ -110,18 +129,44 @@ export default async function RadarPage() {
             Estamos procesando la información — vuelve a intentarlo en unos minutos.
           </p>
         </div>
-      ) : (
-        <RadarTribunal articulos={articulos} isPaid={isPaid} freeLimit={3} />
+      )}
+
+      {/* ═══ Radar por Temas ═══ */}
+      {temas.length > 0 && (
+        <section className="mb-10">
+          <div className="flex items-center gap-2 mb-4">
+            <BookOpen className="w-5 h-5 text-blue-500" />
+            <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">
+              Radar por Temas
+            </h2>
+            <span className="text-xs text-gray-400">({temas.length} temas)</span>
+          </div>
+          <RadarTemas temas={temas} isPaid={isPaid} freeLimit={5} />
+        </section>
+      )}
+
+      {/* ═══ Detalle por Artículo (Bloque I) ═══ */}
+      {articulos.length > 0 && (
+        <section>
+          <div className="flex items-center gap-2 mb-4">
+            <Scale className="w-5 h-5 text-blue-500" />
+            <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">
+              Detalle por Artículo
+            </h2>
+            <Badge variant="outline" className="text-xs">Bloque I — Legislación</Badge>
+          </div>
+          <RadarTribunal articulos={articulos} isPaid={isPaid} freeLimit={3} />
+        </section>
       )}
 
       {/* Nota metodológica */}
       <div className="mt-6 rounded-lg border border-gray-100 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-800/30 p-4">
         <p className="text-xs text-gray-500 dark:text-gray-400">
-          <strong>Metodología:</strong> El ranking se construye analizando las {' '}
-          {examenesCubiertos.length > 0 ? `convocatorias ${examenesCubiertos.join(', ')} ` : ''}
+          <strong>Metodología:</strong> Se analizan {totalPreguntas > 0 ? `${totalPreguntas} preguntas de ` : ''}
+          {allAnios.length > 0 ? `las convocatorias ${allAnios.join(', ')} ` : ''}
           del Cuerpo General Auxiliar de la Administración del Estado (INAP).
-          Se extrae qué artículos menciona explícitamente cada pregunta oficial
-          y se agrupan por frecuencia. Los artículos sin cita explícita no se contabilizan.
+          Cada pregunta se clasifica por tema según palabras clave del enunciado y opciones.
+          Los temas de legislación (Bloque I) incluyen detalle por artículo.
           Fuente: preguntas_oficiales.
         </p>
       </div>
