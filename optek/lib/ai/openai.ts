@@ -188,8 +188,13 @@ export async function callGPT(
 
     const choice = response.choices[0]
     const text = choice?.message?.content
+
+    if (choice?.finish_reason === 'length') {
+      log.warn({ endpoint, tokensIn, tokensOut, maxTokens }, 'GPT output truncated (finish_reason=length)')
+      throw new Error(`GPT output truncated: maxTokens=${maxTokens} insuficiente`)
+    }
+
     if (!text) {
-      // Diagnóstico: reasoning models agota tokens en razonamiento interno → content=null
       log.error({
         endpoint,
         finishReason: choice?.finish_reason,
@@ -256,6 +261,19 @@ export async function callGPTMini(
 
     const choice = response.choices[0]
     const text = choice?.message?.content
+
+    // Detect token truncation — JSON will be incomplete and unparseable
+    if (choice?.finish_reason === 'length') {
+      log.warn({
+        endpoint,
+        tokensIn,
+        tokensOut,
+        maxTokens,
+        textLength: text?.length ?? 0,
+      }, 'GPT-mini output truncated (finish_reason=length) — maxTokens insuficiente')
+      throw new Error(`GPT-mini output truncated: maxTokens=${maxTokens} insuficiente (${tokensOut} tokens generados)`)
+    }
+
     if (!text) {
       log.error({
         endpoint,
@@ -319,7 +337,7 @@ export async function callGPTJSON<T>(
   // Solo reintentar si queda tiempo suficiente (la primera llamada puede haber
   // tardado 20-30s; reintentar consumiría otros 20-30s → blow serverless budget)
   const firstCallDuration = Date.now() - callStart
-  const MAX_RETRY_BUDGET_MS = 15_000 // only retry if first call was fast (<15s)
+  const MAX_RETRY_BUDGET_MS = 20_000 // only retry if first call was fast (<20s)
 
   if (firstCallDuration > MAX_RETRY_BUDGET_MS) {
     logger.warn(

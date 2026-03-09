@@ -59,9 +59,9 @@ interface ChildLogger {
  */
 export const PROMPT_VERSION = '2.2.0'
 
-const MAX_RETRIES    = 1
+const MAX_RETRIES    = 2
 // Time budget: stop retrying before hitting Vercel's maxDuration (60s).
-const TIME_BUDGET_MS = 40_000
+const TIME_BUDGET_MS = 50_000
 // Modelo seleccionado automáticamente por provider.ts (mini/light por defecto)
 
 // ─── Tipos públicos ───────────────────────────────────────────────────────────
@@ -125,8 +125,17 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   // mantienen el tiempo total ≈ 30s independientemente de numPreguntas.
   // Vercel Hobby maxDuration=60s, SDK timeout=55s → margen seguro.
 
-  const CHUNK_SIZE = 10
+  // Hard questions produce more verbose explanations + citations → smaller chunks, more tokens
+  const CHUNK_SIZE = dificultad === 'dificil' ? 7 : 10
   const systemPrompt = esBloqueII ? SYSTEM_GENERATE_TEST_BLOQUE2 : SYSTEM_GENERATE_TEST
+
+  /** Compute maxTokens based on chunk size and difficulty */
+  function computeMaxTokens(n: number): number {
+    // Base: ~400 tokens per easy question, ~550 per hard (explanation + cita + JSON overhead)
+    const perQuestion = dificultad === 'dificil' ? 600 : dificultad === 'media' ? 500 : 450
+    // Minimum 4000, generous ceiling to avoid truncation
+    return Math.max(4000, Math.min(n * perQuestion + 1000, 16000))
+  }
 
   /** Generate a chunk of questions via AI */
   async function generateChunk(needed: number): Promise<PreguntaRaw[]> {
@@ -139,7 +148,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
       userPrompt,
       TestGeneradoRawSchema,
       {
-        maxTokens: needed <= 10 ? 4000 : needed <= 15 ? 6000 : 10000,
+        maxTokens: computeMaxTokens(needed),
         endpoint: 'generate-test',
         userId,
         requestId,
@@ -171,13 +180,25 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
     // Generate: split into parallel chunks of CHUNK_SIZE for speed
     let sanitized: PreguntaRaw[]
     if (needed <= CHUNK_SIZE) {
-      sanitized = await generateChunk(needed)
+      try {
+        sanitized = await generateChunk(needed)
+      } catch (err) {
+        log.warn(
+          { attempt, err: err instanceof Error ? err.message : String(err) },
+          '[generateTest] chunk failed'
+        )
+        // On retry attempts with partial results, don't throw — just break
+        if (attempt > 0 && preguntasVerificadas.length > 0) break
+        // First attempt or no results yet — propagate to trigger retry
+        if (attempt < MAX_RETRIES) { continue }
+        throw err
+      }
       log.info(
         { attempt, preguntasRaw: sanitized.length, esBloqueII },
         '[generateTest] single chunk complete'
       )
     } else {
-      // Split into N chunks of CHUNK_SIZE (e.g., 30 → [10, 10, 10])
+      // Split into N chunks of CHUNK_SIZE (e.g., 30 → [7, 7, 7, 7, 2] for hard)
       const chunks: number[] = []
       let remaining = needed
       while (remaining > 0) {
@@ -185,7 +206,20 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
         chunks.push(size)
         remaining -= size
       }
-      const results = await Promise.all(chunks.map((size) => generateChunk(size)))
+      // Each chunk is independent — catch errors per-chunk so one failure doesn't kill all
+      const results = await Promise.all(
+        chunks.map(async (size, i) => {
+          try {
+            return await generateChunk(size)
+          } catch (err) {
+            log.warn(
+              { chunk: i, size, err: err instanceof Error ? err.message : String(err) },
+              '[generateTest] chunk failed — continuing with remaining chunks'
+            )
+            return [] as PreguntaRaw[]
+          }
+        })
+      )
       sanitized = results.flat()
       log.info(
         { attempt, chunks: chunks.length, sizes: chunks, total: sanitized.length, esBloqueII },
@@ -226,6 +260,20 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
     throw new Error(
       `[generateTest] No se pudieron generar preguntas verificadas para el tema ${temaId} ` +
         `(${MAX_RETRIES + 1} intentos). El contexto puede estar vacío.`
+    )
+  }
+
+  // Accept partial results — better to return 7/10 than fail entirely.
+  // Log a warning if we couldn't reach the full target.
+  if (preguntasVerificadas.length < numPreguntas) {
+    log.warn(
+      {
+        requested: numPreguntas,
+        generated: preguntasVerificadas.length,
+        temaId,
+        dificultad,
+      },
+      '[generateTest] partial result — returning fewer questions than requested'
     )
   }
 
