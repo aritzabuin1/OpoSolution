@@ -101,7 +101,7 @@ export function ShareButton({ score, tema, nombre, tipo = 'test', testId, result
       appUrl,
     ].filter(Boolean).join('\n')
 
-    window.open(`mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`)
+    window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   }
 
   // ── Copiar ────────────────────────────────────────────────────────────────

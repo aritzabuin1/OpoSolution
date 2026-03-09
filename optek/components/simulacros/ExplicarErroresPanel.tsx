@@ -16,11 +16,12 @@
  * Paywall: si sin créditos → muestra modal PaywallGate (PAYWALL_CORRECTIONS).
  */
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import { toast } from 'sonner'
 import { Sparkles, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PaywallGate } from '@/components/shared/PaywallGate'
+import { markdownToHtml } from '@/lib/utils/simple-markdown'
 
 // ─── Props ────────────────────────────────────────────────────────────────────
 
@@ -40,6 +41,7 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
   const [state, setState] = useState<PanelState>('idle')
   const [streamedText, setStreamedText] = useState('')
   const [showPaywall, setShowPaywall] = useState(false)
+  const renderedHtml = useMemo(() => markdownToHtml(streamedText), [streamedText])
   const textRef = useRef<HTMLDivElement>(null)
 
   // Auto-scroll to bottom as text streams
@@ -54,11 +56,15 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
     setState('loading')
     setStreamedText('')
 
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 50_000) // 50s client timeout
+
     try {
       const res = await fetch('/api/ai/explain-errores/stream', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ testId }),
+        signal: controller.signal,
       })
 
       // Non-streaming error responses (auth, paywall, rate limit)
@@ -114,11 +120,19 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
       }
 
       setState('done')
-    } catch {
-      toast.error('Error de conexión', {
-        description: 'Comprueba tu conexión a internet e inténtalo de nuevo.',
-      })
+    } catch (err) {
+      if (err instanceof DOMException && err.name === 'AbortError') {
+        toast.error('El análisis ha tardado demasiado', {
+          description: 'El servicio de IA está saturado. Inténtalo de nuevo.',
+        })
+      } else {
+        toast.error('Error de conexión', {
+          description: 'Comprueba tu conexión a internet e inténtalo de nuevo.',
+        })
+      }
       setState('error')
+    } finally {
+      clearTimeout(timeout)
     }
   }
 
@@ -192,12 +206,19 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
         ref={textRef}
         className="rounded-lg border border-primary/20 bg-muted/30 p-4 max-h-[500px] overflow-y-auto"
       >
-        <div className="text-sm leading-relaxed whitespace-pre-wrap">
-          {streamedText}
-          {state === 'streaming' && (
+        {state === 'streaming' ? (
+          <div className="text-sm leading-relaxed whitespace-pre-wrap">
+            {streamedText}
             <span className="inline-block w-2 h-4 bg-primary/60 animate-pulse ml-0.5 align-text-bottom" />
-          )}
-        </div>
+          </div>
+        ) : (
+          <div
+            className="text-sm leading-relaxed prose prose-sm prose-gray dark:prose-invert max-w-none
+              prose-headings:text-foreground prose-p:text-foreground prose-li:text-foreground
+              prose-strong:text-foreground prose-code:text-foreground"
+            dangerouslySetInnerHTML={{ __html: renderedHtml }}
+          />
+        )}
       </div>
     </section>
   )
