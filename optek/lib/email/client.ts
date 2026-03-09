@@ -269,29 +269,44 @@ export async function sendFeedbackNotification(params: {
   tipo: string
   mensaje: string
   paginaOrigen?: string
+  userEmail?: string
 }): Promise<EmailResult> {
   const resend = getResend()
-  if (!resend) return { success: false, error: 'Resend no configurado' }
+  if (!resend) {
+    logger.error('[feedback-email] RESEND_API_KEY no configurado — email NO enviado')
+    return { success: false, error: 'Resend no configurado' }
+  }
 
   const adminEmail = process.env.ADMIN_EMAIL ?? 'aritzmore1@gmail.com'
 
   try {
     const { data, error } = await resend.emails.send({
       from: FROM_ADDRESS,
-      replyTo: REPLY_TO,
+      replyTo: params.userEmail ?? REPLY_TO,
       to: [adminEmail],
-      subject: `[OpoRuta] Nueva sugerencia: ${params.tipo}`,
+      subject: `[OpoRuta Feedback] ${params.tipo}: ${params.mensaje.slice(0, 60)}`,
       text: [
         `Tipo: ${params.tipo}`,
+        `Usuario: ${params.userEmail ?? '(desconocido)'}`,
         `Página: ${params.paginaOrigen ?? '(desconocida)'}`,
         '',
+        '─── Mensaje ───',
         params.mensaje,
+        '',
+        '─── Acciones ───',
+        `Responder: mailto:${params.userEmail ?? REPLY_TO}`,
+        `Ver en BD: tabla sugerencias`,
       ].join('\n'),
     })
 
-    if (error) return { success: false, error: error.message }
+    if (error) {
+      logger.error({ error: error.message, to: adminEmail }, '[feedback-email] Resend API error')
+      return { success: false, error: error.message }
+    }
     return { success: true, id: data?.id }
   } catch (err) {
-    return { success: false, error: err instanceof Error ? err.message : String(err) }
+    const msg = err instanceof Error ? err.message : String(err)
+    logger.error({ error: msg, to: adminEmail }, '[feedback-email] exception')
+    return { success: false, error: msg }
   }
 }
