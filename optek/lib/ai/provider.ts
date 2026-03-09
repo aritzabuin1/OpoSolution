@@ -277,7 +277,9 @@ function callStreamProvider(
   }
   return callGPTStream(system, user, {
     ...toGPTOpts(opts),
-    model: useHeavy ? 'gpt-5' : 'gpt-4o-mini',
+    // gpt-5 is a reasoning model — max_completion_tokens includes internal reasoning,
+    // often producing 0 visible output tokens. gpt-4o is non-reasoning and reliable for streaming.
+    model: useHeavy ? 'gpt-4o' : 'gpt-4o-mini',
   })
 }
 
