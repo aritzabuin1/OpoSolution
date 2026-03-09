@@ -174,7 +174,7 @@ describe('callGPTJSON', () => {
       // El segundo call debe incluir el mensaje de corrección en el user content
       const secondCallArgs  = mockCreate.mock.calls[1][0]
       const userMessage = secondCallArgs.messages[1].content as string
-      expect(userMessage).toContain('Tu respuesta anterior no era JSON válido')
+      expect(userMessage).toContain('Error de validación en tu respuesta')
     })
 
     it('lanza un error descriptivo si ambos intentos fallan', async () => {

@@ -298,15 +298,16 @@ export async function callGPTMini(
 // ─── callGPTJSON ──────────────────────────────────────────────────────────────
 
 /**
- * Llama a GPT esperando una respuesta JSON validada con Zod.
- * Espejo funcional de callClaudeJSON — misma lógica de retry.
+ * Llama a GPT con response_format: json_object para JSON garantizado.
+ *
+ * Usa el modo JSON nativo de OpenAI — el modelo SOLO puede devolver JSON válido.
+ * Esto elimina fallos de parseo, retries innecesarios y timeouts por reintentos.
  *
  * Flujo:
- *   1. Añade instrucción JSON al system prompt
- *   2. Llama a GPT-4o-mini (por defecto) o GPT-4o según options.model
- *   3. JSON.parse() → schema.safeParse()
- *   4. Si falla: retry 1 vez con prompt de corrección
- *   5. Si sigue fallando: throw con mensaje descriptivo
+ *   1. API call con response_format: { type: "json_object" }
+ *   2. JSON.parse() (siempre exitoso con JSON mode)
+ *   3. schema.safeParse() para validación Zod
+ *   4. Si schema falla: 1 retry con feedback del error (raro con JSON mode)
  */
 export async function callGPTJSON<T>(
   systemPrompt: string,
@@ -314,63 +315,115 @@ export async function callGPTJSON<T>(
   schema: ZodType<T>,
   options: GPTCallOptions = {}
 ): Promise<T> {
+  const { maxTokens = 8000, requestId, endpoint = 'unknown', userId } = options
+  const model = options.model === GPT_MODEL ? GPT_MODEL : GPT_MINI_MODEL
+  const costInput = model === GPT_MODEL ? GPT_COST_PER_1K_INPUT_CENTS : GPT_MINI_COST_PER_1K_INPUT_CENTS
+  const costOutput = model === GPT_MODEL ? GPT_COST_PER_1K_OUTPUT_CENTS : GPT_MINI_COST_PER_1K_OUTPUT_CENTS
+
+  checkCircuit()
+
+  const log = requestId ? logger.child({ requestId }) : logger
+  const sanitizedContent = sanitizeForAI(userPrompt)
+
   const jsonSystemPrompt =
-    systemPrompt + '\nResponde ÚNICAMENTE con JSON válido, sin markdown, sin texto adicional.'
+    systemPrompt + '\nResponde ÚNICAMENTE con un objeto JSON válido.'
 
-  // Por defecto usa GPT-4o-mini — suficiente para JSON estructurado
-  const useMini = options.model !== GPT_MODEL
+  const messages: OpenAI.ChatCompletionMessageParam[] = [
+    { role: 'system', content: jsonSystemPrompt },
+    { role: 'user', content: sanitizedContent },
+  ]
 
-  const callFn = useMini
-    ? (prompt: string, sys: string) =>
-      callGPTMini(prompt, { ...options, systemPrompt: sys })
-    : (prompt: string, sys: string) =>
-      callGPT(prompt, { ...options, systemPrompt: sys })
+  // ── Intento 1 — con JSON mode nativo ───────────────────────────────────
+  const start = Date.now()
 
-  // ── Intento 1 ─────────────────────────────────────────────────────────────
-  const callStart = Date.now()
-  const rawResponse = await callFn(userPrompt, jsonSystemPrompt)
+  try {
+    const response = await getClient().chat.completions.create({
+      model,
+      max_completion_tokens: maxTokens,
+      messages,
+      response_format: { type: 'json_object' },
+    })
 
-  const parsed1 = tryParseAndValidate(rawResponse, schema)
-  if (parsed1.success) return parsed1.data
+    const latencyMs = Date.now() - start
+    const tokensIn = response.usage?.prompt_tokens ?? 0
+    const tokensOut = response.usage?.completion_tokens ?? 0
+    const costCents = Math.round(
+      ((tokensIn * costInput + tokensOut * costOutput) / 1000) * 100
+    ) / 100
 
-  // ── Retry con prompt de corrección ────────────────────────────────────────
-  // Solo reintentar si queda tiempo suficiente (la primera llamada puede haber
-  // tardado 20-30s; reintentar consumiría otros 20-30s → blow serverless budget)
-  const firstCallDuration = Date.now() - callStart
-  const MAX_RETRY_BUDGET_MS = 20_000 // only retry if first call was fast (<20s)
+    log.info({ endpoint, tokensIn, tokensOut, latencyMs, costCents, model }, 'GPT JSON call OK')
+    onSuccess()
+    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents })
 
-  if (firstCallDuration > MAX_RETRY_BUDGET_MS) {
-    logger.warn(
-      { parseError: parsed1.error, firstCallMs: firstCallDuration },
-      'callGPTJSON: respuesta inválida pero sin tiempo para reintentar — lanzando error'
+    const choice = response.choices[0]
+    const text = choice?.message?.content
+
+    if (choice?.finish_reason === 'length') {
+      log.warn({ endpoint, tokensIn, tokensOut, maxTokens }, 'GPT JSON truncated (finish_reason=length)')
+      throw new Error(`GPT JSON truncated: maxTokens=${maxTokens} insuficiente (${tokensOut} tokens generados)`)
+    }
+
+    if (!text) {
+      log.error({ endpoint, finishReason: choice?.finish_reason }, 'GPT JSON empty content')
+      throw new Error('GPT JSON returned empty content')
+    }
+
+    // JSON mode guarantees valid JSON — parse should never fail
+    const parsed = tryParseAndValidate(text, schema)
+    if (parsed.success) return parsed.data
+
+    // Schema validation failed (valid JSON but wrong structure) — retry once
+    log.warn(
+      { parseError: parsed.error, latencyMs },
+      'callGPTJSON: JSON válido pero schema incorrecta — reintentando'
     )
+
+    // Only retry if first call was fast enough
+    if (latencyMs > 25_000) {
+      throw new Error(`callGPTJSON: schema inválida sin tiempo para retry. Error: ${parsed.error}`)
+    }
+
+    const retryMessages: OpenAI.ChatCompletionMessageParam[] = [
+      { role: 'system', content: jsonSystemPrompt },
+      {
+        role: 'user',
+        content: `Error de validación en tu respuesta: ${parsed.error}\n\nCorrige y responde de nuevo:\n${sanitizedContent}`,
+      },
+    ]
+
+    const retryResponse = await getClient().chat.completions.create({
+      model,
+      max_completion_tokens: maxTokens,
+      messages: retryMessages,
+      response_format: { type: 'json_object' },
+    })
+
+    const retryText = retryResponse.choices[0]?.message?.content
+    if (!retryText) throw new Error('callGPTJSON: retry returned empty')
+
+    const retryLatencyMs = Date.now() - start
+    const retryTokensIn = retryResponse.usage?.prompt_tokens ?? 0
+    const retryTokensOut = retryResponse.usage?.completion_tokens ?? 0
+    const retryCost = Math.round(
+      ((retryTokensIn * costInput + retryTokensOut * costOutput) / 1000) * 100
+    ) / 100
+    void logApiUsage({ userId, endpoint: `${endpoint}-retry`, model, tokensIn: retryTokensIn, tokensOut: retryTokensOut, costCents: retryCost })
+
+    const parsed2 = tryParseAndValidate(retryText, schema)
+    if (parsed2.success) {
+      log.info({ retryLatencyMs }, 'callGPTJSON: retry succeeded')
+      return parsed2.data
+    }
+
     throw new Error(
-      `callGPTJSON: JSON inválido (sin tiempo para retry, primera llamada ${firstCallDuration}ms). ` +
-      `Error: ${parsed1.error}. Respuesta: ${rawResponse.slice(0, 200)}`
+      `callGPTJSON: schema inválida tras 2 intentos. Error: ${parsed2.error}. Respuesta: ${retryText.slice(0, 200)}`
     )
+  } catch (err) {
+    const latencyMs = Date.now() - start
+    if (!isTimeoutError(err)) onFailure()
+    log.error({ err, endpoint, latencyMs, model }, 'callGPTJSON failed')
+    throw err
   }
-
-  logger.warn(
-    { parseError: parsed1.error, attempt: 2, firstCallMs: firstCallDuration },
-    'callGPTJSON: respuesta inválida — reintentando (hay tiempo)'
-  )
-
-  const retryPrompt =
-    'Tu respuesta anterior no era JSON válido. Responde SOLO con JSON.\n\n' +
-    `Error de validación: ${parsed1.error}\n\n` +
-    'Prompt original:\n' + userPrompt
-
-  const rawRetry = await callFn(retryPrompt, jsonSystemPrompt)
-
-  const parsed2 = tryParseAndValidate(rawRetry, schema)
-  if (parsed2.success) return parsed2.data
-
-  // ── Fallo definitivo ──────────────────────────────────────────────────────
-  throw new Error(
-    `callGPTJSON: la respuesta de GPT no es JSON válido tras 2 intentos. ` +
-    `Error: ${parsed2.error}. ` +
-    `Respuesta recibida: ${rawRetry.slice(0, 200)}`
-  )
 }
 
 // ─── callGPTStream ────────────────────────────────────────────────────────────
