@@ -381,9 +381,17 @@ Art. 12 (Derecho de acceso): Todas las personas tienen derecho a acceder a la in
 /**
  * Variante streaming del prompt socrático.
  * Produce texto plano formateado (no JSON) para streaming token-a-token.
+ *
+ * NOTE: Previously used a regex .replace() on SYSTEM_EXPLAIN_ERRORES to swap the
+ * JSON instruction for text formatting. But the regex failed to match the nested
+ * { [ { } ] } structure → prompt still asked for JSON → model returned raw JSON
+ * to the user (security issue: exposed system prompt structure).
+ * Now uses a simple string split on a stable anchor line.
  */
-export const SYSTEM_EXPLAIN_ERRORES_STREAM = SYSTEM_EXPLAIN_ERRORES.replace(
-  /Responde ÚNICAMENTE con JSON válido:[\s\S]*?\}\s*\}/,
+const _beforeJson = SYSTEM_EXPLAIN_ERRORES.split('Responde ÚNICAMENTE con JSON válido:')[0]
+const _legislacionMatch = SYSTEM_EXPLAIN_ERRORES.indexOf('## Legislación de referencia')
+const _legislacion = _legislacionMatch >= 0 ? SYSTEM_EXPLAIN_ERRORES.slice(_legislacionMatch) : ''
+export const SYSTEM_EXPLAIN_ERRORES_STREAM = _beforeJson +
   `Escribe cada explicación con este formato exacto:
 
 **Pregunta N:**
@@ -392,8 +400,9 @@ export const SYSTEM_EXPLAIN_ERRORES_STREAM = SYSTEM_EXPLAIN_ERRORES.replace(
 [revelacion]
 [anclaje]
 
-Separa cada pregunta con una línea en blanco. NO uses JSON, escribe texto natural formateado.`
-)
+Separa cada pregunta con una línea en blanco. NO uses JSON, escribe texto natural formateado.
+
+` + _legislacion
 
 // ─── §2.12 Caza-Trampas ───────────────────────────────────────────────────────
 
