@@ -310,6 +310,11 @@ async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Prom
 
     // 3. Verify each question in-memory
     const verified: Pregunta[] = []
+    const rejectionReasons: Record<string, number> = {}
+    function reject(reason: string) {
+      rejectionReasons[reason] = (rejectionReasons[reason] || 0) + 1
+    }
+
     for (const pregunta of preguntas) {
       const textForCitations = `${pregunta.enunciado} ${pregunta.explicacion}`
       const citasExtraidas = extractCitations(textForCitations)
@@ -321,7 +326,7 @@ async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Prom
         if (pregunta.cita) {
           const leyResuelta = resolveLeyNombre(pregunta.cita.ley)
           if (!leyResuelta) {
-            log.debug({ ley: pregunta.cita.ley }, '[verification] ley no reconocida — rechazando')
+            reject(`ley_no_reconocida:${pregunta.cita.ley}`)
             passes = false
           }
         }
@@ -335,7 +340,7 @@ async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Prom
           // Ley no reconocida and not in BD — reject
           const leyResuelta = resolveLeyNombre(citaPrincipal.ley)
           if (!leyResuelta) {
-            log.debug({ cita: citaPrincipal.textoOriginal }, '[verification] cita rechazada')
+            reject(`cita_no_verificada:${citaPrincipal.textoOriginal}`)
             passes = false
           }
         }
@@ -345,7 +350,7 @@ async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Prom
           // Only verify enunciado — explicacion contains intentionally wrong plazos for pedagogy
           const contentMatch = verifyContentMatch(citaPrincipal, pregunta.enunciado, result.textoEnBD)
           if (!contentMatch.match && contentMatch.confidence !== 'low') {
-            log.debug({ details: contentMatch.details }, '[verification] contenido inconsistente — rechazando')
+            reject(`contenido_inconsistente:${contentMatch.details}`)
             passes = false
           }
         }
@@ -361,6 +366,10 @@ async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Prom
           dificultad: pregunta.dificultad,
         })
       }
+    }
+
+    if (Object.keys(rejectionReasons).length > 0) {
+      log.info({ rejectionReasons, total: preguntas.length, passed: verified.length }, '[verification] rejection breakdown')
     }
 
     return verified
