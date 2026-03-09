@@ -98,19 +98,18 @@ export async function POST(request: NextRequest) {
 
   log.info({ userId: user.id, tipo, id: inserted?.id }, '[feedback] sugerencia recibida')
 
-  // §2.7.6 — Notificación email a Aritz (fire-and-forget, pero logea errores)
-  sendFeedbackNotification({
+  // §2.7.6 — Notificación email a Aritz (AWAIT — serverless mata el proceso tras response)
+  const emailResult = await sendFeedbackNotification({
     tipo,
     mensaje,
     paginaOrigen: pagina_origen,
     userEmail: user.email,
-  }).then(result => {
-    if (!result.success) {
-      log.error({ err: result.error, userId: user.id }, '[feedback] email notification FAILED')
-    } else {
-      log.info({ emailId: result.id, userId: user.id }, '[feedback] email notification sent')
-    }
   })
+  if (!emailResult.success) {
+    log.error({ err: emailResult.error, userId: user.id }, '[feedback] email notification FAILED')
+  } else {
+    log.info({ emailId: emailResult.id, userId: user.id }, '[feedback] email notification sent')
+  }
 
   return NextResponse.json({ id: inserted?.id }, { status: 201 })
 }
