@@ -76,6 +76,21 @@ export async function POST(request: NextRequest) {
     }
   }
 
+  // ── 4b. Parse optional previous plan for context ──────────────────────
+  let previousPlan: string | null = null
+  let previousPlanDate: string | null = null
+  try {
+    const body = await request.json().catch(() => ({}))
+    if (body.previousPlan && typeof body.previousPlan === 'string') {
+      previousPlan = body.previousPlan.slice(0, 2000) // cap to avoid token bloat
+    }
+    if (body.previousPlanDate && typeof body.previousPlanDate === 'string') {
+      previousPlanDate = body.previousPlanDate
+    }
+  } catch {
+    // No body or invalid JSON — fine, no previous plan
+  }
+
   // ── 5. Recopilar TODOS los datos del usuario ───────────────────────────
   const [
     { data: tests },
@@ -176,6 +191,15 @@ export async function POST(request: NextRequest) {
   parts.push(`- Temas sin probar: ${temasSinDatos.length} (${temasSinDatos.map(t => `T${t.numero}`).join(', ') || 'ninguno'})`)
   if (temasDebiles.length > 0) {
     parts.push(`- Temas débiles (<60%): ${temasDebiles.map(t => `T${t.numero} (${t.notaMedia}%)`).join(', ')}`)
+  }
+
+  // Add previous plan context if regenerating
+  if (previousPlan) {
+    parts.push(`\nPLAN ANTERIOR${previousPlanDate ? ` (generado el ${previousPlanDate})` : ''}:`)
+    parts.push(`"""`)
+    parts.push(previousPlan)
+    parts.push(`"""`)
+    parts.push(`\nINSTRUCCIÓN: El opositor ya tenía un plan anterior. Reconoce brevemente qué ha mejorado comparando los datos actuales con el plan anterior. Genera un plan NUEVO y actualizado basado en los datos actuales. No repitas las mismas tareas si las notas indican que ya las completó.`)
   }
 
   const userPrompt = `Genera un plan de estudio personalizado basado en estos datos:\n\n${parts.join('\n')}`

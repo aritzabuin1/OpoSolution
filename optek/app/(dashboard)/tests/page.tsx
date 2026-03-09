@@ -28,25 +28,6 @@ import { ClipboardCheck, Lock, RefreshCw } from 'lucide-react'
 import { RadarCard } from '@/components/tests/RadarCard'
 import { RepasoButton } from '@/components/shared/RepasoButton'
 
-// ─── Mapping estático: ley_codigo → números de tema que cubre ─────────────────
-// Se actualiza cuando se indexan nuevas leyes en data/legislacion/
-const LEY_A_TEMAS: Record<string, number[]> = {
-  CE:            [1],
-  LOTC:          [2],
-  LOPJ:          [4],
-  LGOB:          [5],
-  TRANSPARENCIA: [7],
-  LPAC:          [11],
-  LRJSP:         [11],
-  LOPDGDD:       [12],
-  TREBEP:        [13, 14],
-  LGP:           [15],
-  LGTBI:         [16],
-  LOIGUALDAD:    [16],
-  LOVIGEN:       [16],
-  LCSP:          [],
-}
-
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function formatFecha(isoString: string): string {
@@ -96,7 +77,7 @@ export default async function TestsPage({
 
   // ── Fetch en paralelo ─────────────────────────────────────────────────────
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [temasResult, profileResult, comprasResult, testsResult, legislacionResult] = await Promise.all([
+  const [temasResult, profileResult, comprasResult, testsResult] = await Promise.all([
     supabase.from('temas').select('id, numero, titulo, descripcion').order('numero'),
     (supabase as any).from('profiles').select('free_tests_used, is_admin').eq('id', user.id).single(),
     supabase
@@ -110,10 +91,6 @@ export default async function TestsPage({
       .eq('completado', true)
       .order('created_at', { ascending: false })
       .limit(5),
-    supabase
-      .from('legislacion')
-      .select('ley_codigo', { count: 'exact' })
-      .limit(50),
   ])
 
   const temas = temasResult.data ?? []
@@ -121,17 +98,6 @@ export default async function TestsPage({
   const freeTestsUsed = prof?.free_tests_used ?? 0
   const hasPaidAccess = (comprasResult.count ?? 0) > 0 || prof?.is_admin === true
   const testsAnteriores = (testsResult.data ?? []) as TestAnterior[]
-
-  // Construir Set de números de tema con legislación indexada
-  const leyCodigos = new Set(
-    (legislacionResult.data ?? []).map((r) => r.ley_codigo)
-  )
-  const temasConLegislacion = new Set<number>()
-  for (const [ley, nums] of Object.entries(LEY_A_TEMAS)) {
-    if (leyCodigos.has(ley)) {
-      for (const n of nums) temasConLegislacion.add(n)
-    }
-  }
 
   // ── Agrupar temas por bloque ───────────────────────────────────────────────
   // Bloque I = temas 1–16 (Organización Pública)
@@ -184,7 +150,7 @@ export default async function TestsPage({
                 tema={tema}
                 hasPaidAccess={hasPaidAccess}
                 freeTestsUsed={freeTestsUsed}
-                hasLegislacion={temasConLegislacion.has(tema.numero)}
+
                 isFreeAllowed={(FREE_TEMA_NUMEROS as readonly number[]).includes(tema.numero)}
               />
             ))}
@@ -208,7 +174,7 @@ export default async function TestsPage({
                 tema={tema}
                 hasPaidAccess={hasPaidAccess}
                 freeTestsUsed={freeTestsUsed}
-                hasLegislacion={temasConLegislacion.has(tema.numero)}
+
                 isFreeAllowed={(FREE_TEMA_NUMEROS as readonly number[]).includes(tema.numero)}
               />
             ))}

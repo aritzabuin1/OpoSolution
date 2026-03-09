@@ -50,7 +50,12 @@ export function Navbar() {
   return (
     <header className="border-b bg-card px-4 py-3 md:hidden">
       <div className="flex items-center justify-between">
-        <span className="text-lg font-bold text-primary">OpoRuta</span>
+        <div className="flex items-center gap-1.5">
+          <span className="text-lg font-bold text-primary">OpoRuta</span>
+          <span className="rounded-full bg-amber-100 border border-amber-300 px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider text-amber-700">
+            Beta
+          </span>
+        </div>
         <div className="flex items-center gap-1">
           <NotificationBell />
           <button

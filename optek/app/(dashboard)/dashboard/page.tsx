@@ -39,6 +39,7 @@ import { calcularIPR } from '@/lib/utils/ipr'
 import { LoadingSpinner } from '@/components/shared/LoadingSpinner'
 import { ExamCountdownBanner } from '@/components/dashboard/ExamCountdownBanner'
 import { RoadmapCard } from '@/components/dashboard/RoadmapCard'
+import { FounderBetaBanner } from '@/components/dashboard/FounderBetaBanner'
 
 // ─── Tipos locales ─────────────────────────────────────────────────────────────
 
@@ -234,6 +235,9 @@ export default async function DashboardPage() {
           nombre={nombreUsuario !== 'opositor' ? nombreUsuario : undefined}
         />
       )}
+
+      {/* ── Founder Beta Banner ─────────────────────────────────────────── */}
+      {founderData?.is_founder && <FounderBetaBanner />}
 
       {/* ── 0. Daily Brief (above the fold) ──────────────────────────────── */}
       <Suspense fallback={<div className="flex justify-center py-4"><LoadingSpinner /></div>}>

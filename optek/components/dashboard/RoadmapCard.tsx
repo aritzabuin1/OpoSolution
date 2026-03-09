@@ -41,9 +41,22 @@ function extractTasks(text: string): string[] {
     .slice(0, 15) // max 15 tasks
 }
 
+/** Shows how old the plan is, with a nudge to update if >7 days */
+function PlanAge({ generatedAt }: { generatedAt: string }) {
+  const days = Math.floor((Date.now() - new Date(generatedAt).getTime()) / (1000 * 60 * 60 * 24))
+  if (days < 1) return <span className="text-[10px] text-muted-foreground">Generado hoy</span>
+  if (days <= 7) return <span className="text-[10px] text-muted-foreground">Hace {days} día{days > 1 ? 's' : ''}</span>
+  return (
+    <span className="text-[10px] text-amber-600 font-medium">
+      Hace {days} días — actualiza tu plan
+    </span>
+  )
+}
+
 export function RoadmapCard() {
   const [state, setState] = useState<CardState>('idle')
   const [streamedText, setStreamedText] = useState('')
+  const [generatedAt, setGeneratedAt] = useState<string | null>(null)
   const [showPaywall, setShowPaywall] = useState(false)
   const [completedTasks, setCompletedTasks] = useState<Set<number>>(new Set())
   const textRef = useRef<HTMLDivElement>(null)
@@ -55,6 +68,7 @@ export function RoadmapCard() {
       if (saved) {
         const parsed: SavedRoadmap = JSON.parse(saved)
         setStreamedText(parsed.text)
+        setGeneratedAt(parsed.generatedAt)
         setState('done')
       }
       const savedTasks = localStorage.getItem(TASKS_KEY)
@@ -89,9 +103,15 @@ export function RoadmapCard() {
 
   async function handleGenerate() {
     if (state === 'loading' || state === 'streaming') return
+
+    // Capture previous plan before clearing state (for evolution context)
+    const prevPlan = streamedText || null
+    const prevDate = generatedAt || null
+
     setState('loading')
     setStreamedText('')
     setCompletedTasks(new Set())
+    setGeneratedAt(null)
     localStorage.removeItem(TASKS_KEY)
 
     const controller = new AbortController()
@@ -101,6 +121,9 @@ export function RoadmapCard() {
       const res = await fetch('/api/ai/generate-roadmap/stream', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...(prevPlan ? { previousPlan: prevPlan, previousPlanDate: prevDate } : {}),
+        }),
         signal: controller.signal,
       })
 
@@ -154,10 +177,12 @@ export function RoadmapCard() {
       }
 
       // Save to localStorage for persistence
+      const nowIso = new Date().toISOString()
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
         text: accumulated,
-        generatedAt: new Date().toISOString(),
+        generatedAt: nowIso,
       }))
+      setGeneratedAt(nowIso)
 
       setState('done')
     } catch (err) {
@@ -239,16 +264,21 @@ export function RoadmapCard() {
   // ── Streaming / Done state ─────────────────────────────────────────────
   return (
     <section className="space-y-3">
-      <div className="flex items-center gap-2">
-        <Map className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-        <h2 className="text-sm font-semibold">
-          Tu plan de estudio personalizado
-          {state === 'streaming' && (
-            <span className="ml-2 text-xs font-normal text-muted-foreground">
-              escribiendo...
-            </span>
-          )}
-        </h2>
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
+          <Map className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+          <h2 className="text-sm font-semibold">
+            Tu plan de estudio personalizado
+            {state === 'streaming' && (
+              <span className="ml-2 text-xs font-normal text-muted-foreground">
+                escribiendo...
+              </span>
+            )}
+          </h2>
+        </div>
+        {state === 'done' && generatedAt && (
+          <PlanAge generatedAt={generatedAt} />
+        )}
       </div>
 
       <div

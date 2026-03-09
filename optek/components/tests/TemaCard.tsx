@@ -47,8 +47,6 @@ export interface TemaCardProps {
   hasPaidAccess: boolean
   /** Tests gratuitos usados (0–5) */
   freeTestsUsed: number
-  /** El tema tiene legislación indexada en el sistema RAG */
-  hasLegislacion?: boolean
   /** El tema está en la lista FREE_TEMA_NUMEROS (accesible para free users) */
   isFreeAllowed?: boolean
 }
@@ -65,7 +63,7 @@ const NUM_PREGUNTAS_OPTIONS: NumPreguntas[] = [10, 20, 30]
 
 // ─── Componente ──────────────────────────────────────────────────────────────
 
-export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, hasLegislacion = false, isFreeAllowed = true }: TemaCardProps) {
+export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, isFreeAllowed = true }: TemaCardProps) {
   const router = useRouter()
 
   const [dificultad, setDificultad] = useState<Dificultad>('media')
@@ -190,9 +188,9 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, hasLegislacion = 
           </div>
 
           <div className="flex shrink-0 items-center gap-2">
-            {hasLegislacion && !isLocked && (
+            {tema.numero <= 16 && !isLocked && (
               <span
-                title="Legislación verificada indexada"
+                title="Tema de legislación"
                 className="flex items-center gap-0.5 rounded-full bg-blue-50 px-1.5 py-0.5 text-[10px] font-medium text-blue-600 border border-blue-200"
               >
                 <BookOpen className="h-2.5 w-2.5" />

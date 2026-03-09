@@ -59,8 +59,11 @@ export function Sidebar({ isAdmin = false }: SidebarProps) {
 
   return (
     <aside aria-label="Barra lateral" className="flex h-full w-64 flex-col border-r bg-card px-4 py-6">
-      <div className="mb-8 px-2">
+      <div className="mb-8 px-2 flex items-center gap-2">
         <span className="text-xl font-bold tracking-tight text-primary">OpoRuta</span>
+        <span className="rounded-full bg-amber-100 border border-amber-300 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-amber-700">
+          Beta
+        </span>
       </div>
       <nav className="flex flex-col gap-1 flex-1" aria-label="Menu principal">
         {navItems.map(({ href, label, icon: Icon, premium, premiumDesc }) => {
