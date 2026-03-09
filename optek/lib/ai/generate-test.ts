@@ -120,11 +120,11 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   // ── 2. Generación + verificación ─────────────────────────────────────────
   //
   // Optimización: split en chunks paralelos de máx CHUNK_SIZE preguntas.
-  // gpt-4o-mini tarda ~30s para 10 preguntas → chunks de 10 en paralelo
-  // mantienen el tiempo total ≈ 30s independientemente de numPreguntas.
+  // gpt-4o-mini tarda ~25s para 10 preguntas difíciles → chunks de 10 en paralelo.
+  // 30q difícil = 3 chunks × 12 preguntas ≈ 25-30s cada uno (todos en paralelo).
   // Vercel Hobby maxDuration=60s, SDK timeout=55s → margen seguro.
 
-  const CHUNK_SIZE = 15
+  const CHUNK_SIZE = 10
   const systemPrompt = esBloqueII ? SYSTEM_GENERATE_TEST_BLOQUE2 : SYSTEM_GENERATE_TEST
 
   /** Compute maxTokens based on chunk size and difficulty */
@@ -162,7 +162,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   // have fewer than numPreguntas, fill with real INAP questions from BD.
   // This eliminates wasted API calls from overgeneration.
   //
-  // 10q = 1 call (chunk 15), 20q = 2 calls [15,5], 30q = 2 calls [15,15]
+  // 10q = 1 call (chunk 10), 20q = 2 calls [10,10], 30q = 3 calls [10,10,10]
 
   // Ask AI for ~20% more than needed per chunk to absorb verification losses.
   // This is NOT overgeneration of total count — each chunk asks for slightly more
