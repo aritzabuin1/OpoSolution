@@ -311,8 +311,8 @@ async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Prom
     // 3. Verify each question in-memory
     const verified: Pregunta[] = []
     for (const pregunta of preguntas) {
-      const text = `${pregunta.enunciado} ${pregunta.explicacion}`
-      const citasExtraidas = extractCitations(text)
+      const textForCitations = `${pregunta.enunciado} ${pregunta.explicacion}`
+      const citasExtraidas = extractCitations(textForCitations)
 
       let passes = true
 
@@ -342,7 +342,8 @@ async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Prom
 
         // Content match check (deterministic, no DB needed)
         if (passes && result?.textoEnBD) {
-          const contentMatch = verifyContentMatch(citaPrincipal, text, result.textoEnBD)
+          // Only verify enunciado — explicacion contains intentionally wrong plazos for pedagogy
+          const contentMatch = verifyContentMatch(citaPrincipal, pregunta.enunciado, result.textoEnBD)
           if (!contentMatch.match && contentMatch.confidence !== 'low') {
             log.debug({ details: contentMatch.details }, '[verification] contenido inconsistente — rechazando')
             passes = false

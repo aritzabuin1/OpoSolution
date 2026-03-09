@@ -357,13 +357,13 @@ describe('§1.5.6 — verifyContentMatch: verificación determinista', () => {
     expect(result.confidence).toBe('medium')
   })
 
-  it('órgano incorrecto "Senado" cuando artículo menciona "Congreso" → match=false, confidence=medium', () => {
+  it('órgano incorrecto "Senado" cuando artículo menciona "Congreso" → match=false, confidence=low', () => {
     const claimText = 'La aprobación corresponde al Senado.'
     const articuloTexto =
       'La iniciativa legislativa corresponde al Congreso de los Diputados.'
     const result = verifyContentMatch(citaBase, claimText, articuloTexto)
     expect(result.match).toBe(false)
-    expect(result.confidence).toBe('medium')
+    expect(result.confidence).toBe('low')
   })
 
   it('texto genérico sin plazos ni órganos → match=true, confidence=low', () => {

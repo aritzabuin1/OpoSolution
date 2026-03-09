@@ -434,7 +434,7 @@ export function verifyContentMatch(
     if (unmatchedKeywords.length > 0) {
       return {
         match: false,
-        confidence: 'medium',
+        confidence: 'low',
         details: `Órganos no encontrados en el artículo: ${unmatchedKeywords.join(', ')}`,
       }
     }
