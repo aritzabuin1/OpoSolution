@@ -164,22 +164,29 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   //
   // 10q = 1 call (chunk 15), 20q = 2 calls [15,5], 30q = 2 calls [15,15]
 
+  // Ask AI for ~20% more than needed per chunk to absorb verification losses.
+  // This is NOT overgeneration of total count — each chunk asks for slightly more
+  // because the AI sometimes returns fewer than requested + verification filters some.
+  const BUFFER_FACTOR = 1.2
+
   let sanitized: PreguntaRaw[]
 
   if (numPreguntas <= CHUNK_SIZE) {
-    sanitized = await generateChunk(numPreguntas)
+    const toAsk = Math.ceil(numPreguntas * BUFFER_FACTOR)
+    sanitized = await generateChunk(toAsk)
     log.info(
-      { preguntasRaw: sanitized.length, requested: numPreguntas, esBloqueII },
+      { preguntasRaw: sanitized.length, requested: numPreguntas, asked: toAsk, esBloqueII },
       '[generateTest] single chunk complete'
     )
   } else {
-    // Split into parallel chunks
+    // Split into parallel chunks, each with buffer
     const chunks: number[] = []
     let remaining = numPreguntas
     while (remaining > 0) {
-      const size = Math.min(CHUNK_SIZE, remaining)
-      chunks.push(size)
-      remaining -= size
+      const base = Math.min(CHUNK_SIZE, remaining)
+      const withBuffer = Math.ceil(base * BUFFER_FACTOR)
+      chunks.push(withBuffer)
+      remaining -= base
     }
     const results = await Promise.all(
       chunks.map(async (size, i) => {
@@ -583,7 +590,7 @@ function sanitizePreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Pregunta
  * @returns Array of Pregunta objects from official exams
  */
 async function fillWithOfficialQuestions(
-  temaId: string,
+  _temaId: string,
   needed: number,
   excludeEnunciados: Set<string>,
   _temaNumero: number | null,
@@ -591,14 +598,13 @@ async function fillWithOfficialQuestions(
   try {
     const supabase = await createServiceClient()
 
-    // Query preguntas_oficiales by tema_id, limit to what we need + buffer for dedup
-    // Schema: id, examen_id, numero, enunciado, opciones (jsonb), correcta (0-3), tema_id, dificultad
+    // preguntas_oficiales.tema_id is usually NULL (not mapped yet).
+    // Fetch a generous pool from any exam and shuffle to get variety.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data, error } = await (supabase as any)
       .from('preguntas_oficiales')
-      .select('enunciado, opciones, correcta, tema_id')
-      .eq('tema_id', temaId)
-      .limit(needed + 10)
+      .select('enunciado, opciones, correcta')
+      .limit(needed + 30)
 
     if (error || !data || data.length === 0) return []
 

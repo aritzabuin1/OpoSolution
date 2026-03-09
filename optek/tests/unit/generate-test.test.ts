@@ -81,6 +81,8 @@ vi.mock('@/lib/supabase/server', () => ({
       if (table === 'preguntas_oficiales') {
         return {
           select: () => ({
+            // fillWithOfficialQuestions now queries without tema_id filter
+            limit: mockPreguntasOficialesResult,
             eq: () => ({
               limit: mockPreguntasOficialesResult,
             }),
@@ -420,7 +422,6 @@ describe('generateTest: INAP fill cuando verificación filtra preguntas', () => 
         enunciado: 'Pregunta oficial INAP sobre procedimiento',
         opciones: ['Opción A', 'Opción B', 'Opción C', 'Opción D'],
         correcta: 1,
-        tema_id: TEMA_ID,
       }],
       error: null,
     })
