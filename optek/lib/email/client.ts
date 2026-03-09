@@ -273,7 +273,7 @@ export async function sendFeedbackNotification(params: {
   const resend = getResend()
   if (!resend) return { success: false, error: 'Resend no configurado' }
 
-  const adminEmail = process.env.ADMIN_EMAIL ?? REPLY_TO
+  const adminEmail = process.env.ADMIN_EMAIL ?? 'aritzmore1@gmail.com'
 
   try {
     const { data, error } = await resend.emails.send({

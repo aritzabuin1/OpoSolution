@@ -58,8 +58,16 @@ export async function POST(request: NextRequest) {
 
   const { tipo, mensaje, pagina_origen } = parsed.data
 
-  // ── 3. Rate limit: 5/día ──────────────────────────────────────────────────
-  const rateLimit = await checkRateLimit(user.id, 'user-feedback', 5, '24 h')
+  // ── 3. Rate limit: 5/día (admin bypass) ───────────────────────────────────
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: adminCheck } = await (supabase as any)
+    .from('profiles')
+    .select('is_admin')
+    .eq('id', user.id)
+    .single() as { data: { is_admin: boolean } | null }
+  const isAdmin = adminCheck?.is_admin === true
+
+  const rateLimit = await checkRateLimit(user.id, 'user-feedback', 5, '24 h', { skipForAdmin: isAdmin })
   if (!rateLimit.success) {
     return NextResponse.json(
       { error: 'Has enviado demasiadas sugerencias hoy. Vuelve mañana.' },
