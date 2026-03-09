@@ -83,6 +83,41 @@ describe('resolveLeyNombre', () => {
     expect(resolveLeyNombre('violencia de género')).toBe('LOVIGEN')
   })
 
+  // ─── Regex fallback por número de ley ──────────────────────────────────────
+
+  it.each([
+    ['Ley 39/2015', 'LPAC'],
+    ['ley 40/2015', 'LRJSP'],
+    ['Ley Orgánica 3/2018', 'LOPDGDD'],
+    ['ley orgánica 3/2007', 'LOIGUALDAD'],
+    ['RDLeg 5/2015', 'TREBEP'],
+    ['rdleg 5/2015', 'TREBEP'],
+    ['Real Decreto Legislativo 5/2015', 'TREBEP'],
+    ['LO 1/2004', 'LOVIGEN'],
+    ['Ley 4/2023', 'LGTBI'],
+    ['Ley 47/2003', 'LGP'],
+    ['Ley 50/1997', 'LGOB'],
+    ['Ley 19/2013', 'TRANSPARENCIA'],
+    ['Ley 9/2017', 'LCSP'],
+  ])('regex fallback: resuelve "%s" → "%s"', (input, expected) => {
+    expect(resolveLeyNombre(input)).toBe(expected)
+  })
+
+  // ─── Variantes comunes de la IA ──────────────────────────────────────────
+
+  it('resuelve lpacap → LPAC', () => {
+    expect(resolveLeyNombre('lpacap')).toBe('LPAC')
+  })
+
+  it('resuelve lrjpac → LPAC', () => {
+    expect(resolveLeyNombre('lrjpac')).toBe('LPAC')
+  })
+
+  it('resuelve "ce 1978" → CE', () => {
+    expect(resolveLeyNombre('ce 1978')).toBe('CE')
+    expect(resolveLeyNombre('CE1978')).toBe('CE')
+  })
+
   // ─── Cobertura completa del diccionario ────────────────────────────────────
 
   it('todas las leyes objetivo están representadas en el diccionario', () => {

@@ -124,7 +124,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   // mantienen el tiempo total ≈ 30s independientemente de numPreguntas.
   // Vercel Hobby maxDuration=60s, SDK timeout=55s → margen seguro.
 
-  const CHUNK_SIZE = 10
+  const CHUNK_SIZE = 15
   const systemPrompt = esBloqueII ? SYSTEM_GENERATE_TEST_BLOQUE2 : SYSTEM_GENERATE_TEST
 
   /** Compute maxTokens based on chunk size and difficulty */
@@ -156,29 +156,26 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
     return sanitizePreguntas(rawTest.preguntas, log)
   }
 
-  // ── Single-pass with overgeneration ──────────────────────────────────────
+  // ── Single-pass: exact count, no overgeneration ─────────────────────────
   //
-  // Strategy: generate ~25% MORE questions than requested, all in parallel.
-  // After verification filters out ~15-20%, we still have enough to fulfill
-  // the exact count the user asked for. No retries needed.
+  // Strategy: generate exactly what's requested. After verification, if we
+  // have fewer than numPreguntas, fill with real INAP questions from BD.
+  // This eliminates wasted API calls from overgeneration.
   //
-  // Example: user asks for 20 → we generate 25 → verify → ~21 pass → return 20.
-
-  const OVERGEN_FACTOR = 1.25
-  const toGenerate = Math.ceil(numPreguntas * OVERGEN_FACTOR)
+  // 10q = 1 call (chunk 15), 20q = 2 calls [15,5], 30q = 2 calls [15,15]
 
   let sanitized: PreguntaRaw[]
 
-  if (toGenerate <= CHUNK_SIZE) {
-    sanitized = await generateChunk(toGenerate)
+  if (numPreguntas <= CHUNK_SIZE) {
+    sanitized = await generateChunk(numPreguntas)
     log.info(
-      { preguntasRaw: sanitized.length, requested: numPreguntas, generated: toGenerate, esBloqueII },
+      { preguntasRaw: sanitized.length, requested: numPreguntas, esBloqueII },
       '[generateTest] single chunk complete'
     )
   } else {
-    // Split into parallel chunks (e.g., 25 → [10, 10, 5] or [7, 7, 7, 4] for hard)
+    // Split into parallel chunks
     const chunks: number[] = []
-    let remaining = toGenerate
+    let remaining = numPreguntas
     while (remaining > 0) {
       const size = Math.min(CHUNK_SIZE, remaining)
       chunks.push(size)
@@ -225,7 +222,29 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
     )
   }
 
-  const preguntas = preguntasVerificadas.slice(0, numPreguntas)
+  let preguntas = preguntasVerificadas.slice(0, numPreguntas)
+
+  // ── Fill with official INAP questions if we have fewer than requested ──
+  // Only for Bloque I (Bloque II has no official questions)
+  if (!esBloqueII && preguntas.length < numPreguntas) {
+    const needed = numPreguntas - preguntas.length
+    const existingEnunciados = new Set(preguntas.map((p) => p.enunciado))
+    const fillQuestions = await fillWithOfficialQuestions(temaId, needed, existingEnunciados, temaNumero)
+
+    if (fillQuestions.length > 0) {
+      // Fisher-Yates shuffle to mix official questions with AI-generated ones
+      preguntas = [...preguntas, ...fillQuestions]
+      for (let i = preguntas.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [preguntas[i], preguntas[j]] = [preguntas[j], preguntas[i]]
+      }
+
+      log.info(
+        { filled: fillQuestions.length, total: preguntas.length, requested: numPreguntas },
+        '[generateTest] filled with official INAP questions'
+      )
+    }
+  }
 
   // ── 5. Guardar en BD ──────────────────────────────────────────────────────
   const testId = await saveTestToDB({ userId, temaId, preguntas })
@@ -549,6 +568,78 @@ function sanitizePreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Pregunta
 
     return true
   })
+}
+
+// ─── Fill with official INAP questions ───────────────────────────────────────
+
+/**
+ * Fetches real INAP exam questions from `preguntas_oficiales` for a given tema.
+ * Used as fallback when AI-generated questions don't pass verification.
+ *
+ * @param temaId UUID of the tema
+ * @param needed Number of questions to fill
+ * @param excludeEnunciados Set of enunciados already in the test (to avoid duplicates)
+ * @param temaNumero Numeric tema number for fallback matching
+ * @returns Array of Pregunta objects from official exams
+ */
+async function fillWithOfficialQuestions(
+  temaId: string,
+  needed: number,
+  excludeEnunciados: Set<string>,
+  _temaNumero: number | null,
+): Promise<Pregunta[]> {
+  try {
+    const supabase = await createServiceClient()
+
+    // Query preguntas_oficiales by tema_id, limit to what we need + buffer for dedup
+    // Schema: id, examen_id, numero, enunciado, opciones (jsonb), correcta (0-3), tema_id, dificultad
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data, error } = await (supabase as any)
+      .from('preguntas_oficiales')
+      .select('enunciado, opciones, correcta, tema_id')
+      .eq('tema_id', temaId)
+      .limit(needed + 10)
+
+    if (error || !data || data.length === 0) return []
+
+    return mapOfficialQuestions(data, needed, excludeEnunciados)
+  } catch {
+    // Non-blocking — if official questions fail, just return fewer AI questions
+    return []
+  }
+}
+
+/** Maps raw preguntas_oficiales rows to Pregunta objects, deduplicating and shuffling */
+function mapOfficialQuestions(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  rows: any[],
+  needed: number,
+  excludeEnunciados: Set<string>,
+): Pregunta[] {
+  // Fisher-Yates shuffle so we don't always get the same questions
+  for (let i = rows.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [rows[i], rows[j]] = [rows[j], rows[i]]
+  }
+
+  const result: Pregunta[] = []
+  for (const row of rows) {
+    if (result.length >= needed) break
+    if (excludeEnunciados.has(row.enunciado)) continue
+
+    const opciones = Array.isArray(row.opciones) ? row.opciones : []
+    if (opciones.length !== 4) continue
+
+    result.push({
+      enunciado: row.enunciado,
+      opciones: opciones as [string, string, string, string],
+      correcta: typeof row.correcta === 'number' ? row.correcta : 0,
+      explicacion: 'Pregunta de examen oficial INAP.',
+      dificultad: 'media',
+    })
+  }
+
+  return result
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────

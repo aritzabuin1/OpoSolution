@@ -56,9 +56,10 @@ vi.mock('@/lib/ai/citation-aliases', () => ({
   },
 }))
 
-// Mock Supabase server — createServiceClient para temas + tests_generados
+// Mock Supabase server — createServiceClient para temas + tests_generados + preguntas_oficiales
 const mockInsertSelectSingle = vi.fn()
 const mockTemasSelectSingle = vi.fn()
+const mockPreguntasOficialesResult = vi.fn()
 
 vi.mock('@/lib/supabase/server', () => ({
   createServiceClient: vi.fn().mockResolvedValue({
@@ -74,6 +75,15 @@ vi.mock('@/lib/supabase/server', () => ({
         return {
           select: () => ({
             eq: () => ({ single: mockTemasSelectSingle }),
+          }),
+        }
+      }
+      if (table === 'preguntas_oficiales') {
+        return {
+          select: () => ({
+            eq: () => ({
+              limit: mockPreguntasOficialesResult,
+            }),
           }),
         }
       }
@@ -186,6 +196,9 @@ function setupBase() {
     data: { id: 'test-guardado-uuid' },
     error: null,
   })
+
+  // preguntas_oficiales: por defecto vacío (no hay fallback)
+  mockPreguntasOficialesResult.mockResolvedValue({ data: [], error: null })
 
   // Verification mocks — por defecto: NO extrae citas (sin citas → acepta pregunta directamente)
   mockExtractCitations.mockReturnValue([])
@@ -374,6 +387,87 @@ describe('§1.7.5 — generateTest: filtrado de preguntas que no pasan verificac
     })
 
     expect(result.preguntas).toHaveLength(1)
+  })
+})
+
+// ─── INAP fill — rellenar con preguntas oficiales ────────────────────────────
+
+describe('generateTest: INAP fill cuando verificación filtra preguntas', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+    setupBase()
+  })
+
+  it('rellena con preguntas oficiales INAP si verificación filtra algunas', async () => {
+    // Setup: 3 preguntas pedidas, la #2 falla verificación → solo 2 pasan
+    mockExtractCitations.mockImplementation((text: string) => {
+      if (text.includes('Pregunta de test número 2')) {
+        return [{ ley: 'LEY_DESCONOCIDA', leyRaw: 'LEY_DESCONOCIDA', articulo: '999', textoOriginal: 'artículo 999 LEY_DESCONOCIDA', leyResuelta: false }]
+      }
+      return []
+    })
+    mockBatchVerifyCitations.mockResolvedValue(new Map([
+      ['artículo 999 LEY_DESCONOCIDA', { verificada: false }],
+    ]))
+
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse([
+      makePreguntaRaw(1), makePreguntaRaw(2), makePreguntaRaw(3),
+    ]))
+
+    // Mock preguntas_oficiales returns 1 question to fill the gap
+    mockPreguntasOficialesResult.mockResolvedValue({
+      data: [{
+        enunciado: 'Pregunta oficial INAP sobre procedimiento',
+        opciones: ['Opción A', 'Opción B', 'Opción C', 'Opción D'],
+        correcta: 1,
+        tema_id: TEMA_ID,
+      }],
+      error: null,
+    })
+
+    const result = await generateTest({
+      temaId: TEMA_ID,
+      numPreguntas: 3,
+      dificultad: 'media',
+      userId: USER_ID,
+    })
+
+    // Should have 3 questions: 2 AI-generated + 1 INAP fill
+    expect(result.preguntas).toHaveLength(3)
+    // AI called only once (no retry)
+    expect(mockCallAIJSON).toHaveBeenCalledTimes(1)
+  })
+
+  it('no rellena con INAP para Bloque II (ofimática no tiene preguntas oficiales)', async () => {
+    mockBuildContext.mockResolvedValue({
+      ...CONTEXT_BLOQUE2_FIXTURE,
+    })
+    mockFormatContext.mockReturnValue(
+      '=== Word 365 — Atajos ===\nCtrl+B aplica negrita. Ctrl+I aplica cursiva. Ctrl+U aplica subrayado. Para insertar tabla: Pestaña Insertar > Tabla.'
+    )
+
+    // Both questions pass guardrail (Bloque II is lenient)
+    const pregunta1 = {
+      enunciado: '¿Cuál es el atajo para negrita?',
+      opciones: ['Ctrl+B', 'Ctrl+I', 'Ctrl+U', 'Alt+B'] as [string, string, string, string],
+      correcta: 0 as const,
+      explicacion: 'Ctrl+B aplica negrita.',
+      dificultad: 'facil' as const,
+    }
+    // Only 1 question generated for 2 requested → would need fill
+    mockCallAIJSON.mockResolvedValueOnce(buildAIResponse([pregunta1]))
+
+    const result = await generateTest({
+      temaId: 'tema-word-uuid',
+      numPreguntas: 2,
+      dificultad: 'facil',
+      userId: USER_ID,
+    })
+
+    // Only 1 question, Bloque II does NOT fill with INAP
+    expect(result.preguntas).toHaveLength(1)
+    // preguntas_oficiales should NOT be queried
+    expect(mockPreguntasOficialesResult).not.toHaveBeenCalled()
   })
 })
 

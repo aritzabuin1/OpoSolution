@@ -305,8 +305,14 @@ export function verifyContentMatch(
   claimText: string,
   articuloTexto: string
 ): ContentMatchResult {
-  const claimLower = claimText.toLowerCase()
-  const articuloLower = articuloTexto.toLowerCase()
+  // Normalize "días hábiles" / "días naturales" → "días" in both texts
+  // The AI often adds qualifiers that the statute text doesn't have, causing false rejections
+  const normalizePlazos = (t: string) =>
+    t.replace(/días\s+(?:hábiles|naturales|laborables)/gi, 'días')
+     .replace(/meses\s+(?:naturales|completos)/gi, 'meses')
+
+  const claimLower = normalizePlazos(claimText.toLowerCase())
+  const articuloLower = normalizePlazos(articuloTexto.toLowerCase())
 
   // ── 1. Verificación de plazos ──────────────────────────────────────────────
 
