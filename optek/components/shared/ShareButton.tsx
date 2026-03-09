@@ -83,8 +83,8 @@ export function ShareButton({ score, tema, nombre, tipo = 'test', testId, result
     window.open(`https://twitter.com/intent/tweet?${params.toString()}`, '_blank', 'noopener')
   }
 
-  // ── Email ─────────────────────────────────────────────────────────────────
-  const handleEmail = () => {
+  // ── Gmail ────────────────────────────────────────────────────────────────
+  const handleGmail = () => {
     const subject = `${emoji} ${score}% en ${temaStr} — OpoRuta`
     const body = [
       `He completado un ${tipoLabel} en OpoRuta.`,
@@ -101,7 +101,8 @@ export function ShareButton({ score, tema, nombre, tipo = 'test', testId, result
       appUrl,
     ].filter(Boolean).join('\n')
 
-    window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    const params = new URLSearchParams({ view: 'cm', su: subject, body })
+    window.open(`https://mail.google.com/mail/?${params.toString()}`, '_blank', 'noopener')
   }
 
   // ── Copiar ────────────────────────────────────────────────────────────────
@@ -152,12 +153,12 @@ export function ShareButton({ score, tema, nombre, tipo = 'test', testId, result
         <Button
           variant="outline"
           size="sm"
-          onClick={handleEmail}
+          onClick={handleGmail}
           className="gap-1.5"
-          aria-label="Compartir por email"
+          aria-label="Compartir por Gmail"
         >
           <Mail className="h-4 w-4" />
-          Email
+          Gmail
         </Button>
 
         <Button

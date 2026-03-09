@@ -9,7 +9,7 @@
  * Llama a POST /api/user/feedback
  */
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { MessageSquare, X, Send, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
@@ -40,6 +40,13 @@ export function FeedbackButton() {
   const [tipo, setTipo] = useState<TipoFeedback>('sugerencia')
   const [mensaje, setMensaje] = useState('')
   const [isSending, setIsSending] = useState(false)
+
+  // Allow other components (e.g. FounderBetaBanner) to open this modal via custom event
+  useEffect(() => {
+    function handleOpenFeedback() { setOpen(true) }
+    window.addEventListener('oporuta:open-feedback', handleOpenFeedback)
+    return () => window.removeEventListener('oporuta:open-feedback', handleOpenFeedback)
+  }, [])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()

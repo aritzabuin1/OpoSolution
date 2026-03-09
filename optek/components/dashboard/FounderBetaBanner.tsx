@@ -6,6 +6,9 @@
  * Banner para Founders durante la fase BETA.
  * Pide feedback de forma llamativa pero no invasiva.
  * Se puede cerrar y no vuelve a aparecer en la sesión.
+ *
+ * El botón de feedback abre el FeedbackButton modal (via custom event)
+ * que envía el feedback por API → BD → email notification al admin.
  */
 
 import { useState } from 'react'
@@ -24,6 +27,10 @@ export function FounderBetaBanner() {
   function handleDismiss() {
     setDismissed(true)
     sessionStorage.setItem(DISMISSED_KEY, '1')
+  }
+
+  function handleOpenFeedback() {
+    window.dispatchEvent(new CustomEvent('oporuta:open-feedback'))
   }
 
   return (
@@ -52,14 +59,14 @@ export function FounderBetaBanner() {
           <p className="text-xs text-amber-800/80 dark:text-amber-300/80 leading-relaxed">
             Como miembro fundador, tu opinión vale oro. Si encuentras un bug, algo que no funciona
             bien o tienes una idea para mejorar la plataforma, cuéntanoslo — estamos construyendo
-            OpoRuta contigo. Usa el botón de feedback (abajo a la derecha) o escríbenos directamente.
+            OpoRuta contigo.
           </p>
           <button
-            onClick={() => { window.location.href = 'mailto:aritzabuin1@gmail.com?subject=Feedback%20OpoRuta%20Beta' }}
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-amber-700 dark:text-amber-300 hover:underline mt-1"
+            onClick={handleOpenFeedback}
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-amber-700 dark:text-amber-300 hover:underline mt-1 bg-amber-100 dark:bg-amber-800/40 rounded-md px-3 py-1.5 border border-amber-300 dark:border-amber-600 hover:bg-amber-200 dark:hover:bg-amber-800/60 transition-colors"
           >
-            <MessageSquarePlus className="h-3 w-3" />
-            Enviar feedback por email
+            <MessageSquarePlus className="h-3.5 w-3.5" />
+            Enviar feedback
           </button>
         </div>
       </div>

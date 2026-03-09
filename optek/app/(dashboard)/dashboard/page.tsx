@@ -541,26 +541,6 @@ export default async function DashboardPage() {
             </CardContent>
           </Card>
 
-          {/* CTA contextual */}
-          {temaConPeorNota && (
-            <Card className="mt-4 border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-950/30">
-              <CardContent className="pt-4">
-                <p className="text-xs font-semibold text-amber-700 dark:text-amber-400 mb-1">
-                  💡 Tu punto débil
-                </p>
-                <p className="text-sm font-medium mb-2">
-                  Tema {temaConPeorNota.numero}: {temaConPeorNota.titulo.slice(0, 40)}
-                  {temaConPeorNota.titulo.length > 40 ? '…' : ''}
-                </p>
-                <p className="text-xs text-amber-600 dark:text-amber-500 mb-3">
-                  Nota media: {Math.round(temaConPeorNota.notaMedia ?? 0)}% — Necesitas reforzar
-                </p>
-                <Button asChild size="sm" variant="outline" className="w-full">
-                  <Link href="/tests">Practicar ahora</Link>
-                </Button>
-              </CardContent>
-            </Card>
-          )}
         </div>
       </div>
 
