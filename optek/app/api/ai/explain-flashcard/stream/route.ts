@@ -102,9 +102,10 @@ export async function POST(request: NextRequest) {
   let aiStream: ReadableStream<string>
   try {
     aiStream = await callAIStream(SYSTEM_EXPLAIN_FLASHCARD, userPrompt, {
-      maxTokens: 1000,
+      maxTokens: 1500,
       requestId,
       endpoint: 'explain-flashcard-stream',
+      useHeavyModel: true,
     })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Error desconocido'

@@ -109,9 +109,10 @@ export async function POST(request: NextRequest) {
   let aiStream: ReadableStream<string>
   try {
     aiStream = await callAIStream(SYSTEM_ANALYZE_CAZATRAMPAS, userPrompt, {
-      maxTokens: 1500,
+      maxTokens: 2500,
       requestId,
       endpoint: 'analyze-cazatrampas-stream',
+      useHeavyModel: true,
     })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Error desconocido'

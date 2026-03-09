@@ -153,9 +153,10 @@ ${erroresDetalle || '  Ninguna'}`
   let aiStream: ReadableStream<string>
   try {
     aiStream = await callAIStream(SYSTEM_INFORME_SIMULACRO, userPrompt, {
-      maxTokens: 1500,
+      maxTokens: 2500,
       requestId,
       endpoint: 'informe-simulacro-stream',
+      useHeavyModel: true,
     })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Error desconocido'
