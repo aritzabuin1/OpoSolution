@@ -7,17 +7,16 @@
  * Uses AI streaming to create a plan based on ALL user metrics.
  * Consumes 1 analysis credit.
  *
- * States:
- *   idle      → shows description + CTA button
- *   loading   → spinner while connecting
- *   streaming → text appearing token by token (rendered as markdown)
- *   done      → full plan with action items as checkable tasks
- *   error     → error message with retry
+ * Visual design:
+ *   - Plan text rendered with proper markdown formatting (prose CSS)
+ *   - Tasks extracted into a visually polished card with checkboxes
+ *   - Progress bar + completion celebration
+ *   - Age indicator nudges update after 7 days
  */
 
 import { useState, useRef, useEffect, useMemo } from 'react'
 import { toast } from 'sonner'
-import { Map, Loader2, RotateCcw, RefreshCw } from 'lucide-react'
+import { Map, Loader2, RotateCcw, RefreshCw, CheckCircle2, Circle, PartyPopper, Calendar } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PaywallGate } from '@/components/shared/PaywallGate'
 import { markdownToHtml } from '@/lib/utils/simple-markdown'
@@ -32,23 +31,53 @@ interface SavedRoadmap {
   generatedAt: string
 }
 
-/** Extract action items from the roadmap text (lines starting with - that look like tasks) */
+/** Extract action items: lines starting with "- Haz/Completa/Practica/Repasa/Realiza/Dedica/Revisa" or any "- " with 15+ chars */
 function extractTasks(text: string): string[] {
   return text
     .split('\n')
-    .filter(line => /^- .{10,}/.test(line.trim()))
+    .filter(line => {
+      const trimmed = line.trim()
+      // Match action-oriented bullet points (verbs that start tasks)
+      return /^- (Haz|Completa|Practica|Repasa|Realiza|Dedica|Revisa|Genera|Intenta|Estudia|Usa|Empieza|Termina|Consolida|Refuerza|Alterna|Combina|Incluye|Añade|Simula)/i.test(trimmed)
+        || /^- .{20,}/.test(trimmed) // fallback: any bullet with 20+ chars
+    })
     .map(line => line.trim().replace(/^- /, ''))
-    .slice(0, 15) // max 15 tasks
+    .slice(0, 12) // max 12 tasks for clean UI
 }
 
-/** Shows how old the plan is, with a nudge to update if >7 days */
+/** Format date in Spanish */
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString('es-ES', {
+    day: 'numeric',
+    month: 'short',
+  })
+}
+
+/** Shows how old the plan is */
 function PlanAge({ generatedAt }: { generatedAt: string }) {
   const days = Math.floor((Date.now() - new Date(generatedAt).getTime()) / (1000 * 60 * 60 * 24))
-  if (days < 1) return <span className="text-[10px] text-muted-foreground">Generado hoy</span>
-  if (days <= 7) return <span className="text-[10px] text-muted-foreground">Hace {days} día{days > 1 ? 's' : ''}</span>
+  const dateStr = formatDate(generatedAt)
+
+  if (days < 1) {
+    return (
+      <span className="inline-flex items-center gap-1 text-[11px] text-blue-600 dark:text-blue-400">
+        <Calendar className="h-3 w-3" />
+        Generado hoy
+      </span>
+    )
+  }
+  if (days <= 7) {
+    return (
+      <span className="inline-flex items-center gap-1 text-[11px] text-muted-foreground">
+        <Calendar className="h-3 w-3" />
+        {dateStr} (hace {days}d)
+      </span>
+    )
+  }
   return (
-    <span className="text-[10px] text-amber-600 font-medium">
-      Hace {days} días — actualiza tu plan
+    <span className="inline-flex items-center gap-1 text-[11px] text-amber-600 dark:text-amber-400 font-medium">
+      <Calendar className="h-3 w-3" />
+      {dateStr} — tu plan necesita actualizarse
     </span>
   )
 }
@@ -89,7 +118,9 @@ export function RoadmapCard() {
 
   const renderedHtml = useMemo(() => markdownToHtml(streamedText), [streamedText])
   const tasks = useMemo(() => state === 'done' ? extractTasks(streamedText) : [], [streamedText, state])
-  const allTasksDone = tasks.length > 0 && completedTasks.size >= tasks.length
+  const completedCount = Math.min(completedTasks.size, tasks.length)
+  const progress = tasks.length > 0 ? (completedCount / tasks.length) * 100 : 0
+  const allTasksDone = tasks.length > 0 && completedCount >= tasks.length
 
   function toggleTask(idx: number) {
     setCompletedTasks(prev => {
@@ -261,114 +292,164 @@ export function RoadmapCard() {
     )
   }
 
-  // ── Streaming / Done state ─────────────────────────────────────────────
-  return (
-    <section className="space-y-3">
-      <div className="flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
-          <Map className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-          <h2 className="text-sm font-semibold">
-            Tu plan de estudio personalizado
-            {state === 'streaming' && (
-              <span className="ml-2 text-xs font-normal text-muted-foreground">
-                escribiendo...
-              </span>
-            )}
-          </h2>
-        </div>
-        {state === 'done' && generatedAt && (
-          <PlanAge generatedAt={generatedAt} />
-        )}
-      </div>
-
-      <div
-        ref={textRef}
-        className="rounded-lg border border-blue-200 dark:border-blue-800 bg-muted/30 p-4 max-h-[600px] overflow-y-auto"
-      >
-        {state === 'streaming' ? (
-          <div className="text-sm leading-relaxed whitespace-pre-wrap">
-            {streamedText}
-            <span className="inline-block w-2 h-4 bg-blue-500/60 animate-pulse ml-0.5 align-text-bottom" />
+  // ── Streaming state ───────────────────────────────────────────────────
+  if (state === 'streaming') {
+    return (
+      <div className="rounded-xl border border-blue-200 dark:border-blue-800 bg-white dark:bg-gray-900/50 overflow-hidden">
+        {/* Header */}
+        <div className="bg-blue-50 dark:bg-blue-950/30 px-5 py-3 border-b border-blue-200 dark:border-blue-800">
+          <div className="flex items-center gap-2">
+            <Map className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+            <h2 className="text-sm font-semibold">Tu plan de estudio personalizado</h2>
+            <span className="text-xs font-normal text-muted-foreground animate-pulse">
+              escribiendo...
+            </span>
           </div>
-        ) : (
+        </div>
+
+        {/* Streaming content */}
+        <div
+          ref={textRef}
+          className="p-5 max-h-[500px] overflow-y-auto"
+        >
+          <div className="text-sm leading-relaxed whitespace-pre-wrap text-foreground">
+            {streamedText}
+            <span className="inline-block w-2 h-4 bg-blue-500/60 animate-pulse ml-0.5 align-text-bottom rounded-sm" />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // ── Done state ────────────────────────────────────────────────────────
+  return (
+    <div className="space-y-4">
+      {/* ── Main plan card ───────────────────────────────────────────── */}
+      <div className="rounded-xl border border-blue-200 dark:border-blue-800 bg-white dark:bg-gray-900/50 overflow-hidden">
+        {/* Header */}
+        <div className="bg-blue-50 dark:bg-blue-950/30 px-5 py-3 border-b border-blue-200 dark:border-blue-800">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Map className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+              <h2 className="text-sm font-semibold">Tu plan de estudio</h2>
+            </div>
+            {generatedAt && <PlanAge generatedAt={generatedAt} />}
+          </div>
+        </div>
+
+        {/* Rendered markdown content */}
+        <div className="p-5 max-h-[500px] overflow-y-auto">
           <div
             className="text-sm leading-relaxed prose prose-sm prose-gray dark:prose-invert max-w-none
-              prose-headings:text-foreground prose-p:text-foreground prose-li:text-foreground
-              prose-strong:text-foreground prose-code:text-foreground"
+              prose-headings:text-foreground prose-headings:mt-4 prose-headings:mb-2
+              prose-p:text-foreground prose-p:my-1.5
+              prose-li:text-foreground prose-li:my-0.5
+              prose-strong:text-foreground prose-strong:font-semibold
+              prose-code:text-foreground prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-xs"
             dangerouslySetInnerHTML={{ __html: renderedHtml }}
           />
-        )}
+        </div>
       </div>
 
-      {/* ── Task tracker (only when done) ──────────────────────────────── */}
-      {state === 'done' && tasks.length > 0 && (
-        <div className="rounded-lg border border-blue-200 dark:border-blue-800 bg-white dark:bg-gray-800/50 p-4 space-y-3">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-              Tareas del plan ({completedTasks.size}/{tasks.length})
-            </p>
-            <div className="h-1.5 w-24 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+      {/* ── Tasks card ───────────────────────────────────────────────── */}
+      {tasks.length > 0 && (
+        <div className="rounded-xl border border-blue-200 dark:border-blue-800 bg-white dark:bg-gray-900/50 overflow-hidden">
+          {/* Tasks header with progress */}
+          <div className="bg-blue-50 dark:bg-blue-950/30 px-5 py-3 border-b border-blue-200 dark:border-blue-800">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                <h3 className="text-sm font-semibold">Tareas de esta semana</h3>
+              </div>
+              <span className="text-xs font-medium text-blue-600 dark:text-blue-400">
+                {completedCount}/{tasks.length} completadas
+              </span>
+            </div>
+            {/* Progress bar */}
+            <div className="h-2 w-full bg-blue-100 dark:bg-blue-900/50 rounded-full overflow-hidden">
               <div
-                className="h-full bg-blue-500 rounded-full transition-all duration-300"
-                style={{ width: `${tasks.length > 0 ? (completedTasks.size / tasks.length) * 100 : 0}%` }}
+                className={`h-full rounded-full transition-all duration-500 ease-out ${
+                  allTasksDone
+                    ? 'bg-green-500'
+                    : 'bg-blue-500'
+                }`}
+                style={{ width: `${progress}%` }}
               />
             </div>
           </div>
 
-          <ul className="space-y-1.5">
-            {tasks.map((task, idx) => (
-              <li key={idx}>
+          {/* Task list */}
+          <div className="divide-y divide-gray-100 dark:divide-gray-800">
+            {tasks.map((task, idx) => {
+              const isDone = completedTasks.has(idx)
+              return (
                 <button
+                  key={idx}
                   onClick={() => toggleTask(idx)}
-                  className={`flex items-start gap-2.5 w-full text-left rounded-md px-2 py-1.5 text-xs transition-colors hover:bg-muted ${
-                    completedTasks.has(idx) ? 'opacity-50' : ''
+                  className={`flex items-start gap-3 w-full text-left px-5 py-3 transition-colors hover:bg-blue-50/50 dark:hover:bg-blue-950/20 ${
+                    isDone ? 'bg-green-50/30 dark:bg-green-950/10' : ''
                   }`}
                 >
-                  <span className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border text-[10px] ${
-                    completedTasks.has(idx)
-                      ? 'border-blue-500 bg-blue-500 text-white'
-                      : 'border-gray-300 dark:border-gray-600'
+                  {isDone ? (
+                    <CheckCircle2 className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
+                  ) : (
+                    <Circle className="h-5 w-5 text-gray-300 dark:text-gray-600 shrink-0 mt-0.5" />
+                  )}
+                  <span className={`text-sm leading-relaxed ${
+                    isDone
+                      ? 'text-muted-foreground line-through'
+                      : 'text-foreground'
                   }`}>
-                    {completedTasks.has(idx) ? '✓' : ''}
-                  </span>
-                  <span className={completedTasks.has(idx) ? 'line-through' : ''}>
                     {task}
                   </span>
                 </button>
-              </li>
-            ))}
-          </ul>
+              )
+            })}
+          </div>
 
+          {/* All tasks done — celebration */}
           {allTasksDone && (
-            <div className="rounded-md bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 p-3 text-center space-y-2">
-              <p className="text-sm font-medium text-green-700 dark:text-green-400">
-                Has completado todas las tareas del plan
-              </p>
-              <Button
-                onClick={handleGenerate}
-                variant="default"
-                size="sm"
-                className="gap-1.5"
-              >
-                <RefreshCw className="h-3.5 w-3.5" />
-                Actualizar plan de estudio (1 análisis)
-              </Button>
+            <div className="bg-green-50 dark:bg-green-950/30 border-t border-green-200 dark:border-green-800 px-5 py-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/50 flex items-center justify-center shrink-0">
+                  <PartyPopper className="h-5 w-5 text-green-600 dark:text-green-400" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-semibold text-green-800 dark:text-green-300">
+                    Has completado todas las tareas
+                  </p>
+                  <p className="text-xs text-green-700/70 dark:text-green-400/70 mt-0.5">
+                    Tus datos han cambiado — genera un nuevo plan actualizado con tus avances.
+                  </p>
+                </div>
+                <Button
+                  onClick={handleGenerate}
+                  size="sm"
+                  className="shrink-0 bg-green-600 hover:bg-green-700 text-white gap-1.5"
+                >
+                  <RefreshCw className="h-3.5 w-3.5" />
+                  Nuevo plan
+                </Button>
+              </div>
             </div>
           )}
         </div>
       )}
 
-      {state === 'done' && !allTasksDone && (
-        <Button
-          onClick={handleGenerate}
-          variant="outline"
-          size="sm"
-          className="text-xs"
-        >
-          <RotateCcw className="h-3.5 w-3.5 mr-1.5" />
-          Regenerar plan (1 análisis)
-        </Button>
+      {/* Regenerate button (when not all tasks done) */}
+      {!allTasksDone && (
+        <div className="flex justify-end">
+          <Button
+            onClick={handleGenerate}
+            variant="ghost"
+            size="sm"
+            className="text-xs text-muted-foreground hover:text-foreground gap-1.5"
+          >
+            <RotateCcw className="h-3.5 w-3.5" />
+            Regenerar plan (1 análisis)
+          </Button>
+        </div>
       )}
-    </section>
+    </div>
   )
 }

@@ -54,13 +54,13 @@ export function FounderBetaBanner() {
             bien o tienes una idea para mejorar la plataforma, cuéntanoslo — estamos construyendo
             OpoRuta contigo. Usa el botón de feedback (abajo a la derecha) o escríbenos directamente.
           </p>
-          <a
-            href="mailto:aritzabuin1@gmail.com?subject=Feedback%20OpoRuta%20Beta"
+          <button
+            onClick={() => { window.location.href = 'mailto:aritzabuin1@gmail.com?subject=Feedback%20OpoRuta%20Beta' }}
             className="inline-flex items-center gap-1.5 text-xs font-medium text-amber-700 dark:text-amber-300 hover:underline mt-1"
           >
             <MessageSquarePlus className="h-3 w-3" />
             Enviar feedback por email
-          </a>
+          </button>
         </div>
       </div>
     </div>
