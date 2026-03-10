@@ -575,4 +575,6 @@ Reglas ESTRICTAS:
 - No añadas contenido legal
 - Tono directo y motivador, como un entrenador personal
 - Máximo 500 palabras
-- Formato: texto plano con emojis como separadores de sección. Usa listas con guión (- ) para las tareas`
+- Formato: texto plano con emojis como separadores de sección. Usa listas con guión (- ) para las tareas
+- CERO DUPLICADOS: cada tarea debe ser ÚNICA. No repitas la misma acción sobre el mismo tema en distintas secciones. Las tareas de "OBJETIVOS" son las mismas que distribuyes en "PLAN SEMANAL" — en el plan semanal referencia el objetivo por tema sin reescribir la tarea completa (ej: "Lunes: Tema 3 (objetivo de la semana) + Tema 7")
+- Cada tema aparece como MÁXIMO 1 vez en la lista de objetivos. Si un tema necesita varios días, agrúpalo en una sola tarea con el total (ej: "Haz 4 tests repartidos en 2 días")`

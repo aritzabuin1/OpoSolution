@@ -49,9 +49,10 @@ interface RoadmapCardProps {
   activity: UserActivity
 }
 
-/** Extract action items: lines starting with action verbs or any "- " with 20+ chars */
+/** Extract action items: lines starting with action verbs or any "- " with 20+ chars.
+ *  Deduplicates tasks that mention the same tema or have very similar text. */
 function extractTasks(text: string): string[] {
-  return text
+  const raw = text
     .split('\n')
     .filter(line => {
       const trimmed = line.trim()
@@ -59,7 +60,26 @@ function extractTasks(text: string): string[] {
         || /^- .{20,}/.test(trimmed)
     })
     .map(line => line.trim().replace(/^- /, ''))
-    .slice(0, 12)
+
+  // Deduplicate: keep first occurrence of each tema mention, and skip near-duplicates
+  const seen = new Set<string>() // track "tema:N" or normalized text
+  const unique: string[] = []
+
+  for (const task of raw) {
+    const temas = extractTemaNumbers(task)
+    // Build a dedup key: tema numbers if present, otherwise first 30 chars normalized
+    const keys: string[] = temas.length > 0
+      ? temas.map(n => `tema:${n}`)
+      : [task.toLowerCase().replace(/[^a-záéíóúñü0-9]/g, '').slice(0, 40)]
+
+    // Skip if ALL keys already seen (i.e., same tema mentioned before)
+    if (keys.every(k => seen.has(k))) continue
+
+    keys.forEach(k => seen.add(k))
+    unique.push(task)
+  }
+
+  return unique.slice(0, 12)
 }
 
 /** Extract tema number(s) from a task string, e.g. "Haz 3 tests en Tema 5" → [5] */
