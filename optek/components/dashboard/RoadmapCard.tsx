@@ -16,6 +16,13 @@ import {
   Trophy, Lightbulb, BarChart3, GraduationCap,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog'
 import { PaywallGate } from '@/components/shared/PaywallGate'
 
 type CardState = 'idle' | 'loading' | 'streaming' | 'done' | 'error'
@@ -261,6 +268,35 @@ function StudyPlan({ plan }: { plan: PlanItem[] }) {
   )
 }
 
+// ── Confirm generate dialog ─────────────────────────────────────────────────
+
+function ConfirmGenerateDialog({ open, onOpenChange, onConfirm }: {
+  open: boolean
+  onOpenChange: (v: boolean) => void
+  onConfirm: () => void
+}) {
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Generar plan de estudio</DialogTitle>
+        </DialogHeader>
+        <p className="text-sm text-muted-foreground">
+          Esto consumirá 1 análisis detallado. La IA analizará tu historial completo y creará un plan personalizado para esta semana.
+        </p>
+        <DialogFooter>
+          <Button variant="outline" onClick={() => onOpenChange(false)}>
+            Cancelar
+          </Button>
+          <Button onClick={onConfirm}>
+            Generar plan
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}
+
 // ── Main component ──────────────────────────────────────────────────────────
 
 export function RoadmapCard({ activity }: RoadmapCardProps) {
@@ -269,6 +305,7 @@ export function RoadmapCard({ activity }: RoadmapCardProps) {
   const [roadmap, setRoadmap] = useState<RoadmapData | null>(null)
   const [generatedAt, setGeneratedAt] = useState<string | null>(null)
   const [showPaywall, setShowPaywall] = useState(false)
+  const [showConfirmGenerate, setShowConfirmGenerate] = useState(false)
   const [planOpen, setPlanOpen] = useState(true)
   const [tasksOpen, setTasksOpen] = useState(true)
   const textRef = useRef<HTMLDivElement>(null)
@@ -412,7 +449,7 @@ export function RoadmapCard({ activity }: RoadmapCardProps) {
         </div>
 
         <Button
-          onClick={handleGenerate}
+          onClick={() => setShowConfirmGenerate(true)}
           size="sm"
           className="gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-md shadow-blue-600/20"
         >
@@ -420,6 +457,12 @@ export function RoadmapCard({ activity }: RoadmapCardProps) {
           {state === 'error' ? 'Reintentar' : 'Generar plan'}
           <span className="text-[10px] opacity-70 ml-1">1 análisis</span>
         </Button>
+
+        <ConfirmGenerateDialog
+          open={showConfirmGenerate}
+          onOpenChange={setShowConfirmGenerate}
+          onConfirm={() => { setShowConfirmGenerate(false); handleGenerate() }}
+        />
 
         <PaywallGate
           open={showPaywall}
@@ -596,7 +639,7 @@ export function RoadmapCard({ activity }: RoadmapCardProps) {
               Todos los objetivos completados. Genera un nuevo plan.
             </p>
             <Button
-              onClick={handleGenerate}
+              onClick={() => setShowConfirmGenerate(true)}
               size="sm"
               className="shrink-0 bg-green-600 hover:bg-green-700 text-white gap-1.5 text-xs"
             >
@@ -638,7 +681,7 @@ export function RoadmapCard({ activity }: RoadmapCardProps) {
       {!allDone && (
         <div className="flex justify-end">
           <Button
-            onClick={handleGenerate}
+            onClick={() => setShowConfirmGenerate(true)}
             variant="ghost"
             size="sm"
             className="text-[11px] text-muted-foreground hover:text-foreground gap-1.5"
@@ -648,6 +691,12 @@ export function RoadmapCard({ activity }: RoadmapCardProps) {
           </Button>
         </div>
       )}
+
+      <ConfirmGenerateDialog
+        open={showConfirmGenerate}
+        onOpenChange={setShowConfirmGenerate}
+        onConfirm={() => { setShowConfirmGenerate(false); handleGenerate() }}
+      />
     </div>
   )
 }

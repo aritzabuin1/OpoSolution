@@ -19,7 +19,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
-import { Flag, Clock } from 'lucide-react'
+import { Flag, Clock, LogOut } from 'lucide-react'
 import { toast } from 'sonner'
 import { LOGROS_CATALOG } from '@/lib/utils/streaks'
 import { Button } from '@/components/ui/button'
@@ -91,6 +91,7 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
   const [isFinishing, setIsFinishing] = useState(false)
   const [showConfirmDialog, setShowConfirmDialog] = useState(false)
   const [showReportDialog, setShowReportDialog] = useState(false)
+  const [showAbandonDialog, setShowAbandonDialog] = useState(false)
   const [reportMotivo, setReportMotivo] = useState('')
   const [isSendingReport, setIsSendingReport] = useState(false)
 
@@ -177,6 +178,17 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
   useEffect(() => {
     respuestasRef.current = respuestas
   }, [respuestas])
+
+  // ── Warn on navigation away (browser close/reload + in-app links) ──────────
+  useEffect(() => {
+    // Browser close/reload
+    function handleBeforeUnload(e: BeforeUnloadEvent) {
+      if (isFinishingRef.current) return
+      e.preventDefault()
+    }
+    window.addEventListener('beforeunload', handleBeforeUnload)
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload)
+  }, [])
 
   // §2.6.2 — Countdown timer
   useEffect(() => {
@@ -355,6 +367,17 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
         </div>
 
         <div className="flex gap-2">
+          {/* Abandonar test */}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setShowAbandonDialog(true)}
+            className="text-muted-foreground"
+          >
+            <LogOut className="mr-1 h-3.5 w-3.5" />
+            Abandonar
+          </Button>
+
           {/* Reportar pregunta */}
           <Button
             variant="ghost"
@@ -396,6 +419,35 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
             </Button>
             <Button onClick={() => finalizarTest()} disabled={isFinishing}>
               Finalizar igualmente
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Dialog abandonar test */}
+      <Dialog open={showAbandonDialog} onOpenChange={setShowAbandonDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Abandonar test</DialogTitle>
+          </DialogHeader>
+          <p className="text-sm text-muted-foreground">
+            {sinResponder > 0
+              ? `Tienes ${sinResponder} pregunta${sinResponder !== 1 ? 's' : ''} sin responder. Si abandonas, las preguntas sin responder contarán como incorrectas y el test se finalizará con tu puntuación actual.`
+              : 'Si abandonas, el test se finalizará con tu puntuación actual.'}
+          </p>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowAbandonDialog(false)}>
+              Seguir con el test
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={() => {
+                setShowAbandonDialog(false)
+                void finalizarTest()
+              }}
+              disabled={isFinishing}
+            >
+              Abandonar y finalizar
             </Button>
           </DialogFooter>
         </DialogContent>
