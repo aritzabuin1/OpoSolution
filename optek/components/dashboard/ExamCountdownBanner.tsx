@@ -33,6 +33,7 @@ function getConfig(dias: number) {
       headline: 'El dia ha llegado',
       message: 'Todo lo que has trabajado te ha traido hasta aqui. Confia en tu preparacion.',
       cta: null,
+      ctaClass: '',
     }
   }
   if (dias <= 7) {
@@ -44,6 +45,7 @@ function getConfig(dias: number) {
       headline: 'Ya casi estas',
       message: 'Confia en todo lo que has trabajado. Estos ultimos dias, repasa lo clave.',
       cta: 'Repasar errores',
+      ctaClass: 'bg-white text-red-700 hover:bg-red-50',
     }
   }
   if (dias <= 30) {
@@ -55,6 +57,7 @@ function getConfig(dias: number) {
       headline: 'La recta final',
       message: 'Cada test que hagas ahora vale por tres. Prioriza tus puntos debiles.',
       cta: 'Practicar ahora',
+      ctaClass: 'bg-white text-orange-700 hover:bg-orange-50',
     }
   }
   if (dias <= 90) {
@@ -66,6 +69,7 @@ function getConfig(dias: number) {
       headline: 'Todavia estas a tiempo de conseguirlo',
       message: 'Los que aprueban son los que entrenan cada dia. Tu puedes ser uno de ellos.',
       cta: 'Generar test',
+      ctaClass: 'bg-amber-900 text-white hover:bg-amber-950',
     }
   }
   if (dias <= 180) {
@@ -77,6 +81,7 @@ function getConfig(dias: number) {
       headline: 'Buen momento para coger ritmo',
       message: 'Tienes tiempo suficiente para prepararte bien. La constancia marca la diferencia.',
       cta: 'Empezar hoy',
+      ctaClass: 'bg-white text-[#1B4F72] hover:bg-blue-50',
     }
   }
   return {
@@ -87,13 +92,13 @@ function getConfig(dias: number) {
     headline: 'Tu camino empieza hoy',
     message: 'Tienes tiempo de sobra. Empieza con calma, construye el habito, y llegaras preparado.',
     cta: 'Empezar',
+    ctaClass: 'bg-white text-[#1B4F72] hover:bg-blue-50',
   }
 }
 
 export function ExamCountdownBanner({ diasRestantes, nombre }: ExamCountdownBannerProps) {
   const config = getConfig(diasRestantes)
-  const isUrgent = diasRestantes <= 30
-  const ctaHref = diasRestantes <= 7 ? '/tests' : '/tests'
+  const ctaHref = '/tests'
 
   return (
     <div className={`relative overflow-hidden rounded-xl ${config.bg} p-4 sm:p-5`}>
@@ -117,7 +122,7 @@ export function ExamCountdownBanner({ diasRestantes, nombre }: ExamCountdownBann
         {/* Countdown number */}
         <div className="flex items-center gap-3 sm:gap-4 shrink-0">
           <div className="flex flex-col items-center justify-center">
-            <span className={`text-3xl sm:text-4xl font-black tabular-nums leading-none ${config.text} ${isUrgent ? 'animate-pulse' : ''}`}>
+            <span className={`text-3xl sm:text-4xl font-black tabular-nums leading-none ${config.text} ${diasRestantes <= 30 ? 'animate-pulse' : ''}`}>
               {diasRestantes}
             </span>
             <span className={`text-[10px] sm:text-xs font-medium uppercase tracking-wider mt-0.5 ${config.subtext}`}>
@@ -152,12 +157,8 @@ export function ExamCountdownBanner({ diasRestantes, nombre }: ExamCountdownBann
           <Link href={ctaHref} className="shrink-0">
             <Button
               size="sm"
-              variant={isUrgent ? 'secondary' : 'outline'}
-              className={`gap-1.5 font-semibold ${
-                isUrgent
-                  ? 'bg-white text-gray-900 hover:bg-gray-100 shadow-md'
-                  : 'border-white/40 text-white hover:bg-white/10'
-              }`}
+              variant="secondary"
+              className={`gap-1.5 font-semibold shadow-md ${config.ctaClass}`}
             >
               {config.cta}
               <ArrowRight className="h-3.5 w-3.5" />
