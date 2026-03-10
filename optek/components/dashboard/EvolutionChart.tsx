@@ -1,11 +1,13 @@
+'use client'
+
 /**
  * components/dashboard/EvolutionChart.tsx — §1.13.2
  *
  * Gráfico SVG de evolución de puntuación (últimos 30 días).
- * Implementado sin librería externa — SVG puro para máxima ligereza.
- *
- * Server Component — no requiere estado cliente.
+ * SVG puro + tooltip interactivo con hover.
  */
+
+import { useState, useCallback } from 'react'
 
 interface DataPoint {
   fecha: string // ISO date
@@ -17,7 +19,19 @@ interface EvolutionChartProps {
   data: DataPoint[]
 }
 
+function formatDateLabel(iso: string): string {
+  return new Date(iso).toLocaleDateString('es-ES', {
+    day: '2-digit',
+    month: 'short',
+  })
+}
+
 export function EvolutionChart({ data }: EvolutionChartProps) {
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null)
+
+  const handleMouseEnter = useCallback((i: number) => setHoveredIdx(i), [])
+  const handleMouseLeave = useCallback(() => setHoveredIdx(null), [])
+
   if (data.length === 0) {
     return (
       <div className="h-40 flex items-center justify-center text-sm text-muted-foreground">
@@ -55,10 +69,38 @@ export function EvolutionChart({ data }: EvolutionChartProps) {
   // Y-axis grid lines (0, 50, 70, 100)
   const gridValues = [0, 50, 70, 100]
 
-  // X-axis labels: first, middle, last (avoid crowding)
-  const labelIndices = data.length <= 3
-    ? data.map((_, i) => i)
-    : [0, Math.floor((data.length - 1) / 2), data.length - 1]
+  // X-axis labels: pick unique dates spread evenly, max 5 labels to avoid crowding
+  const MAX_LABELS = 5
+  const allLabels = points.map((p, i) => ({ idx: i, label: formatDateLabel(data[i].fecha) }))
+
+  // Deduplicate: only keep first occurrence of each date label
+  const uniqueLabels: typeof allLabels = []
+  const seenLabels = new Set<string>()
+  for (const item of allLabels) {
+    if (!seenLabels.has(item.label)) {
+      seenLabels.add(item.label)
+      uniqueLabels.push(item)
+    }
+  }
+
+  // If more than MAX_LABELS unique dates, subsample evenly
+  let displayLabels: typeof allLabels
+  if (uniqueLabels.length <= MAX_LABELS) {
+    displayLabels = uniqueLabels
+  } else {
+    displayLabels = []
+    for (let i = 0; i < MAX_LABELS; i++) {
+      const idx = Math.round((i / (MAX_LABELS - 1)) * (uniqueLabels.length - 1))
+      displayLabels.push(uniqueLabels[idx])
+    }
+  }
+
+  // Tooltip data
+  const hovered = hoveredIdx !== null ? points[hoveredIdx] : null
+
+  // Tooltip positioning: flip left if too close to right edge
+  const tooltipW = 140
+  const tooltipFlip = hovered && hovered.x > W - PAD.right - tooltipW
 
   return (
     <div className="w-full overflow-x-auto">
@@ -67,6 +109,7 @@ export function EvolutionChart({ data }: EvolutionChartProps) {
         className="w-full"
         style={{ maxHeight: 200 }}
         aria-label="Gráfico de evolución de puntuación"
+        onMouseLeave={handleMouseLeave}
       >
         {/* Grid lines */}
         {gridValues.map((val) => {
@@ -113,31 +156,89 @@ export function EvolutionChart({ data }: EvolutionChartProps) {
           />
         )}
 
-        {/* Data points */}
+        {/* Hover vertical line */}
+        {hovered && (
+          <line
+            x1={hovered.x}
+            y1={PAD.top}
+            x2={hovered.x}
+            y2={PAD.top + chartH}
+            stroke="#1B4F72"
+            strokeWidth={1}
+            strokeDasharray="3 3"
+            opacity={0.4}
+          />
+        )}
+
+        {/* Data points — with invisible larger hit targets */}
         {points.map((p, i) => (
-          <circle
-            key={i}
-            cx={p.x}
-            cy={p.y}
-            r={3.5}
-            fill={p.puntuacion >= 70 ? '#22c55e' : p.puntuacion >= 50 ? '#f59e0b' : '#ef4444'}
-            stroke="white"
-            strokeWidth={1.5}
-          >
-            <title>{`${p.tema}: ${p.puntuacion}%`}</title>
-          </circle>
+          <g key={i}>
+            {/* Invisible hit target for easier hover */}
+            <circle
+              cx={p.x}
+              cy={p.y}
+              r={12}
+              fill="transparent"
+              onMouseEnter={() => handleMouseEnter(i)}
+              onTouchStart={() => handleMouseEnter(i)}
+              style={{ cursor: 'pointer' }}
+            />
+            {/* Visible dot */}
+            <circle
+              cx={p.x}
+              cy={p.y}
+              r={hoveredIdx === i ? 5 : 3.5}
+              fill={p.puntuacion >= 70 ? '#22c55e' : p.puntuacion >= 50 ? '#f59e0b' : '#ef4444'}
+              stroke="white"
+              strokeWidth={hoveredIdx === i ? 2 : 1.5}
+              style={{ transition: 'r 150ms ease, stroke-width 150ms ease' }}
+            />
+          </g>
         ))}
 
+        {/* Tooltip */}
+        {hovered && hoveredIdx !== null && (
+          <g style={{ pointerEvents: 'none' }}>
+            {/* Tooltip background */}
+            <rect
+              x={tooltipFlip ? hovered.x - tooltipW - 8 : hovered.x + 8}
+              y={Math.max(PAD.top, hovered.y - 28)}
+              width={tooltipW}
+              height={44}
+              rx={6}
+              fill="#1e293b"
+              opacity={0.95}
+            />
+            {/* Score */}
+            <text
+              x={tooltipFlip ? hovered.x - tooltipW - 8 + 10 : hovered.x + 18}
+              y={Math.max(PAD.top, hovered.y - 28) + 17}
+              fontSize={13}
+              fontWeight="bold"
+              fill={hovered.puntuacion >= 70 ? '#4ade80' : hovered.puntuacion >= 50 ? '#fbbf24' : '#f87171'}
+            >
+              {hovered.puntuacion}%
+            </text>
+            {/* Date + tema */}
+            <text
+              x={tooltipFlip ? hovered.x - tooltipW - 8 + 10 : hovered.x + 18}
+              y={Math.max(PAD.top, hovered.y - 28) + 34}
+              fontSize={9}
+              fill="#94a3b8"
+            >
+              {formatDateLabel(data[hoveredIdx].fecha)} · {data[hoveredIdx].tema.length > 18
+                ? data[hoveredIdx].tema.slice(0, 18) + '…'
+                : data[hoveredIdx].tema}
+            </text>
+          </g>
+        )}
+
         {/* X-axis labels */}
-        {labelIndices.map((i) => {
-          const p = points[i]
-          const fecha = new Date(data[i].fecha).toLocaleDateString('es-ES', {
-            day: '2-digit',
-            month: 'short',
-          })
+        {displayLabels.map(({ idx, label }) => {
+          const p = points[idx]
           return (
-            <text key={i} x={p.x} y={H - 6} fontSize={9} textAnchor="middle" fill="#9ca3af">
-              {fecha}
+            <text key={`x-${idx}`} x={p.x} y={H - 6} fontSize={9} textAnchor="middle" fill="#9ca3af">
+              {label}
             </text>
           )
         })}
@@ -152,7 +253,7 @@ export function EvolutionChart({ data }: EvolutionChartProps) {
       </svg>
 
       <p className="text-xs text-center text-muted-foreground mt-1">
-        Línea verde = objetivo 70%. Cada punto = un test completado.
+        Línea verde = objetivo 70%. Pasa el dedo o cursor sobre los puntos para ver detalles.
       </p>
     </div>
   )
