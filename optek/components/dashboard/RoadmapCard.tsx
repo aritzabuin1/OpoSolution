@@ -4,34 +4,50 @@
  * components/dashboard/RoadmapCard.tsx
  *
  * Dashboard card for generating a personalized study roadmap.
- * Uses AI streaming to create a plan based on ALL user metrics.
+ * Uses AI streaming → parses structured JSON → renders visual cards.
  * Consumes 1 analysis credit.
- *
- * Features:
- *   - Plan rendered as styled cards with color-coded difficulty tiers
- *   - Tasks auto-detected as completed from user activity data
- *   - Collapsible plan and tasks sections
- *   - Progress bar + completion celebration
- *   - Age indicator nudges update after 7 days
  */
 
-import { useState, useRef, useEffect, useMemo } from 'react'
+import { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 import { toast } from 'sonner'
 import {
-  Map, Loader2, RotateCcw, RefreshCw, CheckCircle2, Circle,
+  Map, Loader2, RotateCcw, RefreshCw, CheckCircle2,
   PartyPopper, Calendar, ChevronDown, Zap, Target, Flame,
-  Trophy, BookOpen,
+  Trophy, Lightbulb, BarChart3, CalendarDays,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PaywallGate } from '@/components/shared/PaywallGate'
-import { markdownToHtml, stripMarkdown } from '@/lib/utils/simple-markdown'
 
 type CardState = 'idle' | 'loading' | 'streaming' | 'done' | 'error'
 
-const STORAGE_KEY = 'oporuta_roadmap'
+const STORAGE_KEY = 'oporuta_roadmap_v2'
+
+// ── Types for structured roadmap ────────────────────────────────────────────
+
+type TaskTier = 'quick' | 'challenge' | 'star'
+
+interface RoadmapTask {
+  tier: TaskTier
+  accion: string
+  detalle: string
+  tema: number | null
+}
+
+interface WeekDay {
+  dia: string
+  items: string[]
+}
+
+interface RoadmapData {
+  diagnostico: string
+  consejo: string
+  tareas: RoadmapTask[]
+  semana: WeekDay[]
+}
 
 interface SavedRoadmap {
-  text: string
+  data: RoadmapData
+  rawText: string
   generatedAt: string
 }
 
@@ -48,113 +64,83 @@ interface RoadmapCardProps {
   activity: UserActivity
 }
 
-// ── Task tier detection ─────────────────────────────────────────────────────
-
-type TaskTier = 'quick' | 'challenge' | 'star' | 'plan'
-
-/** Detect which tier a task belongs to based on emoji markers or keywords */
-function detectTier(task: string): TaskTier {
-  const lower = task.toLowerCase()
-  // The prompt uses 🟢 🟡 🔴 markers and tier headings
-  if (/🟢|victoria|rápid|fácil|flashcard|5 pregunta|consolid|repas/i.test(task)) return 'quick'
-  if (/🔴|desafío|estrella|capaz|demuestra|inténtalo|difícil/i.test(task)) return 'star'
-  if (/🟡|reto|esfuerzo|15 pregunta|20 pregunta|media/i.test(task)) return 'challenge'
-  // Calendar-style plan items
-  if (/^(lunes|martes|miércoles|jueves|viernes|sábado|domingo)/i.test(lower)) return 'plan'
-  return 'challenge'
-}
+// ── Tier config ─────────────────────────────────────────────────────────────
 
 const TIER_CONFIG = {
   quick: {
-    color: 'text-emerald-600 dark:text-emerald-400',
-    bg: 'bg-emerald-50 dark:bg-emerald-950/20',
-    border: 'border-emerald-200 dark:border-emerald-800',
+    color: 'text-emerald-700 dark:text-emerald-300',
+    bg: 'bg-emerald-50 dark:bg-emerald-950/30',
+    border: 'border-emerald-200/80 dark:border-emerald-800/60',
+    iconBg: 'bg-emerald-100 dark:bg-emerald-900/50',
     icon: Zap,
     label: 'Victoria rápida',
-    badgeClass: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300',
+    accent: 'emerald',
   },
   challenge: {
-    color: 'text-amber-600 dark:text-amber-400',
-    bg: 'bg-amber-50 dark:bg-amber-950/20',
-    border: 'border-amber-200 dark:border-amber-800',
+    color: 'text-amber-700 dark:text-amber-300',
+    bg: 'bg-amber-50 dark:bg-amber-950/30',
+    border: 'border-amber-200/80 dark:border-amber-800/60',
+    iconBg: 'bg-amber-100 dark:bg-amber-900/50',
     icon: Target,
     label: 'Reto',
-    badgeClass: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
+    accent: 'amber',
   },
   star: {
-    color: 'text-red-600 dark:text-red-400',
-    bg: 'bg-red-50 dark:bg-red-950/20',
-    border: 'border-red-200 dark:border-red-800',
+    color: 'text-rose-700 dark:text-rose-300',
+    bg: 'bg-gradient-to-br from-rose-50 to-orange-50 dark:from-rose-950/30 dark:to-orange-950/20',
+    border: 'border-rose-200/80 dark:border-rose-800/60',
+    iconBg: 'bg-rose-100 dark:bg-rose-900/50',
     icon: Flame,
     label: 'Desafío estrella',
-    badgeClass: 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300',
+    accent: 'rose',
   },
-  plan: {
-    color: 'text-blue-600 dark:text-blue-400',
-    bg: 'bg-blue-50/50 dark:bg-blue-950/10',
-    border: 'border-blue-100 dark:border-blue-900',
-    icon: Calendar,
-    label: 'Plan',
-    badgeClass: 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300',
-  },
-}
-
-// ── Task extraction ─────────────────────────────────────────────────────────
-
-/** Extract action items from the plan text. Deduplicates by tema number. */
-function extractTasks(text: string): string[] {
-  const raw = text
-    .split('\n')
-    .filter(line => {
-      const trimmed = line.trim()
-      return /^- (Haz|Completa|Practica|Repasa|Realiza|Dedica|Revisa|Genera|Intenta|Estudia|Usa|Empieza|Termina|Consolida|Refuerza|Alterna|Combina|Incluye|Añade|Simula|¿Serías|Demuestra)/i.test(trimmed)
-        || /^- ".{15,}"/.test(trimmed) // Quoted challenge tasks
-        || /^- .{20,}/.test(trimmed)
-    })
-    .map(line => line.trim().replace(/^- /, ''))
-
-  const seen = new Set<string>()
-  const unique: string[] = []
-
-  for (const task of raw) {
-    const temas = extractTemaNumbers(task)
-    const keys: string[] = temas.length > 0
-      ? temas.map(n => `tema:${n}`)
-      : [task.toLowerCase().replace(/[^a-záéíóúñü0-9]/g, '').slice(0, 40)]
-
-    if (keys.every(k => seen.has(k))) continue
-    keys.forEach(k => seen.add(k))
-    unique.push(task)
-  }
-
-  return unique.slice(0, 12)
-}
-
-function extractTemaNumbers(task: string): number[] {
-  const matches = [...task.matchAll(/\btema\s+(\d{1,2})\b/gi)]
-  return matches.map(m => parseInt(m[1], 10)).filter(n => n >= 1 && n <= 28)
-}
+} as const
 
 // ── Activity auto-detection ─────────────────────────────────────────────────
 
-function isTaskAutoCompleted(task: string, activity: UserActivity, generatedAt: string | null): boolean {
-  const lower = task.toLowerCase()
+function isTaskCompleted(task: RoadmapTask, activity: UserActivity, generatedAt: string | null): boolean {
   if (!generatedAt) return false
+  const lower = task.accion.toLowerCase()
 
-  const temaNumbers = extractTemaNumbers(task)
-  if (temaNumbers.length > 0) {
-    return temaNumbers.every(num => {
-      const dates = activity.testsByTema[num] ?? []
-      return dates.some(d => d >= generatedAt)
-    })
+  if (task.tema) {
+    const dates = activity.testsByTema[task.tema] ?? []
+    return dates.some(d => d >= generatedAt)
   }
 
   if (/simulacro/i.test(lower)) return activity.simulacrosCount > 0
-  if (/psicot[eé]cnico/i.test(lower)) return activity.psicotecnicosCount > 0
   if (/flashcard/i.test(lower)) return activity.flashcardsReviewed > 0
   if (/caza.?trampa/i.test(lower)) return activity.cazatrampasCount > 0
 
   return false
+}
+
+// ── Parse JSON from streamed text ───────────────────────────────────────────
+
+function parseRoadmapJSON(text: string): RoadmapData | null {
+  try {
+    // Try to find JSON in the text (model might wrap it in markdown code blocks)
+    let jsonStr = text.trim()
+    const codeBlockMatch = jsonStr.match(/```(?:json)?\s*([\s\S]*?)```/)
+    if (codeBlockMatch) jsonStr = codeBlockMatch[1].trim()
+
+    // Try direct parse
+    const parsed = JSON.parse(jsonStr)
+
+    // Validate minimum structure
+    if (parsed.tareas && Array.isArray(parsed.tareas)) {
+      return {
+        diagnostico: parsed.diagnostico ?? '',
+        consejo: parsed.consejo ?? '',
+        tareas: parsed.tareas.filter((t: RoadmapTask) =>
+          t.accion && ['quick', 'challenge', 'star'].includes(t.tier)
+        ),
+        semana: Array.isArray(parsed.semana) ? parsed.semana : [],
+      }
+    }
+  } catch {
+    // JSON parse failed
+  }
+  return null
 }
 
 // ── Helpers ─────────────────────────────────────────────────────────────────
@@ -169,68 +155,119 @@ function PlanAge({ generatedAt }: { generatedAt: string }) {
 
   if (days < 1) {
     return (
-      <span className="inline-flex items-center gap-1 text-[11px] text-blue-600 dark:text-blue-400">
+      <span className="inline-flex items-center gap-1 text-[10px] text-blue-600 dark:text-blue-400 font-medium">
         <Calendar className="h-3 w-3" />
-        Generado hoy
+        Hoy
       </span>
     )
   }
   if (days <= 7) {
     return (
-      <span className="inline-flex items-center gap-1 text-[11px] text-muted-foreground">
+      <span className="inline-flex items-center gap-1 text-[10px] text-muted-foreground">
         <Calendar className="h-3 w-3" />
-        {dateStr} (hace {days}d)
+        {dateStr}
       </span>
     )
   }
   return (
-    <span className="inline-flex items-center gap-1 text-[11px] text-amber-600 dark:text-amber-400 font-medium">
+    <span className="inline-flex items-center gap-1 text-[10px] text-amber-600 dark:text-amber-400 font-medium">
       <Calendar className="h-3 w-3" />
-      {dateStr} — tu plan necesita actualizarse
+      Actualizar plan
     </span>
   )
 }
 
-// ── Task item component ─────────────────────────────────────────────────────
+// ── Task card component ─────────────────────────────────────────────────────
 
-function TaskItem({ task, isDone }: { task: string; isDone: boolean }) {
-  const tier = detectTier(task)
-  const config = TIER_CONFIG[tier]
+function TaskCard({ task, isDone }: { task: RoadmapTask; isDone: boolean }) {
+  const config = TIER_CONFIG[task.tier]
   const Icon = config.icon
 
-  // Clean emoji markers from display text
-  const cleanText = stripMarkdown(task).replace(/^[🟢🟡🔴]\s*/, '')
-
   return (
-    <div className={`flex items-start gap-3 px-4 py-3 rounded-lg border transition-all ${
+    <div className={`rounded-lg border p-3 transition-all ${
       isDone
-        ? 'bg-green-50/50 dark:bg-green-950/10 border-green-200 dark:border-green-800'
+        ? 'bg-gray-50 dark:bg-gray-900/30 border-gray-200 dark:border-gray-800 opacity-60'
         : `${config.bg} ${config.border}`
     }`}>
-      {/* Check / Circle */}
-      <div className="shrink-0 mt-0.5">
-        {isDone ? (
-          <CheckCircle2 className="h-5 w-5 text-green-500" />
-        ) : (
-          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${config.border}`}>
-            <Icon className={`h-3 w-3 ${config.color}`} />
-          </div>
-        )}
-      </div>
+      <div className="flex items-start gap-3">
+        {/* Icon */}
+        <div className={`shrink-0 mt-0.5 w-7 h-7 rounded-md flex items-center justify-center ${
+          isDone ? 'bg-gray-100 dark:bg-gray-800' : config.iconBg
+        }`}>
+          {isDone ? (
+            <CheckCircle2 className="h-4 w-4 text-green-500" />
+          ) : (
+            <Icon className={`h-4 w-4 ${config.color}`} />
+          )}
+        </div>
 
-      {/* Content */}
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2 flex-wrap mb-0.5">
-          <span className={`inline-flex items-center text-[10px] font-semibold uppercase tracking-wider rounded-full px-2 py-0.5 ${config.badgeClass}`}>
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          <p className={`text-[13px] font-semibold leading-snug ${
+            isDone ? 'text-muted-foreground line-through' : 'text-foreground'
+          }`}>
+            {task.accion}
+          </p>
+          {task.detalle && (
+            <p className={`text-[11px] mt-0.5 leading-relaxed ${
+              isDone ? 'text-muted-foreground/60' : 'text-muted-foreground'
+            }`}>
+              {task.detalle}
+            </p>
+          )}
+        </div>
+
+        {/* Tier badge */}
+        {!isDone && (
+          <span className={`shrink-0 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${
+            task.tier === 'quick' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300'
+            : task.tier === 'star' ? 'bg-rose-100 text-rose-700 dark:bg-rose-900/50 dark:text-rose-300'
+            : 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300'
+          }`}>
             {config.label}
           </span>
-        </div>
-        <p className={`text-sm leading-relaxed ${
-          isDone ? 'text-muted-foreground line-through' : 'text-foreground'
-        }`}>
-          {cleanText}
-        </p>
+        )}
       </div>
+    </div>
+  )
+}
+
+// ── Week planner component ──────────────────────────────────────────────────
+
+function WeekPlanner({ semana }: { semana: WeekDay[] }) {
+  if (semana.length === 0) return null
+
+  return (
+    <div className="grid grid-cols-7 gap-1">
+      {semana.map((day) => {
+        const isWeekend = /sábado|domingo/i.test(day.dia)
+        const isRest = day.items.some(i => /descanso/i.test(i))
+        return (
+          <div
+            key={day.dia}
+            className={`rounded-lg p-2 text-center ${
+              isRest
+                ? 'bg-gray-50 dark:bg-gray-900/30 border border-dashed border-gray-200 dark:border-gray-800'
+                : isWeekend
+                  ? 'bg-blue-50/50 dark:bg-blue-950/20 border border-blue-100 dark:border-blue-900'
+                  : 'bg-white dark:bg-gray-900/50 border border-gray-150 dark:border-gray-800'
+            }`}
+          >
+            <p className={`text-[10px] font-bold uppercase tracking-wider mb-1 ${
+              isRest ? 'text-muted-foreground/60' : 'text-foreground'
+            }`}>
+              {day.dia.slice(0, 3)}
+            </p>
+            <div className="space-y-0.5">
+              {day.items.map((item, i) => (
+                <p key={i} className="text-[9px] leading-tight text-muted-foreground truncate" title={item}>
+                  {item}
+                </p>
+              ))}
+            </div>
+          </div>
+        )
+      })}
     </div>
   )
 }
@@ -240,50 +277,52 @@ function TaskItem({ task, isDone }: { task: string; isDone: boolean }) {
 export function RoadmapCard({ activity }: RoadmapCardProps) {
   const [state, setState] = useState<CardState>('idle')
   const [streamedText, setStreamedText] = useState('')
+  const [roadmap, setRoadmap] = useState<RoadmapData | null>(null)
   const [generatedAt, setGeneratedAt] = useState<string | null>(null)
   const [showPaywall, setShowPaywall] = useState(false)
-  const [planOpen, setPlanOpen] = useState(true)
   const [tasksOpen, setTasksOpen] = useState(true)
+  const [weekOpen, setWeekOpen] = useState(false)
   const textRef = useRef<HTMLDivElement>(null)
 
+  // Load saved roadmap
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY)
       if (saved) {
         const parsed: SavedRoadmap = JSON.parse(saved)
-        setStreamedText(parsed.text)
+        setRoadmap(parsed.data)
+        setStreamedText(parsed.rawText)
         setGeneratedAt(parsed.generatedAt)
         setState('done')
       }
     } catch {
-      // ignore localStorage errors
+      // ignore
     }
   }, [])
 
+  // Auto-scroll streaming
   useEffect(() => {
     if (state === 'streaming' && textRef.current) {
       textRef.current.scrollTop = textRef.current.scrollHeight
     }
   }, [streamedText, state])
 
-  const renderedHtml = useMemo(() => markdownToHtml(streamedText), [streamedText])
-  const tasks = useMemo(() => state === 'done' ? extractTasks(streamedText) : [], [streamedText, state])
-
+  // Completed tasks
   const completedSet = useMemo(() => {
+    if (!roadmap) return new Set<number>()
     const set = new Set<number>()
-    tasks.forEach((task, idx) => {
-      if (isTaskAutoCompleted(task, activity, generatedAt)) {
-        set.add(idx)
-      }
+    roadmap.tareas.forEach((task, idx) => {
+      if (isTaskCompleted(task, activity, generatedAt)) set.add(idx)
     })
     return set
-  }, [tasks, activity, generatedAt])
+  }, [roadmap, activity, generatedAt])
 
+  const totalTasks = roadmap?.tareas.length ?? 0
   const completedCount = completedSet.size
-  const progress = tasks.length > 0 ? (completedCount / tasks.length) * 100 : 0
-  const allTasksDone = tasks.length > 0 && completedCount >= tasks.length
+  const progress = totalTasks > 0 ? (completedCount / totalTasks) * 100 : 0
+  const allDone = totalTasks > 0 && completedCount >= totalTasks
 
-  async function handleGenerate() {
+  const handleGenerate = useCallback(async () => {
     if (state === 'loading' || state === 'streaming') return
 
     const prevPlan = streamedText || null
@@ -291,12 +330,13 @@ export function RoadmapCard({ activity }: RoadmapCardProps) {
 
     setState('loading')
     setStreamedText('')
+    setRoadmap(null)
     setGeneratedAt(null)
-    setPlanOpen(true)
     setTasksOpen(true)
+    setWeekOpen(false)
 
     const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 50_000)
+    const timeout = setTimeout(() => controller.abort(), 55_000)
 
     try {
       const res = await fetch('/api/ai/generate-roadmap/stream', {
@@ -310,32 +350,16 @@ export function RoadmapCard({ activity }: RoadmapCardProps) {
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
-
-        if (res.status === 402) {
-          setShowPaywall(true)
-          setState('idle')
-          return
-        }
-
+        if (res.status === 402) { setShowPaywall(true); setState('idle'); return }
         if (res.status === 503) {
-          toast.error('Servicio no disponible', {
-            description: 'El servicio de IA está ocupado. Inténtalo en un minuto.',
-          })
-          setState('error')
-          return
+          toast.error('IA no disponible', { description: 'Inténtalo en un minuto.' })
+          setState('error'); return
         }
-
-        toast.error('Error al generar plan de estudio', {
-          description: data?.error ?? 'Por favor inténtalo de nuevo.',
-        })
-        setState('error')
-        return
+        toast.error('Error al generar plan', { description: data?.error ?? 'Inténtalo de nuevo.' })
+        setState('error'); return
       }
 
-      if (!res.body) {
-        setState('error')
-        return
-      }
+      if (!res.body) { setState('error'); return }
 
       setState('streaming')
       const reader = res.body.getReader()
@@ -350,76 +374,63 @@ export function RoadmapCard({ activity }: RoadmapCardProps) {
       }
 
       if (accumulated.trim().length === 0) {
-        toast.error('El plan no generó contenido', {
-          description: 'Inténtalo de nuevo en unos segundos.',
-        })
-        setState('error')
-        return
+        toast.error('Plan vacío', { description: 'Inténtalo de nuevo.' })
+        setState('error'); return
+      }
+
+      // Parse JSON
+      const parsed = parseRoadmapJSON(accumulated)
+      if (!parsed || parsed.tareas.length === 0) {
+        toast.error('Error al procesar el plan', { description: 'Formato inesperado. Inténtalo de nuevo.' })
+        setState('error'); return
       }
 
       const nowIso = new Date().toISOString()
+      setRoadmap(parsed)
+      setGeneratedAt(nowIso)
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
-        text: accumulated,
+        data: parsed,
+        rawText: accumulated,
         generatedAt: nowIso,
       }))
-      setGeneratedAt(nowIso)
-
       setState('done')
     } catch (err) {
       if (err instanceof DOMException && err.name === 'AbortError') {
-        toast.error('Ha tardado demasiado', {
-          description: 'El servicio de IA está saturado. Inténtalo de nuevo.',
-        })
+        toast.error('Timeout', { description: 'IA saturada. Inténtalo de nuevo.' })
       } else {
-        toast.error('Error de conexión', {
-          description: 'Comprueba tu conexión a internet e inténtalo de nuevo.',
-        })
+        toast.error('Error de conexión', { description: 'Comprueba tu conexión.' })
       }
       setState('error')
     } finally {
       clearTimeout(timeout)
     }
-  }
+  }, [state, streamedText, generatedAt])
 
-  // ── Idle / Error state ──────────────────────────────────────────────────
+  // ── Idle / Error ────────────────────────────────────────────────────────
   if (state === 'idle' || state === 'error') {
     return (
-      <div className="rounded-xl border border-dashed border-blue-400/30 bg-gradient-to-br from-blue-50/80 to-indigo-50/50 dark:from-blue-950/30 dark:to-indigo-950/20 p-6 space-y-4">
-        <div className="flex items-start gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shrink-0 shadow-md">
+      <div className="rounded-xl border-2 border-dashed border-blue-300/50 dark:border-blue-700/30 bg-gradient-to-br from-slate-50 to-blue-50/50 dark:from-slate-950/50 dark:to-blue-950/20 p-6 space-y-4">
+        <div className="flex items-start gap-4">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shrink-0 shadow-lg shadow-blue-600/20">
             <Map className="h-5 w-5 text-white" />
           </div>
           <div>
-            <p className="font-bold text-sm">Tu plan de estudio personalizado</p>
-            <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
-              La IA analizará tu historial completo — notas, temas pendientes, racha, tendencia
-              y fecha de examen — para crear un plan semanal con victorias rápidas, retos
-              y un desafío estrella. Consume 1 análisis.
+            <p className="font-bold text-[15px]">Tu plan de estudio semanal</p>
+            <p className="text-xs text-muted-foreground mt-1 leading-relaxed max-w-md">
+              La IA analiza tu historial completo y crea un plan con victorias rápidas, retos y un desafío estrella para que avances de verdad.
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          <Button
-            onClick={handleGenerate}
-            variant="default"
-            size="sm"
-            className="gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-md"
-          >
-            {state === 'error' ? (
-              <>
-                <RotateCcw className="h-4 w-4" />
-                Reintentar
-              </>
-            ) : (
-              <>
-                <Zap className="h-4 w-4" />
-                Generar mi plan
-              </>
-            )}
-          </Button>
-          <span className="text-[10px] text-muted-foreground">1 análisis</span>
-        </div>
+        <Button
+          onClick={handleGenerate}
+          size="sm"
+          className="gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-md shadow-blue-600/20"
+        >
+          {state === 'error' ? <RotateCcw className="h-4 w-4" /> : <Zap className="h-4 w-4" />}
+          {state === 'error' ? 'Reintentar' : 'Generar plan'}
+          <span className="text-[10px] opacity-70 ml-1">1 análisis</span>
+        </Button>
 
         <PaywallGate
           open={showPaywall}
@@ -431,215 +442,217 @@ export function RoadmapCard({ activity }: RoadmapCardProps) {
     )
   }
 
-  // ── Loading state ──────────────────────────────────────────────────────
+  // ── Loading ─────────────────────────────────────────────────────────────
   if (state === 'loading') {
     return (
-      <div className="rounded-xl border border-blue-200 dark:border-blue-800 bg-gradient-to-br from-blue-50/80 to-indigo-50/50 dark:from-blue-950/30 dark:to-indigo-950/20 p-6">
+      <div className="rounded-xl border border-blue-200 dark:border-blue-800 bg-gradient-to-br from-slate-50 to-blue-50/50 dark:from-slate-950/50 dark:to-blue-950/20 p-6">
         <div className="flex items-center gap-4">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shrink-0 shadow-md">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shrink-0 shadow-lg shadow-blue-600/20">
             <Loader2 className="h-5 w-5 animate-spin text-white" />
           </div>
           <div>
             <p className="font-bold text-sm">Analizando tu preparación...</p>
-            <p className="text-xs text-muted-foreground mt-0.5">Revisando historial, notas y tendencias para crear tu plan</p>
+            <p className="text-[11px] text-muted-foreground mt-0.5">Revisando notas, temas y tendencias</p>
           </div>
         </div>
-        {/* Animated progress */}
         <div className="mt-4 h-1.5 rounded-full bg-blue-100 dark:bg-blue-900/50 overflow-hidden">
-          <div className="h-full w-1/3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 animate-[shimmer_1.5s_ease-in-out_infinite]"
-            style={{ animation: 'shimmer 1.5s ease-in-out infinite', transform: 'translateX(-100%)' }}
+          <div className="h-full w-1/3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500"
+            style={{ animation: 'roadmap-shimmer 1.5s ease-in-out infinite' }}
           />
         </div>
-        <style>{`
-          @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(400%); }
-          }
-        `}</style>
+        <style>{`@keyframes roadmap-shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(400%); } }`}</style>
       </div>
     )
   }
 
-  // ── Streaming state ───────────────────────────────────────────────────
+  // ── Streaming ───────────────────────────────────────────────────────────
   if (state === 'streaming') {
     return (
       <div className="rounded-xl border border-blue-200 dark:border-blue-800 bg-white dark:bg-gray-900/50 overflow-hidden">
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/20 px-5 py-3 border-b border-blue-200 dark:border-blue-800">
           <div className="flex items-center gap-2">
             <Map className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-            <h2 className="text-sm font-bold">Tu plan de estudio</h2>
-            <span className="inline-flex items-center gap-1 text-[10px] font-medium text-blue-500 animate-pulse">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-              generando...
-            </span>
+            <span className="text-sm font-bold">Generando plan...</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
           </div>
         </div>
-
-        <div
-          ref={textRef}
-          className="p-5 max-h-[500px] overflow-y-auto"
-        >
-          <div className="text-sm leading-relaxed whitespace-pre-wrap text-foreground">
+        <div ref={textRef} className="p-4 max-h-[300px] overflow-y-auto">
+          <pre className="text-[11px] leading-relaxed text-muted-foreground whitespace-pre-wrap font-mono">
             {streamedText}
-            <span className="inline-block w-2 h-4 bg-blue-500/60 animate-pulse ml-0.5 align-text-bottom rounded-sm" />
-          </div>
+            <span className="inline-block w-2 h-3 bg-blue-500/50 animate-pulse ml-0.5 rounded-sm" />
+          </pre>
         </div>
       </div>
     )
   }
 
-  // ── Done state ────────────────────────────────────────────────────────
+  // ── Done ────────────────────────────────────────────────────────────────
+  if (!roadmap) return null
 
-  // Group tasks by tier for visual structure
-  const quickWins = tasks.filter((_, i) => !completedSet.has(i) && detectTier(tasks[i]) === 'quick')
-  const challenges = tasks.filter((_, i) => !completedSet.has(i) && detectTier(tasks[i]) === 'challenge')
-  const starTasks = tasks.filter((_, i) => !completedSet.has(i) && detectTier(tasks[i]) === 'star')
-  const completedTasks = tasks.filter((_, i) => completedSet.has(i))
+  const quickTasks = roadmap.tareas.filter(t => t.tier === 'quick')
+  const challengeTasks = roadmap.tareas.filter(t => t.tier === 'challenge')
+  const starTask = roadmap.tareas.find(t => t.tier === 'star')
 
   return (
-    <div className="space-y-4">
-      {/* ── Header with stats ───────────────────────────────────────────── */}
-      <div className="rounded-xl border border-blue-200 dark:border-blue-800 bg-white dark:bg-gray-900/50 overflow-hidden">
-        <button
-          onClick={() => setPlanOpen(p => !p)}
-          className="w-full bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/20 px-5 py-4 border-b border-blue-200 dark:border-blue-800 hover:from-blue-100/80 hover:to-indigo-100/50 dark:hover:from-blue-950/50 dark:hover:to-indigo-950/30 transition-all"
-        >
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shrink-0 shadow-sm">
-                <BookOpen className="h-4 w-4 text-white" />
-              </div>
-              <div className="text-left">
-                <h2 className="text-sm font-bold">Tu plan de estudio</h2>
-                <p className="text-[11px] text-muted-foreground">Análisis completo y plan semanal</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              {generatedAt && <PlanAge generatedAt={generatedAt} />}
-              <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${planOpen ? 'rotate-180' : ''}`} />
-            </div>
+    <div className="space-y-3">
+      {/* ── Diagnóstico + Consejo ──────────────────────────────────────── */}
+      <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 overflow-hidden">
+        <div className="px-4 py-3 flex items-start gap-3">
+          <div className="shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
+            <BarChart3 className="h-4 w-4 text-blue-600 dark:text-blue-400" />
           </div>
-        </button>
-
-        {planOpen && (
-          <div className="p-5 max-h-[500px] overflow-y-auto">
-            <div
-              className="text-sm leading-relaxed prose prose-sm prose-gray dark:prose-invert max-w-none
-                prose-headings:text-foreground prose-headings:mt-4 prose-headings:mb-2
-                prose-p:text-foreground prose-p:my-1.5
-                prose-li:text-foreground prose-li:my-0.5
-                prose-strong:text-foreground prose-strong:font-semibold"
-              dangerouslySetInnerHTML={{ __html: renderedHtml }}
-            />
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center justify-between">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">Tu nivel</p>
+              {generatedAt && <PlanAge generatedAt={generatedAt} />}
+            </div>
+            <p className="text-[13px] leading-relaxed mt-1 text-foreground">{roadmap.diagnostico}</p>
+          </div>
+        </div>
+        {roadmap.consejo && (
+          <div className="px-4 py-2.5 bg-amber-50/50 dark:bg-amber-950/10 border-t border-amber-100 dark:border-amber-900/30 flex items-start gap-2">
+            <Lightbulb className="h-3.5 w-3.5 text-amber-500 shrink-0 mt-0.5" />
+            <p className="text-[12px] text-amber-800 dark:text-amber-300 font-medium leading-relaxed">{roadmap.consejo}</p>
           </div>
         )}
       </div>
 
-      {/* ── Tasks card ───────────────────────────────────────────────── */}
-      {tasks.length > 0 && (
-        <div className="rounded-xl border border-blue-200 dark:border-blue-800 bg-white dark:bg-gray-900/50 overflow-hidden">
-          <button
-            onClick={() => setTasksOpen(t => !t)}
-            className="w-full bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/20 px-5 py-4 border-b border-blue-200 dark:border-blue-800 hover:from-blue-100/80 hover:to-indigo-100/50 transition-all"
-          >
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shrink-0 shadow-sm">
-                  <Trophy className="h-4 w-4 text-white" />
-                </div>
-                <div className="text-left">
-                  <h3 className="text-sm font-bold">Objetivos de la semana</h3>
-                  <div className="flex items-center gap-3 mt-0.5">
-                    {quickWins.length > 0 && (
-                      <span className="inline-flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400">
-                        <Zap className="h-3 w-3" /> {quickWins.length} rápidas
-                      </span>
-                    )}
-                    {challenges.length > 0 && (
-                      <span className="inline-flex items-center gap-1 text-[10px] text-amber-600 dark:text-amber-400">
-                        <Target className="h-3 w-3" /> {challenges.length} retos
-                      </span>
-                    )}
-                    {starTasks.length > 0 && (
-                      <span className="inline-flex items-center gap-1 text-[10px] text-red-600 dark:text-red-400">
-                        <Flame className="h-3 w-3" /> {starTasks.length} desafío
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-bold text-blue-600 dark:text-blue-400">
-                  {completedCount}/{tasks.length}
+      {/* ── Objetivos ──────────────────────────────────────────────────── */}
+      <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 overflow-hidden">
+        <button
+          onClick={() => setTasksOpen(t => !t)}
+          className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-900/70 transition-colors"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shrink-0 shadow-sm">
+              <Trophy className="h-4 w-4 text-white" />
+            </div>
+            <div className="text-left">
+              <p className="text-sm font-bold">Objetivos de la semana</p>
+              <div className="flex items-center gap-2 mt-0.5">
+                <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">
+                  {quickTasks.length} rápidas
                 </span>
-                <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${tasksOpen ? 'rotate-180' : ''}`} />
+                <span className="text-muted-foreground/30">·</span>
+                <span className="text-[10px] font-semibold text-amber-600 dark:text-amber-400">
+                  {challengeTasks.length} retos
+                </span>
+                {starTask && (
+                  <>
+                    <span className="text-muted-foreground/30">·</span>
+                    <span className="text-[10px] font-semibold text-rose-600 dark:text-rose-400">
+                      1 desafío
+                    </span>
+                  </>
+                )}
               </div>
             </div>
-            {/* Progress bar */}
-            <div className="h-2.5 w-full bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
-              <div
-                className={`h-full rounded-full transition-all duration-700 ease-out ${
-                  allTasksDone
-                    ? 'bg-gradient-to-r from-green-400 to-emerald-500'
-                    : 'bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500'
-                }`}
-                style={{ width: `${Math.max(progress, 2)}%` }}
-              />
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-bold tabular-nums text-foreground">
+              {completedCount}/{totalTasks}
+            </span>
+            <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${tasksOpen ? 'rotate-180' : ''}`} />
+          </div>
+        </button>
+
+        {/* Progress bar */}
+        <div className="px-4 pb-2">
+          <div className="h-2 w-full bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+            <div
+              className={`h-full rounded-full transition-all duration-700 ease-out ${
+                allDone ? 'bg-green-500' : 'bg-gradient-to-r from-blue-500 to-indigo-500'
+              }`}
+              style={{ width: `${Math.max(progress, 3)}%` }}
+            />
+          </div>
+        </div>
+
+        {tasksOpen && (
+          <div className="px-4 pb-4 space-y-2">
+            {/* Quick wins */}
+            {quickTasks.length > 0 && (
+              <div className="space-y-1.5">
+                {quickTasks.map((task, i) => {
+                  const globalIdx = roadmap.tareas.indexOf(task)
+                  return <TaskCard key={`q-${i}`} task={task} isDone={completedSet.has(globalIdx)} />
+                })}
+              </div>
+            )}
+
+            {/* Challenges */}
+            {challengeTasks.length > 0 && (
+              <div className="space-y-1.5">
+                {challengeTasks.map((task, i) => {
+                  const globalIdx = roadmap.tareas.indexOf(task)
+                  return <TaskCard key={`c-${i}`} task={task} isDone={completedSet.has(globalIdx)} />
+                })}
+              </div>
+            )}
+
+            {/* Star challenge */}
+            {starTask && (
+              <div className="mt-1">
+                <TaskCard task={starTask} isDone={completedSet.has(roadmap.tareas.indexOf(starTask))} />
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* All done */}
+        {allDone && (
+          <div className="bg-green-50 dark:bg-green-950/20 border-t border-green-200 dark:border-green-800 px-4 py-3 flex items-center gap-3">
+            <PartyPopper className="h-5 w-5 text-green-600 dark:text-green-400 shrink-0" />
+            <p className="text-xs font-semibold text-green-800 dark:text-green-300 flex-1">
+              Todos los objetivos completados. Genera un nuevo plan.
+            </p>
+            <Button
+              onClick={handleGenerate}
+              size="sm"
+              className="shrink-0 bg-green-600 hover:bg-green-700 text-white gap-1.5 text-xs"
+            >
+              <RefreshCw className="h-3 w-3" />
+              Nuevo
+            </Button>
+          </div>
+        )}
+      </div>
+
+      {/* ── Plan semanal ───────────────────────────────────────────────── */}
+      {roadmap.semana.length > 0 && (
+        <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 overflow-hidden">
+          <button
+            onClick={() => setWeekOpen(w => !w)}
+            className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-900/70 transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center shrink-0">
+                <CalendarDays className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+              </div>
+              <p className="text-sm font-bold">Plan semanal</p>
             </div>
+            <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${weekOpen ? 'rotate-180' : ''}`} />
           </button>
 
-          {tasksOpen && (
-            <div className="p-4 space-y-2">
-              {tasks.map((task, idx) => (
-                <TaskItem
-                  key={idx}
-                  task={task}
-                  isDone={completedSet.has(idx)}
-                />
-              ))}
-            </div>
-          )}
-
-          {/* All tasks done — celebration */}
-          {allTasksDone && (
-            <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/20 border-t border-green-200 dark:border-green-800 px-5 py-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center shrink-0 shadow-md">
-                  <PartyPopper className="h-5 w-5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <p className="text-sm font-bold text-green-800 dark:text-green-300">
-                    Todos los objetivos completados
-                  </p>
-                  <p className="text-xs text-green-700/70 dark:text-green-400/70 mt-0.5">
-                    Has avanzado esta semana. Genera un nuevo plan con retos actualizados.
-                  </p>
-                </div>
-                <Button
-                  onClick={handleGenerate}
-                  size="sm"
-                  className="shrink-0 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white gap-1.5 shadow-md"
-                >
-                  <RefreshCw className="h-3.5 w-3.5" />
-                  Nuevo plan
-                </Button>
-              </div>
+          {weekOpen && (
+            <div className="px-4 pb-4">
+              <WeekPlanner semana={roadmap.semana} />
             </div>
           )}
         </div>
       )}
 
-      {/* Regenerate button */}
-      {!allTasksDone && (
+      {/* Regenerate */}
+      {!allDone && (
         <div className="flex justify-end">
           <Button
             onClick={handleGenerate}
             variant="ghost"
             size="sm"
-            className="text-xs text-muted-foreground hover:text-foreground gap-1.5"
+            className="text-[11px] text-muted-foreground hover:text-foreground gap-1.5"
           >
-            <RotateCcw className="h-3.5 w-3.5" />
-            Regenerar plan (1 análisis)
+            <RotateCcw className="h-3 w-3" />
+            Regenerar (1 análisis)
           </Button>
         </div>
       )}
