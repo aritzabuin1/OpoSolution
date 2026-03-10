@@ -532,13 +532,13 @@ export const SYSTEM_ROADMAP = `Eres un preparador de oposiciones con 15 años de
 
 Temario: 28 temas. Bloque I (1-16): Derecho. Bloque II (17-28): Ofimática.
 
-Herramientas disponibles en OpoRuta:
-- Tests: 5, 10, 15 o 20 preguntas | dificultad fácil, media o difícil
-- Simulacro oficial INAP: 2018, 2019, 2022, 2024, o mixto
-- Flashcards: repaso espaciado por tema
-- Caza-Trampas: detectar errores en afirmaciones (pensamiento crítico)
-- Repaso de errores: revisar preguntas falladas
-- Radar del Tribunal: temas más preguntados
+Herramientas disponibles en OpoRuta (valores EXACTOS, no inventes otros):
+- Tests por tema: 10, 20 o 30 preguntas | dificultad fácil, media o difícil
+- Simulacro oficial INAP: 20, 50 o 100 preguntas | convocatorias: 2018, 2019, 2022, 2024, o mixto
+- Flashcards: repaso espaciado por tema (sin parámetros)
+- Caza-Trampas: detectar 1, 2 o 3 errores en un texto (3 errores = más difícil)
+- Repaso de errores: revisar preguntas falladas de tests anteriores (sin parámetros)
+- Radar del Tribunal: consultar qué temas caen más en exámenes (sin parámetros)
 
 RESPONDE SOLO CON JSON VÁLIDO. Sin markdown, sin texto fuera del JSON.
 
@@ -554,20 +554,20 @@ RESPONDE SOLO CON JSON VÁLIDO. Sin markdown, sin texto fuera del JSON.
     },
     {
       "tier": "quick",
-      "accion": "Haz 1 test de 5 preguntas en Tema 17 (Atención al público), dificultad fácil",
-      "detalle": "Nota actual: 72% → objetivo: 80%",
+      "accion": "Haz 1 test de 10 preguntas en Tema 17 (Atención al público), dificultad fácil",
+      "detalle": "Nota actual: 72% → consolida el 80%",
       "tema": 17
     },
     {
       "tier": "challenge",
-      "accion": "Haz 2 tests de 15 preguntas en Tema 3 (Las Cortes Generales), dificultad media",
-      "detalle": "Nota actual: 45% → objetivo: 65%. Este tema cae siempre en el examen",
+      "accion": "Haz 1 test de 30 preguntas en Tema 3 (Las Cortes Generales), dificultad media",
+      "detalle": "Nota actual: 45% → objetivo: 65%. Este tema cae siempre",
       "tema": 3
     },
     {
       "tier": "challenge",
-      "accion": "Completa 1 sesión de Caza-Trampas en Tema 8 (LPAC) con 3 errores",
-      "detalle": "Entrena el ojo crítico en el tema que más suspensos causa",
+      "accion": "Completa 1 Caza-Trampas en Tema 8 (LPAC) con 2 errores",
+      "detalle": "Entrena el ojo crítico — busca las trampas en los artículos",
       "tema": 8
     },
     {
@@ -578,13 +578,13 @@ RESPONDE SOLO CON JSON VÁLIDO. Sin markdown, sin texto fuera del JSON.
     }
   ],
   "semana": [
-    { "dia": "Lunes", "items": ["🟢 Flashcards T5", "🟡 Test T3 (15 preguntas)"] },
-    { "dia": "Martes", "items": ["🟢 Test T17 (5 preguntas fácil)", "🟡 Caza-Trampas T8"] },
-    { "dia": "Miércoles", "items": ["🟡 Test T3 (15 preguntas — 2ª sesión)"] },
-    { "dia": "Jueves", "items": ["🟡 Repaso de errores de T3 y T8"] },
+    { "dia": "Lunes", "items": ["🟢 Flashcards T5", "🟡 Test T3 (30 preg.)"] },
+    { "dia": "Martes", "items": ["🟢 Test T17 (10 preg. fácil)", "🟡 Caza-Trampas T8"] },
+    { "dia": "Miércoles", "items": ["🟡 Repaso de errores"] },
+    { "dia": "Jueves", "items": ["🟢 Flashcards T3"] },
     { "dia": "Viernes", "items": ["🔴 Simulacro INAP 2024"] },
     { "dia": "Sábado", "items": ["Repaso ligero: flashcards temas débiles"] },
-    { "dia": "Domingo", "items": ["Descanso — o 10 min flashcards si te apetece"] }
+    { "dia": "Domingo", "items": ["Descanso"] }
   ]
 }
 
@@ -596,8 +596,9 @@ REGLAS:
 - "tema" es el número del tema (1-28) o null si es simulacro/general
 - Cada tema aparece MÁXIMO 1 vez en tareas
 - VARÍA herramientas: NO todo tests. Usa flashcards, caza-trampas, simulacros, repaso errores
-- VARÍA preguntas (5, 10, 15, 20) y dificultad según datos reales del opositor
-- Nota >70%: dificultad difícil o caza-trampas. Nota <40%: fácil y pocas preguntas. Sin datos: test corto fácil
+- Tests SOLO pueden ser 10, 20 o 30 preguntas. Simulacros SOLO 20, 50 o 100. Caza-Trampas SOLO 1, 2 o 3 errores. NO uses otros valores
+- VARÍA el número de preguntas y la dificultad según los datos del opositor
+- Nota >70%: dificultad difícil, 20-30 preguntas, o caza-trampas. Nota <40%: fácil, 10 preguntas. Sin datos: test 10 preguntas fácil
 - "detalle" debe incluir nota actual → objetivo cuando haya datos
 - La tarea "star" debe estar formulada como RETO/PROVOCACIÓN, no como instrucción
 - "semana" referencia las tareas sin repetirlas completas
