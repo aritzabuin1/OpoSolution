@@ -20,14 +20,16 @@ vi.mock('@/lib/supabase/client', () => ({
 
 describe('LOGROS_CATALOG', () => {
   const expectedLogros = [
-    'primer_test', 'racha_3', 'racha_7', 'racha_30',
-    '50_preguntas', '100_preguntas', 'nota_perfecta',
-    'primer_corrector', 'todos_los_temas',
-    '500_preguntas', '10_temas_completados', 'todas_notas_sobre_7',
+    'primer_test', 'racha_3', 'racha_7', 'racha_14', 'racha_30',
+    '50_preguntas', '100_preguntas', '500_preguntas', '1000_preguntas',
+    'nota_perfecta', 'nota_90', '3_perfectos',
+    'primer_corrector', 'primer_simulacro', '5_simulacros',
+    'todos_los_temas', '10_temas_completados', 'todas_notas_sobre_7',
+    'bloque1_completo', 'bloque2_completo',
   ]
 
-  it('contiene los 12 logros esperados', () => {
-    expect(Object.keys(LOGROS_CATALOG)).toHaveLength(12)
+  it('contiene los 20 logros esperados', () => {
+    expect(Object.keys(LOGROS_CATALOG)).toHaveLength(20)
   })
 
   it.each(expectedLogros)('logro "%s" existe con estructura completa', (tipo) => {
@@ -43,7 +45,7 @@ describe('LOGROS_CATALOG', () => {
     for (const logro of Object.values(LOGROS_CATALOG)) {
       // Emojis can be multi-codepoint but should be visually 1 char
       expect(logro.emoji.length).toBeGreaterThan(0)
-      expect(logro.emoji.length).toBeLessThanOrEqual(2) // Some emojis are 2 UTF-16 code units
+      expect(logro.emoji.length).toBeLessThanOrEqual(3) // Some emojis are 2-3 UTF-16 code units (e.g. ⚖️)
     }
   })
 

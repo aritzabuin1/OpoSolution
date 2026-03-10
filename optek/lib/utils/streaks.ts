@@ -88,6 +88,55 @@ export const LOGROS_CATALOG: Record<string, LogroInfo> = {
     descripcion: 'Todos tus temas practicados con nota media ≥70%',
     emoji: '🌟',
   },
+  // §2.8.3 — Logros motivacionales (20 total)
+  primer_simulacro: {
+    tipo: 'primer_simulacro',
+    titulo: 'Bautismo de fuego',
+    descripcion: 'Completaste tu primer simulacro oficial INAP',
+    emoji: '🏛️',
+  },
+  '5_simulacros': {
+    tipo: '5_simulacros',
+    titulo: 'Veterano de simulacros',
+    descripcion: 'Has completado 5 simulacros oficiales',
+    emoji: '🎖️',
+  },
+  racha_14: {
+    tipo: 'racha_14',
+    titulo: 'Dos semanas imparable',
+    descripcion: '14 días consecutivos estudiando',
+    emoji: '🔱',
+  },
+  '1000_preguntas': {
+    tipo: '1000_preguntas',
+    titulo: 'Máquina de preguntas',
+    descripcion: 'Has respondido 1.000 preguntas en total',
+    emoji: '💪',
+  },
+  nota_90: {
+    tipo: 'nota_90',
+    titulo: 'Sobresaliente',
+    descripcion: 'Sacaste un 90% o más en un test',
+    emoji: '🏅',
+  },
+  '3_perfectos': {
+    tipo: '3_perfectos',
+    titulo: 'Triple perfecto',
+    descripcion: 'Has conseguido 3 tests con un 100%',
+    emoji: '👑',
+  },
+  bloque1_completo: {
+    tipo: 'bloque1_completo',
+    titulo: 'Derecho dominado',
+    descripcion: 'Has practicado en los 16 temas del Bloque I',
+    emoji: '⚖️',
+  },
+  bloque2_completo: {
+    tipo: 'bloque2_completo',
+    titulo: 'Ofimática dominada',
+    descripcion: 'Has practicado en los 12 temas del Bloque II',
+    emoji: '💻',
+  },
 }
 
 /**

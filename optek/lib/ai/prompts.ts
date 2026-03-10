@@ -616,13 +616,10 @@ REGLAS PLAN:
 - NO incluyas acciones concretas de la app — eso va en "tareas"
 - Tono: preparador cercano que sabe de qué habla
 
-REGLAS TAREAS:
+REGLAS TAREAS (lee primero DEDICACIÓN SEMANAL para saber cuántas):
 - "tier" SOLO: "quick", "challenge" o "star"
-- 2-3 "quick" (completables en <10 min: flashcards, test corto fácil, repaso errores)
-- 2-3 "challenge" (esfuerzo real: tests largos variando dificultad, caza-trampas, simulacro 50 preg)
-- EXACTAMENTE 1 "star" (provocativo, ambicioso: simulacro 100, tema completo en todos los niveles)
 - "tema": número 1-28 o null. Cada tema MÁXIMO 1 vez
-- VARÍA herramientas: NO todo tests
+- VARÍA herramientas: NO todo tests. Mezcla: tests, simulacros, caza-trampas, flashcards, repaso errores
 - Tests: 10, 20 o 30 preguntas. Simulacros: 20, 50 o 100. Caza-Trampas: 1, 2 o 3 errores
 - Caza-Trampas: NUNCA pongas tema — el artículo es aleatorio. Solo indica el número de errores
 - Para "challenge": sugiere PROGRESIÓN (ej: "tests de 10, 20 y 30 variando dificultad")
@@ -630,10 +627,12 @@ REGLAS TAREAS:
 - "star" formulado como RETO que pica, no como instrucción
 - Datos reales, NUNCA inventes notas
 
-DEDICACIÓN SEMANAL:
-- Si se indica dedicación semanal, adapta la CANTIDAD e INTENSIDAD de tareas:
-  · ≤5 h/semana: 3-4 tareas (2 quick, 1 challenge, 0-1 star). Plan de 2-3 temas. Ritmo suave
-  · 6-10 h/semana: 5-6 tareas (2 quick, 2-3 challenge, 1 star). Plan de 3-4 temas. Ritmo moderado
-  · 11-20 h/semana: 6-8 tareas (2-3 quick, 3-4 challenge, 1 star). Plan de 4-5 temas. Ritmo intenso
-  · >20 h/semana: 8-10 tareas (3 quick, 4-5 challenge, 1-2 star). Plan de 5+ temas. Ritmo máximo
-- Si NO se indica dedicación, usa el plan estándar (5-7 tareas, 3-5 temas)`
+DEDICACIÓN SEMANAL — OBLIGATORIO respetar estos mínimos:
+· ≤5 h/semana (Ligero): MÍNIMO 4 tareas (2 quick + 1 challenge + 1 star). Plan: 2-3 temas
+· ~10 h/semana (Moderado): MÍNIMO 5 tareas (2 quick + 2 challenge + 1 star). Plan: 3-4 temas
+· ~15 h/semana (Intenso): MÍNIMO 7 tareas (2 quick + 4 challenge + 1 star). Plan: 4-5 temas. Dificultad media/difícil. Tests de 20-30 preguntas. Simulacros de 50+
+· 20+ h/semana (Full): MÍNIMO 9 tareas (3 quick + 4-5 challenge + 1-2 star). Plan: 5+ temas. Dificultad difícil predominante. Tests de 30. Simulacros de 100
+· Sin dedicación configurada: 5-6 tareas (2 quick + 2-3 challenge + 1 star). Plan: 3-4 temas
+
+El usuario CONFÍA en que el plan se adapta a su dedicación. Si eligió "Intenso", dale un plan INTENSO de verdad.
+No escatimes: más tareas, más difíciles, más ambiciosas. El opositor que elige intenso QUIERE que le exijas.`

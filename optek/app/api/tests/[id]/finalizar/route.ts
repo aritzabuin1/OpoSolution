@@ -113,16 +113,16 @@ export async function POST(
     }
   }
 
-  // §1.13B — Actualizar racha + conceder logros (best-effort, no bloqueante)
-  const [, logrosResult] = await Promise.allSettled([
-    sb.rpc('update_streak', { p_user_id: user.id }),
-    sb.rpc('check_and_grant_logros', { p_user_id: user.id }),
-  ])
-
-  const nuevosLogros =
-    logrosResult.status === 'fulfilled' && Array.isArray(logrosResult.value.data)
-      ? (logrosResult.value.data as string[])
-      : []
+  // §1.13B — Actualizar racha PRIMERO, luego conceder logros (secuencial:
+  // check_and_grant_logros lee racha_maxima, que update_streak acaba de actualizar)
+  let nuevosLogros: string[] = []
+  try {
+    await sb.rpc('update_streak', { p_user_id: user.id })
+    const { data: logrosData } = await sb.rpc('check_and_grant_logros', { p_user_id: user.id })
+    nuevosLogros = Array.isArray(logrosData) ? (logrosData as string[]) : []
+  } catch (err) {
+    log.warn({ err }, 'Error en rachas/logros (best-effort)')
+  }
 
   // §2.2.1 — Auto-generar flashcards en background (fire-and-forget)
   // Solo para tests tipo 'tema' y 'repaso_errores' (no psicotécnicos, no simulacros)
