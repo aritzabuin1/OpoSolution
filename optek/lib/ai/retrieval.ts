@@ -268,7 +268,7 @@ export interface SeccionContext {
 
 export async function retrieveByBloque(
   temaId: string,
-  bloque: 'ofimatica' | 'informatica' | 'admin_electronica',
+  bloque: string,
   limit = DEFAULT_RETRIEVAL_LIMIT
 ): Promise<SeccionContext[]> {
   // Nota: usa cliente sin tipo porque conocimiento_tecnico aún no está en types/database.ts
@@ -453,10 +453,11 @@ export async function retrieveExamples(temaId: string, limit = 3): Promise<strin
 const BLOQUE_II_NUMEROS = new Set([17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28])
 
 /** Mapeo tema_numero → bloque BD para conocimiento_tecnico */
-function getBloqueForTema(temaNumero: number): 'ofimatica' | 'informatica' | 'admin_electronica' {
-  if ([17, 18, 19, 20].includes(temaNumero)) return 'admin_electronica'
-  if ([21, 28].includes(temaNumero)) return 'informatica'
-  return 'ofimatica' // temas 22-27
+function getBloqueForTema(temaNumero: number): string {
+  // Todos los JSONs de Bloque II se ingestan con bloque='ofimatica' en conocimiento_tecnico.
+  // El mapeo debe coincidir con lo almacenado en BD para que el filtro eq('bloque', bloque) funcione.
+  void temaNumero
+  return 'ofimatica'
 }
 
 export async function buildContext(
