@@ -533,12 +533,29 @@ const GARBAGE_PATTERNS = [
  * Sanitize AI-generated questions: trim options, reject garbage.
  * Removes questions where any option looks like AI artifacts or RAG leaks.
  */
+/** Fix repeated consecutive words: "Se se responde" → "Se responde" */
+function fixRepeatedWords(text: string): string {
+  return text.replace(/\b(\w+)\s+\1\b/gi, '$1')
+}
+
 function sanitizePreguntas(preguntas: PreguntaRaw[], log: ChildLogger): PreguntaRaw[] {
   return preguntas.filter((p) => {
     // Trim all text fields
     p.enunciado = p.enunciado.trim()
     p.explicacion = p.explicacion.trim()
     p.opciones = p.opciones.map((o) => o.trim()) as [string, string, string, string]
+
+    // Fix repeated consecutive words in all text fields
+    const origEnunciado = p.enunciado
+    p.enunciado = fixRepeatedWords(p.enunciado)
+    p.explicacion = fixRepeatedWords(p.explicacion)
+    p.opciones = p.opciones.map((o) => fixRepeatedWords(o)) as [string, string, string, string]
+    if (p.enunciado !== origEnunciado) {
+      log.info(
+        { before: origEnunciado.slice(0, 60), after: p.enunciado.slice(0, 60) },
+        '[sanitize] fixed repeated words in enunciado'
+      )
+    }
 
     // Check each option for garbage
     for (let i = 0; i < p.opciones.length; i++) {

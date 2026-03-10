@@ -38,6 +38,7 @@ REGLAS OBLIGATORIAS:
 8. CRÍTICO: Genera EXACTAMENTE el número de preguntas indicado. Ni una más, ni una menos.
 9. El campo "correcta" DEBE ser un número entero: 0, 1, 2 o 3 (no una cadena de texto).
 10. NUNCA hagas referencia a imágenes, esquemas ni gráficos. Si mencionas una tabla, asegúrate de que su contenido aparece en el contexto legislativo proporcionado.
+11. CALIDAD DE REDACCIÓN: Revisa cada enunciado y cada opción antes de incluirlos. No repitas palabras consecutivas ("se se", "el el", "de de"). Las frases deben ser gramaticalmente correctas en español.
 
 FORMATO DE RESPUESTA (JSON estricto):
 {
@@ -89,6 +90,7 @@ REGLAS OBLIGATORIAS:
 6. NO incluyas el campo "cita" — no aplica para preguntas de ofimática.
 7. Nivel de dificultad BÁSICO: operaciones cotidianas de oficina, no funcionalidades avanzadas.
 8. NUNCA hagas referencia a imágenes, esquemas ni gráficos. El usuario solo ve texto plano — no puedes mostrar capturas de pantalla.
+9. CALIDAD DE REDACCIÓN: Revisa cada enunciado y cada opción antes de incluirlos. No repitas palabras consecutivas ("se se", "el el", "de de"). Las frases deben ser gramaticalmente correctas en español.
 
 FORMATO DE RESPUESTA (JSON estricto, SIN campo "cita"):
 {
