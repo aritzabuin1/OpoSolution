@@ -13,7 +13,7 @@ import { toast } from 'sonner'
 import {
   Map, Loader2, RotateCcw, RefreshCw, CheckCircle2,
   PartyPopper, Calendar, ChevronDown, Zap, Target, Flame,
-  Trophy, Lightbulb, BarChart3, CalendarDays,
+  Trophy, Lightbulb, BarChart3, GraduationCap,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PaywallGate } from '@/components/shared/PaywallGate'
@@ -33,16 +33,17 @@ interface RoadmapTask {
   tema: number | null
 }
 
-interface WeekDay {
-  dia: string
-  items: string[]
+interface PlanItem {
+  tema: number | null
+  titulo: string
+  mensaje: string
 }
 
 interface RoadmapData {
   diagnostico: string
+  plan: PlanItem[]
   consejo: string
   tareas: RoadmapTask[]
-  semana: WeekDay[]
 }
 
 interface SavedRoadmap {
@@ -130,11 +131,11 @@ function parseRoadmapJSON(text: string): RoadmapData | null {
     if (parsed.tareas && Array.isArray(parsed.tareas)) {
       return {
         diagnostico: parsed.diagnostico ?? '',
+        plan: Array.isArray(parsed.plan) ? parsed.plan.filter((p: PlanItem) => p.titulo && p.mensaje) : [],
         consejo: parsed.consejo ?? '',
         tareas: parsed.tareas.filter((t: RoadmapTask) =>
           t.accion && ['quick', 'challenge', 'star'].includes(t.tier)
         ),
-        semana: Array.isArray(parsed.semana) ? parsed.semana : [],
       }
     }
   } catch {
@@ -232,42 +233,30 @@ function TaskCard({ task, isDone }: { task: RoadmapTask; isDone: boolean }) {
   )
 }
 
-// ── Week planner component ──────────────────────────────────────────────────
+// ── Study plan component ────────────────────────────────────────────────────
 
-function WeekPlanner({ semana }: { semana: WeekDay[] }) {
-  if (semana.length === 0) return null
+function StudyPlan({ plan }: { plan: PlanItem[] }) {
+  if (plan.length === 0) return null
 
   return (
-    <div className="grid grid-cols-7 gap-1">
-      {semana.map((day) => {
-        const isWeekend = /sábado|domingo/i.test(day.dia)
-        const isRest = day.items.some(i => /descanso/i.test(i))
-        return (
-          <div
-            key={day.dia}
-            className={`rounded-lg p-2 text-center ${
-              isRest
-                ? 'bg-gray-50 dark:bg-gray-900/30 border border-dashed border-gray-200 dark:border-gray-800'
-                : isWeekend
-                  ? 'bg-blue-50/50 dark:bg-blue-950/20 border border-blue-100 dark:border-blue-900'
-                  : 'bg-white dark:bg-gray-900/50 border border-gray-150 dark:border-gray-800'
-            }`}
-          >
-            <p className={`text-[10px] font-bold uppercase tracking-wider mb-1 ${
-              isRest ? 'text-muted-foreground/60' : 'text-foreground'
-            }`}>
-              {day.dia.slice(0, 3)}
-            </p>
-            <div className="space-y-0.5">
-              {day.items.map((item, i) => (
-                <p key={i} className="text-[9px] leading-tight text-muted-foreground truncate" title={item}>
-                  {item}
-                </p>
-              ))}
-            </div>
+    <div className="space-y-2">
+      {plan.map((item, i) => (
+        <div key={i} className="flex gap-3 items-start">
+          <div className="shrink-0 mt-1 w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
+            <span className="text-[11px] font-bold text-blue-700 dark:text-blue-300">
+              {item.tema ?? '—'}
+            </span>
           </div>
-        )
-      })}
+          <div className="flex-1 min-w-0">
+            <p className="text-[13px] font-semibold text-foreground leading-snug">
+              {item.titulo}
+            </p>
+            <p className="text-[12px] text-muted-foreground leading-relaxed mt-0.5">
+              {item.mensaje}
+            </p>
+          </div>
+        </div>
+      ))}
     </div>
   )
 }
@@ -280,8 +269,8 @@ export function RoadmapCard({ activity }: RoadmapCardProps) {
   const [roadmap, setRoadmap] = useState<RoadmapData | null>(null)
   const [generatedAt, setGeneratedAt] = useState<string | null>(null)
   const [showPaywall, setShowPaywall] = useState(false)
+  const [planOpen, setPlanOpen] = useState(true)
   const [tasksOpen, setTasksOpen] = useState(true)
-  const [weekOpen, setWeekOpen] = useState(false)
   const textRef = useRef<HTMLDivElement>(null)
 
   // Load saved roadmap
@@ -332,8 +321,8 @@ export function RoadmapCard({ activity }: RoadmapCardProps) {
     setStreamedText('')
     setRoadmap(null)
     setGeneratedAt(null)
+    setPlanOpen(true)
     setTasksOpen(true)
-    setWeekOpen(false)
 
     const controller = new AbortController()
     const timeout = setTimeout(() => controller.abort(), 55_000)
@@ -618,25 +607,28 @@ export function RoadmapCard({ activity }: RoadmapCardProps) {
         )}
       </div>
 
-      {/* ── Plan semanal ───────────────────────────────────────────────── */}
-      {roadmap.semana.length > 0 && (
+      {/* ── Plan de estudio (guía pedagógica) ────────────────────────── */}
+      {roadmap.plan.length > 0 && (
         <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 overflow-hidden">
           <button
-            onClick={() => setWeekOpen(w => !w)}
+            onClick={() => setPlanOpen(p => !p)}
             className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-900/70 transition-colors"
           >
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center shrink-0">
-                <CalendarDays className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+              <div className="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center shrink-0">
+                <GraduationCap className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
               </div>
-              <p className="text-sm font-bold">Plan semanal</p>
+              <div className="text-left">
+                <p className="text-sm font-bold">Plan de estudio</p>
+                <p className="text-[10px] text-muted-foreground">Guía por temas: qué priorizar y cómo mejorar</p>
+              </div>
             </div>
-            <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${weekOpen ? 'rotate-180' : ''}`} />
+            <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${planOpen ? 'rotate-180' : ''}`} />
           </button>
 
-          {weekOpen && (
+          {planOpen && (
             <div className="px-4 pb-4">
-              <WeekPlanner semana={roadmap.semana} />
+              <StudyPlan plan={roadmap.plan} />
             </div>
           )}
         </div>
