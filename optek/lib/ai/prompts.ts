@@ -627,12 +627,35 @@ REGLAS TAREAS (lee primero DEDICACIÓN SEMANAL para saber cuántas):
 - "star" formulado como RETO que pica, no como instrucción
 - Datos reales, NUNCA inventes notas
 
-DEDICACIÓN SEMANAL — OBLIGATORIO respetar estos mínimos:
-· ≤5 h/semana (Ligero): MÍNIMO 4 tareas (2 quick + 1 challenge + 1 star). Plan: 2-3 temas
-· ~10 h/semana (Moderado): MÍNIMO 5 tareas (2 quick + 2 challenge + 1 star). Plan: 3-4 temas
-· ~15 h/semana (Intenso): MÍNIMO 7 tareas (2 quick + 4 challenge + 1 star). Plan: 4-5 temas. Dificultad media/difícil. Tests de 20-30 preguntas. Simulacros de 50+
-· 20+ h/semana (Full): MÍNIMO 9 tareas (3 quick + 4-5 challenge + 1-2 star). Plan: 5+ temas. Dificultad difícil predominante. Tests de 30. Simulacros de 100
-· Sin dedicación configurada: 5-6 tareas (2 quick + 2-3 challenge + 1 star). Plan: 3-4 temas
+DEDICACIÓN SEMANAL — OBLIGATORIO respetar cada perfil completo:
 
-El usuario CONFÍA en que el plan se adapta a su dedicación. Si eligió "Intenso", dale un plan INTENSO de verdad.
-No escatimes: más tareas, más difíciles, más ambiciosas. El opositor que elige intenso QUIERE que le exijas.`
+· ≤5 h/semana (Ligero):
+  Tareas: MÍNIMO 4 (2 quick + 1 challenge + 1 star). Plan: 2-3 temas
+  Dificultad: fácil predominante. Tests de 10 preguntas. Simulacros de 20. Caza-Trampas de 1 error
+  Tono: motivador, sin agobiar. Priorizar consolidar lo básico. Victorias rápidas para enganchar
+  El opositor tiene poco tiempo — cada tarea debe ser concreta y completable en una sesión corta
+
+· ~10 h/semana (Moderado):
+  Tareas: MÍNIMO 5 (2 quick + 2 challenge + 1 star). Plan: 3-4 temas
+  Dificultad: fácil→media. Tests de 10-20 preguntas. Simulacros de 20-50. Caza-Trampas de 1-2 errores
+  Tono: equilibrado. Mezcla de refuerzo y reto. Progresión gradual dentro de cada tema
+  El opositor quiere avanzar de forma constante sin quemarse
+
+· ~15 h/semana (Intenso):
+  Tareas: MÍNIMO 7 (2 quick + 4 challenge + 1 star). Plan: 4-5 temas
+  Dificultad: media→difícil. Tests de 20-30 preguntas. Simulacros de 50-100. Caza-Trampas de 2-3 errores
+  Tono: exigente, directo. Progresiones completas (10+20+30 en un tema). Challenges ambiciosos
+  El opositor quiere que le exijas — dale objetivos que le hagan sudar
+
+· 20+ h/semana (Full):
+  Tareas: MÍNIMO 9 (3 quick + 4-5 challenge + 1-2 star). Plan: 5+ temas
+  Dificultad: difícil predominante. Tests de 30 preguntas. Simulacros de 100. Caza-Trampas de 3 errores
+  Tono: de preparador de élite. Múltiples progresiones completas. Stars que asusten
+  El opositor va a por todas — no le pongas techo. Cada día debe sentir que avanza hacia el aprobado
+
+· Sin dedicación configurada:
+  Tareas: 5-6 (2 quick + 2-3 challenge + 1 star). Plan: 3-4 temas
+  Dificultad: media. Tests de 10-20. Simulacros de 50. Caza-Trampas de 1-2 errores
+
+El usuario CONFÍA en que el plan se adapta a su dedicación. Cada nivel tiene su identidad propia.
+Un plan "Ligero" debe sentirse accesible. Un plan "Full" debe sentirse implacable.`
