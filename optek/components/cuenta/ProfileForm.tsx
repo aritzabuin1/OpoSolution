@@ -21,7 +21,15 @@ interface ProfileFormProps {
   email: string
   oposicionNombre: string | null
   fechaExamen: string | null // ISO date string (YYYY-MM-DD)
+  horasSemanales: number | null
 }
+
+const DEDICACION_OPTIONS = [
+  { value: 5, label: 'Ligero', desc: '~5 h/semana' },
+  { value: 10, label: 'Moderado', desc: '~10 h/semana' },
+  { value: 15, label: 'Intenso', desc: '~15 h/semana' },
+  { value: 25, label: 'Full', desc: '20+ h/semana' },
+] as const
 
 export function ProfileForm({
   userId,
@@ -29,9 +37,11 @@ export function ProfileForm({
   email,
   oposicionNombre,
   fechaExamen,
+  horasSemanales,
 }: ProfileFormProps) {
   const [nombre, setNombre] = useState(initialName ?? '')
   const [fecha, setFecha] = useState(fechaExamen ?? '')
+  const [dedicacion, setDedicacion] = useState<number | null>(horasSemanales)
   const [saving, setSaving] = useState(false)
 
   async function handleSave() {
@@ -42,6 +52,7 @@ export function ProfileForm({
       .update({
         full_name: nombre.trim() || null,
         fecha_examen: fecha || null,
+        horas_diarias_estudio: dedicacion,
         updated_at: new Date().toISOString(),
       })
       .eq('id', userId)
@@ -94,6 +105,31 @@ export function ProfileForm({
           <p className="text-xs text-muted-foreground">
             Te mostraremos los días que quedan en el dashboard
           </p>
+        </div>
+      </div>
+
+      {/* Dedicación semanal */}
+      <div className="space-y-2">
+        <Label>Dedicación semanal</Label>
+        <p className="text-xs text-muted-foreground -mt-1">
+          Tu plan de estudio se adaptará a las horas que puedes dedicar
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          {DEDICACION_OPTIONS.map((opt) => (
+            <button
+              key={opt.value}
+              type="button"
+              onClick={() => setDedicacion(dedicacion === opt.value ? null : opt.value)}
+              className={`rounded-lg border py-3 px-2 text-center transition-colors ${
+                dedicacion === opt.value
+                  ? 'border-primary bg-primary/5 text-primary ring-1 ring-primary/20'
+                  : 'border-border text-muted-foreground hover:bg-muted/50'
+              }`}
+            >
+              <p className="text-sm font-semibold">{opt.label}</p>
+              <p className="text-[10px] mt-0.5">{opt.desc}</p>
+            </button>
+          ))}
         </div>
       </div>
 

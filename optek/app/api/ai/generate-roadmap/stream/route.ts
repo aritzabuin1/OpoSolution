@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: profileRaw } = await (serviceSupabase as any)
     .from('profiles')
-    .select('corrections_balance, free_corrector_used, racha_actual, fecha_examen')
+    .select('corrections_balance, free_corrector_used, racha_actual, fecha_examen, horas_diarias_estudio')
     .eq('id', user.id)
     .single()
 
@@ -56,6 +56,7 @@ export async function POST(request: NextRequest) {
     free_corrector_used?: number
     racha_actual?: number
     fecha_examen?: string | null
+    horas_diarias_estudio?: number | null
   } | null
 
   const isAdmin = await checkIsAdmin(serviceSupabase, user.id)
@@ -113,6 +114,7 @@ export async function POST(request: NextRequest) {
   const allTemas = temas ?? []
   const rachaActual = profile?.racha_actual ?? 0
   const fechaExamen = profile?.fecha_examen ?? null
+  const dedicacionSemanal = profile?.horas_diarias_estudio ?? null
 
   // ── 5b. Calcular métricas derivadas ────────────────────────────────────
 
@@ -176,6 +178,12 @@ export async function POST(request: NextRequest) {
     parts.push(`- Días hasta el examen: ${diasParaExamen} (${fechaExamen})`)
   } else {
     parts.push(`- Fecha de examen: no configurada`)
+  }
+
+  if (dedicacionSemanal !== null) {
+    parts.push(`- Dedicación semanal: ${dedicacionSemanal} horas/semana`)
+  } else {
+    parts.push(`- Dedicación semanal: no configurada`)
   }
 
   parts.push(`\nRENDIMIENTO POR TEMA (28 temas del temario):`)

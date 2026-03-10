@@ -57,7 +57,7 @@ export default async function CuentaPage() {
   // Profile + oposición
   const { data: profile } = await supabase
     .from('profiles')
-    .select('full_name, email, oposicion_id, fecha_examen, corrections_balance')
+    .select('full_name, email, oposicion_id, fecha_examen, corrections_balance, horas_diarias_estudio')
     .eq('id', user.id)
     .single()
 
@@ -139,6 +139,7 @@ export default async function CuentaPage() {
             email={profile?.email ?? user.email ?? ''}
             oposicionNombre={oposicion?.nombre ?? null}
             fechaExamen={profile?.fecha_examen ?? null}
+            horasSemanales={profile?.horas_diarias_estudio ?? null}
           />
         </CardContent>
       </Card>
