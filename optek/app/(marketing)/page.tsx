@@ -21,15 +21,35 @@ import { ExamCountdown } from '@/components/marketing/ExamCountdown'
 import { blogPosts } from '@/content/blog/posts'
 import { unstable_cache } from 'next/cache'
 
+const APP_URL_META = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
+
 export const metadata: Metadata = {
-  title: 'OpoRuta — El camino más corto hacia el aprobado',
+  title: 'OpoRuta — Prepara tu oposición de Auxiliar Administrativo con IA verificada',
   description:
-    'Prepara tu oposición con IA verificada. Tests personalizados, simulacros INAP y el Radar del Tribunal. Cada cita legal comprobada al artículo exacto.',
+    'Plataforma de preparación para Auxiliar Administrativo del Estado (C2). Tests con verificación de citas legales, simulacros INAP oficiales (2018-2024), Radar del Tribunal y análisis detallados. 1.700 plazas. Desde 0€.',
+  keywords: [
+    'oposiciones auxiliar administrativo 2026',
+    'preparar auxiliar administrativo estado',
+    'test auxiliar administrativo online',
+    'simulacro INAP auxiliar administrativo',
+    'examen auxiliar administrativo estado',
+    'IA oposiciones auxiliar administrativo',
+  ],
   openGraph: {
-    title: 'OpoRuta — El camino más corto hacia el aprobado',
+    title: 'OpoRuta — Prepara tu oposición de Auxiliar Administrativo con IA verificada',
     description:
-      'Prepara tu oposición con IA verificada. Descubre qué artículos pregunta el tribunal INAP y practica con citas comprobadas. Sin alucinaciones, sin inventos.',
+      'Tests con citas legales verificadas, simulacros INAP oficiales y Radar del Tribunal. 1.700 plazas convocatoria 2025-2026. Empieza gratis.',
     type: 'website',
+    url: APP_URL_META,
+    images: [{ url: `${APP_URL_META}/api/og?tipo=blog&tema=${encodeURIComponent('OpoRuta — El camino más corto hacia el aprobado')}`, width: 1200, height: 630 }],
+  },
+  alternates: {
+    canonical: APP_URL_META,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'OpoRuta — Prepara tu oposición de Auxiliar Administrativo con IA verificada',
+    description: 'Tests verificados, simulacros INAP oficiales y Radar del Tribunal. Empieza gratis.',
   },
 }
 
@@ -219,6 +239,40 @@ const jsonLdFaq = {
 
 // §2.17.4-5 Organization + WebSite → inyectados globalmente en app/layout.tsx
 
+// SoftwareApplication schema — rich snippet para Google
+const jsonLdApp = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'OpoRuta',
+  description: 'Plataforma de preparación de oposiciones al Auxiliar Administrativo del Estado con IA y verificación determinista de citas legales.',
+  url: APP_URL_META,
+  applicationCategory: 'EducationalApplication',
+  operatingSystem: 'Web',
+  inLanguage: 'es',
+  offers: [
+    {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'EUR',
+      name: 'Plan Gratuito',
+      description: '5 tests en 3 temas de muestra, 1 simulacro oficial, 3 psicotécnicos',
+    },
+    {
+      '@type': 'Offer',
+      price: '49.99',
+      priceCurrency: 'EUR',
+      name: 'Pack Oposición',
+      description: 'Tests ilimitados en 28 temas, simulacros y psicotécnicos ilimitados, 20 análisis detallados, Radar del Tribunal',
+    },
+  ],
+  educationalUse: 'Practice',
+  audience: {
+    '@type': 'EducationalAudience',
+    educationalRole: 'Student',
+    audienceType: 'Opositores al Cuerpo General Auxiliar de la Administración del Estado (C2)',
+  },
+}
+
 // FOUNDER_LIMIT importado de lib/stripe/client.ts (fuente única de verdad)
 
 // ─── Página ────────────────────────────────────────────────────────────────────
@@ -249,6 +303,8 @@ export default async function LandingPage() {
     <>
       {/* §2.17.3 — FAQPage schema (People Also Ask en Google) */}
       <JsonLd data={jsonLdFaq} />
+      {/* SoftwareApplication schema (app rich snippet) */}
+      <JsonLd data={jsonLdApp} />
 
       {/* ─── Hero ────────────────────────────────────────────────────── */}
       <section aria-labelledby="hero-heading" className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-background py-20 sm:py-32">

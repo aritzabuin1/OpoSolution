@@ -5,15 +5,34 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { blogPosts } from '@/content/blog/posts'
 import { ArrowRight, BookOpen } from 'lucide-react'
 
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
+
 export const metadata: Metadata = {
   title: 'Blog OpoRuta — Guías para Opositores al Auxiliar Administrativo del Estado',
   description:
-    'Guías prácticas para preparar el examen del Auxiliar Administrativo del Estado: LPAC, LRJSP, penalización, simulacros y más. Con verificación de citas legales.',
+    'Guías prácticas para preparar el examen del Auxiliar Administrativo del Estado: LPAC, LRJSP, Constitución, TREBEP, penalización, simulacros INAP y psicotécnicos. Con verificación de citas legales.',
+  keywords: [
+    'blog oposiciones auxiliar administrativo',
+    'guías auxiliar administrativo estado',
+    'preparar oposición auxiliar administrativo',
+    'artículos LPAC examen INAP',
+    'temario auxiliar administrativo 2026',
+  ],
   openGraph: {
     title: 'Blog OpoRuta — Guías para Auxiliar Administrativo del Estado',
     description:
-      'Artículos y guías para preparar el Cuerpo General Auxiliar de la Administración del Estado.',
+      'Artículos y guías para preparar el Cuerpo General Auxiliar de la Administración del Estado. LPAC, LRJSP, Constitución, TREBEP, psicotécnicos y más.',
     type: 'website',
+    url: `${APP_URL}/blog`,
+    images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Guías para Opositores')}`, width: 1200, height: 630 }],
+  },
+  alternates: {
+    canonical: `${APP_URL}/blog`,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blog OpoRuta — Guías para Auxiliar Administrativo del Estado',
+    description: 'Artículos verificados para preparar el Auxiliar Administrativo del Estado.',
   },
 }
 
@@ -22,7 +41,42 @@ export default function BlogIndexPage() {
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   )
 
+  // JSON-LD — CollectionPage + ItemList for blog index
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Blog OpoRuta — Guías para Opositores',
+      description: 'Guías prácticas para preparar el examen del Auxiliar Administrativo del Estado.',
+      url: `${APP_URL}/blog`,
+      publisher: { '@type': 'Organization', name: 'OpoRuta', url: APP_URL },
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: sortedPosts.length,
+        itemListElement: sortedPosts.map((post, idx) => ({
+          '@type': 'ListItem',
+          position: idx + 1,
+          url: `${APP_URL}/blog/${post.slug}`,
+          name: post.title,
+        })),
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'OpoRuta', item: APP_URL },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: `${APP_URL}/blog` },
+      ],
+    },
+  ]
+
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     <div className="mx-auto max-w-4xl px-4 sm:px-6 py-16">
       {/* Header */}
       <div className="mb-12 text-center">
@@ -87,5 +141,6 @@ export default function BlogIndexPage() {
         ))}
       </div>
     </div>
+    </>
   )
 }

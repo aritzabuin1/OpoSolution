@@ -1612,4 +1612,331 @@ export const blogPosts: BlogPost[] = [
 </ul>
     `.trim(),
   },
+
+  // ─── Post 12 — ARTÍCULO ESTRELLA (linkable asset) ─────────────────────────
+  {
+    slug: 'analisis-frecuencia-articulos-inap-auxiliar-administrativo',
+    title: 'Qué artículos pregunta el INAP en el examen de Auxiliar: análisis de 4 convocatorias (2018-2024)',
+    description:
+      'Análisis de frecuencia de los artículos más preguntados en exámenes INAP del Auxiliar Administrativo (2018, 2019, 2022, 2024). Datos originales, tablas por ley y ejemplos de cómo los pregunta el tribunal.',
+    date: '2026-03-12',
+    keywords: [
+      'artículos más preguntados examen auxiliar administrativo INAP',
+      'análisis frecuencia exámenes INAP auxiliar',
+      'qué preguntan en el examen auxiliar administrativo',
+      'temas más importantes examen INAP 2024',
+      'radar tribunal auxiliar administrativo',
+    ],
+    content: `
+<h2>Los artículos que más se repiten en los exámenes del INAP</h2>
+<p>
+  Hemos analizado las <strong>4 últimas convocatorias del Auxiliar Administrativo del Estado</strong>
+  (INAP 2018, 2019, 2022 y 2024) para identificar qué artículos de la legislación pregunta el tribunal
+  con más frecuencia. Estos datos son originales de OpoRuta y se basan en el análisis de más de
+  <strong>400 preguntas oficiales</strong>.
+</p>
+<p>
+  La conclusión es clara: <strong>no todos los artículos pesan igual</strong>. Un grupo reducido
+  de artículos aparece en casi todas las convocatorias, mientras que otros nunca se han preguntado.
+  Saber cuáles son te permite priorizar tu estudio de forma inteligente.
+</p>
+
+<h2>Top 15 artículos más preguntados (todas las leyes)</h2>
+<table>
+  <thead>
+    <tr><th>Artículo</th><th>Ley</th><th>Apariciones (de 4)</th><th>Tema clave</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Art. 21</td><td>LPAC (Ley 39/2015)</td><td><strong>4 de 4</strong></td><td>Obligación de resolver y notificar</td></tr>
+    <tr><td>Art. 53</td><td>LPAC</td><td><strong>3 de 4</strong></td><td>Derechos del interesado</td></tr>
+    <tr><td>Art. 58</td><td>LPAC</td><td><strong>3 de 4</strong></td><td>Práctica de notificaciones</td></tr>
+    <tr><td>Art. 14</td><td>CE 1978</td><td><strong>3 de 4</strong></td><td>Igualdad y no discriminación</td></tr>
+    <tr><td>Art. 103</td><td>CE 1978</td><td><strong>3 de 4</strong></td><td>Principios de la Administración</td></tr>
+    <tr><td>Art. 9.3</td><td>CE 1978</td><td>3 de 4</td><td>Principio de legalidad</td></tr>
+    <tr><td>Art. 54</td><td>TREBEP</td><td>3 de 4</td><td>Principios de conducta</td></tr>
+    <tr><td>Art. 52</td><td>TREBEP</td><td>3 de 4</td><td>Código de conducta — deberes</td></tr>
+    <tr><td>Art. 35</td><td>LPAC</td><td>2 de 4</td><td>Motivación de actos</td></tr>
+    <tr><td>Art. 112</td><td>LPAC</td><td>2 de 4</td><td>Recurso de alzada</td></tr>
+    <tr><td>Art. 5</td><td>LOPDGDD</td><td>2 de 4</td><td>Delegado de protección de datos</td></tr>
+    <tr><td>Art. 13</td><td>LOPDGDD</td><td>2 de 4</td><td>Derechos de los interesados (ARCO)</td></tr>
+    <tr><td>Art. 1.1</td><td>CE 1978</td><td>2 de 4</td><td>Estado social y democrático de derecho</td></tr>
+    <tr><td>Art. 137</td><td>CE 1978</td><td>2 de 4</td><td>Organización territorial del Estado</td></tr>
+    <tr><td>Art. 3</td><td>LRJSP (Ley 40/2015)</td><td>2 de 4</td><td>Principios de actuación de las AAPP</td></tr>
+  </tbody>
+</table>
+
+<h2>Desglose por ley: dónde poner el foco</h2>
+
+<h3>Constitución Española (CE 1978)</h3>
+<p>
+  La Constitución aporta entre <strong>8-12 preguntas</strong> por convocatoria.
+  Los artículos estrella son el 14 (igualdad), 103 (principios de la Administración),
+  9.3 (legalidad) y 1.1 (Estado social). El Título I (derechos fundamentales) y el
+  Título VIII (organización territorial) concentran la mayoría.
+</p>
+<p>
+  Profundiza en nuestra <a href="/blog/constitucion-espanola-preguntas-examen-auxiliar-administrativo">guía de la Constitución en el examen</a>.
+</p>
+
+<h3>LPAC — Ley 39/2015 (Procedimiento Administrativo Común)</h3>
+<p>
+  La LPAC es la <strong>ley estrella del examen</strong>: aporta entre <strong>5-8 preguntas</strong>
+  por convocatoria. Los artículos 21 (obligación de resolver), 53 (derechos del interesado),
+  58 (notificaciones) y 112 (recurso de alzada) son los más repetidos.
+</p>
+<p>
+  Ve el desglose completo en <a href="/blog/articulos-lpac-que-mas-caen-examen-inap">artículos de la LPAC que más caen en el INAP</a>.
+</p>
+
+<h3>TREBEP — RDL 5/2015 (Estatuto del Empleado Público)</h3>
+<p>
+  El TREBEP aporta <strong>3-5 preguntas</strong> por convocatoria.
+  Los artículos 52 y 54 (código de conducta y principios de conducta) aparecen de forma
+  constante. También se preguntan los artículos sobre situaciones administrativas y
+  acceso a la función pública.
+</p>
+<p>
+  Más detalles en <a href="/blog/trebep-articulos-clave-examen-auxiliar-administrativo">TREBEP: artículos clave para el examen</a>.
+</p>
+
+<h3>LOPDGDD — LO 3/2018 (Protección de Datos)</h3>
+<p>
+  La LOPDGDD es <strong>relativamente nueva en el temario</strong> y aporta 2-3 preguntas.
+  Los artículos 5 (DPO) y 13 (derechos ARCO) son los favoritos del tribunal.
+</p>
+<p>
+  Consulta <a href="/blog/lopdgdd-proteccion-datos-examen-auxiliar-administrativo">LOPDGDD y RGPD en el examen</a>.
+</p>
+
+<h3>LRJSP — Ley 40/2015 (Régimen Jurídico del Sector Público)</h3>
+<p>
+  La LRJSP aporta <strong>2-4 preguntas</strong>. El artículo 3 (principios de actuación)
+  es el más repetido. Es importante no confundirla con la LPAC —
+  consulta <a href="/blog/diferencias-lpac-lrjsp-auxiliar-administrativo">diferencias entre LPAC y LRJSP</a>.
+</p>
+
+<h2>Cómo pregunta el tribunal: patrones que se repiten</h2>
+<p>
+  El INAP tiene un estilo propio. Estos son los patrones más frecuentes:
+</p>
+<ul>
+  <li><strong>Pregunta de enumeración:</strong> "Según el art. X de la Ley Y, ¿cuál de los siguientes NO es...?" — Necesitas memorizar listas concretas.</li>
+  <li><strong>Pregunta de plazos:</strong> "¿Cuál es el plazo máximo para resolver y notificar un procedimiento iniciado de oficio?" — Los plazos de la LPAC son un clásico.</li>
+  <li><strong>Pregunta trampa LPAC/LRJSP:</strong> Mezclan conceptos de ambas leyes. El tribunal sabe que se confunden.</li>
+  <li><strong>Pregunta de principios:</strong> "Los principios de actuación de las AAPP incluyen..." — Aparecen tanto en CE (art. 103) como en LRJSP (art. 3).</li>
+</ul>
+
+<h2>Metodología: de dónde salen estos datos</h2>
+<p>
+  En OpoRuta hemos digitalizado y clasificado las preguntas de los exámenes oficiales del INAP
+  de 2018, 2019, 2022 y 2024 (convocatorias del Cuerpo General Auxiliar de la AGE).
+  Cada pregunta ha sido mapeada al artículo de ley que la respalda.
+  Estos datos alimentan el <strong>Radar del Tribunal</strong>, una herramienta de OpoRuta
+  que ordena los artículos por frecuencia para que priorices tu estudio.
+</p>
+<p>
+  En OpoRuta, cada pregunta de test incluye el artículo exacto verificado contra la legislación oficial.
+  Tus primeros 5 tests son gratis, sin tarjeta de crédito.
+</p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo: los 28 temas del Auxiliar</a> — estructura y priorización</li>
+  <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Penalización -1/3 explicada</a> — cuándo arriesgar y cuándo dejar en blanco</li>
+  <li><a href="/examenes-oficiales">Simulacros INAP oficiales</a> — practica con preguntas reales del tribunal</li>
+</ul>
+    `.trim(),
+  },
+
+  // ─── Post 13 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'preparar-oposicion-auxiliar-administrativo-por-libre',
+    title: '¿Se puede preparar la oposición de Auxiliar Administrativo por libre en 2026?',
+    description:
+      'Sí, se puede. Guía práctica para preparar el Auxiliar Administrativo del Estado sin academia: temario, herramientas, planificación y errores a evitar.',
+    date: '2026-03-14',
+    keywords: [
+      'preparar oposición auxiliar administrativo por libre',
+      'auxiliar administrativo sin academia',
+      'estudiar oposiciones por libre auxiliar estado',
+      'preparar auxiliar administrativo por tu cuenta',
+    ],
+    content: `
+<h2>Sí, puedes aprobar el Auxiliar Administrativo sin academia</h2>
+<p>
+  <strong>Sí, se puede preparar la oposición de Auxiliar Administrativo del Estado por libre</strong> y
+  muchos opositores lo hacen cada convocatoria. No necesitas una academia para aprobar: necesitas
+  el temario correcto, una planificación realista y herramientas de práctica con el formato del examen.
+</p>
+<p>
+  Lo que sí necesitas es disciplina. Sin la estructura de una academia, tú eres tu propio planificador.
+  Pero la ventaja es enorme: estudias a tu ritmo, sin horarios fijos, sin desplazamientos y ahorrando
+  entre 1.000€ y 3.000€ al año.
+</p>
+
+<h2>Qué necesitas para prepararte por libre</h2>
+
+<h3>1. El temario actualizado</h3>
+<p>
+  El <a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">temario oficial consta de 28 temas</a>:
+  16 de Organización Pública (Bloque I) y 12 de Ofimática (Bloque II).
+  Puedes usar un manual de academia (Adams, MAD, CEP) como base de lectura — cuestan entre 30-50€ y
+  están bien como texto de referencia. Pero no dependas solo de la lectura: el examen es tipo test
+  y necesitas practicar con ese formato desde el primer día.
+</p>
+
+<h3>2. Exámenes oficiales del INAP</h3>
+<p>
+  Los exámenes de convocatorias anteriores son dominio público. Tienes los de
+  <a href="/examenes-oficiales">2018, 2019, 2022 y 2024 en OpoRuta</a> en formato interactivo
+  con explicaciones de cada respuesta. Practicar con exámenes reales es el mejor indicador
+  de tu nivel real.
+</p>
+
+<h3>3. Tests tipo test con verificación</h3>
+<p>
+  El error más común al estudiar por libre es solo leer y subrayar. El examen es de 100 preguntas
+  tipo test en 90 minutos — necesitas practicar la velocidad y la precisión. Lo crítico es que las
+  preguntas citen artículos reales. ChatGPT y herramientas genéricas inventan referencias legales.
+  En OpoRuta, cada cita legal se verifica contra la legislación oficial antes de mostrártela.
+</p>
+
+<h3>4. Una planificación semanal</h3>
+<p>
+  Un plan realista para preparar por libre con 4-6 meses de margen:
+</p>
+<ul>
+  <li><strong>Mes 1-2:</strong> Lectura del temario completo (2 temas/semana) + tests diarios de lo estudiado</li>
+  <li><strong>Mes 3-4:</strong> Segunda vuelta rápida + simulacros semanales con penalización</li>
+  <li><strong>Mes 5-6:</strong> Repaso intensivo de tus temas débiles + simulacros cronometrados</li>
+</ul>
+<p>
+  Lo más importante: <strong>haz tests desde el primer día</strong>. No esperes a "terminar el temario"
+  para empezar a practicar. El formato tipo test tiene su propia lógica y necesitas dominarla.
+</p>
+
+<h2>Ventajas de preparar por libre</h2>
+<ul>
+  <li><strong>Ahorro:</strong> Academia = 100-250€/mes (1.200-3.000€/año). Por libre + OpoRuta = manual (40€) + plataforma (49,99€ pago único)</li>
+  <li><strong>Flexibilidad:</strong> Estudias a tu ritmo, en tu horario, sin desplazamientos</li>
+  <li><strong>Personalización:</strong> Te centras en tus temas débiles, no en el ritmo de una clase</li>
+</ul>
+
+<h2>Errores comunes al preparar por libre (y cómo evitarlos)</h2>
+<ul>
+  <li><strong>Solo leer, no practicar:</strong> Dedica mínimo 30% del tiempo a tests tipo test desde la semana 1</li>
+  <li><strong>No practicar con penalización:</strong> El examen penaliza -1/3. Si estudias sin penalización, tu estrategia de respuesta será incorrecta.
+    Lee sobre <a href="/blog/penalizacion-examen-auxiliar-administrativo">cómo funciona la penalización</a></li>
+  <li><strong>Estudiar todo por igual:</strong> No todos los artículos pesan igual. Consulta el
+    <a href="/blog/analisis-frecuencia-articulos-inap-auxiliar-administrativo">análisis de frecuencia de artículos INAP</a> para priorizar</li>
+  <li><strong>No hacer simulacros completos:</strong> Necesitas acostumbrarte a 100 preguntas en 90 minutos. Haz al menos 1 simulacro/semana los últimos 2 meses</li>
+</ul>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">Guía completa de preparación 2025-2026</a> — todo lo que necesitas saber</li>
+  <li><a href="/blog/plazas-auxiliar-administrativo-2026">1.700 plazas en 2026</a> — la mejor convocatoria de la historia</li>
+  <li><a href="/blog/psicotecnicas-examen-auxiliar-administrativo-estado">Psicotécnicos del examen</a> — no los dejes para el final</li>
+</ul>
+    `.trim(),
+  },
+
+  // ─── Post 14 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'cuantos-temas-examen-auxiliar-administrativo-estado',
+    title: '¿Cuántos temas tiene el examen del Auxiliar Administrativo del Estado?',
+    description:
+      'El temario del Auxiliar Administrativo del Estado consta de 28 temas divididos en 2 bloques. Desglose completo, qué estudiar primero y cómo organizar el estudio.',
+    date: '2026-03-16',
+    keywords: [
+      'cuántos temas auxiliar administrativo estado',
+      'temario auxiliar administrativo cuántos temas',
+      'número temas oposición auxiliar administrativo',
+      'temas examen auxiliar administrativo 2026',
+    ],
+    content: `
+<h2>28 temas divididos en 2 bloques</h2>
+<p>
+  El temario del Cuerpo General Auxiliar de la Administración del Estado (C2) consta de
+  <strong>28 temas</strong> organizados en dos bloques:
+</p>
+<ul>
+  <li><strong>Bloque I — Organización Pública:</strong> 16 temas de derecho constitucional,
+  administrativo y organización del Estado</li>
+  <li><strong>Bloque II — Ofimática:</strong> 12 temas de Windows 11, Microsoft 365
+  (Word, Excel, Access, Outlook) e Internet</li>
+</ul>
+
+<h2>Bloque I — Organización Pública (16 temas)</h2>
+<table>
+  <thead>
+    <tr><th>Tema</th><th>Contenido</th><th>Ley principal</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1-3</td><td>Constitución Española: principios, derechos, Cortes, Gobierno, Poder Judicial</td><td>CE 1978</td></tr>
+    <tr><td>4-5</td><td>Organización territorial, Unión Europea</td><td>CE 1978, Tratados UE</td></tr>
+    <tr><td>6-7</td><td>Gobierno y Administración General del Estado</td><td>Ley 50/1997, LOFAGE</td></tr>
+    <tr><td>8-10</td><td>Procedimiento administrativo común</td><td>LPAC (Ley 39/2015)</td></tr>
+    <tr><td>11</td><td>Régimen jurídico del sector público</td><td>LRJSP (Ley 40/2015)</td></tr>
+    <tr><td>12</td><td>Presupuestos Generales del Estado</td><td>Ley 47/2003</td></tr>
+    <tr><td>13-14</td><td>Función pública: TREBEP</td><td>RDL 5/2015</td></tr>
+    <tr><td>15</td><td>Protección de datos</td><td>LOPDGDD (LO 3/2018)</td></tr>
+    <tr><td>16</td><td>Igualdad, violencia de género, LGTBI</td><td>LO 3/2007, LO 1/2004, LO 4/2023</td></tr>
+  </tbody>
+</table>
+
+<h2>Bloque II — Ofimática (12 temas)</h2>
+<table>
+  <thead>
+    <tr><th>Tema</th><th>Contenido</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>17-18</td><td>Informática básica, redes, Internet</td></tr>
+    <tr><td>19-20</td><td>Windows 11</td></tr>
+    <tr><td>21-23</td><td>Microsoft Word 365</td></tr>
+    <tr><td>24-25</td><td>Microsoft Excel 365</td></tr>
+    <tr><td>26</td><td>Microsoft Access 365</td></tr>
+    <tr><td>27</td><td>Microsoft Outlook 365</td></tr>
+    <tr><td>28</td><td>Correo electrónico y seguridad</td></tr>
+  </tbody>
+</table>
+
+<h2>¿Por dónde empezar a estudiar?</h2>
+<p>
+  Recomendación basada en el <a href="/blog/analisis-frecuencia-articulos-inap-auxiliar-administrativo">análisis de frecuencia de exámenes INAP</a>:
+</p>
+<ol>
+  <li><strong>LPAC (temas 8-10):</strong> La ley con más preguntas en cada convocatoria (5-8 preguntas)</li>
+  <li><strong>Constitución (temas 1-3):</strong> 8-12 preguntas por convocatoria</li>
+  <li><strong>TREBEP (temas 13-14):</strong> 3-5 preguntas, artículos repetitivos</li>
+  <li><strong>Ofimática (temas 17-28):</strong> 50 preguntas en el examen — no puedes descuidarla</li>
+  <li><strong>Resto del Bloque I:</strong> Completar con LOPDGDD, LRJSP, igualdad, presupuestos</li>
+</ol>
+<p>
+  <strong>Error típico:</strong> Empezar por el tema 1 y seguir en orden. Los temas 8-10 (LPAC) y
+  ofimática deberían ser tu prioridad desde las primeras semanas.
+</p>
+
+<h2>¿Cuánto tiempo se necesita para estudiar 28 temas?</h2>
+<p>
+  Depende de tu dedicación, pero una referencia realista:
+</p>
+<ul>
+  <li><strong>4-6 horas/día (dedicación completa):</strong> 3-4 meses</li>
+  <li><strong>2-3 horas/día (compatibilizando trabajo):</strong> 6-8 meses</li>
+  <li><strong>1-2 horas/día (mínimo):</strong> 9-12 meses</li>
+</ul>
+<p>
+  Lo importante no es cuántas horas lees, sino cuántas preguntas tipo test practicas.
+  Lee más en nuestra <a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">guía completa de preparación</a>.
+</p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo detallado</a> — desglose tema por tema</li>
+  <li><a href="/blog/plazas-auxiliar-administrativo-2026">1.700 plazas en 2026</a> — la mayor oferta histórica</li>
+  <li><a href="/blog/preparar-oposicion-auxiliar-administrativo-por-libre">Preparar por libre</a> — sin academia, a tu ritmo</li>
+</ul>
+    `.trim(),
+  },
 ]

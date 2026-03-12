@@ -16,7 +16,7 @@ const organizationSchema = {
   url: APP_URL,
   description:
     'Plataforma de IA para preparar oposiciones al Cuerpo General de la Administración del Estado. Tests verificados con citas legales reales, Radar del Tribunal y simulacros oficiales INAP.',
-  sameAs: [] as string[], // Añadir URLs de redes sociales cuando existan
+  sameAs: ['https://www.linkedin.com/in/aritz-abuin/'],
 }
 
 // §2.17.5 — WebSite schema con SearchAction (sitelinks search box)
@@ -59,6 +59,14 @@ export const metadata: Metadata = {
     types: {
       'text/plain': `${APP_URL}/llms.txt`,
     },
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'OpoRuta — Prepara tu oposición de Auxiliar Administrativo con IA verificada',
+    description: 'Tests verificados, simulacros INAP oficiales y Radar del Tribunal. Empieza gratis.',
+  },
+  other: {
+    'google-site-verification': process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? '',
   },
 }
 

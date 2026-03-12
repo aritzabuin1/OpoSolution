@@ -119,6 +119,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: `${APP_URL}/examenes-oficiales/${examen}`,
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta.titulo,
+      description: meta.description,
+    },
   }
 }
 
