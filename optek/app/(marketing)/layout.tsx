@@ -69,6 +69,11 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
                   </Link>
                 </li>
                 <li>
+                  <Link href="/herramientas/calculadora-nota-auxiliar-administrativo" className="hover:text-foreground transition-colors">
+                    Calculadora de nota
+                  </Link>
+                </li>
+                <li>
                   <Link href="/#faq" className="hover:text-foreground transition-colors">
                     Preguntas frecuentes
                   </Link>

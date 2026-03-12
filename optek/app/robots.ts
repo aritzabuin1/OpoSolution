@@ -24,6 +24,7 @@ export default function robots(): MetadataRoute.Robots {
     '/examenes-oficiales/',
     '/llms.txt',
     '/llms-full.txt',
+    '/herramientas/',
     '/api/info',
     '/api/og',
   ]
