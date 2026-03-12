@@ -24,7 +24,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Cómo funciona la penalización -1/3 en el examen Auxiliar Administrativo del Estado',
     description:
       'Guía completa sobre el sistema de puntuación con penalización del examen de Auxiliar: cuándo dejar en blanco, cómo calcular tu nota y cómo practicarlo con simulacros.',
-    date: '2026-03-01',
+    date: '2026-02-25',
     keywords: [
       'penalización examen auxiliar administrativo',
       'auxiliar administrativo penalización -1/3',
@@ -120,6 +120,13 @@ export const blogPosts: BlogPost[] = [
   OpoRuta ofrece simulacros basados en exámenes oficiales del INAP con el sistema de
   puntuación idéntico al real.
 </p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/articulos-lpac-que-mas-caen-examen-inap">Los artículos de la LPAC que más caen en el INAP</a> — para saber qué estudiar primero</li>
+  <li><a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">Guía completa de preparación 2025-2026</a> — temario, planificación y métodos de estudio</li>
+  <li><a href="/examenes-oficiales">Simulacros oficiales INAP</a> — practica con las preguntas reales del tribunal</li>
+</ul>
     `.trim(),
   },
 
@@ -129,7 +136,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Los artículos de la LPAC que más caen en los exámenes del INAP (Auxiliar Administrativo)',
     description:
       'Análisis de los artículos de la Ley 39/2015 LPAC con más frecuencia en exámenes oficiales del INAP. Incluye ejemplos de preguntas tipo test y consejos para estudiarlos.',
-    date: '2026-03-01',
+    date: '2026-02-27',
     keywords: [
       'LPAC artículos más importantes examen',
       'preguntas LPAC examen INAP',
@@ -251,6 +258,13 @@ export const blogPosts: BlogPost[] = [
   Puedes generar tests específicos del Tema 11 (LPAC/LRJSP) con 5 preguntas gratuitas
   sin tarjeta de crédito.
 </p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/diferencias-lpac-lrjsp-auxiliar-administrativo">Diferencias entre LPAC y LRJSP</a> — las preguntas trampa más frecuentes del examen</li>
+  <li><a href="/blog/constitucion-espanola-preguntas-examen-auxiliar-administrativo">La Constitución en el examen</a> — artículos clave que más se preguntan</li>
+  <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Cómo funciona la penalización -1/3</a> — cuándo arriesgar y cuándo dejar en blanco</li>
+</ul>
     `.trim(),
   },
 
@@ -260,7 +274,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Psicotécnicas en el examen del Auxiliar Administrativo del Estado: tipos, ejemplos y cómo practicarlas',
     description:
       'Guía completa sobre las pruebas psicotécnicas del examen de Auxiliar: ortografía, sinónimos, series numéricas, comprensión verbal y razonamiento. Con ejemplos reales y estrategias de resolución.',
-    date: '2026-03-03',
+    date: '2026-03-01',
     keywords: [
       'psicotécnicas auxiliar administrativo estado',
       'test psicotécnico auxiliar administrativo',
@@ -378,6 +392,13 @@ export const blogPosts: BlogPost[] = [
 <p>
   Empieza gratis con tests en 3 temas de muestra. Sin tarjeta de crédito.
 </p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo: los 28 temas del Auxiliar</a> — qué estudiar y en qué orden</li>
+  <li><a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">Guía completa de preparación</a> — planificación, métodos de estudio y herramientas</li>
+  <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Cómo funciona la penalización -1/3</a> — estrategia de respuesta para el examen</li>
+</ul>
     `.trim(),
   },
 
@@ -489,6 +510,13 @@ export const blogPosts: BlogPost[] = [
 <p>
   Los primeros 5 tests son completamente gratuitos — sin tarjeta de crédito.
 </p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/articulos-lpac-que-mas-caen-examen-inap">Artículos de la LPAC que más caen</a> — análisis de frecuencia en exámenes INAP</li>
+  <li><a href="/blog/constitucion-espanola-preguntas-examen-auxiliar-administrativo">Constitución Española en el examen</a> — los artículos clave</li>
+  <li><a href="/blog/psicotecnicas-examen-auxiliar-administrativo-estado">Psicotécnicas del examen</a> — tipos, ejemplos y cómo practicarlas</li>
+</ul>
     `.trim(),
   },
 
@@ -498,7 +526,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Diferencias entre LPAC y LRJSP para el examen Auxiliar Administrativo del Estado',
     description:
       'Guía clara para distinguir la Ley 39/2015 (LPAC) y la Ley 40/2015 (LRJSP) en el examen de Auxiliar: qué regula cada una y las preguntas trampa más frecuentes.',
-    date: '2026-03-01',
+    date: '2026-03-05',
     keywords: [
       'diferencia LPAC LRJSP',
       'ley 39/2015 ley 40/2015 auxiliar administrativo',
@@ -610,6 +638,13 @@ export const blogPosts: BlogPost[] = [
     <tr><td>Iniciativa legislativa</td><td>Relaciones interadministrativas</td></tr>
   </tbody>
 </table>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/articulos-lpac-que-mas-caen-examen-inap">Artículos de la LPAC que más caen en el INAP</a> — desglose por artículo y convocatoria</li>
+  <li><a href="/blog/constitucion-espanola-preguntas-examen-auxiliar-administrativo">La Constitución en el examen</a> — artículos clave del Bloque I</li>
+  <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo: los 28 temas</a> — organización y prioridades</li>
+</ul>
     `.trim(),
   },
 
@@ -619,7 +654,7 @@ export const blogPosts: BlogPost[] = [
     title: 'La Constitución Española en el examen de Auxiliar: artículos clave y preguntas más frecuentes',
     description:
       'Los artículos de la Constitución Española que más se examinan en las oposiciones del Auxiliar Administrativo del Estado: derechos fundamentales, órganos constitucionales y estructura del Estado.',
-    date: '2026-03-03',
+    date: '2026-03-06',
     keywords: [
       'Constitución española examen auxiliar administrativo',
       'artículos CE oposición auxiliar administrativo',
@@ -781,6 +816,13 @@ export const blogPosts: BlogPost[] = [
 <p>
   Puedes empezar con los Temas 1-3 (CE) de forma completamente gratuita.
 </p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/articulos-lpac-que-mas-caen-examen-inap">Artículos de la LPAC que más caen</a> — la otra ley estrella del examen</li>
+  <li><a href="/blog/trebep-articulos-clave-examen-auxiliar-administrativo">TREBEP: artículos clave</a> — derechos, deberes y situaciones administrativas</li>
+  <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo: los 28 temas</a> — cómo organizarlos y priorizarlos</li>
+</ul>
     `.trim(),
   },
 
@@ -790,7 +832,7 @@ export const blogPosts: BlogPost[] = [
     title: 'TREBEP en el examen de Auxiliar: artículos del Estatuto Básico del Empleado Público que más caen',
     description:
       'Los artículos del TREBEP que más se examinan en el Auxiliar Administrativo del Estado: derechos, deberes, código ético, situaciones administrativas y acceso a la función pública.',
-    date: '2026-03-03',
+    date: '2026-03-08',
     keywords: [
       'TREBEP preguntas examen auxiliar administrativo',
       'estatuto básico empleado público auxiliar estado',
@@ -969,6 +1011,13 @@ export const blogPosts: BlogPost[] = [
 <p>
   Puedes empezar con los Temas 13 y 14 (TREBEP) de forma completamente gratuita.
 </p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/constitucion-espanola-preguntas-examen-auxiliar-administrativo">Constitución Española en el examen</a> — artículos clave y preguntas más frecuentes</li>
+  <li><a href="/blog/lopdgdd-proteccion-datos-examen-auxiliar-administrativo">LOPDGDD y RGPD</a> — protección de datos en el examen de Auxiliar</li>
+  <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo: los 28 temas</a> — cómo priorizarlos</li>
+</ul>
     `.trim(),
   },
 
@@ -978,7 +1027,7 @@ export const blogPosts: BlogPost[] = [
     title: 'LOPDGDD y RGPD en el examen de Auxiliar: protección de datos para el Auxiliar Administrativo',
     description:
       'Lo que necesitas saber de la LOPDGDD y el RGPD para el examen del Auxiliar Administrativo del Estado: derechos ARCO, bases jurídicas, AEPD y artículos más frecuentes.',
-    date: '2026-03-03',
+    date: '2026-03-10',
     keywords: [
       'LOPDGDD examen auxiliar administrativo',
       'protección datos RGPD examen INAP',
@@ -1174,6 +1223,13 @@ export const blogPosts: BlogPost[] = [
   Empieza gratis — sin tarjeta de crédito — y descubre cuántas preguntas de protección
   de datos eres capaz de acertar a la primera.
 </p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/trebep-articulos-clave-examen-auxiliar-administrativo">TREBEP: artículos clave</a> — derechos, deberes y código ético de los empleados públicos</li>
+  <li><a href="/blog/constitucion-espanola-preguntas-examen-auxiliar-administrativo">Constitución Española</a> — los artículos que más se examinan</li>
+  <li><a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">Guía completa de preparación</a> — planificación y estrategia de estudio</li>
+</ul>
     `.trim(),
   },
 
@@ -1183,7 +1239,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Cómo preparar la oposición al Cuerpo General Auxiliar del Estado: guía completa 2025-2026',
     description:
       'Guía paso a paso para preparar las oposiciones al Auxiliar Administrativo del Estado en 2025-2026: temario, estructura del examen, métodos de estudio y herramientas útiles.',
-    date: '2026-03-03',
+    date: '2026-02-23',
     keywords: [
       'cómo preparar oposición auxiliar administrativo estado',
       'oposición auxiliar administrativo 2025 2026 guía',
@@ -1369,6 +1425,191 @@ export const blogPosts: BlogPost[] = [
   Puedes hacer tus primeros 5 tests de forma completamente gratuita, sin tarjeta de crédito.
   Si la plataforma te ayuda a consolidar conceptos que te cuestan — regístralo.
 </p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo: los 28 temas</a> — qué estudiar y en qué orden</li>
+  <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Cómo funciona la penalización -1/3</a> — estrategia de respuesta para el día del examen</li>
+  <li><a href="/blog/articulos-lpac-que-mas-caen-examen-inap">Artículos de la LPAC que más caen</a> — empieza por lo que más pregunta el tribunal</li>
+</ul>
+    `.trim(),
+  },
+
+  // ─── Post 10 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'plazas-auxiliar-administrativo-2026',
+    title: '¿Cuántas plazas hay en las oposiciones de Auxiliar Administrativo del Estado 2026?',
+    description:
+      'La convocatoria 2025-2026 ofrece 1.700 plazas de acceso libre para el Cuerpo General Auxiliar de la AGE. Histórico de plazas, tendencia y qué significa para tu preparación.',
+    date: '2026-03-12',
+    keywords: [
+      'plazas auxiliar administrativo 2026',
+      'convocatoria auxiliar administrativo estado 2026',
+      'cuántas plazas auxiliar administrativo',
+      'oposiciones auxiliar administrativo 2026 plazas',
+    ],
+    content: `
+<h2>1.700 plazas de acceso libre en la convocatoria 2025-2026</h2>
+<p>
+  La convocatoria vigente del Cuerpo General Auxiliar de la Administración del Estado (C2) ofrece
+  <strong>1.700 plazas de acceso libre</strong>, publicadas en el BOE del 22 de diciembre de 2025
+  (Real Decreto 651/2025). Es la mayor oferta de los últimos años para esta oposición.
+</p>
+
+<h2>Histórico de plazas por convocatoria</h2>
+<table>
+  <thead>
+    <tr><th>Convocatoria</th><th>Plazas acceso libre</th><th>Tendencia</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2018</td><td>530</td><td>—</td></tr>
+    <tr><td>2019</td><td>652</td><td>+23%</td></tr>
+    <tr><td>2022</td><td>893</td><td>+37%</td></tr>
+    <tr><td>2024</td><td>1.150</td><td>+29%</td></tr>
+    <tr><td><strong>2025-2026</strong></td><td><strong>1.700</strong></td><td><strong>+48%</strong></td></tr>
+  </tbody>
+</table>
+<p>
+  La tendencia es clara: <strong>cada convocatoria ofrece más plazas que la anterior</strong>.
+  En 8 años se ha triplicado la oferta, pasando de 530 a 1.700 plazas. Esto refleja las
+  jubilaciones masivas en la Administración General del Estado y la necesidad de renovar plantillas.
+</p>
+
+<h2>¿Qué significa esto para ti?</h2>
+<p>
+  Más plazas implica que <strong>la nota de corte tiende a ser más accesible</strong>, aunque también
+  atrae a más opositores. La clave no es cuántos se presentan, sino tu nivel de preparación.
+  En la última convocatoria la nota de corte fue de 30 puntos en la primera parte y 26,33 en la segunda.
+</p>
+<p>
+  Con 1.700 plazas, un opositor bien preparado tiene más opciones que nunca de conseguir su puesto.
+  La diferencia la marca la calidad del estudio, no la cantidad de horas.
+</p>
+
+<h2>Estructura del examen</h2>
+<p>
+  El ejercicio es único: <strong>100 preguntas puntuables</strong> (más 10 de reserva) en
+  <strong>90 minutos</strong>. Se divide en dos partes, ambas eliminatorias:
+</p>
+<ul>
+  <li><strong>Primera parte</strong> (máx. 60 preguntas): 30 de teoría (Bloque I) + 30 psicotécnicas. Mínimo 25 de 50 puntos.</li>
+  <li><strong>Segunda parte</strong> (máx. 50 preguntas): Ofimática (Windows 11, Microsoft 365). Mínimo 25 de 50 puntos.</li>
+</ul>
+<p>
+  Las respuestas incorrectas penalizan <strong>-1/3 del valor de un acierto</strong>.
+  Las respuestas en blanco no penalizan. Aprende más sobre
+  <a href="/blog/penalizacion-examen-auxiliar-administrativo">cómo funciona la penalización y cuándo dejar en blanco</a>.
+</p>
+
+<h2>¿Cuándo es el examen?</h2>
+<p>
+  La fecha exacta del examen no ha sido publicada oficialmente. Según el calendario habitual del INAP
+  y la convocatoria vigente, se espera para <strong>mayo-junio de 2026</strong>. OpoRuta actualiza
+  esta información automáticamente cuando se publica en el BOE.
+</p>
+
+<h2>Empieza a prepararte hoy</h2>
+<p>
+  En OpoRuta puedes practicar con tests generados desde la legislación vigente, con
+  <strong>verificación determinista de cada cita legal</strong>. Cada pregunta te dice el artículo exacto
+  de la ley — y OpoRuta verifica que ese artículo existe antes de mostrártelo. También puedes practicar
+  con <a href="/examenes-oficiales">simulacros basados en exámenes reales del INAP</a> (2018, 2019, 2022, 2024)
+  con penalización real y cronómetro.
+</p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">Guía completa de preparación 2025-2026</a> — temario, planificación y métodos de estudio</li>
+  <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo: los 28 temas</a> — qué estudiar y en qué orden</li>
+  <li><a href="/blog/nota-corte-auxiliar-administrativo-estado">Nota de corte de la última convocatoria</a> — qué puntuación necesitas para aprobar</li>
+</ul>
+    `.trim(),
+  },
+
+  // ─── Post 11 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'nota-corte-auxiliar-administrativo-estado',
+    title: 'Nota de corte del Auxiliar Administrativo del Estado: última convocatoria y cómo se calcula',
+    description:
+      'La nota de corte de la última convocatoria del Auxiliar Administrativo fue de 30 puntos (parte 1) y 26,33 (parte 2). Así se calcula tu nota con la penalización -1/3.',
+    date: '2026-03-12',
+    keywords: [
+      'nota de corte auxiliar administrativo estado',
+      'nota corte auxiliar administrativo 2024',
+      'puntuación mínima auxiliar administrativo estado',
+      'cómo calcular nota examen auxiliar administrativo',
+    ],
+    content: `
+<h2>Nota de corte de la última convocatoria: 30 y 26,33 puntos</h2>
+<p>
+  En la última convocatoria del Cuerpo General Auxiliar de la Administración del Estado, las
+  <strong>notas de corte</strong> (puntuación mínima para superar cada parte) fueron:
+</p>
+<ul>
+  <li><strong>Primera parte</strong> (teoría + psicotécnicos): <strong>30 puntos</strong> sobre 50</li>
+  <li><strong>Segunda parte</strong> (ofimática): <strong>26,33 puntos</strong> sobre 50</li>
+</ul>
+<p>
+  Ambas partes son eliminatorias: si no llegas al mínimo en una de las dos, no apruebas
+  aunque la otra sea excelente. La nota final es la suma de ambas partes.
+</p>
+
+<h2>Cómo se calcula tu nota con penalización -1/3</h2>
+<p>
+  El examen del Auxiliar aplica una <strong>penalización de -1/3</strong> por cada respuesta incorrecta.
+  La fórmula es:
+</p>
+<p><strong>Puntuación = Aciertos − (Errores / 3)</strong></p>
+<p>Ejemplo práctico para la primera parte (60 preguntas, 50 puntos máximo):</p>
+<table>
+  <thead>
+    <tr><th>Escenario</th><th>Aciertos</th><th>Errores</th><th>En blanco</th><th>Puntuación</th><th>¿Aprueba?</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Conservador</td><td>40</td><td>10</td><td>10</td><td>40 − 3,33 = 36,67</td><td>Sí</td></tr>
+    <tr><td>Ajustado</td><td>35</td><td>15</td><td>10</td><td>35 − 5 = 30,00</td><td>Justo</td></tr>
+    <tr><td>Arriesgado</td><td>38</td><td>22</td><td>0</td><td>38 − 7,33 = 30,67</td><td>Sí</td></tr>
+    <tr><td>Insuficiente</td><td>30</td><td>20</td><td>10</td><td>30 − 6,67 = 23,33</td><td>No</td></tr>
+  </tbody>
+</table>
+
+<h2>La regla de oro: descartar al menos 1 opción</h2>
+<p>
+  <strong>Si puedes descartar al menos 1 de las 4 opciones, estadísticamente te compensa arriesgar.</strong>
+  Si no puedes descartar ninguna, déjala en blanco. Las respuestas en blanco no penalizan.
+</p>
+<p>
+  Lee nuestra <a href="/blog/penalizacion-examen-auxiliar-administrativo">guía completa sobre la penalización -1/3</a>
+  para entender cuándo arriesgar, cuándo dejar en blanco y cómo practicarlo desde el primer día.
+</p>
+
+<h2>¿Qué nota necesitas para la convocatoria 2026?</h2>
+<p>
+  La nota de corte de 2026 dependerá del nivel de los opositores y la dificultad del examen.
+  Con <strong>1.700 plazas</strong> (la mayor oferta histórica), es razonable esperar una nota
+  de corte similar o ligeramente inferior a convocatorias anteriores. Pero no te confíes:
+  prepárate para superar los 30 puntos en ambas partes con margen.
+</p>
+
+<h2>Cómo practicar con penalización real</h2>
+<p>
+  La mayoría de opositores estudian sin penalización durante meses y llegan al examen sin haber
+  calibrado su estrategia de respuesta. En OpoRuta, los
+  <a href="/examenes-oficiales">simulacros oficiales del INAP</a> aplican la penalización -1/3
+  exactamente como en el examen real, con cronómetro de 90 minutos.
+  Al terminar, te mostramos si habrías aprobado comparando tu nota con la nota de corte histórica.
+</p>
+<p>
+  En OpoRuta, cada pregunta incluye el <strong>artículo exacto de la ley</strong> que la respalda,
+  verificado contra la legislación oficial. Tus primeros 5 tests son gratis, sin tarjeta de crédito.
+</p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/plazas-auxiliar-administrativo-2026">1.700 plazas en la convocatoria 2026</a> — histórico y tendencia</li>
+  <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Penalización -1/3 explicada</a> — fórmula, ejemplos y estrategia</li>
+  <li><a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">Guía completa de preparación</a> — temario, planificación y métodos de estudio</li>
+</ul>
     `.trim(),
   },
 ]

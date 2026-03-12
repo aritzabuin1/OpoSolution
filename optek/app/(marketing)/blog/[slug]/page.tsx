@@ -58,19 +58,30 @@ export default async function BlogPostPage({ params }: Props) {
   const prevPost = postIndex < blogPosts.length - 1 ? blogPosts[postIndex + 1] : null
   const nextPost = postIndex > 0 ? blogPosts[postIndex - 1] : null
 
-  // JSON-LD Article schema
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: post.title,
-    description: post.description,
-    datePublished: post.date,
-    dateModified: post.date,
-    author: { '@type': 'Organization', name: 'OpoRuta', url: APP_URL },
-    publisher: { '@type': 'Organization', name: 'OpoRuta', url: APP_URL },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `${APP_URL}/blog/${post.slug}` },
-    keywords: post.keywords.join(', '),
-  }
+  // JSON-LD Article + BreadcrumbList schemas
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: post.title,
+      description: post.description,
+      datePublished: post.date,
+      dateModified: post.date,
+      author: { '@type': 'Organization', name: 'OpoRuta', url: APP_URL },
+      publisher: { '@type': 'Organization', name: 'OpoRuta', url: APP_URL },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': `${APP_URL}/blog/${post.slug}` },
+      keywords: post.keywords.join(', '),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'OpoRuta', item: APP_URL },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: `${APP_URL}/blog` },
+        { '@type': 'ListItem', position: 3, name: post.title, item: `${APP_URL}/blog/${post.slug}` },
+      ],
+    },
+  ]
 
   return (
     <>

@@ -1,0 +1,261 @@
+# OpoRuta
+
+> OpoRuta es una plataforma web española de preparación de oposiciones al Cuerpo General Auxiliar de la Administración del Estado (C2). Su diferencial es la verificación determinista de citas legales: cada artículo citado en tests y explicaciones se valida contra la legislación oficial antes de mostrarse. Sede en Bilbao, País Vasco. Fundada en 2026.
+
+Genera tests tipo test desde legislación española vigente (CE, LPAC, LRJSP, TREBEP, LOPDGDD) y exámenes reales del INAP. Incluye Radar del Tribunal (análisis de frecuencia de artículos en exámenes 2018-2024). Modelo freemium con pago único (sin suscripción).
+
+## Contenido principal
+
+- [Cómo funciona](https://oporuta.es/#como-funciona): Sistema de verificación determinista y Radar del Tribunal
+- [Precios](https://oporuta.es/#precios): Plan gratuito (5 tests) y Pack Oposición (49,99€, pago único)
+- [Simulacros INAP Oficiales](https://oporuta.es/examenes-oficiales): Exámenes reales 2018, 2019, 2022, 2024
+- [Blog](https://oporuta.es/blog): Guías de estudio para Auxiliar Administrativo del Estado
+
+## Guías destacadas
+
+- [Guía completa de preparación 2025-2026](https://oporuta.es/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia)
+- [Artículos LPAC que más caen en el INAP](https://oporuta.es/blog/articulos-lpac-que-mas-caen-examen-inap)
+- [Diferencias LPAC vs LRJSP](https://oporuta.es/blog/diferencias-lpac-lrjsp-auxiliar-administrativo)
+- [Penalización -1/3](https://oporuta.es/blog/penalizacion-examen-auxiliar-administrativo)
+- [Psicotécnicos del examen](https://oporuta.es/blog/psicotecnicas-examen-auxiliar-administrativo-estado)
+- [Temario completo 28 temas](https://oporuta.es/blog/temario-auxiliar-administrativo-estado-2025-2026)
+- [Constitución Española en el examen](https://oporuta.es/blog/constitucion-espanola-preguntas-examen-auxiliar-administrativo)
+- [TREBEP para Auxiliar](https://oporuta.es/blog/trebep-articulos-clave-examen-auxiliar-administrativo)
+- [LOPDGDD y RGPD](https://oporuta.es/blog/lopdgdd-proteccion-datos-examen-auxiliar-administrativo)
+- [Plazas convocatoria 2026](https://oporuta.es/blog/plazas-auxiliar-administrativo-2026)
+- [Nota de corte última convocatoria](https://oporuta.es/blog/nota-corte-auxiliar-administrativo-estado)
+
+---
+
+## Homepage — Qué es OpoRuta
+
+### La plataforma de preparación para Auxiliar Administrativo del Estado (C2)
+
+OpoRuta es una plataforma web diseñada específicamente para opositores al Cuerpo General Auxiliar de la Administración del Estado (Subgrupo C2). Su propuesta de valor es que cada pregunta tipo test generada por IA se verifica de forma determinista contra la legislación oficial antes de mostrarse al usuario. Si una pregunta cita el artículo 68 de la Ley 39/2015, OpoRuta comprueba que ese artículo existe en su base de datos legislativa y que el contenido es correcto. Sin inventos, sin alucinaciones.
+
+### El examen
+
+El examen del Auxiliar Administrativo del Estado es un ejercicio único de 100 preguntas puntuables tipo test (más 10 de reserva) en 90 minutos. Se divide en dos partes eliminatorias:
+
+- **Primera parte** (máx. 60 preguntas): 30 de teoría sobre legislación (Bloque I) + 30 psicotécnicas. Máximo 50 puntos, mínimo 25 para aprobar.
+- **Segunda parte** (máx. 50 preguntas): Ofimática y actividad administrativa (Bloque II: Windows 11, Word/Excel/Access/Outlook 365). Máximo 50 puntos, mínimo 25 para aprobar.
+
+Las respuestas incorrectas penalizan -1/3 del valor de un acierto. Las respuestas en blanco no penalizan. La convocatoria vigente (RD 651/2025, BOE 22/12/2025) ofrece 1.700 plazas de acceso libre.
+
+### Cómo funciona el sistema de verificación
+
+1. El opositor elige un tema del temario oficial (28 temas en 2 bloques) y solicita un test.
+2. La IA genera preguntas tipo test citando artículos específicos de la legislación vigente (CE, LPAC, LRJSP, TREBEP, LOPDGDD, Ley de Transparencia, etc.).
+3. Antes de mostrar cada pregunta, un sistema de verificación determinista (no IA) consulta la base de datos legislativa y comprueba que cada cita legal es real y correcta.
+4. Las preguntas que no superan la verificación se descartan automáticamente.
+5. El usuario recibe solo preguntas con cita legal verificada, con el artículo exacto visible tras responder.
+
+Este proceso elimina las "alucinaciones" habituales de la IA generativa cuando cita legislación.
+
+### Radar del Tribunal
+
+El Radar del Tribunal es un análisis de frecuencia de artículos legales basado en los exámenes oficiales del INAP de 2018, 2019, 2022 y 2024. Identifica qué artículos de qué leyes aparecen con mayor frecuencia en los exámenes reales y los ordena por relevancia. Permite al opositor priorizar el estudio de los artículos que el tribunal examina de forma sistemática, en lugar de estudiar todo el temario con la misma intensidad.
+
+### Funcionalidades principales
+
+- **Tests por tema**: Genera tests tipo test sobre cualquiera de los 28 temas del temario oficial, con dificultad adaptable (fácil, medio, difícil) y verificación de cita legal.
+- **Simulacros oficiales INAP**: Practica con las preguntas reales de los exámenes oficiales de 2018, 2019, 2022 y 2024, con penalización -1/3 y cronómetro de 90 minutos proporcional al número de preguntas.
+- **Simulacro mixto**: Combina preguntas de todas las convocatorias disponibles en un solo examen, sin IA, para maximizar la variedad.
+- **Psicotécnicos**: Motor determinista que genera ejercicios de ortografía, sinónimos/antónimos, series numéricas y razonamiento analógico al nivel del examen de Auxiliar.
+- **Flashcards con repetición espaciada**: Tarjetas de repaso generadas automáticamente con el algoritmo de Spaced Repetition para consolidar la memorización de artículos.
+- **Caza-Trampas**: Ejercicio especializado donde la IA presenta afirmaciones legales con errores sutiles (artículo incorrecto, plazo cambiado, órgano equivocado) y el opositor debe identificar las trampas.
+- **Reto Diario Comunitario**: Cada día se publica un reto con 5 preguntas para todos los usuarios, con compartición tipo Wordle.
+- **BOE Watcher**: Vigilancia automática del Boletín Oficial del Estado para detectar cambios normativos que afecten al temario.
+- **Repaso de Errores**: Extrae las preguntas falladas de los últimos 30 tests y las presenta en orden aleatorio para reforzar los puntos débiles.
+- **Mapa de Debilidades**: Muestra los 5 temas con peor rendimiento del opositor para orientar el estudio.
+- **Análisis detallados**: Explicaciones pedagógicas en formato socrático (empatía, pregunta guía, revelación, anclaje) para entender por qué se falló cada pregunta.
+
+### Precios
+
+OpoRuta funciona con un modelo de pago único (sin suscripción):
+
+- **Plan Gratuito**: 5 tests de IA (solo temas 1, 11 y 17), 3 simulacros de 20 preguntas, 3 sesiones de psicotécnicos, 3 cazatrampas/día, 2 análisis detallados. Sin tarjeta de crédito.
+- **Pack Oposición (49,99 EUR)**: Acceso ilimitado a tests en los 28 temas, simulacros completos (hasta 100 preguntas), flashcards, radar del tribunal completo, cazatrampas ilimitado, 20 análisis detallados. Pago único, sin suscripción.
+- **Recarga de Análisis (8,99 EUR)**: 10 análisis detallados adicionales para quienes agotan los incluidos en el Pack.
+- **Fundador (24,99 EUR)**: 30 análisis detallados + badge exclusivo de fundador. Limitado a 20 plazas.
+
+### Preguntas frecuentes
+
+**¿Cómo verificáis que las citas legales son correctas?**
+Cada pregunta generada por IA incluye una cita a un artículo específico de una ley. Antes de mostrar la pregunta, un sistema determinista (no IA) consulta la base de datos legislativa completa y verifica que el artículo citado existe y que su contenido corresponde con lo que la pregunta afirma. Las preguntas que no superan esta verificación se descartan automáticamente.
+
+**¿Qué legislación cubren los tests?**
+Constitución Española de 1978, Ley 39/2015 (LPAC), Ley 40/2015 (LRJSP), RDL 5/2015 (TREBEP), LO 3/2018 (LOPDGDD), Ley 19/2013 (Transparencia), y toda la legislación relevante para los 28 temas del temario oficial del Auxiliar Administrativo del Estado.
+
+**¿Los simulacros son de exámenes reales?**
+Sí. Los simulacros utilizan las preguntas de los exámenes oficiales del INAP de 2018, 2019, 2022 y 2024, que son de dominio público. Se aplica la penalización -1/3 idéntica al examen real.
+
+**¿Con qué frecuencia se actualiza el contenido?**
+La base de datos legislativa se actualiza cuando se producen cambios normativos relevantes. El BOE Watcher monitoriza automáticamente el Boletín Oficial del Estado para detectar modificaciones que afecten al temario.
+
+**¿Necesito tarjeta de crédito para el plan gratuito?**
+No. Los primeros 5 tests son completamente gratuitos sin registro de tarjeta.
+
+---
+
+## Simulacros INAP Oficiales
+
+### Practica con las preguntas reales del tribunal
+
+OpoRuta ofrece simulacros basados en los exámenes oficiales del INAP (Instituto Nacional de Administración Pública), el organismo que elabora y corrige los exámenes de acceso al Cuerpo General Auxiliar del Estado.
+
+### Exámenes disponibles
+
+- **Examen 2024**: Convocatoria con 1.150 plazas. Nota de corte: 6,50/10 equivalente.
+- **Examen 2022**: Convocatoria con 893 plazas. Nota de corte: 6,00/10 equivalente.
+- **Examen 2019**: Convocatoria con 652 plazas. Nota de corte: 5,75/10 equivalente.
+- **Examen 2018**: Convocatoria con 530 plazas. 46 preguntas modelo A + 5 modelo B disponibles.
+
+Todos los exámenes utilizan preguntas reales del INAP que son de dominio público. Las preguntas se presentan con 4 opciones de respuesta y cubren el temario oficial completo.
+
+### Formato idéntico al examen real
+
+Los simulacros replican las condiciones exactas del examen oficial:
+
+- Penalización -1/3 por respuesta incorrecta (idéntica al examen real)
+- Cronómetro proporcional al número de preguntas (90 minutos para 100 preguntas, 16 minutos para 20)
+- Auto-submit cuando se agota el tiempo
+- Preguntas de reserva excluidas (solo las puntuables)
+
+### "¿Habrías aprobado?"
+
+Al finalizar cada simulacro, OpoRuta compara tu nota con la nota de corte histórica de esa convocatoria. Te muestra si habrías aprobado o no, y por cuántos puntos de diferencia.
+
+### Desglose por tema
+
+Los resultados incluyen un desglose por tema que muestra:
+
+- Porcentaje de acierto por tema, ordenado de peor a mejor
+- Temas más fuertes y más débiles
+- Referencia cruzada: en qué otros exámenes ha aparecido cada tema
+
+### Simulacro Mixto
+
+Además de los simulacros por año, existe un modo mixto que combina preguntas de 2018, 2019, 2022 y 2024 en un solo examen, sin IA, para maximizar la variedad y evitar memorizar respuestas de un examen concreto.
+
+---
+
+## Blog — Resúmenes de artículos
+
+### 1. Cómo funciona la penalización -1/3 en el examen Auxiliar Administrativo del Estado
+
+El examen del Cuerpo General Auxiliar aplica un sistema de penalización por respuestas incorrectas: cada acierto suma 1 punto, cada error resta 1/3 de punto, y las preguntas en blanco no puntúan. El examen consta de 100 preguntas puntuables (+ 10 de reserva) en 90 minutos.
+
+La regla matemática para decidir si responder es clara: si puedes descartar al menos una opción incorrecta, estadísticamente te compensa arriesgar. Si no puedes descartar ninguna, deja en blanco, ya que el valor esperado de responder al azar entre 4 opciones es exactamente 0, igual que dejar en blanco.
+
+Un ejemplo práctico: con 70 aciertos, 15 errores y 15 en blanco, la nota final es 70 - 5 = 65 puntos. Si esos 15 errores se hubieran dejado en blanco, la nota sería 70 puntos. La estrategia recomendada para el día del examen es hacer dos pasadas: primero responder solo las seguras, luego revisar las dudosas aplicando descarte. OpoRuta aplica la penalización exacta en todos sus simulacros para que el opositor interiorice cuándo responder y cuándo no.
+
+### 2. Los artículos de la LPAC que más caen en los exámenes del INAP
+
+La Ley 39/2015 (LPAC) es, junto con la Constitución Española, la ley que más preguntas genera en el examen del Auxiliar. Entre 8 y 12 preguntas del Bloque I corresponden directamente a la LPAC en exámenes recientes.
+
+Los 8 artículos más frecuentes son: Art. 14 (derecho y obligación de relacionarse electrónicamente), Art. 21 (obligación de resolver, plazo máximo general de 3 meses), Art. 22 (suspensión del plazo máximo), Art. 30 (cómputo de plazos, días hábiles vs. naturales), Art. 68 (subsanación de solicitudes, plazo de 10 días), Art. 40 (notificaciones), Art. 112 (recursos administrativos) y Art. 24-25 (silencio administrativo).
+
+Dominar estos artículos no es solo memorizar: es entender la lógica del procedimiento administrativo. Una vez se comprende por qué el legislador estableció un plazo o una forma de notificación, las preguntas tipo test se vuelven evidentes.
+
+### 3. Psicotécnicas en el examen del Auxiliar Administrativo del Estado
+
+El examen incluye 30 preguntas psicotécnicas en la primera parte, representando el 50% de esa parte. A diferencia del Bloque I (memorístico), las psicotécnicas se mejoran principalmente con práctica repetida.
+
+Los tipos principales son: ortografía y uso del lenguaje (b/v, h, tildes, g/j), sinónimos y antónimos, series numéricas (progresiones aritméticas, geométricas, de diferencias, alternadas y cuadráticas), comprensión verbal y razonamiento analógico (continente/contenido, parte/todo, creador/obra), y razonamiento espacial con series de figuras.
+
+La clave es la práctica diaria y constante: 15 min/día de ortografía durante 2 semanas, 20 min/día de series numéricas durante 3-4 semanas. El cerebro necesita repetición distribuida para automatizar los patrones. Para series numéricas, la estrategia más eficaz es calcular las diferencias entre términos consecutivos; si no son constantes, calcular las diferencias de las diferencias revela el patrón en el 80% de los casos.
+
+### 4. Temario completo del Auxiliar Administrativo del Estado 2025-2026
+
+El temario oficial se divide en 28 temas en dos bloques. El Bloque I (Organización Pública) tiene 16 temas que generan las 30 preguntas teóricas: Constitución Española (T1-T3), Poder Judicial y Cortes (T4-T5), Gobierno (T5-T6), Transparencia (T7), AGE (T8), Organización territorial (T9), UE (T10), LPAC/LRJSP (T11), Protección de datos (T12), TREBEP (T13-T14), Presupuesto (T15) e Igualdad (T16).
+
+El Bloque II (Actividad Administrativa y Ofimática) tiene 12 temas que generan las 50 preguntas de la segunda parte: Atención al público (T17-T18), Registro y archivo (T19), Administración electrónica (T20), Informática básica (T21), Windows 11 (T22-T23), Word 365 (T24), Excel 365 (T25), Access 365 (T26), Outlook 365 (T27) e Internet (T28).
+
+La organización óptima del estudio es: empezar por temas de alto rendimiento (T1-T3 CE, T11 LPAC/LRJSP, T13-T14 TREBEP, que representan el 40-50% de preguntas teóricas), paralelizar el Bloque II con práctica diaria, y dejar temas de menor rendimiento (T6, T10, T15) para la fase final.
+
+### 5. Diferencias entre LPAC y LRJSP para el examen Auxiliar Administrativo
+
+La distinción entre la Ley 39/2015 (LPAC) y la Ley 40/2015 (LRJSP) es una de las trampas más frecuentes del examen. Ambas se aprobaron el mismo día y están íntimamente relacionadas. La regla mnemotécnica fundamental: LPAC = el procedimiento (cómo actúa la Administración con ciudadanos), LRJSP = la organización (cómo se estructura la Administración internamente).
+
+La LPAC regula: derechos de los ciudadanos ante la Administración, plazos, procedimiento administrativo, notificaciones, actos administrativos, silencio administrativo, recursos (alzada, reposición) y revisión de oficio. La LRJSP regula: principios de actuación, órganos administrativos, delegación, relaciones entre Administraciones, convenios, responsabilidad patrimonial, organización de la AGE y organismos públicos.
+
+Las trampas más frecuentes: la responsabilidad patrimonial está en la LRJSP (no en la LPAC), el silencio administrativo está en la LPAC, la delegación de competencias está en la LRJSP, y el principio de eficacia está en la CE art. 103 y LRJSP art. 3.
+
+### 6. La Constitución Española en el examen de Auxiliar
+
+La CE de 1978 genera entre 8 y 14 preguntas de las 100 totales en exámenes recientes del INAP, repartidas entre los Temas 1, 2 y 3 del temario oficial. La CE tiene 169 artículos en un Título Preliminar y diez Títulos.
+
+Los artículos más examinados son: Art. 1 (Estado social y democrático de Derecho, valores superiores: libertad, justicia, igualdad, pluralismo político), Art. 2 (unidad de la Nación y autonomía), Arts. 14-29 (derechos fundamentales: igualdad, libertad ideológica, honor e intimidad, expresión, participación política, tutela judicial, huelga), Arts. 30-38 (derechos y deberes ciudadanos), Art. 56 (funciones del Rey), Arts. 66-80 (Cortes Generales: 350 diputados, mandato 4 años), Art. 97 (funciones del Gobierno), Art. 103 (principios de la Administración Pública: eficacia, jerarquía, descentralización, desconcentración, coordinación) y Art. 117 (Poder Judicial).
+
+La técnica de estudio clave es: aprender la estructura primero (saber en qué Título está cada materia permite descartar opciones), memorizar números clave (350 diputados, 12 magistrados TC, 9 años mandato TC), y distinguir la Sección 1.a (derechos fundamentales con amparo) de la Sección 2.a (derechos y deberes sin amparo).
+
+### 7. TREBEP en el examen de Auxiliar: artículos clave del Estatuto Básico del Empleado Público
+
+El TREBEP (RDL 5/2015) genera entre 6 y 10 preguntas en exámenes recientes del INAP, correspondientes a los Temas 13 y 14 del temario. Las preguntas suelen ser más conceptuales que las de LPAC o CE.
+
+Los artículos más frecuentes son: Art. 8 (4 tipos de empleados públicos: funcionarios de carrera, interinos, personal laboral, personal eventual), Art. 9 (funcionarios de carrera: relación estatutaria, no contractual), Art. 14 (derechos individuales: inamovilidad, carrera profesional, formación, seguridad), Arts. 52-54 (deberes y código de conducta: principios éticos en art. 53, principios de conducta en art. 54), Arts. 55-62 (acceso al empleo público: igualdad, mérito, capacidad, publicidad; sistemas: oposición, concurso-oposición, concurso), y Arts. 85-92 (situaciones administrativas: servicio activo, servicios especiales, excedencia, suspensión).
+
+Datos numéricos clave: 5 años de servicio efectivo para excedencia voluntaria, 3 años reserva de puesto por cuidado de hijo, 2 años por cuidado de familiar, máximo 6 meses de suspensión provisional.
+
+### 8. LOPDGDD y RGPD en el examen de Auxiliar
+
+La protección de datos (Tema 12) genera entre 3 y 6 preguntas en exámenes del INAP. Se regula por la LO 3/2018 (LOPDGDD) que adapta al ordenamiento español el Reglamento UE 2016/679 (RGPD), directamente aplicable desde el 25 de mayo de 2018.
+
+Los 7 principios del tratamiento (Art. 5 RGPD) son: licitud/lealtad/transparencia, limitación de finalidad, minimización, exactitud, limitación de conservación, integridad/confidencialidad y responsabilidad proactiva. Las 6 bases jurídicas (Art. 6): consentimiento, ejecución de contrato, obligación legal, intereses vitales, interés público/poderes públicos, interés legítimo. Los derechos ARCO+ (Arts. 15-22): acceso, rectificación, supresión ("olvido"), limitación, portabilidad, oposición, decisiones automatizadas. Plazo de respuesta: 1 mes.
+
+Datos clave: notificación de brechas a la AEPD en 72 horas, las Administraciones Públicas no pueden ser sancionadas con multa (solo apercibimiento), el DPD asesora y supervisa pero no es el responsable del tratamiento, y el DPD es siempre obligatorio para Administraciones Públicas.
+
+### 9. Cómo preparar la oposición al Auxiliar: guía completa 2025-2026
+
+El Cuerpo General Auxiliar (C2) requiere titulación mínima de ESO/Graduado Escolar, ofrece sueldo base de 1.200-1.400 EUR brutos mensuales y jornada de 37,5 horas. La convocatoria 2025-2026 ofrece 1.700 plazas con sistema de concurso-oposición.
+
+La preparación media de quienes aprueban oscila entre 6 y 18 meses con 3-5 horas diarias. La distribución óptima es: Fase 1 (meses 1-3, primera lectura + esquemas), Fase 2 (meses 4-6, repaso + primeros tests), Fase 3 (meses 7-9, tests intensivos + simulacros), Fase 4 (mes 10+, repaso final + simulacros cronometrados). Los métodos más eficaces son: aprendizaje espaciado (spaced repetition) para normativa, tests tipo test desde el día 1 (retrieval practice), simulacros cronometrados en las últimas 6-8 semanas, y enfoque en artículos de alta frecuencia.
+
+Las trampas más comunes: confundir LPAC y LRJSP, no practicar con penalización, descuidar los psicotécnicos (50% de la Parte 1), y subestimar el Bloque II de ofimática.
+
+### 10. Plazas Auxiliar Administrativo del Estado 2026
+
+La convocatoria vigente ofrece 1.700 plazas de acceso libre (BOE 22/12/2025, RD 651/2025), la mayor oferta histórica para esta oposición. El histórico de plazas muestra una tendencia claramente creciente: 530 (2018), 652 (2019, +23%), 893 (2022, +37%), 1.150 (2024, +29%), 1.700 (2025-2026, +48%).
+
+En 8 años se ha triplicado la oferta, reflejando las jubilaciones masivas en la AGE. Más plazas implica que la nota de corte tiende a ser más accesible, aunque también atrae a más opositores. La clave es el nivel de preparación individual, no el número de aspirantes.
+
+La fecha exacta del examen no ha sido publicada oficialmente. Según el calendario habitual del INAP y la convocatoria vigente, se espera para mayo-junio de 2026.
+
+### 11. Nota de corte del Auxiliar Administrativo del Estado
+
+En la última convocatoria, las notas de corte fueron: 30 puntos sobre 50 en la primera parte (teoría + psicotécnicos) y 26,33 puntos sobre 50 en la segunda parte (ofimática). Ambas partes son eliminatorias: si no se alcanza el mínimo en una, no se aprueba aunque la otra sea excelente.
+
+La fórmula de puntuación es: Puntuación = Aciertos - (Errores / 3). Por ejemplo, con 40 aciertos y 10 errores en la primera parte: 40 - 3,33 = 36,67 puntos (aprueba). Con 30 aciertos y 20 errores: 30 - 6,67 = 23,33 puntos (no aprueba). La regla de oro: si puedes descartar al menos 1 de las 4 opciones, estadísticamente compensa arriesgar; si no puedes descartar ninguna, deja en blanco.
+
+Con 1.700 plazas en la convocatoria 2026 (la mayor oferta histórica), es razonable esperar una nota de corte similar o ligeramente inferior a convocatorias anteriores, pero se recomienda prepararse para superar los 30 puntos en ambas partes con margen.
+
+---
+
+## Datos clave de la oposición
+
+- Oposición: Cuerpo General Auxiliar de la Administración General del Estado (Subgrupo C2)
+- Convocatoria vigente: 1.700 plazas de acceso libre (BOE 22/12/2025, RD 651/2025), 156 reservadas para discapacidad
+- Sistema de selección: concurso-oposición (examen + valoración de méritos)
+- Titulación mínima: Graduado Escolar, ESO o equivalente
+- Examen: ejercicio único, 100 preguntas puntuables + 10 de reserva, 90 minutos
+- Primera parte: máx. 60 preguntas (30 teoría Bloque I + 30 psicotécnicas), 50 puntos, mínimo 25
+- Segunda parte: máx. 50 preguntas (ofimática Bloque II), 50 puntos, mínimo 25
+- Penalización: -1/3 del valor de un acierto por respuesta incorrecta; en blanco = 0
+- Temario: 28 temas (16 Bloque I: Organización Pública + 12 Bloque II: Ofimática)
+- Legislación principal: CE 1978, Ley 39/2015 (LPAC), Ley 40/2015 (LRJSP), RDL 5/2015 (TREBEP), LO 3/2018 (LOPDGDD), Ley 19/2013 (Transparencia)
+- Nota de corte última convocatoria: 30 puntos (parte 1), 26,33 puntos (parte 2)
+- Histórico de plazas: 530 (2018), 652 (2019), 893 (2022), 1.150 (2024), 1.700 (2025-2026)
+- Fecha examen esperada: mayo-junio 2026
+- Sueldo base aproximado: 1.200-1.400 EUR brutos mensuales + complementos
+- Jornada: 37,5 horas semanales
+- Preparación media de aprobados: 6 a 18 meses, 3-5 horas diarias
+
+## Contacto
+
+- Web: https://oporuta.es
+- Email: hola@oporuta.es
+
+---
+
+*Última actualización: 2026-03-12*

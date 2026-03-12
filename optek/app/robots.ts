@@ -14,49 +14,72 @@ import type { MetadataRoute } from 'next'
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
 export default function robots(): MetadataRoute.Robots {
+  const publicAllow = [
+    '/',
+    '/blog',
+    '/blog/',
+    '/login',
+    '/register',
+    '/examenes-oficiales',
+    '/examenes-oficiales/',
+    '/llms.txt',
+    '/llms-full.txt',
+    '/api/info',
+    '/api/og',
+  ]
+
+  const protectedDisallow = [
+    '/dashboard',
+    '/tests',
+    '/corrector',
+    '/psicotecnicos',
+    '/flashcards',
+    '/cazatrampas',
+    '/logros',
+    '/cuenta',
+    '/reto-diario',
+    '/radar',
+    '/admin',
+    '/primer-test',
+    '/forgot-password',
+    '/reset-password',
+    '/auth/',
+    '/api/ai/',
+    '/api/stripe/',
+    '/api/user/',
+    '/api/cron/',
+    '/api/tests/',
+    '/api/cazatrampas/',
+    '/api/flashcards/',
+    '/api/notifications/',
+    '/api/admin/',
+    '/api/reto-diario/',
+  ]
+
   return {
     rules: [
+      // Default rule for all bots
       {
         userAgent: '*',
-        allow: [
-          '/',
-          '/blog',
-          '/blog/',
-          '/login',
-          '/register',
-          '/examenes-oficiales',
-          '/examenes-oficiales/',
-          '/llms.txt',
-          '/api/info',
-          '/api/og',
-        ],
-        disallow: [
-          '/dashboard',
-          '/tests',
-          '/corrector',
-          '/psicotecnicos',
-          '/flashcards',
-          '/cazatrampas',
-          '/logros',
-          '/cuenta',
-          '/reto-diario',
-          '/radar',
-          '/admin',
-          '/primer-test',
-          '/forgot-password',
-          '/reset-password',
-          '/auth/',
-          '/api/ai/',
-          '/api/stripe/',
-          '/api/user/',
-          '/api/cron/',
-          '/api/tests/',
-          '/api/cazatrampas/',
-          '/api/flashcards/',
-          '/api/notifications/',
-          '/api/admin/',
-          '/api/reto-diario/',
-        ],
+        allow: publicAllow,
+        disallow: protectedDisallow,
+      },
+      // AI search bots — explicitly allow for citability
+      ...(
+        ['GPTBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-Web', 'PerplexityBot', 'Google-Extended', 'Applebot-Extended'] as const
+      ).map((bot) => ({
+        userAgent: bot,
+        allow: publicAllow,
+        disallow: protectedDisallow,
+      })),
+      // Scraping/training bots — block
+      {
+        userAgent: 'CCBot',
+        disallow: ['/'],
+      },
+      {
+        userAgent: 'Bytespider',
+        disallow: ['/'],
       },
     ],
     sitemap: `${APP_URL}/sitemap.xml`,

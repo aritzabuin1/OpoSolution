@@ -164,32 +164,55 @@ export default async function SimulacroExamenPage({ params }: Props) {
     totalPreguntas = count ?? 0
   }
 
-  // JSON-LD — Quiz schema para SEO
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Quiz',
-    name: meta.titulo,
-    description: meta.description,
-    url: `${APP_URL}/examenes-oficiales/${examen}`,
-    author: { '@type': 'Organization', name: 'OpoRuta', url: APP_URL },
-    educationalLevel: 'Professional',
-    educationalUse: 'Practice',
-    about: {
-      '@type': 'EducationalOccupationalCredential',
-      name: 'Cuerpo General Auxiliar de la Administración del Estado',
-      credentialCategory: 'Oposición',
-    },
-    ...(preguntas.length > 0 && {
-      hasPart: preguntas.slice(0, 3).map((p) => ({
-        '@type': 'Question',
-        name: p.enunciado,
-        suggestedAnswer: p.opciones.map((o) => ({
-          '@type': 'Answer',
-          text: o,
+  // JSON-LD — Quiz + LearningResource schemas para SEO
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Quiz',
+      name: meta.titulo,
+      description: meta.description,
+      url: `${APP_URL}/examenes-oficiales/${examen}`,
+      author: { '@type': 'Organization', name: 'OpoRuta', url: APP_URL },
+      educationalLevel: 'Professional',
+      educationalUse: 'Practice',
+      about: {
+        '@type': 'EducationalOccupationalCredential',
+        name: 'Cuerpo General Auxiliar de la Administración del Estado',
+        credentialCategory: 'Oposición',
+      },
+      ...(preguntas.length > 0 && {
+        hasPart: preguntas.slice(0, 3).map((p) => ({
+          '@type': 'Question',
+          name: p.enunciado,
+          suggestedAnswer: p.opciones.map((o) => ({
+            '@type': 'Answer',
+            text: o,
+          })),
         })),
-      })),
-    }),
-  }
+      }),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'LearningResource',
+      name: meta.titulo,
+      description: meta.description,
+      url: `${APP_URL}/examenes-oficiales/${examen}`,
+      educationalLevel: 'C2 — Auxiliar Administrativo del Estado',
+      learningResourceType: 'Quiz',
+      inLanguage: 'es',
+      isAccessibleForFree: true,
+      provider: { '@type': 'Organization', name: 'OpoRuta', url: APP_URL },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'OpoRuta', item: APP_URL },
+        { '@type': 'ListItem', position: 2, name: 'Simulacros INAP', item: `${APP_URL}/examenes-oficiales` },
+        { '@type': 'ListItem', position: 3, name: `INAP ${meta.anio}`, item: `${APP_URL}/examenes-oficiales/${examen}` },
+      ],
+    },
+  ]
 
   return (
     <>
