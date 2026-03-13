@@ -2,7 +2,7 @@ import { TrendingUp, ChevronRight, Lock } from 'lucide-react'
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
 import { createClient } from '@/lib/supabase/server'
-import { checkPaidAccess } from '@/lib/freemium'
+import { checkPaidAccess, getOposicionFromProfile } from '@/lib/freemium'
 
 interface RadarMiniTema {
   tema_id: string
@@ -16,7 +16,12 @@ export default async function RadarMini() {
   const supabase = await createClient()
 
   const { data: { user } } = await supabase.auth.getUser()
-  const isPaid = user ? await checkPaidAccess(supabase, user.id) : false
+  const isPaid = user
+    ? await (async () => {
+        const oposicionId = await getOposicionFromProfile(supabase, user.id)
+        return checkPaidAccess(supabase, user.id, oposicionId)
+      })()
+    : false
 
   // Try temas view first (new), fallback to articles view (legacy)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

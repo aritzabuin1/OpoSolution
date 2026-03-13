@@ -3,7 +3,8 @@
 /**
  * lib/hooks/useIsPremium.ts
  *
- * Lightweight hook to check if the current user has any purchase (= premium).
+ * Lightweight hook to check if the current user has paid access
+ * for their ACTIVE oposición (scoped by profiles.oposicion_id).
  * Returns: null (loading) | true | false
  */
 
@@ -21,18 +22,28 @@ export function useIsPremium(): boolean | null {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user || cancelled) { if (!cancelled) setIsPremium(false); return }
 
-      // Check compras OR is_founder OR is_admin (admin needs full access to test)
-      // IMPORTANT: premium does NOT grant admin — admin panel checks is_admin separately
+      // 1. Get user's oposicion_id + flags from profile
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const [{ data: compraData }, { data: profileData }] = await Promise.all([
-        supabase.from('compras').select('id').eq('user_id', user.id).limit(1),
-        (supabase as any).from('profiles').select('is_founder, is_admin').eq('id', user.id).single(),
-      ])
+      const { data: profileData } = await (supabase as any)
+        .from('profiles')
+        .select('oposicion_id, is_founder, is_admin')
+        .eq('id', user.id)
+        .single()
 
-      const hasPurchase = (compraData?.length ?? 0) > 0
-      const prof = profileData as { is_founder?: boolean; is_admin?: boolean } | null
+      const prof = profileData as { oposicion_id?: string; is_founder?: boolean; is_admin?: boolean } | null
       const isFounder = prof?.is_founder === true
       const isAdmin = prof?.is_admin === true
+      const oposicionId = prof?.oposicion_id ?? 'a0000000-0000-0000-0000-000000000001'
+
+      // 2. Check compras scoped by oposicion_id
+      const { data: compraData } = await supabase
+        .from('compras')
+        .select('id')
+        .eq('user_id', user.id)
+        .eq('oposicion_id', oposicionId)
+        .limit(1)
+
+      const hasPurchase = (compraData?.length ?? 0) > 0
 
       if (!cancelled) setIsPremium(hasPurchase || isFounder || isAdmin)
     }

@@ -3,7 +3,7 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import type { Database } from '@/types/database'
 import type { EmailOtpType } from '@supabase/supabase-js'
-import { sendWelcomeEmail } from '@/lib/email/client'
+import { sendWelcomeEmail, sendNewUserNotification } from '@/lib/email/client'
 
 /**
  * GET /auth/confirm?token_hash=xxx&type=email|recovery|magiclink
@@ -71,6 +71,7 @@ export async function GET(request: NextRequest) {
     if (isNewUser && data.user.email) {
       const nombre = data.user.user_metadata?.full_name as string | undefined
       void sendWelcomeEmail({ to: data.user.email, nombre })
+      void sendNewUserNotification({ email: data.user.email, nombre })
     }
   }
 

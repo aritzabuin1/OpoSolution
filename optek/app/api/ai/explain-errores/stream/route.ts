@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
-import { checkPaidAccess, checkIsAdmin } from '@/lib/freemium'
+import { checkPaidAccess, checkIsAdmin, getOposicionFromProfile } from '@/lib/freemium'
 import { callAIStream } from '@/lib/ai/provider'
 import { SYSTEM_EXPLAIN_ERRORES_STREAM } from '@/lib/ai/prompts'
 import { logger } from '@/lib/logger'
@@ -106,7 +106,8 @@ export async function POST(request: NextRequest) {
 
     hasPaidCredit = (profileCredits?.corrections_balance ?? 0) > 0
     hasFreeCredit = !hasPaidCredit && (profileCredits?.free_corrector_used ?? 0) < 2
-    const isPaid = await checkPaidAccess(serviceSupabase, user.id)
+    const oposicionId = await getOposicionFromProfile(serviceSupabase, user.id)
+    const isPaid = await checkPaidAccess(serviceSupabase, user.id, oposicionId)
 
     if (!hasPaidCredit && !hasFreeCredit && !isPaid) {
       return NextResponse.json({

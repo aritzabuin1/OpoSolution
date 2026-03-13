@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import type { Database } from '@/types/database'
-import { sendWelcomeEmail } from '@/lib/email/client'
+import { sendWelcomeEmail, sendNewUserNotification } from '@/lib/email/client'
 
 /**
  * GET /auth/callback
@@ -55,6 +55,7 @@ export async function GET(request: NextRequest) {
         // No-op si Resend no está configurado (§1.16 condicional)
         const nombre = data.user.user_metadata?.full_name as string | undefined
         void sendWelcomeEmail({ to: data.user.email, nombre })
+        void sendNewUserNotification({ email: data.user.email, nombre })
       }
 
       return NextResponse.redirect(new URL(next, origin))

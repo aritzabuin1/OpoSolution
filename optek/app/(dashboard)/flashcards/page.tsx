@@ -9,6 +9,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { checkPaidAccess, getOposicionFromProfile } from '@/lib/freemium'
 
 export const metadata: Metadata = { title: 'Mis Flashcards' }
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
@@ -51,14 +52,9 @@ export default async function FlashcardsPage() {
 
   if (!user) redirect('/login')
 
-  // Check premium status (compra OR founder OR admin — admin needs full access to test)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [{ data: compra }, { data: profileData }] = await Promise.all([
-    supabase.from('compras').select('id').eq('user_id', user.id).limit(1),
-    (supabase as any).from('profiles').select('is_founder, is_admin').eq('id', user.id).single(),
-  ])
-  const prof = profileData as { is_founder?: boolean; is_admin?: boolean } | null
-  const isPaid = (compra?.length ?? 0) > 0 || prof?.is_founder === true || prof?.is_admin === true
+  // Check premium status — scoped por oposición
+  const oposicionId = await getOposicionFromProfile(supabase, user.id)
+  const isPaid = await checkPaidAccess(supabase, user.id, oposicionId)
 
   // Free users: show premium teaser
   if (!isPaid) {

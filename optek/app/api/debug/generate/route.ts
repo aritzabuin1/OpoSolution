@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
-import { checkPaidAccess, checkIsAdmin } from '@/lib/freemium'
+import { checkPaidAccess, checkIsAdmin, getOposicionFromProfile } from '@/lib/freemium'
 import { logger } from '@/lib/logger'
 
 /**
@@ -48,8 +48,9 @@ export async function GET(request: NextRequest) {
     const s = Date.now()
     try {
       const svc = await createServiceClient()
+      const oposicionId = await getOposicionFromProfile(svc, userId!)
       const results = await Promise.all([
-        checkPaidAccess(svc, userId!),
+        checkPaidAccess(svc, userId!, oposicionId),
         checkIsAdmin(svc, userId!),
       ])
       hasPaidAccess = results[0]

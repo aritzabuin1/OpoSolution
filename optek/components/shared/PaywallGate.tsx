@@ -31,6 +31,9 @@ import { trackPixelEvent } from '@/lib/analytics/pixel'
 
 export type PaywallCode = 'PAYWALL_TESTS' | 'PAYWALL_CORRECTIONS'
 
+/** C1 oposicion_id for contextual pack selection */
+const C1_OPOSICION_ID = 'b0000000-0000-0000-0000-000000000001'
+
 interface PaywallGateProps {
   open: boolean
   onClose: () => void
@@ -40,7 +43,7 @@ interface PaywallGateProps {
 }
 
 interface PricingOption {
-  tier: 'pack' | 'recarga'
+  tier: 'pack' | 'pack_c1' | 'recarga'
   label: string
   price: string
   description: string
@@ -48,18 +51,21 @@ interface PricingOption {
   featured?: boolean
 }
 
-// ─── Pricing options por contexto ─────────────────────────────────────────────
+// ─── Pricing options por contexto y oposición ─────────────────────────────────
 
-const OPTIONS_TESTS: PricingOption[] = [
-  {
-    tier: 'pack',
-    label: 'Pack Oposición',
-    price: '49,99€',
-    description: 'Todo el temario · simulacros · caza-trampas · radar',
-    corrections: '+ 20 análisis detallados incluidos',
-    featured: true,
-  },
-]
+function getTestOptions(oposicionId?: string): PricingOption[] {
+  const isC1 = oposicionId === C1_OPOSICION_ID
+  return [
+    {
+      tier: isC1 ? 'pack_c1' : 'pack',
+      label: isC1 ? 'Pack Administrativo C1' : 'Pack Auxiliar C2',
+      price: '49,99€',
+      description: 'Todo el temario · simulacros · caza-trampas · radar',
+      corrections: '+ 20 análisis detallados incluidos',
+      featured: true,
+    },
+  ]
+}
 
 const OPTIONS_CORRECTIONS: PricingOption[] = [
   {
@@ -77,7 +83,7 @@ const OPTIONS_CORRECTIONS: PricingOption[] = [
 export function PaywallGate({ open, onClose, code, temaId, oposicionId }: PaywallGateProps) {
   const [loading, setLoading] = useState<string | null>(null)
 
-  const options = code === 'PAYWALL_TESTS' ? OPTIONS_TESTS : OPTIONS_CORRECTIONS
+  const options = code === 'PAYWALL_TESTS' ? getTestOptions(oposicionId) : OPTIONS_CORRECTIONS
   const title = code === 'PAYWALL_TESTS'
     ? 'Continúa preparando tu oposición'
     : 'Recarga tus correcciones'

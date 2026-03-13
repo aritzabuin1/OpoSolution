@@ -5,8 +5,19 @@
  * Importar desde aquí para mantener consistencia entre backend y UI.
  */
 
-/** Números de tema accesibles para usuarios free */
-export const FREE_TEMA_NUMEROS = [1, 11, 17] as const
+/** Free temas by oposición slug — extensible for multi-oposición */
+const FREE_TEMAS_BY_SLUG: Record<string, readonly number[]> = {
+  'aux-admin-estado': [1, 11, 17],        // CE, LPAC, Ofimática Word
+  'administrativo-estado': [1, 18, 41],    // CE, LPAC procedimiento, Word 365
+}
+
+/** Get free tema numbers for a given oposición slug */
+export function getFreeTemas(slug: string): readonly number[] {
+  return FREE_TEMAS_BY_SLUG[slug] ?? FREE_TEMAS_BY_SLUG['aux-admin-estado']
+}
+
+/** Números de tema accesibles para usuarios free (backward-compatible alias for C2) */
+export const FREE_TEMA_NUMEROS = FREE_TEMAS_BY_SLUG['aux-admin-estado']
 
 /** Límites de uso para usuarios free */
 export const FREE_LIMITS = {
@@ -32,7 +43,10 @@ export const PAID_LIMITS = {
 } as const
 
 /**
- * Check if a user has paid access (compra OR is_founder OR is_admin).
+ * Check if a user has paid access for a SPECIFIC oposición.
+ *
+ * CRITICAL: oposicionId is OBLIGATORIO. Comprar C2 ≠ acceso a C1.
+ * Filters `compras` by oposicion_id to enforce per-oposición isolation.
  *
  * is_admin grants premium access so admins can test all features.
  * IMPORTANT: premium does NOT grant admin — admin panel checks is_admin separately.
@@ -44,13 +58,15 @@ export const PAID_LIMITS = {
 export async function checkPaidAccess(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   supabase: any,
-  userId: string
+  userId: string,
+  oposicionId: string  // OBLIGATORIO — fuerza a todos los callers a especificar oposición
 ): Promise<boolean> {
   const [{ count: purchaseCount }, { data: profileData }] = await Promise.all([
     supabase
       .from('compras')
       .select('id', { count: 'exact', head: true })
-      .eq('user_id', userId),
+      .eq('user_id', userId)
+      .eq('oposicion_id', oposicionId),  // SIEMPRE filtrar por oposición
     supabase
       .from('profiles')
       .select('is_founder, is_admin')
@@ -64,6 +80,45 @@ export async function checkPaidAccess(
   const isAdmin = prof?.is_admin === true
 
   return hasPurchase || isFounder || isAdmin
+}
+
+// ─── Helpers para derivar oposicionId ────────────────────────────────────────
+
+/** Default oposicion_id (C2 Auxiliar) — used as fallback when no oposicion is set */
+export const DEFAULT_OPOSICION_ID = 'a0000000-0000-0000-0000-000000000001'
+
+/**
+ * Get oposicionId from a temaId by querying the temas table.
+ * Pattern A: for endpoints that have a temaId in the request.
+ */
+export async function getOposicionFromTema(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  supabase: any,
+  temaId: string
+): Promise<string> {
+  const { data } = await supabase
+    .from('temas')
+    .select('oposicion_id')
+    .eq('id', temaId)
+    .single()
+  return (data as { oposicion_id?: string } | null)?.oposicion_id ?? DEFAULT_OPOSICION_ID
+}
+
+/**
+ * Get oposicionId from the user's profile.
+ * Pattern B: for endpoints without temaId (simulacros, roadmap, etc.).
+ */
+export async function getOposicionFromProfile(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  supabase: any,
+  userId: string
+): Promise<string> {
+  const { data } = await supabase
+    .from('profiles')
+    .select('oposicion_id')
+    .eq('id', userId)
+    .single()
+  return (data as { oposicion_id?: string } | null)?.oposicion_id ?? DEFAULT_OPOSICION_ID
 }
 
 /**

@@ -262,6 +262,51 @@ export async function sendDeletionConfirmEmail(params: {
 }
 
 /**
+ * Notifica al admin cuando un nuevo usuario se registra.
+ * Permite saber en tiempo real cuándo entra un cliente real.
+ */
+export async function sendNewUserNotification(params: {
+  email: string
+  nombre?: string
+}): Promise<EmailResult> {
+  const resend = getResend()
+  if (!resend) return { success: false, error: 'Resend no configurado' }
+
+  const adminEmail = process.env.ADMIN_EMAIL ?? 'aritzmore1@gmail.com'
+  const log = logger.child({ route: 'email:new-user-alert' })
+
+  try {
+    const { data, error } = await resend.emails.send({
+      from: FROM_ADDRESS,
+      to: [adminEmail],
+      subject: `🚀 Nuevo usuario en OpoRuta: ${params.email}`,
+      text: [
+        '¡Nuevo registro en OpoRuta!',
+        '',
+        `Email: ${params.email}`,
+        `Nombre: ${params.nombre ?? '(no proporcionado)'}`,
+        `Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}`,
+        '',
+        '─── Acciones ───',
+        `Ver en Supabase: Authentication → Users`,
+        `Dashboard admin: https://oporuta.es/admin`,
+      ].join('\n'),
+    })
+
+    if (error) {
+      log.error({ error: error.message }, 'Error enviando alerta de nuevo usuario')
+      return { success: false, error: error.message }
+    }
+    log.info({ id: data?.id, userEmail: params.email }, 'Alerta de nuevo usuario enviada')
+    return { success: true, id: data?.id }
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err)
+    log.error({ error: msg }, 'Excepción enviando alerta de nuevo usuario')
+    return { success: false, error: msg }
+  }
+}
+
+/**
  * Envía notificación a Aritz cuando se recibe una sugerencia nueva.
  * §2.7.6
  */

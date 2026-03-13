@@ -6,7 +6,7 @@ import { generateTest, generateTopFrecuentesTest } from '@/lib/ai/generate-test'
 import { generatePsicotecnicos } from '@/lib/psicotecnicos/index'
 import { withTimeout, TimeoutError } from '@/lib/utils/timeout'
 import { logger } from '@/lib/logger'
-import { FREE_TEMA_NUMEROS, FREE_LIMITS, checkPaidAccess, checkIsAdmin } from '@/lib/freemium'
+import { FREE_LIMITS, checkPaidAccess, checkIsAdmin, getOposicionFromTema, getOposicionFromProfile, getFreeTemas } from '@/lib/freemium'
 import type { Json } from '@/types/database'
 import type { Pregunta } from '@/types/ai'
 
@@ -91,10 +91,16 @@ export async function POST(request: NextRequest) {
 
   const { tipo, temaId, numPreguntas, dificultad } = parsed.data
 
-  // ── 3. ¿Tiene acceso de pago? (compra OR is_founder) ──────────────────────
+  // ── 3. ¿Tiene acceso de pago? (compra OR is_founder) — scoped por oposición
   const serviceSupabase = await createServiceClient()
+
+  // Derivar oposicionId del temaId (Pattern A) o del profile (Pattern B)
+  const oposicionId = (tipo === 'tema' && temaId)
+    ? await getOposicionFromTema(serviceSupabase, temaId)
+    : await getOposicionFromProfile(serviceSupabase, user.id)
+
   const [hasPaidAccess, isAdmin] = await Promise.all([
-    checkPaidAccess(serviceSupabase, user.id),
+    checkPaidAccess(serviceSupabase, user.id, oposicionId),
     checkIsAdmin(serviceSupabase, user.id),
   ])
 
@@ -106,9 +112,17 @@ export async function POST(request: NextRequest) {
       .eq('id', temaId)
       .single()
 
+    // Derivar slug de la oposición para obtener los temas free correctos
+    const { data: oposicionRow } = await serviceSupabase
+      .from('oposiciones')
+      .select('slug')
+      .eq('id', oposicionId)
+      .single()
+    const freeTemas = getFreeTemas((oposicionRow as { slug?: string } | null)?.slug ?? 'aux-admin-estado')
+
     const temaNumero = temaRow?.numero ?? 0
-    if (!FREE_TEMA_NUMEROS.includes(temaNumero as typeof FREE_TEMA_NUMEROS[number])) {
-      log.info({ userId: user.id, temaId, temaNumero }, 'Free user tried locked tema — paywall')
+    if (!freeTemas.includes(temaNumero)) {
+      log.info({ userId: user.id, temaId, temaNumero, oposicionId }, 'Free user tried locked tema — paywall')
       return NextResponse.json(
         {
           error: 'Este tema requiere acceso Premium.',

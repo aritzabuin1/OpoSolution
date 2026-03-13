@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { stripe, STRIPE_PRICES, FOUNDER_LIMIT, type StripePriceTier } from '@/lib/stripe/client'
+import { stripe, STRIPE_PRICES, FOUNDER_LIMIT, TIER_TO_OPOSICION, type StripePriceTier } from '@/lib/stripe/client'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { logger } from '@/lib/logger'
 
@@ -9,16 +9,17 @@ import { logger } from '@/lib/logger'
  *
  * Crea una Stripe Checkout Session y retorna la URL de pago.
  *
- * Body: { tier: 'pack'|'recarga'|'fundador', temaId?: string }
+ * Body: { tier: 'pack'|'pack_c1'|'pack_doble'|'recarga'|'fundador'|'fundador_c1', temaId?: string }
  *
  * El userId se obtiene de la sesión Supabase (no del body — previene suplantación).
  * Los metadata de Stripe se usan en el webhook para completar la compra.
+ * oposicionId se deriva automáticamente del tier (TIER_TO_OPOSICION).
  *
  * Ref: ADR-0010 (Fuel Tank), ADR-0008 (Stripe)
  */
 
 const BodySchema = z.object({
-  tier: z.enum(['pack', 'recarga', 'fundador']),
+  tier: z.enum(['pack', 'pack_c1', 'pack_doble', 'recarga', 'fundador', 'fundador_c1']),
   temaId: z.string().uuid().optional(),
   oposicionId: z.string().uuid().optional(),
 })
@@ -41,10 +42,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Parámetros inválidos' }, { status: 400 })
   }
 
-  const { tier, temaId, oposicionId } = body
+  const { tier, temaId } = body
 
-  // Para tier fundador: verificar que quedan plazas disponibles
-  if (tier === 'fundador') {
+  // Derivar oposicionId del tier (no confiar en body — previene suplantación)
+  const oposicionId = TIER_TO_OPOSICION[tier as StripePriceTier] || ''
+
+  // Para tier fundador / fundador_c1: verificar que quedan plazas (20 GLOBALES)
+  if (tier === 'fundador' || tier === 'fundador_c1') {
     const serviceClient = await createServiceClient()
     const { count } = await serviceClient
       .from('profiles')

@@ -18,7 +18,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { FREE_TEMA_NUMEROS } from '@/lib/freemium'
+import { getFreeTemas, getOposicionFromProfile } from '@/lib/freemium'
 
 export const metadata: Metadata = { title: 'Tests de práctica' }
 import { TemaCard } from '@/components/tests/TemaCard'
@@ -75,15 +75,19 @@ export default async function TestsPage({
 
   if (!user) redirect('/login')
 
-  // ── Fetch en paralelo ─────────────────────────────────────────────────────
+  // ── Obtener oposición del usuario ────────────────────────────────────────
+  const oposicionId = await getOposicionFromProfile(supabase, user.id)
+
+  // ── Fetch en paralelo — filtrar temas por oposición del usuario ─────────
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [temasResult, profileResult, comprasResult, testsResult] = await Promise.all([
-    supabase.from('temas').select('id, numero, titulo, descripcion').order('numero'),
-    (supabase as any).from('profiles').select('free_tests_used, is_admin').eq('id', user.id).single(),
+  const [temasResult, profileResult, comprasResult, testsResult, oposicionResult] = await Promise.all([
+    supabase.from('temas').select('id, numero, titulo, descripcion').eq('oposicion_id', oposicionId).order('numero'),
+    (supabase as any).from('profiles').select('free_tests_used, is_admin, is_founder').eq('id', user.id).single(),
     supabase
       .from('compras')
       .select('id', { count: 'exact', head: true })
-      .eq('user_id', user.id),
+      .eq('user_id', user.id)
+      .eq('oposicion_id', oposicionId),
     supabase
       .from('tests_generados')
       .select('id, created_at, puntuacion, tipo, tema_id, temas(titulo)')
@@ -91,19 +95,22 @@ export default async function TestsPage({
       .eq('completado', true)
       .order('created_at', { ascending: false })
       .limit(5),
+    supabase.from('oposiciones').select('slug').eq('id', oposicionId).single(),
   ])
 
   const temas = temasResult.data ?? []
-  const prof = profileResult.data as { free_tests_used?: number; is_admin?: boolean } | null
+  const prof = profileResult.data as { free_tests_used?: number; is_admin?: boolean; is_founder?: boolean } | null
   const freeTestsUsed = prof?.free_tests_used ?? 0
-  const hasPaidAccess = (comprasResult.count ?? 0) > 0 || prof?.is_admin === true
+  const hasPaidAccess = (comprasResult.count ?? 0) > 0 || prof?.is_admin === true || prof?.is_founder === true
   const testsAnteriores = (testsResult.data ?? []) as TestAnterior[]
+  const oposicionSlug = (oposicionResult.data as { slug?: string } | null)?.slug ?? 'aux-admin-estado'
+  const freeTemas = getFreeTemas(oposicionSlug)
 
   // ── Agrupar temas por bloque ───────────────────────────────────────────────
-  // Bloque I = temas 1–16 (Organización Pública)
-  // Bloque II = temas 17–28 (Actividad Administrativa y Ofimática)
-  const bloqueI = temas.filter((t) => t.numero <= 16)
-  const bloqueII = temas.filter((t) => t.numero > 16)
+  // Bloque I/II depende de la oposición; usamos el campo bloque de la BD cuando exista
+  // C2: Bloque I = 1–16, II = 17–28 | C1: Bloque I = 1–37, II = 38–45
+  const bloqueI = temas.filter((t) => t.numero <= (oposicionSlug === 'administrativo-estado' ? 37 : 16))
+  const bloqueII = temas.filter((t) => t.numero > (oposicionSlug === 'administrativo-estado' ? 37 : 16))
 
   // ── Calcular tests gratuitos restantes ────────────────────────────────────
   const freeTestsRemaining = Math.max(0, 5 - freeTestsUsed)
@@ -151,7 +158,7 @@ export default async function TestsPage({
                 hasPaidAccess={hasPaidAccess}
                 freeTestsUsed={freeTestsUsed}
 
-                isFreeAllowed={(FREE_TEMA_NUMEROS as readonly number[]).includes(tema.numero)}
+                isFreeAllowed={freeTemas.includes(tema.numero)}
               />
             ))}
           </div>
@@ -175,7 +182,7 @@ export default async function TestsPage({
                 hasPaidAccess={hasPaidAccess}
                 freeTestsUsed={freeTestsUsed}
 
-                isFreeAllowed={(FREE_TEMA_NUMEROS as readonly number[]).includes(tema.numero)}
+                isFreeAllowed={freeTemas.includes(tema.numero)}
               />
             ))}
           </div>

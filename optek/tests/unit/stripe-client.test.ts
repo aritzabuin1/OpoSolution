@@ -6,8 +6,9 @@
  * Cobertura:
  *   - CORRECTIONS_GRANTED: valores por tier
  *   - STRIPE_PRICES: estructura completa
- *   - StripePriceTier: solo 3 valores válidos
- *   - FOUNDER_LIMIT: valor correcto
+ *   - StripePriceTier: 6 tiers válidos (C2 + C1 + doble)
+ *   - FOUNDER_LIMIT: valor correcto (20 global)
+ *   - TIER_TO_OPOSICION: mapeo tier → oposición
  */
 
 import { describe, it, expect, vi, beforeAll } from 'vitest'
@@ -20,7 +21,14 @@ vi.mock('stripe', () => ({
 }))
 
 // Import after mock
-import { CORRECTIONS_GRANTED, STRIPE_PRICES, FOUNDER_LIMIT } from '@/lib/stripe/client'
+import {
+  CORRECTIONS_GRANTED,
+  STRIPE_PRICES,
+  FOUNDER_LIMIT,
+  TIER_TO_OPOSICION,
+  C2_OPOSICION_ID,
+  C1_OPOSICION_ID,
+} from '@/lib/stripe/client'
 import type { StripePriceTier } from '@/lib/stripe/client'
 
 describe('Stripe pricing constants', () => {
@@ -28,6 +36,14 @@ describe('Stripe pricing constants', () => {
 
   it('pack otorga 20 correcciones', () => {
     expect(CORRECTIONS_GRANTED.pack).toBe(20)
+  })
+
+  it('pack_c1 otorga 20 correcciones', () => {
+    expect(CORRECTIONS_GRANTED.pack_c1).toBe(20)
+  })
+
+  it('pack_doble otorga 30 correcciones', () => {
+    expect(CORRECTIONS_GRANTED.pack_doble).toBe(30)
   })
 
   it('recarga otorga 10 correcciones', () => {
@@ -38,19 +54,27 @@ describe('Stripe pricing constants', () => {
     expect(CORRECTIONS_GRANTED.fundador).toBe(30)
   })
 
+  it('fundador_c1 otorga 30 correcciones', () => {
+    expect(CORRECTIONS_GRANTED.fundador_c1).toBe(30)
+  })
+
   it('no existe tier "tema" (eliminado)', () => {
     expect('tema' in CORRECTIONS_GRANTED).toBe(false)
   })
 
-  it('solo existen 3 tiers', () => {
-    expect(Object.keys(CORRECTIONS_GRANTED)).toHaveLength(3)
-    expect(Object.keys(CORRECTIONS_GRANTED).sort()).toEqual(['fundador', 'pack', 'recarga'])
+  it('existen 6 tiers', () => {
+    expect(Object.keys(CORRECTIONS_GRANTED)).toHaveLength(6)
+    expect(Object.keys(CORRECTIONS_GRANTED).sort()).toEqual([
+      'fundador', 'fundador_c1', 'pack', 'pack_c1', 'pack_doble', 'recarga',
+    ])
   })
 
   // ─── STRIPE_PRICES ────────────────────────────────────────────────────────
 
-  it('STRIPE_PRICES tiene las 3 keys esperadas', () => {
-    expect(Object.keys(STRIPE_PRICES).sort()).toEqual(['fundador', 'pack', 'recarga'])
+  it('STRIPE_PRICES tiene las 6 keys esperadas', () => {
+    expect(Object.keys(STRIPE_PRICES).sort()).toEqual([
+      'fundador', 'fundador_c1', 'pack', 'pack_c1', 'pack_doble', 'recarga',
+    ])
   })
 
   it('STRIPE_PRICES values son strings (price IDs o vacío)', () => {
@@ -69,10 +93,36 @@ describe('Stripe pricing constants', () => {
     expect(FOUNDER_LIMIT).toBeGreaterThan(0)
   })
 
+  // ─── TIER_TO_OPOSICION ──────────────────────────────────────────────────────
+
+  it('pack → C2', () => {
+    expect(TIER_TO_OPOSICION.pack).toBe(C2_OPOSICION_ID)
+  })
+
+  it('pack_c1 → C1', () => {
+    expect(TIER_TO_OPOSICION.pack_c1).toBe(C1_OPOSICION_ID)
+  })
+
+  it('pack_doble → "doble"', () => {
+    expect(TIER_TO_OPOSICION.pack_doble).toBe('doble')
+  })
+
+  it('fundador → C2', () => {
+    expect(TIER_TO_OPOSICION.fundador).toBe(C2_OPOSICION_ID)
+  })
+
+  it('fundador_c1 → C1', () => {
+    expect(TIER_TO_OPOSICION.fundador_c1).toBe(C1_OPOSICION_ID)
+  })
+
+  it('recarga → vacío (sin oposición específica)', () => {
+    expect(TIER_TO_OPOSICION.recarga).toBe('')
+  })
+
   // ─── Type safety ──────────────────────────────────────────────────────────
 
   it('StripePriceTier mapea correctamente a CORRECTIONS_GRANTED', () => {
-    const tiers: StripePriceTier[] = ['pack', 'recarga', 'fundador']
+    const tiers: StripePriceTier[] = ['pack', 'pack_c1', 'pack_doble', 'recarga', 'fundador', 'fundador_c1']
     for (const tier of tiers) {
       expect(CORRECTIONS_GRANTED[tier]).toBeGreaterThan(0)
     }
@@ -84,5 +134,9 @@ describe('Stripe pricing constants', () => {
 
   it('pack siempre da más correcciones que recarga', () => {
     expect(CORRECTIONS_GRANTED.pack).toBeGreaterThan(CORRECTIONS_GRANTED.recarga)
+  })
+
+  it('pack_doble da más correcciones que pack individual', () => {
+    expect(CORRECTIONS_GRANTED.pack_doble).toBeGreaterThan(CORRECTIONS_GRANTED.pack)
   })
 })

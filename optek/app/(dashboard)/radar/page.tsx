@@ -12,6 +12,7 @@
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { checkPaidAccess, getOposicionFromProfile } from '@/lib/freemium'
 import { TrendingUp, Info, BookOpen, Scale } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -32,14 +33,9 @@ export default async function RadarPage() {
   } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
-  // Verificar si tiene compra activa OR es founder OR es admin
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [{ data: compra }, { data: profileData }] = await Promise.all([
-    supabase.from('compras').select('id').eq('user_id', user.id).maybeSingle(),
-    (supabase as any).from('profiles').select('is_founder, is_admin').eq('id', user.id).single(),
-  ])
-  const prof = profileData as { is_founder?: boolean; is_admin?: boolean } | null
-  const isPaid = !!compra || prof?.is_founder === true || prof?.is_admin === true
+  // Verificar si tiene compra activa — scoped por oposición
+  const oposicionId = await getOposicionFromProfile(supabase, user.id)
+  const isPaid = await checkPaidAccess(supabase, user.id, oposicionId)
 
   // Load both radar views in parallel
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -24,8 +24,10 @@
  * REGLA CRÍTICA: SOLO usa el contexto legislativo proporcionado en el user prompt.
  * No completar con conocimiento general del modelo.
  */
-export const SYSTEM_GENERATE_TEST = `Eres un experto en oposiciones a la Administración General del Estado española.
-Tu tarea es generar preguntas tipo test de opción múltiple (MCQ) para el examen de Auxiliar Administrativo del Estado.
+/** Parameterized system prompt for MCQ generation — accepts oposición name */
+export function getSystemGenerateTest(oposicionNombre: string): string {
+  return `Eres un experto en oposiciones a la Administración General del Estado española.
+Tu tarea es generar preguntas tipo test de opción múltiple (MCQ) para el examen de ${oposicionNombre}.
 
 REGLAS OBLIGATORIAS:
 1. SOLO usa información del CONTEXTO LEGISLATIVO proporcionado. Nunca inventes artículos ni datos.
@@ -66,7 +68,11 @@ CALIDAD DE LA EXPLICACIÓN (campo "explicacion"):
   1. Cita textual: transcribe la frase clave del artículo que fundamenta la respuesta.
   2. Por qué la correcta es correcta: conecta la cita con la opción acertada.
   3. Por qué las demás son incorrectas: explica brevemente (1 frase) por qué cada distractor falla.
-- El opositor debe aprender algo al leer la explicación, no solo saber cuál era la correcta.` as const
+- El opositor debe aprender algo al leer la explicación, no solo saber cuál era la correcta.`
+}
+
+/** Backward-compatible alias — defaults to Auxiliar Administrativo del Estado */
+export const SYSTEM_GENERATE_TEST = getSystemGenerateTest('Auxiliar Administrativo del Estado') as string
 
 /**
  * System prompt para generación de tests MCQ de Bloque II (ofimática e informática).
@@ -78,8 +84,10 @@ CALIDAD DE LA EXPLICACIÓN (campo "explicacion"):
  *
  * Temperatura recomendada: 0.3 — determinismo alto para evitar inventar rutas de menú
  */
-export const SYSTEM_GENERATE_TEST_BLOQUE2 = `Eres un experto en oposiciones a la Administración General del Estado española.
-Tu tarea es generar preguntas tipo test (MCQ) sobre ofimática e informática para el examen de Auxiliar Administrativo.
+/** Parameterized system prompt for Bloque II MCQ generation */
+export function getSystemGenerateTestBloque2(oposicionNombre: string): string {
+  return `Eres un experto en oposiciones a la Administración General del Estado española.
+Tu tarea es generar preguntas tipo test (MCQ) sobre ofimática e informática para el examen de ${oposicionNombre}.
 
 REGLAS OBLIGATORIAS:
 1. SOLO usa información del CONTEXTO TÉCNICO proporcionado. Nunca inventes rutas de menú, atajos de teclado ni funcionalidades.
@@ -112,7 +120,11 @@ CALIDAD DE LA EXPLICACIÓN (campo "explicacion"):
 - La explicación DEBE ser pedagógica (~2-3 frases):
   1. Explica qué hace la funcionalidad/atajo correcto y dónde encontrarlo.
   2. Explica brevemente por qué cada distractor es incorrecto (qué hace realmente cada opción falsa).
-- El opositor debe aprender algo útil al leer la explicación.` as const
+- El opositor debe aprender algo útil al leer la explicación.`
+}
+
+/** Backward-compatible alias — defaults to Auxiliar Administrativo */
+export const SYSTEM_GENERATE_TEST_BLOQUE2 = getSystemGenerateTestBloque2('Auxiliar Administrativo') as string
 
 /**
  * System prompt para corrección de desarrollos escritos.
@@ -277,7 +289,9 @@ Evalúa el desarrollo anterior según los criterios indicados. Proporciona feedb
  * Temperatura recomendada: 0.3 — respuestas pedagógicas consistentes.
  * Modelo: claude-haiku-4-5 (suficiente para estructurar explicaciones breves).
  */
-export const SYSTEM_EXPLAIN_ERRORES = `Eres un tutor socrático de oposiciones al Cuerpo General Auxiliar de la Administración del Estado española.
+/** Parameterized system prompt for Socratic error explanation */
+export function getSystemExplainErrores(oposicionNombre: string): string {
+  return `Eres un tutor socrático de oposiciones al ${oposicionNombre} de la Administración del Estado española.
 
 Para cada pregunta fallada, sigue este proceso en 4 pasos CONCISOS (máximo 3-4 frases en total — brevedad es clave):
 
@@ -378,7 +392,11 @@ Art. 1: Ampliar y reforzar la transparencia de la actividad pública, regular y 
 
 Art. 5 (Publicidad activa): Los sujetos incluidos en el ámbito de aplicación publicarán de forma periódica y actualizada la información cuyo conocimiento sea relevante para garantizar la transparencia de su actividad relacionada con el funcionamiento y control de la actuación pública.
 
-Art. 12 (Derecho de acceso): Todas las personas tienen derecho a acceder a la información pública. Puede limitarse cuando lo requiera: la seguridad nacional, la defensa, las relaciones exteriores, la seguridad pública, la prevención e investigación de ilícitos, la igualdad de las partes en procesos judiciales, las funciones de vigilancia e inspección, los intereses económicos y comerciales, la política económica y monetaria, el secreto profesional, la propiedad intelectual, la confidencialidad en procesos de toma de decisión, la protección del medio ambiente.` as const
+Art. 12 (Derecho de acceso): Todas las personas tienen derecho a acceder a la información pública. Puede limitarse cuando lo requiera: la seguridad nacional, la defensa, las relaciones exteriores, la seguridad pública, la prevención e investigación de ilícitos, la igualdad de las partes en procesos judiciales, las funciones de vigilancia e inspección, los intereses económicos y comerciales, la política económica y monetaria, el secreto profesional, la propiedad intelectual, la confidencialidad en procesos de toma de decisión, la protección del medio ambiente.`
+}
+
+/** Backward-compatible alias — defaults to Cuerpo General Auxiliar */
+export const SYSTEM_EXPLAIN_ERRORES = getSystemExplainErrores('Cuerpo General Auxiliar') as string
 
 /**
  * Variante streaming del prompt socrático.

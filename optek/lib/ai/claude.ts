@@ -133,6 +133,7 @@ export interface ClaudeCallOptions {
   requestId?: string
   endpoint?: string
   userId?: string
+  oposicionId?: string
 }
 
 // ─── callClaude (Sonnet — correcciones) ───────────────────────────────────────
@@ -156,6 +157,7 @@ export async function callClaude(
     requestId,
     endpoint = 'unknown',
     userId,
+    oposicionId,
   } = options
 
   // Circuit Breaker: lanza si OPEN sin período de reset cumplido
@@ -190,7 +192,7 @@ export async function callClaude(
     onSuccess()
 
     // DDIA Observability: INSERT no-bloqueante — fallo en log no rompe la request
-    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents })
+    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents, oposicionId })
 
     const content = response.content[0]
     if (content.type !== 'text') {
@@ -218,7 +220,7 @@ export async function callClaudeHaiku(
   userContent: string,
   options: Omit<ClaudeCallOptions, 'model'> = {}
 ): Promise<string> {
-  const { maxTokens = 1500, systemPrompt, requestId, endpoint = 'unknown', userId } = options
+  const { maxTokens = 1500, systemPrompt, requestId, endpoint = 'unknown', userId, oposicionId } = options
   const model = 'claude-haiku-4-5-20251001'
 
   // Circuit Breaker: lanza si OPEN sin período de reset cumplido
@@ -250,7 +252,7 @@ export async function callClaudeHaiku(
 
     log.info({ endpoint, tokensIn, tokensOut, cacheCreation, cacheRead, latencyMs, costCents, model }, 'Haiku call OK')
     onSuccess()
-    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents })
+    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents, oposicionId })
 
     const content = response.content[0]
     if (content.type !== 'text') {
@@ -451,6 +453,7 @@ async function logApiUsage(params: {
   tokensIn: number
   tokensOut: number
   costCents: number
+  oposicionId?: string
 }) {
   try {
     const supabase = await createServiceClient()
@@ -461,6 +464,7 @@ async function logApiUsage(params: {
       tokens_in: params.tokensIn,
       tokens_out: params.tokensOut,
       cost_estimated_cents: params.costCents,
+      oposicion_id: params.oposicionId ?? null,
     })
   } catch (err) {
     // Non-blocking: advertir pero no propagar el error

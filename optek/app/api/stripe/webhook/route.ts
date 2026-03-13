@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { stripe, CORRECTIONS_GRANTED } from '@/lib/stripe/client'
+import { stripe, CORRECTIONS_GRANTED, C1_OPOSICION_ID, C2_OPOSICION_ID } from '@/lib/stripe/client'
 import { createServiceClient } from '@/lib/supabase/server'
 import { logger } from '@/lib/logger'
 
@@ -107,28 +107,53 @@ async function handleStripeEvent(
 
       const userId = session.metadata?.user_id ?? ''
       const tier = (session.metadata?.tier ?? 'pack') as keyof typeof CORRECTIONS_GRANTED
+      const oposicionIdMeta = session.metadata?.oposicion_id ?? ''
 
       // Mapear tier del checkout → tipo que acepta el CHECK constraint de compras
       // BD: CHECK (tipo IN ('tema', 'pack_oposicion', 'subscription'))
-      // Checkout tiers: 'pack' | 'recarga' | 'fundador'
       const TIER_TO_DB_TIPO: Record<string, string> = {
         pack: 'pack_oposicion',
+        pack_c1: 'pack_oposicion',
+        pack_doble: 'pack_oposicion',
         recarga: 'pack_oposicion',
         fundador: 'pack_oposicion',
+        fundador_c1: 'pack_oposicion',
       }
       const dbTipo = TIER_TO_DB_TIPO[tier] ?? 'pack_oposicion'
 
-      // 1. Registrar compra
-      await supabase.from('compras').insert({
-        user_id: userId,
-        oposicion_id: session.metadata?.oposicion_id ?? '',
-        tema_id: session.metadata?.tema_id ?? null,
-        stripe_checkout_session_id: session.id,
-        tipo: dbTipo,
-        amount_paid: session.amount_total ?? 0,
-      })
+      // 1. Registrar compra(s)
+      if (tier === 'pack_doble') {
+        // Pack Doble: 2 filas en compras (una C1 + una C2)
+        await supabase.from('compras').insert([
+          {
+            user_id: userId,
+            oposicion_id: C2_OPOSICION_ID,
+            tema_id: null,
+            stripe_checkout_session_id: session.id,
+            tipo: dbTipo,
+            amount_paid: session.amount_total ?? 0,
+          },
+          {
+            user_id: userId,
+            oposicion_id: C1_OPOSICION_ID,
+            tema_id: null,
+            stripe_checkout_session_id: `${session.id}_c1`, // unique constraint workaround
+            tipo: dbTipo,
+            amount_paid: 0, // segundo registro con amount 0 (total en el primero)
+          },
+        ])
+      } else {
+        await supabase.from('compras').insert({
+          user_id: userId,
+          oposicion_id: oposicionIdMeta,
+          tema_id: session.metadata?.tema_id ?? null,
+          stripe_checkout_session_id: session.id,
+          tipo: dbTipo,
+          amount_paid: session.amount_total ?? 0,
+        })
+      }
 
-      // 2. Otorgar correcciones según tier de producto (ADR-0010)
+      // 2. Otorgar correcciones según tier de producto (pool compartido)
       const correctionsToGrant = CORRECTIONS_GRANTED[tier] ?? 0
       if (correctionsToGrant > 0) {
         await supabase.rpc('grant_corrections', {
@@ -138,8 +163,8 @@ async function handleStripeEvent(
         log.info({ sessionId: session.id, tier, correctionsToGrant }, 'Correcciones otorgadas')
       }
 
-      // 3. Founder Pricing (§1.21.3): activar badge permanente is_founder
-      if (tier === 'fundador') {
+      // 3. Founder badge (§1.21.3): aplica a fundador Y fundador_c1
+      if (tier === 'fundador' || tier === 'fundador_c1') {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         await (supabase as any)
           .from('profiles')

@@ -447,10 +447,9 @@ export async function retrieveExamples(temaId: string, limit = 3): Promise<strin
  * @returns       { articulos, tokensEstimados, strategy }
  */
 /**
- * Temas 17-28 son Bloque II (ofimática/informática).
- * buildContext detecta el bloque del tema y usa la fuente de conocimiento correcta.
+ * Bloque II detection: uses the `bloque` column from `temas` table (migration 010).
+ * No more hardcoded tema numbers — works for any oposición (C2: 17-28, C1: 38-45).
  */
-const BLOQUE_II_NUMEROS = new Set([17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28])
 
 /** Mapeo tema_numero → bloque BD para conocimiento_tecnico */
 function getBloqueForTema(temaNumero: number): string {
@@ -468,15 +467,17 @@ export async function buildContext(
   const start = Date.now()
   const supabase = getSupabaseClient()
 
-  // Detectar si el tema es Bloque II consultando el número de tema
-  const { data: temaData } = await supabase
+  // Detectar si el tema es Bloque II consultando la columna bloque (migration 010)
+  // Cast needed: `bloque` column exists in DB (migration 010) but not yet in generated TS types
+  const { data: temaData } = await (supabase as ReturnType<typeof createClient>)
     .from('temas')
-    .select('numero')
+    .select('numero, bloque' as 'numero')
     .eq('id', temaId)
     .maybeSingle()
 
-  const temaNumero: number | null = temaData?.numero ?? null
-  const esBloqueII = temaNumero !== null && BLOQUE_II_NUMEROS.has(temaNumero)
+  const temaRow = temaData as { numero: number; bloque: string | null } | null
+  const temaNumero: number | null = temaRow?.numero ?? null
+  const esBloqueII = temaRow?.bloque === 'II'
 
   let articulos: ArticuloContext[] = []
   let strategy: RetrievalContext['strategy'] = 'tema_ids'

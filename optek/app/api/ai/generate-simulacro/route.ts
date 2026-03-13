@@ -4,7 +4,7 @@ import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { generatePsicotecnicos } from '@/lib/psicotecnicos'
 import { logger } from '@/lib/logger'
-import { FREE_LIMITS, PAID_LIMITS, checkPaidAccess, checkIsAdmin } from '@/lib/freemium'
+import { FREE_LIMITS, PAID_LIMITS, checkPaidAccess, checkIsAdmin, getOposicionFromProfile } from '@/lib/freemium'
 import type { Json } from '@/types/database'
 import type { Pregunta } from '@/types/ai'
 
@@ -90,10 +90,11 @@ export async function POST(request: NextRequest) {
 
   const { examenId, anno, numPreguntas, incluirPsicotecnicos, dificultadPsico, modo } = parsed.data
 
-  // ── 3. Freemium gating (compra OR is_founder) ───────────────────────────
+  // ── 3. Freemium gating — scoped por oposición ──────────────────────────
   const serviceSupabase = await createServiceClient()
+  const oposicionId = await getOposicionFromProfile(serviceSupabase, user.id)
   const [hasPaidAccess, isAdmin] = await Promise.all([
-    checkPaidAccess(serviceSupabase, user.id),
+    checkPaidAccess(serviceSupabase, user.id, oposicionId),
     checkIsAdmin(serviceSupabase, user.id),
   ])
 

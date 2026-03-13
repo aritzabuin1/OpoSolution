@@ -131,6 +131,8 @@ export interface GPTCallOptions {
   requestId?: string
   endpoint?: string
   userId?: string
+  /** Oposicion ID for cost attribution in api_usage_log */
+  oposicionId?: string
 }
 
 // ─── callGPT (GPT-4o — correcciones) ──────────────────────────────────────────
@@ -154,6 +156,7 @@ export async function callGPT(
     requestId,
     endpoint = 'unknown',
     userId,
+    oposicionId,
   } = options
 
   checkCircuit()
@@ -184,7 +187,7 @@ export async function callGPT(
 
     log.info({ endpoint, tokensIn, tokensOut, latencyMs, costCents }, 'GPT call OK')
     onSuccess()
-    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents })
+    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents, oposicionId })
 
     const choice = response.choices[0]
     const text = choice?.message?.content
@@ -228,7 +231,7 @@ export async function callGPTMini(
   userContent: string,
   options: Omit<GPTCallOptions, 'model'> = {}
 ): Promise<string> {
-  const { maxTokens = 2000, systemPrompt, requestId, endpoint = 'unknown', userId } = options
+  const { maxTokens = 2000, systemPrompt, requestId, endpoint = 'unknown', userId, oposicionId } = options
   const model = GPT_MINI_MODEL
 
   checkCircuit()
@@ -257,7 +260,7 @@ export async function callGPTMini(
 
     log.info({ endpoint, tokensIn, tokensOut, latencyMs, costCents, model }, 'GPT-mini call OK')
     onSuccess()
-    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents })
+    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents, oposicionId })
 
     const choice = response.choices[0]
     const text = choice?.message?.content
@@ -315,7 +318,7 @@ export async function callGPTJSON<T>(
   schema: ZodType<T>,
   options: GPTCallOptions = {}
 ): Promise<T> {
-  const { maxTokens = 8000, requestId, endpoint = 'unknown', userId } = options
+  const { maxTokens = 8000, requestId, endpoint = 'unknown', userId, oposicionId } = options
   const model = options.model === GPT_MODEL ? GPT_MODEL : GPT_MINI_MODEL
   const costInput = model === GPT_MODEL ? GPT_COST_PER_1K_INPUT_CENTS : GPT_MINI_COST_PER_1K_INPUT_CENTS
   const costOutput = model === GPT_MODEL ? GPT_COST_PER_1K_OUTPUT_CENTS : GPT_MINI_COST_PER_1K_OUTPUT_CENTS
@@ -353,7 +356,7 @@ export async function callGPTJSON<T>(
 
     log.info({ endpoint, tokensIn, tokensOut, latencyMs, costCents, model }, 'GPT JSON call OK')
     onSuccess()
-    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents })
+    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents, oposicionId })
 
     const choice = response.choices[0]
     const text = choice?.message?.content
@@ -407,7 +410,7 @@ export async function callGPTJSON<T>(
     const retryCost = Math.round(
       ((retryTokensIn * costInput + retryTokensOut * costOutput) / 1000) * 100
     ) / 100
-    void logApiUsage({ userId, endpoint: `${endpoint}-retry`, model, tokensIn: retryTokensIn, tokensOut: retryTokensOut, costCents: retryCost })
+    void logApiUsage({ userId, endpoint: `${endpoint}-retry`, model, tokensIn: retryTokensIn, tokensOut: retryTokensOut, costCents: retryCost, oposicionId })
 
     const parsed2 = tryParseAndValidate(retryText, schema)
     if (parsed2.success) {
@@ -531,6 +534,7 @@ async function logApiUsage(params: {
   tokensIn: number
   tokensOut: number
   costCents: number
+  oposicionId?: string
 }) {
   try {
     const supabase = await createServiceClient()
@@ -541,6 +545,7 @@ async function logApiUsage(params: {
       tokens_in: params.tokensIn,
       tokens_out: params.tokensOut,
       cost_estimated_cents: params.costCents,
+      oposicion_id: params.oposicionId ?? null,
     })
   } catch (err) {
     logger.warn({ err }, 'api_usage_log INSERT failed — non-blocking')

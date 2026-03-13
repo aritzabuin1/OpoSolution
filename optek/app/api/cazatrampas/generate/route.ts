@@ -4,7 +4,7 @@ import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { generateCazaTrampas } from '@/lib/ai/generate-cazatrampas'
 import { logger } from '@/lib/logger'
-import { FREE_LIMITS, PAID_LIMITS, checkPaidAccess, checkIsAdmin } from '@/lib/freemium'
+import { FREE_LIMITS, PAID_LIMITS, checkPaidAccess, checkIsAdmin, getOposicionFromTema, getOposicionFromProfile } from '@/lib/freemium'
 
 // Vercel Hobby max: 60s. AI generation needs 15-40s.
 export const maxDuration = 60
@@ -56,8 +56,11 @@ export async function POST(request: NextRequest) {
   // Paid users (compra OR is_founder) → sin límite
   // Free users → FREE_DAILY_LIMIT partidas/día
   const svcSupabase = await createServiceClient()
+  const oposicionId = temaId
+    ? await getOposicionFromTema(svcSupabase, temaId)
+    : await getOposicionFromProfile(svcSupabase, user.id)
   const [isPaid, isAdmin] = await Promise.all([
-    checkPaidAccess(svcSupabase, user.id),
+    checkPaidAccess(svcSupabase, user.id, oposicionId),
     checkIsAdmin(svcSupabase, user.id),
   ])
 

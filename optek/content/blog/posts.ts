@@ -1939,4 +1939,984 @@ export const blogPosts: BlogPost[] = [
 </ul>
     `.trim(),
   },
+
+  // ─── Post 15 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'lpac-articulos-clave-estrategia-estudio-oposiciones',
+    title: 'Cómo estudiar la LPAC para oposiciones: artículos clave y estrategia',
+    description:
+      'Guía práctica para estudiar la Ley 39/2015 (LPAC) en oposiciones: los 20 artículos clave que más pregunta el INAP, estrategia de estudio y ejemplos reales de preguntas.',
+    date: '2026-03-15',
+    keywords: [
+      'estudiar LPAC oposiciones',
+      'artículos clave ley 39/2015',
+      'LPAC estrategia estudio auxiliar administrativo',
+      'procedimiento administrativo oposiciones',
+    ],
+    content: `
+<p>
+  La <strong>Ley 39/2015, de Procedimiento Administrativo Común</strong> (LPAC) es, junto con la
+  Constitución, la norma más preguntada en el examen de Auxiliar Administrativo del Estado. En cada
+  convocatoria aparecen entre <strong>5 y 8 preguntas directas</strong> sobre esta ley, y muchas más
+  que la mencionan de forma indirecta. Si no la dominas, estás regalando puntos.
+</p>
+<p>
+  Pero la LPAC tiene 133 artículos. ¿Hay que memorizarlos todos? <strong>No.</strong> La clave es
+  saber cuáles caen siempre y cuáles casi nunca aparecen. En esta guía te explicamos exactamente
+  qué estudiar y cómo.
+</p>
+
+<h2>¿Por qué la LPAC es tan importante?</h2>
+<p>
+  La LPAC regula cómo la Administración se relaciona con los ciudadanos: cómo se inicia un
+  procedimiento, los plazos, los recursos, las notificaciones electrónicas... Es la columna vertebral
+  de la actuación administrativa. Para un Auxiliar Administrativo, que tramita expedientes a diario,
+  es conocimiento de uso directo.
+</p>
+<p>
+  En el temario del Auxiliar (C2), la LPAC aparece en los <strong>temas 18 a 23 del Bloque I</strong>.
+  Son 6 temas completos dedicados a esta ley, lo que da una idea de su peso.
+</p>
+
+<h2>Los 20 artículos que más caen en el examen</h2>
+<p>
+  Tras analizar los exámenes INAP de 2019, 2022 y 2024, estos son los artículos con mayor frecuencia
+  de aparición:
+</p>
+<ul>
+  <li><strong>Art. 21 — Obligación de resolver:</strong> plazos de resolución (3 meses por defecto si la norma no dice otro), silencio administrativo positivo/negativo</li>
+  <li><strong>Art. 53 — Derechos del interesado:</strong> acceso al expediente, copia de documentos, identificación de autoridades</li>
+  <li><strong>Art. 66-68 — Solicitudes:</strong> contenido mínimo, subsanación de defectos (10 días), mejora de la solicitud</li>
+  <li><strong>Art. 82 — Trámite de audiencia:</strong> plazo mínimo 10 días / máximo 15 días, cuándo se puede omitir</li>
+  <li><strong>Art. 112-113 — Recursos administrativos:</strong> recurso de alzada (1 mes / 3 meses) y recurso de reposición (1 mes / 1 mes)</li>
+  <li><strong>Art. 121-122 — Revisión de oficio y declaración de lesividad:</strong> actos nulos vs anulables, plazos (4 años lesividad)</li>
+  <li><strong>Art. 39-40 — Eficacia y notificaciones:</strong> la notificación electrónica como norma, plazo 10 días para publicación</li>
+  <li><strong>Art. 41-43 — Práctica de notificaciones:</strong> electrónicas obligatorias para personas jurídicas, comparecencia electrónica</li>
+  <li><strong>Art. 9-10 — Identificación y firma electrónica:</strong> sistemas de firma admitidos, cl@ve</li>
+  <li><strong>Art. 14 — Derecho y obligación de relación electrónica:</strong> quiénes están obligados</li>
+</ul>
+
+<h2>Cómo pregunta el INAP sobre la LPAC</h2>
+<p>
+  Las preguntas del INAP sobre la LPAC siguen patrones muy reconocibles:
+</p>
+<ul>
+  <li><strong>Plazos concretos:</strong> "¿Cuál es el plazo para interponer recurso de alzada?" → 1 mes (acto expreso) o 3 meses (silencio)</li>
+  <li><strong>Artículos trampa:</strong> mezclan plazos de leyes distintas (LPAC vs LRJSP) en las opciones</li>
+  <li><strong>Obligaciones electrónicas:</strong> quiénes están obligados a relacionarse electrónicamente (art. 14.2)</li>
+  <li><strong>Diferencias sutil:</strong> actos nulos (art. 47) vs anulables (art. 48) — siempre hay una pregunta</li>
+</ul>
+<p>
+  Recuerda que el examen tiene <a href="/blog/penalizacion-examen-auxiliar-administrativo">penalización -1/3</a>,
+  así que si no estás seguro de un plazo concreto, es mejor dejar en blanco.
+</p>
+
+<h2>Estrategia de estudio: no memorices los 133 artículos</h2>
+<p>
+  El error más común es intentar memorizar la LPAC entera. Es una pérdida de tiempo. En su lugar:
+</p>
+<ol>
+  <li><strong>Estudia los 20 artículos clave</strong> que hemos listado arriba. Representan el 80% de las preguntas</li>
+  <li><strong>Haz una tabla de plazos:</strong> recurso de alzada, reposición, extraordinario de revisión, silencio... Los plazos son el 50% de las preguntas LPAC</li>
+  <li><strong>Practica con preguntas tipo test:</strong> no basta con leer el artículo; necesitas ver cómo lo pregunta el INAP para detectar las trampas</li>
+  <li><strong>Compara con la LRJSP:</strong> muchas preguntas mezclan artículos de ambas leyes para confundirte</li>
+  <li><strong>Repasa las notificaciones electrónicas:</strong> es un tema reciente que el INAP está preguntando cada vez más</li>
+</ol>
+<p>
+  Si quieres profundizar en los artículos LPAC más preguntados, consulta nuestra
+  <a href="/blog/articulos-lpac-mas-preguntados-auxiliar-administrativo">guía específica de artículos LPAC</a>.
+  Y para la otra gran ley del temario, revisa
+  <a href="/blog/constitucion-espanola-preguntas-oposicion-auxiliar">las preguntas de Constitución que más caen</a>.
+</p>
+
+<h2>Practica con preguntas reales INAP</h2>
+<p>
+  La mejor forma de dominar la LPAC es enfrentarte a preguntas tipo test basadas en convocatorias
+  anteriores. En OpoRuta puedes hacer <a href="/examenes-oficiales">simulacros con preguntas oficiales INAP</a>
+  de 2018, 2019, 2022 y 2024, con penalización real y corrección automática.
+</p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/articulos-lpac-mas-preguntados-auxiliar-administrativo">Artículos LPAC más preguntados</a> — análisis detallado artículo por artículo</li>
+  <li><a href="/blog/constitucion-espanola-preguntas-oposicion-auxiliar">Constitución: preguntas que más caen</a> — la otra ley estrella del examen</li>
+  <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Penalización -1/3</a> — cómo gestionar las preguntas dudosas</li>
+</ul>
+    `.trim(),
+  },
+
+  // ─── Post 16 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'psicotecnicos-auxiliar-administrativo-tipos-trucos',
+    title: 'Psicotécnicos auxiliar administrativo: tipos, ejemplos y trucos',
+    description:
+      'Guía completa de psicotécnicos para el examen de Auxiliar Administrativo del Estado: tipos de ejercicios, trucos para resolverlos rápido y errores comunes que evitar.',
+    date: '2026-03-17',
+    keywords: [
+      'psicotécnicos auxiliar administrativo',
+      'test psicotécnicos oposiciones',
+      'ejercicios psicotécnicos examen INAP',
+      'trucos psicotécnicos oposiciones',
+    ],
+    content: `
+<p>
+  El examen de Auxiliar Administrativo del Estado incluye <strong>30 preguntas de psicotécnicos</strong>
+  en la parte de ofimática y actividad administrativa. Aunque muchos opositores los subestiman, estas
+  preguntas pueden marcar la diferencia entre aprobar y suspender. La buena noticia: con práctica
+  diaria, son las más fáciles de mejorar.
+</p>
+
+<h2>¿Qué son los psicotécnicos y por qué importan?</h2>
+<p>
+  Los psicotécnicos miden capacidades cognitivas: razonamiento lógico, atención, velocidad de
+  procesamiento y capacidad numérica. No requieren memorizar leyes ni artículos, sino
+  <strong>entrenar tu mente</strong> para resolver patrones bajo presión de tiempo.
+</p>
+<p>
+  En el examen INAP, las 30 preguntas psicotécnicas se mezclan con las de ofimática dentro del
+  mismo bloque de 50 preguntas (Bloque II). Tienes aproximadamente <strong>90 segundos por pregunta</strong>,
+  así que la velocidad es clave.
+</p>
+
+<h2>Tipos de psicotécnicos que caen en el examen</h2>
+
+<h3>1. Series numéricas</h3>
+<p>
+  Te dan una secuencia de números y debes encontrar el siguiente. Las más comunes:
+  sumas/restas progresivas, multiplicaciones, series alternadas (una regla para posiciones pares,
+  otra para impares) y series con operaciones combinadas.
+</p>
+<p>
+  <strong>Truco:</strong> calcula siempre la diferencia entre cada par de números consecutivos.
+  Si las diferencias forman un patrón, has encontrado la regla.
+</p>
+
+<h3>2. Series de letras</h3>
+<p>
+  Secuencias alfabéticas con saltos regulares. Ejemplo: A, D, G, J... (saltos de 3).
+  Las variantes incluyen series inversas, series con doble letra y series que combinan
+  mayúsculas y minúsculas.
+</p>
+<p>
+  <strong>Truco:</strong> numera las letras del alfabeto (A=1, B=2...) y convierte la serie
+  de letras en serie numérica. Es más fácil ver el patrón con números.
+</p>
+
+<h3>3. Analogías y relaciones</h3>
+<p>
+  "A es a B como C es a ___". Pueden ser relaciones semánticas (sinónimos, antónimos, categorías),
+  numéricas o visuales. El INAP suele usar analogías de categoría (animal:mamífero :: rosa:___).
+</p>
+
+<h3>4. Razonamiento lógico</h3>
+<p>
+  Silogismos, deducciones y problemas de lógica proposicional. "Si todos los A son B, y algunos B
+  son C, ¿qué podemos afirmar?" Son las que más tiempo consumen, así que déjalas para el final
+  si no las ves claras.
+</p>
+
+<h3>5. Atención y percepción</h3>
+<p>
+  Contar elementos, encontrar diferencias, detectar errores en secuencias. Requieren concentración
+  máxima pero poca reflexión. Son puntos "fáciles" si no te precipitas.
+</p>
+
+<h2>Trucos para resolver psicotécnicos más rápido</h2>
+<ul>
+  <li><strong>Practica a diario:</strong> 15-20 minutos de psicotécnicos cada día son más efectivos que 2 horas el fin de semana. Tu cerebro necesita repetición espaciada</li>
+  <li><strong>Gestiona el tiempo:</strong> si en 60 segundos no ves el patrón, marca la pregunta y sigue. Vuelve al final si queda tiempo</li>
+  <li><strong>Cuidado con las trampas:</strong> el INAP pone opciones que "casi" encajan. Verifica siempre que tu respuesta cumple la regla para TODOS los elementos de la serie, no solo los últimos</li>
+  <li><strong>Empieza por las fáciles:</strong> las series simples y las de atención primero. Las de lógica compleja al final</li>
+  <li><strong>No adivines:</strong> con <a href="/blog/penalizacion-examen-auxiliar-administrativo">penalización -1/3</a>, responder al azar te perjudica. Si no puedes descartar al menos una opción, déjala en blanco</li>
+</ul>
+
+<h2>Errores comunes en psicotécnicos</h2>
+<ul>
+  <li><strong>No practicar suficiente:</strong> los psicotécnicos son pura práctica. Leer teoría sobre "cómo resolver series" no sirve si no haces cientos de ejercicios</li>
+  <li><strong>Precipitarse:</strong> un error de cálculo en el primer paso invalida toda la serie. Comprueba siempre</li>
+  <li><strong>Ignorar las instrucciones:</strong> a veces piden "el anterior" en vez de "el siguiente". Lee el enunciado completo</li>
+  <li><strong>Bloqueo mental:</strong> si te atascas, pasa a la siguiente. Un minuto perdido en una pregunta imposible son puntos que no ganas en otras fáciles</li>
+</ul>
+
+<h2>Practica psicotécnicos con OpoRuta</h2>
+<p>
+  En OpoRuta tienes un <a href="/psicotecnicos">generador ilimitado de psicotécnicos</a> con los 5 tipos
+  que caen en el examen. Cada ejercicio incluye explicación detallada de la solución para que entiendas
+  el patrón, no solo la respuesta.
+</p>
+<p>
+  Para una visión más amplia de las pruebas psicotécnicas en oposiciones, lee nuestro artículo sobre
+  <a href="/blog/pruebas-psicotecnicas-examen-auxiliar-administrativo">pruebas psicotécnicas en el examen</a>.
+  Y si estás empezando a prepararte, nuestra
+  <a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">guía completa de preparación</a>
+  te ayudará a organizar tu estudio.
+</p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/pruebas-psicotecnicas-examen-auxiliar-administrativo">Pruebas psicotécnicas en detalle</a> — qué evalúan y cómo puntuarlas</li>
+  <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Penalización -1/3</a> — cuándo dejar en blanco en psicotécnicos</li>
+  <li><a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">Guía completa de preparación</a> — organiza tu estudio de principio a fin</li>
+</ul>
+    `.trim(),
+  },
+
+  // ─── Post 17 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'ofimatica-word-excel-examen-auxiliar-administrativo-2026',
+    title: 'Ofimática Word y Excel para el examen auxiliar administrativo 2026',
+    description:
+      'Todo sobre las preguntas de Word y Excel en el examen de Auxiliar Administrativo del Estado: qué temas caen, cómo estudiar ofimática y los atajos más preguntados por el INAP.',
+    date: '2026-03-19',
+    keywords: [
+      'ofimática examen auxiliar administrativo',
+      'Word Excel oposiciones',
+      'preguntas ofimática INAP 2026',
+      'temario ofimática auxiliar estado',
+    ],
+    content: `
+<p>
+  El Bloque II del examen de Auxiliar Administrativo del Estado dedica <strong>50 preguntas a
+  actividad administrativa y ofimática</strong>. De esas 50, aproximadamente la mitad son de
+  ofimática pura: Word, Excel, correo electrónico y sistemas operativos. Es el bloque donde
+  más puntos puedes ganar con menos esfuerzo si estudias de forma inteligente.
+</p>
+
+<h2>¿Qué peso tiene la ofimática en el examen?</h2>
+<p>
+  El examen tiene 100 preguntas puntuables: 50 del Bloque I (Organización del Estado y Derecho
+  Administrativo) y 50 del Bloque II (Actividad Administrativa e Informática). Dentro del Bloque II,
+  los temas 24-28 son de ofimática. El INAP suele repartir así:
+</p>
+<ul>
+  <li><strong>Word:</strong> 8-12 preguntas (procesador de textos)</li>
+  <li><strong>Excel:</strong> 8-12 preguntas (hoja de cálculo)</li>
+  <li><strong>Correo electrónico y navegación:</strong> 3-5 preguntas</li>
+  <li><strong>Sistema operativo Windows:</strong> 3-5 preguntas</li>
+  <li><strong>Psicotécnicos y actividad administrativa:</strong> el resto</li>
+</ul>
+
+<h2>Word: lo que más pregunta el INAP</h2>
+<p>
+  Las preguntas de Word no piden que redactes un documento, sino que conozcas funcionalidades
+  específicas del programa. Los temas estrella:
+</p>
+<ul>
+  <li><strong>Combinación de correspondencia (Mail Merge):</strong> cómo crear un documento base, seleccionar origen de datos, insertar campos de combinación. Cae en TODOS los exámenes</li>
+  <li><strong>Estilos y formato:</strong> diferencia entre formato directo y estilos, cómo modificar un estilo, Galería de estilos rápidos</li>
+  <li><strong>Secciones y saltos:</strong> salto de sección (página siguiente, continua, par/impar), diferencia con salto de página</li>
+  <li><strong>Encabezados y pies de página:</strong> vincular a la sección anterior, campos automáticos (número de página, fecha)</li>
+  <li><strong>Tablas:</strong> insertar, combinar/dividir celdas, ordenar datos, convertir texto en tabla</li>
+  <li><strong>Revisión:</strong> control de cambios, comparar documentos, comentarios</li>
+</ul>
+<p>
+  <strong>Truco clave:</strong> el INAP pregunta por las <strong>rutas de menú exactas</strong>.
+  No basta saber que existe la combinación de correspondencia; necesitas saber que está en
+  la pestaña <em>Correspondencia</em> y los pasos del asistente.
+</p>
+
+<h2>Excel: fórmulas y funciones que debes dominar</h2>
+<p>
+  Excel es donde más suspenden los opositores, porque requiere conocer funciones específicas.
+  Lo imprescindible:
+</p>
+<ul>
+  <li><strong>Fórmulas básicas:</strong> SUMA, PROMEDIO, MAX, MIN, CONTAR, CONTARA</li>
+  <li><strong>Funciones lógicas:</strong> SI, Y, O, SI.ERROR — el INAP adora preguntar la sintaxis exacta de SI</li>
+  <li><strong>BUSCARV / BUSCARX:</strong> argumentos, diferencia entre coincidencia exacta y aproximada</li>
+  <li><strong>Referencias:</strong> relativas (A1), absolutas ($A$1), mixtas ($A1, A$1). Cae siempre</li>
+  <li><strong>Gráficos:</strong> tipos (columnas, barras, circular, líneas), cómo cambiar el tipo, elementos del gráfico</li>
+  <li><strong>Formato condicional:</strong> reglas, escalas de color, barras de datos</li>
+  <li><strong>Filtros y ordenación:</strong> autofiltro, filtro avanzado, ordenar por múltiples criterios</li>
+</ul>
+
+<h2>Cómo estudiar ofimática (sin morir en el intento)</h2>
+<ol>
+  <li><strong>No memorices cada menú:</strong> céntrate en los 20 comandos más preguntados, no en las 500 opciones que tiene Word</li>
+  <li><strong>Practica con el programa abierto:</strong> lee la teoría y ve comprobando en Word/Excel real. La memoria muscular ayuda</li>
+  <li><strong>Haz capturas de pantalla:</strong> de los menús que más caen (Correspondencia, Datos, Fórmulas) y repásalas como flashcards</li>
+  <li><strong>Practica con tests tipo INAP:</strong> las preguntas tienen un estilo muy reconocible que solo se aprende practicando</li>
+  <li><strong>Atajos de teclado:</strong> no te obsesiones, pero memoriza los 10 más comunes (Ctrl+C/V/X/Z, Ctrl+N, Ctrl+G, Ctrl+1 en Excel)</li>
+</ol>
+
+<h2>Errores que evitar en ofimática</h2>
+<ul>
+  <li><strong>Estudiar versiones antiguas:</strong> el INAP pregunta sobre Microsoft 365 / Office 2019-2021. Si tu manual habla de Office 2010, actualízalo</li>
+  <li><strong>Ignorar el correo electrónico:</strong> Outlook tiene 3-5 preguntas fáciles si dedicas 2 horas a estudiarlo</li>
+  <li><strong>Confundir Word y Excel:</strong> el INAP pone opciones de un programa mezcladas con otro para despistarte</li>
+</ul>
+<p>
+  Si necesitas una visión global de los 28 temas, consulta el
+  <a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">temario completo</a>. Y para saber
+  cuántos temas priorizar, mira
+  <a href="/blog/cuantos-temas-examen-auxiliar-administrativo-estado">cuántos temas tiene el examen</a>.
+</p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo 2025-2026</a> — desglose de los 28 temas</li>
+  <li><a href="/blog/preparar-oposicion-auxiliar-administrativo-por-libre">Preparar por libre</a> — organiza tu estudio sin academia</li>
+  <li><a href="/blog/cuantos-temas-examen-auxiliar-administrativo-estado">¿Cuántos temas tiene el examen?</a> — priorización y bloques</li>
+</ul>
+    `.trim(),
+  },
+
+  // ─── Post 18 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'diferencias-auxiliar-c2-administrativo-c1-estado',
+    title: 'Diferencias entre Auxiliar (C2) y Administrativo (C1) del Estado: plazas, sueldo y temario',
+    description:
+      'Comparativa completa entre Auxiliar Administrativo (C2) y Administrativo del Estado (C1): requisitos, temario, plazas, sueldo, examen y cuál elegir según tu perfil.',
+    date: '2026-03-21',
+    keywords: [
+      'diferencias auxiliar administrativo estado',
+      'C1 vs C2 oposiciones AGE',
+      'auxiliar o administrativo del estado',
+      'sueldo auxiliar administrativo estado',
+    ],
+    content: `
+<p>
+  Si estás pensando en opositar a la Administración General del Estado (AGE), probablemente te
+  hayas preguntado: <strong>¿Auxiliar (C2) o Administrativo (C1)?</strong> Son los dos cuerpos más
+  demandados, con miles de plazas cada convocatoria, pero tienen diferencias importantes en
+  requisitos, temario, examen y sueldo. Aquí las comparamos punto por punto.
+</p>
+
+<h2>Tabla comparativa: Auxiliar (C2) vs Administrativo (C1)</h2>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th><strong>Auxiliar (C2)</strong></th>
+      <th><strong>Administrativo (C1)</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Titulación</strong></td>
+      <td>ESO / equivalente</td>
+      <td>Bachillerato / equivalente</td>
+    </tr>
+    <tr>
+      <td><strong>Plazas 2026</strong></td>
+      <td>1.700</td>
+      <td>2.512</td>
+    </tr>
+    <tr>
+      <td><strong>Temas</strong></td>
+      <td>28 temas (2 bloques)</td>
+      <td>45 temas (6 bloques)</td>
+    </tr>
+    <tr>
+      <td><strong>Examen</strong></td>
+      <td>1 ejercicio: 100 preguntas tipo test (90 min)</td>
+      <td>2 partes: 60 preguntas teóricas + caso práctico 50 preguntas (90 min total)</td>
+    </tr>
+    <tr>
+      <td><strong>Penalización</strong></td>
+      <td>Sí, -1/3 por error</td>
+      <td>Sí, -1/3 por error</td>
+    </tr>
+    <tr>
+      <td><strong>Sueldo neto aprox.</strong></td>
+      <td>~1.600 €/mes</td>
+      <td>~2.100 €/mes</td>
+    </tr>
+    <tr>
+      <td><strong>Sueldo bruto anual</strong></td>
+      <td>~22.000 €</td>
+      <td>~28.000 €</td>
+    </tr>
+    <tr>
+      <td><strong>Grupo/Subgrupo</strong></td>
+      <td>C2</td>
+      <td>C1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Temario: ¿qué se comparte y qué no?</h2>
+<p>
+  La buena noticia: aproximadamente el <strong>75% de la legislación es compartida</strong>.
+  Constitución Española, LPAC, LRJSP, TREBEP y LOPDGDD aparecen en ambas oposiciones. Si
+  preparas una, llevas mucho adelantado para la otra.
+</p>
+<p>
+  Las diferencias principales del C1:
+</p>
+<ul>
+  <li><strong>Bloque III — Derecho Administrativo:</strong> profundiza mucho más en contratación pública, subvenciones y responsabilidad patrimonial</li>
+  <li><strong>Bloque IV — Gestión de personal:</strong> 9 temas sobre función pública, nóminas, Seguridad Social (en C2 solo hay 3 temas de personal)</li>
+  <li><strong>Bloque V — Gestión financiera:</strong> presupuestos del Estado, contabilidad pública, control de gasto</li>
+  <li><strong>Bloque VI — Informática:</strong> más profundo que en C2 (redes, bases de datos, administración electrónica avanzada)</li>
+</ul>
+<p>
+  El C2, en cambio, dedica más peso relativo a ofimática práctica (Word, Excel) y psicotécnicos.
+</p>
+
+<h2>El examen: estructura y dificultad</h2>
+<p>
+  El examen de <strong>Auxiliar (C2)</strong> es un único ejercicio de 100 preguntas tipo test en
+  90 minutos. Directo: estudias, practicas, apruebas.
+</p>
+<p>
+  El examen de <strong>Administrativo (C1)</strong> tiene dos partes:
+</p>
+<ol>
+  <li><strong>Primera parte:</strong> 60 preguntas teóricas sobre los 45 temas</li>
+  <li><strong>Segunda parte:</strong> un supuesto práctico con 50 preguntas sobre un caso real de gestión administrativa</li>
+</ol>
+<p>
+  El caso práctico del C1 es lo que más asusta a los opositores, pero en realidad es legislación
+  aplicada: te dan un expediente y preguntan qué artículos aplican. Si dominas la ley, lo resuelves.
+</p>
+
+<h2>Nota de corte histórica</h2>
+<ul>
+  <li><strong>Auxiliar C2:</strong> 2024 → 6,50 | 2022 → 6,00 | 2019 → 5,75</li>
+  <li><strong>Administrativo C1:</strong> 2024 → ~47 puntos | 2023 → ~46 | 2019 → ~54</li>
+</ul>
+<p>
+  Las notas de corte del C1 se expresan en puntos (no sobre 10) porque el cálculo combina
+  las dos partes del examen. Para el C2, puedes calcular tu nota con nuestra
+  <a href="/calculadora-nota-oposicion">calculadora de nota con penalización</a>.
+</p>
+
+<h2>¿Cuál elegir?</h2>
+<p>
+  Depende de tu perfil:
+</p>
+<ul>
+  <li><strong>Elige C2 si:</strong> tienes poco tiempo, prefieres un temario más corto, no tienes Bachillerato, o quieres entrar rápido y luego promocionar internamente</li>
+  <li><strong>Elige C1 si:</strong> tienes Bachillerato, puedes dedicar 6-9 meses, quieres un sueldo ~500€/mes mayor, y no te asusta el caso práctico</li>
+  <li><strong>Prepara ambas:</strong> muchos opositores se presentan a C2 y C1 simultáneamente. El 75% del temario es compartido, así que si preparas C1, el C2 lo llevas casi hecho</li>
+</ul>
+
+<h2>Progresión de carrera</h2>
+<p>
+  Como <strong>Auxiliar (C2)</strong>, puedes promocionar internamente a C1 tras 2 años de servicio
+  (promoción interna, con examen reducido). Muchos opositores entran por C2 y suben a C1 desde dentro,
+  que es más fácil que la oposición libre.
+</p>
+<p>
+  Como <strong>Administrativo (C1)</strong>, puedes aspirar a A2 (Gestión) por promoción interna,
+  aunque requiere titulación universitaria.
+</p>
+<p>
+  Para saber más sobre las plazas de Auxiliar, lee nuestro artículo sobre
+  <a href="/blog/plazas-auxiliar-administrativo-2026">las 1.700 plazas en 2026</a>. Y si quieres
+  saber la nota que necesitas, consulta
+  <a href="/blog/nota-corte-auxiliar-administrativo-estado">la nota de corte histórica</a>.
+</p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/plazas-auxiliar-administrativo-2026">1.700 plazas C2 en 2026</a> — la mayor oferta histórica</li>
+  <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo C2</a> — los 28 temas desglosados</li>
+  <li><a href="/blog/nota-corte-auxiliar-administrativo-estado">Nota de corte Auxiliar</a> — qué nota necesitas para aprobar</li>
+</ul>
+    `.trim(),
+  },
+
+  // ─── Post 19 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'constitucion-espanola-oposiciones-age-articulos-clave',
+    title: 'Constitución Española para oposiciones AGE: artículos que más caen',
+    description:
+      'Los artículos de la Constitución Española que más pregunta el INAP en oposiciones AGE: análisis por frecuencia, estrategia de estudio y trampas habituales del examen.',
+    date: '2026-03-23',
+    keywords: [
+      'Constitución Española oposiciones AGE',
+      'artículos Constitución examen oposiciones',
+      'estudiar Constitución oposiciones',
+      'CE preguntas más frecuentes',
+    ],
+    content: `
+<p>
+  La Constitución Española de 1978 es la <strong>norma más preguntada</strong> en las oposiciones
+  a la Administración General del Estado, tanto en Auxiliar (C2) como en Administrativo (C1). En
+  cada examen aparecen entre <strong>8 y 12 preguntas directas</strong> sobre la CE, más otras
+  tantas que la mencionan indirectamente. Dominar los artículos clave es obligatorio para aprobar.
+</p>
+
+<h2>¿Por qué la Constitución tiene tanto peso?</h2>
+<p>
+  La CE es la norma suprema del ordenamiento jurídico español. Todas las leyes que estudias en
+  oposiciones (LPAC, LRJSP, TREBEP, LOPDGDD) derivan de ella. Para el INAP, comprobar que
+  conoces la CE es comprobar que entiendes los <strong>fundamentos del sistema</strong>.
+</p>
+<p>
+  En el temario del Auxiliar (C2), la CE ocupa los <strong>temas 1 a 6 del Bloque I</strong>:
+  principios generales, derechos fundamentales, Corona, Cortes, Gobierno y Poder Judicial,
+  organización territorial. Son 6 de los 28 temas (más del 20% del temario).
+</p>
+
+<h2>Artículos que más caen en el examen INAP</h2>
+<p>
+  Tras analizar los exámenes de 2018, 2019, 2022 y 2024, estos son los artículos con mayor
+  frecuencia de aparición:
+</p>
+
+<h3>Título Preliminar (arts. 1-9)</h3>
+<ul>
+  <li><strong>Art. 1:</strong> España como Estado social y democrático de Derecho. Valores superiores: libertad, justicia, igualdad, pluralismo político</li>
+  <li><strong>Art. 2:</strong> Unidad de la Nación, derecho a la autonomía</li>
+  <li><strong>Art. 9.1:</strong> Sujeción de ciudadanos y poderes públicos a la Constitución</li>
+  <li><strong>Art. 9.3:</strong> Principios: legalidad, jerarquía normativa, publicidad, irretroactividad de disposiciones sancionadoras, seguridad jurídica, responsabilidad, interdicción de la arbitrariedad</li>
+</ul>
+
+<h3>Derechos fundamentales (arts. 14-29)</h3>
+<ul>
+  <li><strong>Art. 14:</strong> Igualdad ante la ley (sin discriminación por nacimiento, raza, sexo, religión, opinión)</li>
+  <li><strong>Art. 23:</strong> Derecho a participar en asuntos públicos y acceder a funciones y cargos públicos en condiciones de igualdad</li>
+  <li><strong>Art. 27:</strong> Derecho a la educación</li>
+  <li><strong>Art. 28:</strong> Derecho de sindicación y huelga</li>
+</ul>
+
+<h3>Principios rectores (arts. 39-52)</h3>
+<ul>
+  <li><strong>Art. 43:</strong> Derecho a la protección de la salud</li>
+  <li><strong>Art. 47:</strong> Derecho a la vivienda (no es derecho fundamental, pregunta trampa frecuente)</li>
+</ul>
+
+<h3>Título IV — Gobierno y Administración (arts. 97-107)</h3>
+<ul>
+  <li><strong>Art. 97:</strong> Funciones del Gobierno (dirige política interior/exterior, civil/militar, defensa)</li>
+  <li><strong>Art. 103:</strong> La Administración sirve con objetividad a los intereses generales (mérito, capacidad, imparcialidad)</li>
+  <li><strong>Art. 106:</strong> Los tribunales controlan la potestad reglamentaria y la legalidad de la actuación administrativa</li>
+</ul>
+
+<h3>Título VIII — Organización territorial (arts. 137-158)</h3>
+<ul>
+  <li><strong>Art. 137:</strong> El Estado se organiza en municipios, provincias y CCAA</li>
+  <li><strong>Art. 140:</strong> Autonomía de los municipios, alcaldes elegidos por concejales o vecinos</li>
+  <li><strong>Art. 143-144:</strong> Acceso a la autonomía</li>
+  <li><strong>Art. 148-149:</strong> Competencias de las CCAA vs competencias exclusivas del Estado</li>
+</ul>
+
+<h2>Cómo estudiar la Constitución (estrategia inteligente)</h2>
+<ol>
+  <li><strong>Entiende los principios, no memorices números:</strong> el INAP no pregunta "¿qué dice el artículo 103?", sino "¿qué principios rigen la Administración Pública?" Si entiendes el concepto, identificas la respuesta</li>
+  <li><strong>Haz una tabla de "quién hace qué":</strong> Rey (sanciona leyes, nombra), Presidente (disuelve Cortes, propone referéndum), Cortes (legislan, aprueban presupuestos). Las preguntas mezclan funciones para confundirte</li>
+  <li><strong>Distingue derechos fundamentales de principios rectores:</strong> los arts. 14-29 tienen protección máxima (amparo ante TC). Los arts. 39-52 son principios rectores (solo ante jurisdicción ordinaria). El INAP pregunta la diferencia</li>
+  <li><strong>El Título VIII es trampa:</strong> las competencias Estado/CCAA (arts. 148-149) son listas largas. Memoriza solo las competencias exclusivas del Estado más importantes (defensa, justicia, hacienda, comercio exterior)</li>
+  <li><strong>Practica con preguntas tipo test:</strong> la CE parece fácil cuando la lees, pero las opciones del examen están diseñadas para confundir. Solo practicando aprendes a detectar las trampas</li>
+</ol>
+
+<h2>Trampas habituales del INAP con la Constitución</h2>
+<ul>
+  <li><strong>Valores vs principios:</strong> valores superiores (art. 1.1: libertad, justicia, igualdad, pluralismo) vs principios del art. 9.3. El INAP los mezcla en las opciones</li>
+  <li><strong>Vivienda como "derecho fundamental":</strong> el art. 47 es un principio rector, no un derecho fundamental. Opción trampa clásica</li>
+  <li><strong>Reforma constitucional:</strong> procedimiento ordinario (art. 167, 3/5 de cada Cámara) vs agravado (art. 168, 2/3 + referéndum). Siempre hay una pregunta</li>
+  <li><strong>Quién nombra a quién:</strong> el Rey nombra al Presidente del Gobierno a propuesta del Congreso, NO del Senado</li>
+</ul>
+<p>
+  Para profundizar en las preguntas de CE que más caen, consulta nuestra
+  <a href="/blog/constitucion-espanola-preguntas-oposicion-auxiliar">guía específica de preguntas de Constitución</a>.
+  Y para la otra ley estrella del examen, lee cómo estudiar
+  <a href="/blog/articulos-lpac-mas-preguntados-auxiliar-administrativo">los artículos LPAC más preguntados</a>.
+</p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/constitucion-espanola-preguntas-oposicion-auxiliar">Preguntas de Constitución que más caen</a> — análisis por convocatoria</li>
+  <li><a href="/blog/articulos-lpac-mas-preguntados-auxiliar-administrativo">Artículos LPAC más preguntados</a> — la otra ley imprescindible</li>
+  <li><a href="/blog/trebep-articulos-clave-oposiciones">TREBEP: artículos clave</a> — el Estatuto del Empleado Público</li>
+</ul>
+    `.trim(),
+  },
+
+  // ─── Post 20 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'trebep-oposiciones-guia-estatuto-empleado-publico',
+    title: 'TREBEP para oposiciones: guía del Estatuto del Empleado Público',
+    description:
+      'Guía práctica del TREBEP (RDL 5/2015) para oposiciones: artículos más preguntados, clases de empleados públicos, régimen disciplinario y estrategia de estudio.',
+    date: '2026-03-25',
+    keywords: [
+      'TREBEP oposiciones',
+      'Estatuto Básico Empleado Público examen',
+      'artículos TREBEP más importantes',
+      'estudiar TREBEP auxiliar administrativo',
+    ],
+    content: `
+<p>
+  El <strong>TREBEP</strong> (Texto Refundido del Estatuto Básico del Empleado Público, aprobado
+  por Real Decreto Legislativo 5/2015) es la norma que regula a todos los empleados públicos en
+  España. En el examen de Auxiliar Administrativo (C2) aparecen entre <strong>3 y 5 preguntas
+  directas</strong>, y en el de Administrativo (C1) puede haber hasta 8-10 por su bloque de personal.
+</p>
+<p>
+  Como futuro funcionario, el TREBEP es "tu ley": regula tus derechos, deberes, retribuciones,
+  permisos, situaciones administrativas y régimen disciplinario. Conocerlo no es solo aprobar
+  el examen, sino entender tu futuro laboral.
+</p>
+
+<h2>¿Qué es el TREBEP y por qué se estudia?</h2>
+<p>
+  El TREBEP (RDL 5/2015, de 30 de octubre) refunde el antiguo Estatuto Básico del Empleado Público
+  (Ley 7/2007) con sus modificaciones posteriores. Tiene <strong>100 artículos</strong> organizados
+  en 8 títulos, y regula todo lo relativo a la función pública.
+</p>
+<p>
+  En el temario del Auxiliar (C2), el TREBEP se estudia en los <strong>temas 14, 15 y 16</strong>
+  del Bloque I: clases de personal, derechos y deberes, y régimen disciplinario. En el C1, se
+  amplía con 9 temas adicionales sobre gestión de personal.
+</p>
+
+<h2>Artículos TREBEP más preguntados por el INAP</h2>
+
+<h3>Clases de empleados públicos (arts. 8-12)</h3>
+<ul>
+  <li><strong>Art. 8:</strong> Concepto y clases — funcionarios de carrera, funcionarios interinos, personal laboral, personal eventual</li>
+  <li><strong>Art. 9:</strong> Funcionarios de carrera — nombrados legalmente, con carácter permanente</li>
+  <li><strong>Art. 10:</strong> Funcionarios interinos — razones de urgencia o necesidad (4 supuestos: plazas vacantes, sustitución, exceso/acumulación, programas temporales)</li>
+  <li><strong>Art. 11:</strong> Personal laboral — contrato de trabajo (fijo, indefinido, temporal)</li>
+  <li><strong>Art. 12:</strong> Personal eventual — funciones de confianza o asesoramiento especial, cesa cuando cesa la autoridad que lo nombró</li>
+</ul>
+<p>
+  <strong>Pregunta trampa clásica:</strong> el personal eventual NO es funcionario interino.
+  El INAP mezcla las definiciones para confundirte. Clave: el eventual = confianza política,
+  el interino = necesidad administrativa temporal.
+</p>
+
+<h3>Derechos individuales (art. 14)</h3>
+<ul>
+  <li>Inamovilidad en la condición de funcionario de carrera</li>
+  <li>Retribuciones e indemnizaciones</li>
+  <li>Participación en logro de objetivos (evaluación del desempeño)</li>
+  <li>Defensa jurídica y protección social</li>
+  <li>Formación continua y actualización permanente</li>
+  <li>Respeto a la intimidad, orientación sexual, imagen propia</li>
+  <li>No discriminación, conciliación vida personal/laboral, libertad de expresión</li>
+</ul>
+
+<h3>Deberes y código de conducta (arts. 52-54)</h3>
+<ul>
+  <li><strong>Art. 52:</strong> Deberes básicos — desempeñar con diligencia, cumplir la CE y el ordenamiento jurídico</li>
+  <li><strong>Art. 53:</strong> Principios éticos — actuar con integridad, neutralidad, responsabilidad, imparcialidad, confidencialidad, dedicación al servicio público, transparencia, ejemplaridad, honradez</li>
+  <li><strong>Art. 54:</strong> Principios de conducta — trato respetuoso, informar a los ciudadanos, guardar secreto profesional</li>
+</ul>
+
+<h3>Selección de empleados públicos (art. 55)</h3>
+<ul>
+  <li>Principios constitucionales: <strong>igualdad, mérito, capacidad</strong></li>
+  <li>Principios adicionales: publicidad, transparencia, imparcialidad, profesionalidad, independencia, discrecionalidad técnica, adecuación, agilidad</li>
+</ul>
+<p>
+  <strong>Pregunta frecuente:</strong> "¿Cuáles son los principios constitucionales de acceso
+  al empleo público?" Respuesta: igualdad, mérito y capacidad (art. 55.1 TREBEP + art. 103.3 CE).
+  Los demás son principios "adicionales" del TREBEP, no constitucionales.
+</p>
+
+<h3>Régimen disciplinario (arts. 93-98)</h3>
+<ul>
+  <li><strong>Art. 93:</strong> Responsabilidad disciplinaria — faltas muy graves, graves y leves</li>
+  <li><strong>Art. 95:</strong> Faltas muy graves — incumplimiento deber constitucional, discriminación, abandono de servicio, notoria falta de rendimiento, desobediencia abierta</li>
+  <li><strong>Art. 96:</strong> Sanciones — separación del servicio (solo falta muy grave), despido disciplinario (laboral), suspensión de funciones (máx. 6 años grave, 3 años leve)</li>
+</ul>
+
+<h2>Estrategia de estudio del TREBEP</h2>
+<ol>
+  <li><strong>Memoriza las 4 clases de empleados:</strong> funcionario de carrera, interino, laboral, eventual. Sus definiciones caen siempre</li>
+  <li><strong>Haz una tabla comparativa:</strong> cada clase con sus requisitos, duración y cese. El INAP mezcla características de una clase con otra</li>
+  <li><strong>Principios constitucionales vs TREBEP:</strong> igualdad-mérito-capacidad = CE. Los demás (publicidad, transparencia, agilidad...) = solo TREBEP</li>
+  <li><strong>Régimen disciplinario:</strong> memoriza las faltas muy graves (son pocas y siempre caen) y la sanción máxima de cada tipo de falta</li>
+  <li><strong>Practica con preguntas tipo test:</strong> el TREBEP tiene un vocabulario muy específico y el INAP lo explota en las opciones</li>
+</ol>
+<p>
+  Para profundizar en los artículos clave del TREBEP, consulta nuestra
+  <a href="/blog/trebep-articulos-clave-oposiciones">guía detallada de artículos TREBEP</a>.
+  Y para completar tu visión de la legislación del examen, lee sobre
+  <a href="/blog/lopdgdd-proteccion-datos-oposiciones">la LOPDGDD en oposiciones</a> y
+  <a href="/blog/diferencias-lpac-lrjsp-oposiciones">las diferencias entre LPAC y LRJSP</a>.
+</p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/trebep-articulos-clave-oposiciones">Artículos TREBEP más importantes</a> — análisis artículo por artículo</li>
+  <li><a href="/blog/lopdgdd-proteccion-datos-oposiciones">LOPDGDD para oposiciones</a> — protección de datos en el examen</li>
+  <li><a href="/blog/diferencias-lpac-lrjsp-oposiciones">LPAC vs LRJSP</a> — cómo distinguir las dos leyes administrativas</li>
+</ul>
+    `.trim(),
+  },
+
+  // ─── Post 21 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'administrativo-estado-c1-2026-plazas-temario-nota-corte',
+    title: 'Administrativo del Estado (C1) 2026: 2.512 plazas, temario completo y nota de corte',
+    description:
+      'Todo sobre las oposiciones de Administrativo del Estado (C1) 2026: 2.512 plazas, temario de 45 temas, estructura del examen, notas de corte históricas y sueldo.',
+    date: '2026-03-27',
+    keywords: [
+      'administrativo del estado 2026',
+      'oposiciones C1 AGE 2026',
+      'plazas administrativo estado 2026',
+      'temario administrativo estado',
+    ],
+    content: `
+<p>
+  La convocatoria de <strong>Administrativo del Estado (C1) 2026</strong> ofrece
+  <strong>2.512 plazas</strong> (BOE-A-2025-26262), la cifra más alta de los últimos años. Es una
+  oportunidad histórica para conseguir un puesto fijo en la Administración General del Estado con
+  un sueldo de ~2.100 €/mes netos y todas las ventajas del empleo público.
+</p>
+
+<h2>Datos clave de la convocatoria 2026</h2>
+<ul>
+  <li><strong>Plazas:</strong> 2.512 (acceso libre + promoción interna)</li>
+  <li><strong>Organismo convocante:</strong> INAP (Instituto Nacional de Administración Pública)</li>
+  <li><strong>Titulación requerida:</strong> Bachillerato o equivalente</li>
+  <li><strong>Grupo/Subgrupo:</strong> C1</li>
+  <li><strong>Sueldo neto aproximado:</strong> ~2.100 €/mes (14 pagas)</li>
+  <li><strong>Sueldo bruto anual:</strong> ~28.000 €</li>
+  <li><strong>Nacionalidad:</strong> española o UE</li>
+  <li><strong>Edad:</strong> mínimo 16 años, sin máximo</li>
+</ul>
+
+<h2>Estructura del examen</h2>
+<p>
+  El examen de Administrativo (C1) consta de <strong>un único ejercicio con dos partes</strong>,
+  que se realizan en la misma sesión (90 minutos en total):
+</p>
+<ol>
+  <li><strong>Primera parte (60 preguntas):</strong> preguntas teóricas tipo test sobre los 45 temas del temario. Penalización: cada 3 errores descuenta 1 acierto</li>
+  <li><strong>Segunda parte (caso práctico, 50 preguntas):</strong> un supuesto práctico de gestión administrativa. Te dan un expediente real y preguntan qué normativa aplica, plazos, trámites, recursos...</li>
+</ol>
+<p>
+  Ambas partes suman para la nota final. La <a href="/blog/penalizacion-examen-auxiliar-administrativo">penalización -1/3</a>
+  se aplica en ambas partes, así que la estrategia de dejar en blanco las dudosas sigue siendo válida.
+</p>
+
+<h2>Notas de corte históricas</h2>
+<p>
+  Las notas de corte del Administrativo (C1) se expresan en puntos totales (no sobre 10),
+  ya que combinan las dos partes del examen:
+</p>
+<ul>
+  <li><strong>2024:</strong> ~47 puntos</li>
+  <li><strong>2023:</strong> ~46 puntos</li>
+  <li><strong>2021:</strong> ~62 puntos</li>
+  <li><strong>2019:</strong> ~54 puntos</li>
+</ul>
+<p>
+  La variación entre convocatorias se debe al número de plazas y a la dificultad del examen.
+  Con 2.512 plazas en 2026, se espera una nota de corte en el rango medio-bajo.
+</p>
+
+<h2>Temario completo: 45 temas en 6 bloques</h2>
+
+<h3>Bloque I — Organización del Estado y de la UE (temas 1-10)</h3>
+<p>
+  Constitución Española, Corona, Cortes Generales, Gobierno, Poder Judicial, organización
+  territorial, Tribunal Constitucional, Unión Europea. Compartido en un 80% con el C2.
+</p>
+
+<h3>Bloque II — Organización de la AGE (temas 11-14)</h3>
+<p>
+  Ley 40/2015 (LRJSP), organización ministerial, organismos públicos, administración periférica
+  (Delegaciones y Subdelegaciones del Gobierno).
+</p>
+
+<h3>Bloque III — Derecho Administrativo General (temas 15-24)</h3>
+<p>
+  LPAC (Ley 39/2015), acto administrativo, procedimiento, recursos, revisión de oficio,
+  responsabilidad patrimonial, contratación del sector público, subvenciones. Es el bloque
+  más extenso y de mayor peso en el examen.
+</p>
+
+<h3>Bloque IV — Gestión de Recursos Humanos (temas 25-33)</h3>
+<p>
+  TREBEP, clases de personal, provisión de puestos, retribuciones, Seguridad Social, MUFACE,
+  prevención de riesgos laborales, igualdad efectiva. <strong>9 temas</strong> que no existen
+  en el C2 (donde solo hay 3 de personal).
+</p>
+
+<h3>Bloque V — Gestión Financiera (temas 34-39)</h3>
+<p>
+  Ley General Presupuestaria, presupuestos del Estado, ciclo presupuestario, gastos, contabilidad
+  pública, control del gasto (IGAE, Tribunal de Cuentas). Bloque técnico que requiere memorización.
+</p>
+
+<h3>Bloque VI — Informática y Administración Electrónica (temas 40-45)</h3>
+<p>
+  Administración electrónica, firma electrónica, protección de datos (RGPD + LOPDGDD), esquemas
+  nacionales (ENS, ENI), redes, bases de datos. Más profundo que la ofimática del C2.
+</p>
+
+<h2>¿Cuánto tiempo necesitas para prepararlo?</h2>
+<p>
+  El C1 tiene 45 temas frente a los 28 del C2, más el caso práctico. Una estimación realista:
+</p>
+<ul>
+  <li><strong>Dedicación completa (5-6h/día):</strong> 6-7 meses</li>
+  <li><strong>Compatibilizando trabajo (2-3h/día):</strong> 9-12 meses</li>
+  <li><strong>Ritmo mínimo (1-2h/día):</strong> 12-18 meses</li>
+</ul>
+<p>
+  Si ya te has preparado el C2, puedes restar 2-3 meses gracias al temario compartido.
+</p>
+
+<h2>¿C1 o C2? ¿Cuál elegir?</h2>
+<p>
+  Si no lo tienes claro, hemos hecho una
+  <a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">comparativa completa entre C2 y C1</a>
+  con plazas, sueldo, temario y examen. Y si te interesa la Constitución (que pesa mucho en ambos),
+  lee nuestro artículo sobre
+  <a href="/blog/constitucion-espanola-oposiciones-age-articulos-clave">los artículos de CE que más caen</a>.
+</p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">C2 vs C1: comparativa completa</a> — plazas, sueldo, temario y examen</li>
+  <li><a href="/blog/constitucion-espanola-oposiciones-age-articulos-clave">Constitución para oposiciones AGE</a> — los artículos que más caen</li>
+  <li><a href="/blog/trebep-oposiciones-guia-estatuto-empleado-publico">TREBEP para oposiciones</a> — guía del Estatuto del Empleado Público</li>
+</ul>
+    `.trim(),
+  },
+
+  // ─── Post 22 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'preparar-oposiciones-administrativo-estado-c1-por-libre',
+    title: 'Cómo preparar oposiciones Administrativo del Estado (C1) por libre',
+    description:
+      'Plan de estudio completo para preparar el Administrativo del Estado (C1) por libre: orden de bloques, recursos, estrategia para el caso práctico y errores que evitar.',
+    date: '2026-03-29',
+    keywords: [
+      'preparar oposiciones administrativo estado por libre',
+      'estudiar C1 sin academia',
+      'plan estudio administrativo estado',
+      'oposiciones administrativo estado por libre',
+    ],
+    content: `
+<p>
+  Preparar las oposiciones de <strong>Administrativo del Estado (C1) por libre</strong> es
+  perfectamente posible. Miles de opositores lo han hecho y han sacado su plaza sin academia.
+  La clave es tener un <strong>plan estructurado</strong>, los recursos correctos y mucha
+  disciplina con los tests de práctica.
+</p>
+<p>
+  Si ya te has preparado el Auxiliar (C2) o has leído nuestra
+  <a href="/blog/preparar-oposicion-auxiliar-administrativo-por-libre">guía de preparar C2 por libre</a>,
+  el método es similar pero con más material. Aquí adaptamos la estrategia a los 45 temas del C1.
+</p>
+
+<h2>45 temas vs 28: más material, mismo método</h2>
+<p>
+  El C1 tiene 45 temas frente a los 28 del C2, organizados en 6 bloques. Pero no todo es nuevo:
+  si ya conoces la CE, LPAC y TREBEP del C2, llevas un <strong>60-70% del Bloque I y III ya
+  estudiado</strong>. Los bloques realmente nuevos son el IV (Personal), V (Financiera) y VI
+  (Informática avanzada).
+</p>
+
+<h2>Plan de estudio: 6-9 meses por libre</h2>
+<p>
+  Un plan realista para alguien que dedica 3-4 horas diarias:
+</p>
+
+<h3>Fase 1 (Meses 1-3): Derecho Administrativo + Constitución</h3>
+<p>
+  Empieza por el <strong>Bloque III (Derecho Administrativo General)</strong>: es el más extenso
+  (10 temas) y el que más peso tiene en el examen, tanto en la parte teórica como en el caso
+  práctico. LPAC, acto administrativo, procedimiento, recursos, contratación pública.
+</p>
+<p>
+  En paralelo, repasa el <strong>Bloque I (Organización del Estado)</strong>: Constitución, Corona,
+  Cortes, Gobierno. Si vienes del C2, será un repaso rápido.
+</p>
+<p>
+  <strong>Desde el día 1:</strong> haz 10-20 preguntas tipo test diarias sobre lo estudiado.
+  No esperes a "terminar el temario".
+</p>
+
+<h3>Fase 2 (Meses 3-5): Personal + Financiera</h3>
+<p>
+  <strong>Bloque IV (Gestión de RRHH):</strong> 9 temas sobre función pública, TREBEP ampliado,
+  retribuciones, Seguridad Social, MUFACE. Es el bloque más "nuevo" si vienes del C2.
+</p>
+<p>
+  <strong>Bloque V (Gestión Financiera):</strong> 6 temas de presupuestos, contabilidad pública
+  y control del gasto. Requiere memorización de cifras y procedimientos, pero son preguntas
+  directas (no interpretativas).
+</p>
+
+<h3>Fase 3 (Meses 5-7): Informática + Repaso general</h3>
+<p>
+  <strong>Bloque VI (Informática):</strong> 6 temas de administración electrónica, firma digital,
+  LOPDGDD, ENS/ENI. Si dominas la ofimática del C2, gran parte ya la conoces.
+</p>
+<p>
+  <strong>Bloque II (Organización AGE):</strong> 4 temas de LRJSP y organización ministerial.
+  Déjalo para esta fase porque es legislación que cambia con frecuencia y conviene estudiarla
+  cerca del examen.
+</p>
+
+<h3>Fase 4 (Meses 7-9): Simulacros + Caso práctico</h3>
+<p>
+  Dedica los últimos 2 meses a:
+</p>
+<ul>
+  <li><strong>Simulacros completos cronometrados:</strong> 60 preguntas teóricas en 45 minutos. Entrena el ritmo del examen</li>
+  <li><strong>Práctica del caso práctico:</strong> resuelve supuestos de convocatorias anteriores. El caso práctico no requiere conocimientos nuevos, sino saber aplicar la legislación a un expediente concreto</li>
+  <li><strong>Repaso de temas débiles:</strong> los simulacros te dirán dónde fallas. Focaliza el repaso final en esos temas</li>
+</ul>
+
+<h2>Priorización de bloques (por peso en el examen)</h2>
+<ol>
+  <li><strong>Bloque III — Derecho Administrativo General:</strong> el más extenso y el que más aparece en el caso práctico. Prioridad máxima</li>
+  <li><strong>Bloque I — Organización del Estado y UE:</strong> 8-12 preguntas siempre. Comparte mucho con C2</li>
+  <li><strong>Bloque IV — Gestión de Personal:</strong> 9 temas exclusivos del C1. Alto peso</li>
+  <li><strong>Bloque V — Gestión Financiera:</strong> preguntas directas de memorización. Puntos "fáciles" si estudias las tablas</li>
+  <li><strong>Bloque VI — Informática:</strong> comparte base con C2. LOPDGDD y firma electrónica son los temas clave</li>
+  <li><strong>Bloque II — Organización AGE:</strong> 4 temas, poco peso relativo. Estudiar al final</li>
+</ol>
+
+<h2>Recursos para preparar C1 por libre</h2>
+<ul>
+  <li><strong>Temario actualizado:</strong> Adams o MAD edición 2025-2026 (~50-70€). Imprescindible que incluya las últimas reformas legislativas</li>
+  <li><strong>Legislación oficial:</strong> BOE para consultar artículos en su versión vigente (siempre gratis)</li>
+  <li><strong>Exámenes anteriores INAP:</strong> disponibles en la web del INAP o en <a href="/examenes-oficiales">nuestros simulacros con preguntas oficiales</a></li>
+  <li><strong>Tests tipo test:</strong> practica a diario con preguntas adaptadas al temario del C1</li>
+  <li><strong>Comunidad de opositores:</strong> foros y grupos de Telegram para resolver dudas y mantener la motivación</li>
+</ul>
+
+<h2>El caso práctico: cómo prepararlo</h2>
+<p>
+  El caso práctico del C1 asusta, pero tiene truco: el 90% de las preguntas son legislación
+  aplicada. Te dan un expediente (por ejemplo, una solicitud de subvención) y preguntan:
+</p>
+<ul>
+  <li>¿Qué plazo tiene la Administración para resolver?</li>
+  <li>¿Qué recurso puede interponer el interesado?</li>
+  <li>¿Quién es el órgano competente?</li>
+  <li>¿Qué artículo de la LPAC/LRJSP aplica?</li>
+</ul>
+<p>
+  Si dominas el Bloque III (LPAC + LRJSP + contratación), el caso práctico es simplemente
+  "encontrar el artículo correcto". Practica con supuestos de convocatorias anteriores para
+  familiarizarte con el formato.
+</p>
+
+<h2>Errores comunes al preparar C1 por libre</h2>
+<ul>
+  <li><strong>Empezar por el Bloque I:</strong> la Constitución es "cómoda" pero tiene menos peso que el Derecho Administrativo. Empieza por el Bloque III</li>
+  <li><strong>Ignorar el caso práctico hasta el final:</strong> empieza a practicar supuestos desde el mes 4, no esperes al último mes</li>
+  <li><strong>No cronometrar:</strong> 90 minutos para 110 preguntas = menos de 50 segundos por pregunta. Sin práctica cronometrada, te faltará tiempo</li>
+  <li><strong>Estudiar bloques aislados:</strong> muchas preguntas cruzan bloques (ej: TREBEP + LPAC en un caso de expediente disciplinario). Haz simulacros completos</li>
+</ul>
+<p>
+  Si aún no tienes claro si ir a C1 o C2, lee nuestra
+  <a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">comparativa C2 vs C1</a>.
+  Y para el detalle del temario y las plazas, consulta nuestro artículo sobre
+  <a href="/blog/administrativo-estado-c1-2026-plazas-temario-nota-corte">el Administrativo del Estado 2026</a>.
+</p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/preparar-oposicion-auxiliar-administrativo-por-libre">Preparar C2 por libre</a> — la guía para Auxiliar Administrativo</li>
+  <li><a href="/blog/administrativo-estado-c1-2026-plazas-temario-nota-corte">Administrativo C1 2026</a> — 2.512 plazas, temario y nota de corte</li>
+  <li><a href="/blog/constitucion-espanola-oposiciones-age-articulos-clave">Constitución para oposiciones AGE</a> — artículos que más caen</li>
+</ul>
+    `.trim(),
+  },
 ]

@@ -80,6 +80,8 @@ export interface AICallOptions {
   requestId?: string
   endpoint?: string
   userId?: string
+  /** Oposicion ID for cost attribution in api_usage_log */
+  oposicionId?: string
 }
 
 // ─── Helpers internos ─────────────────────────────────────────────────────────
