@@ -102,6 +102,10 @@ export default async function CuentaPage() {
   const hasPurchases = (compras?.length ?? 0) > 0
   const isPremium = hasPurchases || flags?.is_founder === true || flags?.is_admin === true
 
+  // Tier de pack correcto según oposición del usuario (C1 vs C2)
+  const isC1 = profile?.oposicion_id === 'b0000000-0000-0000-0000-000000000001'
+  const packTier = isC1 ? 'pack_c1' : 'pack'
+
   return (
     <div className="max-w-3xl mx-auto p-6 space-y-8">
       <h1 className="text-2xl font-bold">Mi cuenta</h1>
@@ -116,7 +120,7 @@ export default async function CuentaPage() {
                 Pack Oposición — 49,99€ · tests ilimitados + 20 análisis detallados · sin suscripción
               </p>
             </div>
-            <BuyButton tier="pack" label="Comprar" variant="default" />
+            <BuyButton tier={packTier} label="Comprar" variant="default" />
           </div>
           {/* Recarga visible pero bloqueada — tentamos al usuario */}
           <div className="rounded-xl border border-muted/50 bg-muted/20 p-5 flex items-center justify-between gap-4 opacity-60">
@@ -126,7 +130,7 @@ export default async function CuentaPage() {
                 Disponible con el Pack Oposición. Compra el pack y podrás recargar análisis cuando los necesites.
               </p>
             </div>
-            <BuyButton tier="pack" label="Comprar pack" variant="outline" />
+            <BuyButton tier={packTier} label="Comprar pack" variant="outline" />
           </div>
         </div>
       )}
@@ -214,7 +218,7 @@ export default async function CuentaPage() {
                   Disponible con el Pack Oposición
                 </p>
               </div>
-              <BuyButton tier="pack" label="Comprar pack" variant="outline" />
+              <BuyButton tier={packTier} label="Comprar pack" variant="outline" />
             </div>
           )}
         </CardContent>

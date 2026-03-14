@@ -22,6 +22,8 @@ interface PremiumFeaturePreviewProps {
   benefits: string[]
   /** Optional preview content (rendered below benefits, e.g. blurred sample) */
   preview?: React.ReactNode
+  /** 'pack' (C2) or 'pack_c1' (C1) — defaults to 'pack' */
+  packTier?: 'pack' | 'pack_c1'
 }
 
 export function PremiumFeaturePreview({
@@ -30,17 +32,18 @@ export function PremiumFeaturePreview({
   description,
   benefits,
   preview,
+  packTier = 'pack',
 }: PremiumFeaturePreviewProps) {
   const [loading, setLoading] = useState(false)
 
   async function handleBuy() {
     setLoading(true)
-    trackPixelEvent('InitiateCheckout', { content_name: 'pack' })
+    trackPixelEvent('InitiateCheckout', { content_name: packTier })
     try {
       const res = await fetch('/api/stripe/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tier: 'pack' }),
+        body: JSON.stringify({ tier: packTier }),
       })
       if (!res.ok) throw new Error('Error al iniciar el pago')
       const { url } = await res.json() as { url: string }
