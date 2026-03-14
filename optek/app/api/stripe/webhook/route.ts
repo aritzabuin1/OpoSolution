@@ -121,6 +121,8 @@ async function handleStripeEvent(
       const dbTipo = TIER_TO_DB_TIPO[tier] ?? 'pack_oposicion'
 
       // 1. Registrar compra(s)
+      // RECARGA: NO crea fila en compras — solo otorga créditos (paso 2).
+      // Si creara fila, checkPaidAccess la contaría como acceso premium (bug: 8,99€ desbloquea todo).
       if (tier === 'pack_doble') {
         // Pack Doble: 2 filas en compras (una C1 + una C2)
         await supabase.from('compras').insert([
@@ -141,7 +143,7 @@ async function handleStripeEvent(
             amount_paid: 0, // segundo registro con amount 0 (total en el primero)
           },
         ])
-      } else {
+      } else if (tier !== 'recarga') {
         await supabase.from('compras').insert({
           user_id: userId,
           oposicion_id: oposicionIdMeta,
