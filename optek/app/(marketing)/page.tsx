@@ -12,6 +12,9 @@ import {
   ArrowRight,
   Users,
   MessageCircleQuestion,
+  BookOpen,
+  GraduationCap,
+  Flame,
 } from 'lucide-react'
 import { createServiceClient } from '@/lib/supabase/server'
 import { FOUNDER_LIMIT } from '@/lib/stripe/client'
@@ -24,21 +27,23 @@ import { unstable_cache } from 'next/cache'
 const APP_URL_META = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
 export const metadata: Metadata = {
-  title: 'OpoRuta — Prepara tu oposición de Auxiliar Administrativo con IA verificada',
+  title: 'OpoRuta — Prepara tus oposiciones AGE (C1 y C2) con IA verificada',
   description:
-    'Plataforma de preparación para Auxiliar Administrativo del Estado (C2). Tests con verificación de citas legales, simulacros INAP oficiales (2018-2024), Radar del Tribunal y análisis detallados. 1.700 plazas. Desde 0€.',
+    'Plataforma de preparación para oposiciones de la Administración General del Estado: Administrativo (C1, 45 temas) y Auxiliar (C2, 28 temas). Tests con verificación de citas legales, simulacros INAP oficiales y Radar del Tribunal. 4.200+ plazas. Desde 0€.',
   keywords: [
+    'oposiciones administracion general estado 2026',
     'oposiciones auxiliar administrativo 2026',
+    'oposiciones administrativo estado C1',
     'preparar auxiliar administrativo estado',
-    'test auxiliar administrativo online',
+    'test oposiciones online IA',
     'simulacro INAP auxiliar administrativo',
-    'examen auxiliar administrativo estado',
-    'IA oposiciones auxiliar administrativo',
+    'examen administrativo estado',
+    'IA oposiciones administracion estado',
   ],
   openGraph: {
-    title: 'OpoRuta — Prepara tu oposición de Auxiliar Administrativo con IA verificada',
+    title: 'OpoRuta — Prepara tus oposiciones AGE (C1 y C2) con IA verificada',
     description:
-      'Tests con citas legales verificadas, simulacros INAP oficiales y Radar del Tribunal. 1.700 plazas convocatoria 2025-2026. Empieza gratis.',
+      'Tests con citas legales verificadas, simulacros INAP oficiales y Radar del Tribunal. Administrativo (C1) + Auxiliar (C2). 4.200+ plazas. Empieza gratis.',
     type: 'website',
     url: APP_URL_META,
     images: [{ url: `${APP_URL_META}/api/og?tipo=blog&tema=${encodeURIComponent('OpoRuta — El camino más corto hacia el aprobado')}`, width: 1200, height: 630 }],
@@ -48,8 +53,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'OpoRuta — Prepara tu oposición de Auxiliar Administrativo con IA verificada',
-    description: 'Tests verificados, simulacros INAP oficiales y Radar del Tribunal. Empieza gratis.',
+    title: 'OpoRuta — Prepara tus oposiciones AGE (C1 y C2) con IA verificada',
+    description: 'Tests verificados, simulacros INAP oficiales y Radar del Tribunal. C1 + C2. Empieza gratis.',
   },
 }
 
@@ -141,12 +146,27 @@ const plans = [
     period: 'pago único',
     badge: 'Más popular',
     features: [
-      'Tests ilimitados en los 28 temas',
+      'Tests ilimitados — C1 o C2 (elige al registrarte)',
       'Simulacros y psicotécnicos ilimitados',
       '+20 análisis detallados + Radar',
       'Sin suscripción — pago único',
     ],
     cta: 'Empezar mi ruta',
+    href: '/register',
+    variant: 'default' as const,
+  },
+  {
+    name: 'Pack Doble',
+    price: '79,99€',
+    period: 'pago único',
+    badge: 'Ahorra 20€',
+    features: [
+      'Acceso completo a C1 y C2',
+      'Simulacros y psicotécnicos ilimitados',
+      '+30 análisis detallados + Radar',
+      'Cambia entre oposiciones cuando quieras',
+    ],
+    cta: 'Las dos oposiciones',
     href: '/register',
     variant: 'default' as const,
   },
@@ -159,7 +179,7 @@ const faqs = [
   },
   {
     q: '¿Para qué oposiciones funciona ahora mismo?',
-    a: 'En esta versión inicial preparamos Auxiliar Administrativo del Estado (C2). Próximamente añadiremos más oposiciones del Cuerpo General de la Administración del Estado y Administraciones locales.',
+    a: 'OpoRuta cubre dos oposiciones de la Administración General del Estado: Auxiliar Administrativo (C2, 28 temas, 1.700 plazas) y Administrativo del Estado (C1, 45 temas, 2.512 plazas). Cada una tiene su temario completo, legislación verificada y exámenes INAP reales. Al registrarte eliges tu oposición, y puedes cambiar o preparar ambas con el Pack Doble.',
   },
   {
     q: '¿Qué pasa cuando agoto mis análisis detallados?',
@@ -199,7 +219,15 @@ const jsonLdFaq = {
       name: '¿Cuántos temas tiene el temario del Auxiliar Administrativo del Estado?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'El temario del Auxiliar Administrativo del Estado consta de 28 temas en dos bloques: Bloque I — Organización pública (16 temas: CE, LPAC, TREBEP, LOPDGDD, UE, Presupuestos, Igualdad...) y Bloque II — Actividad administrativa y ofimática (12 temas: atención al público, Windows 11, Word 365, Excel 365, Access 365, Outlook 365, Internet). OpoRuta cubre los 28 temas completos con preguntas verificadas.',
+        text: 'El temario del Auxiliar Administrativo del Estado (C2) consta de 28 temas en dos bloques: Bloque I — Organización pública (16 temas: CE, LPAC, TREBEP, LOPDGDD, UE, Presupuestos, Igualdad...) y Bloque II — Actividad administrativa y ofimática (12 temas: atención al público, Windows 11, Word 365, Excel 365, Access 365, Outlook 365, Internet). OpoRuta cubre los 28 temas completos con preguntas verificadas.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cuántos temas tiene el temario del Administrativo del Estado (C1)?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'El temario del Administrativo del Estado (C1) consta de 45 temas en dos bloques: Bloque I — Organización del Estado y Derecho Administrativo (37 temas: CE, LOPJ, Gobierno, Transparencia, LRJSP, LBRL, UE, LPAC, LCSP, TREBEP, LGSS, LGP, Igualdad...) y Bloque II — Informática y Ofimática (8 temas). OpoRuta cubre los 45 temas con legislación verificada y exámenes INAP reales (2019-2024).',
       },
     },
     {
@@ -244,7 +272,7 @@ const jsonLdApp = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
   name: 'OpoRuta',
-  description: 'Plataforma de preparación de oposiciones al Auxiliar Administrativo del Estado con IA y verificación determinista de citas legales.',
+  description: 'Plataforma de preparación de oposiciones de la Administración General del Estado (C1 Administrativo + C2 Auxiliar) con IA y verificación determinista de citas legales.',
   url: APP_URL_META,
   applicationCategory: 'EducationalApplication',
   operatingSystem: 'Web',
@@ -262,14 +290,21 @@ const jsonLdApp = {
       price: '49.99',
       priceCurrency: 'EUR',
       name: 'Pack Oposición',
-      description: 'Tests ilimitados en 28 temas, simulacros y psicotécnicos ilimitados, 20 análisis detallados, Radar del Tribunal',
+      description: 'Tests ilimitados en C1 o C2, simulacros y psicotécnicos ilimitados, 20 análisis detallados, Radar del Tribunal',
+    },
+    {
+      '@type': 'Offer',
+      price: '79.99',
+      priceCurrency: 'EUR',
+      name: 'Pack Doble',
+      description: 'Acceso completo a C1 y C2, simulacros ilimitados, 30 análisis detallados, Radar del Tribunal',
     },
   ],
   educationalUse: 'Practice',
   audience: {
     '@type': 'EducationalAudience',
     educationalRole: 'Student',
-    audienceType: 'Opositores al Cuerpo General Auxiliar de la Administración del Estado (C2)',
+    audienceType: 'Opositores a la Administración General del Estado (C1 Administrativo + C2 Auxiliar)',
   },
 }
 
@@ -310,7 +345,7 @@ export default async function LandingPage() {
       <section aria-labelledby="hero-heading" className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-background py-20 sm:py-32">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
           <Badge variant="secondary" className="mb-6 text-xs font-medium px-3 py-1">
-            Auxiliar Administrativo del Estado · 1.700 plazas
+            Administración General del Estado · C1 + C2 · 4.200+ plazas
           </Badge>
 
           <ExamCountdown examDate="2026-05-23" />
@@ -321,8 +356,8 @@ export default async function LandingPage() {
             <span className="text-primary">Entrena con lo que pregunta el tribunal.</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Tests generados desde exámenes INAP reales, con cada cita legal verificada
-            al artículo exacto. Sabrás si estás avanzando — o si necesitas reforzar.
+            Prepara Administrativo (C1) o Auxiliar (C2) con tests generados desde exámenes INAP reales
+            y cada cita legal verificada al artículo exacto. Sabrás si estás avanzando.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/register">
@@ -387,6 +422,90 @@ export default async function LandingPage() {
           </div>
         </section>
       )}
+
+      {/* ─── Elige tu oposición (T-15) ────────────────────────────────── */}
+      <section aria-labelledby="oposiciones-heading" className="py-20">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <Badge variant="outline" className="mb-4">
+              Dos oposiciones, una plataforma
+            </Badge>
+            <h2 id="oposiciones-heading" className="text-3xl font-bold tracking-tight">
+              Elige tu oposición
+            </h2>
+            <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
+              Contenido específico para cada cuerpo. Temario completo, legislación verificada y exámenes INAP reales.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2 max-w-3xl mx-auto">
+            {/* C2 — Auxiliar */}
+            <Card className="relative overflow-hidden border-primary/30 shadow-md">
+              <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-[10px] font-bold px-3 py-1 rounded-bl-lg">
+                Disponible
+              </div>
+              <CardHeader className="pb-3">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                    <BookOpen className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg">Auxiliar Administrativo (C2)</CardTitle>
+                    <p className="text-xs text-muted-foreground">Cuerpo General Auxiliar AGE</p>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <ul className="space-y-1.5 text-sm text-muted-foreground">
+                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 28 temas (Bloque I + II)</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 1.700 plazas convocadas</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> Exámenes INAP 2018–2024</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> Legislación verificada</li>
+                </ul>
+                <Link href="/register" className="block pt-2">
+                  <Button className="w-full gap-2" size="sm">
+                    Empezar con C2
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+            {/* C1 — Administrativo */}
+            <Card className="relative overflow-hidden border-amber-400/30 shadow-md">
+              <div className="absolute top-0 right-0 bg-amber-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
+                Disponible
+              </div>
+              <CardHeader className="pb-3">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10">
+                    <GraduationCap className="h-6 w-6 text-amber-600" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg">Administrativo del Estado (C1)</CardTitle>
+                    <p className="text-xs text-muted-foreground">Cuerpo General Administrativo AGE</p>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <ul className="space-y-1.5 text-sm text-muted-foreground">
+                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 45 temas (Bloque I + II)</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 2.512 plazas convocadas</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> Exámenes INAP 2019–2024</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 21 leyes verificadas</li>
+                </ul>
+                <Link href="/register" className="block pt-2">
+                  <Button variant="outline" className="w-full gap-2 border-amber-400 text-amber-700 hover:bg-amber-50 dark:text-amber-400 dark:hover:bg-amber-950/30" size="sm">
+                    Empezar con C1
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
+          <p className="text-center text-xs text-muted-foreground mt-6">
+            ¿Preparas las dos? El Pack Doble te cubre ambas oposiciones por 79,99€.
+          </p>
+        </div>
+      </section>
 
       {/* ─── Pain points ─────────────────────────────────────────────── */}
       <section aria-labelledby="pain-points-heading" className="py-20 bg-muted/30">
@@ -506,7 +625,7 @@ export default async function LandingPage() {
               ¿Te quedas sin análisis detallados? Recárgalos desde 8,99€.
             </p>
           </div>
-          <div className="grid gap-6 md:grid-cols-2 max-w-2xl mx-auto">
+          <div className="grid gap-6 md:grid-cols-3 max-w-4xl mx-auto">
             {plans.map((plan) => (
               <Card
                 key={plan.name}
@@ -552,7 +671,7 @@ export default async function LandingPage() {
             Únete a los primeros opositores en probarlo
           </p>
           <p className="text-sm text-muted-foreground mb-6">
-            Acceso founder disponible ahora — precio especial para los primeros {FOUNDER_LIMIT}.
+            C1 o C2 — elige tu oposición y empieza hoy. Acceso founder disponible para los primeros {FOUNDER_LIMIT}.
           </p>
           <Link href="/register">
             <Button size="lg" className="gap-2">
@@ -635,6 +754,25 @@ export default async function LandingPage() {
               Ver todas las guías →
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* ─── Motivacional ──────────────────────────────────────────────── */}
+      <section className="py-20 bg-muted/20">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center">
+          <Flame className="h-10 w-10 text-amber-500 mx-auto mb-6" />
+          <blockquote className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground leading-snug">
+            &ldquo;Las personas que aprueban no son las más listas.
+            <br />
+            <span className="text-primary">Son las que no se rinden.&rdquo;</span>
+          </blockquote>
+          <p className="mt-6 text-muted-foreground max-w-xl mx-auto leading-relaxed">
+            Cada test que haces, cada artículo que repasas, cada error que entiendes te acerca un paso más a tu plaza.
+            No importa cuántas veces caigas — importa cuántas te levantas.
+          </p>
+          <p className="mt-4 text-sm font-medium text-primary">
+            Tu plaza te está esperando. No pares ahora.
+          </p>
         </div>
       </section>
 
