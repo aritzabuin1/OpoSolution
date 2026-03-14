@@ -40,7 +40,17 @@ async function extractPdfText(buffer: Buffer): Promise<string> {
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const EXAMENES_DIR = path.join(__dirname, '..', '..', 'data', 'examenes')
+const DATA_ROOT = path.join(__dirname, '..', '..', 'data')
+
+// Support --dir flag: pnpm parse:examenes --dir examenes_c1 [año] [modelo]
+function resolveExamenesDir(): string {
+  const dirIdx = process.argv.indexOf('--dir')
+  if (dirIdx !== -1 && process.argv[dirIdx + 1]) {
+    return path.join(DATA_ROOT, process.argv[dirIdx + 1])
+  }
+  return path.join(DATA_ROOT, 'examenes')
+}
+const EXAMENES_DIR = resolveExamenesDir()
 
 // ─── Carga .env.local ─────────────────────────────────────────────────────────
 
@@ -439,10 +449,33 @@ async function processExamen(
   // 4. Parsear plantilla de respuestas
   let plantilla = new Map<number, 0 | 1 | 2 | 3>()
   if (plantillaPdf && fs.existsSync(plantillaPdf)) {
-    const plantillaBuffer = fs.readFileSync(plantillaPdf)
-    const plantillaText = await extractPdfText(plantillaBuffer)
-    plantilla = parsePlantilla(plantillaText)
-    console.log(`  ✅ Plantilla de respuestas: ${plantilla.size} respuestas`)
+    try {
+      const plantillaBuffer = fs.readFileSync(plantillaPdf)
+      const plantillaText = await extractPdfText(plantillaBuffer)
+      plantilla = parsePlantilla(plantillaText)
+      console.log(`  ✅ Plantilla de respuestas: ${plantilla.size} respuestas`)
+
+      // If pdf-parse failed (invalid PDF), try GPT-4o Vision as fallback
+      if (plantilla.size === 0) {
+        console.log(`  ⚠️  Plantilla vacía — intentando con GPT-4o Vision...`)
+        const visionResult = await parseScannedPdfWithOpenAI(plantillaBuffer, anno, 'plantilla')
+        // Vision returns preguntas — we only need the numbers, not answers from here
+        console.log(`  ℹ️  Vision no es útil para plantillas — usando correcta = 0`)
+      }
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err)
+      console.warn(`  ⚠️  Error parseando plantilla PDF (${msg}) — correcta = 0 por defecto`)
+      // Try reading the raw file as text (some plantillas are text-based PDFs that pdf-parse can't handle)
+      try {
+        const rawText = fs.readFileSync(plantillaPdf, 'utf-8')
+        plantilla = parsePlantilla(rawText)
+        if (plantilla.size > 0) {
+          console.log(`  ✅ Plantilla recuperada via texto raw: ${plantilla.size} respuestas`)
+        }
+      } catch {
+        // Ignore — plantilla will remain empty
+      }
+    }
   } else {
     console.warn(`  ⚠️  Sin plantilla de respuestas — correcta = 0 por defecto`)
   }
@@ -523,8 +556,8 @@ function discoverExamenes(targetAnno?: string, targetModelo?: string): ExamenDes
     )
 
     for (const cuestionario of cuestionarios) {
-      // Detectar modelo del nombre de archivo (modelo_a.pdf, modelo_b.pdf, etc.)
-      const modeloMatch = cuestionario.match(/modelo[_\s-]?([ab])/i)
+      // Detectar modelo del nombre de archivo (modelo_a.pdf, examen_a.pdf, etc.)
+      const modeloMatch = cuestionario.match(/(?:modelo|examen|cuestionario)[_\s-]?([ab])/i)
       const modelo = modeloMatch ? modeloMatch[1].toUpperCase() : null
 
       if (targetModelo && modelo?.toLowerCase() !== targetModelo.toLowerCase()) continue
@@ -562,8 +595,15 @@ function discoverExamenes(targetAnno?: string, targetModelo?: string): ExamenDes
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
-  const [, , targetAnno, targetModelo] = process.argv
-  console.log('🎓 OPTEK — Parser de Exámenes Oficiales')
+  // Filter out --dir flag and its value from positional args
+  const positionalArgs = process.argv.slice(2).filter((arg, i, arr) => {
+    if (arg === '--dir') return false
+    if (i > 0 && arr[i - 1] === '--dir') return false
+    return true
+  })
+  const [targetAnno, targetModelo] = positionalArgs
+  console.log('🎓 OpoRuta — Parser de Exámenes Oficiales')
+  console.log(`📂 Directorio: ${EXAMENES_DIR}`)
   console.log('========================================')
 
   const examenes = discoverExamenes(targetAnno, targetModelo)

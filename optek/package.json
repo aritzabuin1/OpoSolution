@@ -25,7 +25,9 @@
     "eval:all": "tsx --env-file=.env.local execution/run-evals.ts all",
     "eval:adversarial": "tsx --env-file=.env.local execution/run-evals.ts adversarial",
     "parse:examenes": "tsx --env-file=.env.local execution/parse-exam-pdf.ts",
+    "parse:examenes-c1": "tsx --env-file=.env.local execution/parse-exam-pdf.ts --dir examenes_c1",
     "ingest:examenes": "tsx --env-file=.env.local execution/ingest-examenes.ts",
+    "ingest:examenes-c1": "tsx --env-file=.env.local execution/ingest-examenes.ts --dir examenes_c1",
     "build:radar": "tsx --env-file=.env.local execution/build-radar-tribunal.ts",
     "scrape:ofimatica": "tsx execution/scrape-microsoft-learn.ts",
     "ingest:ofimatica": "tsx --env-file=.env.local execution/ingest-conocimiento.ts"

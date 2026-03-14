@@ -26,7 +26,26 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const EXAMENES_DIR = path.join(__dirname, '..', '..', 'data', 'examenes')
+const DATA_ROOT = path.join(__dirname, '..', '..', 'data')
+
+// Support --dir flag: pnpm ingest:examenes --dir examenes_c1 [año]
+function resolveExamenesDir(): string {
+  const dirIdx = process.argv.indexOf('--dir')
+  if (dirIdx !== -1 && process.argv[dirIdx + 1]) {
+    return path.join(DATA_ROOT, process.argv[dirIdx + 1])
+  }
+  return path.join(DATA_ROOT, 'examenes')
+}
+const EXAMENES_DIR = resolveExamenesDir()
+
+// Map directory to oposición slug
+function resolveOposicionSlug(): string {
+  const dirIdx = process.argv.indexOf('--dir')
+  if (dirIdx !== -1 && process.argv[dirIdx + 1]?.includes('c1')) {
+    return 'administrativo-estado'
+  }
+  return 'aux-admin-estado'
+}
 
 // ─── Carga .env.local ─────────────────────────────────────────────────────────
 
@@ -159,12 +178,22 @@ async function ingestExamen(
   const examenId = (examenRow as { id: string }).id
   console.log(`  ✅ Examen ID: ${examenId}`)
 
-  // 2. Upsert preguntas_oficiales en batches de 50
+  // 2. Excluir preguntas de reserva (sin respuesta verificada — credibilidad 0 tolerancia)
+  //    C1 (Administrativo): 60 puntuables + 10 reserva
+  //    C2 (Auxiliar): actualmente todos los exámenes ya vienen sin reservas
+  const MAX_PUNTUABLE = 60 // Preguntas > 60 son reserva en C1; C2 no las incluye
+  const preguntasPuntuables = examenParsed.preguntas.filter((p) => p.numero <= MAX_PUNTUABLE)
+  const reservasDescartadas = examenParsed.preguntas.length - preguntasPuntuables.length
+  if (reservasDescartadas > 0) {
+    console.log(`  ⚠️  ${reservasDescartadas} preguntas de reserva descartadas (sin respuesta verificada)`)
+  }
+
+  // 3. Upsert preguntas_oficiales en batches de 50
   const BATCH_SIZE = 50
   let preguntasInsertadas = 0
 
-  for (let i = 0; i < examenParsed.preguntas.length; i += BATCH_SIZE) {
-    const batch = examenParsed.preguntas.slice(i, i + BATCH_SIZE)
+  for (let i = 0; i < preguntasPuntuables.length; i += BATCH_SIZE) {
+    const batch = preguntasPuntuables.slice(i, i + BATCH_SIZE)
 
     const rows = batch.map((p) => ({
       examen_id: examenId,
@@ -232,21 +261,31 @@ function discoverParsedJsons(targetAnno?: string): JsonDescubierto[] {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
-  const [, , targetAnno] = process.argv
-  console.log('🎓 OPTEK — Ingesta de Exámenes Oficiales')
+  // Filter out --dir flag and its value from positional args
+  const positionalArgs = process.argv.slice(2).filter((arg, i, arr) => {
+    if (arg === '--dir') return false
+    if (i > 0 && arr[i - 1] === '--dir') return false
+    return true
+  })
+  const [targetAnno] = positionalArgs
+  const slug = resolveOposicionSlug()
+
+  console.log('🎓 OpoRuta — Ingesta de Exámenes Oficiales')
+  console.log(`📂 Directorio: ${EXAMENES_DIR}`)
+  console.log(`🏷️  Oposición: ${slug}`)
   console.log('=========================================')
 
   const supabase = buildSupabaseClient()
 
-  // Obtener oposicion_id de "aux-admin-estado"
+  // Obtener oposicion_id del slug correspondiente
   const { data: oposicion, error: opError } = await supabase
     .from('oposiciones')
     .select('id')
-    .eq('slug', 'aux-admin-estado')
+    .eq('slug', slug)
     .single()
 
   if (opError || !oposicion) {
-    console.error('❌ Oposición "aux-admin-estado" no encontrada en BD')
+    console.error(`❌ Oposición "${slug}" no encontrada en BD`)
     process.exit(1)
   }
 

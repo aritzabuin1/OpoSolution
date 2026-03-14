@@ -160,9 +160,10 @@ export async function POST(request: NextRequest) {
   let preguntasData: PreguntaRow[] | null = null
 
   if (modo === 'mixto') {
-    // §2.6.1 — cargar preguntas de TODAS las convocatorias activas
+    // §2.6.1 — cargar preguntas de TODAS las convocatorias activas (scoped por oposición)
     const { data: todosExamenes } = await examenesTable
       .select('id, anio, convocatoria')
+      .eq('oposicion_id', oposicionId)
       .eq('activo', true)
       .order('anio', { ascending: false })
 
@@ -181,7 +182,10 @@ export async function POST(request: NextRequest) {
           .eq('examen_id', ex.id)
       )
     )
-    const todasPreguntas = pregResultados.flatMap((r: { data: PreguntaRow[] | null }) => r.data ?? [])
+    // Excluir preguntas de reserva (defense in depth — no deben existir en BD pero por seguridad)
+    const todasPreguntas = pregResultados
+      .flatMap((r: { data: PreguntaRow[] | null }) => r.data ?? [])
+      .filter((p: PreguntaRow) => p.numero <= 60)
 
     if (todasPreguntas.length === 0) {
       return NextResponse.json(
@@ -206,6 +210,7 @@ export async function POST(request: NextRequest) {
       const { data } = await examenesTable
         .select('id, anio, convocatoria')
         .eq('id', examenId)
+        .eq('oposicion_id', oposicionId)
         .eq('activo', true)
         .single()
       examenRow = data as ExamenRow | null
@@ -213,6 +218,7 @@ export async function POST(request: NextRequest) {
       const { data } = await examenesTable
         .select('id, anio, convocatoria')
         .eq('anio', anno!)
+        .eq('oposicion_id', oposicionId)
         .eq('activo', true)
         .order('convocatoria')
         .limit(1)
@@ -249,7 +255,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    preguntasData = pregData as PreguntaRow[]
+    // Excluir preguntas de reserva (defense in depth)
+    preguntasData = (pregData as PreguntaRow[]).filter((p) => p.numero <= 60)
   }
 
   // Garantía de tipo — examen y preguntasData siempre tienen valor en este punto
