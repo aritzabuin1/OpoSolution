@@ -3,19 +3,19 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import type { Database } from '@/types/database'
 import { sendWelcomeEmail, sendNewUserNotification } from '@/lib/email/client'
+import { logger } from '@/lib/logger'
 
 /**
  * GET /auth/callback
  *
  * Maneja el redirect de Supabase tras:
- * - Verificación de email en registro
+ * - Verificación de email en registro (PKCE code flow)
  * - Magic link de login
  * - OAuth (si se habilita en el futuro)
  *
  * Intercambia el `code` por una sesión y redirige al dashboard.
- * En caso de error → /auth/error con reason en query string.
  *
- * §1.16.7: envía email de bienvenida en el primer login (created_at < 2 min).
+ * CRITICAL PATH: si esto falla, perdemos el usuario. Logueamos todo.
  */
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url)
@@ -24,56 +24,88 @@ export async function GET(request: NextRequest) {
   const rawNext = searchParams.get('next') ?? '/dashboard'
   const next = rawNext.startsWith('/') && !rawNext.startsWith('//') ? rawNext : '/dashboard'
 
-  if (code) {
-    const cookieStore = await cookies()
+  if (!code) {
+    logger.warn('[auth/callback] no code parameter')
+    return NextResponse.redirect(new URL('/error?reason=callback', origin))
+  }
 
-    const supabase = createServerClient<Database>(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        cookies: {
-          getAll() {
-            return cookieStore.getAll()
-          },
-          setAll(cookiesToSet) {
-            cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
-            )
-          },
+  const cookieStore = await cookies()
+
+  const supabase = createServerClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll()
         },
-      }
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) =>
+            cookieStore.set(name, value, options)
+          )
+        },
+      },
+    }
+  )
+
+  const { error, data } = await supabase.auth.exchangeCodeForSession(code)
+
+  if (error) {
+    logger.error(
+      { error: error.message, code: error.status },
+      '[auth/callback] exchangeCodeForSession failed'
     )
 
-    const { error, data } = await supabase.auth.exchangeCodeForSession(code)
-
-    if (!error && data.user) {
-      // Detectar registro nuevo: created_at dentro de los últimos 2 minutos
-      const createdAt = new Date(data.user.created_at).getTime()
-      const isNewUser = Date.now() - createdAt < 2 * 60 * 1000
-
-      if (isNewUser) {
-        // Set oposicion_id from registration metadata
-        const oposicionId = data.user.user_metadata?.oposicion_id as string | undefined
-        if (oposicionId) {
-          const { createServiceClient } = await import('@/lib/supabase/server')
-          const serviceClient = await createServiceClient()
-          await serviceClient
-            .from('profiles')
-            .update({ oposicion_id: oposicionId })
-            .eq('id', data.user.id)
-        }
-
-        if (data.user.email) {
-          // No-op si Resend no está configurado (§1.16 condicional)
-          const nombre = data.user.user_metadata?.full_name as string | undefined
-          void sendWelcomeEmail({ to: data.user.email, nombre })
-          void sendNewUserNotification({ email: data.user.email, nombre })
-        }
-      }
-
+    // Fallback: si hay sesión activa a pesar del error, redirigir igualmente
+    const { data: { user: sessionUser } } = await supabase.auth.getUser()
+    if (sessionUser) {
+      logger.info(
+        { userId: sessionUser.id },
+        '[auth/callback] exchange failed but session exists — redirecting'
+      )
+      await handleNewUser(sessionUser)
       return NextResponse.redirect(new URL(next, origin))
+    }
+
+    return NextResponse.redirect(new URL('/error?reason=callback', origin))
+  }
+
+  if (data.user) {
+    await handleNewUser(data.user)
+  }
+
+  return NextResponse.redirect(new URL(next, origin))
+}
+
+/**
+ * Configura oposicion_id y envía emails de bienvenida para usuarios nuevos.
+ */
+async function handleNewUser(
+  user: { id: string; created_at: string; email?: string; user_metadata?: Record<string, unknown> }
+) {
+  const createdAt = new Date(user.created_at).getTime()
+  const isNewUser = Date.now() - createdAt < 10 * 60 * 1000 // 10 min window (confirm puede tardar)
+  if (!isNewUser) return
+
+  // Set oposicion_id from registration metadata
+  const oposicionId = user.user_metadata?.oposicion_id as string | undefined
+  if (oposicionId) {
+    try {
+      const { createServiceClient } = await import('@/lib/supabase/server')
+      const serviceClient = await createServiceClient()
+      await serviceClient
+        .from('profiles')
+        .update({ oposicion_id: oposicionId })
+        .eq('id', user.id)
+      logger.info({ userId: user.id, oposicionId }, '[auth/callback] oposicion_id set')
+    } catch (err) {
+      logger.error({ err, userId: user.id }, '[auth/callback] failed to set oposicion_id')
     }
   }
 
-  return NextResponse.redirect(new URL('/error?reason=callback', origin))
+  if (user.email) {
+    const nombre = user.user_metadata?.full_name as string | undefined
+    void sendWelcomeEmail({ to: user.email, nombre })
+    void sendNewUserNotification({ email: user.email, nombre })
+  }
 }
