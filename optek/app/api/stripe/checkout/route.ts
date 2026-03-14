@@ -47,6 +47,31 @@ export async function POST(request: NextRequest) {
   // Derivar oposicionId del tier (no confiar en body — previene suplantación)
   const oposicionId = TIER_TO_OPOSICION[tier as StripePriceTier] || ''
 
+  // Recarga solo para usuarios premium (forzar compra de pack primero)
+  if (tier === 'recarga') {
+    const serviceClient = await createServiceClient()
+    const [{ count: purchaseCount }, { data: profileData }] = await Promise.all([
+      serviceClient
+        .from('compras')
+        .select('id', { count: 'exact', head: true })
+        .eq('user_id', user.id),
+      serviceClient
+        .from('profiles')
+        .select('is_founder, is_admin')
+        .eq('id', user.id)
+        .single(),
+    ])
+    const prof = profileData as { is_founder?: boolean; is_admin?: boolean } | null
+    const hasPremium = (purchaseCount ?? 0) > 0 || prof?.is_founder === true || prof?.is_admin === true
+    if (!hasPremium) {
+      log.warn({ userId: user.id }, 'Free user intentó comprar recarga')
+      return NextResponse.json(
+        { error: 'La recarga solo está disponible para usuarios premium. Adquiere primero un Pack Oposición.' },
+        { status: 402 }
+      )
+    }
+  }
+
   // Para tier fundador: verificar que quedan plazas (20 GLOBALES)
   if (tier === 'fundador') {
     const serviceClient = await createServiceClient()
