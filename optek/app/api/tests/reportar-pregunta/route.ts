@@ -42,9 +42,26 @@ export async function POST(request: NextRequest) {
 
   const { testId, preguntaIndex, motivo } = parsed.data
 
+  // Extraer enunciado de la pregunta para que el reporte sea útil sin abrir el test
+  let enunciado: string | null = null
+  try {
+    const { data: test } = await supabase
+      .from('tests_generados')
+      .select('preguntas')
+      .eq('id', testId)
+      .single()
+    const preguntas = test?.preguntas as { enunciado?: string }[] | null
+    if (preguntas && preguntas[preguntaIndex]) {
+      enunciado = preguntas[preguntaIndex].enunciado ?? null
+    }
+  } catch {
+    // No bloquear el reporte si falla la extracción
+  }
+
   const { error } = await supabase.from('preguntas_reportadas').insert({
     test_id: testId,
     pregunta_index: preguntaIndex,
+    enunciado,
     motivo,
     user_id: user.id,
     estado: 'pendiente',
