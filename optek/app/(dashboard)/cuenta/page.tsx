@@ -106,16 +106,28 @@ export default async function CuentaPage() {
     <div className="max-w-3xl mx-auto p-6 space-y-8">
       <h1 className="text-2xl font-bold">Mi cuenta</h1>
 
-      {/* ── CTA — free: pack 49,99€ | premium: recarga 8,99€ si balance bajo ── */}
+      {/* ── CTAs — free: pack + recarga disabled | premium: recarga si balance bajo ── */}
       {!isPremium && (
-        <div className="rounded-xl border border-primary/30 bg-primary/5 p-5 flex items-center justify-between gap-4">
-          <div>
-            <p className="font-semibold text-sm">Desbloquea tests ilimitados</p>
-            <p className="text-xs text-muted-foreground mt-0.5">
-              Pack Oposición — 49,99€ · tests ilimitados + 20 análisis detallados · sin suscripción
-            </p>
+        <div className="space-y-3">
+          <div className="rounded-xl border border-primary/30 bg-primary/5 p-5 flex items-center justify-between gap-4">
+            <div>
+              <p className="font-semibold text-sm">Desbloquea tests ilimitados</p>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                Pack Oposición — 49,99€ · tests ilimitados + 20 análisis detallados · sin suscripción
+              </p>
+            </div>
+            <BuyButton tier="pack" label="Comprar" variant="default" />
           </div>
-          <BuyButton tier="pack" label="Comprar" variant="default" />
+          {/* Recarga visible pero bloqueada — tentamos al usuario */}
+          <div className="rounded-xl border border-muted/50 bg-muted/20 p-5 flex items-center justify-between gap-4 opacity-60">
+            <div>
+              <p className="font-semibold text-sm text-muted-foreground">Recarga — 8,99€ · +10 análisis detallados</p>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                Disponible con el Pack Oposición. Compra el pack y podrás recargar análisis cuando los necesites.
+              </p>
+            </div>
+            <BuyButton tier="pack" label="Comprar pack" variant="outline" />
+          </div>
         </div>
       )}
       {isPremium && balance < 5 && (
