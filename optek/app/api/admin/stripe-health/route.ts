@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { stripe, STRIPE_PRICES, CORRECTIONS_GRANTED, FOUNDER_LIMIT } from '@/lib/stripe/client'
 import { createServiceClient } from '@/lib/supabase/server'
 import { logger } from '@/lib/logger'
+import { verifyCronSecret } from '@/lib/auth/cron-auth'
 
 /**
  * GET /api/admin/stripe-health
@@ -17,12 +18,9 @@ import { logger } from '@/lib/logger'
  * Solo accesible con CRON_SECRET (mismo patrón que los crons).
  */
 export async function GET(request: NextRequest) {
-  // Auth: same pattern as cron endpoints
-  const authHeader = request.headers.get('authorization')
-  const cronSecret = process.env.CRON_SECRET
-  if (!cronSecret || authHeader !== `Bearer ${cronSecret}`) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
+  // Auth: timing-safe CRON_SECRET verification
+  const authError = verifyCronSecret(request)
+  if (authError) return authError
 
   const log = logger.child({ route: 'stripe-health' })
   const checks: Record<string, { ok: boolean; detail: string }> = {}
@@ -50,7 +48,7 @@ export async function GET(request: NextRequest) {
   checks['webhook_secret'] = {
     ok: !!process.env.STRIPE_WEBHOOK_SECRET,
     detail: process.env.STRIPE_WEBHOOK_SECRET
-      ? `Configured (${process.env.STRIPE_WEBHOOK_SECRET.slice(0, 8)}...)`
+      ? 'Configured'
       : 'MISSING — webhooks will fail!',
   }
 

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { watchAllLeyes } from '@/lib/ai/boe-watcher'
 import { runCostCheck, type CostCheckResult } from '@/lib/admin/cost-check'
 import { logger } from '@/lib/logger'
+import { verifyCronSecret } from '@/lib/auth/cron-auth'
 
 // Vercel Hobby max: 60s. BOE fetch + cost check can take 10-30s.
 export const maxDuration = 60
@@ -21,12 +22,11 @@ export async function GET(request: NextRequest) {
   const requestId = request.headers.get('x-request-id') ?? globalThis.crypto.randomUUID()
   const log = logger.child({ requestId, endpoint: 'cron/boe-watch' })
 
-  // Verificar CRON_SECRET
-  const authHeader = request.headers.get('authorization')
-  const cronSecret = process.env.CRON_SECRET
-  if (!cronSecret || authHeader !== `Bearer ${cronSecret}`) {
+  // Verificar CRON_SECRET (timing-safe)
+  const authError = verifyCronSecret(request)
+  if (authError) {
     log.warn('[boe-watch] Unauthorized cron request')
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    return authError
   }
 
   log.info('[boe-watch] cron iniciado')

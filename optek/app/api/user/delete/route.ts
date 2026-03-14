@@ -112,6 +112,67 @@ export async function DELETE() {
       return NextResponse.json({ error: 'Error al procesar la solicitud' }, { status: 500 })
     }
 
+    // ── Paso 5b: Eliminar flashcards ────────────────────────────────────────────
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error: flashcardsError } = await (serviceClient as any)
+      .from('flashcards')
+      .delete()
+      .eq('user_id', user.id)
+
+    if (flashcardsError) {
+      log.error({ err: flashcardsError, userId: user.id }, 'Error al eliminar flashcards')
+      return NextResponse.json({ error: 'Error al procesar la solicitud' }, { status: 500 })
+    }
+
+    // ── Paso 5c: Eliminar cazatrampas_sesiones ───────────────────────────────
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error: cazatrampasError } = await (serviceClient as any)
+      .from('cazatrampas_sesiones')
+      .delete()
+      .eq('user_id', user.id)
+
+    if (cazatrampasError) {
+      log.error({ err: cazatrampasError, userId: user.id }, 'Error al eliminar cazatrampas')
+      return NextResponse.json({ error: 'Error al procesar la solicitud' }, { status: 500 })
+    }
+
+    // ── Paso 5d: Eliminar notificaciones ─────────────────────────────────────
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error: notificacionesError } = await (serviceClient as any)
+      .from('notificaciones')
+      .delete()
+      .eq('user_id', user.id)
+
+    if (notificacionesError) {
+      log.error({ err: notificacionesError, userId: user.id }, 'Error al eliminar notificaciones')
+      return NextResponse.json({ error: 'Error al procesar la solicitud' }, { status: 500 })
+    }
+
+    // ── Paso 5e: Eliminar reto_diario_resultados ─────────────────────────────
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error: retoError } = await (serviceClient as any)
+      .from('reto_diario_resultados')
+      .delete()
+      .eq('user_id', user.id)
+
+    if (retoError) {
+      log.error({ err: retoError, userId: user.id }, 'Error al eliminar reto_diario_resultados')
+      return NextResponse.json({ error: 'Error al procesar la solicitud' }, { status: 500 })
+    }
+
+    // ── Paso 5f: Eliminar sugerencias ────────────────────────────────────────
+    // ON DELETE SET NULL dejaría el mensaje huérfano — eliminar para RGPD Art. 17
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error: sugerenciasError } = await (serviceClient as any)
+      .from('sugerencias')
+      .delete()
+      .eq('user_id', user.id)
+
+    if (sugerenciasError) {
+      log.error({ err: sugerenciasError, userId: user.id }, 'Error al eliminar sugerencias')
+      return NextResponse.json({ error: 'Error al procesar la solicitud' }, { status: 500 })
+    }
+
     // ── Paso 6: Eliminar logros ────────────────────────────────────────────────
     // Nota: la tabla 'logros' se añade en migración 008. Los tipos TS aún no la incluyen.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

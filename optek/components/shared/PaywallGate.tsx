@@ -26,6 +26,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { trackPixelEvent } from '@/lib/analytics/pixel'
+import { useIsPremium } from '@/lib/hooks/useIsPremium'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -67,7 +68,7 @@ function getTestOptions(oposicionId?: string): PricingOption[] {
   ]
 }
 
-const OPTIONS_CORRECTIONS: PricingOption[] = [
+const OPTIONS_RECARGA: PricingOption[] = [
   {
     tier: 'recarga',
     label: 'Recarga de análisis',
@@ -78,18 +79,31 @@ const OPTIONS_CORRECTIONS: PricingOption[] = [
   },
 ]
 
+function getCorrectionOptions(isPremium: boolean, oposicionId?: string): PricingOption[] {
+  if (isPremium) return OPTIONS_RECARGA
+  // Free users need to buy the pack first — recarga is only for existing premium users
+  return getTestOptions(oposicionId)
+}
+
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export function PaywallGate({ open, onClose, code, temaId, oposicionId }: PaywallGateProps) {
   const [loading, setLoading] = useState<string | null>(null)
+  const isPremium = useIsPremium()
 
-  const options = code === 'PAYWALL_TESTS' ? getTestOptions(oposicionId) : OPTIONS_CORRECTIONS
+  const options = code === 'PAYWALL_TESTS'
+    ? getTestOptions(oposicionId)
+    : getCorrectionOptions(isPremium === true, oposicionId)
   const title = code === 'PAYWALL_TESTS'
     ? 'Continúa preparando tu oposición'
-    : 'Recarga tus análisis'
+    : isPremium
+      ? 'Recarga tus análisis'
+      : 'Desbloquea análisis detallados'
   const description = code === 'PAYWALL_TESTS'
     ? 'Has utilizado tus 5 tests gratuitos. Desbloquea acceso ilimitado para seguir practicando.'
-    : 'Te has quedado sin análisis detallados. Recarga tu saldo para continuar.'
+    : isPremium
+      ? 'Te has quedado sin análisis detallados. Recarga tu saldo para continuar.'
+      : 'Has utilizado tus 2 análisis gratuitos. Consigue el Pack para acceso ilimitado a tests + 20 análisis detallados.'
 
   async function handleBuy(tier: string) {
     setLoading(tier)
@@ -129,7 +143,7 @@ export function PaywallGate({ open, onClose, code, temaId, oposicionId }: Paywal
           <span className="line-through text-destructive/60">Academia presencial: desde 150€/mes</span>
           {' · '}
           <span className="font-semibold text-foreground">
-            OpoRuta: {code === 'PAYWALL_TESTS' ? '49,99€' : 'desde 8,99€'} una sola vez
+            OpoRuta: {code === 'PAYWALL_TESTS' || !isPremium ? '49,99€' : 'desde 8,99€'} una sola vez
           </span>
         </div>
 

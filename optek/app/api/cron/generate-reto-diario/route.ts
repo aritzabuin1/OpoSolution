@@ -4,6 +4,7 @@ import { callAIJSON } from '@/lib/ai/provider'
 import { SYSTEM_CAZATRAMPAS, buildCazaTrampasPrompt } from '@/lib/ai/prompts'
 import { CazaTrampasRawSchema } from '@/lib/ai/schemas'
 import { logger } from '@/lib/logger'
+import { verifyCronSecret } from '@/lib/auth/cron-auth'
 
 // Vercel Hobby max: 60s. AI generation needs 15-40s.
 export const maxDuration = 60
@@ -26,12 +27,11 @@ export async function GET(request: NextRequest) {
   const log = logger.child({ requestId, endpoint: 'cron/generate-reto-diario' })
 
   try {
-    // ── Auth ────────────────────────────────────────────────────────────────
-    const authHeader = request.headers.get('authorization')
-    const cronSecret = process.env.CRON_SECRET
-    if (!cronSecret || authHeader !== `Bearer ${cronSecret}`) {
+    // ── Auth (timing-safe) ─────────────────────────────────────────────────
+    const authError = verifyCronSecret(request)
+    if (authError) {
       log.warn('[reto-diario-cron] Unauthorized')
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+      return authError
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

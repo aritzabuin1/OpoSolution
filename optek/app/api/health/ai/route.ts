@@ -1,18 +1,24 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
+import { timingSafeEqual } from 'crypto'
 
 /**
- * GET /api/health/ai — Health check público de la capa de IA
+ * GET /api/health/ai — Health check de la capa de IA
  *
- * NO requiere auth. Testea cada paso del pipeline por separado:
+ * Requiere CRON_SECRET (Bearer token). Testea cada paso del pipeline:
  *   1. OpenAI SDK: ping simple ("di OK")
  *   2. OpenAI JSON: respuesta JSON + parse
  *   3. RAG: buildContext de un tema existente
  *
  * Si algún paso falla, devuelve el error exacto para diagnóstico rápido.
- * Rate-limited implícitamente por Vercel (no hay autenticación).
  */
 
 export const maxDuration = 60
+
+/** Timing-safe string comparison to prevent timing attacks */
+function safeCompare(a: string, b: string): boolean {
+  if (a.length !== b.length) return false
+  return timingSafeEqual(Buffer.from(a), Buffer.from(b))
+}
 
 interface StepResult {
   step: string
@@ -22,7 +28,14 @@ interface StepResult {
   error?: string
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  // Auth: CRON_SECRET required — this endpoint costs money (AI API calls)
+  const authHeader = request.headers.get('authorization')
+  const cronSecret = process.env.CRON_SECRET
+  if (!cronSecret || !safeCompare(authHeader ?? '', `Bearer ${cronSecret}`)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
   const results: StepResult[] = []
   const start = Date.now()
 

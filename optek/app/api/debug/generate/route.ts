@@ -55,6 +55,9 @@ export async function GET(request: NextRequest) {
       ])
       hasPaidAccess = results[0]
       isAdmin = results[1]
+      if (!isAdmin) {
+        return NextResponse.json({ error: 'Solo admin' }, { status: 403 })
+      }
       steps.push({
         step: '2. Access check',
         status: 'OK',

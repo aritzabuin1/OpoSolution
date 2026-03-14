@@ -117,11 +117,20 @@ export async function POST(
   // check_and_grant_logros lee racha_maxima, que update_streak acaba de actualizar)
   let nuevosLogros: string[] = []
   try {
-    await sb.rpc('update_streak', { p_user_id: user.id })
-    const { data: logrosData } = await sb.rpc('check_and_grant_logros', { p_user_id: user.id })
-    nuevosLogros = Array.isArray(logrosData) ? (logrosData as string[]) : []
+    const { error: streakErr } = await sb.rpc('update_streak', { p_user_id: user.id })
+    if (streakErr) log.warn({ streakErr }, 'update_streak RPC failed')
+
+    const { data: logrosData, error: logrosErr } = await sb.rpc('check_and_grant_logros', { p_user_id: user.id })
+    if (logrosErr) {
+      log.error({ logrosErr }, 'check_and_grant_logros RPC failed — ¿migration 029 aplicada?')
+    } else {
+      nuevosLogros = Array.isArray(logrosData) ? (logrosData as string[]) : []
+      if (nuevosLogros.length > 0) {
+        log.info({ nuevosLogros, userId: user.id }, 'Logros desbloqueados')
+      }
+    }
   } catch (err) {
-    log.warn({ err }, 'Error en rachas/logros (best-effort)')
+    log.error({ err }, 'Error en rachas/logros — verificar RPCs en Supabase remoto')
   }
 
   // §2.2.1 — Auto-generar flashcards en background (fire-and-forget)

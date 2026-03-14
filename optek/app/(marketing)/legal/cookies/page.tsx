@@ -17,7 +17,7 @@ export default function CookiesPage() {
 
       <h1 className="text-3xl font-bold tracking-tight mb-2">Política de Cookies</h1>
       <p className="text-sm text-muted-foreground mb-10">
-        Última actualización: febrero de 2026
+        Última actualización: 14 de marzo de 2026
       </p>
 
       <div className="space-y-8 text-foreground">
@@ -94,11 +94,41 @@ export default function CookiesPage() {
             </div>
 
             <div className="rounded-lg border p-4 bg-muted/30">
-              <h3 className="font-semibold mb-1">Cookies de analítica y marketing</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Actualmente <strong>no utilizamos</strong> cookies de analítica ni de marketing
-                de terceros. Si en el futuro se implementan, actualizaremos esta política y te
-                pediremos consentimiento explícito.
+              <h3 className="font-semibold mb-1">Cookies de marketing (solo con consentimiento)</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                Si aceptas las cookies opcionales, cargamos <strong>Meta Pixel</strong> (Facebook)
+                para medir la eficacia de nuestras campañas publicitarias. Estas cookies <strong>solo
+                se activan si pulsas &quot;Aceptar&quot;</strong> en el banner de cookies.
+              </p>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="text-left text-xs text-muted-foreground/60 uppercase">
+                      <th className="py-1 pr-4">Cookie</th>
+                      <th className="py-1 pr-4">Proveedor</th>
+                      <th className="py-1 pr-4">Finalidad</th>
+                      <th className="py-1">Duración</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr>
+                      <td className="py-1.5 pr-4 font-mono">_fbp</td>
+                      <td className="py-1.5 pr-4">Meta Platforms</td>
+                      <td className="py-1.5 pr-4">Identificar navegadores para publicidad</td>
+                      <td className="py-1.5">3 meses</td>
+                    </tr>
+                    <tr>
+                      <td className="py-1.5 pr-4 font-mono">_fbc</td>
+                      <td className="py-1.5 pr-4">Meta Platforms</td>
+                      <td className="py-1.5 pr-4">Atribución de clics en anuncios</td>
+                      <td className="py-1.5">3 meses</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-muted-foreground/60 mt-2">
+                Puedes retirar tu consentimiento en cualquier momento pulsando
+                &quot;Gestionar cookies&quot; en el pie de página.
               </p>
             </div>
           </div>

@@ -18,6 +18,25 @@ export const logger = pino({
     service: 'oporuta-web',
     environment: process.env.NODE_ENV ?? 'development',
   },
+  redact: {
+    paths: [
+      'email',
+      'password',
+      'token',
+      'apikey',
+      'api_key',
+      'secret',
+      'authorization',
+      '*.email',
+      '*.password',
+      '*.token',
+      '*.apikey',
+      '*.api_key',
+      '*.secret',
+      '*.authorization',
+    ],
+    censor: '[REDACTED]',
+  },
   transport: isDev
     ? { target: 'pino-pretty', options: { colorize: true, translateTime: 'HH:MM:ss' } }
     : undefined,

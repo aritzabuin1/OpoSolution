@@ -143,8 +143,12 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
           const info = LOGROS_CATALOG[tipo]
           if (info) {
             toast.success(`${info.emoji} ¡Logro desbloqueado!`, {
-              description: info.titulo,
-              duration: 5000,
+              description: `${info.titulo} — ${info.descripcion}`,
+              duration: 8000,
+              action: {
+                label: 'Ver logros',
+                onClick: () => router.push('/logros'),
+              },
             })
           }
         }

@@ -20,7 +20,8 @@ import { logger } from '@/lib/logger'
  *   - flashcards: tarjetas de spaced repetition
  *   - notificaciones: alertas BOE y sistema
  *   - cazatrampas_sesiones: ejercicios caza-trampas
- *   - reto_diario_participaciones: participaciones en reto diario
+ *   - reto_diario_resultados: participaciones en reto diario
+ *   - sugerencias: feedback enviado por el usuario
  *
  * Ref: §1.17.1 PLAN.md | directives/00_DATA_GOVERNANCE.md
  */
@@ -58,6 +59,7 @@ export async function GET() {
       notificacionesResult,
       cazatrampasResult,
       retoResult,
+      sugerenciasResult,
     ] = await Promise.all([
       service.from('profiles').select('*').eq('id', user.id).single(),
       service
@@ -107,12 +109,17 @@ export async function GET() {
         .order('created_at', { ascending: false }),
       sb
         .from('cazatrampas_sesiones')
-        .select('id, ley_nombre, articulo_numero, texto_original, texto_trampa, errores_reales, selecciones_usuario, aciertos, completada_at, created_at')
+        .select('id, legislacion_id, texto_trampa, errores_reales, errores_detectados, puntuacion, completada_at, created_at')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false }),
       sb
-        .from('reto_diario_participaciones')
-        .select('id, reto_id, selecciones, aciertos, created_at')
+        .from('reto_diario_resultados')
+        .select('id, reto_diario_id, intentos_usados, trampas_encontradas, completado, puntuacion, detecciones, created_at')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false }),
+      sb
+        .from('sugerencias')
+        .select('id, mensaje, created_at')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false }),
     ])
@@ -131,6 +138,7 @@ export async function GET() {
       notificacionesResult.error && 'notificaciones',
       cazatrampasResult.error && 'cazatrampas',
       retoResult.error && 'reto_diario',
+      sugerenciasResult.error && 'sugerencias',
     ].filter(Boolean) as string[]
 
     if (queryErrors.length > 0) {
@@ -151,6 +159,7 @@ export async function GET() {
             notificaciones: notificacionesResult.error?.message,
             cazatrampas: cazatrampasResult.error?.message,
             reto_diario: retoResult.error?.message,
+            sugerencias: sugerenciasResult.error?.message,
           },
         },
         'Export parcial — algunas tablas fallaron'
@@ -181,6 +190,7 @@ export async function GET() {
       notificaciones: notificacionesResult.data ?? [],
       cazatrampas: cazatrampasResult.data ?? [],
       reto_diario: retoResult.data ?? [],
+      sugerencias: sugerenciasResult.data ?? [],
     }
 
     log.info(

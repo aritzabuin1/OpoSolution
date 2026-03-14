@@ -39,6 +39,10 @@ export function trackPixelEvent(
 ): void {
   if (typeof window === 'undefined') return
   if (!window.fbq) return
+  // Re-check consent — user may have withdrawn via ManageCookiesButton
+  try {
+    if (localStorage.getItem('oporuta_cookie_consent') !== 'accepted') return
+  } catch { /* localStorage may be blocked */ }
   try {
     if (params) {
       window.fbq('track', event, params)

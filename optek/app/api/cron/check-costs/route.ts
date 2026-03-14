@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { runCostCheck } from '@/lib/admin/cost-check'
 import { logger } from '@/lib/logger'
+import { verifyCronSecret } from '@/lib/auth/cron-auth'
 
 /**
  * GET /api/cron/check-costs
@@ -18,10 +19,10 @@ import { logger } from '@/lib/logger'
  * Ref: directives/OpoRuta_cost_observability.md §3 — §2.23
  */
 export async function GET(request: NextRequest) {
-  const auth = request.headers.get('authorization')
-  if (!process.env.CRON_SECRET || auth !== `Bearer ${process.env.CRON_SECRET}`) {
+  const authError = verifyCronSecret(request)
+  if (authError) {
     logger.warn({ path: '/api/cron/check-costs' }, 'Unauthorized access attempt')
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    return authError
   }
 
   const log = logger.child({ cron: 'check-costs' })

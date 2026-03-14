@@ -57,11 +57,12 @@ export async function POST(request: NextRequest) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: sesion, error: fetchErr } = await (serviceSupabase as any)
     .from('cazatrampas_sesiones')
-    .select('id, user_id, texto_original, texto_trampa, errores_reales, ley_nombre, articulo_numero, completada_at')
+    .select('id, user_id, legislacion_id, texto_trampa, errores_reales, errores_detectados, puntuacion, completada_at')
     .eq('id', sesionId)
     .single()
 
   if (fetchErr || !sesion) {
+    log.error({ fetchErr, sesionId }, 'Sesión cazatrampas no encontrada')
     return NextResponse.json({ error: 'Sesión no encontrada.' }, { status: 404 })
   }
   if (sesion.user_id !== user.id) {
@@ -70,6 +71,17 @@ export async function POST(request: NextRequest) {
   if (!sesion.completada_at) {
     return NextResponse.json({ error: 'Completa el ejercicio antes de pedir el análisis.' }, { status: 400 })
   }
+
+  // Fetch ley info from legislacion table
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: leyInfo } = await (serviceSupabase as any)
+    .from('legislacion')
+    .select('ley_nombre, articulo_numero')
+    .eq('id', sesion.legislacion_id)
+    .single()
+
+  const leyNombre = leyInfo?.ley_nombre ?? 'Ley desconocida'
+  const articuloNumero = leyInfo?.articulo_numero ?? '?'
 
   // Check credits
   const { data: profileCredits } = await serviceSupabase
@@ -102,7 +114,7 @@ export async function POST(request: NextRequest) {
     )
     .join('\n\n')
 
-  const userPrompt = `Analiza en profundidad las siguientes trampas del ejercicio Caza-Trampas sobre ${sesion.ley_nombre}, Art. ${sesion.articulo_numero}:\n\n${trampasTexto}`
+  const userPrompt = `Analiza en profundidad las siguientes trampas del ejercicio Caza-Trampas sobre ${leyNombre}, Art. ${articuloNumero}:\n\n${trampasTexto}`
 
   // Stream
   log.info({ userId: user.id, sesionId, trampas: errores.length, hasPaidCredit }, 'starting stream')

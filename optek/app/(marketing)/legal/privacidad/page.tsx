@@ -17,7 +17,7 @@ export default function PrivacidadPage() {
 
       <h1 className="text-3xl font-bold tracking-tight mb-2">Política de Privacidad</h1>
       <p className="text-sm text-muted-foreground mb-10">
-        Última actualización: marzo de 2026
+        Última actualización: 14 de marzo de 2026
       </p>
 
       <div className="prose prose-sm max-w-none space-y-8 text-foreground">
@@ -132,6 +132,17 @@ export default function PrivacidadPage() {
               <li>
                 <strong className="text-foreground">Resend</strong> (Resend Inc., EE.UU.):
                 Envío de emails transaccionales (confirmación de cuenta, alertas).
+              </li>
+              <li>
+                <strong className="text-foreground">Meta Platforms</strong> (Meta Platforms Ireland Ltd., Irlanda / EE.UU.):
+                Medición de conversiones publicitarias mediante Meta Pixel.{' '}
+                <strong>Solo se activa si aceptas cookies opcionales</strong> en el banner de consentimiento.
+                Datos tratados: páginas visitadas y eventos de conversión (registro, compra).
+                No se envían nombres, emails ni datos personales directamente.
+                Amparado por el EU-US Data Privacy Framework. Consulta su{' '}
+                <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                  política de privacidad
+                </a>.
               </li>
             </ul>
             <p>
