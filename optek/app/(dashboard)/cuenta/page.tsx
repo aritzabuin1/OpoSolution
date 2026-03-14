@@ -173,19 +173,29 @@ export default async function CuentaPage() {
             <span className="text-4xl font-bold">{balance}</span>
             <div>
               <p className="text-sm text-muted-foreground">análisis detallados restantes</p>
-              {balance === 0 && (
+              {balance === 0 && isPremium && (
                 <p className="text-xs text-red-600 mt-1">
                   No te quedan análisis — recarga para continuar
                 </p>
               )}
-              {balance > 0 && balance < 5 && (
+              {balance === 0 && !isPremium && (
+                <p className="text-xs text-red-600 mt-1">
+                  Compra el Pack Oposición para desbloquear más análisis
+                </p>
+              )}
+              {balance > 0 && balance < 5 && isPremium && (
                 <p className="text-xs text-amber-600 mt-1">
                   Quedan pocos — considera recargar
                 </p>
               )}
+              {balance > 0 && balance < 5 && !isPremium && (
+                <p className="text-xs text-amber-600 mt-1">
+                  Quedan pocos — compra el Pack para análisis ilimitados
+                </p>
+              )}
             </div>
           </div>
-          {balance < 5 && (
+          {balance < 5 && isPremium && (
             <div className="mt-4 p-3 rounded-lg bg-muted text-sm flex items-center justify-between gap-4">
               <div>
                 <p className="font-medium">Recarga de análisis detallados</p>
@@ -194,6 +204,17 @@ export default async function CuentaPage() {
                 </p>
               </div>
               <BuyButton tier="recarga" label="Comprar ahora" variant="default" />
+            </div>
+          )}
+          {balance < 5 && !isPremium && (
+            <div className="mt-4 p-3 rounded-lg bg-muted/50 text-sm flex items-center justify-between gap-4 opacity-60">
+              <div>
+                <p className="font-medium text-muted-foreground">Recarga — 8,99€ · +10 análisis</p>
+                <p className="text-muted-foreground text-xs mt-0.5">
+                  Disponible con el Pack Oposición
+                </p>
+              </div>
+              <BuyButton tier="pack" label="Comprar pack" variant="outline" />
             </div>
           )}
         </CardContent>
