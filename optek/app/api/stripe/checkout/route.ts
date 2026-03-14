@@ -79,6 +79,7 @@ export async function POST(request: NextRequest) {
       .from('profiles')
       .select('*', { count: 'exact', head: true })
       .eq('is_founder', true)
+      .eq('is_admin', false)
     if ((count ?? 0) >= FOUNDER_LIMIT) {
       log.warn({ count, limit: FOUNDER_LIMIT }, 'Plazas fundador agotadas')
       return NextResponse.json({ error: 'Las plazas de Fundador se han agotado. Puedes adquirir el Pack Oposición al precio normal.' }, { status: 410 })

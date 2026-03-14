@@ -321,6 +321,7 @@ const getFounderCount = unstable_cache(
         .from('profiles')
         .select('*', { count: 'exact', head: true })
         .eq('is_founder', true)
+        .eq('is_admin', false)
       return count ?? 0
     } catch {
       return 0
@@ -393,13 +394,13 @@ export default async function LandingPage() {
                   </Badge>
                   <span className="flex items-center gap-1 text-sm text-amber-700 dark:text-amber-400 font-medium">
                     <Users className="h-3.5 w-3.5" />
-                    {founderCount > 0
-                      ? `Quedan ${founderRemaining} de ${FOUNDER_LIMIT} plazas`
-                      : `Solo ${FOUNDER_LIMIT} plazas disponibles`}
+                    {founderRemaining <= 5
+                      ? `¡Solo quedan ${founderRemaining} plazas!`
+                      : `Quedan ${founderRemaining} plazas`}
                   </span>
                 </div>
                 <p className="font-semibold text-foreground">
-                  Únete a los primeros {FOUNDER_LIMIT} opositores en OpoRuta
+                  Accede antes que nadie con precio de fundador
                 </p>
                 <p className="text-sm text-muted-foreground mt-1">
                   30 análisis detallados · Tests ilimitados · Badge Miembro Fundador permanente
@@ -671,7 +672,7 @@ export default async function LandingPage() {
             Únete a los primeros opositores en probarlo
           </p>
           <p className="text-sm text-muted-foreground mb-6">
-            C1 o C2 — elige tu oposición y empieza hoy. Acceso founder disponible para los primeros {FOUNDER_LIMIT}.
+            C1 o C2 — elige tu oposición y empieza hoy. Plazas de fundador limitadas.
           </p>
           <Link href="/register">
             <Button size="lg" className="gap-2">
