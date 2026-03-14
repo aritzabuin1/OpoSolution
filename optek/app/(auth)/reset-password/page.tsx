@@ -56,7 +56,12 @@ export default function ResetPasswordPage() {
 
     if (updateError) {
       console.error('[reset-password] updateUser error:', updateError.message)
-      setError(`No se pudo actualizar la contraseña: ${updateError.message}`)
+      // Mensaje user-friendly — no exponer detalles internos de Supabase
+      if (updateError.message.includes('same_password')) {
+        setError('La nueva contraseña no puede ser igual a la anterior.')
+      } else {
+        setError('No se pudo actualizar la contraseña. Solicita un nuevo enlace de recuperación e inténtalo de nuevo.')
+      }
       setLoading(false)
       return
     }
@@ -103,7 +108,7 @@ export default function ResetPasswordPage() {
       <Card className="w-full max-w-md">
         <CardContent className="pt-8 text-center space-y-4">
           <div className="text-5xl">✅</div>
-          <h2 className="text-xl font-bold">Contrasena actualizada</h2>
+          <h2 className="text-xl font-bold">Contraseña actualizada</h2>
           <p className="text-sm text-muted-foreground">
             Tu contraseña se ha cambiado correctamente. Redirigiendo al dashboard...
           </p>
