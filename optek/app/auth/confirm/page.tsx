@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
@@ -25,7 +25,24 @@ import { Button } from '@/components/ui/button'
  * New user setup (oposicion_id + welcome email) happens via
  * POST /api/auth/setup-new-user, called after successful verification.
  */
-export default function AuthConfirmPage() {
+
+function LoadingCard() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-muted/30 p-4">
+      <Card className="w-full max-w-md">
+        <CardContent className="pt-8 text-center space-y-4">
+          <div className="text-4xl animate-pulse">🔐</div>
+          <h2 className="text-xl font-bold">Verificando tu cuenta...</h2>
+          <p className="text-sm text-muted-foreground">
+            Esto solo tarda unos segundos.
+          </p>
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
+
+function AuthConfirmInner() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [status, setStatus] = useState<'verifying' | 'success' | 'error'>('verifying')
@@ -79,11 +96,8 @@ export default function AuthConfirmPage() {
 
     async function setupNewUser() {
       try {
-        // Call server endpoint to set oposicion_id + send welcome email
-        // This runs with the user's session cookie (just set by verifyOtp)
         await fetch('/api/auth/setup-new-user', { method: 'POST' })
       } catch {
-        // Non-critical — user can still use the app
         console.error('[auth/confirm] setup-new-user call failed')
       }
     }
@@ -101,19 +115,7 @@ export default function AuthConfirmPage() {
   }, [])
 
   if (status === 'verifying') {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-muted/30 p-4">
-        <Card className="w-full max-w-md">
-          <CardContent className="pt-8 text-center space-y-4">
-            <div className="text-4xl animate-pulse">🔐</div>
-            <h2 className="text-xl font-bold">Verificando tu cuenta...</h2>
-            <p className="text-sm text-muted-foreground">
-              Esto solo tarda unos segundos.
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-    )
+    return <LoadingCard />
   }
 
   if (status === 'success') {
@@ -158,5 +160,13 @@ export default function AuthConfirmPage() {
         </CardContent>
       </Card>
     </div>
+  )
+}
+
+export default function AuthConfirmPage() {
+  return (
+    <Suspense fallback={<LoadingCard />}>
+      <AuthConfirmInner />
+    </Suspense>
   )
 }
