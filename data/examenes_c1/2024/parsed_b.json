@@ -1,0 +1,850 @@
+{
+  "convocatoria": "2024",
+  "anno": 2024,
+  "turno": "libre",
+  "modelo": "B",
+  "fuente_url": null,
+  "total_preguntas": 70,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "¿En cuántos títulos se encuentra estructurada la Constitución Española de 1978?",
+      "opciones": [
+        "Un título preliminar y 10 títulos.",
+        "Cinco títulos divididos en 10 subtítulos.",
+        "No se estructura en títulos, sino en apartados.",
+        "Dos títulos divididos en 10 artículos."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 2,
+      "enunciado": "De acuerdo con el artículo 71 de la Constitución Española de 1978, ¿quién será competente en las causas contra Diputados y Senadores?",
+      "opciones": [
+        "El Tribunal Constitucional.",
+        "La Sala de lo Penal de la Audiencia Nacional.",
+        "La Sala de lo Penal del Tribunal Supremo.",
+        "La Sala de lo Contencioso-Administrativo del Tribunal Supremo."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 3,
+      "enunciado": "Según el artículo 2 de la Ley Orgánica 3/1981, de 6 de abril, del Defensor del Pueblo, ¿qué Comisión se designará en las Cortes Generales para relacionarse con el Defensor del Pueblo e informar a los respectivos Plenos en cuantas ocasiones sea necesario?",
+      "opciones": [
+        "Una Comisión Mixta Congreso-Senado.",
+        "Una Comisión Mixta de Control Parlamentario.",
+        "Una Comisión Permanente Congreso-Senado.",
+        "Una Comisión de Investigación."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 4,
+      "enunciado": "De acuerdo con el artículo 63 de la Constitución Española de 1978, ¿a quién corresponde declarar la guerra y hacer la paz?",
+      "opciones": [
+        "Al Gobierno, previa autorización del Rey.",
+        "Al Congreso de los Diputados, previa autorización del Rey.",
+        "Al Rey, previa autorización de las Cortes Generales.",
+        "Al Rey, previa autorización del Congreso de los Diputados."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 5,
+      "enunciado": "Según el artículo 124 de la Constitución Española de 1978, ¿quién nombra al Fiscal General del Estado?",
+      "opciones": [
+        "El Fiscal General del Estado será nombrado por Presidente del Tribunal Constitucional, entre los miembros del Consejo General del Poder Judicial.",
+        "El Fiscal General del Estado será nombrado por el Gobierno, a propuesta del Consejo General del Poder Judicial.",
+        "El Fiscal General del Estado será nombrado por el Consejo General del Poder Judicial, a propuesta del Gobierno.",
+        "El Fiscal General del Estado será nombrado por el Rey, a propuesta del Gobierno, oído el Consejo General del Poder Judicial."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 6,
+      "enunciado": "¿En cuántos ejes se articula el IV Plan de Gobierno Abierto en España?",
+      "opciones": [
+        "Cinco ejes.",
+        "Veinte ejes.",
+        "Cien ejes.",
+        "Cincuenta y tres ejes."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 7,
+      "enunciado": "De acuerdo con el artículo 8 de la Ley 50/1997, de 27 de noviembre, del Gobierno, ¿podrá la Comisión General de Secretarios de Estado y Subsecretarios adoptar decisiones o acuerdos por delegación del Gobierno?",
+      "opciones": [
+        "Sí, por Acuerdo del Consejo de Ministros, a propuesta del Presidente del Gobierno.",
+        "Sí, por delegación expresa de los Ministros.",
+        "Sí, en los casos tasados en la Ley 6/1997, de 14 de abril, de Organización y Funcionamiento de la Administración General del Estado.",
+        "No, en ningún caso."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 8,
+      "enunciado": "Según el artículo 5.3 de la Ley 50/1997, de 27 de noviembre, del Gobierno, las deliberaciones del Consejo de Ministros serán:",
+      "opciones": [
+        "Secretas.",
+        "Públicas.",
+        "Motivadas.",
+        "Sancionadas por el Rey."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 9,
+      "enunciado": "Según la Ley 19/2013, de 9 de diciembre, de transparencia, acceso a la información pública y buen gobierno, frente a toda resolución expresa o presunta en materia de acceso podrá interponerse una reclamación ante el Consejo de Transparencia y Buen Gobierno, con carácter potestativo y previo a su impugnación en vía contencioso-administrativa. Al respecto de lo anterior, indique la respuesta correcta:",
+      "opciones": [
+        "La reclamación se interpondrá en el plazo de un mes a contar desde el día siguiente al de la notificación del acto impugnado o desde el día siguiente a aquel en que se produzcan los efectos del silencio administrativo. El plazo máximo para resolver y notificar la resolución será de dos meses, transcurrido el cual, la reclamación se entenderá desestimada.",
+        "La reclamación se interpondrá en el plazo de tres meses a contar desde el día siguiente al de la notificación del acto impugnado o desde el día siguiente a aquel en que se produzcan los efectos del silencio administrativo. El plazo máximo para resolver y notificar la resolución será de dos meses, transcurrido el cual, la reclamación se entenderá desestimada.",
+        "La reclamación se interpondrá en el plazo de tres meses a contar desde el día siguiente al de la notificación del acto impugnado o desde el día siguiente a aquel en que se produzcan los efectos del silencio administrativo. El plazo máximo para resolver y notificar la resolución será de tres meses, transcurrido el cual, la reclamación se entenderá desestimada.",
+        "La reclamación se interpondrá en el plazo de un mes a contar desde el día siguiente al de la notificación del acto impugnado o desde el día siguiente a aquel en que se produzcan los efectos del silencio administrativo. El plazo máximo para resolver y notificar la resolución será de tres meses, transcurrido el cual, la reclamación se entenderá desestimada."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 10,
+      "enunciado": "De acuerdo con la Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen Local, ¿cuál de los siguientes órganos ha de existir en todos los ayuntamientos?",
+      "opciones": [
+        "Tenientes de alcalde.",
+        "Comisión de Tributos.",
+        "Comisión de Sugerencias y Reclamaciones.",
+        "Junta de Gobierno Local.    2024 - ADVO-L - MODELO B"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 11,
+      "enunciado": "Según la Ley 2/2014, de 25 de marzo, de la Acción y del Servicio Exterior del Estado:",
+      "opciones": [
+        "Las Representaciones Permanentes representan con este carácter a España ante la Unión Europea o una Organización Internacional.",
+        "La creación y supresión de las Misiones Diplomáticas Permanentes y Representaciones Permanentes se realizará mediante orden ministerial del Ministro de Asuntos Exteriores, Unión Europea y Cooperación.",
+        "Las Representaciones Permanentes representan con este carácter a España ante la Unión Europea o una Organización Nacional.",
+        "La creación y supresión de las Misiones Diplomáticas Permanentes y Representaciones Permanentes se realizará mediante orden ministerial del Ministro de la Presidencia."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 12,
+      "enunciado": "Según la Constitución Española de 1978, ¿cuál de las siguientes opciones es correcta respecto a los Estatutos de Autonomía?",
+      "opciones": [
+        "Son la norma institucional superior de cada comunidad autónoma y del Estado.",
+        "El Estado los reconocerá y amparará como parte integrante de su ordenamiento jurídico.",
+        "El procedimiento de reforma requerirá, en todo caso, la celebración de un referéndum y la aprobación por las Cortes Generales, mediante ley orgánica.",
+        "Se aprueban por ley ordinaria."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 13,
+      "enunciado": "El artículo 2 del Tratado de la Unión Europea establece que la Unión Europea se fundamenta en los valores de respeto de la dignidad humana, libertad, democracia, igualdad, Estado de Derecho y respeto de los derechos humanos, incluidos los derechos de las personas pertenecientes a minorías. ¿Qué institución de la Unión Europea está facultada para constatar la existencia de una violación grave y persistente de un Estado miembro de los valores contemplados en dicho artículo?",
+      "opciones": [
+        "El Consejo Europeo.",
+        "La Comisión Europea.",
+        "El Parlamento Europeo.",
+        "El Tribunal de Justicia de la Unión Europea."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 14,
+      "enunciado": "Según el Real Decreto 208/1996, de 9 de febrero, por el que se regulan los servicios de información administrativa y atención al ciudadano, ¿quién ostentará la jefatura de la unidad departamental de información administrativa en cada Ministerio?",
+      "opciones": [
+        "El titular de la Subdirección General que tenga encomendada la competencia sobre la información administrativa.",
+        "El titular del Departamento.",
+        "La Comisión Interministerial de Información Administrativa.",
+        "El Subsecretario, en todo caso."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 15,
+      "enunciado": "Según el Real Decreto 1708/2011, de 18 de noviembre, por el que se establece el Sistema Español de Archivos y se regula el Sistema de Archivos de la Administración General del Estado y de sus Organismos Públicos y su régimen de acceso, los archivos de oficina o de gestión cumplirán las funciones de:",
+      "opciones": [
+        "Impulsar programas de difusión y gestión cultural del patrimonio documental custodiado.",
+        "Organizar los documentos producidos por sus respectivas unidades.",
+        "Conservar los documentos que son transferidos desde los Archivos Centrales de los Ministerios.",
+        "Conservar los documentos con valor histórico que le son transferidos desde el Archivo General de la Administración."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 16,
+      "enunciado": "De conformidad con la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales, la presidencia de la Agencia Española de Protección de Datos será nombrada por:",
+      "opciones": [
+        "El Congreso de los Diputados, a propuesta del Presidente del Gobierno.",
+        "El Gobierno, a propuesta del Congreso de los Diputados.",
+        "El Congreso de los Diputados, por mayoría de 3/5.",
+        "El Gobierno, a propuesta del Ministerio de Justicia."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 17,
+      "enunciado": "Según lo dispuesto en los artículos 90 y 91 de la Constitución Española de 1978, aprobado un proyecto de ley ordinaria u orgánica por el Congreso de los Diputados, su Presidente dará inmediata cuenta del mismo al Presidente del Senado, el cual lo someterá a la deliberación de éste. Indique la respuesta correcta:",
+      "opciones": [
+        "El Senado en el plazo de tres meses, a partir del día de la recepción del texto, puede, mediante mensaje motivado, oponer su veto o introducir enmiendas al mismo.",
+        "El proyecto no podrá ser sometido al Rey para sanción sin que el Congreso ratifique por mayoría absoluta, una vez transcurrido el plazo previsto en el artículo 91 de la Constitución Española de 1978 desde la interposición del mismo.",
+        "El plazo de dos meses de que el Senado dispone para vetar o enmendar el proyecto se reducirá al de veinte días naturales en los proyectos declarados urgentes por el Gobierno o por el Congreso de los Diputados.",
+        "El Rey sancionará en el plazo de veinte días naturales las leyes aprobadas por las Cortes Generales, y las promulgará y ordenará su inmediata publicación."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 18,
+      "enunciado": "Conforme a lo señalado en el artículo 74 de la Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas, las cuestiones incidentales que se susciten en un procedimiento:",
+      "opciones": [
+        "Suspenderán la tramitación del procedimiento, salvo la recusación, que no lo suspenderá.",
+        "Suspenderán la tramitación del procedimiento.",
+        "No suspenderán la tramitación del procedimiento en ningún caso.",
+        "No suspenderán la tramitación del procedimiento, salvo la recusación."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 19,
+      "enunciado": "Según la Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas, son nulos de pleno derecho:",
+      "opciones": [
+        "Las disposiciones administrativas que establezcan la retroactividad de disposiciones sancionadoras favorables.",
+        "Los actos dictados por órgano manifiestamente competente por razón de la materia o del territorio.",
+        "Los actos que tengan un contenido imposible.",
+        "Las disposiciones administrativas que vulneren otras disposiciones administrativas de rango inferior.    2024 - ADVO-L - MODELO B"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 20,
+      "enunciado": "Con arreglo a lo dispuesto en la Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas, salvo que reste menos para su tramitación ordinaria, ¿en qué tiempo deberán ser resueltos los procedimientos administrativos tramitados de manera simplificada?",
+      "opciones": [
+        "Diez días, a contar desde la notificación al interesado del acuerdo de tramitación simplificada del procedimiento.",
+        "Treinta días, a contar desde la notificación al interesado del acuerdo de tramitación simplificada del procedimiento.",
+        "Diez días, a contar desde el siguiente al que se notifique al interesado el acuerdo de tramitación simplificada del procedimiento.",
+        "Treinta días, a contar desde el siguiente al que se notifique al interesado el acuerdo de tramitación simplificada del procedimiento."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 21,
+      "enunciado": "El artículo 145 de la Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público establece sobre la adjudicación de los contratos que:",
+      "opciones": [
+        "Se realizará atendiendo a la oferta económica más ventajosa, sin necesidad de justificarlo en el expediente.",
+        "Se realizará utilizando una pluralidad de criterios de adjudicación en base a la mejor relación calidad-precio.",
+        "Se realizará atendiendo exclusivamente a criterios cualitativos.",
+        "Se realizará atendiendo exclusivamente a criterios cuantitativos."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 22,
+      "enunciado": "Conforme al artículo 29 de la Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público, la graduación de la sanción administrativa considerará especialmente los siguientes criterios:",
+      "opciones": [
+        "La inexistencia de intencionalidad y no reincidencia en la comisión de infracciones administrativas.",
+        "La no reincidencia en la comisión de infracciones administrativas.",
+        "El grado de culpabilidad o la inexistencia de intencionalidad.",
+        "El grado de culpabilidad o la existencia de intencionalidad."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 23,
+      "enunciado": "El artículo 16 de la Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público, establece que son contratos de suministro:",
+      "opciones": [
+        "Aquellos por el que uno o varios poderes adjudicadores encomiendan a título oneroso a una o varias personas naturales o jurídicas, la gestión de un servicio cuya prestación sea de su titularidad o competencia.",
+        "Los que tienen por objeto la ejecución de una obra, aislada o conjuntamente con la redacción del proyecto.",
+        "Aquellos cuyo objeto son prestaciones de hacer consistentes en el desarrollo de una actividad o dirigidas a la obtención de un resultado distinto de una obra.",
+        "Los que tienen por objeto la adquisición, el arrendamiento financiero, o el arrendamiento, con o sin opción de compra, de productos o bienes muebles."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 24,
+      "enunciado": "Son materias objeto de arbitraje conforme al artículo 2 de la Ley 60/2003, de 23 de diciembre, de Arbitraje:",
+      "opciones": [
+        "Las controversias sobre materias de libre disposición conforme a derecho.",
+        "Las cuestiones en que, con arreglo a las Leyes, deba intervenir el Ministerio Fiscal en representación y defensa de quienes, por carecer de capacidad de obrar o de representación legal, no pueden actuar por sí mismos.",
+        "Las cuestiones sobre las que haya recaído resolución judicial firme y definitiva, salvo los aspectos derivados de su ejecución.",
+        "Los despidos, convenios colectivos y conflictos laborales."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 25,
+      "enunciado": "¿Qué norma regula el procedimiento y requisitos para la rectificación registral relativa al sexo y, en su caso, nombre de las personas, así como sus efectos, y prevé medidas específicas derivadas de dicha rectificación en los ámbitos público y privado?",
+      "opciones": [
+        "Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres.",
+        "Ley 15/2022, de 12 de julio, integral para la igualdad de trato y la no discriminación.",
+        "Ley 4/2023, de 28 de febrero, para la igualdad real y efectiva de las personas trans y para la garantía de los derechos de las personas LGTBI.",
+        "Real Decreto de 24 de julio de 1889 por el que se publica el Código Civil."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 26,
+      "enunciado": "Según el Real Decreto 1405/1986, de 6 de junio, por el que se aprueban el Reglamento del Registro Central de Personal y las normas de coordinación con los de las restantes Administraciones Públicas, ¿qué es preceptivo de anotación en el Registro Central de Personal?:",
+      "opciones": [
+        "Los reingresos.",
+        "Las vacaciones.",
+        "Los días de asuntos particulares.",
+        "Los cambios de domicilio."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 27,
+      "enunciado": "Según el artículo 62 del texto refundido de la Ley del Estatuto Básico del Empleado Público, ¿cuál de los siguientes requisitos es necesario cumplir para adquirir la condición de funcionario de carrera?",
+      "opciones": [
+        "Toma de posesión dentro de los tres días posteriores al nombramiento.",
+        "Acto de acatamiento de la Constitución y, en su caso, del Estatuto de Autonomía correspondiente y del resto del Ordenamiento Jurídico.",
+        "Superación del proceso selectivo, aunque en ese momento no se reúna la titulación requerida en la convocatoria.",
+        "Toma de posesión al día siguiente de haber sido nombrado."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 28,
+      "enunciado": "Según el artículo 10 del texto refundido de la Ley del Estatuto Básico del Empleado Público, ¿en qué circunstancia se puede nombrar a un funcionario interino?",
+      "opciones": [
+        "Cuando existan plazas vacantes, y no sea posible su cobertura por funcionarios de carrera, por un máximo de dos años.",
+        "Por el exceso o acumulación de tareas por plazo máximo de tres meses, dentro de un periodo de doce meses.",
+        "Para la sustitución transitoria de los titulares, durante el tiempo estrictamente necesario.",
+        "Para la ejecución de programas de carácter estructural."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 29,
+      "enunciado": "El artículo 61 del texto refundido Estatuto Básico del Empleado Público, establece que los sistemas selectivos de personal laboral fijo serán:",
+      "opciones": [
+        "Los de concurso oposición o entrevista.",
+        "Los de concurso oposición o concurso de valoración de méritos con entrevista.",
+        "Los de oposición o concurso oposición con entrevista.",
+        "Los de oposición, concurso oposición o concurso de valoración de méritos.    2024 - ADVO-L - MODELO B"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 30,
+      "enunciado": "De acuerdo con el artículo 53 del texto refundido Estatuto Básico del Empleado Público, dentro del Código de conducta de los empleados públicos, es un principio ético:",
+      "opciones": [
+        "Desempeñar las tareas correspondientes a su puesto de trabajo de forma diligente y cumpliendo la jornada y el horario establecidos.",
+        "No aceptar ningún trato de favor o situación que implique privilegio o ventaja injustificada, por parte de personas físicas o entidades privadas.",
+        "Administrar los recursos y bienes públicos con austeridad, y no utilizar los mismos en provecho propio o de personas allegadas. Tendrán, asimismo, el deber de velar por su conservación.",
+        "Garantizar la atención al ciudadano en la lengua que lo solicite."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 31,
+      "enunciado": "Según el artículo 3.1 del texto refundido de la Ley sobre Seguridad Social de los Funcionarios Civiles del Estado ¿cuál de estos colectivos estaría obligatoriamente incluido de su ámbito de aplicación?",
+      "opciones": [
+        "Los funcionarios de la Administración Local.",
+        "Los funcionarios de la Administración de la Seguridad Social.",
+        "Los funcionarios de carrera de la Administración Civil del Estado transferidos a las Comunidades Autónomas, que hayan ingresado o ingresen voluntariamente en Cuerpos o Escalas propios de la Comunidad Autónoma de destino, cualquiera que sea el sistema de acceso.",
+        "Los funcionarios en prácticas que aspiren a incorporarse a Cuerpos de la Administración Civil del Estado, en la forma que reglamentariamente se determine."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 32,
+      "enunciado": "Según el artículo 98.3 del texto refundido de la Ley del Estatuto Básico del Empleado Público:",
+      "opciones": [
+        "La suspensión provisional como medida cautelar en la tramitación de un expediente disciplinario no podrá exceder de 6 meses, salvo en caso de paralización del procedimiento imputable al interesado.",
+        "La suspensión provisional como medida cautelar en la tramitación de un expediente disciplinario no podrá exceder de 3 meses, salvo en caso de paralización del procedimiento imputable al interesado.",
+        "La suspensión provisional como medida cautelar en la tramitación de un expediente disciplinario no podrá exceder de 12 meses, salvo en caso de paralización del procedimiento imputable al interesado.",
+        "La suspensión provisional como medida cautelar en la tramitación de un expediente disciplinario no podrá exceder de 18 meses, salvo en caso de paralización del procedimiento imputable al interesado."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 33,
+      "enunciado": "De conformidad con el IV Convenio colectivo único para el personal laboral de la Administración General del Estado, la modificación de la clasificación profesional de determinados colectivos de personal, sólo podrá ser aprobada:",
+      "opciones": [
+        "Por la Subcomisión Paritaria a la que pertenezca.",
+        "Por la Comisión Negociadora del Convenio.",
+        "Por la Comisión Paritaria.",
+        "Por mayoría del colectivo afectado."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 34,
+      "enunciado": "El artículo 134 de la Constitución Española de 1978 establece, literalmente, que el Gobierno deberá presentar los Presupuestos Generales del Estado:",
+      "opciones": [
+        "Ante las Cortes Generales al menos tres meses antes de la expiración de los del año anterior.",
+        "Ante el Congreso de los Diputados antes de que finalice el ejercicio presupuestario.",
+        "Ante los Presidentes de ambas Cámaras Legislativas antes de la expiración de los del año anterior.",
+        "Ante el Congreso de los Diputados al menos tres meses antes de la expiración de los del año anterior."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 35,
+      "enunciado": "Según el artículo 44.1 del texto refundido de la Ley General de la Seguridad Social, las prestaciones de la Seguridad Social, así como los beneficios de sus servicios sociales y de la asistencia social, no podrán ser objeto de retención, cesión total o parcial, compensación o descuento, salvo en alguno de estos casos:",
+      "opciones": [
+        "En orden al cumplimiento de las obligaciones alimenticias a favor del cónyuge e hijos.",
+        "Por deudas privadas.",
+        "Por incumplimiento de contratos públicos.",
+        "Por fraude en el percibo de subvenciones públicas."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 36,
+      "enunciado": "Conforme a la clasificación económica del gasto en los Presupuestos Generales del Estado, los gastos destinados a atender las indemnizaciones por razón del servicio se imputarán al:",
+      "opciones": [
+        "Capítulo 1.",
+        "Capítulo 2.",
+        "Capítulo 3.",
+        "Capítulo 4."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 37,
+      "enunciado": "Con carácter general y de acuerdo con el artículo 198 de la Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público, la Administración tiene la obligación de abonar el precio de las prestaciones convenidas dentro de:",
+      "opciones": [
+        "Los treinta días siguientes a la fecha de aprobación de las certificaciones de obra o de los documentos de conformidad con lo dispuesto en el contrato.",
+        "Los sesenta días siguientes a la fecha de aprobación de las certificaciones de obra o de los documentos de conformidad con lo dispuesto en el contrato.",
+        "Los noventa días siguientes a la fecha de aprobación de las certificaciones de obra o de los documentos de conformidad con lo dispuesto en el contrato.",
+        "Los veinte días siguientes a la fecha de aprobación de las certificaciones de obra o de los documentos de conformidad con lo dispuesto en el contrato."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 38,
+      "enunciado": "De acuerdo con la Ley 30/1984, de 2 de agosto, de medidas para la reforma de la Función Pública, señale la respuesta correcta respecto al complemento específico:",
+      "opciones": [
+        "Se percibe en 12 pagas.",
+        "Es el correspondiente al nivel del puesto que se desempeñe.",
+        "Es una retribución básica, que se devenga con carácter fijo y periodicidad mensual.",
+        "En ningún caso podrá asignarse más de un complemento específico a cada puesto de trabajo.    2024 - ADVO-L - MODELO B"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 39,
+      "enunciado": "De conformidad con el artículo 75 de la Ley 47/2003, de 26 de noviembre, General Presupuestaria, ¿a quién le competen las funciones de Ordenador General de pagos del Estado?",
+      "opciones": [
+        "Al Ministro de Economía.",
+        "Al Director General del Tesoro y Política Financiera.",
+        "Al Secretario General del Tesoro y Financiación Internacional.",
+        "Al Ministro de Hacienda."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 40,
+      "enunciado": "Indique la respuesta correcta entre las siguientes opciones relativas a lo dispuesto en el artículo 10 del Real Decreto 640/1987, de 8 de mayo, sobre pagos librados «a justificar»:",
+      "opciones": [
+        "Los Cajeros pagadores quedarán obligados a justificar la aplicación de las cantidades recibidas dentro del mes siguiente a la inversión de las mismas y en todo caso en el plazo de seis meses desde la percepción de los correspondientes fondos.",
+        "Los Cajeros pagadores quedarán obligados a justificar la aplicación de las cantidades recibidas dentro de los dos meses siguientes a la inversión de las mismas y en todo caso en el plazo de tres meses desde la percepción de los correspondientes fondos.",
+        "Los Cajeros pagadores quedarán obligados a justificar la aplicación de las cantidades recibidas dentro de los dos meses siguientes a la inversión de las mismas y en todo caso en el plazo de seis meses desde la percepción de los correspondientes fondos.",
+        "Los Cajeros pagadores quedarán obligados a justificar la aplicación de las cantidades recibidas dentro del mes siguiente a la inversión de las mismas y en todo caso en el plazo de tres meses desde la percepción de los correspondientes fondos."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 41,
+      "enunciado": "Queremos hacer un tutorial de Windows 10, y para ello necesitamos grabar vídeos con ejemplos de su utilización. ¿Cuál de las siguientes herramientas de Windows 10 será la más adecuada para realizar estas tareas?",
+      "opciones": [
+        "Escritorio remoto.",
+        "Herramienta Recortes.",
+        "Paint.",
+        "Grabación de acciones de usuario."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 42,
+      "enunciado": "¿Cuál es un documento digital que contiene sus datos identificativos de su suscriptor y que vincula a su suscriptor con unos datos de verificación de firma y confirma su identidad?",
+      "opciones": [
+        "Certificado electrónico FNMT de Ciudadano.",
+        "Certificación HACCP.",
+        "ISO 9001.",
+        "Número de serie CMD."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 43,
+      "enunciado": "¿Cuál de los siguientes programas de software corresponde a una aplicación ofimática?",
+      "opciones": [
+        "Windows.",
+        "Excel.",
+        "MySQL.",
+        "Chrome."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 44,
+      "enunciado": "¿Cuál de las siguientes opciones corresponde a un sistema operativo?",
+      "opciones": [
+        "AMD.",
+        "PostgreSQL.",
+        "Mac OS.",
+        "RJ45."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 45,
+      "enunciado": "¿Cuál de las siguientes afirmaciones es verdadera?",
+      "opciones": [
+        "El escáner es un periférico de entrada del ordenador.",
+        "Los ordenadores con sistema operativo Linux no admiten impresoras.",
+        "La impresora es un periférico de entrada del ordenador.",
+        "La función principal de una tarjeta de red es la impresión."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 46,
+      "enunciado": "¿Cuál de las siguientes es una herramienta de accesibilidad de Windows 10?",
+      "opciones": [
+        "Cámara.",
+        "Visor XPS.",
+        "Narrador.",
+        "Sway."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 47,
+      "enunciado": "En Windows 10 en español utilizamos el método abreviado: logotipo de Windows + tecla E. ¿Cuál de las siguientes será la acción que producimos al hacerlo?",
+      "opciones": [
+        "Abrir el Explorador de archivos.",
+        "Minimiza las ventanas abiertas en Windows.",
+        "Cambiar entre aplicaciones abiertas.",
+        "Maximiza la ventana abierta."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 48,
+      "enunciado": "WordPad es un editor de texto disponible en los accesorios de Windows 10. ¿Cuál de las siguientes afirmaciones es correcta con respecto a este accesorio?",
+      "opciones": [
+        "Utiliza un formato de archivo propio, no compatible con Word.",
+        "Permite guardar documentos en varios formatos, como .docx, .txt, o .rtf.",
+        "Solo puede guardar un archivo como documento de texto sin formato .txt.",
+        "Solo permite guardar los archivos en los formatos de imagen .png o .jpeg."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 49,
+      "enunciado": "Queremos ver los procesos que se están ejecutando, así como el consumo de CPU y de memoria de un dispositivo con Windows 10. ¿Cuál de las siguientes herramientas es la adecuada?",
+      "opciones": [
+        "Propiedades del disco local (C:).",
+        "Visor de eventos.",
+        "Administrador de tareas.",
+        "Explorador de Windows."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 50,
+      "enunciado": "Estamos trabajando en Windows 10 con dos pantallas y queremos que cada pantalla pueda mostrar ventanas diferentes. ¿Cuál de las siguientes opciones tendremos que seleccionar en la configuración de pantallas?",
+      "opciones": [
+        "Duplicar estas pantallas.",
+        "Mostrar únicamente en 1.",
+        "Extender estas pantallas.",
+        "Mostrar únicamente en 2."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 51,
+      "enunciado": "¿Cuál de las características de Word 365 será la adecuada para mostrar palabras clave que se tratan en un documento, así como las páginas en las que aparecen?",
+      "opciones": [
+        "Insertar índice.",
+        "Insertar nota al final.",
+        "Referencia indexada.",
+        "Elementos rápidos."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 52,
+      "enunciado": "En Word 365 si quieres aplicar formatos preestablecidos a algunos textos y que esta acción te sirva también para después crear una tabla de contenido. ¿Qué tipo de función debes aplicar?",
+      "opciones": [
+        "Tamaño de letra.",
+        "Espaciado.",
+        "Tipo de fuente.",
+        "Estilos.    2024 - ADVO-L - MODELO B"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 53,
+      "enunciado": "En Word 365, ¿cuál es la función principal de la Barra de herramientas de acceso rápido?",
+      "opciones": [
+        "Agrupar y organizar todas las funciones y herramientas disponibles en Word.",
+        "Visualizar información relevante sobre el documento que se está visualizando o editando.",
+        "Tener acceso rápido a algunos comandos que utilizamos con frecuencia.",
+        "Acceder a las opciones de configuración."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 54,
+      "enunciado": "En Word 365 algunas informaciones sobre el documento con el que se está trabajando, como el número de página o el idioma del texto, se muestran de forma predeterminada. ¿En cuál de las siguientes opciones se visualiza esa información?",
+      "opciones": [
+        "Panel de navegación.",
+        "Barra de estado.",
+        "Cinta de opciones.",
+        "Barra de herramientas de acceso rápido."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 55,
+      "enunciado": "¿Cuál es la utilidad de indexar archivos en la Búsqueda en Windows?",
+      "opciones": [
+        "Realizar copias de seguridad de los archivos, mensajes de correo electrónico u otro contenido local, como precaución de borrado en la búsqueda.",
+        "Copiar los archivos, mensajes de correo electrónico u otro contenido local en OneDrive y sincronizarlos con la copia local.",
+        "Seleccionar los archivos, mensajes de correo electrónico u otro contenido local para marcarlo y que no se utilice en las búsquedas.",
+        "Obtener resultado más rápidamente al buscar archivos, mensajes de correo electrónico u otro contenido local."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 56,
+      "enunciado": "En Access 365, ¿cuál de los siguientes tipos de datos podemos ingresar en un campo de tipo Moneda?",
+      "opciones": [
+        "Números hasta 8 bytes con 4 decimales de precisión.",
+        "Datos alfanuméricos hasta 1 gigabyte.",
+        "Números hasta 16 bytes.",
+        "Datos alfanuméricos hasta 255 caracteres."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 57,
+      "enunciado": "Vamos a crear un informe en una base de datos de Access 365. ¿Cuál de las siguientes opciones indica de forma correcta el tipo de objetos sobre los que podemos crear el informe?",
+      "opciones": [
+        "Solo Consultas.",
+        "Consultas y Formularios.",
+        "Solo Formularios.",
+        "Tablas y Consultas."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 58,
+      "enunciado": "¿Cuál es la utilidad de la función de segmentación de datos en Excel 365?",
+      "opciones": [
+        "Es una función que permite realizar operaciones de cálculo sobre una columna numérica.",
+        "Permite dividir una tabla de origen en varias tablas de destino separadas, según un criterio de segmentación.",
+        "Permite realizar cálculos financieros utilizando varias columnas de una tabla.",
+        "Es una función que permite filtrar datos de manera interactiva en tablas o tablas dinámicas."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 59,
+      "enunciado": "En un libro de Excel 365 tenemos varias hojas y en la hoja activa varias tablas de las cuales hemos seleccionado una. ¿Cuál de las siguientes opciones debemos elegir para imprimir solo esta tabla?",
+      "opciones": [
+        "Imprimir todo el libro.",
+        "Imprimir hojas activas.",
+        "Imprimir selección.",
+        "Imprimir todas las hojas."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 60,
+      "enunciado": "En una hoja de Excel 365 en idioma español, en una celda a la cual no se le ha aplicado ningún tipo de formato, escribimos el siguiente valor: 20-2 ¿Cuál de las siguientes opciones es la que mostrará tras pulsar la tecla Enter?",
+      "opciones": [
+        "20-feb",
+        "18",
+        "20-2",
+        "45342,00"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 61,
+      "enunciado": "¿Cuál de los siguientes es un sistema de chat basado en la Inteligencia Artificial?",
+      "opciones": [
+        "Drive.",
+        "ChatGPT.",
+        "Kindle.",
+        "OneDrive."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 62,
+      "enunciado": "¿Cuál de los siguientes elementos permite administrar el tamaño del buzón de correo en Outlook 365?",
+      "opciones": [
+        "Preferencias de descarga.",
+        "Pasos rápidos.",
+        "Limpieza de buzón.",
+        "Crear grupo."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 63,
+      "enunciado": "No vamos a poder atender al correo electrónico durante un tiempo y queremos que otra persona pueda enviar elementos en nuestro nombre, así como crear y responder a convocatorias de reuniones. ¿Cuál de las siguientes funciones de Outlook 365 nos permite cumplir estos requisitos?",
+      "opciones": [
+        "Cambiar permisos en la carpeta de entrada.",
+        "Delegar acceso.",
+        "Aplicar directivas de retención.",
+        "Crear regla."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 64,
+      "enunciado": "Queremos configurar Outlook 365 para que cuando recibamos un mensaje que incluya el texto “Aviso” en el asunto se modifique la importancia a “alta”. ¿Cuál de las siguientes capacidades de Outlook emplearemos?",
+      "opciones": [
+        "Alerta.",
+        "Regla.",
+        "Seguimiento.",
+        "Tarea."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 65,
+      "enunciado": "Tenemos dos cuentas de usuario agregadas a Outlook 365. ¿Cuál de las siguientes opciones es correcta si realizamos una búsqueda sobre el Buzón actual?",
+      "opciones": [
+        "La búsqueda se realiza sobre todas las carpetas de todos los buzones, de las dos cuentas de usuario agregadas a Outlook.",
+        "La búsqueda se realiza sobre la carpeta en la que nos encontramos dentro del buzón y en ambas cuentas de usuario agregadas a Outlook.",
+        "La búsqueda se realiza sobre todas las carpetas del buzón de la cuenta de usuario en el que nos encontramos.",
+        "La búsqueda se realiza sobre todos los elementos de Outlook de la cuenta de usuario en el que nos encontramos, incluidas citas o tareas.    2024 - ADVO-L - MODELO B"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 66,
+      "enunciado": "Estamos trabajando con dos pantallas en Windows 10. ¿Cuál de las siguientes opciones es verdadera en cuanto a la configuración de las pantallas?",
+      "opciones": [
+        "Podemos configurar la escala (tamaño de texto, aplicaciones, etc.), la resolución y la orientación, pero ha de ser la misma para las dos pantallas.",
+        "La escala (tamaño de texto, aplicaciones, etc.), la resolución y la orientación de las pantallas son configurables de forma independiente para cada pantalla.",
+        "Las dos pantallas han de tener la misma escala (tamaño de texto, aplicaciones, etc.) y orientación, pero pueden tener diferente resolución.",
+        "La escala y resolución de las pantallas son configurables, pero la orientación no lo es."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 67,
+      "enunciado": "En una tabla de Excel 365 queremos convertir algunas columnas en filas de una tabla dinámica. ¿Cuál de las siguientes funciones de Power Query nos servirá para hacerlo?",
+      "opciones": [
+        "Duplicar columnas.",
+        "Agrupar por.",
+        "Anulación de dinamización de columnas.",
+        "Invertir filas."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 68,
+      "enunciado": "En Outlook 365 vamos a asignar categorías de color a un grupo de elementos seleccionados. ¿Cuál de las siguientes opciones indica de forma correcta las acciones disponibles para ello?",
+      "opciones": [
+        "Es necesario crear primero las categorías, ya que no partimos de categorías habilitadas por defecto. Es posible modificar o eliminar categorías así como asignar teclas de métodos abreviados a cada categoría.",
+        "Contamos con varias categorías habilitadas por defecto que podemos modificar o eliminar. También es posible crear nuevas categorías y asignar teclas de métodos abreviados a cada categoría.",
+        "Es necesario crear primero las categorías, ya que no partimos de categorías habilitadas por defecto. Es posible modificar o eliminar categorías, pero no asignar teclas de métodos abreviados a cada categoría.",
+        "Contamos con varias categorías habilitadas por defecto que podemos modificar o eliminar. También es posible crear nuevas categorías, pero no asignar teclas de métodos abreviados a cada categoría."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 69,
+      "enunciado": "¿Cuál de los siguientes lenguajes puede ser ejecutado de forma directa por un navegador web?",
+      "opciones": [
+        "Fortran.",
+        "JavaScript.",
+        "SQL.",
+        "Pascal."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 70,
+      "enunciado": "¿Qué organización tiene encomendada la autoridad de registro de los nombres de dominio de Internet para España (.es)?",
+      "opciones": [
+        "Fabrica Nacional de Moneda y Timbre.",
+        "SEPE.",
+        "Red.es.",
+        "Ministerio para la Transformación Digital y de la Función Pública."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    }
+  ]
+}
