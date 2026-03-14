@@ -86,10 +86,10 @@ export function PaywallGate({ open, onClose, code, temaId, oposicionId }: Paywal
   const options = code === 'PAYWALL_TESTS' ? getTestOptions(oposicionId) : OPTIONS_CORRECTIONS
   const title = code === 'PAYWALL_TESTS'
     ? 'Continúa preparando tu oposición'
-    : 'Recarga tus correcciones'
+    : 'Recarga tus análisis'
   const description = code === 'PAYWALL_TESTS'
     ? 'Has utilizado tus 5 tests gratuitos. Desbloquea acceso ilimitado para seguir practicando.'
-    : 'Te has quedado sin correcciones disponibles. Recarga tu saldo para continuar.'
+    : 'Te has quedado sin análisis detallados. Recarga tu saldo para continuar.'
 
   async function handleBuy(tier: string) {
     setLoading(tier)

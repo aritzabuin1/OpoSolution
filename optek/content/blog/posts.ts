@@ -46,7 +46,7 @@ export const blogPosts: BlogPost[] = [
 </ul>
 <p>
   El examen consta de <strong>100 preguntas puntuables</strong> (+ 10 de reserva) de tipo test en 90 minutos:
-  30 de teoria, 30 psicotecnicas y 50 de ofimatica.
+  30 de teoría, 30 psicotécnicas y 50 de ofimática.
 </p>
 
 <h2>¿Cuándo dejar una pregunta en blanco?</h2>
@@ -116,7 +116,7 @@ export const blogPosts: BlogPost[] = [
 <h2>Practica con simulacros reales</h2>
 <p>
   La única forma de entrenar la penalización correctamente es practicando con el formato
-  exacto del examen: 100 preguntas, 90 minutos, y la misma penalizacion.
+  exacto del examen: 100 preguntas, 90 minutos, y la misma penalización.
   OpoRuta ofrece simulacros basados en exámenes oficiales del INAP con el sistema de
   puntuación idéntico al real.
 </p>
@@ -2901,7 +2901,7 @@ export const blogPosts: BlogPost[] = [
 <ul>
   <li><strong>Empezar por el Bloque I:</strong> la Constitución es "cómoda" pero tiene menos peso que el Derecho Administrativo. Empieza por el Bloque III</li>
   <li><strong>Ignorar el caso práctico hasta el final:</strong> empieza a practicar supuestos desde el mes 4, no esperes al último mes</li>
-  <li><strong>No cronometrar:</strong> 90 minutos para 110 preguntas = menos de 50 segundos por pregunta. Sin práctica cronometrada, te faltará tiempo</li>
+  <li><strong>No cronometrar:</strong> 90 minutos para 100 preguntas = menos de 55 segundos por pregunta. Sin práctica cronometrada, te faltará tiempo</li>
   <li><strong>Estudiar bloques aislados:</strong> muchas preguntas cruzan bloques (ej: TREBEP + LPAC en un caso de expediente disciplinario). Haz simulacros completos</li>
 </ul>
 <p>

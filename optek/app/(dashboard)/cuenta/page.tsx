@@ -41,7 +41,7 @@ function formatEuros(cents: number): string {
 const TIPO_LABELS: Record<string, string> = {
   tema: 'Acceso tema',
   pack: 'Pack Oposición',
-  recarga: 'Recarga correcciones',
+  recarga: 'Recarga análisis',
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────

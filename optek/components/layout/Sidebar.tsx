@@ -99,7 +99,7 @@ export function Sidebar({ isAdmin = false }: SidebarProps) {
         })}
       </nav>
 
-      {/* Notificaciones BOE + Cerrar sesion */}
+      {/* Notificaciones BOE + Cerrar sesión */}
       <div className="mt-4 border-t pt-4 space-y-2 px-3">
         <NotificationBell sidebarMode />
         <button
@@ -107,7 +107,7 @@ export function Sidebar({ isAdmin = false }: SidebarProps) {
           className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors w-full"
         >
           <LogOut className="h-4 w-4" />
-          Cerrar sesion
+          Cerrar sesión
         </button>
       </div>
 

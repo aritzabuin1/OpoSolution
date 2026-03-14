@@ -92,13 +92,13 @@ export function Navbar() {
               </Link>
             )
           })}
-          {/* Cerrar sesion */}
+          {/* Cerrar sesión */}
           <button
             onClick={handleSignOut}
             className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors mt-2 border-t pt-3"
           >
             <LogOut className="h-4 w-4" />
-            Cerrar sesion
+            Cerrar sesión
           </button>
         </nav>
       )}

@@ -16,7 +16,7 @@ import { logger } from '@/lib/logger'
  *   4. INSERT en stripe_events_processed DESPUÉS del éxito.
  *   5. Si falla el handler → 500 → Stripe reintenta → no está marcado → se re-procesa.
  *
- * Ref: directives/OPTEK_security.md §6 — verificar firma siempre.
+ * Ref: verificar firma Stripe siempre.
  */
 
 // Stripe Subscription con campos de billing (compatibilidad API versión)
