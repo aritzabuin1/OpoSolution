@@ -57,7 +57,7 @@ export default async function CuentaPage() {
   // Profile + oposición
   const { data: profile } = await supabase
     .from('profiles')
-    .select('full_name, email, oposicion_id, fecha_examen, corrections_balance, horas_diarias_estudio')
+    .select('full_name, email, oposicion_id, fecha_examen, corrections_balance, free_corrector_used, horas_diarias_estudio')
     .eq('id', user.id)
     .single()
 
@@ -95,7 +95,10 @@ export default async function CuentaPage() {
     .single()
 
   const flags = profileFlags as { is_founder?: boolean; is_admin?: boolean } | null
-  const balance = profile?.corrections_balance ?? 0
+  const paidBalance = profile?.corrections_balance ?? 0
+  const freeUsed = (profile as Record<string, unknown>)?.free_corrector_used as number ?? 0
+  const freeRemaining = Math.max(0, 2 - freeUsed)
+  const balance = paidBalance > 0 ? paidBalance : freeRemaining
   const hasPurchases = (compras?.length ?? 0) > 0
   const isPremium = hasPurchases || flags?.is_founder === true || flags?.is_admin === true
 

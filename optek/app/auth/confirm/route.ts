@@ -64,14 +64,27 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(new URL('/error?reason=verify_failed', origin))
   }
 
-  // Welcome email for new signups
+  // New signup: set oposicion_id + welcome email
   if (type === 'email' && data.user) {
     const createdAt = new Date(data.user.created_at).getTime()
     const isNewUser = Date.now() - createdAt < 10 * 60 * 1000
-    if (isNewUser && data.user.email) {
-      const nombre = data.user.user_metadata?.full_name as string | undefined
-      void sendWelcomeEmail({ to: data.user.email, nombre })
-      void sendNewUserNotification({ email: data.user.email, nombre })
+    if (isNewUser) {
+      // Set oposicion_id from registration metadata
+      const oposicionId = data.user.user_metadata?.oposicion_id as string | undefined
+      if (oposicionId) {
+        const { createServiceClient } = await import('@/lib/supabase/server')
+        const serviceClient = await createServiceClient()
+        await serviceClient
+          .from('profiles')
+          .update({ oposicion_id: oposicionId })
+          .eq('id', data.user.id)
+      }
+
+      if (data.user.email) {
+        const nombre = data.user.user_metadata?.full_name as string | undefined
+        void sendWelcomeEmail({ to: data.user.email, nombre })
+        void sendNewUserNotification({ email: data.user.email, nombre })
+      }
     }
   }
 
