@@ -38,6 +38,21 @@ export default async function SimulacrosPage() {
 
   if (!user) redirect('/login')
 
+  // Check premium para ocultar banner free-only
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: profileFlags } = await (supabase as any)
+    .from('profiles')
+    .select('is_founder, is_admin')
+    .eq('id', user.id)
+    .single()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { count: purchaseCount } = await (supabase as any)
+    .from('compras')
+    .select('id', { count: 'exact', head: true })
+    .eq('user_id', user.id)
+  const flags = profileFlags as { is_founder?: boolean; is_admin?: boolean } | null
+  const isPremium = (purchaseCount ?? 0) > 0 || flags?.is_founder === true || flags?.is_admin === true
+
   // Cargar examenes con conteo de preguntas disponibles
   // Cast: fuente_url no está en types/database.ts hasta aplicar migration 011
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -97,14 +112,16 @@ export default async function SimulacrosPage() {
         <Trophy className="h-7 w-7 text-primary/60 shrink-0 mt-1" />
       </div>
 
-      {/* Aviso de simulacro */}
-      <div className="flex items-start gap-2 rounded-lg bg-blue-50 border border-blue-100 px-4 py-3">
-        <Info className="h-4 w-4 text-blue-600 shrink-0 mt-0.5" />
-        <p className="text-xs text-blue-700">
-          Prueba un simulacro <strong>gratis</strong> con exámenes reales del INAP.
-          Simulacros ilimitados con el Pack Oposición.
-        </p>
-      </div>
+      {/* Aviso de simulacro — solo free users */}
+      {!isPremium && (
+        <div className="flex items-start gap-2 rounded-lg bg-blue-50 border border-blue-100 px-4 py-3">
+          <Info className="h-4 w-4 text-blue-600 shrink-0 mt-0.5" />
+          <p className="text-xs text-blue-700">
+            Prueba un simulacro <strong>gratis</strong> con exámenes reales del INAP.
+            Simulacros ilimitados con el Pack Oposición.
+          </p>
+        </div>
+      )}
 
       {hayExamenes ? (
         <div className="space-y-6">

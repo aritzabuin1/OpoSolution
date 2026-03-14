@@ -45,6 +45,7 @@ export interface CorrectDesarrolloParams {
   temaId: string
   userId: string
   requestId?: string
+  oposicionId?: string
 }
 
 /**
@@ -78,7 +79,7 @@ export interface CorreccionDesarrolloResult {
 export async function correctDesarrollo(
   params: CorrectDesarrolloParams
 ): Promise<CorreccionDesarrolloResult> {
-  const { texto, temaId, userId, requestId } = params
+  const { texto, temaId, userId, requestId, oposicionId } = params
   const log = requestId ? logger.child({ requestId }) : logger
   const start = Date.now()
 
@@ -116,6 +117,7 @@ export async function correctDesarrollo(
       endpoint: 'correct-desarrollo',
       userId,
       requestId,
+      oposicionId,
     }
   )
 

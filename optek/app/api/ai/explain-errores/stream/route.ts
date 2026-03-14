@@ -96,6 +96,7 @@ export async function POST(request: NextRequest) {
   // ── 6. Verificar créditos (SIN descontar) — admin bypass ───────────────
   let hasPaidCredit = false
   let hasFreeCredit = false
+  const oposicionId = await getOposicionFromProfile(serviceSupabase, user.id)
 
   if (!isAdmin) {
     const { data: profileCredits } = await serviceSupabase
@@ -106,7 +107,6 @@ export async function POST(request: NextRequest) {
 
     hasPaidCredit = (profileCredits?.corrections_balance ?? 0) > 0
     hasFreeCredit = !hasPaidCredit && (profileCredits?.free_corrector_used ?? 0) < 2
-    const oposicionId = await getOposicionFromProfile(serviceSupabase, user.id)
     const isPaid = await checkPaidAccess(serviceSupabase, user.id, oposicionId)
 
     if (!hasPaidCredit && !hasFreeCredit && !isPaid) {
@@ -143,6 +143,8 @@ export async function POST(request: NextRequest) {
       requestId,
       endpoint: 'explain-errores-stream',
       useHeavyModel: true, // Paid feature — use Sonnet/GPT-5 for quality
+      userId: user.id,
+      oposicionId,
     })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Error desconocido'

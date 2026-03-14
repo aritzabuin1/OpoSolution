@@ -63,11 +63,11 @@ export async function POST(request: NextRequest) {
 
   let hasPaidCredit = false
   let hasFreeCredit = false
+  const oposicionId = await getOposicionFromProfile(serviceSupabase, user.id)
 
   if (!isAdmin) {
     hasPaidCredit = (profile?.corrections_balance ?? 0) > 0
     hasFreeCredit = !hasPaidCredit && (profile?.free_corrector_used ?? 0) < 2
-    const oposicionId = await getOposicionFromProfile(serviceSupabase, user.id)
     const isPaid = await checkPaidAccess(serviceSupabase, user.id, oposicionId)
 
     if (!hasPaidCredit && !hasFreeCredit && !isPaid) {
@@ -225,6 +225,8 @@ export async function POST(request: NextRequest) {
       maxTokens: 2000,
       requestId,
       endpoint: 'generate-roadmap',
+      userId: user.id,
+      oposicionId,
       // Mini model: roadmap follows a structured template with user data, no deep reasoning needed
     })
   } catch (err) {

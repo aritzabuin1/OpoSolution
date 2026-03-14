@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { logger } from '@/lib/logger'
 
 /**
@@ -40,9 +40,11 @@ export async function GET() {
   log.info({ userId: user.id }, 'Iniciando exportación de datos de usuario')
 
   try {
-    // Consultas en paralelo — todas filtradas por user_id
+    // Service client bypasses RLS — safe because we already verified auth
+    // and ALL queries are filtered by user.id
+    const service = await createServiceClient()
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const sb = supabase as any
+    const sb = service as any
     const [
       profileResult,
       testsResult,
@@ -57,28 +59,28 @@ export async function GET() {
       cazatrampasResult,
       retoResult,
     ] = await Promise.all([
-      supabase.from('profiles').select('*').eq('id', user.id).single(),
-      supabase
+      service.from('profiles').select('*').eq('id', user.id).single(),
+      service
         .from('tests_generados')
         .select('id, tipo, tema_id, preguntas, respuestas_usuario, puntuacion, tiempo_segundos, completado, prompt_version, created_at')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false }),
-      supabase
+      service
         .from('desarrollos')
         .select('id, tema_id, texto_usuario, evaluacion, citas_verificadas, prompt_version, created_at')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false }),
-      supabase
+      service
         .from('compras')
         .select('id, tipo, tema_id, oposicion_id, amount_paid, stripe_checkout_session_id, created_at')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false }),
-      supabase
+      service
         .from('suscripciones')
         .select('id, estado, fecha_inicio, fecha_fin, created_at')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false }),
-      supabase
+      service
         .from('preguntas_reportadas')
         .select('id, test_id, pregunta_index, motivo, estado, created_at')
         .eq('user_id', user.id)
@@ -88,7 +90,7 @@ export async function GET() {
         .select('id, tipo, desbloqueado_en')
         .eq('user_id', user.id)
         .order('desbloqueado_en', { ascending: true }),
-      supabase
+      service
         .from('api_usage_log')
         .select('id, endpoint, model, tokens_input, tokens_output, cost_estimated_cents, timestamp')
         .eq('user_id', user.id)

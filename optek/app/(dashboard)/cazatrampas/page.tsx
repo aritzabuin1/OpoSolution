@@ -105,13 +105,15 @@ export default function CazaTrampasPage() {
             <p>3. Propones la corrección para cada error que encuentras</p>
             <p>4. La puntuación es 100% determinista — sin IA en la corrección</p>
           </div>
-          <div className="flex items-start gap-2 rounded-md bg-blue-50 border border-blue-200 px-3 py-2">
-            <Zap className="h-3.5 w-3.5 text-blue-600 shrink-0 mt-0.5" />
-            <p className="text-[11px] text-blue-700">
-              3 ejercicios gratuitos al día. Se generan de artículos reales de la legislación del temario.
-              Ejercicios ilimitados con el Pack Oposición.
-            </p>
-          </div>
+          {isPremium !== true && (
+            <div className="flex items-start gap-2 rounded-md bg-blue-50 border border-blue-200 px-3 py-2">
+              <Zap className="h-3.5 w-3.5 text-blue-600 shrink-0 mt-0.5" />
+              <p className="text-[11px] text-blue-700">
+                3 ejercicios gratuitos al día. Se generan de artículos reales de la legislación del temario.
+                Ejercicios ilimitados con el Pack Oposición.
+              </p>
+            </div>
+          )}
         </div>
       )}
 

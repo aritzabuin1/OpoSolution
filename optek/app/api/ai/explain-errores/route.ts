@@ -207,6 +207,7 @@ Responde en JSON con el array "explicaciones" donde cada item tiene: "num" (núm
       endpoint: 'explain-errores',
       userId: user.id,
       requestId,
+      oposicionId,
     })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Error desconocido'

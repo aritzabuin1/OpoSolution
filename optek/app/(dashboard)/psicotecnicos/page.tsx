@@ -127,7 +127,7 @@ export default function PsicotecnicosPage() {
         {/* Badge info */}
         <div className="flex items-center gap-1.5 text-xs font-medium text-primary">
           <Zap className="h-3.5 w-3.5" />
-          <span>Generación instantánea · 3 tests gratuitos</span>
+          <span>{isPremium === true ? 'Generación instantánea' : 'Generación instantánea · 3 tests gratuitos'}</span>
         </div>
       </div>
 

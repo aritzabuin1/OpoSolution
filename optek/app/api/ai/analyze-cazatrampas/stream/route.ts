@@ -114,6 +114,8 @@ export async function POST(request: NextRequest) {
       requestId,
       endpoint: 'analyze-cazatrampas-stream',
       useHeavyModel: true,
+      userId: user.id,
+      oposicionId,
     })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Error desconocido'

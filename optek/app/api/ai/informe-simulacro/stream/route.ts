@@ -158,6 +158,8 @@ ${erroresDetalle || '  Ninguna'}`
       requestId,
       endpoint: 'informe-simulacro-stream',
       useHeavyModel: true,
+      userId: user.id,
+      oposicionId,
     })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Error desconocido'

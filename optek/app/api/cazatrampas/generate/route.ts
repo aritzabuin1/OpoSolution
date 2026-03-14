@@ -95,7 +95,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const sesion = await generateCazaTrampas(user.id, temaId, numErrores)
+    const sesion = await generateCazaTrampas(user.id, temaId, numErrores, oposicionId)
     log.info({ sesionId: sesion.id, numErrores: sesion.numErrores }, '[cazatrampas/generate] OK')
     return NextResponse.json(sesion, { status: 201 })
   } catch (err) {

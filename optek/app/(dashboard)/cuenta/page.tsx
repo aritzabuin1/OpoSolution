@@ -158,7 +158,12 @@ export default async function CuentaPage() {
             <span className="text-4xl font-bold">{balance}</span>
             <div>
               <p className="text-sm text-muted-foreground">análisis detallados restantes</p>
-              {balance < 5 && (
+              {balance === 0 && (
+                <p className="text-xs text-red-600 mt-1">
+                  No te quedan análisis — recarga para continuar
+                </p>
+              )}
+              {balance > 0 && balance < 5 && (
                 <p className="text-xs text-amber-600 mt-1">
                   Quedan pocos — considera recargar
                 </p>

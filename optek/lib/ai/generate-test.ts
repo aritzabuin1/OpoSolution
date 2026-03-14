@@ -71,6 +71,7 @@ export interface GenerateTestParams {
   dificultad: 'facil' | 'media' | 'dificil'
   userId: string
   requestId?: string
+  oposicionId?: string
 }
 
 // ─── generateTest ─────────────────────────────────────────────────────────────
@@ -83,7 +84,7 @@ export interface GenerateTestParams {
  *         no se alcanza ninguna pregunta verificada
  */
 export async function generateTest(params: GenerateTestParams): Promise<TestGenerado> {
-  const { temaId, numPreguntas, dificultad, userId, requestId } = params
+  const { temaId, numPreguntas, dificultad, userId, requestId, oposicionId } = params
   const log = requestId ? logger.child({ requestId }) : logger
   const start = Date.now()
 
@@ -150,6 +151,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
         endpoint: 'generate-test',
         userId,
         requestId,
+        oposicionId,
       }
     )
     // Keep all questions — overgeneration is intentional

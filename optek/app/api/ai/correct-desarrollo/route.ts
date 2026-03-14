@@ -170,6 +170,7 @@ export async function POST(request: NextRequest) {
       temaId,
       userId: user.id,
       requestId,
+      oposicionId,
     })
 
     // ── 7b. Descontar crédito SOLO tras éxito (BUG-010 fix) ─────────────────

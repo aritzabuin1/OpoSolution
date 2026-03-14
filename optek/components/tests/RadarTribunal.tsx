@@ -41,7 +41,7 @@ export default function RadarTribunal({ articulos, isPaid, freeLimit = 3 }: Rada
                 #
               </th>
               <th className="px-3 py-3 text-left font-semibold text-gray-600 dark:text-gray-300">
-                Articulo
+                Artículo
               </th>
               <th className="px-3 py-3 text-left font-semibold text-gray-600 dark:text-gray-300 hidden md:table-cell">
                 Materia
@@ -50,7 +50,7 @@ export default function RadarTribunal({ articulos, isPaid, freeLimit = 3 }: Rada
                 Apariciones
               </th>
               <th className="px-3 py-3 text-center font-semibold text-gray-600 dark:text-gray-300 hidden sm:table-cell whitespace-nowrap">
-                Anos
+                Años
               </th>
             </tr>
           </thead>

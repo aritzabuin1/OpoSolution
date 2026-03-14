@@ -376,6 +376,7 @@ export async function POST(request: NextRequest) {
         dificultad,
         userId: user.id,
         requestId,
+        oposicionId,
       }),
       GENERATE_TIMEOUT_MS
     )

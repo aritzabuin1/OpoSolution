@@ -45,7 +45,8 @@ const MAX_RETRIES = 2
 export async function generateCazaTrampas(
   userId: string,
   temaId?: string,
-  numErrores = 3
+  numErrores = 3,
+  oposicionId?: string
 ): Promise<CazaTrampasSession> {
   const supabase = await createServiceClient()
 
@@ -102,6 +103,8 @@ export async function generateCazaTrampas(
 
     const raw = await callAIJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema, {
       endpoint: 'generate-cazatrampas',
+      userId,
+      oposicionId,
     })
     if (!raw) {
       logger.warn({ attempt }, '[cazatrampas] GPT devolvió null')

@@ -98,11 +98,12 @@ describe('§1.17.3 — GET /api/user/export', () => {
   beforeEach(() => {
     vi.clearAllMocks()
 
-    // Por defecto: usuario autenticado
+    // Por defecto: usuario autenticado (via createClient)
     mockGetUser.mockResolvedValue({ data: { user: USER_FIXTURE }, error: null })
 
     // Por defecto: todas las tablas devuelven datos vacíos sin error
-    mockFromExport.mockImplementation((table: string) => {
+    // Export route uses createServiceClient (mockFromDelete) for data queries
+    mockFromDelete.mockImplementation((table: string) => {
       if (table === 'profiles') {
         return makeSelectBuilder({ id: USER_FIXTURE.id, free_tests_used: 0 })
       }
@@ -157,7 +158,7 @@ describe('§1.17.3 — GET /api/user/export', () => {
   })
 
   it('incluye datos de tests_generados en tests_realizados', async () => {
-    mockFromExport.mockImplementation((table: string) => {
+    mockFromDelete.mockImplementation((table: string) => {
       if (table === 'profiles') return makeSelectBuilder({ id: USER_FIXTURE.id })
       if (table === 'tests_generados') return makeSelectBuilder([{ id: 't1' }, { id: 't2' }])
       return makeSelectBuilder([])
@@ -171,7 +172,7 @@ describe('§1.17.3 — GET /api/user/export', () => {
 
   it('devuelve 500 si falla una consulta de BD durante el export', async () => {
     // Simular error de BD lanzando una excepción dentro del try/catch del route
-    mockFromExport.mockImplementation(() => {
+    mockFromDelete.mockImplementation(() => {
       throw new Error('DB connection timeout')
     })
 

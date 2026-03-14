@@ -107,6 +107,8 @@ export async function POST(request: NextRequest) {
       requestId,
       endpoint: 'explain-flashcard-stream',
       useHeavyModel: true,
+      userId: user.id,
+      oposicionId,
     })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Error desconocido'
