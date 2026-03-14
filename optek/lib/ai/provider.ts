@@ -82,6 +82,8 @@ export interface AICallOptions {
   userId?: string
   /** Oposicion ID for cost attribution in api_usage_log */
   oposicionId?: string
+  /** Temperature for AI generation (0.0-1.0). Higher = more varied output */
+  temperature?: number
 }
 
 // ─── Helpers internos ─────────────────────────────────────────────────────────

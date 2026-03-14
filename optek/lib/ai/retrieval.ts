@@ -580,6 +580,15 @@ export async function buildContext(
     articulos = [...weakArticulos, ...normalDeduped]
   }
 
+  // Fisher-Yates shuffle de artículos para variar el contexto RAG entre llamadas.
+  // Sin shuffle, mismo tema → mismo orden de artículos → mismo prompt → preguntas idénticas.
+  // Weak articles (primeros weakArticulosCount) se mantienen al inicio (son prioritarios).
+  const normalStart = weakArticulosCount
+  for (let i = articulos.length - 1; i > normalStart; i--) {
+    const j = normalStart + Math.floor(Math.random() * (i - normalStart + 1));
+    [articulos[i], articulos[j]] = [articulos[j], articulos[i]]
+  }
+
   // Truncar para no exceder el límite de contexto
   let totalChars = 0
   const articulosTruncados: ArticuloContext[] = []

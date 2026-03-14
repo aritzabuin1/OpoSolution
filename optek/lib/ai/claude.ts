@@ -134,6 +134,8 @@ export interface ClaudeCallOptions {
   endpoint?: string
   userId?: string
   oposicionId?: string
+  /** Temperature for AI generation (0.0-1.0). Higher = more varied output */
+  temperature?: number
 }
 
 // ─── callClaude (Sonnet — correcciones) ───────────────────────────────────────
@@ -158,6 +160,7 @@ export async function callClaude(
     endpoint = 'unknown',
     userId,
     oposicionId,
+    temperature,
   } = options
 
   // Circuit Breaker: lanza si OPEN sin período de reset cumplido
@@ -175,6 +178,7 @@ export async function callClaude(
       max_tokens: maxTokens,
       system: systemPrompt ? [{ type: 'text' as const, text: systemPrompt, cache_control: { type: 'ephemeral' as const } }] : undefined,
       messages: [{ role: 'user', content: sanitizedContent }],
+      ...(temperature !== undefined && { temperature }),
     })
 
     const latencyMs = Date.now() - start
@@ -220,7 +224,7 @@ export async function callClaudeHaiku(
   userContent: string,
   options: Omit<ClaudeCallOptions, 'model'> = {}
 ): Promise<string> {
-  const { maxTokens = 1500, systemPrompt, requestId, endpoint = 'unknown', userId, oposicionId } = options
+  const { maxTokens = 1500, systemPrompt, requestId, endpoint = 'unknown', userId, oposicionId, temperature } = options
   const model = 'claude-haiku-4-5-20251001'
 
   // Circuit Breaker: lanza si OPEN sin período de reset cumplido
@@ -237,6 +241,7 @@ export async function callClaudeHaiku(
       max_tokens: maxTokens,
       system: systemPrompt ? [{ type: 'text' as const, text: systemPrompt, cache_control: { type: 'ephemeral' as const } }] : undefined,
       messages: [{ role: 'user', content: sanitizedContent }],
+      ...(temperature !== undefined && { temperature }),
     })
 
     const latencyMs = Date.now() - start

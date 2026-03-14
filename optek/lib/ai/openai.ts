@@ -133,6 +133,8 @@ export interface GPTCallOptions {
   userId?: string
   /** Oposicion ID for cost attribution in api_usage_log */
   oposicionId?: string
+  /** Temperature for AI generation (0.0-1.0). Higher = more varied output */
+  temperature?: number
 }
 
 // ─── callGPT (GPT-4o — correcciones) ──────────────────────────────────────────
@@ -157,6 +159,7 @@ export async function callGPT(
     endpoint = 'unknown',
     userId,
     oposicionId,
+    temperature,
   } = options
 
   checkCircuit()
@@ -176,6 +179,7 @@ export async function callGPT(
       model,
       max_completion_tokens: maxTokens,
       messages,
+      ...(temperature !== undefined && { temperature }),
     })
 
     const latencyMs = Date.now() - start
@@ -231,7 +235,7 @@ export async function callGPTMini(
   userContent: string,
   options: Omit<GPTCallOptions, 'model'> = {}
 ): Promise<string> {
-  const { maxTokens = 2000, systemPrompt, requestId, endpoint = 'unknown', userId, oposicionId } = options
+  const { maxTokens = 2000, systemPrompt, requestId, endpoint = 'unknown', userId, oposicionId, temperature } = options
   const model = GPT_MINI_MODEL
 
   checkCircuit()
@@ -249,6 +253,7 @@ export async function callGPTMini(
       model,
       max_completion_tokens: maxTokens,
       messages,
+      ...(temperature !== undefined && { temperature }),
     })
 
     const latencyMs = Date.now() - start
@@ -318,7 +323,7 @@ export async function callGPTJSON<T>(
   schema: ZodType<T>,
   options: GPTCallOptions = {}
 ): Promise<T> {
-  const { maxTokens = 8000, requestId, endpoint = 'unknown', userId, oposicionId } = options
+  const { maxTokens = 8000, requestId, endpoint = 'unknown', userId, oposicionId, temperature } = options
   const model = options.model === GPT_MODEL ? GPT_MODEL : GPT_MINI_MODEL
   const costInput = model === GPT_MODEL ? GPT_COST_PER_1K_INPUT_CENTS : GPT_MINI_COST_PER_1K_INPUT_CENTS
   const costOutput = model === GPT_MODEL ? GPT_COST_PER_1K_OUTPUT_CENTS : GPT_MINI_COST_PER_1K_OUTPUT_CENTS
@@ -345,6 +350,7 @@ export async function callGPTJSON<T>(
       max_completion_tokens: maxTokens,
       messages,
       response_format: { type: 'json_object' },
+      ...(temperature !== undefined && { temperature }),
     })
 
     const latencyMs = Date.now() - start

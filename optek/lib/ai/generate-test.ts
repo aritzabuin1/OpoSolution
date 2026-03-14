@@ -152,6 +152,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
         userId,
         requestId,
         oposicionId,
+        temperature: 0.5,
       }
     )
     // Keep all questions — overgeneration is intentional
