@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
   const next = searchParams.get('next')
 
   if (!tokenHash || !type) {
-    return NextResponse.redirect(new URL('/auth/error?reason=missing_params', origin))
+    return NextResponse.redirect(new URL('/error?reason=missing_params', origin))
   }
 
   // Determine redirect destination BEFORE verifying (needed for response object)
@@ -61,7 +61,7 @@ export async function GET(request: NextRequest) {
   const { error, data } = await supabase.auth.verifyOtp({ token_hash: tokenHash, type })
 
   if (error) {
-    return NextResponse.redirect(new URL('/auth/error?reason=verify_failed', origin))
+    return NextResponse.redirect(new URL('/error?reason=verify_failed', origin))
   }
 
   // Welcome email for new signups

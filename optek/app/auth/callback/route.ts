@@ -75,5 +75,5 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  return NextResponse.redirect(new URL('/auth/error?reason=callback', origin))
+  return NextResponse.redirect(new URL('/error?reason=callback', origin))
 }
