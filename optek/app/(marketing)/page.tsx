@@ -593,17 +593,33 @@ export default async function LandingPage() {
           <p className="text-sm font-medium text-muted-foreground mb-4">
             Practica con exámenes reales del INAP — preguntas oficiales de convocatorias anteriores
           </p>
-          <div className="flex flex-wrap justify-center gap-3 mb-4">
-            {['inap-2024', 'inap-2022', 'inap-2019', 'inap-2018'].map((slug) => (
-              <Link key={slug} href={`/examenes-oficiales/${slug}`}>
-                <Badge
-                  variant="outline"
-                  className="text-sm px-3 py-1.5 hover:bg-accent transition-colors cursor-pointer"
-                >
-                  INAP {slug.split('-')[1]}
-                </Badge>
-              </Link>
-            ))}
+          <div className="space-y-3 mb-4">
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Auxiliar (C2)</p>
+            <div className="flex flex-wrap justify-center gap-3">
+              {['inap-2024', 'inap-2022', 'inap-2019', 'inap-2018'].map((slug) => (
+                <Link key={slug} href={`/examenes-oficiales/${slug}`}>
+                  <Badge
+                    variant="outline"
+                    className="text-sm px-3 py-1.5 hover:bg-accent transition-colors cursor-pointer"
+                  >
+                    C2 — INAP {slug.split('-')[1]}
+                  </Badge>
+                </Link>
+              ))}
+            </div>
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Administrativo (C1)</p>
+            <div className="flex flex-wrap justify-center gap-3">
+              {['inap-c1-2024', 'inap-c1-2022', 'inap-c1-2019'].map((slug) => (
+                <Link key={slug} href={`/examenes-oficiales/${slug}`}>
+                  <Badge
+                    variant="outline"
+                    className="text-sm px-3 py-1.5 hover:bg-accent transition-colors cursor-pointer"
+                  >
+                    C1 — INAP {slug.split('-').pop()}
+                  </Badge>
+                </Link>
+              ))}
+            </div>
           </div>
           <Link href="/examenes-oficiales" className="text-sm text-primary hover:underline">
             Ver todos los simulacros oficiales →

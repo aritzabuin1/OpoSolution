@@ -16,20 +16,22 @@ import { ArrowRight, BookOpen, Trophy, Timer, CheckCircle2 } from 'lucide-react'
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
 export const metadata: Metadata = {
-  title: 'Simulacros Examen INAP — Auxiliar Administrativo del Estado | OpoRuta',
+  title: 'Simulacros Examen INAP — Auxiliar (C2) y Administrativo (C1) | OpoRuta',
   description:
-    'Practica con exámenes reales del INAP para el Cuerpo General Auxiliar de la Administración del Estado. Convocatorias 2024, 2022, 2019 y 2018 con preguntas oficiales y explicaciones IA. Primer simulacro gratis.',
+    'Practica con exámenes reales del INAP para Auxiliar Administrativo (C2) y Administrativo del Estado (C1). Convocatorias 2024, 2022, 2019 y 2018 con preguntas oficiales y explicaciones IA. Primer simulacro gratis.',
   keywords: [
     'simulacro examen INAP auxiliar administrativo',
+    'simulacro examen INAP administrativo estado C1',
     'examen oficial INAP preguntas reales',
     'test oposiciones auxiliar administrativo con respuestas',
+    'test oposiciones administrativo estado C1',
     'simulacro auxiliar estado gratis',
     'examen cuerpo general auxiliar administración',
   ],
   openGraph: {
-    title: 'Simulacros INAP Oficiales — OpoRuta',
+    title: 'Simulacros INAP Oficiales — C1 y C2 | OpoRuta',
     description:
-      'Practica con preguntas reales de convocatorias INAP anteriores. Explicaciones IA de cada error.',
+      'Practica con preguntas reales de convocatorias INAP anteriores para Auxiliar (C2) y Administrativo (C1). Explicaciones IA de cada error.',
     type: 'website',
     url: `${APP_URL}/examenes-oficiales`,
     images: [
@@ -47,7 +49,7 @@ export const metadata: Metadata = {
 }
 
 // Catálogo de exámenes — sincronizado con [examen]/page.tsx
-const SIMULACROS = [
+const SIMULACROS_C2 = [
   {
     slug: 'inap-2024',
     anio: 2024,
@@ -90,14 +92,48 @@ const SIMULACROS = [
   },
 ]
 
+const SIMULACROS_C1 = [
+  {
+    slug: 'inap-c1-2024',
+    anio: 2024,
+    titulo: 'Examen Oficial INAP 2024 — C1',
+    descripcion:
+      'Convocatoria 2024 para Administrativo del Estado (C1). 45 temas: derecho administrativo avanzado, contratación pública e informática.',
+    preguntas: '80 preguntas',
+    disponible: true,
+    destacado: true,
+  },
+  {
+    slug: 'inap-c1-2022',
+    anio: 2022,
+    titulo: 'Examen Oficial INAP 2022 — C1',
+    descripcion:
+      'Convocatoria 2022 para Administrativo del Estado. Fuerte peso en LPAC, LRJSP y contratación pública.',
+    preguntas: '80 preguntas',
+    disponible: true,
+    destacado: false,
+  },
+  {
+    slug: 'inap-c1-2019',
+    anio: 2019,
+    titulo: 'Examen Oficial INAP 2019 — C1',
+    descripcion:
+      'Convocatoria 2019 para Administrativo del Estado. Temario clásico con equilibrio entre los 45 temas.',
+    preguntas: '80 preguntas',
+    disponible: true,
+    destacado: false,
+  },
+]
+
 export default function SimulacrosIndexPage() {
+  const allSimulacros = [...SIMULACROS_C2, ...SIMULACROS_C1]
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Simulacros Examen INAP — Auxiliar Administrativo del Estado',
-    description: 'Lista de exámenes oficiales INAP con preguntas reales para práctica.',
+    name: 'Simulacros Examen INAP — Auxiliar (C2) y Administrativo (C1)',
+    description: 'Lista de exámenes oficiales INAP con preguntas reales para práctica. C1 y C2.',
     url: `${APP_URL}/examenes-oficiales`,
-    itemListElement: SIMULACROS.filter((s) => s.disponible).map((s, idx) => ({
+    itemListElement: allSimulacros.filter((s) => s.disponible).map((s, idx) => ({
       '@type': 'ListItem',
       position: idx + 1,
       name: s.titulo,
@@ -124,8 +160,8 @@ export default function SimulacrosIndexPage() {
             Simulacros de Examen INAP
           </h1>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-lg">
-            Practica con preguntas <strong>reales</strong> de convocatorias oficiales del
-            Cuerpo General Auxiliar de la Administración del Estado.
+            Practica con preguntas <strong>reales</strong> de convocatorias oficiales
+            para Auxiliar Administrativo (C2) y Administrativo del Estado (C1).
             Tu primer simulacro es gratis.
           </p>
 
@@ -162,50 +198,21 @@ export default function SimulacrosIndexPage() {
           </Link>
         </div>
 
-        {/* Grid de simulacros */}
+        {/* Grid de simulacros — C2 */}
         <div className="space-y-4">
-          {SIMULACROS.map((sim) => (
-            <Card
-              key={sim.slug}
-              className={`transition-shadow ${sim.disponible ? 'hover:shadow-md' : 'opacity-60'}`}
-            >
-              <CardHeader className="pb-3">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <CardTitle className="text-lg">{sim.titulo}</CardTitle>
-                      {sim.destacado && (
-                        <Badge className="text-xs">Más reciente</Badge>
-                      )}
-                      {!sim.disponible && (
-                        <Badge variant="outline" className="text-xs text-muted-foreground">
-                          Próximamente
-                        </Badge>
-                      )}
-                    </div>
-                    <p className="text-xs text-muted-foreground">{sim.preguntas}</p>
-                  </div>
-                  <span className="text-3xl font-bold text-muted-foreground/30 shrink-0">
-                    {sim.anio}
-                  </span>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">{sim.descripcion}</p>
-                {sim.disponible ? (
-                  <Link href={`/examenes-oficiales/${sim.slug}`}>
-                    <Button variant="outline" size="sm" className="gap-2">
-                      Ver preguntas
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </Button>
-                  </Link>
-                ) : (
-                  <Button variant="ghost" size="sm" disabled className="text-muted-foreground">
-                    Disponible próximamente
-                  </Button>
-                )}
-              </CardContent>
-            </Card>
+          <h2 className="text-xl font-bold">Auxiliar Administrativo del Estado (C2)</h2>
+          <p className="text-sm text-muted-foreground -mt-2">28 temas · 1.700 plazas</p>
+          {SIMULACROS_C2.map((sim) => (
+            <SimulacroCard key={sim.slug} sim={sim} />
+          ))}
+        </div>
+
+        {/* Grid de simulacros — C1 */}
+        <div className="space-y-4 mt-10">
+          <h2 className="text-xl font-bold">Administrativo del Estado (C1)</h2>
+          <p className="text-sm text-muted-foreground -mt-2">45 temas · 2.512 plazas</p>
+          {SIMULACROS_C1.map((sim) => (
+            <SimulacroCard key={sim.slug} sim={sim} />
           ))}
         </div>
 
@@ -237,7 +244,7 @@ export default function SimulacrosIndexPage() {
             <p>
               Todas las preguntas provienen de los exámenes oficiales publicados por el{' '}
               <strong className="text-foreground">INAP (Instituto Nacional de Administración Pública)</strong>{' '}
-              para el Cuerpo General Auxiliar de la Administración del Estado (C2).
+              para el Cuerpo General Auxiliar (C2) y el Cuerpo General Administrativo (C1) de la Administración del Estado.
             </p>
             <p className="mt-2">
               Tu primer simulacro es gratis. Los exámenes oficiales son dominio público.
@@ -247,5 +254,50 @@ export default function SimulacrosIndexPage() {
 
       </div>
     </>
+  )
+}
+
+// ─── Sub-componente ────────────────────────────────────────────────────────────
+
+function SimulacroCard({ sim }: { sim: typeof SIMULACROS_C2[number] }) {
+  return (
+    <Card className={`transition-shadow ${sim.disponible ? 'hover:shadow-md' : 'opacity-60'}`}>
+      <CardHeader className="pb-3">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <CardTitle className="text-lg">{sim.titulo}</CardTitle>
+              {sim.destacado && (
+                <Badge className="text-xs">Más reciente</Badge>
+              )}
+              {!sim.disponible && (
+                <Badge variant="outline" className="text-xs text-muted-foreground">
+                  Próximamente
+                </Badge>
+              )}
+            </div>
+            <p className="text-xs text-muted-foreground">{sim.preguntas}</p>
+          </div>
+          <span className="text-3xl font-bold text-muted-foreground/30 shrink-0">
+            {sim.anio}
+          </span>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <p className="text-sm text-muted-foreground mb-4">{sim.descripcion}</p>
+        {sim.disponible ? (
+          <Link href={`/examenes-oficiales/${sim.slug}`}>
+            <Button variant="outline" size="sm" className="gap-2">
+              Ver preguntas
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Button>
+          </Link>
+        ) : (
+          <Button variant="ghost" size="sm" disabled className="text-muted-foreground">
+            Disponible próximamente
+          </Button>
+        )}
+      </CardContent>
+    </Card>
   )
 }

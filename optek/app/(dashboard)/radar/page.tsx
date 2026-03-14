@@ -14,6 +14,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { checkPaidAccess, getOposicionFromProfile } from '@/lib/freemium'
 import { TrendingUp, Info, BookOpen, Scale } from 'lucide-react'
+import { AIGenerationBanner } from '@/components/shared/AIGenerationBanner'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
@@ -101,6 +102,9 @@ export default async function RadarPage() {
           </div>
         )}
       </div>
+
+      {/* Banner IA */}
+      <AIGenerationBanner />
 
       {/* Botón de práctica */}
       {(temas.length > 0 || articulos.length > 0) && (

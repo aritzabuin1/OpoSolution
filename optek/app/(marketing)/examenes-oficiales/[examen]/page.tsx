@@ -27,7 +27,9 @@ const EXAMEN_META: Record<string, {
   titulo: string
   description: string
   keywords: string[]
+  oposicion: 'C2' | 'C1'
 }> = {
+  // ── C2 — Auxiliar Administrativo ─────────────────────────────────────────
   'inap-2024': {
     anio: 2024,
     titulo: 'Examen Oficial INAP 2024 — Auxiliar Administrativo del Estado',
@@ -39,6 +41,7 @@ const EXAMEN_META: Record<string, {
       'preguntas examen auxiliar estado 2024',
       'test oposiciones auxiliar administrativo 2024',
     ],
+    oposicion: 'C2',
   },
   'inap-2022': {
     anio: 2022,
@@ -51,6 +54,7 @@ const EXAMEN_META: Record<string, {
       'preguntas examen auxiliar estado 2022',
       'test oposiciones auxiliar administrativo 2022',
     ],
+    oposicion: 'C2',
   },
   'inap-2019': {
     anio: 2019,
@@ -63,6 +67,7 @@ const EXAMEN_META: Record<string, {
       'preguntas examen auxiliar estado 2019',
       'test oposiciones auxiliar administrativo 2019',
     ],
+    oposicion: 'C2',
   },
   'inap-2018': {
     anio: 2018,
@@ -75,6 +80,47 @@ const EXAMEN_META: Record<string, {
       'preguntas examen auxiliar estado 2018',
       'test oposiciones auxiliar administrativo 2018',
     ],
+    oposicion: 'C2',
+  },
+  // ── C1 — Administrativo del Estado ──────────────────────────────────────
+  'inap-c1-2024': {
+    anio: 2024,
+    titulo: 'Examen Oficial INAP 2024 — Administrativo del Estado (C1)',
+    description:
+      'Practica con las preguntas reales del examen oficial INAP 2024 del Cuerpo General Administrativo de la Administración del Estado (C1). 45 temas. Con respuestas y explicaciones IA.',
+    keywords: [
+      'examen administrativo estado INAP 2024',
+      'simulacro INAP C1 2024 con respuestas',
+      'preguntas examen administrativo estado 2024',
+      'test oposiciones administrativo estado C1 2024',
+    ],
+    oposicion: 'C1',
+  },
+  'inap-c1-2022': {
+    anio: 2022,
+    titulo: 'Examen Oficial INAP 2022 — Administrativo del Estado (C1)',
+    description:
+      'Practica con las preguntas reales del examen oficial INAP 2022 del Cuerpo General Administrativo de la Administración del Estado (C1). Con respuestas y explicaciones IA.',
+    keywords: [
+      'examen administrativo estado INAP 2022',
+      'simulacro INAP C1 2022 con respuestas',
+      'preguntas examen administrativo estado 2022',
+      'test oposiciones administrativo estado C1 2022',
+    ],
+    oposicion: 'C1',
+  },
+  'inap-c1-2019': {
+    anio: 2019,
+    titulo: 'Examen Oficial INAP 2019 — Administrativo del Estado (C1)',
+    description:
+      'Practica con las preguntas reales del examen oficial INAP 2019 del Cuerpo General Administrativo de la Administración del Estado (C1). Convocatoria ordinaria. Con respuestas y explicaciones IA.',
+    keywords: [
+      'examen administrativo estado INAP 2019',
+      'simulacro INAP C1 2019 con respuestas',
+      'preguntas examen administrativo estado 2019',
+      'test oposiciones administrativo estado C1 2019',
+    ],
+    oposicion: 'C1',
   },
 }
 
@@ -138,13 +184,23 @@ export default async function SimulacroExamenPage({ params }: Props) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const supabase = await createServiceClient() as any
 
-  const { data: examenData } = await supabase
+  // Resolve oposicion_id to scope the query (C1 vs C2 can share the same anio)
+  const oposicionSlug = meta.oposicion === 'C1' ? 'administrativo-estado' : 'aux-admin-estado'
+  const { data: oposicionRow } = await supabase
+    .from('oposiciones')
+    .select('id')
+    .eq('slug', oposicionSlug)
+    .single()
+
+  let examenQuery = supabase
     .from('examenes_oficiales')
     .select('id, anio, convocatoria, activo')
     .eq('anio', meta.anio)
     .eq('activo', true)
-    .limit(1)
-    .maybeSingle()
+  if (oposicionRow?.id) {
+    examenQuery = examenQuery.eq('oposicion_id', oposicionRow.id)
+  }
+  const { data: examenData } = await examenQuery.limit(1).maybeSingle()
 
   let preguntas: PreguntaPreview[] = []
   let totalPreguntas = 0
@@ -182,7 +238,9 @@ export default async function SimulacroExamenPage({ params }: Props) {
       educationalUse: 'Practice',
       about: {
         '@type': 'EducationalOccupationalCredential',
-        name: 'Cuerpo General Auxiliar de la Administración del Estado',
+        name: meta.oposicion === 'C1'
+          ? 'Cuerpo General Administrativo de la Administración del Estado'
+          : 'Cuerpo General Auxiliar de la Administración del Estado',
         credentialCategory: 'Oposición',
       },
       ...(preguntas.length > 0 && {
@@ -202,7 +260,9 @@ export default async function SimulacroExamenPage({ params }: Props) {
       name: meta.titulo,
       description: meta.description,
       url: `${APP_URL}/examenes-oficiales/${examen}`,
-      educationalLevel: 'C2 — Auxiliar Administrativo del Estado',
+      educationalLevel: meta.oposicion === 'C1'
+        ? 'C1 — Administrativo del Estado'
+        : 'C2 — Auxiliar Administrativo del Estado',
       learningResourceType: 'Quiz',
       inLanguage: 'es',
       isAccessibleForFree: true,

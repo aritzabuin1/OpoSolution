@@ -11,13 +11,14 @@
  */
 
 import { useState } from 'react'
-import { Target, AlertTriangle, Lock, Zap } from 'lucide-react'
+import { Target, AlertTriangle, Lock, Zap, Sparkles } from 'lucide-react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { CazaTrampasCard } from '@/components/cazatrampas/CazaTrampasCard'
 import { PaywallGate } from '@/components/shared/PaywallGate'
+import { AIGenerationBanner } from '@/components/shared/AIGenerationBanner'
 import { useIsPremium } from '@/lib/hooks/useIsPremium'
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
@@ -91,6 +92,9 @@ export default function CazaTrampasPage() {
         </div>
         <Target className="h-7 w-7 text-primary/60 shrink-0 mt-1" />
       </div>
+
+      {/* Banner IA */}
+      {!sesionActiva && <AIGenerationBanner />}
 
       {/* Cómo funciona */}
       {!sesionActiva && (

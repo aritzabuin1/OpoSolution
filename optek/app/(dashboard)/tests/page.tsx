@@ -27,6 +27,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { ClipboardCheck, Lock, RefreshCw } from 'lucide-react'
 import { RadarCard } from '@/components/tests/RadarCard'
 import { RepasoButton } from '@/components/shared/RepasoButton'
+import { AIGenerationBanner } from '@/components/shared/AIGenerationBanner'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -126,6 +127,9 @@ export default async function TestsPage({
           Genera tests personalizados con citas legales verificadas
         </p>
       </div>
+
+      {/* Banner IA */}
+      <AIGenerationBanner />
 
       {/* Radar del Tribunal card — §2.14.4 (visible cuando viene de /radar) */}
       {modoRadar && (
