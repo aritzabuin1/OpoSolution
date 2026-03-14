@@ -9,7 +9,7 @@ import { logger } from '@/lib/logger'
  *
  * Crea una Stripe Checkout Session y retorna la URL de pago.
  *
- * Body: { tier: 'pack'|'pack_c1'|'pack_doble'|'recarga'|'fundador'|'fundador_c1', temaId?: string }
+ * Body: { tier: 'pack'|'pack_c1'|'pack_doble'|'recarga'|'fundador', temaId?: string, oposicionId?: string }
  *
  * El userId se obtiene de la sesión Supabase (no del body — previene suplantación).
  * Los metadata de Stripe se usan en el webhook para completar la compra.
@@ -19,7 +19,7 @@ import { logger } from '@/lib/logger'
  */
 
 const BodySchema = z.object({
-  tier: z.enum(['pack', 'pack_c1', 'pack_doble', 'recarga', 'fundador', 'fundador_c1']),
+  tier: z.enum(['pack', 'pack_c1', 'pack_doble', 'recarga', 'fundador']),
   temaId: z.string().uuid().optional(),
   oposicionId: z.string().uuid().optional(),
 })
@@ -47,8 +47,8 @@ export async function POST(request: NextRequest) {
   // Derivar oposicionId del tier (no confiar en body — previene suplantación)
   const oposicionId = TIER_TO_OPOSICION[tier as StripePriceTier] || ''
 
-  // Para tier fundador / fundador_c1: verificar que quedan plazas (20 GLOBALES)
-  if (tier === 'fundador' || tier === 'fundador_c1') {
+  // Para tier fundador: verificar que quedan plazas (20 GLOBALES)
+  if (tier === 'fundador') {
     const serviceClient = await createServiceClient()
     const { count } = await serviceClient
       .from('profiles')

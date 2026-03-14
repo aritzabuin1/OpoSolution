@@ -6,7 +6,7 @@
  * Cobertura:
  *   - CORRECTIONS_GRANTED: valores por tier
  *   - STRIPE_PRICES: estructura completa
- *   - StripePriceTier: 6 tiers válidos (C2 + C1 + doble)
+ *   - StripePriceTier: 5 tiers válidos (C2 + C1 + doble)
  *   - FOUNDER_LIMIT: valor correcto (20 global)
  *   - TIER_TO_OPOSICION: mapeo tier → oposición
  */
@@ -54,26 +54,22 @@ describe('Stripe pricing constants', () => {
     expect(CORRECTIONS_GRANTED.fundador).toBe(30)
   })
 
-  it('fundador_c1 otorga 30 correcciones', () => {
-    expect(CORRECTIONS_GRANTED.fundador_c1).toBe(30)
-  })
-
   it('no existe tier "tema" (eliminado)', () => {
     expect('tema' in CORRECTIONS_GRANTED).toBe(false)
   })
 
-  it('existen 6 tiers', () => {
-    expect(Object.keys(CORRECTIONS_GRANTED)).toHaveLength(6)
+  it('existen 5 tiers', () => {
+    expect(Object.keys(CORRECTIONS_GRANTED)).toHaveLength(5)
     expect(Object.keys(CORRECTIONS_GRANTED).sort()).toEqual([
-      'fundador', 'fundador_c1', 'pack', 'pack_c1', 'pack_doble', 'recarga',
+      'fundador', 'pack', 'pack_c1', 'pack_doble', 'recarga',
     ])
   })
 
   // ─── STRIPE_PRICES ────────────────────────────────────────────────────────
 
-  it('STRIPE_PRICES tiene las 6 keys esperadas', () => {
+  it('STRIPE_PRICES tiene las 5 keys esperadas', () => {
     expect(Object.keys(STRIPE_PRICES).sort()).toEqual([
-      'fundador', 'fundador_c1', 'pack', 'pack_c1', 'pack_doble', 'recarga',
+      'fundador', 'pack', 'pack_c1', 'pack_doble', 'recarga',
     ])
   })
 
@@ -107,12 +103,8 @@ describe('Stripe pricing constants', () => {
     expect(TIER_TO_OPOSICION.pack_doble).toBe('doble')
   })
 
-  it('fundador → C2', () => {
-    expect(TIER_TO_OPOSICION.fundador).toBe(C2_OPOSICION_ID)
-  })
-
-  it('fundador_c1 → C1', () => {
-    expect(TIER_TO_OPOSICION.fundador_c1).toBe(C1_OPOSICION_ID)
+  it('fundador → vacío (global, no vinculado a oposición)', () => {
+    expect(TIER_TO_OPOSICION.fundador).toBe('')
   })
 
   it('recarga → vacío (sin oposición específica)', () => {
@@ -122,7 +114,7 @@ describe('Stripe pricing constants', () => {
   // ─── Type safety ──────────────────────────────────────────────────────────
 
   it('StripePriceTier mapea correctamente a CORRECTIONS_GRANTED', () => {
-    const tiers: StripePriceTier[] = ['pack', 'pack_c1', 'pack_doble', 'recarga', 'fundador', 'fundador_c1']
+    const tiers: StripePriceTier[] = ['pack', 'pack_c1', 'pack_doble', 'recarga', 'fundador']
     for (const tier of tiers) {
       expect(CORRECTIONS_GRANTED[tier]).toBeGreaterThan(0)
     }

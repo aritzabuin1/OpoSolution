@@ -117,7 +117,6 @@ async function handleStripeEvent(
         pack_doble: 'pack_oposicion',
         recarga: 'pack_oposicion',
         fundador: 'pack_oposicion',
-        fundador_c1: 'pack_oposicion',
       }
       const dbTipo = TIER_TO_DB_TIPO[tier] ?? 'pack_oposicion'
 
@@ -163,8 +162,8 @@ async function handleStripeEvent(
         log.info({ sessionId: session.id, tier, correctionsToGrant }, 'Correcciones otorgadas')
       }
 
-      // 3. Founder badge (§1.21.3): aplica a fundador Y fundador_c1
-      if (tier === 'fundador' || tier === 'fundador_c1') {
+      // 3. Founder badge (§1.21.3): 20 plazas GLOBALES
+      if (tier === 'fundador') {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         await (supabase as any)
           .from('profiles')
