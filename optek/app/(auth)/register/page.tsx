@@ -9,10 +9,24 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { trackPixelEvent } from '@/lib/analytics/pixel'
 
+const OPOSICIONES = [
+  {
+    id: 'a0000000-0000-0000-0000-000000000001',
+    label: 'Auxiliar Administrativo (C2)',
+    desc: '28 temas · 1.700 plazas',
+  },
+  {
+    id: 'b0000000-0000-0000-0000-000000000001',
+    label: 'Administrativo del Estado (C1)',
+    desc: '45 temas · 2.512 plazas',
+  },
+] as const
+
 export default function RegisterPage() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [oposicionId, setOposicionId] = useState<string>(OPOSICIONES[0].id)
   const [privacyAccepted, setPrivacyAccepted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -37,7 +51,7 @@ export default function RegisterPage() {
       email,
       password,
       options: {
-        data: { full_name: name.trim() || null },
+        data: { full_name: name.trim() || null, oposicion_id: oposicionId },
         emailRedirectTo: `${window.location.origin}/auth/callback`,
       },
     })
@@ -128,6 +142,28 @@ export default function RegisterPage() {
               autoComplete="new-password"
               minLength={8}
             />
+          </div>
+
+          {/* Selector de oposición */}
+          <div className="space-y-2">
+            <Label>¿Qué oposición preparas?</Label>
+            <div className="grid grid-cols-1 gap-2">
+              {OPOSICIONES.map((op) => (
+                <button
+                  key={op.id}
+                  type="button"
+                  onClick={() => setOposicionId(op.id)}
+                  className={`rounded-lg border py-3 px-4 text-left transition-colors ${
+                    oposicionId === op.id
+                      ? 'border-primary bg-primary/5 ring-1 ring-primary/20'
+                      : 'border-border hover:bg-muted/50'
+                  }`}
+                >
+                  <p className="text-sm font-semibold">{op.label}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{op.desc}</p>
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="flex items-start gap-3">

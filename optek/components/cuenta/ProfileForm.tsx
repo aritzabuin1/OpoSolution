@@ -15,11 +15,17 @@ import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
 import { Loader2 } from 'lucide-react'
 
+const OPOSICIONES = [
+  { id: 'a0000000-0000-0000-0000-000000000001', label: 'Auxiliar Administrativo (C2)' },
+  { id: 'b0000000-0000-0000-0000-000000000001', label: 'Administrativo del Estado (C1)' },
+] as const
+
 interface ProfileFormProps {
   userId: string
   initialName: string | null
   email: string
   oposicionNombre: string | null
+  oposicionId: string | null
   fechaExamen: string | null // ISO date string (YYYY-MM-DD)
   horasSemanales: number | null
 }
@@ -36,11 +42,15 @@ export function ProfileForm({
   initialName,
   email,
   oposicionNombre,
+  oposicionId: initialOposicionId,
   fechaExamen,
   horasSemanales,
 }: ProfileFormProps) {
   const [nombre, setNombre] = useState(initialName ?? '')
   const [fecha, setFecha] = useState(fechaExamen ?? '')
+  const [selectedOposicion, setSelectedOposicion] = useState(
+    initialOposicionId ?? OPOSICIONES[0].id
+  )
   const [dedicacion, setDedicacion] = useState<number | null>(horasSemanales)
   const [saving, setSaving] = useState(false)
 
@@ -51,6 +61,7 @@ export function ProfileForm({
       .from('profiles')
       .update({
         full_name: nombre.trim() || null,
+        oposicion_id: selectedOposicion,
         fecha_examen: fecha || null,
         horas_diarias_estudio: dedicacion,
         updated_at: new Date().toISOString(),
@@ -87,10 +98,19 @@ export function ProfileForm({
           <p className="text-xs text-muted-foreground">El email no se puede modificar</p>
         </div>
 
-        {/* Oposición (readonly) */}
+        {/* Oposición (editable) */}
         <div className="space-y-1.5">
           <Label>Oposición</Label>
-          <Input value={oposicionNombre ?? 'Sin seleccionar'} disabled className="opacity-60" />
+          <select
+            value={selectedOposicion}
+            onChange={(e) => setSelectedOposicion(e.target.value)}
+            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+          >
+            {OPOSICIONES.map((op) => (
+              <option key={op.id} value={op.id}>{op.label}</option>
+            ))}
+          </select>
+          <p className="text-xs text-muted-foreground">Cambia aquí si preparas otra oposición</p>
         </div>
 
         {/* Fecha de examen */}

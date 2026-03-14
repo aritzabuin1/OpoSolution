@@ -51,11 +51,24 @@ export async function GET(request: NextRequest) {
       const createdAt = new Date(data.user.created_at).getTime()
       const isNewUser = Date.now() - createdAt < 2 * 60 * 1000
 
-      if (isNewUser && data.user.email) {
-        // No-op si Resend no está configurado (§1.16 condicional)
-        const nombre = data.user.user_metadata?.full_name as string | undefined
-        void sendWelcomeEmail({ to: data.user.email, nombre })
-        void sendNewUserNotification({ email: data.user.email, nombre })
+      if (isNewUser) {
+        // Set oposicion_id from registration metadata
+        const oposicionId = data.user.user_metadata?.oposicion_id as string | undefined
+        if (oposicionId) {
+          const { createServiceClient } = await import('@/lib/supabase/server')
+          const serviceClient = await createServiceClient()
+          await serviceClient
+            .from('profiles')
+            .update({ oposicion_id: oposicionId })
+            .eq('id', data.user.id)
+        }
+
+        if (data.user.email) {
+          // No-op si Resend no está configurado (§1.16 condicional)
+          const nombre = data.user.user_metadata?.full_name as string | undefined
+          void sendWelcomeEmail({ to: data.user.email, nombre })
+          void sendNewUserNotification({ email: data.user.email, nombre })
+        }
       }
 
       return NextResponse.redirect(new URL(next, origin))

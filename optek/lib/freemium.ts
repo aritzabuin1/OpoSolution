@@ -5,10 +5,14 @@
  * Importar desde aquí para mantener consistencia entre backend y UI.
  */
 
-/** Free temas by oposición slug — extensible for multi-oposición */
+/**
+ * Free temas by oposición slug.
+ * MISMO tema 1 (Constitución) para TODAS las oposiciones — evita gaming
+ * (2 cuentas con distinta oposición = solo 3 temas únicos, no 6).
+ */
 const FREE_TEMAS_BY_SLUG: Record<string, readonly number[]> = {
   'aux-admin-estado': [1, 11, 17],        // CE, LPAC, Ofimática Word
-  'administrativo-estado': [1, 18, 41],    // CE, LPAC procedimiento, Word 365
+  'administrativo-estado': [1, 11, 17],    // CE, Org. Estado, LPAC (mismos números)
 }
 
 /** Get free tema numbers for a given oposición slug */

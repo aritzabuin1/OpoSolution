@@ -40,43 +40,53 @@ export function LogroShareButton({ logroTitulo, logroEmoji, userName }: LogroSha
   const [expanded, setExpanded] = useState(false)
 
   const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
-  const shareUrl = `${appUrl}/logros`
-
-  const shareText = `${logroEmoji} He conseguido el logro "${logroTitulo}" preparando mis oposiciones con OpoRuta.`
-  const shareTextFull = `${shareText}\nPrepara Auxiliar del Estado con IA verificada: ${shareUrl}`
 
   const handleWhatsApp = () => {
     const text = [
-      shareText,
+      `🏅 *Logro desbloqueado*`,
       '',
-      userName ? `— ${userName} con OpoRuta` : 'OpoRuta — El camino mas corto hacia el aprobado',
-      shareUrl,
+      `${logroEmoji} ${logroTitulo}`,
+      '',
+      userName ? `${userName} preparando oposiciones con OpoRuta` : '¿Cuántos logros puedes conseguir tú?',
+      '',
+      `Empieza gratis: ${appUrl}`,
     ].join('\n')
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank', 'noopener')
   }
 
   const handleTwitter = () => {
-    const text = `${shareText}\n@OpoRuta`
-    const params = new URLSearchParams({ text, url: shareUrl })
+    const text = [
+      `🏅 Logro desbloqueado: ${logroEmoji} ${logroTitulo}`,
+      '',
+      'Preparando oposiciones con @OpoRuta',
+      '¿Cuántos logros puedes conseguir tú?',
+    ].join('\n')
+    const params = new URLSearchParams({ text, url: appUrl })
     window.open(`https://twitter.com/intent/tweet?${params.toString()}`, '_blank', 'noopener')
   }
 
   const handleGmail = () => {
-    const subject = `${logroEmoji} ${logroTitulo} — OpoRuta`
+    const subject = `🏅 He desbloqueado: ${logroEmoji} ${logroTitulo}`
     const body = [
-      shareTextFull,
+      `${logroEmoji} ${logroTitulo}`,
       '',
-      '---',
-      'OpoRuta — El camino mas corto hacia el aprobado',
-      appUrl,
+      'Logro conseguido preparando oposiciones en OpoRuta.',
+      'Tests con IA verificada, simulacros oficiales INAP y mucho más.',
+      '',
+      `Prueba gratis: ${appUrl}`,
     ].join('\n')
     const params = new URLSearchParams({ view: 'cm', su: subject, body })
     window.open(`https://mail.google.com/mail/?${params.toString()}`, '_blank', 'noopener')
   }
 
   const handleCopy = async () => {
+    const text = [
+      `🏅 Logro desbloqueado: ${logroEmoji} ${logroTitulo}`,
+      '',
+      `Prueba gratis: ${appUrl}`,
+    ].join('\n')
     try {
-      await navigator.clipboard.writeText(shareTextFull)
+      await navigator.clipboard.writeText(text)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch {

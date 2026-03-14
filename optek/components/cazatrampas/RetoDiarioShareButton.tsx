@@ -79,15 +79,14 @@ export function RetoDiarioShareButton({
   // ── WhatsApp ──────────────────────────────────────────────────────────────
   const handleWhatsApp = () => {
     const text = [
-      `${emoji} Reto OpoRuta — ${fechaFmt}`,
+      `${emoji} *Reto Diario OpoRuta* — ${fechaFmt}`,
       '',
-      `${aciertos}/${total} trampas encontradas (${pctStr})`,
       grid,
-      leyNombre ? `Ley: ${leyNombre}` : '',
+      `${aciertos}/${total} trampas encontradas`,
       '',
-      `Prueba el reto de hoy: ${retoUrl}`,
-      userName ? `— ${userName} con OpoRuta` : '— OpoRuta: El camino mas corto hacia el aprobado',
-    ].filter(Boolean).join('\n')
+      '¿Puedes superarme? Prueba el reto de hoy:',
+      retoUrl,
+    ].join('\n')
 
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank', 'noopener')
   }
@@ -95,11 +94,13 @@ export function RetoDiarioShareButton({
   // ── X (Twitter) ───────────────────────────────────────────────────────────
   const handleTwitter = () => {
     const text = [
-      `${emoji} Reto OpoRuta ${fechaFmt}`,
-      `${aciertos}/${total} trampas encontradas ${grid}`,
-      leyNombre ? `(${leyNombre})` : '',
-      `Prueba el reto de hoy:`,
-    ].filter(Boolean).join('\n')
+      `${emoji} Reto Diario @OpoRuta ${fechaFmt}`,
+      '',
+      grid,
+      `${aciertos}/${total} trampas encontradas`,
+      '',
+      '¿Puedes superarme?',
+    ].join('\n')
 
     const params = new URLSearchParams({ text, url: retoUrl })
     window.open(`https://twitter.com/intent/tweet?${params.toString()}`, '_blank', 'noopener')
@@ -107,23 +108,18 @@ export function RetoDiarioShareButton({
 
   // ── Gmail ────────────────────────────────────────────────────────────────
   const handleGmail = () => {
-    const subject = `${emoji} Reto OpoRuta ${fechaFmt} — ${aciertos}/${total} trampas (${pctStr})`
+    const subject = `${emoji} ¿Puedes superar mi reto? ${aciertos}/${total} trampas — OpoRuta`
     const body = [
-      `He completado el Reto Diario de OpoRuta del ${fechaFmt}.`,
+      `${emoji} Reto Diario OpoRuta — ${fechaFmt}`,
       '',
-      `Resultado: ${aciertos}/${total} trampas encontradas (${pctStr})`,
       grid,
+      `${aciertos}/${total} trampas encontradas`,
       '',
-      leyNombre ? `Ley del reto: ${leyNombre}` : '',
-      '',
-      `OpoRuta es una plataforma de entrenamiento con IA para opositores al cuerpo de Auxiliar Administrativo del Estado (C2).`,
+      'OpoRuta te reta cada día a encontrar errores en artículos de ley.',
+      'Entrena gratis para tus oposiciones.',
       '',
       `Prueba el reto de hoy: ${retoUrl}`,
-      '',
-      '---',
-      'OpoRuta — El camino mas corto hacia el aprobado',
-      appUrl,
-    ].filter(Boolean).join('\n')
+    ].join('\n')
 
     const params = new URLSearchParams({ view: 'cm', su: subject, body })
     window.open(`https://mail.google.com/mail/?${params.toString()}`, '_blank', 'noopener')
@@ -132,14 +128,12 @@ export function RetoDiarioShareButton({
   // ── Copiar ────────────────────────────────────────────────────────────────
   const handleCopy = async () => {
     const text = [
-      `${emoji} Reto OpoRuta — ${fechaFmt}`,
-      `${aciertos}/${total} trampas encontradas (${pctStr})`,
+      `${emoji} Reto Diario OpoRuta — ${fechaFmt}`,
       grid,
-      leyNombre ? `Ley: ${leyNombre}` : '',
+      `${aciertos}/${total} trampas encontradas`,
       '',
-      `Prueba el reto de hoy: ${retoUrl}`,
-      'OpoRuta — El camino mas corto hacia el aprobado',
-    ].filter(Boolean).join('\n')
+      `¿Puedes superarme? ${retoUrl}`,
+    ].join('\n')
 
     try {
       await navigator.clipboard.writeText(text)

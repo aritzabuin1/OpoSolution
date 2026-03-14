@@ -57,16 +57,19 @@ export function ShareButton({ score, tema, nombre, tipo = 'test', testId, result
   const emoji = score >= 80 ? '🏆' : score >= 60 ? '🎯' : score >= 40 ? '💪' : '📚'
   const temaStr = tema ? `"${tema}"` : `un ${tipoLabel}`
 
+  const scoreBar = score >= 80 ? '🟩🟩🟩🟩🟩' : score >= 60 ? '🟩🟩🟩🟨🟨' : score >= 40 ? '🟩🟩🟨🟨🟥' : '🟨🟥🟥🟥🟥'
+  const verdict = score >= 80 ? 'Dominado' : score >= 60 ? 'Bien encaminado' : score >= 40 ? 'En progreso' : 'A repasar'
+
   // ── WhatsApp ──────────────────────────────────────────────────────────────
   const handleWhatsApp = () => {
     const text = [
-      `${emoji} He sacado ${score}% en ${temaStr} en OpoRuta`,
+      `${emoji} *${score}%* en ${tipoLabel}`,
+      tema ? `📖 ${tema}` : '',
       '',
-      `Tipo: ${tipoLabel}`,
-      nombre ? `Opositor: ${nombre}` : '',
+      `${scoreBar}  ${verdict}`,
       '',
-      `Prepara tus oposiciones con IA verificada: ${resultUrl}`,
-      'OpoRuta — El camino mas corto hacia el aprobado',
+      '¿Tú cuánto sacarías? Prueba gratis:',
+      appUrl,
     ].filter(Boolean).join('\n')
 
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank', 'noopener')
@@ -75,30 +78,28 @@ export function ShareButton({ score, tema, nombre, tipo = 'test', testId, result
   // ── X (Twitter) ───────────────────────────────────────────────────────────
   const handleTwitter = () => {
     const text = [
-      `${emoji} ${score}% en ${temaStr}`,
-      `Preparando Auxiliar del Estado con @OpoRuta`,
+      `${emoji} ${score}% en ${tipoLabel}${tema ? `: ${tema.slice(0, 50)}` : ''}`,
+      `${scoreBar}`,
+      '',
+      '¿Tú cuánto sacarías? Entrena gratis en @OpoRuta',
     ].join('\n')
 
-    const params = new URLSearchParams({ text, url: resultUrl })
+    const params = new URLSearchParams({ text, url: appUrl })
     window.open(`https://twitter.com/intent/tweet?${params.toString()}`, '_blank', 'noopener')
   }
 
   // ── Gmail ────────────────────────────────────────────────────────────────
   const handleGmail = () => {
-    const subject = `${emoji} ${score}% en ${temaStr} — OpoRuta`
+    const subject = `${emoji} He sacado ${score}% en oposiciones — ¿tú cuánto sacarías?`
     const body = [
-      `He completado un ${tipoLabel} en OpoRuta.`,
+      `${emoji} Mi resultado: ${score}% — ${verdict}`,
+      tema ? `Tema: ${tema}` : `Tipo: ${tipoLabel}`,
+      `${scoreBar}`,
       '',
-      `Resultado: ${score}%`,
-      tema ? `Tema: ${tema}` : '',
+      'OpoRuta es una plataforma gratuita para preparar oposiciones con IA.',
+      'Tests con preguntas verificadas, simulacros oficiales INAP y Radar del Tribunal.',
       '',
-      `OpoRuta es una plataforma de entrenamiento con IA para opositores al cuerpo de Auxiliar Administrativo del Estado (C2).`,
-      '',
-      `Ver resultado: ${resultUrl}`,
-      '',
-      '---',
-      'OpoRuta — El camino mas corto hacia el aprobado',
-      appUrl,
+      `Prueba gratis: ${appUrl}`,
     ].filter(Boolean).join('\n')
 
     const params = new URLSearchParams({ view: 'cm', su: subject, body })
@@ -108,11 +109,10 @@ export function ShareButton({ score, tema, nombre, tipo = 'test', testId, result
   // ── Copiar ────────────────────────────────────────────────────────────────
   const handleCopy = async () => {
     const text = [
-      `${emoji} He sacado ${score}% en ${temaStr} en OpoRuta`,
-      `Tipo: ${tipoLabel}`,
+      `${emoji} ${score}% en ${tipoLabel}${tema ? `: ${tema}` : ''}`,
+      `${scoreBar}  ${verdict}`,
       '',
-      `Prepara tus oposiciones: ${resultUrl}`,
-      'OpoRuta — El camino mas corto hacia el aprobado',
+      `Prueba gratis: ${appUrl}`,
     ].join('\n')
 
     try {

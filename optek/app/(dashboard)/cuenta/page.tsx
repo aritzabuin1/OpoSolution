@@ -138,6 +138,7 @@ export default async function CuentaPage() {
             initialName={profile?.full_name ?? null}
             email={profile?.email ?? user.email ?? ''}
             oposicionNombre={oposicion?.nombre ?? null}
+            oposicionId={profile?.oposicion_id ?? null}
             fechaExamen={profile?.fecha_examen ?? null}
             horasSemanales={profile?.horas_diarias_estudio ?? null}
           />
