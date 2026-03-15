@@ -824,15 +824,16 @@ export async function generateFlashTest(
  * @param userId UUID del usuario que solicita el test
  * @returns testId UUID del test guardado en BD
  */
-export async function generateTopFrecuentesTest(userId: string): Promise<string> {
+export async function generateTopFrecuentesTest(userId: string, oposicionId?: string): Promise<string> {
   const supabase = await createServiceClient()
 
-  // 1. Cargar top 20 artículos del radar con su texto completo
+  // 1. Cargar top 20 artículos del radar con su texto completo, filtrado por oposición
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: radarRows, error: radarErr } = await (supabase as any)
+  let radarQuery = (supabase as any)
     .from('radar_tribunal_view')
     .select('legislacion_id, articulo_numero, ley_nombre, ley_codigo, titulo_capitulo, resumen, num_apariciones')
-    .limit(20)
+  if (oposicionId) radarQuery = radarQuery.eq('oposicion_id', oposicionId)
+  const { data: radarRows, error: radarErr } = await radarQuery.limit(20)
 
   if (radarErr) {
     throw new Error(`[generateTopFrecuentesTest] Error cargando radar: ${radarErr.message}`)

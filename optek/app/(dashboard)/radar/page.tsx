@@ -38,18 +38,15 @@ export default async function RadarPage() {
   const oposicionId = await getOposicionFromProfile(supabase, user.id)
   const isPaid = await checkPaidAccess(supabase, user.id, oposicionId)
 
-  // Load both radar views in parallel
+  // Load both radar views filtered by user's oposición
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const radarQuery = (s: any, view: string) => oposicionId
+    ? s.from(view).select('*').eq('oposicion_id', oposicionId)
+    : s.from(view).select('*')
+
   const [{ data: temasData }, { data: radarData }] = await Promise.all([
-    (supabase as any)
-      .from('radar_temas_view')
-      .select('tema_id, tema_numero, tema_titulo, num_apariciones, pct_total, anios, ultima_aparicion'),
-    (supabase as any)
-      .from('radar_tribunal_view')
-      .select(
-        'legislacion_id, articulo_numero, ley_nombre, ley_codigo, titulo_capitulo, resumen, num_apariciones, pct_total, anios, ultima_aparicion'
-      )
-      .limit(100),
+    radarQuery(supabase as any, 'radar_temas_view'),
+    radarQuery(supabase as any, 'radar_tribunal_view').limit(100),
   ])
 
   const temas = ((temasData ?? []) as unknown) as RadarTema[]

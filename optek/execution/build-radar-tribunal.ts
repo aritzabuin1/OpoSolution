@@ -62,7 +62,7 @@ interface PreguntaRow {
   enunciado: string
   correcta: number
   opciones: string[]
-  examenes_oficiales: { anio: number }
+  examenes_oficiales: { anio: number; oposicion_id: string }
 }
 
 interface LegislacionRow {
@@ -213,7 +213,7 @@ async function main() {
   console.log('📥 Cargando preguntas oficiales...')
   const { data: preguntas, error: pregErr } = await supabase
     .from('preguntas_oficiales')
-    .select('id, enunciado, correcta, opciones, examenes_oficiales!inner(anio)')
+    .select('id, enunciado, correcta, opciones, examenes_oficiales!inner(anio, oposicion_id)')
     .order('id')
 
   if (pregErr || !preguntas) {
@@ -260,24 +260,32 @@ async function main() {
   console.log(`   ${leyToArticulos.size} leyes distintas\n`)
 
   // 3. Dual extraction: citas explícitas + keyword matching
+  //    Keyed by "oposicion_id|legislacion_id" to generate separate indices per oposición
   console.log('🔍 Analizando preguntas (estrategia dual)...')
 
+  // Key: "oposicionId|legislacionId" → frequency data
   const frecuencias = new Map<string, Acumulador>()
   let pathA = 0 // preguntas con cita explícita
   let pathB = 0 // preguntas clasificadas por keyword
   let noMatch = 0
 
-  function addFrequency(legislacionId: string, anio: number, weight: number) {
-    if (!frecuencias.has(legislacionId)) {
-      frecuencias.set(legislacionId, { count: 0, anios: new Set() })
+  function freqKey(oposicionId: string, legislacionId: string): string {
+    return `${oposicionId}|${legislacionId}`
+  }
+
+  function addFrequency(oposicionId: string, legislacionId: string, anio: number, weight: number) {
+    const k = freqKey(oposicionId, legislacionId)
+    if (!frecuencias.has(k)) {
+      frecuencias.set(k, { count: 0, anios: new Set() })
     }
-    const acc = frecuencias.get(legislacionId)!
+    const acc = frecuencias.get(k)!
     acc.count += weight
     acc.anios.add(anio)
   }
 
   for (const pregunta of preguntasRows) {
     const anio = pregunta.examenes_oficiales.anio
+    const oposicionId = pregunta.examenes_oficiales.oposicion_id
     const fullText = `${pregunta.enunciado} ${(pregunta.opciones ?? []).join(' ')}`
 
     // Path A: Cita explícita → artículo exacto (peso 1.0)
@@ -295,7 +303,7 @@ async function main() {
       const legislacionId = legIndex.get(key) ?? legIndex.get(keyBase)
       if (!legislacionId) continue
 
-      addFrequency(legislacionId, anio, 1)
+      addFrequency(oposicionId, legislacionId, anio, 1)
       resolvedByPathA = true
     }
 
@@ -314,10 +322,9 @@ async function main() {
         if (!articulos || articulos.length === 0) continue
 
         // Distribute 1 "appearance" across all articles of this ley
-        // This way, leyes mentioned frequently have their articles rise in ranking
         const weight = 1 / articulos.length
         for (const artId of articulos) {
-          addFrequency(artId, anio, weight)
+          addFrequency(oposicionId, artId, anio, weight)
         }
       }
     } else {
@@ -337,16 +344,27 @@ async function main() {
   }
 
   // 4. Calcular apariciones (redondear fraccionales) y preparar upsert
-  const totalPreguntas = preguntasRows.length
+  // Count preguntas per oposición for accurate pct_total
+  const preguntasPorOposicion = new Map<string, number>()
+  for (const p of preguntasRows) {
+    const oId = p.examenes_oficiales.oposicion_id
+    preguntasPorOposicion.set(oId, (preguntasPorOposicion.get(oId) ?? 0) + 1)
+  }
+
   const rows = Array.from(frecuencias.entries())
-    .map(([legislacionId, acc]) => ({
-      legislacion_id: legislacionId,
-      num_apariciones: Math.round(acc.count),  // Round fractional weights
-      pct_total: parseFloat(((acc.count / totalPreguntas) * 100).toFixed(2)),
-      anios: [...acc.anios].sort(),
-      ultima_aparicion: Math.max(...acc.anios),
-      updated_at: new Date().toISOString(),
-    }))
+    .map(([compositeKey, acc]) => {
+      const [oposicionId, legislacionId] = compositeKey.split('|')
+      const totalForOposicion = preguntasPorOposicion.get(oposicionId) ?? preguntasRows.length
+      return {
+        oposicion_id: oposicionId,
+        legislacion_id: legislacionId,
+        num_apariciones: Math.round(acc.count),  // Round fractional weights
+        pct_total: parseFloat(((acc.count / totalForOposicion) * 100).toFixed(2)),
+        anios: [...acc.anios].sort(),
+        ultima_aparicion: Math.max(...acc.anios),
+        updated_at: new Date().toISOString(),
+      }
+    })
     .filter(r => r.num_apariciones > 0) // Skip articles with <0.5 fractional appearances
 
   const topRows = [...rows].sort((a, b) => b.num_apariciones - a.num_apariciones)
@@ -359,16 +377,13 @@ async function main() {
   }
   console.log()
 
-  // 5. Clear old data and UPSERT fresh
+  // 5. Clear ALL old data and UPSERT fresh (idempotent rebuild)
   console.log(`💾 Escribiendo ${rows.length} registros en frecuencias_articulos...`)
 
-  // Delete stale entries first (articles that no longer appear)
+  // Truncate and rebuild — simpler and safer than selective delete with composite keys
   const { error: delErr } = await // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (supabase as any)
-    .from('frecuencias_articulos')
-    .delete()
-    .not('legislacion_id', 'in', `(${rows.map(r => r.legislacion_id).join(',')})`)
-  if (delErr) console.warn('   Warning: no se pudo limpiar entradas antiguas:', delErr.message)
+    (supabase as any).from('frecuencias_articulos').delete().neq('num_apariciones', -999)
+  if (delErr) console.warn('   Warning: no se pudo limpiar tabla:', delErr.message)
 
   const BATCH_SIZE = 100
   let inserted = 0
@@ -378,7 +393,7 @@ async function main() {
     const { error: upsertErr } = await // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (supabase as any)
       .from('frecuencias_articulos')
-      .upsert(batch, { onConflict: 'legislacion_id' })
+      .upsert(batch, { onConflict: 'oposicion_id,legislacion_id' })
 
     if (upsertErr) {
       console.error(`❌ Error en batch ${i / BATCH_SIZE + 1}:`, upsertErr.message)
@@ -388,7 +403,14 @@ async function main() {
     process.stdout.write(`   Progreso: ${inserted}/${rows.length}\r`)
   }
 
-  console.log(`\n\n✅ Radar artículos actualizado: ${inserted} artículos`)
+  // Show per-oposición stats
+  const oposicionIds = [...new Set(rows.map(r => r.oposicion_id))]
+  for (const oId of oposicionIds) {
+    const count = rows.filter(r => r.oposicion_id === oId).length
+    console.log(`   Oposición ${oId.slice(0, 8)}...: ${count} artículos`)
+  }
+
+  console.log(`\n✅ Radar artículos actualizado: ${inserted} artículos (${oposicionIds.length} oposiciones)`)
   console.log(`   Cobertura: ${pathA + pathB}/${preguntasRows.length} preguntas (${Math.round(((pathA + pathB) / preguntasRows.length) * 100)}%)`)
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -416,13 +438,14 @@ async function main() {
   }
   console.log(`   ${temas.length} temas cargados`)
 
-  // Classify each question
+  // Classify each question — keyed by "oposicionId|temaId"
   const temaFrec = new Map<string, Acumulador>()
   let temaMatched = 0
   let temaNoMatch = 0
 
   for (const pregunta of preguntasRows) {
     const anio = pregunta.examenes_oficiales.anio
+    const oposicionId = pregunta.examenes_oficiales.oposicion_id
     const fullText = `${pregunta.enunciado} ${(pregunta.opciones ?? []).join(' ')}`
     const temasDetectados = classifyByTema(fullText)
 
@@ -431,10 +454,11 @@ async function main() {
       for (const temaNumero of temasDetectados) {
         const temaId = temaNumeroToId.get(temaNumero)
         if (!temaId) continue
-        if (!temaFrec.has(temaId)) {
-          temaFrec.set(temaId, { count: 0, anios: new Set() })
+        const k = `${oposicionId}|${temaId}`
+        if (!temaFrec.has(k)) {
+          temaFrec.set(k, { count: 0, anios: new Set() })
         }
-        const acc = temaFrec.get(temaId)!
+        const acc = temaFrec.get(k)!
         acc.count += 1
         acc.anios.add(anio)
       }
@@ -450,14 +474,19 @@ async function main() {
 
   // Prepare upsert rows
   const temaRows = Array.from(temaFrec.entries())
-    .map(([temaId, acc]) => ({
-      tema_id: temaId,
-      num_apariciones: acc.count,
-      pct_total: parseFloat(((acc.count / totalPreguntas) * 100).toFixed(2)),
-      anios: [...acc.anios].sort(),
-      ultima_aparicion: Math.max(...acc.anios),
-      updated_at: new Date().toISOString(),
-    }))
+    .map(([compositeKey, acc]) => {
+      const [oposicionId, temaId] = compositeKey.split('|')
+      const totalForOposicion = preguntasPorOposicion.get(oposicionId) ?? preguntasRows.length
+      return {
+        oposicion_id: oposicionId,
+        tema_id: temaId,
+        num_apariciones: acc.count,
+        pct_total: parseFloat(((acc.count / totalForOposicion) * 100).toFixed(2)),
+        anios: [...acc.anios].sort(),
+        ultima_aparicion: Math.max(...acc.anios),
+        updated_at: new Date().toISOString(),
+      }
+    })
 
   const topTemas = [...temaRows].sort((a, b) => b.num_apariciones - a.num_apariciones)
 
@@ -472,15 +501,10 @@ async function main() {
   // Upsert frecuencias_temas
   console.log(`💾 Escribiendo ${temaRows.length} registros en frecuencias_temas...`)
 
-  // Delete stale entries
-  if (temaRows.length > 0) {
-    const { error: temaDelErr } = await // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (supabase as any)
-      .from('frecuencias_temas')
-      .delete()
-      .not('tema_id', 'in', `(${temaRows.map(r => r.tema_id).join(',')})`)
-    if (temaDelErr) console.warn('   Warning: no se pudo limpiar entradas antiguas de temas:', temaDelErr.message)
-  }
+  // Truncate and rebuild
+  const { error: temaDelErr } = await // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (supabase as any).from('frecuencias_temas').delete().neq('num_apariciones', -999)
+  if (temaDelErr) console.warn('   Warning: no se pudo limpiar tabla:', temaDelErr.message)
 
   let temaInserted = 0
   for (let i = 0; i < temaRows.length; i += BATCH_SIZE) {
@@ -488,7 +512,7 @@ async function main() {
     const { error: upsertErr } = await // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (supabase as any)
       .from('frecuencias_temas')
-      .upsert(batch, { onConflict: 'tema_id' })
+      .upsert(batch, { onConflict: 'oposicion_id,tema_id' })
 
     if (upsertErr) {
       console.error(`❌ Error en batch temas ${i / BATCH_SIZE + 1}:`, upsertErr.message)

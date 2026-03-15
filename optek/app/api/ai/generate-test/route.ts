@@ -332,7 +332,7 @@ export async function POST(request: NextRequest) {
       )
     }
     try {
-      const testId = await generateTopFrecuentesTest(user.id)
+      const testId = await generateTopFrecuentesTest(user.id, oposicionId)
 
       // Cargar el test recién creado para devolverlo completo al cliente
       const { data: testRow } = await serviceSupabase
