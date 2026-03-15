@@ -462,7 +462,7 @@ async function logApiUsage(params: {
 }) {
   try {
     const supabase = await createServiceClient()
-    await supabase.from('api_usage_log').insert({
+    const { error } = await supabase.from('api_usage_log').insert({
       user_id: params.userId ?? null,
       endpoint: params.endpoint,
       model: params.model,
@@ -471,6 +471,9 @@ async function logApiUsage(params: {
       cost_estimated_cents: params.costCents,
       oposicion_id: params.oposicionId ?? null,
     })
+    if (error) {
+      logger.warn({ error: error.message, code: error.code, details: error.details }, 'api_usage_log INSERT failed (Supabase)')
+    }
   } catch (err) {
     // Non-blocking: advertir pero no propagar el error
     logger.warn({ err }, 'api_usage_log INSERT failed — non-blocking')

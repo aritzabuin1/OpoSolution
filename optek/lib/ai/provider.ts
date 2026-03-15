@@ -72,6 +72,9 @@ function resolvePrimary(): AIProvider {
 const PRIMARY: AIProvider = resolvePrimary()
 const SECONDARY: AIProvider = PRIMARY === 'anthropic' ? 'openai' : 'anthropic'
 
+// Log al inicializar — visible en Vercel Logs al primer cold start
+console.log(`[AI Provider] PRIMARY=${PRIMARY}, SECONDARY=${SECONDARY}, ANTHROPIC_KEY=${process.env.ANTHROPIC_API_KEY ? 'SET' : 'MISSING'}, OPENAI_KEY=${process.env.OPENAI_API_KEY ? 'SET' : 'MISSING'}`)
+
 // ─── Opciones unificadas ──────────────────────────────────────────────────────
 
 export interface AICallOptions {
