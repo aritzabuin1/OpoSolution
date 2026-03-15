@@ -13,6 +13,7 @@
  */
 
 import { createServiceClient } from '@/lib/supabase/server'
+import { METRICS_START_DATE, adminIdFilter } from '@/lib/admin/metrics-filter'
 
 // ─── Tipos exportados ──────────────────────────────────────────────────────────
 
@@ -59,20 +60,26 @@ export interface AdminAlert {
  * Nota: usa select() + reduce en cliente. Para datasets grandes (>10k rows),
  * migrar a un RPC con SUM() server-side.
  */
-export async function getFuelTank(): Promise<FuelTankMetrics> {
-  const supabase = await createServiceClient()
+export async function getFuelTank(adminIds: string[] = []): Promise<FuelTankMetrics> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const supabase = await createServiceClient() as any
+  const excludeAdmins = adminIdFilter(adminIds)
 
-  const [ingresosResult, costesResult] = await Promise.all([
-    supabase.from('compras').select('amount_paid'),
-    supabase.from('api_usage_log').select('cost_estimated_cents'),
-  ])
+  let ingresosQuery = supabase.from('compras').select('amount_paid').gte('created_at', METRICS_START_DATE)
+  let costesQuery = supabase.from('api_usage_log').select('cost_estimated_cents').gte('timestamp', METRICS_START_DATE)
+  if (excludeAdmins) {
+    ingresosQuery = ingresosQuery.not('user_id', 'in', excludeAdmins)
+    costesQuery = costesQuery.not('user_id', 'in', excludeAdmins)
+  }
+
+  const [ingresosResult, costesResult] = await Promise.all([ingresosQuery, costesQuery])
 
   const ingresos =
-    (ingresosResult.data ?? []).reduce((acc, c) => acc + (c.amount_paid ?? 0), 0) / 100
+    (ingresosResult.data ?? []).reduce((acc: number, c: { amount_paid?: number }) => acc + (c.amount_paid ?? 0), 0) / 100
 
   const costes =
     (costesResult.data ?? []).reduce(
-      (acc, c) => acc + ((c.cost_estimated_cents as number) ?? 0),
+      (acc: number, c: { cost_estimated_cents?: number }) => acc + ((c.cost_estimated_cents as number) ?? 0),
       0
     ) / 100
 
@@ -90,24 +97,33 @@ export async function getFuelTank(): Promise<FuelTankMetrics> {
  * Coste medio por test y por usuario activo en los últimos 30 días.
  * Usa api_usage_log filtrado por endpoint de generate-test.
  */
-export async function getCostPerUser(): Promise<CostPerUserMetrics> {
+export async function getCostPerUser(adminIds: string[] = []): Promise<CostPerUserMetrics> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const supabase = await createServiceClient() as any
+  const excludeAdmins = adminIdFilter(adminIds)
 
-  const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()
+  const thirtyDaysAgo = new Date(Math.max(
+    Date.now() - 30 * 24 * 60 * 60 * 1000,
+    new Date(METRICS_START_DATE).getTime()
+  )).toISOString()
 
-  const [usageLogs, tests30d] = await Promise.all([
-    supabase
-      .from('api_usage_log')
-      .select('cost_estimated_cents, user_id')
-      .gte('timestamp', thirtyDaysAgo)
-      .like('endpoint', '%generate-test%'),
-    supabase
-      .from('tests_generados')
-      .select('user_id')
-      .gte('created_at', thirtyDaysAgo)
-      .eq('completado', true),
-  ])
+  let usageQuery = supabase
+    .from('api_usage_log')
+    .select('cost_estimated_cents, user_id')
+    .gte('timestamp', thirtyDaysAgo)
+    .like('endpoint', '%generate-test%')
+  let testsQuery = supabase
+    .from('tests_generados')
+    .select('user_id')
+    .gte('created_at', thirtyDaysAgo)
+    .eq('completado', true)
+
+  if (excludeAdmins) {
+    usageQuery = usageQuery.not('user_id', 'in', excludeAdmins)
+    testsQuery = testsQuery.not('user_id', 'in', excludeAdmins)
+  }
+
+  const [usageLogs, tests30d] = await Promise.all([usageQuery, testsQuery])
 
   const logs = (usageLogs.data ?? []) as { cost_estimated_cents: number; user_id: string | null }[]
   const testsData = (tests30d.data ?? []) as { user_id: string }[]
@@ -145,27 +161,23 @@ export async function getCostPerUser(): Promise<CostPerUserMetrics> {
  * - Revenue: % con al menos 1 compra
  * - Referral: 0 hasta implementar tracking
  */
-export async function getAARRR(): Promise<AAARRRMetrics> {
+export async function getAARRR(adminIds: string[] = []): Promise<AAARRRMetrics> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const supabase = await createServiceClient() as any
+  const excludeAdmins = adminIdFilter(adminIds)
+
+  let profilesQ = supabase.from('profiles').select('id', { count: 'exact', head: true }).eq('is_admin', false).gte('created_at', METRICS_START_DATE)
+  let activatedQ = supabase.from('tests_generados').select('user_id').eq('completado', true).gte('created_at', METRICS_START_DATE)
+  let retentionQ = supabase.from('profiles').select('id').gte('racha_actual', 3).eq('is_admin', false)
+  let revenueQ = supabase.from('compras').select('user_id').gte('created_at', METRICS_START_DATE)
+
+  if (excludeAdmins) {
+    activatedQ = activatedQ.not('user_id', 'in', excludeAdmins)
+    revenueQ = revenueQ.not('user_id', 'in', excludeAdmins)
+  }
 
   const [profilesResult, activatedResult, retentionResult, revenueResult] = await Promise.all([
-    // Total registros
-    supabase.from('profiles').select('id', { count: 'exact', head: true }),
-    // Activados: al menos 1 test completado
-    supabase
-      .from('tests_generados')
-      .select('user_id')
-      .eq('completado', true),
-    // Retention: racha_actual >= 3
-    supabase
-      .from('profiles')
-      .select('id')
-      .gte('racha_actual', 3),
-    // Revenue: al menos 1 compra
-    supabase
-      .from('compras')
-      .select('user_id'),
+    profilesQ, activatedQ, retentionQ, revenueQ,
   ])
 
   const totalUsuarios = profilesResult.count ?? 0
@@ -207,17 +219,24 @@ export async function getAARRR(): Promise<AAARRRMetrics> {
  * al revenue mensual acumulado (no es MRR estrictamente hablando, pero
  * es el KPI más útil para monitorizar el crecimiento mes a mes).
  */
-export async function getMRRHistory(meses = 6): Promise<MRRDataPoint[]> {
-  const supabase = await createServiceClient()
+export async function getMRRHistory(meses = 6, adminIds: string[] = []): Promise<MRRDataPoint[]> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const supabase = await createServiceClient() as any
+  const excludeAdmins = adminIdFilter(adminIds)
 
-  const cutoff = new Date()
-  cutoff.setMonth(cutoff.getMonth() - meses)
+  const cutoff = new Date(Math.max(
+    new Date().setMonth(new Date().getMonth() - meses),
+    new Date(METRICS_START_DATE).getTime()
+  ))
 
-  const { data } = await supabase
+  let query = supabase
     .from('compras')
     .select('amount_paid, created_at')
     .gte('created_at', cutoff.toISOString())
     .order('created_at', { ascending: true })
+  if (excludeAdmins) query = query.not('user_id', 'in', excludeAdmins)
+
+  const { data } = await query
 
   if (!data || data.length === 0) {
     // Generar meses vacíos para mostrar el gráfico aunque no haya datos

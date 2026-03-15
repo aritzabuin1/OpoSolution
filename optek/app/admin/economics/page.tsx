@@ -22,6 +22,7 @@ import {
   getAlerts,
 } from '@/lib/admin/metrics'
 import { getInfraMetrics } from '@/lib/admin/infrastructure'
+import { getAdminUserIds } from '@/lib/admin/metrics-filter'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { AlertTriangle, CheckCircle2, Info, TrendingUp } from 'lucide-react'
@@ -72,11 +73,12 @@ export default async function EconomicsPage() {
   let fuelTank, costPerUser, aarrr, mrrHistory, infra
 
   try {
+    const adminIds = await getAdminUserIds()
     ;[fuelTank, costPerUser, aarrr, mrrHistory, infra] = await Promise.all([
-      getFuelTank(),
-      getCostPerUser(),
-      getAARRR(),
-      getMRRHistory(6),
+      getFuelTank(adminIds),
+      getCostPerUser(adminIds),
+      getAARRR(adminIds),
+      getMRRHistory(6, adminIds),
       getInfraMetrics(),
     ])
   } catch (err) {

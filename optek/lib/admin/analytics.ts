@@ -17,6 +17,7 @@
  */
 
 import { createServiceClient } from '@/lib/supabase/server'
+import { METRICS_START_DATE, adminIdFilter } from '@/lib/admin/metrics-filter'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -100,13 +101,15 @@ export interface FeedbackSummary {
 
 // ─── 1. Conversion Free -> Paid ──────────────────────────────────────────────
 
-export async function getConversionMetrics(): Promise<ConversionMetrics> {
+export async function getConversionMetrics(adminIds: string[] = []): Promise<ConversionMetrics> {
   const supabase = await createServiceClient() as any
+  const excludeAdmins = adminIdFilter(adminIds)
 
-  const [profilesRes, comprasRes] = await Promise.all([
-    supabase.from('profiles').select('id, created_at', { count: 'exact' }),
-    supabase.from('compras').select('user_id, created_at'),
-  ])
+  let profilesQ = supabase.from('profiles').select('id, created_at', { count: 'exact' }).eq('is_admin', false).gte('created_at', METRICS_START_DATE)
+  let comprasQ = supabase.from('compras').select('user_id, created_at').gte('created_at', METRICS_START_DATE)
+  if (excludeAdmins) comprasQ = comprasQ.not('user_id', 'in', excludeAdmins)
+
+  const [profilesRes, comprasRes] = await Promise.all([profilesQ, comprasQ])
 
   const profiles = (profilesRes.data ?? []) as { id: string; created_at: string }[]
   const compras = (comprasRes.data ?? []) as { user_id: string; created_at: string }[]
@@ -147,14 +150,14 @@ export async function getConversionMetrics(): Promise<ConversionMetrics> {
 
 // ─── 2. DAU (Daily Active Users) ultimos 30 dias ────────────────────────────
 
-export async function getDAU30d(): Promise<DAUPoint[]> {
+export async function getDAU30d(adminIds: string[] = []): Promise<DAUPoint[]> {
   const supabase = await createServiceClient() as any
-  const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()
+  const excludeAdmins = adminIdFilter(adminIds)
+  const thirtyDaysAgo = new Date(Math.max(Date.now() - 30 * 24 * 60 * 60 * 1000, new Date(METRICS_START_DATE).getTime())).toISOString()
 
-  const { data } = await supabase
-    .from('tests_generados')
-    .select('user_id, created_at')
-    .gte('created_at', thirtyDaysAgo)
+  let query = supabase.from('tests_generados').select('user_id, created_at').gte('created_at', thirtyDaysAgo)
+  if (excludeAdmins) query = query.not('user_id', 'in', excludeAdmins)
+  const { data } = await query
 
   const rows = (data ?? []) as { user_id: string; created_at: string }[]
 
@@ -178,15 +181,21 @@ export async function getDAU30d(): Promise<DAUPoint[]> {
 
 // ─── 3. Engagement por feature ──────────────────────────────────────────────
 
-export async function getFeatureEngagement(): Promise<FeatureEngagement[]> {
+export async function getFeatureEngagement(adminIds: string[] = []): Promise<FeatureEngagement[]> {
   const supabase = await createServiceClient() as any
-  const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()
+  const excludeAdmins = adminIdFilter(adminIds)
+  const thirtyDaysAgo = new Date(Math.max(Date.now() - 30 * 24 * 60 * 60 * 1000, new Date(METRICS_START_DATE).getTime())).toISOString()
 
-  const [testsRes, cazaRes, flashRes] = await Promise.all([
-    supabase.from('tests_generados').select('tipo').gte('created_at', thirtyDaysAgo),
-    supabase.from('cazatrampas_intentos').select('id').gte('created_at', thirtyDaysAgo),
-    supabase.from('flashcard_reviews').select('id').gte('created_at', thirtyDaysAgo),
-  ])
+  let testsQ = supabase.from('tests_generados').select('tipo').gte('created_at', thirtyDaysAgo)
+  let cazaQ = supabase.from('cazatrampas_intentos').select('id').gte('created_at', thirtyDaysAgo)
+  let flashQ = supabase.from('flashcard_reviews').select('id').gte('created_at', thirtyDaysAgo)
+  if (excludeAdmins) {
+    testsQ = testsQ.not('user_id', 'in', excludeAdmins)
+    cazaQ = cazaQ.not('user_id', 'in', excludeAdmins)
+    flashQ = flashQ.not('user_id', 'in', excludeAdmins)
+  }
+
+  const [testsRes, cazaRes, flashRes] = await Promise.all([testsQ, cazaQ, flashQ])
 
   const tests = (testsRes.data ?? []) as { tipo: string }[]
   const testsByTipo = new Map<string, number>()
@@ -211,14 +220,19 @@ export async function getFeatureEngagement(): Promise<FeatureEngagement[]> {
 
 // ─── 4. Tasa de abandono (churn 7d) ─────────────────────────────────────────
 
-export async function getChurnMetrics(): Promise<ChurnMetrics> {
+export async function getChurnMetrics(adminIds: string[] = []): Promise<ChurnMetrics> {
   const supabase = await createServiceClient() as any
+  const excludeAdmins = adminIdFilter(adminIds)
   const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
 
-  const [allTestsRes, recentRes] = await Promise.all([
-    supabase.from('tests_generados').select('user_id'),
-    supabase.from('tests_generados').select('user_id').gte('created_at', sevenDaysAgo),
-  ])
+  let allQ = supabase.from('tests_generados').select('user_id').gte('created_at', METRICS_START_DATE)
+  let recentQ = supabase.from('tests_generados').select('user_id').gte('created_at', sevenDaysAgo)
+  if (excludeAdmins) {
+    allQ = allQ.not('user_id', 'in', excludeAdmins)
+    recentQ = recentQ.not('user_id', 'in', excludeAdmins)
+  }
+
+  const [allTestsRes, recentRes] = await Promise.all([allQ, recentQ])
 
   const allUsers = new Set((allTestsRes.data ?? []).map((t: { user_id: string }) => t.user_id))
   const recentUsers = new Set((recentRes.data ?? []).map((t: { user_id: string }) => t.user_id))
@@ -233,14 +247,19 @@ export async function getChurnMetrics(): Promise<ChurnMetrics> {
 
 // ─── 5. Funnel de onboarding ────────────────────────────────────────────────
 
-export async function getOnboardingFunnel(): Promise<OnboardingFunnel> {
+export async function getOnboardingFunnel(adminIds: string[] = []): Promise<OnboardingFunnel> {
   const supabase = await createServiceClient() as any
+  const excludeAdmins = adminIdFilter(adminIds)
 
-  const [profilesRes, testsRes, comprasRes] = await Promise.all([
-    supabase.from('profiles').select('id', { count: 'exact', head: true }),
-    supabase.from('tests_generados').select('user_id').eq('completado', true),
-    supabase.from('compras').select('user_id'),
-  ])
+  let profilesQ = supabase.from('profiles').select('id', { count: 'exact', head: true }).eq('is_admin', false).gte('created_at', METRICS_START_DATE)
+  let testsQ = supabase.from('tests_generados').select('user_id').eq('completado', true).gte('created_at', METRICS_START_DATE)
+  let comprasQ = supabase.from('compras').select('user_id').gte('created_at', METRICS_START_DATE)
+  if (excludeAdmins) {
+    testsQ = testsQ.not('user_id', 'in', excludeAdmins)
+    comprasQ = comprasQ.not('user_id', 'in', excludeAdmins)
+  }
+
+  const [profilesRes, testsRes, comprasRes] = await Promise.all([profilesQ, testsQ, comprasQ])
 
   const registered = profilesRes.count ?? 0
   const testsByUser = new Map<string, number>()
@@ -266,11 +285,15 @@ export async function getOnboardingFunnel(): Promise<OnboardingFunnel> {
 
 // ─── 6. Top temas generados ─────────────────────────────────────────────────
 
-export async function getTopTemas(limit = 10): Promise<TemaPopularity[]> {
+export async function getTopTemas(limit = 10, adminIds: string[] = []): Promise<TemaPopularity[]> {
   const supabase = await createServiceClient() as any
+  const excludeAdmins = adminIdFilter(adminIds)
+
+  let testsQ = supabase.from('tests_generados').select('tema_id').not('tema_id', 'is', null).gte('created_at', METRICS_START_DATE)
+  if (excludeAdmins) testsQ = testsQ.not('user_id', 'in', excludeAdmins)
 
   const [testsRes, temasRes] = await Promise.all([
-    supabase.from('tests_generados').select('tema_id').not('tema_id', 'is', null),
+    testsQ,
     supabase.from('temas').select('id, titulo'),
   ])
 
@@ -295,16 +318,16 @@ export async function getTopTemas(limit = 10): Promise<TemaPopularity[]> {
 
 // ─── 7. Puntuacion media por tema ───────────────────────────────────────────
 
-export async function getTemaScores(limit = 10): Promise<TemaScore[]> {
+export async function getTemaScores(limit = 10, adminIds: string[] = []): Promise<TemaScore[]> {
   const supabase = await createServiceClient() as any
+  const excludeAdmins = adminIdFilter(adminIds)
+
+  let testsQ = supabase.from('tests_generados').select('tema_id, puntuacion')
+    .not('tema_id', 'is', null).not('puntuacion', 'is', null).eq('completado', true).gte('created_at', METRICS_START_DATE)
+  if (excludeAdmins) testsQ = testsQ.not('user_id', 'in', excludeAdmins)
 
   const [testsRes, temasRes] = await Promise.all([
-    supabase
-      .from('tests_generados')
-      .select('tema_id, puntuacion')
-      .not('tema_id', 'is', null)
-      .not('puntuacion', 'is', null)
-      .eq('completado', true),
+    testsQ,
     supabase.from('temas').select('id, titulo'),
   ])
 
@@ -337,6 +360,8 @@ export async function getCorrectionsUsage(): Promise<CorrectionsUsage> {
   const { data } = await supabase
     .from('profiles')
     .select('corrections_balance')
+    .eq('is_admin', false)
+    .gte('created_at', METRICS_START_DATE)
 
   const profiles = (data ?? []) as { corrections_balance: number }[]
   if (profiles.length === 0) {
@@ -355,13 +380,18 @@ export async function getCorrectionsUsage(): Promise<CorrectionsUsage> {
 
 // ─── 9. Tests completados vs abandonados ────────────────────────────────────
 
-export async function getCompletionRate(): Promise<CompletionRate> {
+export async function getCompletionRate(adminIds: string[] = []): Promise<CompletionRate> {
   const supabase = await createServiceClient() as any
+  const excludeAdmins = adminIdFilter(adminIds)
 
-  const [completedRes, allRes] = await Promise.all([
-    supabase.from('tests_generados').select('id', { count: 'exact', head: true }).eq('completado', true),
-    supabase.from('tests_generados').select('id', { count: 'exact', head: true }),
-  ])
+  let completedQ = supabase.from('tests_generados').select('id', { count: 'exact', head: true }).eq('completado', true).gte('created_at', METRICS_START_DATE)
+  let allQ = supabase.from('tests_generados').select('id', { count: 'exact', head: true }).gte('created_at', METRICS_START_DATE)
+  if (excludeAdmins) {
+    completedQ = completedQ.not('user_id', 'in', excludeAdmins)
+    allQ = allQ.not('user_id', 'in', excludeAdmins)
+  }
+
+  const [completedRes, allRes] = await Promise.all([completedQ, allQ])
 
   const completed = completedRes.count ?? 0
   const total = allRes.count ?? 0
@@ -416,14 +446,15 @@ const ANALYSIS_ENDPOINTS: Record<string, string> = {
   'informe-simulacro-stream': 'Informe simulacro',
 }
 
-export async function getAnalysisUsageByType(): Promise<AnalysisUsageByType[]> {
-  const supabase = await createServiceClient()
+export async function getAnalysisUsageByType(adminIds: string[] = []): Promise<AnalysisUsageByType[]> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const supabase = await createServiceClient() as any
+  const excludeAdmins = adminIdFilter(adminIds)
 
   const endpoints = Object.keys(ANALYSIS_ENDPOINTS)
-  const { data } = await supabase
-    .from('api_usage_log')
-    .select('endpoint, cost_estimated_cents')
-    .in('endpoint', endpoints)
+  let query = supabase.from('api_usage_log').select('endpoint, cost_estimated_cents').in('endpoint', endpoints).gte('timestamp', METRICS_START_DATE)
+  if (excludeAdmins) query = query.not('user_id', 'in', excludeAdmins)
+  const { data } = await query
 
   const rows = (data ?? []) as { endpoint: string; cost_estimated_cents: number }[]
 
