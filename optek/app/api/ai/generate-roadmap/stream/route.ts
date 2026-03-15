@@ -222,7 +222,7 @@ export async function POST(request: NextRequest) {
   let aiStream: ReadableStream<string>
   try {
     aiStream = await callAIStream(SYSTEM_ROADMAP, userPrompt, {
-      maxTokens: 2000,
+      maxTokens: 4000,
       requestId,
       endpoint: 'generate-roadmap',
       userId: user.id,

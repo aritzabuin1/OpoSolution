@@ -125,29 +125,69 @@ function isTaskCompleted(task: RoadmapTask, activity: UserActivity, generatedAt:
 // ── Parse JSON from streamed text ───────────────────────────────────────────
 
 function parseRoadmapJSON(text: string): RoadmapData | null {
+  let jsonStr = text.trim()
+
+  // Strip markdown code blocks if present
+  const codeBlockMatch = jsonStr.match(/```(?:json)?\s*([\s\S]*?)```/)
+  if (codeBlockMatch) jsonStr = codeBlockMatch[1].trim()
+
+  // Strip any leading non-JSON text (model might add commentary before the JSON)
+  const firstBrace = jsonStr.indexOf('{')
+  if (firstBrace > 0) jsonStr = jsonStr.slice(firstBrace)
+
+  // Try direct parse first
+  let parsed: Record<string, unknown> | null = null
   try {
-    // Try to find JSON in the text (model might wrap it in markdown code blocks)
-    let jsonStr = text.trim()
-    const codeBlockMatch = jsonStr.match(/```(?:json)?\s*([\s\S]*?)```/)
-    if (codeBlockMatch) jsonStr = codeBlockMatch[1].trim()
-
-    // Try direct parse
-    const parsed = JSON.parse(jsonStr)
-
-    // Validate minimum structure
-    if (parsed.tareas && Array.isArray(parsed.tareas)) {
-      return {
-        diagnostico: parsed.diagnostico ?? '',
-        plan: Array.isArray(parsed.plan) ? parsed.plan.filter((p: PlanItem) => p.titulo && p.mensaje) : [],
-        consejo: parsed.consejo ?? '',
-        tareas: parsed.tareas.filter((t: RoadmapTask) =>
-          t.accion && ['quick', 'challenge', 'star'].includes(t.tier)
-        ),
-      }
-    }
+    parsed = JSON.parse(jsonStr)
   } catch {
-    // JSON parse failed
+    // JSON truncated (token limit) — try to repair by closing open brackets
+    // Count open braces/brackets and close them
+    let repaired = jsonStr
+    // Remove trailing incomplete string/value (after last comma or complete value)
+    repaired = repaired.replace(/,\s*"[^"]*$/, '')        // trailing incomplete key
+    repaired = repaired.replace(/,\s*\{[^}]*$/, '')        // trailing incomplete object
+    repaired = repaired.replace(/,\s*$/, '')               // trailing comma
+
+    // Count unclosed brackets
+    let openBraces = 0, openBrackets = 0
+    let inString = false
+    for (let i = 0; i < repaired.length; i++) {
+      const ch = repaired[i]
+      if (ch === '"' && (i === 0 || repaired[i - 1] !== '\\')) { inString = !inString; continue }
+      if (inString) continue
+      if (ch === '{') openBraces++
+      else if (ch === '}') openBraces--
+      else if (ch === '[') openBrackets++
+      else if (ch === ']') openBrackets--
+    }
+
+    // Close unclosed brackets
+    for (let i = 0; i < openBrackets; i++) repaired += ']'
+    for (let i = 0; i < openBraces; i++) repaired += '}'
+
+    try {
+      parsed = JSON.parse(repaired)
+    } catch {
+      // Truly broken JSON — give up
+    }
   }
+
+  if (!parsed) return null
+
+  // Validate minimum structure — accept if we have at least tareas
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const p = parsed as any
+  if (p.tareas && Array.isArray(p.tareas)) {
+    return {
+      diagnostico: p.diagnostico ?? '',
+      plan: Array.isArray(p.plan) ? p.plan.filter((item: PlanItem) => item.titulo && item.mensaje) : [],
+      consejo: p.consejo ?? '',
+      tareas: p.tareas.filter((t: RoadmapTask) =>
+        t.accion && ['quick', 'challenge', 'star'].includes(t.tier)
+      ),
+    }
+  }
+
   return null
 }
 
