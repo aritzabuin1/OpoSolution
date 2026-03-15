@@ -12,7 +12,7 @@ export async function GET() {
   const { authorized } = await verifyAdmin('/api/admin/infrastructure')
 
   if (!authorized) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    return NextResponse.json({ error: 'Acceso denegado' }, { status: 403 })
   }
 
   const metrics = await getInfraMetrics()

@@ -38,7 +38,7 @@ export async function GET(request: NextRequest) {
     log.info(boeResult, '[boe-watch] BOE check completado')
   } catch (err) {
     log.error({ err }, '[boe-watch] BOE check error — continuando con cost check')
-    boeResult = { error: 'BOE check failed' }
+    boeResult = { error: 'Fallo en comprobación BOE' }
   }
 
   // ── 2. §2.23 Piggyback: cost + infra check del día anterior ───────────────
@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
     log.info(costResult, '[boe-watch] cost+infra check completado')
   } catch (err) {
     log.error({ err }, '[boe-watch] cost+infra check error — no crítico')
-    costResult = { error: 'Cost check failed' }
+    costResult = { error: 'Fallo en comprobación de costes' }
   }
 
   return NextResponse.json({ ok: true, boe: boeResult, costs: costResult }, { status: 200 })
