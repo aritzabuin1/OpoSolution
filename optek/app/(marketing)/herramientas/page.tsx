@@ -37,10 +37,10 @@ export const metadata: Metadata = {
 const tools = [
   {
     title: 'Calculadora de nota — Auxiliar Administrativo (C2)',
-    description: 'Calcula tu nota con la penalización -1/3 oficial. Primera parte (60 preguntas: teoría + psicotécnicos) y segunda parte (50 preguntas: ofimática). Descubre si apruebas.',
+    description: 'Calcula tu nota con la penalización -1/3 oficial. Primera parte (60 preguntas: 30 teoría + 30 psicotécnicos) y segunda parte (50 preguntas: ofimática). 110 preguntas totales en 90 minutos.',
     href: '/herramientas/calculadora-nota-auxiliar-administrativo',
     badge: 'C2 — Auxiliar',
-    parts: '60 + 50 preguntas · 90 min',
+    parts: '110 preguntas (60 + 50) · 90 min',
   },
   {
     title: 'Calculadora de nota — Administrativo del Estado (C1)',
@@ -147,8 +147,8 @@ export default function HerramientasPage() {
             <ul>
               <li>
                 <strong><a href="/herramientas/calculadora-nota-auxiliar-administrativo">Auxiliar Administrativo (C2)</a></strong>
-                {' '}— 100 preguntas puntuables en 90 minutos. Primera parte: teoría + psicotécnicos.
-                Segunda parte: ofimática.
+                {' '}— 110 preguntas (100 puntuables + 10 reserva) en 90 minutos. Primera parte (60):
+                30 teoría + 30 psicotécnicos. Segunda parte (50): ofimática.
               </li>
               <li>
                 <strong><a href="/herramientas/calculadora-nota-administrativo-estado">Administrativo del Estado (C1)</a></strong>

@@ -2919,4 +2919,539 @@ export const blogPosts: BlogPost[] = [
 </ul>
     `.trim(),
   },
+
+  // ─── Post 23 — C1: Supuesto Práctico ─────────────────────────────────────
+  {
+    slug: 'supuesto-practico-administrativo-estado-c1-estrategia',
+    title: 'Supuesto práctico del Administrativo del Estado (C1): estrategia, ejemplos y consejos',
+    description:
+      'Guía completa sobre el supuesto práctico del examen C1: en qué consiste, cómo elegir entre los dos casos, qué legislación repasar y errores frecuentes. Con ejemplos reales.',
+    date: '2026-03-15',
+    keywords: [
+      'supuesto práctico administrativo estado',
+      'caso práctico C1 oposiciones',
+      'segunda parte examen administrativo estado',
+      'supuesto práctico INAP C1',
+      'cómo preparar caso práctico oposiciones',
+    ],
+    content: `
+<p>
+  La <strong>segunda parte del examen de Administrativo del Estado (C1)</strong> es un supuesto
+  práctico: te presentan dos casos y eliges uno. Cada caso tiene <strong>20 preguntas tipo test
+  puntuables</strong> (más 5 de reserva) sobre un expediente administrativo real. Se califica de
+  0 a 50 puntos y necesitas al menos 25 para aprobar.
+</p>
+<p>
+  Muchos opositores le tienen miedo al caso práctico, pero en realidad es <strong>legislación aplicada</strong>.
+  No te piden redactar nada: solo responder preguntas tipo test sobre un expediente concreto.
+</p>
+
+<h2>¿En qué consiste exactamente?</h2>
+<p>
+  Te dan un documento de 2-3 páginas describiendo un caso administrativo (por ejemplo, un procedimiento
+  de contratación pública, un expediente disciplinario o una solicitud de subvención). Después te
+  hacen 20 preguntas sobre ese caso:
+</p>
+<ul>
+  <li><strong>¿Qué plazo tiene la Administración para resolver?</strong> → LPAC, art. 21</li>
+  <li><strong>¿Qué recurso puede interponer el interesado?</strong> → LPAC, arts. 112-126</li>
+  <li><strong>¿Quién es el órgano competente?</strong> → LRJSP, arts. 5-9</li>
+  <li><strong>¿Qué documentación debe aportar?</strong> → LPAC, art. 66</li>
+</ul>
+<p>
+  Las preguntas cubren los <strong>bloques II a V</strong> del temario: organización de oficinas,
+  derecho administrativo, gestión de personal y gestión financiera.
+</p>
+
+<h2>Cómo elegir entre los dos supuestos</h2>
+<p>
+  Tienes unos minutos para leer ambos supuestos antes de decidir. Consejos:
+</p>
+<ul>
+  <li><strong>Lee las preguntas primero, no el texto.</strong> Las preguntas te dicen qué legislación necesitas. Si reconoces más artículos en un supuesto que en otro, elige ese</li>
+  <li><strong>Busca tu bloque fuerte.</strong> Si dominas contratación pública (Bloque III), elige el supuesto de contratación. Si tu fuerte es gestión de personal (Bloque IV), elige ese</li>
+  <li><strong>No cambies a mitad.</strong> Una vez que empiezas un supuesto, no pierdas tiempo dudando. El cambio te costará 10-15 minutos irrecuperables</li>
+</ul>
+
+<h2>El peso del supuesto práctico: cada pregunta vale 2,50 puntos</h2>
+<p>
+  Este dato es crucial: cada pregunta del supuesto práctico vale <strong>2,50 puntos</strong>
+  (50 puntos / 20 preguntas), frente a los 0,71 puntos de cada pregunta del cuestionario
+  (50 / 70). Un solo error en el práctico penaliza <strong>0,83 puntos</strong>, más que un
+  acierto completo en la primera parte.
+</p>
+<p>
+  <strong>Regla de oro:</strong> en el supuesto práctico, si no estás seguro, déjala en blanco.
+  La penalización es demasiado alta para arriesgar.
+</p>
+
+<h2>Legislación imprescindible para el caso práctico</h2>
+<p>
+  El 80% de los supuestos prácticos giran alrededor de estas normas:
+</p>
+<ul>
+  <li><strong>Ley 39/2015 (LPAC):</strong> procedimiento común, plazos, notificaciones, recursos, silencio administrativo</li>
+  <li><strong>Ley 40/2015 (LRJSP):</strong> órganos colegiados, competencias, delegación, avocación</li>
+  <li><strong>Ley 9/2017 (LCSP):</strong> contratos del sector público, tipos, adjudicación, modificación</li>
+  <li><strong>RDL 5/2015 (TREBEP):</strong> selección, situaciones administrativas, régimen disciplinario</li>
+  <li><strong>Ley 47/2003 (LGP):</strong> presupuestos, créditos extraordinarios, gastos plurianuales</li>
+</ul>
+
+<h2>Errores frecuentes en el supuesto práctico</h2>
+<ul>
+  <li><strong>No leer el enunciado completo:</strong> el caso práctico tiene detalles trampa (fechas, plazos que ya han vencido, órganos que cambian de competencia). Lee todo antes de responder</li>
+  <li><strong>Confundir plazos similares:</strong> 10 días hábiles vs 1 mes vs 3 meses. El INAP juega con esto</li>
+  <li><strong>Aplicar legislación derogada:</strong> asegúrate de estudiar la versión vigente de cada ley. La LCSP de 2017 derogó la anterior</li>
+  <li><strong>No cronometrar:</strong> tienes 100 minutos para las dos partes juntas. Si dedicas 70 minutos al cuestionario, solo te quedan 30 para el práctico</li>
+</ul>
+
+<h2>Plan de entrenamiento para el supuesto práctico</h2>
+<ol>
+  <li><strong>Meses 1-3:</strong> estudia la legislación base (LPAC, LRJSP, TREBEP). No hagas supuestos aún</li>
+  <li><strong>Meses 4-6:</strong> empieza a resolver 1 supuesto por semana. Usa los de convocatorias anteriores del INAP</li>
+  <li><strong>Meses 7-9:</strong> 2-3 supuestos por semana, cronometrados. Focaliza en tus bloques débiles</li>
+</ol>
+<p>
+  Calcula tu nota con nuestra
+  <a href="/herramientas/calculadora-nota-administrativo-estado">calculadora de nota del C1</a>
+  y practica con los
+  <a href="/examenes-oficiales">simulacros INAP oficiales</a>.
+</p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/preparar-oposiciones-administrativo-estado-c1-por-libre">Preparar C1 por libre</a> — plan de estudio 6-9 meses</li>
+  <li><a href="/blog/administrativo-estado-c1-2026-plazas-temario-nota-corte">Administrativo C1 2026</a> — plazas, temario y nota de corte</li>
+  <li><a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">Diferencias C2 vs C1</a> — ¿cuál elegir?</li>
+</ul>
+    `.trim(),
+  },
+
+  // ─── Post 24 — C1: Nota de corte ──────────────────────────────────────────
+  {
+    slug: 'nota-corte-administrativo-estado-c1-como-se-calcula',
+    title: 'Nota de corte del Administrativo del Estado (C1): cómo se calcula y datos 2024',
+    description:
+      'Cómo funciona la nota de corte del examen C1 de Administrativo del Estado: datos reales de 2024, por qué varía en cada convocatoria y cómo calcular si la superas.',
+    date: '2026-03-15',
+    keywords: [
+      'nota de corte administrativo estado C1',
+      'nota corte C1 2024',
+      'puntuación mínima administrativo estado',
+      'nota corte oposiciones AGE C1',
+      'aprobados administrativo estado',
+    ],
+    content: `
+<p>
+  La <strong>nota de corte del Administrativo del Estado (C1)</strong> no es un valor fijo: varía
+  en cada convocatoria según el número de aprobados y las plazas ofertadas. En la convocatoria
+  de 2024, la nota de corte general fue de <strong>47,33 puntos sobre 100</strong>.
+</p>
+
+<h2>¿Qué es la nota de corte?</h2>
+<p>
+  La nota de corte es la <strong>puntuación del último opositor que obtuvo plaza</strong>. No es
+  un mínimo establecido de antemano: se conoce después del examen, cuando se ordenan todos los
+  aprobados de mayor a menor nota y se traza la línea en la plaza número 2.512 (o el número de
+  plazas ofertadas).
+</p>
+<p>
+  Esto significa que la nota de corte depende de:
+</p>
+<ul>
+  <li><strong>Número de plazas:</strong> más plazas = nota de corte más baja</li>
+  <li><strong>Dificultad del examen:</strong> un examen más difícil baja la nota media y el corte</li>
+  <li><strong>Nivel de los opositores:</strong> más gente preparada = corte más alto</li>
+</ul>
+
+<h2>Datos reales de la convocatoria 2024</h2>
+<p>
+  En 2024, el último aprobado con plaza obtuvo:
+</p>
+<ul>
+  <li><strong>Primera parte (Cuestionario):</strong> 33 puntos sobre 50</li>
+  <li><strong>Segunda parte (Supuesto Práctico):</strong> 14 puntos sobre 50</li>
+  <li><strong>Total:</strong> 47,33 puntos sobre 100</li>
+</ul>
+<p>
+  <strong>¿Por qué 14 en la segunda parte?</strong> El supuesto práctico del C1 es la parte
+  más difícil del examen. Cada pregunta vale 2,50 puntos y la penalización por error es de 0,83.
+  En 2024, pocos opositores obtuvieron puntuaciones altas en el caso práctico, lo que bajó
+  significativamente el corte de esa parte.
+</p>
+<p>
+  Recuerda que <strong>necesitas al menos 25 puntos en cada parte para aprobar</strong>. La nota
+  de corte de 14 en la segunda parte refleja que el último aprobado con plaza sacó 14, no que
+  puedas aprobar con 14. Para aprobar necesitas ≥25 en ambas partes; para obtener plaza,
+  además necesitas superar la nota de corte total.
+</p>
+
+<h2>Cómo calcular si superas la nota de corte</h2>
+<p>
+  Usa nuestra <a href="/herramientas/calculadora-nota-administrativo-estado">calculadora de nota
+  del C1 con penalización -1/3</a>. Introduce tus aciertos y errores de cada parte y verás
+  al instante si superarías el corte de 2024.
+</p>
+
+<h2>¿Cómo será la nota de corte en 2026?</h2>
+<p>
+  La convocatoria 2025-2026 ofrece <strong>2.512 plazas</strong>, una cifra históricamente alta.
+  Más plazas implica que la nota de corte podría ser similar o ligeramente inferior a 2024,
+  siempre que el número de presentados no aumente proporcionalmente.
+</p>
+<p>
+  La novedad de esta convocatoria es que el examen es un <strong>ejercicio único</strong> (antes
+  eran dos pruebas en días distintos). Esto podría favorecer a los opositores bien preparados
+  que rinden mejor en una sola sesión intensa.
+</p>
+
+<h2>Consejos para superar la nota de corte</h2>
+<ul>
+  <li><strong>No te conformes con el mínimo (25+25):</strong> necesitas al menos 47-50 puntos totales para tener opciones reales de plaza</li>
+  <li><strong>Maximiza la primera parte:</strong> el cuestionario es más predecible. Apunta a 35-40 puntos para tener margen en el práctico</li>
+  <li><strong>Practica el supuesto:</strong> es la parte más difícil y la que más te diferencia. Los opositores que practican casos reales obtienen 5-10 puntos más que los que solo estudian teoría</li>
+  <li><strong>Gestiona el tiempo:</strong> 100 minutos para las dos partes. Planifica 55 minutos para el cuestionario (70 preguntas) y 45 para el práctico (20 preguntas)</li>
+</ul>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/supuesto-practico-administrativo-estado-c1-estrategia">Supuesto práctico del C1</a> — estrategia y ejemplos</li>
+  <li><a href="/blog/preparar-oposiciones-administrativo-estado-c1-por-libre">Preparar C1 por libre</a> — plan de estudio completo</li>
+  <li><a href="/herramientas/calculadora-nota-administrativo-estado">Calculadora de nota C1</a> — calcula tu puntuación</li>
+</ul>
+    `.trim(),
+  },
+
+  // ─── Post 25 — C1: Temario 45 temas priorización ─────────────────────────
+  {
+    slug: 'temario-administrativo-estado-c1-45-temas-como-priorizar',
+    title: 'Temario Administrativo del Estado (C1): 45 temas en 6 bloques — cómo priorizar el estudio',
+    description:
+      'Desglose completo de los 45 temas del Administrativo del Estado C1 organizados por bloques, con estrategia de priorización según peso en el examen y dificultad relativa.',
+    date: '2026-03-15',
+    keywords: [
+      'temario administrativo estado C1',
+      '45 temas administrativo estado',
+      'bloques temario C1 AGE',
+      'temario oposiciones administrativo estado 2026',
+      'priorizar estudio administrativo estado',
+    ],
+    content: `
+<p>
+  El temario del <strong>Administrativo del Estado (C1)</strong> tiene <strong>45 temas repartidos
+  en 6 bloques</strong>. Es más extenso que el del Auxiliar (C2, 28 temas), pero con una buena
+  estrategia de priorización puedes prepararlo en 6-9 meses.
+</p>
+
+<h2>Los 6 bloques del temario C1</h2>
+
+<h3>Bloque I — Organización del Estado y Administración Pública (11 temas)</h3>
+<p>
+  Constitución Española, la Corona, Cortes Generales, Poder Judicial, Gobierno y Administración,
+  Gobierno Abierto y Agenda 2030, Transparencia (Ley 19/2013), la AGE, organización territorial
+  (CC.AA.), Administración Local y Unión Europea.
+</p>
+<p>
+  <strong>Peso en el examen:</strong> 8-12 preguntas en la primera parte. Si vienes del C2,
+  ya conoces la mayoría. Los temas nuevos son Gobierno Abierto (tema 6) y Transparencia (tema 7).
+</p>
+
+<h3>Bloque II — Organización de Oficinas Públicas (4 temas)</h3>
+<p>
+  Atención al ciudadano, documentación/registro/archivo, administración electrónica y protección
+  de datos (LOPDGDD + RGPD).
+</p>
+<p>
+  <strong>Peso:</strong> 3-5 preguntas en la primera parte + posible aparición en el supuesto
+  práctico. Bloque corto pero denso en legislación (LOPDGDD, ENS, ENI).
+</p>
+
+<h3>Bloque III — Derecho Administrativo General (7 temas)</h3>
+<p>
+  Fuentes del derecho, acto administrativo, procedimiento administrativo común (LPAC),
+  contratos del sector público (LCSP), actividad administrativa, responsabilidad patrimonial
+  y políticas de igualdad.
+</p>
+<p>
+  <strong>Peso:</strong> el bloque más importante. 10-15 preguntas en la primera parte Y es la
+  base del supuesto práctico. <strong>Prioridad máxima</strong> en tu plan de estudio.
+</p>
+
+<h3>Bloque IV — Gestión de Personal (9 temas)</h3>
+<p>
+  Personal de las AA.PP. (TREBEP), selección y provisión, derechos y deberes, adquisición y
+  pérdida de condición, carrera y promoción, incompatibilidades y disciplina, Seguridad Social
+  (MUFACE), personal laboral (IV Convenio Único) y SS del personal laboral.
+</p>
+<p>
+  <strong>Peso:</strong> 8-10 preguntas + aparece en casos prácticos (expedientes disciplinarios,
+  procesos de selección). <strong>Bloque exclusivo del C1</strong> — no lo has visto si vienes del C2.
+</p>
+
+<h3>Bloque V — Gestión Financiera (6 temas)</h3>
+<p>
+  Presupuestos (concepto, principios, ciclo), estructura del PGE, ejecución del gasto, retribuciones
+  e indemnizaciones, gastos por operaciones corrientes y gestión económica de contratos y subvenciones.
+</p>
+<p>
+  <strong>Peso:</strong> 5-8 preguntas + aparece en casos prácticos. Preguntas directas de
+  memorización (cifras, fases del gasto, documentos contables). Puntos "fáciles" si memorizas
+  las tablas.
+</p>
+
+<h3>Bloque VI — Informática Básica y Ofimática (8 temas)</h3>
+<p>
+  Hardware y software, <strong>Windows 11</strong> (incluye <strong>Copilot</strong> como novedad 2026),
+  Explorador de archivos, Word 365, Excel 365, Access 365, Outlook 365 e Internet.
+</p>
+<p>
+  <strong>Peso:</strong> 30 preguntas en la primera parte (de 70 totales). Si dominas la ofimática
+  del C2, llevas el 80% hecho. Las novedades son Windows 11 y Copilot.
+</p>
+
+<h2>Estrategia de priorización (de más a menos peso)</h2>
+<ol>
+  <li><strong>Bloque III (Derecho Administrativo):</strong> prioridad máxima. 7 temas, peso total ~35% (cuestionario + práctico)</li>
+  <li><strong>Bloque VI (Informática):</strong> 30 de 70 preguntas del cuestionario = 43% de la primera parte. Puntos seguros si practicas</li>
+  <li><strong>Bloque IV (Personal):</strong> 9 temas exclusivos del C1 + aparece en prácticos</li>
+  <li><strong>Bloque I (Organización Estado):</strong> 11 temas, comparte mucho con C2, repasar rápido</li>
+  <li><strong>Bloque V (Financiera):</strong> preguntas de memorización, estudiar al final para retener datos</li>
+  <li><strong>Bloque II (Oficinas Públicas):</strong> 4 temas, menor peso relativo. Estudiar último</li>
+</ol>
+
+<h2>Novedades del temario 2025-2026</h2>
+<ul>
+  <li><strong>Windows 11:</strong> sustituye a Windows 10 en el Bloque VI</li>
+  <li><strong>Copilot:</strong> se incluye como novedad en el tema de Windows 11</li>
+  <li><strong>Microsoft 365 (versión escritorio):</strong> la referencia oficial para ofimática</li>
+  <li><strong>Gobierno Abierto + Agenda 2030:</strong> tema relativamente nuevo en Bloque I</li>
+</ul>
+
+<h2>¿Cuántas horas necesitas?</h2>
+<p>
+  Estimación para 45 temas estudiando 3-4 horas diarias:
+</p>
+<ul>
+  <li><strong>Primera vuelta:</strong> 4-5 meses (estudiar + hacer tests por tema)</li>
+  <li><strong>Segunda vuelta:</strong> 2-3 meses (repasar + simulacros completos)</li>
+  <li><strong>Fase final:</strong> 1-2 meses (supuestos prácticos + simulacros cronometrados)</li>
+</ul>
+<p>
+  Practica desde el día 1 con tests tipo test. No esperes a terminar el temario para empezar
+  a hacer preguntas.
+</p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/preparar-oposiciones-administrativo-estado-c1-por-libre">Preparar C1 por libre</a> — plan de estudio 6-9 meses</li>
+  <li><a href="/blog/supuesto-practico-administrativo-estado-c1-estrategia">Supuesto práctico del C1</a> — estrategia y ejemplos</li>
+  <li><a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">Diferencias C2 vs C1</a> — ¿cuál elegir?</li>
+  <li><a href="/herramientas/calculadora-nota-administrativo-estado">Calculadora de nota C1</a> — calcula tu puntuación</li>
+</ul>
+    `.trim(),
+  },
+
+  // ─── Post 26 — C1: Contratación pública LCSP ─────────────────────────────
+  {
+    slug: 'contratacion-publica-lcsp-administrativo-estado-c1',
+    title: 'Contratación pública (LCSP) para el Administrativo del Estado (C1): artículos clave',
+    description:
+      'Los artículos de la Ley 9/2017 de Contratos del Sector Público (LCSP) que más caen en el examen C1. Tipos de contratos, procedimientos de adjudicación y preguntas trampa frecuentes.',
+    date: '2026-03-15',
+    keywords: [
+      'LCSP oposiciones administrativo estado',
+      'contratos sector público examen C1',
+      'ley contratos sector público oposiciones',
+      'tipos contratos administrativos',
+      'LCSP artículos clave examen',
+    ],
+    content: `
+<p>
+  La <strong>Ley 9/2017 de Contratos del Sector Público (LCSP)</strong> es una de las normas
+  con más peso en el examen de Administrativo del Estado (C1). Aparece tanto en las preguntas
+  del cuestionario (Bloque III, tema 19) como en los supuestos prácticos. Dominarla puede ser
+  la diferencia entre obtener plaza o no.
+</p>
+
+<h2>¿Por qué la LCSP es tan importante en el C1?</h2>
+<p>
+  A diferencia del C2 (Auxiliar), donde la contratación se ve de forma superficial, el C1
+  exige conocer <strong>procedimientos de adjudicación, plazos, garantías y tipos de contratos</strong>
+  en detalle. Es una de las materias más preguntadas en el supuesto práctico.
+</p>
+
+<h2>Tipos de contratos del sector público</h2>
+<p>
+  La LCSP distingue los siguientes tipos de contratos administrativos (art. 12):
+</p>
+<ul>
+  <li><strong>Contrato de obras:</strong> ejecución de obras de construcción, reforma o reparación</li>
+  <li><strong>Contrato de suministro:</strong> adquisición, arrendamiento o mantenimiento de bienes muebles</li>
+  <li><strong>Contrato de servicios:</strong> prestaciones de hacer que no sean obras ni suministros</li>
+  <li><strong>Contrato de concesión de obras:</strong> el contratista asume el riesgo operacional</li>
+  <li><strong>Contrato de concesión de servicios:</strong> gestión de un servicio público con riesgo</li>
+</ul>
+<p>
+  <strong>Pregunta trampa frecuente:</strong> los contratos de concesión NO son contratos de servicios.
+  La diferencia clave es la <strong>transferencia de riesgo operacional</strong> al contratista.
+</p>
+
+<h2>Procedimientos de adjudicación</h2>
+<ul>
+  <li><strong>Abierto (arts. 156-165):</strong> cualquier empresario puede presentar una oferta. El más habitual</li>
+  <li><strong>Abierto simplificado (art. 159):</strong> para contratos menores. Plazos reducidos</li>
+  <li><strong>Restringido (arts. 160-165):</strong> solo pueden presentar ofertas los invitados tras selección previa</li>
+  <li><strong>Negociado sin publicidad (art. 168):</strong> supuestos tasados (urgencia extrema, razones técnicas). Las causas están en lista cerrada</li>
+  <li><strong>Diálogo competitivo (arts. 172-176):</strong> para contratos especialmente complejos</li>
+  <li><strong>Asociación para la innovación (arts. 177-182):</strong> novedad de la LCSP 2017</li>
+</ul>
+
+<h2>Artículos que más caen en el examen</h2>
+<ul>
+  <li><strong>Art. 12 — Tipos de contratos:</strong> la base. Siempre aparece</li>
+  <li><strong>Art. 28 — Necesidad e idoneidad:</strong> justificación previa obligatoria</li>
+  <li><strong>Art. 116 — Pliego de cláusulas administrativas:</strong> contenido mínimo</li>
+  <li><strong>Art. 118 — Contratos menores:</strong> límites cuantitativos (40.000€ obras, 15.000€ servicios/suministros). Pregunta recurrente</li>
+  <li><strong>Art. 131 — Procedimiento de adjudicación:</strong> cuándo usar cada tipo</li>
+  <li><strong>Art. 202 — Condiciones especiales de ejecución:</strong> cláusulas sociales y medioambientales</li>
+  <li><strong>Art. 211 — Resolución del contrato:</strong> causas y consecuencias</li>
+</ul>
+
+<h2>Preguntas trampa habituales</h2>
+<ul>
+  <li><strong>"¿Puede adjudicarse un contrato menor de 50.000€ de servicios?"</strong> — No. El límite es 15.000€ para servicios. 40.000€ es solo para obras</li>
+  <li><strong>"¿El procedimiento negociado sin publicidad es libre?"</strong> — No. Solo procede en los supuestos del art. 168 (lista cerrada)</li>
+  <li><strong>"¿Quién aprueba el expediente de contratación?"</strong> — El órgano de contratación, no el secretario general técnico</li>
+</ul>
+
+<h2>La LCSP en el supuesto práctico</h2>
+<p>
+  En los casos prácticos, la LCSP aparece típicamente así: te dan un expediente de contratación
+  y te preguntan sobre plazos, procedimientos, requisitos de solvencia, criterios de adjudicación
+  o causas de resolución. La clave es conocer los artículos de referencia para cada fase del proceso.
+</p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/supuesto-practico-administrativo-estado-c1-estrategia">Supuesto práctico del C1</a> — estrategia completa</li>
+  <li><a href="/blog/temario-administrativo-estado-c1-45-temas-como-priorizar">45 temas del C1</a> — cómo priorizar</li>
+  <li><a href="/blog/articulos-lpac-que-mas-caen-examen-inap">LPAC: artículos que más caen</a> — la otra ley clave del Bloque III</li>
+</ul>
+    `.trim(),
+  },
+
+  // ─── Post 27 — C1: Gestión financiera ─────────────────────────────────────
+  {
+    slug: 'gestion-financiera-presupuestos-administrativo-estado-c1',
+    title: 'Gestión financiera y presupuestos para Administrativo del Estado (C1): guía del Bloque V',
+    description:
+      'Guía del Bloque V del temario C1: presupuestos del Estado, ejecución del gasto, retribuciones, nóminas y gestión económica. Los 6 temas más "técnicos" del C1 explicados.',
+    date: '2026-03-15',
+    keywords: [
+      'gestión financiera administrativo estado',
+      'presupuestos generales estado oposiciones',
+      'bloque V administrativo estado C1',
+      'fases ejecución gasto público',
+      'retribuciones funcionarios oposiciones',
+    ],
+    content: `
+<p>
+  El <strong>Bloque V (Gestión Financiera)</strong> del temario C1 tiene 6 temas sobre presupuestos,
+  gasto público y retribuciones. Es el bloque más "técnico" y el que más asusta a los opositores
+  que vienen de letras. Pero tiene una ventaja: las preguntas son directas y de memorización.
+  Si estudias las tablas y las fases, son puntos seguros.
+</p>
+
+<h2>Los 6 temas del Bloque V</h2>
+
+<h3>Tema 32: El presupuesto — concepto y principios</h3>
+<p>
+  Los <strong>principios presupuestarios</strong> aparecen siempre: unidad, universalidad, anualidad,
+  no afectación, especialidad (cualitativa, cuantitativa y temporal), estabilidad presupuestaria.
+  Memoriza qué significa cada uno y cuándo se puede excepcionar.
+</p>
+<p>
+  <strong>Pregunta frecuente:</strong> "¿Qué principio impide que los ingresos se asignen a gastos
+  concretos?" → No afectación (art. 27 LGP).
+</p>
+
+<h3>Tema 33: Estructura del Presupuesto del Estado</h3>
+<p>
+  El PGE se estructura en:
+</p>
+<ul>
+  <li><strong>Clasificación orgánica:</strong> quién gasta (ministerio, organismo)</li>
+  <li><strong>Clasificación funcional/por programas:</strong> para qué se gasta</li>
+  <li><strong>Clasificación económica:</strong> en qué se gasta (capítulos 1-9)</li>
+</ul>
+<p>
+  Memoriza los <strong>9 capítulos de gasto</strong>: 1-Personal, 2-Bienes y servicios,
+  3-Gastos financieros, 4-Transferencias corrientes, 5-(no existe en gasto), 6-Inversiones reales,
+  7-Transferencias de capital, 8-Activos financieros, 9-Pasivos financieros.
+</p>
+
+<h3>Tema 34: Ejecución del presupuesto de gasto</h3>
+<p>
+  Las <strong>fases de ejecución del gasto</strong> son el tema estrella del Bloque V:
+</p>
+<ol>
+  <li><strong>A — Autorización (Aprobación del gasto):</strong> reserva de crédito</li>
+  <li><strong>D — Disposición (Compromiso):</strong> se contrae la obligación con un tercero</li>
+  <li><strong>O — Obligación (Reconocimiento):</strong> se reconoce el derecho del acreedor</li>
+  <li><strong>P — Pago (Propuesta de pago):</strong> se expide la orden de pago</li>
+</ol>
+<p>
+  <strong>Regla mnemotécnica:</strong> A-D-O-P. Cada fase tiene su documento contable correspondiente
+  (A, D, O, P o combinaciones como AD, ADO).
+</p>
+
+<h3>Tema 35: Retribuciones e indemnizaciones</h3>
+<p>
+  Las <strong>retribuciones de los funcionarios</strong> se dividen en:
+</p>
+<ul>
+  <li><strong>Básicas:</strong> sueldo base (según grupo A1/A2/B/C1/C2) + trienios + pagas extraordinarias</li>
+  <li><strong>Complementarias:</strong> complemento de destino (nivel), complemento específico (puesto), complemento de productividad, gratificaciones</li>
+</ul>
+<p>
+  <strong>Pregunta trampa:</strong> "¿Los trienios son retribución básica o complementaria?" → Básica.
+  "¿El complemento de productividad es fijo?" → No, es variable y no genera derechos adquiridos.
+</p>
+
+<h3>Tema 36: Gastos por operaciones corrientes</h3>
+<p>
+  Gestión de caja fija, anticipos de caja fija y pagos a justificar. Memoriza los <strong>límites
+  cuantitativos</strong> y los plazos de justificación (3 meses para pagos a justificar).
+</p>
+
+<h3>Tema 37: Gestión económica de contratos y subvenciones</h3>
+<p>
+  Enlaza con la LCSP (Bloque III). Abarca garantías, revisión de precios, pagos a cuenta,
+  penalidades y el régimen de subvenciones (Ley 38/2003 General de Subvenciones).
+</p>
+
+<h2>Estrategia de estudio para el Bloque V</h2>
+<ul>
+  <li><strong>Haz fichas de las fases ADOP:</strong> cada fase con su documento, órgano competente y efecto jurídico</li>
+  <li><strong>Memoriza los 9 capítulos:</strong> aparecen en casi todos los exámenes</li>
+  <li><strong>Practica con tests temáticos:</strong> las preguntas del Bloque V son muy repetitivas. Si haces 100 preguntas, habrás visto el 80% de lo que puede caer</li>
+  <li><strong>Estudia este bloque al final:</strong> es pura memorización y se olvida rápido. Mejor estudiarlo 2-3 meses antes del examen</li>
+</ul>
+
+<h2>El Bloque V en el supuesto práctico</h2>
+<p>
+  En el caso práctico puede aparecer un expediente de gasto: te dan un contrato y preguntan
+  en qué fase está, qué documento contable corresponde, quién es el órgano competente para
+  autorizar, o si procede una modificación de crédito.
+</p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/temario-administrativo-estado-c1-45-temas-como-priorizar">45 temas del C1</a> — cómo priorizar por bloques</li>
+  <li><a href="/blog/contratacion-publica-lcsp-administrativo-estado-c1">LCSP para el C1</a> — artículos clave de contratación</li>
+  <li><a href="/blog/supuesto-practico-administrativo-estado-c1-estrategia">Supuesto práctico</a> — estrategia y consejos</li>
+  <li><a href="/herramientas/calculadora-nota-administrativo-estado">Calculadora de nota C1</a></li>
+</ul>
+    `.trim(),
+  },
 ]
