@@ -80,11 +80,12 @@ function makeSelectBuilder(data: unknown, error: unknown = null) {
   return builder
 }
 
-/** Builder fluido para operaciones de escritura (update, delete). */
+/** Builder fluido para operaciones de escritura (update, delete, insert). */
 function makeWriteBuilder(error: unknown = null) {
   const builder = {
     update: vi.fn().mockReturnThis(),
     delete: vi.fn().mockReturnThis(),
+    insert: vi.fn().mockResolvedValue({ error }),
     eq: vi.fn().mockResolvedValue({ error }),
   }
   return builder
