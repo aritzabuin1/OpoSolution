@@ -28,6 +28,9 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
             <Link href="/examenes-oficiales" className="hidden sm:block text-sm text-muted-foreground hover:text-foreground transition-colors px-2">
               Simulacros INAP
             </Link>
+            <Link href="/herramientas" className="hidden sm:block text-sm text-muted-foreground hover:text-foreground transition-colors px-2">
+              Herramientas
+            </Link>
             <MarketingNavAuth />
           </nav>
         </div>
@@ -69,8 +72,8 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
                   </Link>
                 </li>
                 <li>
-                  <Link href="/herramientas/calculadora-nota-auxiliar-administrativo" className="hover:text-foreground transition-colors">
-                    Calculadora de nota
+                  <Link href="/herramientas" className="hover:text-foreground transition-colors">
+                    Herramientas gratuitas
                   </Link>
                 </li>
                 <li>

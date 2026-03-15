@@ -9,7 +9,7 @@ import { blogPosts } from '@/content/blog/posts'
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
 // Exámenes oficiales INAP disponibles (§1.21.6 PRIORIDAD 1) — ruta: /examenes-oficiales/[slug]
-const EXAMEN_SLUGS = ['inap-2024', 'inap-2022', 'inap-2019', 'inap-2018']
+const EXAMEN_SLUGS = ['inap-2024', 'inap-2022', 'inap-2019', 'inap-2018', 'inap-c1-2024', 'inap-c1-2022', 'inap-c1-2019']
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
@@ -35,7 +35,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${APP_URL}/herramientas`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${APP_URL}/herramientas/calculadora-nota-auxiliar-administrativo`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${APP_URL}/herramientas/calculadora-nota-administrativo-estado`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.8,

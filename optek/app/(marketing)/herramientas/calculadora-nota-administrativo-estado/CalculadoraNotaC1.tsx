@@ -16,17 +16,17 @@ import {
   Info,
 } from 'lucide-react'
 
-// ─── Constants ───────────────────────────────────────────────────────────────
+// ─── Constants (C1 Administrativo del Estado) ────────────────────────────────
 
-const PARTE1_MAX_PREGUNTAS = 60
-const PARTE2_MAX_PREGUNTAS = 50
+const PARTE1_MAX_PREGUNTAS = 70 // 40 legislación (bloques I+V) + 30 ofimática (bloque VI)
+const PARTE2_MAX_PREGUNTAS = 20 // Supuesto práctico (bloques II+V), 20 puntuables (+5 reserva)
 const PARTE1_MAX_PUNTOS = 50
 const PARTE2_MAX_PUNTOS = 50
 const MINIMO_APROBADO = 25
 
-// Historical nota de corte
-const CORTE_PARTE1 = 30
-const CORTE_PARTE2 = 26.33
+// Historical nota de corte (convocatoria 2024 C1) — nota general corte: 47,33
+const CORTE_PARTE1 = 33
+const CORTE_PARTE2 = 14
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -200,11 +200,11 @@ function ResultBar({
 
 // ─── Main Component ──────────────────────────────────────────────────────────
 
-export function CalculadoraNota() {
-  const [p1Aciertos, setP1Aciertos] = useState(35)
+export function CalculadoraNotaC1() {
+  const [p1Aciertos, setP1Aciertos] = useState(45)
   const [p1Errores, setP1Errores] = useState(15)
-  const [p2Aciertos, setP2Aciertos] = useState(30)
-  const [p2Errores, setP2Errores] = useState(10)
+  const [p2Aciertos, setP2Aciertos] = useState(14)
+  const [p2Errores, setP2Errores] = useState(3)
 
   // Enforce max constraints
   const maxP1Errores = PARTE1_MAX_PREGUNTAS - p1Aciertos
@@ -223,10 +223,10 @@ export function CalculadoraNota() {
   const superaCorte = resultado1.superaCorte && resultado2.superaCorte
 
   const reset = useCallback(() => {
-    setP1Aciertos(35)
+    setP1Aciertos(45)
     setP1Errores(15)
-    setP2Aciertos(30)
-    setP2Errores(10)
+    setP2Aciertos(14)
+    setP2Errores(3)
   }, [])
 
   return (
@@ -237,7 +237,7 @@ export function CalculadoraNota() {
         <span>/</span>
         <Link href="/herramientas" className="hover:text-foreground transition-colors">Herramientas</Link>
         <span>/</span>
-        <span className="text-foreground">Calculadora de nota</span>
+        <span className="text-foreground">Calculadora de nota C1</span>
       </nav>
 
       {/* Header */}
@@ -250,7 +250,7 @@ export function CalculadoraNota() {
           Calculadora de nota con penalización -1/3
         </h1>
         <p className="mt-4 text-muted-foreground text-lg max-w-2xl">
-          Calcula tu nota del examen de <strong className="text-foreground">Auxiliar Administrativo del Estado</strong> con
+          Calcula tu nota del examen de <strong className="text-foreground">Administrativo del Estado (C1)</strong> con
           la penalización -1/3 oficial. Introduce tus aciertos y errores de cada parte y descubre si apruebas.
         </p>
       </header>
@@ -262,9 +262,12 @@ export function CalculadoraNota() {
           <Card>
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center justify-between text-base">
-                <span>Primera parte — Teoría + Psicotécnicos</span>
+                <span>Primera parte — Cuestionario</span>
                 <Badge variant="outline" className="font-mono">{PARTE1_MAX_PREGUNTAS} preguntas</Badge>
               </CardTitle>
+              <p className="text-xs text-muted-foreground mt-1">
+                40 legislación (bloques I y V) + 30 ofimática (bloque VI)
+              </p>
             </CardHeader>
             <CardContent className="space-y-5">
               <NumberInput
@@ -295,9 +298,12 @@ export function CalculadoraNota() {
           <Card>
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center justify-between text-base">
-                <span>Segunda parte — Ofimática</span>
+                <span>Segunda parte — Supuesto Práctico</span>
                 <Badge variant="outline" className="font-mono">{PARTE2_MAX_PREGUNTAS} preguntas</Badge>
               </CardTitle>
+              <p className="text-xs text-muted-foreground mt-1">
+                Caso práctico (bloques II y V) — 20 puntuables + 5 reserva
+              </p>
             </CardHeader>
             <CardContent className="space-y-5">
               <NumberInput
@@ -365,9 +371,9 @@ export function CalculadoraNota() {
           {/* Part breakdowns */}
           <Card>
             <CardContent className="pt-6 space-y-8">
-              <ResultBar label="Primera parte" result={resultado1} corte={CORTE_PARTE1} corteParte="2024" />
+              <ResultBar label="Primera parte — Cuestionario" result={resultado1} corte={CORTE_PARTE1} corteParte="2024" />
               <div className="border-t" />
-              <ResultBar label="Segunda parte" result={resultado2} corte={CORTE_PARTE2} corteParte="2024" />
+              <ResultBar label="Segunda parte — Supuesto Práctico" result={resultado2} corte={CORTE_PARTE2} corteParte="2024" />
             </CardContent>
           </Card>
 
@@ -401,15 +407,15 @@ export function CalculadoraNota() {
           {/* CTA */}
           <Card className="border-primary/20 bg-primary/5">
             <CardContent className="pt-6 text-center">
-              <p className="font-semibold mb-2">Practica con penalización real</p>
+              <p className="font-semibold mb-2">Practica con preguntas reales del INAP</p>
               <p className="text-sm text-muted-foreground mb-4">
-                Los simulacros de OpoRuta aplican la penalización -1/3 exacta con cronómetro de 90 minutos.
-                Al terminar, te mostramos si habrías aprobado. Tu primer simulacro es gratis.
+                Los simulacros de OpoRuta incluyen exámenes oficiales de Administrativo del Estado (C1)
+                con cronómetro de 100 minutos y penalización -1/3. Tu primer simulacro es gratis.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link href="/examenes-oficiales">
                   <Button className="gap-2 w-full sm:w-auto">
-                    Simulacros INAP oficiales
+                    Simulacros INAP C1
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
@@ -427,7 +433,7 @@ export function CalculadoraNota() {
       {/* ─── SEO Content ─────────────────────────────────────────── */}
       <section className="mt-16 border-t pt-12 space-y-8">
         <h2 className="text-2xl font-bold tracking-tight">
-          Cómo calcular tu nota del examen de Auxiliar Administrativo
+          Cómo calcular tu nota del examen de Administrativo del Estado (C1)
         </h2>
 
         <div className="prose prose-neutral dark:prose-invert max-w-none
@@ -435,57 +441,59 @@ export function CalculadoraNota() {
           prose-strong:text-foreground prose-headings:tracking-tight">
 
           <p>
-            El examen del Cuerpo General Auxiliar de la Administración del Estado (C2)
+            El examen del Cuerpo General Administrativo de la Administración del Estado (C1)
             aplica un sistema de <strong>penalización -1/3</strong>: cada respuesta incorrecta
             descuenta un tercio del valor de un acierto. Las respuestas en blanco no afectan.
           </p>
 
-          <h3>Estructura del examen</h3>
+          <h3>Estructura del examen C1</h3>
           <p>
-            El ejercicio es único con <strong>100 preguntas puntuables</strong> (más 10 de reserva)
-            en <strong>90 minutos</strong>. Se divide en dos partes eliminatorias:
+            El ejercicio es único con <strong>90 preguntas puntuables</strong> (más 5 de reserva
+            en la segunda parte) en <strong>100 minutos</strong>. Se divide en dos partes eliminatorias:
           </p>
           <ul>
             <li>
-              <strong>Primera parte (máx. 60 preguntas):</strong> 30 de teoría (Bloque I) + 30 psicotécnicas.
-              Calificación: 0-50 puntos. Mínimo: 25 puntos.
+              <strong>Primera parte — Cuestionario (70 preguntas):</strong> 40 de legislación
+              (bloques I y V: Derecho administrativo, organización pública, función pública) + 30 de
+              ofimática (bloque VI: Windows, Word, Excel, Access). Calificación: 0-50 puntos. Mínimo: 25 puntos.
             </li>
             <li>
-              <strong>Segunda parte (máx. 50 preguntas):</strong> Ofimática — Windows 11, Word, Excel, Access, Outlook.
-              Calificación: 0-50 puntos. Mínimo: 25 puntos.
+              <strong>Segunda parte — Supuesto Práctico (20 preguntas):</strong> Eliges 1 de 2 casos
+              prácticos sobre los bloques II y V (gestión de personal, contratación, presupuestos).
+              Calificación: 0-50 puntos. Mínimo: 25 puntos. Las 5 preguntas de reserva no son puntuables.
             </li>
           </ul>
 
+          <h3>Diferencias con el examen de Auxiliar (C2)</h3>
+          <p>
+            El C1 tiene <strong>más preguntas de legislación</strong> (40 vs 30 en C2) y un
+            <strong> supuesto práctico</strong> que no existe en C2. El tiempo es mayor (100 vs 90 minutos)
+            para compensar la complejidad del caso práctico. La penalización es la misma: -1/3.
+            Si buscas la calculadora del C2,{' '}
+            <a href="/herramientas/calculadora-nota-auxiliar-administrativo">calculadora de nota del Auxiliar Administrativo (C2)</a>.
+          </p>
+
           <h3>Nota de corte de la última convocatoria</h3>
           <p>
-            En la última convocatoria del Auxiliar Administrativo, las notas de corte fueron
-            <strong> 30 puntos</strong> en la primera parte y <strong>26,33 puntos</strong> en la segunda.
-            Consulta nuestro artículo sobre la{' '}
-            <a href="/blog/nota-corte-auxiliar-administrativo-estado">nota de corte del Auxiliar Administrativo</a>{' '}
-            para más detalles.
+            En la convocatoria 2024 del Administrativo del Estado (C1), la <strong>nota general de corte
+            fue de 47,33 puntos</strong> (sobre 100). El último aprobado con plaza obtuvo 33 puntos
+            en la primera parte y 14 en la segunda. Recuerda que ambas partes son eliminatorias:
+            necesitas al menos <strong>25 puntos en cada una</strong> para aprobar.
           </p>
 
-          <h3>La regla de oro para la penalización</h3>
+          <h3>Estrategia para el supuesto práctico</h3>
           <p>
-            <strong>Si puedes descartar al menos 1 de las 4 opciones, arriesga. Si no, déjala en blanco.</strong>{' '}
-            La penalización -1/3 está matemáticamente diseñada para que responder al azar entre 4 opciones
-            tenga esperanza cero. Pero si puedes eliminar una opción, las probabilidades juegan a tu favor.
+            Lee ambos supuestos antes de elegir. El valor por pregunta en la segunda parte es
+            <strong> 2,50 puntos</strong> (50/20) frente a 0,71 en la primera (50/70). Cada error
+            en el práctico penaliza mucho más. Si no estás seguro, déjala en blanco.
           </p>
 
-          <h3>Prepárate con las preguntas que más pregunta el tribunal</h3>
+          <h3>Prepárate con preguntas reales del INAP</h3>
           <p>
-            No todos los artículos pesan igual en el examen. Hemos analizado las 4 últimas convocatorias del INAP
-            y publicado los resultados en nuestro{' '}
-            <a href="/blog/analisis-frecuencia-articulos-inap-auxiliar-administrativo">análisis de frecuencia de artículos INAP</a>.
-            El artículo 21 de la LPAC ha aparecido en las 4 últimas convocatorias.
-          </p>
-
-          <h3>¿Preparas el Administrativo del Estado (C1)?</h3>
-          <p>
-            Si estás preparando el C1 en lugar del C2, la estructura del examen es diferente:
-            70 preguntas de cuestionario + 20 de supuesto práctico. Usa nuestra{' '}
-            <a href="/herramientas/calculadora-nota-administrativo-estado">calculadora de nota del Administrativo del Estado (C1)</a>{' '}
-            con los valores correctos para tu oposición.
+            Hemos analizado las convocatorias del INAP para el Cuerpo General Administrativo y publicado
+            simulacros con preguntas oficiales. Practica con{' '}
+            <a href="/examenes-oficiales">los exámenes reales del INAP</a>{' '}
+            y comprueba si habrías aprobado.
           </p>
         </div>
       </section>

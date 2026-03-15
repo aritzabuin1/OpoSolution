@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: 'Calcula tu nota con la penalización -1/3 oficial. ¿Apruebas o suspendes? Descúbrelo gratis.',
     type: 'website',
     url: PAGE_URL,
-    images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Calculadora de Nota -1/3')}`, width: 1200, height: 630 }],
+    images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Calculadora de Nota -1/3')}`, width: 1200, height: 630, alt: 'Calculadora de nota del examen de Auxiliar Administrativo con penalización -1/3 — OpoRuta' }],
   },
   alternates: { canonical: PAGE_URL },
   twitter: {

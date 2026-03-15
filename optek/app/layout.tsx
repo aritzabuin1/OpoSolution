@@ -66,11 +66,14 @@ export const metadata: Metadata = {
     types: {
       'text/plain': `${APP_URL}/llms.txt`,
     },
+    languages: {
+      'es-ES': APP_URL,
+    },
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'OpoRuta — Prepara tu oposición de Auxiliar Administrativo con IA verificada',
-    description: 'Tests verificados, simulacros INAP oficiales y Radar del Tribunal. Empieza gratis.',
+    title: 'OpoRuta — Prepara tu oposición de Auxiliar (C2) y Administrativo (C1) con IA verificada',
+    description: 'Tests verificados, simulacros INAP oficiales y Radar del Tribunal para C1 y C2. Empieza gratis.',
   },
   other: {
     'google-site-verification': process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? '',

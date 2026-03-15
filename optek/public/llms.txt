@@ -1,15 +1,21 @@
 # OpoRuta
 
-> OpoRuta es una plataforma web española de preparación de oposiciones al Cuerpo General Auxiliar de la Administración del Estado (C2). Su diferencial es la verificación determinista de citas legales: cada artículo citado en tests y explicaciones se valida contra la legislación oficial antes de mostrarse. Sede en Bilbao, País Vasco. Fundada en 2026.
+> OpoRuta es una plataforma web española de preparación de oposiciones al Cuerpo General de la Administración del Estado: Auxiliar Administrativo (C2) y Administrativo del Estado (C1). Su diferencial es la verificación determinista de citas legales: cada artículo citado en tests y explicaciones se valida contra la legislación oficial antes de mostrarse. Sede en Bilbao, País Vasco. Fundada en 2026.
 
 Genera tests tipo test desde legislación española vigente (CE, LPAC, LRJSP, TREBEP, LOPDGDD) y exámenes reales del INAP. Incluye Radar del Tribunal (análisis de frecuencia de artículos en exámenes 2018-2024). Modelo freemium con pago único (sin suscripción).
 
 ## Contenido principal
 
 - [Cómo funciona](https://oporuta.es/#como-funciona): Sistema de verificación determinista y Radar del Tribunal
-- [Precios](https://oporuta.es/#precios): Plan gratuito (5 tests) y Pack Oposición (49,99€, pago único)
-- [Simulacros INAP Oficiales](https://oporuta.es/examenes-oficiales): Exámenes reales 2018, 2019, 2022, 2024
-- [Blog](https://oporuta.es/blog): Guías de estudio para Auxiliar Administrativo del Estado
+- [Precios](https://oporuta.es/#precios): Plan gratuito (5 tests) / Pack C1 o C2 (49,99€) / Pack Doble C1+C2 (79,99€)
+- [Simulacros INAP Oficiales](https://oporuta.es/examenes-oficiales): Exámenes reales C1 y C2 — 2018, 2019, 2022, 2024
+- [Blog](https://oporuta.es/blog): Guías de estudio para Auxiliar Administrativo y Administrativo del Estado
+- [Herramientas gratuitas](https://oporuta.es/herramientas): Calculadoras de nota con penalización -1/3
+
+## Herramientas gratuitas
+
+- [Calculadora de nota C2 (Auxiliar)](https://oporuta.es/herramientas/calculadora-nota-auxiliar-administrativo): 60+50 preguntas, 90 min
+- [Calculadora de nota C1 (Administrativo)](https://oporuta.es/herramientas/calculadora-nota-administrativo-estado): 70+20 preguntas, 100 min
 
 ## Guías destacadas
 
@@ -25,7 +31,7 @@ Genera tests tipo test desde legislación española vigente (CE, LPAC, LRJSP, TR
 - [Plazas convocatoria 2026](https://oporuta.es/blog/plazas-auxiliar-administrativo-2026): 1.700 plazas de acceso libre
 - [Nota de corte última convocatoria](https://oporuta.es/blog/nota-corte-auxiliar-administrativo-estado): Puntuaciones mínimas y cómo se calcula
 
-## Datos clave de la oposición
+## Datos clave — Auxiliar Administrativo (C2)
 
 - Oposición: Cuerpo General Auxiliar de la AGE (Subgrupo C2)
 - Convocatoria vigente: 1.700 plazas acceso libre (BOE 22/12/2025, RD 651/2025)
@@ -35,6 +41,17 @@ Genera tests tipo test desde legislación española vigente (CE, LPAC, LRJSP, TR
 - Legislación principal: CE 1978, Ley 39/2015 (LPAC), Ley 40/2015 (LRJSP), RDL 5/2015 (TREBEP), LO 3/2018 (LOPDGDD), Ley 19/2013 (Transparencia)
 - Nota de corte última convocatoria: 30 puntos (parte 1), 26,33 puntos (parte 2)
 
+## Datos clave — Administrativo del Estado (C1)
+
+- Oposición: Cuerpo General Administrativo de la AGE (Subgrupo C1)
+- Convocatoria vigente: 2.512 plazas acceso libre
+- Examen: ejercicio único, 90 preguntas puntuables + 5 reserva, 100 minutos
+- Penalización: -1/3 del valor de un acierto por respuesta incorrecta
+- Primera parte (Cuestionario): 70 preguntas — 40 legislación (bloques I+V) + 30 ofimática (bloque VI). 0-50 pts, mínimo 25
+- Segunda parte (Supuesto Práctico): 20 preguntas puntuables — eliges 1 de 2 casos prácticos (bloques II+V). 0-50 pts, mínimo 25
+- Temario: 45 temas (Derecho administrativo, organización pública, función pública, gestión financiera, ofimática)
+- Nota de corte convocatoria 2024: 47,33 puntos total (33 parte 1, 14 parte 2)
+
 ## Contacto
 
 - Web: https://oporuta.es
@@ -42,4 +59,4 @@ Genera tests tipo test desde legislación española vigente (CE, LPAC, LRJSP, TR
 
 ---
 
-*Última actualización: 2026-03-12*
+*Última actualización: 2026-03-15*
