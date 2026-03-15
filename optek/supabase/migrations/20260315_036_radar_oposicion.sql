@@ -21,7 +21,7 @@ ALTER TABLE frecuencias_articulos
 
 -- Backfill: assign existing rows to C2 (all current data is from C2 exams)
 UPDATE frecuencias_articulos
-  SET oposicion_id = (SELECT id FROM oposiciones WHERE codigo = 'C2_AUX' LIMIT 1)
+  SET oposicion_id = (SELECT id FROM oposiciones WHERE slug = 'aux-admin-estado' LIMIT 1)
   WHERE oposicion_id IS NULL;
 
 -- Make NOT NULL after backfill
@@ -68,7 +68,7 @@ ALTER TABLE frecuencias_temas
 
 -- Backfill: assign existing rows to C2
 UPDATE frecuencias_temas
-  SET oposicion_id = (SELECT id FROM oposiciones WHERE codigo = 'C2_AUX' LIMIT 1)
+  SET oposicion_id = (SELECT id FROM oposiciones WHERE slug = 'aux-admin-estado' LIMIT 1)
   WHERE oposicion_id IS NULL;
 
 -- Make NOT NULL
