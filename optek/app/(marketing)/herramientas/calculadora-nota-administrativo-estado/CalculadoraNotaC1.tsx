@@ -220,7 +220,9 @@ export function CalculadoraNotaC1() {
 
   const notaTotal = resultado1.puntuacion + resultado2.puntuacion
   const aprueba = resultado1.aprueba && resultado2.aprueba
-  const superaCorte = resultado1.superaCorte && resultado2.superaCorte
+  // Nota de corte general (suma de ambas partes del último aprobado con plaza)
+  const CORTE_TOTAL = 47.33
+  const superaCorte = notaTotal >= CORTE_TOTAL && resultado1.aprueba && resultado2.aprueba
 
   const reset = useCallback(() => {
     setP1Aciertos(45)
@@ -347,16 +349,16 @@ export function CalculadoraNotaC1() {
               </p>
               <p className="text-sm text-muted-foreground mt-1">de 100 puntos</p>
 
-              <div className="mt-4 flex items-center justify-center gap-2">
+              <div className="mt-4 flex flex-col items-center gap-2">
                 {superaCorte ? (
                   <Badge className="bg-green-600 text-white gap-1 text-sm py-1 px-3">
                     <Trophy className="h-4 w-4" />
-                    Habrías aprobado en la última convocatoria
+                    Habrías obtenido plaza en la convocatoria 2024 (corte: {CORTE_TOTAL})
                   </Badge>
                 ) : aprueba ? (
                   <Badge className="bg-amber-600 text-white gap-1 text-sm py-1 px-3">
                     <AlertTriangle className="h-4 w-4" />
-                    Apruebas, pero no alcanzas la nota de corte
+                    Apruebas (≥25 en ambas), pero no alcanzas el corte de 2024 ({CORTE_TOTAL} pts)
                   </Badge>
                 ) : (
                   <Badge className="bg-red-600 text-white gap-1 text-sm py-1 px-3">
@@ -376,6 +378,17 @@ export function CalculadoraNotaC1() {
               <ResultBar label="Segunda parte — Supuesto Práctico" result={resultado2} corte={CORTE_PARTE2} corteParte="2024" />
             </CardContent>
           </Card>
+
+          {/* Nota de corte explanation */}
+          <div className="flex items-start gap-2 text-xs text-muted-foreground bg-muted/50 rounded-md px-3 py-2.5">
+            <Info className="h-4 w-4 shrink-0 mt-0.5" />
+            <p>
+              <strong className="text-foreground">Nota de corte 2024:</strong> El último opositor con plaza obtuvo
+              33 puntos en la primera parte y 14 en la segunda (total: 47,33). La nota de corte por parte
+              refleja el resultado real del último admitido, no un mínimo teórico. Se ajusta según el número
+              de aprobados y plazas ofertadas en cada convocatoria.
+            </p>
+          </div>
 
           {/* Formula */}
           <Card>

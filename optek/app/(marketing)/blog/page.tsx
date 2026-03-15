@@ -8,31 +8,34 @@ import { ArrowRight, BookOpen } from 'lucide-react'
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
 export const metadata: Metadata = {
-  title: 'Blog OpoRuta — Guías para Opositores al Auxiliar Administrativo del Estado',
+  title: 'Blog OpoRuta — Guías para Oposiciones AGE (C1 y C2)',
   description:
-    'Guías prácticas para preparar el examen del Auxiliar Administrativo del Estado: LPAC, LRJSP, Constitución, TREBEP, penalización, simulacros INAP y psicotécnicos. Con verificación de citas legales.',
+    'Guías prácticas para preparar las oposiciones de Auxiliar Administrativo (C2) y Administrativo del Estado (C1): LPAC, LRJSP, Constitución, TREBEP, penalización -1/3, simulacros INAP, psicotécnicos y supuesto práctico. Con verificación de citas legales.',
   keywords: [
     'blog oposiciones auxiliar administrativo',
     'guías auxiliar administrativo estado',
+    'guías administrativo estado C1',
     'preparar oposición auxiliar administrativo',
+    'preparar oposición administrativo estado',
     'artículos LPAC examen INAP',
     'temario auxiliar administrativo 2026',
+    'temario administrativo estado C1 2026',
   ],
   openGraph: {
-    title: 'Blog OpoRuta — Guías para Auxiliar Administrativo del Estado',
+    title: 'Blog OpoRuta — Guías para Oposiciones AGE (C1 y C2)',
     description:
-      'Artículos y guías para preparar el Cuerpo General Auxiliar de la Administración del Estado. LPAC, LRJSP, Constitución, TREBEP, psicotécnicos y más.',
+      'Artículos y guías para preparar Auxiliar Administrativo (C2) y Administrativo del Estado (C1). LPAC, LRJSP, Constitución, TREBEP, psicotécnicos y más.',
     type: 'website',
     url: `${APP_URL}/blog`,
-    images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Guías para Opositores')}`, width: 1200, height: 630 }],
+    images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Guías para Opositores')}`, width: 1200, height: 630, alt: 'Blog OpoRuta — Guías para oposiciones AGE C1 y C2' }],
   },
   alternates: {
     canonical: `${APP_URL}/blog`,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Blog OpoRuta — Guías para Auxiliar Administrativo del Estado',
-    description: 'Artículos verificados para preparar el Auxiliar Administrativo del Estado.',
+    title: 'Blog OpoRuta — Guías para Oposiciones AGE (C1 y C2)',
+    description: 'Artículos verificados para preparar Auxiliar (C2) y Administrativo del Estado (C1).',
   },
 }
 
@@ -46,8 +49,8 @@ export default function BlogIndexPage() {
     {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      name: 'Blog OpoRuta — Guías para Opositores',
-      description: 'Guías prácticas para preparar el examen del Auxiliar Administrativo del Estado.',
+      name: 'Blog OpoRuta — Guías para Oposiciones AGE',
+      description: 'Guías prácticas para preparar las oposiciones de Auxiliar Administrativo (C2) y Administrativo del Estado (C1).',
       url: `${APP_URL}/blog`,
       publisher: { '@type': 'Organization', name: 'OpoRuta', url: APP_URL },
       mainEntity: {
