@@ -88,11 +88,40 @@ export const viewport: Viewport = {
 
 // META Pixel ID (§1.21.1) — solo activo si env var configurada
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={inter.variable}>
+      {/* Google Tag Manager — solo si el usuario aceptó cookies (RGPD Art. 7) */}
+      {GTM_ID && (
+        <Script id="gtm-script" strategy="afterInteractive">
+          {`
+            (function(){
+              if(typeof window==='undefined')return;
+              var consent=localStorage.getItem('oporuta_cookie_consent');
+              if(consent!=='accepted')return;
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${GTM_ID}');
+            })();
+          `}
+        </Script>
+      )}
       <body className="min-h-screen bg-background font-sans antialiased" suppressHydrationWarning>
+        {/* GTM noscript fallback */}
+        {GTM_ID && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+        )}
         {/* §2.17.4-5 — Organization + WebSite JSON-LD (presentes en todas las páginas) */}
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />
