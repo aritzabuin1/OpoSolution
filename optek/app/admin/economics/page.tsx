@@ -282,7 +282,7 @@ export default async function EconomicsPage() {
                 label: 'Acquisition',
                 value: aarrr.acquisition,
                 display: String(aarrr.acquisition),
-                pct: 100,
+                pct: aarrr.acquisition > 0 ? 100 : 0,
                 color: 'bg-primary',
                 desc: 'registros totales',
               },
