@@ -52,9 +52,6 @@ export function Navbar() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1.5">
           <span className="text-lg font-bold text-primary">OpoRuta</span>
-          <span className="rounded-full bg-amber-100 border border-amber-300 px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider text-amber-700">
-            Beta
-          </span>
         </div>
         <div className="flex items-center gap-1">
           <NotificationBell />

@@ -3,8 +3,7 @@
 /**
  * components/dashboard/FounderBetaBanner.tsx
  *
- * Banner para Founders durante la fase BETA.
- * Pide feedback de forma llamativa pero no invasiva.
+ * Banner para Founders: pide feedback de forma llamativa pero no invasiva.
  * Se puede cerrar y no vuelve a aparecer en la sesión.
  *
  * El botón de feedback abre el FeedbackButton modal (via custom event)
@@ -50,16 +49,15 @@ export function FounderBetaBanner() {
         <div className="space-y-1.5">
           <div className="flex items-center gap-2 flex-wrap">
             <p className="font-semibold text-sm text-amber-900 dark:text-amber-200">
-              Estás en la Beta de OpoRuta
+              Eres Fundador de OpoRuta
             </p>
             <span className="rounded-full bg-amber-200 dark:bg-amber-700 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-amber-800 dark:text-amber-200">
               Fundador
             </span>
           </div>
           <p className="text-xs text-amber-800/80 dark:text-amber-300/80 leading-relaxed">
-            Como miembro fundador, tu opinión vale oro. Si encuentras un bug, algo que no funciona
-            bien o tienes una idea para mejorar la plataforma, cuéntanoslo — estamos construyendo
-            OpoRuta contigo.
+            Tu opinión vale oro. Si encuentras un bug, algo que no funciona bien o tienes una idea
+            para mejorar la plataforma, cuéntanoslo — estamos construyendo OpoRuta contigo.
           </p>
           <button
             onClick={handleOpenFeedback}
