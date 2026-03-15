@@ -3,6 +3,7 @@
  *
  * Funciones de Unit Economics para el Admin Dashboard.
  * Todas usan createServiceClient() — bypass RLS — solo llamar desde Server Components admin.
+ * Cached with unstable_cache (120s revalidation).
  *
  * KPIs implementados:
  *   - getFuelTank(): ingresos vs costes IA → margen bruto real
@@ -12,8 +13,9 @@
  *   - getAlerts(): alertas automáticas si los KPIs se degradan
  */
 
+import { unstable_cache } from 'next/cache'
 import { createServiceClient } from '@/lib/supabase/server'
-import { METRICS_START_DATE, adminIdFilter } from '@/lib/admin/metrics-filter'
+import { METRICS_START_DATE, adminIdFilter, getAdminUserIds } from '@/lib/admin/metrics-filter'
 
 // ─── Tipos exportados ──────────────────────────────────────────────────────────
 
@@ -60,9 +62,10 @@ export interface AdminAlert {
  * Nota: usa select() + reduce en cliente. Para datasets grandes (>10k rows),
  * migrar a un RPC con SUM() server-side.
  */
-export async function getFuelTank(adminIds: string[] = []): Promise<FuelTankMetrics> {
+async function _getFuelTank(): Promise<FuelTankMetrics> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const supabase = await createServiceClient() as any
+  const adminIds = await getAdminUserIds()
   const excludeAdmins = adminIdFilter(adminIds)
 
   let ingresosQuery = supabase.from('compras').select('amount_paid').gte('created_at', METRICS_START_DATE)
@@ -91,15 +94,18 @@ export async function getFuelTank(adminIds: string[] = []): Promise<FuelTankMetr
   return { ingresos, costes, margen, margenPct }
 }
 
+export const getFuelTank = unstable_cache(_getFuelTank, ['admin-fuel-tank'], { revalidate: 120 })
+
 // ─── getCostPerUser ───────────────────────────────────────────────────────────
 
 /**
  * Coste medio por test y por usuario activo en los últimos 30 días.
  * Usa api_usage_log filtrado por endpoint de generate-test.
  */
-export async function getCostPerUser(adminIds: string[] = []): Promise<CostPerUserMetrics> {
+async function _getCostPerUser(): Promise<CostPerUserMetrics> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const supabase = await createServiceClient() as any
+  const adminIds = await getAdminUserIds()
   const excludeAdmins = adminIdFilter(adminIds)
 
   const thirtyDaysAgo = new Date(Math.max(
@@ -151,6 +157,8 @@ export async function getCostPerUser(adminIds: string[] = []): Promise<CostPerUs
   return { costeMedioTest, costeMedioUsuario, usuariosActivos30d, testsUltimos30d }
 }
 
+export const getCostPerUser = unstable_cache(_getCostPerUser, ['admin-cost-per-user'], { revalidate: 120 })
+
 // ─── getAARRR ─────────────────────────────────────────────────────────────────
 
 /**
@@ -161,9 +169,10 @@ export async function getCostPerUser(adminIds: string[] = []): Promise<CostPerUs
  * - Revenue: % con al menos 1 compra
  * - Referral: 0 hasta implementar tracking
  */
-export async function getAARRR(adminIds: string[] = []): Promise<AAARRRMetrics> {
+async function _getAARRR(): Promise<AAARRRMetrics> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const supabase = await createServiceClient() as any
+  const adminIds = await getAdminUserIds()
   const excludeAdmins = adminIdFilter(adminIds)
 
   let profilesQ = supabase.from('profiles').select('id').eq('is_admin', false).gte('created_at', METRICS_START_DATE)
@@ -211,6 +220,8 @@ export async function getAARRR(adminIds: string[] = []): Promise<AAARRRMetrics> 
   }
 }
 
+export const getAARRR = unstable_cache(_getAARRR, ['admin-aarrr'], { revalidate: 120 })
+
 // ─── getMRRHistory ────────────────────────────────────────────────────────────
 
 /**
@@ -219,9 +230,10 @@ export async function getAARRR(adminIds: string[] = []): Promise<AAARRRMetrics> 
  * al revenue mensual acumulado (no es MRR estrictamente hablando, pero
  * es el KPI más útil para monitorizar el crecimiento mes a mes).
  */
-export async function getMRRHistory(meses = 6, adminIds: string[] = []): Promise<MRRDataPoint[]> {
+async function _getMRRHistory(meses = 6): Promise<MRRDataPoint[]> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const supabase = await createServiceClient() as any
+  const adminIds = await getAdminUserIds()
   const excludeAdmins = adminIdFilter(adminIds)
 
   const cutoff = new Date(Math.max(
@@ -266,6 +278,8 @@ export async function getMRRHistory(meses = 6, adminIds: string[] = []): Promise
 
   return Array.from(byMonth.values()).sort((a, b) => a.mes.localeCompare(b.mes))
 }
+
+export const getMRRHistory = unstable_cache(_getMRRHistory, ['admin-mrr-history'], { revalidate: 120 })
 
 // ─── getAlerts ────────────────────────────────────────────────────────────────
 

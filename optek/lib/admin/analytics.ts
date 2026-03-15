@@ -14,10 +14,12 @@
  *  10. Feedback recibido (sugerencias)
  *
  * Todas usan createServiceClient() — bypass RLS — solo llamar desde Server Components admin.
+ * Cached with unstable_cache (120s revalidation).
  */
 
+import { unstable_cache } from 'next/cache'
 import { createServiceClient } from '@/lib/supabase/server'
-import { METRICS_START_DATE, adminIdFilter } from '@/lib/admin/metrics-filter'
+import { METRICS_START_DATE, adminIdFilter, getAdminUserIds } from '@/lib/admin/metrics-filter'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -101,8 +103,9 @@ export interface FeedbackSummary {
 
 // ─── 1. Conversion Free -> Paid ──────────────────────────────────────────────
 
-export async function getConversionMetrics(adminIds: string[] = []): Promise<ConversionMetrics> {
+async function _getConversionMetrics(): Promise<ConversionMetrics> {
   const supabase = await createServiceClient() as any
+  const adminIds = await getAdminUserIds()
   const excludeAdmins = adminIdFilter(adminIds)
 
   let profilesQ = supabase.from('profiles').select('id, created_at', { count: 'exact' }).eq('is_admin', false).gte('created_at', METRICS_START_DATE)
@@ -148,10 +151,13 @@ export async function getConversionMetrics(adminIds: string[] = []): Promise<Con
   return { totalUsers, freeUsers, paidUsers, conversionPct, avgDaysToConvert }
 }
 
+export const getConversionMetrics = unstable_cache(_getConversionMetrics, ['admin-conversion'], { revalidate: 120 })
+
 // ─── 2. DAU (Daily Active Users) ultimos 30 dias ────────────────────────────
 
-export async function getDAU30d(adminIds: string[] = []): Promise<DAUPoint[]> {
+async function _getDAU30d(): Promise<DAUPoint[]> {
   const supabase = await createServiceClient() as any
+  const adminIds = await getAdminUserIds()
   const excludeAdmins = adminIdFilter(adminIds)
   const thirtyDaysAgo = new Date(Math.max(Date.now() - 30 * 24 * 60 * 60 * 1000, new Date(METRICS_START_DATE).getTime())).toISOString()
 
@@ -179,10 +185,13 @@ export async function getDAU30d(adminIds: string[] = []): Promise<DAUPoint[]> {
   return result
 }
 
+export const getDAU30d = unstable_cache(_getDAU30d, ['admin-dau-30d'], { revalidate: 120 })
+
 // ─── 3. Engagement por feature ──────────────────────────────────────────────
 
-export async function getFeatureEngagement(adminIds: string[] = []): Promise<FeatureEngagement[]> {
+async function _getFeatureEngagement(): Promise<FeatureEngagement[]> {
   const supabase = await createServiceClient() as any
+  const adminIds = await getAdminUserIds()
   const excludeAdmins = adminIdFilter(adminIds)
   const thirtyDaysAgo = new Date(Math.max(Date.now() - 30 * 24 * 60 * 60 * 1000, new Date(METRICS_START_DATE).getTime())).toISOString()
 
@@ -218,10 +227,13 @@ export async function getFeatureEngagement(adminIds: string[] = []): Promise<Fea
     .sort((a, b) => b.count - a.count)
 }
 
+export const getFeatureEngagement = unstable_cache(_getFeatureEngagement, ['admin-feature-engagement'], { revalidate: 120 })
+
 // ─── 4. Tasa de abandono (churn 7d) ─────────────────────────────────────────
 
-export async function getChurnMetrics(adminIds: string[] = []): Promise<ChurnMetrics> {
+async function _getChurnMetrics(): Promise<ChurnMetrics> {
   const supabase = await createServiceClient() as any
+  const adminIds = await getAdminUserIds()
   const excludeAdmins = adminIdFilter(adminIds)
   const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
 
@@ -246,10 +258,13 @@ export async function getChurnMetrics(adminIds: string[] = []): Promise<ChurnMet
   return { totalActive, churned7d, churnPct, activeNow }
 }
 
+export const getChurnMetrics = unstable_cache(_getChurnMetrics, ['admin-churn'], { revalidate: 120 })
+
 // ─── 5. Funnel de onboarding ────────────────────────────────────────────────
 
-export async function getOnboardingFunnel(adminIds: string[] = []): Promise<OnboardingFunnel> {
+async function _getOnboardingFunnel(): Promise<OnboardingFunnel> {
   const supabase = await createServiceClient() as any
+  const adminIds = await getAdminUserIds()
   const excludeAdmins = adminIdFilter(adminIds)
 
   let profilesQ = supabase.from('profiles').select('id').eq('is_admin', false).gte('created_at', METRICS_START_DATE)
@@ -284,10 +299,13 @@ export async function getOnboardingFunnel(adminIds: string[] = []): Promise<Onbo
   }
 }
 
+export const getOnboardingFunnel = unstable_cache(_getOnboardingFunnel, ['admin-onboarding-funnel'], { revalidate: 120 })
+
 // ─── 6. Top temas generados ─────────────────────────────────────────────────
 
-export async function getTopTemas(limit = 10, adminIds: string[] = []): Promise<TemaPopularity[]> {
+async function _getTopTemas(limit = 10): Promise<TemaPopularity[]> {
   const supabase = await createServiceClient() as any
+  const adminIds = await getAdminUserIds()
   const excludeAdmins = adminIdFilter(adminIds)
 
   let testsQ = supabase.from('tests_generados').select('tema_id').not('tema_id', 'is', null).gte('created_at', METRICS_START_DATE)
@@ -317,10 +335,13 @@ export async function getTopTemas(limit = 10, adminIds: string[] = []): Promise<
     .slice(0, limit)
 }
 
+export const getTopTemas = unstable_cache(_getTopTemas, ['admin-top-temas'], { revalidate: 120 })
+
 // ─── 7. Puntuacion media por tema ───────────────────────────────────────────
 
-export async function getTemaScores(limit = 10, adminIds: string[] = []): Promise<TemaScore[]> {
+async function _getTemaScores(limit = 10): Promise<TemaScore[]> {
   const supabase = await createServiceClient() as any
+  const adminIds = await getAdminUserIds()
   const excludeAdmins = adminIdFilter(adminIds)
 
   let testsQ = supabase.from('tests_generados').select('tema_id, puntuacion')
@@ -353,9 +374,11 @@ export async function getTemaScores(limit = 10, adminIds: string[] = []): Promis
     .slice(0, limit)
 }
 
+export const getTemaScores = unstable_cache(_getTemaScores, ['admin-tema-scores'], { revalidate: 120 })
+
 // ─── 8. Uso de creditos de correccion ───────────────────────────────────────
 
-export async function getCorrectionsUsage(): Promise<CorrectionsUsage> {
+async function _getCorrectionsUsage(): Promise<CorrectionsUsage> {
   const supabase = await createServiceClient() as any
 
   const { data } = await supabase
@@ -379,10 +402,13 @@ export async function getCorrectionsUsage(): Promise<CorrectionsUsage> {
   }
 }
 
+export const getCorrectionsUsage = unstable_cache(_getCorrectionsUsage, ['admin-corrections-usage'], { revalidate: 120 })
+
 // ─── 9. Tests completados vs abandonados ────────────────────────────────────
 
-export async function getCompletionRate(adminIds: string[] = []): Promise<CompletionRate> {
+async function _getCompletionRate(): Promise<CompletionRate> {
   const supabase = await createServiceClient() as any
+  const adminIds = await getAdminUserIds()
   const excludeAdmins = adminIdFilter(adminIds)
 
   let completedQ = supabase.from('tests_generados').select('id', { count: 'exact', head: true }).eq('completado', true).gte('created_at', METRICS_START_DATE)
@@ -405,6 +431,8 @@ export async function getCompletionRate(adminIds: string[] = []): Promise<Comple
     completionPct: total > 0 ? Math.round((completed / total) * 1000) / 10 : 0,
   }
 }
+
+export const getCompletionRate = unstable_cache(_getCompletionRate, ['admin-completion-rate'], { revalidate: 120 })
 
 // ─── 10. Feedback recibido (sugerencias) ────────────────────────────────────
 
@@ -447,9 +475,10 @@ const ANALYSIS_ENDPOINTS: Record<string, string> = {
   'informe-simulacro-stream': 'Informe simulacro',
 }
 
-export async function getAnalysisUsageByType(adminIds: string[] = []): Promise<AnalysisUsageByType[]> {
+async function _getAnalysisUsageByType(): Promise<AnalysisUsageByType[]> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const supabase = await createServiceClient() as any
+  const adminIds = await getAdminUserIds()
   const excludeAdmins = adminIdFilter(adminIds)
 
   const endpoints = Object.keys(ANALYSIS_ENDPOINTS)
@@ -476,3 +505,5 @@ export async function getAnalysisUsageByType(adminIds: string[] = []): Promise<A
     }))
     .sort((a, b) => b.count - a.count)
 }
+
+export const getAnalysisUsageByType = unstable_cache(_getAnalysisUsageByType, ['admin-analysis-usage'], { revalidate: 120 })

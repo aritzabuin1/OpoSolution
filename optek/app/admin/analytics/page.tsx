@@ -18,7 +18,6 @@ import {
   getFeedbackSummary,
   getAnalysisUsageByType,
 } from '@/lib/admin/analytics'
-import { getAdminUserIds } from '@/lib/admin/metrics-filter'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
@@ -75,20 +74,19 @@ export default async function AnalyticsPage() {
   let conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage
 
   try {
-    const adminIds = await getAdminUserIds()
     ;[conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage] =
       await Promise.all([
-        getConversionMetrics(adminIds),
-        getDAU30d(adminIds),
-        getFeatureEngagement(adminIds),
-        getChurnMetrics(adminIds),
-        getOnboardingFunnel(adminIds),
-        getTopTemas(10, adminIds),
-        getTemaScores(10, adminIds),
+        getConversionMetrics(),
+        getDAU30d(),
+        getFeatureEngagement(),
+        getChurnMetrics(),
+        getOnboardingFunnel(),
+        getTopTemas(10),
+        getTemaScores(10),
         getCorrectionsUsage(),
-        getCompletionRate(adminIds),
+        getCompletionRate(),
         getFeedbackSummary(),
-        getAnalysisUsageByType(adminIds),
+        getAnalysisUsageByType(),
       ])
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err)

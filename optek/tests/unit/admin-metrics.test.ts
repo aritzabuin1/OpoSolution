@@ -7,6 +7,22 @@
 
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
+// ─── Mock unstable_cache — pass through ─────────────────────────────────────
+
+vi.mock('next/cache', () => ({
+  unstable_cache: (fn: (...args: unknown[]) => unknown) => fn,
+}))
+
+// ─── Mock getAdminUserIds ───────────────────────────────────────────────────
+
+vi.mock('@/lib/admin/metrics-filter', async (importOriginal) => {
+  const original = await importOriginal() as Record<string, unknown>
+  return {
+    ...original,
+    getAdminUserIds: vi.fn().mockResolvedValue([]),
+  }
+})
+
 // ─── Mock de createServiceClient ──────────────────────────────────────────────
 
 const mockFrom = vi.fn()
