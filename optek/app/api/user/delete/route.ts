@@ -214,6 +214,14 @@ export async function DELETE() {
 
     log.info({ userId: user.id }, 'Cuenta eliminada correctamente')
 
+    // Persistent log — survives deletion for business analytics
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    void (serviceClient as any).from('registration_log').insert({
+      user_email: user.email ?? 'unknown',
+      user_id: user.id,
+      event: 'account_deleted',
+    })
+
     return NextResponse.json({ message: 'Cuenta eliminada correctamente' }, { status: 200 })
   } catch (err) {
     log.error({ err, userId: user.id }, 'Error inesperado al eliminar cuenta')

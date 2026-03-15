@@ -107,5 +107,19 @@ async function handleNewUser(
     const nombre = user.user_metadata?.full_name as string | undefined
     void sendWelcomeEmail({ to: user.email, nombre })
     void sendNewUserNotification({ email: user.email, nombre })
+
+    // Persistent registration log — survives account deletion (GDPR: no PII, just email + timestamp)
+    try {
+      const { createServiceClient } = await import('@/lib/supabase/server')
+      const svc = await createServiceClient()
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await (svc as any).from('registration_log').insert({
+        user_email: user.email,
+        user_id: user.id,
+        event: 'register_confirmed',
+      })
+    } catch {
+      // Non-blocking
+    }
   }
 }
