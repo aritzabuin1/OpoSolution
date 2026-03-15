@@ -227,7 +227,7 @@ export async function POST(request: NextRequest) {
       endpoint: 'generate-roadmap',
       userId: user.id,
       oposicionId,
-      // Mini model: roadmap follows a structured template with user data, no deep reasoning needed
+      useHeavyModel: true, // Paid feature — use Sonnet/GPT-5 for quality
     })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Error desconocido'
