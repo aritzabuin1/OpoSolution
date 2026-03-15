@@ -133,27 +133,31 @@ export async function POST(
     log.error({ err }, 'Error en rachas/logros — verificar RPCs en Supabase remoto')
   }
 
-  // §2.2.1 — Auto-generar flashcards en background (fire-and-forget)
-  // Solo para tests tipo 'tema' y 'repaso_errores' (no psicotécnicos, no simulacros)
-  // Max 3 flashcards por test para controlar costes
+  // §2.2.1 — Auto-generar flashcards + track weakness ANTES del response
+  // Vercel serverless mata el proceso al enviar response — void promises nunca completan
+  // Usamos Promise.allSettled con timeout para no bloquear más de 15s
   if (testData && (testData.tipo === 'tema' || testData.tipo === 'repaso_errores')) {
-    void generateFlashcardsBackground({
-      preguntas: testData.preguntas as Pregunta[],
-      respuestas,
-      temaId: testData.tema_id as string | null,
-      userId: user.id,
-      supabase: sb,
-      log,
-    })
+    const BACKGROUND_TIMEOUT_MS = 15_000
+    const withTimeout = <T>(p: Promise<T>): Promise<T | 'timeout'> =>
+      Promise.race([p, new Promise<'timeout'>(r => setTimeout(() => r('timeout'), BACKGROUND_TIMEOUT_MS))])
 
-    // §2.11 — Registrar preguntas incorrectas para Weakness-Weighted RAG
-    void trackWeaknessBackground({
-      testId,
-      preguntas: testData.preguntas as Pregunta[],
-      respuestas,
-      supabase: sb,
-      log,
-    })
+    await Promise.allSettled([
+      withTimeout(generateFlashcardsBackground({
+        preguntas: testData.preguntas as Pregunta[],
+        respuestas,
+        temaId: testData.tema_id as string | null,
+        userId: user.id,
+        supabase: sb,
+        log,
+      })),
+      withTimeout(trackWeaknessBackground({
+        testId,
+        preguntas: testData.preguntas as Pregunta[],
+        respuestas,
+        supabase: sb,
+        log,
+      })),
+    ])
   }
 
   log.info({ userId: user.id, puntuacion, nuevosLogros }, 'Test finalizado')
