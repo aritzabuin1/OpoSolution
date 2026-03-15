@@ -166,7 +166,7 @@ export async function getAARRR(adminIds: string[] = []): Promise<AAARRRMetrics> 
   const supabase = await createServiceClient() as any
   const excludeAdmins = adminIdFilter(adminIds)
 
-  let profilesQ = supabase.from('profiles').select('id', { count: 'exact', head: true }).eq('is_admin', false).gte('created_at', METRICS_START_DATE)
+  let profilesQ = supabase.from('profiles').select('id').eq('is_admin', false).gte('created_at', METRICS_START_DATE)
   let activatedQ = supabase.from('tests_generados').select('user_id').eq('completado', true).gte('created_at', METRICS_START_DATE)
   let retentionQ = supabase.from('profiles').select('id').gte('racha_actual', 3).eq('is_admin', false)
   let revenueQ = supabase.from('compras').select('user_id').gte('created_at', METRICS_START_DATE)
@@ -180,7 +180,7 @@ export async function getAARRR(adminIds: string[] = []): Promise<AAARRRMetrics> 
     profilesQ, activatedQ, retentionQ, revenueQ,
   ])
 
-  const totalUsuarios = profilesResult.count ?? 0
+  const totalUsuarios = profilesResult.data?.length ?? 0
 
   const activatedUsers = new Set(
     (activatedResult.data ?? []).map((t: { user_id: string }) => t.user_id)

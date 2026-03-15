@@ -225,8 +225,9 @@ export async function getChurnMetrics(adminIds: string[] = []): Promise<ChurnMet
   const excludeAdmins = adminIdFilter(adminIds)
   const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
 
+  const effectiveStart = new Date(Math.max(new Date(METRICS_START_DATE).getTime(), new Date(sevenDaysAgo).getTime())).toISOString()
   let allQ = supabase.from('tests_generados').select('user_id').gte('created_at', METRICS_START_DATE)
-  let recentQ = supabase.from('tests_generados').select('user_id').gte('created_at', sevenDaysAgo)
+  let recentQ = supabase.from('tests_generados').select('user_id').gte('created_at', effectiveStart)
   if (excludeAdmins) {
     allQ = allQ.not('user_id', 'in', excludeAdmins)
     recentQ = recentQ.not('user_id', 'in', excludeAdmins)
@@ -251,7 +252,7 @@ export async function getOnboardingFunnel(adminIds: string[] = []): Promise<Onbo
   const supabase = await createServiceClient() as any
   const excludeAdmins = adminIdFilter(adminIds)
 
-  let profilesQ = supabase.from('profiles').select('id', { count: 'exact', head: true }).eq('is_admin', false).gte('created_at', METRICS_START_DATE)
+  let profilesQ = supabase.from('profiles').select('id').eq('is_admin', false).gte('created_at', METRICS_START_DATE)
   let testsQ = supabase.from('tests_generados').select('user_id').eq('completado', true).gte('created_at', METRICS_START_DATE)
   let comprasQ = supabase.from('compras').select('user_id').gte('created_at', METRICS_START_DATE)
   if (excludeAdmins) {
@@ -261,7 +262,7 @@ export async function getOnboardingFunnel(adminIds: string[] = []): Promise<Onbo
 
   const [profilesRes, testsRes, comprasRes] = await Promise.all([profilesQ, testsQ, comprasQ])
 
-  const registered = profilesRes.count ?? 0
+  const registered = profilesRes.data?.length ?? 0
   const testsByUser = new Map<string, number>()
   for (const t of (testsRes.data ?? []) as { user_id: string }[]) {
     testsByUser.set(t.user_id, (testsByUser.get(t.user_id) ?? 0) + 1)
