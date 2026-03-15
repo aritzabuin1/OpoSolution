@@ -136,11 +136,12 @@ export async function callAI(
   try {
     return await callHeavy(PRIMARY, userContent, options)
   } catch (err) {
-    if (isCircuitOpenError(err)) {
-      log.warn({ primary: PRIMARY, secondary: SECONDARY }, '[provider] primary failed → fallback')
-      return callHeavy(SECONDARY, userContent, options)
+    log.warn({ primary: PRIMARY, secondary: SECONDARY, error: err instanceof Error ? err.message : String(err) }, '[provider] primary failed → fallback')
+    try {
+      return await callHeavy(SECONDARY, userContent, options)
+    } catch (fallbackErr) {
+      throw fallbackErr
     }
-    throw err
   }
 }
 
@@ -171,11 +172,12 @@ export async function callAIMini(
   try {
     return await callLight(PRIMARY, userContent, options)
   } catch (err) {
-    if (isCircuitOpenError(err)) {
-      log.warn({ primary: PRIMARY, secondary: SECONDARY }, '[provider] primary failed → fallback (mini)')
-      return callLight(SECONDARY, userContent, options)
+    log.warn({ primary: PRIMARY, secondary: SECONDARY, error: err instanceof Error ? err.message : String(err) }, '[provider] primary failed → fallback (mini)')
+    try {
+      return await callLight(SECONDARY, userContent, options)
+    } catch (fallbackErr) {
+      throw fallbackErr
     }
-    throw err
   }
 }
 
@@ -210,11 +212,12 @@ export async function callAIJSON<T>(
   try {
     return await callJSON(PRIMARY, systemPrompt, userPrompt, schema, aiOpts, useHeavyModel)
   } catch (err) {
-    if (isCircuitOpenError(err)) {
-      log.warn({ primary: PRIMARY, secondary: SECONDARY }, '[provider] primary failed → fallback (JSON)')
-      return callJSON(SECONDARY, systemPrompt, userPrompt, schema, aiOpts, useHeavyModel)
+    log.warn({ primary: PRIMARY, secondary: SECONDARY, error: err instanceof Error ? err.message : String(err) }, '[provider] primary JSON failed → fallback')
+    try {
+      return await callJSON(SECONDARY, systemPrompt, userPrompt, schema, aiOpts, useHeavyModel)
+    } catch (fallbackErr) {
+      throw fallbackErr
     }
-    throw err
   }
 }
 
@@ -261,11 +264,12 @@ export async function callAIStream(
   try {
     return await callStreamProvider(PRIMARY, systemPrompt, userPrompt, aiOpts, useHeavyModel)
   } catch (err) {
-    if (isCircuitOpenError(err)) {
-      log.warn({ primary: PRIMARY, secondary: SECONDARY }, '[provider] primary failed → fallback (stream)')
-      return callStreamProvider(SECONDARY, systemPrompt, userPrompt, aiOpts, useHeavyModel)
+    log.warn({ primary: PRIMARY, secondary: SECONDARY, error: err instanceof Error ? err.message : String(err) }, '[provider] primary failed → fallback (stream)')
+    try {
+      return await callStreamProvider(SECONDARY, systemPrompt, userPrompt, aiOpts, useHeavyModel)
+    } catch (fallbackErr) {
+      throw fallbackErr
     }
-    throw err
   }
 }
 

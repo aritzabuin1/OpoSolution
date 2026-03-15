@@ -8,7 +8,7 @@ import { logger } from '@/lib/logger'
  * Cliente Claude API para OPTEK.
  *
  * DDIA Principles aplicados:
- *   Reliability    → maxRetries=2 con exponential backoff (built-in SDK), timeout 30s
+ *   Reliability    → timeout 55s, maxRetries=0 (provider.ts maneja fallback)
  *                  → Circuit Breaker (§1.6.3): OPEN tras 5 fallos, reset a los 60s
  *   Consistency    → sanitizeForAI() elimina PII antes de enviar (GDPR ADR-0009)
  *   Observability  → INSERT en api_usage_log tras cada llamada (coste en tiempo real)
@@ -30,8 +30,8 @@ function getClient(): Anthropic {
   if (!_anthropic) {
     _anthropic = new Anthropic({
       apiKey: process.env.ANTHROPIC_API_KEY!,
-      timeout: 30_000,  // 30s máx — previene requests colgados
-      maxRetries: 2,    // exponential backoff automático en 429/529
+      timeout: 55_000,  // 55s — Haiku puede tardar 22-28s para 12 preguntas difíciles, margen para Vercel 60s
+      maxRetries: 0,    // sin retries SDK — provider.ts maneja fallback a OpenAI
     })
   }
   return _anthropic
@@ -224,7 +224,7 @@ export async function callClaudeHaiku(
   userContent: string,
   options: Omit<ClaudeCallOptions, 'model'> = {}
 ): Promise<string> {
-  const { maxTokens = 1500, systemPrompt, requestId, endpoint = 'unknown', userId, oposicionId, temperature } = options
+  const { maxTokens = 8000, systemPrompt, requestId, endpoint = 'unknown', userId, oposicionId, temperature } = options
   const model = 'claude-haiku-4-5-20251001'
 
   // Circuit Breaker: lanza si OPEN sin período de reset cumplido
@@ -319,7 +319,7 @@ export async function callClaudeJSON<T>(
   // ── Retry con prompt de corrección ────────────────────────────────────────
   // Solo reintentar si queda tiempo (primera llamada puede haber tardado 20-30s)
   const firstCallDuration = Date.now() - callStart
-  const MAX_RETRY_BUDGET_MS = 15_000
+  const MAX_RETRY_BUDGET_MS = 25_000
 
   if (firstCallDuration > MAX_RETRY_BUDGET_MS) {
     logger.warn(

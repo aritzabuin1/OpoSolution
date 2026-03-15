@@ -121,8 +121,8 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   // ── 2. Generación + verificación ─────────────────────────────────────────
   //
   // Optimización: split en chunks paralelos de máx CHUNK_SIZE preguntas.
-  // gpt-4o-mini tarda ~25s para 10 preguntas difíciles → chunks de 10 en paralelo.
-  // 30q difícil = 3 chunks × 12 preguntas ≈ 25-30s cada uno (todos en paralelo).
+  // Claude Haiku / gpt-4o-mini tarda ~22-28s para 10 preguntas difíciles → chunks de 10 en paralelo.
+  // 30q difícil = 3 chunks × 12 preguntas ≈ 22-28s cada uno (todos en paralelo).
   // Vercel Hobby maxDuration=60s, SDK timeout=55s → margen seguro.
 
   const CHUNK_SIZE = 10
