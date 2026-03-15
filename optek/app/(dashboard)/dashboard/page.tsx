@@ -482,7 +482,7 @@ export default async function DashboardPage() {
       )}
 
       {/* ── 2d. Plan de estudio personalizado (roadmap IA) ────────────────── */}
-      {totalTests >= 3 && <RoadmapCard activity={roadmapActivity} />}
+      {totalTests >= 3 && <RoadmapCard activity={roadmapActivity} oposicionId={profile?.oposicion_id ?? undefined} />}
 
       {/* ── 3. Gráfico de evolución ──────────────────────────────────────── */}
       <Card>

@@ -38,16 +38,19 @@ export default async function RadarPage() {
   const oposicionId = await getOposicionFromProfile(supabase, user.id)
   const isPaid = await checkPaidAccess(supabase, user.id, oposicionId)
 
-  // Load both radar views filtered by user's oposición
+  // Load radar views + oposicion name, filtered by user's oposición
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const radarQuery = (s: any, view: string) => oposicionId
     ? s.from(view).select('*').eq('oposicion_id', oposicionId)
     : s.from(view).select('*')
 
-  const [{ data: temasData }, { data: radarData }] = await Promise.all([
+  const [{ data: temasData }, { data: radarData }, { data: oposicionData }] = await Promise.all([
     radarQuery(supabase as any, 'radar_temas_view'),
     radarQuery(supabase as any, 'radar_tribunal_view').limit(100),
+    supabase.from('oposiciones').select('nombre').eq('id', oposicionId).single(),
   ])
+
+  const oposicionNombre = oposicionData?.nombre ?? 'la Administración del Estado'
 
   const temas = ((temasData ?? []) as unknown) as RadarTema[]
   const articulos = ((radarData ?? []) as unknown) as RadarArticulo[]
@@ -161,7 +164,7 @@ export default async function RadarPage() {
         <p className="text-xs text-gray-500 dark:text-gray-400">
           <strong>Metodología:</strong> Se analizan {totalPreguntas > 0 ? `${totalPreguntas} preguntas de ` : ''}
           {allAnios.length > 0 ? `las convocatorias ${allAnios.join(', ')} ` : ''}
-          del Cuerpo General Auxiliar de la Administración del Estado (INAP).
+          de {oposicionNombre} (INAP).
           Cada pregunta se clasifica por tema según palabras clave del enunciado y opciones.
           Los temas de legislación (Bloque I) incluyen detalle por artículo.
           Fuente: preguntas_oficiales.

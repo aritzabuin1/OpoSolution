@@ -27,7 +27,7 @@ import { PaywallGate } from '@/components/shared/PaywallGate'
 
 type CardState = 'idle' | 'loading' | 'streaming' | 'done' | 'error'
 
-const STORAGE_KEY = 'oporuta_roadmap_v2'
+const STORAGE_KEY_PREFIX = 'oporuta_roadmap_v2'
 
 // ── Types for structured roadmap ────────────────────────────────────────────
 
@@ -70,6 +70,7 @@ export interface UserActivity {
 
 interface RoadmapCardProps {
   activity: UserActivity
+  oposicionId?: string
 }
 
 // ── Tier config ─────────────────────────────────────────────────────────────
@@ -339,7 +340,9 @@ function ConfirmGenerateDialog({ open, onOpenChange, onConfirm }: {
 
 // ── Main component ──────────────────────────────────────────────────────────
 
-export function RoadmapCard({ activity }: RoadmapCardProps) {
+export function RoadmapCard({ activity, oposicionId }: RoadmapCardProps) {
+  // Storage key scoped per oposición — switching C1/C2 preserves each plan
+  const STORAGE_KEY = oposicionId ? `${STORAGE_KEY_PREFIX}_${oposicionId}` : STORAGE_KEY_PREFIX
   const [state, setState] = useState<CardState>('idle')
   const [streamedText, setStreamedText] = useState('')
   const [roadmap, setRoadmap] = useState<RoadmapData | null>(null)
