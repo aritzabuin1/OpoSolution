@@ -10,6 +10,10 @@
 -- El builder genera índices separados por oposición.
 -- =============================================================================
 
+-- ─── 0. Drop views first (Postgres can't add columns to existing views) ─────
+DROP VIEW IF EXISTS radar_tribunal_view;
+DROP VIEW IF EXISTS radar_temas_view;
+
 -- ─── 1. frecuencias_articulos ─────────────────────────────────────────────────
 
 -- Drop old primary key (legislacion_id only)
@@ -37,7 +41,7 @@ DROP INDEX IF EXISTS idx_frecuencias_num_apariciones;
 CREATE INDEX idx_frecuencias_oposicion_apariciones
   ON frecuencias_articulos (oposicion_id, num_apariciones DESC);
 
--- Update view to include oposicion_id
+-- Recreate view with oposicion_id
 CREATE OR REPLACE VIEW radar_tribunal_view AS
   SELECT
     f.oposicion_id,
@@ -84,7 +88,7 @@ DROP INDEX IF EXISTS idx_frecuencias_temas_apariciones;
 CREATE INDEX idx_frecuencias_temas_oposicion_apariciones
   ON frecuencias_temas (oposicion_id, num_apariciones DESC);
 
--- Update view to include oposicion_id
+-- Recreate view with oposicion_id
 CREATE OR REPLACE VIEW radar_temas_view AS
   SELECT
     f.oposicion_id,
