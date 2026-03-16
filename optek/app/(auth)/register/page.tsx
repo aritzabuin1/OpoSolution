@@ -68,6 +68,19 @@ export default function RegisterPage() {
 
     // §1.20.4 — Conversion tracking: CompleteRegistration
     trackPixelEvent('CompleteRegistration')
+
+    // Notificar a admin inmediatamente (sin esperar confirmación de email)
+    const selectedOp = OPOSICIONES.find((op) => op.id === oposicionId)
+    void fetch('/api/auth/notify-registration', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        nombre: name.trim() || undefined,
+        oposicion: selectedOp?.label,
+      }),
+    })
+
     setSuccess(true)
     setLoading(false)
   }

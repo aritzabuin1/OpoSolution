@@ -43,7 +43,7 @@ export async function POST() {
     if (user.email) {
       const nombre = user.user_metadata?.full_name as string | undefined
       void sendWelcomeEmail({ to: user.email, nombre })
-      void sendNewUserNotification({ email: user.email, nombre })
+      void sendNewUserNotification({ email: user.email, nombre, confirmed: true })
 
       // Persistent registration log — survives account deletion
       const svc = await createServiceClient()

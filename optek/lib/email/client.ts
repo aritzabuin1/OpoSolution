@@ -264,27 +264,39 @@ export async function sendDeletionConfirmEmail(params: {
 /**
  * Notifica al admin cuando un nuevo usuario se registra.
  * Permite saber en tiempo real cuándo entra un cliente real.
+ *
+ * Se envía en DOS momentos:
+ * 1. Al registrarse (confirmed=false) — para que sepas al instante
+ * 2. Al confirmar email (confirmed=true) — para que sepas que activó la cuenta
  */
 export async function sendNewUserNotification(params: {
   email: string
   nombre?: string
+  oposicion?: string
+  confirmed?: boolean
 }): Promise<EmailResult> {
   const resend = getResend()
   if (!resend) return { success: false, error: 'Resend no configurado' }
 
   const adminEmail = process.env.ADMIN_EMAIL ?? 'aritzmore1@gmail.com'
   const log = logger.child({ route: 'email:new-user-alert' })
+  const confirmed = params.confirmed ?? true
+
+  const statusEmoji = confirmed ? '✅' : '🆕'
+  const statusLabel = confirmed ? 'EMAIL CONFIRMADO' : 'PENDIENTE DE CONFIRMAR'
 
   try {
     const { data, error } = await resend.emails.send({
       from: FROM_ADDRESS,
       to: [adminEmail],
-      subject: `🚀 Nuevo usuario en OpoRuta: ${params.email}`,
+      subject: `${statusEmoji} ${confirmed ? 'Usuario confirmado' : 'Nuevo registro'} en OpoRuta: ${params.email}`,
       text: [
-        '¡Nuevo registro en OpoRuta!',
+        confirmed ? '¡Usuario ha confirmado su email!' : '¡Nuevo registro en OpoRuta!',
         '',
         `Email: ${params.email}`,
         `Nombre: ${params.nombre ?? '(no proporcionado)'}`,
+        `Oposición: ${params.oposicion ?? '(no especificada)'}`,
+        `Estado: ${statusLabel}`,
         `Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}`,
         '',
         '─── Acciones ───',
@@ -297,7 +309,7 @@ export async function sendNewUserNotification(params: {
       log.error({ error: error.message }, 'Error enviando alerta de nuevo usuario')
       return { success: false, error: error.message }
     }
-    log.info({ id: data?.id, userEmail: params.email }, 'Alerta de nuevo usuario enviada')
+    log.info({ id: data?.id, userEmail: params.email, confirmed }, 'Alerta de nuevo usuario enviada')
     return { success: true, id: data?.id }
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err)
