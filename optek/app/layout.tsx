@@ -41,6 +41,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(APP_URL),
   title: 'OpoRuta — El camino más corto hacia el aprobado',
   description:
     'Prepara tu oposición con IA verificada. Tests personalizados, el Radar del Tribunal y simulacros INAP. Cada cita legal comprobada al artículo exacto.',
@@ -65,9 +66,6 @@ export const metadata: Metadata = {
   alternates: {
     types: {
       'text/plain': `${APP_URL}/llms.txt`,
-    },
-    languages: {
-      'es-ES': APP_URL,
     },
   },
   twitter: {

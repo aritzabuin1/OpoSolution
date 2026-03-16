@@ -21,6 +21,18 @@ const nextConfig: NextConfig = {
     'resend',
     'pino',
   ],
+
+  // Redirect www → non-www (301 permanente) para consolidar SEO
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.oporuta.es' }],
+        destination: 'https://oporuta.es/:path*',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig
