@@ -13,8 +13,10 @@ export interface BlogPost {
   title: string
   description: string
   date: string         // ISO 8601
+  dateModified?: string // ISO 8601 — defaults to date if omitted
   keywords: string[]
   content: string      // HTML
+  faqs?: { question: string; answer: string }[]  // renders FAQPage JSON-LD for rich snippets
 }
 
 export const blogPosts: BlogPost[] = [
@@ -405,9 +407,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 5 ────────────────────────────────────────────────────────────────
   {
     slug: 'temario-auxiliar-administrativo-estado-2025-2026',
-    title: 'Temario completo del Auxiliar Administrativo del Estado 2025-2026: los 28 temas de Auxiliar',
+    title: 'Temario Auxiliar Administrativo del Estado 2025-2026: los 28 temas desglosados',
     description:
-      'Resumen del temario oficial del Cuerpo General Auxiliar de la AGE: Bloque I — Organización pública (16 temas) y Bloque II — Actividad administrativa y ofimática (12 temas). Qué estudiar primero y cómo organizarlo.',
+      'Los 28 temas del Auxiliar Administrativo del Estado: Bloque I (16 temas de organización pública) y Bloque II (12 temas de ofimática). Qué estudiar primero y cómo priorizar.',
     date: '2026-03-03',
     keywords: [
       'temario auxiliar administrativo estado 2025',
@@ -644,6 +646,7 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/articulos-lpac-que-mas-caen-examen-inap">Artículos de la LPAC que más caen en el INAP</a> — desglose por artículo y convocatoria</li>
   <li><a href="/blog/constitucion-espanola-preguntas-examen-auxiliar-administrativo">La Constitución en el examen</a> — artículos clave del Bloque I</li>
   <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo: los 28 temas</a> — organización y prioridades</li>
+  <li><a href="/blog/temario-administrativo-estado-c1-45-temas-como-priorizar">¿También preparas el C1?</a> — los 45 temas del Administrativo desglosados</li>
 </ul>
     `.trim(),
   },
@@ -822,6 +825,7 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/articulos-lpac-que-mas-caen-examen-inap">Artículos de la LPAC que más caen</a> — la otra ley estrella del examen</li>
   <li><a href="/blog/trebep-articulos-clave-examen-auxiliar-administrativo">TREBEP: artículos clave</a> — derechos, deberes y situaciones administrativas</li>
   <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo: los 28 temas</a> — cómo organizarlos y priorizarlos</li>
+  <li><a href="/blog/constitucion-espanola-oposiciones-age-articulos-clave">Constitución para C1 y C2</a> — los mismos artículos clave sirven para ambas oposiciones</li>
 </ul>
     `.trim(),
   },
@@ -1438,9 +1442,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 10 ───────────────────────────────────────────────────────────────
   {
     slug: 'plazas-auxiliar-administrativo-2026',
-    title: '¿Cuántas plazas hay en las oposiciones de Auxiliar Administrativo del Estado 2026?',
+    title: '1.700 plazas Auxiliar Administrativo 2026: la mayor convocatoria de la historia',
     description:
-      'La convocatoria 2025-2026 ofrece 1.700 plazas de acceso libre para el Cuerpo General Auxiliar de la AGE. Histórico de plazas, tendencia y qué significa para tu preparación.',
+      '1.700 plazas de acceso libre en la convocatoria 2025-2026 del Auxiliar Administrativo del Estado. Histórico de plazas, tendencia al alza y qué significa para tu oposición.',
     date: '2026-03-12',
     keywords: [
       'plazas auxiliar administrativo 2026',
@@ -1522,6 +1526,7 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">Guía completa de preparación 2025-2026</a> — temario, planificación y métodos de estudio</li>
   <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo: los 28 temas</a> — qué estudiar y en qué orden</li>
   <li><a href="/blog/nota-corte-auxiliar-administrativo-estado">Nota de corte de la última convocatoria</a> — qué puntuación necesitas para aprobar</li>
+  <li><a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">¿C2 o C1?</a> — compara plazas, sueldo y temario antes de decidir</li>
 </ul>
     `.trim(),
   },
@@ -1529,9 +1534,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 11 ───────────────────────────────────────────────────────────────
   {
     slug: 'nota-corte-auxiliar-administrativo-estado',
-    title: 'Nota de corte del Auxiliar Administrativo del Estado: última convocatoria y cómo se calcula',
+    title: 'Nota de corte Auxiliar Administrativo del Estado 2024: 30 y 26,33 puntos',
     description:
-      'La nota de corte de la última convocatoria del Auxiliar Administrativo fue de 30 puntos (parte 1) y 26,33 (parte 2). Así se calcula tu nota con la penalización -1/3.',
+      'La nota de corte de la última convocatoria del Auxiliar Administrativo fue 30 puntos (parte 1) y 26,33 (parte 2). Cómo se calcula con la penalización -1/3 + calculadora gratis.',
     date: '2026-03-12',
     keywords: [
       'nota de corte auxiliar administrativo estado',
@@ -1609,6 +1614,7 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/plazas-auxiliar-administrativo-2026">1.700 plazas en la convocatoria 2026</a> — histórico y tendencia</li>
   <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Penalización -1/3 explicada</a> — fórmula, ejemplos y estrategia</li>
   <li><a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">Guía completa de preparación</a> — temario, planificación y métodos de estudio</li>
+  <li><a href="/blog/nota-corte-administrativo-estado-c1-como-se-calcula">Nota de corte del C1</a> — si te planteas subir al Administrativo del Estado</li>
 </ul>
     `.trim(),
   },
@@ -1751,15 +1757,30 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 13 ───────────────────────────────────────────────────────────────
   {
     slug: 'preparar-oposicion-auxiliar-administrativo-por-libre',
-    title: '¿Se puede preparar la oposición de Auxiliar Administrativo por libre en 2026?',
+    title: 'Preparar oposiciones Auxiliar Administrativo por libre en 2026: guía completa',
     description:
-      'Sí, se puede. Guía práctica para preparar el Auxiliar Administrativo del Estado sin academia: temario, herramientas, planificación y errores a evitar.',
+      'Sí, se puede aprobar sin academia. Guía paso a paso para preparar el Auxiliar Administrativo del Estado por libre: temario, planificación, herramientas gratuitas y errores a evitar.',
     date: '2026-03-14',
+    dateModified: '2026-03-17',
     keywords: [
       'preparar oposición auxiliar administrativo por libre',
       'auxiliar administrativo sin academia',
       'estudiar oposiciones por libre auxiliar estado',
       'preparar auxiliar administrativo por tu cuenta',
+    ],
+    faqs: [
+      {
+        question: '¿Se puede aprobar el Auxiliar Administrativo sin academia?',
+        answer: 'Sí. Muchos opositores aprueban por libre cada convocatoria. Necesitas: temario actualizado (manual ~40€), plataforma de tests con verificación legal (OpoRuta: 49,99€ pago único), exámenes oficiales INAP (gratis) y disciplina. El ahorro frente a academia presencial es de 1.000-3.000€/año.',
+      },
+      {
+        question: '¿Cuánto tiempo se necesita para preparar el Auxiliar Administrativo por libre?',
+        answer: 'Entre 4 y 8 meses de preparación seria, dependiendo de tus horas disponibles. Con 2-3 horas diarias, un plan de 6 meses es realista: 2 meses primera vuelta, 2 meses segunda vuelta con simulacros, 2 meses repaso intensivo.',
+      },
+      {
+        question: '¿Cuánto cuesta preparar oposiciones por libre?',
+        answer: 'El coste mínimo es de 80-100€: manual de temario (30-50€) + plataforma de tests verificada como OpoRuta (49,99€ pago único). Comparado con una academia presencial (1.200-3.000€/año), es 10-20 veces más barato.',
+      },
     ],
     content: `
 <h2>Sí, puedes aprobar el Auxiliar Administrativo sin academia</h2>
@@ -1844,9 +1865,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 14 ───────────────────────────────────────────────────────────────
   {
     slug: 'cuantos-temas-examen-auxiliar-administrativo-estado',
-    title: '¿Cuántos temas tiene el examen del Auxiliar Administrativo del Estado?',
+    title: '¿Cuántos temas tiene el Auxiliar Administrativo del Estado? 28 temas en 2 bloques',
     description:
-      'El temario del Auxiliar Administrativo del Estado consta de 28 temas divididos en 2 bloques. Desglose completo, qué estudiar primero y cómo organizar el estudio.',
+      'El examen del Auxiliar Administrativo del Estado tiene 28 temas: 16 de organización pública y 12 de ofimática. Desglose completo, cuáles son más fáciles y por dónde empezar.',
     date: '2026-03-16',
     keywords: [
       'cuántos temas auxiliar administrativo estado',
@@ -2771,6 +2792,7 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">C2 vs C1: comparativa completa</a> — plazas, sueldo, temario y examen</li>
   <li><a href="/blog/constitucion-espanola-oposiciones-age-articulos-clave">Constitución para oposiciones AGE</a> — los artículos que más caen</li>
   <li><a href="/blog/trebep-oposiciones-guia-estatuto-empleado-publico">TREBEP para oposiciones</a> — guía del Estatuto del Empleado Público</li>
+  <li><a href="/blog/nota-corte-auxiliar-administrativo-estado">Nota de corte del C2</a> — si también preparas el Auxiliar Administrativo</li>
 </ul>
     `.trim(),
   },
@@ -3118,6 +3140,7 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/supuesto-practico-administrativo-estado-c1-estrategia">Supuesto práctico del C1</a> — estrategia y ejemplos</li>
   <li><a href="/blog/preparar-oposiciones-administrativo-estado-c1-por-libre">Preparar C1 por libre</a> — plan de estudio completo</li>
   <li><a href="/herramientas/calculadora-nota-administrativo-estado">Calculadora de nota C1</a> — calcula tu puntuación</li>
+  <li><a href="/blog/plazas-auxiliar-administrativo-2026">1.700 plazas C2 en 2026</a> — si también preparas el Auxiliar Administrativo</li>
 </ul>
     `.trim(),
   },
@@ -3452,6 +3475,1015 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/supuesto-practico-administrativo-estado-c1-estrategia">Supuesto práctico</a> — estrategia y consejos</li>
   <li><a href="/herramientas/calculadora-nota-administrativo-estado">Calculadora de nota C1</a></li>
 </ul>
+    `.trim(),
+  },
+  // ─── Post 28: Comparativa plataformas IA oposiciones ──────────────────────
+  {
+    slug: 'mejores-plataformas-ia-oposiciones-2026-comparativa',
+    title: 'Mejores Plataformas con IA para Oposiciones en 2026 — Comparativa Real con Precios',
+    description:
+      'Analizamos las principales plataformas con IA para preparar oposiciones: OpositaTest, OpoRuta, Toposiciones, Testualia, Opositor.ai y más. Funciones, precios reales y para quién es cada una.',
+    date: '2026-03-17',
+    keywords: [
+      'mejores plataformas IA oposiciones',
+      'plataformas oposiciones inteligencia artificial',
+      'estudiar oposiciones con IA',
+      'alternativas OpositaTest',
+      'apps oposiciones 2026',
+      'preparar oposiciones con inteligencia artificial',
+    ],
+    faqs: [
+      {
+        question: '¿Merece la pena usar IA para estudiar oposiciones en 2026?',
+        answer: 'Sí, pero con matices. La IA ahorra tiempo generando tests personalizados y explicaciones, pero no sustituye al estudio del temario. Lo más importante es que la plataforma verifique las citas legales: las IA generativas como ChatGPT pueden inventar artículos de ley. Plataformas especializadas como OpoRuta verifican cada cita contra la legislación oficial del BOE.',
+      },
+      {
+        question: '¿Cuál es la mejor app gratuita para preparar oposiciones?',
+        answer: 'OpositaTest ofrece un plan gratuito con tests limitados y es la opción más conocida. OpoRuta permite 5 tests gratuitos con verificación legal. Para complementar, los exámenes oficiales del INAP son gratuitos y están disponibles en formato interactivo en OpoRuta.',
+      },
+      {
+        question: '¿Las plataformas de IA para oposiciones son fiables?',
+        answer: 'Depende de la plataforma. Las que usan IA generativa sin verificación pueden generar preguntas con citas legales incorrectas (alucinaciones). Las que verifican las citas contra la legislación real (como OpoRuta con su verificación determinista del BOE) son fiables. Siempre contrasta cualquier cita legal con la fuente oficial.',
+      },
+      {
+        question: '¿Puedo aprobar oposiciones estudiando solo con una app?',
+        answer: 'No recomendamos depender únicamente de una app. La preparación ideal combina: un manual de temario actualizado (Adams, MAD, CEP), una plataforma de tests para practicar el formato del examen, y simulacros con condiciones reales (tiempo + penalización). Las apps son el mejor complemento, no un sustituto del estudio del temario.',
+      },
+      {
+        question: '¿Qué diferencia hay entre pago único y suscripción mensual en plataformas de oposiciones?',
+        answer: 'Con suscripción mensual (típico: 10-30€/mes) pagas mientras estudies — si tardas 12 meses son 120-360€. Con pago único (OpoRuta: 49,99€ por oposición) pagas una vez y tienes acceso permanente. La suscripción conviene si apruebas rápido; el pago único conviene si tu preparación es larga.',
+      },
+    ],
+    content: `
+<p>
+  <strong>Las mejores plataformas con IA para preparar oposiciones en 2026 son OpositaTest (banco de 303.000 preguntas curadas), OpoRuta (verificación legal contra el BOE + análisis de exámenes INAP), Testualia (generación de tests desde tus documentos), Typed AI (flashcards + tests desde PDFs) y Opositor.ai (ecosistema completo con OCR y planificador).</strong>
+  Cada una tiene un enfoque diferente y conviene según tu forma de estudiar.
+</p>
+<p>
+  Según el Observatorio del Opositor 2026 de OpositaTest, <strong>el 27% de los opositores ya usa IA</strong>
+  en su preparación, y el 87% de ellos usa ChatGPT. Pero hay diferencias enormes entre usar
+  ChatGPT directamente y usar una plataforma especializada.
+</p>
+<p>
+  Esta comparativa es honesta: incluimos nuestras fortalezas y nuestras debilidades.
+  OpoRuta es una de las plataformas analizadas y creemos que la transparencia genera más confianza
+  que el autobombo. Si otra plataforma es mejor que nosotros en algo, lo decimos.
+</p>
+
+<h2>Tabla comparativa: plataformas para oposiciones 2026</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Plataforma</th>
+      <th>Enfoque</th>
+      <th>Verificación legal</th>
+      <th>Precio</th>
+      <th>Modelo</th>
+      <th>Oposiciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>OpositaTest</strong></td>
+      <td>Banco curado 303K preguntas</td>
+      <td>No (curación manual)</td>
+      <td>7,99-15,99€/mes</td>
+      <td>Suscripción</td>
+      <td>+100 oposiciones</td>
+    </tr>
+    <tr>
+      <td><strong>OpoRuta</strong></td>
+      <td>IA verificada + análisis INAP</td>
+      <td>Sí (determinista vs BOE)</td>
+      <td>49,99€ / 79,99€</td>
+      <td>Pago único</td>
+      <td>C1 + C2 AGE</td>
+    </tr>
+    <tr>
+      <td><strong>Testualia</strong></td>
+      <td>Tests IA desde tus documentos</td>
+      <td>No</td>
+      <td>~90€ / 60 días</td>
+      <td>Pago por período</td>
+      <td>Cualquiera (upload)</td>
+    </tr>
+    <tr>
+      <td><strong>Typed AI</strong></td>
+      <td>Tests + flashcards desde PDFs</td>
+      <td>No</td>
+      <td>8,99-11,99€/mes</td>
+      <td>Suscripción</td>
+      <td>Cualquiera (upload)</td>
+    </tr>
+    <tr>
+      <td><strong>Opositor.ai</strong></td>
+      <td>Ecosistema completo con OCR</td>
+      <td>Parcial (monitoriza BOE)</td>
+      <td>No publicado</td>
+      <td>Suscripción</td>
+      <td>Docentes principalmente</td>
+    </tr>
+    <tr>
+      <td><strong>Elaia</strong></td>
+      <td>Tests adaptativos desde PDFs</td>
+      <td>No</td>
+      <td>8,99-16,99€/mes</td>
+      <td>Suscripción</td>
+      <td>Cualquiera (upload)</td>
+    </tr>
+    <tr>
+      <td><strong>Toposiciones</strong></td>
+      <td>Generación IA móvil-first</td>
+      <td>No</td>
+      <td>No publicado</td>
+      <td>Freemium</td>
+      <td>Cualquiera (upload)</td>
+    </tr>
+    <tr>
+      <td><strong>Liceia.ai</strong></td>
+      <td>IA para academias (B2B)</td>
+      <td>Sí (actualizaciones auto)</td>
+      <td>Presupuesto</td>
+      <td>B2B por academia</td>
+      <td>Todas (vía academias)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>OpositaTest — El líder del mercado con 303.000 preguntas</h2>
+<p>
+  OpositaTest es la plataforma de tests de oposiciones más consolidada de España.
+  Fundada en 2015 en Galicia, cuenta con <strong>más de 1,6 millones de usuarios registrados</strong>
+  y más de 70.000 suscriptores de pago. Su modelo es el banco de preguntas curado:
+  303.000 preguntas redactadas por expertos (no generadas por IA), de las cuales
+  el 80% son originales y el resto provienen de exámenes oficiales.
+</p>
+<h3>Para quién es ideal</h3>
+<p>Opositores que preparan varias oposiciones simultáneamente y quieren volumen de práctica con una plataforma consolidada.</p>
+<h3>Pros</h3>
+<ul>
+  <li><strong>Banco masivo:</strong> 303.000 preguntas curadas por expertos, actualizadas a diario</li>
+  <li><strong>Cobertura amplísima:</strong> más de 100 oposiciones (AGE, Justicia, Hacienda, SAS, Policía, Correos...)</li>
+  <li><strong>Comunidad activa:</strong> foros, encuestas de nota de corte, rankings entre usuarios</li>
+  <li><strong>App móvil consolidada:</strong> iOS y Android con buenas valoraciones</li>
+  <li><strong>Precio competitivo:</strong> desde 7,99€/mes en plan anual</li>
+  <li><strong>Cursos integrales:</strong> temario + tests + tutor personal + clases en directo (295-945€/año)</li>
+</ul>
+<h3>Contras</h3>
+<ul>
+  <li><strong>Preguntas a veces más fáciles que el examen real:</strong> usuarios en foros reportan que la dificultad no siempre refleja el nivel del INAP</li>
+  <li><strong>Suscripción mensual:</strong> en 12 meses de plan mensual pagas ~192€ (15,99€ × 12)</li>
+  <li><strong>Sin verificación legal automática:</strong> las preguntas dependen de la calidad del redactor</li>
+  <li><strong>Preguntas repetidas:</strong> a medida que avanzas, especialmente en oposiciones menos populares</li>
+  <li><strong>No genera preguntas nuevas con IA:</strong> estás limitado al banco existente</li>
+</ul>
+<h3>Precio</h3>
+<p><strong>Solo tests:</strong> 15,99€/mes | 11,99€/mes (semestral, 71,94€) | 7,99€/mes (anual, 95,88€). <strong>Cursos integrales:</strong> 295-945€/año. Plan gratuito con tests de muestra limitados.</p>
+
+<h2>OpoRuta — IA con verificación legal del BOE</h2>
+<p>
+  OpoRuta genera tests con inteligencia artificial
+  y verifica cada cita legal contra la legislación oficial del BOE de forma determinista.
+  Si la IA cita el artículo 35 de la Ley 39/2015, el sistema comprueba que ese artículo
+  existe y dice lo que la IA afirma, antes de mostrarte la pregunta.
+  Es la única plataforma que combina generación IA + exámenes oficiales INAP + verificación legislativa.
+</p>
+<h3>Para quién es ideal</h3>
+<p>Opositores de Auxiliar Administrativo (C2) o Administrativo del Estado (C1) que quieren
+  certeza en las citas legales y análisis basado en exámenes reales del INAP.</p>
+<h3>Pros</h3>
+<ul>
+  <li><strong>Verificación determinista del BOE:</strong> cada artículo citado se valida contra la legislación real — no hay alucinaciones</li>
+  <li><strong>Radar del Tribunal:</strong> análisis de frecuencia de artículos en exámenes INAP 2018-2024, para saber qué estudiar primero</li>
+  <li><strong>Pago único:</strong> 49,99€ por oposición o 79,99€ C1+C2 — sin suscripción mensual</li>
+  <li><strong>Simulacros con exámenes reales:</strong> convocatorias 2018, 2019, 2022 y 2024 en formato interactivo con penalización y explicaciones</li>
+  <li><strong>Análisis detallados con IA:</strong> explicaciones paso a paso de cada error, con método socrático</li>
+  <li><strong>Flashcards con repetición espaciada, psicotécnicos y Caza-Trampas</strong></li>
+</ul>
+<h3>Contras</h3>
+<ul>
+  <li><strong>Solo cubre C1 y C2 AGE:</strong> si preparas Justicia, SAS, docentes u otras oposiciones, no es para ti</li>
+  <li><strong>Plataforma nueva (2026):</strong> menos historial y comunidad que OpositaTest</li>
+  <li><strong>Sin app móvil nativa:</strong> funciona en navegador móvil (responsive), pero no hay app en App Store / Play Store</li>
+  <li><strong>Sin foro de comunidad:</strong> no tiene la interacción social de OpositaTest</li>
+</ul>
+<h3>Precio</h3>
+<p>Gratis (5 tests) / Pack C1 o C2: <strong>49,99€ pago único</strong> / Pack Doble C1+C2: <strong>79,99€ pago único</strong>.</p>
+
+<h2>Testualia — Genera tests desde tus documentos (Bilbao)</h2>
+<p>
+  Testualia es una startup bilbaína respaldada por Lanzadera (aceleradora de Juan Roig) y SPRI
+  (Gobierno Vasco). Su modelo: subes tus propios documentos (PDF, Word, PowerPoint) y la IA
+  genera tests ilimitados a partir de ellos. No tiene contenido propio — todo depende de lo que
+  tú subas.
+</p>
+<h3>Para quién es ideal</h3>
+<p>Opositores que ya tienen su temario en PDF y quieren generar preguntas ilimitadas sobre él.</p>
+<h3>Pros</h3>
+<ul>
+  <li><strong>Generación ilimitada:</strong> sube un documento y genera todos los tests que quieras</li>
+  <li><strong>Sirve para cualquier oposición:</strong> si tienes el temario en digital, funciona</li>
+  <li><strong>Estadísticas por tema:</strong> muestra tu dominio por sección del documento</li>
+  <li><strong>Respaldo institucional:</strong> Lanzadera + SPRI</li>
+</ul>
+<h3>Contras</h3>
+<ul>
+  <li><strong>Sin contenido propio:</strong> tú debes aportar todo el material</li>
+  <li><strong>Sin verificación legal:</strong> no comprueba que las citas generadas sean correctas</li>
+  <li><strong>Solo preguntas tipo test:</strong> no flashcards, no simulacros, no explicaciones detalladas</li>
+  <li><strong>Calidad depende del documento:</strong> textos descriptivos funcionan bien, pero gráficos e imágenes no se procesan</li>
+</ul>
+<h3>Precio</h3>
+<p>Demo gratuita (hasta 3 documentos). Planes de pago desde ~90€ por 60 días.</p>
+
+<h2>Typed AI — Tests y flashcards desde PDFs</h2>
+<p>
+  Typed AI es una plataforma de IA que genera tests, flashcards, resúmenes y mapas mentales
+  a partir de documentos que subas. No es específica de oposiciones, pero se ha posicionado
+  fuertemente en ese nicho con marketing en TikTok. Interfaz sencilla y precio agresivo.
+</p>
+<h3>Para quién es ideal</h3>
+<p>Opositores que quieren una herramienta todo-en-uno barata para generar material de estudio desde sus PDFs.</p>
+<h3>Pros</h3>
+<ul>
+  <li><strong>Precio agresivo:</strong> desde 8,99€/mes, con descuentos del 20-40% en planes largos</li>
+  <li><strong>Variedad de formatos:</strong> genera tests, flashcards, resúmenes y mapas mentales</li>
+  <li><strong>Material editable:</strong> puedes modificar lo que genera la IA</li>
+  <li><strong>Chat IA integrado:</strong> resuelve dudas sobre el contenido subido</li>
+</ul>
+<h3>Contras</h3>
+<ul>
+  <li><strong>Herramienta genérica:</strong> no tiene conocimiento específico de legislación ni de oposiciones</li>
+  <li><strong>Sin verificación legal:</strong> puede generar citas incorrectas</li>
+  <li><strong>Sin exámenes oficiales ni simulacros:</strong> no tiene datos del INAP</li>
+  <li><strong>Sin seguimiento de progreso adaptativo:</strong> no detecta tus temas débiles</li>
+</ul>
+<h3>Precio</h3>
+<p>Gratis (3 documentos, 40 páginas/doc). Basic: <strong>8,99€/mes</strong>. Premium: <strong>11,99€/mes</strong>.</p>
+
+<h2>Opositor.ai — El más completo, pero enfocado en docentes</h2>
+<p>
+  Opositor.ai es la plataforma con más funcionalidades del mercado: OCR de escritura a mano,
+  monitorización diaria del BOE, planificador de estudio adaptativo, corrector ortográfico
+  jurídico, temporizador Pomodoro y simulador adaptativo. Sin embargo, su enfoque principal
+  son las <strong>oposiciones de docentes</strong> (Infantil, Primaria, Pedagogía Terapéutica),
+  no las de Administración General del Estado.
+</p>
+<h3>Para quién es ideal</h3>
+<p>Opositores de docentes que buscan un ecosistema completo de preparación con IA.</p>
+<h3>Pros</h3>
+<ul>
+  <li><strong>OCR de escritura a mano:</strong> escanea apuntes manuscritos y la IA los evalúa</li>
+  <li><strong>Monitorización del BOE:</strong> escanea diariamente el BOE y boletines autonómicos para detectar cambios legislativos</li>
+  <li><strong>Planificador adaptativo:</strong> reorganiza tu plan de estudio si te saltas un día</li>
+  <li><strong>Corrector jurídico:</strong> detecta terminología desfasada o normativa derogada</li>
+</ul>
+<h3>Contras</h3>
+<ul>
+  <li><strong>Enfocado en docentes:</strong> la profundidad para AGE (C1/C2) no está clara</li>
+  <li><strong>Precios opacos:</strong> no publican tarifas (mala señal para la confianza)</li>
+  <li><strong>Sin exámenes oficiales INAP:</strong> no tiene base de datos de exámenes reales de AGE</li>
+  <li><strong>Muy nuevo:</strong> sin reseñas independientes verificables</li>
+</ul>
+<h3>Precio</h3>
+<p>No publicado. Planes por suscripción. Programa de referidos (2 amigos = 30 días gratis).</p>
+
+<h2>Elaia — Tests adaptativos con repetición espaciada</h2>
+<p>
+  Elaia genera tests y flashcards desde documentos PDF con un sistema de repetición espaciada
+  integrado. Procesa hasta 800 páginas en 10-20 minutos. Compatible con cualquier oposición.
+</p>
+<h3>Precio</h3>
+<p>Gratis (100 páginas para siempre). Academia: <strong>8,99€/mes</strong> (1.000 páginas). Liceo: <strong>16,99€/mes</strong> (2.000 páginas).</p>
+
+<h2>Liceia.ai — IA para academias (B2B)</h2>
+<p>
+  Liceia.ai no vende a opositores individuales. Vende infraestructura de IA a academias de
+  oposiciones: tutores IA 24/7, examinadores automáticos, actualización legislativa automática
+  y planificación inteligente. Si tu academia usa Liceia, tú accedes a sus funciones IA
+  como parte de la matrícula. No puedes contratar Liceia directamente.
+</p>
+
+<h2>El problema de la alucinación en IA jurídica</h2>
+<p>
+  Todas las IAs generativas (ChatGPT, Gemini, Claude) pueden inventar citas legales.
+  Esto se llama <strong>alucinación</strong> y es especialmente peligroso en oposiciones,
+  donde una cita incorrecta te lleva a memorizar algo falso.
+</p>
+<p>
+  <strong>Ejemplo real:</strong> si le pides a ChatGPT "genera 10 preguntas sobre la LPAC", puede
+  inventar un artículo 47.3 que no existe, o atribuir contenido del artículo 35 al artículo 53.
+  Tú memorizas eso, y en el examen fallas una pregunta que creías saber.
+</p>
+<p>
+  La diferencia entre plataformas es cómo manejan este riesgo:
+</p>
+<ul>
+  <li><strong>OpositaTest:</strong> evita el problema usando preguntas curadas manualmente (no genera con IA)</li>
+  <li><strong>OpoRuta:</strong> genera con IA pero verifica cada cita contra el BOE antes de mostrarte la pregunta</li>
+  <li><strong>Testualia / Typed AI / Elaia / Toposiciones:</strong> generan con IA desde tus documentos, sin verificación legal contra la fuente oficial</li>
+  <li><strong>Opositor.ai:</strong> monitoriza el BOE para actualizaciones, pero no documenta verificación de citas en preguntas</li>
+</ul>
+<p>
+  <strong>Consejo:</strong> independientemente de la plataforma que uses, siempre que una pregunta cite
+  un artículo de ley, compruébalo tú también en la fuente oficial (BOE.es). Es un hábito que te
+  protege y te ayuda a memorizar mejor.
+</p>
+
+<h2>¿Cuál elegir según tu situación?</h2>
+<ul>
+  <li><strong>Si preparas Auxiliar (C2) o Administrativo (C1) AGE:</strong> OpoRuta — verificación legal + Radar del Tribunal + exámenes INAP reales + pago único</li>
+  <li><strong>Si preparas varias oposiciones y quieres volumen:</strong> OpositaTest — 303.000 preguntas, +100 oposiciones, desde 7,99€/mes</li>
+  <li><strong>Si quieres generar tests de tu propio temario:</strong> Testualia o Typed AI — subes tu PDF y listo</li>
+  <li><strong>Si preparas oposiciones de docentes:</strong> Opositor.ai — el ecosistema más completo para ese nicho</li>
+  <li><strong>Si tu academia usa IA:</strong> pregunta si trabajan con Liceia.ai — puede que ya tengas funciones IA incluidas</li>
+  <li><strong>Si buscas lo más barato:</strong> Typed AI (8,99€/mes) o el plan gratuito de OpoRuta / OpositaTest</li>
+</ul>
+
+<h2>¿Se pueden usar varias plataformas a la vez?</h2>
+<p>
+  <strong>Sí, y es recomendable.</strong> Ninguna plataforma es perfecta ni completa.
+  Una combinación habitual entre opositores de Auxiliar/Administrativo:
+</p>
+<ul>
+  <li><strong>OpoRuta</strong> como plataforma principal (verificación legal + simulacros INAP + Radar del Tribunal)</li>
+  <li><strong>OpositaTest</strong> como complemento (volumen de tests + comunidad)</li>
+  <li><strong>Manual de academia</strong> (Adams, MAD, CEP) como temario de lectura</li>
+</ul>
+<p>
+  El coste total de esta combinación: manual (~40€) + OpoRuta (49,99€ pago único) +
+  OpositaTest (7,99€/mes anual) = <strong>~186€ el primer año</strong>. Un mes de academia presencial
+  cuesta entre 100€ y 250€.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Precios verificados en las webs oficiales de cada plataforma (marzo 2026). Dato "27% de opositores usan IA": Observatorio del Opositor 2026, OpositaTest. Si detectas algún error, escríbenos a hola@oporuta.es.</em></p>
+    `.trim(),
+  },
+  // ─── Post 29: OpoRuta vs OpositaTest ──────────────────────────────────────
+  {
+    slug: 'oporuta-vs-opositatest-auxiliar-administrativo-2026',
+    title: 'OpoRuta vs OpositaTest para Oposiciones 2026 — Diferencias Reales',
+    description:
+      'Comparamos OpoRuta y OpositaTest para preparar Auxiliar Administrativo (C2) y Administrativo del Estado (C1). Funciones, precios, verificación legal y cuál te conviene según tu forma de estudiar.',
+    date: '2026-03-17',
+    keywords: [
+      'OpoRuta vs OpositaTest',
+      'OpositaTest opiniones',
+      'OpositaTest alternativa',
+      'comparativa OpositaTest',
+      'OpositaTest auxiliar administrativo',
+      'mejor plataforma oposiciones auxiliar administrativo',
+    ],
+    faqs: [
+      {
+        question: '¿Es mejor OpoRuta o OpositaTest para Auxiliar Administrativo?',
+        answer: 'Depende de lo que busques. OpoRuta es mejor si quieres verificación legal de cada pregunta contra el BOE, análisis de exámenes INAP y pago único (49,99€). OpositaTest es mejor si quieres un banco masivo de preguntas, comunidad activa y cobertura de múltiples oposiciones. Son complementarias.',
+      },
+      {
+        question: '¿OpositaTest tiene inteligencia artificial?',
+        answer: 'OpositaTest usa un banco de 303.000 preguntas curadas manualmente por expertos, no IA generativa. Tiene un algoritmo adaptativo que detecta tus temas débiles, pero no genera preguntas nuevas con IA. OpoRuta genera preguntas con IA y las verifica contra la legislación del BOE.',
+      },
+      {
+        question: '¿Cuánto cuesta OpositaTest al mes?',
+        answer: 'OpositaTest cuesta 15,99€/mes (mensual), 11,99€/mes (semestral, 71,94€) o 7,99€/mes (anual, 95,88€). También ofrece cursos integrales con temario y tutor desde 295€/año. OpoRuta cobra un pago único de 49,99€ por oposición (C1 o C2) o 79,99€ por ambas.',
+      },
+      {
+        question: '¿Se pueden usar OpoRuta y OpositaTest a la vez?',
+        answer: 'Sí, y muchos opositores lo hacen. Son complementarias: OpoRuta para verificación legal y análisis de exámenes INAP, OpositaTest para volumen de práctica y comunidad. El coste combinado (49,99€ + ~15€/mes) sigue siendo menor que una academia presencial.',
+      },
+    ],
+    content: `
+<p>
+  <strong>OpoRuta y OpositaTest son las dos principales opciones para preparar oposiciones de Auxiliar Administrativo (C2) y Administrativo del Estado (C1) en 2026, pero tienen enfoques muy diferentes:</strong>
+  OpositaTest es un banco de 303.000 preguntas curadas por expertos, fundado en 2015 en Galicia, con más de 1,6 millones de usuarios;
+  OpoRuta genera preguntas con IA y las verifica contra la legislación oficial del BOE.
+</p>
+<p>
+  Esta comparativa analiza las diferencias reales, sin marketing. OpoRuta es nuestra plataforma,
+  así que seremos especialmente críticos con nosotros mismos para que te fíes de lo que decimos
+  sobre los demás.
+</p>
+
+<h2>Resumen rápido: OpoRuta vs OpositaTest</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Característica</th>
+      <th>OpoRuta</th>
+      <th>OpositaTest</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Enfoque</strong></td>
+      <td>IA verificada + análisis INAP</td>
+      <td>Banco de preguntas curado</td>
+    </tr>
+    <tr>
+      <td><strong>Verificación legal BOE</strong></td>
+      <td>Sí (determinista, automática)</td>
+      <td>No (curación manual)</td>
+    </tr>
+    <tr>
+      <td><strong>Nº de preguntas</strong></td>
+      <td>Generación ilimitada con IA</td>
+      <td>303.000 preguntas curadas</td>
+    </tr>
+    <tr>
+      <td><strong>Análisis exámenes INAP</strong></td>
+      <td>Sí (Radar del Tribunal 2018-2024)</td>
+      <td>Encuestas de nota de corte</td>
+    </tr>
+    <tr>
+      <td><strong>Oposiciones cubiertas</strong></td>
+      <td>C1 + C2 AGE</td>
+      <td>+100 oposiciones</td>
+    </tr>
+    <tr>
+      <td><strong>Precio</strong></td>
+      <td>49,99€ pago único (79,99€ C1+C2)</td>
+      <td>7,99-15,99€/mes suscripción</td>
+    </tr>
+    <tr>
+      <td><strong>Coste en 12 meses</strong></td>
+      <td>49,99€</td>
+      <td>95,88€ (anual) — 191,88€ (mensual)</td>
+    </tr>
+    <tr>
+      <td><strong>Simulacros oficiales</strong></td>
+      <td>2018, 2019, 2022, 2024 interactivos</td>
+      <td>Exámenes recopilados</td>
+    </tr>
+    <tr>
+      <td><strong>App móvil nativa</strong></td>
+      <td>No (web responsive)</td>
+      <td>Sí (iOS + Android)</td>
+    </tr>
+    <tr>
+      <td><strong>Comunidad / foro</strong></td>
+      <td>No</td>
+      <td>Sí (activa)</td>
+    </tr>
+    <tr>
+      <td><strong>Años en mercado</strong></td>
+      <td>2026 (nuevo)</td>
+      <td>Desde 2015 (11 años)</td>
+    </tr>
+    <tr>
+      <td><strong>Plan gratuito</strong></td>
+      <td>5 tests con verificación</td>
+      <td>Tests limitados</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Dónde gana OpositaTest</h2>
+
+<h3>1. Banco de 303.000 preguntas curadas por expertos</h3>
+<p>
+  OpositaTest tiene 303.000 preguntas (80% originales, 20% de exámenes oficiales),
+  redactadas por profesionales y actualizadas a diario cuando cambia la legislación.
+  Para el Auxiliar Administrativo tienen miles de preguntas organizadas por tema.
+  Este volumen puro es difícil de igualar: puedes hacer cientos de tests
+  sin repetir preguntas. Trustpilot: 4,2/5.
+</p>
+
+<h3>2. Cobertura de +100 oposiciones</h3>
+<p>
+  Si además del Auxiliar/Administrativo preparas Justicia, SAS, Bomberos o cualquier
+  otra oposición, OpositaTest tiene contenido para casi todas. OpoRuta solo cubre
+  C1 y C2 de la AGE.
+</p>
+
+<h3>3. Comunidad activa</h3>
+<p>
+  Los foros de OpositaTest, las encuestas de nota de corte y los rankings entre usuarios
+  crean una sensación de comunidad que motiva. Cuando estás estudiando solo,
+  saber que otros están en lo mismo ayuda.
+</p>
+
+<h3>4. App móvil nativa</h3>
+<p>
+  Tienen app para iOS y Android bien valorada. OpoRuta funciona en el navegador
+  del móvil (es responsive) pero no tiene app nativa.
+</p>
+
+<h2>Dónde gana OpoRuta</h2>
+
+<h3>1. Verificación legal contra el BOE</h3>
+<p>
+  Este es el diferenciador más importante. Cada pregunta generada por la IA de OpoRuta
+  pasa por un proceso de verificación determinista: si la pregunta cita el artículo 35
+  de la Ley 39/2015, el sistema comprueba que ese artículo existe en la base de datos
+  legislativa y que el contenido es correcto.
+</p>
+<p>
+  <strong>¿Por qué importa?</strong> Porque si estudias con preguntas que citan artículos incorrectos,
+  memorizas información falsa. En el examen, esa pregunta que creías saber la fallas.
+  Es peor que no haberla estudiado.
+</p>
+
+<h3>2. Radar del Tribunal — Análisis de exámenes INAP</h3>
+<p>
+  OpoRuta analiza todos los exámenes oficiales del INAP (2018, 2019, 2022, 2024) y calcula
+  qué artículos, leyes y temas aparecen con más frecuencia. Esto te dice dónde poner
+  el foco de estudio: no todos los artículos de la LPAC se preguntan igual.
+</p>
+
+<h3>3. Pago único vs suscripción</h3>
+<p>
+  OpoRuta cuesta <strong>49,99€ una vez</strong> (o 79,99€ por C1+C2). No hay suscripción mensual.
+  Si tu preparación dura 12 meses, con OpositaTest en plan mensual habrás pagado 191,88€
+  (15,99€ × 12). Incluso con el plan anual más barato (95,88€), OpoRuta sale a la mitad.
+  Con OpoRuta, siempre 49,99€.
+</p>
+
+<h3>4. Simulacros oficiales interactivos</h3>
+<p>
+  Los exámenes reales de 2018, 2019, 2022 y 2024 están disponibles en formato interactivo,
+  con cronómetro, penalización -1/3 y explicaciones de cada respuesta.
+</p>
+
+<h3>5. Análisis detallados con método socrático</h3>
+<p>
+  Cuando fallas una pregunta, la IA no te da la respuesta directamente: te guía
+  con preguntas para que llegues tú al razonamiento correcto. Esto genera aprendizaje
+  real, no memorización mecánica.
+</p>
+
+<h2>¿Para quién es cada una?</h2>
+
+<h3>Elige OpositaTest si:</h3>
+<ul>
+  <li>Preparas varias oposiciones a la vez (no solo C1/C2 AGE)</li>
+  <li>Quieres volumen puro de preguntas</li>
+  <li>Valoras una comunidad activa de opositores</li>
+  <li>Necesitas app móvil nativa</li>
+</ul>
+
+<h3>Elige OpoRuta si:</h3>
+<ul>
+  <li>Preparas Auxiliar Administrativo (C2) o Administrativo del Estado (C1)</li>
+  <li>Quieres certeza en las citas legales (verificación BOE)</li>
+  <li>Quieres saber qué artículos caen más en el INAP (Radar del Tribunal)</li>
+  <li>Prefieres pago único sin suscripción mensual</li>
+  <li>Quieres practicar con exámenes reales en formato interactivo</li>
+</ul>
+
+<h2>¿Se pueden usar las dos? Sí</h2>
+<p>
+  OpoRuta y OpositaTest no son excluyentes. De hecho, son complementarias:
+</p>
+<ul>
+  <li><strong>OpoRuta</strong> para verificación legal, Radar del Tribunal y simulacros INAP</li>
+  <li><strong>OpositaTest</strong> para volumen de práctica y comunidad</li>
+</ul>
+<p>
+  El coste combinado (49,99€ + 7,99€/mes plan anual = ~146€/año) sigue siendo significativamente
+  menor que una academia presencial (100-250€/mes = 1.200-3.000€/año).
+</p>
+
+<h2>Nuestra recomendación honesta</h2>
+<p>
+  Si solo puedes elegir una y preparas C1 o C2 de la AGE, te recomendamos OpoRuta —
+  pero somos parte interesada, así que prueba las dos. Ambas tienen plan gratuito.
+  Haz 5 tests en cada una y decide cuál se adapta mejor a tu forma de estudiar.
+</p>
+<p>
+  Si preparas otra oposición diferente a C1/C2 AGE, OpoRuta no es para ti.
+  En ese caso, OpositaTest o Testualia son mejores opciones.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+  },
+  // ─── Post 30: Recursos gratuitos oposiciones ──────────────────────────────
+  {
+    slug: 'recursos-gratuitos-auxiliar-administrativo-estado-2026',
+    title: 'Recursos Gratuitos Auxiliar Administrativo del Estado 2026 — Tests, Temarios y Herramientas',
+    description:
+      'Recopilación completa de recursos gratuitos para preparar el Auxiliar Administrativo del Estado en 2026: exámenes oficiales, tests online, temario BOE, calculadoras de nota y comunidades de opositores.',
+    date: '2026-03-17',
+    keywords: [
+      'recursos gratuitos oposiciones auxiliar administrativo',
+      'test gratis auxiliar administrativo estado',
+      'material gratis oposiciones auxiliar',
+      'exámenes anteriores auxiliar administrativo INAP',
+      'temario gratis auxiliar administrativo',
+    ],
+    faqs: [
+      {
+        question: '¿Dónde puedo encontrar exámenes anteriores del Auxiliar Administrativo del Estado?',
+        answer: 'Los exámenes oficiales del INAP de convocatorias anteriores son dominio público. OpoRuta los ofrece en formato interactivo (2018, 2019, 2022, 2024) con explicaciones de cada respuesta, cronómetro y penalización -1/3. También puedes descargar los PDFs originales desde la web del INAP.',
+      },
+      {
+        question: '¿Hay tests gratis de Auxiliar Administrativo del Estado online?',
+        answer: 'Sí. OpoRuta ofrece 5 tests gratuitos con verificación legal del BOE. OpositaTest tiene un plan gratuito con tests limitados. Además, los exámenes oficiales del INAP están disponibles gratuitamente como simulacros interactivos en OpoRuta.',
+      },
+      {
+        question: '¿Es posible preparar el Auxiliar Administrativo sin pagar nada?',
+        answer: 'Es posible pero difícil. El temario oficial (BOE) es gratuito, los exámenes del INAP son públicos, y hay tests gratuitos en OpoRuta y OpositaTest. Lo que falta sin pagar: un manual estructurado del temario (30-50€) y tests ilimitados. La inversión mínima recomendada: manual + plataforma de tests = ~90€.',
+      },
+    ],
+    content: `
+<p>
+  <strong>Estos son los mejores recursos gratuitos para preparar el Auxiliar Administrativo del Estado en 2026:</strong>
+  exámenes oficiales del INAP, tests online gratuitos, temario en el BOE, calculadoras de nota con penalización
+  y comunidades de opositores. Todo lo que puedes conseguir sin pagar un euro.
+</p>
+
+<h2>1. Exámenes oficiales del INAP (gratis)</h2>
+<p>
+  Los exámenes de convocatorias anteriores son el recurso más valioso que existe y son <strong>completamente gratuitos</strong>.
+  Te muestran exactamente qué pregunta el tribunal, cómo formula las preguntas y qué artículos prioriza.
+</p>
+<p>Convocatorias disponibles:</p>
+<ul>
+  <li><strong>2024:</strong> la más reciente — 100 preguntas puntuables + 10 reserva</li>
+  <li><strong>2022:</strong> primera convocatoria post-COVID con nuevo formato</li>
+  <li><strong>2019:</strong> última convocatoria con el formato anterior</li>
+  <li><strong>2018:</strong> incluye psicotécnicos</li>
+</ul>
+<p>
+  En <a href="/examenes-oficiales">OpoRuta los tienes en formato interactivo</a> con cronómetro,
+  penalización -1/3 y explicación de cada respuesta. También puedes descargar los PDFs
+  originales desde la web del INAP (inap.es).
+</p>
+
+<h2>2. Tests tipo test online (gratuitos)</h2>
+<p>Varias plataformas ofrecen tests gratuitos, con diferentes niveles de calidad:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Plataforma</th>
+      <th>Tests gratis</th>
+      <th>Verificación legal</th>
+      <th>Observaciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>OpoRuta</strong></td>
+      <td>5 tests</td>
+      <td>Sí (BOE)</td>
+      <td>Temas 1, 11 y 17 en plan gratuito</td>
+    </tr>
+    <tr>
+      <td><strong>OpositaTest</strong></td>
+      <td>Limitados</td>
+      <td>No (curadas)</td>
+      <td>Plan free con restricciones</td>
+    </tr>
+    <tr>
+      <td><strong>Daypo</strong></td>
+      <td>Ilimitados</td>
+      <td>No</td>
+      <td>Tests de la comunidad, calidad variable</td>
+    </tr>
+    <tr>
+      <td><strong>Tests-gratis.com</strong></td>
+      <td>Varios</td>
+      <td>No</td>
+      <td>Cuestionarios básicos sin explicaciones</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <strong>Advertencia sobre tests gratuitos sin verificar:</strong> plataformas como Daypo tienen tests
+  creados por usuarios anónimos. Las preguntas pueden citar legislación derogada o artículos incorrectos.
+  Un test con citas erróneas es peor que no hacer tests, porque memorizas información falsa.
+</p>
+
+<h2>3. Temario oficial en el BOE (gratis)</h2>
+<p>
+  El programa oficial del examen se publica en el BOE con cada convocatoria. Las leyes que componen
+  el temario son todas públicas:
+</p>
+<ul>
+  <li><strong>Constitución Española 1978:</strong> <a href="https://www.boe.es/eli/es/c/1978/12/27/(1)/con" rel="nofollow noopener" target="_blank">BOE</a></li>
+  <li><strong>Ley 39/2015 (LPAC):</strong> <a href="https://www.boe.es/eli/es/l/2015/10/01/39/con" rel="nofollow noopener" target="_blank">BOE</a></li>
+  <li><strong>Ley 40/2015 (LRJSP):</strong> <a href="https://www.boe.es/eli/es/l/2015/10/01/40/con" rel="nofollow noopener" target="_blank">BOE</a></li>
+  <li><strong>RDL 5/2015 (TREBEP):</strong> <a href="https://www.boe.es/eli/es/rdlg/2015/10/30/5/con" rel="nofollow noopener" target="_blank">BOE</a></li>
+  <li><strong>LO 3/2018 (LOPDGDD):</strong> <a href="https://www.boe.es/eli/es/lo/2018/12/05/3/con" rel="nofollow noopener" target="_blank">BOE</a></li>
+</ul>
+<p>
+  El problema: las leyes en el BOE no están organizadas como un temario de estudio.
+  Por eso la mayoría de opositores compran un manual de academia (Adams, MAD, CEP: 30-50€)
+  que estructura los artículos por temas.
+</p>
+
+<h2>4. Calculadoras de nota (gratis)</h2>
+<p>
+  Saber cuánto necesitas acertar para aprobar es fundamental. OpoRuta tiene calculadoras
+  gratuitas que aplican la penalización -1/3:
+</p>
+<ul>
+  <li><a href="/herramientas/calculadora-nota-auxiliar-administrativo">Calculadora nota Auxiliar (C2)</a> — 60+50 preguntas, 90 min</li>
+  <li><a href="/herramientas/calculadora-nota-administrativo-estado">Calculadora nota Administrativo (C1)</a> — 70+20 preguntas, 100 min</li>
+</ul>
+
+<h2>5. Comunidades de opositores (gratis)</h2>
+<p>
+  Estudiar solo puede ser duro. Estas comunidades te conectan con otros opositores:
+</p>
+<ul>
+  <li><strong>Foros de OpositaTest:</strong> encuestas de nota de corte, debates sobre convocatorias</li>
+  <li><strong>Reddit r/oposiciones:</strong> experiencias, dudas, recursos compartidos</li>
+  <li><strong>Grupos de Telegram/WhatsApp:</strong> búscalos en redes sociales por "auxiliar administrativo 2026"</li>
+  <li><strong>YouTube:</strong> canales como "Opositora por libre" con técnicas de estudio</li>
+</ul>
+
+<h2>6. Herramientas de IA gratuitas (con precauciones)</h2>
+<p>
+  Puedes usar ChatGPT, Gemini o Claude para complementar tu estudio:
+</p>
+<ul>
+  <li><strong>Resumir artículos largos:</strong> pídele que resuma un artículo del BOE en 3 puntos clave</li>
+  <li><strong>Generar flashcards:</strong> "Genera 10 flashcards sobre el Título I de la Constitución"</li>
+  <li><strong>Explicar conceptos:</strong> "Explícame la diferencia entre silencio positivo y negativo en la LPAC"</li>
+</ul>
+<p>
+  <strong>Precaución importante:</strong> estas IAs pueden inventar citas legales (alucinaciones).
+  <strong>NUNCA memorices un artículo que cite una IA sin comprobarlo en el BOE.</strong>
+  Lee nuestro análisis de
+  <a href="/blog/mejores-plataformas-ia-oposiciones-2026-comparativa">plataformas IA para oposiciones</a>
+  para entender el riesgo.
+</p>
+
+<h2>Presupuesto mínimo recomendado</h2>
+<p>
+  Si quieres maximizar tus posibilidades con el menor gasto posible:
+</p>
+<table>
+  <thead>
+    <tr>
+      <th>Recurso</th>
+      <th>Coste</th>
+      <th>Imprescindible</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Manual de temario (Adams/MAD/CEP)</td>
+      <td>30-50€</td>
+      <td>Recomendado</td>
+    </tr>
+    <tr>
+      <td>OpoRuta Pack (C2)</td>
+      <td>49,99€</td>
+      <td>Recomendado</td>
+    </tr>
+    <tr>
+      <td>Exámenes INAP (OpoRuta/INAP)</td>
+      <td>Gratis</td>
+      <td>Imprescindible</td>
+    </tr>
+    <tr>
+      <td>Calculadora nota</td>
+      <td>Gratis</td>
+      <td>Útil</td>
+    </tr>
+    <tr>
+      <td><strong>TOTAL</strong></td>
+      <td><strong>80-100€</strong></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  Compara con una academia presencial (100-250€/mes × 12 meses = 1.200-3.000€).
+  Preparar por libre con las herramientas adecuadas cuesta <strong>10-20 veces menos</strong>.
+</p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/preparar-oposicion-auxiliar-administrativo-por-libre">Guía completa para preparar por libre</a></li>
+  <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Cómo funciona la penalización -1/3</a></li>
+  <li><a href="/blog/mejores-plataformas-ia-oposiciones-2026-comparativa">Comparativa de plataformas IA para oposiciones</a></li>
+  <li><a href="/blog/plazas-auxiliar-administrativo-2026">1.700 plazas en la convocatoria 2026</a></li>
+</ul>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+  },
+  // ─── Post 31: IA para oposiciones ¿merece la pena? ────────────────────────
+  {
+    slug: 'inteligencia-artificial-oposiciones-merece-la-pena',
+    title: '¿Merece la pena usar Inteligencia Artificial para preparar oposiciones en 2026?',
+    description:
+      'Análisis honesto sobre el uso de IA (ChatGPT, plataformas especializadas) para preparar oposiciones. Qué puede hacer, qué no puede hacer, riesgos de alucinación y cómo usarla sin que te perjudique.',
+    date: '2026-03-17',
+    keywords: [
+      'inteligencia artificial oposiciones',
+      'ChatGPT oposiciones',
+      'IA para estudiar oposiciones',
+      'preparar oposiciones con IA',
+      'ChatGPT para oposiciones auxiliar administrativo',
+      'riesgos IA oposiciones',
+    ],
+    faqs: [
+      {
+        question: '¿Puedo usar ChatGPT para preparar oposiciones?',
+        answer: 'Sí, pero con precauciones. ChatGPT es útil para resumir textos largos, explicar conceptos y generar flashcards. Pero puede inventar citas legales (alucinaciones): si te dice que el artículo 53 de la LPAC dice algo, compruébalo siempre en el BOE. Para tests tipo test con citas verificadas, usa plataformas especializadas como OpoRuta.',
+      },
+      {
+        question: '¿La IA puede inventar artículos de ley?',
+        answer: 'Sí, es un problema conocido llamado "alucinación". Las IAs generativas (ChatGPT, Gemini, Claude) pueden inventar artículos que no existen, atribuir contenido incorrecto a artículos reales, o citar leyes derogadas. En oposiciones esto es especialmente peligroso porque memorizas información falsa.',
+      },
+      {
+        question: '¿Qué plataformas de IA verifican las citas legales?',
+        answer: 'OpoRuta es la única plataforma de oposiciones que verifica cada cita legal de forma determinista contra la legislación oficial del BOE antes de mostrarte la pregunta. OpositaTest evita el problema usando preguntas curadas manualmente. El resto de plataformas IA no documentan un proceso de verificación legal.',
+      },
+      {
+        question: '¿La IA sustituye a una academia para oposiciones?',
+        answer: 'No sustituye a una academia, pero reduce la necesidad de una. La IA no te da disciplina, comunidad ni un tutor humano. Pero sí te da tests personalizados, explicaciones inmediatas y análisis de progreso. Muchos opositores combinan estudio por libre + IA + recursos gratuitos con excelentes resultados.',
+      },
+    ],
+    content: `
+<p>
+  <strong>Sí, usar inteligencia artificial para preparar oposiciones merece la pena en 2026, pero con condiciones:</strong>
+  debes entender qué puede hacer la IA, qué no puede hacer, y cómo evitar sus riesgos.
+  Según el Observatorio del Opositor 2026 de OpositaTest, <strong>el 27% de los opositores ya usa IA</strong>
+  en su preparación (el 87% de ellos, ChatGPT). La tendencia es clara, pero el mayor peligro es
+  la alucinación: las IAs generativas pueden inventar citas legales que tú memorizas como verdaderas.
+</p>
+
+<h2>Qué puede hacer la IA por un opositor</h2>
+
+<h3>1. Generar tests tipo test personalizados</h3>
+<p>
+  En vez de hacer siempre los mismos tests de un banco fijo, la IA puede generar preguntas
+  nuevas sobre el tema que estés estudiando. Esto evita que memorices las respuestas
+  en vez de aprender el contenido.
+</p>
+
+<h3>2. Explicar errores de forma inmediata</h3>
+<p>
+  Cuando fallas una pregunta, la IA puede explicarte por qué la respuesta correcta es esa,
+  citando el artículo exacto de la ley. Sin IA, tendrías que buscar tú el artículo
+  en el BOE — con IA, la explicación es instantánea.
+</p>
+
+<h3>3. Adaptar la dificultad a tu nivel</h3>
+<p>
+  Si aciertas el 90% de las preguntas de la Constitución, la IA puede generar preguntas
+  más difíciles sobre ese tema y centrarse en los temas donde fallas más. Esto es
+  más eficiente que hacer tests aleatorios.
+</p>
+
+<h3>4. Resumir y esquematizar legislación</h3>
+<p>
+  Una ley como la LPAC tiene 133 artículos. La IA puede resumirte los artículos clave
+  en fichas de estudio, esquemas o flashcards en segundos.
+</p>
+
+<h2>Qué NO puede hacer la IA</h2>
+
+<h3>1. Sustituir el estudio del temario</h3>
+<p>
+  La IA genera tests y explicaciones, pero no puede estudiar por ti. Necesitas leer
+  y comprender la legislación. Los tests son para practicar y consolidar, no para
+  aprender desde cero.
+</p>
+
+<h3>2. Garantizar que sus citas legales son correctas</h3>
+<p>
+  <strong>Este es el riesgo más importante.</strong> Las IAs generativas (ChatGPT, Gemini, Claude)
+  pueden inventar artículos de ley. A esto se le llama <strong>alucinación</strong>.
+</p>
+<p>Ejemplos reales de alucinación en oposiciones:</p>
+<ul>
+  <li>Citar un "artículo 47.3 de la LPAC" que no existe (la LPAC no tiene artículo 47.3)</li>
+  <li>Atribuir el contenido del artículo 35 al artículo 53</li>
+  <li>Citar la "Ley 30/1992" (derogada en 2015) como si estuviera vigente</li>
+  <li>Inventar un plazo de "15 días" cuando el artículo real dice "10 días"</li>
+</ul>
+<p>
+  Si memorizas una cita inventada, en el examen fallarás una pregunta que creías saber.
+  Es peor que no haberla estudiado, porque tu confianza te lleva a elegir la respuesta
+  incorrecta sin dudar.
+</p>
+
+<h3>3. Darte disciplina ni motivación</h3>
+<p>
+  Una academia presencial te obliga a asistir, te pone fechas y te da un grupo de estudio.
+  La IA no hace nada de eso. Si no tienes disciplina para estudiar por libre,
+  la IA sola no resolverá el problema.
+</p>
+
+<h2>Cómo usar la IA de forma segura para oposiciones</h2>
+
+<h3>Regla 1: Nunca memorices una cita legal sin comprobarla</h3>
+<p>
+  Si la IA te dice que "según el artículo 53 de la LPAC, el plazo de resolución es de 3 meses",
+  ve al <a href="https://www.boe.es/eli/es/l/2015/10/01/39/con" rel="nofollow noopener" target="_blank">BOE</a>
+  y compruébalo. Debería ser un hábito automático.
+</p>
+
+<h3>Regla 2: Usa plataformas que verifiquen las citas</h3>
+<p>
+  Plataformas como <a href="/">OpoRuta</a> verifican cada cita legal contra la legislación
+  del BOE de forma automática antes de mostrarte la pregunta. Esto elimina el riesgo
+  de alucinación en las preguntas tipo test.
+</p>
+
+<h3>Regla 3: No dependas solo de la IA</h3>
+<p>
+  La IA es un complemento, no un sustituto. La combinación ideal:
+</p>
+<ul>
+  <li><strong>Manual de temario</strong> (Adams, MAD, CEP) para lectura y comprensión</li>
+  <li><strong>Plataforma de tests con IA verificada</strong> para practicar el formato del examen</li>
+  <li><strong>Exámenes oficiales del INAP</strong> para medir tu nivel real</li>
+  <li><strong>ChatGPT/Gemini</strong> como complemento para dudas puntuales y resúmenes (siempre verificando)</li>
+</ul>
+
+<h3>Regla 4: Practica con penalización desde el principio</h3>
+<p>
+  El examen del Auxiliar penaliza -1/3 por respuesta incorrecta. Si practicas sin penalización,
+  tu estrategia de respuesta será incorrecta el día del examen. Cualquier plataforma que uses,
+  asegúrate de que <a href="/blog/penalizacion-examen-auxiliar-administrativo">aplica la penalización real</a>.
+</p>
+
+<h2>Comparativa: IA genérica vs IA especializada en oposiciones</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Característica</th>
+      <th>ChatGPT / Gemini</th>
+      <th>OpoRuta</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Genera preguntas</strong></td>
+      <td>Sí</td>
+      <td>Sí</td>
+    </tr>
+    <tr>
+      <td><strong>Formato examen real</strong></td>
+      <td>No (formato libre)</td>
+      <td>Sí (4 opciones, penalización)</td>
+    </tr>
+    <tr>
+      <td><strong>Verifica citas legales</strong></td>
+      <td>No</td>
+      <td>Sí (contra BOE)</td>
+    </tr>
+    <tr>
+      <td><strong>Simulacros cronometrados</strong></td>
+      <td>No</td>
+      <td>Sí (con exámenes INAP reales)</td>
+    </tr>
+    <tr>
+      <td><strong>Seguimiento de progreso</strong></td>
+      <td>No</td>
+      <td>Sí (por tema y ley)</td>
+    </tr>
+    <tr>
+      <td><strong>Análisis exámenes INAP</strong></td>
+      <td>No</td>
+      <td>Sí (Radar del Tribunal)</td>
+    </tr>
+    <tr>
+      <td><strong>Precio</strong></td>
+      <td>Gratis / 20€/mes (Plus)</td>
+      <td>Gratis (5 tests) / 49,99€</td>
+    </tr>
+    <tr>
+      <td><strong>Riesgo de alucinación</strong></td>
+      <td>Alto</td>
+      <td>Eliminado (verificación)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Conclusión: la IA es una herramienta, no una solución mágica</h2>
+<p>
+  La IA para oposiciones en 2026 es como una calculadora para matemáticas: te ahorra tiempo
+  y te permite practicar más, pero no sustituye el entendimiento. El opositor que usa IA
+  de forma inteligente (verificando citas, combinando con estudio del temario, practicando
+  con penalización) tiene ventaja sobre el que solo lee y subraya.
+</p>
+<p>
+  La clave no es SI usar IA, sino CÓMO usarla. Y el cómo más importante es: <strong>verifica
+  siempre las citas legales</strong>.
+</p>
+
+<h2>Sigue preparando tu oposición</h2>
+<ul>
+  <li><a href="/blog/mejores-plataformas-ia-oposiciones-2026-comparativa">Comparativa de plataformas IA para oposiciones 2026</a></li>
+  <li><a href="/blog/recursos-gratuitos-auxiliar-administrativo-estado-2026">Recursos gratuitos para Auxiliar Administrativo</a></li>
+  <li><a href="/blog/preparar-oposicion-auxiliar-administrativo-por-libre">Preparar oposiciones por libre en 2026</a></li>
+  <li><a href="/blog/oporuta-vs-opositatest-auxiliar-administrativo-2026">OpoRuta vs OpositaTest — diferencias reales</a></li>
+</ul>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
     `.trim(),
   },
 ]

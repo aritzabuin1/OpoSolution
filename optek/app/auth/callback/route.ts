@@ -72,6 +72,17 @@ export async function GET(request: NextRequest) {
 
   if (data.user) {
     await handleNewUser(data.user)
+
+    // OAuth users won't have oposicion_id in metadata — detect for GTM tracking
+    const isOAuth = !data.user.user_metadata?.oposicion_id
+    const createdAt = new Date(data.user.created_at).getTime()
+    const isNew = Date.now() - createdAt < 10 * 60 * 1000
+    if (isOAuth && isNew) {
+      // Pass method hint so client can fire GTM sign_up event
+      const redirectUrl = new URL(next, origin)
+      redirectUrl.searchParams.set('auth_method', 'google')
+      return NextResponse.redirect(redirectUrl)
+    }
   }
 
   return NextResponse.redirect(new URL(next, origin))

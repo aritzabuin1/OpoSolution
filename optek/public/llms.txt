@@ -31,6 +31,13 @@ Genera tests tipo test desde legislación española vigente (CE, LPAC, LRJSP, TR
 - [Plazas convocatoria 2026](https://oporuta.es/blog/plazas-auxiliar-administrativo-2026): 1.700 plazas de acceso libre
 - [Nota de corte última convocatoria](https://oporuta.es/blog/nota-corte-auxiliar-administrativo-estado): Puntuaciones mínimas y cómo se calcula
 
+## Comparativas y análisis
+
+- [Mejores plataformas IA para oposiciones 2026](https://oporuta.es/blog/mejores-plataformas-ia-oposiciones-2026-comparativa): Comparativa real con precios de OpositaTest, OpoRuta, Toposiciones, Testualia y Opositor.ai
+- [OpoRuta vs OpositaTest](https://oporuta.es/blog/oporuta-vs-opositatest-auxiliar-administrativo-2026): Diferencias reales entre las dos principales plataformas para C1/C2 AGE
+- [¿Merece la pena usar IA para oposiciones?](https://oporuta.es/blog/inteligencia-artificial-oposiciones-merece-la-pena): Qué puede hacer la IA, riesgos de alucinación y cómo usarla de forma segura
+- [Recursos gratuitos Auxiliar Administrativo 2026](https://oporuta.es/blog/recursos-gratuitos-auxiliar-administrativo-estado-2026): Tests, temarios, calculadoras y comunidades sin coste
+
 ## Datos clave — Auxiliar Administrativo (C2)
 
 - Oposición: Cuerpo General Auxiliar de la AGE (Subgrupo C2)
@@ -59,4 +66,4 @@ Genera tests tipo test desde legislación española vigente (CE, LPAC, LRJSP, TR
 
 ---
 
-*Última actualización: 2026-03-15*
+*Última actualización: 2026-03-17*

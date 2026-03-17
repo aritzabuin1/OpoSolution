@@ -197,6 +197,14 @@ const faqs = [
     q: '¿Con qué frecuencia se actualiza la legislación?',
     a: 'Monitorizamos el BOE automáticamente. Cuando se publica un cambio en la legislación relevante para tu oposición, actualizamos el contenido y te notificamos para que repases los artículos modificados.',
   },
+  {
+    q: '¿Cuál es la nota de corte del Auxiliar Administrativo?',
+    a: 'La última nota de corte fue 30 puntos (parte 1) y 26,33 puntos (parte 2), sobre 50 por parte. Puedes usar nuestra calculadora gratuita para simular tu nota con la penalización -1/3.',
+  },
+  {
+    q: '¿Se puede preparar la oposición por libre, sin academia?',
+    a: 'Sí. El temario del Auxiliar (28 temas) y del Administrativo (45 temas) son abarcables sin academia. OpoRuta te ofrece tests con legislación verificada, simulacros INAP reales y psicotécnicos — todo lo que necesitas para prepararte por tu cuenta.',
+  },
 ]
 
 
@@ -260,6 +268,38 @@ const jsonLdFaq = {
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'Sí. OpoRuta usa verificación determinista: cada cita legal generada por la IA se valida contra la base de datos de legislación oficial antes de mostrártela. Si la cita no existe o es incorrecta, el sistema lo detecta y corrige automáticamente. Sin alucinaciones ni artículos inventados.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cuál es la nota de corte del Auxiliar Administrativo del Estado?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'La nota de corte de la última convocatoria del Auxiliar Administrativo del Estado (C2) fue de 30 puntos en la primera parte (teoría + psicotécnicos) y 26,33 puntos en la segunda parte (ofimática), sobre un máximo de 50 puntos por parte. Cada parte es eliminatoria con un mínimo de 25 puntos. OpoRuta incluye una calculadora gratuita para simular tu nota con la penalización -1/3.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cuántas plazas hay en la convocatoria de Auxiliar Administrativo del Estado 2026?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'La convocatoria 2025-2026 ofrece 1.700 plazas de acceso libre para el Cuerpo General Auxiliar de la Administración del Estado (C2), publicadas en el BOE del 22 de diciembre de 2025 (RD 651/2025). Es la mayor oferta histórica para esta oposición. El examen está previsto para mayo-junio de 2026.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Se puede preparar la oposición de Auxiliar Administrativo por libre?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sí. El temario del Auxiliar Administrativo del Estado (28 temas) es abarcable sin academia. Necesitas un manual de referencia (Adams, MAD o CEP, entre 30-50€), los exámenes oficiales del INAP de años anteriores para practicar y una herramienta de tests tipo test para entrenar el formato real del examen. OpoRuta ofrece todo esto de forma gratuita: tests por tema con legislación verificada, simulacros INAP reales y psicotécnicos.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Qué tipo de psicotécnicos entran en el examen del Auxiliar Administrativo?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'La primera parte del examen del Auxiliar Administrativo incluye 30 preguntas psicotécnicas que evalúan: razonamiento verbal (sinónimos, antónimos, analogías), razonamiento numérico (series, operaciones, porcentajes), razonamiento abstracto (secuencias lógicas, patrones) y aptitud administrativa (ordenación, clasificación, detección de errores). OpoRuta genera psicotécnicos de práctica con los mismos tipos que aparecen en el examen oficial.',
       },
     },
   ],
@@ -743,9 +783,9 @@ export default async function LandingPage() {
           </div>
           <div className="grid gap-4 sm:grid-cols-3">
             {([
+              'mejores-plataformas-ia-oposiciones-2026-comparativa',
               'como-preparar-oposicion-auxiliar-administrativo-estado-guia',
               'penalizacion-examen-auxiliar-administrativo',
-              'articulos-lpac-que-mas-caen-examen-inap',
             ].map((slug) => blogPosts.find((p) => p.slug === slug)).filter((p): p is typeof blogPosts[0] => !!p)).map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
                 <Card className="h-full hover:border-primary/40 transition-colors">

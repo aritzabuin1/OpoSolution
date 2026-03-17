@@ -64,14 +64,15 @@ export default async function BlogPostPage({ params }: Props) {
   const nextPost = postIndex > 0 ? blogPosts[postIndex - 1] : null
 
   // JSON-LD Article + BreadcrumbList schemas
-  const jsonLd = [
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const jsonLd: Record<string, any>[] = [
     {
       '@context': 'https://schema.org',
       '@type': 'Article',
       headline: post.title,
       description: post.description,
       datePublished: post.date,
-      dateModified: post.date,
+      dateModified: post.dateModified ?? post.date,
       author: { '@type': 'Organization', name: 'OpoRuta', url: APP_URL },
       publisher: { '@type': 'Organization', name: 'OpoRuta', url: APP_URL },
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${APP_URL}/blog/${post.slug}` },
@@ -87,6 +88,22 @@ export default async function BlogPostPage({ params }: Props) {
       ],
     },
   ]
+
+  // FAQPage schema for posts with FAQs — enables rich snippets in Google
+  if (post.faqs && post.faqs.length > 0) {
+    jsonLd.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: post.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    })
+  }
 
   return (
     <>
@@ -129,6 +146,16 @@ export default async function BlogPostPage({ params }: Props) {
               month: 'long',
               day: 'numeric',
             })}
+            {post.dateModified && post.dateModified !== post.date && (
+              <>
+                {' '}· Actualizado el{' '}
+                {new Date(post.dateModified).toLocaleDateString('es-ES', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </>
+            )}
             {' '}· OpoRuta · {readingTime} min lectura
           </p>
         </header>
@@ -147,6 +174,21 @@ export default async function BlogPostPage({ params }: Props) {
             prose-td:p-2 prose-td:border"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
+
+        {/* FAQ section — visible + JSON-LD for rich snippets */}
+        {post.faqs && post.faqs.length > 0 && (
+          <section className="mt-12">
+            <h2 className="text-2xl font-bold tracking-tight mb-6">Preguntas frecuentes</h2>
+            <dl className="space-y-4">
+              {post.faqs.map((faq, i) => (
+                <div key={i} className="rounded-lg border p-4">
+                  <dt className="font-semibold text-foreground">{faq.question}</dt>
+                  <dd className="mt-2 text-sm text-muted-foreground leading-relaxed">{faq.answer}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )}
 
         {/* CTA */}
         <div className="mt-12 rounded-xl border bg-primary/5 p-6 text-center">
