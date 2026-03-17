@@ -133,12 +133,13 @@ function applySecurityHeaders(res: NextResponse, requestId: string): void {
     'Content-Security-Policy',
     [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' https://connect.facebook.net https://www.googletagmanager.com",
-      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      "script-src 'self' 'unsafe-inline' https://connect.facebook.net https://www.googletagmanager.com https://accounts.google.com",
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
       "font-src 'self' https://fonts.gstatic.com",
-      "img-src 'self' data: blob: https://www.facebook.com https://www.googletagmanager.com",
+      "img-src 'self' data: blob: https://www.facebook.com https://www.googletagmanager.com https://lh3.googleusercontent.com",
       // OpenAI para tests/caza-trampas/reto-diario, Anthropic para corrector
-      "connect-src 'self' https://*.supabase.co https://api.openai.com https://api.anthropic.com https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com",
+      "connect-src 'self' https://*.supabase.co https://api.openai.com https://api.anthropic.com https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://accounts.google.com",
+      "frame-src 'self' https://accounts.google.com",
       "frame-ancestors 'none'",
     ].join('; ')
   )

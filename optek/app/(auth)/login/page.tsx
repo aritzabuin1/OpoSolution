@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { GoogleSignInButton } from '@/components/auth/GoogleSignInButton'
 
 // Componente interior que usa useSearchParams — debe ir dentro de <Suspense>
 function LoginForm() {
@@ -72,6 +73,17 @@ function LoginForm() {
         <CardDescription>Accede a tu cuenta OpoRuta</CardDescription>
       </CardHeader>
       <CardContent>
+        <GoogleSignInButton />
+
+        <div className="relative my-6">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t" />
+          </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-card px-2 text-muted-foreground">o</span>
+          </div>
+        </div>
+
         <Tabs defaultValue="password">
           <TabsList className="grid w-full grid-cols-2 mb-6">
             <TabsTrigger value="password">Contraseña</TabsTrigger>
