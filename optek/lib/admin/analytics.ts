@@ -17,7 +17,6 @@
  * Cached with unstable_cache (120s revalidation).
  */
 
-import { unstable_cache } from 'next/cache'
 import { createServiceClient } from '@/lib/supabase/server'
 import { METRICS_START_DATE, adminIdFilter, getAdminUserIds } from '@/lib/admin/metrics-filter'
 
@@ -151,7 +150,7 @@ async function _getConversionMetrics(): Promise<ConversionMetrics> {
   return { totalUsers, freeUsers, paidUsers, conversionPct, avgDaysToConvert }
 }
 
-export const getConversionMetrics = unstable_cache(_getConversionMetrics, ['admin-conversion'], { revalidate: 120 })
+export const getConversionMetrics = _getConversionMetrics
 
 // ─── 2. DAU (Daily Active Users) ultimos 30 dias ────────────────────────────
 
@@ -185,7 +184,7 @@ async function _getDAU30d(): Promise<DAUPoint[]> {
   return result
 }
 
-export const getDAU30d = unstable_cache(_getDAU30d, ['admin-dau-30d'], { revalidate: 120 })
+export const getDAU30d = _getDAU30d
 
 // ─── 3. Engagement por feature ──────────────────────────────────────────────
 
@@ -227,7 +226,7 @@ async function _getFeatureEngagement(): Promise<FeatureEngagement[]> {
     .sort((a, b) => b.count - a.count)
 }
 
-export const getFeatureEngagement = unstable_cache(_getFeatureEngagement, ['admin-feature-engagement'], { revalidate: 120 })
+export const getFeatureEngagement = _getFeatureEngagement
 
 // ─── 4. Tasa de abandono (churn 7d) ─────────────────────────────────────────
 
@@ -258,7 +257,7 @@ async function _getChurnMetrics(): Promise<ChurnMetrics> {
   return { totalActive, churned7d, churnPct, activeNow }
 }
 
-export const getChurnMetrics = unstable_cache(_getChurnMetrics, ['admin-churn'], { revalidate: 120 })
+export const getChurnMetrics = _getChurnMetrics
 
 // ─── 5. Funnel de onboarding ────────────────────────────────────────────────
 
@@ -299,7 +298,7 @@ async function _getOnboardingFunnel(): Promise<OnboardingFunnel> {
   }
 }
 
-export const getOnboardingFunnel = unstable_cache(_getOnboardingFunnel, ['admin-onboarding-funnel'], { revalidate: 120 })
+export const getOnboardingFunnel = _getOnboardingFunnel
 
 // ─── 6. Top temas generados ─────────────────────────────────────────────────
 
@@ -335,7 +334,7 @@ async function _getTopTemas(limit = 10): Promise<TemaPopularity[]> {
     .slice(0, limit)
 }
 
-export const getTopTemas = unstable_cache(_getTopTemas, ['admin-top-temas'], { revalidate: 120 })
+export const getTopTemas = _getTopTemas
 
 // ─── 7. Puntuacion media por tema ───────────────────────────────────────────
 
@@ -374,7 +373,7 @@ async function _getTemaScores(limit = 10): Promise<TemaScore[]> {
     .slice(0, limit)
 }
 
-export const getTemaScores = unstable_cache(_getTemaScores, ['admin-tema-scores'], { revalidate: 120 })
+export const getTemaScores = _getTemaScores
 
 // ─── 8. Uso de creditos de correccion ───────────────────────────────────────
 
@@ -402,7 +401,7 @@ async function _getCorrectionsUsage(): Promise<CorrectionsUsage> {
   }
 }
 
-export const getCorrectionsUsage = unstable_cache(_getCorrectionsUsage, ['admin-corrections-usage'], { revalidate: 120 })
+export const getCorrectionsUsage = _getCorrectionsUsage
 
 // ─── 9. Tests completados vs abandonados ────────────────────────────────────
 
@@ -432,7 +431,7 @@ async function _getCompletionRate(): Promise<CompletionRate> {
   }
 }
 
-export const getCompletionRate = unstable_cache(_getCompletionRate, ['admin-completion-rate'], { revalidate: 120 })
+export const getCompletionRate = _getCompletionRate
 
 // ─── 10. Feedback recibido (sugerencias) ────────────────────────────────────
 
@@ -506,4 +505,4 @@ async function _getAnalysisUsageByType(): Promise<AnalysisUsageByType[]> {
     .sort((a, b) => b.count - a.count)
 }
 
-export const getAnalysisUsageByType = unstable_cache(_getAnalysisUsageByType, ['admin-analysis-usage'], { revalidate: 120 })
+export const getAnalysisUsageByType = _getAnalysisUsageByType

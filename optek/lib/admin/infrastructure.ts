@@ -13,6 +13,7 @@
 
 import { unstable_cache } from 'next/cache'
 import { createServiceClient } from '@/lib/supabase/server'
+import { METRICS_START_DATE, adminIdFilter, getAdminUserIds } from '@/lib/admin/metrics-filter'
 
 // ─── Umbrales ─────────────────────────────────────────────────────────────────
 
@@ -143,6 +144,10 @@ async function fetchInfraMetrics(): Promise<InfraMetrics> {
   const weekStart = startOfWeek(now).toISOString()
   const monthStart = startOfMonth(now).toISOString()
 
+  // Fetch admin IDs to exclude from all user-facing metrics
+  const adminIds = await getAdminUserIds()
+  const adminFilter = adminIdFilter(adminIds)
+
   // Run all queries in parallel
   const [
     dbSizeResult,
@@ -152,13 +157,13 @@ async function fetchInfraMetrics(): Promise<InfraMetrics> {
     aiTodayResult,
     aiWeekResult,
     aiMonthResult,
-    // New: Vercel invocations (api_usage_log rows this month = API calls)
+    // Vercel invocations (api_usage_log rows this month = API calls)
     apiCallsMonthResult,
-    // New: User growth
+    // User growth
     newUsersTodayResult,
     newUsersWeekResult,
     newUsersPrevWeekResult,
-    // New: Purchases
+    // Purchases
     purchasesTodayResult,
     purchasesWeekResult,
     paidUsersResult,
@@ -166,24 +171,37 @@ async function fetchInfraMetrics(): Promise<InfraMetrics> {
     // DB size (RPC — migration 023)
     supabase.rpc('get_db_size_bytes'),
 
-    // Total registrados (proxy para auth.users)
-    supabase
-      .from('profiles')
-      .select('*', { count: 'exact', head: true }),
+    // Total registrados — exclude admins + pre-launch data
+    (() => {
+      let q = supabase
+        .from('profiles')
+        .select('*', { count: 'exact', head: true })
+        .eq('is_admin', false)
+        .gte('created_at', METRICS_START_DATE)
+      return q
+    })(),
 
-    // MAU 30d — usuarios con actividad en api_usage_log
-    supabase
-      .from('api_usage_log')
-      .select('user_id')
-      .gte('timestamp', thirtyDaysAgo),
+    // MAU 30d — exclude admin activity
+    (() => {
+      let q = supabase
+        .from('api_usage_log')
+        .select('user_id')
+        .gte('timestamp', thirtyDaysAgo)
+      if (adminFilter) q = q.not('user_id', 'in', adminFilter)
+      return q
+    })(),
 
-    // DAU — usuarios que generaron test en las últimas 24h
-    supabase
-      .from('tests_generados')
-      .select('user_id')
-      .gte('created_at', oneDayAgo),
+    // DAU — exclude admin activity
+    (() => {
+      let q = supabase
+        .from('tests_generados')
+        .select('user_id')
+        .gte('created_at', oneDayAgo)
+      if (adminFilter) q = q.not('user_id', 'in', adminFilter)
+      return q
+    })(),
 
-    // AI costs hoy
+    // AI costs hoy (keep admin costs — these are real infrastructure costs)
     supabase
       .from('api_usage_log')
       .select('cost_estimated_cents')
@@ -208,22 +226,25 @@ async function fetchInfraMetrics(): Promise<InfraMetrics> {
       .select('*', { count: 'exact', head: true })
       .gte('timestamp', monthStart),
 
-    // New users today
+    // New users today — exclude admins
     supabase
       .from('profiles')
       .select('*', { count: 'exact', head: true })
+      .eq('is_admin', false)
       .gte('created_at', todayStart),
 
-    // New users this week
+    // New users this week — exclude admins + floor to METRICS_START_DATE
     supabase
       .from('profiles')
       .select('*', { count: 'exact', head: true })
-      .gte('created_at', sevenDaysAgo),
+      .eq('is_admin', false)
+      .gte('created_at', METRICS_START_DATE),
 
-    // New users previous week (for growth rate)
+    // New users previous week — exclude admins (before METRICS_START_DATE = 0 by definition)
     supabase
       .from('profiles')
       .select('*', { count: 'exact', head: true })
+      .eq('is_admin', false)
       .gte('created_at', fourteenDaysAgo)
       .lt('created_at', sevenDaysAgo),
 
@@ -376,10 +397,6 @@ async function fetchInfraMetrics(): Promise<InfraMetrics> {
   }
 }
 
-// ─── Cached export ────────────────────────────────────────────────────────────
+// ─── Export (no cache — admin pages are low-traffic) ─────────────────────────
 
-export const getInfraMetrics = unstable_cache(
-  fetchInfraMetrics,
-  ['infra-metrics'],
-  { revalidate: 300 } // 5 minutos
-)
+export const getInfraMetrics = fetchInfraMetrics

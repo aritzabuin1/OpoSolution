@@ -5,6 +5,8 @@
  * Server Component — datos fetcheados con createServiceClient.
  */
 
+export const dynamic = 'force-dynamic'
+
 import {
   getConversionMetrics,
   getDAU30d,

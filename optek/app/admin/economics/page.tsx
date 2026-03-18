@@ -14,6 +14,8 @@
  * Server Component — datos fetcheados en el servidor con createServiceClient.
  */
 
+export const dynamic = 'force-dynamic'
+
 import {
   getFuelTank,
   getCostPerUser,

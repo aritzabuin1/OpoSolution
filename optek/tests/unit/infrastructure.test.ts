@@ -13,6 +13,14 @@ vi.mock('next/cache', () => ({
   unstable_cache: (fn: (...args: unknown[]) => unknown) => fn,
 }))
 
+// ─── Mock de metrics-filter (admin exclusion) ────────────────────────────────
+
+vi.mock('@/lib/admin/metrics-filter', () => ({
+  METRICS_START_DATE: '2026-03-15T00:00:00Z',
+  getAdminUserIds: vi.fn().mockResolvedValue([]),
+  adminIdFilter: vi.fn().mockReturnValue(null),
+}))
+
 // ─── Mock de createServiceClient ──────────────────────────────────────────────
 
 const mockRpc = vi.fn()

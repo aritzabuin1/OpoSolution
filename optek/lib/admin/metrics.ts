@@ -13,7 +13,6 @@
  *   - getAlerts(): alertas automáticas si los KPIs se degradan
  */
 
-import { unstable_cache } from 'next/cache'
 import { createServiceClient } from '@/lib/supabase/server'
 import { METRICS_START_DATE, adminIdFilter, getAdminUserIds } from '@/lib/admin/metrics-filter'
 
@@ -94,7 +93,7 @@ async function _getFuelTank(): Promise<FuelTankMetrics> {
   return { ingresos, costes, margen, margenPct }
 }
 
-export const getFuelTank = unstable_cache(_getFuelTank, ['admin-fuel-tank'], { revalidate: 120 })
+export const getFuelTank = _getFuelTank
 
 // ─── getCostPerUser ───────────────────────────────────────────────────────────
 
@@ -157,7 +156,7 @@ async function _getCostPerUser(): Promise<CostPerUserMetrics> {
   return { costeMedioTest, costeMedioUsuario, usuariosActivos30d, testsUltimos30d }
 }
 
-export const getCostPerUser = unstable_cache(_getCostPerUser, ['admin-cost-per-user'], { revalidate: 120 })
+export const getCostPerUser = _getCostPerUser
 
 // ─── getAARRR ─────────────────────────────────────────────────────────────────
 
@@ -177,7 +176,7 @@ async function _getAARRR(): Promise<AAARRRMetrics> {
 
   let profilesQ = supabase.from('profiles').select('id').eq('is_admin', false).gte('created_at', METRICS_START_DATE)
   let activatedQ = supabase.from('tests_generados').select('user_id').eq('completado', true).gte('created_at', METRICS_START_DATE)
-  let retentionQ = supabase.from('profiles').select('id').gte('racha_actual', 3).eq('is_admin', false)
+  let retentionQ = supabase.from('profiles').select('id').gte('racha_actual', 3).eq('is_admin', false).gte('created_at', METRICS_START_DATE)
   let revenueQ = supabase.from('compras').select('user_id').gte('created_at', METRICS_START_DATE)
 
   if (excludeAdmins) {
@@ -220,7 +219,7 @@ async function _getAARRR(): Promise<AAARRRMetrics> {
   }
 }
 
-export const getAARRR = unstable_cache(_getAARRR, ['admin-aarrr'], { revalidate: 120 })
+export const getAARRR = _getAARRR
 
 // ─── getMRRHistory ────────────────────────────────────────────────────────────
 
@@ -279,7 +278,7 @@ async function _getMRRHistory(meses = 6): Promise<MRRDataPoint[]> {
   return Array.from(byMonth.values()).sort((a, b) => a.mes.localeCompare(b.mes))
 }
 
-export const getMRRHistory = unstable_cache(_getMRRHistory, ['admin-mrr-history'], { revalidate: 120 })
+export const getMRRHistory = _getMRRHistory
 
 // ─── getAlerts ────────────────────────────────────────────────────────────────
 
