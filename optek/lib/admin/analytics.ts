@@ -312,27 +312,29 @@ async function _getTopTemas(limit = 10): Promise<TemaPopularity[]> {
 
   const [testsRes, temasRes] = await Promise.all([
     testsQ,
-    supabase.from('temas').select('id, titulo, oposicion_id'),
+    supabase.from('temas').select('id, titulo'),
   ])
 
-  // C1 vs C2 suffix para distinguir temas con el mismo nombre en distintas oposiciones
-  const C1_OPOSICION_ID = 'b0000000-0000-0000-0000-000000000001'
   const temaMap = new Map(
-    ((temasRes.data ?? []) as { id: string; titulo: string; oposicion_id: string }[]).map(t => {
-      const suffix = t.oposicion_id === C1_OPOSICION_ID ? ' (C1)' : ' (C2)'
-      return [t.id, t.titulo + suffix]
-    })
+    ((temasRes.data ?? []) as { id: string; titulo: string }[]).map(t => [t.id, t.titulo])
   )
 
-  const countByTema = new Map<string, number>()
+  // Agrupar por titulo para unificar C1+C2 que comparten nombre de tema
+  const countByTitulo = new Map<string, { temaId: string; count: number }>()
   for (const t of (testsRes.data ?? []) as { tema_id: string }[]) {
-    countByTema.set(t.tema_id, (countByTema.get(t.tema_id) ?? 0) + 1)
+    const titulo = temaMap.get(t.tema_id) ?? 'Desconocido'
+    const existing = countByTitulo.get(titulo)
+    if (existing) {
+      existing.count += 1
+    } else {
+      countByTitulo.set(titulo, { temaId: t.tema_id, count: 1 })
+    }
   }
 
-  return [...countByTema.entries()]
-    .map(([temaId, count]) => ({
+  return [...countByTitulo.entries()]
+    .map(([titulo, { temaId, count }]) => ({
       temaId,
-      titulo: temaMap.get(temaId) ?? 'Desconocido',
+      titulo,
       count,
     }))
     .sort((a, b) => b.count - a.count)
@@ -354,27 +356,29 @@ async function _getTemaScores(limit = 10): Promise<TemaScore[]> {
 
   const [testsRes, temasRes] = await Promise.all([
     testsQ,
-    supabase.from('temas').select('id, titulo, oposicion_id'),
+    supabase.from('temas').select('id, titulo'),
   ])
 
-  const C1_OPOSICION_ID = 'b0000000-0000-0000-0000-000000000001'
   const temaMap = new Map(
-    ((temasRes.data ?? []) as { id: string; titulo: string; oposicion_id: string }[]).map(t => {
-      const suffix = t.oposicion_id === C1_OPOSICION_ID ? ' (C1)' : ' (C2)'
-      return [t.id, t.titulo + suffix]
-    })
+    ((temasRes.data ?? []) as { id: string; titulo: string }[]).map(t => [t.id, t.titulo])
   )
 
-  const scoresByTema = new Map<string, number[]>()
+  // Agrupar por titulo para unificar C1+C2 que comparten nombre de tema
+  const scoresByTitulo = new Map<string, { temaId: string; scores: number[] }>()
   for (const t of (testsRes.data ?? []) as { tema_id: string; puntuacion: number }[]) {
-    if (!scoresByTema.has(t.tema_id)) scoresByTema.set(t.tema_id, [])
-    scoresByTema.get(t.tema_id)!.push(t.puntuacion)
+    const titulo = temaMap.get(t.tema_id) ?? 'Desconocido'
+    const existing = scoresByTitulo.get(titulo)
+    if (existing) {
+      existing.scores.push(t.puntuacion)
+    } else {
+      scoresByTitulo.set(titulo, { temaId: t.tema_id, scores: [t.puntuacion] })
+    }
   }
 
-  return [...scoresByTema.entries()]
-    .map(([temaId, scores]) => ({
+  return [...scoresByTitulo.entries()]
+    .map(([titulo, { temaId, scores }]) => ({
       temaId,
-      titulo: temaMap.get(temaId) ?? 'Desconocido',
+      titulo,
       avgScore: Math.round((scores.reduce((a, b) => a + b, 0) / scores.length) * 10) / 10,
       testCount: scores.length,
     }))
