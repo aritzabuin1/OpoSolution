@@ -312,11 +312,16 @@ async function _getTopTemas(limit = 10): Promise<TemaPopularity[]> {
 
   const [testsRes, temasRes] = await Promise.all([
     testsQ,
-    supabase.from('temas').select('id, titulo'),
+    supabase.from('temas').select('id, titulo, oposicion_id'),
   ])
 
+  // C1 vs C2 suffix para distinguir temas con el mismo nombre en distintas oposiciones
+  const C1_OPOSICION_ID = 'b0000000-0000-0000-0000-000000000001'
   const temaMap = new Map(
-    ((temasRes.data ?? []) as { id: string; titulo: string }[]).map(t => [t.id, t.titulo])
+    ((temasRes.data ?? []) as { id: string; titulo: string; oposicion_id: string }[]).map(t => {
+      const suffix = t.oposicion_id === C1_OPOSICION_ID ? ' (C1)' : ' (C2)'
+      return [t.id, t.titulo + suffix]
+    })
   )
 
   const countByTema = new Map<string, number>()
@@ -349,11 +354,15 @@ async function _getTemaScores(limit = 10): Promise<TemaScore[]> {
 
   const [testsRes, temasRes] = await Promise.all([
     testsQ,
-    supabase.from('temas').select('id, titulo'),
+    supabase.from('temas').select('id, titulo, oposicion_id'),
   ])
 
+  const C1_OPOSICION_ID = 'b0000000-0000-0000-0000-000000000001'
   const temaMap = new Map(
-    ((temasRes.data ?? []) as { id: string; titulo: string }[]).map(t => [t.id, t.titulo])
+    ((temasRes.data ?? []) as { id: string; titulo: string; oposicion_id: string }[]).map(t => {
+      const suffix = t.oposicion_id === C1_OPOSICION_ID ? ' (C1)' : ' (C2)'
+      return [t.id, t.titulo + suffix]
+    })
   )
 
   const scoresByTema = new Map<string, number[]>()

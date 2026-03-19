@@ -25,12 +25,12 @@ interface NavItem {
 const navItems: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/tests', label: 'Tests', icon: ClipboardList, tourId: 'nav-tests' },
-  { href: '/psicotecnicos', label: 'Psicotecnicos', icon: Brain },
+  { href: '/psicotecnicos', label: 'Psicotecnicos', icon: Brain, tourId: 'nav-psicotecnicos' },
   { href: '/simulacros', label: 'Simulacros', icon: BookOpen, tourId: 'nav-simulacros' },
-  { href: '/flashcards', label: 'Flashcards', icon: Layers, premium: true },
-  { href: '/cazatrampas', label: 'Caza-Trampas', icon: Target },
-  { href: '/reto-diario', label: 'Reto Diario', icon: CalendarCheck },
-  { href: '/radar', label: 'Radar Tribunal', icon: TrendingUp, premium: true },
+  { href: '/flashcards', label: 'Flashcards', icon: Layers, premium: true, tourId: 'nav-flashcards' },
+  { href: '/cazatrampas', label: 'Caza-Trampas', icon: Target, tourId: 'nav-cazatrampas' },
+  { href: '/reto-diario', label: 'Reto Diario', icon: CalendarCheck, tourId: 'nav-reto-diario' },
+  { href: '/radar', label: 'Radar Tribunal', icon: TrendingUp, premium: true, tourId: 'nav-radar' },
   { href: '/logros', label: 'Logros', icon: Trophy },
   { href: '/cuenta', label: 'Mi cuenta', icon: User },
 ]

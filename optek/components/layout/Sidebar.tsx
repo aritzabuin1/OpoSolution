@@ -25,17 +25,17 @@ interface NavItem {
 const navItems: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/tests', label: 'Tests', icon: ClipboardList, tourId: 'nav-tests' },
-  { href: '/psicotecnicos', label: 'Psicotecnicos', icon: Brain },
+  { href: '/psicotecnicos', label: 'Psicotecnicos', icon: Brain, tourId: 'nav-psicotecnicos' },
   { href: '/simulacros', label: 'Simulacros', icon: BookOpen, tourId: 'nav-simulacros' },
   {
-    href: '/flashcards', label: 'Flashcards', icon: Layers,
+    href: '/flashcards', label: 'Flashcards', icon: Layers, tourId: 'nav-flashcards',
     premium: true,
     premiumDesc: 'Tarjetas de repaso espaciado que se adaptan a tu ritmo. Consolida lo aprendido y no olvides nada.',
   },
-  { href: '/cazatrampas', label: 'Caza-Trampas', icon: Target },
-  { href: '/reto-diario', label: 'Reto Diario', icon: CalendarCheck },
+  { href: '/cazatrampas', label: 'Caza-Trampas', icon: Target, tourId: 'nav-cazatrampas' },
+  { href: '/reto-diario', label: 'Reto Diario', icon: CalendarCheck, tourId: 'nav-reto-diario' },
   {
-    href: '/radar', label: 'Radar Tribunal', icon: TrendingUp,
+    href: '/radar', label: 'Radar Tribunal', icon: TrendingUp, tourId: 'nav-radar',
     premium: true,
     premiumDesc: 'Descubre que articulos caen mas en los examenes INAP. Prioriza lo que el tribunal realmente pregunta.',
   },
