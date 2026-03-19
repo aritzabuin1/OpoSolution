@@ -764,6 +764,11 @@ export default async function LandingPage() {
               </details>
             ))}
           </div>
+          <div className="text-center mt-8">
+            <Link href="/preguntas-frecuentes" className="text-sm text-primary hover:underline">
+              Ver todas las preguntas frecuentes →
+            </Link>
+          </div>
         </div>
       </section>
 

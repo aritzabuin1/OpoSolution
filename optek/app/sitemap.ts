@@ -53,6 +53,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${APP_URL}/preguntas-frecuentes`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
       url: `${APP_URL}/legal/privacidad`,
       lastModified: now,
       changeFrequency: 'yearly',
@@ -83,7 +89,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Rutas dinámicas: artículos del blog
   const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${APP_URL}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
+    lastModified: new Date(post.dateModified ?? post.date),
     changeFrequency: 'monthly' as const,
     priority: 0.8,
   }))

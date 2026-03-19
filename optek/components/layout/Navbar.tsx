@@ -19,13 +19,14 @@ interface NavItem {
   label: string
   icon: typeof LayoutDashboard
   premium?: boolean
+  tourId?: string
 }
 
 const navItems: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/tests', label: 'Tests', icon: ClipboardList },
+  { href: '/tests', label: 'Tests', icon: ClipboardList, tourId: 'nav-tests' },
   { href: '/psicotecnicos', label: 'Psicotecnicos', icon: Brain },
-  { href: '/simulacros', label: 'Simulacros', icon: BookOpen },
+  { href: '/simulacros', label: 'Simulacros', icon: BookOpen, tourId: 'nav-simulacros' },
   { href: '/flashcards', label: 'Flashcards', icon: Layers, premium: true },
   { href: '/cazatrampas', label: 'Caza-Trampas', icon: Target },
   { href: '/reto-diario', label: 'Reto Diario', icon: CalendarCheck },
@@ -57,7 +58,7 @@ export function Navbar() {
           <NotificationBell />
           <button
             onClick={() => setOpen(!open)}
-            aria-label={open ? 'Cerrar menu' : 'Abrir menu'}
+            aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
             className="rounded-md p-1 text-muted-foreground hover:bg-muted"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -67,7 +68,7 @@ export function Navbar() {
 
       {open && (
         <nav className="mt-3 flex flex-col gap-1" aria-label="Menu principal">
-          {navItems.map(({ href, label, icon: Icon, premium }) => {
+          {navItems.map(({ href, label, icon: Icon, premium, tourId }) => {
             const isLocked = premium && isPremium === false
             const isActive = pathname === href || (pathname.startsWith(href + '/') && !isTestDetailPage(pathname, href))
 
@@ -75,6 +76,7 @@ export function Navbar() {
               <Link
                 key={href}
                 href={href}
+                {...(tourId ? { 'data-tour': tourId } : {})}
                 onClick={() => setOpen(false)}
                 className={cn(
                   'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',

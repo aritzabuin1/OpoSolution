@@ -5,6 +5,7 @@ import { blogPosts } from '@/content/blog/posts'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { BlogCTA, injectMidArticleCTA } from '@/components/blog/BlogCTA'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
@@ -32,6 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.description,
       type: 'article',
       publishedTime: post.date,
+      modifiedTime: post.dateModified ?? post.date,
       authors: ['OpoRuta'],
       url: `${APP_URL}/blog/${post.slug}`,
       images: [{ url: ogUrl, width: 1200, height: 630, alt: post.title }],
@@ -59,6 +61,12 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound()
 
   const readingTime = estimateReadingTime(post.content)
+  const contentWithCTA = injectMidArticleCTA(post.content)
+
+  // Days to exam for bottom CTA
+  const examDate = new Date('2026-05-23')
+  const diasParaExamen = Math.max(0, Math.ceil((examDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24)))
+
   const postIndex = blogPosts.findIndex((p) => p.slug === slug)
   const prevPost = postIndex < blogPosts.length - 1 ? blogPosts[postIndex + 1] : null
   const nextPost = postIndex > 0 ? blogPosts[postIndex - 1] : null
@@ -172,7 +180,7 @@ export default async function BlogPostPage({ params }: Props) {
             prose-table:text-sm
             prose-th:bg-muted prose-th:font-semibold prose-th:p-2
             prose-td:p-2 prose-td:border"
-          dangerouslySetInnerHTML={{ __html: post.content }}
+          dangerouslySetInnerHTML={{ __html: contentWithCTA }}
         />
 
         {/* FAQ section — visible + JSON-LD for rich snippets */}
@@ -190,21 +198,8 @@ export default async function BlogPostPage({ params }: Props) {
           </section>
         )}
 
-        {/* CTA */}
-        <div className="mt-12 rounded-xl border bg-primary/5 p-6 text-center">
-          <p className="font-semibold text-foreground mb-2">
-            Practica con preguntas tipo test sobre este tema
-          </p>
-          <p className="text-sm text-muted-foreground mb-4">
-            OpoRuta genera preguntas verificadas al artículo exacto. 5 tests gratuitos, sin tarjeta.
-          </p>
-          <Link href="/register">
-            <Button className="gap-2">
-              Empezar gratis
-              <ArrowRight className="h-4 w-4" />
-            </Button>
-          </Link>
-        </div>
+        {/* CTA bottom */}
+        <BlogCTA variant="bottom" diasParaExamen={diasParaExamen} />
 
         {/* Navegación entre posts */}
         <nav aria-label="Navegacion entre articulos" className="mt-12 flex flex-col sm:flex-row gap-4 justify-between">

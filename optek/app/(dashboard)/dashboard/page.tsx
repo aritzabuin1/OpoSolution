@@ -40,6 +40,12 @@ import { LoadingSpinner } from '@/components/shared/LoadingSpinner'
 import { ExamCountdownBanner } from '@/components/dashboard/ExamCountdownBanner'
 import { RoadmapCard } from '@/components/dashboard/RoadmapCard'
 import { FounderBetaBanner } from '@/components/dashboard/FounderBetaBanner'
+import { getDashboardPhase } from '@/lib/utils/dashboard-phase'
+import { OnboardingTour } from '@/components/onboarding/OnboardingTour'
+import { NewUserHero } from '@/components/dashboard/NewUserHero'
+import { ProgressUnlockBar } from '@/components/dashboard/ProgressUnlockBar'
+import { EmptyStateOverlay } from '@/components/dashboard/EmptyStateOverlay'
+import { ReEngagementBanner } from '@/components/dashboard/ReEngagementBanner'
 
 // ─── Tipos locales ─────────────────────────────────────────────────────────────
 
@@ -78,13 +84,13 @@ export default async function DashboardPage() {
     .eq('id', user.id)
     .single() as { data: { is_founder: boolean } | null }
 
-  // Racha — columnas de migration 008 (best-effort: si no se ha aplicado, devuelve null y usamos 0)
+  // Racha + último test + onboarding — columnas de migrations 008/037 (best-effort)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: rachaData } = await (supabase as any)
     .from('profiles')
-    .select('racha_actual')
+    .select('racha_actual, ultimo_test_dia, onboarding_completed_at')
     .eq('id', user.id)
-    .single() as { data: { racha_actual: number } | null }
+    .single() as { data: { racha_actual: number; ultimo_test_dia: string | null; onboarding_completed_at: string | null } | null }
 
   // Todos los tests completados del usuario (con tema)
   const { data: tests } = await supabase
@@ -215,6 +221,15 @@ export default async function DashboardPage() {
 
   const nombreUsuario = profile?.full_name?.split(' ')[0] ?? 'opositor'
   const rachaActual = rachaData?.racha_actual ?? 0
+  const ultimoTestDia = rachaData?.ultimo_test_dia ?? null
+
+  // Dashboard adaptativo — fase del usuario
+  const phase = getDashboardPhase(totalTests, rachaActual, ultimoTestDia)
+
+  // Re-engagement: días sin practicar
+  const diasSinPracticar = ultimoTestDia
+    ? Math.floor((Date.now() - new Date(ultimoTestDia).getTime()) / (1000 * 60 * 60 * 24))
+    : null
 
   // §2.5 — IPR: Índice Personal de Rendimiento (sin migration — cálculo puro)
   const ipr = calcularIPR(
@@ -242,19 +257,46 @@ export default async function DashboardPage() {
     flashcardsReviewed: 0,
   }
 
+  const onboardingCompletedAt = rachaData?.onboarding_completed_at ?? null
+
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-8">
 
+      {/* ── Onboarding Tour (client-side, zero-render) ─────────────────── */}
+      <OnboardingTour
+        userId={user.id}
+        onboardingCompletedAt={onboardingCompletedAt}
+        totalTests={totalTests}
+        diasParaExamen={diasParaExamen}
+      />
+
       {/* ── -1. Exam Countdown Banner ──────────────────────────────────────── */}
       {diasParaExamen !== null && (
-        <ExamCountdownBanner
-          diasRestantes={diasParaExamen}
-          nombre={nombreUsuario !== 'opositor' ? nombreUsuario : undefined}
-        />
+        <div data-tour="countdown">
+          <ExamCountdownBanner
+            diasRestantes={diasParaExamen}
+            nombre={nombreUsuario !== 'opositor' ? nombreUsuario : undefined}
+          />
+        </div>
       )}
 
       {/* ── Founder Beta Banner ─────────────────────────────────────────── */}
       {founderData?.is_founder && <FounderBetaBanner />}
+
+      {/* ── Re-engagement banner (lapsed users) ───────────────────────── */}
+      {phase === 'lapsed' && diasSinPracticar !== null && (
+        <ReEngagementBanner
+          diasSinPracticar={diasSinPracticar}
+          notaMedia={notaMedia}
+          diasParaExamen={diasParaExamen}
+        />
+      )}
+
+      {/* ── New User Hero + Progress ───────────────────────────────────── */}
+      {phase === 'new' && <NewUserHero diasParaExamen={diasParaExamen} />}
+      {(phase === 'new' || phase === 'starting') && (
+        <ProgressUnlockBar totalTests={totalTests} />
+      )}
 
       {/* ── 0. Daily Brief (above the fold) ──────────────────────────────── */}
       <Suspense fallback={<div className="flex justify-center py-4"><LoadingSpinner /></div>}>
@@ -272,7 +314,7 @@ export default async function DashboardPage() {
 
       {/* ── 0b. Reto Diario — §2.20.9 ────────────────────────────────────── */}
       {retoHoy && (
-        <Card className={retoDiarioResult
+        <Card data-tour="reto-diario" className={retoDiarioResult
           ? 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950/30'
           : 'border-primary/30 bg-primary/5'
         }>
@@ -384,7 +426,7 @@ export default async function DashboardPage() {
       </div>
 
       {/* ── 2. Stats cards ────────────────────────────────────────────────── */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div data-tour="stats" className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <StatsCard
           icon={<ClipboardCheck className="w-5 h-5" />}
           value={totalTests}
@@ -420,7 +462,7 @@ export default async function DashboardPage() {
       </div>
 
       {/* ── 2b. IPR card — §2.5 ──────────────────────────────────────────── */}
-      {ipr && (
+      {ipr && phase !== 'new' && (
         <Card className={`border ${
           ipr.nivel === 'preparado' ? 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950/20'
           : ipr.nivel === 'avanzado' ? 'border-primary/20 bg-primary/3'
@@ -485,32 +527,36 @@ export default async function DashboardPage() {
       {totalTests >= 3 && <RoadmapCard activity={roadmapActivity} oposicionId={profile?.oposicion_id ?? undefined} />}
 
       {/* ── 3. Gráfico de evolución ──────────────────────────────────────── */}
-      <Card>
-        <CardHeader className="pb-3">
-          <CardTitle className="text-base flex items-center gap-2">
-            <TrendingUp className="w-4 h-4 text-primary" />
-            Evolución de puntuación — últimos 30 días
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <EvolutionChart data={chartData} />
-        </CardContent>
-      </Card>
+      <EmptyStateOverlay locked={phase === 'new' || phase === 'starting'} message="Completa 5 tests para ver tu evolución">
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base flex items-center gap-2">
+              <TrendingUp className="w-4 h-4 text-primary" />
+              Evolución de puntuación — últimos 30 días
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <EvolutionChart data={chartData} />
+          </CardContent>
+        </Card>
+      </EmptyStateOverlay>
 
       {/* ── 4. Mapa de temas ─────────────────────────────────────────────── */}
       {temas && temas.length > 0 && (
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base">Mapa del temario</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <TopicMap temas={temaScores} />
-          </CardContent>
-        </Card>
+        <EmptyStateOverlay locked={phase === 'new'} message="Haz tu primer test para ver el mapa de temario">
+          <Card>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-base">Mapa del temario</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <TopicMap temas={temaScores} />
+            </CardContent>
+          </Card>
+        </EmptyStateOverlay>
       )}
 
-      {/* ── 5. Actividad + Logros (columnas) ─────────────────────────────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* ── 5. Actividad + Logros (columnas) — oculto para usuarios nuevos ── */}
+      {phase !== 'new' && <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Actividad reciente */}
         <div className="lg:col-span-2">
           <Card>
@@ -542,10 +588,10 @@ export default async function DashboardPage() {
           </Card>
 
         </div>
-      </div>
+      </div>}
 
       {/* ── 6. Simulacros CTA ─────────────────────────────────────────────── */}
-      {totalTests >= 3 && (
+      {totalTests >= 3 && phase !== 'new' && (
         <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-primary/3">
           <CardContent className="flex items-center justify-between gap-4 py-5">
             <div className="flex items-center gap-3">

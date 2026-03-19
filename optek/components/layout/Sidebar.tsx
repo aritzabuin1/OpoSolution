@@ -19,13 +19,14 @@ interface NavItem {
   icon: typeof LayoutDashboard
   premium?: boolean
   premiumDesc?: string
+  tourId?: string
 }
 
 const navItems: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/tests', label: 'Tests', icon: ClipboardList },
+  { href: '/tests', label: 'Tests', icon: ClipboardList, tourId: 'nav-tests' },
   { href: '/psicotecnicos', label: 'Psicotecnicos', icon: Brain },
-  { href: '/simulacros', label: 'Simulacros', icon: BookOpen },
+  { href: '/simulacros', label: 'Simulacros', icon: BookOpen, tourId: 'nav-simulacros' },
   {
     href: '/flashcards', label: 'Flashcards', icon: Layers,
     premium: true,
@@ -63,7 +64,7 @@ export function Sidebar({ isAdmin = false }: SidebarProps) {
         <span className="text-xl font-bold tracking-tight text-primary">OpoRuta</span>
       </div>
       <nav className="flex flex-col gap-1 flex-1" aria-label="Menu principal">
-        {navItems.map(({ href, label, icon: Icon, premium, premiumDesc }) => {
+        {navItems.map(({ href, label, icon: Icon, premium, premiumDesc, tourId }) => {
           const isLocked = premium && isPremium === false
           const isActive = pathname === href || (pathname.startsWith(href + '/') && !isTestDetailPage(pathname, href))
 
@@ -71,6 +72,7 @@ export function Sidebar({ isAdmin = false }: SidebarProps) {
             <Link
               key={href}
               href={href}
+              {...(tourId ? { 'data-tour': tourId } : {})}
               className={cn(
                 'group/nav relative flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
                 isActive

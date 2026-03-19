@@ -28,6 +28,8 @@ import { ClipboardCheck, Lock, RefreshCw } from 'lucide-react'
 import { RadarCard } from '@/components/tests/RadarCard'
 import { RepasoButton } from '@/components/shared/RepasoButton'
 import { AIGenerationBanner } from '@/components/shared/AIGenerationBanner'
+import { Suspense } from 'react'
+import { PurchaseTracker } from '@/components/analytics/PurchaseTracker'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -120,6 +122,9 @@ export default async function TestsPage({
   // ─────────────────────────────────────────────────────────────────────────
   return (
     <div className="space-y-8">
+      {/* Track purchase conversion from Stripe success redirect */}
+      <Suspense fallback={null}><PurchaseTracker /></Suspense>
+
       {/* Cabecera */}
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Tests de práctica</h1>

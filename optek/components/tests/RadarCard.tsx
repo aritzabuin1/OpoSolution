@@ -18,6 +18,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import type { TestGenerado } from '@/types/ai'
 import { trackStartTrialOnce } from '@/lib/analytics/pixel'
+import { trackGTMEvent } from '@/lib/analytics/gtm'
 
 interface RadarCardProps {
   hasPaidAccess: boolean
@@ -49,6 +50,7 @@ export function RadarCard({ hasPaidAccess }: RadarCardProps) {
       if (res.ok) {
         const test: TestGenerado = await res.json()
         trackStartTrialOnce() // §1.20.4
+        trackGTMEvent('first_test', { test_type: 'radar' })
         router.push(`/tests/${test.id}`)
         return
       }

@@ -30,6 +30,7 @@ import { LoadingState } from '@/components/shared/LoadingState'
 import { PaywallGate } from '@/components/shared/PaywallGate'
 import type { TestGenerado } from '@/types/ai'
 import { trackStartTrialOnce } from '@/lib/analytics/pixel'
+import { trackGTMEvent } from '@/lib/analytics/gtm'
 
 // ─── Tipos ───────────────────────────────────────────────────────────────────
 
@@ -106,6 +107,7 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, isFreeAllowed = t
       if (res.ok) {
         const test: TestGenerado = await res.json()
         trackStartTrialOnce() // §1.20.4 — fires only on first test ever
+        trackGTMEvent('first_test', { test_type: 'tema' })
         router.push(`/tests/${test.id}`)
         return // no re-habilitamos el botón — navegamos fuera
       }

@@ -16,6 +16,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Brain, ChevronRight, Loader2, Lock, Zap } from 'lucide-react'
 import { trackStartTrialOnce } from '@/lib/analytics/pixel'
+import { trackGTMEvent } from '@/lib/analytics/gtm'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { PaywallGate } from '@/components/shared/PaywallGate'
@@ -100,6 +101,7 @@ export default function PsicotecnicosPage() {
       }
 
       trackStartTrialOnce() // §1.20.4
+      trackGTMEvent('first_test', { test_type: 'psicotecnico' })
       router.push(`/tests/${data.id}`)
     } catch {
       setError('Error de conexión. Comprueba tu internet e inténtalo de nuevo.')

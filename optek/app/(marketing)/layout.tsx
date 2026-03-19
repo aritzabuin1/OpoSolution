@@ -77,7 +77,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#faq" className="hover:text-foreground transition-colors">
+                  <Link href="/preguntas-frecuentes" className="hover:text-foreground transition-colors">
                     Preguntas frecuentes
                   </Link>
                 </li>

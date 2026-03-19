@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { trackGTMEvent } from '@/lib/analytics/gtm'
 
 /**
  * /auth/confirm?token_hash=xxx&type=email|recovery|magiclink
@@ -86,6 +87,7 @@ function AuthConfirmInner() {
       // Success — setup new user if needed
       if (data.user) {
         await setupNewUser()
+        trackGTMEvent('sign_up', { method: 'email' })
       }
 
       setStatus('success')

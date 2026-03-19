@@ -23,6 +23,7 @@ import { Badge } from '@/components/ui/badge'
 import { ProfileForm } from '@/components/cuenta/ProfileForm'
 import { AccountActions } from '@/components/cuenta/AccountActions'
 import { BuyButton } from '@/components/cuenta/BuyButton'
+import { ReplayTourButton } from '@/components/cuenta/ReplayTourButton'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -270,7 +271,8 @@ export default async function CuentaPage() {
         <CardHeader>
           <CardTitle className="text-base">Gestión de cuenta</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="space-y-4">
+          <ReplayTourButton />
           <AccountActions />
         </CardContent>
       </Card>
