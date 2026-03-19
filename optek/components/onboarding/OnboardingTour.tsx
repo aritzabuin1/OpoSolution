@@ -6,6 +6,7 @@ import { createClient } from '@/lib/supabase/client'
 import { trackGTMEvent } from '@/lib/analytics/gtm'
 import { buildTourSteps } from './tour-steps'
 import 'driver.js/dist/driver.css'
+import './tour-styles.css'
 
 interface OnboardingTourProps {
   userId: string

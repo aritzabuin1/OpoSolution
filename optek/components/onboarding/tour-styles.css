@@ -1,0 +1,167 @@
+/**
+ * OpoRuta — Custom driver.js tour styles
+ * Overrides default driver.js appearance for brand consistency.
+ */
+
+/* ── Overlay ──────────────────────────────────────────────────────── */
+.driver-overlay {
+  background: rgba(10, 25, 47, 0.75) !important;
+  backdrop-filter: blur(2px);
+}
+
+/* ── Popover container ────────────────────────────────────────────── */
+.driver-popover.oporuta-tour-popover {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(27, 79, 114, 0.08);
+  padding: 0;
+  max-width: 380px;
+  overflow: hidden;
+}
+
+/* ── Top accent bar ───────────────────────────────────────────────── */
+.driver-popover.oporuta-tour-popover::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, #1B4F72, #2563EB, #D4A017);
+  border-radius: 16px 16px 0 0;
+}
+
+/* ── Title ────────────────────────────────────────────────────────── */
+.driver-popover.oporuta-tour-popover .driver-popover-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  padding: 20px 24px 0;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+/* ── Description ──────────────────────────────────────────────────── */
+.driver-popover.oporuta-tour-popover .driver-popover-description {
+  font-size: 0.875rem;
+  color: #475569;
+  padding: 8px 24px 0;
+  line-height: 1.6;
+}
+
+/* ── Footer (buttons area) ────────────────────────────────────────── */
+.driver-popover.oporuta-tour-popover .driver-popover-footer {
+  padding: 16px 24px 20px;
+  margin-top: 8px;
+}
+
+/* ── Progress text ────────────────────────────────────────────────── */
+.driver-popover.oporuta-tour-popover .driver-popover-progress-text {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* ── Next / Done button ───────────────────────────────────────────── */
+.driver-popover.oporuta-tour-popover .driver-popover-next-btn {
+  background: linear-gradient(135deg, #1B4F72 0%, #2563EB 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 22px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(27, 79, 114, 0.25);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.driver-popover.oporuta-tour-popover .driver-popover-next-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(27, 79, 114, 0.35);
+}
+
+/* ── Previous button ──────────────────────────────────────────────── */
+.driver-popover.oporuta-tour-popover .driver-popover-prev-btn {
+  background: transparent;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.driver-popover.oporuta-tour-popover .driver-popover-prev-btn:hover {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+/* ── Close button ─────────────────────────────────────────────────── */
+.driver-popover.oporuta-tour-popover .driver-popover-close-btn {
+  color: #94a3b8;
+  transition: color 0.2s;
+  width: 32px;
+  height: 32px;
+  top: 16px;
+  right: 16px;
+}
+
+.driver-popover.oporuta-tour-popover .driver-popover-close-btn:hover {
+  color: #475569;
+}
+
+/* ── Stage highlight ──────────────────────────────────────────────── */
+.driver-active-element {
+  box-shadow:
+    0 0 0 4px rgba(37, 99, 235, 0.3),
+    0 0 0 8px rgba(37, 99, 235, 0.1) !important;
+  border-radius: 12px !important;
+}
+
+/* ── Arrow ────────────────────────────────────────────────────────── */
+.driver-popover.oporuta-tour-popover .driver-popover-arrow {
+  border: 5px solid transparent;
+}
+
+.driver-popover.oporuta-tour-popover .driver-popover-arrow-side-top {
+  border-top-color: #ffffff;
+}
+
+.driver-popover.oporuta-tour-popover .driver-popover-arrow-side-bottom {
+  border-bottom-color: #ffffff;
+}
+
+.driver-popover.oporuta-tour-popover .driver-popover-arrow-side-left {
+  border-left-color: #ffffff;
+}
+
+.driver-popover.oporuta-tour-popover .driver-popover-arrow-side-right {
+  border-right-color: #ffffff;
+}
+
+/* ── Mobile adjustments ───────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .driver-popover.oporuta-tour-popover {
+    max-width: calc(100vw - 32px);
+    margin: 0 16px;
+    border-radius: 14px;
+  }
+
+  .driver-popover.oporuta-tour-popover .driver-popover-title {
+    font-size: 1rem;
+    padding: 16px 20px 0;
+  }
+
+  .driver-popover.oporuta-tour-popover .driver-popover-description {
+    font-size: 0.8125rem;
+    padding: 6px 20px 0;
+  }
+
+  .driver-popover.oporuta-tour-popover .driver-popover-footer {
+    padding: 12px 20px 16px;
+  }
+}

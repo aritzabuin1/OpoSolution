@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { MarketingNavAuth } from '@/components/layout/MarketingNavAuth'
 import { ManageCookiesButton } from '@/components/shared/ManageCookiesButton'
+import { StickyCTA } from '@/components/marketing/StickyCTA'
 
 export const revalidate = 3600 // Cache marketing layout for 1 hour
 
@@ -112,6 +113,9 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
           </div>
         </div>
       </footer>
+
+      {/* Sticky CTA — mobile only, appears on scroll */}
+      <StickyCTA />
     </div>
   )
 }
