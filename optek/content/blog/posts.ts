@@ -4676,4 +4676,926 @@ export const blogPosts: BlogPost[] = [
 <p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
     `.trim(),
   },
+
+  // ─── Post 32 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'calendario-oposiciones-age-2026-fechas-auxiliar-administrativo',
+    title: 'Calendario oposiciones AGE 2026: fechas clave auxiliar y administrativo del estado',
+    description:
+      'Todas las fechas clave de las oposiciones AGE 2026: convocatoria BOE, inscripción, admitidos, examen 23 mayo, resultados y elección de destinos.',
+    date: '2026-03-19',
+    dateModified: '2026-03-19',
+    keywords: [
+      'calendario oposiciones 2026',
+      'fechas examen auxiliar administrativo 2026',
+      'cuando es el examen auxiliar administrativo estado',
+      'oposiciones AGE 2026 calendario',
+      'fecha examen C2 auxiliar 2026',
+      'plazos inscripcion oposiciones AGE',
+    ],
+    content: `
+<h2>Calendario completo de las oposiciones AGE 2026</h2>
+<p>
+  El examen de Auxiliar Administrativo del Estado (C2) está convocado para el <strong>23 de mayo de 2026</strong>.
+  Este calendario recoge todas las fechas clave desde la publicación en el BOE hasta la toma de posesión,
+  para que no pierdas ningún plazo.
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fase</th>
+      <th>Fecha estimada</th>
+      <th>Qué hacer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Convocatoria BOE</td>
+      <td>Noviembre 2025</td>
+      <td>Verificar requisitos, revisar bases</td>
+    </tr>
+    <tr>
+      <td>Plazo de inscripción</td>
+      <td>Diciembre 2025 – Enero 2026</td>
+      <td>Rellenar solicitud + pagar tasa (11,32€ o exenta)</td>
+    </tr>
+    <tr>
+      <td>Lista provisional de admitidos</td>
+      <td>Marzo 2026</td>
+      <td>Comprobar tu nombre, reclamar si no apareces</td>
+    </tr>
+    <tr>
+      <td>Lista definitiva de admitidos</td>
+      <td>Abril 2026</td>
+      <td>Confirmar sede y hora del examen</td>
+    </tr>
+    <tr>
+      <td><strong>Examen tipo test</strong></td>
+      <td><strong>23 de mayo de 2026</strong></td>
+      <td>100 preguntas + 10 reserva, 90 minutos</td>
+    </tr>
+    <tr>
+      <td>Publicación de respuestas</td>
+      <td>Mayo – Junio 2026</td>
+      <td>Cotejar respuestas, calcular nota provisional</td>
+    </tr>
+    <tr>
+      <td>Plazo de alegaciones</td>
+      <td>Junio 2026 (5 días hábiles)</td>
+      <td>Impugnar preguntas si corresponde</td>
+    </tr>
+    <tr>
+      <td>Notas definitivas</td>
+      <td>Julio – Agosto 2026</td>
+      <td>Verificar nota y posición</td>
+    </tr>
+    <tr>
+      <td>Elección de destinos</td>
+      <td>Septiembre – Octubre 2026</td>
+      <td>Seleccionar ministerio y localidad</td>
+    </tr>
+    <tr>
+      <td>Toma de posesión</td>
+      <td>Noviembre – Diciembre 2026</td>
+      <td>Incorporarse al puesto</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Fase 1: convocatoria y publicación en el BOE</h2>
+<p>
+  La Oferta de Empleo Público (OEP) se aprobó con <strong>1.700 plazas para Auxiliar Administrativo (C2)</strong>.
+  La convocatoria se publica en el Boletín Oficial del Estado (BOE) y abre el plazo de inscripción.
+  Es fundamental leer las bases completas porque especifican los requisitos, temario oficial y formato del examen.
+</p>
+<p>
+  <strong>Consejo:</strong> activa las alertas del BOE o usa herramientas como el
+  <a href="/blog/analisis-frecuencia-preguntas-inap-auxiliar-administrativo">análisis de frecuencia INAP</a>
+  de OpoRuta para recibir novedades legislativas relevantes.
+</p>
+
+<h2>Fase 2: inscripción y pago de tasas</h2>
+<p>
+  El plazo de inscripción suele ser de <strong>20 días hábiles</strong> desde la publicación.
+  La solicitud se presenta telemáticamente a través del Portal 060. La tasa general es de
+  <strong>11,32€</strong>, aunque hay exenciones para familias numerosas, personas con discapacidad
+  ≥33%, víctimas de terrorismo y demandantes de empleo de larga duración.
+</p>
+<p>
+  Documentación necesaria: DNI/NIE en vigor, título de ESO (o equivalente), justificante de pago
+  de tasas y, en su caso, certificado de exención. Consulta la
+  <a href="/blog/requisitos-oposiciones-auxiliar-administrativo-estado-2026">guía completa de requisitos</a>
+  para verificar que cumples todo antes de inscribirte.
+</p>
+
+<h2>Fase 3: listas de admitidos y excluidos</h2>
+<p>
+  Tras cerrar el plazo, el Tribunal publica la lista provisional de admitidos y excluidos.
+  Si no apareces o estás excluido, dispones de <strong>10 días hábiles</strong> para subsanar
+  errores. La lista definitiva se publica unas semanas después y confirma tu sede de examen.
+</p>
+
+<h2>Fase 4: el examen (23 de mayo de 2026)</h2>
+<p>
+  El ejercicio consiste en un cuestionario de <strong>100 preguntas tipo test</strong> (más 10 de reserva)
+  con 4 opciones de respuesta y <strong>penalización de -1/3</strong> por error. Duración: <strong>90 minutos</strong>.
+  El temario abarca Bloque I (derecho administrativo, Constitución, LPAC, TREBEP) y Bloque II
+  (ofimática: Word, Excel, correo electrónico, Windows).
+</p>
+<p>
+  Para llegar preparado, practica con
+  <a href="/blog/penalizacion-examen-auxiliar-administrativo">simulacros con penalización real</a>
+  y gestiona bien el tiempo. La nota de corte histórica oscila entre 57,5 y 65 sobre 100.
+</p>
+
+<h2>Fase 5: resultados, alegaciones y nota de corte</h2>
+<p>
+  El Tribunal publica la plantilla de respuestas correctas el mismo día o al siguiente.
+  Se abre un plazo de <strong>5 días hábiles</strong> para alegar contra preguntas ambiguas o erróneas.
+  Tras resolver las alegaciones, se publican las notas definitivas y la nota de corte real.
+</p>
+
+<h2>Fase 6: elección de destinos y toma de posesión</h2>
+<p>
+  Los aprobados eligen destino por orden de puntuación. Los destinos incluyen ministerios en Madrid,
+  delegaciones del gobierno en provincias y organismos autónomos. El plazo para incorporarse suele
+  ser de un mes desde la resolución. Consulta nuestra
+  <a href="/blog/elegir-destino-auxiliar-administrativo-estado">guía de elección de destinos</a>
+  para preparar esta fase con antelación.
+</p>
+
+<h2>¿Cuánto tiempo tienes para prepararte?</h2>
+<p>
+  Si lees esto en marzo de 2026, quedan aproximadamente <strong>2 meses</strong> hasta el examen.
+  Es tiempo suficiente para un repaso intensivo si ya llevas base, pero ajustado para empezar desde cero.
+  En OpoRuta puedes hacer tests por tema, simulacros completos y repasos de errores para optimizar
+  cada hora de estudio en esta recta final.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Fechas sujetas a posibles cambios del Tribunal.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuándo es el examen de Auxiliar Administrativo del Estado 2026?', answer: 'El examen está convocado para el 23 de mayo de 2026. Es un ejercicio único tipo test de 100 preguntas (más 10 de reserva) con 90 minutos de duración y penalización de -1/3 por error.' },
+      { question: '¿Cuánto cuesta la tasa de inscripción para las oposiciones AGE 2026?', answer: 'La tasa general es de 11,32€. Están exentos de pago las familias numerosas de categoría general (50% de descuento) y especial (exenta), personas con discapacidad ≥33%, víctimas de terrorismo y demandantes de empleo de larga duración.' },
+      { question: '¿Cuándo se publican los resultados del examen de auxiliar administrativo?', answer: 'La plantilla de respuestas correctas se publica el mismo día del examen o al día siguiente. Las notas definitivas se publican entre julio y agosto de 2026, tras resolver las alegaciones presentadas.' },
+      { question: '¿Cuántas plazas de auxiliar administrativo hay en 2026?', answer: 'La convocatoria 2026 ofrece aproximadamente 1.700 plazas de Auxiliar Administrativo del Estado (C2), el mayor volumen de los últimos años. Estas plazas se reparten entre ministerios, delegaciones del gobierno y organismos autónomos.' },
+    ],
+  },
+
+  // ─── Post 33 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'elegir-destino-auxiliar-administrativo-estado',
+    title: 'Cómo elegir destino como auxiliar administrativo del estado: guía completa',
+    description:
+      'Guía para elegir destino tras aprobar las oposiciones de auxiliar administrativo: ministerios, ciudades, complementos salariales y teletrabajo.',
+    date: '2026-03-19',
+    dateModified: '2026-03-19',
+    keywords: [
+      'elegir destino auxiliar administrativo',
+      'destinos auxiliar administrativo estado',
+      'ministerios auxiliar administrativo',
+      'destinos oposiciones AGE',
+      'donde trabajar auxiliar administrativo estado',
+      'eleccion destino funcionario',
+    ],
+    content: `
+<h2>Cómo funciona la elección de destinos</h2>
+<p>
+  Tras aprobar la oposición de Auxiliar Administrativo del Estado, los aprobados eligen destino
+  <strong>por estricto orden de puntuación</strong>: quien mejor nota saque, elige primero.
+  El Ministerio de Hacienda y Función Pública publica la relación de puestos ofertados y cada
+  opositor indica sus preferencias a través de la sede electrónica.
+</p>
+
+<h2>¿Qué destinos existen para auxiliar administrativo?</h2>
+<p>
+  Los puestos de auxiliar administrativo C2 se reparten por toda la Administración General del Estado.
+  Los principales destinos son:
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tipo de destino</th>
+      <th>Ejemplos</th>
+      <th>Ubicación habitual</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ministerios (servicios centrales)</td>
+      <td>Hacienda, Interior, Justicia, Trabajo</td>
+      <td>Madrid</td>
+    </tr>
+    <tr>
+      <td>Delegaciones del Gobierno</td>
+      <td>Delegación en Andalucía, País Vasco, Cataluña…</td>
+      <td>Capitales de provincia</td>
+    </tr>
+    <tr>
+      <td>Subdelegaciones del Gobierno</td>
+      <td>Subdelegación en Bilbao, Alicante, Málaga…</td>
+      <td>Ciudades medianas</td>
+    </tr>
+    <tr>
+      <td>Organismos autónomos</td>
+      <td>SEPE, DGT, AEAT, Seguridad Social</td>
+      <td>Toda España</td>
+    </tr>
+    <tr>
+      <td>Otros organismos</td>
+      <td>Muface, INSS, Catastro</td>
+      <td>Varias ciudades</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Factores clave para elegir bien tu destino</h2>
+<p>
+  No todos los destinos son iguales. Estos son los factores que más impactan en tu día a día como funcionario:
+</p>
+
+<h3>1. Ciudad y coste de vida</h3>
+<p>
+  Madrid concentra la mayoría de plazas en servicios centrales, pero el coste de vida es alto.
+  Ciudades como Valladolid, Zaragoza o Sevilla ofrecen puestos en delegaciones con menor coste
+  de vivienda y buena calidad de vida. Compara el <strong>complemento de destino</strong> con
+  el coste real de la ciudad.
+</p>
+
+<h3>2. Complementos salariales por destino</h3>
+<p>
+  El sueldo base es idéntico en toda España, pero los <strong>complementos específicos y de productividad</strong>
+  varían según el ministerio y la unidad. Algunos organismos como la AEAT o la Seguridad Social
+  tienen complementos más altos que la media. Consulta nuestra
+  <a href="/blog/sueldo-auxiliar-administrativo-estado-2026-nomina-desglosada">guía de sueldo desglosado</a>
+  para ver las diferencias reales.
+</p>
+
+<h3>3. Tipo de trabajo y funciones</h3>
+<p>
+  Las funciones varían mucho según el destino. En un registro general harás atención al público y
+  tramitación. En una unidad de gestión económica manejarás presupuestos y contabilidad. En el SEPE
+  atenderás prestaciones por desempleo. Pregunta a funcionarios en activo sobre el día a día real.
+</p>
+
+<h3>4. Posibilidad de teletrabajo</h3>
+<p>
+  Desde 2021, la AGE permite el teletrabajo parcial en muchos puestos. No todos los destinos lo ofrecen
+  por igual: los ministerios en Madrid suelen ser más flexibles que las oficinas de atención al público.
+  La tendencia es de <strong>2-3 días presenciales + 2-3 días teletrabajo</strong> por semana,
+  aunque depende de cada unidad.
+</p>
+
+<h3>5. Opciones de movilidad futura</h3>
+<p>
+  Tu primer destino no es para siempre. Tras dos años puedes participar en concursos de traslados
+  para cambiar de ciudad o ministerio. También puedes solicitar comisiones de servicio (temporales)
+  o promoción interna a C1. Elegir un destino con buena nota facilita futuros movimientos.
+</p>
+
+<h2>Destinos más solicitados (y menos)</h2>
+<p>
+  <strong>Más solicitados:</strong> AEAT (buen complemento), Seguridad Social (estabilidad),
+  ministerios en Madrid (promoción), delegaciones en ciudades grandes (calidad de vida).
+</p>
+<p>
+  <strong>Menos solicitados:</strong> subdelegaciones en ciudades pequeñas, organismos con mucha
+  atención al público, destinos en localidades con poca conexión. Paradójicamente, estos destinos
+  tienen <strong>ventajas ocultas</strong>: menos estrés, facilidad de parking, buen ambiente
+  y más posibilidades de teletrabajo.
+</p>
+
+<h2>Consejos prácticos para la elección</h2>
+<ul>
+  <li><strong>Investiga antes de aprobar:</strong> no esperes a tener la nota para decidir. Haz una lista de preferencias con antelación.</li>
+  <li><strong>Habla con funcionarios:</strong> los foros de oposiciones y grupos de Telegram tienen información real sobre cada destino.</li>
+  <li><strong>Calcula la nómina neta por ciudad:</strong> un complemento alto en Madrid puede equivaler a un complemento medio en una ciudad con alquiler 400€ más barato.</li>
+  <li><strong>Piensa a 3-5 años:</strong> tu primer destino condiciona tus opciones de traslado futuras.</li>
+</ul>
+<p>
+  Lo primero es aprobar. Si estás preparando el examen del <strong>23 de mayo de 2026</strong>,
+  consulta el <a href="/blog/calendario-oposiciones-age-2026-fechas-auxiliar-administrativo">calendario completo</a>
+  y practica con <a href="/blog/errores-comunes-examen-auxiliar-administrativo-estado">los errores más frecuentes</a>
+  para llegar al examen con la mejor nota posible.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Puedo elegir ciudad como auxiliar administrativo del estado?', answer: 'Sí. Tras aprobar, eliges destino por orden de puntuación entre los puestos ofertados. Hay plazas en Madrid (servicios centrales) y en todas las provincias (delegaciones, subdelegaciones, organismos autónomos). Quien mejor nota saque, elige primero.' },
+      { question: '¿Puedo cambiar de destino después de tomar posesión?', answer: 'Sí. Tras dos años en tu primer destino puedes participar en concursos de traslados para cambiar de ciudad o ministerio. También existen comisiones de servicio (temporales) y adscripciones provisionales. La movilidad es una de las grandes ventajas de ser funcionario AGE.' },
+      { question: '¿Qué ministerio paga mejor al auxiliar administrativo?', answer: 'El sueldo base es idéntico, pero los complementos específicos varían. Organismos como la AEAT, la Seguridad Social y algunos ministerios (Hacienda, Interior) suelen tener complementos más altos, con diferencias de 100-300€ mensuales respecto a la media.' },
+      { question: '¿Hay teletrabajo para auxiliares administrativos del estado?', answer: 'Sí, desde 2021 la AGE permite teletrabajo parcial. La modalidad habitual es 2-3 días presenciales y 2-3 días en remoto. No todos los puestos lo ofrecen: depende del ministerio y del tipo de funciones. Los puestos de atención al público suelen ser más presenciales.' },
+      { question: '¿Cuánto tarda todo el proceso desde el examen hasta incorporarse?', answer: 'Desde el examen (23 mayo 2026) hasta la toma de posesión suelen pasar entre 5 y 7 meses. Las notas definitivas se publican en julio-agosto, la elección de destinos en septiembre-octubre, y la incorporación entre noviembre y diciembre de 2026.' },
+    ],
+  },
+
+  // ─── Post 34 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'errores-comunes-examen-auxiliar-administrativo-estado',
+    title: 'Errores más comunes en el examen de auxiliar administrativo del estado (y cómo evitarlos)',
+    description:
+      'Los 10 errores que más opositores cometen en el examen de auxiliar administrativo AGE y estrategias concretas para evitarlos el 23 de mayo.',
+    date: '2026-03-19',
+    dateModified: '2026-03-19',
+    keywords: [
+      'errores examen auxiliar administrativo',
+      'fallos comunes oposiciones',
+      'errores oposiciones AGE',
+      'consejos examen auxiliar administrativo',
+      'trucos examen tipo test oposiciones',
+      'como aprobar auxiliar administrativo estado',
+    ],
+    content: `
+<h2>Los 10 errores que más opositores cometen en el examen</h2>
+<p>
+  Cada convocatoria, miles de opositores bien preparados suspenden no por falta de estudio,
+  sino por <strong>errores evitables</strong> en la estrategia de examen. Tras analizar las
+  convocatorias 2019, 2022 y 2024, estos son los 10 fallos más frecuentes y cómo evitarlos
+  en el examen del <strong>23 de mayo de 2026</strong>.
+</p>
+
+<h2>Error 1: mala gestión del tiempo</h2>
+<p>
+  Tienes <strong>90 minutos para 110 preguntas</strong> (100 puntuables + 10 reserva).
+  Eso son 49 segundos por pregunta. El error clásico: quedarte 3-4 minutos en una pregunta
+  difícil y llegar con prisas a las últimas 30.
+</p>
+<p>
+  <strong>Solución:</strong> marca las preguntas que te cuesten más de 1 minuto y sigue adelante.
+  Vuelve a ellas al final. Practica con simulacros cronometrados —
+  <a href="/blog/penalizacion-examen-auxiliar-administrativo">con penalización real</a> — para
+  interiorizar el ritmo.
+</p>
+
+<h2>Error 2: no entender la penalización -1/3</h2>
+<p>
+  Muchos opositores responden todo "porque algo suena" o, al contrario, dejan demasiadas en blanco
+  por miedo. Ambas estrategias son incorrectas.
+</p>
+<p>
+  <strong>La regla matemática:</strong> si puedes descartar al menos 1 de las 4 opciones, responde.
+  Si no puedes descartar ninguna, deja en blanco. Esta estrategia maximiza tu nota esperada.
+</p>
+
+<h2>Error 3: estudiar todos los temas por igual</h2>
+<p>
+  No todos los temas tienen el mismo peso en el examen. El
+  <a href="/blog/analisis-frecuencia-preguntas-inap-auxiliar-administrativo">análisis de frecuencia INAP</a>
+  muestra que la Constitución, la LPAC y el TREBEP concentran más del 40% de las preguntas.
+  Ofimática (Bloque II) aporta otro 25-30%.
+</p>
+<p>
+  <strong>Solución:</strong> prioriza los temas con más peso histórico. Dedica el 60% de tu
+  tiempo a los 10 temas más frecuentes y el 40% restante a completar el temario.
+</p>
+
+<h2>Error 4: no practicar con exámenes reales</h2>
+<p>
+  Estudiar la ley "de memoria" no es lo mismo que resolver preguntas tipo test del INAP.
+  El tribunal tiene un estilo propio: preguntas con doble negación, opciones muy similares
+  entre sí, artículos poco habituales como "trampa".
+</p>
+<p>
+  <strong>Solución:</strong> haz al menos 5-10 simulacros completos con preguntas de exámenes
+  reales (2019, 2022, 2024). OpoRuta incluye simulacros con las preguntas oficiales exactas
+  del INAP, con penalización y cronómetro.
+</p>
+
+<h2>Error 5: memorizar sin comprender</h2>
+<p>
+  Memorizar el artículo 21 de la LPAC de carrerilla no sirve si no entiendes cuándo se aplica
+  el silencio administrativo positivo y cuándo el negativo. El tribunal formula preguntas de
+  <strong>aplicación práctica</strong>, no de recitado.
+</p>
+<p>
+  <strong>Solución:</strong> después de leer un artículo, intenta explicarlo con tus palabras.
+  Si no puedes, no lo has entendido. Haz tests por tema para detectar qué conceptos confundes.
+</p>
+
+<h2>Error 6: ignorar el Bloque II (ofimática)</h2>
+<p>
+  Muchos opositores de letras subestiman el bloque de ofimática (Word, Excel, Windows, correo).
+  Error grave: aporta un <strong>25-30% de las preguntas</strong> y es más fácil de preparar
+  que el Bloque I. Un aprobado puede decidirse aquí.
+</p>
+<p>
+  <strong>Solución:</strong> dedica al menos 3-4 semanas a ofimática. Practica con los menús
+  reales de las aplicaciones. Las preguntas suelen ser sobre ubicación de opciones en la cinta
+  de opciones, atajos de teclado y funciones de Excel.
+</p>
+
+<h2>Error 7: estudiar a última hora (cramming)</h2>
+<p>
+  Repasar todo el temario la noche anterior genera <strong>interferencia retroactiva</strong>:
+  la información nueva borra la anterior. Tu cerebro necesita sueño para consolidar la memoria.
+</p>
+<p>
+  <strong>Solución:</strong> planifica repasos espaciados durante semanas. La
+  <a href="/blog/preparar-oposicion-auxiliar-administrativo-por-libre">preparación por libre</a>
+  funciona si sigues un calendario con repetición espaciada y tests frecuentes.
+</p>
+
+<h2>Error 8: no leer bien el enunciado</h2>
+<p>
+  Preguntas con "NO es correcto", "EXCEPTO", "según el artículo X" o "en todo caso" son trampas
+  habituales. Leer demasiado rápido lleva a confundir lo que se pregunta.
+</p>
+<p>
+  <strong>Solución:</strong> subraya la palabra clave del enunciado antes de leer las opciones.
+  Si pregunta "cuál NO es correcta", marca las correctas y elige la que sobre.
+</p>
+
+<h2>Error 9: cambiar respuestas sin motivo</h2>
+<p>
+  Estudios psicológicos muestran que la primera intuición suele ser correcta. Cambiar una
+  respuesta "porque me suena raro" sin un argumento claro acierta menos del 30% de las veces.
+</p>
+<p>
+  <strong>Solución:</strong> solo cambia una respuesta si encuentras un motivo concreto
+  (recuerdas el artículo exacto, detectas un error de lectura). Nunca por "sensación".
+</p>
+
+<h2>Error 10: no cuidar la logística del día del examen</h2>
+<p>
+  Llegar tarde, olvidar el DNI, no llevar bolígrafos de repuesto o no saber la ubicación del
+  aula generan un estrés que reduce tu rendimiento cognitivo.
+</p>
+<p>
+  <strong>Solución:</strong> prepara todo la noche anterior (DNI, bolígrafos, reloj analógico,
+  botella de agua). Llega <strong>45 minutos antes</strong>. Localiza tu aula con calma.
+  El examen empieza antes de sentarte.
+</p>
+
+<h2>Resumen: checklist anti-errores</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Error</th>
+      <th>Solución rápida</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Gestión del tiempo</td><td>49 seg/pregunta, marca y sigue</td></tr>
+    <tr><td>Penalización</td><td>Descarta 1 opción → responde</td></tr>
+    <tr><td>Temas iguales</td><td>60% tiempo en top 10 temas</td></tr>
+    <tr><td>Sin exámenes reales</td><td>5-10 simulacros INAP completos</td></tr>
+    <tr><td>Memorizar sin entender</td><td>Explícalo con tus palabras</td></tr>
+    <tr><td>Ignorar ofimática</td><td>3-4 semanas dedicadas</td></tr>
+    <tr><td>Cramming</td><td>Repaso espaciado + tests</td></tr>
+    <tr><td>No leer enunciado</td><td>Subraya palabra clave</td></tr>
+    <tr><td>Cambiar respuestas</td><td>Solo con motivo concreto</td></tr>
+    <tr><td>Logística</td><td>Todo preparado la noche antes</td></tr>
+  </tbody>
+</table>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuál es el error más grave en el examen de auxiliar administrativo?', answer: 'La mala gestión del tiempo. Con 90 minutos para 110 preguntas (49 segundos cada una), quedarse bloqueado en preguntas difíciles impide llegar a preguntas fáciles que sí sabrías responder. La solución es marcar las difíciles y seguir adelante.' },
+      { question: '¿Debo responder todas las preguntas del examen?', answer: 'No. Con la penalización de -1/3, solo debes responder si puedes descartar al menos 1 de las 4 opciones. Si no tienes ninguna idea, deja en blanco. Responder al azar reduce tu nota esperada.' },
+      { question: '¿Es más importante estudiar leyes u ofimática?', answer: 'Ambos bloques son necesarios. El Bloque I (leyes) pesa un 70-75% y el Bloque II (ofimática) un 25-30%. Muchos opositores descuidan ofimática, pero es más fácil de preparar y puede marcar la diferencia entre aprobar y suspender.' },
+      { question: '¿Cuántos simulacros debo hacer antes del examen?', answer: 'Recomendamos un mínimo de 5-10 simulacros completos con preguntas reales del INAP, penalización activa y cronómetro de 90 minutos. Esto entrena tanto el conocimiento como la gestión del tiempo y la estrategia de respuesta.' },
+      { question: '¿Funciona estudiar a última hora para oposiciones?', answer: 'No. El cramming (estudio intensivo de última hora) genera interferencia retroactiva: la información nueva borra la anterior. El cerebro necesita sueño para consolidar la memoria. La repetición espaciada durante semanas es mucho más efectiva.' },
+    ],
+  },
+
+  // ─── Post 35 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'sueldo-auxiliar-administrativo-estado-2026-nomina-desglosada',
+    title: 'Sueldo auxiliar administrativo del estado 2026: nómina real desglosada',
+    description:
+      'Nómina desglosada del auxiliar administrativo del estado en 2026: sueldo base, complementos, pagas extra, neto mensual y progresión con trienios.',
+    date: '2026-03-19',
+    dateModified: '2026-03-19',
+    keywords: [
+      'sueldo auxiliar administrativo estado',
+      'cuanto cobra auxiliar administrativo',
+      'nomina auxiliar administrativo estado 2026',
+      'sueldo funcionario C2',
+      'salario auxiliar administrativo AGE',
+      'sueldo oposiciones auxiliar administrativo',
+    ],
+    content: `
+<h2>¿Cuánto cobra un auxiliar administrativo del estado en 2026?</h2>
+<p>
+  Un auxiliar administrativo del estado (grupo C2) cobra entre <strong>1.400€ y 1.650€ netos al mes</strong>
+  en 14 pagas, dependiendo del destino y la antigüedad. El sueldo bruto anual oscila entre
+  <strong>22.000€ y 26.000€</strong>. A continuación, la nómina desglosada concepto por concepto.
+</p>
+
+<h2>Nómina desglosada: conceptos retributivos</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Concepto</th>
+      <th>Importe mensual bruto</th>
+      <th>Notas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Sueldo base (C2)</td>
+      <td>737,16€</td>
+      <td>Fijado por PGE, igual en toda España</td>
+    </tr>
+    <tr>
+      <td>Complemento de destino (nivel 15-18)</td>
+      <td>421,26€ – 525,60€</td>
+      <td>Nivel 15 al inicio, sube con concursos</td>
+    </tr>
+    <tr>
+      <td>Complemento específico</td>
+      <td>250€ – 500€</td>
+      <td>Varía según ministerio y puesto</td>
+    </tr>
+    <tr>
+      <td>Pagas extra (junio + diciembre)</td>
+      <td>~1.200€ cada una</td>
+      <td>Sueldo base + complemento destino</td>
+    </tr>
+    <tr>
+      <td>Trienios (antigüedad)</td>
+      <td>+42,24€ por trienio</td>
+      <td>Se suma cada 3 años de servicio</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Del bruto al neto: deducciones</h2>
+<p>
+  Las deducciones principales son:
+</p>
+<ul>
+  <li><strong>IRPF:</strong> entre el 12% y el 16% según comunidad autónoma y situación personal (soltero sin hijos: ~14%)</li>
+  <li><strong>Muface:</strong> 1,69% (mutualidad de funcionarios, sustituye a la Seguridad Social)</li>
+  <li><strong>Derechos pasivos:</strong> 3,86% (pensión de jubilación)</li>
+</ul>
+<p>
+  Total deducciones: aproximadamente un <strong>19-21%</strong> del bruto. Esto deja un neto
+  mensual de entre 1.400€ y 1.650€ en 14 pagas.
+</p>
+
+<h2>Ejemplo de nómina real: auxiliar administrativo recién aprobado</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Concepto</th>
+      <th>Importe</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Sueldo base</td>
+      <td>737,16€</td>
+    </tr>
+    <tr>
+      <td>Complemento destino (nivel 15)</td>
+      <td>421,26€</td>
+    </tr>
+    <tr>
+      <td>Complemento específico (media)</td>
+      <td>350,00€</td>
+    </tr>
+    <tr>
+      <td><strong>Total bruto</strong></td>
+      <td><strong>1.508,42€</strong></td>
+    </tr>
+    <tr>
+      <td>IRPF (~14%)</td>
+      <td>-211,18€</td>
+    </tr>
+    <tr>
+      <td>Muface (1,69%)</td>
+      <td>-25,49€</td>
+    </tr>
+    <tr>
+      <td>Derechos pasivos (3,86%)</td>
+      <td>-58,23€</td>
+    </tr>
+    <tr>
+      <td><strong>Total neto</strong></td>
+      <td><strong>1.213,52€</strong></td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  <strong>Nota:</strong> este ejemplo refleja un puesto con complemento específico medio.
+  Con 14 pagas, el neto anual sería de aproximadamente <strong>16.989€</strong>.
+  En puestos con complemento específico alto (AEAT, Seguridad Social), el neto mensual
+  puede superar los 1.500€.
+</p>
+
+<h2>Comparativa de sueldo por destino</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Destino</th>
+      <th>Complemento específico</th>
+      <th>Neto mensual estimado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ministerio (servicios centrales, Madrid)</td>
+      <td>350€ – 450€</td>
+      <td>1.250€ – 1.400€</td>
+    </tr>
+    <tr>
+      <td>AEAT</td>
+      <td>400€ – 550€</td>
+      <td>1.350€ – 1.550€</td>
+    </tr>
+    <tr>
+      <td>Seguridad Social / INSS</td>
+      <td>380€ – 500€</td>
+      <td>1.300€ – 1.500€</td>
+    </tr>
+    <tr>
+      <td>Delegación del Gobierno (provincia)</td>
+      <td>300€ – 400€</td>
+      <td>1.200€ – 1.350€</td>
+    </tr>
+    <tr>
+      <td>Subdelegación (ciudad mediana)</td>
+      <td>250€ – 350€</td>
+      <td>1.150€ – 1.300€</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Progresión salarial: trienios y carrera</h2>
+<p>
+  El sueldo de funcionario crece automáticamente con la <strong>antigüedad</strong>. Cada 3 años
+  de servicio se cobra un trienio de 42,24€ brutos/mes. Además, puedes subir de nivel de
+  complemento de destino participando en concursos de traslados (del nivel 15 al 18).
+</p>
+<table>
+  <thead>
+    <tr>
+      <th>Antigüedad</th>
+      <th>Trienios acumulados</th>
+      <th>Incremento mensual bruto</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>0-2 años</td><td>0</td><td>0€</td></tr>
+    <tr><td>3-5 años</td><td>1</td><td>+42,24€</td></tr>
+    <tr><td>6-8 años</td><td>2</td><td>+84,48€</td></tr>
+    <tr><td>9-11 años</td><td>3</td><td>+126,72€</td></tr>
+    <tr><td>15+ años</td><td>5+</td><td>+211,20€+</td></tr>
+  </tbody>
+</table>
+<p>
+  Además, con la <strong>promoción interna</strong> puedes presentarte a C1 (Administrativo)
+  tras dos años como C2, lo que supone un salto salarial de unos 200-400€ netos al mes.
+  Consulta las <a href="/blog/diferencias-c1-c2-auxiliar-administrativo-estado">diferencias entre C1 y C2</a>
+  para valorar esta opción.
+</p>
+
+<h2>Ventajas económicas más allá del sueldo</h2>
+<ul>
+  <li><strong>Estabilidad total:</strong> puesto vitalicio, no sujeto a despido ni ERE</li>
+  <li><strong>14 pagas:</strong> dos pagas extra completas (junio y diciembre)</li>
+  <li><strong>Muface:</strong> seguro médico privado + público a elegir, extensible a familia</li>
+  <li><strong>Vacaciones:</strong> 22 días laborables + moscosos + asuntos propios (~30 días reales)</li>
+  <li><strong>Horario:</strong> jornada de 37,5 horas semanales, muchos puestos con horario de 7:30 a 15:00</li>
+  <li><strong>Permisos:</strong> paternidad/maternidad ampliada, cuidado de hijos, formación</li>
+  <li><strong>Plan de pensiones:</strong> derechos pasivos + posibilidad de plan complementario</li>
+</ul>
+
+<p>
+  Si estás decidido a presentarte, consulta los
+  <a href="/blog/requisitos-oposiciones-auxiliar-administrativo-estado-2026">requisitos completos</a>
+  y el <a href="/blog/calendario-oposiciones-age-2026-fechas-auxiliar-administrativo">calendario de fechas</a>
+  para no perder ningún plazo antes del examen del 23 de mayo de 2026.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Importes basados en PGE 2025-2026 y nóminas reales de funcionarios C2.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuánto cobra un auxiliar administrativo del estado al mes?', answer: 'Entre 1.400€ y 1.650€ netos mensuales en 14 pagas, dependiendo del destino y la antigüedad. El sueldo bruto mensual oscila entre 1.500€ y 1.900€. Los organismos con mejor complemento específico (AEAT, Seguridad Social) están en la parte alta de la horquilla.' },
+      { question: '¿Cuánto es el sueldo bruto anual de un auxiliar administrativo del estado?', answer: 'El sueldo bruto anual se sitúa entre 22.000€ y 26.000€ aproximadamente, incluyendo las 14 pagas. Con trienios de antigüedad y posibles subidas de nivel, puede superar los 28.000€ brutos tras 10 años de servicio.' },
+      { question: '¿Los auxiliares administrativos cobran pagas extra?', answer: 'Sí, cobran 14 pagas al año: 12 mensuales + 2 pagas extraordinarias (junio y diciembre). Cada paga extra equivale aproximadamente al sueldo base más el complemento de destino, unos 1.150-1.260€ brutos.' },
+      { question: '¿Qué son los trienios de un funcionario?', answer: 'Los trienios son un complemento salarial por antigüedad que se cobra automáticamente cada 3 años de servicio activo. Para un auxiliar administrativo (C2), cada trienio supone 42,24€ brutos mensuales adicionales que se acumulan indefinidamente.' },
+      { question: '¿Cobran igual los auxiliares administrativos en toda España?', answer: 'El sueldo base y el complemento de destino son iguales en toda España. Lo que varía es el complemento específico, que depende del ministerio u organismo. La diferencia entre el puesto peor y mejor pagado puede ser de 200-400€ netos al mes.' },
+    ],
+  },
+
+  // ─── Post 36 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'requisitos-oposiciones-auxiliar-administrativo-estado-2026',
+    title: 'Requisitos oposiciones auxiliar administrativo del estado 2026: edad, titulación y documentación',
+    description:
+      'Todos los requisitos para presentarse a auxiliar administrativo del estado en 2026: nacionalidad, edad, estudios, documentación y cómo inscribirse.',
+    date: '2026-03-19',
+    dateModified: '2026-03-19',
+    keywords: [
+      'requisitos auxiliar administrativo estado',
+      'quien puede presentarse auxiliar administrativo',
+      'requisitos oposiciones AGE 2026',
+      'titulacion auxiliar administrativo estado',
+      'edad maxima oposiciones auxiliar administrativo',
+      'como inscribirse oposiciones auxiliar administrativo',
+    ],
+    content: `
+<h2>Requisitos para presentarse a auxiliar administrativo del estado en 2026</h2>
+<p>
+  Para presentarte a las oposiciones de Auxiliar Administrativo del Estado (grupo C2) necesitas
+  cumplir <strong>5 requisitos obligatorios</strong> en la fecha de finalización del plazo de
+  inscripción. Son accesibles: no hay límite de edad y basta con el título de ESO.
+</p>
+
+<h2>1. Nacionalidad</h2>
+<p>
+  Pueden presentarse:
+</p>
+<ul>
+  <li><strong>Ciudadanos españoles</strong></li>
+  <li><strong>Nacionales de la Unión Europea</strong> y del Espacio Económico Europeo (Noruega, Islandia, Liechtenstein)</li>
+  <li><strong>Cónyuges de ciudadanos UE</strong> (no separados de derecho) y sus descendientes menores de 21 años o dependientes</li>
+  <li><strong>Personas incluidas en tratados internacionales</strong> ratificados por España que permitan libre circulación de trabajadores</li>
+</ul>
+<p>
+  En la práctica, cualquier ciudadano de la UE o con derecho de residencia y trabajo en España
+  puede presentarse. Se necesita DNI o NIE en vigor.
+</p>
+
+<h2>2. Edad</h2>
+<p>
+  <strong>No hay límite máximo de edad</strong> para las oposiciones de auxiliar administrativo.
+  El único requisito es tener al menos <strong>16 años cumplidos</strong> y no haber alcanzado
+  la edad de jubilación forzosa (actualmente 65 años, ampliable según normativa de pensiones).
+</p>
+<p>
+  Esto convierte a estas oposiciones en una de las opciones más accesibles del empleo público:
+  puedes presentarte con 18 años recién graduado o con 55 años buscando estabilidad laboral.
+</p>
+
+<h2>3. Titulación</h2>
+<p>
+  Se exige estar en posesión del <strong>título de Graduado en Educación Secundaria Obligatoria (ESO)</strong>
+  o equivalente. Títulos equivalentes aceptados:
+</p>
+<ul>
+  <li>Graduado Escolar (EGB, plan antiguo)</li>
+  <li>Técnico (FP Grado Medio)</li>
+  <li>Bachiller elemental</li>
+  <li>Cualquier título de nivel superior (Bachillerato, Grado universitario, etc.)</li>
+  <li>Certificado de haber superado las pruebas de acceso a FP de Grado Medio</li>
+</ul>
+<p>
+  Si obtuviste tu título en el extranjero, necesitas la <strong>homologación oficial</strong>
+  del Ministerio de Educación. Este trámite puede tardar varios meses, así que solicítalo con antelación.
+</p>
+
+<h2>4. Capacidad funcional</h2>
+<p>
+  Debes poseer la <strong>capacidad funcional</strong> para el desempeño de las tareas del puesto.
+  No se exige un reconocimiento médico específico para la inscripción, pero el tribunal puede
+  requerir un certificado médico si hay dudas.
+</p>
+<p>
+  Las personas con discapacidad reconocida ≥33% pueden optar al cupo de reserva de plazas
+  (normalmente un 7% de las plazas convocadas) y tienen derecho a adaptaciones en el examen
+  (tiempo adicional, formato ampliado, etc.).
+</p>
+
+<h2>5. Habilitación: no haber sido separado del servicio</h2>
+<p>
+  No puedes presentarte si has sido <strong>separado del servicio</strong> de cualquier
+  administración pública mediante expediente disciplinario, ni si estás inhabilitado para
+  el ejercicio de funciones públicas. Este requisito afecta a muy pocas personas.
+</p>
+
+<h2>Resumen de requisitos</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Requisito</th>
+      <th>Detalle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Nacionalidad</td>
+      <td>Española, UE, EEE o con derecho de libre circulación</td>
+    </tr>
+    <tr>
+      <td>Edad</td>
+      <td>Mínimo 16 años, sin límite máximo (hasta jubilación forzosa)</td>
+    </tr>
+    <tr>
+      <td>Titulación</td>
+      <td>ESO, Graduado Escolar, FP Grado Medio o superior</td>
+    </tr>
+    <tr>
+      <td>Capacidad funcional</td>
+      <td>Apta para las tareas del puesto</td>
+    </tr>
+    <tr>
+      <td>Habilitación</td>
+      <td>No separado del servicio ni inhabilitado</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Cómo inscribirse: paso a paso</h2>
+
+<h3>Paso 1: obtener certificado digital o Cl@ve</h3>
+<p>
+  La inscripción es telemática. Necesitas un <strong>certificado digital</strong> (FNMT),
+  <strong>DNI electrónico</strong> o sistema <strong>Cl@ve permanente</strong>.
+  Si no tienes ninguno, solicita Cl@ve en tu oficina de la Seguridad Social o Hacienda
+  (lleva DNI, tardan 5 minutos).
+</p>
+
+<h3>Paso 2: acceder al Portal 060</h3>
+<p>
+  Entra en <strong>administracion.gob.es</strong> → Empleo Público → Inscripción pruebas selectivas.
+  Busca la convocatoria de "Auxiliar Administrativo del Estado" o el código del cuerpo (C2).
+</p>
+
+<h3>Paso 3: rellenar la solicitud (modelo 790)</h3>
+<p>
+  Completa el formulario con tus datos personales, titulación, provincia de examen preferida
+  y si solicitas exención o reducción de tasa. Selecciona la forma de pago.
+</p>
+
+<h3>Paso 4: pagar la tasa de inscripción</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Situación</th>
+      <th>Tasa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>General</td>
+      <td>11,32€</td>
+    </tr>
+    <tr>
+      <td>Familia numerosa categoría general</td>
+      <td>5,66€ (50%)</td>
+    </tr>
+    <tr>
+      <td>Familia numerosa categoría especial</td>
+      <td>Exenta</td>
+    </tr>
+    <tr>
+      <td>Discapacidad ≥33%</td>
+      <td>Exenta</td>
+    </tr>
+    <tr>
+      <td>Víctimas de terrorismo</td>
+      <td>Exenta</td>
+    </tr>
+    <tr>
+      <td>Demandantes de empleo de larga duración</td>
+      <td>Exenta</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  El pago se realiza online con tarjeta bancaria o generando un documento para pagar en entidad
+  bancaria. <strong>Guarda el justificante:</strong> sin él, la inscripción no es válida.
+</p>
+
+<h3>Paso 5: confirmar y guardar resguardo</h3>
+<p>
+  Tras enviar la solicitud y pagar, descarga el <strong>resguardo de inscripción</strong> en PDF.
+  Guárdalo en un lugar seguro — lo necesitarás si hay incidencias con la lista de admitidos.
+</p>
+
+<h2>Documentación necesaria el día del examen</h2>
+<ul>
+  <li><strong>DNI o NIE</strong> en vigor (obligatorio, sin él no puedes examinarte)</li>
+  <li><strong>Resguardo de inscripción</strong> (recomendable, por si hay dudas)</li>
+  <li>Bolígrafo negro o azul (suelen proporcionar la hoja de respuestas)</li>
+  <li>Reloj analógico (los smartwatches no están permitidos)</li>
+  <li>Botella de agua transparente sin etiqueta</li>
+</ul>
+
+<h2>Plazos clave para la convocatoria 2026</h2>
+<p>
+  El examen está fijado para el <strong>23 de mayo de 2026</strong>. Consulta el
+  <a href="/blog/calendario-oposiciones-age-2026-fechas-auxiliar-administrativo">calendario completo</a>
+  para conocer todas las fechas de inscripción, admitidos y resultados. Si aún no has empezado
+  a estudiar, la <a href="/blog/guia-completa-oposicion-auxiliar-administrativo-estado-2026">guía completa
+  de la oposición</a> te orienta sobre temario, estrategia y recursos.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Basado en las bases de convocatorias AGE vigentes.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Hay límite de edad para presentarse a auxiliar administrativo del estado?', answer: 'No. No hay límite máximo de edad. Solo necesitas tener al menos 16 años y no haber alcanzado la edad de jubilación forzosa (actualmente 65 años). Puedes presentarte con 18, 35, 50 o 60 años sin restricciones.' },
+      { question: '¿Qué estudios necesito para ser auxiliar administrativo del estado?', answer: 'El título mínimo es Graduado en ESO (o equivalente: Graduado Escolar, FP Grado Medio, Bachiller elemental). También vale cualquier título superior (Bachillerato, Grado universitario). Si tu título es extranjero, necesitas homologación del Ministerio de Educación.' },
+      { question: '¿Cuánto cuesta inscribirse en las oposiciones de auxiliar administrativo?', answer: 'La tasa general es de 11,32€. Hay descuento del 50% para familias numerosas de categoría general (5,66€) y exención total para familias numerosas especiales, discapacidad ≥33%, víctimas de terrorismo y demandantes de empleo de larga duración.' },
+      { question: '¿Pueden presentarse extranjeros a las oposiciones de auxiliar administrativo?', answer: 'Sí, los nacionales de la Unión Europea, del Espacio Económico Europeo y sus familiares directos pueden presentarse en las mismas condiciones que los españoles. Se necesita NIE en vigor.' },
+      { question: '¿Cómo me inscribo en las oposiciones de auxiliar administrativo 2026?', answer: 'La inscripción es telemática a través del Portal 060 (administracion.gob.es). Necesitas certificado digital, DNI electrónico o Cl@ve permanente. Rellenas el modelo 790, pagas la tasa (11,32€ o exenta) y guardas el resguardo. El plazo suele ser de 20 días hábiles desde la publicación en el BOE.' },
+    ],
+  },
 ]
