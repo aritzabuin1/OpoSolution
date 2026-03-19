@@ -130,6 +130,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/examenes-oficiales">Simulacros oficiales INAP</a> — practica con las preguntas reales del tribunal</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Cuánto descuenta cada error en el examen de Auxiliar Administrativo?', answer: 'Cada respuesta incorrecta descuenta 1/3 del valor de un acierto (−0,333 puntos). Es decir, por cada 3 errores pierdes el equivalente a 1 acierto. Las preguntas en blanco no descuentan nada.' },
+      { question: '¿Merece la pena responder si dudo entre dos opciones?', answer: 'Sí. Si puedes descartar al menos 1 de las 4 opciones, la probabilidad de acertar sube al 33% y el valor esperado es positivo. La regla de oro: responde si puedes eliminar alguna opción, deja en blanco si no sabes nada del tema.' },
+      { question: '¿Cuántos puntos necesito para aprobar el examen de Auxiliar Administrativo?', answer: 'Necesitas un mínimo de 25 puntos sobre 50 en el cuestionario tipo test. La nota de corte real suele situarse entre 57 y 65 puntos sobre 100 según la convocatoria (2019: 57,5; 2022: 60; 2024: 65).' },
+      { question: '¿Cómo practicar la penalización antes del examen?', answer: 'La forma más efectiva es hacer simulacros completos con penalización activada y tiempo limitado a 90 minutos. OpoRuta aplica la penalización exacta del examen oficial (-1/3) en todos sus simulacros con preguntas de exámenes INAP reales.' },
+    ],
   },
 
   // ─── Post 2 ────────────────────────────────────────────────────────────────
@@ -268,6 +275,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Cómo funciona la penalización -1/3</a> — cuándo arriesgar y cuándo dejar en blanco</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Qué artículos de la LPAC caen más en el examen del INAP?', answer: 'Los artículos más preguntados de la Ley 39/2015 son: art. 53 (derechos del interesado), art. 21 (obligación de resolver), art. 31 (concepto de interesado), art. 66 (solicitudes de iniciación) y arts. 112-122 (recursos administrativos). Concentran más del 60% de las preguntas LPAC en exámenes INAP 2018-2024.' },
+      { question: '¿Cuántas preguntas de la LPAC caen en el examen de Auxiliar Administrativo?', answer: 'Entre 8 y 12 preguntas del cuestionario tipo test suelen versar sobre la LPAC (Ley 39/2015). Es una de las leyes con más peso en el examen, junto con la Constitución y el TREBEP.' },
+      { question: '¿La LPAC y la LRJSP se confunden en el examen?', answer: 'Sí, es una de las trampas más habituales del INAP. La LPAC (Ley 39/2015) regula el procedimiento administrativo desde el punto de vista del ciudadano, mientras que la LRJSP (Ley 40/2015) regula la organización interna de la Administración. Muchas preguntas mezclan artículos de ambas leyes.' },
+      { question: '¿Cómo estudiar los artículos de la LPAC de forma eficiente?', answer: 'Prioriza los artículos más preguntados según el análisis de frecuencia de exámenes INAP. Estudia primero los títulos IV (procedimiento) y V (recursos), que concentran la mayoría de preguntas. Hacer tests específicos por tema ayuda a fijar los artículos clave.' },
+    ],
   },
 
   // ─── Post 4 ────────────────────────────────────────────────────────────────
@@ -402,6 +416,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Cómo funciona la penalización -1/3</a> — estrategia de respuesta para el examen</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Hay psicotécnicos en el examen de Auxiliar Administrativo del Estado?', answer: 'Sí. Aproximadamente 30 de las 100 preguntas puntuables son de carácter psicotécnico: series numéricas, series alfabéticas, analogías, razonamiento lógico y comprensión verbal. No es una prueba separada, sino que se integran en el cuestionario tipo test.' },
+      { question: '¿Qué tipos de psicotécnicos caen en el examen del INAP?', answer: 'Los más frecuentes son series numéricas (identificar el patrón de una secuencia), analogías verbales, razonamiento lógico (silogismos y deducciones) y comprensión lectora de textos administrativos. Las series alfabéticas y el cálculo mental también aparecen, aunque con menor frecuencia.' },
+      { question: '¿Cómo preparar los psicotécnicos de la oposición de Auxiliar?', answer: 'La clave es practicar a diario con ejercicios cronometrados. Empieza por las categorías más frecuentes (series numéricas y razonamiento lógico) y dedica 15-20 minutos diarios. OpoRuta genera psicotécnicos específicos por categoría con dificultad adaptativa.' },
+      { question: '¿Cuánto tiempo tengo para cada pregunta psicotécnica?', answer: 'El examen completo dura 90 minutos para 100 preguntas, lo que da una media de 54 segundos por pregunta. Se recomienda dedicar menos tiempo a las psicotécnicas fáciles (30-40 s) para reservar más para las de razonamiento lógico complejo.' },
+    ],
   },
 
   // ─── Post 5 ────────────────────────────────────────────────────────────────
@@ -520,6 +541,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/psicotecnicas-examen-auxiliar-administrativo-estado">Psicotécnicas del examen</a> — tipos, ejemplos y cómo practicarlas</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Cuántos temas tiene el temario de Auxiliar Administrativo del Estado?', answer: 'El temario consta de 28 temas divididos en 2 bloques: Bloque I (Organización Pública, 16 temas) que abarca Constitución, administración y empleo público; y Bloque II (Actividad Administrativa y Ofimática, 12 temas) que cubre gestión documental, Word, Excel y administración electrónica.' },
+      { question: '¿Ha cambiado el temario de Auxiliar Administrativo para 2025-2026?', answer: 'El temario se actualizó con la OEP 2024 e incorpora cambios legislativos recientes: actualización del TREBEP, la Ley 4/2022 de consumidores y las modificaciones de la LPAC. Para la convocatoria de mayo 2026 se mantiene este temario vigente.' },
+      { question: '¿Qué bloque del temario es más importante para el examen?', answer: 'El Bloque I (Organización Pública) tiene más peso en el cuestionario teórico, con especial énfasis en Constitución, LPAC y TREBEP. El Bloque II (Ofimática) es crucial para la prueba práctica de Word y Excel. Ambos son necesarios para aprobar.' },
+      { question: '¿Por qué temas debo empezar a estudiar?', answer: 'Se recomienda empezar por los temas más preguntados en exámenes INAP: T1 (Constitución), T8 (AGE), T13 (Empleo público) y T5 (LPAC). Según el análisis de frecuencia de OpoRuta, estos 4 temas concentran más del 30% de las preguntas históricas.' },
+    ],
   },
 
   // ─── Post 3 ────────────────────────────────────────────────────────────────
@@ -649,6 +677,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/temario-administrativo-estado-c1-45-temas-como-priorizar">¿También preparas el C1?</a> — los 45 temas del Administrativo desglosados</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Cuál es la diferencia entre la LPAC y la LRJSP?', answer: 'La LPAC (Ley 39/2015) regula la relación ciudadano-Administración: procedimiento administrativo, plazos, recursos y silencio administrativo. La LRJSP (Ley 40/2015) regula la organización interna: órganos colegiados, delegación de competencias, convenios y responsabilidad patrimonial.' },
+      { question: '¿Preguntan en el examen diferencias entre LPAC y LRJSP?', answer: 'Sí, es una de las trampas más frecuentes del INAP. Las preguntas suelen atribuir artículos de una ley a la otra (p. ej., ubicar los órganos colegiados en la LPAC cuando están en la LRJSP). Distinguir qué regula cada ley es fundamental para no caer en estos errores.' },
+      { question: '¿Qué artículos de la LRJSP son más importantes para el examen?', answer: 'Los más preguntados son: arts. 5-8 (órganos administrativos), arts. 15-18 (delegación y avocación de competencias), arts. 19-22 (órganos colegiados) y arts. 32-37 (responsabilidad patrimonial). Estos artículos aparecen recurrentemente en exámenes INAP.' },
+      { question: '¿Es más difícil la LPAC o la LRJSP?', answer: 'La LPAC suele considerarse más extensa y con más artículos memorísticos (plazos, recursos), mientras que la LRJSP es más conceptual (organización, competencias). La dificultad real está en no confundirlas entre sí. Estudiarlas en paralelo ayuda a fijar las diferencias.' },
+    ],
   },
 
   // ─── Post 6 ────────────────────────────────────────────────────────────────
@@ -828,6 +863,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/constitucion-espanola-oposiciones-age-articulos-clave">Constitución para C1 y C2</a> — los mismos artículos clave sirven para ambas oposiciones</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Qué artículos de la Constitución caen más en el examen de Auxiliar Administrativo?', answer: 'Los más preguntados son: art. 1 (Estado social y democrático), art. 9 (principio de legalidad), art. 14 (igualdad), arts. 15-29 (derechos fundamentales), art. 103 (principios de la Administración), art. 106 (control judicial) y el Título VIII (organización territorial). El Tema 1 (Constitución) es el más preguntado históricamente en exámenes INAP.' },
+      { question: '¿Cuántas preguntas de la Constitución caen en el examen?', answer: 'Entre 8 y 15 preguntas del cuestionario versan directa o indirectamente sobre la Constitución. Es el tema con más peso en el examen, con 50 apariciones en los exámenes INAP analizados (2018-2024).' },
+      { question: '¿Hay que memorizar todos los artículos de la Constitución?', answer: 'No. La Constitución tiene 169 artículos, pero para el examen de Auxiliar basta con dominar unos 40-50 artículos clave. Céntrate en el Título Preliminar, los derechos fundamentales (Título I), la Corona y las Cortes (Títulos II-III), el Gobierno y la Administración (Título IV) y la organización territorial (Título VIII).' },
+      { question: '¿Preguntan sobre la reforma de la Constitución en el examen?', answer: 'Sí, el procedimiento de reforma (arts. 166-169) aparece con cierta frecuencia. Hay que distinguir la reforma ordinaria (art. 167, mayoría 3/5) de la agravada (art. 168, 2/3 + disolución + referéndum). Solo se ha reformado dos veces: en 1992 (art. 13.2, Maastricht) y en 2011 (art. 135, estabilidad presupuestaria).' },
+    ],
   },
 
   // ─── Post 7 ────────────────────────────────────────────────────────────────
@@ -1023,6 +1065,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo: los 28 temas</a> — cómo priorizarlos</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Qué artículos del TREBEP son más importantes para el examen de Auxiliar?', answer: 'Los más preguntados son: art. 8 (concepto de empleado público), arts. 9-12 (clases de personal), art. 14 (derechos individuales), arts. 52-54 (deberes y código de conducta), arts. 56-62 (acceso al empleo público) y arts. 89-92 (situaciones administrativas). Estos artículos concentran la mayoría de preguntas INAP sobre empleo público.' },
+      { question: '¿Qué es el TREBEP y por qué es tan importante en la oposición?', answer: 'El TREBEP (Real Decreto Legislativo 5/2015) es el Estatuto Básico del Empleado Público. Regula los derechos, deberes, situaciones administrativas y régimen disciplinario de todos los funcionarios. Es una de las 3 leyes con más peso en el examen junto con la Constitución y la LPAC.' },
+      { question: '¿Qué diferencia hay entre funcionario de carrera e interino según el TREBEP?', answer: 'El funcionario de carrera (art. 9) tiene nombramiento legal con carácter permanente y ha superado una oposición. El interino (art. 10) cubre plazas vacantes temporalmente por razones de necesidad o urgencia, con un máximo de 3 años (ampliable 1 año más tras la reforma de 2021).' },
+      { question: '¿Preguntan sobre el régimen disciplinario del TREBEP en el examen?', answer: 'Sí. Los artículos 93-98 sobre faltas y sanciones aparecen con frecuencia. Es clave distinguir las faltas muy graves (art. 95: abandono de servicio, discriminación, acoso) de las graves y leves, así como los plazos de prescripción: 3 años las muy graves, 2 las graves y 6 meses las leves.' },
+    ],
   },
 
   // ─── Post 8 ────────────────────────────────────────────────────────────────
@@ -1235,6 +1284,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">Guía completa de preparación</a> — planificación y estrategia de estudio</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Preguntan sobre protección de datos en el examen de Auxiliar Administrativo?', answer: 'Sí. La LOPDGDD (Ley Orgánica 3/2018) y el RGPD (Reglamento UE 2016/679) aportan entre 3 y 5 preguntas por examen. Es un tema relativamente nuevo en el temario y el INAP lo pregunta cada vez más, especialmente en relación con la administración electrónica.' },
+      { question: '¿Qué diferencia hay entre la LOPDGDD y el RGPD?', answer: 'El RGPD es el reglamento europeo de aplicación directa en todos los países de la UE. La LOPDGDD es la ley orgánica española que adapta y complementa el RGPD al ordenamiento jurídico español. En el examen preguntan sobre ambas normas, con especial atención a los derechos ARCOPOL y las bases de legitimación.' },
+      { question: '¿Qué son los derechos ARCOPOL en protección de datos?', answer: 'ARCOPOL es el acrónimo de los derechos del interesado: Acceso, Rectificación, Cancelación (supresión), Oposición, Portabilidad, Olvido y Limitación del tratamiento. Son los derechos que cualquier ciudadano puede ejercer ante el responsable del tratamiento de sus datos personales.' },
+      { question: '¿Quién es la autoridad de control en protección de datos en España?', answer: 'La Agencia Española de Protección de Datos (AEPD) es la autoridad de control independiente (art. 44 LOPDGDD). Tiene potestad sancionadora y puede imponer multas de hasta 20 millones de euros. En el examen preguntan frecuentemente sobre sus funciones y su independencia.' },
+    ],
   },
 
   // ─── Post 9 ────────────────────────────────────────────────────────────────
@@ -1437,6 +1493,14 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/articulos-lpac-que-mas-caen-examen-inap">Artículos de la LPAC que más caen</a> — empieza por lo que más pregunta el tribunal</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Cuánto tiempo necesito para preparar la oposición de Auxiliar Administrativo?', answer: 'Con dedicación intensiva (3-4 horas/día), entre 4 y 5 meses son suficientes para los 28 temas. Con dedicación moderada (1-2 horas/día), cuenta con 6-8 meses. La clave es la constancia diaria: es mejor 1 hora todos los días que 5 horas un solo día.' },
+      { question: '¿Necesito academia para aprobar el Auxiliar Administrativo?', answer: 'No es imprescindible. Muchos opositores aprueban por libre con un buen temario (30-40€) y una plataforma de tests como OpoRuta (49,99€ pago único). El ahorro frente a una academia (100-250€/mes durante 6-12 meses) es significativo. La academia aporta rutina y resolución de dudas, pero no es el único camino.' },
+      { question: '¿Cuál es el mejor método de estudio para oposiciones?', answer: 'El estudio activo (hacer tests y simulacros) es significativamente más efectivo que la lectura pasiva del temario. Se recomienda el ciclo: leer tema → hacer tests del tema → repasar errores → repetir. La repetición espaciada y los simulacros con penalización completan la preparación.' },
+      { question: '¿Qué material necesito para preparar la oposición de Auxiliar?', answer: 'Lo esencial: un temario actualizado a la última convocatoria (editorial MAD, Adams o CEP, 30-50€), la Constitución Española, y acceso a tests tipo examen. Complementos recomendados: legislación actualizada del BOE y una plataforma con simulacros oficiales para practicar con penalización.' },
+      { question: '¿Cómo organizar el plan de estudio para los 28 temas?', answer: 'Una estrategia eficaz: divide los 28 temas en 3 ciclos. Primer ciclo (2 meses): lectura completa de todos los temas. Segundo ciclo (1,5 meses): estudio profundo priorizando los temas más preguntados. Tercer ciclo (1 mes): simulacros completos y repaso de errores.' },
+    ],
   },
 
   // ─── Post 10 ───────────────────────────────────────────────────────────────
@@ -1529,6 +1593,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">¿C2 o C1?</a> — compara plazas, sueldo y temario antes de decidir</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Cuántas plazas de Auxiliar Administrativo del Estado hay en 2026?', answer: 'Se han convocado 1.700 plazas de ingreso libre en la OEP 2025 para el Cuerpo General Auxiliar (subgrupo C2). Es la mayor convocatoria para este cuerpo en los últimos años. El examen está previsto para el 23 de mayo de 2026.' },
+      { question: '¿Cuántos opositores se presentan por plaza de Auxiliar Administrativo?', answer: 'La ratio histórica oscila entre 15 y 25 opositores por plaza. Sin embargo, muchos no se presentan al examen (tasa de absentismo del 30-40%) y otros van sin preparar. La competencia real efectiva es menor de lo que parece: con buena preparación, las posibilidades son razonables.' },
+      { question: '¿Cuándo sale la convocatoria de Auxiliar Administrativo 2026?', answer: 'La OEP 2025 fue publicada en el BOE en noviembre de 2025 con 1.700 plazas de Auxiliar. La convocatoria específica del INAP se publicó a principios de 2026, con fecha de examen prevista para el 23 de mayo de 2026.' },
+      { question: '¿Dónde se puede trabajar como Auxiliar Administrativo del Estado?', answer: 'Los Auxiliares Administrativos del Estado trabajan en ministerios, delegaciones y subdelegaciones del Gobierno, organismos autónomos y otros centros de la AGE en toda España. Al aprobar, eliges destino según tu nota: Madrid concentra más plazas, pero también hay puestos en capitales de provincia.' },
+    ],
   },
 
   // ─── Post 11 ───────────────────────────────────────────────────────────────
@@ -1617,6 +1688,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/nota-corte-administrativo-estado-c1-como-se-calcula">Nota de corte del C1</a> — si te planteas subir al Administrativo del Estado</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Cuál es la nota de corte del examen de Auxiliar Administrativo del Estado?', answer: 'La nota de corte varía en cada convocatoria: 57,5 puntos en 2019, 60 en 2022 y 65 en 2024 (sobre 100). La tendencia es ascendente debido al aumento de opositores preparados. Para la convocatoria 2026, se estima una nota de corte en torno a 63-67 puntos.' },
+      { question: '¿Cómo se calcula la nota final en el examen de Auxiliar Administrativo?', answer: 'La nota del cuestionario se calcula como: aciertos - (errores / 3). Las preguntas en blanco no puntúan. El resultado se escala sobre 50 puntos (la parte teórica vale 50% del total). La prueba práctica de ofimática aporta los otros 50 puntos. Se necesita un mínimo de 25 en cada parte.' },
+      { question: '¿Es difícil aprobar la oposición de Auxiliar Administrativo?', answer: 'Con 1.700 plazas y una ratio real de 10-15 opositores preparados por plaza, es una oposición accesible si te preparas bien. Los que superan la nota de corte suelen haber dedicado entre 4 y 8 meses de estudio constante. La clave es practicar con simulacros bajo condiciones reales.' },
+      { question: '¿La nota de corte incluye la penalización?', answer: 'Sí. La nota de corte ya refleja la puntuación neta tras aplicar la penalización de -1/3 por error. Es decir, para obtener 65 puntos netos necesitas más de 65 aciertos, ya que los errores restan. Por eso es fundamental gestionar bien las preguntas dudosas.' },
+    ],
   },
 
   // ─── Post 12 — ARTÍCULO ESTRELLA (linkable asset) ─────────────────────────
@@ -1752,6 +1830,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/examenes-oficiales">Simulacros INAP oficiales</a> — practica con preguntas reales del tribunal</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Qué leyes se preguntan más en el examen de Auxiliar Administrativo del INAP?', answer: 'Según el análisis de exámenes INAP 2018-2024, las leyes más preguntadas son: Constitución Española (50+ preguntas acumuladas), LPAC - Ley 39/2015 (35+), TREBEP - RDLeg 5/2015 (29+), LRJSP - Ley 40/2015 (20+) y LOPDGDD - LO 3/2018 (15+). Juntas concentran más del 70% del cuestionario teórico.' },
+      { question: '¿El INAP repite preguntas de convocatorias anteriores?', answer: 'No repite preguntas literales, pero sí los mismos artículos y conceptos. El análisis de frecuencia muestra que ciertos artículos (como el art. 53 LPAC o el art. 103 CE) aparecen en casi todas las convocatorias, aunque con enunciados distintos. Por eso practicar con exámenes anteriores es tan efectivo.' },
+      { question: '¿Cómo usar el análisis de frecuencia para estudiar mejor?', answer: 'Prioriza los artículos que aparecen en 3 o más convocatorias: son los que el INAP considera fundamentales. Dedica más tiempo de estudio a los temas con mayor frecuencia de aparición y haz tests específicos sobre ellos. OpoRuta ofrece un Radar del Tribunal que ordena los temas por frecuencia de preguntas.' },
+      { question: '¿Cuántas preguntas del examen puedo acertar solo con los temas más frecuentes?', answer: 'Estudiando a fondo los 6-8 temas más preguntados (según el análisis de frecuencia) puedes cubrir el 40-50% del cuestionario teórico. Esto no garantiza el aprobado, pero sí una base sólida. Combinar estos temas prioritarios con un repaso general del resto es la estrategia óptima.' },
+    ],
   },
 
   // ─── Post 13 ───────────────────────────────────────────────────────────────
@@ -1959,6 +2044,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/preparar-oposicion-auxiliar-administrativo-por-libre">Preparar por libre</a> — sin academia, a tu ritmo</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Cuántos temas entran en el examen de Auxiliar Administrativo del Estado?', answer: 'El temario oficial consta de 28 temas: 16 del Bloque I (Organización Pública) y 12 del Bloque II (Actividad Administrativa y Ofimática). Todos los temas pueden ser preguntados, pero la frecuencia de aparición varía mucho de unos a otros.' },
+      { question: '¿Es posible aprobar sin estudiar todos los temas?', answer: 'Teóricamente sí, pero es arriesgado. Los 6-8 temas más frecuentes cubren un 40-50% de las preguntas, pero el 50% restante se reparte entre los 20 temas restantes. Lo recomendable es estudiar todos, priorizando los más preguntados para dominarlos a fondo.' },
+      { question: '¿Cuántos temas hay que estudiar por semana para llegar al examen?', answer: 'Con 5 meses de preparación y 28 temas, necesitas cubrir unos 1,5 temas por semana en la primera vuelta. En la segunda vuelta puedes repasar 3-4 temas semanales. Reserva el último mes exclusivamente para simulacros y repaso de errores.' },
+      { question: '¿El Bloque II de ofimática entra en el cuestionario tipo test?', answer: 'Sí. El Bloque II (Word, Excel, administración electrónica) aporta preguntas tanto al cuestionario tipo test como a la prueba práctica de ofimática. No conviene descuidarlo: dominar Word y Excel puede ser la diferencia entre aprobar y suspender.' },
+    ],
   },
 
   // ─── Post 15 ───────────────────────────────────────────────────────────────
@@ -2064,6 +2156,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Penalización -1/3</a> — cómo gestionar las preguntas dudosas</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Qué estrategia de estudio es más efectiva para la LPAC?', answer: 'La estrategia más efectiva es el estudio activo: leer los artículos clave, hacer tests inmediatamente después, y repasar los errores con repetición espaciada. Releer pasivamente la ley es mucho menos eficiente que hacer 20 preguntas tipo test sobre los mismos artículos.' },
+      { question: '¿Los artículos de la LPAC cambian de una convocatoria a otra?', answer: 'La LPAC (Ley 39/2015) ha sufrido pocas modificaciones desde su entrada en vigor. Las más relevantes afectan a la administración electrónica y los plazos de notificación. OpoRuta verifica cada cita contra la legislación vigente del BOE para asegurar que no estudias artículos derogados o modificados.' },
+      { question: '¿Cuántos artículos tiene la LPAC y cuántos hay que saber?', answer: 'La LPAC tiene 133 artículos, pero para el examen de Auxiliar basta con dominar unos 30-35 artículos clave. Los que más caen son: art. 2 (ámbito de aplicación), arts. 13 y 53 (derechos), art. 21 (obligación de resolver), arts. 53-56 (interesados), art. 66 (solicitudes), arts. 112-126 (recursos) y arts. 77-92 (procedimiento).' },
+      { question: '¿La LPAC es la misma para C1 y C2?', answer: 'Sí, la LPAC (Ley 39/2015) es la misma ley para ambas oposiciones. La diferencia es que en C1 (Administrativo) se exige un conocimiento más profundo y se pregunta en relación con el supuesto práctico, mientras que en C2 (Auxiliar) las preguntas son más directas sobre artículos concretos.' },
+    ],
   },
 
   // ─── Post 16 ───────────────────────────────────────────────────────────────
@@ -2180,6 +2279,14 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">Guía completa de preparación</a> — organiza tu estudio de principio a fin</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Qué tipos de psicotécnicos caen en la oposición de Auxiliar Administrativo?', answer: 'Los 6 tipos principales son: series numéricas (encontrar el patrón), series alfabéticas, analogías verbales (relaciones entre palabras), razonamiento lógico (silogismos y deducciones), comprensión verbal (textos administrativos) y cálculo mental. Las series numéricas y el razonamiento lógico son los más frecuentes.' },
+      { question: '¿Cuántas preguntas psicotécnicas hay en el examen de Auxiliar?', answer: 'Aproximadamente 30 de las 100 preguntas puntuables son de carácter psicotécnico. Se integran en el cuestionario tipo test junto con las preguntas teóricas y de ofimática, no es una prueba aparte.' },
+      { question: '¿Cómo mejorar en series numéricas rápidamente?', answer: 'Practica identificando patrones comunes: sumas/restas constantes, multiplicaciones, potencias, Fibonacci, y combinaciones de dos series alternadas. Empieza con series fáciles y aumenta la dificultad. Con 15-20 minutos diarios de práctica durante 1 mes notarás una mejora significativa.' },
+      { question: '¿Los psicotécnicos se pueden preparar o dependen de la inteligencia?', answer: 'Se pueden preparar y mejorar con práctica. Los psicotécnicos de oposiciones siguen patrones repetitivos que se aprenden con entrenamiento. Opositores que al principio fallan el 60% de psicotécnicos suelen alcanzar un 80-85% de acierto tras 2-3 meses de práctica diaria.' },
+      { question: '¿Qué trucos hay para resolver psicotécnicos más rápido?', answer: 'Los trucos más útiles: en series numéricas, calcula las diferencias entre términos consecutivos. En analogías, identifica la relación (sinónimo, antónimo, parte-todo) antes de mirar las opciones. En razonamiento lógico, dibuja diagramas de Venn. Y siempre: si llevas más de 1 minuto en una pregunta, márcala y sigue adelante.' },
+    ],
   },
 
   // ─── Post 17 ───────────────────────────────────────────────────────────────
@@ -2280,6 +2387,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/cuantos-temas-examen-auxiliar-administrativo-estado">¿Cuántos temas tiene el examen?</a> — priorización y bloques</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Qué nivel de Word y Excel se pide en el examen de Auxiliar Administrativo?', answer: 'Se exige un nivel intermedio-avanzado. En Word: formato de texto y párrafo, estilos, tablas, encabezados/pies de página, secciones y combinación de correspondencia. En Excel: fórmulas básicas (SUMA, PROMEDIO, SI), referencias absolutas/relativas, formato condicional, ordenar/filtrar y gráficos.' },
+      { question: '¿Cómo es la prueba práctica de ofimática del examen?', answer: 'La prueba práctica consiste en ejercicios sobre un ordenador con Word y Excel (versiones de Microsoft 365 o similar). Se pide reproducir documentos con formato específico, aplicar funciones en hojas de cálculo y gestionar datos. Dura entre 30 y 45 minutos y vale 50 puntos (50% de la nota total).' },
+      { question: '¿Qué funciones de Excel caen más en el examen de Auxiliar?', answer: 'Las funciones más preguntadas son: SUMA, PROMEDIO, SI, CONTAR.SI, BUSCARV, MAX, MIN y las de fecha (HOY, AÑO). También preguntan sobre referencias absolutas ($A$1) vs relativas (A1), formato condicional y la creación de gráficos a partir de datos.' },
+      { question: '¿Vale la pena estudiar ofimática si ya uso Word y Excel a diario?', answer: 'Sí. El examen pregunta funciones y opciones específicas que muchos usuarios habituales desconocen: combinación de correspondencia en Word, macros básicas, funciones anidadas en Excel y atajos de teclado. No basta con saber usar los programas; hay que conocer la teoría y las opciones avanzadas.' },
+    ],
   },
 
   // ─── Post 18 ───────────────────────────────────────────────────────────────
@@ -2437,6 +2551,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/nota-corte-auxiliar-administrativo-estado">Nota de corte Auxiliar</a> — qué nota necesitas para aprobar</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Qué diferencia hay entre Auxiliar Administrativo (C2) y Administrativo del Estado (C1)?', answer: 'Las principales diferencias: C2 requiere ESO y tiene 28 temas, C1 requiere bachillerato y tiene 45 temas. C1 incluye supuesto práctico (C2 no). El sueldo de C1 es mayor (~1.500-2.100€ vs ~1.300-1.700€). Ambos exámenes se celebran el mismo día (23 mayo 2026), así que debes elegir uno.' },
+      { question: '¿Es mejor presentarse al C1 o al C2?', answer: 'Depende de tu formación y disponibilidad. Si tienes bachillerato y puedes dedicar 6-10 meses de estudio, C1 ofrece mejor sueldo y proyección. Si prefieres un temario más corto y una primera oportunidad más accesible, C2 es una excelente puerta de entrada con posibilidad de promoción interna posterior a C1.' },
+      { question: '¿Se puede promocionar de C2 a C1 una vez dentro?', answer: 'Sí. Los funcionarios C2 pueden acceder al C1 por promoción interna, que tiene plazas reservadas y un temario reducido. Es una vía muy utilizada: entras como Auxiliar (C2) y en 2-3 años puedes presentarte al C1 con ventaja (conocimiento de la Administración + plazas reservadas).' },
+      { question: '¿El Pack Doble de OpoRuta incluye C1 y C2?', answer: 'Sí. El Pack Doble cuesta 79,99€ (pago único) e incluye acceso completo a los temarios, tests, simulacros y herramientas de IA tanto para Auxiliar (C2, 28 temas) como para Administrativo (C1, 45 temas). Si solo preparas una oposición, el Pack individual cuesta 49,99€.' },
+    ],
   },
 
   // ─── Post 19 ───────────────────────────────────────────────────────────────
@@ -2545,6 +2666,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/trebep-articulos-clave-oposiciones">TREBEP: artículos clave</a> — el Estatuto del Empleado Público</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Qué artículos de la Constitución son comunes para C1 y C2?', answer: 'Los artículos fundamentales son los mismos para ambas oposiciones: Título Preliminar (arts. 1-9), derechos fundamentales (arts. 14-29), Gobierno y Administración (arts. 97-107) y organización territorial (arts. 137-158). C1 profundiza más en la Corona, las Cortes y el Tribunal Constitucional.' },
+      { question: '¿Cómo memorizar los artículos de la Constitución para el examen?', answer: 'Técnicas probadas: agrupa artículos por títulos temáticos (no por número), usa reglas mnemotécnicas para los plazos y cifras, y haz tests activos después de cada sesión de estudio. La repetición espaciada (repasar a intervalos crecientes) es más eficaz que releer varias veces seguidas.' },
+      { question: '¿Preguntan sobre la organización territorial en el examen AGE?', answer: 'Sí. El Título VIII de la Constitución (arts. 137-158) sobre Comunidades Autónomas, provincias y municipios aparece con frecuencia. Las preguntas típicas versan sobre las competencias del Estado (art. 149), las competencias autonómicas (art. 148) y la organización municipal (art. 140).' },
+      { question: '¿Qué derechos fundamentales preguntan más en el examen?', answer: 'Los más preguntados son: art. 14 (igualdad), art. 15 (derecho a la vida), art. 16 (libertad religiosa), art. 18 (intimidad y protección de datos), art. 20 (libertad de expresión), art. 23 (participación en asuntos públicos) y art. 28 (libertad sindical y huelga). Es clave saber cuáles necesitan ley orgánica para su desarrollo (arts. 15-29).' },
+    ],
   },
 
   // ─── Post 20 ───────────────────────────────────────────────────────────────
@@ -2660,6 +2788,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/diferencias-lpac-lrjsp-oposiciones">LPAC vs LRJSP</a> — cómo distinguir las dos leyes administrativas</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Qué regula el TREBEP exactamente?', answer: 'El TREBEP (Real Decreto Legislativo 5/2015) es el Estatuto Básico del Empleado Público. Regula las clases de personal (funcionarios, laborales, eventuales), derechos y deberes, acceso al empleo público, situaciones administrativas, retribuciones y régimen disciplinario. Es la norma marco del empleo público en España.' },
+      { question: '¿El TREBEP se aplica igual a todas las administraciones?', answer: 'El TREBEP es legislación básica estatal que se aplica a todas las Administraciones Públicas (AGE, CCAA y entidades locales). Sin embargo, cada Administración puede desarrollarlo con su propia legislación complementaria. Para el examen AGE, se pregunta sobre el TREBEP general y su aplicación específica en la AGE.' },
+      { question: '¿Qué situaciones administrativas del TREBEP preguntan más?', answer: 'Las más preguntadas son: servicio activo (art. 86), servicios especiales (art. 87), servicio en otras Administraciones (art. 88), excedencia voluntaria (art. 89) y suspensión de funciones (art. 90). Es clave saber qué derechos se conservan en cada situación y los plazos de reingreso.' },
+      { question: '¿Cuántas preguntas del TREBEP caen en el examen de Auxiliar?', answer: 'Entre 5 y 8 preguntas del cuestionario versan sobre el TREBEP. Es la tercera ley más preguntada tras la Constitución y la LPAC. El INAP suele combinar preguntas sobre clases de personal, derechos y régimen disciplinario.' },
+    ],
   },
 
   // ─── Post 21 ───────────────────────────────────────────────────────────────
@@ -2795,6 +2930,14 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/nota-corte-auxiliar-administrativo-estado">Nota de corte del C2</a> — si también preparas el Auxiliar Administrativo</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Cuántas plazas de Administrativo del Estado (C1) hay en 2026?', answer: 'Se han convocado más de 2.500 plazas de Administrativo del Estado (subgrupo C1) en la OEP 2025. El examen se celebra el 23 de mayo de 2026, el mismo día que el de Auxiliar (C2), por lo que solo puedes presentarte a uno.' },
+      { question: '¿Cuántos temas tiene el temario de Administrativo del Estado C1?', answer: 'El temario consta de 45 temas repartidos en 4 bloques: Organización del Estado y UE, Administración General del Estado, Gestión de personal y empleo público, y Gestión financiera y contratación pública. Es un 60% más extenso que el de Auxiliar (28 temas).' },
+      { question: '¿Qué nota se necesita para aprobar el Administrativo C1?', answer: 'La nota de corte del C1 suele situarse entre 55 y 65 puntos sobre 100, dependiendo de la convocatoria. El examen tiene dos partes: cuestionario tipo test (60 preguntas, penalización -1/3) y supuesto práctico. Se necesita superar ambas partes por separado.' },
+      { question: '¿Cuál es el sueldo de un Administrativo del Estado C1?', answer: 'El sueldo oscila entre 1.500 y 2.100€ brutos mensuales (14 pagas), dependiendo del destino y complementos. Es entre un 15% y un 25% superior al de Auxiliar (C2). Los puestos en Madrid y con complemento específico alto pueden superar los 2.000€ netos.' },
+      { question: '¿Se puede preparar el C1 en menos de un año?', answer: 'Sí, aunque requiere dedicación. Con estudio intensivo (3-4 horas/día), 6-8 meses son suficientes para los 45 temas. Con dedicación moderada (1-2 horas/día), cuenta con 10-12 meses. La clave es priorizar los bloques con más peso en el examen y hacer simulacros desde el tercer mes.' },
+    ],
   },
 
   // ─── Post 22 ───────────────────────────────────────────────────────────────
@@ -2940,6 +3083,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/constitucion-espanola-oposiciones-age-articulos-clave">Constitución para oposiciones AGE</a> — artículos que más caen</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Se puede aprobar el Administrativo C1 sin academia?', answer: 'Sí. Con un buen temario actualizado (50-70€), una plataforma de tests como OpoRuta (49,99€) y disciplina de estudio, muchos opositores aprueban el C1 por libre. El ahorro frente a una academia (150-300€/mes) es de más de 1.500€/año. La clave es mantener una rutina de estudio constante.' },
+      { question: '¿Qué material necesito para preparar el C1 por libre?', answer: 'Lo esencial: temario actualizado de los 45 temas (editorial Adams, MAD o CEP), legislación vigente del BOE, y acceso a simulacros con supuesto práctico. Complementos recomendados: esquemas por tema, tests tipo INAP con penalización, y una herramienta de repetición espaciada para repasar.' },
+      { question: '¿Cómo preparar el supuesto práctico del C1 por libre?', answer: 'El supuesto práctico requiere aplicar la legislación a casos reales. Practica con supuestos de convocatorias anteriores, identifica los procedimientos administrativos más habituales (LPAC, LCSP, LGP) y redacta resoluciones modelo. Es la parte donde más opositores fallan por falta de práctica.' },
+      { question: '¿Cuántas horas de estudio diarias necesito para el C1?', answer: 'Se recomiendan 3-4 horas diarias con dedicación intensiva (6-8 meses) o 2 horas diarias con preparación más larga (10-12 meses). La constancia es más importante que las sesiones largas: 2 horas cada día son más efectivas que 8 horas un sábado.' },
+    ],
   },
 
   // ─── Post 23 — C1: Supuesto Práctico ─────────────────────────────────────
@@ -3047,6 +3197,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">Diferencias C2 vs C1</a> — ¿cuál elegir?</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿En qué consiste el supuesto práctico del Administrativo C1?', answer: 'Es la segunda parte del examen. Se presenta un caso práctico (expediente administrativo, tramitación de un procedimiento, gestión presupuestaria) y debes resolverlo aplicando la legislación vigente. Suele incluir: redactar una resolución, identificar errores en un expediente o calcular plazos administrativos.' },
+      { question: '¿Cuánto tiempo tengo para el supuesto práctico?', answer: 'El supuesto práctico tiene una duración aproximada de 2-3 horas, aunque varía según la convocatoria. Se puede consultar legislación no comentada durante la prueba, por lo que es importante saber buscar rápidamente en los textos legales, no solo memorizar.' },
+      { question: '¿Qué leyes caen más en el supuesto práctico del C1?', answer: 'Las leyes más relevantes para el supuesto práctico son: LPAC (Ley 39/2015) para tramitación de procedimientos, LRJSP (Ley 40/2015) para organización administrativa, LCSP (Ley 9/2017) para contratación pública, y LGP (Ley 47/2003) para gestión presupuestaria. La LPAC es la que más aparece.' },
+      { question: '¿Se puede aprobar el supuesto práctico sin experiencia en Administración?', answer: 'Sí, pero requiere mucha práctica con casos resueltos. Los opositores sin experiencia administrativa deben compensar practicando con supuestos de convocatorias anteriores y familiarizándose con la estructura de los expedientes administrativos. El 40-50% de los aprobados no tenían experiencia previa.' },
+    ],
   },
 
   // ─── Post 24 — C1: Nota de corte ──────────────────────────────────────────
@@ -3143,6 +3300,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/plazas-auxiliar-administrativo-2026">1.700 plazas C2 en 2026</a> — si también preparas el Auxiliar Administrativo</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Cuál es la nota de corte del Administrativo del Estado C1?', answer: 'La nota de corte varía por convocatoria, pero suele situarse entre 55 y 65 puntos sobre 100. La tendencia es ligeramente ascendente conforme aumentan los opositores preparados. Para 2026, con más de 2.500 plazas, se espera una nota de corte moderada en torno a 58-63 puntos.' },
+      { question: '¿Cómo se calcula la nota del examen de Administrativo C1?', answer: 'El examen tiene dos partes: cuestionario tipo test (60 preguntas con penalización -1/3, vale 60% de la nota) y supuesto práctico (vale 40%). Se necesita superar el mínimo en cada parte por separado. La nota final es la suma ponderada de ambas partes.' },
+      { question: '¿Cuánto puntúa el supuesto práctico respecto al test?', answer: 'El cuestionario tipo test suele pesar un 60% y el supuesto práctico un 40% de la nota total. Ambas partes son eliminatorias: no basta con compensar una parte mala con otra buena. Por eso es imprescindible preparar ambas específicamente.' },
+      { question: '¿La nota de corte del C1 es más alta que la del C2?', answer: 'Generalmente no. Aunque el C1 es más difícil (45 temas + supuesto práctico), la ratio opositores/plaza es similar y la nota de corte suele ser parecida o incluso algo inferior a la del C2, porque el examen es objetivamente más exigente y hay más dispersión en las notas.' },
+    ],
   },
 
   // ─── Post 25 — C1: Temario 45 temas priorización ─────────────────────────
@@ -3272,6 +3436,14 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/herramientas/calculadora-nota-administrativo-estado">Calculadora de nota C1</a> — calcula tu puntuación</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Cómo priorizar los 45 temas del Administrativo C1?', answer: 'Divide los temas en 3 niveles: prioritarios (los que más caen en examen: Constitución, LPAC, LRJSP, TREBEP, LCSP y LGP), importantes (UE, organización territorial, empleo público) y complementarios (el resto). Dedica el 50% del tiempo a los prioritarios, 30% a los importantes y 20% a los complementarios.' },
+      { question: '¿Cuáles son los bloques del temario de Administrativo C1?', answer: 'Los 4 bloques son: Bloque I - Organización del Estado y UE (12 temas), Bloque II - AGE y gestión de recursos humanos (11 temas), Bloque III - Gestión financiera (12 temas), y Bloque IV - Contratación pública y gestión de servicios (10 temas). Los Bloques III y IV son los más técnicos y específicos del C1.' },
+      { question: '¿Puedo estudiar el temario del C1 con el mismo libro que el C2?', answer: 'No. Aunque comparten temas comunes (Constitución, LPAC, TREBEP), el C1 tiene 17 temas adicionales de gestión financiera, contratación pública y UE que no están en el temario de C2. Necesitas un temario específico de Administrativo del Estado (C1).' },
+      { question: '¿Cuánto tiempo dedicar a cada tema del C1?', answer: 'Primera lectura: 2-3 horas por tema. Estudio profundo: 4-5 horas para temas prioritarios, 2-3 horas para complementarios. Repasos: 1 hora por tema. En total, con 45 temas, necesitas unas 200-250 horas de estudio efectivo para cubrir todo el temario una vez, más 100-150 horas de repasos y simulacros.' },
+      { question: '¿Qué temas del C1 son exclusivos respecto al C2?', answer: 'Los temas exclusivos del C1 incluyen: Unión Europea (instituciones y derecho comunitario), contratación pública (LCSP), gestión financiera y presupuestaria (LGP), subvenciones, gestión de recursos humanos avanzada, y responsabilidad patrimonial de la Administración. Estos temas requieren un nivel de profundidad mayor.' },
+    ],
   },
 
   // ─── Post 26 — C1: Contratación pública LCSP ─────────────────────────────
@@ -3361,6 +3533,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/articulos-lpac-que-mas-caen-examen-inap">LPAC: artículos que más caen</a> — la otra ley clave del Bloque III</li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Qué es la LCSP y por qué es importante para el C1?', answer: 'La LCSP (Ley 9/2017) es la Ley de Contratos del Sector Público. Regula cómo la Administración contrata obras, servicios y suministros. Es uno de los temas exclusivos del C1 y suele aportar 3-5 preguntas al cuestionario tipo test, además de aparecer frecuentemente en el supuesto práctico.' },
+      { question: '¿Qué tipos de contratos regula la LCSP?', answer: 'Los contratos administrativos típicos son: contrato de obras, contrato de suministro, contrato de servicios y contrato de concesión (de obras y de servicios). La LCSP también regula los contratos mixtos y establece los umbrales para la regulación armonizada (contratos sujetos a directivas europeas).' },
+      { question: '¿Cuáles son los procedimientos de adjudicación de la LCSP?', answer: 'Los principales procedimientos son: abierto (cualquier empresa puede licitar), restringido (preselección de candidatos), negociado (sin publicidad para contratos menores), diálogo competitivo (proyectos complejos) y asociación para la innovación. El procedimiento abierto es el más frecuente y el más preguntado.' },
+      { question: '¿Qué es un contrato menor en la LCSP?', answer: 'Es un contrato de importe inferior a 40.000€ en obras o 15.000€ en servicios/suministros (IVA excluido). No requiere publicidad ni licitación formal. Es el procedimiento más ágil pero tiene limitaciones: no se pueden fraccionar contratos para eludir los umbrales. Es un concepto muy preguntado en el examen.' },
+    ],
   },
 
   // ─── Post 27 — C1: Gestión financiera ─────────────────────────────────────
@@ -3476,6 +3655,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/herramientas/calculadora-nota-administrativo-estado">Calculadora de nota C1</a></li>
 </ul>
     `.trim(),
+    dateModified: '2026-03-19',
+    faqs: [
+      { question: '¿Qué es la Ley General Presupuestaria (LGP)?', answer: 'La LGP (Ley 47/2003) regula el régimen presupuestario, de contabilidad y de control financiero del sector público estatal. Es la norma fundamental de gestión financiera de la AGE y uno de los temas más técnicos del temario de Administrativo C1.' },
+      { question: '¿Qué fases tiene el ciclo presupuestario?', answer: 'El ciclo presupuestario tiene 4 fases: elaboración (el Gobierno prepara el proyecto), aprobación (las Cortes aprueban la Ley de PGE), ejecución (la AGE gestiona los créditos) y control (la IGAE y el Tribunal de Cuentas fiscalizan). Cada fase tiene artículos específicos de la LGP que se preguntan en el examen.' },
+      { question: '¿Qué son los créditos presupuestarios y cómo se modifican?', answer: 'Los créditos presupuestarios son las autorizaciones de gasto incluidas en los PGE. Se pueden modificar mediante: transferencias de crédito (entre partidas), créditos extraordinarios y suplementos de crédito (aprobados por las Cortes), ampliaciones de crédito y generaciones de crédito. Las modificaciones presupuestarias son muy preguntadas.' },
+      { question: '¿Cuántas preguntas de gestión financiera caen en el examen C1?', answer: 'El Bloque de gestión financiera (LGP, presupuestos, subvenciones) suele aportar entre 8 y 12 preguntas de las 60 del cuestionario tipo test. Es un bloque técnico que muchos opositores descuidan, lo cual es un error: dominarlo puede marcar la diferencia en la nota final.' },
+    ],
   },
   // ─── Post 28: Comparativa plataformas IA oposiciones ──────────────────────
   {
@@ -3484,6 +3670,7 @@ export const blogPosts: BlogPost[] = [
     description:
       'Analizamos las principales plataformas con IA para preparar oposiciones: OpositaTest, OpoRuta, Toposiciones, Testualia, Opositor.ai y más. Funciones, precios reales y para quién es cada una.',
     date: '2026-03-17',
+    dateModified: '2026-03-19',
     keywords: [
       'mejores plataformas IA oposiciones',
       'plataformas oposiciones inteligencia artificial',
@@ -3827,6 +4014,7 @@ export const blogPosts: BlogPost[] = [
     description:
       'Comparamos OpoRuta y OpositaTest para preparar Auxiliar Administrativo (C2) y Administrativo del Estado (C1). Funciones, precios, verificación legal y cuál te conviene según tu forma de estudiar.',
     date: '2026-03-17',
+    dateModified: '2026-03-19',
     keywords: [
       'OpoRuta vs OpositaTest',
       'OpositaTest opiniones',
@@ -4066,6 +4254,7 @@ export const blogPosts: BlogPost[] = [
     description:
       'Recopilación completa de recursos gratuitos para preparar el Auxiliar Administrativo del Estado en 2026: exámenes oficiales, tests online, temario BOE, calculadoras de nota y comunidades de opositores.',
     date: '2026-03-17',
+    dateModified: '2026-03-19',
     keywords: [
       'recursos gratuitos oposiciones auxiliar administrativo',
       'test gratis auxiliar administrativo estado',
@@ -4277,6 +4466,7 @@ export const blogPosts: BlogPost[] = [
     description:
       'Análisis honesto sobre el uso de IA (ChatGPT, plataformas especializadas) para preparar oposiciones. Qué puede hacer, qué no puede hacer, riesgos de alucinación y cómo usarla sin que te perjudique.',
     date: '2026-03-17',
+    dateModified: '2026-03-19',
     keywords: [
       'inteligencia artificial oposiciones',
       'ChatGPT oposiciones',

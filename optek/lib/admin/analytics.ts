@@ -19,6 +19,7 @@
 
 import { createServiceClient } from '@/lib/supabase/server'
 import { METRICS_START_DATE, adminIdFilter, getAdminUserIds } from '@/lib/admin/metrics-filter'
+import { getDashboardPhase } from '@/lib/utils/dashboard-phase'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -56,6 +57,16 @@ export interface OnboardingFunnel {
   pctFirstTest: number
   pctSecondTest: number
   pctPurchased: number
+  tourCompletionRate: number
+  tourCompleted: number
+}
+
+export interface DashboardPhaseDistribution {
+  new: number
+  starting: number
+  active: number
+  lapsed: number
+  total: number
 }
 
 export interface TemaPopularity {
@@ -266,7 +277,7 @@ async function _getOnboardingFunnel(): Promise<OnboardingFunnel> {
   const adminIds = await getAdminUserIds()
   const excludeAdmins = adminIdFilter(adminIds)
 
-  let profilesQ = supabase.from('profiles').select('id').eq('is_admin', false).gte('created_at', METRICS_START_DATE)
+  let profilesQ = supabase.from('profiles').select('id, onboarding_completed_at').eq('is_admin', false).gte('created_at', METRICS_START_DATE)
   let testsQ = supabase.from('tests_generados').select('user_id').eq('completado', true).gte('created_at', METRICS_START_DATE)
   let comprasQ = supabase.from('compras').select('user_id').gte('created_at', METRICS_START_DATE)
   if (excludeAdmins) {
@@ -276,7 +287,9 @@ async function _getOnboardingFunnel(): Promise<OnboardingFunnel> {
 
   const [profilesRes, testsRes, comprasRes] = await Promise.all([profilesQ, testsQ, comprasQ])
 
-  const registered = profilesRes.data?.length ?? 0
+  const profiles = (profilesRes.data ?? []) as { id: string; onboarding_completed_at: string | null }[]
+  const registered = profiles.length
+  const tourCompleted = profiles.filter(p => p.onboarding_completed_at !== null).length
   const testsByUser = new Map<string, number>()
   for (const t of (testsRes.data ?? []) as { user_id: string }[]) {
     testsByUser.set(t.user_id, (testsByUser.get(t.user_id) ?? 0) + 1)
@@ -295,6 +308,8 @@ async function _getOnboardingFunnel(): Promise<OnboardingFunnel> {
     pctFirstTest: registered > 0 ? Math.round((firstTest / registered) * 1000) / 10 : 0,
     pctSecondTest: registered > 0 ? Math.round((secondTest / registered) * 1000) / 10 : 0,
     pctPurchased: registered > 0 ? Math.round((purchased / registered) * 1000) / 10 : 0,
+    tourCompleted,
+    tourCompletionRate: registered > 0 ? Math.round((tourCompleted / registered) * 1000) / 10 : 0,
   }
 }
 
@@ -519,3 +534,70 @@ async function _getAnalysisUsageByType(): Promise<AnalysisUsageByType[]> {
 }
 
 export const getAnalysisUsageByType = _getAnalysisUsageByType
+
+// ─── 12. Dashboard Phase Distribution ──────────────────────────────────────────
+
+async function _getDashboardPhaseDistribution(): Promise<DashboardPhaseDistribution> {
+  const supabase = await createServiceClient() as any
+  const adminIds = await getAdminUserIds()
+  const excludeAdmins = adminIdFilter(adminIds)
+
+  // Get all non-admin profiles
+  const { data: profilesData } = await supabase
+    .from('profiles')
+    .select('id')
+    .eq('is_admin', false)
+    .gte('created_at', METRICS_START_DATE)
+
+  const profiles = (profilesData ?? []) as { id: string }[]
+  const total = profiles.length
+
+  if (total === 0) {
+    return { new: 0, starting: 0, active: 0, lapsed: 0, total: 0 }
+  }
+
+  // Get all tests for these users (need count per user + last test date)
+  let testsQ = supabase.from('tests_generados').select('user_id, created_at').eq('completado', true).gte('created_at', METRICS_START_DATE)
+  if (excludeAdmins) testsQ = testsQ.not('user_id', 'in', excludeAdmins)
+  const { data: testsData } = await testsQ
+
+  const tests = (testsData ?? []) as { user_id: string; created_at: string }[]
+
+  // Build per-user stats: totalTests, last test date
+  const userStats = new Map<string, { totalTests: number; lastTestDate: string }>()
+  for (const t of tests) {
+    const existing = userStats.get(t.user_id)
+    if (existing) {
+      existing.totalTests++
+      if (t.created_at > existing.lastTestDate) existing.lastTestDate = t.created_at
+    } else {
+      userStats.set(t.user_id, { totalTests: 1, lastTestDate: t.created_at })
+    }
+  }
+
+  // Calculate racha (streak) — simplified: if last test was today or yesterday, rachaActual=1, else 0
+  // getDashboardPhase only cares if rachaActual === 0 for lapsed detection
+  const distribution: DashboardPhaseDistribution = { new: 0, starting: 0, active: 0, lapsed: 0, total }
+
+  for (const profile of profiles) {
+    const stats = userStats.get(profile.id)
+    const totalTests = stats?.totalTests ?? 0
+    const lastTestDate = stats?.lastTestDate?.slice(0, 10) ?? null
+
+    // rachaActual: 0 if no recent test (simplified — full racha calc not needed for phase)
+    let rachaActual = 0
+    if (lastTestDate) {
+      const daysSince = Math.floor(
+        (Date.now() - new Date(lastTestDate).getTime()) / (1000 * 60 * 60 * 24),
+      )
+      if (daysSince <= 1) rachaActual = 1
+    }
+
+    const phase = getDashboardPhase(totalTests, rachaActual, lastTestDate)
+    distribution[phase]++
+  }
+
+  return distribution
+}
+
+export const getDashboardPhaseDistribution = _getDashboardPhaseDistribution

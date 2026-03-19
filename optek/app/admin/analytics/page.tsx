@@ -19,6 +19,7 @@ import {
   getCompletionRate,
   getFeedbackSummary,
   getAnalysisUsageByType,
+  getDashboardPhaseDistribution,
 } from '@/lib/admin/analytics'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -73,10 +74,10 @@ function ScoreColor({ val }: { val: number }) {
 // ─── Page ───────────────────────────────────────────────────────────────────────
 
 export default async function AnalyticsPage() {
-  let conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage
+  let conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, phaseDistribution
 
   try {
-    ;[conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage] =
+    ;[conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, phaseDistribution] =
       await Promise.all([
         getConversionMetrics(),
         getDAU30d(),
@@ -89,6 +90,7 @@ export default async function AnalyticsPage() {
         getCompletionRate(),
         getFeedbackSummary(),
         getAnalysisUsageByType(),
+        getDashboardPhaseDistribution(),
       ])
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err)
@@ -232,7 +234,7 @@ export default async function AnalyticsPage() {
         </CardContent>
       </Card>
 
-      {/* ── Row 2: Funnel + Engagement ────────────────────────────────────── */}
+      {/* ── Row 2: Funnel + Tour + Phases + Engagement ─────────────────────── */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
         {/* 5. Onboarding Funnel */}
@@ -242,6 +244,7 @@ export default async function AnalyticsPage() {
           </CardHeader>
           <CardContent className="space-y-3">
             <FunnelBar label="Registro" value={funnel.registered} total={funnel.registered} desc="registros totales" />
+            <FunnelBar label="Tour" value={funnel.tourCompleted} total={funnel.registered} desc="completaron el tour" />
             <FunnelBar label="1er test" value={funnel.firstTest} total={funnel.registered} desc="completaron 1 test" />
             <FunnelBar label="2o test" value={funnel.secondTest} total={funnel.registered} desc="completaron 2+ tests" />
             <FunnelBar label="Compra" value={funnel.purchased} total={funnel.registered} desc="compraron" />
@@ -251,6 +254,11 @@ export default async function AnalyticsPage() {
               <p className="text-[10px] text-muted-foreground font-medium">Drop-off criticos:</p>
               {funnel.registered > 0 && (
                 <>
+                  <p className="text-[10px]">
+                    Registro → Tour: <Badge variant={funnel.tourCompletionRate >= 50 ? 'default' : 'destructive'} className="text-[10px] ml-1">
+                      {funnel.tourCompletionRate}% completaron
+                    </Badge>
+                  </p>
                   <p className="text-[10px]">
                     Registro → 1er test: <span className={`font-bold ${funnel.pctFirstTest < 50 ? 'text-red-600' : 'text-green-600'}`}>
                       {(100 - funnel.pctFirstTest).toFixed(1)}% se pierde
@@ -292,6 +300,38 @@ export default async function AnalyticsPage() {
           </CardContent>
         </Card>
       </div>
+
+      {/* ── Dashboard Phase Distribution ─────────────────────────────────── */}
+      <Card>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base">Distribucion de Fases de Usuario <MetricInfo text="En que fase se encuentra cada usuario: nuevo (0 tests), empezando (<5 tests), activo (5+ tests, reciente) o inactivo (5+ tests, >7 dias sin actividad). Ayuda a segmentar estrategias de retencion." /></CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="text-center p-3 rounded-lg bg-blue-50 dark:bg-blue-950/30">
+              <p className="text-2xl font-extrabold text-blue-600">{phaseDistribution.new}</p>
+              <p className="text-xs text-muted-foreground mt-1">Nuevos</p>
+              <p className="text-[10px] text-muted-foreground">0 tests</p>
+            </div>
+            <div className="text-center p-3 rounded-lg bg-amber-50 dark:bg-amber-950/30">
+              <p className="text-2xl font-extrabold text-amber-600">{phaseDistribution.starting}</p>
+              <p className="text-xs text-muted-foreground mt-1">Empezando</p>
+              <p className="text-[10px] text-muted-foreground">1-4 tests</p>
+            </div>
+            <div className="text-center p-3 rounded-lg bg-green-50 dark:bg-green-950/30">
+              <p className="text-2xl font-extrabold text-green-600">{phaseDistribution.active}</p>
+              <p className="text-xs text-muted-foreground mt-1">Activos</p>
+              <p className="text-[10px] text-muted-foreground">5+ tests, reciente</p>
+            </div>
+            <div className="text-center p-3 rounded-lg bg-red-50 dark:bg-red-950/30">
+              <p className="text-2xl font-extrabold text-red-600">{phaseDistribution.lapsed}</p>
+              <p className="text-xs text-muted-foreground mt-1">Inactivos</p>
+              <p className="text-[10px] text-muted-foreground">7+ dias sin actividad</p>
+            </div>
+          </div>
+          <p className="text-[10px] text-muted-foreground text-center mt-3">{phaseDistribution.total} usuarios totales</p>
+        </CardContent>
+      </Card>
 
       {/* ── Row 3: Top Temas + Scores ─────────────────────────────────────── */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

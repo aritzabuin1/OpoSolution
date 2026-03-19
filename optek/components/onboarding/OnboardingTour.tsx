@@ -3,6 +3,7 @@
 import { useEffect, useRef, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+import { trackGTMEvent } from '@/lib/analytics/gtm'
 import { buildTourSteps } from './tour-steps'
 import 'driver.js/dist/driver.css'
 
@@ -24,8 +25,13 @@ export function OnboardingTour({
   const router = useRouter()
   const tourRef = useRef<ReturnType<typeof import('driver.js').driver> | null>(null)
 
-  const markCompleted = useCallback(async () => {
+  const markCompleted = useCallback(async (skipped: boolean) => {
     localStorage.removeItem(REPLAY_KEY)
+    if (skipped) {
+      trackGTMEvent('tour_skip')
+    } else {
+      trackGTMEvent('tour_complete')
+    }
     const supabase = createClient()
     await (supabase as ReturnType<typeof createClient>)
       .from('profiles')
@@ -105,10 +111,11 @@ export function OnboardingTour({
         },
         onDestroyStarted: () => {
           closeMobileNav()
-          markCompleted()
           // If the tour completed (not skipped), go to tests
           const activeIdx = driverInstance.getActiveIndex()
-          if (activeIdx != null && activeIdx >= steps.length - 1) {
+          const isComplete = activeIdx != null && activeIdx >= steps.length - 1
+          markCompleted(!isComplete)
+          if (isComplete) {
             router.push('/tests')
           }
           driverInstance.destroy()
@@ -116,6 +123,7 @@ export function OnboardingTour({
       })
 
       tourRef.current = driverInstance
+      trackGTMEvent('tour_start')
       driverInstance.drive()
     }, 1500) // Delay for DOM to be ready
 
