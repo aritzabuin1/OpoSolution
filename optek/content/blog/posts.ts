@@ -3177,11 +3177,48 @@ export const blogPosts: BlogPost[] = [
   <li><strong>No cronometrar:</strong> tienes 100 minutos para las dos partes juntas. Si dedicas 70 minutos al cuestionario, solo te quedan 30 para el práctico</li>
 </ul>
 
+<h2>Ejemplos reales de supuestos prácticos INAP</h2>
+<p>
+  Para que veas cómo son de verdad, aquí tienes la estructura de supuestos que han caído en
+  convocatorias recientes:
+</p>
+<table>
+  <thead>
+    <tr><th>Convocatoria</th><th>Supuesto A</th><th>Supuesto B</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2024</td>
+      <td>Expediente de contratación menor (LCSP): adjudicación directa, documentación, umbrales</td>
+      <td>Gestión presupuestaria (LGP): fases ADOP, crédito extraordinario, anticipo de caja fija</td>
+    </tr>
+    <tr>
+      <td>2022</td>
+      <td>Procedimiento sancionador (LPAC + LRJSP): plazos, audiencia, resolución, recursos</td>
+      <td>Selección de personal (TREBEP): bases, comisión, impugnación, bolsa de interinos</td>
+    </tr>
+    <tr>
+      <td>2019</td>
+      <td>Subvención pública (Ley 38/2003): solicitud, justificación, reintegro</td>
+      <td>Recurso administrativo (LPAC): alzada vs reposición, plazos, silencio administrativo</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  <strong>Patrón clave:</strong> el INAP alterna bloques. Si un caso es de Bloque III (derecho administrativo),
+  el otro suele ser de Bloque IV o V. Dominar dos bloques diferentes te garantiza poder elegir siempre
+  el que mejor se adapte a ti.
+</p>
+
 <h2>Plan de entrenamiento para el supuesto práctico</h2>
+<p>
+  Si te quedan <strong>menos de 3 meses</strong> (como ahora, con el examen el 23 de mayo de 2026),
+  adapta el plan:
+</p>
 <ol>
-  <li><strong>Meses 1-3:</strong> estudia la legislación base (LPAC, LRJSP, TREBEP). No hagas supuestos aún</li>
-  <li><strong>Meses 4-6:</strong> empieza a resolver 1 supuesto por semana. Usa los de convocatorias anteriores del INAP</li>
-  <li><strong>Meses 7-9:</strong> 2-3 supuestos por semana, cronometrados. Focaliza en tus bloques débiles</li>
+  <li><strong>Semanas 1-3:</strong> repasa la legislación base enfocándote SOLO en los artículos de aplicación práctica (plazos, recursos, competencias, fases). Ignora la teoría general</li>
+  <li><strong>Semanas 4-6:</strong> resuelve 2 supuestos por semana. Practica con <a href="/examenes-oficiales">los exámenes INAP reales de OpoRuta</a> (2019, 2022, 2024)</li>
+  <li><strong>Semanas 7-8:</strong> 3-4 supuestos por semana, cronometrados a 45 minutos. Revisa cada error con el <a href="/blog/contratacion-publica-lcsp-administrativo-estado-c1">detalle de LCSP</a> o <a href="/blog/gestion-financiera-presupuestos-administrativo-estado-c1">gestión financiera</a></li>
 </ol>
 <p>
   Calcula tu nota con nuestra
@@ -3192,17 +3229,21 @@ export const blogPosts: BlogPost[] = [
 
 <h2>Sigue preparando tu oposición</h2>
 <ul>
-  <li><a href="/blog/preparar-oposiciones-administrativo-estado-c1-por-libre">Preparar C1 por libre</a> — plan de estudio 6-9 meses</li>
+  <li><a href="/blog/ultimos-60-dias-administrativo-estado-c1-plan-estudio">Últimos 60 días para el C1</a> — plan intensivo semana a semana</li>
+  <li><a href="/blog/preparar-oposiciones-administrativo-estado-c1-por-libre">Preparar C1 por libre</a> — plan de estudio completo</li>
+  <li><a href="/blog/nota-corte-administrativo-estado-c1-como-se-calcula">Nota de corte C1</a> — datos 2024 y previsión 2026</li>
   <li><a href="/blog/administrativo-estado-c1-2026-plazas-temario-nota-corte">Administrativo C1 2026</a> — plazas, temario y nota de corte</li>
-  <li><a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">Diferencias C2 vs C1</a> — ¿cuál elegir?</li>
+  <li><a href="/blog/errores-examen-administrativo-estado-c1">Errores comunes en el examen C1</a> — los 10 fallos que más opositores cometen</li>
 </ul>
     `.trim(),
-    dateModified: '2026-03-19',
+    dateModified: '2026-03-20',
     faqs: [
-      { question: '¿En qué consiste el supuesto práctico del Administrativo C1?', answer: 'Es la segunda parte del examen. Se presenta un caso práctico (expediente administrativo, tramitación de un procedimiento, gestión presupuestaria) y debes resolverlo aplicando la legislación vigente. Suele incluir: redactar una resolución, identificar errores en un expediente o calcular plazos administrativos.' },
-      { question: '¿Cuánto tiempo tengo para el supuesto práctico?', answer: 'El supuesto práctico tiene una duración aproximada de 2-3 horas, aunque varía según la convocatoria. Se puede consultar legislación no comentada durante la prueba, por lo que es importante saber buscar rápidamente en los textos legales, no solo memorizar.' },
-      { question: '¿Qué leyes caen más en el supuesto práctico del C1?', answer: 'Las leyes más relevantes para el supuesto práctico son: LPAC (Ley 39/2015) para tramitación de procedimientos, LRJSP (Ley 40/2015) para organización administrativa, LCSP (Ley 9/2017) para contratación pública, y LGP (Ley 47/2003) para gestión presupuestaria. La LPAC es la que más aparece.' },
-      { question: '¿Se puede aprobar el supuesto práctico sin experiencia en Administración?', answer: 'Sí, pero requiere mucha práctica con casos resueltos. Los opositores sin experiencia administrativa deben compensar practicando con supuestos de convocatorias anteriores y familiarizándose con la estructura de los expedientes administrativos. El 40-50% de los aprobados no tenían experiencia previa.' },
+      { question: '¿En qué consiste el supuesto práctico del Administrativo C1?', answer: 'Es la segunda parte del examen: 20 preguntas tipo test sobre un caso práctico real (expediente administrativo, contratación, gestión presupuestaria). Eliges 1 de 2 supuestos. Cada pregunta vale 2,50 puntos (total 50 puntos). Necesitas al menos 25 para aprobar esta parte.' },
+      { question: '¿Cuánto tiempo tengo para el supuesto práctico?', answer: 'El examen completo (cuestionario + supuesto) dura 100 minutos en total. La estrategia recomendada es dedicar 55 minutos al cuestionario (70 preguntas) y 45 minutos al supuesto práctico (20 preguntas). No se puede consultar legislación durante el examen.' },
+      { question: '¿Qué leyes caen más en el supuesto práctico del C1?', answer: 'Las leyes más relevantes son: LPAC (Ley 39/2015) para tramitación de procedimientos — aparece en el 90% de los supuestos. LRJSP (Ley 40/2015) para organización administrativa. LCSP (Ley 9/2017) para contratación pública. LGP (Ley 47/2003) para gestión presupuestaria. TREBEP (RDL 5/2015) para gestión de personal.' },
+      { question: '¿Se puede aprobar el supuesto práctico sin experiencia en Administración?', answer: 'Sí. El supuesto práctico no requiere experiencia real, sino conocimiento de la legislación aplicada. Los opositores que practican con exámenes INAP reales (2019, 2022, 2024) obtienen 5-10 puntos más que los que solo estudian teoría. En OpoRuta puedes practicar con simulacros oficiales con penalización real.' },
+      { question: '¿Cómo elegir entre los dos supuestos del examen?', answer: 'Lee las preguntas antes que el enunciado: te dirán qué legislación necesitas. Si reconoces más artículos en un supuesto, elige ese. No cambies a mitad — el cambio te costará 10-15 minutos irrecuperables. Si dominas LCSP, elige contratación; si dominas TREBEP, elige personal.' },
+      { question: '¿Cuántas preguntas en blanco puedo dejar en el supuesto práctico?', answer: 'No hay límite, pero recuerda que cada error penaliza 0,83 puntos (1/3 de 2,50). Estadísticamente, solo merece la pena responder si puedes descartar al menos 2 de las 4 opciones. Para obtener 25/50 (mínimo para aprobar), necesitas acertar al menos 10 preguntas limpias sin errores.' },
     ],
   },
 
@@ -3428,15 +3469,34 @@ export const blogPosts: BlogPost[] = [
   a hacer preguntas.
 </p>
 
+<h2>Resumen: peso de cada bloque en el examen</h2>
+<table>
+  <thead>
+    <tr><th>Bloque</th><th>Temas</th><th>Preguntas cuestionario</th><th>¿Aparece en supuesto?</th><th>Prioridad</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>III — Derecho Administrativo</td><td>7</td><td>10-15</td><td>Sí (base principal)</td><td>Máxima</td></tr>
+    <tr><td>VI — Informática</td><td>8</td><td>30</td><td>No</td><td>Alta</td></tr>
+    <tr><td>IV — Gestión de Personal</td><td>9</td><td>8-10</td><td>Sí (frecuente)</td><td>Alta</td></tr>
+    <tr><td>I — Organización Estado</td><td>11</td><td>8-12</td><td>Raro</td><td>Media</td></tr>
+    <tr><td>V — Gestión Financiera</td><td>6</td><td>5-8</td><td>Sí (frecuente)</td><td>Media-Alta</td></tr>
+    <tr><td>II — Oficinas Públicas</td><td>4</td><td>3-5</td><td>Posible</td><td>Media-Baja</td></tr>
+  </tbody>
+</table>
+
 <h2>Sigue preparando tu oposición</h2>
 <ul>
+  <li><a href="/blog/ultimos-60-dias-administrativo-estado-c1-plan-estudio">Últimos 60 días para el C1</a> — plan intensivo si empiezas en marzo</li>
   <li><a href="/blog/preparar-oposiciones-administrativo-estado-c1-por-libre">Preparar C1 por libre</a> — plan de estudio 6-9 meses</li>
-  <li><a href="/blog/supuesto-practico-administrativo-estado-c1-estrategia">Supuesto práctico del C1</a> — estrategia y ejemplos</li>
+  <li><a href="/blog/supuesto-practico-administrativo-estado-c1-estrategia">Supuesto práctico del C1</a> — estrategia y ejemplos reales</li>
+  <li><a href="/blog/contratacion-publica-lcsp-administrativo-estado-c1">LCSP para el C1</a> — artículos clave de contratación pública</li>
+  <li><a href="/blog/gestion-financiera-presupuestos-administrativo-estado-c1">Gestión financiera C1</a> — Bloque V completo con fases ADOP</li>
+  <li><a href="/blog/trebep-gestion-personal-administrativo-estado-c1">TREBEP y gestión de personal C1</a> — Bloque IV completo</li>
   <li><a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">Diferencias C2 vs C1</a> — ¿cuál elegir?</li>
   <li><a href="/herramientas/calculadora-nota-administrativo-estado">Calculadora de nota C1</a> — calcula tu puntuación</li>
 </ul>
     `.trim(),
-    dateModified: '2026-03-19',
+    dateModified: '2026-03-20',
     faqs: [
       { question: '¿Cómo priorizar los 45 temas del Administrativo C1?', answer: 'Divide los temas en 3 niveles: prioritarios (los que más caen en examen: Constitución, LPAC, LRJSP, TREBEP, LCSP y LGP), importantes (UE, organización territorial, empleo público) y complementarios (el resto). Dedica el 50% del tiempo a los prioritarios, 30% a los importantes y 20% a los complementarios.' },
       { question: '¿Cuáles son los bloques del temario de Administrativo C1?', answer: 'Los 4 bloques son: Bloque I - Organización del Estado y UE (12 temas), Bloque II - AGE y gestión de recursos humanos (11 temas), Bloque III - Gestión financiera (12 temas), y Bloque IV - Contratación pública y gestión de servicios (10 temas). Los Bloques III y IV son los más técnicos y específicos del C1.' },
@@ -5596,6 +5656,1867 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Cuánto cuesta inscribirse en las oposiciones de auxiliar administrativo?', answer: 'La tasa general es de 11,32€. Hay descuento del 50% para familias numerosas de categoría general (5,66€) y exención total para familias numerosas especiales, discapacidad ≥33%, víctimas de terrorismo y demandantes de empleo de larga duración.' },
       { question: '¿Pueden presentarse extranjeros a las oposiciones de auxiliar administrativo?', answer: 'Sí, los nacionales de la Unión Europea, del Espacio Económico Europeo y sus familiares directos pueden presentarse en las mismas condiciones que los españoles. Se necesita NIE en vigor.' },
       { question: '¿Cómo me inscribo en las oposiciones de auxiliar administrativo 2026?', answer: 'La inscripción es telemática a través del Portal 060 (administracion.gob.es). Necesitas certificado digital, DNI electrónico o Cl@ve permanente. Rellenas el modelo 790, pagas la tasa (11,32€ o exenta) y guardas el resguardo. El plazo suele ser de 20 días hábiles desde la publicación en el BOE.' },
+    ],
+  },
+
+  // ─── Post 37 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'ultimos-60-dias-administrativo-estado-c1-plan-estudio',
+    title: 'Últimos 60 días para el Administrativo del Estado (C1): plan de estudio intensivo',
+    description:
+      'Plan semana a semana para preparar el examen de Administrativo del Estado C1 del 23 de mayo de 2026. Priorización de bloques, simulacros y supuesto práctico en 60 días.',
+    date: '2026-03-20',
+    dateModified: '2026-03-20',
+    keywords: [
+      'plan estudio administrativo estado c1',
+      'últimos 60 días oposición c1',
+      'preparar administrativo estado 2 meses',
+      'plan intensivo oposiciones c1',
+      'sprint final administrativo estado',
+      'examen administrativo estado mayo 2026',
+      'cómo aprobar c1 en poco tiempo',
+    ],
+    content: `
+<h2>¿Se puede aprobar el Administrativo del Estado (C1) en 60 días?</h2>
+<p>
+  Quedan menos de dos meses para el <strong>23 de mayo de 2026</strong>. Con <strong>2.512 plazas</strong>
+  convocadas y un examen que combina 70 preguntas tipo test + 20 de supuesto práctico (100 minutos en total),
+  la pregunta es inevitable: ¿da tiempo?
+</p>
+<p>
+  La respuesta honesta: <strong>depende de tu punto de partida</strong>. Si ya has estudiado parte del temario
+  (los 45 temas), 60 días bien planificados pueden ser suficientes para superar la nota de corte (47,33 puntos
+  en la última convocatoria de 2024). Si empiezas de cero, será un reto extremo — pero no imposible si
+  priorizas con inteligencia.
+</p>
+<p>
+  Este plan asume que puedes dedicar <strong>4-6 horas diarias</strong> (incluyendo fines de semana) y que
+  tienes acceso al temario actualizado. Si ya has cubierto algún bloque, ajusta las semanas para reforzar
+  donde más fallas. Consulta nuestra
+  <a href="/blog/temario-administrativo-estado-c1-45-temas-como-priorizar">guía de priorización de los 45 temas</a>
+  para entender la lógica de pesos por bloque.
+</p>
+
+<h2>¿Qué bloques priorizar en un sprint de 60 días?</h2>
+<p>
+  El temario del C1 tiene <strong>6 bloques</strong>, pero no todos pesan igual en el examen. Basándonos en
+  las convocatorias anteriores, la distribución aproximada de preguntas es:
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Bloque</th>
+      <th>Temas</th>
+      <th>Peso estimado</th>
+      <th>Prioridad sprint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>I — Organización del Estado</td>
+      <td>12 temas</td>
+      <td>~20%</td>
+      <td>Media-alta</td>
+    </tr>
+    <tr>
+      <td>II — Administración General del Estado</td>
+      <td>7 temas</td>
+      <td>~12%</td>
+      <td>Media</td>
+    </tr>
+    <tr>
+      <td>III — Derecho Administrativo</td>
+      <td>11 temas</td>
+      <td>~25%</td>
+      <td><strong>Máxima</strong></td>
+    </tr>
+    <tr>
+      <td>IV — Gestión de personal</td>
+      <td>5 temas</td>
+      <td>~10%</td>
+      <td>Media</td>
+    </tr>
+    <tr>
+      <td>V — Gestión financiera</td>
+      <td>7 temas</td>
+      <td>~20%</td>
+      <td><strong>Alta</strong></td>
+    </tr>
+    <tr>
+      <td>VI — Informática</td>
+      <td>3 temas</td>
+      <td>~13%</td>
+      <td>Alta (rentable)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  La estrategia es clara: <strong>Bloque III (Derecho Administrativo) es tu prioridad absoluta</strong>.
+  Concentra la mayor cantidad de preguntas y es la base del supuesto práctico. Le sigue el
+  <strong>Bloque V (Gestión financiera)</strong>, que aporta muchos puntos con temas relativamente
+  acotados (Ley General Presupuestaria, contratación, subvenciones). El <strong>Bloque VI (Informática)</strong>
+  es el más rentable en ratio puntos/horas: solo 3 temas pero ~13% del examen.
+</p>
+
+<h2>Plan semana a semana: las 8 semanas clave</h2>
+
+<h3>Semanas 1-2 (23 marzo — 5 abril): Bloque III completo</h3>
+<p>
+  Dedica estas dos semanas exclusivamente al <strong>Derecho Administrativo</strong>: Ley 39/2015 (procedimiento
+  administrativo común), Ley 40/2015 (régimen jurídico), recursos administrativos, revisión de oficio,
+  responsabilidad patrimonial. Son 11 temas densos pero fundamentales.
+</p>
+<ul>
+  <li><strong>Mañana (3h):</strong> estudio teórico de 1 tema completo con esquemas</li>
+  <li><strong>Tarde (2h):</strong> test de 15-20 preguntas del tema estudiado + repaso del tema anterior</li>
+  <li><strong>Sábados:</strong> simulacro parcial (solo Bloque III) cronometrado</li>
+  <li><strong>Domingos:</strong> repaso de errores + fichas de artículos clave</li>
+</ul>
+
+<h3>Semanas 3-4 (6-19 abril): Bloque V + Bloque VI</h3>
+<p>
+  <strong>Gestión financiera</strong> (7 temas): Ley General Presupuestaria (arts. 32-52 son clave),
+  Ley de Contratos del Sector Público, Ley General de Subvenciones. Combina con el
+  <strong>Bloque VI (Informática)</strong>, que al ser solo 3 temas se puede integrar sin perder ritmo.
+</p>
+<ul>
+  <li><strong>L-V:</strong> 1 tema de Bloque V por día (mañana) + tests (tarde)</li>
+  <li><strong>Viernes tarde:</strong> 1 tema de Bloque VI (más ligero, buen cierre de semana)</li>
+  <li><strong>Fines de semana:</strong> simulacro completo de 70 preguntas + corrección</li>
+</ul>
+
+<h3>Semana 5 (20-26 abril): Bloque I — lo esencial</h3>
+<p>
+  <strong>Organización del Estado</strong> tiene 12 temas, pero en una semana solo puedes cubrir
+  los más rentables: Constitución (Título Preliminar, derechos fundamentales, Tribunal Constitucional),
+  Corona, Cortes Generales y Gobierno. Deja los temas de organización territorial y UE para repaso
+  superficial la última semana.
+</p>
+
+<h3>Semana 6 (27 abril — 3 mayo): Bloques II + IV</h3>
+<p>
+  <strong>AGE</strong> (7 temas) y <strong>Gestión de personal</strong> (5 temas). Son 12 temas con
+  contenido muy memorístico (EBEP, situaciones administrativas, incompatibilidades). Prioriza los
+  artículos que más preguntan: permisos, excedencias, faltas disciplinarias.
+</p>
+
+<h3>Semanas 7-8 (4-22 mayo): Supuesto práctico + simulacros finales</h3>
+<p>
+  Las dos últimas semanas son para <strong>consolidar y simular</strong>:
+</p>
+<ul>
+  <li><strong>Cada mañana:</strong> 1 supuesto práctico cronometrado (20 preguntas sobre un caso, ~30 min)</li>
+  <li><strong>Cada tarde:</strong> repaso de bloques débiles según resultados de simulacros</li>
+  <li><strong>Miércoles y sábados:</strong> simulacro completo (70 test + 20 supuesto, 100 min)</li>
+  <li><strong>Últimos 3 días:</strong> solo repaso de esquemas y fichas. Nada nuevo.</li>
+</ul>
+<p>
+  Para la estrategia completa del supuesto práctico, consulta nuestra
+  <a href="/blog/supuesto-practico-administrativo-estado-c1-estrategia">guía de supuesto práctico del C1</a>.
+</p>
+
+<h2>¿Cuántas horas diarias necesito para aprobar en 60 días?</h2>
+<p>
+  Un cálculo realista: 45 temas × 5 horas de estudio efectivo por tema = <strong>225 horas de estudio puro</strong>.
+  Añade 75 horas para simulacros, repasos y supuestos prácticos = <strong>300 horas totales</strong>.
+</p>
+<p>
+  300 horas ÷ 60 días = <strong>5 horas diarias</strong>, sin descanso. Si descansas 1 día por semana
+  (recomendable), necesitas ~5,8 horas los días de estudio. Es exigente pero viable si tienes
+  dedicación exclusiva o jornada laboral reducida.
+</p>
+<p>
+  Si trabajas a jornada completa, el plan se complica. Necesitarás <strong>3 horas mañana + 2 horas noche</strong>
+  entre semana y sesiones largas los fines de semana. Lee nuestra guía sobre
+  <a href="/blog/preparar-oposiciones-administrativo-estado-c1-por-libre">cómo preparar el C1 por libre</a>
+  para más estrategias de compatibilización.
+</p>
+
+<h2>¿Qué temas puedo saltarme sin arriesgar demasiado?</h2>
+<p>
+  En un sprint de 60 días, intentar dominar los 45 temas es un error. La estrategia inteligente es
+  <strong>cubrir el 80% del temario a un nivel suficiente</strong> en lugar del 100% de forma superficial.
+  Los temas que puedes dejar para un repaso ligero (no eliminar):
+</p>
+<ul>
+  <li><strong>Organización territorial del Estado</strong> (temas 10-12 del Bloque I): comunidades autónomas, administración local — suelen caer 2-3 preguntas como máximo</li>
+  <li><strong>Unión Europea</strong> (tema 12 o similar): aparece poco y es muy extenso</li>
+  <li><strong>Convenios y colaboración interadministrativa</strong>: baja frecuencia</li>
+</ul>
+<p>
+  <strong>Nunca saltes:</strong> Ley 39/2015, Ley 40/2015, Constitución (Título Preliminar + derechos fundamentales),
+  Ley General Presupuestaria ni EBEP. Son el núcleo duro del examen.
+</p>
+
+<h2>¿Cómo preparar el supuesto práctico en solo 2-3 semanas?</h2>
+<p>
+  El supuesto práctico son 20 preguntas tipo test sobre un caso práctico (normalmente un expediente
+  administrativo). La clave es que <strong>el 80% de las preguntas se basan en el Bloque III</strong>
+  (procedimiento administrativo, plazos, recursos, notificaciones).
+</p>
+<p>
+  Si has seguido el plan y has empezado por el Bloque III, ya tienes la base. Lo que necesitas
+  practicar es el <strong>formato</strong>: leer un caso de 1-2 páginas, identificar los hechos
+  jurídicos relevantes y contestar bajo presión de tiempo.
+</p>
+<ul>
+  <li>Practica <strong>al menos 10 supuestos</strong> antes del examen</li>
+  <li>Cronométrate siempre (30 minutos para 20 preguntas)</li>
+  <li>Analiza cada error: ¿fue fallo de conocimiento o de lectura del caso?</li>
+  <li>Los supuestos de convocatorias anteriores son oro puro</li>
+</ul>
+
+<h2>¿Merece la pena presentarse aunque no esté todo estudiado?</h2>
+<p>
+  <strong>Sí, siempre.</strong> Presentarse al examen es una inversión, no un gasto:
+</p>
+<ul>
+  <li><strong>Experiencia real de examen</strong> que ningún simulacro iguala</li>
+  <li><strong>Control del estrés:</strong> la primera vez es la peor. Si ya conoces el formato, la segunda será mejor</li>
+  <li><strong>Efecto lista:</strong> ver dónde te quedas respecto a la nota de corte te da un objetivo concreto</li>
+  <li><strong>Las plazas no se pierden:</strong> con 2.512 plazas, la nota de corte puede ser más baja que en convocatorias más restrictivas</li>
+</ul>
+<p>
+  Con la nota de corte de 2024 en <strong>47,33 puntos sobre 90</strong>, necesitas acertar
+  aproximadamente el 53% de las preguntas (descontando penalización). Es ambicioso pero alcanzable
+  con un sprint bien ejecutado.
+</p>
+
+<h2>Herramientas para maximizar el rendimiento en 60 días</h2>
+<p>
+  El tiempo es tu recurso más escaso. Cada minuto debe generar el máximo aprendizaje posible:
+</p>
+<ul>
+  <li><strong>Tests por tema:</strong> haz al menos 20 preguntas por tema estudiado para fijar conceptos</li>
+  <li><strong>Simulacros cronometrados:</strong> mínimo 1 por semana, 2 en las últimas semanas</li>
+  <li><strong>Repaso de errores:</strong> los fallos repetidos son la señal de dónde poner el foco</li>
+  <li><strong>Flashcards de artículos clave:</strong> plazos, cuantías y porcentajes que siempre preguntan</li>
+</ul>
+<p>
+  En <a href="/">OpoRuta</a> puedes generar tests específicos por tema con corrección detallada,
+  hacer simulacros con preguntas de convocatorias reales y revisar tus errores con explicaciones
+  artículo por artículo. Los datos de
+  <a href="/blog/nota-corte-administrativo-estado-c1-como-se-calcula">nota de corte del C1</a>
+  te ayudan a saber exactamente cuánto necesitas.
+</p>
+<p>
+  <strong>Quedan 60 días. Es suficiente para marcar la diferencia entre aprobar y quedarse fuera.</strong>
+  <a href="/register">Empieza tu plan intensivo ahora</a> y llega al 23 de mayo con la mejor preparación posible.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Se puede aprobar el Administrativo del Estado C1 en 2 meses?', answer: 'Es posible pero exigente. Con 4-6 horas diarias de estudio efectivo (unas 300 horas totales), un plan bien priorizado y experiencia previa con el temario jurídico, puedes alcanzar la nota de corte (47,33 en 2024). La clave es priorizar los bloques con más peso (Derecho Administrativo, Gestión financiera) y no intentar dominar los 45 temas por igual.' },
+      { question: '¿Cuántas horas al día necesito para preparar el C1 en 60 días?', answer: 'Un mínimo de 5 horas diarias si estudias todos los días, o 5-6 horas con un día de descanso semanal. Esto suma unas 300 horas: 225 de estudio teórico (5h × 45 temas) + 75 de simulacros, repasos y supuestos prácticos. Si trabajas a jornada completa, necesitarás repartir entre mañana y noche.' },
+      { question: '¿Qué temas puedo saltarme del C1 si no tengo tiempo?', answer: 'Puedes hacer un repaso superficial (no eliminar) de: organización territorial del Estado, Unión Europea y convenios interadministrativos. Nunca saltes Ley 39/2015, Ley 40/2015, Constitución (Título Preliminar y derechos fundamentales), Ley General Presupuestaria ni EBEP — son el núcleo del examen y del supuesto práctico.' },
+      { question: '¿Cuál es la mejor estrategia para el supuesto práctico del C1 en poco tiempo?', answer: 'El 80% del supuesto práctico se basa en el Bloque III (procedimiento administrativo). Si priorizas ese bloque las dos primeras semanas, ya tienes la base. Luego practica al menos 10 supuestos cronometrados (30 min para 20 preguntas) en las 2-3 últimas semanas. Analiza cada error: distingue fallos de conocimiento vs. fallos de lectura del caso.' },
+      { question: '¿Merece la pena presentarse al C1 sin haber terminado de estudiar?', answer: 'Sí, siempre. Te da experiencia real de examen, control del estrés y una referencia de tu nivel respecto a la nota de corte. Con 2.512 plazas convocadas, la nota de corte puede ser más accesible. Además, acertar el 53% de las preguntas (descontando penalización) puede ser suficiente para aprobar.' },
+      { question: '¿Es mejor estudiar todos los temas superficialmente o pocos en profundidad?', answer: 'Ni uno ni otro: la estrategia óptima es cubrir el 80% del temario a nivel suficiente para acertar la mayoría de preguntas, y profundizar en los bloques de mayor peso (Bloque III y V). Un tema dominado al 70% aporta más puntos que dos temas estudiados al 30%.' },
+    ],
+  },
+
+  // ─── Post 38 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'sueldo-administrativo-estado-c1-2026-nomina',
+    title: 'Sueldo Administrativo del Estado (C1) en 2026: nómina real desglosada',
+    description:
+      'Desglose completo de la nómina de un Administrativo del Estado C1 en 2026: sueldo base, complementos, trienios, pagas extras y salario neto mensual.',
+    date: '2026-03-20',
+    dateModified: '2026-03-20',
+    keywords: [
+      'sueldo administrativo estado c1',
+      'nómina administrativo estado 2026',
+      'cuánto cobra administrativo estado',
+      'salario funcionario c1',
+      'complementos administrativo estado',
+      'trienios funcionario c1',
+      'sueldo neto administrativo estado',
+    ],
+    content: `
+<h2>¿Cuánto cobra un Administrativo del Estado (C1) en 2026?</h2>
+<p>
+  El sueldo de un funcionario del Cuerpo General Administrativo de la Administración del Estado (subgrupo C1)
+  se compone de varias partidas fijas y variables. No es un "salario" único como en el sector privado:
+  es una <strong>retribución estructurada</strong> regulada por los Presupuestos Generales del Estado
+  y el Real Decreto Legislativo 5/2015 (TREBEP).
+</p>
+<p>
+  La buena noticia: el salario es <strong>público, predecible y crece con la antigüedad</strong>.
+  Veamos la nómina real desglosada.
+</p>
+
+<h2>¿Cuál es el desglose de la nómina de un Administrativo C1?</h2>
+<p>
+  Las retribuciones se dividen en <strong>básicas</strong> (iguales para todos los C1) y
+  <strong>complementarias</strong> (varían según destino y puesto). Estos son los importes
+  vigentes en 2026 según los PGE:
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concepto</th>
+      <th>Mensual (€)</th>
+      <th>Anual (€)</th>
+      <th>Tipo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Sueldo base (grupo C1)</td>
+      <td>731,76</td>
+      <td>10.244,64</td>
+      <td>Básica</td>
+    </tr>
+    <tr>
+      <td>Complemento de destino (nivel 18)</td>
+      <td>527,04</td>
+      <td>6.324,48</td>
+      <td>Complementaria</td>
+    </tr>
+    <tr>
+      <td>Complemento específico</td>
+      <td>300 — 600</td>
+      <td>4.200 — 8.400</td>
+      <td>Complementaria</td>
+    </tr>
+    <tr>
+      <td>Productividad</td>
+      <td>50 — 200</td>
+      <td>700 — 2.800</td>
+      <td>Variable</td>
+    </tr>
+    <tr>
+      <td><strong>Total bruto (sin trienios)</strong></td>
+      <td><strong>1.609 — 2.059</strong></td>
+      <td><strong>21.469 — 27.769</strong></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <strong>Nota importante:</strong> el nivel 18 es el nivel de complemento de destino de entrada
+  para un C1. Puede subir hasta el nivel 22 con la carrera profesional (cambio de puesto,
+  concursos de traslados, promoción).
+</p>
+
+<h2>¿Qué son las pagas extras y cuántas cobra un funcionario C1?</h2>
+<p>
+  Los funcionarios cobran <strong>14 pagas al año</strong>: 12 mensuales + 2 pagas extraordinarias
+  (junio y diciembre). Las pagas extras incluyen el sueldo base + complemento de destino,
+  pero <strong>no</strong> incluyen el complemento específico ni la productividad.
+</p>
+<p>
+  Cada paga extra equivale a: 731,76€ (sueldo base) + 527,04€ (complemento destino nivel 18) =
+  <strong>1.258,80€ brutos</strong> por paga extra. Total pagas extras: 2.517,60€/año.
+</p>
+<p>
+  Esto significa que el <strong>bruto anual real</strong> (con pagas extras) oscila entre
+  <strong>23.987€ y 30.287€</strong> dependiendo del complemento específico y la productividad del puesto.
+</p>
+
+<h2>¿Qué son los trienios y cuánto suman?</h2>
+<p>
+  Los <strong>trienios</strong> son un complemento de antigüedad que se cobra por cada 3 años
+  de servicio activo como funcionario. Para el subgrupo C1, cada trienio vale
+  <strong>42,24€/mes</strong> (según PGE vigentes).
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Antigüedad</th>
+      <th>Trienios</th>
+      <th>Incremento mensual</th>
+      <th>Incremento anual</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>3 años</td>
+      <td>1</td>
+      <td>+42,24€</td>
+      <td>+591,36€</td>
+    </tr>
+    <tr>
+      <td>6 años</td>
+      <td>2</td>
+      <td>+84,48€</td>
+      <td>+1.182,72€</td>
+    </tr>
+    <tr>
+      <td>9 años</td>
+      <td>3</td>
+      <td>+126,72€</td>
+      <td>+1.774,08€</td>
+    </tr>
+    <tr>
+      <td>15 años</td>
+      <td>5</td>
+      <td>+211,20€</td>
+      <td>+2.956,80€</td>
+    </tr>
+    <tr>
+      <td>30 años</td>
+      <td>10</td>
+      <td>+422,40€</td>
+      <td>+5.913,60€</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  Un Administrativo con 15 años de antigüedad cobra <strong>~211€/mes más</strong> que uno que acaba de
+  entrar, solo por trienios. A los 30 años, son 422€ extra mensuales — un incremento significativo
+  que no existe en la mayoría de empleos privados.
+</p>
+
+<h2>¿Cuánto queda neto al mes como Administrativo C1?</h2>
+<p>
+  Las deducciones principales son IRPF (que depende de la comunidad autónoma y la situación personal)
+  y cotizaciones a Muface (derechos pasivos + cuota de mutualidad, ~3,5% del sueldo base).
+  Una estimación realista del <strong>salario neto mensual</strong>:
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Perfil</th>
+      <th>Bruto mensual</th>
+      <th>IRPF + Muface</th>
+      <th>Neto estimado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Entrada (nivel 18, sin trienios)</td>
+      <td>~1.609€</td>
+      <td>~15%</td>
+      <td><strong>~1.370€</strong></td>
+    </tr>
+    <tr>
+      <td>5 años (1 trienio, nivel 18)</td>
+      <td>~1.700€</td>
+      <td>~16%</td>
+      <td><strong>~1.430€</strong></td>
+    </tr>
+    <tr>
+      <td>Puesto medio (nivel 20, comp. específico alto)</td>
+      <td>~2.100€</td>
+      <td>~18%</td>
+      <td><strong>~1.720€</strong></td>
+    </tr>
+    <tr>
+      <td>Senior (nivel 22, 5 trienios)</td>
+      <td>~2.450€</td>
+      <td>~20%</td>
+      <td><strong>~1.960€</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  El rango neto real va de <strong>1.370€ a 2.100€ mensuales</strong> dependiendo de la antigüedad,
+  el nivel del puesto y el organismo. Las 14 pagas distribuyen el ingreso anual de forma más homogénea
+  que los 12 meses del sector privado.
+</p>
+
+<h2>¿Cuánto más cobra un C1 que un C2 (Auxiliar)?</h2>
+<p>
+  La diferencia salarial entre un Administrativo (C1) y un Auxiliar Administrativo (C2) es
+  significativa — y crece con el tiempo:
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concepto</th>
+      <th>C1 (Administrativo)</th>
+      <th>C2 (Auxiliar)</th>
+      <th>Diferencia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Sueldo base</td>
+      <td>731,76€</td>
+      <td>625,33€</td>
+      <td>+106,43€</td>
+    </tr>
+    <tr>
+      <td>Complemento destino entrada</td>
+      <td>527,04€ (nivel 18)</td>
+      <td>440,81€ (nivel 15)</td>
+      <td>+86,23€</td>
+    </tr>
+    <tr>
+      <td>Trienio</td>
+      <td>42,24€</td>
+      <td>33,79€</td>
+      <td>+8,45€</td>
+    </tr>
+    <tr>
+      <td>Neto entrada estimado</td>
+      <td>~1.370€</td>
+      <td>~1.180€</td>
+      <td><strong>+190€/mes</strong></td>
+    </tr>
+    <tr>
+      <td>Neto 15 años estimado</td>
+      <td>~1.720€</td>
+      <td>~1.400€</td>
+      <td><strong>+320€/mes</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  A la entrada, la diferencia ronda los <strong>190€ netos mensuales</strong>. Pero con los años se amplía
+  por la diferencia en trienios y niveles máximos alcanzables (22 para C1 vs. 18 para C2). A los 15 años
+  puede superar los <strong>300€/mes</strong> — más de 4.000€ anuales.
+  Si te interesa conocer más a fondo las diferencias entre ambos cuerpos, consulta nuestro
+  <a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">análisis detallado C1 vs. C2</a>.
+</p>
+
+<h2>¿Qué destinos pagan mejor al Administrativo C1?</h2>
+<p>
+  El sueldo base y el complemento de destino son idénticos en toda España, pero el
+  <strong>complemento específico</strong> varía enormemente según el organismo:
+</p>
+<ul>
+  <li><strong>AEAT (Agencia Tributaria):</strong> complementos específicos entre los más altos de la AGE. Un C1 en AEAT puede cobrar 400-600€/mes más en específico que la media.</li>
+  <li><strong>Ministerio del Interior:</strong> algunos puestos tienen complementos de penosidad y peligrosidad que suman 200-400€ adicionales.</li>
+  <li><strong>SEPE:</strong> complementos competitivos, aunque alta carga de trabajo en oficinas de empleo.</li>
+  <li><strong>Seguridad Social (TGSS, INSS):</strong> específicos altos y estabilidad, uno de los destinos más solicitados.</li>
+  <li><strong>Ministerios pequeños (Cultura, Ciencia):</strong> complementos más modestos, pero a menudo mejor conciliación y teletrabajo.</li>
+</ul>
+<p>
+  La diferencia entre el destino que mejor paga y el que peor paga puede superar los
+  <strong>500€ mensuales netos</strong>. Merece la pena investigar antes de elegir. Toda la información
+  relevante sobre plazas, temario y nota de corte está en nuestra
+  <a href="/blog/administrativo-estado-c1-2026-plazas-temario-nota-corte">guía completa del C1 2026</a>.
+</p>
+
+<h2>¿Es el sueldo de un C1 suficiente para vivir en Madrid?</h2>
+<p>
+  Madrid concentra la mayoría de las plazas en servicios centrales. Con un neto de entrada de
+  ~1.370€ y alquileres medios de 900-1.200€ para un piso compartido (500-700€ por habitación),
+  <strong>es justo pero viable</strong> — especialmente si compartes piso los primeros años.
+</p>
+<p>
+  La clave está en la <strong>progresión</strong>: a los 5-10 años, con trienios y subida de nivel,
+  el neto alcanza los 1.600-1.800€. Y el funcionario tiene ventajas que no cotizan en nómina:
+</p>
+<ul>
+  <li><strong>Estabilidad absoluta:</strong> plaza vitalicia, sin EREs ni despidos</li>
+  <li><strong>Muface:</strong> cobertura sanitaria pública + opción de seguro privado (Adeslas, DKV, etc.) sin coste adicional</li>
+  <li><strong>Horario:</strong> jornada de 37,5h/semana con flexibilidad horaria real (entrada 7:30-9:00 en muchos centros)</li>
+  <li><strong>Vacaciones:</strong> 22 días hábiles + hasta 6 días de asuntos propios + festivos + puentes</li>
+  <li><strong>Teletrabajo:</strong> 2-3 días/semana en muchos puestos desde 2021</li>
+  <li><strong>Excedencias y permisos:</strong> excedencia por cuidado de hijos hasta 3 años con reserva de puesto</li>
+</ul>
+<p>
+  Sumando estos beneficios, el paquete retributivo real de un C1 equivale a un salario bruto privado
+  de <strong>30.000-38.000€</strong> — significativamente por encima de lo que sugiere la nómina a primera vista.
+</p>
+
+<h2>Progresión salarial: cómo crece tu nómina como Administrativo</h2>
+<p>
+  El salario de un funcionario C1 no se estanca. Estas son las principales vías de crecimiento:
+</p>
+<ul>
+  <li><strong>Trienios automáticos:</strong> +42,24€/mes cada 3 años, sin hacer nada</li>
+  <li><strong>Cambio de nivel de destino:</strong> del 18 inicial puedes subir al 20, 21 o 22 mediante concursos de méritos</li>
+  <li><strong>Cambio a puesto con mayor específico:</strong> concursos de traslados a organismos con complementos más altos</li>
+  <li><strong>Promoción interna a A2:</strong> con titulación universitaria puedes opositar internamente al subgrupo A2 (Gestión), con sueldo base de 907,44€/mes</li>
+</ul>
+<p>
+  Un C1 que comienza con ~1.370€ netos puede alcanzar los <strong>2.000-2.100€ netos</strong> en 15-20 años
+  sin promocionar — solo con trienios y cambios de nivel y puesto. Si promociona a A2, el techo
+  sube considerablemente.
+</p>
+
+<h2>¿Es un buen sueldo para una oposición de subgrupo C1?</h2>
+<p>
+  El C1 ofrece la mejor relación <strong>requisitos de acceso vs. retribución</strong> de toda la AGE.
+  Solo necesitas Bachillerato o equivalente para acceder a un empleo público con 14 pagas, estabilidad
+  total y progresión garantizada. Comparado con el sector privado, donde un perfil administrativo
+  con Bachillerato raramente supera los 18.000-22.000€ brutos anuales, el C1 parte de
+  <strong>~24.000€ brutos con techo superior a 30.000€</strong>.
+</p>
+<p>
+  Si estás pensando en presentarte a la convocatoria de <strong>2.512 plazas</strong> del 23 de mayo de 2026,
+  ahora es el momento de empezar a preparar. Con el temario priorizado y simulacros reales,
+  puedes optimizar tu estudio para llegar con la mejor preparación posible.
+</p>
+<p>
+  <strong><a href="/register">Empieza gratis en OpoRuta</a></strong> y practica con tests específicos
+  por tema, simulacros de convocatorias reales y análisis detallados de tus errores.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuánto cobra un Administrativo del Estado C1 al mes?', answer: 'El salario neto mensual de un Administrativo C1 de entrada oscila entre 1.370€ y 1.500€, dependiendo del complemento específico del puesto. Con antigüedad y subida de nivel puede alcanzar los 1.700-2.100€ netos. Cobra 14 pagas al año (12 mensuales + 2 extras en junio y diciembre).' },
+      { question: '¿Cuál es la diferencia de sueldo entre un C1 y un C2?', answer: 'A la entrada, un Administrativo C1 cobra aproximadamente 190€ netos más al mes que un Auxiliar C2 (1.370€ vs. 1.180€). La diferencia crece con los años: a los 15 años puede superar los 320€/mes (más de 4.000€ anuales) por la diferencia en trienios y niveles máximos alcanzables.' },
+      { question: '¿Qué son los trienios de un funcionario C1?', answer: 'Los trienios son un complemento de antigüedad de 42,24€ mensuales por cada 3 años de servicio. Se cobran automáticamente, sin necesidad de solicitarlos. A los 15 años de servicio suman 211,20€/mes extra; a los 30 años, 422,40€/mes. Se incluyen también en las pagas extras.' },
+      { question: '¿Qué destinos pagan mejor al Administrativo del Estado?', answer: 'Los organismos con mejores complementos específicos son la AEAT (Agencia Tributaria), la Seguridad Social (TGSS, INSS), el Ministerio del Interior y el SEPE. La diferencia entre el destino mejor y peor pagado puede superar los 500€ netos mensuales. El sueldo base y complemento de destino son idénticos en toda España.' },
+      { question: '¿Se puede vivir en Madrid con el sueldo de un C1?', answer: 'Es justo pero viable al inicio (~1.370€ netos, con habitaciones a 500-700€). La progresión mejora: a los 5-10 años el neto alcanza 1.600-1.800€. Además, el paquete real incluye Muface (sanidad privada gratis), 22 días de vacaciones + asuntos propios, teletrabajo 2-3 días/semana y estabilidad total. El paquete equivale a 30.000-38.000€ brutos privados.' },
+      { question: '¿Cuánto sube el sueldo de un Administrativo C1 con los años?', answer: 'Un C1 que entra con ~1.370€ netos puede alcanzar 2.000-2.100€ en 15-20 años sin promocionar, solo con trienios automáticos (+42,24€/mes cada 3 años) y cambios de nivel de destino (del 18 al 20-22). Si promociona internamente a A2 (con título universitario), el techo sube significativamente.' },
+    ],
+  },
+  // ─── Post 39 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'requisitos-administrativo-estado-c1-2026',
+    title: 'Requisitos para opositar a Administrativo del Estado (C1) en 2026: guía completa',
+    description:
+      'Todos los requisitos para presentarte al Cuerpo General Administrativo C1 en 2026: titulación, edad, nacionalidad, inscripción, tasas y documentos necesarios.',
+    date: '2026-03-20',
+    dateModified: '2026-03-20',
+    keywords: [
+      'requisitos administrativo estado c1',
+      'requisitos oposiciones c1 2026',
+      'titulacion administrativo estado',
+      'inscripcion oposiciones AGE c1',
+      'requisitos age c1 2026',
+    ],
+    content: `
+<h2>Requisitos generales para opositar a Administrativo del Estado (C1)</h2>
+<p>
+  Para acceder al Cuerpo General Administrativo de la Administración General del Estado (subgrupo C1),
+  debes cumplir una serie de requisitos establecidos en el <strong>Real Decreto Legislativo 5/2015 (TREBEP)</strong>
+  y especificados en la convocatoria publicada en el BOE. Estos requisitos deben cumplirse
+  <strong>en la fecha de finalización del plazo de solicitudes</strong> y mantenerse hasta la toma de posesión.
+</p>
+
+<h2>1. Nacionalidad</h2>
+<p>
+  Puedes presentarte si tienes:
+</p>
+<ul>
+  <li><strong>Nacionalidad española.</strong></li>
+  <li>Nacionalidad de un <strong>Estado miembro de la UE</strong> o del Espacio Económico Europeo (Noruega, Islandia, Liechtenstein).</li>
+  <li>Nacionalidad <strong>suiza</strong> (acuerdo bilateral con la UE).</li>
+  <li>Ser <strong>cónyuge o descendiente menor de 21 años</strong> de un ciudadano UE/EEE (independientemente de tu nacionalidad).</li>
+</ul>
+<p>
+  <strong>Importante:</strong> los nacionales de países no UE/EEE <strong>no pueden presentarse</strong> a esta oposición,
+  salvo que tengan vínculo familiar directo con un ciudadano europeo.
+</p>
+
+<h2>2. Edad</h2>
+<p>
+  Debes tener al menos <strong>16 años</strong> y no haber alcanzado la <strong>edad de jubilación forzosa</strong>
+  (actualmente 65 años, ampliable a 67 según la Ley 21/2021 de pensiones). En la práctica,
+  si tienes entre 16 y 65 años, cumples este requisito.
+</p>
+
+<h2>3. Titulación: Bachillerato o equivalente</h2>
+<p>
+  Este es el requisito que más dudas genera. Para el subgrupo C1 necesitas <strong>una de estas titulaciones</strong>:
+</p>
+<ul>
+  <li>Título de <strong>Bachillerato</strong> (LOE, LOGSE o anterior: BUP + COU).</li>
+  <li><strong>Técnico Superior</strong> de Formación Profesional (FP Grado Superior / CFGS).</li>
+  <li><strong>Técnico Especialista</strong> (FP2 del plan antiguo).</li>
+  <li>Título universitario de <strong>Grado, Diplomatura o Licenciatura</strong> (cualquier titulación superior cubre C1).</li>
+  <li>Títulos extranjeros <strong>homologados</strong> por el Ministerio de Educación al nivel equivalente.</li>
+</ul>
+<p>
+  <strong>No vale</strong> con la ESO ni con un ciclo medio de FP (eso es para C2 Auxiliar). Si tienes dudas,
+  consulta el <a href="https://www.educacionfpydeportes.gob.es/servicios-al-ciudadano/catalogo/gestion-titulos/estudios-no-universitarios/titulos-espanoles/equivalencia-titulos.html" target="_blank" rel="noopener">
+  servicio de equivalencia de títulos</a> del Ministerio de Educación.
+</p>
+
+<h3>Diferencia clave con C2 Auxiliar</h3>
+<table>
+  <thead><tr><th>Requisito</th><th>C1 Administrativo</th><th>C2 Auxiliar</th></tr></thead>
+  <tbody>
+    <tr><td>Titulación mínima</td><td>Bachillerato / FP Superior</td><td>ESO / FP Medio</td></tr>
+    <tr><td>Sueldo entrada (neto)</td><td>~1.370 €/mes</td><td>~1.180 €/mes</td></tr>
+    <tr><td>Temario</td><td>~70 temas</td><td>~30 temas</td></tr>
+    <tr><td>Plazas 2026</td><td>2.512</td><td>1.700</td></tr>
+  </tbody>
+</table>
+<p>
+  Consulta la guía completa de diferencias en
+  <a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">Diferencias entre Auxiliar C2 y Administrativo C1</a>.
+</p>
+
+<h2>4. Capacidad funcional</h2>
+<p>
+  Debes poseer la <strong>capacidad funcional</strong> para el desempeño de las tareas del cuerpo.
+  No se exige una prueba médica previa, pero si en el reconocimiento médico posterior se detecta
+  una incapacidad total para las funciones administrativas, podrían revocarte la plaza.
+  Las personas con discapacidad reconocida ≥ 33 % pueden optar al <strong>cupo de reserva</strong>
+  (normalmente un 7-10 % de las plazas).
+</p>
+
+<h2>5. Habilitación: no haber sido separado ni condenado</h2>
+<p>No puedes presentarte si:</p>
+<ul>
+  <li>Has sido <strong>separado del servicio</strong> de cualquier Administración Pública mediante expediente disciplinario.</li>
+  <li>Estás <strong>inhabilitado</strong> por sentencia judicial firme para el ejercicio de funciones públicas.</li>
+</ul>
+<p>
+  En la práctica, los antecedentes penales cancelados <strong>no impiden</strong> presentarse.
+  Solo la inhabilitación activa es excluyente.
+</p>
+
+<h2>6. Tasas de examen y exenciones</h2>
+<p>
+  La tasa de derechos de examen para C1 Administrativo es de <strong>11,32 €</strong> (convocatoria 2024-2026).
+  Existen exenciones y bonificaciones:
+</p>
+<table>
+  <thead><tr><th>Colectivo</th><th>Tasa</th></tr></thead>
+  <tbody>
+    <tr><td>Personas con discapacidad ≥ 33 %</td><td>0,00 € (exención total)</td></tr>
+    <tr><td>Familias numerosas categoría especial</td><td>0,00 € (exención total)</td></tr>
+    <tr><td>Familias numerosas categoría general</td><td>5,66 € (50 %)</td></tr>
+    <tr><td>Víctimas de terrorismo (y cónyuges/hijos)</td><td>0,00 € (exención total)</td></tr>
+    <tr><td>Demandantes de empleo (mín. 1 mes inscrito, sin rechazar oferta)</td><td>0,00 € (exención total)</td></tr>
+    <tr><td>Resto de aspirantes</td><td>11,32 €</td></tr>
+  </tbody>
+</table>
+<p>
+  La exención debe acreditarse documentalmente. Si eres demandante de empleo, necesitas un
+  <strong>certificado del SEPE</strong> que confirme tu inscripción y que no has rechazado ninguna oferta adecuada
+  en el último mes.
+</p>
+
+<h2>7. Cómo inscribirse: Portal 060 y Cl@ve</h2>
+<p>
+  La inscripción se realiza <strong>exclusivamente online</strong> a través del
+  <a href="https://ips.redsara.es/IPSC/secure/buscarConvocatorias" target="_blank" rel="noopener">Portal Funciona (060)</a>.
+  Necesitas:
+</p>
+<ol>
+  <li><strong>Certificado digital</strong>, <strong>DNI electrónico</strong> o <strong>Cl@ve permanente/PIN</strong>.</li>
+  <li>Rellenar el formulario 790 (modelo de solicitud).</li>
+  <li>Pagar la tasa (si procede) mediante cargo en cuenta o tarjeta.</li>
+  <li>Descargar y guardar el <strong>justificante de presentación</strong>.</li>
+</ol>
+<p>
+  <strong>Consejo:</strong> si no tienes Cl@ve, solicítala <strong>antes</strong> de que se abra el plazo de inscripción.
+  El proceso de obtención puede tardar varios días si lo haces por vídeo-identificación.
+</p>
+
+<h2>8. Documentos necesarios</h2>
+<ul>
+  <li><strong>DNI/NIE</strong> en vigor (o pasaporte si eres ciudadano UE sin NIE).</li>
+  <li><strong>Título académico</strong> o resguardo de haberlo solicitado.</li>
+  <li><strong>Justificante de pago</strong> de la tasa (o documento acreditativo de la exención).</li>
+  <li><strong>Certificado de discapacidad</strong> (si solicitas cupo de reserva o exención de tasa).</li>
+  <li><strong>Certificado de familia numerosa</strong> (si solicitas bonificación).</li>
+</ul>
+<p>
+  No es necesario presentar estos documentos en el momento de la inscripción; se presentan
+  <strong>cuando se solicita</strong> o cuando pasas a la fase de acreditación de requisitos (tras aprobar).
+</p>
+
+<h2>9. ¿Se puede optar a C1 y C2 a la vez?</h2>
+<p>
+  <strong>No en 2026.</strong> El examen de Administrativo C1 y el de Auxiliar C2 se celebran el
+  <strong>mismo día (23 de mayo de 2026)</strong>, a la misma hora. Debes elegir uno. No puedes inscribirte
+  en ambos. Consulta las
+  <a href="/blog/calendario-oposiciones-administrativo-estado-c1-2026">fechas completas del calendario C1</a>
+  para planificar.
+</p>
+
+<h2>10. Plazos de la convocatoria 2026</h2>
+<p>
+  La convocatoria de <strong>2.512 plazas</strong> para Administrativo C1 fue publicada en el BOE.
+  El plazo de inscripción ya ha cerrado. El examen está fijado para el <strong>23 de mayo de 2026</strong>.
+  Consulta todos los detalles en nuestra
+  <a href="/blog/administrativo-estado-c1-2026-plazas-temario-nota-corte">guía completa de la convocatoria C1 2026</a>.
+</p>
+
+<h2>Resumen de requisitos</h2>
+<table>
+  <thead><tr><th>Requisito</th><th>Detalle</th></tr></thead>
+  <tbody>
+    <tr><td>Nacionalidad</td><td>España, UE/EEE, Suiza o familiar directo</td></tr>
+    <tr><td>Edad</td><td>16-65 años</td></tr>
+    <tr><td>Titulación</td><td>Bachillerato, FP Superior, Grado universitario o equivalente</td></tr>
+    <tr><td>Capacidad funcional</td><td>Para desempeñar las tareas del cuerpo</td></tr>
+    <tr><td>Habilitación</td><td>No separado ni inhabilitado</td></tr>
+    <tr><td>Tasa</td><td>11,32 € (exenciones disponibles)</td></tr>
+  </tbody>
+</table>
+
+<p>
+  Si cumples todos los requisitos y quieres empezar a preparar con tests del temario real,
+  <strong><a href="/register">prueba OpoRuta gratis</a></strong>: tests por tema, simulacros de convocatorias
+  pasadas y análisis detallados de tus errores.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Qué título necesito para opositar a Administrativo del Estado C1?', answer: 'Necesitas como mínimo el título de Bachillerato, Técnico Superior de FP (Grado Superior) o equivalente. También vale cualquier titulación universitaria (Grado, Diplomatura o Licenciatura). No es suficiente con la ESO ni con un ciclo medio de FP.' },
+      { question: '¿Puedo presentarme a C1 Administrativo y C2 Auxiliar a la vez?', answer: 'No en la convocatoria 2026. Ambos exámenes se celebran el mismo día (23 de mayo de 2026) a la misma hora. Debes elegir uno u otro.' },
+      { question: '¿Cuánto cuesta la tasa de examen para Administrativo C1?', answer: 'La tasa es de 11,32 €. Hay exención total para personas con discapacidad ≥ 33 %, familias numerosas de categoría especial, víctimas de terrorismo y demandantes de empleo. Las familias numerosas de categoría general pagan la mitad (5,66 €).' },
+      { question: '¿Pueden presentarse extranjeros a Administrativo del Estado?', answer: 'Sí, si son ciudadanos de la UE, EEE (Noruega, Islandia, Liechtenstein), Suiza, o cónyuges/descendientes menores de 21 años de ciudadanos europeos. Los nacionales de otros países no pueden presentarse salvo vínculo familiar directo con ciudadano UE.' },
+      { question: '¿Hay límite de edad para opositar a C1?', answer: 'Debes tener al menos 16 años y no haber alcanzado la edad de jubilación forzosa (65 años, ampliable a 67 según normativa de pensiones). No hay límite de intentos ni de convocatorias presentadas.' },
+      { question: '¿Qué pasa si tengo antecedentes penales?', answer: 'Los antecedentes penales cancelados no impiden presentarse. Solo te excluye haber sido separado del servicio mediante expediente disciplinario o estar inhabilitado por sentencia judicial firme para funciones públicas.' },
+    ],
+  },
+  // ─── Post 40 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'calendario-oposiciones-administrativo-estado-c1-2026',
+    title: 'Calendario Administrativo del Estado (C1) 2026: todas las fechas clave',
+    description:
+      'Calendario completo de la oposición a Administrativo del Estado C1 en 2026: fecha de examen, plazos de inscripción, listas provisionales, resultados y toma de posesión.',
+    date: '2026-03-20',
+    dateModified: '2026-03-20',
+    keywords: [
+      'calendario administrativo estado c1 2026',
+      'fecha examen administrativo estado 2026',
+      'cuando examen c1 2026',
+      'fechas oposiciones AGE c1',
+      'plazos administrativo estado 2026',
+    ],
+    content: `
+<h2>Examen el 23 de mayo de 2026: quedan 64 días</h2>
+<p>
+  El examen del Cuerpo General Administrativo de la Administración del Estado (C1) está fijado para
+  el <strong>sábado 23 de mayo de 2026</strong>. Es la misma fecha que el examen de Auxiliar Administrativo (C2),
+  lo que significa que <strong>no puedes presentarte a ambos</strong>. Si estás leyendo esto, el reloj corre:
+  quedan aproximadamente <strong>64 días</strong> para el examen.
+</p>
+<p>
+  A continuación, el cronograma completo desde la publicación en el BOE hasta la toma de posesión,
+  con las fechas reales y las estimadas según el patrón histórico de convocatorias anteriores.
+</p>
+
+<h2>Cronograma completo: todas las fases</h2>
+<table>
+  <thead><tr><th>Fase</th><th>Fecha / Período</th><th>Estado</th></tr></thead>
+  <tbody>
+    <tr><td>Publicación OPE en BOE</td><td>Junio 2024</td><td>✅ Completado</td></tr>
+    <tr><td>Publicación convocatoria en BOE</td><td>Diciembre 2024</td><td>✅ Completado</td></tr>
+    <tr><td>Plazo de inscripción (20 días hábiles)</td><td>Enero – Febrero 2025</td><td>✅ Cerrado</td></tr>
+    <tr><td>Lista provisional de admitidos</td><td>Septiembre – Octubre 2025</td><td>✅ Publicada</td></tr>
+    <tr><td>Plazo de subsanación (10 días hábiles)</td><td>Octubre 2025</td><td>✅ Cerrado</td></tr>
+    <tr><td>Lista definitiva de admitidos</td><td>Febrero – Marzo 2026</td><td>✅ Publicada</td></tr>
+    <tr><td>Fecha del examen (primer ejercicio)</td><td><strong>23 de mayo de 2026</strong></td><td>⏳ Pendiente</td></tr>
+    <tr><td>Publicación de respuestas correctas</td><td>Junio 2026 (estimado)</td><td>⏳ Pendiente</td></tr>
+    <tr><td>Plazo de impugnaciones (5 días hábiles)</td><td>Junio 2026 (estimado)</td><td>⏳ Pendiente</td></tr>
+    <tr><td>Notas provisionales primer ejercicio</td><td>Julio 2026 (estimado)</td><td>⏳ Pendiente</td></tr>
+    <tr><td>Segundo ejercicio (caso práctico)</td><td>Septiembre – Octubre 2026 (estimado)</td><td>⏳ Pendiente</td></tr>
+    <tr><td>Notas finales y lista de aprobados</td><td>Noviembre – Diciembre 2026 (estimado)</td><td>⏳ Pendiente</td></tr>
+    <tr><td>Curso selectivo (INAP)</td><td>Enero – Marzo 2027 (estimado)</td><td>⏳ Pendiente</td></tr>
+    <tr><td>Elección de destinos</td><td>Abril – Mayo 2027 (estimado)</td><td>⏳ Pendiente</td></tr>
+    <tr><td>Toma de posesión</td><td>Mayo – Junio 2027 (estimado)</td><td>⏳ Pendiente</td></tr>
+  </tbody>
+</table>
+<p>
+  <strong>Nota:</strong> las fechas posteriores al examen son estimaciones basadas en convocatorias anteriores
+  (2019, 2022, 2024). El Tribunal puede alterar los plazos. Consulta siempre el
+  <a href="https://www.boe.es" target="_blank" rel="noopener">BOE</a> para confirmaciones oficiales.
+</p>
+
+<h2>El día del examen: qué esperar</h2>
+<p>
+  El primer ejercicio consiste en un <strong>test de 100 preguntas</strong> (+ 10 de reserva) con
+  <strong>4 opciones de respuesta</strong>. Tienes <strong>90 minutos</strong>. Las respuestas incorrectas
+  penalizan (1/3 del valor de una correcta). El temario abarca aproximadamente 70 temas divididos en
+  dos bloques: Bloque I (Organización del Estado, Derecho Administrativo) y Bloque II
+  (Actividad administrativa, Gestión de personal y financiera).
+</p>
+<ul>
+  <li><strong>Hora de convocatoria:</strong> normalmente a las 10:00 (se confirma en la resolución del Tribunal).</li>
+  <li><strong>Lugar:</strong> Madrid capital (sedes universitarias habitualmente). Se publica en la lista definitiva de admitidos.</li>
+  <li><strong>Documentación:</strong> DNI/NIE original en vigor + justificante de inscripción.</li>
+  <li><strong>Material prohibido:</strong> teléfonos, smartwatches, auriculares, cualquier dispositivo electrónico.</li>
+</ul>
+
+<h2>Segundo ejercicio: caso práctico</h2>
+<p>
+  Solo lo realizan quienes superen el primer ejercicio (nota de corte). Consiste en resolver uno o varios
+  <strong>supuestos prácticos</strong> relacionados con el temario, en un tiempo de entre 60 y 90 minutos.
+  Se evalúa la capacidad de aplicar los conocimientos a situaciones reales de trabajo administrativo.
+  Históricamente, entre el primer y el segundo ejercicio pasan <strong>3-5 meses</strong>.
+</p>
+
+<h2>Nota de corte: ¿qué puntuación necesitas?</h2>
+<p>
+  La nota de corte varía en cada convocatoria según el número de aspirantes y la dificultad del examen.
+  En convocatorias recientes:
+</p>
+<ul>
+  <li><strong>2019:</strong> nota de corte ~5,75/10 (convocatoria más competida).</li>
+  <li><strong>2022:</strong> nota de corte ~6,00/10.</li>
+  <li><strong>2024:</strong> nota de corte ~6,50/10 (tendencia al alza).</li>
+</ul>
+<p>
+  Consulta el análisis detallado en
+  <a href="/blog/nota-corte-administrativo-estado-c1-como-se-calcula">Nota de corte Administrativo C1: cómo se calcula</a>.
+</p>
+
+<h2>Después del examen: los plazos que nadie cuenta</h2>
+<p>
+  Muchos opositores se centran solo en la fecha del examen y se sorprenden del <strong>largo proceso posterior</strong>.
+  Desde que haces el examen hasta que tomas posesión pueden pasar <strong>12-14 meses</strong>. Es importante saberlo
+  para planificar tu situación laboral y personal.
+</p>
+<ol>
+  <li><strong>Publicación de respuestas</strong> (1-2 semanas tras el examen): el Tribunal publica la plantilla de respuestas correctas.</li>
+  <li><strong>Impugnaciones</strong> (5 días hábiles): puedes impugnar preguntas que consideres incorrectas o ambiguas.</li>
+  <li><strong>Resolución de impugnaciones</strong> (1-2 meses): el Tribunal revisa y puede anular preguntas.</li>
+  <li><strong>Notas provisionales</strong> (2-3 meses tras el examen): se publican con plazo de alegaciones.</li>
+  <li><strong>Segundo ejercicio</strong> (3-5 meses tras el primer ejercicio): solo para aprobados del primero.</li>
+  <li><strong>Lista definitiva de aprobados</strong> (6-8 meses tras el examen).</li>
+  <li><strong>Curso selectivo en el INAP</strong> (2-3 meses): obligatorio, eliminatorio.</li>
+  <li><strong>Elección de destinos</strong>: por orden de puntuación final.</li>
+  <li><strong>Toma de posesión</strong>: ~12-14 meses después del examen.</li>
+</ol>
+
+<h2>C1 y C2 el mismo día: ¿cuál elegir?</h2>
+<p>
+  Esta es la gran pregunta de 2026. Ambas oposiciones se celebran el <strong>23 de mayo</strong>.
+  Si tienes titulación de Bachillerato o superior, puedes optar a C1 (más sueldo, más temario)
+  o a C2 (menos temario, más plazas por aspirante). Consulta la comparativa completa en
+  <a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">Diferencias entre C2 Auxiliar y C1 Administrativo</a>.
+</p>
+
+<h2>Plan de estudio: 64 días para el examen</h2>
+<p>
+  Si aún no has empezado o llevas pocas semanas, la estrategia es clave. Con 64 días puedes
+  cubrir los temas más rentables (los que más preguntan) y practicar con simulacros reales.
+  Consulta nuestro plan intensivo en
+  <a href="/blog/ultimos-60-dias-administrativo-estado-c1-plan-estudio">Últimos 60 días para el C1: plan de estudio</a>.
+</p>
+<p>
+  <strong><a href="/register">Empieza gratis en OpoRuta</a></strong> y practica con tests del temario oficial,
+  simulacros de convocatorias pasadas (2019, 2022, 2024) y análisis detallados de tus errores.
+  Cada día que pasa es un día menos para preparar.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Quedan ~64 días para el examen.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuándo es el examen de Administrativo del Estado C1 en 2026?', answer: 'El examen está fijado para el sábado 23 de mayo de 2026. Es la misma fecha que el examen de Auxiliar Administrativo C2, por lo que no puedes presentarte a ambos.' },
+      { question: '¿Todavía estoy a tiempo de inscribirme en la oposición C1 2026?', answer: 'No. El plazo de inscripción se cerró en febrero de 2025 (20 días hábiles desde la publicación de la convocatoria). Para esta convocatoria ya no es posible inscribirse. La próxima convocatoria se publicará previsiblemente en 2027-2028.' },
+      { question: '¿Cuánto tiempo pasa desde el examen hasta la toma de posesión?', answer: 'Aproximadamente 12-14 meses. Tras el examen hay publicación de plantillas, impugnaciones, notas provisionales, segundo ejercicio, lista definitiva, curso selectivo en el INAP y elección de destinos antes de la toma de posesión.' },
+      { question: '¿Dónde se celebra el examen de Administrativo C1?', answer: 'El examen se celebra en Madrid capital, normalmente en sedes universitarias (Facultades de la UCM, UNED, etc.). La ubicación exacta se comunica en la resolución del Tribunal publicada en el BOE y en la sede electrónica del INAP.' },
+      { question: '¿Qué pasa si apruebo el primer ejercicio?', answer: 'Si superas la nota de corte del test (primer ejercicio), pasas al segundo ejercicio: un caso práctico. Suele celebrarse entre 3 y 5 meses después del primero. Solo quienes aprueben ambos ejercicios acceden a la lista de aprobados y al curso selectivo del INAP.' },
+      { question: '¿Puedo presentarme a C1 Administrativo y C2 Auxiliar el mismo año?', answer: 'En 2026 no es posible porque ambos exámenes son el mismo día (23 de mayo). Debes elegir uno. En convocatorias donde las fechas no coinciden, sí puedes inscribirte en ambos procesos selectivos.' },
+    ],
+  },
+
+  // ─── Post 41 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'errores-examen-administrativo-estado-c1',
+    title: 'Errores más comunes en el examen de Administrativo del Estado (C1) y cómo evitarlos',
+    description:
+      'Los 10 fallos que más puntos cuestan en el examen C1 de la AGE: penalización, gestión del tiempo, supuesto práctico y confusiones legales. Con tabla resumen y estrategias correctoras.',
+    date: '2026-03-20',
+    dateModified: '2026-03-20',
+    keywords: [
+      'errores examen administrativo estado c1',
+      'fallos oposiciones administrativo',
+      'errores comunes examen c1 AGE',
+      'penalizacion examen c1',
+      'como aprobar administrativo estado',
+    ],
+    content: `
+<h2>Por qué conocer los errores más frecuentes puede darte el aprobado</h2>
+<p>
+  El examen del Cuerpo General Administrativo de la Administración del Estado (C1) tiene una tasa de aprobados cercana al 8-12%. Eso significa que la mayoría de opositores suspenden, y no siempre por falta de estudio. Muchos pierden puntos por errores evitables: mala gestión del tiempo, confusiones legales recurrentes o una estrategia de penalización inadecuada.
+</p>
+<p>
+  En este artículo analizamos <strong>los 10 errores más comunes</strong> que cometen los aspirantes al C1 y cómo puedes corregir cada uno. Si estás preparando esta oposición, esta guía puede ahorrarte meses de frustración y decenas de puntos en el examen real.
+</p>
+
+<h2>El formato del examen C1: lo que debes tener claro</h2>
+<p>
+  Antes de entrar en los errores, repasemos la estructura del examen:
+</p>
+<ul>
+  <li><strong>Primera parte (test):</strong> 70 preguntas tipo test sobre el temario (45 temas en 5 bloques), 70 minutos.</li>
+  <li><strong>Segunda parte (supuesto práctico):</strong> 20 preguntas tipo test sobre un caso práctico, 30 minutos.</li>
+  <li><strong>Penalización:</strong> cada respuesta incorrecta resta 1/3 del valor de una correcta (−0,333).</li>
+  <li><strong>Total:</strong> 90 preguntas en 100 minutos. Cada segundo cuenta.</li>
+</ul>
+<p>
+  Esta estructura crea trampas específicas que vemos a continuación.
+</p>
+
+<h2>Error 1: No calibrar la penalización −1/3</h2>
+<p>
+  El error más costoso es responder preguntas sin criterio. La penalización de −1/3 está diseñada para que responder al azar tenga valor esperado cero. Sin embargo, muchos opositores cometen dos errores opuestos:
+</p>
+<ul>
+  <li><strong>Responder todo:</strong> Marcan las 90 preguntas "por no dejar nada en blanco". Con 15-20 respuestas al azar, pierden 5-7 puntos netos que les habrían bastado para aprobar.</li>
+  <li><strong>Dejar demasiado en blanco:</strong> Otros opositores, por miedo a la penalización, dejan sin responder preguntas en las que podrían haber descartado 1-2 opciones. Cada pregunta en blanco con dos opciones descartadas es un 50% de acertar (+1) contra un 50% de perder (−0,33): valor esperado +0,33.</li>
+</ul>
+<p>
+  <strong>La regla de oro:</strong> responde si puedes descartar al menos una opción. Si no tienes ni idea de la materia, deja en blanco.
+</p>
+
+<h2>Error 2: Repartir mal el tiempo entre test y supuesto</h2>
+<p>
+  Tienes 70 minutos para 70 preguntas de test y 30 minutos para 20 preguntas de supuesto práctico. Un error frecuente es quedarse atrapado en preguntas difíciles del test y llegar al supuesto con 15-20 minutos, insuficientes para leer el caso con calma.
+</p>
+<p>
+  El supuesto práctico es un texto de 2-3 páginas con un caso administrativo complejo. Las preguntas se responden aplicando la legislación al caso, no de memoria. Necesitas tiempo para leerlo completo antes de responder ninguna pregunta.
+</p>
+<p>
+  <strong>Estrategia:</strong> marca un checkpoint a los 60 minutos. Si no has terminado el test, marca las que te falten rápidamente (solo si puedes descartar algo) y pasa al supuesto. Nunca sacrifiques el supuesto: sus 20 preguntas pesan igual que 20 del test.
+</p>
+
+<h2>Error 3: Leer el supuesto práctico a medias</h2>
+<p>
+  El supuesto práctico es donde más opositores pierden puntos innecesariamente. El error típico: leer el caso por encima, ir directamente a las preguntas e intentar responderlas buscando datos en el texto.
+</p>
+<p>
+  El caso suele incluir detalles clave escondidos en párrafos intermedios: plazos que ya han vencido, recursos mal interpuestos, competencias de un órgano específico. Si no lees el caso completo primero, te pierdes matices que cambian la respuesta correcta.
+</p>
+<p>
+  <strong>Método correcto:</strong> dedica 8-10 minutos a leer el caso completo, subrayando fechas, órganos, procedimientos y legislación mencionada. Solo entonces empieza a responder. Te quedan 20 minutos para 20 preguntas: un minuto por pregunta es más que suficiente cuando ya dominas el caso.
+</p>
+
+<h2>Error 4: Confundir LPAC (Ley 39/2015) con LRJSP (Ley 40/2015)</h2>
+<p>
+  Es el error de contenido más frecuente del examen C1. Ambas leyes regulan la Administración Pública, pero desde ángulos distintos:
+</p>
+<ul>
+  <li><strong>LPAC (Ley 39/2015):</strong> Procedimiento administrativo común. Regula cómo se tramita un expediente, los plazos, los recursos, las notificaciones, el silencio administrativo.</li>
+  <li><strong>LRJSP (Ley 40/2015):</strong> Régimen jurídico del sector público. Regula los órganos administrativos, la responsabilidad patrimonial, los convenios, la potestad sancionadora.</li>
+</ul>
+<p>
+  El tribunal pone preguntas diseñadas para confundir ambas leyes. Por ejemplo: ¿los plazos de recurso están en la LPAC o en la LRJSP? (LPAC). ¿La responsabilidad patrimonial? (LRJSP). ¿La abstención y recusación? (LRJSP, no LPAC).
+</p>
+<p>
+  <strong>Consejo:</strong> haz un cuadro comparativo de ambas leyes tema por tema y repásalo la semana antes del examen. Te puede dar 3-5 puntos extra.
+</p>
+
+<h2>Error 5: Sobre-estudiar el Bloque I e infra-estudiar el Bloque V</h2>
+<p>
+  El Bloque I (Organización del Estado y Constitución) es el más "intuitivo" y donde los opositores empiezan a estudiar. Muchos le dedican el 40% del tiempo. El Bloque V (Informática, ofimática y actividad administrativa), en cambio, parece menos relevante y se deja para el final.
+</p>
+<p>
+  Sin embargo, los exámenes recientes muestran que <strong>los bloques III y IV concentran el 50-60% de las preguntas</strong> del test (procedimiento administrativo, gestión financiera, contratación, función pública). El Bloque V aporta entre 8 y 12 preguntas, lo que puede ser la diferencia entre aprobar y suspender.
+</p>
+<p>
+  <strong>Distribución óptima del estudio:</strong>
+</p>
+<ul>
+  <li>Bloque I (Constitución, organización): 15-18% del tiempo</li>
+  <li>Bloque II (Unión Europea, organización territorial): 10-12%</li>
+  <li>Bloque III (Derecho Administrativo, LPAC, LRJSP): 30-35%</li>
+  <li>Bloque IV (Gestión financiera, contratación, RRHH): 20-25%</li>
+  <li>Bloque V (Informática, actividad administrativa): 10-15%</li>
+</ul>
+
+<h2>Error 6: No practicar con penalización real</h2>
+<p>
+  Muchos opositores estudian con tests sin penalización o con apps que simplemente marcan "correcto/incorrecto". Esto genera una falsa sensación de seguridad: en el examen real, un 70% de aciertos con un 20% de fallos no es un 70, sino un <strong>63,3</strong> (70 − 20/3 = 63,3).
+</p>
+<p>
+  Si solo practicas sin penalización, tu nota real será entre 5 y 10 puntos menor de lo que esperas. Esa diferencia separa al aprobado del suspenso.
+</p>
+<p>
+  <strong>Solución:</strong> practica siempre con simulacros que apliquen la penalización −1/3. En <a href="/">OpoRuta</a> todos los simulacros aplican penalización real calculada exactamente como en el examen INAP.
+</p>
+
+<h2>Error 7: Memorizar artículos sin entender su aplicación</h2>
+<p>
+  El examen C1 no es un examen de memoria pura: es un examen de aplicación. Las preguntas del test y, especialmente, del supuesto práctico requieren que entiendas cuándo y cómo se aplica cada artículo.
+</p>
+<p>
+  Ejemplo real: saber que el plazo de recurso de alzada es de 1 mes no basta. Necesitas saber cuándo empieza a contar (desde la notificación o desde el día siguiente), ante qué órgano se interpone (el superior jerárquico) y qué ocurre si no se resuelve (silencio negativo).
+</p>
+<p>
+  <strong>Método:</strong> por cada artículo clave, plantéate 3 preguntas: ¿cuándo se aplica?, ¿quién lo aplica?, ¿qué pasa si no se cumple?
+</p>
+
+<h2>Error 8: Ignorar las preguntas de reserva</h2>
+<p>
+  El examen incluye preguntas de reserva (normalmente 5-10) que sustituyen a preguntas anuladas. Algunos opositores no las responden pensando que "no cuentan". Error: si se anula una pregunta del test principal, la de reserva correspondiente pasa a ser puntuable. Si la dejaste en blanco, pierdes un punto potencial.
+</p>
+<p>
+  <strong>Regla:</strong> responde siempre las preguntas de reserva con el mismo criterio que las demás.
+</p>
+
+<h2>Error 9: No cronometrar los simulacros de práctica</h2>
+<p>
+  Estudiar tests tema por tema sin límite de tiempo es útil para aprender, pero no te prepara para la presión del examen. El C1 exige responder <strong>una pregunta cada 67 segundos</strong> de media. Si no has entrenado ese ritmo, el día del examen irás con retraso.
+</p>
+<p>
+  <strong>Plan de entrenamiento:</strong> al menos las 4 últimas semanas, haz un simulacro cronometrado completo (90 preguntas en 100 minutos) cada semana. Analiza no solo tus fallos sino tu gestión del tiempo: ¿te sobraron minutos o te faltaron?
+</p>
+
+<h2>Error 10: No revisar los errores de simulacros anteriores</h2>
+<p>
+  Hacer simulacros sin analizar los fallos es como entrenar sin mirar los resultados. El patrón habitual: un opositor hace 10 simulacros, repite los mismos errores en la LPAC y se presenta al examen sin haberlos corregido.
+</p>
+<p>
+  <strong>Sistema efectivo:</strong> después de cada simulacro, clasifica tus errores en tres categorías: (1) no sabía el tema, (2) sabía el tema pero confundí el dato, (3) leí mal la pregunta. Cada categoría requiere una solución distinta: más estudio, más práctica con preguntas trampa, o más atención a las dobles negaciones.
+</p>
+
+<h2>Tabla resumen: los 10 errores y cómo corregirlos</h2>
+<table>
+  <thead>
+    <tr><th>Error</th><th>Consecuencia</th><th>Solución</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>No calibrar la penalización</td><td>Perder 5-7 puntos por respuestas al azar</td><td>Responder solo si descartas ≥1 opción</td></tr>
+    <tr><td>Mala gestión del tiempo test/supuesto</td><td>Llegar al supuesto sin tiempo</td><td>Checkpoint a los 60 min, nunca sacrificar supuesto</td></tr>
+    <tr><td>Leer el supuesto a medias</td><td>Fallar preguntas por no ver detalles clave</td><td>8-10 min leyendo y subrayando antes de responder</td></tr>
+    <tr><td>Confundir LPAC con LRJSP</td><td>3-5 preguntas mal en el test</td><td>Cuadro comparativo y repasar la semana previa</td></tr>
+    <tr><td>Sobre-estudiar Bloque I, infra-estudiar V</td><td>Perder 4-8 puntos en bloques de peso real</td><td>Distribuir estudio según peso real en examen</td></tr>
+    <tr><td>Practicar sin penalización real</td><td>Nota real 5-10 puntos menor de lo esperado</td><td>Simulacros siempre con penalización −1/3</td></tr>
+    <tr><td>Memorizar sin entender la aplicación</td><td>Fallar supuesto práctico y preguntas aplicadas</td><td>Por cada artículo: ¿cuándo, quién, qué pasa si no?</td></tr>
+    <tr><td>Ignorar preguntas de reserva</td><td>Perder puntos si se anulan preguntas</td><td>Responder siempre las preguntas de reserva</td></tr>
+    <tr><td>No cronometrar simulacros</td><td>Gestión del tiempo deficiente en examen real</td><td>1 simulacro cronometrado completo por semana</td></tr>
+    <tr><td>No revisar errores de simulacros</td><td>Repetir los mismos fallos en el examen</td><td>Clasificar errores: no sabía / confundí / leí mal</td></tr>
+  </tbody>
+</table>
+
+<h2>Plan de acción: las últimas 4 semanas antes del examen</h2>
+<p>
+  Si aplicas las correcciones de esta tabla en tus últimas semanas de preparación, puedes ganar entre 8 y 15 puntos en el examen real. Un plan semanal mínimo:
+</p>
+<ul>
+  <li><strong>Semana 1:</strong> Cuadro comparativo LPAC/LRJSP. Redistribuir horas de estudio por bloque según peso real.</li>
+  <li><strong>Semana 2:</strong> Primer simulacro cronometrado completo (90 preguntas, 100 min, penalización). Análisis de errores por categoría.</li>
+  <li><strong>Semana 3:</strong> Segundo simulacro. Práctica específica de supuestos prácticos (3-4 casos, 30 min cada uno). Repaso de Bloque V.</li>
+  <li><strong>Semana 4:</strong> Tercer simulacro. Repaso de errores acumulados de los tres simulacros. Lectura rápida de temas débiles. Descanso el día antes.</li>
+</ul>
+
+<h2>Artículos relacionados</h2>
+<ul>
+  <li><a href="/blog/supuesto-practico-administrativo-estado-c1-estrategia">Cómo preparar el supuesto práctico del C1</a> — estrategia completa para los 20 puntos más valiosos</li>
+  <li><a href="/blog/nota-corte-administrativo-estado-c1-como-se-calcula">Nota de corte del C1</a> — datos históricos y previsión 2026</li>
+  <li><a href="/blog/temario-administrativo-estado-c1-45-temas-como-priorizar">Los 45 temas del C1: cómo priorizar</a> — distribución óptima del estudio</li>
+  <li><a href="/blog/contratacion-publica-lcsp-administrativo-estado-c1">Contratación pública (LCSP) en el C1</a> — uno de los bloques que más preguntas aporta</li>
+  <li><a href="/blog/ultimos-60-dias-administrativo-estado-c1-plan-estudio">Últimos 60 días para el C1</a> — plan de estudio intensivo semana a semana</li>
+</ul>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuántas preguntas tiene el examen de Administrativo del Estado C1?', answer: 'El examen consta de 90 preguntas tipo test en total: 70 preguntas sobre el temario (45 temas en 5 bloques) y 20 preguntas sobre un supuesto práctico. Se dispone de 100 minutos: 70 para el test y 30 para el supuesto. Además hay preguntas de reserva (5-10) que sustituyen a las anuladas.' },
+      { question: '¿Cómo funciona la penalización en el examen C1?', answer: 'Cada respuesta correcta suma 1 punto. Cada respuesta incorrecta resta 1/3 de punto (−0,333). Las preguntas en blanco no puntúan. La regla óptima es responder cuando puedes descartar al menos una opción: si descartas una de cuatro, tu valor esperado es positivo (+0,11 por pregunta).' },
+      { question: '¿Cuál es el error más frecuente en el examen C1?', answer: 'El error más costoso es la mala gestión del tiempo entre test y supuesto práctico. Muchos opositores se atascan en preguntas difíciles del test y llegan al supuesto con menos de 20 minutos, insuficientes para leer el caso completo. El supuesto práctico vale 20 puntos y requiere lectura atenta del caso.' },
+      { question: '¿Cómo evitar confundir la LPAC con la LRJSP?', answer: 'La clave es un cuadro comparativo: LPAC (Ley 39/2015) regula el procedimiento (plazos, recursos, notificaciones, silencio). LRJSP (Ley 40/2015) regula los órganos y su funcionamiento (responsabilidad patrimonial, convenios, abstención, potestad sancionadora). Repasa el cuadro la semana antes del examen.' },
+      { question: '¿Cuántos simulacros debo hacer antes del examen C1?', answer: 'Al menos 4-6 simulacros cronometrados completos (90 preguntas, 100 minutos, con penalización) en las últimas 4-6 semanas. Lo crítico no es la cantidad sino el análisis posterior: clasifica cada error (no sabía / confundí dato / leí mal la pregunta) y trabaja específicamente en cada categoría.' },
+      { question: '¿Es mejor responder todas las preguntas o dejar en blanco las dudosas?', answer: 'Ni una cosa ni la otra. La estrategia óptima es responder cuando puedes descartar al menos una opción (valor esperado positivo: +0,11 a +0,33 según cuántas descartes) y dejar en blanco solo cuando no tienes ninguna pista sobre la materia. Responder las 90 al azar no te da ventaja; dejar 20 en blanco por miedo te quita puntos seguros.' },
+    ],
+  },
+
+  // ─── Post 42 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'elegir-destino-administrativo-estado-c1',
+    title: 'Cómo elegir destino como Administrativo del Estado (C1): ministerios, sueldo y teletrabajo',
+    description:
+      'Guía completa para elegir destino tras aprobar el C1: ministerios con mejor complemento específico, teletrabajo, opciones geográficas, progresión de carrera y tabla comparativa de destinos.',
+    date: '2026-03-20',
+    dateModified: '2026-03-20',
+    keywords: [
+      'destinos administrativo estado c1',
+      'elegir destino oposiciones c1',
+      'teletrabajo funcionarios AGE',
+      'mejor ministerio administrativo',
+      'complemento especifico administrativo c1',
+    ],
+    content: `
+<h2>El momento más importante después de aprobar: elegir destino</h2>
+<p>
+  Has aprobado el examen de Administrativo del Estado (C1). Enhorabuena. Ahora llega una decisión que marcará tu carrera los próximos años — posiblemente décadas: <strong>la elección de destino</strong>. Este es el momento en que tu nota de examen se convierte en poder real de elección.
+</p>
+<p>
+  El proceso es sencillo en teoría: los aprobados eligen destino por orden de puntuación. El primero de la lista elige entre todos los puestos vacantes; el último se queda con lo que sobra. En la práctica, la diferencia entre un buen y un mal destino puede suponer <strong>más de 500€ netos al mes</strong> de diferencia y la posibilidad (o imposibilidad) de teletrabajar.
+</p>
+<p>
+  En este artículo te explicamos cómo funciona el proceso, qué ministerios pagan mejor, dónde hay teletrabajo real y cómo pensar a largo plazo.
+</p>
+
+<h2>Cómo funciona el proceso de elección de destino</h2>
+<p>
+  Tras la publicación de la lista definitiva de aprobados, el Ministerio de Hacienda publica la <strong>relación de puestos vacantes</strong>. Cada opositor presenta una lista de preferencias (habitualmente unas 50 opciones, ordenadas de más a menos deseada).
+</p>
+<p>
+  La asignación se hace por estricto orden de puntuación del examen. Si eres el número 1, obtienes tu primera preferencia. Si eres el 500, eliges entre lo que queda tras las 499 elecciones anteriores.
+</p>
+<p>
+  <strong>Factores que determinan la oferta:</strong>
+</p>
+<ul>
+  <li><strong>Organismo:</strong> ministerio, agencia, organismo autónomo o delegación provincial.</li>
+  <li><strong>Ubicación geográfica:</strong> Madrid (servicios centrales) o provincias (delegaciones, subdelegaciones).</li>
+  <li><strong>Nivel del puesto:</strong> normalmente nivel 18 de entrada, con posibilidad de ascender hasta 22-26.</li>
+  <li><strong>Complemento específico:</strong> la parte variable del sueldo que depende del puesto, no del cuerpo.</li>
+</ul>
+
+<h2>Los ministerios y organismos que mejor pagan</h2>
+<p>
+  El sueldo base de un Administrativo C1 es idéntico en toda España y en todos los ministerios: <strong>~910€ brutos/mes</strong> (sueldo base + complemento de destino). La diferencia real está en el <strong>complemento específico</strong>, que varía enormemente según el organismo.
+</p>
+<p>
+  Este complemento refleja la "dificultad técnica, dedicación, responsabilidad o peligrosidad" del puesto. En la práctica, los organismos con más presupuesto y mayor carga de trabajo ofrecen complementos superiores.
+</p>
+
+<h3>Tabla: Top 5 destinos por complemento específico (C1, nivel 18-20)</h3>
+<table>
+  <thead>
+    <tr><th>Organismo</th><th>Complemento específico (€/mes bruto)</th><th>Sueldo neto estimado (€/mes)</th><th>Teletrabajo</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>AEAT (Agencia Tributaria)</td><td>550-650€</td><td>1.450-1.550€</td><td>Sí (2-3 días/semana)</td></tr>
+    <tr><td>Seguridad Social (TGSS, INSS)</td><td>500-600€</td><td>1.400-1.500€</td><td>Sí (2 días/semana)</td></tr>
+    <tr><td>Ministerio del Interior</td><td>480-580€</td><td>1.380-1.480€</td><td>Limitado (según unidad)</td></tr>
+    <tr><td>SEPE (Servicio Público de Empleo)</td><td>450-550€</td><td>1.350-1.450€</td><td>Sí (2 días/semana)</td></tr>
+    <tr><td>Ministerio de Hacienda (servicios centrales)</td><td>420-520€</td><td>1.320-1.420€</td><td>Sí (2-3 días/semana)</td></tr>
+  </tbody>
+</table>
+<p>
+  <em>*Los rangos varían según la unidad concreta dentro del organismo y el nivel del puesto. Datos orientativos 2025-2026 basados en RPT publicadas.</em>
+</p>
+<p>
+  En contraste, los ministerios con complementos más bajos (Cultura, Ciencia, algunos organismos autónomos pequeños) pueden pagar 300-350€ de complemento específico, lo que supone unos <strong>1.180-1.250€ netos</strong>. La diferencia con la AEAT puede superar los 300€ al mes — más de 4.200€ al año.
+</p>
+
+<h2>Madrid vs. provincias: ¿dónde elegir destino?</h2>
+<p>
+  Aproximadamente el 60-65% de los puestos ofertados están en Madrid (servicios centrales de ministerios). El resto se distribuye en delegaciones y subdelegaciones del Gobierno, oficinas de la Seguridad Social, de Hacienda o del SEPE en capitales de provincia.
+</p>
+<p>
+  <strong>Ventajas de Madrid:</strong>
+</p>
+<ul>
+  <li>Mayor variedad de puestos y organismos.</li>
+  <li>Más opciones de complemento específico alto.</li>
+  <li>Mejor acceso a formación, comisiones de servicio y movilidad.</li>
+  <li>Más posibilidades de teletrabajo (los servicios centrales suelen ser los primeros en implementarlo).</li>
+</ul>
+<p>
+  <strong>Ventajas de provincias:</strong>
+</p>
+<ul>
+  <li>Coste de vida significativamente menor (alquiler 40-60% más barato que Madrid).</li>
+  <li>Menor competencia por los puestos (tu posición en la lista rinde más).</li>
+  <li>Calidad de vida: menos desplazamientos, ciudades más manejables.</li>
+  <li>Organismos como la AEAT y la Seguridad Social tienen delegaciones provinciales con buenos complementos.</li>
+</ul>
+<p>
+  <strong>Clave:</strong> un Administrativo C1 con 1.400€ netos en una ciudad media (alquiler 500€) tiene más capacidad adquisitiva real que uno con 1.500€ en Madrid (alquiler 900-1.100€).
+</p>
+
+<h2>Teletrabajo en la AGE: la realidad en 2026</h2>
+<p>
+  El teletrabajo en la Administración General del Estado se regula por el <strong>Real Decreto 589/2024</strong> y los acuerdos específicos de cada organismo. La norma general permite hasta un <strong>60% de jornada en teletrabajo</strong> (3 días por semana), pero la aplicación varía mucho:
+</p>
+<ul>
+  <li><strong>AEAT:</strong> modelo más avanzado. Hasta 3 días/semana de teletrabajo para puestos administrativos, con herramientas digitales propias.</li>
+  <li><strong>Seguridad Social (TGSS, INSS):</strong> 2 días/semana en la mayoría de oficinas. Algunas unidades de gestión permiten 3 días.</li>
+  <li><strong>Ministerios con atención al público:</strong> teletrabajo más limitado (1-2 días) en puestos de ventanilla.</li>
+  <li><strong>Delegaciones y subdelegaciones:</strong> depende del delegado y la carga presencial del puesto.</li>
+</ul>
+<p>
+  <strong>Requisitos generales:</strong> haber superado el periodo de prácticas (6 meses), disponer de conexión a internet adecuada y que el puesto sea "teletrabajable" según la RPT. Los puestos de atención directa al ciudadano raramente permiten teletrabajo completo.
+</p>
+<p>
+  <strong>Consejo:</strong> si el teletrabajo es prioritario para ti, investiga el organismo concreto antes de incluirlo en tu lista de preferencias. Pregunta en foros de opositores o sindicatos por la política real (no la teórica) de cada unidad.
+</p>
+
+<h2>Progresión de carrera: del nivel 18 al 26</h2>
+<p>
+  Como Administrativo C1, entras en <strong>nivel 18</strong> de complemento de destino. El rango del grupo C1 es del nivel 15 al 22, pero con comisiones de servicio y concursos de traslados puedes alcanzar niveles superiores:
+</p>
+<ul>
+  <li><strong>Nivel 18 (entrada):</strong> complemento de destino ~478€/mes.</li>
+  <li><strong>Nivel 20 (2-4 años):</strong> ~540€/mes. Accesible mediante concurso interno o consolidación de grado.</li>
+  <li><strong>Nivel 22 (5-10 años):</strong> ~600€/mes. Puesto de jefatura de negociado o similar.</li>
+  <li><strong>Nivel 24-26:</strong> requiere promoción interna a A2 (con título universitario). Jefatura de sección o superior.</li>
+</ul>
+<p>
+  Cada salto de nivel supone entre 40 y 80€ mensuales adicionales de complemento de destino. Además, el complemento específico suele ser mayor en puestos de nivel superior. Un C1 en nivel 22 con buen complemento específico puede superar los <strong>1.700-1.800€ netos/mes</strong>.
+</p>
+
+<h2>Delegaciones provinciales: una opción infravalorada</h2>
+<p>
+  Las delegaciones y subdelegaciones del Gobierno en provincias son destinos que muchos opositores pasan por alto. Sin embargo, ofrecen ventajas específicas:
+</p>
+<ul>
+  <li><strong>Menor competencia:</strong> los opositores con mejores notas suelen elegir Madrid. En provincias, con una nota media puedes acceder a organismos con buenos complementos (AEAT, Seguridad Social).</li>
+  <li><strong>Estabilidad:</strong> las plantillas provinciales son más pequeñas y estables. Hay menos rotación y más previsibilidad.</li>
+  <li><strong>Conciliación:</strong> ciudades más pequeñas permiten cercanía al trabajo, menos transporte y más tiempo real de vida.</li>
+  <li><strong>Movilidad futura:</strong> una vez consolidado el puesto (2 años), puedes solicitar traslado a Madrid o a otro organismo mediante concurso de méritos. Partir desde provincias no te cierra puertas.</li>
+</ul>
+<p>
+  <strong>Organismos con buena red provincial:</strong> AEAT (delegaciones en todas las provincias), Seguridad Social (TGSS e INSS), SEPE, Delegaciones del Gobierno, Confederaciones Hidrográficas, Demarcaciones de Costas.
+</p>
+
+<h2>Errores comunes al elegir destino</h2>
+<p>
+  Los errores más frecuentes que cometen los nuevos administrativos al elegir destino:
+</p>
+<ul>
+  <li><strong>Elegir solo por sueldo:</strong> un complemento específico alto no compensa si el puesto tiene mala conciliación, nulo teletrabajo o un ambiente laboral tóxico.</li>
+  <li><strong>No investigar el organismo:</strong> cada unidad dentro de un ministerio es un mundo. Pide referencias concretas de la unidad, no del ministerio en general.</li>
+  <li><strong>Despreciar provincias por inercia:</strong> "todos quieren Madrid" es un sesgo. Calcula tu poder adquisitivo real (sueldo menos alquiler) antes de decidir.</li>
+  <li><strong>No incluir suficientes opciones:</strong> con 50 preferencias disponibles, rellena las 50. Si te quedas sin opciones y te asignan un puesto residual, estarás 2 años atrapado hasta poder pedir traslado.</li>
+  <li><strong>Olvidar la comisión de servicios:</strong> tu primer destino no es definitivo. Tras 2 años puedes solicitar comisión de servicios a cualquier puesto vacante de tu nivel en toda España.</li>
+</ul>
+
+<h2>Checklist para elegir bien tu destino</h2>
+<p>
+  Antes de presentar tu lista de preferencias, responde estas preguntas:
+</p>
+<ul>
+  <li>¿Cuánto necesito cobrar para cubrir mis gastos en la ciudad elegida?</li>
+  <li>¿Es el teletrabajo un factor decisivo o un extra?</li>
+  <li>¿Estoy dispuesto/a a vivir en una provincia diferente a la mía durante al menos 2 años?</li>
+  <li>¿Quiero un puesto con proyección (jefatura, promoción a A2) o estabilidad máxima?</li>
+  <li>¿He investigado la unidad concreta (no solo el ministerio) donde voy a pedir destino?</li>
+</ul>
+
+<h2>Artículos relacionados</h2>
+<ul>
+  <li><a href="/blog/sueldo-administrativo-estado-c1-2026-nomina">Sueldo Administrativo C1 en 2026: nómina desglosada</a> — complementos, trienios y progresión salarial</li>
+  <li><a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">Diferencias entre Auxiliar (C2) y Administrativo (C1)</a> — plazas, sueldo, temario y examen</li>
+  <li><a href="/blog/administrativo-estado-c1-2026-plazas-temario-nota-corte">Administrativo del Estado C1 en 2026</a> — plazas, temario y nota de corte</li>
+  <li><a href="/blog/calendario-oposiciones-age-2026-fechas-auxiliar-administrativo">Calendario de oposiciones AGE 2026</a> — fechas clave de convocatoria y examen</li>
+</ul>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cómo se elige destino tras aprobar el Administrativo del Estado C1?', answer: 'Los aprobados eligen por orden de puntuación del examen. El Ministerio publica una relación de puestos vacantes y cada opositor presenta una lista de unas 50 preferencias ordenadas. El primero de la lista elige entre todos los puestos; el último se queda con lo que sobra. Tu nota determina directamente tu poder de elección.' },
+      { question: '¿Cuáles son los ministerios que mejor pagan al Administrativo C1?', answer: 'Los organismos con mayor complemento específico son la AEAT (Agencia Tributaria) con 550-650€/mes, la Seguridad Social (TGSS, INSS) con 500-600€, el Ministerio del Interior con 480-580€ y el SEPE con 450-550€. La diferencia entre el organismo mejor y peor pagado puede superar los 300€ netos al mes (más de 4.000€ anuales).' },
+      { question: '¿Se puede teletrabajar como Administrativo del Estado?', answer: 'Sí, desde el RD 589/2024 se permite hasta un 60% de jornada en teletrabajo (3 días/semana). La AEAT es el organismo más avanzado (hasta 3 días). La Seguridad Social y el SEPE suelen permitir 2 días. Los puestos de atención directa al público tienen teletrabajo más limitado. Requiere haber superado el periodo de prácticas (6 meses).' },
+      { question: '¿Es mejor elegir destino en Madrid o en provincias?', answer: 'Depende de tus prioridades. Madrid ofrece más variedad de puestos, complementos más altos y más teletrabajo, pero el coste de vida es mucho mayor (alquiler 900-1.100€). En provincias, con el mismo sueldo tienes más poder adquisitivo real, menos competencia por buenos puestos y mejor conciliación. Un C1 con 1.400€ en una ciudad media vive mejor que con 1.500€ en Madrid.' },
+      { question: '¿Se puede cambiar de destino después de elegir?', answer: 'Sí. Tras 2 años en el puesto puedes solicitar comisión de servicios a cualquier vacante de tu nivel en toda España, o participar en concursos de traslados. El primer destino no es definitivo: es tu punto de partida. Muchos funcionarios cambian de destino 2-3 veces en su carrera para mejorar sueldo, ubicación o teletrabajo.' },
+      { question: '¿Qué nivel de complemento de destino tiene un Administrativo C1?', answer: 'Entras en nivel 18 (complemento de destino ~478€/mes). Puedes ascender a nivel 20 (540€/mes) en 2-4 años mediante concurso interno, y a nivel 22 (600€/mes) en 5-10 años con puestos de jefatura de negociado. Para niveles 24-26 necesitas promoción interna a A2 (requiere título universitario).' },
+    ],
+  },
+  // ─── Post 43 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'ley-transparencia-buen-gobierno-administrativo-c1',
+    title: 'Ley de Transparencia y Buen Gobierno para el Administrativo del Estado (C1): artículos clave',
+    description:
+      'Guía completa de la Ley 19/2013, de 9 de diciembre, de transparencia, acceso a la información y buen gobierno: artículos clave, trampas de examen y estructura del Consejo de Transparencia para opositores C1.',
+    date: '2026-03-20',
+    dateModified: '2026-03-20',
+    keywords: [
+      'ley transparencia oposiciones c1',
+      'ley 19/2013 examen administrativo',
+      'buen gobierno oposiciones',
+      'transparencia articulos clave c1',
+      'consejo transparencia oposiciones',
+    ],
+    content: `
+<h2>¿Por qué la Ley 19/2013 es clave en el examen C1?</h2>
+<p>
+  La <strong>Ley 19/2013, de 9 de diciembre, de transparencia, acceso a la información pública
+  y buen gobierno</strong> es una de las normas más preguntadas en el Bloque I del temario de
+  Administrativo del Estado (C1). A diferencia del C2, donde apenas aparece, en el C1 pueden
+  dedicarle <strong>2-4 preguntas directas</strong> y varias más cruzadas con la Ley 39/2015
+  (procedimiento administrativo) y la Ley 40/2015 (sector público).
+</p>
+<p>
+  La ley se estructura en tres grandes pilares: <strong>publicidad activa</strong> (qué debe
+  publicar la Administración sin que nadie lo pida), <strong>derecho de acceso</strong> (qué
+  puede pedir el ciudadano y cómo) y <strong>buen gobierno</strong> (principios éticos y sanciones
+  para altos cargos). El examen explota las diferencias entre estos tres bloques, así que
+  dominarlos por separado es imprescindible.
+</p>
+<p>
+  En esta guía te desglosamos los artículos que más caen, las trampas clásicas del tribunal
+  y una tabla de referencia rápida para repasar antes del examen.
+</p>
+
+<h2>Estructura de la Ley 19/2013: los tres pilares</h2>
+<p>
+  La ley tiene <strong>40 artículos</strong> distribuidos en un título preliminar y tres títulos:
+</p>
+<ul>
+  <li><strong>Título I — Transparencia de la actividad pública</strong> (arts. 5-24): publicidad activa + derecho de acceso.</li>
+  <li><strong>Título II — Buen gobierno</strong> (arts. 25-32): principios éticos y de actuación, infracciones y sanciones.</li>
+  <li><strong>Título III — Consejo de Transparencia y Buen Gobierno</strong> (arts. 33-40): órgano de control independiente.</li>
+</ul>
+<p>
+  El <strong>Título Preliminar</strong> (arts. 1-4) define el objeto, ámbito subjetivo y otros
+  sujetos obligados. Ojo: el artículo 2 amplía la transparencia a partidos políticos, sindicatos,
+  organizaciones empresariales y entidades que reciban subvenciones. Es una pregunta recurrente.
+</p>
+
+<h2>Publicidad activa (arts. 5-11): lo que la Administración debe publicar</h2>
+<p>
+  La publicidad activa es la obligación de las Administraciones de publicar <strong>de oficio</strong>
+  (sin solicitud) información institucional, organizativa, de planificación, económica y estadística.
+  Los artículos clave son:
+</p>
+<ul>
+  <li><strong>Art. 5</strong> — Principios generales: la información debe ser <em>clara, estructurada
+  y entendible</em>. Se publicará en las sedes electrónicas o páginas web, preferiblemente en
+  <strong>formatos reutilizables</strong>.</li>
+  <li><strong>Art. 6</strong> — Información institucional y organizativa: funciones, normativa aplicable,
+  estructura organizativa, <em>responsables de los órganos</em> y su perfil.</li>
+  <li><strong>Art. 7</strong> — Información de relevancia jurídica: directrices, instrucciones, acuerdos,
+  circulares, respuestas a consultas, <em>memorias e informes de los anteproyectos de ley</em>.</li>
+  <li><strong>Art. 8</strong> — Información económica, presupuestaria y estadística: contratos (con
+  indicación del procedimiento), convenios, subvenciones, presupuestos, cuentas anuales, retribuciones
+  de altos cargos, declaraciones anuales de bienes, resoluciones de compatibilidad, información
+  estadística para valorar la calidad de los servicios.</li>
+  <li><strong>Art. 10</strong> — Portal de la Transparencia: plataforma centralizada del Gobierno
+  de España (<code>transparencia.gob.es</code>). Incluye la información de publicidad activa de la AGE
+  y acceso al derecho de acceso.</li>
+  <li><strong>Art. 11</strong> — Principios técnicos: accesibilidad, interoperabilidad, reutilización.</li>
+</ul>
+<p>
+  <strong>Trampa frecuente</strong>: el art. 6 obliga a publicar el <em>organigrama actualizado</em>,
+  pero <strong>no</strong> las retribuciones de todo el personal — solo las de <em>altos cargos</em>
+  (art. 8.1.f). El tribunal mezcla ambos artículos para confundir.
+</p>
+
+<h2>Derecho de acceso a la información pública (arts. 12-22)</h2>
+<p>
+  Cualquier persona (no solo ciudadanos españoles) puede ejercer el <strong>derecho de acceso</strong>
+  a la información pública. No es necesario motivar la solicitud, aunque si se motiva puede facilitar
+  la ponderación de límites. Los artículos más preguntados:
+</p>
+<ul>
+  <li><strong>Art. 12</strong> — Derecho de acceso: todas las personas tienen derecho. Se ejerce sin
+  necesidad de acreditar interés legítimo.</li>
+  <li><strong>Art. 13</strong> — Información pública: contenidos o documentos, <em>cualquiera que sea
+  su formato o soporte</em>, elaborados o adquiridos en el ejercicio de funciones públicas.</li>
+  <li><strong>Art. 14</strong> — Límites al derecho de acceso: seguridad nacional, defensa, relaciones
+  exteriores, seguridad pública, investigación de infracciones penales/administrativas, igualdad de
+  partes en procesos judiciales, funciones administrativas de vigilancia e inspección, intereses
+  económicos y comerciales, política económica y monetaria, secreto profesional, propiedad intelectual,
+  garantía de la confidencialidad en toma de decisiones, protección del medio ambiente.
+  <strong>OJO</strong>: estos límites son <em>tasados</em> (lista cerrada) y deben aplicarse de forma
+  <em>proporcionada y justificada</em>.</li>
+  <li><strong>Art. 15</strong> — Protección de datos personales: si la información contiene datos
+  especialmente protegidos (art. 9.2 LOPDGDD), se requiere consentimiento expreso <strong>y por
+  escrito</strong> del afectado, salvo que se hubiesen hecho manifiestamente públicos. Para datos
+  meramente identificativos relacionados con la organización del órgano, se concede el acceso.</li>
+  <li><strong>Art. 17</strong> — Solicitud de acceso: por cualquier medio que permita tener constancia
+  de la identidad del solicitante, la información solicitada, dirección de contacto (preferiblemente
+  electrónica) y modalidad de acceso preferida.</li>
+  <li><strong>Art. 20</strong> — Resolución: plazo máximo de <strong>un mes</strong> desde la recepción
+  de la solicitud por el órgano competente. Si no se resuelve, el <strong>silencio es negativo</strong>
+  (desestimatorio).</li>
+  <li><strong>Art. 24</strong> — Reclamación ante el Consejo de Transparencia: sustitutiva del recurso
+  de alzada (potestativo). Plazo: <strong>un mes</strong> desde la notificación de la resolución o
+  desde el silencio. El Consejo resuelve en <strong>tres meses</strong>.</li>
+</ul>
+<p>
+  <strong>Trampa frecuente</strong>: el silencio en derecho de acceso es <strong>negativo</strong>
+  (art. 20.4), a diferencia de la regla general de la Ley 39/2015 donde el silencio suele ser
+  positivo. El tribunal lo pregunta comparando ambas leyes.
+</p>
+
+<h2>Buen gobierno (arts. 25-32): principios y sanciones para altos cargos</h2>
+<p>
+  El Título II se aplica a los <strong>altos cargos</strong> de la AGE, CCAA y Entidades Locales,
+  así como a los de entidades del sector público. Distingue dos tipos de principios:
+</p>
+<ul>
+  <li><strong>Art. 26.2.a</strong> — Principios de actuación: transparencia en la gestión, dedicación
+  al servicio público, imparcialidad, no aceptación de regalos, austeridad, <em>accesibilidad</em>,
+  eficacia, promoción del entorno cultural y medioambiental, igualdad de trato.</li>
+  <li><strong>Art. 26.2.b</strong> — Principios éticos: actuar con integridad, objetividad, no
+  intervenir cuando hay conflicto de intereses, no aceptar trato de favor, declarar bienes y
+  derechos, ejercer los poderes para la finalidad prevista.</li>
+</ul>
+<p>
+  Las <strong>infracciones</strong> (arts. 28-29) se clasifican en disciplinarias (muy graves y graves,
+  derivadas del incumplimiento de la Ley 3/2015 de altos cargos), en materia de gestión
+  económico-presupuestaria (comprometer gastos sin crédito, incumplir la Ley de Estabilidad) y en
+  materia de conflicto de intereses. Las <strong>sanciones</strong> (art. 30) incluyen destitución,
+  no percepción de pensión indemnizatoria, inhabilitación de 5-10 años, y publicación en el BOE.
+</p>
+<p>
+  <strong>Trampa frecuente</strong>: los principios de buen gobierno se aplican a <strong>altos
+  cargos</strong>, no a todos los funcionarios. El régimen disciplinario general de los funcionarios
+  está en el <a href="/blog/trebep-oposiciones-guia-estatuto-empleado-publico">TREBEP</a>
+  (arts. 93-98). El tribunal mezcla ambos ámbitos.
+</p>
+
+<h2>El Consejo de Transparencia y Buen Gobierno (arts. 33-40)</h2>
+<p>
+  El <strong>Consejo de Transparencia y Buen Gobierno</strong> (CTBG) es un organismo público
+  independiente, con personalidad jurídica propia, adscrito al <strong>Ministerio de Hacienda</strong>
+  (art. 33). Sus funciones principales:
+</p>
+<ul>
+  <li>Resolver las reclamaciones de acceso a la información (art. 24).</li>
+  <li>Adoptar recomendaciones para mejorar la transparencia.</li>
+  <li>Asesorar en materia de transparencia y buen gobierno.</li>
+  <li>Evaluar el grado de cumplimiento de la ley.</li>
+  <li>Elaborar una <strong>memoria anual</strong> que presenta a las Cortes Generales (art. 40).</li>
+</ul>
+<p>
+  El CTBG está compuesto por una <strong>Comisión</strong> (órgano colegiado) y un
+  <strong>Presidente</strong> (nombrado por un período de <strong>5 años no renovable</strong>,
+  por Real Decreto a propuesta del Ministerio de Hacienda, con ratificación por mayoría absoluta
+  de la Comisión competente del Congreso — art. 37). El Presidente solo puede ser cesado por causas
+  tasadas (renuncia, incapacidad, condena, incumplimiento grave).
+</p>
+<p>
+  <strong>Trampa frecuente</strong>: el mandato del Presidente del CTBG es de <strong>5 años no
+  renovables</strong>, no 4 ni 6. Y es ratificado por el <strong>Congreso</strong>, no por el Senado.
+</p>
+
+<h2>Tabla de artículos clave por sección</h2>
+<table>
+  <thead>
+    <tr><th>Sección</th><th>Artículos</th><th>Contenido clave</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Ámbito subjetivo</td><td>2-4</td><td>Sujetos obligados (incluye partidos, sindicatos, entidades subvencionadas)</td></tr>
+    <tr><td>Publicidad activa</td><td>5-11</td><td>Información institucional, jurídica, económica. Portal de Transparencia (art. 10)</td></tr>
+    <tr><td>Derecho de acceso</td><td>12-22</td><td>Titularidad universal, sin motivar. Límites tasados (art. 14). Silencio negativo (art. 20)</td></tr>
+    <tr><td>Reclamación CTBG</td><td>24</td><td>Sustitutiva de alzada. 1 mes para reclamar, 3 meses para resolver</td></tr>
+    <tr><td>Buen gobierno — Principios</td><td>25-26</td><td>Éticos y de actuación. Solo altos cargos</td></tr>
+    <tr><td>Buen gobierno — Infracciones</td><td>27-29</td><td>Disciplinarias, económico-presupuestarias, conflicto de intereses</td></tr>
+    <tr><td>Buen gobierno — Sanciones</td><td>30</td><td>Destitución, inhabilitación 5-10 años, publicación BOE</td></tr>
+    <tr><td>Consejo de Transparencia</td><td>33-40</td><td>Organismo independiente. Presidente: 5 años no renovable, ratificación Congreso</td></tr>
+  </tbody>
+</table>
+
+<h2>Las 6 trampas más comunes del tribunal en la Ley 19/2013</h2>
+<ol>
+  <li><strong>Silencio negativo vs. positivo</strong>: en derecho de acceso, si la Administración no contesta en 1 mes, la solicitud se entiende <em>desestimada</em>. El tribunal lo compara con la Ley 39/2015.</li>
+  <li><strong>Motivación de la solicitud</strong>: NO es obligatorio motivar la solicitud de acceso (art. 17). Si el examen dice que "es requisito motivar", es falso.</li>
+  <li><strong>Límites del art. 14</strong>: la lista es <em>cerrada</em> (no se pueden inventar límites). Pero el tribunal añade opciones que suenan plausibles (p.ej., "secreto bancario" no está en el art. 14).</li>
+  <li><strong>Publicidad activa vs. derecho de acceso</strong>: publicidad activa es de oficio (sin solicitud); derecho de acceso requiere solicitud. El tribunal las mezcla.</li>
+  <li><strong>Buen gobierno = solo altos cargos</strong>: las sanciones del Título II no se aplican a funcionarios de carrera. El régimen disciplinario general está en el TREBEP.</li>
+  <li><strong>Presidente CTBG</strong>: 5 años no renovable, ratificación por el Congreso (mayoría absoluta de comisión competente), no por el Senado ni por el Gobierno.</li>
+</ol>
+
+<h2>Cómo estudiar la Ley 19/2013 para el examen C1</h2>
+<p>
+  La Ley de Transparencia tiene la ventaja de ser <strong>corta</strong> (40 artículos) y
+  <strong>estructurada</strong>. Te recomendamos:
+</p>
+<ol>
+  <li><strong>Estudia por bloques</strong>: publicidad activa, derecho de acceso y buen gobierno son
+  tres mundos distintos. No los mezcles.</li>
+  <li><strong>Memoriza los plazos</strong>: 1 mes para resolver acceso, 1 mes para reclamar al CTBG,
+  3 meses para que el CTBG resuelva, 5 años del mandato del Presidente.</li>
+  <li><strong>Practica con tests cruzados</strong>: las preguntas más difíciles cruzan esta ley con la
+  39/2015 y la 40/2015. Practica comparando silencio administrativo, recursos y plazos.</li>
+  <li><strong>Usa la tabla de artículos</strong> como chuleta de repaso rápido antes del examen.</li>
+</ol>
+<p>
+  Si ya tienes el <a href="/blog/temario-administrativo-estado-c1-45-temas-como-priorizar">temario
+  priorizado por bloques</a>, la Ley de Transparencia debería estar en tu top 10 de temas por
+  frecuencia de aparición.
+</p>
+
+<p>
+  <strong><a href="/register">Empieza gratis en OpoRuta</a></strong> y practica con tests específicos
+  de la Ley 19/2013, simulacros de convocatorias reales y análisis detallados de tus errores.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿La Ley de Transparencia entra en el examen de Auxiliar Administrativo (C2)?', answer: 'No de forma directa. La Ley 19/2013 es contenido específico del temario de Administrativo del Estado (C1), dentro del Bloque I. En el C2 puede aparecer alguna referencia tangencial, pero no se exige su estudio detallado.' },
+      { question: '¿Cuántos artículos tiene la Ley 19/2013?', answer: 'La ley tiene 40 artículos distribuidos en un título preliminar y tres títulos: Título I (Transparencia, arts. 5-24), Título II (Buen gobierno, arts. 25-32) y Título III (Consejo de Transparencia, arts. 33-40).' },
+      { question: '¿Qué es el silencio negativo en el derecho de acceso?', answer: 'Si la Administración no resuelve una solicitud de acceso a la información en el plazo de un mes, se entiende desestimada (silencio negativo, art. 20.4). Esto es una excepción a la regla general de la Ley 39/2015, donde el silencio suele ser positivo.' },
+      { question: '¿Es obligatorio motivar la solicitud de acceso a la información?', answer: 'No. El artículo 17 de la Ley 19/2013 establece que no es necesario motivar la solicitud de acceso. Cualquier persona puede solicitar información sin justificar su interés. Sin embargo, si se motiva, puede ayudar a la ponderación cuando hay límites aplicables (art. 14).' },
+      { question: '¿Qué es el Portal de Transparencia?', answer: 'Es la plataforma centralizada del Gobierno de España (transparencia.gob.es), regulada en el artículo 10 de la Ley 19/2013. Concentra la información de publicidad activa de la AGE y permite ejercer el derecho de acceso a la información pública de forma electrónica.' },
+      { question: '¿Quién es el Presidente del Consejo de Transparencia y cómo se nombra?', answer: 'El Presidente del CTBG se nombra por Real Decreto a propuesta del Ministerio de Hacienda, previa ratificación por mayoría absoluta de la comisión competente del Congreso de los Diputados. Su mandato es de 5 años no renovable y solo puede ser cesado por causas tasadas (art. 37).' },
+    ],
+  },
+  // ─── Post 44 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'trebep-gestion-personal-administrativo-estado-c1',
+    title: 'TREBEP y gestión de personal para Administrativo del Estado (C1): Bloque IV completo',
+    description:
+      'Guía completa del Bloque IV de Administrativo del Estado (C1): TREBEP, clases de personal, situaciones administrativas, régimen disciplinario, carrera profesional, incompatibilidades y MUFACE. Artículos clave y trampas de examen.',
+    date: '2026-03-20',
+    dateModified: '2026-03-20',
+    keywords: [
+      'TREBEP oposiciones administrativo c1',
+      'gestion personal administrativo estado',
+      'bloque IV administrativo c1',
+      'situaciones administrativas funcionarios',
+      'regimen disciplinario TREBEP',
+    ],
+    content: `
+<h2>Bloque IV: el más extenso del temario C1</h2>
+<p>
+  El <strong>Bloque IV (Gestión de personal)</strong> del temario de Administrativo del Estado (C1)
+  comprende <strong>9 temas</strong>, lo que lo convierte en el bloque más largo del programa de
+  45 temas. Representa aproximadamente un <strong>15% del examen</strong> (unas 15 preguntas de 100),
+  con el <strong>Real Decreto Legislativo 5/2015</strong> (TREBEP) como eje vertebrador.
+</p>
+<p>
+  A diferencia del temario C2 donde el TREBEP se estudia de forma resumida, en el C1 se exige un
+  conocimiento <strong>detallado artículo por artículo</strong>: clases de personal, adquisición y
+  pérdida de la condición de funcionario, situaciones administrativas, derechos retributivos, carrera
+  profesional, provisión de puestos, régimen disciplinario, incompatibilidades (Ley 53/1984) y MUFACE.
+</p>
+<p>
+  Esta guía te ofrece un mapa completo del bloque con los artículos clave, las trampas más frecuentes
+  del tribunal y una tabla de referencia rápida.
+</p>
+
+<h2>Clases de personal al servicio de las Administraciones Públicas (arts. 8-12)</h2>
+<p>
+  El TREBEP distingue cuatro clases de <strong>empleados públicos</strong> (art. 8):
+</p>
+<ul>
+  <li><strong>Funcionarios de carrera</strong> (art. 9): vinculados por relación estatutaria, nombrados
+  legalmente para el desempeño de servicios profesionales retribuidos de carácter permanente.</li>
+  <li><strong>Funcionarios interinos</strong> (art. 10): nombrados por razones expresamente justificadas
+  de necesidad y urgencia para el desempeño de funciones de funcionarios de carrera. Causas tasadas:
+  plazas vacantes, sustitución transitoria, exceso o acumulación de tareas, ejecución de programas
+  temporales. <strong>Trampa</strong>: el interino NO tiene derecho a carrera profesional ni a
+  promoción interna.</li>
+  <li><strong>Personal laboral</strong> (art. 11): contratado por la Administración con contrato
+  de trabajo (legislación laboral). Puede ser fijo, por tiempo indefinido o temporal.</li>
+  <li><strong>Personal eventual</strong> (art. 12): funciones de confianza o asesoramiento especial.
+  Su nombramiento y cese son <strong>libres</strong>. Cesa automáticamente cuando cesa la autoridad
+  que lo nombró. <strong>NO puede constituir mérito</strong> para acceso a la función pública.</li>
+</ul>
+<p>
+  <strong>Trampa clásica</strong>: confundir <em>funcionario interino</em> con <em>personal
+  eventual</em>. El interino ocupa una plaza de funcionario de carrera por causas justificadas;
+  el eventual desempeña funciones de confianza y su cese es libre. El tribunal pregunta
+  habitualmente qué pasa cuando cesa la autoridad que nombró al eventual (respuesta: cesa
+  automáticamente, art. 12.3).
+</p>
+
+<h2>Adquisición y pérdida de la condición de funcionario (arts. 56-68)</h2>
+<p>
+  La <strong>adquisición</strong> de la condición de funcionario de carrera requiere (art. 62):
+</p>
+<ol>
+  <li>Superar el proceso selectivo.</li>
+  <li>Nombramiento por el órgano competente (publicación en BOE).</li>
+  <li>Acatamiento de la Constitución y del resto del ordenamiento jurídico.</li>
+  <li>Toma de posesión en el plazo establecido.</li>
+</ol>
+<p>
+  Los <strong>requisitos generales</strong> para participar en procesos selectivos (art. 56) incluyen:
+  nacionalidad española (con excepciones para nacionales UE), edad mínima de 16 años (sin límite
+  máximo salvo jubilación forzosa), titulación exigida, capacidad funcional y no haber sido separado
+  del servicio.
+</p>
+<p>
+  La <strong>pérdida</strong> de la condición (arts. 63-68) se produce por: renuncia, pérdida de
+  nacionalidad, jubilación (forzosa a los 65 años, con posibilidad de prórroga hasta los 70),
+  sanción disciplinaria de separación del servicio y pena principal o accesoria de inhabilitación
+  absoluta o especial.
+</p>
+<p>
+  <strong>Trampa frecuente</strong>: la jubilación forzosa es a los <strong>65 años</strong> (art. 67),
+  no a los 67 (que es la edad de jubilación en el Régimen General de la Seguridad Social). MUFACE
+  tiene su propio régimen.
+</p>
+
+<h2>Situaciones administrativas (arts. 85-92)</h2>
+<p>
+  Las situaciones administrativas son uno de los temas <strong>más preguntados</strong> del Bloque IV.
+  El TREBEP regula seis situaciones:
+</p>
+<ul>
+  <li><strong>Servicio activo</strong> (art. 86): el funcionario desempeña su puesto habitual o uno
+  de igual nivel. Goza de todos los derechos.</li>
+  <li><strong>Servicios especiales</strong> (art. 87): cuando es designado miembro del Gobierno,
+  elegido para cargo representativo, nombrado en organismos internacionales, etc. Se le reserva el
+  puesto de origen. Computa a efectos de trienios y promoción.</li>
+  <li><strong>Servicio en otras AAPP</strong> (art. 88): cuando obtiene puesto en otra Administración
+  por transferencia o concurso.</li>
+  <li><strong>Excedencia voluntaria por interés particular</strong> (art. 89.2): requiere haber
+  prestado servicios efectivos durante al menos <strong>5 años</strong> inmediatamente anteriores.
+  No devenga retribuciones ni computa antigüedad. Duración mínima de <strong>2 años</strong>.</li>
+  <li><strong>Excedencia voluntaria por agrupación familiar</strong> (art. 89.3): cuando el cónyuge
+  reside en otra localidad por obtener puesto de trabajo. No requiere periodo mínimo de servicios.
+  Duración mínima: 2 años, máxima: 15 años.</li>
+  <li><strong>Excedencia por cuidado de familiares</strong> (art. 89.4): para cuidado de hijos
+  (máximo <strong>3 años</strong> desde nacimiento/adopción) o de familiar hasta 2.o grado
+  (máximo <strong>3 años</strong>). Reserva de puesto los 2 primeros años; después, puesto en
+  la misma localidad e igual retribución.</li>
+  <li><strong>Excedencia por razón de violencia de género/terrorismo</strong> (art. 89.5): sin
+  necesidad de haber prestado tiempo mínimo. Los 6 primeros meses: reserva de puesto. Computa a
+  efectos de trienios, carrera y derechos de la Seguridad Social.</li>
+  <li><strong>Suspensión de funciones</strong> (art. 90): provisional (durante procedimiento
+  disciplinario o penal, máximo 6 meses) o firme (como consecuencia de sanción o sentencia).</li>
+</ul>
+<p>
+  <strong>Trampa clásica</strong>: confundir <em>excedencia voluntaria por interés particular</em>
+  (5 años de servicio previo, no reserva de puesto) con <em>excedencia por cuidado de familiares</em>
+  (no requiere servicio previo, sí reserva de puesto los 2 primeros años). El tribunal pregunta
+  los requisitos de una poniendo las condiciones de la otra.
+</p>
+
+<h2>Derechos y deberes de los funcionarios (arts. 14-15, 52-54)</h2>
+<p>
+  Los <strong>derechos individuales</strong> (art. 14) incluyen: inamovilidad en la condición de
+  funcionario, desempeño de funciones del puesto, progresión en la carrera, retribuciones,
+  vacaciones (mínimo <strong>22 días hábiles</strong>), formación continua, respeto a la intimidad,
+  libertad de expresión, no discriminación, conciliación, jubilación, asistencia social y libre
+  asociación profesional.
+</p>
+<p>
+  Los <strong>derechos colectivos</strong> (art. 15) incluyen: libertad sindical, negociación
+  colectiva, huelga (con mantenimiento de servicios esenciales) y reunión.
+</p>
+<p>
+  El <strong>código de conducta</strong> (arts. 52-54) establece principios éticos (art. 53) y
+  principios de conducta (art. 54). Los principios éticos incluyen: objetividad, integridad,
+  neutralidad, responsabilidad, imparcialidad, confidencialidad, dedicación, transparencia,
+  ejemplaridad, austeridad, accesibilidad y eficacia. Los principios de conducta incluyen: tratar
+  con atención y respeto a los ciudadanos, desempeñar las tareas con diligencia, cumplir la jornada,
+  mantener actualizada su formación y observar las normas de seguridad y salud laboral.
+</p>
+
+<h2>Régimen disciplinario (arts. 93-98)</h2>
+<p>
+  El régimen disciplinario del TREBEP clasifica las <strong>faltas</strong> en muy graves,
+  graves y leves:
+</p>
+<ul>
+  <li><strong>Faltas muy graves</strong> (art. 95.2): incumplimiento del deber de fidelidad a la
+  Constitución, discriminación, abandono de servicio, adopción de acuerdos manifiestamente ilegales,
+  publicación o uso indebido de documentación, negligencia grave en custodia de secretos, notorio
+  incumplimiento de funciones, desobediencia abierta a órdenes, acoso laboral/sexual, y otras
+  previstas en ley.</li>
+  <li><strong>Faltas graves y leves</strong>: se regulan por ley de desarrollo (no directamente
+  en el TREBEP).</li>
+</ul>
+<p>
+  Las <strong>sanciones</strong> (art. 96) incluyen: separación del servicio (solo para faltas muy
+  graves, irrevocable), despido disciplinario (para laborales), suspensión firme de funciones
+  (máximo <strong>6 años</strong> para faltas muy graves, máximo <strong>3 años</strong> para graves),
+  traslado forzoso y apercibimiento (para leves).
+</p>
+<p>
+  <strong>Prescripción</strong> (art. 97): las faltas muy graves prescriben a los <strong>3 años</strong>,
+  las graves a los <strong>2 años</strong> y las leves a los <strong>6 meses</strong>. Las sanciones:
+  muy graves 3 años, graves 2 años, leves 1 año. <strong>Trampa</strong>: la prescripción de sanciones
+  leves (1 año) no coincide con la de faltas leves (6 meses).
+</p>
+
+<h2>Carrera profesional y provisión de puestos (arts. 16-20, 78-84)</h2>
+<p>
+  El TREBEP regula cuatro modalidades de <strong>carrera profesional</strong> (art. 16):
+</p>
+<ul>
+  <li><strong>Carrera horizontal</strong>: progresión de grado, categoría o escalón sin cambio de
+  puesto de trabajo. Basada en competencias, formación y antigüedad.</li>
+  <li><strong>Carrera vertical</strong>: ascenso en la estructura de puestos mediante provisión
+  (concurso o libre designación).</li>
+  <li><strong>Promoción interna vertical</strong>: ascenso al cuerpo inmediato superior (ej. C2 a C1).</li>
+  <li><strong>Promoción interna horizontal</strong>: acceso a cuerpos del mismo subgrupo.</li>
+</ul>
+<p>
+  La <strong>provisión de puestos</strong> (arts. 78-84) se realiza por dos procedimientos:
+</p>
+<ul>
+  <li><strong>Concurso</strong> (art. 79): procedimiento <em>normal</em> de provisión. Valora méritos
+  (antigüedad, formación, grado personal). Es la regla general.</li>
+  <li><strong>Libre designación</strong> (art. 80): para puestos de especial responsabilidad
+  y confianza. Convocatoria pública, pero la resolución es discrecional. El funcionario puede ser
+  cesado libremente.</li>
+</ul>
+<p>
+  <strong>Trampa frecuente</strong>: el concurso es el procedimiento <em>normal</em> (regla general)
+  y la libre designación es <em>excepcional</em>. El tribunal invierte los términos.
+</p>
+
+<h2>Incompatibilidades (Ley 53/1984) y MUFACE</h2>
+<p>
+  La <strong>Ley 53/1984, de 26 de diciembre, de Incompatibilidades</strong> establece el principio
+  general de <strong>dedicación a un solo puesto</strong> en el sector público, con excepciones
+  tasadas. Los puntos más preguntados:
+</p>
+<ul>
+  <li>El personal al servicio de las AAPP no podrá compatibilizar sus actividades con el desempeño
+  de un <strong>segundo puesto público</strong>, salvo excepciones (docencia universitaria,
+  sanitarios en determinados supuestos).</li>
+  <li>Las actividades <strong>privadas</strong> requieren autorización de compatibilidad y no pueden
+  estar relacionadas directamente con las funciones del puesto público.</li>
+  <li>La <strong>pertenencia a consejos de administración</strong> de empresas privadas es
+  incompatible (art. 12).</li>
+  <li>Quedan excepcionadas: producción literaria, artística, científica; participación ocasional
+  en congresos; administración del patrimonio personal.</li>
+</ul>
+<p>
+  <strong>MUFACE</strong> (Mutualidad General de Funcionarios Civiles del Estado) proporciona
+  asistencia sanitaria a los funcionarios de la AGE. Los puntos clave para el examen: MUFACE ofrece
+  la opción de elegir entre <strong>sanidad pública (INSS)</strong> y <strong>entidades de seguro
+  privadas</strong>; la elección se realiza en enero de cada año; los funcionarios interinos con
+  nombramiento superior a un año también pueden acogerse; y la jubilación forzosa en Clases Pasivas
+  es a los <strong>65 años</strong> (no 67).
+</p>
+
+<h2>Tabla de artículos clave del Bloque IV</h2>
+<table>
+  <thead>
+    <tr><th>Tema</th><th>Norma</th><th>Artículos</th><th>Contenido clave</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Clases de personal</td><td>TREBEP</td><td>8-12</td><td>Funcionario carrera, interino, laboral, eventual</td></tr>
+    <tr><td>Derechos individuales</td><td>TREBEP</td><td>14</td><td>Inamovilidad, retribuciones, 22 días vacaciones</td></tr>
+    <tr><td>Derechos colectivos</td><td>TREBEP</td><td>15</td><td>Sindicación, negociación, huelga, reunión</td></tr>
+    <tr><td>Carrera profesional</td><td>TREBEP</td><td>16-19</td><td>Horizontal, vertical, promoción interna</td></tr>
+    <tr><td>Código de conducta</td><td>TREBEP</td><td>52-54</td><td>Principios éticos y de conducta</td></tr>
+    <tr><td>Acceso función pública</td><td>TREBEP</td><td>56-62</td><td>Requisitos, procesos selectivos, adquisición condición</td></tr>
+    <tr><td>Pérdida condición</td><td>TREBEP</td><td>63-68</td><td>Renuncia, jubilación 65 años, separación servicio</td></tr>
+    <tr><td>Provisión puestos</td><td>TREBEP</td><td>78-84</td><td>Concurso (normal) vs. libre designación (excepcional)</td></tr>
+    <tr><td>Situaciones administrativas</td><td>TREBEP</td><td>85-92</td><td>Activo, especiales, excedencias, suspensión</td></tr>
+    <tr><td>Régimen disciplinario</td><td>TREBEP</td><td>93-98</td><td>Faltas, sanciones, prescripción (3/2/0,5 años)</td></tr>
+    <tr><td>Incompatibilidades</td><td>Ley 53/1984</td><td>—</td><td>Un solo puesto público, actividades privadas autorizadas</td></tr>
+    <tr><td>MUFACE</td><td>RDL 4/2000</td><td>—</td><td>Sanidad pública o privada, elección anual enero</td></tr>
+  </tbody>
+</table>
+
+<h2>Estrategia de estudio para el Bloque IV</h2>
+<p>
+  Con 9 temas y un 15% del examen, el Bloque IV exige una estrategia eficiente:
+</p>
+<ol>
+  <li><strong>Prioriza situaciones administrativas y régimen disciplinario</strong>: son los temas
+  con más preguntas directas. Memoriza plazos de prescripción y requisitos de cada excedencia.</li>
+  <li><strong>Domina las clases de personal</strong>: interino vs. eventual es una pregunta casi
+  segura. Aprende los matices del art. 10 (causas de interinidad) y del art. 12 (cese automático
+  del eventual).</li>
+  <li><strong>No subestimes incompatibilidades</strong>: la Ley 53/1984 suele caer con 1-2 preguntas
+  sobre excepciones (docencia, patrimonio personal, producción literaria).</li>
+  <li><strong>Usa tablas comparativas</strong>: excedencia voluntaria vs. por cuidado de familiares;
+  concurso vs. libre designación; faltas muy graves vs. graves.</li>
+  <li><strong>Practica con tests cruzados</strong>: el tribunal cruza el TREBEP con la Ley 39/2015
+  (interesados, plazos) y con la Ley de Transparencia (principios de actuación vs. código de
+  conducta).</li>
+</ol>
+<p>
+  Si necesitas priorizar los 45 temas del temario, consulta nuestra
+  <a href="/blog/temario-administrativo-estado-c1-45-temas-como-priorizar">guía de priorización
+  por bloques</a>. Para una visión general del TREBEP más allá del C1, revisa la
+  <a href="/blog/trebep-oposiciones-guia-estatuto-empleado-publico">guía completa del TREBEP
+  para oposiciones</a>.
+</p>
+
+<p>
+  <strong><a href="/register">Empieza gratis en OpoRuta</a></strong> y practica con tests específicos
+  del Bloque IV, simulacros de convocatorias reales y análisis detallados de tus errores.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuántos temas tiene el Bloque IV de Administrativo del Estado C1?', answer: 'El Bloque IV (Gestión de recursos humanos) tiene 9 temas, lo que lo convierte en el bloque más extenso del temario de 45 temas. Representa aproximadamente un 15% del examen (unas 15 preguntas de 100 puntuables).' },
+      { question: '¿Cuál es la diferencia entre funcionario interino y personal eventual?', answer: 'El funcionario interino (art. 10 TREBEP) ocupa una plaza de funcionario de carrera por causas justificadas (vacante, sustitución, acumulación de tareas). El personal eventual (art. 12) desempeña funciones de confianza o asesoramiento especial, su nombramiento y cese son libres, y cesa automáticamente cuando cesa la autoridad que lo nombró.' },
+      { question: '¿Cuánto tiempo de servicio previo se necesita para la excedencia voluntaria por interés particular?', answer: 'Se requiere haber prestado servicios efectivos durante al menos 5 años inmediatamente anteriores a la solicitud (art. 89.2 TREBEP). La duración mínima de la excedencia es de 2 años continuados. Durante la excedencia no se devengan retribuciones ni computa antigüedad.' },
+      { question: '¿En cuánto tiempo prescriben las faltas disciplinarias de los funcionarios?', answer: 'Según el artículo 97 del TREBEP: las faltas muy graves prescriben a los 3 años, las graves a los 2 años y las leves a los 6 meses. Atención: la prescripción de las sanciones no coincide exactamente (leves: 1 año vs. faltas leves: 6 meses).' },
+      { question: '¿Qué es la provisión de puestos por concurso?', answer: 'El concurso (art. 79 TREBEP) es el procedimiento normal (regla general) de provisión de puestos de trabajo. Valora los méritos y capacidades de los candidatos: antigüedad, formación, grado personal consolidado. La libre designación (art. 80) es el procedimiento excepcional, reservado a puestos de especial responsabilidad y confianza.' },
+      { question: '¿A qué edad es la jubilación forzosa de los funcionarios?', answer: 'La jubilación forzosa es a los 65 años (art. 67 TREBEP), con posibilidad de prórroga hasta los 70 años en determinados supuestos. No debe confundirse con la edad de jubilación del Régimen General de la Seguridad Social (67 años). Los funcionarios de la AGE cotizan a MUFACE/Clases Pasivas, no al INSS.' },
     ],
   },
 ]

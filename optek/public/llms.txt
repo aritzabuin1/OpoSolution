@@ -31,6 +31,19 @@ Genera tests tipo test desde legislación española vigente (CE, LPAC, LRJSP, TR
 - [Plazas convocatoria 2026](https://oporuta.es/blog/plazas-auxiliar-administrativo-2026): 1.700 plazas de acceso libre
 - [Nota de corte última convocatoria](https://oporuta.es/blog/nota-corte-auxiliar-administrativo-estado): Puntuaciones mínimas y cómo se calcula
 
+## Guías destacadas — Administrativo del Estado (C1)
+
+- [Administrativo del Estado (C1) 2026: plazas, temario y nota de corte](https://oporuta.es/blog/administrativo-estado-c1-2026-plazas-temario-nota-corte): 2.512 plazas, 45 temas en 6 bloques, nota de corte 2024 = 47,33
+- [Temario C1: 45 temas en 6 bloques — cómo priorizar](https://oporuta.es/blog/temario-administrativo-estado-c1-45-temas-como-priorizar): Desglose completo por bloques con peso en el examen
+- [Supuesto práctico C1: estrategia y ejemplos](https://oporuta.es/blog/supuesto-practico-administrativo-estado-c1-estrategia): Cómo elegir caso, legislación imprescindible, plan de entrenamiento
+- [Nota de corte C1: cómo se calcula](https://oporuta.es/blog/nota-corte-administrativo-estado-c1-como-se-calcula): Datos reales 2024, proyección 2026 con 2.512 plazas
+- [Preparar C1 por libre: guía completa](https://oporuta.es/blog/preparar-oposiciones-administrativo-estado-c1-por-libre): Plan 4 fases, bloques prioritarios, errores comunes
+- [LCSP — Contratación pública para C1](https://oporuta.es/blog/contratacion-publica-lcsp-administrativo-estado-c1): Artículos clave, tipos de contrato, trampas del examen
+- [Gestión financiera y presupuestos C1](https://oporuta.es/blog/gestion-financiera-presupuestos-administrativo-estado-c1): Bloque V completo, fases ADOP, LGP
+- [Últimos 60 días para el C1: plan intensivo](https://oporuta.es/blog/ultimos-60-dias-administrativo-estado-c1-plan-estudio): Sprint de estudio semana a semana para el examen del 23 mayo
+- [Sueldo Administrativo C1 en 2026](https://oporuta.es/blog/sueldo-administrativo-estado-c1-2026-nomina): Nómina desglosada, complementos, trienios, mejores destinos
+- [Diferencias entre Auxiliar (C2) y Administrativo (C1)](https://oporuta.es/blog/diferencias-auxiliar-c2-administrativo-c1-estado): Requisitos, temario, sueldo, examen — comparativa completa
+
 ## Comparativas y análisis
 
 - [Mejores plataformas IA para oposiciones 2026](https://oporuta.es/blog/mejores-plataformas-ia-oposiciones-2026-comparativa): Comparativa real con precios de OpositaTest, OpoRuta, Toposiciones, Testualia y Opositor.ai
@@ -66,4 +79,4 @@ Genera tests tipo test desde legislación española vigente (CE, LPAC, LRJSP, TR
 
 ---
 
-*Última actualización: 2026-03-17*
+*Última actualización: 2026-03-20*

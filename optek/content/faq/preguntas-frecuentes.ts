@@ -109,6 +109,22 @@ export const faqSections: FaqSection[] = [
         question: '¿Merece la pena preparar C1 en vez de C2?',
         answer: 'Depende de tu perfil. Si tienes bachillerato y tiempo suficiente para 45 temas, C1 ofrece mejor sueldo y más proyección profesional. Si prefieres un temario más corto y una primera oportunidad más accesible, C2 es una buena puerta de entrada con posibilidad de promoción interna posterior. En OpoRuta puedes preparar ambas oposiciones con el Pack Doble (79,99€).',
       },
+      {
+        question: '¿Cuánto cobra un Administrativo del Estado (C1) al mes?',
+        answer: 'El sueldo bruto mensual de un Administrativo del Estado (C1) oscila entre 1.500 y 2.100€ con 14 pagas anuales. Incluye sueldo base (731,76€), complemento de destino nivel 18 (527,04€), complemento específico (variable, 300-600€ según ministerio) y productividad. Los destinos mejor pagados son SEPE, Interior y Hacienda. Con trienios (42,24€ cada 3 años), el sueldo aumenta progresivamente.',
+      },
+      {
+        question: '¿Cuándo es el examen de Administrativo del Estado (C1) 2026?',
+        answer: 'El examen está previsto para el 23 de mayo de 2026. IMPORTANTE: los exámenes de Administrativo (C1) y Auxiliar (C2) se celebran el mismo día y hora, por lo que solo puedes presentarte a uno. Consta de 70 preguntas test + 20 de supuesto práctico, con 100 minutos de duración total.',
+      },
+      {
+        question: '¿Se puede teletrabajar como Administrativo del Estado (C1)?',
+        answer: 'Sí. Los funcionarios de la AGE pueden teletrabajar hasta 3 días por semana (60% de la jornada), y hasta el 90% en casos especiales (discapacidad, cuidado de familiares). La disponibilidad varía según ministerio y puesto, pero la tendencia es creciente desde 2021. Es uno de los atractivos principales del puesto junto a la estabilidad y el horario.',
+      },
+      {
+        question: '¿Se puede aprobar el C1 preparando por libre en 2 meses?',
+        answer: 'Es difícil pero no imposible si ya tienes base de oposiciones (por ejemplo, si has preparado C2 antes). Los 45 temas comparten un 70-75% de contenido con C2. Con 3-4 horas diarias de estudio intenso, enfoque en los bloques de mayor peso (III y V) y práctica con simulacros reales, opositores con base previa han aprobado con 60-90 días de preparación intensiva.',
+      },
     ],
   },
   {

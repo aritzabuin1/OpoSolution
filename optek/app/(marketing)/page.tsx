@@ -786,6 +786,37 @@ export default async function LandingPage() {
               Ver todas las guías →
             </Link>
           </div>
+
+          {/* ── Administrativo del Estado (C1) ── */}
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Administrativo del Estado (C1)</p>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {([
+              'ultimos-60-dias-administrativo-estado-c1-plan-estudio',
+              'temario-administrativo-estado-c1-45-temas-como-priorizar',
+              'supuesto-practico-administrativo-estado-c1-estrategia',
+            ].map((slug) => blogPosts.find((p) => p.slug === slug)).filter((p): p is typeof blogPosts[0] => !!p)).map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
+                <Card className="h-full hover:border-primary/40 transition-colors">
+                  <CardContent className="pt-5 pb-5">
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                      {post.keywords.slice(0, 2).map((kw) => (
+                        <Badge key={kw} variant="secondary" className="text-[10px]">{kw}</Badge>
+                      ))}
+                    </div>
+                    <p className="text-sm font-medium leading-snug group-hover:text-primary transition-colors line-clamp-3">
+                      {post.title}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-2 line-clamp-2">
+                      {post.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+
+          {/* ── Auxiliar Administrativo (C2) ── */}
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3 mt-6">Auxiliar Administrativo (C2)</p>
           <div className="grid gap-4 sm:grid-cols-3">
             {([
               'mejores-plataformas-ia-oposiciones-2026-comparativa',
@@ -811,6 +842,7 @@ export default async function LandingPage() {
               </Link>
             ))}
           </div>
+
           <div className="mt-4 text-center sm:hidden">
             <Link href="/blog" className="text-sm text-primary hover:underline">
               Ver todas las guías →
