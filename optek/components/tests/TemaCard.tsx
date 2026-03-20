@@ -20,7 +20,7 @@
  *   - Al éxito redirige a /tests/[id]
  */
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Lock, Unlock, ChevronDown, BookOpen } from 'lucide-react'
 import { toast } from 'sonner'
@@ -75,6 +75,25 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, isFreeAllowed = t
 
   // Bloqueo síncrono — previene doble-click incluso antes del re-render
   const isGeneratingRef = useRef(false)
+  const generationStartRef = useRef<number>(0)
+
+  // Recovery: si el usuario cambia de app y vuelve, resetear si >60s generando
+  useEffect(() => {
+    function handleVisibilityChange() {
+      if (document.visibilityState === 'visible' && isGeneratingRef.current) {
+        const elapsed = Date.now() - generationStartRef.current
+        if (elapsed > 60_000) {
+          isGeneratingRef.current = false
+          setIsGenerating(false)
+          toast.info('Generación interrumpida', {
+            description: 'La generación tardó demasiado. Puedes intentarlo de nuevo.',
+          })
+        }
+      }
+    }
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange)
+  }, [])
 
   // Tema bloqueado: free user + tema no en lista FREE_TEMAS
   const isLocked = !hasPaidAccess && !isFreeAllowed
@@ -84,6 +103,7 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, isFreeAllowed = t
     // Doble protección: ref (síncrono) + state (async)
     if (isGeneratingRef.current) return
     isGeneratingRef.current = true
+    generationStartRef.current = Date.now()
     setIsGenerating(true)
 
     try {
@@ -122,8 +142,16 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, isFreeAllowed = t
 
       if (res.status === 409) {
         toast.warning('Ya tienes un test generándose', {
-          description: 'Espera unos segundos antes de volver a intentarlo.',
+          description: 'Reintentando en unos segundos...',
         })
+        // Auto-retry after the 30s server window expires
+        setTimeout(() => {
+          isGeneratingRef.current = false
+          setIsGenerating(false)
+          toast.info('Puedes volver a intentarlo', {
+            description: 'El bloqueo ha expirado.',
+          })
+        }, 15_000)
         return
       }
 

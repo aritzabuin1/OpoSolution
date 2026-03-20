@@ -136,6 +136,8 @@ export interface ClaudeCallOptions {
   oposicionId?: string
   /** Temperature for AI generation (0.0-1.0). Higher = more varied output */
   temperature?: number
+  /** Device type from User-Agent for analytics */
+  deviceType?: string
 }
 
 // ─── callClaude (Sonnet — correcciones) ───────────────────────────────────────
@@ -196,7 +198,7 @@ export async function callClaude(
     onSuccess()
 
     // DDIA Observability: INSERT no-bloqueante — fallo en log no rompe la request
-    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents, oposicionId })
+    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents, oposicionId, deviceType: options.deviceType })
 
     const content = response.content[0]
     if (content.type !== 'text') {
@@ -257,7 +259,7 @@ export async function callClaudeHaiku(
 
     log.info({ endpoint, tokensIn, tokensOut, cacheCreation, cacheRead, latencyMs, costCents, model }, 'Haiku call OK')
     onSuccess()
-    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents, oposicionId })
+    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents, oposicionId, deviceType: options.deviceType })
 
     const content = response.content[0]
     if (content.type !== 'text') {
@@ -459,6 +461,7 @@ async function logApiUsage(params: {
   tokensOut: number
   costCents: number
   oposicionId?: string
+  deviceType?: string
 }) {
   try {
     const supabase = await createServiceClient()
@@ -470,6 +473,7 @@ async function logApiUsage(params: {
       tokens_out: params.tokensOut,
       cost_estimated_cents: params.costCents,
       oposicion_id: params.oposicionId ?? null,
+      device_type: params.deviceType ?? 'desktop',
     })
     if (error) {
       logger.warn({ error: error.message, code: error.code, details: error.details }, 'api_usage_log INSERT failed (Supabase)')

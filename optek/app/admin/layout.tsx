@@ -20,43 +20,43 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   return (
     <div className="min-h-screen bg-muted/30">
       {/* Admin nav bar */}
-      <header className="border-b bg-background px-6 py-3 flex items-center justify-between">
+      <header className="border-b bg-background px-4 sm:px-6 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <div className="flex items-center gap-3">
           <Settings className="h-4 w-4 text-muted-foreground" />
           <span className="text-sm font-semibold">OpoRuta Admin</span>
         </div>
-        <nav className="flex items-center gap-4 text-sm" aria-label="Navegacion admin">
+        <nav className="flex items-center gap-3 sm:gap-4 text-sm overflow-x-auto" aria-label="Navegacion admin">
           <Link
             href="/admin/economics"
-            className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
+            className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
           >
-            <BarChart3 className="h-3.5 w-3.5" />
+            <BarChart3 className="h-3.5 w-3.5 shrink-0" />
             Economics
           </Link>
           <Link
             href="/admin/analytics"
-            className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
+            className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
           >
-            <LineChart className="h-3.5 w-3.5" />
+            <LineChart className="h-3.5 w-3.5 shrink-0" />
             Analytics
           </Link>
           <Link
             href="/admin/infrastructure"
-            className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
+            className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
           >
-            <Server className="h-3.5 w-3.5" />
-            Infrastructure
+            <Server className="h-3.5 w-3.5 shrink-0" />
+            Infra
           </Link>
           <Link
             href="/dashboard"
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
           >
             ← App
           </Link>
         </nav>
       </header>
 
-      <main className="max-w-5xl mx-auto p-6" aria-label="Contenido admin">
+      <main className="max-w-5xl mx-auto p-4 sm:p-6" aria-label="Contenido admin">
         {children}
       </main>
     </div>

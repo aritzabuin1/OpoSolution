@@ -72,6 +72,7 @@ export interface GenerateTestParams {
   userId: string
   requestId?: string
   oposicionId?: string
+  deviceType?: string
 }
 
 // ─── generateTest ─────────────────────────────────────────────────────────────
@@ -84,7 +85,7 @@ export interface GenerateTestParams {
  *         no se alcanza ninguna pregunta verificada
  */
 export async function generateTest(params: GenerateTestParams): Promise<TestGenerado> {
-  const { temaId, numPreguntas, dificultad, userId, requestId, oposicionId } = params
+  const { temaId, numPreguntas, dificultad, userId, requestId, oposicionId, deviceType } = params
   const log = requestId ? logger.child({ requestId }) : logger
   const start = Date.now()
 
@@ -153,6 +154,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
         requestId,
         oposicionId,
         temperature: 0.5,
+        deviceType,
       }
     )
     // Keep all questions — overgeneration is intentional

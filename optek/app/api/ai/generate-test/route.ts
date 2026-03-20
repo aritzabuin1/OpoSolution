@@ -7,6 +7,7 @@ import { generatePsicotecnicos } from '@/lib/psicotecnicos/index'
 import { withTimeout, TimeoutError } from '@/lib/utils/timeout'
 import { logger } from '@/lib/logger'
 import { FREE_LIMITS, checkPaidAccess, checkIsAdmin, getOposicionFromTema, getOposicionFromProfile, getFreeTemas } from '@/lib/freemium'
+import { detectDeviceType } from '@/lib/utils/device-detection'
 import type { Json } from '@/types/database'
 import type { Pregunta } from '@/types/ai'
 
@@ -377,6 +378,7 @@ export async function POST(request: NextRequest) {
         userId: user.id,
         requestId,
         oposicionId,
+        deviceType: detectDeviceType(request.headers.get('user-agent')),
       }),
       GENERATE_TIMEOUT_MS
     )

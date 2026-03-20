@@ -318,7 +318,7 @@ export default async function ResultadosPage({ params }: Props) {
       )}
 
       {/* Estadísticas */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-2 sm:gap-4">
         <Card>
           <CardContent className="pt-4 pb-4 flex flex-col items-center gap-1">
             <CheckCircle2 className="h-5 w-5 text-green-500" />
@@ -403,22 +403,24 @@ export default async function ResultadosPage({ params }: Props) {
               const aniosCrossRef = crossRefAnios.get(temaId) ?? []
               return (
                 <div key={titulo}>
-                  <div className="flex items-center gap-3">
-                    <span className="w-36 text-xs text-muted-foreground truncate shrink-0" title={titulo}>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                    <span className="w-full sm:w-36 text-xs text-muted-foreground truncate shrink-0" title={titulo}>
                       {titulo}
                     </span>
-                    <div className="flex-1 h-2 rounded-full bg-muted overflow-hidden">
-                      <div
-                        className={`h-2 rounded-full transition-all ${barColor}`}
-                        style={{ width: `${pct}%` }}
-                      />
+                    <div className="flex items-center gap-2 w-full sm:flex-1">
+                      <div className="flex-1 h-2 rounded-full bg-muted overflow-hidden">
+                        <div
+                          className={`h-2 rounded-full transition-all ${barColor}`}
+                          style={{ width: `${pct}%` }}
+                        />
+                      </div>
+                      <span className="w-20 sm:w-24 text-xs text-right text-muted-foreground tabular-nums shrink-0">
+                        {aciertos}/{total} ({pct}%)
+                      </span>
                     </div>
-                    <span className="w-24 text-xs text-right text-muted-foreground tabular-nums shrink-0">
-                      {aciertos}/{total} ({pct}%)
-                    </span>
                   </div>
                   {aniosCrossRef.length > 0 && (
-                    <p className="text-[10px] text-muted-foreground/70 mt-1 pl-[calc(9rem+0.75rem)]">
+                    <p className="text-[10px] text-muted-foreground/70 mt-1 sm:pl-[calc(9rem+0.75rem)]">
                       Apareció en: {aniosCrossRef.join(', ')}
                     </p>
                   )}

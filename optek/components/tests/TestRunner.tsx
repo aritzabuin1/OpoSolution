@@ -327,7 +327,7 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
       </div>
 
       {/* Grid de navegación por número */}
-      <div className="flex flex-wrap gap-1.5">
+      <div className="flex flex-wrap gap-1.5 max-h-24 overflow-y-auto sm:max-h-none sm:overflow-visible">
         {preguntas.map((_, idx) => (
           <button
             key={idx}
@@ -350,13 +350,14 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
       />
 
       {/* Navegación + acciones */}
-      <div className="flex items-center justify-between gap-3 border-t pt-4">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-t pt-4">
         <div className="flex gap-2">
           <Button
             variant="outline"
             size="sm"
             onClick={() => goTo(current - 1)}
             disabled={current === 0}
+            className="flex-1 sm:flex-none"
           >
             Anterior
           </Button>
@@ -365,6 +366,7 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
             size="sm"
             onClick={() => goTo(current + 1)}
             disabled={current === totalPreguntas - 1}
+            className="flex-1 sm:flex-none"
           >
             Siguiente
           </Button>
@@ -379,7 +381,7 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
             className="text-muted-foreground"
           >
             <LogOut className="mr-1 h-3.5 w-3.5" />
-            Abandonar
+            <span className="hidden sm:inline">Abandonar</span>
           </Button>
 
           {/* Reportar pregunta */}
@@ -390,7 +392,7 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
             className="text-muted-foreground"
           >
             <Flag className="mr-1 h-3.5 w-3.5" />
-            Reportar
+            <span className="hidden sm:inline">Reportar</span>
           </Button>
 
           {/* Finalizar */}
@@ -398,8 +400,9 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
             size="sm"
             onClick={handleFinalizarClick}
             disabled={isFinishing}
+            className="flex-1 sm:flex-none"
           >
-            {isFinishing ? 'Guardando...' : 'Finalizar test'}
+            {isFinishing ? 'Guardando...' : 'Finalizar'}
           </Button>
         </div>
       </div>

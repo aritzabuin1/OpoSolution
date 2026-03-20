@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { BookOpen, Brain, CalendarCheck, ClipboardList, LayoutDashboard, Layers, Lock, LogOut, Menu, Target, TrendingUp, Trophy, User, X } from 'lucide-react'
+import { BarChart3, BookOpen, Brain, CalendarCheck, ClipboardList, LayoutDashboard, Layers, Lock, LogOut, Menu, Target, TrendingUp, Trophy, User, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { createClient } from '@/lib/supabase/client'
 import { NotificationBell } from '@/components/shared/NotificationBell'
@@ -35,7 +35,7 @@ const navItems: NavItem[] = [
   { href: '/cuenta', label: 'Mi cuenta', icon: User },
 ]
 
-export function Navbar() {
+export function Navbar({ isAdmin = false }: { isAdmin?: boolean }) {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
@@ -91,10 +91,29 @@ export function Navbar() {
               </Link>
             )
           })}
+          {/* Admin link — solo visible para admins */}
+          {isAdmin && (
+            <Link
+              href="/admin/economics"
+              onClick={() => setOpen(false)}
+              className={cn(
+                'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors mt-2 border-t pt-3',
+                pathname.startsWith('/admin')
+                  ? 'bg-primary text-primary-foreground'
+                  : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+              )}
+            >
+              <BarChart3 className="h-4 w-4" />
+              Admin
+            </Link>
+          )}
           {/* Cerrar sesión */}
           <button
             onClick={handleSignOut}
-            className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors mt-2 border-t pt-3"
+            className={cn(
+              'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors w-full',
+              isAdmin ? 'mt-1' : 'mt-2 border-t pt-3'
+            )}
           >
             <LogOut className="h-4 w-4" />
             Cerrar sesión

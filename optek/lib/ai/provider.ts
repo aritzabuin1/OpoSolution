@@ -87,6 +87,8 @@ export interface AICallOptions {
   oposicionId?: string
   /** Temperature for AI generation (0.0-1.0). Higher = more varied output */
   temperature?: number
+  /** Device type from User-Agent (mobile/tablet/desktop) for analytics */
+  deviceType?: string
 }
 
 // ─── Helpers internos ─────────────────────────────────────────────────────────

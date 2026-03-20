@@ -135,6 +135,8 @@ export interface GPTCallOptions {
   oposicionId?: string
   /** Temperature for AI generation (0.0-1.0). Higher = more varied output */
   temperature?: number
+  /** Device type from User-Agent for analytics */
+  deviceType?: string
 }
 
 // ─── callGPT (GPT-4o — correcciones) ──────────────────────────────────────────
@@ -191,7 +193,7 @@ export async function callGPT(
 
     log.info({ endpoint, tokensIn, tokensOut, latencyMs, costCents }, 'GPT call OK')
     onSuccess()
-    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents, oposicionId })
+    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents, oposicionId, deviceType: options.deviceType })
 
     const choice = response.choices[0]
     const text = choice?.message?.content
@@ -265,7 +267,7 @@ export async function callGPTMini(
 
     log.info({ endpoint, tokensIn, tokensOut, latencyMs, costCents, model }, 'GPT-mini call OK')
     onSuccess()
-    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents, oposicionId })
+    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents, oposicionId, deviceType: options.deviceType })
 
     const choice = response.choices[0]
     const text = choice?.message?.content
@@ -362,7 +364,7 @@ export async function callGPTJSON<T>(
 
     log.info({ endpoint, tokensIn, tokensOut, latencyMs, costCents, model }, 'GPT JSON call OK')
     onSuccess()
-    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents, oposicionId })
+    void logApiUsage({ userId, endpoint, model, tokensIn, tokensOut, costCents, oposicionId, deviceType: options.deviceType })
 
     const choice = response.choices[0]
     const text = choice?.message?.content
@@ -416,7 +418,7 @@ export async function callGPTJSON<T>(
     const retryCost = Math.round(
       ((retryTokensIn * costInput + retryTokensOut * costOutput) / 1000) * 100
     ) / 100
-    void logApiUsage({ userId, endpoint: `${endpoint}-retry`, model, tokensIn: retryTokensIn, tokensOut: retryTokensOut, costCents: retryCost, oposicionId })
+    void logApiUsage({ userId, endpoint: `${endpoint}-retry`, model, tokensIn: retryTokensIn, tokensOut: retryTokensOut, costCents: retryCost, oposicionId, deviceType: options.deviceType })
 
     const parsed2 = tryParseAndValidate(retryText, schema)
     if (parsed2.success) {
@@ -541,6 +543,7 @@ async function logApiUsage(params: {
   tokensOut: number
   costCents: number
   oposicionId?: string
+  deviceType?: string
 }) {
   try {
     const supabase = await createServiceClient()
@@ -552,6 +555,7 @@ async function logApiUsage(params: {
       tokens_out: params.tokensOut,
       cost_estimated_cents: params.costCents,
       oposicion_id: params.oposicionId ?? null,
+      device_type: params.deviceType ?? 'desktop',
     })
     if (error) {
       logger.warn({ error: error.message, code: error.code, details: error.details }, 'api_usage_log INSERT failed (Supabase)')

@@ -20,6 +20,7 @@ import {
   getFeedbackSummary,
   getAnalysisUsageByType,
   getDashboardPhaseDistribution,
+  getDeviceDistribution,
 } from '@/lib/admin/analytics'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -74,10 +75,10 @@ function ScoreColor({ val }: { val: number }) {
 // ─── Page ───────────────────────────────────────────────────────────────────────
 
 export default async function AnalyticsPage() {
-  let conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, phaseDistribution
+  let conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, phaseDistribution, deviceDist
 
   try {
-    ;[conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, phaseDistribution] =
+    ;[conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, phaseDistribution, deviceDist] =
       await Promise.all([
         getConversionMetrics(),
         getDAU30d(),
@@ -91,6 +92,7 @@ export default async function AnalyticsPage() {
         getFeedbackSummary(),
         getAnalysisUsageByType(),
         getDashboardPhaseDistribution(),
+        getDeviceDistribution(),
       ])
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err)
@@ -501,6 +503,43 @@ export default async function AnalyticsPage() {
             ) : (
               <p className="text-sm text-muted-foreground text-center py-2">Sin datos de uso aun.</p>
             )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* ── Row 7: Device Distribution ──────────────────────────────────── */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base">Dispositivos (30d) <MetricInfo text="Distribucion mobile vs desktop de las llamadas a la API. Si >60% movil, priorizar UX mobile." /></CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div className="flex items-center gap-4">
+              <div className="text-center">
+                <div className="text-2xl font-extrabold text-blue-600">{deviceDist.mobilePct}%</div>
+                <div className="text-xs text-muted-foreground">Movil</div>
+              </div>
+              <div className="flex-1 space-y-2">
+                <div className="flex justify-between text-xs">
+                  <span>Mobile</span>
+                  <span className="font-bold">{deviceDist.mobile}</span>
+                </div>
+                <ProgressBar value={deviceDist.mobile} max={deviceDist.totalRequests || 1} color="bg-blue-500" />
+                <div className="flex justify-between text-xs">
+                  <span>Tablet</span>
+                  <span className="font-bold">{deviceDist.tablet}</span>
+                </div>
+                <ProgressBar value={deviceDist.tablet} max={deviceDist.totalRequests || 1} color="bg-purple-500" />
+                <div className="flex justify-between text-xs">
+                  <span>Desktop</span>
+                  <span className="font-bold">{deviceDist.desktop}</span>
+                </div>
+                <ProgressBar value={deviceDist.desktop} max={deviceDist.totalRequests || 1} color="bg-green-500" />
+              </div>
+            </div>
+            <p className="text-[10px] text-muted-foreground border-t pt-2">
+              Total: {deviceDist.totalRequests} requests. Si movil alto, priorizar UX responsive.
+            </p>
           </CardContent>
         </Card>
       </div>

@@ -601,3 +601,47 @@ async function _getDashboardPhaseDistribution(): Promise<DashboardPhaseDistribut
 }
 
 export const getDashboardPhaseDistribution = _getDashboardPhaseDistribution
+
+// ─── 13. Device Distribution ─────────────────────────────────────────────────
+
+export interface DeviceDistribution {
+  mobile: number
+  tablet: number
+  desktop: number
+  totalRequests: number
+  mobilePct: number
+}
+
+export async function getDeviceDistribution(): Promise<DeviceDistribution> {
+  const supabase = await createServiceClient()
+
+  // Last 30 days of API usage, grouped by device_type
+  const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()
+  const adminIds = await getAdminUserIds()
+
+  const { data, error } = await (supabase as any)
+    .from('api_usage_log')
+    .select('device_type')
+    .gte('timestamp', since)
+    .not('user_id', 'is', null)
+
+  if (error || !data) {
+    return { mobile: 0, tablet: 0, desktop: 0, totalRequests: 0, mobilePct: 0 }
+  }
+
+  // Filter out admin users
+  const filtered = data.filter((r: { user_id?: string }) => !adminIds.includes(r.user_id ?? ''))
+
+  const counts = { mobile: 0, tablet: 0, desktop: 0 }
+  for (const row of filtered) {
+    const dt = (row as { device_type?: string }).device_type ?? 'desktop'
+    if (dt in counts) counts[dt as keyof typeof counts]++
+  }
+
+  const total = counts.mobile + counts.tablet + counts.desktop
+  return {
+    ...counts,
+    totalRequests: total,
+    mobilePct: total > 0 ? Math.round((counts.mobile / total) * 100) : 0,
+  }
+}

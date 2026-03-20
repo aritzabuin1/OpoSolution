@@ -20,7 +20,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
   return (
     <div className="flex min-h-screen flex-col">
       {/* Mobile navbar — visible en <768px */}
-      <Navbar />
+      <Navbar isAdmin={isAdmin} />
 
       <div className="flex flex-1">
         {/* Desktop sidebar — visible en ≥768px */}
@@ -29,7 +29,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
         </div>
 
         {/* Main content */}
-        <main className="flex-1 p-6" aria-label="Contenido principal">{children}</main>
+        <main className="flex-1 p-4 md:p-6" aria-label="Contenido principal">{children}</main>
       </div>
 
       <Footer />
