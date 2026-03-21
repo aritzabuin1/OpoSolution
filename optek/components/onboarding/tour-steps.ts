@@ -130,11 +130,24 @@ export function buildTourSteps(config: TourConfig): TourStep[] {
     },
   })
 
-  // ── Step 10: Final CTA ────────────────────────────────────────────
+  // ── Step 10: Análisis con IA ────────────────────────────────────────
+  steps.push({
+    element: '[data-tour="stats"]',
+    popover: {
+      title: 'Análisis con IA — Tu tutor socrático',
+      description: 'Cuando fallas una pregunta, la IA no te da la respuesta. '
+        + 'Te hace preguntas para que llegues tú al artículo correcto, '
+        + 'y te da un truco de memoria para no olvidarlo. '
+        + 'Tienes 2 análisis gratis — úsalos en tu primer test.',
+      side: 'bottom',
+    },
+  })
+
+  // ── Step 11: Final CTA ────────────────────────────────────────────
   steps.push({
     popover: {
       title: '¡Estás listo para empezar!',
-      description: 'Genera tu primer test de 10 preguntas sobre el tema más preguntado en exámenes: La Constitución Española. Al terminar, la IA analizará tus errores con el método socrático y te dará reglas mnemotécnicas.',
+      description: 'Genera tu primer test de 10 preguntas sobre el tema más preguntado en exámenes: La Constitución Española. Al terminar, prueba el análisis con IA para que te explique cada error paso a paso.',
     },
   })
 

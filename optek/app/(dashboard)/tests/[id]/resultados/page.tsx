@@ -25,6 +25,7 @@ import { ExplicarErroresPanel } from '@/components/simulacros/ExplicarErroresPan
 import { CheckCircle2, XCircle, Clock, BarChart3, TrendingUp, Trophy, BookOpen, Calendar } from 'lucide-react'
 import type { Pregunta } from '@/types/ai'
 import { ShareButton } from '@/components/shared/ShareButton'
+import { StickyAnalysisCTA } from '@/components/shared/StickyAnalysisCTA'
 // RepasoButton removed — confusing UX, repaso logic handled differently
 import { calcularNotaSimulacro } from '@/lib/utils/simulacro-ranking'
 import { getAniosConvocatoriaBatch } from '@/lib/utils/cross-reference'
@@ -227,7 +228,7 @@ export default async function ResultadosPage({ params }: Props) {
 
   // ─────────────────────────────────────────────────────────────────────────
   return (
-    <div className="mx-auto max-w-2xl space-y-8 pb-12">
+    <div className="mx-auto max-w-2xl space-y-8 pb-20 md:pb-12">
       {/* Cabecera simulacro oficial */}
       {esSimulacroOficial && (
         <div className="flex items-center gap-2 rounded-lg bg-primary/5 border border-primary/20 px-4 py-3">
@@ -471,13 +472,15 @@ export default async function ResultadosPage({ params }: Props) {
         />
       </div>
 
-      {/* Panel de análisis socrático IA — único botón premium en resultados */}
+      {/* Panel de análisis socrático IA — ANTES de las preguntas falladas */}
       {preguntasErroneas.length > 0 && (
-        <ExplicarErroresPanel
-          testId={id}
-          numErrores={preguntasErroneas.length}
-          opciones={preguntas.map((p) => [...p.opciones])}
-        />
+        <div id="analisis-ia">
+          <ExplicarErroresPanel
+            testId={id}
+            numErrores={preguntasErroneas.length}
+            opciones={preguntas.map((p) => [...p.opciones])}
+          />
+        </div>
       )}
 
       {/* Preguntas falladas — muestra correcta/incorrecta, SIN explicación */}
@@ -527,9 +530,6 @@ export default async function ResultadosPage({ params }: Props) {
               </Card>
             ))}
           </div>
-          <p className="text-xs text-center text-muted-foreground">
-            ¿No entiendes por qué has fallado? Usa el análisis con IA de arriba para que te lo explique paso a paso.
-          </p>
         </section>
       )}
 
@@ -542,6 +542,11 @@ export default async function ResultadosPage({ params }: Props) {
             Has respondido correctamente todas las preguntas.
           </p>
         </div>
+      )}
+
+      {/* Sticky mobile CTA — visible solo cuando el panel IA está fuera del viewport */}
+      {preguntasErroneas.length > 0 && (
+        <StickyAnalysisCTA numErrores={preguntasErroneas.length} />
       )}
     </div>
   )

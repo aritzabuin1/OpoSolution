@@ -23,6 +23,7 @@ import { RoadHero } from '@/components/marketing/RoadHero'
 import { ExamCountdown } from '@/components/marketing/ExamCountdown'
 import { blogPosts } from '@/content/blog/posts'
 import { unstable_cache } from 'next/cache'
+import { AIAnalysisDemo } from '@/components/marketing/AIAnalysisDemo'
 
 const APP_URL_META = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
@@ -598,6 +599,31 @@ export default async function LandingPage() {
                 <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── AI Analysis Demo — Antes/Después ─────────────────────────── */}
+      <section aria-labelledby="demo-heading" className="py-20 bg-muted/30 border-y">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <Badge variant="outline" className="mb-4">La diferencia</Badge>
+            <h2 id="demo-heading" className="text-3xl font-bold tracking-tight">
+              Otras apps te dicen que fallaste.{' '}
+              <span className="text-primary">OpoRuta te enseña por qué.</span>
+            </h2>
+            <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+              Mira qué pasa cuando fallas una pregunta sobre el Art. 14 de la Ley 39/2015:
+            </p>
+          </div>
+          <AIAnalysisDemo variant="landing" />
+          <div className="text-center mt-10">
+            <Link href="/register">
+              <Button size="lg" className="gap-2">
+                Pruébalo con tus errores — 2 análisis gratis
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

@@ -19,7 +19,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { Suspense } from 'react'
-import { CalendarCheck, CheckCircle2, ClipboardCheck, Flame, Layers, LogOut, Star, Target, TrendingUp, Trophy, Zap } from 'lucide-react'
+import { CalendarCheck, CheckCircle2, ClipboardCheck, Flame, Layers, Star, Target, TrendingUp, Trophy } from 'lucide-react'
 
 export const metadata: Metadata = { title: 'Mi Dashboard' }
 import { createClient } from '@/lib/supabase/server'
@@ -46,6 +46,8 @@ import { NewUserHero } from '@/components/dashboard/NewUserHero'
 import { ProgressUnlockBar } from '@/components/dashboard/ProgressUnlockBar'
 import { EmptyStateOverlay } from '@/components/dashboard/EmptyStateOverlay'
 import { ReEngagementBanner } from '@/components/dashboard/ReEngagementBanner'
+import { AIAnalysisNudge } from '@/components/dashboard/AIAnalysisNudge'
+import { AnalysisStatsCard } from '@/components/dashboard/AnalysisStatsCard'
 
 // ─── Tipos locales ─────────────────────────────────────────────────────────────
 
@@ -259,6 +261,11 @@ export default async function DashboardPage() {
 
   const onboardingCompletedAt = rachaData?.onboarding_completed_at ?? null
 
+  // Last test with errors — for AI analysis nudge deep link
+  const lastTestWithErrors = testsCompletados.find(t => (t.puntuacion ?? 100) < 100)
+  const lastTestWithErrorsId = lastTestWithErrors?.id ?? null
+  const analysisBalance = profile?.corrections_balance ?? 0
+
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-8">
 
@@ -311,6 +318,11 @@ export default async function DashboardPage() {
           }
         />
       </Suspense>
+
+      {/* ── AI Analysis Nudge — for users who never tried analysis ────── */}
+      {totalTests >= 1 && lastTestWithErrorsId && (
+        <AIAnalysisNudge lastTestWithErrorsId={lastTestWithErrorsId} />
+      )}
 
       {/* ── 0b. Reto Diario — §2.20.9 ────────────────────────────────────── */}
       {retoHoy && (
@@ -453,12 +465,7 @@ export default async function DashboardPage() {
           sub={rachaActual > 0 ? '¡Sigue así!' : 'Empieza hoy'}
           valueClassName={rachaActual >= 3 ? 'text-orange-500' : undefined}
         />
-        <StatsCard
-          icon={<Zap className="w-5 h-5 text-purple-500" />}
-          value={profile?.corrections_balance ?? 0}
-          label="Análisis"
-          sub="disponibles"
-        />
+        <AnalysisStatsCard balance={analysisBalance} />
       </div>
 
       {/* ── 2b. IPR card — §2.5 ──────────────────────────────────────────── */}

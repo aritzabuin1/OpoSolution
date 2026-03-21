@@ -2,9 +2,9 @@ import { describe, it, expect } from 'vitest'
 import { buildTourSteps } from '../../components/onboarding/tour-steps'
 
 describe('buildTourSteps', () => {
-  it('builds 11 steps for desktop with diasParaExamen (all features covered)', () => {
+  it('builds 12 steps for desktop with diasParaExamen (all features covered)', () => {
     const steps = buildTourSteps({ diasParaExamen: 65, isMobile: false })
-    expect(steps.length).toBe(11)
+    expect(steps.length).toBe(12)
     // Step 0 = welcome overlay (no element)
     expect(steps[0].element).toBeUndefined()
     // Step 1 = countdown
@@ -19,13 +19,16 @@ describe('buildTourSteps', () => {
     expect(steps[8].element).toBe('[data-tour="nav-radar"]')
     // Step 9 = stats
     expect(steps[9].element).toBe('[data-tour="stats"]')
-    // Step 10 = final CTA (no element)
-    expect(steps[10].element).toBeUndefined()
+    // Step 10 = AI analysis (same target as stats)
+    expect(steps[10].element).toBe('[data-tour="stats"]')
+    expect(steps[10].popover.title).toContain('Análisis')
+    // Step 11 = final CTA (no element)
+    expect(steps[11].element).toBeUndefined()
   })
 
-  it('builds 10 steps when diasParaExamen is null (no countdown step)', () => {
+  it('builds 11 steps when diasParaExamen is null (no countdown step)', () => {
     const steps = buildTourSteps({ diasParaExamen: null, isMobile: false })
-    expect(steps.length).toBe(10)
+    expect(steps.length).toBe(11)
     expect(steps.every(s => s.element !== '[data-tour="countdown"]')).toBe(true)
   })
 

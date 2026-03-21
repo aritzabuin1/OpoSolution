@@ -23,9 +23,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 1 ────────────────────────────────────────────────────────────────
   {
     slug: 'penalizacion-examen-auxiliar-administrativo',
-    title: 'Cómo funciona la penalización -1/3 en el examen Auxiliar Administrativo del Estado',
+    title: 'Penalización -1/3 en el examen Auxiliar Administrativo: ¿cuándo dejar en blanco?',
     description:
-      'Guía completa sobre el sistema de puntuación con penalización del examen de Auxiliar: cuándo dejar en blanco, cómo calcular tu nota y cómo practicarlo con simulacros.',
+      'La regla clave: solo responde si puedes descartar al menos 2 opciones. Fórmula de la penalización -1/3 con ejemplos numéricos, cuándo arriesgar y simulacros con corrección automática.',
     date: '2026-02-25',
     keywords: [
       'penalización examen auxiliar administrativo',
@@ -430,7 +430,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'temario-auxiliar-administrativo-estado-2025-2026',
     title: 'Temario Auxiliar Administrativo del Estado 2025-2026: los 28 temas desglosados',
     description:
-      'Los 28 temas del Auxiliar Administrativo del Estado: Bloque I (16 temas de organización pública) y Bloque II (12 temas de ofimática). Qué estudiar primero y cómo priorizar.',
+      'Los 28 temas desglosados: Bloque I (Constitución, LPAC, TREBEP...) y Bloque II (Word, Excel, Access). Cuáles caen más según exámenes INAP reales, cuáles son más fáciles y plan de estudio por bloques.',
     date: '2026-03-03',
     keywords: [
       'temario auxiliar administrativo estado 2025',
@@ -1506,9 +1506,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 10 ───────────────────────────────────────────────────────────────
   {
     slug: 'plazas-auxiliar-administrativo-2026',
-    title: '1.700 plazas Auxiliar Administrativo 2026: la mayor convocatoria de la historia',
+    title: '1.700 plazas Auxiliar Administrativo 2026: cifra récord y ratio aspirante/plaza',
     description:
-      '1.700 plazas de acceso libre en la convocatoria 2025-2026 del Auxiliar Administrativo del Estado. Histórico de plazas, tendencia al alza y qué significa para tu oposición.',
+      'La mayor convocatoria de la historia: 1.700 plazas de acceso libre. ¿Cuál es el ratio aspirante/plaza real? Histórico de plazas, fechas clave y por qué 2026 es tu mejor oportunidad.',
     date: '2026-03-12',
     keywords: [
       'plazas auxiliar administrativo 2026',
@@ -1605,9 +1605,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 11 ───────────────────────────────────────────────────────────────
   {
     slug: 'nota-corte-auxiliar-administrativo-estado',
-    title: 'Nota de corte Auxiliar Administrativo del Estado 2024: 30 y 26,33 puntos',
+    title: 'Nota de corte Auxiliar Administrativo 2024: 30 puntos — ¿La superarías?',
     description:
-      'La nota de corte de la última convocatoria del Auxiliar Administrativo fue 30 puntos (parte 1) y 26,33 (parte 2). Cómo se calcula con la penalización -1/3 + calculadora gratis.',
+      'Nota de corte 2024: 30 puntos (parte 1) y 26,33 (parte 2) sobre 100. Histórico de cortes desde 2019, cómo se calcula con la penalización -1/3 y calculadora gratis para estimar tu nota.',
     date: '2026-03-12',
     keywords: [
       'nota de corte auxiliar administrativo estado',
@@ -1950,9 +1950,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 14 ───────────────────────────────────────────────────────────────
   {
     slug: 'cuantos-temas-examen-auxiliar-administrativo-estado',
-    title: '¿Cuántos temas tiene el Auxiliar Administrativo del Estado? 28 temas en 2 bloques',
+    title: '¿Cuántos temas tiene el Auxiliar Administrativo? 28, pero no todos pesan igual',
     description:
-      'El examen del Auxiliar Administrativo del Estado tiene 28 temas: 16 de organización pública y 12 de ofimática. Desglose completo, cuáles son más fáciles y por dónde empezar.',
+      '28 temas en 2 bloques: 16 de organización pública y 12 de ofimática. Pero no todos caen igual en el examen — te mostramos cuáles pregunta más el INAP según datos reales y por cuáles empezar.',
     date: '2026-03-16',
     keywords: [
       'cuántos temas auxiliar administrativo estado',
@@ -2399,9 +2399,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 18 ───────────────────────────────────────────────────────────────
   {
     slug: 'diferencias-auxiliar-c2-administrativo-c1-estado',
-    title: 'Diferencias entre Auxiliar (C2) y Administrativo (C1) del Estado: plazas, sueldo y temario',
+    title: 'C1 vs C2: ¿Auxiliar o Administrativo del Estado? Sueldo, plazas y cuál elegir',
     description:
-      'Comparativa completa entre Auxiliar Administrativo (C2) y Administrativo del Estado (C1): requisitos, temario, plazas, sueldo, examen y cuál elegir según tu perfil.',
+      'Auxiliar (C2): 1.700 plazas, 28 temas, ~23.000€/año. Administrativo (C1): 2.512 plazas, 45 temas, ~28.000€/año. Tabla comparativa completa + criterios para decidir cuál te conviene.',
     date: '2026-03-21',
     keywords: [
       'diferencias auxiliar administrativo estado',
@@ -2800,9 +2800,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 21 ───────────────────────────────────────────────────────────────
   {
     slug: 'administrativo-estado-c1-2026-plazas-temario-nota-corte',
-    title: 'Administrativo del Estado (C1) 2026: 2.512 plazas, temario completo y nota de corte',
+    title: 'Administrativo del Estado (C1) 2026: 2.512 plazas, temario y nota de corte',
     description:
-      'Todo sobre las oposiciones de Administrativo del Estado (C1) 2026: 2.512 plazas, temario de 45 temas, estructura del examen, notas de corte históricas y sueldo.',
+      '2.512 plazas convocadas, 45 temas en 3 bloques, test + supuesto práctico. Nota de corte histórica, sueldo ~28.000€/año y cómo prepararlo. Datos actualizados 2026.',
     date: '2026-03-27',
     keywords: [
       'administrativo del estado 2026',
@@ -3250,9 +3250,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 24 — C1: Nota de corte ──────────────────────────────────────────
   {
     slug: 'nota-corte-administrativo-estado-c1-como-se-calcula',
-    title: 'Nota de corte del Administrativo del Estado (C1): cómo se calcula y datos 2024',
+    title: 'Nota de corte Administrativo del Estado (C1) 2024 — ¿Cuánto necesitas?',
     description:
-      'Cómo funciona la nota de corte del examen C1 de Administrativo del Estado: datos reales de 2024, por qué varía en cada convocatoria y cómo calcular si la superas.',
+      'Datos reales de corte 2024 para el C1. Cómo se calcula, por qué varía cada convocatoria, histórico de notas y cómo estimar si la superarías hoy con la penalización -1/3.',
     date: '2026-03-15',
     keywords: [
       'nota de corte administrativo estado C1',
@@ -4070,16 +4070,17 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 29: OpoRuta vs OpositaTest ──────────────────────────────────────
   {
     slug: 'oporuta-vs-opositatest-auxiliar-administrativo-2026',
-    title: 'OpoRuta vs OpositaTest para Oposiciones 2026 — Diferencias Reales',
+    title: 'OpositaTest vs OpoRuta (2026): precios, funciones y verificación legal',
     description:
-      'Comparamos OpoRuta y OpositaTest para preparar Auxiliar Administrativo (C2) y Administrativo del Estado (C1). Funciones, precios, verificación legal y cuál te conviene según tu forma de estudiar.',
+      '¿Buscas OpositaTest o una alternativa? Comparamos precio (12€/mes vs 49,99€ pago único), banco de preguntas, verificación de citas legales contra el BOE y análisis con IA. Tabla punto por punto.',
     date: '2026-03-17',
     dateModified: '2026-03-19',
     keywords: [
-      'OpoRuta vs OpositaTest',
+      'OpositaTest vs OpoRuta',
       'OpositaTest opiniones',
-      'OpositaTest alternativa',
-      'comparativa OpositaTest',
+      'OpositaTest alternativas',
+      'OpositaTest precio',
+      'comparativa OpositaTest 2026',
       'OpositaTest auxiliar administrativo',
       'mejor plataforma oposiciones auxiliar administrativo',
     ],

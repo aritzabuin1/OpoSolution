@@ -16,12 +16,14 @@
  * Paywall: si sin créditos → muestra modal PaywallGate (PAYWALL_CORRECTIONS).
  */
 
-import { useState, useRef, useEffect, useMemo } from 'react'
+import { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 import { toast } from 'sonner'
-import { Sparkles, Loader2 } from 'lucide-react'
+import { Sparkles, Loader2, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PaywallGate } from '@/components/shared/PaywallGate'
 import { markdownToHtml } from '@/lib/utils/simple-markdown'
+
+const LS_KEY = 'oporuta_first_analysis_seen'
 
 // ─── Props ────────────────────────────────────────────────────────────────────
 
@@ -41,8 +43,21 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
   const [state, setState] = useState<PanelState>('idle')
   const [streamedText, setStreamedText] = useState('')
   const [showPaywall, setShowPaywall] = useState(false)
+  const [isFirstTime, setIsFirstTime] = useState(false)
   const renderedHtml = useMemo(() => markdownToHtml(streamedText), [streamedText])
   const textRef = useRef<HTMLDivElement>(null)
+
+  // Check if user has never seen analysis before
+  useEffect(() => {
+    try {
+      setIsFirstTime(!localStorage.getItem(LS_KEY))
+    } catch { /* SSR / privacy mode */ }
+  }, [])
+
+  const dismissFirstTime = useCallback(() => {
+    setIsFirstTime(false)
+    try { localStorage.setItem(LS_KEY, '1') } catch { /* noop */ }
+  }, [])
 
   // Auto-scroll to bottom as text streams
   useEffect(() => {
@@ -139,23 +154,42 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
   // ── Idle / Error state ──────────────────────────────────────────────────
   if (state === 'idle' || state === 'error') {
     return (
-      <div className="rounded-xl border border-dashed border-primary/30 bg-primary/5 p-6 space-y-4">
+      <div className={`rounded-xl border border-dashed p-6 space-y-4 transition-all ${
+        isFirstTime
+          ? 'border-amber-400/60 bg-amber-50/50 dark:bg-amber-950/20 ring-1 ring-amber-400/30 animate-[pulse_3s_ease-in-out_2]'
+          : 'border-primary/30 bg-primary/5'
+      }`}>
+        {/* First-time dismiss */}
+        {isFirstTime && (
+          <div className="flex items-center justify-between -mt-1 -mx-1 mb-1">
+            <span className="text-xs font-medium text-amber-700 dark:text-amber-400">
+              Nuevo — prueba cómo funciona
+            </span>
+            <button onClick={dismissFirstTime} className="text-muted-foreground hover:text-foreground p-0.5" aria-label="Cerrar">
+              <X className="h-3.5 w-3.5" />
+            </button>
+          </div>
+        )}
+
         <div className="flex items-start gap-3">
-          <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-            <Sparkles className="h-5 w-5 text-primary" />
+          <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${
+            isFirstTime ? 'bg-amber-100 dark:bg-amber-900/30' : 'bg-primary/10'
+          }`}>
+            <Sparkles className={`h-5 w-5 ${isFirstTime ? 'text-amber-600 dark:text-amber-400' : 'text-primary'}`} />
           </div>
           <div>
-            <p className="font-semibold text-sm">Analizar mis errores con IA</p>
+            <p className="font-semibold text-sm">
+              ¿Por qué has fallado {numErrores === 1 ? 'esta pregunta' : `estas ${numErrores} preguntas`}?
+            </p>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Un tutor IA analizará tus {numErrores} error{numErrores !== 1 ? 'es' : ''} paso a paso:
-              te preguntará por qué crees que fallaste, te guiará al razonamiento correcto y te explicará
-              la base legal. Consume 1 análisis.
+              La IA analiza cada error: entiende tu razonamiento, te guía al artículo correcto
+              con preguntas y te da un truco para no olvidarlo. Consume 1 análisis.
             </p>
           </div>
         </div>
 
         <Button
-          onClick={handleExplicar}
+          onClick={() => { dismissFirstTime(); handleExplicar() }}
           variant="default"
           size="sm"
           className="w-full sm:w-auto"
