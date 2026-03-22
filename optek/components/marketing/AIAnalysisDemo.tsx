@@ -16,7 +16,7 @@
  */
 
 import { useState, useEffect, useRef } from 'react'
-import { XCircle, CheckCircle2, Sparkles, MessageCircle, HelpCircle, BookOpen, Lightbulb } from 'lucide-react'
+import { XCircle, CheckCircle2, Sparkles, Stethoscope, BookOpen, Lightbulb, ArrowRight } from 'lucide-react'
 import { DEMO_QUESTION, DEMO_ANALYSIS_STEPS } from '@/lib/constants/demo-analysis'
 import type { DemoAnalysisStep } from '@/lib/constants/demo-analysis'
 
@@ -24,25 +24,25 @@ interface AIAnalysisDemoProps {
   variant: 'landing' | 'modal'
 }
 
-const STEP_ICONS: Record<DemoAnalysisStep['type'], typeof MessageCircle> = {
-  empatia: MessageCircle,
-  pregunta: HelpCircle,
-  revelacion: BookOpen,
-  anclaje: Lightbulb,
+const STEP_ICONS: Record<DemoAnalysisStep['type'], typeof Stethoscope> = {
+  diagnostico: Stethoscope,
+  explicacion: BookOpen,
+  truco: Lightbulb,
+  accion: ArrowRight,
 }
 
 const STEP_COLORS: Record<DemoAnalysisStep['type'], string> = {
-  empatia: 'text-blue-600 bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-800',
-  pregunta: 'text-amber-600 bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800',
-  revelacion: 'text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-800',
-  anclaje: 'text-purple-600 bg-purple-50 dark:bg-purple-950/30 border-purple-200 dark:border-purple-800',
+  diagnostico: 'text-blue-600 bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-800',
+  explicacion: 'text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-800',
+  truco: 'text-purple-600 bg-purple-50 dark:bg-purple-950/30 border-purple-200 dark:border-purple-800',
+  accion: 'text-amber-600 bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800',
 }
 
 const ICON_BG: Record<DemoAnalysisStep['type'], string> = {
-  empatia: 'bg-blue-100 dark:bg-blue-900/40',
-  pregunta: 'bg-amber-100 dark:bg-amber-900/40',
-  revelacion: 'bg-emerald-100 dark:bg-emerald-900/40',
-  anclaje: 'bg-purple-100 dark:bg-purple-900/40',
+  diagnostico: 'bg-blue-100 dark:bg-blue-900/40',
+  explicacion: 'bg-emerald-100 dark:bg-emerald-900/40',
+  truco: 'bg-purple-100 dark:bg-purple-900/40',
+  accion: 'bg-amber-100 dark:bg-amber-900/40',
 }
 
 // ─── Question Card (shared between both columns) ────────────────────────────

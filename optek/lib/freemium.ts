@@ -126,6 +126,24 @@ export async function getOposicionFromProfile(
 }
 
 /**
+ * Get oposicion nombre from user's profile + oposiciones table.
+ * Used to parametrize AI prompts per oposicion (C1 vs C2).
+ */
+export async function getOposicionNombreFromProfile(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  supabase: any,
+  userId: string
+): Promise<string> {
+  const oposicionId = await getOposicionFromProfile(supabase, userId)
+  const { data } = await supabase
+    .from('oposiciones')
+    .select('nombre')
+    .eq('id', oposicionId)
+    .single()
+  return (data as { nombre?: string } | null)?.nombre ?? 'Auxiliar Administrativo del Estado'
+}
+
+/**
  * Check if a user is admin (is_admin=true in profiles).
  * Admin skips rate limits and has unrestricted access for testing.
  */

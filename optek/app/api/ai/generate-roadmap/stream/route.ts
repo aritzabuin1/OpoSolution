@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
-import { checkPaidAccess, checkIsAdmin, getOposicionFromProfile } from '@/lib/freemium'
+import { checkPaidAccess, checkIsAdmin, getOposicionFromProfile, getOposicionNombreFromProfile } from '@/lib/freemium'
 import { callAIStream } from '@/lib/ai/provider'
-import { SYSTEM_ROADMAP } from '@/lib/ai/prompts'
+import { getSystemRoadmap } from '@/lib/ai/prompts'
 import { calcularIPR } from '@/lib/utils/ipr'
 import { logger } from '@/lib/logger'
 import { createSafeStreamResponse } from '@/lib/utils/stream-helpers'
@@ -94,6 +94,16 @@ export async function POST(request: NextRequest) {
   }
 
   // ── 5. Recopilar TODOS los datos del usuario ───────────────────────────
+  // Get oposicion info for parametrized prompts
+  const oposicionNombre = await getOposicionNombreFromProfile(serviceSupabase, user.id)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: oposicionInfo } = await (serviceSupabase as any)
+    .from('oposiciones')
+    .select('num_temas')
+    .eq('id', oposicionId)
+    .single()
+  const numTemas = (oposicionInfo as { num_temas?: number } | null)?.num_temas ?? 28
+
   const [
     { data: tests },
     { data: temas },
@@ -105,14 +115,16 @@ export async function POST(request: NextRequest) {
       .eq('completado', true)
       .order('created_at', { ascending: false })
       .limit(100),
-    serviceSupabase
+    // Filter temas by user's oposicion
+    (serviceSupabase as any)
       .from('temas')
       .select('id, numero, titulo')
+      .eq('oposicion_id', oposicionId)
       .order('numero', { ascending: true }),
   ])
 
   const testsCompletados = tests ?? []
-  const allTemas = temas ?? []
+  const allTemas = (temas ?? []) as Array<{ id: string; numero: number; titulo: string }>
   const rachaActual = profile?.racha_actual ?? 0
   const fechaExamen = profile?.fecha_examen ?? null
   const dedicacionSemanal = profile?.horas_diarias_estudio ?? null
@@ -152,11 +164,10 @@ export async function POST(request: NextRequest) {
 
   // ── 6. Construir prompt con datos reales ───────────────────────────────
   const temasTexto = temaScores.map(t => {
-    const bloque = t.numero <= 16 ? 'I' : 'II'
     if (t.notaMedia === null) {
-      return `- T${t.numero} (Bloque ${bloque}): "${t.titulo}" → SIN DATOS (no ha hecho tests)`
+      return `- T${t.numero}: "${t.titulo}" → SIN DATOS (no ha hecho tests)`
     }
-    return `- T${t.numero} (Bloque ${bloque}): "${t.titulo}" → ${t.notaMedia}% acierto (${t.testsCount} tests)`
+    return `- T${t.numero}: "${t.titulo}" → ${t.notaMedia}% acierto (${t.testsCount} tests)`
   }).join('\n')
 
   const parts: string[] = [
@@ -187,7 +198,7 @@ export async function POST(request: NextRequest) {
     parts.push(`- Dedicación semanal: no configurada`)
   }
 
-  parts.push(`\nRENDIMIENTO POR TEMA (28 temas del temario):`)
+  parts.push(`\nRENDIMIENTO POR TEMA (${numTemas} temas del temario de ${oposicionNombre}):`)
   parts.push(temasTexto)
 
   // Resumen rápido para el modelo
@@ -196,7 +207,7 @@ export async function POST(request: NextRequest) {
   const temasDebiles = temasConDatos.filter(t => t.notaMedia! < 60).sort((a, b) => a.notaMedia! - b.notaMedia!)
 
   parts.push(`\nRESUMEN:`)
-  parts.push(`- Temas probados: ${temasConDatos.length} de 28`)
+  parts.push(`- Temas probados: ${temasConDatos.length} de ${numTemas}`)
   parts.push(`- Temas sin probar: ${temasSinDatos.length} (${temasSinDatos.map(t => `T${t.numero}`).join(', ') || 'ninguno'})`)
   if (temasDebiles.length > 0) {
     parts.push(`- Temas débiles (<60%): ${temasDebiles.map(t => `T${t.numero} (${t.notaMedia}%)`).join(', ')}`)
@@ -221,7 +232,14 @@ export async function POST(request: NextRequest) {
 
   let aiStream: ReadableStream<string>
   try {
-    aiStream = await callAIStream(SYSTEM_ROADMAP, userPrompt, {
+    // Build bloque info based on oposicion
+    const isC2 = numTemas <= 28
+    const bloqueInfo = isC2
+      ? 'Bloque I (1-16): Derecho. Bloque II (17-28): Ofimática.'
+      : 'Bloque I (1-10): Constitución y Organización. Bloque II (11-20): Derecho Administrativo. Bloque III (21-30): UE y Organización. Bloque IV (31-35): Financiero. Bloque V (36-40): Informática. Bloque VI (41-45): Gestión de personal.'
+    const systemPrompt = getSystemRoadmap(oposicionNombre, numTemas, bloqueInfo)
+
+    aiStream = await callAIStream(systemPrompt, userPrompt, {
       maxTokens: 4000,
       requestId,
       endpoint: 'generate-roadmap',

@@ -2,9 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
-import { checkPaidAccess, checkIsAdmin, getOposicionFromProfile } from '@/lib/freemium'
+import { checkPaidAccess, checkIsAdmin, getOposicionFromProfile, getOposicionNombreFromProfile } from '@/lib/freemium'
 import { callAIStream } from '@/lib/ai/provider'
-import { SYSTEM_EXPLAIN_ERRORES_STREAM } from '@/lib/ai/prompts'
+import { getSystemExplainErroresStream } from '@/lib/ai/prompts'
 import { logger } from '@/lib/logger'
 import { createSafeStreamResponse } from '@/lib/utils/stream-helpers'
 import type { Pregunta } from '@/types/ai'
@@ -118,28 +118,37 @@ export async function POST(request: NextRequest) {
   }
 
   // ── 7. Build prompt ─────────────────────────────────────────────────────
+  const oposicionNombre = await getOposicionNombreFromProfile(serviceSupabase, user.id)
+  const systemPrompt = getSystemExplainErroresStream(oposicionNombre)
+
   const preguntasTexto = erroneas
-    .map(({ pregunta, index, respuesta }) =>
-      `Pregunta ${index + 1}: ${pregunta.enunciado}\n` +
-      `Opciones: A) ${pregunta.opciones[0]}  B) ${pregunta.opciones[1]}  ` +
-      `C) ${pregunta.opciones[2]}  D) ${pregunta.opciones[3]}\n` +
-      `Respuesta correcta: ${['A', 'B', 'C', 'D'][pregunta.correcta]}\n` +
-      `Tu respuesta: ${respuesta !== null ? ['A', 'B', 'C', 'D'][respuesta] : 'Sin responder'}`
-    )
+    .map(({ pregunta, index, respuesta }) => {
+      const tema = (pregunta as Pregunta & { temaTitulo?: string }).temaTitulo
+      const cita = (pregunta as Pregunta & { cita?: { ley: string; articulo: string } }).cita
+      return `Pregunta ${index + 1}${tema ? ` [Tema: ${tema}]` : ''}: ${pregunta.enunciado}\n` +
+        (cita ? `Referencia: ${cita.ley}, Art. ${cita.articulo}\n` : '') +
+        `Opciones: A) ${pregunta.opciones[0]}  B) ${pregunta.opciones[1]}  ` +
+        `C) ${pregunta.opciones[2]}  D) ${pregunta.opciones[3]}\n` +
+        `Respuesta correcta: ${['A', 'B', 'C', 'D'][pregunta.correcta]}\n` +
+        `Tu respuesta: ${respuesta !== null ? ['A', 'B', 'C', 'D'][respuesta] : 'Sin responder'}`
+    })
     .join('\n\n')
 
-  const userPrompt = `Explica los errores del siguiente examen INAP usando el método socrático:\n\n${preguntasTexto}`
+  const userPrompt = `Analiza los errores del siguiente test:\n\n${preguntasTexto}`
 
-  // ── 8. Stream Claude response ───────────────────────────────────────────
+  // ── 8. Stream AI response ────────────────────────────────────────────────
+  // Dynamic maxTokens based on error count
+  const maxTokens = erroneas.length <= 5 ? 1500 : erroneas.length <= 10 ? 2500 : 3500
+
   log.info(
-    { userId: user.id, testId, errores: erroneas.length, hasPaidCredit },
+    { userId: user.id, testId, errores: erroneas.length, maxTokens, hasPaidCredit },
     '[explain-errores-stream] iniciando stream'
   )
 
   let aiStream: ReadableStream<string>
   try {
-    aiStream = await callAIStream(SYSTEM_EXPLAIN_ERRORES_STREAM, userPrompt, {
-      maxTokens: 2000,
+    aiStream = await callAIStream(systemPrompt, userPrompt, {
+      maxTokens,
       requestId,
       endpoint: 'explain-errores-stream',
       useHeavyModel: true, // Paid feature — use Sonnet/GPT-5 for quality

@@ -2,9 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
-import { checkPaidAccess, getOposicionFromProfile } from '@/lib/freemium'
+import { checkPaidAccess, getOposicionFromProfile, getOposicionNombreFromProfile } from '@/lib/freemium'
 import { callAIMini } from '@/lib/ai/provider'
-import { SYSTEM_EXPLAIN_ERRORES } from '@/lib/ai/prompts'
+import { getSystemExplainErrores } from '@/lib/ai/prompts'
 import { logger } from '@/lib/logger'
 import type { Pregunta, ExplicacionError } from '@/types/ai'
 
@@ -182,28 +182,34 @@ export async function POST(request: NextRequest) {
     '[explain-errores] iniciando explicación'
   )
 
+  const oposicionNombre = await getOposicionNombreFromProfile(serviceSupabase, user.id)
+  const systemPrompt = getSystemExplainErrores(oposicionNombre)
+
   const preguntasTexto = erroneas
     .map(
-      ({ pregunta, index, respuesta }) =>
-        `Pregunta ${index + 1}: ${pregunta.enunciado}\n` +
-        `Opciones: A) ${pregunta.opciones[0]}  B) ${pregunta.opciones[1]}  ` +
-        `C) ${pregunta.opciones[2]}  D) ${pregunta.opciones[3]}\n` +
-        `Respuesta correcta: ${['A', 'B', 'C', 'D'][pregunta.correcta]}\n` +
-        `Tu respuesta: ${respuesta !== null ? ['A', 'B', 'C', 'D'][respuesta] : 'Sin responder'}`
+      ({ pregunta, index, respuesta }) => {
+        const tema = (pregunta as Pregunta & { temaTitulo?: string }).temaTitulo
+        const cita = (pregunta as Pregunta & { cita?: { ley: string; articulo: string } }).cita
+        return `Pregunta ${index + 1}${tema ? ` [Tema: ${tema}]` : ''}: ${pregunta.enunciado}\n` +
+          (cita ? `Referencia: ${cita.ley}, Art. ${cita.articulo}\n` : '') +
+          `Opciones: A) ${pregunta.opciones[0]}  B) ${pregunta.opciones[1]}  ` +
+          `C) ${pregunta.opciones[2]}  D) ${pregunta.opciones[3]}\n` +
+          `Respuesta correcta: ${['A', 'B', 'C', 'D'][pregunta.correcta]}\n` +
+          `Tu respuesta: ${respuesta !== null ? ['A', 'B', 'C', 'D'][respuesta] : 'Sin responder'}`
+      }
     )
     .join('\n\n')
 
-  const userPrompt = `Explica los errores del siguiente examen INAP usando el método socrático:
+  const userPrompt = `Analiza los errores del siguiente test:\n\n${preguntasTexto}`
 
-${preguntasTexto}
-
-Responde en JSON con el array "explicaciones" donde cada item tiene: "num" (número de pregunta), "empatia", "pregunta_guia", "revelacion" y "anclaje".`
+  // Dynamic maxTokens based on error count
+  const maxTokens = erroneas.length <= 5 ? 1500 : erroneas.length <= 10 ? 2500 : 3500
 
   let rawResponse: string
   try {
     rawResponse = await callAIMini(userPrompt, {
-      systemPrompt: SYSTEM_EXPLAIN_ERRORES,
-      maxTokens: 2000,
+      systemPrompt,
+      maxTokens,
       endpoint: 'explain-errores',
       userId: user.id,
       requestId,
@@ -226,28 +232,59 @@ Responde en JSON con el array "explicaciones" donde cada item tiene: "num" (núm
     )
   }
 
-  // Parse JSON response — handles both socratic (new) and legacy (old) formats
-  type SocraticRaw = { num: number; empatia: string; pregunta_guia: string; revelacion: string; anclaje: string }
+  // Parse JSON response — handles v2 (diagnostico+grupos) and legacy formats
+  type GrupoRaw = { patron: string; explicacion: string; errores: Array<{ num: number; correccion: string }>; truco: string }
+  type ErrorSueltoRaw = { num: number; correccion: string; truco: string }
+  type V2Response = { diagnostico: string; grupos?: GrupoRaw[]; errores_sueltos?: ErrorSueltoRaw[]; accion: string }
   type LegacyRaw = { numero: number; explicacion: string }
+  type SocraticRaw = { num: number; empatia: string; pregunta_guia: string; revelacion: string; anclaje: string }
+
   let explicacionesRaw: Array<{ numero: number; explicacion: string }> = []
   try {
     const jsonMatch = rawResponse.match(/\{[\s\S]*\}/)
     if (!jsonMatch) throw new Error('No JSON found')
-    const parsed2 = JSON.parse(jsonMatch[0]) as { explicaciones?: Array<SocraticRaw | LegacyRaw> }
-    const items = parsed2.explicaciones ?? []
-    explicacionesRaw = items.map((item) => {
-      if ('empatia' in item) {
-        // Socratic format — combine 4 parts into a formatted string
-        return {
-          numero: item.num,
-          explicacion: [item.empatia, `→ ${item.pregunta_guia}`, item.revelacion, item.anclaje]
-            .filter(Boolean)
-            .join('\n'),
+    const parsed2 = JSON.parse(jsonMatch[0])
+
+    if ('diagnostico' in parsed2) {
+      // V2 format — flatten grupos + errores_sueltos into per-error explanations
+      const v2 = parsed2 as V2Response
+      const header = `**DIAGNÓSTICO**\n${v2.diagnostico}\n`
+
+      // Build explanations from groups
+      for (const grupo of v2.grupos ?? []) {
+        for (const err of grupo.errores) {
+          explicacionesRaw.push({
+            numero: err.num,
+            explicacion: `${header}\n**${grupo.patron}**\n${grupo.explicacion}\n${err.correccion}\n\n💡 ${grupo.truco}`,
+          })
         }
       }
-      // Legacy format
-      return { numero: (item as LegacyRaw).numero, explicacion: (item as LegacyRaw).explicacion }
-    })
+      // Add standalone errors
+      for (const err of v2.errores_sueltos ?? []) {
+        explicacionesRaw.push({
+          numero: err.num,
+          explicacion: `${header}\n${err.correccion}\n\n💡 ${err.truco}`,
+        })
+      }
+      // Append action to first explanation
+      if (explicacionesRaw.length > 0 && v2.accion) {
+        explicacionesRaw[0].explicacion += `\n\n**QUÉ HACER AHORA**\n${v2.accion}`
+      }
+    } else if (parsed2.explicaciones) {
+      // Legacy socratic or simple format
+      const items = parsed2.explicaciones as Array<SocraticRaw | LegacyRaw>
+      explicacionesRaw = items.map((item) => {
+        if ('empatia' in item) {
+          return {
+            numero: item.num,
+            explicacion: [item.empatia, `→ ${item.pregunta_guia}`, item.revelacion, item.anclaje]
+              .filter(Boolean)
+              .join('\n'),
+          }
+        }
+        return { numero: (item as LegacyRaw).numero, explicacion: (item as LegacyRaw).explicacion }
+      })
+    }
   } catch {
     log.warn({ rawResponse: rawResponse.slice(0, 200) }, '[explain-errores] JSON parse failed')
     // Fallback: crear explicaciones simples

@@ -2,9 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
-import { checkPaidAccess, getOposicionFromProfile } from '@/lib/freemium'
+import { checkPaidAccess, checkIsAdmin, getOposicionFromProfile, getOposicionNombreFromProfile } from '@/lib/freemium'
 import { callAIStream } from '@/lib/ai/provider'
-import { SYSTEM_INFORME_SIMULACRO } from '@/lib/ai/prompts'
+import { getSystemInformeSimulacro } from '@/lib/ai/prompts'
 import { logger } from '@/lib/logger'
 import { createSafeStreamResponse } from '@/lib/utils/stream-helpers'
 import type { Pregunta } from '@/types/ai'
@@ -72,24 +72,31 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Solo disponible para simulacros oficiales.' }, { status: 400 })
   }
 
-  // Check credits
+  // Check credits — admin bypass
   const serviceSupabase = await createServiceClient()
-  const { data: profileCredits } = await serviceSupabase
-    .from('profiles')
-    .select('corrections_balance, free_corrector_used')
-    .eq('id', user.id)
-    .single()
+  const isAdmin = await checkIsAdmin(serviceSupabase, user.id)
 
-  const hasPaidCredit = (profileCredits?.corrections_balance ?? 0) > 0
-  const hasFreeCredit = !hasPaidCredit && (profileCredits?.free_corrector_used ?? 0) < 2
+  let hasPaidCredit = false
+  let hasFreeCredit = false
   const oposicionId = await getOposicionFromProfile(serviceSupabase, user.id)
-  const isPaid = await checkPaidAccess(serviceSupabase, user.id, oposicionId)
 
-  if (!hasPaidCredit && !hasFreeCredit && !isPaid) {
-    return NextResponse.json({
-      error: 'No tienes análisis detallados disponibles.',
-      code: 'PAYWALL_CORRECTIONS',
-    }, { status: 402 })
+  if (!isAdmin) {
+    const { data: profileCredits } = await serviceSupabase
+      .from('profiles')
+      .select('corrections_balance, free_corrector_used')
+      .eq('id', user.id)
+      .single()
+
+    hasPaidCredit = (profileCredits?.corrections_balance ?? 0) > 0
+    hasFreeCredit = !hasPaidCredit && (profileCredits?.free_corrector_used ?? 0) < 2
+    const isPaid = await checkPaidAccess(serviceSupabase, user.id, oposicionId)
+
+    if (!hasPaidCredit && !hasFreeCredit && !isPaid) {
+      return NextResponse.json({
+        error: 'No tienes análisis detallados disponibles.',
+        code: 'PAYWALL_CORRECTIONS',
+      }, { status: 402 })
+    }
   }
 
   // Build stats for prompt
@@ -153,7 +160,8 @@ ${erroresDetalle || '  Ninguna'}`
 
   let aiStream: ReadableStream<string>
   try {
-    aiStream = await callAIStream(SYSTEM_INFORME_SIMULACRO, userPrompt, {
+    const oposicionNombre = await getOposicionNombreFromProfile(serviceSupabase, user.id)
+    aiStream = await callAIStream(getSystemInformeSimulacro(oposicionNombre), userPrompt, {
       maxTokens: 2500,
       requestId,
       endpoint: 'informe-simulacro-stream',
@@ -178,6 +186,8 @@ ${erroresDetalle || '  Ninguna'}`
     endpoint: 'informe-simulacro-stream',
     context: { testId, aciertos, errores },
     onComplete: async () => {
+      // Admin: no credit deduction
+      if (isAdmin) return
       if (hasPaidCredit) {
         await serviceSupabase.rpc('use_correction', { p_user_id: userId })
       } else {

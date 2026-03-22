@@ -2,9 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
-import { checkPaidAccess, getOposicionFromProfile } from '@/lib/freemium'
+import { checkPaidAccess, getOposicionFromProfile, getOposicionNombreFromProfile } from '@/lib/freemium'
 import { callAIStream } from '@/lib/ai/provider'
-import { SYSTEM_EXPLAIN_FLASHCARD } from '@/lib/ai/prompts'
+import { getSystemExplainFlashcard } from '@/lib/ai/prompts'
 import { logger } from '@/lib/logger'
 import { createSafeStreamResponse } from '@/lib/utils/stream-helpers'
 
@@ -102,7 +102,8 @@ export async function POST(request: NextRequest) {
 
   let aiStream: ReadableStream<string>
   try {
-    aiStream = await callAIStream(SYSTEM_EXPLAIN_FLASHCARD, userPrompt, {
+    const oposicionNombre = await getOposicionNombreFromProfile(serviceSupabase, user.id)
+    aiStream = await callAIStream(getSystemExplainFlashcard(oposicionNombre), userPrompt, {
       maxTokens: 1500,
       requestId,
       endpoint: 'explain-flashcard-stream',

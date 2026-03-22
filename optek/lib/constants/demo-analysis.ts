@@ -4,6 +4,9 @@
  * Contenido hardcodeado para el demo de análisis con IA.
  * Pregunta real basada en Art. 14.2 Ley 39/2015 (LPACAP).
  * Reutilizado en: landing page, dashboard nudge, onboarding tour.
+ *
+ * Formato v2: diagnóstico → explicación → truco → acción
+ * (reemplaza el antiguo 4-step socrático: empatía/pregunta/revelación/anclaje)
  */
 
 export const DEMO_QUESTION = {
@@ -21,30 +24,30 @@ export const DEMO_QUESTION = {
 } as const
 
 export interface DemoAnalysisStep {
-  type: 'empatia' | 'pregunta' | 'revelacion' | 'anclaje'
+  type: 'diagnostico' | 'explicacion' | 'truco' | 'accion'
   label: string
   text: string
 }
 
 export const DEMO_ANALYSIS_STEPS: DemoAnalysisStep[] = [
   {
-    type: 'empatia',
-    label: 'Empatía',
-    text: 'Pensaste solo las personas jurídicas — es lógico, son las más evidentes. Pero la ley amplía la obligación a más colectivos.',
+    type: 'diagnostico',
+    label: 'Diagnóstico',
+    text: 'Tu error es un clásico del INAP: la lista de obligados a tramitar electrónicamente parece obvia, pero tiene 4 grupos que la gente reduce a 1.',
   },
   {
-    type: 'pregunta',
-    label: 'Pregunta guía',
-    text: '¿Qué otros grupos manejan documentación profesional a diario y ya usan firma electrónica?',
+    type: 'explicacion',
+    label: 'Por qué fallas esto',
+    text: 'Art. 14.2 Ley 39/2015 enumera 4 obligados: personas jurídicas, entidades sin personalidad jurídica, profesionales con colegiación obligatoria y empleados públicos. Elegiste solo personas jurídicas — es el grupo más visible, pero la ley amplía a todos los que ya usan firma electrónica en su día a día.',
   },
   {
-    type: 'revelacion',
-    label: 'Revelación',
-    text: 'Art. 14.2 Ley 39/2015 enumera 4 obligados: a) personas jurídicas, b) entidades sin personalidad jurídica, c) profesionales con colegiación obligatoria, d) empleados de las AAPP.',
-  },
-  {
-    type: 'anclaje',
+    type: 'truco',
     label: 'Truco de memoria',
-    text: 'Los 4 obligados son quienes ya firman digitalmente en su día a día — empresas, asociaciones, abogados/arquitectos y funcionarios. Si ya usan firma electrónica, ¿por qué iban a tramitar en papel?',
+    text: 'Los 4 obligados son quienes ya firman digitalmente: empresas, asociaciones, abogados/arquitectos y funcionarios. Si ya usan firma electrónica, ¿por qué iban a tramitar en papel?',
+  },
+  {
+    type: 'accion',
+    label: 'Qué hacer ahora',
+    text: 'Haz flashcards del Tema 8 (LPAC) — este artículo cae en casi todas las convocatorias.',
   },
 ]

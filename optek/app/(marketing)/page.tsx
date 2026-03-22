@@ -610,7 +610,7 @@ export default async function LandingPage() {
             <Badge variant="outline" className="mb-4">La diferencia</Badge>
             <h2 id="demo-heading" className="text-3xl font-bold tracking-tight">
               Otras apps te dicen que fallaste.{' '}
-              <span className="text-primary">OpoRuta te enseña por qué.</span>
+              <span className="text-primary">OpoRuta te dice por qué y cómo evitarlo.</span>
             </h2>
             <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
               Mira qué pasa cuando fallas una pregunta sobre el Art. 14 de la Ley 39/2015:

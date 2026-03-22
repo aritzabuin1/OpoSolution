@@ -2,9 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
-import { checkPaidAccess, getOposicionFromProfile } from '@/lib/freemium'
+import { checkPaidAccess, getOposicionFromProfile, getOposicionNombreFromProfile } from '@/lib/freemium'
 import { callAIStream } from '@/lib/ai/provider'
-import { SYSTEM_ANALYZE_CAZATRAMPAS } from '@/lib/ai/prompts'
+import { getSystemAnalyzeCazatrampas } from '@/lib/ai/prompts'
 import { logger } from '@/lib/logger'
 import { createSafeStreamResponse } from '@/lib/utils/stream-helpers'
 
@@ -121,7 +121,8 @@ export async function POST(request: NextRequest) {
 
   let aiStream: ReadableStream<string>
   try {
-    aiStream = await callAIStream(SYSTEM_ANALYZE_CAZATRAMPAS, userPrompt, {
+    const oposicionNombre = await getOposicionNombreFromProfile(serviceSupabase, user.id)
+    aiStream = await callAIStream(getSystemAnalyzeCazatrampas(oposicionNombre), userPrompt, {
       maxTokens: 2500,
       requestId,
       endpoint: 'analyze-cazatrampas-stream',

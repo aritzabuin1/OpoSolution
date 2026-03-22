@@ -10,7 +10,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Sparkles, MessageCircle, HelpCircle, BookOpen, Lightbulb, X } from 'lucide-react'
+import { Sparkles, Stethoscope, BookOpen, Lightbulb, ArrowRight, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 const LS_DISMISS_KEY = 'oporuta_analysis_nudge_dismissed'
@@ -21,10 +21,10 @@ interface AIAnalysisNudgeProps {
 }
 
 const steps = [
-  { icon: MessageCircle, text: 'Entiende tu razonamiento', color: 'text-blue-600' },
-  { icon: HelpCircle, text: 'Te guía al artículo correcto', color: 'text-amber-600' },
-  { icon: BookOpen, text: 'Cita la ley exacta', color: 'text-emerald-600' },
-  { icon: Lightbulb, text: 'Te da un truco de memoria', color: 'text-purple-600' },
+  { icon: Stethoscope, text: 'Diagnostica tus errores', color: 'text-blue-600' },
+  { icon: BookOpen, text: 'Agrupa y explica el patrón', color: 'text-emerald-600' },
+  { icon: Lightbulb, text: 'Te da un truco de memoria real', color: 'text-purple-600' },
+  { icon: ArrowRight, text: 'Te dice qué hacer en la app', color: 'text-amber-600' },
 ]
 
 export function AIAnalysisNudge({ lastTestWithErrorsId }: AIAnalysisNudgeProps) {
@@ -67,7 +67,7 @@ export function AIAnalysisNudge({ lastTestWithErrorsId }: AIAnalysisNudgeProps) 
 
       {/* Description */}
       <p className="text-sm text-muted-foreground pr-6">
-        Después de cada test, la IA te explica por qué fallaste con el método socrático:
+        Después de cada test, la IA diagnostica tus errores, encuentra patrones y te da trucos reales para no repetirlos:
       </p>
 
       {/* Steps */}
