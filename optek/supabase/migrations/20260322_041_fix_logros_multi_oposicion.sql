@@ -7,7 +7,10 @@
 -- Also scopes tests query by user's oposicion_id.
 -- =============================================================================
 
-CREATE OR REPLACE FUNCTION check_and_grant_logros(p_user_id UUID)
+-- Drop existing function first (return type may differ)
+DROP FUNCTION IF EXISTS check_and_grant_logros(UUID);
+
+CREATE FUNCTION check_and_grant_logros(p_user_id UUID)
 RETURNS SETOF logros
 LANGUAGE plpgsql
 SECURITY DEFINER
