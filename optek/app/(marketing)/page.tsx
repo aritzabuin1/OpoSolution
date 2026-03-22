@@ -15,6 +15,7 @@ import {
   BookOpen,
   GraduationCap,
   Flame,
+  Clock,
 } from 'lucide-react'
 import { createServiceClient } from '@/lib/supabase/server'
 import { FOUNDER_LIMIT } from '@/lib/stripe/client'
@@ -205,6 +206,10 @@ const faqs = [
   {
     q: '¿Se puede preparar la oposición por libre, sin academia?',
     a: 'Sí. El temario del Auxiliar (28 temas) y del Administrativo (45 temas) son abarcables sin academia. OpoRuta te ofrece tests con legislación verificada, simulacros INAP reales y psicotécnicos — todo lo que necesitas para prepararte por tu cuenta.',
+  },
+  {
+    q: '¿Cuándo estará disponible la oposición A2 (Gestión del Estado)?',
+    a: 'Estamos preparando el temario completo de los 58 temas y el sistema de corrección de supuestos prácticos con IA — una funcionalidad exclusiva de OpoRuta. Próximamente.',
   },
 ]
 
@@ -470,7 +475,7 @@ export default async function LandingPage() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
-              Dos oposiciones, una plataforma
+              Tres oposiciones, una plataforma
             </Badge>
             <h2 id="oposiciones-heading" className="text-3xl font-bold tracking-tight">
               Elige tu oposición
@@ -479,7 +484,7 @@ export default async function LandingPage() {
               Contenido específico para cada cuerpo. Temario completo, legislación verificada y exámenes INAP reales.
             </p>
           </div>
-          <div className="grid gap-6 md:grid-cols-2 max-w-3xl mx-auto">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
             {/* C2 — Auxiliar */}
             <Card className="relative overflow-hidden border-primary/30 shadow-md">
               <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-[10px] font-bold px-3 py-1 rounded-bl-lg">
@@ -540,6 +545,34 @@ export default async function LandingPage() {
                     <ArrowRight className="h-3.5 w-3.5" />
                   </Button>
                 </Link>
+              </CardContent>
+            </Card>
+            {/* A2 — Gestión (próximamente) */}
+            <Card className="relative overflow-hidden border-dashed border-muted-foreground/30 opacity-85">
+              <div className="absolute top-0 right-0 bg-muted-foreground/60 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
+                Próximamente
+              </div>
+              <CardHeader className="pb-3">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted-foreground/10">
+                    <Clock className="h-6 w-6 text-muted-foreground" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg">Gestión del Estado (A2)</CardTitle>
+                    <p className="text-xs text-muted-foreground">GACE — Grupo A2 AGE</p>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <ul className="space-y-1.5 text-sm text-muted-foreground">
+                  <li className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 text-muted-foreground/60 shrink-0" /> 58 temas en 6 bloques</li>
+                  <li className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 text-muted-foreground/60 shrink-0" /> 1.356 plazas convocadas</li>
+                  <li className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 text-muted-foreground/60 shrink-0" /> Incluye supuesto práctico</li>
+                  <li className="flex items-center gap-2"><Zap className="h-3.5 w-3.5 text-amber-500 shrink-0" /> Corrección de supuesto con IA</li>
+                </ul>
+                <p className="text-xs text-center text-muted-foreground/80 italic pt-2">
+                  Incluye corrección de supuesto práctico con IA — exclusivo OpoRuta
+                </p>
               </CardContent>
             </Card>
           </div>
