@@ -146,7 +146,7 @@ export async function POST(request: NextRequest) {
   let aiStream: ReadableStream<string>
   try {
     aiStream = await callAIStream(systemPrompt, userPrompt, {
-      maxTokens: 6000,
+      maxTokens: 12000, // 5 cuestiones × ~1500 tokens/cuestión + rúbrica + consejo
       requestId,
       endpoint: 'corregir-supuesto-stream',
       useHeavyModel: true,
