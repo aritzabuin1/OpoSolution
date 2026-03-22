@@ -42,24 +42,35 @@ export default async function SimulacrosPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: profileFlags } = await (supabase as any)
     .from('profiles')
-    .select('is_founder, is_admin')
+    .select('is_founder, is_admin, oposicion_id')
     .eq('id', user.id)
     .single()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const opoIdForPremium = (profileFlags as Record<string, unknown>)?.oposicion_id as string ?? ''
   const { count: purchaseCount } = await (supabase as any)
     .from('compras')
     .select('id', { count: 'exact', head: true })
     .eq('user_id', user.id)
+    .eq('oposicion_id', opoIdForPremium)
   const flags = profileFlags as { is_founder?: boolean; is_admin?: boolean } | null
   const isPremium = (purchaseCount ?? 0) > 0 || flags?.is_founder === true || flags?.is_admin === true
 
-  // Cargar examenes con conteo de preguntas disponibles
-  // Cast: fuente_url no está en types/database.ts hasta aplicar migration 011
+  // Obtener oposicion_id del usuario para filtrar exámenes
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: profileOpo } = await (supabase as any)
+    .from('profiles')
+    .select('oposicion_id')
+    .eq('id', user.id)
+    .single()
+  const userOposicionId = (profileOpo as { oposicion_id?: string } | null)?.oposicion_id ?? ''
+
+  // Cargar examenes SOLO de la oposición del usuario
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const examenesTable = (supabase as any).from('examenes_oficiales')
   const { data: examenes } = await examenesTable
     .select('id, anio, convocatoria, fuente_url, activo')
     .eq('activo', true)
+    .eq('oposicion_id', userOposicionId)
     .order('anio', { ascending: false })
     .order('convocatoria')
 
