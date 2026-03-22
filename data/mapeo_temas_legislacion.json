@@ -1,0 +1,65 @@
+{
+  "_generado": "2026-03-22T15:31:54.397Z",
+  "_descripcion": "Mapeo determinista de artículos de legislacion a tema_ids (convocatoria 2025-2026)",
+  "_script": "execution/auto-map-themes.ts",
+  "resumen": {
+    "total_articulos": 1000,
+    "articulos_mapeados": 1000,
+    "articulos_sin_tema": 0,
+    "cobertura_pct": 100,
+    "errores_bd": 0
+  },
+  "por_ley": {
+    "CE — Constitución Española": {
+      "total": 1000,
+      "porTema": {
+        "[C2] Tema 1 — La Constitución Española de 1978": 414,
+        "[A2] Tema 1 — La CE: estructura y contenido": 78,
+        "[A2] Tema 2 — Derechos y deberes fundamentales": 276,
+        "[C2] Tema 5 — El Gobierno y la Administración": 106,
+        "[A2] Tema 6 — Poder ejecutivo, Gobierno": 106,
+        "[C2] Tema 4 — El Poder Judicial": 66,
+        "[A2] Tema 7 — Poder judicial, LOPJ": 66,
+        "[C2] Tema 15 — El Presupuesto del Estado": 54,
+        "[A2] Tema 51 — Presupuesto, LGP": 54,
+        "[C2] Tema 9 — La organización territorial del Estado": 132,
+        "[A2] Tema 10 — CCAA, competencias": 132,
+        "[C2] Tema 2 — El Tribunal Constitucional y la reforma constitucional": 42,
+        "[A2] Tema 3 — El Tribunal Constitucional": 42,
+        "[A2] Tema 4 — La Corona": 60,
+        "[C2] Tema 3 — Las Cortes Generales": 186,
+        "[A2] Tema 5 — Cortes Generales": 186
+      }
+    }
+  },
+  "articulos_por_tema": {
+    "[C2] Tema 1 — La Constitución Española de 1978": 414,
+    "[A2] Tema 1 — La CE: estructura y contenido": 78,
+    "[A2] Tema 2 — Derechos y deberes fundamentales": 276,
+    "[C2] Tema 5 — El Gobierno y la Administración": 106,
+    "[A2] Tema 6 — Poder ejecutivo, Gobierno": 106,
+    "[C2] Tema 4 — El Poder Judicial": 66,
+    "[A2] Tema 7 — Poder judicial, LOPJ": 66,
+    "[C2] Tema 15 — El Presupuesto del Estado": 54,
+    "[A2] Tema 51 — Presupuesto, LGP": 54,
+    "[C2] Tema 9 — La organización territorial del Estado": 132,
+    "[A2] Tema 10 — CCAA, competencias": 132,
+    "[C2] Tema 2 — El Tribunal Constitucional y la reforma constitucional": 42,
+    "[A2] Tema 3 — El Tribunal Constitucional": 42,
+    "[A2] Tema 4 — La Corona": 60,
+    "[C2] Tema 3 — Las Cortes Generales": 186,
+    "[A2] Tema 5 — Cortes Generales": 186
+  },
+  "temas_cubiertos": 16,
+  "temas_sin_contenido": [
+    "[C2] Tema 6 — Gobierno Abierto",
+    "[C2] Tema 7 — La Transparencia y el buen gobierno",
+    "[C2] Tema 8 — La Administración General del Estado",
+    "[C2] Tema 10 — La Unión Europea: instituciones",
+    "[C2] Tema 11 — El procedimiento administrativo común (LPAC/LRJSP)",
+    "[C2] Tema 12 — La protección de datos personales",
+    "[C2] Tema 13 — El personal funcionario: el TREBEP",
+    "[C2] Tema 14 — Derechos y deberes de los empleados públicos",
+    "[C2] Tema 16 — Políticas de igualdad: LGTBI"
+  ]
+}
