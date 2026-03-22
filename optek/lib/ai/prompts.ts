@@ -357,13 +357,31 @@ EXPLICACIÓN (agrupa errores relacionados)
 Ejemplo de buen truco: "Los 4 obligados a tramitar electrónicamente son los que ya firman digitalmente en su día a día: empresas, asociaciones, abogados y funcionarios."
 Ejemplo de mal truco: "Recuerda E-A-A-F, las iniciales de los 4 obligados."
 
-QUÉ HACER AHORA (1-2 frases)
-Sugiere una acción concreta. USA SIEMPRE el nombre del tema que aparece entre corchetes [Tema: ...] en los datos — es el nombre EXACTO que el usuario ve en la app. Ejemplo: "Repite un test de 10 preguntas del Tema 4 (El Poder Judicial)".
-Las opciones reales son:
-- "Repite un test de 10 preguntas del Tema X (nombre del tema)" — los tests se eligen por TEMA, no por título de ley ni por concepto suelto
-- "Repasa las flashcards del Tema X (nombre)" — las flashcards van por TEMA, no se crean manualmente
-- "Haz un repaso de errores para practicar las preguntas que has fallado antes"
-PROHIBIDO: inventar acciones que no existen, decir "crea flashcards sobre X", decir "haz un test sobre el Tribunal Constitucional" (no es un tema, está dentro de otro tema), o referirte a títulos de leyes como si fueran temas.
+QUÉ HACER AHORA (2-3 frases, VARÍA la recomendación)
+Sugiere acciones concretas y VARIADAS. USA SIEMPRE el nombre del tema entre corchetes [Tema: ...] — es el nombre EXACTO de la app. NUNCA repitas siempre la misma recomendación.
+
+Herramientas REALES de la app (elige 2, combinando):
+- Tests por tema: 10, 20 o 30 preguntas | dificultad fácil, media, difícil o progresivo (mezcla). Varía el número y la dificultad según el nivel del usuario.
+- Flashcards por tema: repaso espaciado automático.
+- Simulacro oficial INAP: 20, 50 o 100 preguntas de exámenes reales, con penalización.
+- Caza-Trampas: detectar 1, 2 o 3 errores en un texto legal modificado.
+- Repaso de errores: volver a practicar preguntas falladas de tests anteriores.
+- Plan de estudios personalizado (Roadmap): genera un plan semanal adaptado a tus datos.
+
+EJEMPLOS de recomendaciones variadas (no uses siempre la misma):
+- "Haz un test de 30 preguntas del Tema 4 en dificultad difícil — es donde más fallas."
+- "Prueba un Caza-Trampas con 2 errores para afianzar los artículos que confundes."
+- "Haz un simulacro de 50 preguntas para ver cómo te va con penalización y tiempo real."
+- "Genera tu Plan de Estudios personalizado — la app analiza tus datos y te dice por dónde seguir."
+- "Repasa errores anteriores — así practicas exactamente las preguntas que ya has fallado."
+- "Haz un test progresivo de 20 preguntas del Tema 2 (La Corona) — mezcla fácil, media y difícil."
+
+REGLAS:
+- VARÍA: no pongas siempre "test de 10 preguntas". Sugiere 10, 20 o 30 según contexto.
+- VARÍA la dificultad: si el usuario falla mucho, sugiere fácil/media. Si falla poco, sugiere difícil o progresivo.
+- VARÍA la herramienta: no siempre flashcards + test. Mezcla con simulacros, caza-trampas, repaso, roadmap.
+- USA el nombre del tema EXACTO (entre corchetes en los datos).
+- PROHIBIDO: inventar herramientas que no existen, referirte a títulos de leyes como si fueran temas.
 
 Responde ÚNICAMENTE con JSON válido:
 {
@@ -413,13 +431,31 @@ EXPLICACIÓN (agrupa errores relacionados)
 Ejemplo de buen truco: "Los 4 obligados a tramitar electrónicamente son los que ya firman digitalmente en su día a día: empresas, asociaciones, abogados y funcionarios."
 Ejemplo de mal truco: "Recuerda E-A-A-F, las iniciales de los 4 obligados."
 
-QUÉ HACER AHORA (1-2 frases)
-Sugiere una acción concreta. USA SIEMPRE el nombre del tema que aparece entre corchetes [Tema: ...] en los datos — es el nombre EXACTO que el usuario ve en la app. Ejemplo: "Repite un test de 10 preguntas del Tema 4 (El Poder Judicial)".
-Las opciones reales son:
-- "Repite un test de 10 preguntas del Tema X (nombre del tema)" — los tests se eligen por TEMA, no por título de ley ni por concepto suelto
-- "Repasa las flashcards del Tema X (nombre)" — las flashcards van por TEMA, no se crean manualmente
-- "Haz un repaso de errores para practicar las preguntas que has fallado antes"
-PROHIBIDO: inventar acciones que no existen, decir "crea flashcards sobre X", decir "haz un test sobre el Tribunal Constitucional" (no es un tema, está dentro de otro tema), o referirte a títulos de leyes como si fueran temas.
+QUÉ HACER AHORA (2-3 frases, VARÍA la recomendación)
+Sugiere acciones concretas y VARIADAS. USA SIEMPRE el nombre del tema entre corchetes [Tema: ...] — es el nombre EXACTO de la app. NUNCA repitas siempre la misma recomendación.
+
+Herramientas REALES de la app (elige 2, combinando):
+- Tests por tema: 10, 20 o 30 preguntas | dificultad fácil, media, difícil o progresivo (mezcla). Varía el número y la dificultad según el nivel del usuario.
+- Flashcards por tema: repaso espaciado automático.
+- Simulacro oficial INAP: 20, 50 o 100 preguntas de exámenes reales, con penalización.
+- Caza-Trampas: detectar 1, 2 o 3 errores en un texto legal modificado.
+- Repaso de errores: volver a practicar preguntas falladas de tests anteriores.
+- Plan de estudios personalizado (Roadmap): genera un plan semanal adaptado a tus datos.
+
+EJEMPLOS de recomendaciones variadas (no uses siempre la misma):
+- "Haz un test de 30 preguntas del Tema 4 en dificultad difícil — es donde más fallas."
+- "Prueba un Caza-Trampas con 2 errores para afianzar los artículos que confundes."
+- "Haz un simulacro de 50 preguntas para ver cómo te va con penalización y tiempo real."
+- "Genera tu Plan de Estudios personalizado — la app analiza tus datos y te dice por dónde seguir."
+- "Repasa errores anteriores — así practicas exactamente las preguntas que ya has fallado."
+- "Haz un test progresivo de 20 preguntas del Tema 2 (La Corona) — mezcla fácil, media y difícil."
+
+REGLAS:
+- VARÍA: no pongas siempre "test de 10 preguntas". Sugiere 10, 20 o 30 según contexto.
+- VARÍA la dificultad: si el usuario falla mucho, sugiere fácil/media. Si falla poco, sugiere difícil o progresivo.
+- VARÍA la herramienta: no siempre flashcards + test. Mezcla con simulacros, caza-trampas, repaso, roadmap.
+- USA el nombre del tema EXACTO (entre corchetes en los datos).
+- PROHIBIDO: inventar herramientas que no existen, referirte a títulos de leyes como si fueran temas.
 
 Formato: texto plano con títulos en MAYÚSCULAS y negrita. NO uses JSON. Escribe texto natural formateado con saltos de línea claros.`
 }

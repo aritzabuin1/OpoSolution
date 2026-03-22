@@ -291,6 +291,22 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
     }
   }
 
+  // ── 4c. Balance correct answer positions (0-3) ───────────────────────────
+  // The AI tends to place the correct answer in position 0 or 1 (pattern-matching
+  // from examples). Fix: for each question, randomly rotate the options so the
+  // correct answer lands in a different position each time.
+  for (const p of preguntas) {
+    // Pick a random target position for the correct answer
+    const target = Math.floor(Math.random() * 4)
+    if (target !== p.correcta) {
+      // Swap the correct option with the option at the target position
+      const temp = p.opciones[target]
+      p.opciones[target] = p.opciones[p.correcta]
+      p.opciones[p.correcta] = temp
+      p.correcta = target as 0 | 1 | 2 | 3
+    }
+  }
+
   // ── 5. Guardar en BD ──────────────────────────────────────────────────────
   const testId = await saveTestToDB({ userId, temaId, preguntas })
 
