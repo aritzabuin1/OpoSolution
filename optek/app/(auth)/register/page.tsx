@@ -21,12 +21,11 @@ const OPOSICIONES = [
     label: 'Administrativo del Estado (C1)',
     desc: '45 temas · 2.512 plazas',
   },
-  // TODO: Descomentar cuando Aritz active Stripe para A2
-  // {
-  //   id: 'c2000000-0000-0000-0000-000000000001',
-  //   label: 'Gestión del Estado — GACE (A2)',
-  //   desc: '58 temas · 1.356 plazas · Incluye supuesto práctico con IA',
-  // },
+  {
+    id: 'c2000000-0000-0000-0000-000000000001',
+    label: 'Gestión del Estado — GACE (A2)',
+    desc: '58 temas · 1.356 plazas · Incluye supuesto práctico con IA',
+  },
 ] as const
 
 export default function RegisterPage() {
