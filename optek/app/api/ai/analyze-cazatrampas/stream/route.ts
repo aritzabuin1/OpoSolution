@@ -146,6 +146,7 @@ export async function POST(request: NextRequest) {
     userId,
     endpoint: 'analyze-cazatrampas-stream',
     context: { sesionId, trampas: errores.length },
+    oposicionId,
     onComplete: async () => {
       if (hasPaidCredit) {
         await serviceSupabase.rpc('use_correction', { p_user_id: userId })

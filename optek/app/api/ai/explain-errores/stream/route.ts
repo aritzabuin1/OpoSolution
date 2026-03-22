@@ -184,6 +184,7 @@ export async function POST(request: NextRequest) {
     userId,
     endpoint: 'explain-errores-stream',
     context: { testId, errores: erroneas.length },
+    oposicionId,
     onComplete: async () => {
       // Admin: no credit deduction
       if (isAdmin) return

@@ -263,6 +263,7 @@ export async function POST(request: NextRequest) {
     userId,
     endpoint: 'generate-roadmap',
     context: { totalTests: testsCompletados.length, temasConDatos: temasConDatos.length },
+    oposicionId,
     onComplete: async () => {
       if (isAdmin) return
       if (hasPaidCredit) {

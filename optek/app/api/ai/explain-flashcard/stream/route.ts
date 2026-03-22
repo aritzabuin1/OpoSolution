@@ -127,6 +127,7 @@ export async function POST(request: NextRequest) {
     userId,
     endpoint: 'explain-flashcard-stream',
     context: { flashcardId },
+    oposicionId,
     onComplete: async () => {
       if (hasPaidCredit) {
         await serviceSupabase.rpc('use_correction', { p_user_id: userId })

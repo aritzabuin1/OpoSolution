@@ -185,6 +185,7 @@ ${erroresDetalle || '  Ninguna'}`
     userId,
     endpoint: 'informe-simulacro-stream',
     context: { testId, aciertos, errores },
+    oposicionId,
     onComplete: async () => {
       // Admin: no credit deduction
       if (isAdmin) return
