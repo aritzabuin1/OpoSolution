@@ -30,9 +30,9 @@ import { AIAnalysisDemo } from '@/components/marketing/AIAnalysisDemo'
 const APP_URL_META = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
 export const metadata: Metadata = {
-  title: 'OpoRuta — Prepara tus oposiciones AGE (C1 y C2) con IA verificada',
+  title: 'OpoRuta — Oposiciones AGE con IA: Auxiliar C2, Administrativo C1 y Gestión A2',
   description:
-    'Plataforma de preparación para oposiciones de la Administración General del Estado: Administrativo (C1, 45 temas) y Auxiliar (C2, 28 temas). Tests con verificación de citas legales, simulacros INAP oficiales y Radar del Tribunal. 4.200+ plazas. Desde 0€.',
+    'Plataforma de preparación para oposiciones de la AGE: Auxiliar (C2, 28 temas), Administrativo (C1, 45 temas) y Gestión del Estado GACE (A2, 58 temas con supuesto práctico corregido por IA). Tests verificados, simulacros INAP y Radar del Tribunal. 5.500+ plazas. Desde 0€.',
   keywords: [
     'oposiciones administracion general estado 2026',
     'oposiciones auxiliar administrativo 2026',
@@ -44,9 +44,9 @@ export const metadata: Metadata = {
     'IA oposiciones administracion estado',
   ],
   openGraph: {
-    title: 'OpoRuta — Prepara tus oposiciones AGE (C1 y C2) con IA verificada',
+    title: 'OpoRuta — Oposiciones AGE con IA: Auxiliar C2, Administrativo C1 y Gestión A2',
     description:
-      'Tests con citas legales verificadas, simulacros INAP oficiales y Radar del Tribunal. Administrativo (C1) + Auxiliar (C2). 4.200+ plazas. Empieza gratis.',
+      'Tests verificados, simulacros INAP, Radar del Tribunal y supuesto práctico con IA. Auxiliar (C2) + Administrativo (C1) + Gestión GACE (A2). 5.500+ plazas. Empieza gratis.',
     type: 'website',
     url: APP_URL_META,
     images: [{ url: `${APP_URL_META}/api/og?tipo=blog&tema=${encodeURIComponent('OpoRuta — El camino más corto hacia el aprobado')}`, width: 1200, height: 630 }],
@@ -56,8 +56,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'OpoRuta — Prepara tus oposiciones AGE (C1 y C2) con IA verificada',
-    description: 'Tests verificados, simulacros INAP oficiales y Radar del Tribunal. C1 + C2. Empieza gratis.',
+    title: 'OpoRuta — Oposiciones AGE con IA: Auxiliar C2, Administrativo C1 y Gestión A2',
+    description: 'Tests verificados, simulacros INAP, Radar del Tribunal y supuesto práctico con IA. C2 + C1 + A2 GACE. Empieza gratis.',
   },
 }
 
@@ -182,7 +182,7 @@ const faqs = [
   },
   {
     q: '¿Para qué oposiciones funciona ahora mismo?',
-    a: 'OpoRuta cubre dos oposiciones de la Administración General del Estado: Auxiliar Administrativo (C2, 28 temas, 1.700 plazas) y Administrativo del Estado (C1, 45 temas, 2.512 plazas). Cada una tiene su temario completo, legislación verificada y exámenes INAP reales. Al registrarte eliges tu oposición, y puedes cambiar o preparar ambas con el Pack Doble.',
+    a: 'OpoRuta cubre tres oposiciones de la Administración General del Estado: Auxiliar Administrativo (C2, 28 temas, 1.700 plazas), Administrativo del Estado (C1, 45 temas, 2.512 plazas) y Gestión del Estado GACE (A2, 58 temas, 1.356 plazas). La oposición A2 incluye corrección de supuesto práctico con IA — una funcionalidad exclusiva de OpoRuta. Al registrarte eliges tu oposición, y puedes preparar varias con los Packs Doble o Triple.',
   },
   {
     q: '¿Qué pasa cuando agoto mis análisis detallados?',
@@ -319,7 +319,7 @@ const jsonLdApp = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
   name: 'OpoRuta',
-  description: 'Plataforma de preparación de oposiciones de la Administración General del Estado (C1 Administrativo + C2 Auxiliar) con IA y verificación determinista de citas legales.',
+  description: 'Plataforma de preparación de oposiciones AGE (C2 Auxiliar + C1 Administrativo + A2 Gestión GACE) con IA verificada y corrección de supuesto práctico.',
   url: APP_URL_META,
   applicationCategory: 'EducationalApplication',
   operatingSystem: 'Web',
@@ -351,7 +351,7 @@ const jsonLdApp = {
   audience: {
     '@type': 'EducationalAudience',
     educationalRole: 'Student',
-    audienceType: 'Opositores a la Administración General del Estado (C1 Administrativo + C2 Auxiliar)',
+    audienceType: 'Opositores AGE (C2 Auxiliar + C1 Administrativo + A2 Gestión del Estado GACE)',
   },
 }
 
@@ -393,7 +393,7 @@ export default async function LandingPage() {
       <section aria-labelledby="hero-heading" className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-background py-20 sm:py-32">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
           <Badge variant="secondary" className="mb-6 text-xs font-medium px-3 py-1">
-            Administración General del Estado · C1 + C2 · 4.200+ plazas
+            Administración General del Estado · C2 + C1 + A2 · 5.500+ plazas
           </Badge>
 
           <ExamCountdown examDate="2026-05-23" />
@@ -404,7 +404,7 @@ export default async function LandingPage() {
             <span className="text-primary">Entrena con lo que pregunta el tribunal.</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Prepara Administrativo (C1) o Auxiliar (C2) con tests generados desde exámenes INAP reales
+            Prepara Auxiliar (C2), Administrativo (C1) o Gestión del Estado (A2) con tests verificados e IA
             y cada cita legal verificada al artículo exacto. Sabrás si estás avanzando.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
@@ -798,7 +798,7 @@ export default async function LandingPage() {
             Únete a los primeros opositores en probarlo
           </p>
           <p className="text-sm text-muted-foreground mb-6">
-            C1 o C2 — elige tu oposición y empieza hoy. Plazas de fundador limitadas.
+            C2, C1 o A2 — elige tu oposición y empieza hoy. Plazas de fundador limitadas.
           </p>
           <Link href="/register">
             <Button size="lg" className="gap-2">

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { stripe, CORRECTIONS_GRANTED, C1_OPOSICION_ID, C2_OPOSICION_ID, A2_OPOSICION_ID } from '@/lib/stripe/client'
+import { stripe, CORRECTIONS_GRANTED, SUPUESTOS_GRANTED, C1_OPOSICION_ID, C2_OPOSICION_ID, A2_OPOSICION_ID } from '@/lib/stripe/client'
 import { createServiceClient } from '@/lib/supabase/server'
 import { logger } from '@/lib/logger'
 
@@ -193,7 +193,7 @@ async function handleStripeEvent(
       }
 
       // 2b. Otorgar supuestos prácticos si aplica (pool separado: supuestos_balance)
-      const supuestosToGrant = { pack: 0, pack_c1: 0, pack_a2: 5, pack_doble: 0, pack_triple: 5, recarga: 0, recarga_sup: 5, fundador: 5 }[tier] ?? 0
+      const supuestosToGrant = SUPUESTOS_GRANTED[tier] ?? 0
       if (supuestosToGrant > 0) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const { data: currentProfile } = await (supabase as any)

@@ -14,6 +14,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
 import { Loader2 } from 'lucide-react'
+import { OPOSICION_CHANGED_EVENT } from '@/lib/hooks/useIsPremium'
 
 // TODO: query oposiciones WHERE activa = true (requires server component or API)
 const OPOSICIONES = [
@@ -75,6 +76,8 @@ export function ProfileForm({
       toast.error('No se pudo guardar. Inténtalo de nuevo.')
     } else {
       toast.success('Perfil actualizado correctamente')
+      // Notify hooks (useIsPremium, etc.) that oposición changed
+      window.dispatchEvent(new Event(OPOSICION_CHANGED_EVENT))
     }
   }
 
