@@ -324,11 +324,12 @@ Ejemplo de buen truco: "Los 4 obligados a tramitar electrónicamente son los que
 Ejemplo de mal truco: "Recuerda E-A-A-F, las iniciales de los 4 obligados."
 
 QUÉ HACER AHORA (1-2 frases)
-Sugiere una acción concreta que el usuario PUEDE hacer en la app. Las opciones reales son:
-- "Repite un test de 10 preguntas de este mismo tema en dificultad media" (se elige por tema, no por título de ley)
-- "Repasa las flashcards de este tema" (las flashcards se organizan por tema, no por artículos sueltos)
-- "Haz un repaso de errores para volver a practicar las preguntas que has fallado antes"
-NO inventes acciones que no existen. NO digas "crea flashcards sobre X" (el usuario no las crea manualmente). NO digas "haz un test centrado en el Título II" (los tests son por tema, no por título de ley).
+Sugiere una acción concreta. USA SIEMPRE el nombre del tema que aparece entre corchetes [Tema: ...] en los datos — es el nombre EXACTO que el usuario ve en la app. Ejemplo: "Repite un test de 10 preguntas del Tema 4 (El Poder Judicial)".
+Las opciones reales son:
+- "Repite un test de 10 preguntas del Tema X (nombre del tema)" — los tests se eligen por TEMA, no por título de ley ni por concepto suelto
+- "Repasa las flashcards del Tema X (nombre)" — las flashcards van por TEMA, no se crean manualmente
+- "Haz un repaso de errores para practicar las preguntas que has fallado antes"
+PROHIBIDO: inventar acciones que no existen, decir "crea flashcards sobre X", decir "haz un test sobre el Tribunal Constitucional" (no es un tema, está dentro de otro tema), o referirte a títulos de leyes como si fueran temas.
 
 Responde ÚNICAMENTE con JSON válido:
 {
@@ -379,11 +380,12 @@ Ejemplo de buen truco: "Los 4 obligados a tramitar electrónicamente son los que
 Ejemplo de mal truco: "Recuerda E-A-A-F, las iniciales de los 4 obligados."
 
 QUÉ HACER AHORA (1-2 frases)
-Sugiere una acción concreta que el usuario PUEDE hacer en la app. Las opciones reales son:
-- "Repite un test de 10 preguntas de este mismo tema en dificultad media" (se elige por tema, no por título de ley)
-- "Repasa las flashcards de este tema" (las flashcards se organizan por tema, no por artículos sueltos)
-- "Haz un repaso de errores para volver a practicar las preguntas que has fallado antes"
-NO inventes acciones que no existen. NO digas "crea flashcards sobre X" (el usuario no las crea). NO digas "haz un test centrado en el Título II" (los tests son por tema, no por título de ley).
+Sugiere una acción concreta. USA SIEMPRE el nombre del tema que aparece entre corchetes [Tema: ...] en los datos — es el nombre EXACTO que el usuario ve en la app. Ejemplo: "Repite un test de 10 preguntas del Tema 4 (El Poder Judicial)".
+Las opciones reales son:
+- "Repite un test de 10 preguntas del Tema X (nombre del tema)" — los tests se eligen por TEMA, no por título de ley ni por concepto suelto
+- "Repasa las flashcards del Tema X (nombre)" — las flashcards van por TEMA, no se crean manualmente
+- "Haz un repaso de errores para practicar las preguntas que has fallado antes"
+PROHIBIDO: inventar acciones que no existen, decir "crea flashcards sobre X", decir "haz un test sobre el Tribunal Constitucional" (no es un tema, está dentro de otro tema), o referirte a títulos de leyes como si fueran temas.
 
 Formato: texto plano con títulos en MAYÚSCULAS y negrita. NO uses JSON. Escribe texto natural formateado con saltos de línea claros.`
 }

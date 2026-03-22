@@ -48,6 +48,6 @@ export const DEMO_ANALYSIS_STEPS: DemoAnalysisStep[] = [
   {
     type: 'accion',
     label: 'Qué hacer ahora',
-    text: 'Haz flashcards del Tema 8 (LPAC) — este artículo cae en casi todas las convocatorias.',
+    text: 'Repasa las flashcards del Tema 15 (La Administración Electrónica) — este artículo cae en casi todas las convocatorias.',
   },
 ]
