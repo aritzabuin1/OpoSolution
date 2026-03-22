@@ -146,29 +146,45 @@ ESTILO DE CORRECCIÓN:
 - La respuesta modelo debe ser concisa (lo que habría escrito un opositor que aprueba)
 - Escribe claro y directo, como un buen corrector que quiere que el opositor MEJORE
 
-Responde ÚNICAMENTE con JSON válido:
-{
-  "puntuacion_total": 32.5,
-  "desglose": {
-    "conocimiento_aplicado": { "puntos": 18, "max": 30, "feedback": "..." },
-    "analisis": { "puntos": 7, "max": 10, "feedback": "..." },
-    "sistematica": { "puntos": 4, "max": 5, "feedback": "..." },
-    "expresion": { "puntos": 3.5, "max": 5, "feedback": "..." }
-  },
-  "por_cuestion": [
-    {
-      "numero": 1,
-      "puntos": 7,
-      "max": 10,
-      "aciertos": ["Correctamente identifica el contrato menor (Art. 118 LCSP)"],
-      "errores": ["No menciona el umbral de 15.000€ para servicios"],
-      "articulos_faltantes": ["LCSP Art. 118.1"],
-      "respuesta_modelo": "El contrato descrito es un contrato menor de servicios (Art. 118 LCSP)..."
-    }
-  ],
-  "aprobado": true,
-  "consejo": "Estás cerca del nivel de aprobado. Refuerza los documentos contables y los plazos de la LCSP."
-}`
+FORMATO DE RESPUESTA: texto plano formateado (NO JSON). Usa este formato exacto:
+
+**PUNTUACIÓN TOTAL: X / 50** (Aprobado ✅ / Suspendido ❌)
+
+---
+
+**DESGLOSE POR CRITERIOS INAP**
+
+**Conocimiento aplicado**: X/30
+[feedback sobre citas legales, artículos correctos/incorrectos]
+
+**Análisis**: X/10
+[feedback sobre razonamiento y conexión hechos-norma]
+
+**Sistemática**: X/5
+[feedback sobre estructura y orden]
+
+**Expresión escrita**: X/5
+[feedback sobre redacción y claridad]
+
+---
+
+**CORRECCIÓN POR CUESTIÓN**
+
+**Cuestión 1** — X/10
+✅ Aciertos: [lo que hizo bien]
+❌ Errores: [lo que falló]
+📚 Artículos que faltan: [artículos no citados]
+📝 Respuesta modelo: [respuesta breve que habría dado un opositor que aprueba]
+
+**Cuestión 2** — X/10
+[mismo formato]
+
+[... hasta Cuestión 5]
+
+---
+
+**CONSEJO FINAL**
+[1-2 frases con recomendación concreta para mejorar]`
 }
 
 // ─── User Prompt Builder: Corrección ─────────────────────────────────────────
