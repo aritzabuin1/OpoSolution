@@ -7,7 +7,7 @@
  * Submit button sends to /api/ai/corregir-supuesto/stream for AI correction.
  */
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -29,6 +29,21 @@ interface SupuestoCaso {
   titulo: string
   contexto: string
   cuestiones: Cuestion[]
+}
+
+/** Simple markdown → HTML for streaming correction display */
+function markdownToHtml(md: string): string {
+  return md
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/^---$/gm, '<hr class="my-4 border-emerald-200"/>')
+    .replace(/^### (.+)$/gm, '<h3 class="font-semibold text-base mt-4 mb-1">$1</h3>')
+    .replace(/✅/g, '<span class="text-green-600">✅</span>')
+    .replace(/❌/g, '<span class="text-red-600">❌</span>')
+    .replace(/📚/g, '<span>📚</span>')
+    .replace(/📝/g, '<span>📝</span>')
+    .replace(/\n/g, '<br/>')
 }
 
 export default function SupuestoPracticoDetailPage() {
@@ -228,9 +243,10 @@ export default function SupuestoPracticoDetailPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="prose prose-sm max-w-none dark:prose-invert whitespace-pre-wrap text-sm leading-relaxed">
-              {correctionStream}
-            </div>
+            <div
+              className="text-sm leading-relaxed space-y-1 [&_strong]:font-semibold [&_hr]:my-4 [&_hr]:border-emerald-200"
+              dangerouslySetInnerHTML={{ __html: markdownToHtml(correctionStream) }}
+            />
           </CardContent>
         </Card>
       )}
