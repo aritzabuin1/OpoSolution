@@ -213,10 +213,10 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
     )
   }
 
-  // Verify
+  // Verify — pass dificultad to override AI-assigned levels
   const preguntasVerificadas = esBloqueII
-    ? verifyPreguntasBloque2(sanitized, contexto, log)
-    : await verifyPreguntas(sanitized, log)
+    ? verifyPreguntasBloque2(sanitized, contexto, log, dificultad)
+    : await verifyPreguntas(sanitized, log, dificultad)
 
   log.info(
     {
@@ -292,7 +292,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
  *   3. Verify each question in-memory against fetched articles
  *   4. Timeout safety net — if batch query is slow, accept all unverified
  */
-async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Promise<Pregunta[]> {
+async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger, dificultad: 'facil' | 'media' | 'dificil' = 'media'): Promise<Pregunta[]> {
   const VERIFY_TIMEOUT_MS = 5_000 // 5s — batch query should be <1s
 
   const verifyBatch = async (): Promise<Pregunta[]> => {
@@ -368,7 +368,9 @@ async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Prom
           correcta: pregunta.correcta,
           explicacion: pregunta.explicacion,
           cita: pregunta.cita,
-          dificultad: pregunta.dificultad,
+          // Override AI-assigned difficulty with the requested difficulty — the AI
+          // sometimes assigns wrong levels (e.g. "facil" when "media" was requested)
+          dificultad: dificultad,
         })
       }
     }
@@ -424,7 +426,8 @@ async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger): Prom
 function verifyPreguntasBloque2(
   preguntas: PreguntaRaw[],
   contexto: string,
-  log: ChildLogger
+  log: ChildLogger,
+  dificultad: 'facil' | 'media' | 'dificil' = 'media'
 ): Pregunta[] {
   const contextoLower = contexto.toLowerCase()
   const results: Pregunta[] = []
@@ -438,7 +441,8 @@ function verifyPreguntasBloque2(
         correcta: pregunta.correcta,
         explicacion: pregunta.explicacion,
         // cita: undefined — Bloque II no tiene citas legales
-        dificultad: pregunta.dificultad,
+        // Override AI-assigned difficulty with requested difficulty
+        dificultad: dificultad,
       })
     }
   }

@@ -494,7 +494,7 @@ export default async function ResultadosPage({ params }: Props) {
               <Card key={index} className="border-red-200">
                 <CardHeader className="pb-2 pt-4">
                   <div className="flex items-start justify-between gap-2">
-                    <p className="text-sm font-medium leading-snug">
+                    <p className="text-sm font-medium leading-snug min-w-0">
                       <span className="text-muted-foreground mr-2">P{index + 1}.</span>
                       {pregunta.enunciado}
                     </p>
@@ -503,6 +503,7 @@ export default async function ResultadosPage({ params }: Props) {
                         status="verified"
                         ley={pregunta.cita.ley}
                         articulo={pregunta.cita.articulo}
+                        className="shrink-0"
                       />
                     )}
                   </div>

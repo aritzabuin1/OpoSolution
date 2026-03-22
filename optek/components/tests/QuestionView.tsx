@@ -127,7 +127,7 @@ export function QuestionView({
                 : 'border-border bg-muted'
           }`}
         >
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <span
               className={`text-sm font-semibold ${
                 esCorrecto ? 'text-green-700' : esIncorrecto ? 'text-red-700' : ''
