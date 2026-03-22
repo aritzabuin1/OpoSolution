@@ -1,0 +1,562 @@
+{
+  "convocatoria": "2018",
+  "anno": 2018,
+  "turno": "libre",
+  "modelo": "A",
+  "fuente_url": null,
+  "total_preguntas": 46,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "¿Cuáles de los siguientes se propugnan como valores superiores del ordenamiento jurídico español de acuerdo con el artículo 1 de la Constitución Española?",
+      "opciones": [
+        "La democracia y el pluralismo político.",
+        "La libertad y la justicia.",
+        "La igualdad y el estado social.",
+        "La justicia y la Nación española."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 2,
+      "enunciado": "De acuerdo con el artículo 8 del Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto refundido de la Ley del Estatuto Básico del Empleado Público, el personal laboral de las Administraciones Públicas podrá ser:",
+      "opciones": [
+        "Fijo, eventual o temporal.",
+        "Fijo, temporal o interino.",
+        "Fijo, temporal o indefinido.",
+        "Fijo, eventual o indefinido o temporal."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 3,
+      "enunciado": "Según el artículo 23 de la Constitución Española, los ciudadanos tienen derecho a participar en los asuntos públicos, directamente o por medio de representantes, libremente elegidos en elecciones periódicas por sufragio:",
+      "opciones": [
+        "Universal.",
+        "Directo.",
+        "Igual.",
+        "Universal, igual, libre, directo y secreto."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 4,
+      "enunciado": "Según el artículo 66 de la Constitución Española, las Cortes Generales representan al pueblo español y están formadas por:",
+      "opciones": [
+        "El Congreso de los Diputados y el Senado.",
+        "El Congreso de los Diputados y el Gobierno.",
+        "El Senado y el Gobierno.",
+        "El Congreso de los Diputados, el Senado y el Gobierno."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 5,
+      "enunciado": "Según el artículo 68 de la Constitución Española, el Congreso se compone de un mínimo de:",
+      "opciones": [
+        "300 Diputados y un máximo de 400.",
+        "350 Diputados.",
+        "300 Diputados.",
+        "400 Diputados."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 6,
+      "enunciado": "Según el artículo 69 de la Constitución Española, el Senado es la Cámara de representación:",
+      "opciones": [
+        "Territorial.",
+        "Autonómica.",
+        "Provincial.",
+        "Local."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 7,
+      "enunciado": "Según el artículo 97 de la Constitución Española, el Gobierno dirige la política interior y exterior, la Administración civil y militar y la defensa del Estado. Ejerce la función ejecutiva y la potestad:",
+      "opciones": [
+        "Reglamentaria de acuerdo con la Constitución y las leyes.",
+        "Legislativa de acuerdo con la Constitución y las leyes.",
+        "Jurisdiccional de acuerdo con la Constitución y las leyes.",
+        "Constitucional de acuerdo con la Constitución y las leyes."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 8,
+      "enunciado": "Según el artículo 104 de la Constitución Española, las Fuerzas y Cuerpos de Seguridad, bajo la dependencia del Gobierno, tienen como misión proteger el libre ejercicio de los derechos y libertades y garantizar la:",
+      "opciones": [
+        "Seguridad ciudadana.",
+        "Seguridad nacional.",
+        "Seguridad pública.",
+        "Seguridad del Estado."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 9,
+      "enunciado": "Según el artículo 106 de la Constitución Española, los Tribunales controlan la potestad reglamentaria y la legalidad de la actuación administrativa, así como el sometimiento de ésta a los fines que la justifican. En particular, el control de la legalidad de la actuación administrativa se ejerce por:",
+      "opciones": [
+        "La jurisdicción contencioso-administrativa.",
+        "La jurisdicción civil.",
+        "La jurisdicción penal.",
+        "La jurisdicción social."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 10,
+      "enunciado": "Según el artículo 117 de la Constitución Española, la justicia emana del pueblo y se administra en nombre del Rey por Jueces y Magistrados integrantes del poder judicial, independientes, inamovibles, responsables y sometidos únicamente al imperio de la:",
+      "opciones": [
+        "Ley.",
+        "Constitución.",
+        "Justicia.",
+        "Normativa."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 11,
+      "enunciado": "Según el artículo 122 de la Constitución Española, el Consejo General del Poder Judicial es el órgano de gobierno del mismo. La Ley Orgánica del Poder Judicial determinará su estatuto y el régimen de incompatibilidades de sus miembros y sus funciones, en particular en materia de:",
+      "opciones": [
+        "Nombramientos, ascensos, inspección y régimen disciplinario.",
+        "Nombramientos, ascensos, inspección y régimen económico.",
+        "Nombramientos, ascensos, inspección y régimen administrativo.",
+        "Nombramientos, ascensos, inspección y régimen laboral."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 12,
+      "enunciado": "De acuerdo con el artículo 14.1 de la Ley 19/2013, de 9 de diciembre, de transparencia, acceso a la información pública y buen gobierno, el derecho de acceso podrá ser limitado cuando acceder a la información suponga un perjuicio para:",
+      "opciones": [
+        "La protección de datos personales.",
+        "La protección del medio ambiente.",
+        "La protección de la salud.",
+        "La protección de la seguridad."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 13,
+      "enunciado": "De acuerdo con el artículo 53.2 de la Constitución, cualquier ciudadano puede recabar la tutela de derechos y libertades ante los Tribunales ordinarios por un procedimiento basado en los principios de preferencia y sumariedad, y, en su caso, a través del recurso de amparo ante el Tribunal Constitucional. ¿A cuál de los siguientes derechos se sería aplicable este recurso?",
+      "opciones": [
+        "Derecho a la vida.",
+        "Derecho a la libertad de expresión.",
+        "Derecho a la propiedad privada.",
+        "Derecho a la educación."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 14,
+      "enunciado": "Según el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, relativo a la protección de las personas físicas en lo que respecta al tratamiento de datos personales y a la libre circulación de estos datos, el consentimiento del interesado para el tratamiento de sus datos personales debe ser:",
+      "opciones": [
+        "Libre, específico, informado e inequívoco.",
+        "Libre, específico, informado y revocable.",
+        "Libre, específico, informado y tácito.",
+        "Libre, específico, informado y expreso."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 15,
+      "enunciado": "Según el artículo 20 de la Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas, el silencio administrativo en procedimientos iniciados a solicitud del interesado tiene efecto:",
+      "opciones": [
+        "Estimatorio, salvo disposición en contrario.",
+        "Desestimatorio, salvo disposición en contrario.",
+        "Estimatorio, salvo disposición expresa en contrario.",
+        "Desestimatorio, salvo disposición expresa en contrario."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 16,
+      "enunciado": "Según el artículo 21 de la Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas, el plazo máximo en que debe notificarse la resolución expresa será el fijado por la norma reguladora del correspondiente procedimiento, que no podrá exceder de:",
+      "opciones": [
+        "Tres meses, salvo que una norma con rango de Ley establezca uno mayor o así venga previsto en el Derecho de la Unión Europea.",
+        "Seis meses, salvo que una norma con rango de Ley establezca uno mayor o así venga previsto en el Derecho de la Unión Europea.",
+        "Tres meses, salvo que una norma con rango de Ley establezca uno menor o así venga previsto en el Derecho de la Unión Europea.",
+        "Seis meses, salvo que una norma con rango de Ley establezca uno menor o así venga previsto en el Derecho de la Unión Europea."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 17,
+      "enunciado": "Según el artículo 22 de la Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas, el órgano competente para la instrucción del procedimiento, cuando sea necesario para la adecuada tramitación del mismo, podrá acordar su ampliación por un plazo:",
+      "opciones": [
+        "No superior a la mitad del mismo.",
+        "No superior a un tercio del mismo.",
+        "No superior a un cuarto del mismo.",
+        "No superior a un quinto del mismo."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 18,
+      "enunciado": "Según el artículo 23 de la Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas, el órgano competente para resolver el procedimiento, cuando sea necesario para la adecuada tramitación del mismo, podrá acordar su ampliación por un plazo:",
+      "opciones": [
+        "No superior a la mitad del mismo.",
+        "No superior a un tercio del mismo.",
+        "No superior a un cuarto del mismo.",
+        "No superior a un quinto del mismo."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 19,
+      "enunciado": "Según el artículo 24 de la Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas, el silencio administrativo en procedimientos iniciados de oficio tiene efecto:",
+      "opciones": [
+        "Desestimatorio, salvo disposición en contrario.",
+        "Estimatorio, salvo disposición en contrario.",
+        "Desestimatorio, salvo disposición expresa en contrario.",
+        "Estimatorio, salvo disposición expresa en contrario."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 20,
+      "enunciado": "Según el artículo 25 de la Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas, el órgano competente para resolver el procedimiento, cuando sea necesario para la adecuada tramitación del mismo, podrá acordar su ampliación por un plazo:",
+      "opciones": [
+        "No superior a la mitad del mismo.",
+        "No superior a un tercio del mismo.",
+        "No superior a un cuarto del mismo.",
+        "No superior a un quinto del mismo."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 21,
+      "enunciado": "Según el artículo 26 de la Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas, el órgano competente para resolver el procedimiento, cuando sea necesario para la adecuada tramitación del mismo, podrá acordar su ampliación por un plazo:",
+      "opciones": [
+        "No superior a la mitad del mismo.",
+        "No superior a un tercio del mismo.",
+        "No superior a un cuarto del mismo.",
+        "No superior a un quinto del mismo."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 22,
+      "enunciado": "Según el artículo 27 de la Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas, el órgano competente para resolver el procedimiento, cuando sea necesario para la adecuada tramitación del mismo, podrá acordar su ampliación por un plazo:",
+      "opciones": [
+        "No superior a la mitad del mismo.",
+        "No superior a un tercio del mismo.",
+        "No superior a un cuarto del mismo.",
+        "No superior a un quinto del mismo."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 23,
+      "enunciado": "De acuerdo con la Ley 47/2003, de 26 de noviembre, General Presupuestaria, la estructura de los Presupuestos Generales del Estado se determinará por:",
+      "opciones": [
+        "El Ministerio de Economía y Empresa.",
+        "El Ministerio de Hacienda.",
+        "El Consejo de Ministros.",
+        "El Congreso de los Diputados."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 24,
+      "enunciado": "De acuerdo con el artículo 149.1.5ª de la Constitución Española, la competencia sobre Administración de Justicia es:",
+      "opciones": [
+        "Exclusiva del Estado.",
+        "Exclusiva de las Comunidades Autónomas.",
+        "Compartida entre el Estado y las Comunidades Autónomas.",
+        "Concurrente entre el Estado y las Comunidades Autónomas."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 25,
+      "enunciado": "De acuerdo con el artículo 149.1.6ª de la Constitución Española, la competencia sobre legislación mercantil es:",
+      "opciones": [
+        "Exclusiva del Estado.",
+        "Exclusiva de las Comunidades Autónomas.",
+        "Compartida entre el Estado y las Comunidades Autónomas.",
+        "Concurrente entre el Estado y las Comunidades Autónomas."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 26,
+      "enunciado": "De acuerdo con el artículo 149.1.8ª de la Constitución Española, la competencia sobre legislación civil es:",
+      "opciones": [
+        "Exclusiva del Estado.",
+        "Exclusiva de las Comunidades Autónomas.",
+        "Compartida entre el Estado y las Comunidades Autónomas.",
+        "Concurrente entre el Estado y las Comunidades Autónomas."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 27,
+      "enunciado": "De acuerdo con el artículo 149.1.10ª de la Constitución Española, la competencia sobre legislación laboral es:",
+      "opciones": [
+        "Exclusiva del Estado.",
+        "Exclusiva de las Comunidades Autónomas.",
+        "Compartida entre el Estado y las Comunidades Autónomas.",
+        "Concurrente entre el Estado y las Comunidades Autónomas."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 28,
+      "enunciado": "De acuerdo con el artículo 149.1.13ª de la Constitución Española, la competencia sobre bases y coordinación de la planificación general de la actividad económica es:",
+      "opciones": [
+        "Exclusiva del Estado.",
+        "Exclusiva de las Comunidades Autónomas.",
+        "Compartida entre el Estado y las Comunidades Autónomas.",
+        "Concurrente entre el Estado y las Comunidades Autónomas."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 29,
+      "enunciado": "De acuerdo con el artículo 149.1.18ª de la Constitución Española, la competencia sobre bases del régimen jurídico de las Administraciones Públicas y del régimen estatutario de sus funcionarios es:",
+      "opciones": [
+        "Exclusiva del Estado.",
+        "Exclusiva de las Comunidades Autónomas.",
+        "Compartida entre el Estado y las Comunidades Autónomas.",
+        "Concurrente entre el Estado y las Comunidades Autónomas."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 30,
+      "enunciado": "De acuerdo con el artículo 149.1.23ª de la Constitución Española, la competencia sobre legislación básica sobre protección del medio ambiente es:",
+      "opciones": [
+        "Exclusiva del Estado.",
+        "Exclusiva de las Comunidades Autónomas.",
+        "Compartida entre el Estado y las Comunidades Autónomas.",
+        "Concurrente entre el Estado y las Comunidades Autónomas."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 31,
+      "enunciado": "De acuerdo con el artículo 149.1.25ª de la Constitución Española, la competencia sobre bases de régimen minero y energético es:",
+      "opciones": [
+        "Exclusiva del Estado.",
+        "Exclusiva de las Comunidades Autónomas.",
+        "Compartida entre el Estado y las Comunidades Autónomas.",
+        "Concurrente entre el Estado y las Comunidades Autónomas."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 32,
+      "enunciado": "De acuerdo con el artículo 149.1.27ª de la Constitución Española, la competencia sobre bases del régimen de prensa, radio y televisión es:",
+      "opciones": [
+        "Exclusiva del Estado.",
+        "Exclusiva de las Comunidades Autónomas.",
+        "Compartida entre el Estado y las Comunidades Autónomas.",
+        "Concurrente entre el Estado y las Comunidades Autónomas."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 33,
+      "enunciado": "De acuerdo con el artículo 149.1.29ª de la Constitución Española, la competencia sobre seguridad pública es:",
+      "opciones": [
+        "Exclusiva del Estado.",
+        "Exclusiva de las Comunidades Autónomas.",
+        "Compartida entre el Estado y las Comunidades Autónomas.",
+        "Concurrente entre el Estado y las Comunidades Autónomas."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 34,
+      "enunciado": "De acuerdo con el artículo 149.1.30ª de la Constitución Española, la competencia sobre regulación de las condiciones básicas que garanticen la igualdad de todos los españoles en el ejercicio de los derechos y en el cumplimiento de los deberes constitucionales es:",
+      "opciones": [
+        "Exclusiva del Estado.",
+        "Exclusiva de las Comunidades Autónomas.",
+        "Compartida entre el Estado y las Comunidades Autónomas.",
+        "Concurrente entre el Estado y las Comunidades Autónomas."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 35,
+      "enunciado": "De acuerdo con el artículo 149.1.31ª de la Constitución Española, la competencia sobre estadística para fines estatales es:",
+      "opciones": [
+        "Exclusiva del Estado.",
+        "Exclusiva de las Comunidades Autónomas.",
+        "Compartida entre el Estado y las Comunidades Autónomas.",
+        "Concurrente entre el Estado y las Comunidades Autónomas."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 36,
+      "enunciado": "A la vista de los datos incluidos en el siguiente cuadro, conteste a las seis preguntas siguientes: Según la tabla, ¿cuál de estas Comunidades Autónomas tiene menor porcentaje de municipios de más de 10.000 habitantes respecto al total de municipios de la Comunidad Autónoma?",
+      "opciones": [
+        "Andalucía.",
+        "Castilla-La Mancha.",
+        "Cataluña.",
+        "Comunidad Valenciana."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 37,
+      "enunciado": "Según la tabla, ¿cuál de estas Comunidades Autónomas tiene mayor porcentaje de municipios de menos de 10.000 habitantes respecto al total de municipios de la Comunidad Autónoma?",
+      "opciones": [
+        "Andalucía.",
+        "Castilla-La Mancha.",
+        "Cataluña.",
+        "Comunidad Valenciana."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 38,
+      "enunciado": "Según la tabla, ¿cuál de estas Comunidades Autónomas tiene mayor número de municipios de menos de 10.000 habitantes?",
+      "opciones": [
+        "Andalucía.",
+        "Castilla-La Mancha.",
+        "Cataluña.",
+        "Comunidad Valenciana."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 39,
+      "enunciado": "Según la tabla, ¿cuál de estas Comunidades Autónomas tiene menor número de municipios de más de 10.000 habitantes?",
+      "opciones": [
+        "Andalucía.",
+        "Castilla-La Mancha.",
+        "Cataluña.",
+        "Comunidad Valenciana."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 40,
+      "enunciado": "Según la tabla, ¿cuál de estas Comunidades Autónomas tiene mayor porcentaje de municipios de más de 10.000 habitantes respecto al total de municipios de la Comunidad Autónoma?",
+      "opciones": [
+        "Andalucía.",
+        "Castilla-La Mancha.",
+        "Cataluña.",
+        "Comunidad Valenciana."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 41,
+      "enunciado": "Según la tabla, ¿cuál de estas Comunidades Autónomas tiene menor porcentaje de municipios de menos de 10.000 habitantes respecto al total de municipios de la Comunidad Autónoma?",
+      "opciones": [
+        "Andalucía.",
+        "Castilla-La Mancha.",
+        "Cataluña.",
+        "Comunidad Valenciana."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 42,
+      "enunciado": "Un almacén tiene una capacidad de 1.200 unidades, y su stock actual es de 336 unidades. Cada cargamento que se completa y almacena contiene 96 unidades. ¿Cuántos cargamentos puede recibir como máximo antes de llenarse por completo?",
+      "opciones": [
+        "12 cargamentos.",
+        "9 cargamentos.",
+        "8 cargamentos.",
+        "6 cargamentos."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 43,
+      "enunciado": "Indique qué pareja de palabras NO tiene un significado parecido entre sí:",
+      "opciones": [
+        "Puro - Condón.",
+        "Pelo - Indique.",
+        "Andar - Aposta.",
+        "Aprobar - Reprobar."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 44,
+      "enunciado": "Señale la palabra que NO pertenece al grupo:",
+      "opciones": [
+        "Capitán.",
+        "Piloto.",
+        "Finanza.",
+        "Oficial."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 45,
+      "enunciado": "Señale qué combinación de números es correcta para que la operación sea correcta:",
+      "opciones": [
+        "1, 2, 3, 4.",
+        "2, 3, 4, 5.",
+        "3, 4, 5, 6.",
+        "4, 5, 6, 7."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 46,
+      "enunciado": "Dadas las siguientes equivalencias: d=0001, f=0010, g=0100, h=1000, i=0011, j=0101. ¿Qué serie de letras corresponde con el siguiente serie de números: 0011000100010001?",
+      "opciones": [
+        "h-i-j-d.",
+        "f-g-i-d.",
+        "d-i-g.",
+        "h-g."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    }
+  ]
+}

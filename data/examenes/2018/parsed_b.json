@@ -1,0 +1,70 @@
+{
+  "convocatoria": "2018",
+  "anno": 2018,
+  "turno": "libre",
+  "modelo": "B",
+  "fuente_url": null,
+  "total_preguntas": 5,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "¿Cuál es el órgano jurisdiccional superior en todos los órdenes, salvo lo dispuesto en materia de garantías constitucionales?",
+      "opciones": [
+        "El Tribunal Constitucional",
+        "El Tribunal Supremo",
+        "La Audiencia Nacional",
+        "El Tribunal Superior de Justicia"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 2,
+      "enunciado": "Las resoluciones del Defensor del Pueblo, según la Ley Orgánica 3/1981, de 6 de abril:",
+      "opciones": [
+        "Pueden modificar o anular los actos y resoluciones de la Administración Pública",
+        "No alteran el carácter de las resoluciones de la Administración Pública",
+        "Pueden declarar la nulidad de actos y resoluciones de la Administración Pública",
+        "Pueden formular advertencias, recomendaciones o recordatorios a la Administración Pública"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 3,
+      "enunciado": "Según el artículo 21 de la Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas, el plazo máximo en que debe notificarse la resolución expresa será:",
+      "opciones": [
+        "El fijado por la norma reguladora del correspondiente procedimiento",
+        "Tres meses",
+        "Seis meses",
+        "Un mes"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 4,
+      "enunciado": "¿Cuál de las siguientes afirmaciones sobre el recurso de alzada es correcta?",
+      "opciones": [
+        "Se interpone ante el órgano que dictó el acto que se impugna",
+        "Se interpone ante el órgano superior jerárquico del que dictó el acto que se impugna",
+        "Se interpone ante el mismo órgano que dictó el acto que se impugna",
+        "Se interpone ante el Tribunal Superior de Justicia"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 5,
+      "enunciado": "Según el artículo 14 de la Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas, los interesados en un procedimiento administrativo tienen derecho a:",
+      "opciones": [
+        "Elegir el idioma en el que se tramitará el procedimiento",
+        "Utilizar medios electrónicos para relacionarse con la Administración",
+        "Presentar documentos en cualquier registro administrativo",
+        "Ser asistidos por un abogado en todo momento"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    }
+  ]
+}
