@@ -78,6 +78,10 @@ export function ProfileForm({
       toast.success('Perfil actualizado correctamente')
       // Notify hooks (useIsPremium, etc.) that oposición changed
       window.dispatchEvent(new Event(OPOSICION_CHANGED_EVENT))
+      // Reload page to update sidebar features (Server Component can't react to client changes)
+      if (selectedOposicion !== initialOposicionId) {
+        setTimeout(() => window.location.reload(), 500)
+      }
     }
   }
 

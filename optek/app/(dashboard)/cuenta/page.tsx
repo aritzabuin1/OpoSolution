@@ -155,6 +155,23 @@ export default async function CuentaPage() {
           <BuyButton tier="recarga" label="Recargar" variant="default" />
         </div>
       )}
+      {/* Banner supuestos prácticos — solo oposiciones A2 */}
+      {hasSupuestoPractico && (
+        <div className="rounded-xl border border-emerald-300/30 bg-emerald-50/50 dark:bg-emerald-950/20 p-5 flex items-center justify-between gap-4">
+          <div>
+            <p className="font-semibold text-sm flex items-center gap-2">
+              <Sparkles className="h-4 w-4 text-emerald-600" />
+              {flags?.is_admin ? 'Supuestos prácticos ilimitados (admin)' : `Te quedan ${supuestosBalance} supuestos prácticos`}
+            </p>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              Caso práctico tipo INAP corregido con IA · rúbrica oficial del tribunal
+            </p>
+          </div>
+          {!flags?.is_admin && supuestosBalance < 3 && (
+            <BuyButton tier={'recarga_sup' as 'recarga'} label="Recargar 14,99€" variant="default" />
+          )}
+        </div>
+      )}
 
       {/* ── §1.14.1 Perfil ────────────────────────────────────────────────── */}
       <Card>
