@@ -20,12 +20,14 @@ interface NavItem {
   premium?: boolean
   premiumDesc?: string
   tourId?: string
+  /** Feature key from oposiciones.features JSONB — item hidden if feature is false */
+  featureKey?: string
 }
 
 const navItems: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/tests', label: 'Tests', icon: ClipboardList, tourId: 'nav-tests' },
-  { href: '/psicotecnicos', label: 'Psicotecnicos', icon: Brain, tourId: 'nav-psicotecnicos' },
+  { href: '/psicotecnicos', label: 'Psicotécnicos', icon: Brain, tourId: 'nav-psicotecnicos', featureKey: 'psicotecnicos' },
   { href: '/simulacros', label: 'Simulacros', icon: BookOpen, tourId: 'nav-simulacros' },
   {
     href: '/flashcards', label: 'Flashcards', icon: Layers, tourId: 'nav-flashcards',
@@ -43,11 +45,20 @@ const navItems: NavItem[] = [
   { href: '/cuenta', label: 'Mi cuenta', icon: User },
 ]
 
-interface SidebarProps {
-  isAdmin?: boolean
+interface OposicionFeatures {
+  psicotecnicos?: boolean
+  cazatrampas?: boolean
+  supuesto_practico?: boolean
+  ofimatica?: boolean
 }
 
-export function Sidebar({ isAdmin = false }: SidebarProps) {
+interface SidebarProps {
+  isAdmin?: boolean
+  /** Features from oposiciones.features JSONB — controls which nav items are visible */
+  features?: OposicionFeatures
+}
+
+export function Sidebar({ isAdmin = false, features }: SidebarProps) {
   const pathname = usePathname()
   const router = useRouter()
   const isPremium = useIsPremium()
@@ -58,13 +69,19 @@ export function Sidebar({ isAdmin = false }: SidebarProps) {
     router.push('/')
   }
 
+  // Filter nav items by oposición features (e.g., hide Psicotécnicos for A2)
+  const visibleItems = navItems.filter(item => {
+    if (!item.featureKey || !features) return true
+    return features[item.featureKey as keyof OposicionFeatures] !== false
+  })
+
   return (
     <aside aria-label="Barra lateral" className="flex h-full w-64 flex-col border-r bg-card px-4 py-6">
       <div className="mb-8 px-2 flex items-center gap-2">
         <span className="text-xl font-bold tracking-tight text-primary">OpoRuta</span>
       </div>
       <nav className="flex flex-col gap-1 flex-1" aria-label="Menu principal">
-        {navItems.map(({ href, label, icon: Icon, premium, premiumDesc, tourId }) => {
+        {visibleItems.map(({ href, label, icon: Icon, premium, premiumDesc, tourId }) => {
           const isLocked = premium && isPremium === false
           const isActive = pathname === href || (pathname.startsWith(href + '/') && !isTestDetailPage(pathname, href))
 
