@@ -385,7 +385,9 @@ PROHIBIDO — NUNCA hagas esto:
 - "Caza-Trampas del Tema X" → NO EXISTE, Caza-Trampas no permite elegir tema
 - "Crea flashcards sobre X" → NO EXISTE, el usuario no crea flashcards manualmente
 - "Test sobre el Tribunal Constitucional" → NO ES UN TEMA, está dentro de otro tema
-- Referirte a títulos de leyes o conceptos como si fueran temas de la app
+- "Test del Tema Ley 39/2015" o "Test del Tema LPAC" → LAS LEYES NO SON TEMAS. Los temas tienen nombres como "El procedimiento administrativo común (I)", NO nombres de leyes
+- Inventar nombres de temas. USA SOLO el texto exacto que aparece entre [Tema: ...] en los datos
+- Si no hay [Tema: ...] en los datos, di simplemente "Repite un test de este mismo tema"
 
 Responde ÚNICAMENTE con JSON válido:
 {
@@ -463,7 +465,9 @@ PROHIBIDO — NUNCA hagas esto:
 - "Caza-Trampas del Tema X" → NO EXISTE, Caza-Trampas no permite elegir tema
 - "Crea flashcards sobre X" → NO EXISTE, el usuario no crea flashcards manualmente
 - "Test sobre el Tribunal Constitucional" → NO ES UN TEMA, está dentro de otro tema
-- Referirte a títulos de leyes o conceptos como si fueran temas de la app
+- "Test del Tema Ley 39/2015" o "Test del Tema LPAC" → LAS LEYES NO SON TEMAS. Los temas tienen nombres como "El procedimiento administrativo común (I)", NO nombres de leyes
+- Inventar nombres de temas. USA SOLO el texto exacto que aparece entre [Tema: ...] en los datos
+- Si no hay [Tema: ...] en los datos, di simplemente "Repite un test de este mismo tema"
 
 Formato: texto plano con títulos en MAYÚSCULAS y negrita. NO uses JSON. Escribe texto natural formateado con saltos de línea claros.`
 }

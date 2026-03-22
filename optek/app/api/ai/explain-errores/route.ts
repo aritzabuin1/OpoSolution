@@ -87,7 +87,7 @@ export async function POST(request: NextRequest) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: testData, error: testError } = await (supabase as any)
     .from('tests_generados')
-    .select('id, preguntas, respuestas_usuario, tipo, examen_oficial_id, completado')
+    .select('id, preguntas, respuestas_usuario, tipo, examen_oficial_id, completado, tema_id')
     .eq('id', testId)
     .eq('user_id', user.id)
     .single()
@@ -185,12 +185,24 @@ export async function POST(request: NextRequest) {
   const oposicionNombre = await getOposicionNombreFromProfile(serviceSupabase, user.id)
   const systemPrompt = getSystemExplainErrores(oposicionNombre)
 
+  // Resolve the REAL tema title from the DB
+  let realTemaTitulo: string | null = null
+  if (testData.tema_id) {
+    const { data: temaRow } = await serviceSupabase
+      .from('temas')
+      .select('numero, titulo')
+      .eq('id', testData.tema_id)
+      .single()
+    if (temaRow) {
+      realTemaTitulo = `Tema ${(temaRow as { numero: number; titulo: string }).numero} (${(temaRow as { numero: number; titulo: string }).titulo})`
+    }
+  }
+
   const preguntasTexto = erroneas
     .map(
       ({ pregunta, index, respuesta }) => {
-        const tema = (pregunta as Pregunta & { temaTitulo?: string }).temaTitulo
         const cita = (pregunta as Pregunta & { cita?: { ley: string; articulo: string } }).cita
-        return `Pregunta ${index + 1}${tema ? ` [Tema: ${tema}]` : ''}: ${pregunta.enunciado}\n` +
+        return `Pregunta ${index + 1}${realTemaTitulo ? ` [Tema: ${realTemaTitulo}]` : ''}: ${pregunta.enunciado}\n` +
           (cita ? `Referencia: ${cita.ley}, Art. ${cita.articulo}\n` : '') +
           `Opciones: A) ${pregunta.opciones[0]}  B) ${pregunta.opciones[1]}  ` +
           `C) ${pregunta.opciones[2]}  D) ${pregunta.opciones[3]}\n` +
