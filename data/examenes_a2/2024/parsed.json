@@ -8,7 +8,9 @@
   "fuente_url": "https://sede.inap.gob.es/documents/59312/2364302/CuestionarioGACE-L_MLNYNEKO6T_154AB89SD658.pdf",
   "total_preguntas": 100,
   "preguntas_reserva": 5,
-  "preguntas_anuladas": [90],
+  "preguntas_anuladas": [
+    90
+  ],
   "preguntas": [
     {
       "numero": 1,
@@ -19,7 +21,7 @@
         "Únicamente el artículo 13.2 y el 135.",
         "El artículo 13.3, el 135 y el 47."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -31,7 +33,7 @@
         "En los casos que la normativa de tales países lo permita para los ciudadanos españoles y europeos.",
         "Aún cuando no reconozcan a sus ciudadanos un derecho recíproco."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -43,7 +45,7 @@
         "Conjuntamente por los Presidentes del Congreso y del Senado con sus firmas.",
         "Por el Rey con su firma."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -55,7 +57,7 @@
         "Decidirá el presidente del Tribunal Constitucional.",
         "Decidirá el Tribunal en pleno, por mayoría de las tres quintas partes de sus miembros."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -67,7 +69,7 @@
         "Primogenitura con preferencia del varón sobre la mujer.",
         "Sucesión determinada por el Consejo de Ministros."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -79,7 +81,7 @@
         "Español de nacimiento y mayor de edad.",
         "Español, mayor de edad y miembro de la Familia Real."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -91,7 +93,7 @@
         "Debe ser aprobada por mayoría absoluta del Congreso de los Diputados en una votación final sobre el conjunto del proyecto.",
         "Requiere la aprobación por mayoría absoluta en el Congreso de los Diputados y en el Senado."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -103,7 +105,7 @@
         "Los dictámenes del Consejo de Estado serán vinculantes, salvo que su Presidente disponga lo contrario.",
         "Los asuntos en que hubiera dictaminado el Pleno del Consejo de Estado podrán remitirse a informe de otro órgano de la Administración."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -115,7 +117,7 @@
         "6 años.",
         "8 años."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -127,7 +129,7 @@
         "El Tribunal Supremo.",
         "Los Tribunales consuetudinarios y tradicionales."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -139,7 +141,7 @@
         "Real Decreto del Presidente del Gobierno.",
         "Orden Ministerial."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -151,7 +153,7 @@
         "Orden del Ministro de Asuntos Exteriores.",
         "Real decreto del Consejo de Ministros, a iniciativa del Ministerio del Interior, y a propuesta del Ministerio de Asuntos Exteriores y de Cooperación, previo informe del Consejo Ejecutivo de Política Exterior."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -163,7 +165,7 @@
         "Por Ley.",
         "Mediante Decreto, aunque suponga modificación de la Ley de creación."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -175,7 +177,7 @@
         "Su desempeño requiere de independencia funcional o una especial autonomía respecto de la Administración General del Estado.",
         "Actuarán en el desarrollo de su actividad para el cumplimiento de sus fines con interés empresarial o comercial."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -187,7 +189,7 @@
         "Las universidades públicas no transferidas.",
         "Las sociedades administrativas independientes."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -199,7 +201,7 @@
         "La Asamblea, de entre los miembros del Consejo de Gobierno.",
         "El Consejo de Gobierno, de entre sus miembros."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -211,7 +213,7 @@
         "Administración de Justicia.",
         "Legislación sobre la propiedad intelectual e industrial."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -223,7 +225,7 @@
         "El Consejo de Ministros mediante real decreto.",
         "Las Cortes Generales mediante ley orgánica."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -235,7 +237,7 @@
         "Protección de la salubridad pública.",
         "Elaboración de acuerdos con los municipios colindantes."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -247,7 +249,7 @@
         "Sólo municipios pertenecientes a la misma Comunidad Autónoma, siempre que lo autoricen las Diputaciones Provinciales correspondientes.",
         "Municipios pertenecientes a distintas Comunidades Autónomas, siempre que lo permitan las normativas de las Comunidades Autónomas afectadas."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -259,7 +261,7 @@
         "Tribunal de Cuentas.",
         "Parlamento Europeo."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -271,7 +273,7 @@
         "13 de diciembre de 2007.",
         "3 de diciembre de 2009."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -283,7 +285,7 @@
         "Por el Consejo, como último recurso, cuando haya llegado a la conclusión de que los objetivos perseguidos por dicha cooperación no pueden ser alcanzados en un plazo razonable por la Unión en su conjunto, y a condición de que participen en ella al menos siete estados miembros.",
         "Por el Consejo, como último recurso, cuando haya llegado a la conclusión de que los objetivos perseguidos por dicha cooperación no pueden ser alcanzados en un plazo razonable por la Unión en su conjunto, y a condición de que participen en ella al menos nueve estados miembros."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -295,7 +297,7 @@
         "Bélgica.",
         "Hungría."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -307,7 +309,7 @@
         "59.",
         "63."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -319,7 +321,7 @@
         "El Consejo.",
         "El Tribunal de Justicia de la Unión Europea."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -331,7 +333,7 @@
         "Se incluyen dentro del Derecho originario de la Unión Europea.",
         "Entran en vigor siempre a los veinte días de su publicación."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -343,7 +345,7 @@
         "350.",
         "100."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -355,7 +357,7 @@
         "Se establece por el Parlamento Europeo y el Consejo anualmente mediante un procedimiento legislativo especial.",
         "Debe respetar el marco financiero plurianual, que se establecerá para un periodo mínimo de cuatro años."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -367,7 +369,7 @@
         "La Comisión, a propuesta del Consejo Europeo.",
         "El Consejo Europeo, a propuesta del Consejo."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -379,7 +381,7 @@
         "Residir en uno de los Estados miembros con objeto de acceder a prestaciones sanitarias.",
         "Residir en uno de los Estados miembros con objeto de ejercer en él un empleo."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -391,7 +393,7 @@
         "Noruega.",
         "Suiza."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -403,7 +405,7 @@
         "10 días naturales.",
         "15 días naturales."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -415,7 +417,7 @@
         "Se derive una contraprestación por parte de las personas que lo soliciten.",
         "Se derive el pago de una cuota por parte del usuario de las mismas."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -427,7 +429,7 @@
         "La Conferencia Sectorial para la Mejora Regulatoria y el Clima de Negocios.",
         "El Consejo para la Mejora Regulatoria y el Clima de Negocios."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -439,7 +441,7 @@
         "Aquellos espacios declarados parques nacionales, su marco normativo básico y su estructura interna de funcionamiento.",
         "Aquellos espacios declarados parques nacionales y su estructura interna de funcionamiento."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -451,7 +453,7 @@
         "Eficacia, economía procesal, solidaridad, universalidad, descentralización, reducción de gastos y simplificación.",
         "Eficiencia, racionalización de los recursos, agilización, caja única, eficacia, universalidad y solidaridad financiera."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -463,7 +465,7 @@
         "Al Instituto Nacional de Gestión Sanitaria.",
         "Al Instituto de Mayores y Servicios Sociales."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -475,7 +477,7 @@
         "Calculando el promedio de cotización durante los 150 días precedentes al día en que se haya producido la situación legal de desempleo o al del que cesó la obligación de cotizar.",
         "Calculando el promedio de cotización durante los 365 días precedentes al día en que se haya producido la situación legal de desempleo o al del que cesó la obligación de cotizar."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -487,7 +489,7 @@
         "Valencia.",
         "Barcelona."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -499,7 +501,7 @@
         "Las que perciban durante el período de un año ayudas o subvenciones públicas en una cuantía superior a 100.000 euros o cuando al menos el 30 % del total de sus ingresos anuales tengan carácter de ayuda o subvención pública, siempre que alcancen como mínimo la cantidad de 3.000 euros.",
         "Las que perciban durante el período de un año ayudas o subvenciones públicas en una cuantía superior a 100.000 euros o cuando al menos el 40 % del total de sus ingresos anuales tengan carácter de ayuda o subvención pública, siempre que alcancen como mínimo la cantidad de 5.000 euros."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -511,7 +513,7 @@
         "Será de cuatro años no renovables.",
         "Será de cinco años y puede ser renovado para otro período de igual duración."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -523,7 +525,7 @@
         "Anualmente.",
         "Cada tres meses."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -535,7 +537,7 @@
         "Las Oficinas de la cooperación española son unidades adscritas orgánicamente a las Embajadas y Representaciones Permanentes bajo la dirección superior de su Jefatura de Misión y la dependencia funcional de la AECID.",
         "Las Oficinas de la cooperación española son unidades adscritas orgánica y funcionalmente a la AECID."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -547,7 +549,7 @@
         "Competencia compartida con las Comunidades Autónomas.",
         "Ninguna, es competencia exclusiva de las Comunidades Autónomas."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -559,7 +561,7 @@
         "Su ratificación por las Cortes Generales.",
         "Su publicación íntegra en el \"Boletín Oficial del Estado\"."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -571,7 +573,7 @@
         "La Ministra de Hacienda.",
         "El Ministro de la Presidencia."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -583,7 +585,7 @@
         "Una ley orgánica.",
         "Un reglamento."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -595,7 +597,7 @@
         "La publicidad de las normas, la responsabilidad y la interdicción de la arbitrariedad de los poderes públicos.",
         "La eficacia y la jerarquía."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -607,7 +609,7 @@
         "Las Cortes Generales.",
         "El Tribunal Constitucional, previa consulta del Gobierno."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -619,7 +621,7 @@
         "La de aquella que se hubiera producido por medios electrónicos.",
         "La de aquella que se hubiera producido por correo postal."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -631,7 +633,7 @@
         "A las leyes, a la moral y al orden público.",
         "A los principios generales del derecho, a la ley y al interés público."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -643,7 +645,7 @@
         "Contrato de suministro.",
         "Contrato mixto."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -655,7 +657,7 @@
         "En los de infraestructuras agrarias, medioambientales y de equipamientos de núcleos rurales.",
         "En los de infraestructuras portuarias, aeroportuarias y de carreteras."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -667,7 +669,7 @@
         "Orden jurisdiccional civil.",
         "Orden jurisdiccional penal."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -679,7 +681,7 @@
         "Los grupos parlamentarios de las Cámaras de las Cortes Generales no tienen acceso a ningún tipo de subvenciones, si bien la Ley permite el acceso a los grupos parlamentarios de las cámaras regionales.",
         "Están explícitamente incluidas en el ámbito de aplicación de la Ley 38/2003 sólo las de los grupos parlamentarios con representación en más de la mitad de las Comunidades Autónomas."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -691,7 +693,7 @@
         "El Director General de Patrimonio.",
         "Una Comisión compuesta por académicos."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -703,7 +705,7 @@
         "La Ley Orgánica 7/1980, de 5 de julio, de Libertad Religiosa.",
         "El Concordato vigente."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -715,7 +717,7 @@
         "El Palacio de la Almudaina con sus jardines, sito en Palma de Mallorca.",
         "Los Palacios Reales de la Granja y de Riofrío y sus terrenos anexos."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -727,7 +729,7 @@
         "El del Consejo General del Poder Judicial.",
         "El de la Secretaría General Técnica del Ministerio de Justicia."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -739,7 +741,7 @@
         "La fecha de la primera revisión médica.",
         "La curación o la determinación del alcance de las secuelas."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -751,7 +753,7 @@
         "Se resuelve el desistimiento de la solicitud.",
         "La Administración declara el archivo de las actuaciones."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -763,7 +765,7 @@
         "Cuando el procedimiento se hubiera iniciado de oficio, el transcurso del plazo de tres meses desde su inicio sin dictarse resolución producirá la caducidad del mismo.",
         "Cuando el procedimiento se hubiera iniciado de oficio, el transcurso del plazo de seis meses desde su inicio sin dictarse resolución se podrá entender desestimada por silencio administrativo."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -775,7 +777,7 @@
         "La Administración declara el archivo de las actuaciones.",
         "La Administración declara la caducidad del procedimiento."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -787,7 +789,7 @@
         "La existencia de otro recurso con identidad sustancial o íntima conexión.",
         "El transcurso del plazo de interposición."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -799,7 +801,7 @@
         "Salas de lo Contencioso-administrativo de los Tribunales Superiores de Justicia.",
         "Sala de lo Contencioso-administrativo de la Audiencia Nacional."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -811,7 +813,7 @@
         "La jubilación total, ya sea voluntaria, forzosa o por declaración de incapacidad permanente para el ejercicio de las funciones propias del cuerpo o escala, es causa de pérdida de la condición de funcionario.",
         "La pena principal o accesoria de inhabilitación especial para cargo público, cuando hubiera adquirido firmeza la sentencia que la imponga, produce la pérdida de la condición de funcionario respecto de aquellos empleos o cargos especificados en la sentencia."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -823,7 +825,7 @@
         "La sustitución transitoria de los titulares, durante el tiempo estrictamente necesario.",
         "La ejecución de programas de carácter temporal, que no podrán tener una duración superior a tres años, ampliable hasta doce meses más por las leyes de Función Pública."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -835,7 +837,7 @@
         "A los cinco años desde que se hubiera cometido la falta o desde el cese de su comisión cuando se trate de faltas continuadas.",
         "Las infracciones muy graves no prescriben."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -847,7 +849,7 @@
         "Tendrá deberes y derechos, individuales y colectivos, diferentes a los del resto del personal que preste sus servicios en modalidad presencial.",
         "Tendrá los mismos deberes y derechos que el resto del personal que preste sus servicios en modalidad presencial, incluyendo la normativa de prevención de riesgos laborales que resulte aplicable, salvo aquellos que sean inherentes a la realización de la prestación del servicio de manera presencial y excluyendo los derechos de tipo colectivo."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -859,7 +861,7 @@
         "Se desarrollarán de manera que la realización de las pruebas, salvo por razones justificadas, se lleve a cabo de forma territorializada, excluyendo a los territorios no peninsulares, y se guiarán por los principios de agilidad y eficiencia.",
         "Se desarrollarán de manera que la realización de las pruebas, salvo por razones justificadas, se lleve a cabo de forma territorializada, teniendo especialmente en cuenta los territorios no peninsulares, y se guiarán por los principios de agilidad y eficiencia."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -871,7 +873,7 @@
         "En el último trimestre del año.",
         "Con carácter bienal."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -883,7 +885,7 @@
         "Poseer los requisitos para el ingreso, tener una antigüedad de, al menos, dos años de servicio activo en el inferior Subgrupo, o Grupo de clasificación profesional, en el supuesto de que éste no tenga Subgrupo y participar en las correspondientes pruebas selectivas.",
         "Poseer los requisitos para el ingreso, tener una antigüedad de, al menos, tres años de servicio activo en el inferior Subgrupo, o Grupo de clasificación profesional, en el supuesto de que éste no tenga Subgrupo y participar en las correspondientes pruebas selectivas."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -895,7 +897,7 @@
         "Una justificación por escrito de la idoneidad de la persona candidata para el puesto al que aspira, en relación con los requisitos exigidos para el desempeño del puesto.",
         "La cumplimentación de un cuestionario de autoevaluación dirigido a valorar las competencias directivas."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -907,7 +909,7 @@
         "Excedencia.",
         "Servicios especiales."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -919,7 +921,7 @@
         "La producción y creación literaria, artística, científica y técnica, así como las publicaciones derivadas de aquéllas, siempre que no se originen como consecuencia de una relación de empleo o de prestación de servicios.",
         "La colaboración y la asistencia ocasional a Congresos, seminarios, conferencias o cursos de carácter profesional."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -931,7 +933,7 @@
         "Tres pagas extraordinarias al año, cada una por el importe de una mensualidad de las retribuciones básicas.",
         "Dos pagas extraordinarias al año, cada una por el importe de una mensualidad de las retribuciones básicas y de la totalidad de las retribuciones complementarias, salvo aquellas que retribuyan el grado de interés, iniciativa o esfuerzo con que el funcionario desempeña su trabajo y el rendimiento o resultados obtenidos, y las que retribuyan los servicios extraordinarios prestados fuera de la jornada normal de trabajo."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -943,7 +945,7 @@
         "Se produjo en 2023 y supuso la eliminación de la indemnización del Real Decreto 462/2002, de 24 de mayo, sobre indemnizaciones por razón del servicio.",
         "Se produjo en 2005 y lo actualizó a 0,19 euros por kilómetro recorrido por el uso de automóviles."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -955,7 +957,7 @@
         "El personal cuya relación de servicios se derive de un contrato regulado por la normativa de contratación administrativa o aquél incluido en los instrumentos excluidos por la Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público.",
         "El personal de la Administración de Justicia no transferida."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -967,7 +969,7 @@
         "15 miembros con voz y voto.",
         "25 miembros con voz y voto."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -979,7 +981,7 @@
         "El derecho a negociar la determinación de condiciones de trabajo de los empleados de la Administración Pública.",
         "El derecho a negociar la determinación de condiciones de trabajo de, únicamente, el personal laboral de la Administración Pública."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -991,7 +993,7 @@
         "Los funcionarios que estén en servicios en comunidades autónomas.",
         "Los funcionarios que estén en excedencia forzosa."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -1003,7 +1005,7 @@
         "Las adaptaciones previstas en el artículo 8 del Real Decreto 2271/2004 se otorgarán de forma automática cuando sean solicitadas por los aspirantes.",
         "Las adaptaciones previstas en el artículo 8 del Real Decreto 2271/2004 se otorgarán de manera automática únicamente a los aspirantes que opten por el turno de cupo de reserva."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -1015,7 +1017,7 @@
         "Los principios de neutralidad, accesibilidad y seguridad.",
         "Los principios de descentralización, no discriminación e igualdad."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -1027,7 +1029,7 @@
         "Al Gobierno.",
         "Al Tribunal Constitucional."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -1039,7 +1041,7 @@
         "Seis meses.",
         "Un año."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -1051,7 +1053,7 @@
         "El Consejo de Estado.",
         "La Intervención General de la Administración del Estado."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -1063,7 +1065,7 @@
         "Las dietas.",
         "Las retribuciones en especie."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -1075,7 +1077,7 @@
         "El 13 se refiere al Servicio, el 91 se refiere a la Sección, el 111N se refiere al programa de gasto y el 223 al concepto.",
         "El 13 se refiere a la Sección, el 91 se refiere al programa de gasto, el 111N se refiere al capítulo y el 223 al concepto."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -1094,7 +1096,7 @@
         "Al Ministro de Hacienda.",
         "Al Presidente del Gobierno."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -1106,7 +1108,7 @@
         "Tal supuesto no está contemplado en la Ley 47/2003, de 26 de noviembre, General Presupuestaria.",
         "Se remitirá un proyecto de Ley a las Cortes Generales."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -1118,7 +1120,7 @@
         "El Tribunal de Cuentas.",
         "El Consejo de política fiscal y financiera."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -1130,7 +1132,7 @@
         "Revisión y aprobación de los Presupuestos Generales del Estado.",
         "En los departamentos ministeriales y entidades gestoras y servicios comunes de la Seguridad Social, verificar, mediante técnicas de auditoría, que los datos e información con trascendencia económica proporcionados por los órganos gestores como soporte de la información contable, reflejan razonablemente las operaciones derivadas de su actividad."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -1142,7 +1144,7 @@
         "Autorización sobre crédito comprometido.",
         "Cancelación de autorizaciones (Anticipos de Tesorería)."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -1154,7 +1156,7 @@
         "Los tres meses siguientes a la fecha de aportación de los documentos justificativos.",
         "Los tres meses siguientes a la fecha de libramiento de los fondos."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -1166,7 +1168,7 @@
         "Diferencia únicamente entre impuestos directos e indirectos.",
         "Agrupa los ingresos, separando los corrientes, los de capital, y las operaciones financieras."
       ],
-      "correcta": 4,
+      "correcta": 3,
       "tema_numero": null
     },
     {
@@ -1178,7 +1180,7 @@
         "Directamente por los organismos públicos, previa propuesta del Ministerio de Hacienda, sin autorización.",
         "Directamente por los organismos públicos, previa autorización del Presidente/Director del mismo."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -1190,7 +1192,7 @@
         "Al Capítulo 5 del presupuesto de ingresos.",
         "Al Capítulo 7 del presupuesto de ingresos."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -1202,7 +1204,7 @@
         "Las cuantías de las retribuciones básicas y el incremento de las cuantías globales de las retribuciones complementarias de los funcionarios, así como el incremento de la masa salarial del personal laboral deberán reflejarse para cada ejercicio presupuestario en la correspondiente ley de presupuestos.",
         "Las cuantías de las retribuciones básicas y complementarias de los funcionarios y su repercusión en su masa salarial deberán reflejarse para cada ejercicio presupuestario en la correspondiente ley de presupuestos."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -1214,7 +1216,7 @@
         "Planes departamentales de análisis de RPT.",
         "Planes de reestructuración de sectores concretos."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -1226,7 +1228,7 @@
         "Observatorio Permanente de la Inmigración.",
         "Foro para la Integración Social de los Inmigrantes."
       ],
-      "correcta": 3,
+      "correcta": 2,
       "tema_numero": null
     },
     {
@@ -1238,7 +1240,7 @@
         "Los costes asociados a amortizaciones.",
         "El beneficio industrial."
       ],
-      "correcta": 1,
+      "correcta": 0,
       "tema_numero": null
     },
     {
@@ -1250,7 +1252,7 @@
         "Transcurridos tres días desde la fecha de su presentación y por mayoría absoluta.",
         "Transcurridos tres días desde la fecha de su presentación y por mayoría simple."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     },
     {
@@ -1262,7 +1264,7 @@
         "Compromisos anticipados.",
         "Certificaciones ejercicios anteriores."
       ],
-      "correcta": 2,
+      "correcta": 1,
       "tema_numero": null
     }
   ]

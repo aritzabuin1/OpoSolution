@@ -9,7 +9,7 @@
  *   - A2 GACE (58 temas, prefix c2000000)
  *
  * Estrategia:
- *   Mapping determinista por ley_codigo + titulo_seccion.
+ *   Mapping determinista por ley_codigo + titulo_capitulo.
  *   No gasta tokens de IA — 100% reglas explícitas.
  *   Un artículo puede mapearse a temas de MÚLTIPLES oposiciones.
  *
@@ -224,8 +224,8 @@ const TEMA_NOMBRES: Record<string, string> = {
  *   LOPJ       → Tema 4 (Poder Judicial)
  *   LCSP       → Tema 8 (Contratos del sector público → AGE)
  */
-function computeTemaIdsC2(ley_codigo: string, titulo_seccion: string | null): string[] {
-  const s = titulo_seccion ?? ''
+function computeTemaIdsC2(ley_codigo: string, titulo_capitulo: string | null): string[] {
+  const s = titulo_capitulo ?? ''
 
   switch (ley_codigo) {
     // ── Constitución Española ─────────────────────────────────────────────────
@@ -331,8 +331,8 @@ function computeTemaIdsC2(ley_codigo: string, titulo_seccion: string | null): st
  *   LBRL       → Tema 11
  *   LGSS       → Temas 21, 49
  */
-function computeTemaIdsA2(ley_codigo: string, titulo_seccion: string | null): string[] {
-  const s = titulo_seccion ?? ''
+function computeTemaIdsA2(ley_codigo: string, titulo_capitulo: string | null): string[] {
+  const s = titulo_capitulo ?? ''
 
   switch (ley_codigo) {
     // ── Constitución Española ─────────────────────────────────────────────────
@@ -475,9 +475,9 @@ function computeTemaIdsA2(ley_codigo: string, titulo_seccion: string | null): st
  * Computa tema_ids para TODAS las oposiciones.
  * Combina C2 + A2 mappings y deduplica.
  */
-function computeTemaIds(ley_codigo: string, titulo_seccion: string | null): string[] {
-  const c2 = computeTemaIdsC2(ley_codigo, titulo_seccion)
-  const a2 = computeTemaIdsA2(ley_codigo, titulo_seccion)
+function computeTemaIds(ley_codigo: string, titulo_capitulo: string | null): string[] {
+  const c2 = computeTemaIdsC2(ley_codigo, titulo_capitulo)
+  const a2 = computeTemaIdsA2(ley_codigo, titulo_capitulo)
   // Deduplicate (no debería haber overlap — IDs son distintos por oposición)
   const combined = [...c2, ...a2]
   return [...new Set(combined)]
@@ -490,7 +490,7 @@ interface ArticuloRow {
   ley_codigo: string
   ley_nombre: string
   articulo_numero: string
-  titulo_seccion: string | null
+  titulo_capitulo: string | null
 }
 
 async function main() {
@@ -505,7 +505,7 @@ async function main() {
   console.log('📥 Leyendo artículos de legislacion...')
   const { data: articulos, error } = await supabase
     .from('legislacion')
-    .select('id, ley_codigo, ley_nombre, articulo_numero, titulo_seccion')
+    .select('id, ley_codigo, ley_nombre, articulo_numero, titulo_capitulo')
     .eq('activo', true)
     .order('ley_codigo')
     .order('articulo_numero')
@@ -528,7 +528,7 @@ async function main() {
   let sinTema = 0
 
   for (const art of articulos as ArticuloRow[]) {
-    const temaIds = computeTemaIds(art.ley_codigo, art.titulo_seccion)
+    const temaIds = computeTemaIds(art.ley_codigo, art.titulo_capitulo)
     updates.push({ id: art.id, tema_ids: temaIds })
 
     // Stats por ley
