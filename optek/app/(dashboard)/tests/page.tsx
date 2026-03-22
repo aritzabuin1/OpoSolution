@@ -110,11 +110,17 @@ export default async function TestsPage({
   const oposicionSlug = (oposicionResult.data as { slug?: string } | null)?.slug ?? 'aux-admin-estado'
   const freeTemas = getFreeTemas(oposicionSlug)
 
-  // ── Agrupar temas por bloque ───────────────────────────────────────────────
-  // Bloque I/II depende de la oposición; usamos el campo bloque de la BD cuando exista
-  // C2: Bloque I = 1–16, II = 17–28 | C1: Bloque I = 1–37, II = 38–45
-  const bloqueI = temas.filter((t) => t.numero <= (oposicionSlug === 'administrativo-estado' ? 37 : 16))
-  const bloqueII = temas.filter((t) => t.numero > (oposicionSlug === 'administrativo-estado' ? 37 : 16))
+  // ── Agrupar temas por bloque (dinámico, funciona con cualquier oposición) ──
+  type TemaWithBloque = typeof temas[number] & { bloque?: string }
+  const bloqueGroups = new Map<string, typeof temas>()
+  for (const tema of temas) {
+    const bloque = (tema as TemaWithBloque).bloque ?? (tema.numero <= 16 ? 'I' : 'II')
+    if (!bloqueGroups.has(bloque)) bloqueGroups.set(bloque, [])
+    bloqueGroups.get(bloque)!.push(tema)
+  }
+  // Backward compat: bloqueI/bloqueII for the 2-bloque case
+  const bloqueI = bloqueGroups.get('I') ?? []
+  const bloqueII = bloqueGroups.get('II') ?? []
 
   // ── Calcular tests gratuitos restantes ────────────────────────────────────
   const freeTestsRemaining = Math.max(0, 5 - freeTestsUsed)
@@ -156,7 +162,7 @@ export default async function TestsPage({
         <section>
           <div className="mb-4 flex items-center gap-2">
             <h2 className="text-base font-semibold">
-              Bloque I — Organización Pública
+              Bloque I
             </h2>
             <Badge variant="secondary">{bloqueI.length} temas</Badge>
           </div>
@@ -180,7 +186,7 @@ export default async function TestsPage({
         <section>
           <div className="mb-4 flex items-center gap-2">
             <h2 className="text-base font-semibold">
-              Bloque II — Actividad Administrativa y Ofimática
+              Bloque II
             </h2>
             <Badge variant="secondary">{bloqueII.length} temas</Badge>
           </div>

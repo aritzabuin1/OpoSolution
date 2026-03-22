@@ -232,11 +232,19 @@ export async function POST(request: NextRequest) {
 
   let aiStream: ReadableStream<string>
   try {
-    // Build bloque info based on oposicion
-    const isC2 = numTemas <= 28
-    const bloqueInfo = isC2
-      ? 'Bloque I (1-16): Derecho. Bloque II (17-28): Ofimática.'
-      : 'Bloque I (1-10): Constitución y Organización. Bloque II (11-20): Derecho Administrativo. Bloque III (21-30): UE y Organización. Bloque IV (31-35): Financiero. Bloque V (36-40): Informática. Bloque VI (41-45): Gestión de personal.'
+    // Build bloque info based on oposicion — use actual tema data instead of hardcoding
+    const bloqueSet = new Set<string>()
+    for (const t of allTemas) {
+      const b = (t as { bloque?: string }).bloque
+      if (b) bloqueSet.add(b)
+    }
+    const bloqueLabels: Record<string, string> = {
+      'I': `Bloque I (temas del inicio del temario)`,
+      'II': `Bloque II (temas del final del temario)`,
+    }
+    const bloqueInfo = bloqueSet.size > 0
+      ? [...bloqueSet].map(b => bloqueLabels[b] ?? `Bloque ${b}`).join('. ')
+      : `${numTemas} temas organizados en bloques según el temario oficial.`
     const systemPrompt = getSystemRoadmap(oposicionNombre, numTemas, bloqueInfo)
 
     aiStream = await callAIStream(systemPrompt, userPrompt, {

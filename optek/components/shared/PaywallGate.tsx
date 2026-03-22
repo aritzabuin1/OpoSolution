@@ -32,8 +32,9 @@ import { useIsPremium } from '@/lib/hooks/useIsPremium'
 
 export type PaywallCode = 'PAYWALL_TESTS' | 'PAYWALL_CORRECTIONS'
 
-/** C1 oposicion_id for contextual pack selection */
+/** Oposicion IDs for contextual pack selection */
 const C1_OPOSICION_ID = 'b0000000-0000-0000-0000-000000000001'
+const A2_OPOSICION_ID = 'c2000000-0000-0000-0000-000000000001'
 
 interface PaywallGateProps {
   open: boolean
@@ -44,7 +45,7 @@ interface PaywallGateProps {
 }
 
 interface PricingOption {
-  tier: 'pack' | 'pack_c1' | 'recarga'
+  tier: 'pack' | 'pack_c1' | 'pack_a2' | 'recarga'
   label: string
   price: string
   description: string
@@ -56,13 +57,18 @@ interface PricingOption {
 
 function getTestOptions(oposicionId?: string): PricingOption[] {
   const isC1 = oposicionId === C1_OPOSICION_ID
+  const isA2 = oposicionId === A2_OPOSICION_ID
+  const tier = isA2 ? 'pack_a2' as const : isC1 ? 'pack_c1' as const : 'pack' as const
+  const label = isA2 ? 'Pack Gestión del Estado A2' : isC1 ? 'Pack Administrativo C1' : 'Pack Auxiliar C2'
+  const price = isA2 ? '69,99€' : '49,99€'
+  const corrections = isA2 ? '+ 20 análisis + 5 supuestos prácticos' : '+ 20 análisis detallados incluidos'
   return [
     {
-      tier: isC1 ? 'pack_c1' : 'pack',
-      label: isC1 ? 'Pack Administrativo C1' : 'Pack Auxiliar C2',
-      price: '49,99€',
+      tier,
+      label,
+      price,
       description: 'Todo el temario · simulacros · caza-trampas · radar',
-      corrections: '+ 20 análisis detallados incluidos',
+      corrections,
       featured: true,
     },
   ]
