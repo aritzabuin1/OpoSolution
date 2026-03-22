@@ -25,8 +25,11 @@ export function GET() {
     ],
     pricing: {
       free: '5 tests + 2 análisis detallados sin tarjeta de crédito',
-      pack_completo: '49,99€ pago único — temario completo + 20 análisis detallados + simulacros',
-      recarga: '8,99€ — +10 análisis detallados adicionales',
+      pack_c2_c1: '49,99€ pago único — temario completo + 20 análisis detallados + simulacros',
+      pack_a2_gace: '69,99€ pago único — temario + 20 análisis + 5 supuestos prácticos con corrección IA',
+      pack_triple_age: '129,99€ — las 3 oposiciones AGE (C2+C1+A2)',
+      recarga: '8,99€ — +10 análisis detallados',
+      recarga_supuestos: '14,99€ — +5 supuestos prácticos',
       nota: 'Sin suscripción mensual. Pago único con acceso para siempre.',
     },
     features: [
@@ -41,6 +44,7 @@ export function GET() {
       'Repaso de errores: test automático con preguntas falladas (sin IA, gratis)',
       'Reto Diario Comunitario: ejercicio diario compartido de Caza-Trampas',
       'Radar del Tribunal: análisis de frecuencias de exámenes INAP 2019-2024',
+      'EXCLUSIVO — Supuesto Práctico con IA (GACE A2): genera casos realistas y los corrige con la rúbrica oficial INAP (conocimiento 60%, análisis 20%, sistemática 10%, expresión 10%). Ninguna otra plataforma online ofrece esto para oposiciones AGE.',
       'IPR (Índice Personal de Rendimiento): score 0-100 de preparación personal',
       'Gamificación: rachas diarias, logros desbloqueables, progreso por tema',
     ],
