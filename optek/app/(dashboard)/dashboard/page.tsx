@@ -7,7 +7,7 @@
  *   1. Saludo + racha de días
  *   2. Stats cards (tests, nota media, racha)
  *   3. Gráfico de evolución (últimos 30 días)
- *   4. Mapa de temas (28 temas, coloreados por nota)
+ *   4. Mapa de temas (coloreados por nota, dinámico por oposición)
  *   5. Últimas actividades (tests + correcciones)
  *   6. Logros desbloqueados
  *   7. CTAs contextuales

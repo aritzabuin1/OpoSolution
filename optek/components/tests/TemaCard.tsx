@@ -219,7 +219,7 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, isFreeAllowed = t
           </div>
 
           <div className="flex shrink-0 items-center gap-2">
-            {tema.numero <= 16 && !isLocked && (
+            {(tema as typeof tema & { bloque?: string }).bloque === 'I' && !isLocked && (
               <span
                 title="Tema de legislación"
                 className="flex items-center gap-0.5 rounded-full bg-blue-50 px-1.5 py-0.5 text-[10px] font-medium text-blue-600 border border-blue-200"

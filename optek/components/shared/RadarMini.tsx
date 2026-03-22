@@ -113,7 +113,7 @@ export default async function RadarMini() {
 
       <div className="space-y-2">
         {rows.map((tema, idx) => {
-          const isBloque2 = tema.tema_numero > 16
+          const isBloque2 = (tema as typeof tema & { bloque?: string }).bloque !== 'I'
           return (
             <div
               key={tema.tema_id}

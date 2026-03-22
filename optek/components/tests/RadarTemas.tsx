@@ -20,9 +20,10 @@ interface RadarTemasProps {
   freeLimit?: number
 }
 
-function getBloqueLabel(numero: number): { label: string; color: string } {
-  if (numero <= 16) return { label: 'Bloque I', color: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' }
-  return { label: 'Bloque II', color: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300' }
+function getBloqueLabel(_numero: number, bloque?: string): { label: string; color: string } {
+  const b = bloque ?? 'I'
+  if (b === 'I') return { label: 'Bloque I', color: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' }
+  return { label: `Bloque ${b}`, color: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300' }
 }
 
 export default function RadarTemas({ temas, isPaid, freeLimit = 5 }: RadarTemasProps) {
@@ -66,7 +67,7 @@ export default function RadarTemas({ temas, isPaid, freeLimit = 5 }: RadarTemasP
                   <div className="flex-1 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
                     <div
                       className={`h-full rounded-full transition-all ${
-                        tema.tema_numero <= 16
+                        (tema as typeof tema & { bloque?: string }).bloque === 'I'
                           ? 'bg-blue-500 dark:bg-blue-400'
                           : 'bg-emerald-500 dark:bg-emerald-400'
                       }`}
