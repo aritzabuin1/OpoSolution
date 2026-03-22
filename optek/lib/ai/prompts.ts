@@ -358,30 +358,34 @@ Ejemplo de buen truco: "Los 4 obligados a tramitar electrónicamente son los que
 Ejemplo de mal truco: "Recuerda E-A-A-F, las iniciales de los 4 obligados."
 
 QUÉ HACER AHORA (2-3 frases, VARÍA la recomendación)
-Sugiere acciones concretas y VARIADAS. USA SIEMPRE el nombre del tema entre corchetes [Tema: ...] — es el nombre EXACTO de la app. NUNCA repitas siempre la misma recomendación.
+Sugiere 2 acciones concretas que el usuario PUEDE hacer en la app. VARÍA las recomendaciones — no pongas siempre lo mismo.
 
-Herramientas REALES de la app (elige 2, combinando):
-- Tests por tema: 10, 20 o 30 preguntas | dificultad fácil, media, difícil o progresivo (mezcla). Varía el número y la dificultad según el nivel del usuario.
-- Flashcards por tema: repaso espaciado automático.
-- Simulacro oficial INAP: 20, 50 o 100 preguntas de exámenes reales, con penalización.
-- Caza-Trampas: detectar 1, 2 o 3 errores en un texto legal modificado.
-- Repaso de errores: volver a practicar preguntas falladas de tests anteriores.
-- Plan de estudios personalizado (Roadmap): genera un plan semanal adaptado a tus datos.
+HERRAMIENTAS DE LA APP — lee con atención qué permite cada una:
+1. TEST POR TEMA: elige tema + nº preguntas (10, 20 o 30) + dificultad (fácil, media, difícil, progresivo). USA el nombre del tema entre corchetes [Tema: ...] de los datos.
+2. FLASHCARDS POR TEMA: repaso espaciado del tema. Se elige tema, nada más.
+3. SIMULACRO OFICIAL: 20, 50 o 100 preguntas de exámenes INAP reales. NO se elige tema — mezcla todo.
+4. CAZA-TRAMPAS: detectar 1, 2 o 3 errores en un texto legal. NO SE ELIGE TEMA — la app selecciona un artículo al azar. Solo se elige el número de errores.
+5. REPASO DE ERRORES: practicar preguntas falladas de tests anteriores. Sin parámetros.
+6. PLAN DE ESTUDIOS: genera un plan semanal personalizado. Sin parámetros.
 
-EJEMPLOS de recomendaciones variadas (no uses siempre la misma):
-- "Haz un test de 30 preguntas del Tema 4 en dificultad difícil — es donde más fallas."
-- "Prueba un Caza-Trampas con 2 errores para afianzar los artículos que confundes."
-- "Haz un simulacro de 50 preguntas para ver cómo te va con penalización y tiempo real."
-- "Genera tu Plan de Estudios personalizado — la app analiza tus datos y te dice por dónde seguir."
-- "Repasa errores anteriores — así practicas exactamente las preguntas que ya has fallado."
-- "Haz un test progresivo de 20 preguntas del Tema 2 (La Corona) — mezcla fácil, media y difícil."
+ESTRATEGIA DE RECOMENDACIÓN:
+- Si el usuario falla MUCHO (>50% errores): sugiere test fácil de 10 preguntas + flashcards del tema.
+- Si falla MODERADO (30-50%): sugiere test de 20 preguntas en dificultad media + simulacro de 50.
+- Si falla POCO (<30%): sugiere dificultad DIFÍCIL o PROGRESIVO + simulacro de 100 + caza-trampas con 3 errores. Estas opciones son Premium — mencionarlo motiva al usuario a mejorar su plan.
 
-REGLAS:
-- VARÍA: no pongas siempre "test de 10 preguntas". Sugiere 10, 20 o 30 según contexto.
-- VARÍA la dificultad: si el usuario falla mucho, sugiere fácil/media. Si falla poco, sugiere difícil o progresivo.
-- VARÍA la herramienta: no siempre flashcards + test. Mezcla con simulacros, caza-trampas, repaso, roadmap.
-- USA el nombre del tema EXACTO (entre corchetes en los datos).
-- PROHIBIDO: inventar herramientas que no existen, referirte a títulos de leyes como si fueran temas.
+EJEMPLOS CORRECTOS (varía entre estos):
+- "Repite un test de 20 preguntas del Tema 4 (El Poder Judicial) en dificultad media para consolidar."
+- "Prueba un Caza-Trampas con 2 errores — te obliga a leer cada artículo con atención."
+- "Haz un simulacro de 50 preguntas con penalización para ver tu nivel real."
+- "Repasa tus errores anteriores — la app te vuelve a mostrar exactamente las preguntas que fallaste."
+- "Sube el nivel: test de 30 preguntas del Tema 2 (La Corona) en dificultad difícil (Premium)."
+- "Genera tu Plan de Estudios personalizado — analiza todos tus datos y te dice por dónde seguir."
+
+PROHIBIDO — NUNCA hagas esto:
+- "Caza-Trampas del Tema X" → NO EXISTE, Caza-Trampas no permite elegir tema
+- "Crea flashcards sobre X" → NO EXISTE, el usuario no crea flashcards manualmente
+- "Test sobre el Tribunal Constitucional" → NO ES UN TEMA, está dentro de otro tema
+- Referirte a títulos de leyes o conceptos como si fueran temas de la app
 
 Responde ÚNICAMENTE con JSON válido:
 {
@@ -432,30 +436,34 @@ Ejemplo de buen truco: "Los 4 obligados a tramitar electrónicamente son los que
 Ejemplo de mal truco: "Recuerda E-A-A-F, las iniciales de los 4 obligados."
 
 QUÉ HACER AHORA (2-3 frases, VARÍA la recomendación)
-Sugiere acciones concretas y VARIADAS. USA SIEMPRE el nombre del tema entre corchetes [Tema: ...] — es el nombre EXACTO de la app. NUNCA repitas siempre la misma recomendación.
+Sugiere 2 acciones concretas que el usuario PUEDE hacer en la app. VARÍA las recomendaciones — no pongas siempre lo mismo.
 
-Herramientas REALES de la app (elige 2, combinando):
-- Tests por tema: 10, 20 o 30 preguntas | dificultad fácil, media, difícil o progresivo (mezcla). Varía el número y la dificultad según el nivel del usuario.
-- Flashcards por tema: repaso espaciado automático.
-- Simulacro oficial INAP: 20, 50 o 100 preguntas de exámenes reales, con penalización.
-- Caza-Trampas: detectar 1, 2 o 3 errores en un texto legal modificado.
-- Repaso de errores: volver a practicar preguntas falladas de tests anteriores.
-- Plan de estudios personalizado (Roadmap): genera un plan semanal adaptado a tus datos.
+HERRAMIENTAS DE LA APP — lee con atención qué permite cada una:
+1. TEST POR TEMA: elige tema + nº preguntas (10, 20 o 30) + dificultad (fácil, media, difícil, progresivo). USA el nombre del tema entre corchetes [Tema: ...] de los datos.
+2. FLASHCARDS POR TEMA: repaso espaciado del tema. Se elige tema, nada más.
+3. SIMULACRO OFICIAL: 20, 50 o 100 preguntas de exámenes INAP reales. NO se elige tema — mezcla todo.
+4. CAZA-TRAMPAS: detectar 1, 2 o 3 errores en un texto legal. NO SE ELIGE TEMA — la app selecciona un artículo al azar. Solo se elige el número de errores.
+5. REPASO DE ERRORES: practicar preguntas falladas de tests anteriores. Sin parámetros.
+6. PLAN DE ESTUDIOS: genera un plan semanal personalizado. Sin parámetros.
 
-EJEMPLOS de recomendaciones variadas (no uses siempre la misma):
-- "Haz un test de 30 preguntas del Tema 4 en dificultad difícil — es donde más fallas."
-- "Prueba un Caza-Trampas con 2 errores para afianzar los artículos que confundes."
-- "Haz un simulacro de 50 preguntas para ver cómo te va con penalización y tiempo real."
-- "Genera tu Plan de Estudios personalizado — la app analiza tus datos y te dice por dónde seguir."
-- "Repasa errores anteriores — así practicas exactamente las preguntas que ya has fallado."
-- "Haz un test progresivo de 20 preguntas del Tema 2 (La Corona) — mezcla fácil, media y difícil."
+ESTRATEGIA DE RECOMENDACIÓN:
+- Si el usuario falla MUCHO (>50% errores): sugiere test fácil de 10 preguntas + flashcards del tema.
+- Si falla MODERADO (30-50%): sugiere test de 20 preguntas en dificultad media + simulacro de 50.
+- Si falla POCO (<30%): sugiere dificultad DIFÍCIL o PROGRESIVO + simulacro de 100 + caza-trampas con 3 errores. Estas opciones son Premium — mencionarlo motiva al usuario a mejorar su plan.
 
-REGLAS:
-- VARÍA: no pongas siempre "test de 10 preguntas". Sugiere 10, 20 o 30 según contexto.
-- VARÍA la dificultad: si el usuario falla mucho, sugiere fácil/media. Si falla poco, sugiere difícil o progresivo.
-- VARÍA la herramienta: no siempre flashcards + test. Mezcla con simulacros, caza-trampas, repaso, roadmap.
-- USA el nombre del tema EXACTO (entre corchetes en los datos).
-- PROHIBIDO: inventar herramientas que no existen, referirte a títulos de leyes como si fueran temas.
+EJEMPLOS CORRECTOS (varía entre estos):
+- "Repite un test de 20 preguntas del Tema 4 (El Poder Judicial) en dificultad media para consolidar."
+- "Prueba un Caza-Trampas con 2 errores — te obliga a leer cada artículo con atención."
+- "Haz un simulacro de 50 preguntas con penalización para ver tu nivel real."
+- "Repasa tus errores anteriores — la app te vuelve a mostrar exactamente las preguntas que fallaste."
+- "Sube el nivel: test de 30 preguntas del Tema 2 (La Corona) en dificultad difícil (Premium)."
+- "Genera tu Plan de Estudios personalizado — analiza todos tus datos y te dice por dónde seguir."
+
+PROHIBIDO — NUNCA hagas esto:
+- "Caza-Trampas del Tema X" → NO EXISTE, Caza-Trampas no permite elegir tema
+- "Crea flashcards sobre X" → NO EXISTE, el usuario no crea flashcards manualmente
+- "Test sobre el Tribunal Constitucional" → NO ES UN TEMA, está dentro de otro tema
+- Referirte a títulos de leyes o conceptos como si fueran temas de la app
 
 Formato: texto plano con títulos en MAYÚSCULAS y negrita. NO uses JSON. Escribe texto natural formateado con saltos de línea claros.`
 }
