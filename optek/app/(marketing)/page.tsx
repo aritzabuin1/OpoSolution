@@ -144,17 +144,32 @@ const plans = [
     variant: 'outline' as const,
   },
   {
-    name: 'Pack Oposición',
+    name: 'Pack C2 o C1',
     price: '49,99€',
     period: 'pago único',
     badge: 'Más popular',
     features: [
-      'Tests ilimitados — C1 o C2 (elige al registrarte)',
+      'Tests ilimitados — Auxiliar (C2) o Administrativo (C1)',
       'Simulacros y psicotécnicos ilimitados',
       '+20 análisis detallados + Radar',
       'Sin suscripción — pago único',
     ],
     cta: 'Empezar mi ruta',
+    href: '/register',
+    variant: 'default' as const,
+  },
+  {
+    name: 'Pack Gestión A2',
+    price: '69,99€',
+    period: 'pago único',
+    badge: 'Exclusivo',
+    features: [
+      'Tests ilimitados — Gestión del Estado (A2 GACE)',
+      '58 temas en 6 bloques + simulacros INAP',
+      '+20 análisis + 5 supuestos prácticos con IA',
+      'Corrección con rúbrica oficial INAP',
+    ],
+    cta: 'Empezar con A2',
     href: '/register',
     variant: 'default' as const,
   },
@@ -169,7 +184,22 @@ const plans = [
       '+30 análisis detallados + Radar',
       'Cambia entre oposiciones cuando quieras',
     ],
-    cta: 'Las dos oposiciones',
+    cta: 'C1 + C2',
+    href: '/register',
+    variant: 'default' as const,
+  },
+  {
+    name: 'Pack Triple AGE',
+    price: '129,99€',
+    period: 'pago único',
+    badge: 'Todo incluido',
+    features: [
+      'Las 3 oposiciones AGE: C2 + C1 + A2',
+      '+40 análisis + 5 supuestos prácticos IA',
+      'Simulacros, Radar, todo ilimitado',
+      'Máximo ahorro — preparas todo',
+    ],
+    cta: 'Las tres oposiciones',
     href: '/register',
     variant: 'default' as const,
   },
@@ -206,11 +236,15 @@ const faqs = [
   },
   {
     q: '¿Se puede preparar la oposición por libre, sin academia?',
-    a: 'Sí. El temario del Auxiliar (28 temas) y del Administrativo (45 temas) son abarcables sin academia. OpoRuta te ofrece tests con legislación verificada, simulacros INAP reales y psicotécnicos — todo lo que necesitas para prepararte por tu cuenta.',
+    a: 'Sí. Los temarios de Auxiliar (28 temas), Administrativo (45 temas) y Gestión del Estado (58 temas) son abarcables sin academia. OpoRuta te ofrece tests con legislación verificada, simulacros INAP reales y análisis con IA — todo lo que necesitas para prepararte por tu cuenta.',
   },
   {
-    q: '¿Cuándo estará disponible la oposición A2 (Gestión del Estado)?',
-    a: 'Estamos preparando el temario completo de los 58 temas y el sistema de corrección de supuestos prácticos con IA — una funcionalidad exclusiva de OpoRuta. Próximamente.',
+    q: '¿Qué es el supuesto práctico con IA para A2 (GACE)?',
+    a: 'Es una funcionalidad exclusiva de OpoRuta para la oposición Gestión del Estado (A2). La IA genera un caso práctico realista (como los del INAP) con 5 cuestiones, tú escribes tus respuestas, y la IA las corrige usando la rúbrica oficial del INAP: conocimiento aplicado (60%), análisis (20%), sistemática (10%) y expresión escrita (10%). Recibes puntuación sobre 50, feedback por cuestión y respuesta modelo. Ninguna otra plataforma online ofrece esto.',
+  },
+  {
+    q: '¿Cuánto cuesta preparar la oposición A2 (GACE)?',
+    a: 'El Pack Gestión del Estado A2 cuesta 69,99€ (pago único, sin suscripción). Incluye tests ilimitados en los 58 temas, 20 análisis detallados y 5 supuestos prácticos con corrección IA. Las academias cobran 140€/mes solo por la corrección de supuestos — con OpoRuta lo tienes todo por un pago único.',
   },
 ]
 
@@ -336,15 +370,29 @@ const jsonLdApp = {
       '@type': 'Offer',
       price: '49.99',
       priceCurrency: 'EUR',
-      name: 'Pack Oposición',
-      description: 'Tests ilimitados en C1 o C2, simulacros y psicotécnicos ilimitados, 20 análisis detallados, Radar del Tribunal',
+      name: 'Pack C2 o C1',
+      description: 'Tests ilimitados en Auxiliar (C2) o Administrativo (C1), simulacros ilimitados, 20 análisis detallados',
+    },
+    {
+      '@type': 'Offer',
+      price: '69.99',
+      priceCurrency: 'EUR',
+      name: 'Pack Gestión del Estado A2',
+      description: 'Tests ilimitados A2 GACE (58 temas), 20 análisis detallados, 5 supuestos prácticos con corrección IA',
     },
     {
       '@type': 'Offer',
       price: '79.99',
       priceCurrency: 'EUR',
-      name: 'Pack Doble',
-      description: 'Acceso completo a C1 y C2, simulacros ilimitados, 30 análisis detallados, Radar del Tribunal',
+      name: 'Pack Doble (C2+C1)',
+      description: 'Acceso completo a C1 y C2, simulacros ilimitados, 30 análisis detallados',
+    },
+    {
+      '@type': 'Offer',
+      price: '129.99',
+      priceCurrency: 'EUR',
+      name: 'Pack Triple AGE (C2+C1+A2)',
+      description: 'Las 3 oposiciones AGE completas, 40 análisis, 5 supuestos prácticos IA',
     },
   ],
   educationalUse: 'Practice',
@@ -588,7 +636,7 @@ export default async function LandingPage() {
             </Card>
           </div>
           <p className="text-center text-xs text-muted-foreground mt-6">
-            ¿Preparas las dos? El Pack Doble te cubre ambas oposiciones por 79,99€.
+            Pack Doble (C2+C1): 79,99€ · Pack Triple AGE (C2+C1+A2): 129,99€ — con supuesto práctico IA incluido.
           </p>
         </div>
       </section>
@@ -752,7 +800,7 @@ export default async function LandingPage() {
               ¿Te quedas sin análisis detallados? Recárgalos desde 8,99€.
             </p>
           </div>
-          <div className="grid gap-6 md:grid-cols-3 max-w-4xl mx-auto">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 max-w-7xl mx-auto">
             {plans.map((plan) => (
               <Card
                 key={plan.name}
@@ -874,6 +922,34 @@ export default async function LandingPage() {
                       ))}
                     </div>
                     <p className="text-sm font-medium leading-snug group-hover:text-primary transition-colors line-clamp-3">
+                      {post.title}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-2 line-clamp-2">
+                      {post.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+
+          {/* ── Gestión del Estado GACE (A2) ── */}
+          <p className="text-xs font-semibold uppercase tracking-wider text-emerald-600 mb-3 mt-6">Gestión del Estado — GACE (A2) · Nuevo</p>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {([
+              'oposiciones-gestion-estado-gace-a2-2026-plazas-temario-fechas',
+              'supuesto-practico-gace-que-es-como-se-evalua-como-prepararlo',
+              'oporuta-vs-opositatest-vs-academias-comparativa-gace-a2',
+            ].map((slug) => blogPosts.find((p) => p.slug === slug)).filter((p): p is typeof blogPosts[0] => !!p)).map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
+                <Card className="h-full hover:border-emerald-400/40 transition-colors">
+                  <CardContent className="pt-5 pb-5">
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                      {post.keywords.slice(0, 2).map((kw) => (
+                        <Badge key={kw} variant="secondary" className="text-[10px]">{kw}</Badge>
+                      ))}
+                    </div>
+                    <p className="text-sm font-medium leading-snug group-hover:text-emerald-600 transition-colors line-clamp-3">
                       {post.title}
                     </p>
                     <p className="text-xs text-muted-foreground mt-2 line-clamp-2">
