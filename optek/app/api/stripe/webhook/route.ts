@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { stripe, CORRECTIONS_GRANTED, C1_OPOSICION_ID, C2_OPOSICION_ID } from '@/lib/stripe/client'
+import { stripe, CORRECTIONS_GRANTED, C1_OPOSICION_ID, C2_OPOSICION_ID, A2_OPOSICION_ID } from '@/lib/stripe/client'
 import { createServiceClient } from '@/lib/supabase/server'
 import { logger } from '@/lib/logger'
 
@@ -123,7 +123,35 @@ async function handleStripeEvent(
       // 1. Registrar compra(s)
       // RECARGA: NO crea fila en compras — solo otorga créditos (paso 2).
       // Si creara fila, checkPaidAccess la contaría como acceso premium (bug: 8,99€ desbloquea todo).
-      if (tier === 'pack_doble') {
+      if (tier === 'pack_triple') {
+        // Pack Triple AGE: 3 filas en compras (C2 + C1 + A2)
+        await supabase.from('compras').insert([
+          {
+            user_id: userId,
+            oposicion_id: C2_OPOSICION_ID,
+            tema_id: null,
+            stripe_checkout_session_id: session.id,
+            tipo: dbTipo,
+            amount_paid: session.amount_total ?? 0,
+          },
+          {
+            user_id: userId,
+            oposicion_id: C1_OPOSICION_ID,
+            tema_id: null,
+            stripe_checkout_session_id: `${session.id}_c1`,
+            tipo: dbTipo,
+            amount_paid: 0,
+          },
+          {
+            user_id: userId,
+            oposicion_id: A2_OPOSICION_ID,
+            tema_id: null,
+            stripe_checkout_session_id: `${session.id}_a2`,
+            tipo: dbTipo,
+            amount_paid: 0,
+          },
+        ])
+      } else if (tier === 'pack_doble') {
         // Pack Doble: 2 filas en compras (una C1 + una C2)
         await supabase.from('compras').insert([
           {
@@ -138,12 +166,12 @@ async function handleStripeEvent(
             user_id: userId,
             oposicion_id: C1_OPOSICION_ID,
             tema_id: null,
-            stripe_checkout_session_id: `${session.id}_c1`, // unique constraint workaround
+            stripe_checkout_session_id: `${session.id}_c1`,
             tipo: dbTipo,
-            amount_paid: 0, // segundo registro con amount 0 (total en el primero)
+            amount_paid: 0,
           },
         ])
-      } else if (tier !== 'recarga') {
+      } else if (tier !== 'recarga' && tier !== 'recarga_sup') {
         await supabase.from('compras').insert({
           user_id: userId,
           oposicion_id: oposicionIdMeta,
@@ -162,6 +190,24 @@ async function handleStripeEvent(
           p_amount: correctionsToGrant,
         })
         log.info({ sessionId: session.id, tier, correctionsToGrant }, 'Correcciones otorgadas')
+      }
+
+      // 2b. Otorgar supuestos prácticos si aplica (pool separado: supuestos_balance)
+      const supuestosToGrant = { pack: 0, pack_c1: 0, pack_a2: 5, pack_doble: 0, pack_triple: 5, recarga: 0, recarga_sup: 5, fundador: 5 }[tier] ?? 0
+      if (supuestosToGrant > 0) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const { data: currentProfile } = await (supabase as any)
+          .from('profiles')
+          .select('supuestos_balance')
+          .eq('id', userId)
+          .single()
+        const currentBalance = (currentProfile as { supuestos_balance?: number } | null)?.supuestos_balance ?? 0
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        await (supabase as any)
+          .from('profiles')
+          .update({ supuestos_balance: currentBalance + supuestosToGrant })
+          .eq('id', userId)
+        log.info({ sessionId: session.id, tier, supuestosToGrant, newBalance: currentBalance + supuestosToGrant }, 'Supuestos prácticos otorgados')
       }
 
       // 3. Founder badge (§1.21.3): 20 plazas GLOBALES

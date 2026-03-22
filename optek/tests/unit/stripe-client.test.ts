@@ -58,18 +58,18 @@ describe('Stripe pricing constants', () => {
     expect('tema' in CORRECTIONS_GRANTED).toBe(false)
   })
 
-  it('existen 5 tiers', () => {
-    expect(Object.keys(CORRECTIONS_GRANTED)).toHaveLength(5)
+  it('existen 8 tiers', () => {
+    expect(Object.keys(CORRECTIONS_GRANTED)).toHaveLength(8)
     expect(Object.keys(CORRECTIONS_GRANTED).sort()).toEqual([
-      'fundador', 'pack', 'pack_c1', 'pack_doble', 'recarga',
+      'fundador', 'pack', 'pack_a2', 'pack_c1', 'pack_doble', 'pack_triple', 'recarga', 'recarga_sup',
     ])
   })
 
   // ─── STRIPE_PRICES ────────────────────────────────────────────────────────
 
-  it('STRIPE_PRICES tiene las 5 keys esperadas', () => {
+  it('STRIPE_PRICES tiene las 8 keys esperadas', () => {
     expect(Object.keys(STRIPE_PRICES).sort()).toEqual([
-      'fundador', 'pack', 'pack_c1', 'pack_doble', 'recarga',
+      'fundador', 'pack', 'pack_a2', 'pack_c1', 'pack_doble', 'pack_triple', 'recarga', 'recarga_sup',
     ])
   })
 

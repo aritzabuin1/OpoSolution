@@ -16,6 +16,7 @@ import {
   GraduationCap,
   Flame,
   Clock,
+  Sparkles,
 } from 'lucide-react'
 import { createServiceClient } from '@/lib/supabase/server'
 import { FOUNDER_LIMIT } from '@/lib/stripe/client'
@@ -547,32 +548,41 @@ export default async function LandingPage() {
                 </Link>
               </CardContent>
             </Card>
-            {/* A2 — Gestión (próximamente) */}
-            <Card className="relative overflow-hidden border-dashed border-muted-foreground/30 opacity-85">
-              <div className="absolute top-0 right-0 bg-muted-foreground/60 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
+            {/* A2 — Gestión del Estado (GACE) — DIFERENCIADOR
+                TODO: Cambiar badge a "Nuevo · Exclusivo" y ring a ring-emerald-400/20 cuando Aritz active Stripe */}
+            <Card className="relative overflow-hidden border-emerald-400/30 shadow-md">
+              <div className="absolute top-0 right-0 bg-emerald-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
                 Próximamente
               </div>
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted-foreground/10">
-                    <Clock className="h-6 w-6 text-muted-foreground" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10">
+                    <Sparkles className="h-6 w-6 text-emerald-600" />
                   </div>
                   <div>
-                    <CardTitle className="text-lg">Gestión del Estado (A2)</CardTitle>
-                    <p className="text-xs text-muted-foreground">GACE — Grupo A2 AGE</p>
+                    <CardTitle className="text-lg">Gestión del Estado — GACE (A2)</CardTitle>
+                    <p className="text-xs text-muted-foreground">Cuerpo de Gestión AGE · Grupo A2</p>
                   </div>
                 </div>
               </CardHeader>
               <CardContent className="space-y-3">
                 <ul className="space-y-1.5 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 text-muted-foreground/60 shrink-0" /> 58 temas en 6 bloques</li>
-                  <li className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 text-muted-foreground/60 shrink-0" /> 1.356 plazas convocadas</li>
-                  <li className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 text-muted-foreground/60 shrink-0" /> Incluye supuesto práctico</li>
-                  <li className="flex items-center gap-2"><Zap className="h-3.5 w-3.5 text-amber-500 shrink-0" /> Corrección de supuesto con IA</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 58 temas en 6 bloques</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 1.356 plazas convocadas</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 21 leyes verificadas</li>
+                  <li className="flex items-center gap-2"><Sparkles className="h-3.5 w-3.5 text-emerald-500 shrink-0" /> <strong>Supuesto práctico con corrección IA</strong></li>
                 </ul>
-                <p className="text-xs text-center text-muted-foreground/80 italic pt-2">
-                  Incluye corrección de supuesto práctico con IA — exclusivo OpoRuta
-                </p>
+                <div className="rounded-lg bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 p-2.5 mt-2">
+                  <p className="text-xs text-emerald-700 dark:text-emerald-300 text-center font-medium">
+                    La IA corrige tu supuesto con la rúbrica oficial INAP.
+                    <br />
+                    <span className="opacity-75">Ninguna otra plataforma online lo ofrece.</span>
+                  </p>
+                </div>
+                {/* TODO: Cambiar a Link /register cuando Aritz active Stripe */}
+                <Button className="w-full gap-2 bg-emerald-600 hover:bg-emerald-700 text-white" size="sm" disabled>
+                  Disponible muy pronto
+                </Button>
               </CardContent>
             </Card>
           </div>

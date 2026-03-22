@@ -19,7 +19,7 @@ import { logger } from '@/lib/logger'
  */
 
 const BodySchema = z.object({
-  tier: z.enum(['pack', 'pack_c1', 'pack_doble', 'recarga', 'fundador']),
+  tier: z.enum(['pack', 'pack_c1', 'pack_a2', 'pack_doble', 'pack_triple', 'recarga', 'recarga_sup', 'fundador']),
   temaId: z.string().uuid().optional(),
   oposicionId: z.string().uuid().optional(),
 })

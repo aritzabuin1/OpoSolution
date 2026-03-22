@@ -16,11 +16,11 @@ import { toast } from 'sonner'
 import { Loader2 } from 'lucide-react'
 
 // TODO: query oposiciones WHERE activa = true (requires server component or API)
-// For now, hardcoded to active oposiciones only. Add new ones here when activated.
 const OPOSICIONES = [
   { id: 'a0000000-0000-0000-0000-000000000001', label: 'Auxiliar Administrativo (C2)' },
   { id: 'b0000000-0000-0000-0000-000000000001', label: 'Administrativo del Estado (C1)' },
-  // { id: 'c2000000-0000-0000-0000-000000000001', label: 'Gestión del Estado (A2)' }, // Activar cuando A2 esté lista
+  // TODO: Descomentar cuando Aritz active Stripe para A2
+  // { id: 'c2000000-0000-0000-0000-000000000001', label: 'Gestión del Estado — GACE (A2)' },
 ] as const
 
 interface ProfileFormProps {
