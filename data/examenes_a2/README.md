@@ -12,8 +12,8 @@ Cada carpeta contiene:
 | Año  | PDF Cuestionario | PDF Plantilla | JSON parseado | Preguntas anuladas |
 |------|-----------------|---------------|---------------|-------------------|
 | 2024 | OK (258 KB)     | OK (75 KB)    | OK (105 preguntas) | #90 |
-| 2022 | OK (264 KB)     | OK (31 KB)    | PENDIENTE     | #98 |
-| 2019 | OK (283 KB)     | OK (131 KB)   | PENDIENTE     | #17, #28 |
+| 2022 | OK (264 KB)     | OK (31 KB)    | OK (105 preguntas) | #98 |
+| 2019 | OK (283 KB)     | OK (131 KB)   | OK (105 preguntas) | #17, #28 |
 | 2018 | OK (7.2 MB, escaneado) | OK (5.7 KB) | PENDIENTE | #39, #47 |
 
 ## URLs oficiales INAP (sede.inap.gob.es)
