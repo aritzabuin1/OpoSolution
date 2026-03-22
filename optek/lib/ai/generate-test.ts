@@ -258,6 +258,39 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
     }
   }
 
+  // ── 4b. Enforce progressive difficulty distribution ───────────────────────
+  // The AI often fails to assign difficulty per-question (field is optional in schema).
+  // When progresivo: force ~30% fácil + ~50% media + ~20% difícil deterministically,
+  // then shuffle so difficulties are mixed throughout the test.
+  if (dificultad === 'progresivo' && preguntas.length >= 3) {
+    const hasDificil = preguntas.some(p => p.dificultad === 'dificil')
+    const hasFacil = preguntas.some(p => p.dificultad === 'facil')
+
+    // If AI didn't produce all 3 difficulty levels, override deterministically
+    if (!hasDificil || !hasFacil) {
+      const nFacil = Math.max(1, Math.round(preguntas.length * 0.3))
+      const nDificil = Math.max(1, Math.round(preguntas.length * 0.2))
+
+      // Sort by index, assign difficulties in blocks, then shuffle
+      preguntas.forEach((p, i) => {
+        if (i < nFacil) p.dificultad = 'facil'
+        else if (i >= preguntas.length - nDificil) p.dificultad = 'dificil'
+        else p.dificultad = 'media'
+      })
+
+      // Fisher-Yates shuffle to randomize order
+      for (let i = preguntas.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [preguntas[i], preguntas[j]] = [preguntas[j], preguntas[i]]
+      }
+
+      log.info(
+        { total: preguntas.length, nFacil, nDificil, nMedia: preguntas.length - nFacil - nDificil },
+        '[generateTest] progresivo: forced difficulty distribution'
+      )
+    }
+  }
+
   // ── 5. Guardar en BD ──────────────────────────────────────────────────────
   const testId = await saveTestToDB({ userId, temaId, preguntas })
 
