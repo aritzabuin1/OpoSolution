@@ -1,8 +1,9 @@
 /**
  * components/dashboard/TopicMap.tsx — §1.13.3
  *
- * Mapa de 28 temas del temario coloreados por nota media.
+ * Mapa de temas del temario coloreados por nota media.
  * Verde ≥ 7, Amarillo 4-7, Rojo < 4, Gris = no intentado.
+ * Adapta bloques dinámicamente según la oposición del usuario.
  *
  * Server Component — no requiere estado cliente.
  */
@@ -13,6 +14,7 @@ interface TemaScore {
   numero: number
   titulo: string
   notaMedia: number | null
+  bloque?: string
   testsCount: number
 }
 
@@ -33,18 +35,23 @@ function getScoreLabel(nota: number | null): string {
 }
 
 export function TopicMap({ temas }: TopicMapProps) {
-  const bloqueI = temas.filter((t) => t.numero <= 16)
-  const bloqueII = temas.filter((t) => t.numero > 16)
+  // Group temas by bloque dynamically (works for any oposición)
+  const bloqueGroups = new Map<string, typeof temas>()
+  for (const tema of temas) {
+    const bloque = tema.bloque ?? (tema.numero <= 16 ? 'I' : 'II')
+    if (!bloqueGroups.has(bloque)) bloqueGroups.set(bloque, [])
+    bloqueGroups.get(bloque)!.push(tema)
+  }
 
   return (
     <div className="space-y-6">
-      {/* Bloque I */}
-      <div>
-        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">
-          Bloque I — Organización Pública
-        </h3>
+      {[...bloqueGroups.entries()].map(([bloque, bloqueItems]) => (
+        <div key={bloque}>
+          <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">
+            Bloque {bloque}
+          </h3>
         <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-2">
-          {bloqueI.map((tema) => (
+          {bloqueItems.map((tema) => (
             <div
               key={tema.numero}
               title={`Tema ${tema.numero}: ${tema.titulo}${tema.notaMedia !== null ? ` — Nota media: ${Math.round(tema.notaMedia)}%` : ' — Sin tests'}`}
@@ -59,28 +66,7 @@ export function TopicMap({ temas }: TopicMapProps) {
           ))}
         </div>
       </div>
-
-      {/* Bloque II */}
-      <div>
-        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">
-          Bloque II — Actividad Administrativa y Ofimática
-        </h3>
-        <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-2">
-          {bloqueII.map((tema) => (
-            <div
-              key={tema.numero}
-              title={`Tema ${tema.numero}: ${tema.titulo}${tema.notaMedia !== null ? ` — Nota media: ${Math.round(tema.notaMedia)}%` : ' — Sin tests'}`}
-              className={cn(
-                'border rounded-lg p-2 text-center cursor-default transition-opacity hover:opacity-80',
-                getScoreClass(tema.notaMedia)
-              )}
-            >
-              <p className="text-[10px] font-bold">{tema.numero}</p>
-              <p className="text-xs font-semibold">{getScoreLabel(tema.notaMedia)}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      ))}
 
       {/* Leyenda */}
       <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">

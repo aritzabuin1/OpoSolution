@@ -118,8 +118,10 @@ export async function GET() {
 
   logger.info({ latencyMs, status, checks }, 'Health check completed')
 
+  // Strip detailed service checks from public response (prevent infrastructure recon)
+  // Detailed checks are still logged server-side for debugging
   return NextResponse.json(
-    { status, checks, latency_ms: latencyMs },
+    { status, latency_ms: latencyMs },
     {
       status: httpStatus,
       headers: { 'Cache-Control': 'public, max-age=30, s-maxage=30' },

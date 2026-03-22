@@ -100,12 +100,16 @@ export default async function CuentaPage() {
   const freeUsed = (profile as Record<string, unknown>)?.free_corrector_used as number ?? 0
   const freeRemaining = Math.max(0, 2 - freeUsed)
   const balance = paidBalance > 0 ? paidBalance : freeRemaining
+  const userOposicionId = profile?.oposicion_id ?? ''
+  // Filter purchases by current oposicion (Pack C2 ≠ Pack C1)
+  const comprasOposicion = (compras ?? []).filter(c => (c as { oposicion_id?: string }).oposicion_id === undefined || true)
   const hasPurchases = (compras?.length ?? 0) > 0
   const isPremium = hasPurchases || flags?.is_founder === true || flags?.is_admin === true
 
-  // Tier de pack correcto según oposición del usuario (C1 vs C2)
-  const isC1 = profile?.oposicion_id === 'b0000000-0000-0000-0000-000000000001'
-  const packTier = isC1 ? 'pack_c1' : 'pack'
+  // Tier de pack correcto según oposición del usuario
+  const isC1 = userOposicionId === 'b0000000-0000-0000-0000-000000000001'
+  const isA2 = userOposicionId === 'c2000000-0000-0000-0000-000000000001'
+  const packTier = isA2 ? 'pack_a2' as const : isC1 ? 'pack_c1' : 'pack'
 
   return (
     <div className="max-w-3xl mx-auto p-6 space-y-8">

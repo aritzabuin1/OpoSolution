@@ -127,14 +127,14 @@ export const LOGROS_CATALOG: Record<string, LogroInfo> = {
   },
   bloque1_completo: {
     tipo: 'bloque1_completo',
-    titulo: 'Derecho dominado',
-    descripcion: 'Has practicado en los 16 temas del Bloque I',
+    titulo: 'Bloque I dominado',
+    descripcion: 'Has practicado en todos los temas del Bloque I',
     emoji: '⚖️',
   },
   bloque2_completo: {
     tipo: 'bloque2_completo',
-    titulo: 'Ofimática dominada',
-    descripcion: 'Has practicado en los 12 temas del Bloque II',
+    titulo: 'Bloque II dominado',
+    descripcion: 'Has practicado en todos los temas del Bloque II',
     emoji: '💻',
   },
 }

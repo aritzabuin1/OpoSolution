@@ -62,11 +62,21 @@ export async function POST(request: NextRequest) {
   }
 
   // ── 3. Cargar tests recientes del usuario ─────────────────────────────────
+  // Get user's active oposicion to filter tests
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: profileData } = await (supabase as any)
+    .from('profiles')
+    .select('oposicion_id')
+    .eq('id', user.id)
+    .single()
+  const userOposicionId = (profileData as { oposicion_id?: string } | null)?.oposicion_id ?? ''
+
   const { data: testsData, error: testsError } = await supabase
     .from('tests_generados')
     .select('preguntas, respuestas_usuario')
     .eq('user_id', user.id)
     .eq('completado', true)
+    .eq('oposicion_id', userOposicionId)
     .not('tipo', 'in', '("psicotecnico","repaso_errores")')
     .order('created_at', { ascending: false })
     .limit(MAX_TESTS_SCAN)

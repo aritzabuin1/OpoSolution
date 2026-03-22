@@ -96,6 +96,7 @@ export default async function TestsPage({
       .select('id, created_at, puntuacion, tipo, tema_id, temas(titulo)')
       .eq('user_id', user.id)
       .eq('completado', true)
+      .eq('oposicion_id', oposicionId)
       .order('created_at', { ascending: false })
       .limit(5),
     supabase.from('oposiciones').select('slug').eq('id', oposicionId).single(),

@@ -363,7 +363,7 @@ export async function POST(request: NextRequest) {
 
   // Consumir crédito simulacro free tras éxito (BUG-010 pattern)
   if (!hasPaidAccess) {
-    void (serviceSupabase as any).rpc('use_free_simulacro', { p_user_id: user.id })
+    await (serviceSupabase as any).rpc('use_free_simulacro', { p_user_id: user.id })
   }
 
   log.info(
