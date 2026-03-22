@@ -157,53 +157,28 @@ export default async function TestsPage({
         />
       )}
 
-      {/* Bloque I */}
-      {bloqueI.length > 0 && (
-        <section>
+      {/* Todos los bloques — dinámico, funciona con 2 bloques (C2/C1) o 6 bloques (A2) */}
+      {[...bloqueGroups.entries()].map(([bloque, bloqueItems]) => (
+        <section key={bloque}>
           <div className="mb-4 flex items-center gap-2">
             <h2 className="text-base font-semibold">
-              Bloque I
+              Bloque {bloque}
             </h2>
-            <Badge variant="secondary">{bloqueI.length} temas</Badge>
+            <Badge variant="secondary">{bloqueItems.length} temas</Badge>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-            {bloqueI.map((tema) => (
+            {bloqueItems.map((tema) => (
               <TemaCard
                 key={tema.id}
                 tema={tema}
                 hasPaidAccess={hasPaidAccess}
                 freeTestsUsed={freeTestsUsed}
-
                 isFreeAllowed={freeTemas.includes(tema.numero)}
               />
             ))}
           </div>
         </section>
-      )}
-
-      {/* Bloque II */}
-      {bloqueII.length > 0 && (
-        <section>
-          <div className="mb-4 flex items-center gap-2">
-            <h2 className="text-base font-semibold">
-              Bloque II
-            </h2>
-            <Badge variant="secondary">{bloqueII.length} temas</Badge>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-            {bloqueII.map((tema) => (
-              <TemaCard
-                key={tema.id}
-                tema={tema}
-                hasPaidAccess={hasPaidAccess}
-                freeTestsUsed={freeTestsUsed}
-
-                isFreeAllowed={freeTemas.includes(tema.numero)}
-              />
-            ))}
-          </div>
-        </section>
-      )}
+      ))}
 
       {/* Estado vacío: no hay temas en BD */}
       {temas.length === 0 && (
