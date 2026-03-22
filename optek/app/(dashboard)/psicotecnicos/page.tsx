@@ -25,7 +25,7 @@ import { cn } from '@/lib/utils'
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
 
-type Dificultad = 'facil' | 'media' | 'dificil'
+type Dificultad = 'facil' | 'media' | 'dificil' | 'progresivo'
 
 interface DificultadOption {
   value: Dificultad
@@ -56,6 +56,13 @@ const DIFICULTAD_OPTIONS: DificultadOption[] = [
     description: 'Nivel examen oficial, cálculo mental rápido',
     color: 'border-red-300 bg-red-50 hover:bg-red-100 text-red-800',
     badge: 'bg-red-100 text-red-700',
+  },
+  {
+    value: 'progresivo',
+    label: 'Progresivo',
+    description: 'Mezcla fácil + media + difícil, como en el examen',
+    color: 'border-purple-300 bg-purple-50 hover:bg-purple-100 text-purple-800',
+    badge: 'bg-purple-100 text-purple-700',
   },
 ]
 
@@ -165,7 +172,7 @@ export default function PsicotecnicosPage() {
         <h2 className="text-sm font-semibold">Nivel de dificultad</h2>
         <div className="grid gap-2">
           {DIFICULTAD_OPTIONS.map((opt) => {
-            const locked = opt.value === 'dificil' && isPremium === false
+            const locked = (opt.value === 'dificil' || opt.value === 'progresivo') && isPremium === false
             return (
               <button
                 key={opt.value}

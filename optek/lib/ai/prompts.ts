@@ -60,7 +60,7 @@ FORMATO DE RESPUESTA (JSON estricto):
   ]
 }
 
-El campo "dificultad" debe coincidir con el nivel solicitado para el test ("facil", "media" o "dificil").
+El campo "dificultad" debe ser "facil", "media" o "dificil". Si el nivel solicitado es PROGRESIVO, asigna a cada pregunta su dificultad real según la distribución indicada. Si es un nivel fijo, todas las preguntas deben tener ese nivel.
 
 CALIDAD DE LA EXPLICACIÓN (campo "explicacion"):
 - NUNCA escribas explicaciones genéricas como "La respuesta correcta es A porque el artículo X dice eso".
@@ -113,7 +113,7 @@ FORMATO DE RESPUESTA (JSON estricto, SIN campo "cita"):
   ]
 }
 
-El campo "dificultad" debe coincidir con el nivel solicitado ("facil", "media" o "dificil").
+El campo "dificultad" debe ser "facil", "media" o "dificil". Si el nivel solicitado es PROGRESIVO, asigna a cada pregunta su dificultad real según la distribución indicada. Si es un nivel fijo, todas deben tener ese nivel.
 
 CALIDAD DE LA EXPLICACIÓN (campo "explicacion"):
 - NUNCA escribas explicaciones genéricas de 1 frase.
@@ -183,7 +183,7 @@ FORMATO DE RESPUESTA (JSON estricto):
 export function buildGenerateTestPrompt(params: {
   contextoLegislativo: string
   numPreguntas: number
-  dificultad: 'facil' | 'media' | 'dificil'
+  dificultad: 'facil' | 'media' | 'dificil' | 'progresivo'
   temaTitulo: string
   ejemplosExamen?: string
 }): string {
@@ -192,8 +192,8 @@ export function buildGenerateTestPrompt(params: {
   const dificultadLabel: Record<typeof dificultad, string> = {
     facil: 'FÁCIL — preguntas directas sobre definiciones y conceptos básicos',
     media: 'MEDIA — preguntas que requieren comprensión de relaciones entre artículos',
-    dificil:
-      'DIFÍCIL — preguntas sobre excepciones, plazos específicos y casos complejos',
+    dificil: 'DIFÍCIL — preguntas sobre excepciones, plazos específicos y casos complejos',
+    progresivo: `PROGRESIVO — mezcla de dificultades para simular un examen real. Distribuye las ${numPreguntas} preguntas así: ~30% fácil (conceptos básicos), ~50% media (relaciones entre artículos), ~20% difícil (excepciones y casos complejos). IMPORTANTE: marca cada pregunta con su dificultad real ("facil", "media" o "dificil") en el campo "dificultad"`,
   }
 
   const ejemplosSection = ejemplosExamen
@@ -224,7 +224,7 @@ Genera exactamente ${numPreguntas} pregunta(s) basándote SOLO en el contexto le
 export function buildGenerateTestBloque2Prompt(params: {
   contextoTecnico: string
   numPreguntas: number
-  dificultad: 'facil' | 'media' | 'dificil'
+  dificultad: 'facil' | 'media' | 'dificil' | 'progresivo'
   temaTitulo: string
 }): string {
   const { contextoTecnico, numPreguntas, dificultad, temaTitulo } = params
@@ -233,6 +233,7 @@ export function buildGenerateTestBloque2Prompt(params: {
     facil: 'FÁCIL — operaciones básicas cotidianas, menús principales, atajos comunes',
     media: 'MEDIA — funcionalidades intermedias, opciones de formato, configuración básica',
     dificil: 'DIFÍCIL — funcionalidades avanzadas, combinaciones de herramientas, casos de uso específicos',
+    progresivo: `PROGRESIVO — mezcla de dificultades. Distribuye las ${numPreguntas} preguntas así: ~30% fácil, ~50% media, ~20% difícil. Marca cada pregunta con su dificultad real ("facil", "media" o "dificil")`,
   }
 
   return `TEMA: ${temaTitulo}

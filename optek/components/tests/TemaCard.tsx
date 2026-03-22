@@ -34,7 +34,7 @@ import { trackGTMEvent } from '@/lib/analytics/gtm'
 
 // ─── Tipos ───────────────────────────────────────────────────────────────────
 
-type Dificultad = 'facil' | 'media' | 'dificil'
+type Dificultad = 'facil' | 'media' | 'dificil' | 'progresivo'
 type NumPreguntas = 10 | 20 | 30
 
 export interface TemaCardProps {
@@ -58,6 +58,7 @@ const DIFICULTADES: { value: Dificultad; label: string }[] = [
   { value: 'facil', label: 'Fácil' },
   { value: 'media', label: 'Media' },
   { value: 'dificil', label: 'Difícil' },
+  { value: 'progresivo', label: 'Progresivo' },
 ]
 
 const NUM_PREGUNTAS_OPTIONS: NumPreguntas[] = [10, 20, 30]
@@ -274,7 +275,7 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, isFreeAllowed = t
             </label>
             <div className="flex gap-2">
               {DIFICULTADES.map(({ value, label }) => {
-                const locked = value === 'dificil' && !hasPaidAccess
+                const locked = (value === 'dificil' || value === 'progresivo') && !hasPaidAccess
                 return (
                   <button
                     key={value}
@@ -298,7 +299,7 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, isFreeAllowed = t
             </div>
             {!hasPaidAccess && (
               <p className="text-[10px] text-amber-600">
-                El nivel Dificil requiere Premium — es el nivel del examen real
+                Difícil y Progresivo requieren Premium — simula el examen real
               </p>
             )}
           </div>

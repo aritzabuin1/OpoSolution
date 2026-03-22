@@ -46,8 +46,8 @@ const GenerateTestInputSchema = z.object({
     .int()
     .min(1, 'Mínimo 1 pregunta')
     .max(30, 'Máximo 30 preguntas'),
-  dificultad: z.enum(['facil', 'media', 'dificil'], {
-    error: 'dificultad debe ser facil, media o dificil',
+  dificultad: z.enum(['facil', 'media', 'dificil', 'progresivo'], {
+    error: 'dificultad debe ser facil, media, dificil o progresivo',
   }),
 }).refine(
   (data) => data.tipo === 'psicotecnico' || data.tipo === 'radar' || !!data.temaId,
@@ -134,12 +134,12 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  // ── 3c. Free users: dificultad 'dificil' requiere Premium ───────────────
-  if (!hasPaidAccess && dificultad === 'dificil') {
-    log.info({ userId: user.id, tipo, dificultad }, 'Free user tried dificil — paywall')
+  // ── 3c. Free users: dificultad 'dificil' y 'progresivo' requieren Premium ──
+  if (!hasPaidAccess && (dificultad === 'dificil' || dificultad === 'progresivo')) {
+    log.info({ userId: user.id, tipo, dificultad }, 'Free user tried premium difficulty — paywall')
     return NextResponse.json(
       {
-        error: 'El nivel Dificil requiere acceso Premium. Es el nivel del examen real.',
+        error: 'Los niveles Difícil y Progresivo requieren acceso Premium.',
         code: 'PAYWALL_TESTS',
       },
       { status: 402 }
@@ -261,18 +261,40 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-      const dificultadNum = dificultad === 'facil' ? 1 : dificultad === 'media' ? 2 : 3
-
-      const psicoPreguntasRaw = generatePsicotecnicos(numPreguntas, dificultadNum)
-
-      // Mapear PsicotecnicoQuestion → Pregunta (sin cita)
-      const preguntas: Pregunta[] = psicoPreguntasRaw.map((q) => ({
-        enunciado: q.enunciado,
-        opciones: q.opciones,
-        correcta: q.correcta,
-        explicacion: q.explicacion,
-        dificultad,
-      }))
+      // For progresivo: generate mixed difficulties (30% easy, 50% medium, 20% hard)
+      let preguntas: Pregunta[]
+      if (dificultad === 'progresivo') {
+        const nFacil = Math.round(numPreguntas * 0.3)
+        const nDificil = Math.round(numPreguntas * 0.2)
+        const nMedia = numPreguntas - nFacil - nDificil
+        const mixed = [
+          ...generatePsicotecnicos(nFacil, 1).map(q => ({ ...q, dif: 'facil' as const })),
+          ...generatePsicotecnicos(nMedia, 2).map(q => ({ ...q, dif: 'media' as const })),
+          ...generatePsicotecnicos(nDificil, 3).map(q => ({ ...q, dif: 'dificil' as const })),
+        ]
+        // Fisher-Yates shuffle
+        for (let i = mixed.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [mixed[i], mixed[j]] = [mixed[j], mixed[i]]
+        }
+        preguntas = mixed.map((q) => ({
+          enunciado: q.enunciado,
+          opciones: q.opciones,
+          correcta: q.correcta,
+          explicacion: q.explicacion,
+          dificultad: q.dif,
+        }))
+      } else {
+        const dificultadNum = dificultad === 'facil' ? 1 : dificultad === 'media' ? 2 : 3
+        const psicoPreguntasRaw = generatePsicotecnicos(numPreguntas, dificultadNum)
+        preguntas = psicoPreguntasRaw.map((q) => ({
+          enunciado: q.enunciado,
+          opciones: q.opciones,
+          correcta: q.correcta,
+          explicacion: q.explicacion,
+          dificultad,
+        }))
+      }
 
       // Guardar en BD
       const { data: testRow, error: insertError } = await serviceSupabase

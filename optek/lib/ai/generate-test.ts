@@ -68,7 +68,7 @@ export const PROMPT_VERSION = '2.2.0'
 export interface GenerateTestParams {
   temaId: string
   numPreguntas: number
-  dificultad: 'facil' | 'media' | 'dificil'
+  dificultad: 'facil' | 'media' | 'dificil' | 'progresivo'
   userId: string
   requestId?: string
   oposicionId?: string
@@ -132,7 +132,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   /** Compute maxTokens based on chunk size and difficulty */
   function computeMaxTokens(n: number): number {
     // Base: ~400 tokens per easy question, ~550 per hard (explanation + cita + JSON overhead)
-    const perQuestion = dificultad === 'dificil' ? 600 : dificultad === 'media' ? 500 : 450
+    const perQuestion = dificultad === 'dificil' || dificultad === 'progresivo' ? 600 : dificultad === 'media' ? 500 : 450
     // Minimum 4000, generous ceiling to avoid truncation
     return Math.max(4000, Math.min(n * perQuestion + 1000, 16000))
   }
@@ -292,7 +292,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
  *   3. Verify each question in-memory against fetched articles
  *   4. Timeout safety net — if batch query is slow, accept all unverified
  */
-async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger, dificultad: 'facil' | 'media' | 'dificil' = 'media'): Promise<Pregunta[]> {
+async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger, dificultad: 'facil' | 'media' | 'dificil' | 'progresivo' = 'media'): Promise<Pregunta[]> {
   const VERIFY_TIMEOUT_MS = 5_000 // 5s — batch query should be <1s
 
   const verifyBatch = async (): Promise<Pregunta[]> => {
@@ -368,9 +368,9 @@ async function verifyPreguntas(preguntas: PreguntaRaw[], log: ChildLogger, dific
           correcta: pregunta.correcta,
           explicacion: pregunta.explicacion,
           cita: pregunta.cita,
-          // Override AI-assigned difficulty with the requested difficulty — the AI
-          // sometimes assigns wrong levels (e.g. "facil" when "media" was requested)
-          dificultad: dificultad,
+          // For single-difficulty tests: override AI-assigned difficulty (AI sometimes gets it wrong)
+          // For 'progresivo': keep AI-assigned difficulty (the whole point is mixed levels)
+          dificultad: dificultad === 'progresivo' ? (pregunta.dificultad ?? 'media') : dificultad,
         })
       }
     }
@@ -427,7 +427,7 @@ function verifyPreguntasBloque2(
   preguntas: PreguntaRaw[],
   contexto: string,
   log: ChildLogger,
-  dificultad: 'facil' | 'media' | 'dificil' = 'media'
+  dificultad: 'facil' | 'media' | 'dificil' | 'progresivo' = 'media'
 ): Pregunta[] {
   const contextoLower = contexto.toLowerCase()
   const results: Pregunta[] = []
@@ -441,8 +441,7 @@ function verifyPreguntasBloque2(
         correcta: pregunta.correcta,
         explicacion: pregunta.explicacion,
         // cita: undefined — Bloque II no tiene citas legales
-        // Override AI-assigned difficulty with requested difficulty
-        dificultad: dificultad,
+        dificultad: dificultad === 'progresivo' ? (pregunta.dificultad ?? 'media') : dificultad,
       })
     }
   }
