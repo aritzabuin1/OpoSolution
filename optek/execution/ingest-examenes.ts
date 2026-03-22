@@ -41,9 +41,9 @@ const EXAMENES_DIR = resolveExamenesDir()
 // Map directory to oposición slug
 function resolveOposicionSlug(): string {
   const dirIdx = process.argv.indexOf('--dir')
-  if (dirIdx !== -1 && process.argv[dirIdx + 1]?.includes('c1')) {
-    return 'administrativo-estado'
-  }
+  const dirName = dirIdx !== -1 ? process.argv[dirIdx + 1] : ''
+  if (dirName?.includes('a2') || dirName?.includes('gace')) return 'gestion-estado'
+  if (dirName?.includes('c1')) return 'administrativo-estado'
   return 'aux-admin-estado'
 }
 
