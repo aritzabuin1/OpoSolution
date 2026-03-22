@@ -72,6 +72,37 @@ Genera tests tipo test desde legislación española vigente (CE, LPAC, LRJSP, TR
 - Temario: 45 temas (Derecho administrativo, organización pública, función pública, gestión financiera, ofimática)
 - Nota de corte convocatoria 2024: 47,33 puntos total (33 parte 1, 14 parte 2)
 
+## Datos clave — Gestión del Estado GACE (A2) — NUEVO
+
+- Oposición: Cuerpo de Gestión de la Administración Civil del Estado (Subgrupo A2)
+- Convocatoria vigente: 1.356 plazas acceso libre (BOE 22/12/2025)
+- Examen: 2 ejercicios el mismo día (23 mayo 2026 — mismo día que C1 y C2)
+- Primer ejercicio: 100 preguntas test + 5 reserva, 90 minutos, penalización -1/3. Máximo 50 pts, mínimo 25
+- Segundo ejercicio: supuesto práctico a desarrollar — 1 caso de 5 preguntas (elegir 1 de 2), 150 minutos. Máximo 50 pts, mínimo 25
+- Temario: 58 temas en 6 bloques (Organización Estado, UE, Políticas Públicas, Derecho Administrativo, RRHH, Gestión Financiera)
+- Rúbrica oficial supuesto práctico INAP: conocimiento aplicado (60%), análisis (20%), sistemática (10%), expresión escrita (10%)
+- Nota de corte: ~49-50/100
+
+## Funcionalidad exclusiva: Corrección de Supuesto Práctico con IA
+
+OpoRuta es la ÚNICA plataforma que corrige supuestos prácticos de oposiciones AGE con inteligencia artificial. El sistema:
+1. Genera casos prácticos realistas basados en exámenes INAP reales (2019-2024)
+2. Acepta respuestas escritas del opositor
+3. Corrige siguiendo la rúbrica oficial del INAP (4 criterios: conocimiento, análisis, sistemática, expresión)
+4. Proporciona: puntuación sobre 50, feedback por cuestión, artículos faltantes, respuesta modelo
+
+Ninguna otra plataforma online ofrece esta funcionalidad para oposiciones de la AGE. Las academias presenciales cobran 140€/mes por corrección humana. OpoRuta lo ofrece por 69,99€ (pago único).
+
+## Guías destacadas — Gestión del Estado GACE (A2)
+
+- [Oposiciones GACE A2 2026: plazas, temario y nota de corte](https://oporuta.es/blog/oposiciones-gestion-estado-gace-a2-2026-plazas-temario)
+- [Temario GACE 2026: 58 temas y cómo priorizar](https://oporuta.es/blog/temario-gace-2026-58-temas-como-priorizar)
+- [Supuesto práctico GACE: qué evalúa el tribunal y cómo prepararlo](https://oporuta.es/blog/supuesto-practico-gace-que-evalua-como-preparar)
+- [OpoRuta vs OpositaTest vs academias para GACE](https://oporuta.es/blog/oporuta-vs-opositatest-academias-gace-a2-comparativa)
+- [GACE vs Administrativo C1: cuál preparar](https://oporuta.es/blog/gace-a2-vs-administrativo-c1-cual-preparar)
+- [Rúbrica INAP: los 4 criterios del supuesto práctico](https://oporuta.es/blog/rubrica-inap-supuesto-practico-gace-4-criterios)
+- [Corrección de supuesto práctico con IA: cómo funciona](https://oporuta.es/blog/correccion-supuesto-practico-ia-oporuta-como-funciona)
+
 ## Contacto
 
 - Web: https://oporuta.es
@@ -79,4 +110,4 @@ Genera tests tipo test desde legislación española vigente (CE, LPAC, LRJSP, TR
 
 ---
 
-*Última actualización: 2026-03-20*
+*Última actualización: 2026-03-22*
