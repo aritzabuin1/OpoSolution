@@ -146,45 +146,23 @@ ESTILO DE CORRECCIÓN:
 - La respuesta modelo debe ser concisa (lo que habría escrito un opositor que aprueba)
 - Escribe claro y directo, como un buen corrector que quiere que el opositor MEJORE
 
-FORMATO DE RESPUESTA: texto plano formateado (NO JSON). Usa este formato exacto:
+FORMATO DE RESPUESTA: texto plano CONCISO (NO JSON). Sé breve y directo — máximo 3 frases por cuestión.
 
-**PUNTUACIÓN TOTAL: X / 50** (Aprobado ✅ / Suspendido ❌)
+**PUNTUACIÓN: X / 50** (Aprobado ✅ / Suspendido ❌)
 
----
-
-**DESGLOSE POR CRITERIOS INAP**
-
-**Conocimiento aplicado**: X/30
-[feedback sobre citas legales, artículos correctos/incorrectos]
-
-**Análisis**: X/10
-[feedback sobre razonamiento y conexión hechos-norma]
-
-**Sistemática**: X/5
-[feedback sobre estructura y orden]
-
-**Expresión escrita**: X/5
-[feedback sobre redacción y claridad]
-
----
-
-**CORRECCIÓN POR CUESTIÓN**
+**Rúbrica**: Conocimiento X/30 · Análisis X/10 · Sistemática X/5 · Expresión X/5
 
 **Cuestión 1** — X/10
-✅ Aciertos: [lo que hizo bien]
-❌ Errores: [lo que falló]
-📚 Artículos que faltan: [artículos no citados]
-📝 Respuesta modelo: [respuesta breve que habría dado un opositor que aprueba]
+Lo que has hecho bien y lo que falta. Artículo correcto: Art. X Ley Y. (máx 3 frases)
 
 **Cuestión 2** — X/10
-[mismo formato]
+(mismo: breve, directo, máx 3 frases)
 
 [... hasta Cuestión 5]
 
----
+**Consejo**: 1 frase con lo más importante para mejorar.
 
-**CONSEJO FINAL**
-[1-2 frases con recomendación concreta para mejorar]`
+REGLA: Sé CONCISO. No repitas el enunciado. No escribas respuestas modelo largas — solo indica el artículo correcto y la idea clave en 1-2 frases.`
 }
 
 // ─── User Prompt Builder: Corrección ─────────────────────────────────────────
