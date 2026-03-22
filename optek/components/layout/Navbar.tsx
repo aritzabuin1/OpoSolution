@@ -20,12 +20,13 @@ interface NavItem {
   icon: typeof LayoutDashboard
   premium?: boolean
   tourId?: string
+  featureKey?: string
 }
 
 const navItems: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/tests', label: 'Tests', icon: ClipboardList, tourId: 'nav-tests' },
-  { href: '/psicotecnicos', label: 'Psicotecnicos', icon: Brain, tourId: 'nav-psicotecnicos' },
+  { href: '/psicotecnicos', label: 'Psicotécnicos', icon: Brain, tourId: 'nav-psicotecnicos', featureKey: 'psicotecnicos' },
   { href: '/simulacros', label: 'Simulacros', icon: BookOpen, tourId: 'nav-simulacros' },
   { href: '/flashcards', label: 'Flashcards', icon: Layers, premium: true, tourId: 'nav-flashcards' },
   { href: '/cazatrampas', label: 'Caza-Trampas', icon: Target, tourId: 'nav-cazatrampas' },
@@ -35,7 +36,7 @@ const navItems: NavItem[] = [
   { href: '/cuenta', label: 'Mi cuenta', icon: User },
 ]
 
-export function Navbar({ isAdmin = false }: { isAdmin?: boolean }) {
+export function Navbar({ isAdmin = false, features }: { isAdmin?: boolean; features?: { psicotecnicos?: boolean; cazatrampas?: boolean; supuesto_practico?: boolean } }) {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
@@ -68,7 +69,10 @@ export function Navbar({ isAdmin = false }: { isAdmin?: boolean }) {
 
       {open && (
         <nav className="mt-3 flex flex-col gap-1" aria-label="Menu principal">
-          {navItems.map(({ href, label, icon: Icon, premium, tourId }) => {
+          {navItems.filter(item => {
+            if (!item.featureKey || !features) return true
+            return features[item.featureKey as keyof typeof features] !== false
+          }).map(({ href, label, icon: Icon, premium, tourId }) => {
             const isLocked = premium && isPremium === false
             const isActive = pathname === href || (pathname.startsWith(href + '/') && !isTestDetailPage(pathname, href))
 

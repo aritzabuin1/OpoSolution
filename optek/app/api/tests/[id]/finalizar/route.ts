@@ -61,7 +61,7 @@ export async function POST(
 
   const { data: testData } = await sb
     .from('tests_generados')
-    .select('id, tipo, tema_id, preguntas')
+    .select('id, tipo, tema_id, preguntas, oposicion_id')
     .eq('id', testId)
     .eq('user_id', user.id)
     .single()
@@ -147,6 +147,7 @@ export async function POST(
         respuestas,
         temaId: testData.tema_id as string | null,
         userId: user.id,
+        oposicionId: testData.oposicion_id as string | null,
         supabase: sb,
         log,
       })),
@@ -252,6 +253,7 @@ interface FlashcardBgParams {
   respuestas: (number | null)[]
   temaId: string | null
   userId: string
+  oposicionId?: string | null
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   supabase: any
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -263,6 +265,7 @@ async function generateFlashcardsBackground({
   respuestas,
   temaId,
   userId,
+  oposicionId,
   supabase,
   log,
 }: FlashcardBgParams) {
@@ -292,6 +295,7 @@ async function generateFlashcardsBackground({
         cita_legal: r.value.cita_legal,
         origen: r.value.origen,
         siguiente_repaso: new Date().toISOString().split('T')[0],
+        ...(oposicionId ? { oposicion_id: oposicionId } : {}),
       }))
 
     if (flashcardsToInsert.length === 0) return

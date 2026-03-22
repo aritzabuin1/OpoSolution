@@ -130,12 +130,13 @@ export default async function FlashcardsPage() {
 
   const today = new Date().toISOString().split('T')[0]!
 
-  // Cargar todas las flashcards del usuario con info del tema
+  // Cargar flashcards del usuario FILTRADAS por oposición activa
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: flashcards } = await (supabase as any)
     .from('flashcards')
     .select('id, frente, reverso, cita_legal, intervalo_dias, veces_acertada, veces_fallada, siguiente_repaso, tema_id, temas(titulo)')
     .eq('user_id', user.id)
+    .eq('oposicion_id', oposicionId)
     .order('siguiente_repaso', { ascending: true })
 
   const rows = (flashcards ?? []) as FlashcardRow[]

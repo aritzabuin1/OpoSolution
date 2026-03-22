@@ -4,6 +4,7 @@ import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { FeedbackButton } from '@/components/shared/FeedbackButton'
 import { checkIsAdmin } from '@/lib/admin/auth'
+import { createClient } from '@/lib/supabase/server'
 
 export const metadata: Metadata = {
   title: {
@@ -17,15 +18,41 @@ export const metadata: Metadata = {
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const isAdmin = await checkIsAdmin()
 
+  // Fetch user's oposición features for dynamic sidebar
+  let features: { psicotecnicos?: boolean; cazatrampas?: boolean; supuesto_practico?: boolean } | undefined
+  try {
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (user) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data: profile } = await (supabase as any)
+        .from('profiles')
+        .select('oposicion_id')
+        .eq('id', user.id)
+        .single()
+      if (profile?.oposicion_id) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const { data: opo } = await (supabase as any)
+          .from('oposiciones')
+          .select('features')
+          .eq('id', profile.oposicion_id)
+          .single()
+        features = (opo as { features?: typeof features } | null)?.features ?? undefined
+      }
+    }
+  } catch {
+    // Non-blocking — sidebar works without features (shows all items)
+  }
+
   return (
     <div className="flex min-h-screen flex-col">
       {/* Mobile navbar — visible en <768px */}
-      <Navbar isAdmin={isAdmin} />
+      <Navbar isAdmin={isAdmin} features={features} />
 
       <div className="flex flex-1">
         {/* Desktop sidebar — visible en ≥768px */}
         <div className="hidden md:flex">
-          <Sidebar isAdmin={isAdmin} />
+          <Sidebar isAdmin={isAdmin} features={features} />
         </div>
 
         {/* Main content */}
