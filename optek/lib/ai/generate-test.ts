@@ -308,7 +308,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   }
 
   // ── 5. Guardar en BD ──────────────────────────────────────────────────────
-  const testId = await saveTestToDB({ userId, temaId, preguntas })
+  const testId = await saveTestToDB({ userId, temaId, preguntas, oposicionId })
 
   log.info(
     {
@@ -755,6 +755,7 @@ async function saveTestToDB(params: {
   temaId: string | null
   preguntas: Pregunta[]
   tipo?: string
+  oposicionId?: string
 }): Promise<string> {
   const supabase = await createServiceClient()
 
@@ -767,6 +768,7 @@ async function saveTestToDB(params: {
       preguntas: params.preguntas as unknown as Json,
       completado: false,
       prompt_version: PROMPT_VERSION,
+      ...(params.oposicionId ? { oposicion_id: params.oposicionId } : {}),
     })
     .select('id')
     .single()

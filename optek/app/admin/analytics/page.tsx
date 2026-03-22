@@ -21,6 +21,7 @@ import {
   getAnalysisUsageByType,
   getDashboardPhaseDistribution,
   getDeviceDistribution,
+  getOposicionBreakdown,
 } from '@/lib/admin/analytics'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -75,10 +76,10 @@ function ScoreColor({ val }: { val: number }) {
 // ─── Page ───────────────────────────────────────────────────────────────────────
 
 export default async function AnalyticsPage() {
-  let conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, phaseDistribution, deviceDist
+  let conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, phaseDistribution, deviceDist, oposicionBreakdown
 
   try {
-    ;[conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, phaseDistribution, deviceDist] =
+    ;[conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, phaseDistribution, deviceDist, oposicionBreakdown] =
       await Promise.all([
         getConversionMetrics(),
         getDAU30d(),
@@ -93,6 +94,7 @@ export default async function AnalyticsPage() {
         getAnalysisUsageByType(),
         getDashboardPhaseDistribution(),
         getDeviceDistribution(),
+        getOposicionBreakdown(),
       ])
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err)
@@ -543,6 +545,66 @@ export default async function AnalyticsPage() {
           </CardContent>
         </Card>
       </div>
+
+      {/* ── 14. Desglose por Oposición ──────────────────────────────────────── */}
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="text-sm font-semibold flex items-center gap-2">
+            Desglose por Oposición
+            <MetricInfo text="Usuarios, conversión, tests y revenue desglosados por oposición." />
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b text-left text-muted-foreground">
+                  <th className="pb-2 font-medium">Oposición</th>
+                  <th className="pb-2 font-medium text-right">Usuarios</th>
+                  <th className="pb-2 font-medium text-right">Pagados</th>
+                  <th className="pb-2 font-medium text-right">Conv. %</th>
+                  <th className="pb-2 font-medium text-right">Tests</th>
+                  <th className="pb-2 font-medium text-right">Nota media</th>
+                  <th className="pb-2 font-medium text-right">Revenue</th>
+                </tr>
+              </thead>
+              <tbody>
+                {oposicionBreakdown.map((o) => (
+                  <tr key={o.slug} className="border-b last:border-0">
+                    <td className="py-2 font-medium">{o.oposicion}</td>
+                    <td className="py-2 text-right">{o.usuarios}</td>
+                    <td className="py-2 text-right">{o.pagados}</td>
+                    <td className="py-2 text-right">
+                      <Badge variant={o.conversionPct >= 10 ? 'default' : o.conversionPct >= 5 ? 'secondary' : 'outline'}>
+                        {o.conversionPct}%
+                      </Badge>
+                    </td>
+                    <td className="py-2 text-right">{o.tests}</td>
+                    <td className="py-2 text-right">
+                      {o.notaMedia !== null ? <ScoreColor val={o.notaMedia} /> : <span className="text-muted-foreground">—</span>}
+                    </td>
+                    <td className="py-2 text-right font-medium">{o.revenue.toFixed(2)}€</td>
+                  </tr>
+                ))}
+                {oposicionBreakdown.length === 0 && (
+                  <tr><td colSpan={7} className="py-4 text-center text-muted-foreground">Sin datos</td></tr>
+                )}
+              </tbody>
+              <tfoot>
+                <tr className="border-t font-semibold">
+                  <td className="pt-2">Total</td>
+                  <td className="pt-2 text-right">{oposicionBreakdown.reduce((s, o) => s + o.usuarios, 0)}</td>
+                  <td className="pt-2 text-right">{oposicionBreakdown.reduce((s, o) => s + o.pagados, 0)}</td>
+                  <td className="pt-2 text-right">—</td>
+                  <td className="pt-2 text-right">{oposicionBreakdown.reduce((s, o) => s + o.tests, 0)}</td>
+                  <td className="pt-2 text-right">—</td>
+                  <td className="pt-2 text-right">{oposicionBreakdown.reduce((s, o) => s + o.revenue, 0).toFixed(2)}€</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }

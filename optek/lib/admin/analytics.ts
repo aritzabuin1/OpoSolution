@@ -645,3 +645,91 @@ export async function getDeviceDistribution(): Promise<DeviceDistribution> {
     mobilePct: total > 0 ? Math.round((counts.mobile / total) * 100) : 0,
   }
 }
+
+// ─── 14. Desglose por Oposición ──────────────────────────────────────────────
+
+export interface OposicionBreakdown {
+  oposicion: string
+  slug: string
+  usuarios: number
+  pagados: number
+  conversionPct: number
+  tests: number
+  notaMedia: number | null
+  revenue: number
+}
+
+async function _getOposicionBreakdown(): Promise<OposicionBreakdown[]> {
+  const supabase = await createServiceClient()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const sb = supabase as any
+
+  // All oposiciones (including inactive, for admin visibility)
+  const { data: oposiciones } = await sb
+    .from('oposiciones')
+    .select('id, nombre, slug')
+    .order('nombre')
+
+  if (!oposiciones || oposiciones.length === 0) return []
+
+  const results: OposicionBreakdown[] = []
+
+  for (const opo of oposiciones) {
+    const opoId = opo.id as string
+
+    // Users registered for this oposición
+    const { count: usuarios } = await sb
+      .from('profiles')
+      .select('id', { count: 'exact', head: true })
+      .eq('oposicion_id', opoId)
+      .eq('is_admin', false)
+
+    // Paid users (have at least 1 compra for this oposición)
+    const { count: pagados } = await sb
+      .from('compras')
+      .select('user_id', { count: 'exact', head: true })
+      .eq('oposicion_id', opoId)
+
+    // Tests generated for this oposición
+    const { data: testsData } = await sb
+      .from('tests_generados')
+      .select('puntuacion')
+      .eq('oposicion_id', opoId)
+      .eq('completado', true)
+
+    const tests = testsData?.length ?? 0
+    const scores = (testsData ?? [])
+      .map((t: { puntuacion: number | null }) => t.puntuacion)
+      .filter((s: number | null): s is number => s !== null)
+    const notaMedia = scores.length > 0
+      ? Math.round(scores.reduce((a: number, b: number) => a + b, 0) / scores.length)
+      : null
+
+    // Revenue for this oposición
+    const { data: revenueData } = await sb
+      .from('compras')
+      .select('amount_paid')
+      .eq('oposicion_id', opoId)
+
+    const revenue = (revenueData ?? [])
+      .reduce((sum: number, c: { amount_paid: number | null }) => sum + ((c.amount_paid ?? 0) / 100), 0)
+
+    const totalUsuarios = usuarios ?? 0
+    const totalPagados = pagados ?? 0
+
+    results.push({
+      oposicion: opo.nombre as string,
+      slug: opo.slug as string,
+      usuarios: totalUsuarios,
+      pagados: totalPagados,
+      conversionPct: totalUsuarios > 0 ? Math.round((totalPagados / totalUsuarios) * 100) : 0,
+      tests,
+      notaMedia,
+      revenue: Math.round(revenue * 100) / 100,
+    })
+  }
+
+  return results
+}
+
+export const getOposicionBreakdown = _getOposicionBreakdown

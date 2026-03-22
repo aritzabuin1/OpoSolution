@@ -94,12 +94,14 @@ export default async function DashboardPage() {
     .eq('id', user.id)
     .single() as { data: { racha_actual: number; ultimo_test_dia: string | null; onboarding_completed_at: string | null } | null }
 
-  // Todos los tests completados del usuario (con tema)
+  // Todos los tests completados del usuario PARA SU OPOSICIÓN ACTIVA
+  const userOposicionId = profile?.oposicion_id ?? ''
   const { data: tests } = await supabase
     .from('tests_generados')
     .select('id, created_at, puntuacion, completado, tema_id, temas(titulo, numero)')
     .eq('user_id', user.id)
     .eq('completado', true)
+    .eq('oposicion_id', userOposicionId)
     .order('created_at', { ascending: false })
     .limit(100) as { data: TestRow[] | null }
 
@@ -116,6 +118,7 @@ export default async function DashboardPage() {
     .from('flashcards')
     .select('*', { count: 'exact', head: true })
     .eq('user_id', user.id)
+    .eq('oposicion_id', userOposicionId)
     .lte('siguiente_repaso', new Date().toISOString()) as { count: number | null }
 
   // Reto Diario — estado de hoy (migration 020, best-effort)

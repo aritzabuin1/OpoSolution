@@ -348,6 +348,7 @@ export async function POST(request: NextRequest) {
       preguntas: preguntas as unknown as Json,
       completado: false,
       prompt_version: promptVersion,
+      oposicion_id: oposicionId,
     })
     .select('id, created_at')
     .single()
