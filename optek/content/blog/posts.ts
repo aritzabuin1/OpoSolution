@@ -7520,4 +7520,1051 @@ export const blogPosts: BlogPost[] = [
       { question: '¿A qué edad es la jubilación forzosa de los funcionarios?', answer: 'La jubilación forzosa es a los 65 años (art. 67 TREBEP), con posibilidad de prórroga hasta los 70 años en determinados supuestos. No debe confundirse con la edad de jubilación del Régimen General de la Seguridad Social (67 años). Los funcionarios de la AGE cotizan a MUFACE/Clases Pasivas, no al INSS.' },
     ],
   },
+
+  // ─── Post 45 — GACE A2: Guía informativa ───────────────────────────────────
+  {
+    slug: 'oposiciones-gestion-estado-gace-a2-2026-plazas-temario-fechas',
+    title: 'Oposiciones Gestión del Estado (GACE A2) 2026: plazas, temario, nota de corte y fechas',
+    description:
+      'Todo lo que necesitas saber sobre la oposición GACE A2 2026: 1.356 plazas, 58 temas en 6 bloques, examen el 23 de mayo de 2026 y nota de corte histórica. Incluye sueldo, requisitos y cómo preparar el supuesto práctico.',
+    date: '2026-03-22',
+    dateModified: '2026-03-22',
+    keywords: [
+      'oposiciones gestión del estado 2026',
+      'GACE A2 plazas 2026',
+      'gestión administración civil del estado',
+      'oposiciones A2 AGE',
+      'temario GACE 2026',
+      'nota de corte GACE',
+      'sueldo gestión del estado',
+    ],
+    content: `
+<h2>1.356 plazas para Gestión del Estado (A2) en 2026</h2>
+<p>
+  La convocatoria GACE 2026 ofrece <strong>1.356 plazas</strong> para el Cuerpo de Gestión de la
+  Administración Civil del Estado, subgrupo A2. Es una de las mayores ofertas de empleo público
+  en la AGE, solo por detrás de Auxiliar Administrativo (C2). El examen se celebra el
+  <strong>23 de mayo de 2026</strong>, el mismo día que las pruebas de C1 (Administrativo) y
+  C2 (Auxiliar) — lo que obliga a elegir una sola oposición.
+</p>
+
+<h2>Requisitos para presentarse</h2>
+<ul>
+  <li><strong>Titulación:</strong> Grado universitario, diplomatura, ingeniería técnica o equivalente.</li>
+  <li><strong>Nacionalidad:</strong> Española o de un Estado miembro de la UE.</li>
+  <li><strong>Edad:</strong> Mayor de 16 años, sin límite superior (salvo jubilación forzosa a los 65).</li>
+  <li><strong>No estar inhabilitado</strong> para funciones públicas ni separado del servicio.</li>
+</ul>
+
+<h2>Estructura del examen GACE</h2>
+<p>
+  El proceso selectivo consta de <strong>dos ejercicios</strong>, ambos eliminatorios:
+</p>
+<ol>
+  <li>
+    <strong>Primer ejercicio (tipo test):</strong> 50 preguntas con 4 opciones de respuesta
+    sobre los 58 temas del programa. Penalización de 1/3 por respuesta incorrecta.
+    Duración: 60 minutos. Se puntúa de 0 a 50.
+  </li>
+  <li>
+    <strong>Segundo ejercicio (supuesto práctico):</strong> Elegir 1 de 2 supuestos prácticos.
+    Cada supuesto tiene 5 preguntas a desarrollar sobre los Bloques IV, V y VI del temario
+    (contratación pública, gestión financiera y recursos humanos). Duración: 150 minutos.
+    Se puntúa de 0 a 50.
+  </li>
+</ol>
+<p>
+  La <strong>nota final</strong> es la suma de ambos ejercicios (máximo 100 puntos).
+  Históricamente, la nota de corte se sitúa entre <strong>49 y 52 puntos</strong> sobre 100.
+</p>
+
+<h2>Los 58 temas en 6 bloques</h2>
+<ul>
+  <li><strong>Bloque I — Organización del Estado (9 temas):</strong> Constitución, Corona, Cortes, Gobierno, Poder Judicial, organización territorial.</li>
+  <li><strong>Bloque II — Administración Pública (11 temas):</strong> LRJSP, LPAC, administración electrónica, contratos menores.</li>
+  <li><strong>Bloque III — Unión Europea (5 temas):</strong> Instituciones, derecho comunitario, presupuesto UE.</li>
+  <li><strong>Bloque IV — Gestión financiera (12 temas):</strong> LGP, Ley General Tributaria, contabilidad pública, Seguridad Social.</li>
+  <li><strong>Bloque V — Contratación pública (10 temas):</strong> LCSP, tipos de contratos, procedimientos de adjudicación, recursos especiales.</li>
+  <li><strong>Bloque VI — Recursos humanos (11 temas):</strong> TREBEP, situaciones administrativas, retribuciones, Seguridad Social de funcionarios.</li>
+</ul>
+<p>
+  Los bloques IV, V y VI son especialmente críticos: además de caer en el test, son la base del
+  <strong>supuesto práctico</strong>, que vale el 50% de la nota final.
+</p>
+
+<h2>Sueldo de un Gestor del Estado (A2)</h2>
+<p>
+  Un funcionario del Cuerpo de Gestión de la AGE percibe entre <strong>1.900€ y 3.000€ netos/mes</strong>
+  (14 pagas), dependiendo del complemento específico del puesto, destino y antigüedad.
+  El sueldo base A2 más complemento de destino nivel 18 ronda los 1.900€ netos; con nivel 24-26
+  y trienios, puede superar los 2.800€.
+</p>
+<ul>
+  <li>Sueldo base A2: ~960€/mes</li>
+  <li>Complemento de destino (nivel 18-26): ~460-720€/mes</li>
+  <li>Complemento específico: variable según puesto (400-1.000€/mes)</li>
+  <li>14 pagas + trienios (~42€/trienio mensual)</li>
+</ul>
+
+<h2>¿Por qué preparar la GACE con OpoRuta?</h2>
+<p>
+  OpoRuta es la <strong>única plataforma online que corrige el supuesto práctico con IA</strong>,
+  usando la rúbrica oficial del INAP (conocimiento aplicado 60%, análisis 20%, sistemática 10%,
+  expresión 10%). Las academias presenciales cobran <strong>140€/mes</strong> solo por la corrección
+  de supuestos — OpoRuta lo incluye por <strong>69,99€ de pago único</strong>.
+</p>
+<p>
+  Además, tienes tests para los 58 temas del temario, simulacros con preguntas oficiales,
+  flashcards con repetición espaciada y análisis detallados de tus errores.
+</p>
+<p>
+  <strong><a href="/register">Empieza a preparar tu oposición GACE con OpoRuta</a></strong> — incluye
+  corrección de supuesto práctico con IA, tests por tema y simulacros oficiales.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuántas plazas hay para Gestión del Estado (GACE A2) en 2026?', answer: 'La convocatoria 2026 ofrece 1.356 plazas para el Cuerpo de Gestión de la Administración Civil del Estado (subgrupo A2). Es una de las mayores ofertas en la AGE.' },
+      { question: '¿Cuándo es el examen GACE 2026?', answer: 'El examen está convocado para el 23 de mayo de 2026. Coincide con las pruebas de C1 (Administrativo) y C2 (Auxiliar), por lo que no puedes presentarte a más de una el mismo día.' },
+      { question: '¿Qué título necesito para presentarme a la GACE?', answer: 'Necesitas un título de Grado universitario, Diplomatura, Ingeniería Técnica, Arquitectura Técnica o equivalente. Es una oposición del subgrupo A2, que exige titulación universitaria.' },
+      { question: '¿Cuánto cobra un Gestor del Estado?', answer: 'El sueldo neto oscila entre 1.900€ y 3.000€ mensuales en 14 pagas, dependiendo del nivel del puesto (18-26), complemento específico y antigüedad. El sueldo base A2 es de unos 960€/mes, al que se suman complementos.' },
+      { question: '¿Cuántos temas tiene el temario GACE?', answer: 'El temario consta de 58 temas distribuidos en 6 bloques: Organización del Estado (9), Administración Pública (11), Unión Europea (5), Gestión financiera (12), Contratación pública (10) y Recursos humanos (11).' },
+    ],
+  },
+
+  // ─── Post 46 — GACE: Temario y priorización ────────────────────────────────
+  {
+    slug: 'temario-gace-2026-58-temas-6-bloques-como-priorizar',
+    title: 'Temario GACE 2026: 58 temas en 6 bloques — cómo priorizar tu estudio',
+    description:
+      'Análisis completo de los 58 temas del temario de Gestión del Estado (A2) 2026. Cómo priorizar los 6 bloques, cuáles pesan más en el supuesto práctico y estrategia de estudio eficiente.',
+    date: '2026-03-22',
+    dateModified: '2026-03-22',
+    keywords: [
+      'temario GACE 2026',
+      'temario gestión del estado A2',
+      '58 temas GACE',
+      'bloques temario GACE',
+      'cómo estudiar GACE',
+      'priorizar temario oposiciones A2',
+    ],
+    content: `
+<h2>Los 58 temas del temario GACE: visión general</h2>
+<p>
+  El temario oficial del Cuerpo de Gestión de la Administración Civil del Estado (GACE, subgrupo A2)
+  consta de <strong>58 temas</strong> organizados en <strong>6 bloques</strong>. No todos los bloques
+  tienen el mismo peso: los bloques IV, V y VI no solo aparecen en el examen tipo test, sino que son
+  la base exclusiva del <strong>supuesto práctico</strong> (50% de la nota final).
+</p>
+<p>
+  Esto significa que si priorizas mal, puedes aprobar el test y suspender el supuesto — o viceversa.
+  La clave es una estrategia de estudio que cubra todo el temario pero ponga el foco en los bloques
+  que más puntos aportan.
+</p>
+
+<h2>Bloque I — Organización del Estado y Constitución (9 temas)</h2>
+<p>
+  Temas 1 a 9. Constitución Española, Corona, Cortes Generales, Gobierno y Administración,
+  Poder Judicial, organización territorial del Estado, Comunidades Autónomas y Administración Local.
+</p>
+<ul>
+  <li><strong>Peso en el test:</strong> ~15% (7-8 preguntas de 50).</li>
+  <li><strong>Peso en el supuesto:</strong> No aparece directamente.</li>
+  <li><strong>Estrategia:</strong> Estudiar sólido pero sin obsesionarse. La CE es pura memoria — usa flashcards con repetición espaciada.</li>
+</ul>
+
+<h2>Bloque II — Administración Pública (11 temas)</h2>
+<p>
+  Temas 10 a 20. LRJSP, LPAC (procedimiento administrativo común), administración electrónica,
+  protección de datos (LOPDGDD), transparencia y buen gobierno, atención al ciudadano.
+</p>
+<ul>
+  <li><strong>Peso en el test:</strong> ~20% (10-11 preguntas).</li>
+  <li><strong>Peso en el supuesto:</strong> Indirecto — la LPAC aparece como procedimiento base en muchos supuestos.</li>
+  <li><strong>Leyes clave:</strong> LPAC (Ley 39/2015) representa el 17,5% del temario total. Es la ley transversal por excelencia.</li>
+  <li><strong>Estrategia:</strong> Dominar LPAC es rentabilísimo — cae en test Y en supuesto. Prioridad alta.</li>
+</ul>
+
+<h2>Bloque III — Unión Europea (5 temas)</h2>
+<p>
+  Temas 21 a 25. Instituciones de la UE, derecho comunitario, presupuesto de la UE, fondos europeos.
+</p>
+<ul>
+  <li><strong>Peso en el test:</strong> ~8% (4-5 preguntas).</li>
+  <li><strong>Peso en el supuesto:</strong> No aparece.</li>
+  <li><strong>Estrategia:</strong> Es el bloque más pequeño y con menor retorno. Estudiar para asegurar las 4-5 preguntas del test, sin profundizar en exceso.</li>
+</ul>
+
+<h2>Bloque IV — Gestión financiera (12 temas) ⚡ CRÍTICO</h2>
+<p>
+  Temas 26 a 37. Ley General Presupuestaria (LGP), presupuestos generales del Estado,
+  gasto público, Ley General Tributaria, contabilidad pública, Seguridad Social, TRLGSS.
+</p>
+<ul>
+  <li><strong>Peso en el test:</strong> ~20% (10-11 preguntas).</li>
+  <li><strong>Peso en el supuesto:</strong> ALTO — los supuestos SIEMPRE incluyen cuestiones de gestión presupuestaria y financiera.</li>
+  <li><strong>Leyes clave:</strong> LGP (Ley 47/2003), Ley General Tributaria (Ley 58/2003).</li>
+  <li><strong>Estrategia:</strong> Prioridad máxima. Cada hora invertida aquí rinde doble: en test y en supuesto.</li>
+</ul>
+
+<h2>Bloque V — Contratación pública (10 temas) ⚡ CRÍTICO</h2>
+<p>
+  Temas 38 a 47. Ley de Contratos del Sector Público (LCSP), tipos de contratos, preparación
+  y adjudicación, ejecución, modificación y resolución, recursos especiales, encargos a medios propios.
+</p>
+<ul>
+  <li><strong>Peso en el test:</strong> ~17% (8-9 preguntas).</li>
+  <li><strong>Peso en el supuesto:</strong> MUY ALTO — la contratación es el pilar central de la mayoría de supuestos INAP.</li>
+  <li><strong>Leyes clave:</strong> LCSP (Ley 9/2017) — representa el 9,9% del temario total pero aparece en el 90% de los supuestos prácticos.</li>
+  <li><strong>Estrategia:</strong> PRIORIDAD ABSOLUTA. Dominar LCSP es la diferencia entre aprobar y suspender el supuesto práctico.</li>
+</ul>
+
+<h2>Bloque VI — Recursos humanos (11 temas) ⚡ CRÍTICO</h2>
+<p>
+  Temas 48 a 58. TREBEP, selección de personal, provisión de puestos, situaciones administrativas,
+  retribuciones, régimen disciplinario, Seguridad Social de funcionarios (MUFACE/Clases Pasivas),
+  prevención de riesgos laborales, negociación colectiva.
+</p>
+<ul>
+  <li><strong>Peso en el test:</strong> ~20% (10-11 preguntas).</li>
+  <li><strong>Peso en el supuesto:</strong> ALTO — siempre hay al menos 1-2 preguntas de RRHH en el supuesto.</li>
+  <li><strong>Leyes clave:</strong> TREBEP (RDLeg 5/2015).</li>
+  <li><strong>Estrategia:</strong> Prioridad alta. El TREBEP comparte estructura con el temario C1 — si vienes de preparar C1, tienes ventaja.</li>
+</ul>
+
+<h2>Distribución de horas recomendada</h2>
+<p>
+  Basado en el análisis del peso de cada bloque en test + supuesto práctico:
+</p>
+<ul>
+  <li><strong>Bloques IV + V + VI (contratación, finanzas, RRHH):</strong> 55-60% del tiempo total de estudio.</li>
+  <li><strong>Bloque II (Administración Pública / LPAC):</strong> 20% del tiempo.</li>
+  <li><strong>Bloque I (Constitución):</strong> 12-15% del tiempo.</li>
+  <li><strong>Bloque III (UE):</strong> 5-8% del tiempo.</li>
+</ul>
+<p>
+  Un opositor que dedique 8 meses a tiempo parcial (2-3 horas/día) puede cubrir los 58 temas
+  si prioriza correctamente. A tiempo completo (6-8 horas/día), 4-5 meses son suficientes.
+</p>
+
+<h2>OpoRuta tiene tests para los 58 temas</h2>
+<p>
+  En OpoRuta puedes practicar test por test para cada uno de los 58 temas del temario GACE.
+  Además, la plataforma es la <strong>única que corrige el supuesto práctico con IA</strong>,
+  evaluando tu respuesta con la misma rúbrica que usa el INAP (conocimiento aplicado, análisis,
+  sistemática, expresión escrita).
+</p>
+<p>
+  Las academias cobran <strong>140€/mes</strong> solo por corregir supuestos. OpoRuta incluye
+  todo — tests, simulacros, supuesto práctico y corrección IA — por <strong>69,99€ de pago único</strong>.
+</p>
+<p>
+  <strong><a href="/register">Empieza a estudiar los 58 temas del GACE con OpoRuta</a></strong>
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuántos temas tiene el temario GACE 2026?', answer: 'El temario consta de 58 temas distribuidos en 6 bloques: Organización del Estado (9), Administración Pública (11), Unión Europea (5), Gestión financiera (12), Contratación pública (10) y Recursos humanos (11).' },
+      { question: '¿Cuáles son los bloques más importantes del temario GACE?', answer: 'Los bloques IV (Gestión financiera), V (Contratación pública) y VI (Recursos humanos) son los más importantes porque, además de caer en el examen tipo test, son la base exclusiva del supuesto práctico, que vale el 50% de la nota final.' },
+      { question: '¿Cuánto tiempo necesito para preparar los 58 temas?', answer: 'A tiempo parcial (2-3 horas/día), unos 8 meses. A tiempo completo (6-8 horas/día), 4-5 meses. La clave es priorizar: dedica el 55-60% del tiempo a los bloques IV, V y VI (contratación, finanzas y RRHH) porque pesan doble (test + supuesto práctico).' },
+      { question: '¿Qué ley es la más importante del temario GACE?', answer: 'La LCSP (Ley 9/2017 de Contratos del Sector Público) es la ley más determinante: aunque solo ocupa el 9,9% del temario, aparece en el 90% de los supuestos prácticos. Le siguen la LGP (gestión financiera) y el TREBEP (recursos humanos).' },
+      { question: '¿Puedo preparar la GACE si ya he estudiado el temario C1?', answer: 'Sí, hay solapamiento significativo en bloques I, II y parcialmente en el VI (TREBEP). Sin embargo, el GACE añade bloques específicos de contratación pública (LCSP), gestión financiera (LGP) y un supuesto práctico a desarrollar que no existe en el C1.' },
+    ],
+  },
+
+  // ─── Post 47 — Supuesto práctico GACE (POST CLAVE) ─────────────────────────
+  {
+    slug: 'supuesto-practico-gace-que-es-como-se-evalua-como-prepararlo',
+    title: 'Supuesto práctico GACE: qué es, cómo se evalúa y cómo prepararlo con IA',
+    description:
+      'Guía completa del supuesto práctico de Gestión del Estado (A2): formato, rúbrica oficial del INAP con 4 criterios, patrones de exámenes reales y cómo practicarlo con corrección de IA en OpoRuta.',
+    date: '2026-03-22',
+    dateModified: '2026-03-22',
+    keywords: [
+      'supuesto práctico GACE',
+      'supuesto práctico gestión del estado',
+      'rúbrica INAP supuesto práctico',
+      'cómo preparar supuesto práctico A2',
+      'corrección supuesto práctico IA',
+      'supuesto práctico oposiciones con IA',
+      'OpoRuta supuesto práctico',
+    ],
+    content: `
+<h2>¿Qué es el supuesto práctico del GACE?</h2>
+<p>
+  El supuesto práctico es el <strong>segundo ejercicio</strong> de la oposición de Gestión del Estado
+  (A2) y vale <strong>50 puntos sobre 100</strong> — exactamente la mitad de la nota final.
+  Muchos opositores aprueban el test y suspenden el supuesto, porque nadie les ha enseñado a
+  estructurar la respuesta ni les ha dado feedback real sobre sus escritos.
+</p>
+<p>
+  El formato es el siguiente:
+</p>
+<ul>
+  <li>Se presentan <strong>2 supuestos</strong> y debes elegir 1.</li>
+  <li>Cada supuesto contiene <strong>5 preguntas a desarrollar</strong> sobre un caso práctico.</li>
+  <li>Dispones de <strong>150 minutos</strong> (2 horas y media).</li>
+  <li>Se permite el uso del programa de la oposición (los 58 temas), pero NO legislación.</li>
+  <li>Las preguntas versan sobre los <strong>Bloques IV, V y VI</strong>: contratación pública, gestión financiera y recursos humanos.</li>
+</ul>
+
+<h2>Patrón de los supuestos INAP: siempre mezclan 3 áreas</h2>
+<p>
+  Tras analizar los supuestos de convocatorias anteriores, hay un patrón claro: el INAP
+  <strong>siempre combina</strong> al menos 3 de estas áreas en un mismo supuesto:
+</p>
+<ol>
+  <li><strong>Contratación pública (LCSP):</strong> Tipo de contrato, procedimiento de adjudicación, criterios de selección, mesa de contratación.</li>
+  <li><strong>Gestión presupuestaria (LGP):</strong> Créditos presupuestarios, fases del gasto (autorización, disposición, obligación, pago), modificaciones de crédito.</li>
+  <li><strong>Gestión de personal (TREBEP):</strong> Selección, provisión de puestos, situaciones administrativas, régimen disciplinario, retribuciones.</li>
+</ol>
+<p>
+  Un supuesto típico plantea un escenario como: <em>"El Ministerio X necesita contratar un servicio Y.
+  Determine el tipo de contrato, el procedimiento de adjudicación, la tramitación presupuestaria
+  necesaria y las implicaciones en materia de personal."</em> Las 5 preguntas recorren las 3 áreas.
+</p>
+
+<h2>La rúbrica oficial del INAP: 4 criterios de evaluación</h2>
+<p>
+  El tribunal del INAP evalúa cada supuesto práctico según <strong>4 criterios ponderados</strong>:
+</p>
+<ul>
+  <li>
+    <strong>Conocimiento aplicado (0-30 puntos, 60% del peso):</strong>
+    Dominio de la legislación aplicable al caso. Cita correcta de artículos, leyes y procedimientos.
+    No basta con nombrar la ley — hay que aplicarla al supuesto concreto.
+  </li>
+  <li>
+    <strong>Capacidad de análisis (0-10 puntos, 20% del peso):</strong>
+    Identificar los problemas jurídicos del caso, relacionar normas entre sí,
+    detectar conflictos o lagunas legales. El tribunal valora que identifiques matices,
+    no que respondas de forma genérica.
+  </li>
+  <li>
+    <strong>Sistemática y organización (0-5 puntos, 10% del peso):</strong>
+    Estructura de la respuesta: introducción breve, desarrollo ordenado por puntos,
+    conclusión. Uso de epígrafes y numeración. El tribunal lee decenas de exámenes —
+    una respuesta bien organizada destaca inmediatamente.
+  </li>
+  <li>
+    <strong>Expresión escrita (0-5 puntos, 10% del peso):</strong>
+    Corrección gramatical, ortografía, claridad expositiva. Uso adecuado del lenguaje
+    jurídico-administrativo. Las faltas de ortografía restan puntos directamente.
+  </li>
+</ul>
+<p>
+  <strong>Total: 50 puntos.</strong> Para aprobar el supuesto necesitas un mínimo de 25/50.
+  Con una nota de 30-35 en el supuesto, combinada con un buen test, sueles superar la nota de corte.
+</p>
+
+<h2>El problema: nadie corrige tu supuesto (hasta ahora)</h2>
+<p>
+  Esta es la gran frustración de los opositores GACE: puedes estudiar los 58 temas, hacer tests
+  hasta memorizarlos, pero <strong>no hay forma de practicar el supuesto práctico</strong> si nadie
+  te lo corrige.
+</p>
+<ul>
+  <li><strong>Estudiar solo:</strong> Puedes escribir supuestos, pero sin feedback no sabes si tu estructura es correcta, si citas bien la legislación o si te dejas puntos por mala expresión.</li>
+  <li><strong>Academias presenciales:</strong> Ofrecen corrección humana, pero cobran <strong>140€/mes</strong> y tardan <strong>1-2 semanas</strong> en devolverte el supuesto corregido. En 6 meses de preparación, son 840€ solo en correcciones.</li>
+  <li><strong>Plataformas online (OpositaTest, etc.):</strong> Tienen tests tipo test, pero <strong>ninguna corrige supuestos prácticos</strong>. Es su gran limitación.</li>
+</ul>
+
+<h2>OpoRuta: la única plataforma que corrige el supuesto con IA</h2>
+<p>
+  OpoRuta ha desarrollado un sistema de <strong>corrección de supuesto práctico con inteligencia artificial</strong>
+  que replica la evaluación del tribunal INAP. Así funciona:
+</p>
+<ol>
+  <li><strong>Genera un caso práctico:</strong> La IA crea un supuesto realista basado en los patrones del INAP (contratación + presupuestos + personal).</li>
+  <li><strong>Escribe tu respuesta:</strong> Respondes las 5 preguntas como en el examen real, con tiempo libre o con cronómetro.</li>
+  <li><strong>Corrección automática:</strong> La IA evalúa tu respuesta usando los <strong>mismos 4 criterios del INAP</strong>:
+    <ul>
+      <li>Conocimiento aplicado: 0-30 puntos</li>
+      <li>Análisis: 0-10 puntos</li>
+      <li>Sistemática: 0-5 puntos</li>
+      <li>Expresión: 0-5 puntos</li>
+    </ul>
+  </li>
+  <li><strong>Feedback detallado:</strong> Recibes una nota sobre 50, desglose por criterio, artículos que faltaron en tu respuesta, y una respuesta modelo para comparar.</li>
+</ol>
+<p>
+  El feedback es <strong>instantáneo</strong> — no esperas 1-2 semanas como en una academia.
+  Y el coste es radicalmente diferente:
+</p>
+<ul>
+  <li><strong>Academia presencial:</strong> 140€/mes × 6 meses = 840€</li>
+  <li><strong>OpoRuta:</strong> 69,99€ pago único (incluye tests, simulacros, supuesto práctico y corrección IA)</li>
+</ul>
+
+<h2>Cómo preparar el supuesto práctico: 5 consejos</h2>
+<ol>
+  <li><strong>Domina las 3 leyes del supuesto:</strong> LCSP, LGP y TREBEP. El 90% de las preguntas del supuesto se resuelven con estas 3 leyes.</li>
+  <li><strong>Practica la estructura:</strong> Cada respuesta debe tener: fundamento legal → aplicación al caso → conclusión. El tribunal penaliza respuestas desordenadas.</li>
+  <li><strong>Cita artículos concretos:</strong> No basta con decir "según la LCSP". El tribunal quiere ver "art. 131.2 LCSP" o "art. 22.1 LGP". El conocimiento aplicado vale 30 de 50 puntos.</li>
+  <li><strong>Escribe supuestos completos con cronómetro:</strong> 150 minutos para 5 preguntas = 30 minutos por pregunta. Si no gestionas el tiempo, la última pregunta queda en blanco.</li>
+  <li><strong>Busca feedback real:</strong> Escribir sin corrección es como estudiar sin examinarte. Usa OpoRuta para obtener corrección instantánea con la rúbrica del INAP.</li>
+</ol>
+
+<p>
+  <strong><a href="/register">Practica tu supuesto práctico con corrección IA en OpoRuta</a></strong> — la
+  única plataforma que evalúa tu respuesta con los 4 criterios del tribunal INAP, por 69,99€
+  de pago único.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cómo se evalúa el supuesto práctico del GACE?', answer: 'El tribunal del INAP evalúa según 4 criterios: conocimiento aplicado (0-30 puntos, 60%), capacidad de análisis (0-10 puntos, 20%), sistemática y organización (0-5 puntos, 10%) y expresión escrita (0-5 puntos, 10%). Total: 50 puntos. Se necesitan al menos 25 para aprobar.' },
+      { question: '¿Qué pasa si no apruebo el supuesto práctico?', answer: 'El supuesto práctico es eliminatorio: si no alcanzas 25/50, quedas eliminado aunque hayas aprobado el test con buena nota. Por eso es fundamental practicar y recibir corrección — el test se puede preparar con memorización, pero el supuesto requiere práctica de escritura y feedback.' },
+      { question: '¿Puedo practicar el supuesto práctico online?', answer: 'Hasta ahora no existía ninguna plataforma online que corrigiera supuestos prácticos para GACE. OpoRuta es la primera que ofrece corrección con IA usando la rúbrica oficial del INAP: genera un caso práctico, tú escribes la respuesta, y la IA te evalúa al instante con los 4 criterios del tribunal.' },
+      { question: '¿Cuánto cuesta la corrección de supuestos prácticos?', answer: 'Las academias presenciales cobran unos 140€/mes solo por la corrección de supuestos (840€ en 6 meses de preparación). OpoRuta incluye la corrección con IA del supuesto práctico, tests por tema, simulacros y flashcards por 69,99€ de pago único.' },
+      { question: '¿Sobre qué temas versa el supuesto práctico GACE?', answer: 'El supuesto práctico cubre exclusivamente los Bloques IV (gestión financiera/LGP), V (contratación pública/LCSP) y VI (recursos humanos/TREBEP). Los supuestos del INAP siempre mezclan al menos 2-3 de estas áreas en un mismo caso práctico.' },
+      { question: '¿Es fiable la corrección del supuesto práctico con IA?', answer: 'La IA de OpoRuta usa exactamente los mismos 4 criterios y ponderaciones que el tribunal INAP. Evalúa conocimiento aplicado (citas legales correctas), análisis, estructura y expresión escrita. No sustituye al tribunal, pero te permite practicar ilimitadamente y recibir feedback instantáneo para mejorar antes del examen.' },
+    ],
+  },
+
+  // ─── Post 48 — Comparativa OpoRuta vs OpositaTest vs academias ─────────────
+  {
+    slug: 'oporuta-vs-opositatest-vs-academias-comparativa-gace-a2',
+    title: 'OpoRuta vs OpositaTest vs academias: comparativa para GACE (A2) 2026',
+    description:
+      'Comparativa detallada entre OpoRuta, OpositaTest y academias presenciales para preparar la oposición de Gestión del Estado A2. Quién corrige el supuesto práctico, precios y funcionalidades.',
+    date: '2026-03-22',
+    dateModified: '2026-03-22',
+    keywords: [
+      'OpoRuta vs OpositaTest',
+      'comparativa plataformas oposiciones GACE',
+      'mejor plataforma oposiciones A2',
+      'academia vs plataforma online oposiciones',
+      'corrección supuesto práctico IA',
+      'preparar GACE online',
+    ],
+    content: `
+<h2>¿Cómo preparar la GACE online en 2026?</h2>
+<p>
+  La oposición de Gestión del Estado (A2) tiene una particularidad que la diferencia del C1 y el C2:
+  el <strong>supuesto práctico</strong>. Mientras que el Auxiliar (C2) y el Administrativo (C1) se
+  examinan solo con test tipo test, el GACE exige redactar respuestas a un caso práctico que vale
+  el 50% de la nota.
+</p>
+<p>
+  Esto cambia radicalmente la ecuación de preparación: <strong>no basta con una plataforma de tests</strong>.
+  Necesitas alguien (o algo) que corrija tus escritos. Veamos las opciones disponibles en 2026.
+</p>
+
+<h2>Tabla comparativa: OpoRuta vs OpositaTest vs academias</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Característica</th>
+      <th>OpositaTest</th>
+      <th>Academias (SKR, LOGRA)</th>
+      <th>OpoRuta</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Tests tipo test</strong></td>
+      <td>✅ Sí</td>
+      <td>❌ No (solo presencial)</td>
+      <td>✅ Sí (58 temas)</td>
+    </tr>
+    <tr>
+      <td><strong>Supuesto práctico</strong></td>
+      <td>❌ No</td>
+      <td>✅ Sí (corrección humana)</td>
+      <td>✅ Sí (corrección IA)</td>
+    </tr>
+    <tr>
+      <td><strong>Corrección con rúbrica INAP</strong></td>
+      <td>❌ No</td>
+      <td>⚠️ Depende del preparador</td>
+      <td>✅ Sí (4 criterios oficiales)</td>
+    </tr>
+    <tr>
+      <td><strong>Tiempo de corrección</strong></td>
+      <td>—</td>
+      <td>1-2 semanas</td>
+      <td>Instantáneo</td>
+    </tr>
+    <tr>
+      <td><strong>Simulacros oficiales</strong></td>
+      <td>✅ Sí</td>
+      <td>⚠️ Algunos</td>
+      <td>✅ Sí (con penalización)</td>
+    </tr>
+    <tr>
+      <td><strong>Flashcards</strong></td>
+      <td>❌ No</td>
+      <td>❌ No</td>
+      <td>✅ Sí (repetición espaciada)</td>
+    </tr>
+    <tr>
+      <td><strong>Análisis detallado de errores</strong></td>
+      <td>⚠️ Básico</td>
+      <td>✅ Sí (del preparador)</td>
+      <td>✅ Sí (IA explica cada error)</td>
+    </tr>
+    <tr>
+      <td><strong>Precio</strong></td>
+      <td>~15-30€/mes</td>
+      <td>140-200€/mes</td>
+      <td>69,99€ pago único</td>
+    </tr>
+    <tr>
+      <td><strong>Acceso</strong></td>
+      <td>100% online</td>
+      <td>Presencial + material</td>
+      <td>100% online</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>OpositaTest: buena para tests, incompleta para GACE</h2>
+<p>
+  OpositaTest es una plataforma consolidada con buena base de preguntas tipo test para múltiples
+  oposiciones. Para el C2 (Auxiliar), donde el examen es solo test, puede ser suficiente.
+</p>
+<p>
+  Sin embargo, para la GACE tiene una <strong>limitación fundamental</strong>: no ofrece práctica
+  ni corrección del supuesto práctico. Puedes preparar el primer ejercicio (test) con OpositaTest,
+  pero llegarás al segundo ejercicio (50% de la nota) sin haber practicado nunca.
+</p>
+
+<h2>Academias presenciales: corrección humana a precio elevado</h2>
+<p>
+  Las academias especializadas (SKR en Madrid, LOGRA, Adams, CEF) ofrecen lo que las plataformas
+  online no: <strong>corrección humana del supuesto práctico</strong>. Un preparador lee tu respuesta,
+  te señala errores y te da feedback personalizado.
+</p>
+<p>
+  El problema es el coste y la velocidad:
+</p>
+<ul>
+  <li><strong>Precio:</strong> 140-200€/mes, solo por la corrección de supuestos (sin tests online). En 6 meses: 840-1.200€.</li>
+  <li><strong>Tiempo de corrección:</strong> 1-2 semanas por supuesto. En ese tiempo, has olvidado por qué escribiste lo que escribiste.</li>
+  <li><strong>Escalabilidad:</strong> Un preparador humano puede corregir 10-15 supuestos/semana. Si necesitas practicar 3 supuestos/semana, el feedback se acumula.</li>
+</ul>
+
+<h2>OpoRuta: tests + supuesto práctico + corrección IA</h2>
+<p>
+  OpoRuta es la <strong>única plataforma que combina tests tipo test con corrección del supuesto práctico</strong>
+  para la GACE. La corrección usa inteligencia artificial entrenada con la rúbrica oficial del INAP:
+</p>
+<ul>
+  <li><strong>Conocimiento aplicado (60%):</strong> ¿Citas los artículos correctos? ¿Aplicas la ley al caso concreto?</li>
+  <li><strong>Análisis (20%):</strong> ¿Identificas los problemas jurídicos? ¿Relacionas normas?</li>
+  <li><strong>Sistemática (10%):</strong> ¿Tu respuesta tiene estructura clara?</li>
+  <li><strong>Expresión (10%):</strong> ¿Escribes con corrección y claridad?</li>
+</ul>
+<p>
+  El resultado es un <strong>feedback instantáneo</strong> con nota sobre 50, desglose por criterio,
+  artículos que faltaron y respuesta modelo. Todo por <strong>69,99€ de pago único</strong> — sin
+  suscripción, sin cuotas mensuales.
+</p>
+
+<h2>¿Cuál es la mejor opción para la GACE?</h2>
+<p>
+  Depende de tu situación:
+</p>
+<ul>
+  <li><strong>Si solo necesitas tests:</strong> OpositaTest o OpoRuta. Ambas cubren el primer ejercicio.</li>
+  <li><strong>Si quieres corrección humana y presupuesto no es problema:</strong> Academia + OpoRuta para tests.</li>
+  <li><strong>Si quieres preparación completa (test + supuesto) a precio razonable:</strong> OpoRuta es la única opción que cubre ambos ejercicios por 69,99€.</li>
+</ul>
+<p>
+  Ninguna otra plataforma online corrige supuestos prácticos para GACE.
+  <strong>Ninguna.</strong> OpoRuta es la primera y, a día de hoy, la única.
+</p>
+
+<p>
+  <strong><a href="/register">Prueba OpoRuta gratis</a></strong> — tests por tema + corrección de
+  supuesto práctico con IA. Sin compromiso, sin tarjeta de crédito.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Qué plataforma es mejor para preparar la GACE (A2)?', answer: 'Depende de lo que necesites. Para solo tests tipo test, OpositaTest y OpoRuta son similares. Pero para la preparación completa de la GACE (test + supuesto práctico), OpoRuta es la única plataforma online que corrige el supuesto práctico con IA usando la rúbrica del INAP, por 69,99€ de pago único.' },
+      { question: '¿Merece la pena pagar una academia para la GACE?', answer: 'Las academias ofrecen corrección humana del supuesto (140-200€/mes, ~840€ en 6 meses) y contacto presencial. Si tu presupuesto lo permite, pueden complementar bien la preparación. Sin embargo, OpoRuta ofrece corrección con IA instantánea por 69,99€ de pago único, cubriendo los mismos 4 criterios del INAP. Puedes practicar tantos supuestos como quieras sin esperar semanas.' },
+      { question: '¿OpositaTest tiene supuesto práctico para GACE?', answer: 'No. OpositaTest ofrece tests tipo test para múltiples oposiciones, pero no incluye práctica ni corrección del supuesto práctico. Para la GACE, esto significa que solo cubre el primer ejercicio (test), que vale el 50% de la nota. El segundo ejercicio (supuesto práctico, otro 50%) queda sin preparar.' },
+      { question: '¿La corrección de OpoRuta es tan buena como la de un preparador humano?', answer: 'OpoRuta usa IA entrenada con la rúbrica oficial del INAP (4 criterios: conocimiento aplicado, análisis, sistemática, expresión). Evalúa citas legales, estructura y claridad expositiva de forma consistente e instantánea. Un preparador humano puede ofrecer matices adicionales, pero OpoRuta permite practicar ilimitadamente sin esperar semanas para el feedback.' },
+    ],
+  },
+
+  // ─── Post 49 — GACE vs C1 Administrativo ───────────────────────────────────
+  {
+    slug: 'gace-a2-vs-administrativo-c1-cual-preparar-2026',
+    title: 'GACE (A2) vs Administrativo del Estado (C1): ¿cuál preparar en 2026?',
+    description:
+      'Comparativa entre Gestión del Estado (GACE A2) y Administrativo del Estado (C1): plazas, temario, sueldo, dificultad y tipo de examen. Mismo día de examen — elige bien.',
+    date: '2026-03-22',
+    dateModified: '2026-03-22',
+    keywords: [
+      'GACE vs Administrativo del Estado',
+      'A2 vs C1 oposiciones',
+      'gestión del estado vs administrativo',
+      'oposiciones A2 o C1',
+      'cuál oposición preparar 2026',
+      'sueldo A2 vs C1',
+    ],
+    content: `
+<h2>Misma fecha, distinta oposición: 23 de mayo de 2026</h2>
+<p>
+  Tanto la GACE (Gestión del Estado, A2) como el Administrativo del Estado (C1) se examinan el
+  <strong>23 de mayo de 2026</strong>. Coinciden en fecha con el Auxiliar (C2). Esto significa que
+  <strong>debes elegir una sola oposición</strong> — no puedes presentarte a las tres el mismo día.
+</p>
+<p>
+  Si tienes título universitario y dudas entre A2 y C1, esta comparativa te ayudará a decidir.
+</p>
+
+<h2>Comparativa rápida: GACE (A2) vs Administrativo (C1)</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Criterio</th>
+      <th>GACE (A2)</th>
+      <th>Administrativo (C1)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Plazas 2026</strong></td>
+      <td>1.356</td>
+      <td>~1.200</td>
+    </tr>
+    <tr>
+      <td><strong>Titulación</strong></td>
+      <td>Grado universitario</td>
+      <td>Bachillerato / FP Superior</td>
+    </tr>
+    <tr>
+      <td><strong>Temas</strong></td>
+      <td>58 temas, 6 bloques</td>
+      <td>45 temas, 5 bloques</td>
+    </tr>
+    <tr>
+      <td><strong>Tipo de examen</strong></td>
+      <td>Test (50 pts) + Supuesto práctico (50 pts)</td>
+      <td>Test (100 preguntas + 10 reserva)</td>
+    </tr>
+    <tr>
+      <td><strong>Supuesto práctico</strong></td>
+      <td>✅ Sí, a desarrollar (5 preguntas, 150 min)</td>
+      <td>❌ No (solo test tipo test)</td>
+    </tr>
+    <tr>
+      <td><strong>Sueldo neto/mes</strong></td>
+      <td>1.900-3.000€</td>
+      <td>1.400-2.300€</td>
+    </tr>
+    <tr>
+      <td><strong>Nota de corte</strong></td>
+      <td>~49-52/100</td>
+      <td>~57-65/100</td>
+    </tr>
+    <tr>
+      <td><strong>Opositores por plaza</strong></td>
+      <td>~8-12</td>
+      <td>~15-20</td>
+    </tr>
+    <tr>
+      <td><strong>Fecha examen</strong></td>
+      <td>23 mayo 2026</td>
+      <td>23 mayo 2026</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>El factor clave: el supuesto práctico</h2>
+<p>
+  La gran diferencia entre A2 y C1 no es solo el temario — es el <strong>tipo de examen</strong>.
+  El C1 es 100% tipo test: 100 preguntas con penalización -1/3. Pura memorización y descarte.
+</p>
+<p>
+  El A2 tiene un test más corto (50 preguntas) pero añade un <strong>supuesto práctico a desarrollar</strong>
+  que vale el 50% de la nota. Debes redactar respuestas argumentadas citando legislación concreta
+  (LCSP, LGP, TREBEP). Esto exige un nivel de comprensión y capacidad de redacción que el C1 no requiere.
+</p>
+<p>
+  Para muchos opositores, el supuesto práctico es la barrera: no saben cómo estructurarlo, no
+  reciben corrección y acaban suspendiendo un ejercicio que vale la mitad de la nota.
+</p>
+
+<h2>¿Quién debería elegir el A2?</h2>
+<ul>
+  <li><strong>Tienes título universitario</strong> — requisito imprescindible.</li>
+  <li><strong>Quieres mejor sueldo:</strong> 500-700€/mes más que un C1 en puestos equivalentes.</li>
+  <li><strong>Te expresas bien por escrito</strong> — el supuesto práctico premia la buena redacción.</li>
+  <li><strong>Prefieres menos competencia:</strong> 8-12 opositores/plaza vs. 15-20 en C1.</li>
+  <li><strong>Tienes tiempo para preparar 58 temas</strong> (13 más que el C1).</li>
+</ul>
+
+<h2>¿Quién debería elegir el C1?</h2>
+<ul>
+  <li><strong>No tienes título universitario</strong> — el C1 solo exige bachillerato.</li>
+  <li><strong>Prefieres examen 100% test:</strong> Sin supuesto práctico, todo es memorización y descarte.</li>
+  <li><strong>Llevas menos tiempo preparando</strong> — 45 temas vs. 58 del A2.</li>
+  <li><strong>Te sientes más cómodo con preguntas tipo test</strong> que con redacción libre.</li>
+</ul>
+
+<h2>¿Y si tengo el título pero me da miedo el supuesto?</h2>
+<p>
+  El supuesto práctico asusta porque históricamente no había forma de practicarlo sin pagar
+  una academia (140€/mes). Pero con <strong>OpoRuta</strong> puedes practicar tantos supuestos
+  como quieras con <strong>corrección de IA instantánea</strong> usando la rúbrica oficial del INAP.
+</p>
+<p>
+  El supuesto práctico no es más difícil — es diferente. Requiere práctica y feedback, no más
+  memorización. Y con el feedback adecuado, muchos opositores descubren que el supuesto es su
+  mejor baza frente a opositores que solo saben memorizar.
+</p>
+
+<h2>Prepara ambas oposiciones con OpoRuta</h2>
+<p>
+  OpoRuta cubre tanto la GACE (A2) como el Administrativo (C1) y el Auxiliar (C2). Si dudas
+  entre varias, puedes explorar los temarios y decidir antes de comprometerte.
+  Para la GACE, OpoRuta es la <strong>única plataforma que corrige el supuesto práctico con IA</strong>.
+</p>
+<p>
+  <strong><a href="/register">Empieza gratis en OpoRuta</a></strong> — tests para los 58 temas GACE,
+  simulacros oficiales y corrección de supuesto práctico con IA por 69,99€.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Puedo presentarme a la GACE (A2) y al Administrativo (C1) el mismo año?', answer: 'No, si ambas se examinan el mismo día. En 2026, tanto la GACE (A2) como el Administrativo (C1) y el Auxiliar (C2) se examinan el 23 de mayo. Debes elegir una sola oposición. Si se celebraran en fechas distintas, sí podrías presentarte a ambas.' },
+      { question: '¿Cuál es más fácil, la GACE (A2) o el Administrativo (C1)?', answer: 'Depende de tu perfil. El C1 tiene menos temas (45 vs 58) y es solo tipo test — más accesible si tu fuerte es la memorización. El A2 tiene supuesto práctico (requiere redacción y argumentación jurídica) pero menos opositores por plaza (8-12 vs 15-20) y mejor sueldo. Si te expresas bien por escrito y tienes título universitario, el A2 puede tener mejor ratio esfuerzo/recompensa.' },
+      { question: '¿Cuánto más cobra un Gestor (A2) que un Administrativo (C1)?', answer: 'En media, un Gestor del Estado (A2) cobra entre 500€ y 700€ más al mes que un Administrativo (C1). El A2 oscila entre 1.900-3.000€ netos/mes y el C1 entre 1.400-2.300€. La diferencia se amplía con antigüedad y complementos específicos del puesto.' },
+      { question: '¿El temario del A2 y del C1 se solapan?', answer: 'Parcialmente. Ambos comparten temas de Constitución (Bloque I), Administración Pública y LPAC (Bloque II) y parte del TREBEP (Bloque IV del C1 / Bloque VI del A2). Sin embargo, el A2 añade bloques específicos de contratación pública (LCSP, 10 temas) y gestión financiera (LGP, 12 temas) que no existen en el C1.' },
+      { question: '¿Qué es el Pack Triple AGE de OpoRuta?', answer: 'OpoRuta ofrece packs para cada oposición (C2, C1, A2) y la posibilidad de combinar acceso a varias. Si estás decidiendo entre el C1 y el A2, puedes explorar ambos temarios en la versión gratuita antes de comprometerte. Para la GACE, OpoRuta incluye corrección del supuesto práctico con IA — algo que ninguna otra plataforma online ofrece.' },
+    ],
+  },
+
+  // ─── Post 50 — Rúbrica oficial INAP supuesto práctico ──────────────────────
+  {
+    slug: 'rubrica-oficial-inap-supuesto-practico-gace-4-criterios',
+    title: 'Rúbrica oficial INAP para el supuesto práctico GACE: los 4 criterios que evalúa el tribunal',
+    description:
+      'Desglose de los 4 criterios de evaluación del tribunal INAP para el supuesto práctico de Gestión del Estado (A2): conocimiento aplicado, análisis, sistemática y expresión. Cómo mejorar la nota en cada uno.',
+    date: '2026-03-22',
+    dateModified: '2026-03-22',
+    keywords: [
+      'rúbrica INAP supuesto práctico',
+      'criterios evaluación supuesto GACE',
+      'cómo evalúa el tribunal INAP',
+      'nota supuesto práctico oposiciones',
+      'mejorar nota supuesto práctico',
+      'conocimiento aplicado supuesto práctico',
+    ],
+    content: `
+<h2>Los 4 criterios que usa el tribunal INAP</h2>
+<p>
+  El supuesto práctico de la GACE (Gestión del Estado, A2) no se califica con una nota genérica.
+  El tribunal del INAP utiliza una <strong>rúbrica oficial con 4 criterios ponderados</strong>
+  que suman 50 puntos. Conocer estos criterios y entender qué valora el tribunal en cada uno
+  es la diferencia entre un 25/50 (aprobado raspado) y un 35-40/50 (nota competitiva).
+</p>
+<p>
+  OpoRuta es la única plataforma que replica esta rúbrica exacta en su corrección con IA.
+  A continuación, desglosamos cada criterio con ejemplos y consejos para maximizar tu puntuación.
+</p>
+
+<h2>1. Conocimiento aplicado (0-30 puntos) — 60% del peso</h2>
+<p>
+  Este es el criterio más importante y donde se ganan o pierden los supuestos.
+  El tribunal evalúa:
+</p>
+<ul>
+  <li><strong>Cita de legislación correcta:</strong> No vale decir "según la ley de contratos". El tribunal quiere ver "conforme al artículo 131.2 de la Ley 9/2017, de Contratos del Sector Público (LCSP)".</li>
+  <li><strong>Aplicación al caso concreto:</strong> No basta con reproducir el texto de la ley. Debes explicar cómo se aplica al supuesto planteado. "En el caso que nos ocupa, al tratarse de un contrato de servicios por importe superior a 139.000€, el procedimiento de adjudicación será el abierto (art. 156 LCSP)".</li>
+  <li><strong>Precisión jurídica:</strong> Citar el artículo correcto. Confundir el art. 131 con el 132 de la LCSP puede costarte 3-5 puntos.</li>
+  <li><strong>Completitud:</strong> Abordar todos los aspectos jurídicos del caso. Si el supuesto pregunta por la tramitación presupuestaria de un contrato, debes cubrir las fases del gasto (art. 73-79 LGP), no solo el tipo de contrato.</li>
+</ul>
+<p>
+  <strong>Ejemplo de respuesta mala (15/30):</strong><br>
+  <em>"Para este contrato se usaría un procedimiento abierto porque el importe es alto y la ley así lo dice."</em>
+</p>
+<p>
+  <strong>Ejemplo de respuesta buena (26/30):</strong><br>
+  <em>"El contrato descrito es un contrato de servicios (art. 17 LCSP) cuyo valor estimado, 250.000€, supera el umbral de 139.000€ establecido en el art. 22.1.b LCSP para contratos sujetos a regulación armonizada. Por tanto, el procedimiento de adjudicación será el abierto (art. 156 LCSP), con publicación en el DOUE (art. 135 LCSP) y en la Plataforma de Contratación del Sector Público (art. 347 LCSP). La mesa de contratación se constituirá conforme al art. 326 LCSP."</em>
+</p>
+
+<h2>2. Capacidad de análisis (0-10 puntos) — 20% del peso</h2>
+<p>
+  Aquí el tribunal evalúa tu capacidad de <strong>pensar como un gestor</strong>, no solo de memorizar:
+</p>
+<ul>
+  <li><strong>Identificar problemas jurídicos:</strong> ¿Hay un conflicto entre normas? ¿Una laguna legal? ¿Un caso límite?</li>
+  <li><strong>Relacionar normas entre sí:</strong> El supuesto combina LCSP + LGP + TREBEP. El tribunal valora que conectes las tres — por ejemplo, que la modificación de un contrato puede requerir modificación de crédito presupuestario.</li>
+  <li><strong>Valorar alternativas:</strong> Si la pregunta admite más de una solución, expón ambas y justifica cuál es preferible.</li>
+  <li><strong>Detectar matices:</strong> "Aunque la regla general es X, en este caso concreto podría aplicarse la excepción del art. Y porque…"</li>
+</ul>
+<p>
+  <strong>Consejo:</strong> No respondas como un manual. El tribunal busca que razones sobre el caso,
+  no que copies el BOE. Usa expresiones como: <em>"en el supuesto planteado, la cuestión clave es…"</em>,
+  <em>"cabe distinguir dos supuestos…"</em>, <em>"la jurisprudencia del TACRC ha establecido que…"</em>.
+</p>
+
+<h2>3. Sistemática y organización (0-5 puntos) — 10% del peso</h2>
+<p>
+  La forma importa. El tribunal lee decenas de supuestos en una semana.
+  Una respuesta bien organizada se lee más rápido, transmite más profesionalidad
+  y obtiene mejor nota:
+</p>
+<ul>
+  <li><strong>Estructura recomendada por pregunta:</strong>
+    <ol>
+      <li><em>Fundamento jurídico:</em> Ley y artículos aplicables (1-2 líneas).</li>
+      <li><em>Aplicación al caso:</em> Cómo se aplica al supuesto concreto (cuerpo principal).</li>
+      <li><em>Conclusión:</em> Respuesta directa a la pregunta (1-2 líneas).</li>
+    </ol>
+  </li>
+  <li><strong>Usa epígrafes y numeración:</strong> "Primero: …", "Segundo: …" o apartados a), b), c).</li>
+  <li><strong>Sé conciso:</strong> Una respuesta de 1 página bien estructurada puntúa más que 3 páginas de texto corrido.</li>
+</ul>
+<p>
+  <strong>Error frecuente:</strong> Empezar a escribir sin un esquema previo. Dedica 3-5 minutos
+  por pregunta a planificar la estructura antes de redactar.
+</p>
+
+<h2>4. Expresión escrita (0-5 puntos) — 10% del peso</h2>
+<p>
+  El criterio aparentemente más sencillo, pero donde muchos opositores pierden puntos innecesarios:
+</p>
+<ul>
+  <li><strong>Ortografía:</strong> Las faltas de ortografía restan puntos directamente. Vigila tildes (artículo, jurídico, crédito), mayúsculas (Ley, Ministerio, Tribunal) y concordancias.</li>
+  <li><strong>Lenguaje jurídico-administrativo:</strong> Usa la terminología correcta: "procedimiento de adjudicación" (no "proceso de compra"), "crédito presupuestario" (no "dinero asignado"), "funcionario interino" (no "trabajador temporal").</li>
+  <li><strong>Claridad:</strong> Frases cortas y directas. Evita subordinadas interminables que pierdan al lector.</li>
+  <li><strong>Coherencia:</strong> No contradigas en el párrafo 3 lo que afirmaste en el párrafo 1.</li>
+</ul>
+
+<h2>Cómo OpoRuta replica esta rúbrica con IA</h2>
+<p>
+  La IA de OpoRuta evalúa tu supuesto práctico usando <strong>exactamente estos 4 criterios</strong>
+  con las mismas ponderaciones:
+</p>
+<ul>
+  <li>Conocimiento aplicado: 0-30 puntos (verifica citas legales contra la legislación vigente)</li>
+  <li>Análisis: 0-10 puntos (evalúa la profundidad de tu razonamiento jurídico)</li>
+  <li>Sistemática: 0-5 puntos (analiza la estructura de tu respuesta)</li>
+  <li>Expresión: 0-5 puntos (detecta errores gramaticales, terminología incorrecta)</li>
+</ul>
+<p>
+  Además, la corrección incluye los artículos que faltaron en tu respuesta y una
+  <strong>respuesta modelo</strong> para que compares tu enfoque con el óptimo.
+</p>
+<p>
+  Las academias cobran <strong>140€/mes</strong> por esta corrección (1-2 semanas de espera).
+  OpoRuta lo hace <strong>al instante por 69,99€ de pago único</strong>.
+</p>
+
+<p>
+  <strong><a href="/register">Practica con la rúbrica del INAP en OpoRuta</a></strong> — corrección
+  instantánea de tu supuesto práctico con los 4 criterios oficiales del tribunal.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cómo puedo mejorar la nota del supuesto práctico GACE?', answer: 'Concéntrate en el criterio de mayor peso: conocimiento aplicado (60%). Cita artículos concretos (no solo la ley genérica), aplica la legislación al caso concreto y cubre todos los aspectos jurídicos de la pregunta. Después, trabaja la estructura (epígrafes, numeración, conclusión) y la expresión escrita (lenguaje jurídico correcto, sin faltas de ortografía).' },
+      { question: '¿Qué valora más el tribunal INAP en el supuesto práctico?', answer: 'El conocimiento aplicado, con 30 de 50 puntos (60% del peso). El tribunal quiere ver que conoces la legislación y sabes aplicarla al caso concreto, citando artículos específicos. El análisis jurídico vale 10 puntos (20%), la sistemática 5 puntos (10%) y la expresión escrita 5 puntos (10%).' },
+      { question: '¿Cuántos puntos necesito en el supuesto para aprobar?', answer: 'Necesitas un mínimo de 25 sobre 50 para superar el ejercicio (es eliminatorio). Para ser competitivo con la nota de corte (49-52/100 sumando test + supuesto), lo ideal es obtener al menos 30/50 en el supuesto, lo que te deja un margen cómodo en el test.' },
+      { question: '¿La rúbrica del INAP es pública?', answer: 'Los criterios generales de evaluación se publican en la convocatoria y en las bases del proceso selectivo. Los 4 criterios (conocimiento aplicado, análisis, sistemática, expresión) son estándar en los supuestos prácticos del INAP para cuerpos A2. OpoRuta ha modelado su corrección IA sobre esta rúbrica oficial.' },
+      { question: '¿Qué leyes debo citar en el supuesto práctico?', answer: 'Las 3 leyes fundamentales son: LCSP (Ley 9/2017 de Contratos del Sector Público), LGP (Ley 47/2003 General Presupuestaria) y TREBEP (RDLeg 5/2015 del Estatuto Básico del Empleado Público). Los supuestos INAP siempre combinan al menos 2 de estas 3 áreas. Complementariamente, la LPAC (Ley 39/2015) aparece como procedimiento base.' },
+    ],
+  },
+
+  // ─── Post 51 — Corrección supuesto práctico con IA ─────────────────────────
+  {
+    slug: 'correccion-supuesto-practico-con-ia-como-funciona-oporuta',
+    title: 'Corrección de supuesto práctico con IA: cómo funciona en OpoRuta',
+    description:
+      'Así funciona la corrección de supuesto práctico con inteligencia artificial en OpoRuta: genera un caso, escribe tu respuesta, la IA te evalúa con la rúbrica INAP y recibes feedback instantáneo.',
+    date: '2026-03-22',
+    dateModified: '2026-03-22',
+    keywords: [
+      'corrección supuesto práctico IA',
+      'supuesto práctico inteligencia artificial',
+      'OpoRuta corrección IA',
+      'preparar supuesto práctico online',
+      'feedback supuesto práctico oposiciones',
+      'corrección automática oposiciones',
+    ],
+    content: `
+<h2>El problema que resuelve OpoRuta</h2>
+<p>
+  Si preparas la GACE (Gestión del Estado, A2), sabes que el supuesto práctico vale el
+  <strong>50% de la nota final</strong>. También sabes que hasta ahora había dos opciones para practicarlo:
+</p>
+<ul>
+  <li><strong>Escribir supuestos solo:</strong> Sin nadie que te corrija, no sabes si tu estructura es buena, si citas los artículos correctos o si te dejas puntos por mala expresión. Es como preparar un examen oral sin hablar nunca en voz alta.</li>
+  <li><strong>Pagar una academia:</strong> Corrección humana por 140-200€/mes, con 1-2 semanas de espera entre cada supuesto corregido. En 6 meses de preparación: 840-1.200€ solo en correcciones.</li>
+</ul>
+<p>
+  OpoRuta ofrece una tercera opción: <strong>corrección instantánea con inteligencia artificial</strong>
+  usando la rúbrica oficial del INAP, por 69,99€ de pago único.
+</p>
+
+<h2>Paso 1: Genera un caso práctico</h2>
+<p>
+  La IA de OpoRuta genera un supuesto práctico basado en los patrones del INAP.
+  Cada caso:
+</p>
+<ul>
+  <li>Plantea un <strong>escenario realista</strong> de un organismo de la AGE.</li>
+  <li>Incluye <strong>5 preguntas a desarrollar</strong> que mezclan contratación (LCSP), gestión presupuestaria (LGP) y recursos humanos (TREBEP) — exactamente como en el examen real.</li>
+  <li>Tiene la <strong>complejidad adecuada</strong>: ni trivial ni imposible. Diseñado para que un opositor con 3-4 meses de preparación pueda afrontarlo.</li>
+</ul>
+<p>
+  Cada vez que generas un caso, es diferente. Puedes practicar tantos supuestos como necesites
+  sin repetir escenarios.
+</p>
+
+<h2>Paso 2: Escribe tu respuesta</h2>
+<p>
+  Respondes las 5 preguntas en un editor de texto dentro de la plataforma.
+  Puedes:
+</p>
+<ul>
+  <li><strong>Escribir con cronómetro</strong> (150 minutos, como en el examen) para simular la presión del día real.</li>
+  <li><strong>Escribir sin límite de tiempo</strong> cuando estés aprendiendo la estructura y quieras consultar legislación.</li>
+  <li><strong>Guardar y continuar</strong> más tarde si necesitas partir la sesión.</li>
+</ul>
+<p>
+  Escribe como escribirías en el examen: cita artículos concretos, estructura tu respuesta
+  con epígrafes y redacta con lenguaje jurídico-administrativo. La IA evalúa todo esto.
+</p>
+
+<h2>Paso 3: La IA corrige con la rúbrica del INAP</h2>
+<p>
+  Una vez envías tu respuesta, la IA la evalúa en segundos usando los
+  <strong>4 criterios oficiales del tribunal INAP</strong>:
+</p>
+<ol>
+  <li>
+    <strong>Conocimiento aplicado (0-30 puntos):</strong>
+    Verifica que citas los artículos correctos de la LCSP, LGP y TREBEP.
+    Comprueba que aplicas la ley al caso concreto, no que la reproduces de memoria.
+    Detecta artículos relevantes que no mencionaste.
+  </li>
+  <li>
+    <strong>Capacidad de análisis (0-10 puntos):</strong>
+    Evalúa si identificas los problemas jurídicos del caso, si relacionas normas entre sí
+    y si valoras alternativas cuando la pregunta lo permite.
+  </li>
+  <li>
+    <strong>Sistemática (0-5 puntos):</strong>
+    Analiza si tu respuesta tiene estructura clara: fundamento legal, aplicación al caso
+    y conclusión. Penaliza el texto corrido sin epígrafes.
+  </li>
+  <li>
+    <strong>Expresión escrita (0-5 puntos):</strong>
+    Detecta errores gramaticales, faltas de ortografía y uso incorrecto de la terminología
+    jurídico-administrativa.
+  </li>
+</ol>
+
+<h2>Paso 4: Recibes feedback detallado</h2>
+<p>
+  El informe de corrección incluye:
+</p>
+<ul>
+  <li><strong>Nota total: X/50</strong> con desglose por cada uno de los 4 criterios.</li>
+  <li><strong>Nota por pregunta:</strong> Para cada una de las 5 preguntas, puntuación parcial y comentarios específicos.</li>
+  <li><strong>Artículos que faltaron:</strong> Lista de artículos relevantes que no mencionaste, con explicación de por qué eran necesarios.</li>
+  <li><strong>Respuesta modelo:</strong> Una respuesta óptima redactada por la IA para que compares tu enfoque con el ideal.</li>
+  <li><strong>Consejos de mejora:</strong> Recomendaciones personalizadas basadas en tus errores más frecuentes.</li>
+</ul>
+
+<h2>¿Es fiable la corrección con IA?</h2>
+<p>
+  La IA de OpoRuta está diseñada para replicar la evaluación del tribunal INAP:
+</p>
+<ul>
+  <li><strong>Verificación legislativa:</strong> La IA cruza tus citas de artículos contra la legislación vigente. Si citas el art. 131 LCSP pero el correcto es el 132, lo detecta.</li>
+  <li><strong>Consistencia:</strong> A diferencia de un preparador humano (que puede variar su criterio según el día), la IA aplica los mismos estándares en cada corrección.</li>
+  <li><strong>Velocidad:</strong> Feedback en segundos, no en semanas. Esto te permite iterar rápido: escribir → corregir → mejorar → repetir.</li>
+</ul>
+<p>
+  La IA no sustituye al tribunal del INAP — el examen real lo corrigen personas. Pero te permite
+  <strong>practicar ilimitadamente</strong> y llegar al examen habiendo escrito y corregido docenas
+  de supuestos, en lugar de 3-4 que corrigiría una academia en el mismo tiempo.
+</p>
+
+<h2>Privacidad: tus respuestas son tuyas</h2>
+<p>
+  Tus respuestas se procesan para generar el feedback y no se comparten con terceros ni se
+  usan para entrenar modelos. OpoRuta cumple con el RGPD y la LOPDGDD. Puedes solicitar
+  la eliminación de tus datos en cualquier momento.
+</p>
+
+<h2>Comparativa de tiempos y costes</h2>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Academia presencial</th>
+      <th>OpoRuta (IA)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Tiempo de corrección</strong></td>
+      <td>1-2 semanas</td>
+      <td>Segundos</td>
+    </tr>
+    <tr>
+      <td><strong>Supuestos corregidos/mes</strong></td>
+      <td>2-4</td>
+      <td>Ilimitados</td>
+    </tr>
+    <tr>
+      <td><strong>Coste mensual</strong></td>
+      <td>140-200€/mes</td>
+      <td>69,99€ pago único</td>
+    </tr>
+    <tr>
+      <td><strong>Coste en 6 meses</strong></td>
+      <td>840-1.200€</td>
+      <td>69,99€</td>
+    </tr>
+    <tr>
+      <td><strong>Rúbrica INAP</strong></td>
+      <td>Depende del preparador</td>
+      <td>4 criterios oficiales</td>
+    </tr>
+    <tr>
+      <td><strong>Respuesta modelo</strong></td>
+      <td>A veces</td>
+      <td>Siempre</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Empieza a practicar hoy</h2>
+<p>
+  Cada día que pasa sin practicar el supuesto práctico es un día que tus competidores pueden
+  estar aprovechando. El examen es el <strong>23 de mayo de 2026</strong>.
+</p>
+<p>
+  <strong><a href="/register">Regístrate en OpoRuta</a></strong> y prueba la corrección de supuesto
+  práctico con IA — la única plataforma online que te da feedback real sobre tus escritos, al instante,
+  con la rúbrica del tribunal INAP. Todo por 69,99€ de pago único.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Es fiable la corrección del supuesto práctico con IA?', answer: 'La IA de OpoRuta usa los mismos 4 criterios y ponderaciones que el tribunal INAP: conocimiento aplicado (60%), análisis (20%), sistemática (10%) y expresión (10%). Verifica tus citas legales contra la legislación vigente y ofrece feedback consistente. No sustituye al tribunal real, pero te permite practicar ilimitadamente con feedback instantáneo — algo que ninguna academia puede ofrecer.' },
+      { question: '¿Puedo confiar en la nota que me da la IA?', answer: 'La nota de la IA es una referencia orientativa muy útil para medir tu progreso. Aplica los mismos criterios del tribunal de forma consistente, lo que te permite ver si mejoras con cada supuesto. La nota real del tribunal puede variar ligeramente, pero la estructura de la evaluación (qué valoran y cuánto pesa cada criterio) es idéntica.' },
+      { question: '¿Cuántos supuestos puedo practicar con OpoRuta?', answer: 'Con el Pack GACE (69,99€ pago único), puedes generar y practicar tantos supuestos como necesites. Cada caso es diferente, generado por IA con los patrones del INAP. No hay límite mensual de supuestos — solo de análisis detallados (que consumen créditos de corrección).' },
+      { question: '¿Mis respuestas se comparten o se usan para entrenar modelos?', answer: 'No. Tus respuestas se procesan exclusivamente para generar tu feedback y no se comparten con terceros ni se utilizan para entrenar modelos de IA. OpoRuta cumple con el RGPD y la LOPDGDD. Puedes solicitar la eliminación completa de tus datos en cualquier momento desde tu cuenta.' },
+      { question: '¿Qué diferencia hay entre la corrección de OpoRuta y la de una academia?', answer: 'La principal diferencia es velocidad y coste. Una academia tarda 1-2 semanas en devolverte un supuesto corregido y cobra 140-200€/mes. OpoRuta te da feedback en segundos por 69,99€ de pago único. Además, la IA aplica la rúbrica de forma consistente en cada corrección, mientras que un preparador humano puede variar su criterio.' },
+    ],
+  },
 ]

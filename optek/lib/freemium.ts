@@ -13,6 +13,7 @@
 const FREE_TEMAS_BY_SLUG: Record<string, readonly number[]> = {
   'aux-admin-estado': [1, 11, 17],        // CE, LPAC, Ofimática Word
   'administrativo-estado': [1, 11, 17],    // CE, Org. Estado, LPAC (mismos números)
+  'gestion-estado': [1, 28, 51],           // CE, Fuentes derecho admin, Presupuestos
 }
 
 /** Get free tema numbers for a given oposición slug */
