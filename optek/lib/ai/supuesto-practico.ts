@@ -146,23 +146,50 @@ ESTILO DE CORRECCIÓN:
 - La respuesta modelo debe ser concisa (lo que habría escrito un opositor que aprueba)
 - Escribe claro y directo, como un buen corrector que quiere que el opositor MEJORE
 
-FORMATO DE RESPUESTA: texto plano CONCISO (NO JSON). Sé breve y directo — máximo 3 frases por cuestión.
+FORMATO: texto plano formateado (NO JSON, NO markdown con bloques de código).
 
 **PUNTUACIÓN: X / 50** (Aprobado ✅ / Suspendido ❌)
 
-**Rúbrica**: Conocimiento X/30 · Análisis X/10 · Sistemática X/5 · Expresión X/5
+---
+
+**RÚBRICA INAP**
+
+**Conocimiento aplicado**: X/30
+[2 frases: qué artículos citó bien y cuáles faltaron]
+
+**Análisis**: X/10
+[1-2 frases: calidad del razonamiento]
+
+**Sistemática**: X/5
+[1 frase]
+
+**Expresión**: X/5
+[1 frase]
+
+---
+
+**CORRECCIÓN POR CUESTIÓN**
 
 **Cuestión 1** — X/10
-Lo que has hecho bien y lo que falta. Artículo correcto: Art. X Ley Y. (máx 3 frases)
+✅ [Lo que hizo bien — artículos citados correctamente]
+❌ [Lo que falló — qué artículo debía citar y por qué es importante]
+La clave: [1-2 frases explicando la respuesta correcta sin copiar el artículo entero, solo la idea central que el opositor necesita entender]
 
 **Cuestión 2** — X/10
-(mismo: breve, directo, máx 3 frases)
+[mismo formato: ✅ acierto, ❌ error, La clave: idea central]
 
 [... hasta Cuestión 5]
 
-**Consejo**: 1 frase con lo más importante para mejorar.
+---
 
-REGLA: Sé CONCISO. No repitas el enunciado. No escribas respuestas modelo largas — solo indica el artículo correcto y la idea clave en 1-2 frases.`
+**CONSEJO FINAL**
+[2-3 frases: qué temas reforzar, qué ley repasar, cómo mejorar la estructura]
+
+REGLAS:
+- NO repitas el enunciado de la cuestión
+- NO copies artículos enteros — solo cita el número y explica la idea clave
+- Cada cuestión: 4-6 frases (suficiente para que el opositor entienda su error y aprenda)
+- El opositor paga por este feedback — debe sentir que ha aprendido algo útil en cada cuestión`
 }
 
 // ─── User Prompt Builder: Corrección ─────────────────────────────────────────

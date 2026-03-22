@@ -146,7 +146,7 @@ export async function POST(request: NextRequest) {
   let aiStream: ReadableStream<string>
   try {
     aiStream = await callAIStream(systemPrompt, userPrompt, {
-      maxTokens: 8000, // Concise format: ~1200 tokens/cuestión + rúbrica. Must fit in 60s Vercel Hobby.
+      maxTokens: 10000, // Balanced format: ~1500 tokens/cuestión + rúbrica. Fits in 60s Vercel Hobby.
       requestId,
       endpoint: 'corregir-supuesto-stream',
       useHeavyModel: true,
