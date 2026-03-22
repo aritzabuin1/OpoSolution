@@ -12,10 +12,13 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 
 export const metadata: Metadata = { title: 'Simulacros INAP' }
+import Link from 'next/link'
 import { SimulacroCard } from '@/components/simulacros/SimulacroCard'
 import { SimulacroMixtoCard } from '@/components/simulacros/SimulacroMixtoCard'
 import { Badge } from '@/components/ui/badge'
-import { Trophy, Info } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Trophy, Info, FileText, Sparkles, ArrowRight } from 'lucide-react'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -106,6 +109,15 @@ export default async function SimulacrosPage() {
   const hayExamenes = examenesConCount.length > 0
   const totalPreguntasCombinadas = examenesConCount.reduce((sum, ex) => sum + ex.numPreguntas, 0)
 
+  // Check if user's oposición includes supuesto práctico
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: opoFeatures } = await (supabase as any)
+    .from('oposiciones')
+    .select('features')
+    .eq('id', userOposicionId)
+    .single()
+  const hasSupuestoPractico = (opoFeatures as { features?: { supuesto_practico?: boolean } } | null)?.features?.supuesto_practico === true
+
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-8">
 
@@ -132,6 +144,35 @@ export default async function SimulacrosPage() {
             Simulacros ilimitados con el Pack Oposición.
           </p>
         </div>
+      )}
+
+      {/* Banner supuesto práctico — solo oposiciones que lo tienen (A2 GACE) */}
+      {hasSupuestoPractico && (
+        <Card className="border-emerald-300/40 bg-gradient-to-r from-emerald-50 to-emerald-50/30 dark:from-emerald-950/20 dark:to-transparent">
+          <CardContent className="pt-5 pb-5">
+            <div className="flex items-start gap-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-900/40 shrink-0">
+                <FileText className="h-5 w-5 text-emerald-600" />
+              </div>
+              <div className="flex-1 space-y-2">
+                <div className="flex items-center gap-2">
+                  <h3 className="font-semibold text-sm">Supuesto Práctico</h3>
+                  <Badge variant="outline" className="text-[10px] border-emerald-300 text-emerald-700">2º ejercicio</Badge>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  El examen GACE incluye un supuesto práctico a desarrollar (150 min, 5 cuestiones). La IA genera un caso realista y corrige tu respuesta con la rúbrica oficial del INAP.
+                </p>
+                <Button asChild size="sm" className="gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white mt-1">
+                  <Link href="/supuesto-practico">
+                    <Sparkles className="h-3.5 w-3.5" />
+                    Practicar supuesto práctico
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       )}
 
       {hayExamenes ? (
