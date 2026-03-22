@@ -42,20 +42,43 @@ REGLAS OBLIGATORIAS:
 10. NUNCA hagas referencia a imágenes, esquemas ni gráficos. Si mencionas una tabla, asegúrate de que su contenido aparece en el contexto legislativo proporcionado.
 11. CALIDAD DE REDACCIÓN: Revisa cada enunciado y cada opción antes de incluirlos. No repitas palabras consecutivas ("se se", "el el", "de de"). Las frases deben ser gramaticalmente correctas en español.
 
+DISTRIBUCIÓN DE RESPUESTAS CORRECTAS:
+CRÍTICO: La respuesta correcta DEBE variar entre 0, 1, 2 y 3 de forma equilibrada. NO pongas siempre la misma posición. En un test de 10 preguntas, cada posición (A, B, C, D) debería aparecer como correcta 2-3 veces. NUNCA generes un test donde todas las correctas sean la misma opción.
+
 FORMATO DE RESPUESTA (JSON estricto):
 {
   "preguntas": [
     {
-      "enunciado": "Según el artículo X de la Ley Y, ...",
-      "opciones": ["opción A", "opción B", "opción C", "opción D"],
-      "correcta": 0,
-      "explicacion": "El artículo X de la Ley Y establece textualmente que '...'. La opción A recoge fielmente este precepto. La opción B es incorrecta porque confunde el plazo de 10 días con 15 días (art. Z). Las opciones C y D no tienen base legal en este artículo.",
+      "enunciado": "Primera pregunta...",
+      "opciones": ["...", "...", "...", "..."],
+      "correcta": 2,
+      "explicacion": "...",
       "dificultad": "media",
-      "cita": {
-        "ley": "LPAC",
-        "articulo": "53",
-        "textoExacto": "Los interesados en un procedimiento..."
-      }
+      "cita": { "ley": "LPAC", "articulo": "53", "textoExacto": "..." }
+    },
+    {
+      "enunciado": "Segunda pregunta...",
+      "opciones": ["...", "...", "...", "..."],
+      "correcta": 0,
+      "explicacion": "...",
+      "dificultad": "media",
+      "cita": { "ley": "CE", "articulo": "14", "textoExacto": "..." }
+    },
+    {
+      "enunciado": "Tercera pregunta...",
+      "opciones": ["...", "...", "...", "..."],
+      "correcta": 3,
+      "explicacion": "...",
+      "dificultad": "media",
+      "cita": { "ley": "TREBEP", "articulo": "52", "textoExacto": "..." }
+    },
+    {
+      "enunciado": "Cuarta pregunta...",
+      "opciones": ["...", "...", "...", "..."],
+      "correcta": 1,
+      "explicacion": "...",
+      "dificultad": "media",
+      "cita": { "ley": "LRJSP", "articulo": "3", "textoExacto": "..." }
     }
   ]
 }
@@ -100,14 +123,24 @@ REGLAS OBLIGATORIAS:
 8. NUNCA hagas referencia a imágenes, esquemas ni gráficos. El usuario solo ve texto plano — no puedes mostrar capturas de pantalla.
 9. CALIDAD DE REDACCIÓN: Revisa cada enunciado y cada opción antes de incluirlos. No repitas palabras consecutivas ("se se", "el el", "de de"). Las frases deben ser gramaticalmente correctas en español.
 
+DISTRIBUCIÓN DE RESPUESTAS CORRECTAS:
+CRÍTICO: La respuesta correcta DEBE variar entre 0, 1, 2 y 3 de forma equilibrada. NO pongas siempre la misma posición. NUNCA generes un test donde todas las correctas sean la misma opción.
+
 FORMATO DE RESPUESTA (JSON estricto, SIN campo "cita"):
 {
   "preguntas": [
     {
-      "enunciado": "¿Cuál es el atajo de teclado para...",
-      "opciones": ["Ctrl+B", "Ctrl+I", "Ctrl+U", "Ctrl+N"],
-      "correcta": 0,
-      "explicacion": "El atajo Ctrl+B aplica formato Negrita en Word 365 (Pestaña Inicio > grupo Fuente). Ctrl+I sería para Cursiva, Ctrl+U para Subrayado. Ctrl+N abre un documento nuevo, no tiene relación con el formato de texto.",
+      "enunciado": "¿Cuál es el atajo de teclado para aplicar negrita?",
+      "opciones": ["Ctrl+I", "Ctrl+N", "Ctrl+B", "Ctrl+U"],
+      "correcta": 2,
+      "explicacion": "El atajo Ctrl+B aplica formato Negrita en Word 365. Ctrl+I es Cursiva, Ctrl+U es Subrayado, Ctrl+N abre un documento nuevo.",
+      "dificultad": "facil"
+    },
+    {
+      "enunciado": "¿Desde qué pestaña se inserta una tabla en Word?",
+      "opciones": ["Inicio", "Insertar", "Diseño", "Vista"],
+      "correcta": 1,
+      "explicacion": "Las tablas se insertan desde Pestaña Insertar > grupo Tablas.",
       "dificultad": "facil"
     }
   ]
