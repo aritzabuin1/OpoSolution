@@ -114,7 +114,8 @@ export default async function CuentaPage() {
   const packTier = isA2 ? 'pack_a2' as const : isC1 ? 'pack_c1' : 'pack'
   const supuestosBalance = (profile as Record<string, unknown>)?.supuestos_balance as number ?? 0
   const opoFeatures = (oposicion as Record<string, unknown>)?.features as { supuesto_practico?: boolean } | null
-  const hasSupuestoPractico = opoFeatures?.supuesto_practico === true || flags?.is_admin === true
+  // Supuesto práctico: solo si la oposición lo tiene (A2). Admin NO override — debe depender de la oposición elegida.
+  const hasSupuestoPractico = opoFeatures?.supuesto_practico === true
 
   return (
     <div className="max-w-3xl mx-auto p-6 space-y-8">

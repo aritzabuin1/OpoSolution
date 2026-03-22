@@ -48,7 +48,8 @@ export default async function SupuestoPracticoPage() {
     .single()
 
   const features = (opoData as { features?: { supuesto_practico?: boolean } } | null)?.features
-  const hasSupuestoPractico = features?.supuesto_practico === true || isAdmin
+  // Supuesto práctico solo disponible si la oposición elegida lo tiene (A2)
+  const hasSupuestoPractico = features?.supuesto_practico === true
   const balance = isAdmin ? 999 : (profile?.supuestos_balance ?? 0)
 
   // Load previous supuestos
