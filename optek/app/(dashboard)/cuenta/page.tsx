@@ -14,7 +14,7 @@
 
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
-import { ShoppingBag, Zap } from 'lucide-react'
+import { ShoppingBag, Sparkles, Zap } from 'lucide-react'
 
 export const metadata: Metadata = { title: 'Mi Cuenta' }
 import { createClient } from '@/lib/supabase/server'
@@ -56,16 +56,18 @@ export default async function CuentaPage() {
   if (!user) redirect('/login')
 
   // Profile + oposición
-  const { data: profile } = await supabase
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: profile } = await (supabase as any)
     .from('profiles')
-    .select('full_name, email, oposicion_id, fecha_examen, corrections_balance, free_corrector_used, horas_diarias_estudio')
+    .select('full_name, email, oposicion_id, fecha_examen, corrections_balance, free_corrector_used, horas_diarias_estudio, supuestos_balance')
     .eq('id', user.id)
-    .single()
+    .single() as { data: { full_name: string | null; email: string; oposicion_id: string; fecha_examen: string | null; corrections_balance: number; free_corrector_used: number; horas_diarias_estudio: number | null; supuestos_balance: number } | null }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: oposicion } = profile?.oposicion_id
-    ? await supabase
+    ? await (supabase as any)
         .from('oposiciones')
-        .select('nombre')
+        .select('nombre, features')
         .eq('id', profile.oposicion_id)
         .single()
     : { data: null }
@@ -110,6 +112,9 @@ export default async function CuentaPage() {
   const isC1 = userOposicionId === 'b0000000-0000-0000-0000-000000000001'
   const isA2 = userOposicionId === 'c2000000-0000-0000-0000-000000000001'
   const packTier = isA2 ? 'pack_a2' as const : isC1 ? 'pack_c1' : 'pack'
+  const supuestosBalance = (profile as Record<string, unknown>)?.supuestos_balance as number ?? 0
+  const opoFeatures = (oposicion as Record<string, unknown>)?.features as { supuesto_practico?: boolean } | null
+  const hasSupuestoPractico = opoFeatures?.supuesto_practico === true || flags?.is_admin === true
 
   return (
     <div className="max-w-3xl mx-auto p-6 space-y-8">
@@ -122,7 +127,7 @@ export default async function CuentaPage() {
             <div>
               <p className="font-semibold text-sm">Desbloquea tests ilimitados</p>
               <p className="text-xs text-muted-foreground mt-0.5">
-                Pack Oposición — 49,99€ · tests ilimitados + 20 análisis detallados · sin suscripción
+                {isA2 ? 'Pack A2 — 69,99€ · tests ilimitados + 20 análisis + 5 supuestos prácticos IA' : 'Pack Oposición — 49,99€ · tests ilimitados + 20 análisis detallados'} · sin suscripción
               </p>
             </div>
             <BuyButton tier={packTier} label="Comprar" variant="default" />
@@ -228,6 +233,45 @@ export default async function CuentaPage() {
           )}
         </CardContent>
       </Card>
+
+      {/* ── Supuestos prácticos (solo oposiciones con supuesto) ──────────── */}
+      {hasSupuestoPractico && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-emerald-500" />
+              Supuestos prácticos disponibles
+            </CardTitle>
+            <p className="text-xs text-muted-foreground mt-1">
+              Los supuestos prácticos son ejercicios de desarrollo escrito (como el 2º ejercicio del examen). La IA genera un caso realista y corrige tu respuesta con la rúbrica oficial del INAP. Diferente de los análisis detallados, que explican errores en tests tipo test.
+            </p>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center gap-4">
+              <span className="text-4xl font-bold">{flags?.is_admin ? '∞' : supuestosBalance}</span>
+              <div>
+                <p className="text-sm text-muted-foreground">supuestos prácticos restantes</p>
+                {!flags?.is_admin && supuestosBalance === 0 && (
+                  <p className="text-xs text-red-600 mt-1">
+                    Compra el Pack A2 o una recarga para practicar supuestos
+                  </p>
+                )}
+              </div>
+            </div>
+            {!flags?.is_admin && supuestosBalance < 3 && isPremium && (
+              <div className="mt-4 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/20 text-sm flex items-center justify-between gap-4">
+                <div>
+                  <p className="font-medium">Recarga de supuestos prácticos</p>
+                  <p className="text-muted-foreground text-xs mt-0.5">
+                    +5 correcciones de supuesto · 14,99€ · pago único
+                  </p>
+                </div>
+                <BuyButton tier={'recarga_sup' as 'recarga'} label="Recargar" variant="default" />
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
 
       {/* ── §1.14.2 Mis compras ───────────────────────────────────────────── */}
       <Card>

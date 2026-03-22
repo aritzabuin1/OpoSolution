@@ -23,7 +23,7 @@ const OPOSICIONES = [
   },
   {
     id: 'c2000000-0000-0000-0000-000000000001',
-    label: 'Gestión del Estado — GACE (A2)',
+    label: 'Gestión del Estado (A2)',
     desc: '58 temas · 1.356 plazas · Incluye supuesto práctico con IA',
   },
 ] as const

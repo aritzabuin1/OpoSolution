@@ -106,11 +106,12 @@ export default async function DashboardPage() {
     .limit(100) as { data: TestRow[] | null }
 
   // Temas de la oposición (para el mapa)
-  const { data: temas } = await supabase
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: temas } = await (supabase as any)
     .from('temas')
-    .select('id, numero, titulo')
-    .eq('oposicion_id', profile?.oposicion_id ?? '')
-    .order('numero')
+    .select('id, numero, titulo, bloque')
+    .eq('oposicion_id', userOposicionId)
+    .order('numero') as { data: { id: string; numero: number; titulo: string; bloque?: string }[] | null }
 
   // Flashcards pendientes de repaso hoy (migration 015 — cast necesario hasta regenerar tipos)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

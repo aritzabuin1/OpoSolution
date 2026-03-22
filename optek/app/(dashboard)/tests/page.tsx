@@ -84,7 +84,7 @@ export default async function TestsPage({
   // ── Fetch en paralelo — filtrar temas por oposición del usuario ─────────
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [temasResult, profileResult, comprasResult, testsResult, oposicionResult] = await Promise.all([
-    supabase.from('temas').select('id, numero, titulo, descripcion').eq('oposicion_id', oposicionId).order('numero'),
+    (supabase as any).from('temas').select('id, numero, titulo, descripcion, bloque').eq('oposicion_id', oposicionId).order('numero') as Promise<{ data: { id: string; numero: number; titulo: string; descripcion: string | null; bloque?: string }[] | null }>,
     (supabase as any).from('profiles').select('free_tests_used, is_admin, is_founder').eq('id', user.id).single(),
     supabase
       .from('compras')

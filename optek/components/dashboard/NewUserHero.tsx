@@ -1,14 +1,16 @@
 'use client'
 
 import Link from 'next/link'
-import { Compass, CheckCircle2, TrendingUp, Brain, BookOpen } from 'lucide-react'
+import { Compass, CheckCircle2, TrendingUp, Brain, BookOpen, FileText } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 interface NewUserHeroProps {
   diasParaExamen: number | null
+  features?: { supuesto_practico?: boolean; psicotecnicos?: boolean }
 }
 
-export function NewUserHero({ diasParaExamen }: NewUserHeroProps) {
+export function NewUserHero({ diasParaExamen, features }: NewUserHeroProps) {
+  const hasSupuesto = features?.supuesto_practico === true
   return (
     <div className="relative overflow-hidden rounded-xl border bg-gradient-to-br from-[#0f2b46] via-[#1a4a7a] to-[#2563eb] p-6 sm:p-8 text-white">
       {/* Decorative glow */}
@@ -40,10 +42,10 @@ export function NewUserHero({ diasParaExamen }: NewUserHeroProps) {
           </div>
           <div className="flex items-center gap-2">
             <Brain className="h-4 w-4 text-amber-400 shrink-0" />
-            Flashcards automáticas de tus errores
+            {hasSupuesto ? 'Supuesto práctico corregido con IA' : 'Flashcards automáticas de tus errores'}
           </div>
           <div className="flex items-center gap-2">
-            <BookOpen className="h-4 w-4 text-amber-400 shrink-0" />
+            {hasSupuesto ? <FileText className="h-4 w-4 text-amber-400 shrink-0" /> : <BookOpen className="h-4 w-4 text-amber-400 shrink-0" />}
             Plan de estudio generado con IA
           </div>
         </div>

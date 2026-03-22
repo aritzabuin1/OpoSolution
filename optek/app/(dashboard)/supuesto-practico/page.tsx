@@ -28,7 +28,7 @@ export default async function SupuestoPracticoPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: profileData } = await (supabase as any)
     .from('profiles')
-    .select('oposicion_id, supuestos_balance, corrections_balance')
+    .select('oposicion_id, supuestos_balance, corrections_balance, is_admin')
     .eq('id', user.id)
     .single()
 
@@ -36,7 +36,9 @@ export default async function SupuestoPracticoPage() {
     oposicion_id?: string
     supuestos_balance?: number
     corrections_balance?: number
+    is_admin?: boolean
   } | null
+  const isAdmin = profile?.is_admin === true
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: opoData } = await (supabase as any)
@@ -46,8 +48,8 @@ export default async function SupuestoPracticoPage() {
     .single()
 
   const features = (opoData as { features?: { supuesto_practico?: boolean } } | null)?.features
-  const hasSupuestoPractico = features?.supuesto_practico === true
-  const balance = profile?.supuestos_balance ?? 0
+  const hasSupuestoPractico = features?.supuesto_practico === true || isAdmin
+  const balance = isAdmin ? 999 : (profile?.supuestos_balance ?? 0)
 
   // Load previous supuestos
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

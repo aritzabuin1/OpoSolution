@@ -20,7 +20,7 @@ import { OPOSICION_CHANGED_EVENT } from '@/lib/hooks/useIsPremium'
 const OPOSICIONES = [
   { id: 'a0000000-0000-0000-0000-000000000001', label: 'Auxiliar Administrativo (C2)' },
   { id: 'b0000000-0000-0000-0000-000000000001', label: 'Administrativo del Estado (C1)' },
-  { id: 'c2000000-0000-0000-0000-000000000001', label: 'Gestión del Estado — GACE (A2)' },
+  { id: 'c2000000-0000-0000-0000-000000000001', label: 'Gestión del Estado (A2)' },
 ] as const
 
 interface ProfileFormProps {
