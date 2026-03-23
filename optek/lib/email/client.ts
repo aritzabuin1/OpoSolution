@@ -367,3 +367,56 @@ export async function sendFeedbackNotification(params: {
     return { success: false, error: msg }
   }
 }
+
+/**
+ * Envía un email de nurturing y registra el envío en nurture_emails_sent.
+ * Usado por runNurtureEmails() — no llamar directamente.
+ */
+export async function sendNurtureEmail(params: {
+  to: string
+  subject: string
+  html: string
+  userId: string
+  emailKey: string
+}): Promise<EmailResult> {
+  const resend = getResend()
+  if (!resend) return { success: false, error: 'Resend no configurado' }
+
+  const log = logger.child({ route: 'email:nurture' })
+
+  try {
+    const { data, error } = await resend.emails.send({
+      from: FROM_ADDRESS,
+      replyTo: REPLY_TO,
+      to: [params.to],
+      subject: params.subject,
+      html: params.html,
+    })
+
+    if (error) {
+      log.error({ error: error.message, emailKey: params.emailKey }, 'Resend API error')
+      return { success: false, error: error.message }
+    }
+
+    // Log to nurture_emails_sent (fire-and-forget)
+    try {
+      const { createServiceClient } = await import('@/lib/supabase/server')
+      const svc = await createServiceClient()
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await (svc as any).from('nurture_emails_sent').insert({
+        user_id: params.userId,
+        email_key: params.emailKey,
+        resend_id: data?.id ?? null,
+      })
+    } catch {
+      // Non-blocking — UNIQUE constraint will prevent duplicates
+    }
+
+    log.info({ id: data?.id, to: params.to, emailKey: params.emailKey }, 'Nurture email enviado')
+    return { success: true, id: data?.id }
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err)
+    log.error({ error: msg, emailKey: params.emailKey }, 'Excepción enviando nurture email')
+    return { success: false, error: msg }
+  }
+}

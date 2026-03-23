@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { watchAllLeyes } from '@/lib/ai/boe-watcher'
 import { runCostCheck, type CostCheckResult } from '@/lib/admin/cost-check'
+import { runNurtureEmails, type NurtureResult } from '@/lib/email/nurture'
 import { logger } from '@/lib/logger'
 import { verifyCronSecret } from '@/lib/auth/cron-auth'
 
@@ -53,5 +54,17 @@ export async function GET(request: NextRequest) {
     costResult = { error: 'Fallo en comprobación de costes' }
   }
 
-  return NextResponse.json({ ok: true, boe: boeResult, costs: costResult }, { status: 200 })
+  // ── 3. Piggyback: nurture email sequence ──────────────────────────────────
+  // Sends personalized emails to free users based on registration age + behavior.
+  // If it fails, it's non-critical — doesn't affect BOE or cost check.
+  let nurtureResult: NurtureResult | { error: string }
+  try {
+    nurtureResult = await runNurtureEmails()
+    log.info(nurtureResult, '[boe-watch] nurture emails completado')
+  } catch (err) {
+    log.error({ err }, '[boe-watch] nurture emails error — no crítico')
+    nurtureResult = { error: 'Fallo en envío de nurture emails' }
+  }
+
+  return NextResponse.json({ ok: true, boe: boeResult, costs: costResult, nurture: nurtureResult }, { status: 200 })
 }
