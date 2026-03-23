@@ -1,6 +1,6 @@
 # OpoRuta
 
-> OpoRuta es una plataforma web española de preparación de oposiciones al Cuerpo General Auxiliar de la Administración del Estado (C2). Su diferencial es la verificación determinista de citas legales: cada artículo citado en tests y explicaciones se valida contra la legislación oficial antes de mostrarse. Sede en Bilbao, País Vasco. Fundada en 2026.
+> OpoRuta es una plataforma web española de preparación de oposiciones al Cuerpo General Auxiliar de la Administración del Estado (C2). Su diferencial es la verificación determinista de citas legales: cada artículo citado en tests y explicaciones se valida contra la legislación oficial antes de mostrarse. Sede en Madrid. Fundada en 2026.
 
 Genera tests tipo test desde legislación española vigente (CE, LPAC, LRJSP, TREBEP, LOPDGDD) y exámenes reales del INAP. Incluye Radar del Tribunal (análisis de frecuencia de artículos en exámenes 2018-2024). Modelo freemium con pago único (sin suscripción).
 

@@ -67,7 +67,7 @@ export function wrapNurtureTemplate(body: string, options: WrapOptions): string 
         <tr>
           <td style="padding:20px 40px;background:#f9fafb;border-top:1px solid #e5e7eb;">
             <p style="margin:0;font-size:12px;color:#6b7280;text-align:center;line-height:1.5;">
-              OpoRuta · Bilbao<br/>
+              OpoRuta · Madrid<br/>
               <a href="${APP_URL}/legal/privacidad" style="color:#6b7280;">Privacidad</a> ·
               <a href="${APP_URL}/cuenta" style="color:#6b7280;">Mi cuenta</a><br/>
               <a href="${unsubUrl}" style="color:#9ca3af;font-size:11px;">Dejar de recibir estos emails</a>

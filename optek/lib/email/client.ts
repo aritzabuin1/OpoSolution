@@ -500,7 +500,7 @@ export async function sendPostPurchaseEmail(params: {
         <tr>
           <td style="padding:20px 40px;background:#f9fafb;border-top:1px solid #e5e7eb;">
             <p style="margin:0;font-size:12px;color:#6b7280;text-align:center;line-height:1.5;">
-              OpoRuta · Bilbao<br/>
+              OpoRuta · Madrid<br/>
               <a href="${appUrl}/legal/privacidad" style="color:#6b7280;">Privacidad</a> ·
               <a href="${appUrl}/cuenta" style="color:#6b7280;">Mi cuenta</a>
             </p>
