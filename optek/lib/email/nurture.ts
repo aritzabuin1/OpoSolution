@@ -32,7 +32,7 @@ import { logger } from '@/lib/logger'
 
 const EXAM_DATE = new Date('2026-05-23T00:00:00+02:00')
 const FREE_TEST_LIMIT = 5
-const MIN_DAYS_BETWEEN_EMAILS = 3
+const MIN_DAYS_BETWEEN_EMAILS = 4
 
 // Email keys in priority order (highest first)
 const EMAIL_KEYS = [
@@ -283,13 +283,13 @@ function selectEmail(
     return 'urgency_d21'
   }
 
-  // Email 3: Progress D+10 (only if they've done at least 1 test)
-  if (daysSinceRegistration >= 10 && user.tests_completed >= 1 && !alreadySent.has('progress_d10')) {
+  // Email 3: Progress D+12 (only if they've done at least 1 test)
+  if (daysSinceRegistration >= 12 && user.tests_completed >= 1 && !alreadySent.has('progress_d10')) {
     return 'progress_d10'
   }
 
-  // Email 2: Value (Radar) D+5
-  if (daysSinceRegistration >= 5 && !alreadySent.has('value_radar_d5')) {
+  // Email 2: Value (Radar) D+7
+  if (daysSinceRegistration >= 7 && !alreadySent.has('value_radar_d5')) {
     return 'value_radar_d5'
   }
 
