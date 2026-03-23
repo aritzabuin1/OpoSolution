@@ -19,6 +19,7 @@ import {
   getCompletionRate,
   getFeedbackSummary,
   getAnalysisUsageByType,
+  getCtaFunnel,
   getDashboardPhaseDistribution,
   getDeviceDistribution,
   getOposicionBreakdown,
@@ -76,10 +77,10 @@ function ScoreColor({ val }: { val: number }) {
 // ─── Page ───────────────────────────────────────────────────────────────────────
 
 export default async function AnalyticsPage() {
-  let conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, phaseDistribution, deviceDist, oposicionBreakdown
+  let conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, ctaFunnel, phaseDistribution, deviceDist, oposicionBreakdown
 
   try {
-    ;[conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, phaseDistribution, deviceDist, oposicionBreakdown] =
+    ;[conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, ctaFunnel, phaseDistribution, deviceDist, oposicionBreakdown] =
       await Promise.all([
         getConversionMetrics(),
         getDAU30d(),
@@ -92,6 +93,7 @@ export default async function AnalyticsPage() {
         getCompletionRate(),
         getFeedbackSummary(),
         getAnalysisUsageByType(),
+        getCtaFunnel(),
         getDashboardPhaseDistribution(),
         getDeviceDistribution(),
         getOposicionBreakdown(),
@@ -508,6 +510,36 @@ export default async function AnalyticsPage() {
           </CardContent>
         </Card>
       </div>
+
+      {/* ── Row 6b: CTA Funnel — views vs clicks ──────────────────────── */}
+      <Card>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base">Funnel CTA Analisis <MetricInfo text="Cuantos usuarios VEN el boton de analisis IA vs cuantos lo PULSAN. Click rate bajo = el CTA no convence o el usuario no entiende el valor." /></CardTitle>
+        </CardHeader>
+        <CardContent>
+          {ctaFunnel.some((c: { views: number }) => c.views > 0) ? (
+            <div className="space-y-3">
+              {ctaFunnel.map((c: { feature: string; views: number; clicks: number; clickRate: number }) => (
+                <div key={c.feature} className="flex items-center justify-between text-xs">
+                  <span className="text-muted-foreground w-36 shrink-0">{c.feature}</span>
+                  <div className="flex items-center gap-3">
+                    <span>{c.views} vistas</span>
+                    <span className="font-bold">{c.clicks} clicks</span>
+                    <Badge variant={c.clickRate >= 20 ? 'default' : 'secondary'} className="text-[10px]">
+                      {c.clickRate}%
+                    </Badge>
+                  </div>
+                </div>
+              ))}
+              <p className="text-[10px] text-muted-foreground border-t pt-2">
+                Si hay muchas vistas pero pocos clicks, el CTA no transmite suficiente valor.
+              </p>
+            </div>
+          ) : (
+            <p className="text-sm text-muted-foreground text-center py-2">Sin datos aun — tracking recien activado.</p>
+          )}
+        </CardContent>
+      </Card>
 
       {/* ── Row 7: Device Distribution ──────────────────────────────────── */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

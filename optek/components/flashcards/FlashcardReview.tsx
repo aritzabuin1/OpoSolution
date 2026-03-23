@@ -10,7 +10,7 @@
  *   - Al evaluar: llama PUT /api/flashcards/[id]/review → actualiza intervalo + siguiente_repaso
  */
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { Loader2, RotateCcw, CheckCircle2, Trophy, Brain, Sparkles } from 'lucide-react'
 import { toast } from 'sonner'
@@ -19,6 +19,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { PaywallGate } from '@/components/shared/PaywallGate'
 import { useAIAnalysis } from '@/lib/hooks/useAIAnalysis'
+import { trackEvent } from '@/lib/analytics/track'
 import type { CalidadRespuesta } from '@/lib/utils/spaced-repetition'
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
@@ -50,6 +51,15 @@ export function FlashcardReview({ flashcards, onComplete }: FlashcardReviewProps
   const [completed, setCompleted] = useState<{ total: number; correctas: number }>()
   const [lastFailedId, setLastFailedId] = useState<string | null>(null)
   const explanation = useAIAnalysis('/api/ai/explain-flashcard/stream')
+  const trackedFlashView = useRef(false)
+
+  // Track when flashcard analysis CTA becomes visible (after failing a card)
+  useEffect(() => {
+    if (lastFailedId && !trackedFlashView.current) {
+      trackedFlashView.current = true
+      trackEvent('view:flashcard-analysis-cta')
+    }
+  }, [lastFailedId])
 
   const current = cards[currentIdx]
   const totalCards = cards.length
@@ -293,7 +303,7 @@ export function FlashcardReview({ flashcards, onComplete }: FlashcardReviewProps
                 size="sm"
                 variant="outline"
                 className="flex-1 border-primary/30 text-primary"
-                onClick={() => explanation.trigger({ flashcardId: lastFailedId })}
+                onClick={() => { trackEvent('click:flashcard-analysis-cta'); explanation.trigger({ flashcardId: lastFailedId }) }}
               >
                 <Sparkles className="h-4 w-4 mr-1.5" />
                 {explanation.state === 'error' ? 'Reintentar' : 'Explicar concepto (1 análisis)'}

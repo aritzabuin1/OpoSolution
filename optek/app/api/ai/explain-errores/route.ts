@@ -328,6 +328,21 @@ export async function POST(request: NextRequest) {
     log.error({ err: creditErr, userId: user.id }, 'Failed to deduct correction credit')
   }
 
+  // ── 9. Log to api_usage_log for admin analytics ────────────────────────────
+  try {
+    void serviceSupabase.from('api_usage_log').insert({
+      user_id: user.id,
+      endpoint: 'explain-errores',
+      model: 'batch',
+      tokens_in: 0,
+      tokens_out: Math.ceil(rawResponse.length / 4),
+      cost_estimated_cents: Math.round(Math.ceil(rawResponse.length / 4) * 0.0015),
+      oposicion_id: oposicionId || null,
+    })
+  } catch {
+    // Non-blocking — analytics logging should never break the response
+  }
+
   log.info(
     { userId: user.id, testId, explicaciones: explicaciones.length, hasPaidCredit },
     '[explain-errores] explicaciones generadas correctamente'

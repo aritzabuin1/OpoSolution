@@ -13,7 +13,7 @@
  *   4. Mostrar pantalla de resultados
  */
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { CheckCircle2, XCircle, Target, AlertTriangle, Sparkles, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
@@ -22,6 +22,7 @@ import { Badge } from '@/components/ui/badge'
 import { ShareButton } from '@/components/shared/ShareButton'
 import { PaywallGate } from '@/components/shared/PaywallGate'
 import { useAIAnalysis } from '@/lib/hooks/useAIAnalysis'
+import { trackEvent } from '@/lib/analytics/track'
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
 
@@ -78,6 +79,15 @@ export function CazaTrampasCard({
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [resultado, setResultado] = useState<Resultado | null>(null)
   const analysis = useAIAnalysis('/api/ai/analyze-cazatrampas/stream')
+  const trackedCazaView = useRef(false)
+
+  // Track when analysis CTA becomes visible (resultado loaded)
+  useEffect(() => {
+    if (resultado && !trackedCazaView.current) {
+      trackedCazaView.current = true
+      trackEvent('view:cazatrampas-analysis-cta')
+    }
+  }, [resultado])
 
   function addDeteccion() {
     const trampa = currentTrampa.trim()
@@ -197,7 +207,7 @@ export function CazaTrampasCard({
               </div>
               <Button
                 size="sm"
-                onClick={() => analysis.trigger({ sesionId })}
+                onClick={() => { trackEvent('click:cazatrampas-analysis-cta'); analysis.trigger({ sesionId }) }}
                 className="w-full"
               >
                 <Sparkles className="h-4 w-4 mr-2" />

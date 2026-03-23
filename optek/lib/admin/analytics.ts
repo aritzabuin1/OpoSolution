@@ -535,6 +535,47 @@ async function _getAnalysisUsageByType(): Promise<AnalysisUsageByType[]> {
 
 export const getAnalysisUsageByType = _getAnalysisUsageByType
 
+// ─── 11b. CTA Funnel: views vs clicks on analysis CTAs ─────────────────────────
+
+export interface CtaFunnelItem {
+  feature: string
+  views: number
+  clicks: number
+  clickRate: number
+}
+
+const CTA_PAIRS: { feature: string; viewEvent: string; clickEvent: string }[] = [
+  { feature: 'Explicar errores', viewEvent: 'view:analysis-cta', clickEvent: 'click:analysis-cta' },
+  { feature: 'Informe simulacro', viewEvent: 'view:informe-simulacro-cta', clickEvent: 'click:informe-simulacro-cta' },
+  { feature: 'Caza-trampas', viewEvent: 'view:cazatrampas-analysis-cta', clickEvent: 'click:cazatrampas-analysis-cta' },
+  { feature: 'Flashcard', viewEvent: 'view:flashcard-analysis-cta', clickEvent: 'click:flashcard-analysis-cta' },
+]
+
+async function _getCtaFunnel(): Promise<CtaFunnelItem[]> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const supabase = await createServiceClient() as any
+  const adminIds = await getAdminUserIds()
+  const excludeAdmins = adminIdFilter(adminIds)
+
+  const allEvents = CTA_PAIRS.flatMap(p => [p.viewEvent, p.clickEvent])
+  let query = supabase.from('api_usage_log').select('endpoint').in('endpoint', allEvents).gte('timestamp', METRICS_START_DATE)
+  if (excludeAdmins) query = query.not('user_id', 'in', excludeAdmins)
+  const { data } = await query
+
+  const counts = new Map<string, number>()
+  for (const r of (data ?? []) as { endpoint: string }[]) {
+    counts.set(r.endpoint, (counts.get(r.endpoint) ?? 0) + 1)
+  }
+
+  return CTA_PAIRS.map(({ feature, viewEvent, clickEvent }) => {
+    const views = counts.get(viewEvent) ?? 0
+    const clicks = counts.get(clickEvent) ?? 0
+    return { feature, views, clicks, clickRate: views > 0 ? Math.round((clicks / views) * 100) : 0 }
+  })
+}
+
+export const getCtaFunnel = _getCtaFunnel
+
 // ─── 12. Dashboard Phase Distribution ──────────────────────────────────────────
 
 async function _getDashboardPhaseDistribution(): Promise<DashboardPhaseDistribution> {

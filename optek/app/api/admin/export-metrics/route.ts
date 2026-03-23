@@ -19,6 +19,7 @@ import {
   getCompletionRate,
   getFeedbackSummary,
   getAnalysisUsageByType,
+  getCtaFunnel,
   getDashboardPhaseDistribution,
   getDeviceDistribution,
   getOposicionBreakdown,
@@ -44,7 +45,7 @@ export async function GET() {
     const [
       conversion, dau, engagement, churn, funnel,
       topTemas, temaScores, corrections, completion, feedback,
-      analysisUsage, phaseDistribution, deviceDist, oposicionBreakdown,
+      analysisUsage, ctaFunnel, phaseDistribution, deviceDist, oposicionBreakdown,
       fuelTank, costPerUser, aarrr, mrrHistory, infra,
     ] = await Promise.all([
       getConversionMetrics(),
@@ -58,6 +59,7 @@ export async function GET() {
       getCompletionRate(),
       getFeedbackSummary(),
       getAnalysisUsageByType(),
+      getCtaFunnel(),
       getDashboardPhaseDistribution(),
       getDeviceDistribution(),
       getOposicionBreakdown(),
@@ -84,6 +86,7 @@ export async function GET() {
         completion,
         feedback,
         analysisUsage,
+        ctaFunnel,
         phaseDistribution,
         deviceDist,
         oposicionBreakdown,

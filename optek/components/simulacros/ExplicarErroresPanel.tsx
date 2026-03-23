@@ -22,6 +22,7 @@ import { Sparkles, Loader2, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PaywallGate } from '@/components/shared/PaywallGate'
 import { markdownToHtml } from '@/lib/utils/simple-markdown'
+import { trackEvent } from '@/lib/analytics/track'
 
 const LS_KEY = 'oporuta_first_analysis_seen'
 
@@ -47,11 +48,12 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
   const renderedHtml = useMemo(() => markdownToHtml(streamedText), [streamedText])
   const textRef = useRef<HTMLDivElement>(null)
 
-  // Check if user has never seen analysis before
+  // Check if user has never seen analysis before + track CTA view
   useEffect(() => {
     try {
       setIsFirstTime(!localStorage.getItem(LS_KEY))
     } catch { /* SSR / privacy mode */ }
+    trackEvent('view:analysis-cta')
   }, [])
 
   const dismissFirstTime = useCallback(() => {
@@ -68,6 +70,7 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
 
   async function handleExplicar() {
     if (state === 'loading' || state === 'streaming') return
+    trackEvent('click:analysis-cta')
     setState('loading')
     setStreamedText('')
 

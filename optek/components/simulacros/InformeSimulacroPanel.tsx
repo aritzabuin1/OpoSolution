@@ -9,10 +9,12 @@
  * un análisis global: puntos débiles, patrones, plan de acción.
  */
 
+import { useEffect } from 'react'
 import { Sparkles, Loader2, FileText } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PaywallGate } from '@/components/shared/PaywallGate'
 import { useAIAnalysis } from '@/lib/hooks/useAIAnalysis'
+import { trackEvent } from '@/lib/analytics/track'
 
 interface InformeSimulacroPanelProps {
   testId: string
@@ -20,6 +22,8 @@ interface InformeSimulacroPanelProps {
 
 export function InformeSimulacroPanel({ testId }: InformeSimulacroPanelProps) {
   const analysis = useAIAnalysis('/api/ai/informe-simulacro/stream')
+
+  useEffect(() => { trackEvent('view:informe-simulacro-cta') }, [])
 
   if (analysis.state === 'idle' || analysis.state === 'error') {
     return (
@@ -39,7 +43,7 @@ export function InformeSimulacroPanel({ testId }: InformeSimulacroPanelProps) {
         </div>
 
         <Button
-          onClick={() => analysis.trigger({ testId })}
+          onClick={() => { trackEvent('click:informe-simulacro-cta'); analysis.trigger({ testId }) }}
           variant="default"
           size="sm"
           className="w-full sm:w-auto"
