@@ -8585,4 +8585,500 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Qué diferencia hay entre la corrección de OpoRuta y la de una academia?', answer: 'La principal diferencia es velocidad y coste. Una academia tarda 1-2 semanas en devolverte un supuesto corregido y cobra 140-200€/mes. OpoRuta te da feedback en segundos por 69,99€ de pago único. Además, la IA aplica la rúbrica de forma consistente en cada corrección, mientras que un preparador humano puede variar su criterio.' },
     ],
   },
+
+  // ─── Post 38: Supuesto práctico GACE por libre ────────────────────────────
+  {
+    slug: 'supuesto-practico-gace-preparar-por-libre-sin-academia',
+    title: 'Cómo preparar el supuesto práctico GACE por libre — sin academia ni preparador',
+    description:
+      'Guía completa para preparar el segundo ejercicio de GACE (A2) sin academia. Estructura del supuesto, bloques IV-V-VI, criterios del tribunal, plan de entrenamiento y cómo practicar con corrección automática.',
+    date: '2026-03-23',
+    keywords: [
+      'supuesto práctico GACE preparar',
+      'GACE preparar por libre',
+      'supuesto práctico gestión estado A2',
+      'GACE sin academia',
+      'segundo ejercicio GACE',
+      'supuestos prácticos GACE resueltos',
+      'cómo preparar supuesto práctico oposiciones',
+      'GACE A2 por libre sin preparador',
+      'supuesto práctico GACE estrategia',
+      'practicar supuesto práctico GACE online',
+    ],
+    faqs: [
+      { question: '¿Se puede preparar el supuesto práctico de GACE sin academia?', answer: 'Sí. Lo que necesitas es: acceso a los supuestos oficiales publicados por el INAP, conocimiento profundo de los bloques IV (Derecho Administrativo), V (RRHH) y VI (Gestión Financiera), y práctica con corrección. Las academias cobran 140-200€/mes por corrección humana que tarda 1-2 semanas. OpoRuta ofrece corrección automática con la rúbrica INAP por 69,99€ de pago único, con feedback en segundos.' },
+      { question: '¿Cuántos supuestos prácticos debería hacer antes del examen?', answer: 'Mínimo 15-20 supuestos completos antes del examen. Lo ideal es hacer uno por semana los primeros 3 meses y dos por semana el último mes. Cada supuesto debería completarse en 150 minutos (el tiempo real del examen) y corregirse después para identificar errores recurrentes.' },
+      { question: '¿Qué bloques del temario entran en el supuesto práctico?', answer: 'El supuesto práctico cubre los bloques IV (Derecho Administrativo General — procedimiento administrativo, LPAC, LRJSP), V (Administración de Recursos Humanos — TREBEP, selección, situaciones administrativas) y VI (Gestión Financiera — presupuestos, LGP, Seguridad Social). El tribunal propone dos casos y eliges uno.' },
+      { question: '¿Cómo puntúa el tribunal el supuesto práctico de GACE?', answer: 'El supuesto se puntúa de 0 a 50 puntos con estos criterios: capacidad para aplicar conocimientos a situaciones prácticas (0-30 puntos), capacidad de análisis (0-10 puntos), sistemática y estructura (0-5 puntos) y expresión escrita (0-5 puntos). Necesitas un mínimo de 25 puntos para aprobar.' },
+    ],
+    content: `
+<h2>El supuesto práctico es la mitad de tu nota — y el 90% de opositores no sabe cómo prepararlo</h2>
+<p>
+  El segundo ejercicio de GACE (Gestión de la Administración Civil del Estado, subgrupo A2) vale
+  <strong>50 puntos sobre 100</strong> — exactamente la mitad de tu nota final. Y sin embargo, la mayoría
+  de opositores dedican el 90% de su tiempo al test y llegan al supuesto improvisando.
+</p>
+<p>
+  Las academias cobran entre 140 y 200€ al mes por corrección de supuestos (con 1-2 semanas de espera
+  por cada corrección). Pero <strong>sí se puede preparar por libre</strong> — si sabes exactamente qué
+  evalúa el tribunal y cómo practicar de forma eficiente.
+</p>
+
+<h2>Qué es exactamente el supuesto práctico de GACE</h2>
+<p>
+  El segundo ejercicio consiste en resolver <strong>un caso práctico con 5 preguntas abiertas</strong>,
+  elegido entre dos propuestos por el tribunal. Tienes <strong>150 minutos</strong> para completarlo.
+  Las materias provienen de los bloques IV, V y VI del temario:
+</p>
+<ul>
+  <li><strong>Bloque IV — Derecho Administrativo General</strong> (13 temas): procedimiento administrativo común (LPAC),
+  régimen jurídico del sector público (LRJSP), responsabilidad patrimonial, revisión de actos</li>
+  <li><strong>Bloque V — Administración de Recursos Humanos</strong> (10 temas): TREBEP, selección y provisión,
+  situaciones administrativas, derechos y deberes, régimen disciplinario</li>
+  <li><strong>Bloque VI — Gestión Financiera y Seguridad Social</strong> (8 temas): presupuestos generales del Estado,
+  ciclo presupuestario, fases ADOP, LGP, Seguridad Social</li>
+</ul>
+
+<h2>Cómo puntúa el tribunal: los 4 criterios oficiales</h2>
+<p>
+  El INAP evalúa cada supuesto de 0 a 50 puntos, con un mínimo de 25 para aprobar. Los criterios
+  publicados por el tribunal son:
+</p>
+<table>
+  <thead>
+    <tr><th>Criterio</th><th>Puntuación máxima</th><th>Peso</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Capacidad para aplicar conocimientos a situaciones prácticas</td><td>30 puntos</td><td>60%</td></tr>
+    <tr><td>Capacidad de análisis</td><td>10 puntos</td><td>20%</td></tr>
+    <tr><td>Sistemática (estructura y organización)</td><td>5 puntos</td><td>10%</td></tr>
+    <tr><td>Expresión escrita</td><td>5 puntos</td><td>10%</td></tr>
+  </tbody>
+</table>
+<p>
+  El 60% de la nota depende de que <strong>apliques la ley correcta al caso concreto</strong>. No basta con
+  saber la teoría: tienes que demostrar que sabes usarla. Y hay que citar artículos concretos — el tribunal
+  valora positivamente las referencias específicas.
+</p>
+
+<h2>Plan de entrenamiento: 4 fases sin academia</h2>
+
+<h3>Fase 1 — Domina la teoría de los 3 bloques (meses 1-3)</h3>
+<p>
+  Antes de escribir un solo supuesto, necesitas dominar los bloques IV, V y VI. Prioriza:
+</p>
+<ul>
+  <li><strong>LPAC (Ley 39/2015)</strong>: procedimiento administrativo común, plazos, recursos, silencio administrativo</li>
+  <li><strong>LRJSP (Ley 40/2015)</strong>: organización administrativa, competencia, delegación, avocación</li>
+  <li><strong>TREBEP (RDL 5/2015)</strong>: tipos de personal, selección, situaciones administrativas, régimen disciplinario</li>
+  <li><strong>LGP y presupuestos</strong>: ciclo presupuestario, fases ADOP, modificaciones presupuestarias</li>
+</ul>
+
+<h3>Fase 2 — Analiza supuestos resueltos del INAP (meses 2-4)</h3>
+<p>
+  El INAP publica en su <strong>sede electrónica</strong> las mejores respuestas de convocatorias anteriores.
+  Descárgalas y analiza: qué estructura usan, qué artículos citan, cómo argumentan. Los supuestos
+  de 2023 y 2024 son los más representativos del formato actual.
+</p>
+
+<h3>Fase 3 — Escribe supuestos con cronómetro (meses 3-5)</h3>
+<p>
+  Practica en condiciones reales: <strong>150 minutos, sin apuntes, elegir 1 de 2 casos</strong>.
+  Escribe al menos 1 supuesto por semana. El error más común es no gestionar bien el tiempo
+  entre las 5 preguntas — practica repartir 30 minutos por pregunta.
+</p>
+
+<h3>Fase 4 — Corrección y mejora continua (meses 4-6)</h3>
+<p>
+  Aquí es donde la mayoría de los que preparan por libre se atascan: <strong>¿quién te corrige?</strong>
+</p>
+<ul>
+  <li><strong>Opción A — Preparador particular:</strong> 50-80€/sesión, corrección en 1-2 semanas. Bueno pero caro y lento.</li>
+  <li><strong>Opción B — Grupo de estudio:</strong> corrección cruzada entre opositores. Gratis pero poco fiable — no aplican la rúbrica del tribunal.</li>
+  <li><strong>Opción C — Corrección con IA (OpoRuta):</strong> <a href="/register">OpoRuta</a> corrige tus supuestos aplicando los 4 criterios del tribunal INAP
+  (conocimiento aplicado 60%, análisis 20%, sistemática 10%, expresión 10%). Feedback en segundos,
+  con puntuación sobre 50, artículos que te faltan y respuesta modelo. 69,99€ de pago único.</li>
+</ul>
+
+<h2>Los 5 errores que más penalizan en el supuesto práctico</h2>
+<ol>
+  <li><strong>No citar artículos concretos.</strong> Escribir "según la LPAC" sin especificar el artículo resta puntos. El tribunal quiere ver "Art. 21.1 LPAC" o "Art. 53.1.a TREBEP".</li>
+  <li><strong>Confundir leyes.</strong> Mezclar LPAC con LRJSP es el error más frecuente. La LPAC regula el procedimiento (relación Administración-ciudadano), la LRJSP la organización interna.</li>
+  <li><strong>No estructurar la respuesta.</strong> El criterio "sistemática" vale 5 puntos. Usa siempre: introducción (marco legal aplicable) → desarrollo (análisis del caso) → conclusión (resolución motivada).</li>
+  <li><strong>Respuestas demasiado largas.</strong> 150 minutos para 5 preguntas = 30 minutos por pregunta. Si te extiendes en las primeras, no llegas a las últimas. Sé conciso y directo.</li>
+  <li><strong>No elegir bien el caso.</strong> Lee los dos supuestos completos antes de decidir. Elige el que domines mejor legislativamente, no el que "parezca más fácil" a primera vista.</li>
+</ol>
+
+<h2>¿Por qué la corrección con IA cambia las reglas del juego?</h2>
+<p>
+  Hasta ahora, preparar el supuesto por libre tenía un problema irresoluble: nadie te corregía.
+  Podías escribir 20 supuestos, pero sin feedback no sabías si mejorabas o repetías los mismos errores.
+</p>
+<p>
+  <strong><a href="/register">OpoRuta</a></strong> es la única plataforma que corrige supuestos prácticos
+  de GACE con IA, aplicando la rúbrica oficial del INAP. El sistema:
+</p>
+<ol>
+  <li>Te genera un caso práctico basado en los patrones del INAP</li>
+  <li>Tú escribes tu respuesta a las 5 preguntas</li>
+  <li>La IA lo corrige en segundos con los 4 criterios del tribunal</li>
+  <li>Recibes: puntuación sobre 50, feedback por pregunta, artículos que faltan y una respuesta modelo</li>
+</ol>
+<p>
+  <strong>69,99€ de pago único</strong> — frente a los 140-200€/mes de una academia con esperas de 1-2 semanas
+  por corrección.
+</p>
+
+<h2>Sigue preparando tu oposición GACE</h2>
+<ul>
+  <li><a href="/blog/temario-gace-2026-58-temas-6-bloques-como-priorizar">58 temas GACE: cómo priorizar</a></li>
+  <li><a href="/blog/rubrica-oficial-inap-supuesto-practico-gace-4-criterios">Rúbrica INAP: los 4 criterios del supuesto</a></li>
+  <li><a href="/blog/correccion-supuesto-practico-con-ia-como-funciona-oporuta">Corrección con IA: cómo funciona</a></li>
+  <li><a href="/blog/oposiciones-gestion-estado-gace-a2-2026-plazas-temario-fechas">1.356 plazas GACE 2026</a></li>
+</ul>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Datos contrastados con la sede electrónica del INAP y convocatoria BOE 22/12/2025 (RD 651/2025).</em></p>
+    `.trim(),
+  },
+
+  // ─── Post 39: Corregir supuesto práctico GACE online ──────────────────────
+  {
+    slug: 'corregir-supuesto-practico-gace-online-rubrica-inap',
+    title: 'Corregir supuesto práctico GACE online: rúbrica INAP + corrección con IA',
+    description:
+      '¿Cómo corregir un supuesto práctico de Gestión del Estado (A2) sin preparador? OpoRuta aplica los 4 criterios del tribunal INAP con IA: conocimiento (60%), análisis (20%), sistemática (10%), expresión (10%). Feedback en segundos.',
+    date: '2026-03-23',
+    keywords: [
+      'corregir supuesto práctico GACE online',
+      'corrección supuesto práctico GACE',
+      'supuesto práctico GACE corrección IA',
+      'rúbrica INAP GACE',
+      'corregir supuesto práctico oposiciones online',
+      'supuestos prácticos GACE resueltos',
+      'corrección supuesto práctico gestión estado',
+      'practicar supuesto GACE con corrección',
+      'feedback supuesto práctico GACE',
+    ],
+    faqs: [
+      { question: '¿Dónde puedo corregir supuestos prácticos de GACE online?', answer: 'OpoRuta es la única plataforma que corrige supuestos prácticos de GACE online con IA, aplicando los 4 criterios oficiales del tribunal INAP. Generas un caso, escribes tu respuesta y recibes puntuación, feedback por pregunta y respuesta modelo en segundos. Las academias presenciales tardan 1-2 semanas y cobran 140-200€/mes. OpoRuta cuesta 69,99€ de pago único.' },
+      { question: '¿La corrección con IA usa los mismos criterios que el tribunal INAP?', answer: 'Sí. OpoRuta aplica los 4 criterios publicados por el INAP para evaluar el segundo ejercicio de GACE: conocimiento aplicado a situaciones prácticas (60%, hasta 30 puntos), capacidad de análisis (20%, hasta 10 puntos), sistemática y organización (10%, hasta 5 puntos) y expresión escrita (10%, hasta 5 puntos). La nota orientativa es sobre 50 puntos, igual que en el examen real.' },
+      { question: '¿Es fiable una corrección de supuesto hecha por IA?', answer: 'La IA aplica criterios consistentes en cada corrección y verifica las citas legales contra la legislación vigente (art. X de la ley Y existe y dice lo que afirmas). No sustituye al tribunal real, pero te permite iterar rápidamente: ver dónde fallas, qué artículos te faltan y cómo mejorar la estructura. Es una herramienta de entrenamiento, no una predicción exacta de tu nota.' },
+      { question: '¿Cuántos supuestos puedo corregir con OpoRuta?', answer: 'El Pack Gestión A2 (69,99€ pago único) incluye 5 correcciones de supuesto práctico con feedback detallado, además de tests ilimitados y 20 análisis detallados de test. Puedes adquirir correcciones adicionales con la recarga de análisis (8,99€).' },
+    ],
+    content: `
+<h2>El problema de todo opositor GACE que prepara por libre: ¿quién me corrige?</h2>
+<p>
+  Si preparas la oposición de Gestión del Estado (A2 GACE) sin academia, llegas a un punto inevitable:
+  has escrito un supuesto práctico, pero <strong>no sabes si está bien</strong>. ¿Has citado los artículos correctos?
+  ¿Tu estructura es la que espera el tribunal? ¿Aprobarías con esa respuesta?
+</p>
+<p>
+  Hasta ahora, las opciones eran:
+</p>
+<ul>
+  <li><strong>Academia con preparador:</strong> corrección humana experta, pero a 140-200€/mes con esperas de 1-2 semanas por supuesto</li>
+  <li><strong>Grupo de estudio:</strong> corrección entre opositores — gratis pero sin garantía de calidad</li>
+  <li><strong>Autocorrección:</strong> comparas con las respuestas modelo del INAP, pero sin feedback personalizado</li>
+</ul>
+<p>
+  Ninguna de estas opciones te da <strong>feedback inmediato, consistente y basado en los criterios reales del tribunal</strong>.
+</p>
+
+<h2>Los 4 criterios del tribunal INAP para el supuesto práctico</h2>
+<p>
+  El segundo ejercicio de GACE se califica de 0 a 50 puntos (mínimo 25 para aprobar).
+  El INAP ha publicado los criterios de evaluación:
+</p>
+<table>
+  <thead>
+    <tr><th>Criterio</th><th>Puntos</th><th>Peso</th><th>Qué evalúa</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Conocimiento aplicado</strong></td>
+      <td>0-30</td>
+      <td>60%</td>
+      <td>¿Aplicas la legislación correcta al caso? ¿Citas artículos concretos? ¿Tu solución es jurídicamente válida?</td>
+    </tr>
+    <tr>
+      <td><strong>Capacidad de análisis</strong></td>
+      <td>0-10</td>
+      <td>20%</td>
+      <td>¿Identificas los problemas del caso? ¿Relacionas los hechos con la norma aplicable?</td>
+    </tr>
+    <tr>
+      <td><strong>Sistemática</strong></td>
+      <td>0-5</td>
+      <td>10%</td>
+      <td>¿Tu respuesta está bien organizada? ¿Sigue una estructura lógica (marco legal → análisis → resolución)?</td>
+    </tr>
+    <tr>
+      <td><strong>Expresión escrita</strong></td>
+      <td>0-5</td>
+      <td>10%</td>
+      <td>¿Redactas con claridad y corrección? ¿Usas terminología jurídica adecuada?</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  Dato clave: <strong>el 60% de la nota depende de citar la legislación correcta</strong>. No basta con "saber de qué va".
+  Tienes que escribir "conforme al art. 21.1 de la Ley 39/2015" — y que ese artículo diga realmente lo que tú afirmas.
+</p>
+
+<h2>Cómo funciona la corrección de supuestos con IA en OpoRuta</h2>
+<p>
+  <strong><a href="/register">OpoRuta</a></strong> es la única plataforma online que corrige supuestos prácticos
+  de GACE aplicando los 4 criterios del tribunal INAP. El proceso es:
+</p>
+<ol>
+  <li><strong>Genera un caso práctico.</strong> La IA crea un supuesto realista basado en los patrones de exámenes
+  INAP de convocatorias anteriores (2019-2024). Incluye 5 preguntas sobre los bloques IV, V y VI.</li>
+  <li><strong>Escribe tu respuesta.</strong> Tienes campo libre para responder a cada pregunta como lo harías en el examen real.
+  Cita artículos, argumenta, estructura tu respuesta.</li>
+  <li><strong>Recibe corrección en segundos.</strong> La IA evalúa tu respuesta con los 4 criterios del tribunal y te da:</li>
+</ol>
+<ul>
+  <li>Puntuación sobre 50 puntos (desglosada por criterio)</li>
+  <li>Feedback específico por cada pregunta: qué has hecho bien, qué falta, qué artículos no has citado</li>
+  <li>Verificación de citas legales: si citas el art. 53 del TREBEP, OpoRuta comprueba que ese artículo existe y dice lo que tú afirmas</li>
+  <li>Respuesta modelo completa con la argumentación ideal</li>
+</ul>
+
+<h2>Comparativa: academia vs corrección con IA</h2>
+<table>
+  <thead>
+    <tr><th></th><th>Academia presencial</th><th>OpoRuta (IA)</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Precio</strong></td>
+      <td>140-200€/mes</td>
+      <td>69,99€ pago único</td>
+    </tr>
+    <tr>
+      <td><strong>Tiempo de corrección</strong></td>
+      <td>1-2 semanas</td>
+      <td>Segundos</td>
+    </tr>
+    <tr>
+      <td><strong>Criterios de evaluación</strong></td>
+      <td>Variable según preparador</td>
+      <td>Rúbrica INAP fija (4 criterios)</td>
+    </tr>
+    <tr>
+      <td><strong>Verificación de citas</strong></td>
+      <td>Manual (puede fallar)</td>
+      <td>Automática contra legislación vigente</td>
+    </tr>
+    <tr>
+      <td><strong>Disponibilidad</strong></td>
+      <td>Horario de clase</td>
+      <td>24/7</td>
+    </tr>
+    <tr>
+      <td><strong>Respuesta modelo</strong></td>
+      <td>A veces</td>
+      <td>Siempre</td>
+    </tr>
+    <tr>
+      <td><strong>Consistencia</strong></td>
+      <td>Depende del preparador</td>
+      <td>Mismos criterios cada vez</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Ejemplo real: qué feedback recibes</h2>
+<p>
+  Imagina que el supuesto plantea un caso de procedimiento administrativo donde un ciudadano
+  presenta una solicitud fuera de plazo. Tu respuesta menciona la Ley 39/2015 pero no citas
+  el artículo concreto del silencio administrativo. OpoRuta te diría:
+</p>
+<ul>
+  <li><strong>Conocimiento aplicado (18/30):</strong> Identificas correctamente la LPAC como norma aplicable,
+  pero te falta citar el art. 24 (silencio administrativo) y el art. 21.1 (obligación de resolver).
+  Sin estos artículos, el tribunal considera que tu conocimiento es superficial.</li>
+  <li><strong>Análisis (7/10):</strong> Buen análisis del caso, pero no distingues entre silencio positivo y negativo
+  (art. 24.1 vs 24.2 LPAC).</li>
+  <li><strong>Sistemática (4/5):</strong> Buena estructura, pero la conclusión debería incluir la resolución motivada.</li>
+  <li><strong>Expresión (4/5):</strong> Correcta, sin errores significativos.</li>
+  <li><strong>Total: 33/50</strong> — Aprobado, pero mejorable. La respuesta modelo te muestra cómo llegar a 42-45.</li>
+</ul>
+
+<h2>El examen es el 23 de mayo de 2026</h2>
+<p>
+  Si estás preparando GACE por libre, el supuesto práctico es donde puedes marcar la diferencia.
+  Es el ejercicio que menos gente prepara bien — y el que vale la mitad de tu nota.
+</p>
+<p>
+  <strong><a href="/register">Regístrate en OpoRuta</a></strong> y prueba la corrección de supuesto práctico
+  con IA. Los primeros tests son gratis.
+</p>
+
+<h2>Sigue preparando tu GACE</h2>
+<ul>
+  <li><a href="/blog/supuesto-practico-gace-preparar-por-libre-sin-academia">Preparar el supuesto por libre</a> — plan de 4 fases sin academia</li>
+  <li><a href="/blog/rubrica-oficial-inap-supuesto-practico-gace-4-criterios">Rúbrica oficial INAP</a> — los 4 criterios en detalle</li>
+  <li><a href="/blog/temario-gace-2026-58-temas-6-bloques-como-priorizar">58 temas GACE: cómo priorizar</a></li>
+  <li><a href="/blog/gace-a2-vs-administrativo-c1-cual-preparar-2026">GACE vs Administrativo C1: cuál preparar</a></li>
+</ul>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Criterios de evaluación verificados con la convocatoria GACE turno libre publicada en la sede electrónica del INAP.</em></p>
+    `.trim(),
+  },
+
+  // ─── Post 40: Sueldo Gestión del Estado A2 ────────────────────────────────
+  {
+    slug: 'sueldo-gestion-estado-a2-gace-2026-nomina-desglosada',
+    title: 'Sueldo Gestión del Estado A2 (GACE) en 2026: nómina desglosada y mejores destinos',
+    description:
+      'Nómina real de un funcionario A2 GACE en 2026: sueldo base 1.199,52€ + complemento de destino (526-811€) + específico. Entre 1.900 y 3.000€ brutos/mes según puesto. Desglose completo con trienios y 14 pagas.',
+    date: '2026-03-23',
+    keywords: [
+      'sueldo gestión estado A2 2026',
+      'sueldo GACE A2',
+      'nómina gestión administración civil estado',
+      'cuánto cobra un A2 del estado',
+      'sueldo funcionario A2 2026',
+      'retribuciones gestión estado',
+      'sueldo GACE desglosado',
+      'complemento destino A2',
+      'trienios A2 estado',
+      'mejores destinos gestión estado',
+    ],
+    faqs: [
+      { question: '¿Cuánto cobra un funcionario de Gestión del Estado (A2) en 2026?', answer: 'Entre 1.900 y 3.000€ brutos mensuales (14 pagas), dependiendo del nivel de destino, complemento específico y antigüedad. Un perfil de entrada (sin trienios, nivel 18-20) cobra aproximadamente 1.900-2.050€ brutos, lo que equivale a unos 1.600-1.750€ netos. Con experiencia y nivel 24-26, puede superar los 2.500€ brutos.' },
+      { question: '¿Cuál es el sueldo base del grupo A2 en 2026?', answer: 'El sueldo base del subgrupo A2 en 2026 es de 1.199,52€ mensuales (16.793,28€ anuales en 14 pagas), según el Real Decreto-ley 14/2025 de 2 de diciembre. A esto se suman el complemento de destino, el complemento específico, los trienios y dos pagas extraordinarias en junio y diciembre.' },
+      { question: '¿Cuánto sube el sueldo con los trienios?', answer: 'Cada trienio (3 años de antigüedad) supone un incremento de 43,54€ mensuales para el subgrupo A2. Tras 15 años (5 trienios), el incremento acumulado sería de 217,70€/mes adicionales sobre el sueldo base. Los trienios se cobran desde el primer día del mes en que se cumplen los 3 años.' },
+      { question: '¿Es mejor el sueldo de GACE (A2) que el de Administrativo (C1)?', answer: 'Sí. El sueldo base de A2 (1.199,52€/mes) es superior al de C1 (1.113,98€/mes). Además, los niveles de complemento de destino del A2 (18-26) permiten acceder a puestos con mayor remuneración. En la práctica, un A2 cobra entre un 15% y un 30% más que un C1 en el mismo ministerio.' },
+    ],
+    content: `
+<h2>¿Cuánto cobra realmente un funcionario de Gestión del Estado (A2)?</h2>
+<p>
+  El sueldo de un funcionario del Cuerpo de Gestión de la Administración Civil del Estado (GACE,
+  subgrupo A2) oscila entre <strong>1.900 y 3.000€ brutos mensuales</strong> en 2026, dependiendo del
+  nivel de destino, complemento específico del puesto y antigüedad. Las retribuciones se calculan
+  sobre 14 pagas anuales (12 mensuales + 2 extraordinarias en junio y diciembre).
+</p>
+
+<h2>Desglose de la nómina 2026 (datos oficiales)</h2>
+<p>
+  Los datos provienen del Real Decreto-ley 14/2025, de 2 de diciembre, que establece las retribuciones
+  del personal funcionario para 2026.
+</p>
+<table>
+  <thead>
+    <tr><th>Concepto</th><th>Mensual</th><th>Anual (14 pagas)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Sueldo base (A2)</strong></td><td>1.199,52€</td><td>16.793,28€</td></tr>
+    <tr><td><strong>Complemento de destino (nivel 20)</strong></td><td>526,09€</td><td>7.365,26€</td></tr>
+    <tr><td><strong>Complemento de destino (nivel 24)</strong></td><td>676,25€</td><td>9.467,50€</td></tr>
+    <tr><td><strong>Complemento de destino (nivel 26)</strong></td><td>811,08€</td><td>11.355,12€</td></tr>
+    <tr><td><strong>Complemento específico</strong></td><td>Variable</td><td>Variable</td></tr>
+    <tr><td><strong>Trienio (A2)</strong></td><td>43,54€</td><td>609,56€</td></tr>
+  </tbody>
+</table>
+
+<h2>Ejemplos reales por perfil</h2>
+
+<h3>Perfil de entrada (recién aprobado, sin trienios)</h3>
+<ul>
+  <li>Sueldo base: 1.199,52€</li>
+  <li>Complemento de destino (nivel 18-20): 458-526€</li>
+  <li>Complemento específico (puesto base): ~300-400€</li>
+  <li><strong>Total bruto: ~1.950-2.100€/mes</strong></li>
+  <li><strong>Neto estimado: ~1.600-1.750€/mes</strong> (IRPF ~12-15%)</li>
+</ul>
+
+<h3>Perfil medio (10 años, 3 trienios, nivel 24)</h3>
+<ul>
+  <li>Sueldo base: 1.199,52€</li>
+  <li>Trienios (3 × 43,54€): 130,62€</li>
+  <li>Complemento de destino (nivel 24): 676,25€</li>
+  <li>Complemento específico: ~400-600€</li>
+  <li><strong>Total bruto: ~2.400-2.600€/mes</strong></li>
+  <li><strong>Neto estimado: ~1.900-2.100€/mes</strong></li>
+</ul>
+
+<h3>Perfil senior (20+ años, nivel 26, jefatura)</h3>
+<ul>
+  <li>Sueldo base: 1.199,52€</li>
+  <li>Trienios (6+ × 43,54€): 261€+</li>
+  <li>Complemento de destino (nivel 26): 811,08€</li>
+  <li>Complemento específico (jefatura): ~600-900€</li>
+  <li><strong>Total bruto: ~2.900-3.200€/mes</strong></li>
+  <li><strong>Neto estimado: ~2.200-2.500€/mes</strong></li>
+</ul>
+
+<h2>GACE vs C1 vs C2: comparativa salarial</h2>
+<table>
+  <thead>
+    <tr><th>Concepto</th><th>Auxiliar (C2)</th><th>Administrativo (C1)</th><th>Gestión (A2)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Sueldo base mensual</td><td>838,32€</td><td>1.113,98€</td><td><strong>1.199,52€</strong></td></tr>
+    <tr><td>Trienio mensual</td><td>26,16€</td><td>40,44€</td><td><strong>43,54€</strong></td></tr>
+    <tr><td>Niveles de destino</td><td>14-18</td><td>16-22</td><td><strong>18-26</strong></td></tr>
+    <tr><td>Bruto entrada</td><td>~1.300-1.500€</td><td>~1.500-1.800€</td><td><strong>~1.900-2.100€</strong></td></tr>
+    <tr><td>Bruto senior</td><td>~1.500-1.700€</td><td>~1.800-2.200€</td><td><strong>~2.900-3.200€</strong></td></tr>
+    <tr><td>Temas temario</td><td>28</td><td>45</td><td>58</td></tr>
+    <tr><td>Plazas 2026</td><td>1.700</td><td>2.512</td><td>1.356</td></tr>
+  </tbody>
+</table>
+<p>
+  La diferencia salarial acumulada es significativa. Un A2 cobra <strong>entre 400€ y 1.000€ más al mes</strong>
+  que un C2, lo que equivale a 5.600-14.000€ más al año. Esa diferencia se acumula durante toda tu carrera.
+</p>
+
+<h2>Otros beneficios del funcionario A2</h2>
+<ul>
+  <li><strong>14 pagas anuales</strong> (12 mensuales + junio y diciembre)</li>
+  <li><strong>Jornada de 37,5 horas semanales</strong> (con posibilidad de horario flexible en muchos ministerios)</li>
+  <li><strong>Vacaciones:</strong> 22 días laborables + días adicionales por antigüedad (hasta 26 días con 25+ años)</li>
+  <li><strong>Excedencias y permisos:</strong> maternidad/paternidad, cuidado de familiares, excedencia voluntaria con reserva de puesto</li>
+  <li><strong>Promoción interna:</strong> acceso al subgrupo A1 con temario reducido y plazas reservadas</li>
+  <li><strong>Estabilidad:</strong> puesto de trabajo fijo, no sujeto a despido ni ERE</li>
+  <li><strong>MUFACE:</strong> acceso a la mutualidad de funcionarios con cobertura sanitaria complementaria</li>
+</ul>
+
+<h2>Destinos más habituales para Gestión del Estado</h2>
+<p>
+  Los funcionarios del Cuerpo de Gestión se destinan a ministerios y organismos de la AGE.
+  Los destinos con mejor complemento específico suelen estar en:
+</p>
+<ul>
+  <li><strong>Ministerio de Hacienda</strong> — complementos altos por gestión presupuestaria</li>
+  <li><strong>Agencia Tributaria</strong> — productividades variables significativas</li>
+  <li><strong>Seguridad Social</strong> — gran volumen de plazas</li>
+  <li><strong>Ministerio del Interior</strong> — complementos por disponibilidad</li>
+  <li><strong>Delegaciones y Subdelegaciones del Gobierno</strong> — destinos en todas las provincias</li>
+</ul>
+<p>
+  Madrid concentra la mayoría de puestos, pero hay plazas en todas las comunidades autónomas
+  a través de las Delegaciones del Gobierno.
+</p>
+
+<h2>¿Merece la pena la inversión en preparar GACE?</h2>
+<p>
+  Con un sueldo de entrada de ~1.950€ brutos/mes (14 pagas), el salario anual ronda los
+  <strong>27.000-29.000€ brutos desde el primer año</strong>. Si comparas con el coste de preparación
+  (academia ~200€/mes durante 10-14 meses = 2.000-2.800€, o
+  <strong><a href="/register">OpoRuta por 69,99€</a></strong>), la inversión se recupera en el primer mes de trabajo.
+</p>
+<p>
+  Y a diferencia de un empleo privado, la plaza es para siempre.
+</p>
+
+<h2>Empieza a preparar tu GACE</h2>
+<ul>
+  <li><a href="/blog/oposiciones-gestion-estado-gace-a2-2026-plazas-temario-fechas">GACE 2026: plazas, temario y fechas</a></li>
+  <li><a href="/blog/temario-gace-2026-58-temas-6-bloques-como-priorizar">58 temas: cómo priorizar</a></li>
+  <li><a href="/blog/supuesto-practico-gace-preparar-por-libre-sin-academia">Preparar el supuesto práctico por libre</a></li>
+  <li><a href="/blog/gace-a2-vs-administrativo-c1-cual-preparar-2026">GACE vs Administrativo C1: cuál elegir</a></li>
+</ul>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Retribuciones según RDL 14/2025 de 2 de diciembre (tablas salariales 2026 publicadas por la SEPG del Ministerio de Hacienda).</em></p>
+    `.trim(),
+  },
 ]

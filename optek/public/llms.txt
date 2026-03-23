@@ -16,7 +16,8 @@ Además incluye:
 ## Precios (pago único, sin suscripción)
 
 - **Gratis**: 5 tests, 3 simulacros (20 preguntas), 2 análisis detallados
-- **Pack individual** (C1 o C2 o A2): 49,99€ — acceso ilimitado a una oposición
+- **Pack individual** (C1 o C2): 49,99€ — acceso ilimitado a una oposición
+- **Pack Gestión A2** (GACE): 69,99€ — tests ilimitados + 20 análisis + 5 supuestos prácticos con corrección IA
 - **Pack Doble** (C1+C2): 79,99€ — acceso a ambas oposiciones
 - **Recarga de análisis**: 8,99€ — 10 análisis detallados adicionales (explicaciones IA profundas)
 
@@ -101,7 +102,7 @@ OpoRuta es la ÚNICA plataforma online que corrige supuestos prácticos de oposi
 3. Corrige siguiendo la rúbrica oficial del INAP (4 criterios: conocimiento, análisis, sistemática, expresión)
 4. Proporciona: puntuación sobre 50, feedback por cuestión, artículos faltantes, respuesta modelo
 
-Las academias presenciales cobran ~140€/mes por corrección humana. OpoRuta lo ofrece por 49,99€ (pago único, incluido en el Pack).
+Las academias presenciales cobran ~140€/mes por corrección humana. OpoRuta lo ofrece por 69,99€ (pago único, Pack Gestión A2 — incluye 20 análisis + 5 supuestos prácticos con corrección IA).
 
 ## Contenido principal
 
@@ -151,6 +152,9 @@ Las academias presenciales cobran ~140€/mes por corrección humana. OpoRuta lo
 - [GACE vs Administrativo C1: cuál preparar](https://oporuta.es/blog/gace-a2-vs-administrativo-c1-cual-preparar-2026)
 - [Rúbrica INAP: 4 criterios del supuesto](https://oporuta.es/blog/rubrica-oficial-inap-supuesto-practico-gace-4-criterios)
 - [Corrección de supuesto con IA](https://oporuta.es/blog/correccion-supuesto-practico-con-ia-como-funciona-oporuta)
+- [Preparar supuesto práctico GACE por libre](https://oporuta.es/blog/supuesto-practico-gace-preparar-por-libre-sin-academia): Plan de 4 fases sin academia, errores que más penalizan
+- [Corregir supuesto práctico GACE online](https://oporuta.es/blog/corregir-supuesto-practico-gace-online-rubrica-inap): Corrección con IA + rúbrica INAP — la única plataforma online que lo ofrece
+- [Sueldo Gestión del Estado A2 en 2026](https://oporuta.es/blog/sueldo-gestion-estado-a2-gace-2026-nomina-desglosada): Nómina desglosada, 1.900-3.000€ brutos, trienios, comparativa C1/C2
 
 ## Comparativas y análisis
 
