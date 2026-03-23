@@ -42,8 +42,8 @@ const getSocialProofData = unstable_cache(
 export async function SocialProofCounter() {
   const data = await getSocialProofData()
 
-  // Don't show if no data or too few users
-  if (data.users < 3) return null
+  // Only show when the number is impressive enough to be social proof
+  if (data.users < 50) return null
 
   return (
     <div className="mt-6 inline-flex items-center gap-2 rounded-full border bg-background/80 backdrop-blur px-4 py-2 text-sm text-muted-foreground">
