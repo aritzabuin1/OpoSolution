@@ -490,7 +490,7 @@ export async function sendPostPurchaseEmail(params: {
                   Si crees que la plataforma aporta valor, nos encantaría que dejaras una reseña en Google.
                   Tarda 1 minuto.
                 </p>
-                <a href="https://g.page/r/oporuta/review" style="display:inline-block;padding:10px 24px;background:#F39C12;color:#ffffff;text-decoration:none;border-radius:6px;font-size:13px;font-weight:600;">
+                <a href="https://www.google.com/search?q=OpoRuta+oposiciones" style="display:inline-block;padding:10px 24px;background:#F39C12;color:#ffffff;text-decoration:none;border-radius:6px;font-size:13px;font-weight:600;">
                   Dejar reseña en Google →
                 </a>
               </td></tr>
