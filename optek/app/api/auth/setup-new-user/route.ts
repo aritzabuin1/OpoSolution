@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { sendWelcomeEmail, sendNewUserNotification } from '@/lib/email/client'
+import { resolveOposicionLabel } from '@/lib/utils/oposicion-labels'
 import { logger } from '@/lib/logger'
 
 /**
@@ -42,8 +43,9 @@ export async function POST() {
     // Send welcome email (sendWelcomeEmail is idempotent — Resend deduplicates)
     if (user.email) {
       const nombre = user.user_metadata?.full_name as string | undefined
+      const oposicionLabel = oposicionId ? resolveOposicionLabel(oposicionId) : undefined
       void sendWelcomeEmail({ to: user.email, nombre })
-      void sendNewUserNotification({ email: user.email, nombre, confirmed: true })
+      void sendNewUserNotification({ email: user.email, nombre, oposicion: oposicionLabel, confirmed: true })
 
       // Persistent registration log — survives account deletion
       const svc = await createServiceClient()

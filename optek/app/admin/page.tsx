@@ -1,15 +1,19 @@
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { BarChart3, LineChart, Server, ArrowRight } from 'lucide-react'
+import { ExportMetricsButton } from '@/components/admin/ExportMetricsButton'
 
 export default function AdminPage() {
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold">Panel de Administracion</h1>
-        <p className="text-sm text-muted-foreground mt-1">
-          Monitoriza el negocio y la infraestructura de OpoRuta.
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold">Panel de Administracion</h1>
+          <p className="text-sm text-muted-foreground mt-1">
+            Monitoriza el negocio y la infraestructura de OpoRuta.
+          </p>
+        </div>
+        <ExportMetricsButton />
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">

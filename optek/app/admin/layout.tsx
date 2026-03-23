@@ -10,6 +10,7 @@ import { redirect } from 'next/navigation'
 import { verifyAdmin } from '@/lib/admin/auth'
 import Link from 'next/link'
 import { BarChart3, LineChart, Server, Settings } from 'lucide-react'
+import { ExportMetricsButton } from '@/components/admin/ExportMetricsButton'
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const { authorized, userId } = await verifyAdmin('(admin)/layout')
@@ -47,6 +48,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             <Server className="h-3.5 w-3.5 shrink-0" />
             Infra
           </Link>
+          <ExportMetricsButton />
           <Link
             href="/dashboard"
             className="text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"

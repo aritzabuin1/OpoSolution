@@ -3,6 +3,7 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import type { Database } from '@/types/database'
 import { sendWelcomeEmail, sendNewUserNotification } from '@/lib/email/client'
+import { resolveOposicionLabel } from '@/lib/utils/oposicion-labels'
 import { logger } from '@/lib/logger'
 
 /**
@@ -105,8 +106,9 @@ async function handleNewUser(
 
   if (user.email) {
     const nombre = user.user_metadata?.full_name as string | undefined
+    const oposicionLabel = oposicionId ? resolveOposicionLabel(oposicionId) : undefined
     void sendWelcomeEmail({ to: user.email, nombre })
-    void sendNewUserNotification({ email: user.email, nombre, confirmed: true })
+    void sendNewUserNotification({ email: user.email, nombre, oposicion: oposicionLabel, confirmed: true })
 
     // Persistent registration log — survives account deletion (GDPR: no PII, just email + timestamp)
     try {
