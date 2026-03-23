@@ -420,3 +420,116 @@ export async function sendNurtureEmail(params: {
     return { success: false, error: msg }
   }
 }
+
+/**
+ * Email post-compra: agradecimiento + solicitud de reseña Google.
+ * Enviado inmediatamente tras checkout.session.completed.
+ * Cialdini's Reciprocity: acaban de recibir valor → más dispuestos a devolver.
+ */
+export async function sendPostPurchaseEmail(params: {
+  to: string
+  nombre?: string
+}): Promise<EmailResult> {
+  const resend = getResend()
+  if (!resend) return { success: false, error: 'Resend no configurado' }
+
+  const log = logger.child({ route: 'email:post-purchase' })
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
+  const greeting = params.nombre ? `¡${params.nombre}, gracias` : '¡Gracias'
+
+  const html = `
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gracias por confiar en OpoRuta</title>
+</head>
+<body style="margin:0;padding:0;background:#f4f4f5;font-family:system-ui,-apple-system,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f5;padding:40px 20px;">
+    <tr><td align="center">
+      <table width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.1);">
+        <tr>
+          <td style="background:#1B4F72;padding:24px 40px;text-align:center;">
+            <span style="color:#ffffff;font-size:24px;font-weight:700;">OpoRuta</span>
+            <p style="color:#A9CCE3;margin:4px 0 0;font-size:13px;">El camino más corto hacia el aprobado</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:32px 40px 24px;">
+            <h1 style="margin:0 0 16px;font-size:22px;color:#111827;font-weight:700;">
+              ${greeting} por unirte!
+            </h1>
+            <p style="margin:0 0 16px;font-size:15px;color:#374151;line-height:1.6;">
+              Tu Pack ya está activo. A partir de ahora tienes acceso completo a todos los temas,
+              simulacros sin límite, Radar del Tribunal y análisis con IA.
+            </p>
+            <table cellpadding="0" cellspacing="0" width="100%" style="margin:16px 0;">
+              <tr><td style="padding:16px;background:#F0FDF4;border-radius:8px;border:1px solid #BBF7D0;">
+                <p style="margin:0 0 8px;font-size:14px;color:#166534;font-weight:600;">Tu plan de acción:</p>
+                <p style="margin:0;font-size:13px;color:#16a34a;line-height:1.8;">
+                  1. Haz un test en tu tema más débil<br/>
+                  2. Revisa el Radar del Tribunal — céntrate en lo que más preguntan<br/>
+                  3. Programa 1 simulacro semanal en condiciones reales
+                </p>
+              </td></tr>
+            </table>
+            <table cellpadding="0" cellspacing="0" width="100%">
+              <tr><td align="center">
+                <a href="${appUrl}/dashboard" style="display:inline-block;padding:14px 32px;background:#1B4F72;color:#ffffff;text-decoration:none;border-radius:8px;font-size:16px;font-weight:700;">
+                  Ir a mi dashboard →
+                </a>
+              </td></tr>
+            </table>
+
+            <table cellpadding="0" cellspacing="0" width="100%" style="margin-top:24px;">
+              <tr><td style="padding:16px;background:#FFF7ED;border-radius:8px;border:1px solid #FED7AA;">
+                <p style="margin:0 0 8px;font-size:14px;color:#9a3412;font-weight:600;">¿Nos ayudas a llegar a más opositores?</p>
+                <p style="margin:0 0 12px;font-size:13px;color:#ea580c;line-height:1.6;">
+                  OpoRuta es un proyecto joven y cada reseña nos ayuda a que más personas nos encuentren.
+                  Si crees que la plataforma aporta valor, nos encantaría que dejaras una reseña en Google.
+                  Tarda 1 minuto.
+                </p>
+                <a href="https://g.page/r/oporuta/review" style="display:inline-block;padding:10px 24px;background:#F39C12;color:#ffffff;text-decoration:none;border-radius:6px;font-size:13px;font-weight:600;">
+                  Dejar reseña en Google →
+                </a>
+              </td></tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:20px 40px;background:#f9fafb;border-top:1px solid #e5e7eb;">
+            <p style="margin:0;font-size:12px;color:#6b7280;text-align:center;line-height:1.5;">
+              OpoRuta · Bilbao<br/>
+              <a href="${appUrl}/legal/privacidad" style="color:#6b7280;">Privacidad</a> ·
+              <a href="${appUrl}/cuenta" style="color:#6b7280;">Mi cuenta</a>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`.trim()
+
+  try {
+    const { data, error } = await resend.emails.send({
+      from: FROM_ADDRESS,
+      replyTo: REPLY_TO,
+      to: [params.to],
+      subject: '¡Gracias por unirte a OpoRuta! Tu Pack ya está activo',
+      html,
+    })
+
+    if (error) {
+      log.error({ error: error.message }, 'Post-purchase email error')
+      return { success: false, error: error.message }
+    }
+    log.info({ id: data?.id, to: params.to }, 'Post-purchase email enviado')
+    return { success: true, id: data?.id }
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err)
+    log.error({ error: msg }, 'Post-purchase email exception')
+    return { success: false, error: msg }
+  }
+}

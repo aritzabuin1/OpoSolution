@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { stripe, CORRECTIONS_GRANTED, SUPUESTOS_GRANTED, C1_OPOSICION_ID, C2_OPOSICION_ID, A2_OPOSICION_ID } from '@/lib/stripe/client'
 import { createServiceClient } from '@/lib/supabase/server'
+import { sendPostPurchaseEmail } from '@/lib/email/client'
 import { logger } from '@/lib/logger'
 
 /**
@@ -221,6 +222,20 @@ async function handleStripeEvent(
       }
 
       log.info({ sessionId: session.id, tier, dbTipo }, 'Compra registrada')
+
+      // Post-purchase review email (fire-and-forget, non-blocking)
+      void (async () => {
+        try {
+          const { data: { user } } = await supabase.auth.admin.getUserById(userId)
+          if (user?.email) {
+            const nombre = user.user_metadata?.full_name as string | undefined
+            void sendPostPurchaseEmail({ to: user.email, nombre })
+          }
+        } catch {
+          // Non-critical
+        }
+      })()
+
       break
     }
 

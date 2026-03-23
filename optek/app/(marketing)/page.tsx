@@ -26,6 +26,7 @@ import { ExamCountdown } from '@/components/marketing/ExamCountdown'
 import { blogPosts } from '@/content/blog/posts'
 import { unstable_cache } from 'next/cache'
 import { AIAnalysisDemo } from '@/components/marketing/AIAnalysisDemo'
+import { SocialProofCounter } from '@/components/marketing/SocialProofCounter'
 
 const APP_URL_META = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
@@ -471,6 +472,9 @@ export default async function LandingPage() {
           <p className="mt-4 text-xs text-muted-foreground">
             5 tests gratuitos · Sin tarjeta · Sin suscripción
           </p>
+
+          {/* Social proof — Cialdini's principle */}
+          <SocialProofCounter />
 
           {/* Ilustración animada: el camino del opositor */}
           <RoadHero />

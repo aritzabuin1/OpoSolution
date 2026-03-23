@@ -24,7 +24,7 @@ export const metadata: Metadata = { title: 'Tests de práctica' }
 import { TemaCard } from '@/components/tests/TemaCard'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
-import { ClipboardCheck, Lock, RefreshCw } from 'lucide-react'
+import { AlertTriangle, ClipboardCheck, Lock, RefreshCw } from 'lucide-react'
 import { RadarCard } from '@/components/tests/RadarCard'
 import { RepasoButton } from '@/components/shared/RepasoButton'
 import { AIGenerationBanner } from '@/components/shared/AIGenerationBanner'
@@ -262,6 +262,32 @@ function FreemiumBanner({
     )
   }
 
+  // Loss aversion nudge: warn when only 1 test remains (Kahneman's Prospect Theory)
+  if (freeTestsRemaining === 1) {
+    return (
+      <Card className="border-orange-300 bg-orange-50">
+        <CardContent className="flex items-start gap-3 pt-4 pb-4">
+          <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-orange-600" />
+          <div className="space-y-2 flex-1">
+            <p className="text-sm font-medium text-orange-900">
+              Te queda 1 test gratuito
+            </p>
+            <p className="text-xs text-orange-700">
+              Después de este test, necesitarás el Pack para seguir practicando.
+              Desbloquea acceso ilimitado a todos los temas, simulacros completos y análisis con IA.
+            </p>
+            <Link
+              href="/#precios"
+              className="inline-flex items-center rounded-md bg-orange-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-orange-700 transition-colors"
+            >
+              Ver precios antes de que se acabe
+            </Link>
+          </div>
+        </CardContent>
+      </Card>
+    )
+  }
+
   return (
     <Card className="border-blue-200 bg-blue-50">
       <CardContent className="pt-4 pb-4">
@@ -281,9 +307,7 @@ function FreemiumBanner({
           />
         </div>
         <p className="mt-2 text-xs text-blue-700">
-          {freeTestsRemaining > 0
-            ? `Aprovecha tus ${freeTestsRemaining} test${freeTestsRemaining !== 1 ? 's' : ''} restante${freeTestsRemaining !== 1 ? 's' : ''} gratuito${freeTestsRemaining !== 1 ? 's' : ''}`
-            : 'Último test gratuito — ¡úsalo bien!'}
+          {`Aprovecha tus ${freeTestsRemaining} test${freeTestsRemaining !== 1 ? 's' : ''} restante${freeTestsRemaining !== 1 ? 's' : ''} gratuito${freeTestsRemaining !== 1 ? 's' : ''}`}
         </p>
       </CardContent>
     </Card>
