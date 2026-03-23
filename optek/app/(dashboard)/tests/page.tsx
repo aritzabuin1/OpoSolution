@@ -154,6 +154,7 @@ export default async function TestsPage({
           freeTestsUsed={freeTestsUsed}
           freeTestsRemaining={freeTestsRemaining}
           freeLimitReached={freeLimitReached}
+          oposicionSlug={oposicionSlug}
         />
       )}
 
@@ -228,11 +229,16 @@ function FreemiumBanner({
   freeTestsUsed,
   freeTestsRemaining,
   freeLimitReached,
+  oposicionSlug,
 }: {
   freeTestsUsed: number
   freeTestsRemaining: number
   freeLimitReached: boolean
+  oposicionSlug: string
 }) {
+  const checkoutHref = oposicionSlug === 'gestion-estado'
+    ? '/cuenta?plan=pack_a2'
+    : '/cuenta'
   if (freeLimitReached) {
     return (
       <Card className="border-amber-200 bg-amber-50">
@@ -247,7 +253,7 @@ function FreemiumBanner({
             </p>
             <div className="flex gap-2 flex-wrap">
               <Link
-                href="/cuenta"
+                href={checkoutHref}
                 className="inline-flex items-center rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
               >
                 Ver planes
@@ -277,10 +283,10 @@ function FreemiumBanner({
               Desbloquea acceso ilimitado a todos los temas, simulacros completos y análisis con IA.
             </p>
             <Link
-              href="/#precios"
+              href={checkoutHref}
               className="inline-flex items-center rounded-md bg-orange-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-orange-700 transition-colors"
             >
-              Ver precios antes de que se acabe
+              Desbloquear acceso completo
             </Link>
           </div>
         </CardContent>
