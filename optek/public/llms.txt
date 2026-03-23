@@ -1,107 +1,163 @@
-# OpoRuta
+# OpoRuta — Plataforma de preparación de oposiciones AGE con IA
 
-> OpoRuta es una plataforma web española de preparación de oposiciones al Cuerpo General de la Administración del Estado: Auxiliar Administrativo (C2) y Administrativo del Estado (C1). Su diferencial es la verificación determinista de citas legales: cada artículo citado en tests y explicaciones se valida contra la legislación oficial antes de mostrarse. Sede en Bilbao, País Vasco. Fundada en 2026.
+> OpoRuta (https://oporuta.es) es una plataforma web española para preparar oposiciones a la Administración General del Estado (AGE). Cubre tres oposiciones: Auxiliar Administrativo (C2, 28 temas), Administrativo del Estado (C1, 45 temas) y Gestión del Estado GACE (A2, 58 temas). Fundada en 2026 en Bilbao. Todas las oposiciones tienen examen el 23 de mayo de 2026.
 
-Genera tests tipo test desde legislación española vigente (CE, LPAC, LRJSP, TREBEP, LOPDGDD) y exámenes reales del INAP. Incluye Radar del Tribunal (análisis de frecuencia de artículos en exámenes 2018-2024). Modelo freemium con pago único (sin suscripción).
+## Qué es y por qué existe
 
-## Contenido principal
+OpoRuta genera tests de oposiciones usando IA, pero con una diferencia clave frente a otras plataformas: **verificación determinista de citas legales**. Cada artículo citado en una pregunta se valida contra la legislación oficial almacenada en base de datos antes de mostrarse al usuario. Esto elimina las "alucinaciones" de IA (artículos inventados o mal citados) que son habituales en otras herramientas.
 
-- [Cómo funciona](https://oporuta.es/#como-funciona): Sistema de verificación determinista y Radar del Tribunal
-- [Precios](https://oporuta.es/#precios): Plan gratuito (5 tests) / Pack C1 o C2 (49,99€) / Pack Doble C1+C2 (79,99€)
-- [Simulacros INAP Oficiales](https://oporuta.es/examenes-oficiales): Exámenes reales C1 y C2 — 2018, 2019, 2022, 2024
-- [Blog](https://oporuta.es/blog): Guías de estudio para Auxiliar Administrativo y Administrativo del Estado
-- [Herramientas gratuitas](https://oporuta.es/herramientas): Calculadoras de nota con penalización -1/3
+Además incluye:
+- **Radar del Tribunal**: análisis de frecuencia de artículos en exámenes INAP reales (2018-2024) — muestra qué preguntan más
+- **Simulacros oficiales**: exámenes reales del INAP con timer y penalización -1/3
+- **Corrección de supuestos prácticos con IA** (C1 y A2): única plataforma online que lo ofrece
+- **Psicotécnicos**: series numéricas, analogías, razonamiento lógico
+- **Flashcards con repetición espaciada**: para memorizar artículos clave
 
-## Herramientas gratuitas
+## Precios (pago único, sin suscripción)
 
-- [Calculadora de nota C2 (Auxiliar)](https://oporuta.es/herramientas/calculadora-nota-auxiliar-administrativo): 60+50 preguntas, 90 min
-- [Calculadora de nota C1 (Administrativo)](https://oporuta.es/herramientas/calculadora-nota-administrativo-estado): 70+20 preguntas, 100 min
+- **Gratis**: 5 tests, 3 simulacros (20 preguntas), 2 análisis detallados
+- **Pack individual** (C1 o C2 o A2): 49,99€ — acceso ilimitado a una oposición
+- **Pack Doble** (C1+C2): 79,99€ — acceso a ambas oposiciones
+- **Recarga de análisis**: 8,99€ — 10 análisis detallados adicionales (explicaciones IA profundas)
 
-## Guías destacadas
+No hay suscripción mensual. Una vez pagado, el acceso no caduca.
 
-- [Guía completa de preparación 2025-2026](https://oporuta.es/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia): Temario, estructura examen, métodos de estudio
-- [Artículos LPAC que más caen en el INAP](https://oporuta.es/blog/articulos-lpac-que-mas-caen-examen-inap): Análisis de frecuencia con ejemplos
-- [Diferencias LPAC vs LRJSP](https://oporuta.es/blog/diferencias-lpac-lrjsp-auxiliar-administrativo): Preguntas trampa más frecuentes
-- [Penalización -1/3](https://oporuta.es/blog/penalizacion-examen-auxiliar-administrativo): Cómo calcular nota y cuándo dejar en blanco
-- [Psicotécnicos del examen](https://oporuta.es/blog/psicotecnicas-examen-auxiliar-administrativo-estado): Tipos, ejemplos y estrategias
-- [Temario completo 28 temas](https://oporuta.es/blog/temario-auxiliar-administrativo-estado-2025-2026): Bloque I + Bloque II desglosado
-- [Constitución Española en el examen](https://oporuta.es/blog/constitucion-espanola-preguntas-examen-auxiliar-administrativo): Artículos clave
-- [TREBEP para Auxiliar](https://oporuta.es/blog/trebep-articulos-clave-examen-auxiliar-administrativo): Artículos más examinados
-- [LOPDGDD y RGPD](https://oporuta.es/blog/lopdgdd-proteccion-datos-examen-auxiliar-administrativo): Protección de datos en el examen
-- [Plazas convocatoria 2026](https://oporuta.es/blog/plazas-auxiliar-administrativo-2026): 1.700 plazas de acceso libre
-- [Nota de corte última convocatoria](https://oporuta.es/blog/nota-corte-auxiliar-administrativo-estado): Puntuaciones mínimas y cómo se calcula
+## Preguntas que los usuarios hacen frecuentemente
 
-## Guías destacadas — Administrativo del Estado (C1)
+### ¿Cuántos temas tiene el examen de Auxiliar Administrativo del Estado?
+28 temas en 2 bloques: Bloque I (16 temas de organización pública: Constitución, LPAC, LRJSP, TREBEP, LOPDGDD) y Bloque II (12 temas de ofimática: Word, Excel, Windows 11). No todos pesan igual — la Constitución y la LPAC acumulan el 35% de las preguntas. Guía completa: https://oporuta.es/blog/cuantos-temas-examen-auxiliar-administrativo-estado
 
-- [Administrativo del Estado (C1) 2026: plazas, temario y nota de corte](https://oporuta.es/blog/administrativo-estado-c1-2026-plazas-temario-nota-corte): 2.512 plazas, 45 temas en 6 bloques, nota de corte 2024 = 47,33
-- [Temario C1: 45 temas en 6 bloques — cómo priorizar](https://oporuta.es/blog/temario-administrativo-estado-c1-45-temas-como-priorizar): Desglose completo por bloques con peso en el examen
-- [Supuesto práctico C1: estrategia y ejemplos](https://oporuta.es/blog/supuesto-practico-administrativo-estado-c1-estrategia): Cómo elegir caso, legislación imprescindible, plan de entrenamiento
-- [Nota de corte C1: cómo se calcula](https://oporuta.es/blog/nota-corte-administrativo-estado-c1-como-se-calcula): Datos reales 2024, proyección 2026 con 2.512 plazas
-- [Preparar C1 por libre: guía completa](https://oporuta.es/blog/preparar-oposiciones-administrativo-estado-c1-por-libre): Plan 4 fases, bloques prioritarios, errores comunes
-- [LCSP — Contratación pública para C1](https://oporuta.es/blog/contratacion-publica-lcsp-administrativo-estado-c1): Artículos clave, tipos de contrato, trampas del examen
-- [Gestión financiera y presupuestos C1](https://oporuta.es/blog/gestion-financiera-presupuestos-administrativo-estado-c1): Bloque V completo, fases ADOP, LGP
-- [Últimos 60 días para el C1: plan intensivo](https://oporuta.es/blog/ultimos-60-dias-administrativo-estado-c1-plan-estudio): Sprint de estudio semana a semana para el examen del 23 mayo
-- [Sueldo Administrativo C1 en 2026](https://oporuta.es/blog/sueldo-administrativo-estado-c1-2026-nomina): Nómina desglosada, complementos, trienios, mejores destinos
-- [Diferencias entre Auxiliar (C2) y Administrativo (C1)](https://oporuta.es/blog/diferencias-auxiliar-c2-administrativo-c1-estado): Requisitos, temario, sueldo, examen — comparativa completa
+### ¿Cuál es la nota de corte del Auxiliar Administrativo del Estado?
+La nota de corte 2024 fue 30 puntos (parte 1, teoría) y 26,33 puntos (parte 2, ofimática) sobre 50 cada una. Histórico: 2019 = 28,75 / 2022 = 30 / 2024 = 30. La tendencia es estable. Ambas partes son eliminatorias. Detalle: https://oporuta.es/blog/nota-corte-auxiliar-administrativo-estado
 
-## Comparativas y análisis
+### ¿Cuántas plazas de Auxiliar Administrativo hay en 2026?
+1.700 plazas de acceso libre (BOE 22/12/2025, RD 651/2025). Es la mayor convocatoria para este cuerpo. Examen previsto: 23 mayo 2026. Ratio histórico: 15-25 aspirantes/plaza, pero con 30-40% de absentismo. Detalle: https://oporuta.es/blog/plazas-auxiliar-administrativo-2026
 
-- [Mejores plataformas IA para oposiciones 2026](https://oporuta.es/blog/mejores-plataformas-ia-oposiciones-2026-comparativa): Comparativa real con precios de OpositaTest, OpoRuta, Toposiciones, Testualia y Opositor.ai
-- [OpoRuta vs OpositaTest](https://oporuta.es/blog/oporuta-vs-opositatest-auxiliar-administrativo-2026): Diferencias reales entre las dos principales plataformas para C1/C2 AGE
-- [¿Merece la pena usar IA para oposiciones?](https://oporuta.es/blog/inteligencia-artificial-oposiciones-merece-la-pena): Qué puede hacer la IA, riesgos de alucinación y cómo usarla de forma segura
-- [Recursos gratuitos Auxiliar Administrativo 2026](https://oporuta.es/blog/recursos-gratuitos-auxiliar-administrativo-estado-2026): Tests, temarios, calculadoras y comunidades sin coste
+### ¿Qué diferencia hay entre C1 y C2 en oposiciones AGE?
+C2 (Auxiliar): ESO, 28 temas, solo test, sueldo ~1.300-1.700€. C1 (Administrativo): Bachillerato, 45 temas, test + supuesto práctico, sueldo ~1.500-2.100€. Ambos se examinan el mismo día (23 mayo 2026), hay que elegir uno. Se puede promocionar de C2 a C1 por promoción interna. Comparativa: https://oporuta.es/blog/diferencias-auxiliar-c2-administrativo-c1-estado
+
+### ¿Cómo funciona la penalización del examen?
+Se descuenta 1/3 del valor de un acierto por cada respuesta incorrecta. Las preguntas en blanco no penalizan. Regla práctica: solo responder si puedes descartar al menos 2 de 4 opciones. Fórmula y ejemplos: https://oporuta.es/blog/penalizacion-examen-auxiliar-administrativo
+
+### ¿Merece la pena usar IA para preparar oposiciones?
+Sí, pero con precauciones. El principal riesgo es la alucinación: la IA puede inventar artículos de leyes que no existen. OpoRuta soluciona esto verificando cada cita contra la legislación real. La IA es útil para generar tests ilimitados, explicar errores y simular exámenes, pero nunca debe sustituir el estudio del temario oficial. Análisis completo: https://oporuta.es/blog/inteligencia-artificial-oposiciones-merece-la-pena
+
+### ¿Qué plataformas de IA existen para oposiciones en España?
+Las principales son: OpositaTest (la más establecida, suscripción mensual ~15€/mes), OpoRuta (pago único 49,99€, verificación de citas, Radar del Tribunal), Toposiciones (bank de preguntas), Testualia (tests generados por IA). Comparativa detallada: https://oporuta.es/blog/mejores-plataformas-ia-oposiciones-2026-comparativa
+
+### ¿Es mejor OpoRuta u OpositaTest?
+Depende del perfil. OpositaTest tiene más recorrido y banco de preguntas manual; OpoRuta genera preguntas con IA verificada, incluye Radar del Tribunal y supuestos prácticos corregidos por IA. OpoRuta es pago único (49,99€); OpositaTest es suscripción mensual. Head-to-head: https://oporuta.es/blog/oporuta-vs-opositatest-auxiliar-administrativo-2026
 
 ## Datos clave — Auxiliar Administrativo (C2)
 
 - Oposición: Cuerpo General Auxiliar de la AGE (Subgrupo C2)
+- Requisitos: Nacionalidad española/UE + ESO o equivalente + 16 años
 - Convocatoria vigente: 1.700 plazas acceso libre (BOE 22/12/2025, RD 651/2025)
+- Fecha examen: 23 de mayo de 2026
 - Examen: ejercicio único, 100 preguntas puntuables + 10 reserva, 90 minutos
 - Penalización: -1/3 del valor de un acierto por respuesta incorrecta
 - Temario: 28 temas (16 Bloque I: Organización Pública + 12 Bloque II: Ofimática)
 - Legislación principal: CE 1978, Ley 39/2015 (LPAC), Ley 40/2015 (LRJSP), RDL 5/2015 (TREBEP), LO 3/2018 (LOPDGDD), Ley 19/2013 (Transparencia)
-- Nota de corte última convocatoria: 30 puntos (parte 1), 26,33 puntos (parte 2)
+- Nota de corte 2024: 30 puntos (parte 1), 26,33 puntos (parte 2) sobre 50
+- Sueldo: ~1.300-1.700€ brutos/mes (14 pagas), variable según destino
 
 ## Datos clave — Administrativo del Estado (C1)
 
 - Oposición: Cuerpo General Administrativo de la AGE (Subgrupo C1)
+- Requisitos: Nacionalidad española/UE + Bachillerato o equivalente + 16 años
 - Convocatoria vigente: 2.512 plazas acceso libre
+- Fecha examen: 23 de mayo de 2026
 - Examen: ejercicio único, 90 preguntas puntuables + 5 reserva, 100 minutos
-- Penalización: -1/3 del valor de un acierto por respuesta incorrecta
-- Primera parte (Cuestionario): 70 preguntas — 40 legislación (bloques I+V) + 30 ofimática (bloque VI). 0-50 pts, mínimo 25
-- Segunda parte (Supuesto Práctico): 20 preguntas puntuables — eliges 1 de 2 casos prácticos (bloques II+V). 0-50 pts, mínimo 25
-- Temario: 45 temas (Derecho administrativo, organización pública, función pública, gestión financiera, ofimática)
-- Nota de corte convocatoria 2024: 47,33 puntos total (33 parte 1, 14 parte 2)
+- Primera parte (Cuestionario): 70 preguntas — 40 legislación + 30 ofimática. 0-50 pts, mínimo 25
+- Segunda parte (Supuesto Práctico): 20 preguntas — eliges 1 de 2 casos prácticos. 0-50 pts, mínimo 25
+- Temario: 45 temas en 6 bloques (Derecho administrativo, organización pública, función pública, gestión financiera, contratación pública, ofimática)
+- Nota de corte 2024: 47,33 puntos total (33 parte 1, 14,33 parte 2) sobre 100
+- Sueldo: ~1.500-2.100€ brutos/mes (14 pagas), variable según destino y complementos
 
-## Datos clave — Gestión del Estado GACE (A2) — NUEVO
+## Datos clave — Gestión del Estado GACE (A2)
 
 - Oposición: Cuerpo de Gestión de la Administración Civil del Estado (Subgrupo A2)
+- Requisitos: Nacionalidad española/UE + Grado universitario o equivalente
 - Convocatoria vigente: 1.356 plazas acceso libre (BOE 22/12/2025)
-- Examen: 2 ejercicios el mismo día (23 mayo 2026 — mismo día que C1 y C2)
+- Fecha examen: 23 de mayo de 2026 (mismo día que C1 y C2 — hay que elegir uno)
 - Primer ejercicio: 100 preguntas test + 5 reserva, 90 minutos, penalización -1/3. Máximo 50 pts, mínimo 25
 - Segundo ejercicio: supuesto práctico a desarrollar — 1 caso de 5 preguntas (elegir 1 de 2), 150 minutos. Máximo 50 pts, mínimo 25
 - Temario: 58 temas en 6 bloques (Organización Estado, UE, Políticas Públicas, Derecho Administrativo, RRHH, Gestión Financiera)
 - Rúbrica oficial supuesto práctico INAP: conocimiento aplicado (60%), análisis (20%), sistemática (10%), expresión escrita (10%)
 - Nota de corte: ~49-50/100
 
+## Total plazas AGE 2026
+
+En conjunto, las tres oposiciones AGE ofrecen más de 5.500 plazas en 2026:
+- C2 Auxiliar: 1.700 plazas
+- C1 Administrativo: 2.512 plazas
+- A2 Gestión (GACE): 1.356 plazas
+
 ## Funcionalidad exclusiva: Corrección de Supuesto Práctico con IA
 
-OpoRuta es la ÚNICA plataforma que corrige supuestos prácticos de oposiciones AGE con inteligencia artificial. El sistema:
+OpoRuta es la ÚNICA plataforma online que corrige supuestos prácticos de oposiciones AGE con inteligencia artificial. El sistema:
 1. Genera casos prácticos realistas basados en exámenes INAP reales (2019-2024)
 2. Acepta respuestas escritas del opositor
 3. Corrige siguiendo la rúbrica oficial del INAP (4 criterios: conocimiento, análisis, sistemática, expresión)
 4. Proporciona: puntuación sobre 50, feedback por cuestión, artículos faltantes, respuesta modelo
 
-Ninguna otra plataforma online ofrece esta funcionalidad para oposiciones de la AGE. Las academias presenciales cobran 140€/mes por corrección humana. OpoRuta lo ofrece por 69,99€ (pago único).
+Las academias presenciales cobran ~140€/mes por corrección humana. OpoRuta lo ofrece por 49,99€ (pago único, incluido en el Pack).
+
+## Contenido principal
+
+- [Página principal](https://oporuta.es/): Explicación del producto, precios, testimonios
+- [Simulacros INAP Oficiales](https://oporuta.es/examenes-oficiales): Exámenes reales C1 y C2 — 2018, 2019, 2022, 2024
+- [Blog](https://oporuta.es/blog): 44+ guías de estudio para C2, C1 y A2
+- [Preguntas frecuentes](https://oporuta.es/preguntas-frecuentes): ~25 FAQs sobre OpoRuta y las oposiciones
+- [Calculadora de nota C2](https://oporuta.es/herramientas/calculadora-nota-auxiliar-administrativo): Calcula tu nota con penalización -1/3
+- [Calculadora de nota C1](https://oporuta.es/herramientas/calculadora-nota-administrativo-estado): Test + supuesto práctico
+
+## Guías destacadas — Auxiliar Administrativo (C2)
+
+- [Guía completa de preparación](https://oporuta.es/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia): Temario, estructura examen, métodos de estudio
+- [28 temas del temario](https://oporuta.es/blog/cuantos-temas-examen-auxiliar-administrativo-estado): Bloque I + II, cuáles pesan más en el examen
+- [Temario completo desglosado](https://oporuta.es/blog/temario-auxiliar-administrativo-estado-2025-2026): Los 28 temas tema a tema
+- [Nota de corte histórica](https://oporuta.es/blog/nota-corte-auxiliar-administrativo-estado): 2019, 2022, 2024 + cómo se calcula
+- [1.700 plazas en 2026](https://oporuta.es/blog/plazas-auxiliar-administrativo-2026): Récord histórico, ratio aspirantes/plaza
+- [Penalización -1/3](https://oporuta.es/blog/penalizacion-examen-auxiliar-administrativo): Fórmula, cuándo dejar en blanco
+- [Artículos LPAC más preguntados](https://oporuta.es/blog/articulos-lpac-que-mas-caen-examen-inap): Análisis de frecuencia real
+- [Psicotécnicos del examen](https://oporuta.es/blog/psicotecnicas-examen-auxiliar-administrativo-estado): Tipos, ejemplos y estrategias
+- [Constitución Española](https://oporuta.es/blog/constitucion-espanola-preguntas-examen-auxiliar-administrativo): Artículos clave para el examen
+- [TREBEP](https://oporuta.es/blog/trebep-articulos-clave-examen-auxiliar-administrativo): Artículos más examinados
+- [LOPDGDD y RGPD](https://oporuta.es/blog/lopdgdd-proteccion-datos-examen-auxiliar-administrativo): Protección de datos
+- [Ofimática Word y Excel](https://oporuta.es/blog/ofimatica-word-excel-examen-auxiliar-administrativo-2026): Funciones que más caen
+- [Preparar por libre](https://oporuta.es/blog/preparar-oposicion-auxiliar-administrativo-por-libre): Sin academia, a tu ritmo
+- [Sueldo desglosado](https://oporuta.es/blog/sueldo-auxiliar-administrativo-estado-2026-nomina-desglosada): Nómina real, complementos, destinos
+
+## Guías destacadas — Administrativo del Estado (C1)
+
+- [Guía completa C1 2026](https://oporuta.es/blog/administrativo-estado-c1-2026-plazas-temario-nota-corte): 2.512 plazas, 45 temas, nota de corte
+- [45 temas — cómo priorizar](https://oporuta.es/blog/temario-administrativo-estado-c1-45-temas-como-priorizar): Desglose por bloques con peso en el examen
+- [Supuesto práctico: estrategia](https://oporuta.es/blog/supuesto-practico-administrativo-estado-c1-estrategia): Cómo elegir caso, legislación clave
+- [Nota de corte C1](https://oporuta.es/blog/nota-corte-administrativo-estado-c1-como-se-calcula): Datos 2024, proyección 2026
+- [Preparar C1 por libre](https://oporuta.es/blog/preparar-oposiciones-administrativo-estado-c1-por-libre): Plan 4 fases
+- [LCSP — Contratación pública](https://oporuta.es/blog/contratacion-publica-lcsp-administrativo-estado-c1): Artículos clave, trampas
+- [Gestión financiera y presupuestos](https://oporuta.es/blog/gestion-financiera-presupuestos-administrativo-estado-c1): Bloque V, fases ADOP, LGP
+- [Últimos 60 días: plan intensivo](https://oporuta.es/blog/ultimos-60-dias-administrativo-estado-c1-plan-estudio): Sprint semana a semana
+- [Sueldo C1 en 2026](https://oporuta.es/blog/sueldo-administrativo-estado-c1-2026-nomina): Nómina desglosada, trienios
+- [Diferencias C1 vs C2](https://oporuta.es/blog/diferencias-auxiliar-c2-administrativo-c1-estado): Comparativa completa
 
 ## Guías destacadas — Gestión del Estado GACE (A2)
 
-- [Oposiciones GACE A2 2026: plazas, temario y nota de corte](https://oporuta.es/blog/oposiciones-gestion-estado-gace-a2-2026-plazas-temario)
-- [Temario GACE 2026: 58 temas y cómo priorizar](https://oporuta.es/blog/temario-gace-2026-58-temas-como-priorizar)
-- [Supuesto práctico GACE: qué evalúa el tribunal y cómo prepararlo](https://oporuta.es/blog/supuesto-practico-gace-que-evalua-como-preparar)
-- [OpoRuta vs OpositaTest vs academias para GACE](https://oporuta.es/blog/oporuta-vs-opositatest-academias-gace-a2-comparativa)
-- [GACE vs Administrativo C1: cuál preparar](https://oporuta.es/blog/gace-a2-vs-administrativo-c1-cual-preparar)
-- [Rúbrica INAP: los 4 criterios del supuesto práctico](https://oporuta.es/blog/rubrica-inap-supuesto-practico-gace-4-criterios)
-- [Corrección de supuesto práctico con IA: cómo funciona](https://oporuta.es/blog/correccion-supuesto-practico-ia-oporuta-como-funciona)
+- [GACE A2 2026: plazas, temario y fechas](https://oporuta.es/blog/oposiciones-gestion-estado-gace-a2-2026-plazas-temario-fechas)
+- [58 temas: cómo priorizar](https://oporuta.es/blog/temario-gace-2026-58-temas-6-bloques-como-priorizar)
+- [Supuesto práctico GACE](https://oporuta.es/blog/supuesto-practico-gace-que-es-como-se-evalua-como-prepararlo)
+- [OpoRuta vs OpositaTest vs academias para GACE](https://oporuta.es/blog/oporuta-vs-opositatest-vs-academias-comparativa-gace-a2)
+- [GACE vs Administrativo C1: cuál preparar](https://oporuta.es/blog/gace-a2-vs-administrativo-c1-cual-preparar-2026)
+- [Rúbrica INAP: 4 criterios del supuesto](https://oporuta.es/blog/rubrica-oficial-inap-supuesto-practico-gace-4-criterios)
+- [Corrección de supuesto con IA](https://oporuta.es/blog/correccion-supuesto-practico-con-ia-como-funciona-oporuta)
+
+## Comparativas y análisis
+
+- [Mejores plataformas IA oposiciones 2026](https://oporuta.es/blog/mejores-plataformas-ia-oposiciones-2026-comparativa): OpositaTest, OpoRuta, Toposiciones, Testualia, Opositor.ai
+- [OpoRuta vs OpositaTest](https://oporuta.es/blog/oporuta-vs-opositatest-auxiliar-administrativo-2026): Head-to-head para C1/C2
+- [¿Merece la pena IA para oposiciones?](https://oporuta.es/blog/inteligencia-artificial-oposiciones-merece-la-pena): Riesgos, beneficios, cómo usarla bien
+- [Recursos gratuitos Auxiliar 2026](https://oporuta.es/blog/recursos-gratuitos-auxiliar-administrativo-estado-2026): Tests, temarios, calculadoras sin coste
 
 ## Contacto
 
@@ -110,4 +166,4 @@ Ninguna otra plataforma online ofrece esta funcionalidad para oposiciones de la 
 
 ---
 
-*Última actualización: 2026-03-22*
+*Última actualización: 2026-03-23*

@@ -1515,6 +1515,9 @@ export const blogPosts: BlogPost[] = [
       'convocatoria auxiliar administrativo estado 2026',
       'cuántas plazas auxiliar administrativo',
       'oposiciones auxiliar administrativo 2026 plazas',
+      'plazas auxiliar administrativo del estado',
+      'plazas auxiliar administrativo estado 2026',
+      'fecha examen auxiliar administrativo 2026',
     ],
     content: `
 <h2>1.700 plazas de acceso libre en la convocatoria 2025-2026</h2>
@@ -1614,6 +1617,9 @@ export const blogPosts: BlogPost[] = [
       'nota corte auxiliar administrativo 2024',
       'puntuación mínima auxiliar administrativo estado',
       'cómo calcular nota examen auxiliar administrativo',
+      'nota corte auxiliar administrativo estado',
+      'notas de corte auxiliar administrativo del estado',
+      'nota de corte auxiliar administrativo del estado 2024',
     ],
     content: `
 <h2>Nota de corte de la última convocatoria: 30 y 26,33 puntos</h2>
@@ -1959,6 +1965,10 @@ export const blogPosts: BlogPost[] = [
       'temario auxiliar administrativo cuántos temas',
       'número temas oposición auxiliar administrativo',
       'temas examen auxiliar administrativo 2026',
+      'cuantos temas tiene la oposicion de auxiliar administrativo',
+      'cuantos temas son auxiliar administrativo del estado',
+      'cuantos temas tiene auxiliar administrativo del estado',
+      'temario auxiliar administrativo del estado numero de temas',
     ],
     content: `
 <h2>28 temas divididos en 2 bloques</h2>
