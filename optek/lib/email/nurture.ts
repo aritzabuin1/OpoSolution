@@ -32,7 +32,7 @@ import { logger } from '@/lib/logger'
 
 const EXAM_DATE = new Date('2026-05-23T00:00:00+02:00')
 const FREE_TEST_LIMIT = 5
-const MIN_DAYS_BETWEEN_EMAILS = 4
+const MIN_DAYS_BETWEEN_EMAILS = 3
 
 // Email keys in priority order (highest first)
 const EMAIL_KEYS = [
