@@ -41,7 +41,7 @@ export function BlogCTA({ variant, diasParaExamen }: BlogCTAProps) {
         4.200+ plazas · Examen único · ¿Estás preparado?
       </p>
       <p className="text-sm opacity-70 mt-2 mb-5">
-        Prueba OpoRuta gratis: 5 tests · Verificación BOE · Análisis INAP
+        Prueba OpoRuta gratis: Todos los temas · Verificación BOE · Análisis INAP
       </p>
       <Link href="/register">
         <Button

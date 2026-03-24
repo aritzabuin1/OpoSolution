@@ -15,7 +15,7 @@ Además incluye:
 
 ## Precios (pago único, sin suscripción)
 
-- **Gratis**: 5 tests, 3 simulacros (20 preguntas), 2 análisis detallados
+- **Gratis**: 1 test en cada tema (todos los temas abiertos), 3 simulacros (20 preguntas), 2 análisis detallados con IA
 - **Pack individual** (C1 o C2): 49,99€ — acceso ilimitado a una oposición
 - **Pack Gestión A2** (GACE): 69,99€ — tests ilimitados + 20 análisis + 5 supuestos prácticos con corrección IA
 - **Pack Doble** (C1+C2): 79,99€ — acceso a ambas oposiciones

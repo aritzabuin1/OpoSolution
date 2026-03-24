@@ -46,9 +46,13 @@ export interface TemaCardProps {
   }
   /** El usuario tiene acceso de pago (compras > 0) */
   hasPaidAccess: boolean
-  /** Tests gratuitos usados (0–5) */
-  freeTestsUsed: number
-  /** El tema está en la lista FREE_TEMA_NUMEROS (accesible para free users) */
+  /** Free tier v2: this specific tema has been completed by the free user */
+  freeCompleted?: boolean
+  /** Free tier v2: score achieved in the free test (0-100) */
+  freeScore?: number | null
+  /** @deprecated — kept for backward compat, ignored in new flow */
+  freeTestsUsed?: number
+  /** @deprecated — kept for backward compat, ignored in new flow */
   isFreeAllowed?: boolean
 }
 
@@ -65,7 +69,7 @@ const NUM_PREGUNTAS_OPTIONS: NumPreguntas[] = [10, 20, 30]
 
 // ─── Componente ──────────────────────────────────────────────────────────────
 
-export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, isFreeAllowed = true }: TemaCardProps) {
+export function TemaCard({ tema, hasPaidAccess, freeCompleted = false, freeScore = null }: TemaCardProps) {
   const router = useRouter()
 
   const [dificultad, setDificultad] = useState<Dificultad>('media')
@@ -96,9 +100,9 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, isFreeAllowed = t
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange)
   }, [])
 
-  // Tema bloqueado: free user + tema no en lista FREE_TEMAS
-  const isLocked = !hasPaidAccess && !isFreeAllowed
-  const freeLimitReached = !hasPaidAccess && freeTestsUsed >= 5
+  // Free tier v2: tema is locked if free user already completed it
+  const isLocked = !hasPaidAccess && freeCompleted
+  const nota = freeScore !== null ? Math.round(freeScore / 10) : null
 
   async function handleGenerarTest() {
     // Doble protección: ref (síncrono) + state (async)
@@ -228,12 +232,12 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, isFreeAllowed = t
                 Ley
               </span>
             )}
-            {isLocked && (
-              <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-medium text-amber-700 border border-amber-200">
-                Premium
+            {isLocked && nota !== null && (
+              <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-600 border border-slate-200">
+                {nota}/10
               </span>
             )}
-            {isLocked || freeLimitReached ? (
+            {isLocked ? (
               <Lock className="h-4 w-4 text-amber-500" aria-label="Acceso bloqueado" />
             ) : (
               <Unlock className="h-4 w-4 text-green-500" aria-label="Acceso disponible" />
@@ -249,18 +253,19 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, isFreeAllowed = t
         <CardContent className="pt-0">
           <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 space-y-3">
             <p className="text-sm font-medium text-amber-900">
-              Este tema requiere acceso Premium
+              Ya has completado tu test gratuito de este tema
+              {nota !== null && <span className="ml-1">({nota}/10)</span>}
             </p>
             <p className="text-xs text-amber-700">
-              Los temas 1 (Constitución), 11 (LPAC) y 17 (Word) son gratuitos.
-              Desbloquea los 28 temas con el Pack Oposición.
+              Desbloquea tests ilimitados para repetir este tema y mejorar tu nota.
+              Elige dificultad, número de preguntas y practica sin límites.
             </p>
             <Button
               className="w-full"
               size="sm"
               onClick={() => setShowPaywall(true)}
             >
-              Ver planes
+              Desbloquear tests ilimitados
             </Button>
           </div>
         </CardContent>
@@ -268,72 +273,71 @@ export function TemaCard({ tema, hasPaidAccess, freeTestsUsed, isFreeAllowed = t
 
       {expanded && !isLocked && (
         <CardContent className="space-y-4 pt-0">
-          {/* Selector de dificultad */}
-          <div className="space-y-1.5">
-            <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-              Dificultad
-            </label>
-            <div className="flex gap-2">
-              {DIFICULTADES.map(({ value, label }) => {
-                const locked = (value === 'dificil' || value === 'progresivo') && !hasPaidAccess
-                return (
-                  <button
-                    key={value}
-                    onClick={() => {
-                      if (locked) { setShowPaywall(true); return }
-                      setDificultad(value)
-                    }}
-                    className={`flex-1 rounded-md border py-1.5 text-xs font-medium transition-colors relative ${
-                      locked
-                        ? 'border-border bg-muted/50 text-muted-foreground cursor-not-allowed'
-                        : dificultad === value
+          {hasPaidAccess ? (
+            <>
+              {/* Premium: selector de dificultad */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                  Dificultad
+                </label>
+                <div className="flex gap-2">
+                  {DIFICULTADES.map(({ value, label }) => (
+                    <button
+                      key={value}
+                      onClick={() => setDificultad(value)}
+                      className={`flex-1 rounded-md border py-1.5 text-xs font-medium transition-colors ${
+                        dificultad === value
                           ? 'border-primary bg-primary text-primary-foreground'
                           : 'border-border bg-background text-foreground hover:bg-muted'
-                    }`}
-                  >
-                    {label}
-                    {locked && <Lock className="inline-block ml-1 h-3 w-3 text-amber-500" />}
-                  </button>
-                )
-              })}
-            </div>
-            {!hasPaidAccess && (
-              <p className="text-[10px] text-amber-600">
-                Difícil y Progresivo requieren Premium — simula el examen real
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Premium: selector de nº preguntas */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                  Número de preguntas
+                </label>
+                <div className="flex gap-2">
+                  {NUM_PREGUNTAS_OPTIONS.map((n) => (
+                    <button
+                      key={n}
+                      onClick={() => setNumPreguntas(n)}
+                      className={`flex-1 rounded-md border py-1.5 text-xs font-medium transition-colors ${
+                        numPreguntas === n
+                          ? 'border-primary bg-primary text-primary-foreground'
+                          : 'border-border bg-background text-foreground hover:bg-muted'
+                      }`}
+                    >
+                      {n}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <Button className="w-full" onClick={handleGenerarTest} disabled={isGenerating}>
+                Generar Test
+              </Button>
+            </>
+          ) : (
+            /* Free: single button, no selectors */
+            <div className="space-y-2">
+              <Button
+                className="w-full bg-green-600 hover:bg-green-700"
+                onClick={handleGenerarTest}
+                disabled={isGenerating}
+              >
+                Hacer test gratuito (10 preguntas)
+              </Button>
+              <p className="text-[10px] text-center text-muted-foreground">
+                1 test gratuito por tema · Dificultad media
               </p>
-            )}
-          </div>
-
-          {/* Selector de nº preguntas */}
-          <div className="space-y-1.5">
-            <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-              Número de preguntas
-            </label>
-            <div className="flex gap-2">
-              {NUM_PREGUNTAS_OPTIONS.map((n) => (
-                <button
-                  key={n}
-                  onClick={() => setNumPreguntas(n)}
-                  className={`flex-1 rounded-md border py-1.5 text-xs font-medium transition-colors ${
-                    numPreguntas === n
-                      ? 'border-primary bg-primary text-primary-foreground'
-                      : 'border-border bg-background text-foreground hover:bg-muted'
-                  }`}
-                >
-                  {n}
-                </button>
-              ))}
             </div>
-          </div>
-
-          {/* Botón generar */}
-          <Button
-            className="w-full"
-            onClick={handleGenerarTest}
-            disabled={isGenerating}
-          >
-            Generar Test
-          </Button>
+          )}
         </CardContent>
       )}
 

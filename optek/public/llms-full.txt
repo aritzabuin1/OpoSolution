@@ -7,7 +7,7 @@ Genera tests tipo test desde legislación española vigente (CE, LPAC, LRJSP, TR
 ## Contenido principal
 
 - [Cómo funciona](https://oporuta.es/#como-funciona): Sistema de verificación determinista y Radar del Tribunal
-- [Precios](https://oporuta.es/#precios): Plan gratuito (5 tests) y Pack Oposición (49,99€, pago único)
+- [Precios](https://oporuta.es/#precios): Plan gratuito (1 test en cada tema) y Pack Oposición (49,99€, pago único)
 - [Simulacros INAP Oficiales](https://oporuta.es/examenes-oficiales): Exámenes reales 2018, 2019, 2022, 2024
 - [Blog](https://oporuta.es/blog): Guías de estudio para Auxiliar Administrativo del Estado
 
@@ -74,7 +74,7 @@ El Radar del Tribunal es un análisis de frecuencia de artículos legales basado
 
 OpoRuta funciona con un modelo de pago único (sin suscripción):
 
-- **Plan Gratuito**: 5 tests de IA (solo temas 1, 11 y 17), 3 simulacros de 20 preguntas, 3 sesiones de psicotécnicos, 3 cazatrampas/día, 2 análisis detallados. Sin tarjeta de crédito.
+- **Plan Gratuito**: 1 test gratuito en cada tema (todos los temas abiertos), 3 simulacros de 20 preguntas, 3 sesiones de psicotécnicos, 3 cazatrampas/día, 2 análisis detallados con IA. Sin tarjeta de crédito.
 - **Pack Oposición (49,99 EUR)**: Acceso ilimitado a tests en los 28 temas, simulacros completos (hasta 100 preguntas), flashcards, radar del tribunal completo, cazatrampas ilimitado, 20 análisis detallados. Pago único, sin suscripción.
 - **Recarga de Análisis (8,99 EUR)**: 10 análisis detallados adicionales para quienes agotan los incluidos en el Pack.
 - **Fundador (24,99 EUR)**: 30 análisis detallados + badge exclusivo de fundador. Limitado a 20 plazas.
@@ -94,7 +94,7 @@ Sí. Los simulacros utilizan las preguntas de los exámenes oficiales del INAP d
 La base de datos legislativa se actualiza cuando se producen cambios normativos relevantes. El BOE Watcher monitoriza automáticamente el Boletín Oficial del Estado para detectar modificaciones que afecten al temario.
 
 **¿Necesito tarjeta de crédito para el plan gratuito?**
-No. Los primeros 5 tests son completamente gratuitos sin registro de tarjeta.
+No. Tienes un test gratuito en cada tema sin registro de tarjeta. Explora todos los temas de tu oposición sin compromiso.
 
 ---
 

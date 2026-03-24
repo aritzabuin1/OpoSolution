@@ -19,6 +19,7 @@ import { createServiceClient } from '@/lib/supabase/server'
 import { sendNurtureEmail } from '@/lib/email/client'
 import {
   renderActivationD2,
+  renderFirstTestAnalysis,
   renderValueRadarD5,
   renderProgressD10,
   renderWallHit,
@@ -38,6 +39,7 @@ const MIN_DAYS_BETWEEN_EMAILS = 4
 const EMAIL_KEYS = [
   'wall_hit',
   'final_30d',
+  'first_test_analysis',
   'urgency_d21',
   'progress_d10',
   'value_radar_d5',
@@ -61,6 +63,11 @@ interface NurtureCandidate {
   avg_score: number | null
   last_test_at: string | null
   sent_keys: string[]  // already sent email keys
+  // First test data (for first_test_analysis email)
+  first_test_tema: string | null
+  first_test_score: number | null
+  // Tema counts (for new free tier model)
+  total_temas: number
 }
 
 export interface NurtureResult {
@@ -189,38 +196,65 @@ async function fetchCandidatesDirect(supabase: any): Promise<NurtureCandidate[]>
     sentMap.set(s.user_id, entry)
   }
 
-  // Get test stats per user
+  // Get test stats per user (including first test data for analysis email)
   const { data: testStats } = await supabase
     .from('tests_generados')
-    .select('user_id, completado, puntuacion, created_at')
+    .select('user_id, completado, puntuacion, created_at, tema_id')
 
-  const statsMap = new Map<string, { completed: number; avgScore: number | null; lastTest: string | null }>()
+  interface UserStats {
+    completed: number
+    avgScore: number | null
+    lastTest: string | null
+    scores: number[]
+    firstTestAt: string | null
+    firstTestScore: number | null
+    firstTestTemaId: string | null
+  }
+  const statsMap = new Map<string, UserStats>()
   for (const t of testStats ?? []) {
-    const entry = statsMap.get(t.user_id) ?? { completed: 0, avgScore: null, lastTest: null, scores: [] as number[] }
+    const entry = statsMap.get(t.user_id) ?? {
+      completed: 0, avgScore: null, lastTest: null, scores: [],
+      firstTestAt: null, firstTestScore: null, firstTestTemaId: null,
+    }
     if (t.completado) {
       entry.completed++
-      if (t.puntuacion != null) (entry as { scores: number[] }).scores.push(t.puntuacion)
+      if (t.puntuacion != null) entry.scores.push(t.puntuacion)
+      // Track earliest completed test for first_test_analysis email
+      if (!entry.firstTestAt || t.created_at < entry.firstTestAt) {
+        entry.firstTestAt = t.created_at
+        entry.firstTestScore = t.puntuacion
+        entry.firstTestTemaId = t.tema_id
+      }
     }
     if (!entry.lastTest || t.created_at > entry.lastTest) entry.lastTest = t.created_at
     statsMap.set(t.user_id, entry)
   }
   // Compute averages
-  for (const [uid, entry] of statsMap) {
-    const scores = (entry as { scores?: number[] }).scores ?? []
-    statsMap.set(uid, {
-      completed: entry.completed,
-      avgScore: scores.length > 0 ? scores.reduce((a, b) => a + b, 0) / scores.length : null,
-      lastTest: entry.lastTest,
-    })
+  for (const [, entry] of statsMap) {
+    entry.avgScore = entry.scores.length > 0
+      ? entry.scores.reduce((a, b) => a + b, 0) / entry.scores.length
+      : null
   }
 
-  // Get oposición names
+  // Get oposición names + tema counts
   const { data: oposiciones } = await supabase
     .from('oposiciones')
     .select('id, nombre, slug')
 
   const opoMap = new Map<string, { nombre: string; slug: string }>()
   for (const o of oposiciones ?? []) opoMap.set(o.id, { nombre: o.nombre, slug: o.slug })
+
+  // Count temas per oposición
+  const { data: temas } = await supabase
+    .from('temas')
+    .select('id, oposicion_id, titulo')
+
+  const temaCountMap = new Map<string, number>()
+  const temaNameMap = new Map<string, string>()  // tema_id → titulo
+  for (const t of (temas ?? []) as Array<{ id: string; oposicion_id: string; titulo: string }>) {
+    temaCountMap.set(t.oposicion_id, (temaCountMap.get(t.oposicion_id) ?? 0) + 1)
+    temaNameMap.set(t.id, t.titulo)
+  }
 
   // Build candidates
   const candidates: NurtureCandidate[] = []
@@ -233,6 +267,10 @@ async function fetchCandidatesDirect(supabase: any): Promise<NurtureCandidate[]>
 
     const stats = statsMap.get(p.id)
     const opo = p.oposicion_id ? opoMap.get(p.oposicion_id) : null
+
+    // Resolve first test tema name
+    const firstTemaId = stats?.firstTestTemaId
+    const firstTestTema = firstTemaId ? (temaNameMap.get(firstTemaId) ?? null) : null
 
     candidates.push({
       id: p.id,
@@ -247,6 +285,9 @@ async function fetchCandidatesDirect(supabase: any): Promise<NurtureCandidate[]>
       avg_score: stats?.avgScore ?? null,
       last_test_at: stats?.lastTest ?? null,
       sent_keys: sent?.keys ?? [],
+      first_test_tema: firstTestTema,
+      first_test_score: stats?.firstTestScore ?? null,
+      total_temas: p.oposicion_id ? (temaCountMap.get(p.oposicion_id) ?? 0) : 0,
     })
   }
 
@@ -276,6 +317,17 @@ function selectEmail(
   // Email 6: Calendar — 30 days before exam (April 23 for May 23 exam)
   if (daysUntilExam <= 30 && daysUntilExam > 0 && !alreadySent.has('final_30d')) {
     return 'final_30d'
+  }
+
+  // Email NEW: First test analysis (behavior-triggered, high priority)
+  // Sent the morning after first test — the pain is fresh
+  if (
+    user.tests_completed >= 1 &&
+    user.first_test_score !== null &&
+    daysSinceRegistration >= 1 &&
+    !alreadySent.has('first_test_analysis')
+  ) {
+    return 'first_test_analysis'
   }
 
   // Email 5: Urgency D+21
@@ -316,10 +368,27 @@ async function renderEmail(
 
   switch (key) {
     case 'activation_d2': {
-      const body = renderActivationD2({ nombre, oposicionNombre })
+      const body = renderActivationD2({ nombre, oposicionNombre, totalTemas: user.total_temas })
       const subject = nombre
         ? `${nombre}, tu primer test de ${oposicionNombre} te espera`
         : `Tu primer test de ${oposicionNombre} te espera`
+      return { subject, html: wrapNurtureTemplate(body, { userId: user.id }) }
+    }
+
+    case 'first_test_analysis': {
+      const score = user.first_test_score ?? 0
+      const tema = user.first_test_tema ?? oposicionNombre
+      const nota = Math.round(score / 10)
+      const body = renderFirstTestAnalysis({
+        nombre,
+        oposicionNombre,
+        firstTestTema: tema,
+        firstTestScore: score,
+        oposicionSlug,
+      })
+      const subject = nombre
+        ? `${nombre}, sacaste un ${nota}/10 en ${tema} — así te ayuda la IA`
+        : `Sacaste un ${nota}/10 en ${tema} — así te ayuda la IA`
       return { subject, html: wrapNurtureTemplate(body, { userId: user.id }) }
     }
 
@@ -356,11 +425,11 @@ async function renderEmail(
         oposicionNombre,
         testsCompleted: user.tests_completed,
         avgScore: user.avg_score,
-        freeLimit: FREE_TEST_LIMIT,
+        totalTemas: user.total_temas,
         oposicionSlug,
       })
       return {
-        subject: `Llevas ${user.tests_completed} tests — así vas`,
+        subject: `Has explorado ${user.tests_completed} temas — así vas`,
         html: wrapNurtureTemplate(body, { userId: user.id }),
       }
     }
@@ -371,13 +440,14 @@ async function renderEmail(
         oposicionNombre,
         testsCompleted: user.tests_completed,
         avgScore: user.avg_score,
+        totalTemas: user.total_temas,
         daysUntilExam,
         oposicionSlug,
       })
       return {
         subject: nombre
-          ? `${nombre}, tus 5 tests gratuitos se han acabado`
-          : 'Tus 5 tests gratuitos se han acabado',
+          ? `${nombre}, ya conoces tus puntos débiles — es hora de mejorarlos`
+          : 'Ya conoces tus puntos débiles — es hora de mejorarlos',
         html: wrapNurtureTemplate(body, { userId: user.id }),
       }
     }
@@ -423,6 +493,9 @@ export async function previewNurtureEmail(emailKey: string): Promise<{ subject: 
     avg_score: 72,
     last_test_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
     sent_keys: [],
+    first_test_tema: 'Ley 39/2015 (LPAC)',
+    first_test_score: 50,
+    total_temas: 28,
   }
 
   const daysUntilExam = Math.max(0, Math.ceil((EXAM_DATE.getTime() - Date.now()) / (1000 * 60 * 60 * 24)))

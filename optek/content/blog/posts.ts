@@ -406,7 +406,7 @@ export const blogPosts: BlogPost[] = [
   categorías habituales.
 </p>
 <p>
-  Empieza gratis con tests en 3 temas de muestra. Sin tarjeta de crédito.
+  Empieza gratis con 1 test en cada tema. Sin tarjeta de crédito.
 </p>
 
 <h2>Sigue preparando tu oposición</h2>
@@ -531,7 +531,7 @@ export const blogPosts: BlogPost[] = [
   completo con 100 preguntas puntuables y penalización real.
 </p>
 <p>
-  Los primeros 5 tests son completamente gratuitos — sin tarjeta de crédito.
+  Tienes un test gratuito en cada tema — sin tarjeta de crédito.
 </p>
 
 <h2>Sigue preparando tu oposición</h2>
@@ -1482,7 +1482,7 @@ export const blogPosts: BlogPost[] = [
   verifica que ese artículo existe antes de mostrártela.
 </p>
 <p>
-  Puedes hacer tus primeros 5 tests de forma completamente gratuita, sin tarjeta de crédito.
+  Puedes hacer un test gratuito en cada tema, sin tarjeta de crédito.
   Si la plataforma te ayuda a consolidar conceptos que te cuestan — regístralo.
 </p>
 
@@ -1683,7 +1683,7 @@ export const blogPosts: BlogPost[] = [
 </p>
 <p>
   En OpoRuta, cada pregunta incluye el <strong>artículo exacto de la ley</strong> que la respalda,
-  verificado contra la legislación oficial. Tus primeros 5 tests son gratis, sin tarjeta de crédito.
+  verificado contra la legislación oficial. Tienes un test gratuito en cada tema, sin tarjeta de crédito.
 </p>
 
 <h2>Sigue preparando tu oposición</h2>
@@ -1826,7 +1826,7 @@ export const blogPosts: BlogPost[] = [
 </p>
 <p>
   En OpoRuta, cada pregunta de test incluye el artículo exacto verificado contra la legislación oficial.
-  Tus primeros 5 tests son gratis, sin tarjeta de crédito.
+  Tienes un test gratuito en cada tema, sin tarjeta de crédito.
 </p>
 
 <h2>Sigue preparando tu oposición</h2>
@@ -3756,7 +3756,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         question: '¿Cuál es la mejor app gratuita para preparar oposiciones?',
-        answer: 'OpositaTest ofrece un plan gratuito con tests limitados y es la opción más conocida. OpoRuta permite 5 tests gratuitos con verificación legal. Para complementar, los exámenes oficiales del INAP son gratuitos y están disponibles en formato interactivo en OpoRuta.',
+        answer: 'OpositaTest ofrece un plan gratuito con tests limitados y es la opción más conocida. OpoRuta ofrece un test gratuito en cada tema con verificación legal. Para complementar, los exámenes oficiales del INAP son gratuitos y están disponibles en formato interactivo en OpoRuta.',
       },
       {
         question: '¿Las plataformas de IA para oposiciones son fiables?',
@@ -3926,7 +3926,7 @@ export const blogPosts: BlogPost[] = [
   <li><strong>Sin foro de comunidad:</strong> no tiene la interacción social de OpositaTest</li>
 </ul>
 <h3>Precio</h3>
-<p>Gratis (5 tests) / Pack C1 o C2: <strong>49,99€ pago único</strong> / Pack Doble C1+C2: <strong>79,99€ pago único</strong>.</p>
+<p>Gratis (1 test/tema) / Pack C1 o C2: <strong>49,99€ pago único</strong> / Pack Doble C1+C2: <strong>79,99€ pago único</strong>.</p>
 
 <h2>Testualia — Genera tests desde tus documentos (Bilbao)</h2>
 <p>
@@ -4200,7 +4200,7 @@ export const blogPosts: BlogPost[] = [
     </tr>
     <tr>
       <td><strong>Plan gratuito</strong></td>
-      <td>5 tests con verificación</td>
+      <td>1 test/tema con verificación</td>
       <td>Tests limitados</td>
     </tr>
   </tbody>
@@ -4316,7 +4316,7 @@ export const blogPosts: BlogPost[] = [
 <p>
   Si solo puedes elegir una y preparas C1 o C2 de la AGE, te recomendamos OpoRuta —
   pero somos parte interesada, así que prueba las dos. Ambas tienen plan gratuito.
-  Haz 5 tests en cada una y decide cuál se adapta mejor a tu forma de estudiar.
+  Haz un test en cada una y decide cuál se adapta mejor a tu forma de estudiar.
 </p>
 <p>
   Si preparas otra oposición diferente a C1/C2 AGE, OpoRuta no es para ti.
@@ -4348,7 +4348,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         question: '¿Hay tests gratis de Auxiliar Administrativo del Estado online?',
-        answer: 'Sí. OpoRuta ofrece 5 tests gratuitos con verificación legal del BOE. OpositaTest tiene un plan gratuito con tests limitados. Además, los exámenes oficiales del INAP están disponibles gratuitamente como simulacros interactivos en OpoRuta.',
+        answer: 'Sí. OpoRuta ofrece un test gratuito en cada tema con verificación legal del BOE. OpositaTest tiene un plan gratuito con tests limitados. Además, los exámenes oficiales del INAP están disponibles gratuitamente como simulacros interactivos en OpoRuta.',
       },
       {
         question: '¿Es posible preparar el Auxiliar Administrativo sin pagar nada?',
@@ -4395,9 +4395,9 @@ export const blogPosts: BlogPost[] = [
   <tbody>
     <tr>
       <td><strong>OpoRuta</strong></td>
-      <td>5 tests</td>
+      <td>1 test/tema</td>
       <td>Sí (BOE)</td>
-      <td>Temas 1, 11 y 17 en plan gratuito</td>
+      <td>Todos los temas en plan gratuito</td>
     </tr>
     <tr>
       <td><strong>OpositaTest</strong></td>
@@ -4722,7 +4722,7 @@ export const blogPosts: BlogPost[] = [
     <tr>
       <td><strong>Precio</strong></td>
       <td>Gratis / 20€/mes (Plus)</td>
-      <td>Gratis (5 tests) / 49,99€</td>
+      <td>Gratis (1 test/tema) / 49,99€</td>
     </tr>
     <tr>
       <td><strong>Riesgo de alucinación</strong></td>

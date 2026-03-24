@@ -75,7 +75,7 @@ export default function TerminosPage() {
           <div className="text-muted-foreground leading-relaxed space-y-2">
             <ul className="list-disc pl-5 space-y-2">
               <li>
-                <strong className="text-foreground">Plan gratuito:</strong> 5 tests y 2
+                <strong className="text-foreground">Plan gratuito:</strong> 1 test por tema y 2
                 correcciones de desarrollo (en total, no por mes). Sin tarjeta de crédito
                 requerida.
               </li>

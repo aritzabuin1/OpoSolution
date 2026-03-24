@@ -135,7 +135,7 @@ const plans = [
     period: 'para siempre',
     badge: null,
     features: [
-      '5 tests en 3 temas de muestra',
+      '1 test gratuito en cada tema',
       '1 simulacro oficial + 3 psicotécnicos',
       '2 análisis detallados',
       'Sin tarjeta de crédito',
@@ -225,7 +225,7 @@ const faqs = [
   },
   {
     q: '¿Qué incluye exactamente el plan gratuito?',
-    a: 'El plan gratuito incluye 5 tests en 3 temas de muestra (Constitución, LPAC y Word), 1 simulacro oficial, 3 psicotécnicos y 2 análisis detallados. No necesitas tarjeta de crédito para empezar.',
+    a: 'El plan gratuito incluye 1 test gratuito en cada tema (Constitución, LPAC, TREBEP y todos los demás), 1 simulacro oficial, 3 psicotécnicos y 2 análisis detallados. No necesitas tarjeta de crédito para empezar.',
   },
   {
     q: '¿Con qué frecuencia se actualiza la legislación?',
@@ -365,7 +365,7 @@ const jsonLdApp = {
       price: '0',
       priceCurrency: 'EUR',
       name: 'Plan Gratuito',
-      description: '5 tests en 3 temas de muestra, 1 simulacro oficial, 3 psicotécnicos',
+      description: '1 test gratuito en cada tema, todos los temas de tu oposición',
     },
     {
       '@type': 'Offer',
@@ -470,7 +470,7 @@ export default async function LandingPage() {
             </Link>
           </div>
           <p className="mt-4 text-xs text-muted-foreground">
-            5 tests gratuitos · Sin tarjeta · Sin suscripción
+            Todos los temas gratis · Sin tarjeta · Sin suscripción
           </p>
 
           {/* Social proof — Cialdini's principle */}
@@ -1027,7 +1027,7 @@ export default async function LandingPage() {
             Empieza tu ruta hoy. Gratis.
           </h2>
           <p className="mt-4 text-primary-foreground/80">
-            Sin tarjeta de crédito. Sin permanencia. 5 tests gratuitos para que compruebes
+            Sin tarjeta de crédito. Sin permanencia. Un test gratuito en cada tema para que compruebes
             la diferencia por ti mismo.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">

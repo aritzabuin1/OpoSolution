@@ -40,7 +40,7 @@ export function StickyCTA() {
         <div className="flex items-center justify-between gap-3">
           <div className="flex-1 min-w-0">
             <p className="text-white text-sm font-semibold truncate">
-              5 tests gratis — sin tarjeta
+              Todos los temas gratis — sin tarjeta
             </p>
             <p className="text-white/70 text-xs truncate">
               Preguntas verificadas contra el BOE

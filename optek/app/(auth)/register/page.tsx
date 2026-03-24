@@ -119,7 +119,7 @@ export default function RegisterPage() {
       <CardHeader className="text-center">
         <CardTitle className="text-2xl">Crear cuenta gratis</CardTitle>
         <CardDescription>
-          5 tests gratuitos · Sin tarjeta de crédito
+          Todos los temas gratis · Sin tarjeta de crédito
         </CardDescription>
       </CardHeader>
       <CardContent>

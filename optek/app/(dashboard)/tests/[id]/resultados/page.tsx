@@ -26,9 +26,10 @@ import { CheckCircle2, XCircle, Clock, BarChart3, TrendingUp, Trophy, BookOpen, 
 import type { Pregunta } from '@/types/ai'
 import { ShareButton } from '@/components/shared/ShareButton'
 import { StickyAnalysisCTA } from '@/components/shared/StickyAnalysisCTA'
-// RepasoButton removed — confusing UX, repaso logic handled differently
+import { PostTestConversionTrigger } from '@/components/tests/PostTestConversionTrigger'
 import { calcularNotaSimulacro } from '@/lib/utils/simulacro-ranking'
 import { getAniosConvocatoriaBatch } from '@/lib/utils/cross-reference'
+import { checkPaidAccess, getOposicionFromProfile } from '@/lib/freemium'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
@@ -127,6 +128,21 @@ export default async function ResultadosPage({ params }: Props) {
   if (error || !data) notFound()
 
   const test = data as unknown as TestData
+
+  // ── Check paid access for PostTestConversionTrigger ────────────────────────
+  const serviceSupabase = await createServiceClient()
+  const oposicionId = await getOposicionFromProfile(serviceSupabase, user.id)
+  const hasPaidAccess = await checkPaidAccess(serviceSupabase, user.id, oposicionId)
+
+  // Free corrector usage for nudge
+  const { data: profileData } = await serviceSupabase
+    .from('profiles')
+    .select('free_corrector_used')
+    .eq('id', user.id)
+    .single()
+  const freeCorrectorUsed = (profileData as { free_corrector_used?: number } | null)?.free_corrector_used ?? 0
+  const freeAnalysisRemaining = Math.max(0, 2 - freeCorrectorUsed)
+
   const preguntas = test.preguntas
   const respuestas = test.respuestas_usuario ?? []
   const puntuacion = test.puntuacion ?? 0
@@ -471,6 +487,41 @@ export default async function ResultadosPage({ params }: Props) {
           testId={id}
         />
       </div>
+
+      {/* Nudge análisis IA — prominente para users que nunca lo han usado */}
+      {preguntasErroneas.length > 0 && freeAnalysisRemaining > 0 && !hasPaidAccess && (
+        <Card className="border-blue-300 bg-gradient-to-r from-blue-50 to-indigo-50">
+          <CardContent className="flex items-start gap-3 pt-4 pb-4">
+            <span className="mt-0.5 text-xl">✨</span>
+            <div className="flex-1">
+              <p className="text-sm font-semibold text-blue-900">
+                ¿Por qué has fallado {preguntasErroneas.length} pregunta{preguntasErroneas.length !== 1 ? 's' : ''}?
+              </p>
+              <p className="text-xs text-blue-700 mt-1">
+                La IA te lo explica paso a paso: primero te ayuda a razonar, luego te revela la respuesta con la cita legal exacta.
+              </p>
+              <p className="text-xs text-blue-600 mt-1 font-medium">
+                Gratis — te {freeAnalysisRemaining === 1 ? 'queda 1 análisis' : `quedan ${freeAnalysisRemaining} análisis`}
+              </p>
+            </div>
+            <a href="#analisis-ia" className="shrink-0">
+              <Button size="sm" variant="default" className="bg-blue-600 hover:bg-blue-700">
+                Analizar errores
+              </Button>
+            </a>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* PostTestConversionTrigger — free users see conversion CTA, paid see motivational */}
+      {!esRepaso && (
+        <PostTestConversionTrigger
+          variant={hasPaidAccess ? 'paid_post_test' : 'free_post_test'}
+          score={puntuacion}
+          temaTitulo={temaTitulo}
+          passingThreshold={70}
+        />
+      )}
 
       {/* Panel de análisis socrático IA — ANTES de las preguntas falladas */}
       {preguntasErroneas.length > 0 && (

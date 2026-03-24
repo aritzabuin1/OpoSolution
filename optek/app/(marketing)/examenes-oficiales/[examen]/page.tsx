@@ -330,7 +330,7 @@ export default async function SimulacroExamenPage({ params }: Props) {
           <div className="flex-1">
             <p className="font-semibold">Practica el examen completo de forma interactiva</p>
             <p className="text-sm text-muted-foreground mt-1">
-              5 tests gratuitos. Sin tarjeta de crédito. Respuestas y explicaciones IA de cada error.
+              Tests gratuitos en todos los temas. Sin tarjeta de crédito. Respuestas y explicaciones IA de cada error.
             </p>
           </div>
           <Link href="/register">

@@ -109,11 +109,74 @@ function precio(oposicionSlug: string | null): string {
   return oposicionSlug === 'gestion-estado' ? '69,99€' : '49,99€'
 }
 
+// ─── Email NEW: First Test Analysis (behavior-triggered) ────────────────────
+
+export function renderFirstTestAnalysis(data: {
+  nombre: string | null
+  oposicionNombre: string
+  firstTestTema: string
+  firstTestScore: number  // 0-100 from BD
+  oposicionSlug: string | null
+}): string {
+  const nota = Math.round(data.firstTestScore / 10)
+  const falladas = 10 - nota
+  const aprobado = nota >= 7
+
+  return `
+<h1 style="margin:0 0 16px;font-size:22px;color:#111827;font-weight:700;">
+  ${greeting(data.nombre)}
+</h1>
+<p style="margin:0 0 16px;font-size:15px;color:#374151;line-height:1.6;">
+  ${aprobado
+    ? `Has sacado un <strong>${nota}/10</strong> en <strong>${data.firstTestTema}</strong>. Buen comienzo.`
+    : `Has sacado un <strong>${nota}/10</strong> en <strong>${data.firstTestTema}</strong>. Has fallado <strong>${falladas} preguntas</strong>.`
+  }
+</p>
+<p style="margin:0 0 16px;font-size:15px;color:#374151;line-height:1.6;">
+  ¿Sabes por qué has fallado cada pregunta? OpoRuta tiene un <strong>análisis con IA</strong>
+  que te lo explica paso a paso. Así funciona:
+</p>
+${dataCard(`
+  <p style="margin:0 0 12px;font-size:14px;color:#1e40af;font-weight:700;">Ejemplo de análisis:</p>
+  <table cellpadding="0" cellspacing="0" width="100%">
+    <tr><td style="padding:8px 0;border-bottom:1px solid #DBEAFE;">
+      <p style="margin:0;font-size:13px;color:#6b7280;font-style:italic;">
+        "¿Ante quién se interpone el recurso de alzada?"
+      </p>
+      <p style="margin:4px 0 0;font-size:12px;color:#dc2626;">❌ Tu respuesta: Ante el mismo órgano</p>
+    </td></tr>
+    <tr><td style="padding:10px 0 6px;">
+      <p style="margin:0 0 6px;font-size:13px;color:#374151;">
+        <strong>💭 Paso 1:</strong> Es habitual confundir el recurso de alzada con el de reposición...
+      </p>
+      <p style="margin:0 0 6px;font-size:13px;color:#374151;">
+        <strong>🔍 Paso 2:</strong> ¿Qué diferencia hay entre "subir" al superior y "quedarse" en el mismo órgano?
+      </p>
+      <p style="margin:0 0 6px;font-size:13px;color:#374151;">
+        <strong>✅ Paso 3:</strong> El recurso de alzada se interpone ante el <strong>superior jerárquico</strong>
+        (Art. 121 LPAC). El de reposición, ante el mismo órgano (Art. 123 LPAC).
+      </p>
+      <p style="margin:0;font-size:13px;color:#1e40af;font-weight:600;">
+        💡 <strong>Recuerda:</strong> Alzada = sube. Reposición = se queda.
+      </p>
+    </td></tr>
+  </table>
+`)}
+<p style="margin:0 0 8px;font-size:15px;color:#374151;line-height:1.6;">
+  <strong>Tienes 2 análisis gratuitos.</strong> Úsalos para entender por qué fallas y no repetir los mismos errores.
+</p>
+<p style="margin:0 0 0;font-size:13px;color:#6b7280;line-height:1.6;">
+  Cuando completes un test, pulsa "¿Por qué he fallado?" en la página de resultados.
+</p>
+${ctaButton('Hacer otro test y analizar errores →', '/tests')}`
+}
+
 // ─── Email 1: Activation D+2 ────────────────────────────────────────────────
 
 export function renderActivationD2(data: {
   nombre: string | null
   oposicionNombre: string
+  totalTemas: number
 }): string {
   return `
 <h1 style="margin:0 0 16px;font-size:22px;color:#111827;font-weight:700;">
@@ -128,15 +191,24 @@ export function renderActivationD2(data: {
   contra la legislación oficial — sin artículos inventados.
 </p>
 ${dataCard(`
-  <p style="margin:0;font-size:14px;color:#1e40af;font-weight:600;">Tus 3 temas de prueba:</p>
+  <p style="margin:0;font-size:14px;color:#1e40af;font-weight:600;">Tienes acceso a los ${data.totalTemas} temas de tu oposición:</p>
   <p style="margin:6px 0 0;font-size:13px;color:#3b82f6;line-height:1.6;">
-    ✓ Constitución Española<br/>
-    ✓ Ley 39/2015 (LPAC)<br/>
-    ✓ Ofimática (Word)
+    ✓ 1 test gratuito en cada tema<br/>
+    ✓ 10 preguntas por test<br/>
+    ✓ Descubre tus puntos débiles en todos los temas
   </p>
 `)}
+<p style="margin:0 0 12px;font-size:15px;color:#374151;line-height:1.6;">
+  Cuando falles preguntas, la <strong>IA te explica por qué</strong> paso a paso:
+</p>
+${dataCard(`
+  <p style="margin:0 0 4px;font-size:13px;color:#374151;">💭 Te explica por qué es fácil confundirse</p>
+  <p style="margin:0 0 4px;font-size:13px;color:#374151;">🔍 Te guía con preguntas para que razones</p>
+  <p style="margin:0 0 4px;font-size:13px;color:#374151;">✅ Te revela la respuesta con la cita legal exacta</p>
+  <p style="margin:0;font-size:13px;color:#1e40af;font-weight:600;">💡 Te da un truco para no olvidarlo</p>
+`)}
 <p style="margin:0 0 0;font-size:13px;color:#6b7280;line-height:1.6;">
-  Tienes 5 tests gratuitos. Úsalos para ver si OpoRuta te encaja.
+  Tienes 2 análisis con IA gratuitos. Haz tu primer test para usarlos.
 </p>
 ${ctaButton('Hacer mi primer test →', '/dashboard')}`
 }
@@ -194,23 +266,22 @@ export function renderProgressD10(data: {
   oposicionNombre: string
   testsCompleted: number
   avgScore: number | null
-  freeLimit: number
+  totalTemas: number
   oposicionSlug: string | null
 }): string {
-  const pct = Math.min(100, Math.round((data.testsCompleted / data.freeLimit) * 100))
-  const scoreText = data.avgScore !== null
-    ? `Tu nota media: <strong>${Math.round(data.avgScore)}/100</strong>`
+  const pct = data.totalTemas > 0 ? Math.min(100, Math.round((data.testsCompleted / data.totalTemas) * 100)) : 0
+  const nota = data.avgScore !== null ? Math.round(data.avgScore / 10) : null
+  const scoreText = nota !== null
+    ? `Tu nota media: <strong>${nota}/10</strong>`
     : 'Completa más tests para ver tu nota media'
-  const remaining = Math.max(0, data.freeLimit - data.testsCompleted)
-  const ctaText = remaining > 0 ? 'Seguir practicando →' : `Desbloquear todo por ${precio(data.oposicionSlug)} →`
-  const ctaHref = remaining > 0 ? '/dashboard' : '/#precios'
+  const remaining = Math.max(0, data.totalTemas - data.testsCompleted)
 
   return `
 <h1 style="margin:0 0 16px;font-size:22px;color:#111827;font-weight:700;">
   ${greeting(data.nombre)}
 </h1>
 <p style="margin:0 0 16px;font-size:15px;color:#374151;line-height:1.6;">
-  Llevas <strong>${data.testsCompleted} de ${data.freeLimit} tests gratuitos</strong> en ${data.oposicionNombre}.
+  Has explorado <strong>${data.testsCompleted} de ${data.totalTemas} temas</strong> de ${data.oposicionNombre}.
 </p>
 ${dataCard(`
   <!-- Progress bar -->
@@ -221,16 +292,19 @@ ${dataCard(`
       </td>
     </tr>
   </table>
-  <p style="margin:0 0 4px;font-size:14px;color:#1e40af;font-weight:600;">${data.testsCompleted}/${data.freeLimit} tests completados</p>
+  <p style="margin:0 0 4px;font-size:14px;color:#1e40af;font-weight:600;">${data.testsCompleted}/${data.totalTemas} temas explorados</p>
   <p style="margin:0;font-size:13px;color:#3b82f6;">${scoreText}</p>
 `)}
-<p style="margin:0 0 0;font-size:15px;color:#374151;line-height:1.6;">
+<p style="margin:0 0 8px;font-size:15px;color:#374151;line-height:1.6;">
   ${remaining > 0
-    ? `Te quedan <strong>${remaining} tests gratuitos</strong>. Cada test te acerca más al aprobado.`
-    : `Has agotado tus tests gratuitos. Desbloquea acceso completo a los ${data.oposicionSlug === 'gestion-estado' ? '58' : data.oposicionSlug === 'administrativo-estado' ? '45' : '28'} temas.`
+    ? `Te quedan <strong>${remaining} temas por explorar</strong>. Descubre en cuáles necesitas más práctica.`
+    : `Has explorado todos los temas. ¿Quieres mejorar en los que más fallas?`
   }
 </p>
-${ctaButton(ctaText, ctaHref)}`
+<p style="margin:0 0 0;font-size:13px;color:#6b7280;line-height:1.6;">
+  ¿Sabías que la IA de OpoRuta te explica paso a paso por qué fallas cada pregunta? Tienes 2 análisis gratuitos.
+</p>
+${ctaButton(remaining > 0 ? 'Seguir explorando temas →' : `Desbloquear tests ilimitados por ${precio(data.oposicionSlug)} →`, remaining > 0 ? '/tests' : '/#precios')}`
 }
 
 // ─── Email 4: Wall Hit ──────────────────────────────────────────────────────
@@ -240,32 +314,33 @@ export function renderWallHit(data: {
   oposicionNombre: string
   testsCompleted: number
   avgScore: number | null
+  totalTemas: number
   daysUntilExam: number
   oposicionSlug: string | null
 }): string {
   const pricePerDay = data.daysUntilExam > 0
     ? (parseFloat(precio(data.oposicionSlug).replace('€', '').replace(',', '.')) / data.daysUntilExam).toFixed(2)
     : '0.82'
-  const scoreText = data.avgScore !== null
-    ? `<strong>${Math.round(data.avgScore)}/100</strong> de nota media`
-    : ''
+  const nota = data.avgScore !== null ? Math.round(data.avgScore / 10) : null
+  const scoreText = nota !== null ? `<strong>${nota}/10</strong> de nota media` : ''
 
   return `
 <h1 style="margin:0 0 16px;font-size:22px;color:#111827;font-weight:700;">
   ${greeting(data.nombre)}
 </h1>
 <p style="margin:0 0 16px;font-size:15px;color:#374151;line-height:1.6;">
-  Has completado tus <strong>5 tests gratuitos</strong> de ${data.oposicionNombre}.
+  Has explorado <strong>${data.testsCompleted} de ${data.totalTemas} temas</strong> de ${data.oposicionNombre}.
   ${scoreText ? `Tu resultado: ${scoreText}.` : ''}
+  Ya conoces tus puntos débiles — ahora necesitas practicar para mejorarlos.
 </p>
 ${dataCard(`
   <p style="margin:0 0 8px;font-size:14px;color:#1e40af;font-weight:600;">Lo que desbloqueas con el Pack:</p>
   <p style="margin:0;font-size:13px;color:#3b82f6;line-height:1.8;">
-    ✓ Tests ilimitados en todos los temas<br/>
+    ✓ Tests ilimitados en todos los temas (repite hasta dominarlos)<br/>
+    ✓ Elige dificultad y nº de preguntas (10, 20 o 30)<br/>
     ✓ Simulacros completos (100 preguntas)<br/>
     ✓ Radar del Tribunal completo<br/>
     ✓ Flashcards con repetición espaciada<br/>
-    ✓ Caza-Trampas para detectar errores comunes<br/>
     ✓ 20 análisis detallados con IA
   </p>
 `)}

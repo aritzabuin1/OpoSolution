@@ -16,7 +16,7 @@
  * Lógica de acceso (ADR-0010 — Fuel Tank):
  *   - Pack Oposición comprado → acceso completo a todos los temas
  *   - Tema Individual comprado → acceso a ESE tema específico
- *   - Sin compras → free tier (máx 5 tests, máx 2 correcciones)
+ *   - Sin compras → free tier (1 test/tema, máx 2 correcciones IA)
  *
  * Uso:
  *   const { hasAccess, accessType, loading } = useUserAccess(temaId)
@@ -116,9 +116,9 @@ export function useUserAccess(temaId?: string): UserAccessResult {
         }
       }
 
-      // Free tier
+      // Free tier v2: always has access (1 test per tema, all temas open)
       setResult({
-        hasAccess: freeTestsUsed < 5, // tiene tests gratuitos restantes
+        hasAccess: true,
         accessType: 'free',
         loading: false,
         corrections,

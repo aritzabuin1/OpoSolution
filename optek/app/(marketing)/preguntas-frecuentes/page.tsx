@@ -126,7 +126,7 @@ export default function PreguntasFrecuentesPage() {
             </p>
           )}
           <p className="text-base opacity-90">
-            4.200+ plazas · Prueba OpoRuta gratis · 5 tests sin tarjeta
+            4.200+ plazas · Prueba OpoRuta gratis · Todos los temas sin tarjeta
           </p>
           <div className="mt-5">
             <Link href="/register">

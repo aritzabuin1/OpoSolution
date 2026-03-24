@@ -332,3 +332,113 @@ export function getAlerts(
 
   return alerts
 }
+
+// ─── Question Bank Metrics ──────────────────────────────────────────────────
+
+export interface QuestionBankMetrics {
+  freeBankTotal: number      // total questions in free_question_bank
+  freeBankTemas: number      // temas covered by free bank
+  premiumBankTotal: number   // total questions in question_bank
+  premiumBankTemas: number   // unique temas in premium bank
+  avgQuestionsPerTema: number // average questions per tema in premium bank
+  cacheHitEstimate: number   // estimated % of premium tests served from bank
+}
+
+export interface FreeTierMetrics {
+  totalFreeUsers: number             // users without purchases
+  avgTemasExplored: number           // avg temas completed by free users
+  usersExplored5Plus: number         // free users with 5+ temas completed
+  conversionRate: number             // % free users who became paid
+  freeAnalysisUsed: number           // total free AI analyses consumed
+}
+
+async function _getQuestionBankMetrics(): Promise<QuestionBankMetrics> {
+  const supabase = await createServiceClient()
+
+  const [freeBankResult, premiumBankResult] = await Promise.all([
+    (supabase as any).from('free_question_bank').select('id', { count: 'exact', head: true }),
+    (supabase as any).from('question_bank').select('tema_id', { count: 'exact' }),
+  ])
+
+  const freeBankTotal = freeBankResult.count ?? 0
+  const premiumBankRows = (premiumBankResult.data ?? []) as Array<{ tema_id: string }>
+  const premiumBankTotal = premiumBankResult.count ?? 0
+  const premiumTemas = new Set(premiumBankRows.map(r => r.tema_id))
+
+  // Free bank temas
+  const { count: freeTemas } = await (supabase as any)
+    .from('free_question_bank')
+    .select('id', { count: 'exact', head: true })
+
+  return {
+    freeBankTotal: freeBankTotal * 10, // each row = 10 questions
+    freeBankTemas: freeTemas ?? 0,
+    premiumBankTotal,
+    premiumBankTemas: premiumTemas.size,
+    avgQuestionsPerTema: premiumTemas.size > 0 ? Math.round(premiumBankTotal / premiumTemas.size) : 0,
+    cacheHitEstimate: premiumBankTotal > 50 ? Math.min(95, Math.round((1 - 10 / Math.max(premiumBankTotal, 1)) * 100)) : 0,
+  }
+}
+
+async function _getFreeTierMetrics(): Promise<FreeTierMetrics> {
+  const supabase = await createServiceClient()
+  const adminIds = await getAdminUserIds()
+
+  // Free users = profiles without compras
+  const { data: allProfiles } = await supabase
+    .from('profiles')
+    .select('id')
+    .not('id', 'in', `(${adminIds.map(id => `'${id}'`).join(',')})`)
+
+  const { data: paidUserIds } = await supabase
+    .from('compras')
+    .select('user_id')
+
+  const paidSet = new Set((paidUserIds ?? []).map((r: { user_id: string }) => r.user_id))
+  const freeUsers = (allProfiles ?? []).filter(p => !paidSet.has(p.id))
+  const totalFreeUsers = freeUsers.length
+
+  // Temas explored by free users
+  let totalTemasExplored = 0
+  let users5Plus = 0
+  if (freeUsers.length > 0) {
+    const freeIds = freeUsers.map(u => u.id)
+    const { data: completedTests } = await supabase
+      .from('tests_generados')
+      .select('user_id, tema_id')
+      .eq('completado', true)
+      .not('tema_id', 'is', null)
+      .in('user_id', freeIds.slice(0, 100)) // limit to avoid huge queries
+
+    // Count unique temas per user
+    const userTemas = new Map<string, Set<string>>()
+    for (const t of (completedTests ?? []) as Array<{ user_id: string; tema_id: string }>) {
+      if (!userTemas.has(t.user_id)) userTemas.set(t.user_id, new Set())
+      userTemas.get(t.user_id)!.add(t.tema_id)
+    }
+    for (const temas of userTemas.values()) {
+      totalTemasExplored += temas.size
+      if (temas.size >= 5) users5Plus++
+    }
+  }
+
+  // Free analysis usage
+  const { data: analysisData } = await supabase
+    .from('profiles')
+    .select('free_corrector_used')
+
+  const freeAnalysisUsed = (analysisData ?? []).reduce(
+    (sum, p) => sum + ((p as { free_corrector_used?: number }).free_corrector_used ?? 0), 0
+  )
+
+  return {
+    totalFreeUsers,
+    avgTemasExplored: totalFreeUsers > 0 ? Math.round((totalTemasExplored / totalFreeUsers) * 10) / 10 : 0,
+    usersExplored5Plus: users5Plus,
+    conversionRate: totalFreeUsers > 0 ? Math.round((paidSet.size / (totalFreeUsers + paidSet.size)) * 1000) / 10 : 0,
+    freeAnalysisUsed,
+  }
+}
+
+export const getQuestionBankMetrics = _getQuestionBankMetrics
+export const getFreeTierMetrics = _getFreeTierMetrics

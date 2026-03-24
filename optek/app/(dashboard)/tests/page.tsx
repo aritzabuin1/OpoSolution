@@ -18,13 +18,13 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { getFreeTemas, getOposicionFromProfile } from '@/lib/freemium'
+import { getOposicionFromProfile, getFreeTemaStatus } from '@/lib/freemium'
 
 export const metadata: Metadata = { title: 'Tests de práctica' }
 import { TemaCard } from '@/components/tests/TemaCard'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
-import { AlertTriangle, ClipboardCheck, Lock, RefreshCw } from 'lucide-react'
+import { ClipboardCheck, RefreshCw } from 'lucide-react'
 import { RadarCard } from '@/components/tests/RadarCard'
 import { RepasoButton } from '@/components/shared/RepasoButton'
 import { AIGenerationBanner } from '@/components/shared/AIGenerationBanner'
@@ -104,11 +104,16 @@ export default async function TestsPage({
 
   const temas = temasResult.data ?? []
   const prof = profileResult.data as { free_tests_used?: number; is_admin?: boolean; is_founder?: boolean } | null
-  const freeTestsUsed = prof?.free_tests_used ?? 0
   const hasPaidAccess = (comprasResult.count ?? 0) > 0 || prof?.is_admin === true || prof?.is_founder === true
   const testsAnteriores = (testsResult.data ?? []) as TestAnterior[]
   const oposicionSlug = (oposicionResult.data as { slug?: string } | null)?.slug ?? 'aux-admin-estado'
-  const freeTemas = getFreeTemas(oposicionSlug)
+
+  // Free tier v2: get per-tema completion status
+  const freeStatus = hasPaidAccess
+    ? new Map<string, { completed: boolean; score: number | null; testId: string | null }>()
+    : await getFreeTemaStatus(supabase, user.id, oposicionId)
+  const temasCompleted = freeStatus.size
+  const totalTemas = temas.length
 
   // ── Agrupar temas por bloque (dinámico, funciona con cualquier oposición) ──
   type TemaWithBloque = typeof temas[number] & { bloque?: string }
@@ -122,9 +127,8 @@ export default async function TestsPage({
   const bloqueI = bloqueGroups.get('I') ?? []
   const bloqueII = bloqueGroups.get('II') ?? []
 
-  // ── Calcular tests gratuitos restantes ────────────────────────────────────
-  const freeTestsRemaining = Math.max(0, 5 - freeTestsUsed)
-  const freeLimitReached = !hasPaidAccess && freeTestsUsed >= 5
+  // ── Free tier v2: temas explorados ────────────────────────────────────────
+  const temasRemaining = Math.max(0, totalTemas - temasCompleted)
 
   // ─────────────────────────────────────────────────────────────────────────
   return (
@@ -148,12 +152,12 @@ export default async function TestsPage({
         <RadarCard hasPaidAccess={hasPaidAccess} />
       )}
 
-      {/* Banner freemium */}
+      {/* Banner freemium v2: temas explorados */}
       {!hasPaidAccess && (
         <FreemiumBanner
-          freeTestsUsed={freeTestsUsed}
-          freeTestsRemaining={freeTestsRemaining}
-          freeLimitReached={freeLimitReached}
+          temasCompleted={temasCompleted}
+          totalTemas={totalTemas}
+          temasRemaining={temasRemaining}
           oposicionSlug={oposicionSlug}
         />
       )}
@@ -173,8 +177,8 @@ export default async function TestsPage({
                 key={tema.id}
                 tema={tema}
                 hasPaidAccess={hasPaidAccess}
-                freeTestsUsed={freeTestsUsed}
-                isFreeAllowed={freeTemas.includes(tema.numero)}
+                freeCompleted={freeStatus.get(tema.id)?.completed ?? false}
+                freeScore={freeStatus.get(tema.id)?.score ?? null}
               />
             ))}
           </div>
@@ -226,95 +230,53 @@ export default async function TestsPage({
 // ─── Sub-componentes servidor ──────────────────────────────────────────────────
 
 function FreemiumBanner({
-  freeTestsUsed,
-  freeTestsRemaining,
-  freeLimitReached,
+  temasCompleted,
+  totalTemas,
+  temasRemaining,
   oposicionSlug,
 }: {
-  freeTestsUsed: number
-  freeTestsRemaining: number
-  freeLimitReached: boolean
+  temasCompleted: number
+  totalTemas: number
+  temasRemaining: number
   oposicionSlug: string
 }) {
   const checkoutHref = oposicionSlug === 'gestion-estado'
     ? '/cuenta?plan=pack_a2'
     : '/cuenta'
-  if (freeLimitReached) {
-    return (
-      <Card className="border-amber-200 bg-amber-50">
-        <CardContent className="flex items-start gap-3 pt-4 pb-4">
-          <Lock className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
-          <div className="space-y-2 flex-1">
-            <p className="text-sm font-medium text-amber-900">
-              Has agotado tus 5 tests gratuitos
-            </p>
-            <p className="text-xs text-amber-700">
-              Desbloquea acceso ilimitado a tests + correcciones de desarrollos con IA.
-            </p>
-            <div className="flex gap-2 flex-wrap">
-              <Link
-                href={checkoutHref}
-                className="inline-flex items-center rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
-              >
-                Ver planes
-              </Link>
-              <span className="self-center text-xs text-amber-600">
-                Academia tradicional: desde 150€/mes
-              </span>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    )
-  }
-
-  // Loss aversion nudge: warn when only 1 test remains (Kahneman's Prospect Theory)
-  if (freeTestsRemaining === 1) {
-    return (
-      <Card className="border-orange-300 bg-orange-50">
-        <CardContent className="flex items-start gap-3 pt-4 pb-4">
-          <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-orange-600" />
-          <div className="space-y-2 flex-1">
-            <p className="text-sm font-medium text-orange-900">
-              Te queda 1 test gratuito
-            </p>
-            <p className="text-xs text-orange-700">
-              Después de este test, necesitarás el Pack para seguir practicando.
-              Desbloquea acceso ilimitado a todos los temas, simulacros completos y análisis con IA.
-            </p>
-            <Link
-              href={checkoutHref}
-              className="inline-flex items-center rounded-md bg-orange-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-orange-700 transition-colors"
-            >
-              Desbloquear acceso completo
-            </Link>
-          </div>
-        </CardContent>
-      </Card>
-    )
-  }
+  const pct = totalTemas > 0 ? Math.round((temasCompleted / totalTemas) * 100) : 0
 
   return (
     <Card className="border-blue-200 bg-blue-50">
       <CardContent className="pt-4 pb-4">
         <div className="flex items-center justify-between mb-2">
           <p className="text-sm font-medium text-blue-900">
-            Tests gratuitos restantes
+            Temas explorados
           </p>
           <span className="text-sm font-bold text-blue-700">
-            {freeTestsRemaining} de 5
+            {temasCompleted} de {totalTemas}
           </span>
         </div>
         {/* Barra de progreso */}
         <div className="h-2 w-full rounded-full bg-blue-200">
           <div
             className="h-2 rounded-full bg-blue-600 transition-all"
-            style={{ width: `${(freeTestsUsed / 5) * 100}%` }}
+            style={{ width: `${pct}%` }}
           />
         </div>
         <p className="mt-2 text-xs text-blue-700">
-          {`Aprovecha tus ${freeTestsRemaining} test${freeTestsRemaining !== 1 ? 's' : ''} restante${freeTestsRemaining !== 1 ? 's' : ''} gratuito${freeTestsRemaining !== 1 ? 's' : ''}`}
+          {temasRemaining > 0
+            ? `1 test gratuito en cada tema · Te quedan ${temasRemaining} temas por explorar`
+            : 'Has explorado todos los temas. Desbloquea tests ilimitados para mejorar tus puntos débiles.'
+          }
         </p>
+        {temasCompleted >= 5 && (
+          <Link
+            href={checkoutHref}
+            className="mt-3 inline-flex items-center rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+          >
+            Desbloquear tests ilimitados
+          </Link>
+        )}
       </CardContent>
     </Card>
   )

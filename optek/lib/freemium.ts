@@ -5,28 +5,113 @@
  * Importar desde aquí para mantener consistencia entre backend y UI.
  */
 
+// ─── FREE TIER v2: 1 test per tema, all temas open ──────────────────────────
+// All free users see the SAME 10 fixed questions per tema from free_question_bank.
+// No choice of difficulty or question count for free users.
+
+/** Number of free tests allowed per tema */
+export const FREE_TESTS_PER_TEMA = 1
+
+/** Fixed number of questions in each free test */
+export const FREE_QUESTIONS_PER_TEST = 10
+
 /**
- * Free temas by oposición slug.
- * MISMO tema 1 (Constitución) para TODAS las oposiciones — evita gaming
- * (2 cuentas con distinta oposición = solo 3 temas únicos, no 6).
+ * Check if a free user can take a test for a specific tema.
+ * Returns true if they haven't completed a test for this tema yet.
  */
-const FREE_TEMAS_BY_SLUG: Record<string, readonly number[]> = {
-  'aux-admin-estado': [1, 11, 17],        // CE, LPAC, Ofimática Word
-  'administrativo-estado': [1, 11, 17],    // CE, Org. Estado, LPAC (mismos números)
-  'gestion-estado': [1, 28, 51],           // CE, Fuentes derecho admin, Presupuestos
+export async function canTakeFreeTemaTest(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  supabase: any,
+  userId: string,
+  temaId: string,
+): Promise<boolean> {
+  const { count } = await supabase
+    .from('tests_generados')
+    .select('id', { count: 'exact', head: true })
+    .eq('user_id', userId)
+    .eq('tema_id', temaId)
+    .eq('completado', true)
+
+  return (count ?? 0) < FREE_TESTS_PER_TEMA
 }
 
-/** Get free tema numbers for a given oposición slug */
+/**
+ * Get free tier status for all temas of an oposición.
+ * Returns a Map of temaId → { completed: boolean, score: number | null, testId: string | null }
+ */
+export async function getFreeTemaStatus(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  supabase: any,
+  userId: string,
+  oposicionId: string,
+): Promise<Map<string, { completed: boolean; score: number | null; testId: string | null }>> {
+  const { data: completedTests } = await supabase
+    .from('tests_generados')
+    .select('tema_id, puntuacion, id')
+    .eq('user_id', userId)
+    .eq('oposicion_id', oposicionId)
+    .eq('completado', true)
+    .not('tema_id', 'is', null)
+
+  const statusMap = new Map<string, { completed: boolean; score: number | null; testId: string | null }>()
+  for (const t of (completedTests ?? []) as Array<{ tema_id: string; puntuacion: number | null; id: string }>) {
+    // Keep the first completed test per tema (earliest)
+    if (!statusMap.has(t.tema_id)) {
+      statusMap.set(t.tema_id, {
+        completed: true,
+        score: t.puntuacion,
+        testId: t.id,
+      })
+    }
+  }
+
+  return statusMap
+}
+
+/**
+ * Find an existing incomplete test for a tema (idempotency).
+ * If a free user started a test but didn't complete it, return it instead of creating a new one.
+ */
+export async function findIncompleteTest(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  supabase: any,
+  userId: string,
+  temaId: string,
+): Promise<string | null> {
+  const { data } = await supabase
+    .from('tests_generados')
+    .select('id')
+    .eq('user_id', userId)
+    .eq('tema_id', temaId)
+    .eq('completado', false)
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .maybeSingle()
+
+  return (data as { id: string } | null)?.id ?? null
+}
+
+// ─── LEGACY: kept for backward compatibility during migration ────────────────
+// These will be removed once all references are updated.
+
+/** @deprecated Use FREE_TESTS_PER_TEMA instead */
+const FREE_TEMAS_BY_SLUG: Record<string, readonly number[]> = {
+  'aux-admin-estado': [1, 11, 17],
+  'administrativo-estado': [1, 11, 17],
+  'gestion-estado': [1, 28, 51],
+}
+
+/** @deprecated Use FREE_TESTS_PER_TEMA instead */
 export function getFreeTemas(slug: string): readonly number[] {
   return FREE_TEMAS_BY_SLUG[slug] ?? FREE_TEMAS_BY_SLUG['aux-admin-estado']
 }
 
-/** Números de tema accesibles para usuarios free (backward-compatible alias for C2) */
+/** @deprecated Use FREE_TESTS_PER_TEMA instead */
 export const FREE_TEMA_NUMEROS = FREE_TEMAS_BY_SLUG['aux-admin-estado']
 
 /** Límites de uso para usuarios free */
 export const FREE_LIMITS = {
-  /** Tests de IA en temas permitidos */
+  /** @deprecated — gating is now per-tema, not global. Kept for analytics. */
   tests: 5,
   /** Tests psicotécnicos (coste IA = 0€, pero creamos necesidad) */
   psicotecnicos: 3,

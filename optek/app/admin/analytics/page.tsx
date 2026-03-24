@@ -310,7 +310,7 @@ export default async function AnalyticsPage() {
       {/* ── Dashboard Phase Distribution ─────────────────────────────────── */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-base">Distribucion de Fases de Usuario <MetricInfo text="En que fase se encuentra cada usuario: nuevo (0 tests), empezando (<5 tests), activo (5+ tests, reciente) o inactivo (5+ tests, >7 dias sin actividad). Ayuda a segmentar estrategias de retencion." /></CardTitle>
+          <CardTitle className="text-base">Distribucion de Fases de Usuario <MetricInfo text="En que fase se encuentra cada usuario: nuevo (0 tests), empezando (<3 temas), activo (3+ temas, reciente) o inactivo (3+ temas, >7 dias sin actividad). Ayuda a segmentar estrategias de retencion." /></CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

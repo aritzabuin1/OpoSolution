@@ -24,7 +24,7 @@ export function GET() {
       'Cualquier opositor a la Administración General del Estado española',
     ],
     pricing: {
-      free: '5 tests + 2 análisis detallados sin tarjeta de crédito',
+      free: '1 test gratuito en cada tema + 2 análisis detallados sin tarjeta',
       pack_c2_c1: '49,99€ pago único — temario completo + 20 análisis detallados + simulacros',
       pack_a2_gace: '69,99€ pago único — temario + 20 análisis + 5 supuestos prácticos con corrección IA',
       pack_triple_age: '129,99€ — las 3 oposiciones AGE (C2+C1+A2)',
@@ -65,7 +65,7 @@ export function GET() {
       'LO 6/1985 Poder Judicial',
     ],
     url: 'https://oporuta.es',
-    free_tier: '5 tests gratuitos sin tarjeta de crédito',
+    free_tier: '1 test gratuito en cada tema sin tarjeta de crédito',
     language: 'es',
     country: 'Spain',
     llms_txt: 'https://oporuta.es/llms.txt',

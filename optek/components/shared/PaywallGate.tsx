@@ -4,7 +4,7 @@
  * components/shared/PaywallGate.tsx — OPTEK §1.15.3
  *
  * Modal de paywall que se muestra cuando el usuario alcanza el límite gratuito.
- * Dos contextos: TESTS (cuando agota los 5 tests gratis) y CORRECTIONS (sin correcciones).
+ * Dos contextos: TESTS (cuando agota el test gratuito del tema) y CORRECTIONS (sin correcciones).
  *
  * Diseño basado en ADR-0010 (Fuel Tank / Stripe):
  *   - Ancla visual: "Academia presencial: desde 150€/mes" vs "OpoRuta desde 8.99€"
@@ -106,7 +106,7 @@ export function PaywallGate({ open, onClose, code, temaId, oposicionId }: Paywal
       ? 'Recarga tus análisis'
       : 'Desbloquea análisis detallados'
   const description = code === 'PAYWALL_TESTS'
-    ? 'Has utilizado tus 5 tests gratuitos. Desbloquea acceso ilimitado para seguir practicando.'
+    ? 'Ya has completado tu test gratuito de este tema. Desbloquea acceso ilimitado para seguir practicando.'
     : isPremium
       ? 'Te has quedado sin análisis detallados. Recarga tu saldo para continuar.'
       : 'Has utilizado tus 2 análisis gratuitos. Consigue el Pack para acceso ilimitado a tests + 20 análisis detallados.'

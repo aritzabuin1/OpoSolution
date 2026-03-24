@@ -538,7 +538,7 @@ export default async function DashboardPage() {
       {totalTests >= 3 && <RoadmapCard activity={roadmapActivity} oposicionId={profile?.oposicion_id ?? undefined} />}
 
       {/* ── 3. Gráfico de evolución ──────────────────────────────────────── */}
-      <EmptyStateOverlay locked={phase === 'new' || phase === 'starting'} message="Completa 5 tests para ver tu evolución">
+      <EmptyStateOverlay locked={phase === 'new' || phase === 'starting'} message="Explora más temas para ver tu evolución">
         <Card>
           <CardHeader className="pb-3">
             <CardTitle className="text-base flex items-center gap-2">

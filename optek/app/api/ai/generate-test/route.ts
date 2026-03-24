@@ -6,8 +6,9 @@ import { generateTest, generateTopFrecuentesTest } from '@/lib/ai/generate-test'
 import { generatePsicotecnicos } from '@/lib/psicotecnicos/index'
 import { withTimeout, TimeoutError } from '@/lib/utils/timeout'
 import { logger } from '@/lib/logger'
-import { FREE_LIMITS, checkPaidAccess, checkIsAdmin, getOposicionFromTema, getOposicionFromProfile, getFreeTemas } from '@/lib/freemium'
+import { FREE_LIMITS, checkPaidAccess, checkIsAdmin, getOposicionFromTema, getOposicionFromProfile, canTakeFreeTemaTest, findIncompleteTest, FREE_QUESTIONS_PER_TEST } from '@/lib/freemium'
 import { detectDeviceType } from '@/lib/utils/device-detection'
+import { computeHash, buildLegalKey, isDuplicate, buildDedupIndex, type BankQuestion } from '@/lib/utils/question-dedup'
 import type { Json } from '@/types/database'
 import type { Pregunta } from '@/types/ai'
 
@@ -24,7 +25,7 @@ const GENERATE_TIMEOUT_MS = 55_000 // 55s safety net (< maxDuration para respues
  * Flujo:
  *   1. Auth — usuario debe estar autenticado
  *   2. Validar input con Zod (temaId, numPreguntas, dificultad)
- *   3. Acceso (ADR-0010 Fuel Tank): free ≤5 tests | pagado ilimitado
+ *   3. Acceso: free = 1 test/tema (banco fijo) | pagado = banco progresivo + IA
  *   4. Check concurrencia: rechazar si ya hay un test generándose (últimos 30s)
  *   5. Rate limit Upstash (pagados 20/día | free 5/min anti-spam)
  *   6. generateTest() → test verificado
@@ -105,46 +106,100 @@ export async function POST(request: NextRequest) {
     checkIsAdmin(serviceSupabase, user.id),
   ])
 
-  // ── 3b. Free users: verificar que el tema está permitido ─────────────────
+  // ── 3b. Free users: 1 test per tema (from fixed bank, no AI) ────────────
   if (!hasPaidAccess && tipo === 'tema' && temaId) {
-    const { data: temaRow } = await serviceSupabase
-      .from('temas')
-      .select('numero')
-      .eq('id', temaId)
-      .single()
+    // Free users can't choose difficulty or question count
+    // Frontend enforces this, but backend validates too
 
-    // Derivar slug de la oposición para obtener los temas free correctos
-    const { data: oposicionRow } = await serviceSupabase
-      .from('oposiciones')
-      .select('slug')
-      .eq('id', oposicionId)
-      .single()
-    const freeTemas = getFreeTemas((oposicionRow as { slug?: string } | null)?.slug ?? 'aux-admin-estado')
+    // Check if tema already completed → 402 with conversion trigger data
+    const canTake = await canTakeFreeTemaTest(serviceSupabase, user.id, temaId)
+    if (!canTake) {
+      log.info({ userId: user.id, temaId, oposicionId }, 'Free user tried completed tema — paywall')
 
-    const temaNumero = temaRow?.numero ?? 0
-    if (!freeTemas.includes(temaNumero)) {
-      log.info({ userId: user.id, temaId, temaNumero, oposicionId }, 'Free user tried locked tema — paywall')
+      // Fetch Radar data for conversion trigger (graceful if no data)
+      let radarFrequency: number | null = null
+      try {
+        const { data: radarData } = await (serviceSupabase as any)
+          .from('frecuencias_articulos')
+          .select('frecuencia')
+          .eq('oposicion_id', oposicionId)
+          .limit(1)
+        radarFrequency = (radarData as Array<{ frecuencia: number }> | null)?.[0]?.frecuencia ?? null
+      } catch { /* no radar data available */ }
+
       return NextResponse.json(
         {
-          error: 'Este tema requiere acceso Premium.',
+          error: 'Ya has completado el test gratuito de este tema.',
           code: 'PAYWALL_TESTS',
+          temaCompleted: true,
+          radarFrequency,
         },
         { status: 402 }
       )
     }
+
+    // Idempotency: if incomplete test exists, return it
+    const existingTestId = await findIncompleteTest(serviceSupabase, user.id, temaId)
+    if (existingTestId) {
+      log.info({ userId: user.id, temaId, testId: existingTestId }, 'Returning existing incomplete free test')
+      return NextResponse.json({ id: existingTestId, existing: true }, { status: 200 })
+    }
+
+    // Serve from free_question_bank (€0, no AI)
+    const { data: bankRow } = await (serviceSupabase as any)
+      .from('free_question_bank')
+      .select('preguntas')
+      .eq('oposicion_id', oposicionId)
+      .eq('tema_id', temaId)
+      .maybeSingle()
+
+    if (bankRow?.preguntas) {
+      // Create tests_generados entry with fixed questions
+      const { data: testRow, error: insertError } = await serviceSupabase
+        .from('tests_generados')
+        .insert({
+          user_id: user.id,
+          tema_id: temaId,
+          tipo: 'normal',
+          preguntas: bankRow.preguntas as Json,
+          completado: false,
+          prompt_version: 'free-bank-1.0',
+          oposicion_id: oposicionId,
+        })
+        .select('id, created_at')
+        .single()
+
+      if (insertError || !testRow) {
+        log.error({ err: insertError, userId: user.id }, 'Error saving free bank test')
+        return NextResponse.json({ error: 'Error al guardar el test.' }, { status: 500 })
+      }
+
+      // Increment free_tests_used for analytics (non-blocking)
+      try {
+        await serviceSupabase.rpc('use_free_test', { p_user_id: user.id })
+      } catch { /* analytics only */ }
+
+      log.info({ userId: user.id, testId: testRow.id, source: 'free_bank' }, 'Free bank test served')
+      return NextResponse.json({
+        id: testRow.id,
+        preguntas: bankRow.preguntas,
+        temaId,
+        promptVersion: 'free-bank-1.0',
+        createdAt: testRow.created_at,
+      }, { status: 200 })
+    }
+
+    // Fallback: bank not populated yet for this tema → generate with AI
+    // This should only happen before generate-free-bank has been run
+    log.warn({ temaId, oposicionId }, 'Free bank missing for tema, falling back to AI generation')
+    // Continue to §5C (AI generation) with forced params
   }
 
-  // ── 3c. Free users: dificultad 'dificil' y 'progresivo' requieren Premium ──
-  if (!hasPaidAccess && (dificultad === 'dificil' || dificultad === 'progresivo')) {
-    log.info({ userId: user.id, tipo, dificultad }, 'Free user tried premium difficulty — paywall')
-    return NextResponse.json(
-      {
-        error: 'Los niveles Difícil y Progresivo requieren acceso Premium.',
-        code: 'PAYWALL_TESTS',
-      },
-      { status: 402 }
-    )
-  }
+  // ── 3c. Free users: enforce fixed difficulty + question count ──────────────
+  // Free users who reach this point are in the AI fallback path (bank not ready)
+  // Force media difficulty and 10 questions
+  const effectiveNumPreguntas = !hasPaidAccess ? FREE_QUESTIONS_PER_TEST : numPreguntas
+  const effectiveDificultad = !hasPaidAccess ? 'media' as const : dificultad
 
   // ── 4. Verificar créditos disponibles (SIN consumir aún — BUG-010) ────────
   //
@@ -166,42 +221,9 @@ export async function POST(request: NextRequest) {
       )
     }
   } else if (!hasPaidAccess) {
-    // Usuarios free: verificar cuota read-only (NO consumir crédito aún)
-    const { data: profileFree } = await serviceSupabase
-      .from('profiles')
-      .select('free_tests_used')
-      .eq('id', user.id)
-      .single()
-
-    const freeTestsUsed = profileFree?.free_tests_used ?? 0
-
-    if (freeTestsUsed >= 5) {
-      log.info({ userId: user.id, freeTestsUsed }, 'Free test quota exhausted — paywall')
-      return NextResponse.json(
-        {
-          error: 'Has agotado tus 5 tests gratuitos.',
-          code: 'PAYWALL_TESTS',
-          upsell: [
-            {
-              id: 'recarga',
-              name: 'Recarga',
-              price: '8,99€',
-              description: '+10 correcciones adicionales',
-            },
-            {
-              id: 'pack',
-              name: 'Pack Oposición',
-              price: '49,99€',
-              description: 'Tests ilimitados de todo el temario + 20 correcciones',
-              badge: 'Más popular',
-            },
-          ],
-        },
-        { status: 402 }
-      )
-    }
-
-    // Anti-spam usuarios free: 5 requests/minuto
+    // Free users: per-tema gating already handled in §3b.
+    // If we reach here, it's the AI fallback path (bank not ready).
+    // Anti-spam: 5 requests/minute
     const rateLimit = await checkRateLimit(user.id, 'ai-generate', 5, '1 m')
     if (!rateLimit.success) {
       return NextResponse.json(
@@ -234,7 +256,7 @@ export async function POST(request: NextRequest) {
   }
 
   // ── 5. Generar test ────────────────────────────────────────────────────────
-  log.info({ userId: user.id, tipo, temaId, numPreguntas, dificultad, hasPaidAccess }, 'Iniciando generación de test')
+  log.info({ userId: user.id, tipo, temaId, numPreguntas: effectiveNumPreguntas, dificultad: effectiveDificultad, hasPaidAccess }, 'Iniciando generación de test')
 
   // ── 5A. Motor determinista de psicotécnicos (coste API €0) ────────────────
   if (tipo === 'psicotecnico') {
@@ -391,13 +413,101 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  // ── 5C. Motor IA (RAG + Claude/OpenAI) ────────────────────────────────────
+  // ── 5C. Premium bank + IA generation ──────────────────────────────────────
   try {
+    // For premium users with a temaId: try serving from question_bank first
+    let bankServed = false
+    if (hasPaidAccess && temaId) {
+      try {
+        // Fetch unseen questions from bank for this (tema, dificultad)
+        const { data: unseenRows } = await (serviceSupabase as any)
+          .from('question_bank')
+          .select('id, enunciado, opciones, correcta, explicacion, cita_ley, cita_articulo, dificultad')
+          .eq('tema_id', temaId)
+          .eq('dificultad', effectiveDificultad)
+          .not('id', 'in', `(SELECT question_id FROM user_questions_seen WHERE user_id = '${user.id}')`)
+          .limit(effectiveNumPreguntas)
+
+        const unseen = (unseenRows ?? []) as Array<{
+          id: string; enunciado: string; opciones: Record<string, string>;
+          correcta: string; explicacion: string | null;
+          cita_ley: string | null; cita_articulo: string | null; dificultad: string;
+        }>
+
+        if (unseen.length >= effectiveNumPreguntas) {
+          // Serve fully from bank (€0)
+          const charToIdx = (c: string): 0 | 1 | 2 | 3 => Math.max(0, Math.min(3, c.charCodeAt(0) - 97)) as 0 | 1 | 2 | 3
+          const preguntas: Pregunta[] = unseen.slice(0, effectiveNumPreguntas).map(q => {
+            const opts = Object.values(q.opciones) as [string, string, string, string]
+            return {
+              enunciado: q.enunciado,
+              opciones: opts,
+              correcta: charToIdx(q.correcta),
+              explicacion: q.explicacion ?? '',
+              dificultad: q.dificultad as 'facil' | 'media' | 'dificil',
+              ...(q.cita_ley && q.cita_articulo ? { cita: { ley: q.cita_ley, articulo: q.cita_articulo, textoExacto: '' } } : {}),
+            }
+          })
+
+          // Save to tests_generados
+          const { data: testRow, error: insertError } = await serviceSupabase
+            .from('tests_generados')
+            .insert({
+              user_id: user.id,
+              tema_id: temaId,
+              tipo: 'normal',
+              preguntas: preguntas as unknown as Json,
+              completado: false,
+              prompt_version: 'bank-1.0',
+              oposicion_id: oposicionId,
+            })
+            .select('id, created_at')
+            .single()
+
+          if (!insertError && testRow) {
+            // Track seen questions (non-blocking)
+            const seenInserts = unseen.slice(0, effectiveNumPreguntas).map(q => ({
+              user_id: user.id,
+              question_id: q.id,
+              answered_correctly: null,
+            }))
+            await (serviceSupabase as any).from('user_questions_seen').insert(seenInserts).catch(() => {})
+
+            // Update times_served (non-blocking)
+            for (const q of unseen.slice(0, effectiveNumPreguntas)) {
+              await (serviceSupabase as any)
+                .from('question_bank')
+                .update({ times_served: (serviceSupabase as any).rpc ? undefined : 1 })
+                .eq('id', q.id)
+                .catch(() => {})
+            }
+
+            log.info({ userId: user.id, testId: testRow.id, source: 'question_bank', count: preguntas.length }, 'Bank test served')
+            bankServed = true
+            return NextResponse.json({
+              id: testRow.id,
+              preguntas,
+              temaId,
+              promptVersion: 'bank-1.0',
+              createdAt: testRow.created_at,
+            }, { status: 200 })
+          }
+        }
+        // Not enough unseen questions → fall through to AI generation
+        if (!bankServed && unseen.length > 0) {
+          log.info({ userId: user.id, temaId, unseen: unseen.length, needed: effectiveNumPreguntas }, 'Partial bank — generating remaining with AI')
+        }
+      } catch (bankErr) {
+        // Bank query failed — fall through to AI generation silently
+        log.warn({ err: bankErr, userId: user.id }, 'question_bank query failed, falling back to AI')
+      }
+    }
+
     const test = await withTimeout(
       generateTest({
         temaId: temaId!,
-        numPreguntas,
-        dificultad,
+        numPreguntas: effectiveNumPreguntas,
+        dificultad: effectiveDificultad,
         userId: user.id,
         requestId,
         oposicionId,
@@ -405,6 +515,71 @@ export async function POST(request: NextRequest) {
       }),
       GENERATE_TIMEOUT_MS
     )
+
+    // Save AI-generated questions to question_bank (dedup + non-blocking)
+    if (hasPaidAccess && temaId && test.preguntas.length > 0) {
+      try {
+        const { data: existingBank } = await (serviceSupabase as any)
+          .from('question_bank')
+          .select('id, enunciado_hash, legal_key, enunciado')
+          .eq('tema_id', temaId)
+          .eq('dificultad', effectiveDificultad)
+
+        const bankQuestions = (existingBank ?? []) as BankQuestion[]
+        const { hashSet, legalKeyMap } = buildDedupIndex(bankQuestions)
+
+        for (const p of test.preguntas) {
+          const correctIdx = typeof p.correcta === 'number' ? p.correcta : 0
+          const correctText = Array.isArray(p.opciones) && correctIdx >= 0 && correctIdx < p.opciones.length
+            ? String(p.opciones[correctIdx])
+            : ''
+
+          const dedupResult = isDuplicate(
+            {
+              enunciado: p.enunciado,
+              cita: p.cita,
+              correctAnswerText: correctText,
+              temaId,
+            },
+            bankQuestions,
+            hashSet,
+            legalKeyMap,
+          )
+
+          if (!dedupResult.duplicate) {
+            const hash = computeHash(p.enunciado)
+            const legalKey = buildLegalKey(temaId, p.cita, correctText)
+            const opciones = Array.isArray(p.opciones)
+              ? { a: p.opciones[0], b: p.opciones[1], c: p.opciones[2], d: p.opciones[3] }
+              : p.opciones
+
+            await (serviceSupabase as any)
+              .from('question_bank')
+              .insert({
+                oposicion_id: oposicionId,
+                tema_id: temaId,
+                dificultad: effectiveDificultad,
+                enunciado: p.enunciado,
+                opciones,
+                correcta: p.correcta,
+                explicacion: p.explicacion ?? null,
+                cita_ley: p.cita?.ley ?? null,
+                cita_articulo: p.cita?.articulo ?? null,
+                enunciado_hash: hash,
+                legal_key: legalKey,
+              })
+              .catch(() => {}) // ON CONFLICT DO NOTHING equivalent — unique constraint handles it
+
+            // Update index for subsequent iterations
+            hashSet.add(hash)
+            if (legalKey) legalKeyMap.set(legalKey, 'new')
+          }
+        }
+        log.info({ userId: user.id, temaId, bankBefore: bankQuestions.length }, 'Bank populated from AI test')
+      } catch (bankSaveErr) {
+        log.warn({ err: bankSaveErr }, 'Failed to save to question_bank (non-critical)')
+      }
+    }
 
     // Consumir crédito SOLO tras éxito (BUG-010 fix)
     if (!hasPaidAccess) {

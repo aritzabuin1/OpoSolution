@@ -14,9 +14,9 @@ export function getDashboardPhase(
 ): DashboardPhase {
   if (totalTests === 0) return 'new'
 
-  if (totalTests < 5) return 'starting'
+  if (totalTests < 3) return 'starting'
 
-  // 5+ tests: check if lapsed
+  // 3+ tests: check if lapsed
   if (rachaActual === 0 && ultimoTestDia) {
     const daysSince = Math.floor(
       (Date.now() - new Date(ultimoTestDia).getTime()) / (1000 * 60 * 60 * 24),

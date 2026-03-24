@@ -10,10 +10,10 @@ interface ProgressUnlockBarProps {
 
 const milestones = [
   { threshold: 0, label: 'Registro', short: 'Registro' },
-  { threshold: 1, label: 'Primer test', short: '1 test' },
-  { threshold: 3, label: '3 tests', short: '3 tests' },
-  { threshold: 5, label: 'Dashboard completo', short: '5 tests' },
-  { threshold: 10, label: 'IPR fiable', short: '10 tests' },
+  { threshold: 1, label: 'Primer test', short: '1 tema' },
+  { threshold: 3, label: '3 temas', short: '3 temas' },
+  { threshold: 5, label: 'Mapa de debilidades', short: '5 temas' },
+  { threshold: 10, label: 'IPR fiable', short: '10 temas' },
 ] as const
 
 export function ProgressUnlockBar({ totalTests }: ProgressUnlockBarProps) {
