@@ -24,6 +24,7 @@ import {
   getDeviceDistribution,
   getOposicionBreakdown,
 } from '@/lib/admin/analytics'
+import { getQuestionBankMetrics, getFreeTierMetrics } from '@/lib/admin/metrics'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
@@ -77,10 +78,10 @@ function ScoreColor({ val }: { val: number }) {
 // ─── Page ───────────────────────────────────────────────────────────────────────
 
 export default async function AnalyticsPage() {
-  let conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, ctaFunnel, phaseDistribution, deviceDist, oposicionBreakdown
+  let conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, ctaFunnel, phaseDistribution, deviceDist, oposicionBreakdown, questionBank, freeTier
 
   try {
-    ;[conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, ctaFunnel, phaseDistribution, deviceDist, oposicionBreakdown] =
+    ;[conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, ctaFunnel, phaseDistribution, deviceDist, oposicionBreakdown, questionBank, freeTier] =
       await Promise.all([
         getConversionMetrics(),
         getDAU30d(),
@@ -97,6 +98,8 @@ export default async function AnalyticsPage() {
         getDashboardPhaseDistribution(),
         getDeviceDistribution(),
         getOposicionBreakdown(),
+        getQuestionBankMetrics(),
+        getFreeTierMetrics(),
       ])
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err)
@@ -637,6 +640,69 @@ export default async function AnalyticsPage() {
           </div>
         </CardContent>
       </Card>
+
+      {/* ── Free Tier v2 Funnel ──────────────────────────────────────────── */}
+      {freeTier && (
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base">Free Tier v2 — Funnel de Conversión <MetricInfo text="Métricas del nuevo free tier (1 test/tema, todos los temas abiertos). Mide cuántos temas exploran los free users y si convierten." /></CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="space-y-1">
+                <p className="text-2xl font-bold">{freeTier.totalFreeUsers}</p>
+                <p className="text-xs text-muted-foreground">Free users</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-2xl font-bold">{freeTier.avgTemasExplored}</p>
+                <p className="text-xs text-muted-foreground">Media temas explorados</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-2xl font-bold">{freeTier.usersExplored5Plus}</p>
+                <p className="text-xs text-muted-foreground">Users con 5+ temas</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-2xl font-bold">{freeTier.conversionRate}%</p>
+                <p className="text-xs text-muted-foreground">Tasa conversión</p>
+              </div>
+            </div>
+            <div className="mt-4 pt-3 border-t">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">Análisis IA gratuitos consumidos</span>
+                <span className="font-semibold">{freeTier.freeAnalysisUsed}</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* ── Question Bank Health ──────────────────────────────────────────── */}
+      {questionBank && (
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base">Banco de Preguntas <MetricInfo text="Estado del banco fijo (free tier, €0) y progresivo (premium, coste→€0). El cache hit rate indica qué % de tests se sirven sin IA." /></CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="rounded-lg bg-blue-50 p-3">
+                <p className="text-xs text-blue-600 font-medium mb-1">Banco Free</p>
+                <p className="text-lg font-bold text-blue-900">{questionBank.freeBankTotal} preguntas</p>
+                <p className="text-xs text-blue-700">{questionBank.freeBankTemas} temas cubiertos</p>
+              </div>
+              <div className="rounded-lg bg-green-50 p-3">
+                <p className="text-xs text-green-600 font-medium mb-1">Banco Premium</p>
+                <p className="text-lg font-bold text-green-900">{questionBank.premiumBankTotal} preguntas</p>
+                <p className="text-xs text-green-700">{questionBank.premiumBankTemas} temas · ~{questionBank.avgQuestionsPerTema}/tema</p>
+              </div>
+              <div className="rounded-lg bg-amber-50 p-3">
+                <p className="text-xs text-amber-600 font-medium mb-1">Cache Hit Rate</p>
+                <p className="text-lg font-bold text-amber-900">{questionBank.cacheHitEstimate}%</p>
+                <p className="text-xs text-amber-700">Tests sin IA (estimado)</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   )
 }
