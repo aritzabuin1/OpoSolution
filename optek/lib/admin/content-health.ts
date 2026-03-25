@@ -1,0 +1,145 @@
+/**
+ * lib/admin/content-health.ts — Content quality monitoring
+ *
+ * Tracks: score per tema, error reports, free bank coverage, premium bank depth.
+ */
+
+import { createServiceClient } from '@/lib/supabase/server'
+import { METRICS_START_DATE, getAdminUserIds } from '@/lib/admin/metrics-filter'
+
+export interface TemaHealth {
+  temaId: string
+  numero: number
+  titulo: string
+  oposicion: string
+  avgScore: number | null
+  testCount: number
+  reports: number
+  hasFreeBankData: boolean
+  premiumBankQuestions: number
+}
+
+export interface ContentHealthSummary {
+  totalTemas: number
+  temasWithFreeBank: number
+  temasWithoutFreeBank: number
+  avgScoreAll: number | null
+  worstTemas: TemaHealth[]
+  mostTestedTemas: TemaHealth[]
+}
+
+export async function getContentHealth(): Promise<ContentHealthSummary> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const supabase = await createServiceClient() as any
+  const adminIds = await getAdminUserIds()
+
+  const [temasRes, freeBankRes, premiumBankRes, testsRes, reportsRes, opoRes] = await Promise.all([
+    supabase.from('temas').select('id, numero, titulo, oposicion_id').order('oposicion_id').order('numero'),
+    supabase.from('free_question_bank').select('tema_id'),
+    supabase.from('question_bank').select('tema_id'),
+    supabase.from('tests_generados').select('tema_id, puntuacion')
+      .eq('completado', true).not('tema_id', 'is', null).gte('created_at', METRICS_START_DATE),
+    supabase.from('preguntas_reportadas').select('test_id'),
+    supabase.from('oposiciones').select('id, nombre'),
+  ])
+
+  const temas = (temasRes.data ?? []) as Array<{ id: string; numero: number; titulo: string; oposicion_id: string }>
+  const freeBankTemas = new Set(((freeBankRes.data ?? []) as Array<{ tema_id: string }>).map(r => r.tema_id))
+  const opoMap = new Map(((opoRes.data ?? []) as Array<{ id: string; nombre: string }>).map(o => [o.id, o.nombre]))
+
+  // Premium bank questions per tema
+  const premiumByTema = new Map<string, number>()
+  for (const r of (premiumBankRes.data ?? []) as Array<{ tema_id: string }>) {
+    premiumByTema.set(r.tema_id, (premiumByTema.get(r.tema_id) ?? 0) + 1)
+  }
+
+  // Scores per tema
+  const scoresByTema = new Map<string, number[]>()
+  for (const t of (testsRes.data ?? []) as Array<{ tema_id: string; puntuacion: number | null }>) {
+    if (t.puntuacion === null) continue
+    if (!scoresByTema.has(t.tema_id)) scoresByTema.set(t.tema_id, [])
+    scoresByTema.get(t.tema_id)!.push(t.puntuacion)
+  }
+
+  const temaHealthMap: TemaHealth[] = temas.map(t => {
+    const scores = scoresByTema.get(t.id) ?? []
+    return {
+      temaId: t.id,
+      numero: t.numero,
+      titulo: t.titulo,
+      oposicion: opoMap.get(t.oposicion_id) ?? '?',
+      avgScore: scores.length > 0 ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : null,
+      testCount: scores.length,
+      reports: 0, // TODO: join reports by tema via test_id
+      hasFreeBankData: freeBankTemas.has(t.id),
+      premiumBankQuestions: premiumByTema.get(t.id) ?? 0,
+    }
+  })
+
+  const allScores = [...scoresByTema.values()].flat()
+
+  return {
+    totalTemas: temas.length,
+    temasWithFreeBank: temaHealthMap.filter(t => t.hasFreeBankData).length,
+    temasWithoutFreeBank: temaHealthMap.filter(t => !t.hasFreeBankData).length,
+    avgScoreAll: allScores.length > 0 ? Math.round(allScores.reduce((a, b) => a + b, 0) / allScores.length) : null,
+    worstTemas: temaHealthMap.filter(t => t.avgScore !== null).sort((a, b) => (a.avgScore ?? 100) - (b.avgScore ?? 100)).slice(0, 10),
+    mostTestedTemas: [...temaHealthMap].sort((a, b) => b.testCount - a.testCount).slice(0, 10),
+  }
+}
+
+// ─── Recent Activity Feed ─────────────────────────────────────────────────────
+
+export interface ActivityEvent {
+  type: 'register' | 'test' | 'purchase' | 'error'
+  date: string
+  detail: string
+  userId?: string
+  email?: string
+}
+
+export async function getRecentActivity(limit = 25): Promise<ActivityEvent[]> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const supabase = await createServiceClient() as any
+
+  const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+
+  const [registersRes, testsRes, purchasesRes] = await Promise.all([
+    supabase.from('profiles').select('id, email, created_at')
+      .gte('created_at', since).order('created_at', { ascending: false }).limit(limit),
+    supabase.from('tests_generados').select('user_id, created_at, tipo, prompt_version, completado, temas(titulo)')
+      .gte('created_at', since).eq('completado', true)
+      .order('created_at', { ascending: false }).limit(limit),
+    supabase.from('compras').select('user_id, created_at, tipo, amount_paid')
+      .gte('created_at', since).order('created_at', { ascending: false }).limit(limit),
+  ])
+
+  // Get emails for users
+  const allUserIds = new Set<string>()
+  for (const t of (testsRes.data ?? []) as Array<{ user_id: string }>) allUserIds.add(t.user_id)
+  for (const c of (purchasesRes.data ?? []) as Array<{ user_id: string }>) allUserIds.add(c.user_id)
+
+  const { data: emailsData } = allUserIds.size > 0
+    ? await supabase.from('profiles').select('id, email').in('id', [...allUserIds])
+    : { data: [] }
+  const emailMap = new Map(((emailsData ?? []) as Array<{ id: string; email: string }>).map(e => [e.id, e.email]))
+
+  const events: ActivityEvent[] = []
+
+  for (const r of (registersRes.data ?? []) as Array<{ id: string; email: string; created_at: string }>) {
+    events.push({ type: 'register', date: r.created_at, detail: `Nuevo registro: ${r.email}`, userId: r.id, email: r.email })
+  }
+
+  for (const t of (testsRes.data ?? []) as Array<{ user_id: string; created_at: string; tipo: string; prompt_version: string; temas: { titulo: string } | null }>) {
+    const source = t.prompt_version === 'free-bank-1.0' ? 'free' : 'IA'
+    const tema = (t.temas as { titulo: string } | null)?.titulo ?? t.tipo
+    events.push({ type: 'test', date: t.created_at, detail: `Test ${source}: ${tema}`, userId: t.user_id, email: emailMap.get(t.user_id) })
+  }
+
+  for (const c of (purchasesRes.data ?? []) as Array<{ user_id: string; created_at: string; tipo: string; amount_paid: number }>) {
+    events.push({ type: 'purchase', date: c.created_at, detail: `Compra: ${c.tipo} — €${(c.amount_paid / 100).toFixed(2)}`, userId: c.user_id, email: emailMap.get(c.user_id) })
+  }
+
+  events.sort((a, b) => b.date.localeCompare(a.date))
+  return events.slice(0, limit)
+}
