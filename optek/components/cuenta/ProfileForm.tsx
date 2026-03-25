@@ -71,17 +71,35 @@ export function ProfileForm({
       })
       .eq('id', userId)
 
-    setSaving(false)
     if (error) {
+      setSaving(false)
       toast.error('No se pudo guardar. Inténtalo de nuevo.')
-    } else {
-      toast.success('Perfil actualizado correctamente')
-      // Notify hooks (useIsPremium, etc.) that oposición changed
-      window.dispatchEvent(new Event(OPOSICION_CHANGED_EVENT))
-      // Reload page to update sidebar features (Server Component can't react to client changes)
-      if (selectedOposicion !== initialOposicionId) {
-        setTimeout(() => window.location.reload(), 500)
+      return
+    }
+
+    // Verify the update actually persisted (catch silent RLS failures)
+    if (selectedOposicion !== initialOposicionId) {
+      const { data: verify } = await supabase
+        .from('profiles')
+        .select('oposicion_id')
+        .eq('id', userId)
+        .single()
+
+      if (verify?.oposicion_id !== selectedOposicion) {
+        setSaving(false)
+        toast.error('Error: el cambio de oposición no se guardó. Recarga la página e inténtalo de nuevo.')
+        return
       }
+    }
+
+    setSaving(false)
+    toast.success('Perfil actualizado correctamente')
+    // Notify hooks (useIsPremium, etc.) that oposición changed
+    window.dispatchEvent(new Event(OPOSICION_CHANGED_EVENT))
+    // Reload page to update sidebar features (Server Component can't react to client changes)
+    if (selectedOposicion !== initialOposicionId) {
+      // Full reload ensures Server Components see the new oposicion_id
+      window.location.reload()
     }
   }
 

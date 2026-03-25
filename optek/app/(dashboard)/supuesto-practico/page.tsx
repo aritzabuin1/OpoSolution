@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
+import { DEFAULT_OPOSICION_ID } from '@/lib/freemium'
 import { redirect } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -44,7 +45,7 @@ export default async function SupuestoPracticoPage() {
   const { data: opoData } = await (supabase as any)
     .from('oposiciones')
     .select('nombre, features')
-    .eq('id', profile?.oposicion_id ?? '')
+    .eq('id', profile?.oposicion_id ?? DEFAULT_OPOSICION_ID)
     .single()
 
   const features = (opoData as { features?: { supuesto_practico?: boolean } } | null)?.features

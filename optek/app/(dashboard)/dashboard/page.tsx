@@ -41,6 +41,7 @@ import { ExamCountdownBanner } from '@/components/dashboard/ExamCountdownBanner'
 import { RoadmapCard } from '@/components/dashboard/RoadmapCard'
 import { FounderBetaBanner } from '@/components/dashboard/FounderBetaBanner'
 import { getDashboardPhase } from '@/lib/utils/dashboard-phase'
+import { DEFAULT_OPOSICION_ID } from '@/lib/freemium'
 import { OnboardingTour } from '@/components/onboarding/OnboardingTour'
 import { NewUserHero } from '@/components/dashboard/NewUserHero'
 import { ProgressUnlockBar } from '@/components/dashboard/ProgressUnlockBar'
@@ -95,7 +96,7 @@ export default async function DashboardPage() {
     .single() as { data: { racha_actual: number; ultimo_test_dia: string | null; onboarding_completed_at: string | null } | null }
 
   // Todos los tests completados del usuario PARA SU OPOSICIÓN ACTIVA
-  const userOposicionId = profile?.oposicion_id ?? ''
+  const userOposicionId = profile?.oposicion_id ?? DEFAULT_OPOSICION_ID
   const { data: tests } = await supabase
     .from('tests_generados')
     .select('id, created_at, puntuacion, completado, tema_id, temas(titulo, numero)')

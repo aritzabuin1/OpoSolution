@@ -108,9 +108,6 @@ export async function POST(request: NextRequest) {
 
   // ── 3b. Free users: 1 test per tema (from fixed bank, no AI) ────────────
   if (!hasPaidAccess && tipo === 'tema' && temaId) {
-    // Free users can't choose difficulty or question count
-    // Frontend enforces this, but backend validates too
-
     // Check if tema already completed → 402 with conversion trigger data
     const canTake = await canTakeFreeTemaTest(serviceSupabase, user.id, temaId)
     if (!canTake) {
@@ -138,29 +135,58 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Idempotency: if incomplete test exists, return it
+    // Idempotency: if incomplete test exists, return it (with its preguntas)
     const existingTestId = await findIncompleteTest(serviceSupabase, user.id, temaId)
     if (existingTestId) {
-      log.info({ userId: user.id, temaId, testId: existingTestId }, 'Returning existing incomplete free test')
-      return NextResponse.json({ id: existingTestId, existing: true }, { status: 200 })
+      const { data: existingTest } = await serviceSupabase
+        .from('tests_generados')
+        .select('id, preguntas, created_at, prompt_version')
+        .eq('id', existingTestId)
+        .single()
+
+      if (existingTest?.preguntas && Array.isArray(existingTest.preguntas) && existingTest.preguntas.length > 0) {
+        log.info({ userId: user.id, temaId, testId: existingTestId }, 'Returning existing incomplete free test')
+        return NextResponse.json({
+          id: existingTest.id,
+          preguntas: existingTest.preguntas,
+          temaId,
+          promptVersion: existingTest.prompt_version ?? 'free-bank-1.0',
+          createdAt: existingTest.created_at,
+        }, { status: 200 })
+      }
+
+      // Zombie test (no preguntas) — delete and continue with fresh generation
+      log.warn({ userId: user.id, temaId, testId: existingTestId }, 'Deleting zombie test (no preguntas)')
+      await serviceSupabase.from('tests_generados').delete().eq('id', existingTestId)
     }
 
     // Serve from free_question_bank (€0, no AI)
-    const { data: bankRow } = await (serviceSupabase as any)
-      .from('free_question_bank')
-      .select('preguntas')
-      .eq('oposicion_id', oposicionId)
-      .eq('tema_id', temaId)
-      .maybeSingle()
+    let bankRow: { preguntas: Json } | null = null
+    try {
+      const { data, error: bankError } = await (serviceSupabase as any)
+        .from('free_question_bank')
+        .select('preguntas')
+        .eq('oposicion_id', oposicionId)
+        .eq('tema_id', temaId)
+        .maybeSingle()
+      if (bankError) {
+        log.warn({ err: bankError, temaId, oposicionId }, 'free_question_bank query error — falling back to AI')
+      }
+      bankRow = data
+    } catch (bankErr) {
+      log.warn({ err: bankErr, temaId }, 'free_question_bank query threw — falling back to AI')
+    }
 
     if (bankRow?.preguntas) {
       // Create tests_generados entry with fixed questions
+      // CRITICAL: tipo must be 'tema' — CHECK constraint on tests_generados
+      // only allows: 'tema', 'simulacro', 'repaso_errores', 'psicotecnico'
       const { data: testRow, error: insertError } = await serviceSupabase
         .from('tests_generados')
         .insert({
           user_id: user.id,
           tema_id: temaId,
-          tipo: 'normal',
+          tipo: 'tema',
           preguntas: bankRow.preguntas as Json,
           completado: false,
           prompt_version: 'free-bank-1.0',
@@ -170,7 +196,7 @@ export async function POST(request: NextRequest) {
         .single()
 
       if (insertError || !testRow) {
-        log.error({ err: insertError, userId: user.id }, 'Error saving free bank test')
+        log.error({ err: insertError, userId: user.id, temaId, oposicionId }, 'Error saving free bank test')
         return NextResponse.json({ error: 'Error al guardar el test.' }, { status: 500 })
       }
 
@@ -190,7 +216,6 @@ export async function POST(request: NextRequest) {
     }
 
     // Fallback: bank not populated yet for this tema → generate with AI
-    // This should only happen before generate-free-bank has been run
     log.warn({ temaId, oposicionId }, 'Free bank missing for tema, falling back to AI generation')
     // Continue to §5C (AI generation) with forced params
   }
@@ -455,7 +480,7 @@ export async function POST(request: NextRequest) {
             .insert({
               user_id: user.id,
               tema_id: temaId,
-              tipo: 'normal',
+              tipo: 'tema',
               preguntas: preguntas as unknown as Json,
               completado: false,
               prompt_version: 'bank-1.0',

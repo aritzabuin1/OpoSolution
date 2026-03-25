@@ -63,22 +63,27 @@ export function useUserAccess(temaId?: string): UserAccessResult {
         return
       }
 
-      // ── Fetch en paralelo: perfil + compras ────────────────────────────────
-      const [profileResult, comprasResult] = await Promise.all([
-        supabase
-          .from('profiles')
-          .select('free_tests_used, free_corrector_used, corrections_balance')
-          .eq('id', user.id)
-          .single(),
-        supabase
-          .from('compras')
-          .select('tipo, tema_id')
-          .eq('user_id', user.id),
-      ])
+      // ── Fetch en paralelo: perfil + compras (scoped por oposición) ────────
+      const profileResult = await supabase
+        .from('profiles')
+        .select('free_tests_used, free_corrector_used, corrections_balance, oposicion_id')
+        .eq('id', user.id)
+        .single()
 
       if (cancelled) return
 
       const profile = profileResult.data
+      const userOposicionId = profile?.oposicion_id ?? 'a0000000-0000-0000-0000-000000000001'
+
+      // Compras scoped by oposición activa (comprar C2 ≠ acceso a C1)
+      const comprasResult = await supabase
+        .from('compras')
+        .select('tipo, tema_id')
+        .eq('user_id', user.id)
+        .eq('oposicion_id', userOposicionId)
+
+      if (cancelled) return
+
       const compras = comprasResult.data ?? []
 
       const freeTestsUsed = profile?.free_tests_used ?? 0

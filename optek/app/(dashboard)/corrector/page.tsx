@@ -9,6 +9,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { DEFAULT_OPOSICION_ID } from '@/lib/freemium'
 
 export const metadata: Metadata = { title: 'Corrector de Desarrollos' }
 import { EditorView } from '@/components/corrector/EditorView'
@@ -43,17 +44,27 @@ export default async function CorrectorPage() {
 
   if (!user) redirect('/login')
 
+  // Get user's oposicion_id first for scoped queries
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: profileOpo } = await (supabase as any)
+    .from('profiles')
+    .select('oposicion_id')
+    .eq('id', user.id)
+    .single()
+  const userOposicionId = (profileOpo as { oposicion_id?: string } | null)?.oposicion_id ?? DEFAULT_OPOSICION_ID
+
   const [temasResult, profileResult, comprasResult, correccionesResult] = await Promise.all([
-    supabase.from('temas').select('id, numero, titulo').order('numero'),
+    supabase.from('temas').select('id, numero, titulo').eq('oposicion_id', userOposicionId).order('numero'),
     supabase
       .from('profiles')
       .select('free_corrector_used, corrections_balance')
       .eq('id', user.id)
       .single(),
-    supabase
+    (supabase as any)
       .from('compras')
       .select('id', { count: 'exact', head: true })
-      .eq('user_id', user.id),
+      .eq('user_id', user.id)
+      .eq('oposicion_id', userOposicionId),
     supabase
       .from('desarrollos')
       .select('id, created_at, evaluacion, tema_id, temas(titulo)')

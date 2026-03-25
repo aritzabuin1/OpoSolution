@@ -18,6 +18,7 @@ import { ShoppingBag, Sparkles, Zap } from 'lucide-react'
 
 export const metadata: Metadata = { title: 'Mi Cuenta' }
 import { createClient } from '@/lib/supabase/server'
+import { DEFAULT_OPOSICION_ID } from '@/lib/freemium'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { ProfileForm } from '@/components/cuenta/ProfileForm'
@@ -89,7 +90,7 @@ export default async function CuentaPage() {
       }[] | null
     }
 
-  // Check premium status: compras OR is_founder OR is_admin
+  // Check premium status: compras scoped por oposición OR is_founder OR is_admin
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: profileFlags } = await (supabase as any)
     .from('profiles')
@@ -102,10 +103,14 @@ export default async function CuentaPage() {
   const freeUsed = (profile as Record<string, unknown>)?.free_corrector_used as number ?? 0
   const freeRemaining = Math.max(0, 2 - freeUsed)
   const balance = paidBalance > 0 ? paidBalance : freeRemaining
-  const userOposicionId = profile?.oposicion_id ?? ''
+  const userOposicionId = profile?.oposicion_id ?? DEFAULT_OPOSICION_ID
   // Filter purchases by current oposicion (Pack C2 ≠ Pack C1)
-  const comprasOposicion = (compras ?? []).filter(c => (c as { oposicion_id?: string }).oposicion_id === undefined || true)
-  const hasPurchases = (compras?.length ?? 0) > 0
+  const { count: purchaseCountForOpo } = await (supabase as any)
+    .from('compras')
+    .select('id', { count: 'exact', head: true })
+    .eq('user_id', user.id)
+    .eq('oposicion_id', userOposicionId)
+  const hasPurchases = (purchaseCountForOpo ?? 0) > 0
   const isPremium = hasPurchases || flags?.is_founder === true || flags?.is_admin === true
 
   // Tier de pack correcto según oposición del usuario

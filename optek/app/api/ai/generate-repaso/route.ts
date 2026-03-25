@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
+import { DEFAULT_OPOSICION_ID } from '@/lib/freemium'
 import { logger } from '@/lib/logger'
 import type { Json } from '@/types/database'
 import type { Pregunta } from '@/types/ai'
@@ -69,7 +70,7 @@ export async function POST(request: NextRequest) {
     .select('oposicion_id')
     .eq('id', user.id)
     .single()
-  const userOposicionId = (profileData as { oposicion_id?: string } | null)?.oposicion_id ?? ''
+  const userOposicionId = (profileData as { oposicion_id?: string } | null)?.oposicion_id ?? DEFAULT_OPOSICION_ID
 
   const { data: testsData, error: testsError } = await supabase
     .from('tests_generados')

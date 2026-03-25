@@ -13,6 +13,7 @@ import { createClient } from '@/lib/supabase/server'
 
 export const metadata: Metadata = { title: 'Simulacros INAP' }
 import Link from 'next/link'
+import { DEFAULT_OPOSICION_ID } from '@/lib/freemium'
 import { SimulacroCard } from '@/components/simulacros/SimulacroCard'
 import { SimulacroMixtoCard } from '@/components/simulacros/SimulacroMixtoCard'
 import { Badge } from '@/components/ui/badge'
@@ -41,31 +42,22 @@ export default async function SimulacrosPage() {
 
   if (!user) redirect('/login')
 
-  // Check premium para ocultar banner free-only
+  // Get profile + check premium (single query, scoped by oposición)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: profileFlags } = await (supabase as any)
     .from('profiles')
     .select('is_founder, is_admin, oposicion_id')
     .eq('id', user.id)
     .single()
+  const flags = profileFlags as { is_founder?: boolean; is_admin?: boolean; oposicion_id?: string } | null
+  const userOposicionId = flags?.oposicion_id ?? DEFAULT_OPOSICION_ID
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const opoIdForPremium = (profileFlags as Record<string, unknown>)?.oposicion_id as string ?? ''
   const { count: purchaseCount } = await (supabase as any)
     .from('compras')
     .select('id', { count: 'exact', head: true })
     .eq('user_id', user.id)
-    .eq('oposicion_id', opoIdForPremium)
-  const flags = profileFlags as { is_founder?: boolean; is_admin?: boolean } | null
+    .eq('oposicion_id', userOposicionId)
   const isPremium = (purchaseCount ?? 0) > 0 || flags?.is_founder === true || flags?.is_admin === true
-
-  // Obtener oposicion_id del usuario para filtrar exámenes
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: profileOpo } = await (supabase as any)
-    .from('profiles')
-    .select('oposicion_id')
-    .eq('id', user.id)
-    .single()
-  const userOposicionId = (profileOpo as { oposicion_id?: string } | null)?.oposicion_id ?? ''
 
   // Cargar examenes SOLO de la oposición del usuario
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
