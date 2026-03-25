@@ -75,10 +75,10 @@
 ## FASE 1 — Correos
 
 ### 1.1 Migration: oposición + temas
-- [ ] Crear `supabase/migrations/20260326_048_correos.sql`
-- [ ] INSERT oposiciones: id=d0000000..., slug='correos', rama='correos', nivel='IV', activa=false
-- [ ] features: {"psicotecnicos": true, "cazatrampas": true, "supuesto_practico": false, "ofimatica": false}
-- [ ] scoring_config: {"ejercicios": [{"nombre":"Test","preguntas":100,"minutos":110,"acierto":0.60,"error":0,"max":60,"penaliza":false}]}
+- [x] Crear `supabase/migrations/20260326_048_correos.sql`
+- [x] INSERT oposiciones: id=d0000000..., slug='correos', rama='correos', nivel='IV', activa=false
+- [x] features: {"psicotecnicos": true, "cazatrampas": true, "supuesto_practico": false, "ofimatica": false}
+- [x] scoring_config con sistema concurso-oposición (60pts exam + 40pts méritos)
 - [ ] INSERT 12 temas (VERIFICADO — temario oficial 2023, confirmado 8+ fuentes):
   - T1: Marco normativo postal y naturaleza jurídica. Organismos reguladores.
   - T2: Experiencia de personas en Correos. Diversidad, Igualdad, PRL, RSC, ODS.
@@ -124,16 +124,16 @@
 ## FASE 2 — Justicia
 
 ### 2.1 Migration: 3 oposiciones + temas
-- [ ] Crear `supabase/migrations/20260326_049_justicia.sql`
-- [ ] INSERT Auxilio Judicial C2: 26 temas, rama='justicia', nivel='C2', activa=false
+- [x] Crear `supabase/migrations/20260326_049_justicia.sql`
+- [x] INSERT Auxilio Judicial C2: 26 temas, rama='justicia', nivel='C2', activa=false
   - Temas verificados del Anexo VI.c BOE-A-2025-27053 (ver data/research-auxilio-judicial-2026.md)
   - scoring_config: Ej1 (test 100q/100min, +0.60/-0.15 **ratio 1/4**, max 60, min 30) + Ej2 (práctico 42q/60min, +1.00/-0.25 **ratio 1/4**, max 40, min 20)
   - **PENALIZACIÓN JUSTICIA = 1/4 (no 1/3 como AGE)**
-- [ ] INSERT Tramitación Procesal C1: 37 temas, rama='justicia', nivel='C1', activa=false
+- [x] INSERT Tramitación Procesal C1: 37 temas, rama='justicia', nivel='C1', activa=false
   - Temas verificados del Anexo VI.b (ver data/research-tramitacion-gestion-2026.md)
   - scoring_config: Ej1 (test 104q/100min, +0.60/-0.15, 1/4) + Ej2 (práctico 12q/30min, +2.00/-0.50, 1/4) + Ej3 (ofimática 24q/40min, +1.00/-0.25, 1/4)
   - features: ofimatica=true
-- [ ] INSERT Gestión Procesal A2: 68 temas, rama='justicia', nivel='A2', activa=false
+- [x] INSERT Gestión Procesal A2: 68 temas (16 org insertados, 52 procesal pendientes), rama='justicia', nivel='A2', activa=false
   - Temas verificados del Anexo VI.a (ver data/research-tramitacion-gestion-2026.md)
   - scoring_config: Ej1 (test 104q/100min, +0.60/-0.15, 1/4) + Ej2 (práctico 12q/30min, +1.50/-0.30, **ratio 1/5**) + Ej3 (desarrollo 5q/45min, tribunal-graded, max 25, min 12.5)
   - features: supuesto_practico=true
