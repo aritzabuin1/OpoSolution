@@ -1,3 +1,7 @@
+# Exam PDFs (binary, too large for git — regenerate with download scripts)
+data/examenes_correos/
+data/examenes_justicia/
+
 # Python
 __pycache__/
 *.py[cod]
