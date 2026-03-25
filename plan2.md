@@ -94,23 +94,26 @@
   - T12: Normas de cumplimiento: Protección de datos, Blanqueo de Capitales, Ciberseguridad.
 
 ### 1.2 Contenido Correos
-- [ ] Indexar legislación en tabla `legislacion`:
-  - Ley 43/2010 del servicio postal universal
-  - RD 437/2024 Reglamento servicios postales (SUSTITUYE al derogado RD 1829/1999)
-  - RGPD + LOPDGDD
-  - Ley Orgánica 3/2007 Igualdad
-  - Ley 31/1995 PRL
-- [ ] Tagear cada artículo con tema_ids de Correos
-- [ ] Generar free bank: `pnpm generate:free-bank --oposicion correos`
-- [ ] Buscar e ingestar examen oficial 2023 (web Correos post-convocatoria)
+- [x] Scrapear legislación:
+  - [x] Ley 43/2010 del servicio postal universal (88 entries, 68KB)
+  - [x] RD 437/2024 Reglamento servicios postales (63 entries, 84KB)
+  - [x] LOPDGDD — ya en BD de AGE
+  - [x] LO 3/2007 Igualdad — ya en BD de AGE
+  - [x] Ley 31/1995 PRL (79 entries, 144KB)
+  - [x] Ley 10/2010 blanqueo capitales (94 entries, 236KB)
+- [x] Mapeo tema↔legislación (data/mapeo_temas_legislacion_correos.json)
+- [ ] Indexar legislación en tabla `legislacion` (ejecutar `pnpm ingest:legislacion`) **← necesita migrations aplicadas**
+- [ ] Tagear artículos con tema_ids de Correos **← después de indexar**
+- [ ] Generar free bank: `pnpm generate:free-bank --oposicion correos` **← necesita legislación indexada**
+- [ ] Descargar exámenes 2023+2021 (13 PDFs) **← agente en curso**
+- [ ] Parsear PDFs e insertar en preguntas_oficiales **← necesita PDFs descargados**
 
 ### 1.3 Landing SEO Correos
-- [ ] Crear `app/(marketing)/oposiciones/correos/page.tsx`
-- [ ] Metadata SEO: "Test Correos 2026 — Practica gratis con preguntas del examen"
-- [ ] Schema markup FAQPage
-- [ ] Datos: 4.055 plazas, 12 temas, examen mayo, sin penalización
-- [ ] CTA registro con `?oposicion=correos`
-- [ ] Actualizar `app/sitemap.ts` con nueva ruta
+- [x] Crear `app/(marketing)/oposiciones/correos/page.tsx` (temario oficial verificado, scoring, FAQ)
+- [x] Metadata SEO + Schema markup FAQPage + Course
+- [x] CTA registro con `?oposicion=correos`
+- [x] Actualizar `app/sitemap.ts` con nueva ruta
+- [x] 8 blog posts SEO Correos (guías + long-tail)
 
 ### 1.4 Activación Correos
 - [ ] Verificar: free bank completo (12 temas × 10 preguntas)
@@ -140,26 +143,28 @@
   - **NOTA: Ej2 de Gestión tiene ratio 1/5 (anomalía respecto a otros cuerpos que son 1/4)**
 
 ### 2.2 Contenido Justicia — Legislación
-- [ ] Scrape BOE consolidado:
-  - Constitución Española
-  - LO 6/1985 LOPJ (consolidada con LO 1/2025)
-  - LO 1/2025 del Servicio Público de Justicia (NUEVA)
-  - Ley 1/2000 LEC
-  - RD 14/09/1882 LECrim
-  - RDL 5/2015 TREBEP
-  - LO 3/2007 Igualdad, LO 1/2004 VG, Ley 15/2022, Ley 4/2023 LGTBI
-- [ ] Indexar artículo por artículo en tabla `legislacion`
-- [ ] Tagear con tema_ids correctos (Auxilio, Tramitación, Gestión)
-- [ ] Verificar temas ACTUALIZADOS por LO 1/2025: T8, T10, T16, T18
+- [x] Scrape BOE consolidado:
+  - [x] Constitución Española — ya en BD (184 arts)
+  - [x] LO 6/1985 LOPJ parcial — ya en BD (728 arts, Libros I-III). **Scraping completo en curso**
+  - [x] **LO 1/2025 Servicio Público Justicia** — scrapeada (86 entries, 891KB) ← CRÍTICA
+  - [x] Ley 1/2000 LEC — scrapeada COMPLETA (905 arts, 1.3MB)
+  - [x] LECrim 1882 — scrapeada COMPLETA (1067 arts, 852KB)
+  - [x] TREBEP — ya en BD (136 arts)
+  - [x] LO 3/2007, LO 1/2004, Ley 15/2022, Ley 4/2023 — ya en BD
+  - [x] Ley 31/1995 PRL — scrapeada (79 entries, 144KB)
+- [x] Mapeo tema↔legislación para Auxilio (data/mapeo_temas_legislacion_auxilio.json)
+- [ ] Mapeo tema↔legislación para Tramitación y Gestión **← pendiente**
+- [ ] Indexar legislación nueva en tabla `legislacion` **← necesita migrations aplicadas**
+- [ ] Tagear artículos con tema_ids Justicia **← después de indexar**
+- [ ] Verificar temas ACTUALIZADOS LO 1/2025: T8, T10, T16, T18
+- **Leyes pendientes de scrapear**: LJCA (Ley 29/1998), LRJS (Ley 36/2011), Ley 20/2011 Registro Civil
 
 ### 2.3 Contenido Justicia — Exámenes oficiales
-- [ ] Descargar cuadernillos + plantillas de MJU:
-  - https://www.mjusticia.gob.es/es/ciudadania/empleo-publico/acceso-libre/Auxilio-Judicial-PJC14372024
-  - Auxilio OEP 2024 (27/09/2025)
-  - Auxilio OEP 2023 (28/09/2024)
-  - Tramitación OEP 2024
-  - Gestión OEP 2024
-- [ ] Parsear PDFs con execution/ingest-examenes.ts
+- [ ] Descargar cuadernillos + plantillas MJU **← agente en curso (~20 PDFs)**
+  - Auxilio OEP 2024 (27/09/2025): Ej1 A/B + Ej2 A/B + plantillas
+  - Tramitación OEP 2024: Ej1 A/B + Ej2 A/B + plantilla
+  - Gestión OEP 2024: Ej1 A/B + Ej2 + plantillas
+- [ ] Parsear PDFs con execution/parse-exam-pdf.ts
 - [ ] Insertar en examenes_oficiales + preguntas_oficiales
 
 ### 2.4 Contenido Justicia — Free bank
@@ -173,13 +178,13 @@
 - [ ] El ejercicio es desarrollo escrito (5 preguntas, 45 min, temas 17-39 y 43-67)
 
 ### 2.6 SEO Justicia
-- [ ] Hub: `app/(marketing)/oposiciones/justicia/page.tsx`
-- [ ] Sub: `app/(marketing)/oposiciones/justicia/auxilio-judicial/page.tsx`
-- [ ] Sub: `app/(marketing)/oposiciones/justicia/tramitacion-procesal/page.tsx`
-- [ ] Sub: `app/(marketing)/oposiciones/justicia/gestion-procesal/page.tsx`
-- [ ] Calculadora nota Justicia (por ejercicio, con penalización)
-- [ ] Blog: empezar con 5 artículos SEO del plan de estrategia
-- [ ] Actualizar sitemap.ts
+- [x] Hub: `app/(marketing)/oposiciones/justicia/page.tsx` (auditada, plazas correctas)
+- [x] Sub: `app/(marketing)/oposiciones/justicia/auxilio-judicial/page.tsx` (26 temas BOE, scoring 1/4)
+- [x] Sub: `app/(marketing)/oposiciones/justicia/tramitacion-procesal/page.tsx` (37 temas, 3 ej.)
+- [x] Sub: `app/(marketing)/oposiciones/justicia/gestion-procesal/page.tsx` (68 temas, bloques correctos)
+- [ ] Calculadora nota Justicia (por ejercicio, con penalización 1/4)
+- [x] Blog: 15 posts Justicia (guías + long-tail + comparativas)
+- [x] Actualizar sitemap.ts
 
 ### 2.7 Activación progresiva Justicia
 - [ ] Fase 2a: Activar Auxilio C2 (26 temas, ~24k inscritos)
