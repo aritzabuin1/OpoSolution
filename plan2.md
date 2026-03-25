@@ -62,13 +62,13 @@
 - [x] `lib/utils/simulacro-ranking.ts`: aceptar scoring_config param
 
 ### 0.4 Stripe rama-aware combos
-- [ ] `lib/stripe/client.ts`: crear mapa COMBO_PACKS con oposicion IDs por rama
-- [ ] Añadir tiers: pack_correos, pack_justicia_c2, pack_justicia_c1, pack_justicia_a2, pack_doble_justicia, pack_triple_justicia
-- [ ] Configurar CORRECTIONS_GRANTED y SUPUESTOS_GRANTED para cada tier
-- [ ] `app/api/stripe/checkout/route.ts`: añadir nuevos tiers al BodySchema
-- [ ] `app/api/stripe/webhook/route.ts`: refactorizar if/else combos a usar COMBO_PACKS mapa
-- [ ] Crear 8 productos en Stripe Dashboard (Correos + 5 Justicia + doble + triple)
-- [ ] Añadir 8 env vars STRIPE_PRICE_PACK_*
+- [x] `lib/stripe/client.ts`: TIER_TO_OPOSICION con arrays para combos (genérico)
+- [x] Añadir tiers: pack_correos, pack_auxilio, pack_tramitacion, pack_gestion_j, pack_doble_justicia, pack_triple_justicia
+- [x] Configurar CORRECTIONS_GRANTED y SUPUESTOS_GRANTED para cada tier
+- [x] `app/api/stripe/checkout/route.ts`: BodySchema expandido con 6 nuevos tiers
+- [x] `app/api/stripe/webhook/route.ts`: refactorizado — handler genérico de combos (N filas compras)
+- [ ] Crear 6 productos en Stripe Dashboard (Correos + 5 Justicia) **← ARITZ manual**
+- [ ] Añadir 6 env vars STRIPE_PRICE_PACK_* en Vercel **← ARITZ manual**
 
 ---
 
