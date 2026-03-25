@@ -17,8 +17,8 @@ export default async function UsersPage({ searchParams }: Props) {
   const auth = await verifyAdmin('admin/users')
   if (!auth.authorized) redirect('/login')
 
-  const params = await (searchParams ?? Promise.resolve({}))
-  const query = (params.q ?? '').trim()
+  const params = await (searchParams ?? Promise.resolve({} as Record<string, string>))
+  const query = ((params as Record<string, string>).q ?? '').trim()
 
   const users = query.length >= 2 ? await getUserSearch(query) : []
 
