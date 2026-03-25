@@ -12147,4 +12147,970 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Qué nota hay que sacar para tener plaza segura en Auxilio Judicial?', answer: 'Para maximizar tus opciones, apunta a 65-70 puntos sobre 100 (ejemplo: 42 en Ej.1 + 26 en Ej.2 = 68 puntos). Con esa nota, obtener plaza es altamente probable en cualquier convocatoria con 400+ plazas. La clave: 10 preguntas más acertadas y 5 menos falladas marcan la diferencia entre plaza y lista de espera.' },
     ],
   },
+
+  // ─── Post 70 — Justicia: Ofimática Tramitación Procesal 2026 ──────────────
+  {
+    slug: 'ofimatica-tramitacion-procesal-word-excel-2026',
+    title: 'Ofimática Tramitación Procesal 2026: cómo preparar Word 365, Outlook y Windows 11',
+    description:
+      'Guía completa del tercer ejercicio de Tramitación Procesal: 20+4 preguntas test sobre Windows 10/11, Word 365, Outlook 365 e Internet. Temario T32-T37, puntuación, penalización 1/4 y recursos de estudio.',
+    date: '2026-03-25',
+    keywords: [
+      'ofimática tramitación procesal',
+      'word 365 tramitación procesal',
+      'tercer ejercicio tramitación procesal',
+      'examen ofimática justicia 2026',
+      'temario ofimática tramitación',
+      'outlook 365 oposiciones justicia',
+    ],
+    content: `
+<h2>El tercer ejercicio de Tramitación Procesal: ofimática</h2>
+<p>
+  El Ejercicio 3 de Tramitación Procesal es un <strong>examen tipo test de ofimática</strong>
+  que evalúa tus conocimientos sobre herramientas informáticas de uso diario en la
+  Administración de Justicia. Es el ejercicio más corto pero no el más fácil: muchos
+  opositores lo infravaloran y pierden puntos cruciales.
+</p>
+<p>Datos oficiales del ejercicio:</p>
+<ul>
+  <li><strong>Formato:</strong> 20 preguntas puntuables + 4 de reserva, tipo test con 4 opciones</li>
+  <li><strong>Duración:</strong> 40 minutos</li>
+  <li><strong>Puntuación:</strong> acierto +1,00 / error -0,25 (penalización <strong>1/4</strong>)</li>
+  <li><strong>Máximo:</strong> 20 puntos</li>
+  <li><strong>Mínimo para superar:</strong> 10 puntos</li>
+</ul>
+<p>
+  Este ejercicio es <strong>eliminatorio</strong>: si no alcanzas 10 puntos, quedas fuera
+  aunque hayas aprobado los otros dos ejercicios. La buena noticia es que el temario es
+  concreto (solo 6 temas) y muy práctico.
+</p>
+
+<h2>Temario de ofimática: temas 32 a 37</h2>
+<p>
+  El bloque de ofimática de Tramitación Procesal cubre 6 temas muy específicos. Es
+  <strong>idéntico tanto para la convocatoria del Ministerio como para las de Comunidades
+  Autónomas</strong>, ya que el temario base de Justicia es el mismo en toda España
+  (las CCAA solo añaden 1-5 temas propios sobre derecho foral o lengua cooficial).
+</p>
+
+<h3>T32 — Informática básica</h3>
+<ul>
+  <li>Conceptos fundamentales: hardware, software, sistema operativo</li>
+  <li>Tipos de memoria (RAM, ROM, caché)</li>
+  <li>Unidades de almacenamiento y medida (bits, bytes, KB, MB, GB, TB)</li>
+  <li>Periféricos de entrada y salida</li>
+  <li>Redes: LAN, WAN, Internet, Intranet</li>
+</ul>
+<p><strong>Consejo:</strong> parece fácil pero las preguntas INAP son muy específicas. No memorices solo conceptos generales: aprende las diferencias entre USB 2.0/3.0, tipos de conectores y especificaciones técnicas concretas.</p>
+
+<h3>T33 — El entorno Windows (10 y 11)</h3>
+<ul>
+  <li>Escritorio, barra de tareas, menú Inicio</li>
+  <li>Configuración del sistema y Panel de control</li>
+  <li>Gestión de cuentas de usuario y permisos</li>
+  <li>Windows Update y actualizaciones</li>
+  <li>Accesibilidad y personalización</li>
+  <li><strong>Novedades Windows 11:</strong> widgets, Snap Layouts, escritorios virtuales, integración con Teams</li>
+</ul>
+<p><strong>Cuidado:</strong> el examen puede preguntar diferencias entre Windows 10 y 11. Memoriza las novedades específicas de Windows 11: menú Inicio centrado, Snap Layouts de 6 posiciones, eliminación de la barra de herramientas de acceso rápido en el explorador.</p>
+
+<h3>T34 — El explorador de Windows</h3>
+<ul>
+  <li>Navegación por carpetas y archivos</li>
+  <li>Operaciones: copiar, mover, eliminar, renombrar</li>
+  <li>Búsqueda de archivos y filtros</li>
+  <li>Propiedades de archivos y carpetas</li>
+  <li>Accesos directos y bibliotecas</li>
+  <li>Comprimir y descomprimir archivos (ZIP)</li>
+</ul>
+
+<h3>T35 — Word 365</h3>
+<ul>
+  <li>Interfaz: cinta de opciones, pestañas, grupos</li>
+  <li>Formato de texto: fuente, párrafo, estilos</li>
+  <li>Tablas: creación, formato, fórmulas básicas</li>
+  <li>Inserción de imágenes, formas y gráficos</li>
+  <li>Encabezados, pies de página y numeración</li>
+  <li>Combinar correspondencia (mail merge)</li>
+  <li>Revisión: ortografía, control de cambios, comentarios</li>
+  <li>Referencias: tabla de contenido, notas al pie, bibliografía</li>
+</ul>
+<p><strong>Word es el tema estrella:</strong> históricamente concentra 5-7 preguntas de las 20. Domina especialmente la combinación de correspondencia, los estilos y las secciones (saltos de página vs saltos de sección).</p>
+
+<h3>T36 — Outlook 365</h3>
+<ul>
+  <li>Gestión de correo: enviar, recibir, adjuntar, reenviar</li>
+  <li>Carpetas y reglas de bandeja de entrada</li>
+  <li>Calendario: citas, reuniones, eventos periódicos</li>
+  <li>Contactos y listas de distribución</li>
+  <li>Tareas y notas</li>
+  <li>Firma electrónica y respuestas automáticas (fuera de oficina)</li>
+  <li>Seguridad: cifrado, phishing, filtro de correo no deseado</li>
+</ul>
+<p><strong>Tip:</strong> no estudies Outlook como simple correo electrónico. Las preguntas suelen profundizar en las reglas de la bandeja de entrada, la configuración de cuentas POP/IMAP/Exchange y los permisos de calendario compartido.</p>
+
+<h3>T37 — La Red Internet</h3>
+<ul>
+  <li>Protocolos: HTTP, HTTPS, FTP, TCP/IP, DNS</li>
+  <li>Navegadores y motores de búsqueda</li>
+  <li>Seguridad en Internet: certificados SSL/TLS, firma electrónica</li>
+  <li>Administración electrónica: sede electrónica, Cl@ve, DNIe</li>
+  <li>Correo electrónico: diferencias webmail vs cliente</li>
+  <li>Cloud computing: conceptos básicos (SaaS, IaaS, PaaS)</li>
+</ul>
+
+<h2>Estrategia de estudio para ofimática</h2>
+<p>
+  Muchos opositores dejan la ofimática para el final pensando que es "fácil". Error.
+  Las preguntas INAP de ofimática son muy concretas y específicas, con opciones diseñadas
+  para confundir a quien solo tiene conocimientos generales.
+</p>
+<ol>
+  <li><strong>Practica con el programa real:</strong> abre Word 365, Outlook 365 y Windows 11. Haz las operaciones que describe el temario. La memoria visual es tu mejor aliado</li>
+  <li><strong>Estudia los atajos de teclado:</strong> Ctrl+G (negrita en español), Ctrl+Mayús+L (viñetas), Ctrl+Enter (salto de página). Aparecen en casi todos los exámenes</li>
+  <li><strong>Memoriza las pestañas de la cinta de opciones:</strong> qué hay en Inicio, Insertar, Diseño, Disposición, Referencias, Correspondencia, Revisar, Vista</li>
+  <li><strong>Haz tests específicos de ofimática:</strong> no mezcles con los temas teóricos. Dedica sesiones exclusivas</li>
+  <li><strong>Repasa las novedades de 365 vs versiones antiguas:</strong> el examen pregunta sobre la versión 365 (antes Office 2021), no sobre versiones de 2016 o anteriores</li>
+</ol>
+
+<h2>Errores frecuentes en el ejercicio de ofimática</h2>
+<ul>
+  <li><strong>Confundir "Diseño" con "Disposición":</strong> en Word 365, "Diseño" (colores y fuentes del documento) es diferente de "Disposición" (orientación, márgenes, columnas). Es una trampa clásica</li>
+  <li><strong>No distinguir Windows 10 de Windows 11:</strong> el explorador de Windows 11 eliminó la cinta de opciones clásica y la reemplazó por una barra de comandos simplificada. Si te preguntan por la cinta en el explorador, es Windows 10</li>
+  <li><strong>Ignorar la configuración de Outlook:</strong> las reglas de bandeja, los permisos delegados y la diferencia POP3 vs IMAP vs Exchange son preguntas frecuentes</li>
+  <li><strong>No practicar combinación de correspondencia:</strong> Word Mail Merge es el tema más preguntado de ofimática en los últimos 5 exámenes de Justicia</li>
+</ul>
+
+<h2>Cuánto tiempo dedicar a ofimática</h2>
+<p>
+  El bloque de ofimática representa <strong>20 puntos de un total de 100</strong> en Tramitación
+  Procesal. Es el 20% de tu nota total. Dedicar solo el 10% de tu tiempo de estudio es un error
+  que cometen muchos opositores.
+</p>
+<p>
+  Recomendación: dedica <strong>3-4 semanas</strong> al bloque de ofimática, con sesiones
+  de 1-1,5 horas alternas. Combina estudio teórico (lectura del temario) con práctica real
+  en el ordenador y tests. El objetivo es llegar al examen con 16-18 puntos seguros.
+</p>
+
+<h2>Practica con tests de ofimática adaptados a Justicia</h2>
+<p>
+  En <a href="/register">OpoRuta</a> puedes hacer tests específicos por cada tema de ofimática
+  de Tramitación Procesal, con preguntas tipo examen, penalización 1/4 y explicación detallada
+  de cada respuesta. También puedes hacer simulacros completos con los 3 ejercicios y cronómetro.
+</p>
+<p>
+  <strong><a href="/register">Regístrate gratis y empieza a practicar ofimática</a></strong>.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. El temario de ofimática es común para convocatorias del Ministerio de Justicia y Comunidades Autónomas (solo varían 1-5 temas adicionales de derecho foral o lengua cooficial). Los datos de puntuación corresponden a la convocatoria OEP 2025.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuántas preguntas tiene el examen de ofimática de Tramitación Procesal?', answer: 'El Ejercicio 3 de Tramitación Procesal consta de 20 preguntas puntuables más 4 de reserva, todas tipo test con 4 opciones de respuesta. La duración es de 40 minutos. Cada acierto suma 1,00 punto y cada error resta 0,25 (penalización 1/4). El máximo es 20 puntos y el mínimo para aprobar es 10.' },
+      { question: '¿Qué temas entran en el ejercicio de ofimática de Tramitación Procesal?', answer: 'El bloque de ofimática abarca los temas 32 a 37 del temario: T32 (Informática básica), T33 (Windows 10 y 11), T34 (Explorador de Windows), T35 (Word 365), T36 (Outlook 365) y T37 (Internet). Word 365 es el tema que más preguntas concentra históricamente.' },
+      { question: '¿El temario de ofimática es el mismo para Ministerio y Comunidades Autónomas?', answer: 'Sí. El temario base de Tramitación Procesal (incluido el bloque de ofimática) es idéntico para la convocatoria del Ministerio de Justicia y las de Comunidades Autónomas. Las CCAA solo añaden entre 1 y 5 temas propios sobre derecho foral o lengua cooficial, pero nunca modifican los temas de ofimática.' },
+      { question: '¿Qué versión de Office entra en el examen de Tramitación Procesal?', answer: 'El temario oficial especifica Word 365 y Outlook 365 (anteriormente conocidos como Office 365). No entran versiones antiguas como Office 2016 o 2019. Es importante estudiar las funcionalidades específicas de la versión 365, que incluye actualizaciones continuas y características cloud.' },
+      { question: '¿Cuánto tiempo necesito para preparar la ofimática de Tramitación Procesal?', answer: 'Se recomienda dedicar entre 3 y 4 semanas al bloque de ofimática, con sesiones de 1 a 1,5 horas alternas. El bloque vale 20 puntos (20% de la nota total). La clave es combinar estudio teórico con práctica real en el ordenador y tests específicos. Word y Outlook merecen más tiempo que los temas de informática básica.' },
+    ],
+  },
+
+  // ─── Post 71 — Justicia: Caso práctico y desarrollo escrito Gestión Procesal ─
+  {
+    slug: 'gestion-procesal-caso-practico-desarrollo-escrito',
+    title: 'Gestión Procesal: cómo preparar el caso práctico y el desarrollo escrito',
+    description:
+      'Guía para los ejercicios 2 y 3 de Gestión Procesal: supuesto práctico tipo test (10+2 preguntas, penalización 1/5) y desarrollo escrito (5 preguntas, 45 min, corregido por tribunal). Técnicas de estudio y estructura de respuestas.',
+    date: '2026-03-25',
+    keywords: [
+      'gestión procesal tercer ejercicio',
+      'caso práctico gestión procesal',
+      'desarrollo escrito gestión procesal',
+      'supuesto práctico gestión procesal 2026',
+      'ejercicios gestión procesal',
+      'cómo preparar gestión procesal',
+    ],
+    content: `
+<h2>Los ejercicios 2 y 3 de Gestión Procesal: lo que marca la diferencia</h2>
+<p>
+  Gestión Procesal y Administrativa (A2) es la oposición más exigente de los tres cuerpos generales
+  de Justicia. Mientras que Auxilio y Tramitación solo tienen ejercicios tipo test, Gestión
+  incluye un <strong>desarrollo escrito corregido por tribunal</strong> que exige capacidad
+  de redacción, análisis y dominio profundo de la materia procesal.
+</p>
+<p>
+  Este post se centra en los ejercicios 2 y 3, que son los que más opositores suspenden y
+  donde se decide realmente quién obtiene plaza.
+</p>
+
+<h2>Ejercicio 2: supuesto práctico tipo test</h2>
+<p>Datos oficiales:</p>
+<ul>
+  <li><strong>Formato:</strong> 10 preguntas puntuables + 2 de reserva, tipo test con <strong>5 opciones</strong> (A, B, C, D, E)</li>
+  <li><strong>Duración:</strong> 30 minutos</li>
+  <li><strong>Puntuación:</strong> acierto +1,50 / error -0,30</li>
+  <li><strong>Penalización:</strong> <strong>1/5</strong> (anomalía: el resto de ejercicios de Justicia usa 1/4)</li>
+  <li><strong>Máximo:</strong> 15 puntos</li>
+  <li><strong>Mínimo para superar:</strong> 7,5 puntos</li>
+</ul>
+
+<h3>La anomalía del 1/5: qué implica para tu estrategia</h3>
+<p>
+  El Ejercicio 2 de Gestión tiene <strong>5 opciones de respuesta</strong> en lugar de las 4
+  habituales en Justicia. La penalización es 1/5 (cada error resta 0,30 frente a los 1,50
+  del acierto), lo que mantiene el mismo equilibrio matemático: responder al azar tiene
+  valor esperado cero.
+</p>
+<p>
+  Sin embargo, con 5 opciones en lugar de 4, es más difícil descartar alternativas.
+  La regla práctica: <strong>responde si puedes eliminar al menos 2 opciones</strong>
+  (quedándote con 3 posibles), lo que te da un valor esperado positivo.
+</p>
+<ul>
+  <li>5 opciones, eliminas 0 → EV = 0 (no respondas)</li>
+  <li>5 opciones, eliminas 1 → EV = +0,075 (responde solo si estás algo seguro)</li>
+  <li>5 opciones, eliminas 2 → EV = +0,20 (responde siempre)</li>
+  <li>5 opciones, eliminas 3 → EV = +0,60 (prácticamente seguro)</li>
+</ul>
+
+<h3>Cómo preparar el supuesto práctico</h3>
+<p>
+  El supuesto práctico presenta un caso procesal real (un procedimiento civil, penal o
+  contencioso-administrativo) y te hace preguntas sobre la actuación correcta del funcionario,
+  los plazos, la competencia del órgano judicial y la normativa aplicable.
+</p>
+<ol>
+  <li><strong>Domina los procedimientos completos:</strong> no basta saber qué dice un artículo. Necesitas entender el flujo procesal desde la demanda hasta la ejecución de sentencia</li>
+  <li><strong>Memoriza plazos:</strong> la mayoría de preguntas del supuesto giran en torno a plazos procesales (traslado, contestación, recurso, caducidad)</li>
+  <li><strong>Practica con casos reales:</strong> busca exámenes anteriores de Gestión Procesal y resuelve los supuestos. El formato se repite</li>
+  <li><strong>Estudia la competencia del LAJ vs Juez/Magistrado:</strong> muchas preguntas preguntan quién dicta cada resolución (providencia, auto, decreto, sentencia)</li>
+</ol>
+
+<h2>Ejercicio 3: desarrollo escrito</h2>
+<p>Datos oficiales:</p>
+<ul>
+  <li><strong>Formato:</strong> 5 preguntas de desarrollo sobre temas 17-39 y 43-67</li>
+  <li><strong>Duración:</strong> 45 minutos (9 minutos por pregunta)</li>
+  <li><strong>Puntuación:</strong> 0-5 puntos por pregunta (corregido por tribunal)</li>
+  <li><strong>Máximo:</strong> 25 puntos</li>
+  <li><strong>Mínimo para superar:</strong> 12,5 puntos</li>
+  <li><strong>Temas:</strong> Bloque II (normas comunes + procedimientos civiles, T17-39) y procedimiento penal + contencioso + laboral (T43-67)</li>
+</ul>
+<p>
+  Este es el ejercicio que hace única a Gestión Procesal: no hay respuestas para elegir,
+  debes redactar. El tribunal evalúa capacidad analítica, conocimiento sistemático de la
+  materia y calidad de expresión escrita.
+</p>
+
+<h3>Estructura recomendada para cada respuesta</h3>
+<p>
+  Con 9 minutos por pregunta, necesitas una estructura clara y eficiente. Los tribunales
+  valoran respuestas organizadas por encima de largas parrafadas:
+</p>
+<ol>
+  <li><strong>Encabezado conceptual (1 min):</strong> define el concepto o institución que se pregunta. Cita el artículo o ley principal ("La ejecución provisional se regula en los arts. 524-537 LEC...")</li>
+  <li><strong>Desarrollo sistemático (5-6 min):</strong> explica los elementos clave usando una estructura de lista o párrafos cortos. Incluye: requisitos, procedimiento, plazos, órgano competente, efectos</li>
+  <li><strong>Excepciones o matices (1-2 min):</strong> menciona las excepciones principales, la jurisprudencia relevante si la conoces, o la diferencia con instituciones similares</li>
+</ol>
+<p><strong>Errores que penaliza el tribunal:</strong></p>
+<ul>
+  <li>Respuestas sin estructura (texto corrido sin párrafos ni epígrafes)</li>
+  <li>Citar artículos incorrectos (mejor no citar que citar mal)</li>
+  <li>Confundir procedimientos (civil con penal, ordinario con verbal)</li>
+  <li>Faltas de ortografía graves (sí, descuentan)</li>
+  <li>Dejar una pregunta completamente en blanco (intenta escribir algo relevante)</li>
+</ul>
+
+<h3>Cómo practicar el desarrollo escrito</h3>
+<ol>
+  <li><strong>Escribe a mano:</strong> el examen es en papel. Si solo estudias en pantalla, el día del examen tu escritura será lenta y desordenada</li>
+  <li><strong>Cronómetrate:</strong> pon un timer de 9 minutos por pregunta. La gestión del tiempo es tan importante como el contenido</li>
+  <li><strong>Prepara esquemas de los 51 temas procesales:</strong> para cada tema, ten un esquema de 1 página con: concepto, regulación, procedimiento, plazos, excepciones. Es lo que volcará tu memoria el día del examen</li>
+  <li><strong>Haz simulacros completos:</strong> elige 5 temas al azar del rango 17-39/43-67, pon 45 minutos y escribe. Después compara con tu temario</li>
+  <li><strong>Pide que te corrijan:</strong> un preparador o compañero que lea tus respuestas y te dé feedback sobre estructura y contenido</li>
+</ol>
+
+<h2>La clave: equilibrar los 3 ejercicios</h2>
+<p>
+  La nota total de Gestión Procesal se reparte así: Ej.1 (test teórico) = 60 puntos max,
+  Ej.2 (supuesto) = 15 puntos max, Ej.3 (desarrollo) = 25 puntos max. Total: 100 puntos.
+</p>
+<p>
+  Muchos opositores se centran en el test teórico porque es "más fácil de preparar" y
+  descuidan el desarrollo escrito. Error: el Ej.3 vale 25 puntos y es donde más variabilidad
+  hay entre opositores. Un buen desarrollo escrito puede compensar un test mediocre.
+</p>
+<p>
+  Objetivo realista para plaza: <strong>38-42 en Ej.1 + 9-11 en Ej.2 + 16-20 en Ej.3 = 63-73 puntos</strong>.
+</p>
+
+<h2>Prepara Gestión Procesal con herramientas que te exigen pensar</h2>
+<p>
+  En <a href="/register">OpoRuta</a> puedes practicar tests tipo examen de Gestión Procesal
+  con penalización real, cronómetro y explicación detallada de cada respuesta. Para el
+  desarrollo escrito, nuestro sistema de análisis con IA te ayuda a identificar los temas
+  donde más flojeas para que centres tu estudio.
+</p>
+<p>
+  <strong><a href="/register">Regístrate gratis y empieza a preparar Gestión Procesal</a></strong>.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Los datos de puntuación y formato corresponden a la convocatoria OEP 2025. El temario de Gestión Procesal es común para Ministerio y Comunidades Autónomas (las CCAA solo añaden 1-5 temas adicionales sobre derecho foral o lengua cooficial).</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuántas preguntas tiene el supuesto práctico de Gestión Procesal?', answer: 'El Ejercicio 2 de Gestión Procesal consta de 10 preguntas puntuables más 2 de reserva, tipo test con 5 opciones de respuesta (A-E). La duración es de 30 minutos. Cada acierto suma 1,50 puntos y cada error resta 0,30 (penalización 1/5, una anomalía respecto al resto de ejercicios de Justicia que usan 1/4). El máximo es 15 puntos y el mínimo para aprobar es 7,5.' },
+      { question: '¿En qué consiste el desarrollo escrito de Gestión Procesal?', answer: 'El Ejercicio 3 consiste en 5 preguntas de desarrollo escrito sobre los temas 17-39 (normas comunes y procedimientos civiles) y 43-67 (penal, contencioso-administrativo y laboral). Dispones de 45 minutos (9 por pregunta). Un tribunal evalúa capacidad analítica, conocimiento sistemático y expresión escrita. Cada pregunta se puntúa de 0 a 5, con un máximo de 25 puntos y un mínimo de 12,5 para aprobar.' },
+      { question: '¿Cómo estructurar una respuesta del desarrollo escrito de Gestión Procesal?', answer: 'Usa una estructura de 3 partes: (1) Encabezado conceptual con definición y cita legal principal (~1 min), (2) Desarrollo sistemático con requisitos, procedimiento, plazos, órgano competente y efectos (~5-6 min), y (3) Excepciones, matices o comparación con instituciones similares (~1-2 min). Los tribunales valoran la organización tanto como el contenido.' },
+      { question: '¿Por qué el supuesto práctico de Gestión tiene 5 opciones en vez de 4?', answer: 'Es una anomalía específica de Gestión Procesal. Mientras que todos los demás ejercicios tipo test de Justicia (Auxilio, Tramitación y el propio Ej.1 de Gestión) tienen 4 opciones con penalización 1/4, el Ejercicio 2 de Gestión tiene 5 opciones con penalización 1/5. El equilibrio matemático es el mismo (responder al azar = valor esperado 0), pero con 5 opciones es más difícil descartar alternativas.' },
+      { question: '¿Qué nota necesito en total para obtener plaza en Gestión Procesal?', answer: 'Con 725 plazas en la OEP 2025, un objetivo realista para plaza es 63-73 puntos sobre 100. El desglose recomendado: 38-42 en el test teórico (Ej.1, max 60), 9-11 en el supuesto práctico (Ej.2, max 15) y 16-20 en el desarrollo escrito (Ej.3, max 25). El desarrollo escrito es donde más variabilidad hay y donde puedes marcar la diferencia.' },
+    ],
+  },
+
+  // ─── Post 72 — Justicia: Sueldo Tramitación Procesal 2026 ────────────────────
+  {
+    slug: 'sueldo-tramitacion-procesal-2026-nomina',
+    title: 'Sueldo Tramitación Procesal 2026: cuánto cobra un funcionario C1 de Justicia',
+    description:
+      'Desglose completo de la nómina de Tramitación Procesal en 2026: sueldo base, complementos, trienios, 14 pagas. Comparativa con Auxilio Judicial (~18.000€) y Gestión Procesal (~28.000€). Variaciones por Comunidad Autónoma.',
+    date: '2026-03-25',
+    keywords: [
+      'sueldo tramitación procesal',
+      'cuánto cobra tramitación procesal',
+      'nómina tramitación procesal 2026',
+      'sueldo funcionario justicia C1',
+      'sueldo tramitación procesal comunidades autónomas',
+      'retribuciones tramitación procesal',
+    ],
+    content: `
+<h2>Cuánto cobra un funcionario de Tramitación Procesal</h2>
+<p>
+  Un funcionario del Cuerpo de Tramitación Procesal y Administrativa (Subgrupo C1) percibe
+  un <strong>sueldo bruto anual de aproximadamente 22.000€</strong> al inicio de su carrera,
+  repartido en <strong>14 pagas</strong> (12 ordinarias + 2 extraordinarias en junio y diciembre).
+</p>
+<p>
+  Tramitación Procesal ocupa la posición intermedia de los tres cuerpos generales de Justicia:
+  cobra más que Auxilio Judicial (C2, ~18.000€) y menos que Gestión Procesal (A2, ~28.000€).
+  La diferencia clave es que Tramitación solo requiere Bachillerato, mientras que Gestión
+  exige titulación universitaria.
+</p>
+
+<h2>Desglose de la nómina mensual</h2>
+<p>
+  La retribución de un funcionario de Tramitación Procesal se compone de varios conceptos.
+  Estos son los valores aproximados para 2026 (las cifras se actualizan anualmente con los PGE):
+</p>
+
+<h3>Retribuciones básicas (iguales en toda España)</h3>
+<ul>
+  <li><strong>Sueldo base C1:</strong> ~810€/mes (fijado por los Presupuestos Generales del Estado)</li>
+  <li><strong>Pagas extraordinarias:</strong> 2 al año (junio y diciembre), equivalentes al sueldo base + complemento de destino</li>
+</ul>
+
+<h3>Complementos</h3>
+<ul>
+  <li><strong>Complemento de destino (nivel 18-22):</strong> ~490-580€/mes. Al inicio suele ser nivel 18, con progresión a 20-22 con los años</li>
+  <li><strong>Complemento específico:</strong> ~350-500€/mes. Varía según el órgano judicial (juzgado de paz, primera instancia, Audiencia, TSJ) y la Comunidad Autónoma</li>
+  <li><strong>Complemento de productividad:</strong> variable, depende de la carga de trabajo del juzgado</li>
+</ul>
+
+<h3>Trienios</h3>
+<p>
+  Cada 3 años de servicio se percibe un <strong>trienio</strong>: aproximadamente 32-35€/mes
+  por cada trienio en el Subgrupo C1. Con 15 años de servicio (5 trienios), son unos
+  160-175€ extra al mes. Es un complemento acumulativo que premia la antigüedad.
+</p>
+
+<h2>Estimación de nómina neta mensual</h2>
+<p>
+  Aplicando las retenciones de IRPF (que varían según situación personal y comunidad autónoma)
+  y la cotización a MUFACE (1,69% del sueldo):
+</p>
+<ul>
+  <li><strong>Bruto mensual al inicio:</strong> ~1.550-1.650€ (según CCAA y destino)</li>
+  <li><strong>Neto mensual al inicio:</strong> ~1.350-1.450€ (estimación para soltero/a sin hijos)</li>
+  <li><strong>Bruto anual al inicio:</strong> ~21.500-23.000€</li>
+  <li><strong>Con 10 años de servicio:</strong> ~1.600-1.800€ netos/mes (trienios + posible ascenso de nivel)</li>
+  <li><strong>Con 20+ años de servicio:</strong> ~1.800-2.100€ netos/mes</li>
+</ul>
+<p>
+  <strong>Importante:</strong> estas cifras son orientativas. La nómina real depende del destino
+  (los juzgados con más carga tienen complementos mayores), la Comunidad Autónoma y
+  la situación fiscal personal.
+</p>
+
+<h2>Variaciones por Comunidad Autónoma</h2>
+<p>
+  Las Comunidades Autónomas con competencias transferidas en Justicia pueden establecer
+  complementos propios. Esto genera diferencias significativas:
+</p>
+<ul>
+  <li><strong>País Vasco y Navarra:</strong> suelen tener los complementos más altos de España, con diferencias de +200-400€/mes respecto a la media</li>
+  <li><strong>Madrid y Cataluña:</strong> complementos ligeramente por encima de la media, pero el coste de vida es mayor</li>
+  <li><strong>Andalucía, Comunidad Valenciana, Canarias:</strong> complementos en la media, con buen equilibrio sueldo/coste de vida</li>
+  <li><strong>Territorio Ministerio (no transferidas):</strong> Castilla y León, Castilla-La Mancha, Extremadura, Baleares, Murcia — aplican retribuciones del Ministerio de Justicia directamente</li>
+</ul>
+<p>
+  El temario de oposición es <strong>el mismo para Ministerio y CCAA</strong>. Las Comunidades
+  Autónomas solo añaden entre 1 y 5 temas sobre derecho foral o lengua cooficial. Puedes
+  preparar el temario una sola vez y presentarte a ambas convocatorias.
+</p>
+
+<h2>Comparativa con Auxilio y Gestión Procesal</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Concepto</th>
+      <th>Auxilio (C2)</th>
+      <th>Tramitación (C1)</th>
+      <th>Gestión (A2)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Sueldo bruto anual inicio</td>
+      <td>~18.000€</td>
+      <td>~22.000€</td>
+      <td>~28.000€</td>
+    </tr>
+    <tr>
+      <td>Neto mensual inicio (est.)</td>
+      <td>~1.100-1.200€</td>
+      <td>~1.350-1.450€</td>
+      <td>~1.700-1.900€</td>
+    </tr>
+    <tr>
+      <td>Trienio mensual</td>
+      <td>~26€</td>
+      <td>~33€</td>
+      <td>~42€</td>
+    </tr>
+    <tr>
+      <td>Titulación requerida</td>
+      <td>ESO</td>
+      <td>Bachillerato</td>
+      <td>Grado universitario</td>
+    </tr>
+    <tr>
+      <td>Temas</td>
+      <td>26</td>
+      <td>37</td>
+      <td>68</td>
+    </tr>
+    <tr>
+      <td>Plazas OEP 2025</td>
+      <td>425</td>
+      <td>1.155</td>
+      <td>725</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  Tramitación Procesal ofrece el <strong>mejor equilibrio esfuerzo/recompensa</strong>: más sueldo
+  que Auxilio sin necesitar título universitario, y con la mayor oferta de plazas de los tres cuerpos.
+</p>
+
+<h2>Ventajas económicas más allá del sueldo</h2>
+<ul>
+  <li><strong>MUFACE:</strong> mutualidad de funcionarios con cobertura sanitaria (pública o privada a elegir), prestaciones por incapacidad y jubilación</li>
+  <li><strong>Estabilidad total:</strong> plaza vitalicia. No hay ERE, no hay despidos. Cobras tu nómina cada mes sin excepción</li>
+  <li><strong>Jornada y vacaciones:</strong> 22 días laborables de vacaciones + permisos por asuntos propios + días adicionales por antigüedad. Horario de mañana en la mayoría de juzgados (8:00-15:00)</li>
+  <li><strong>Promoción interna:</strong> puedes ascender a Gestión Procesal (A2) con examen reducido, aumentando tu sueldo a ~28.000€+ sin empezar de cero</li>
+  <li><strong>Conciliación:</strong> excedencias, reducciones de jornada y permisos regulados por ley</li>
+</ul>
+
+<h2>Calcula si Tramitación Procesal merece la pena para ti</h2>
+<p>
+  Con 1.155 plazas en la OEP 2025, un sueldo de entrada de ~22.000€ brutos y solo 37 temas,
+  Tramitación Procesal es una de las oposiciones con mejor ratio plazas/esfuerzo de toda la
+  Administración de Justicia. Si tienes Bachillerato y buscas estabilidad laboral, es una
+  opción muy competitiva.
+</p>
+<p>
+  En <a href="/register">OpoRuta</a> puedes preparar Tramitación Procesal con tests adaptados
+  al temario oficial, simulacros con penalización 1/4 y un sistema de análisis con IA que
+  identifica tus temas más débiles. <strong><a href="/register">Regístrate gratis</a></strong>.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Las retribuciones se actualizan anualmente con los Presupuestos Generales del Estado. Las cifras son estimaciones basadas en datos oficiales y pueden variar según destino, CCAA y situación personal. El temario es común para convocatorias de Ministerio y Comunidades Autónomas.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuánto cobra un funcionario de Tramitación Procesal al mes?', answer: 'Un funcionario de Tramitación Procesal (C1) cobra aproximadamente 1.550-1.650€ brutos al mes al inicio de su carrera (unos 1.350-1.450€ netos según CCAA y situación fiscal). El sueldo bruto anual ronda los 22.000€ repartidos en 14 pagas. Con los años, los trienios y la progresión de nivel pueden elevar la nómina a 1.800-2.100€ netos mensuales.' },
+      { question: '¿Cuánto cobra más Tramitación Procesal que Auxilio Judicial?', answer: 'Tramitación Procesal (C1) cobra aproximadamente 4.000€ brutos anuales más que Auxilio Judicial (C2): ~22.000€ vs ~18.000€ al inicio. En neto mensual, la diferencia es de unos 200-250€ al mes. Tramitación requiere Bachillerato (vs ESO de Auxilio) y tiene 37 temas en lugar de 26.' },
+      { question: '¿Varía el sueldo de Tramitación Procesal según la Comunidad Autónoma?', answer: 'Sí. Las CCAA con competencias transferidas en Justicia fijan sus propios complementos. País Vasco y Navarra suelen pagar +200-400€/mes respecto a la media. Madrid y Cataluña están ligeramente por encima. Las comunidades de territorio Ministerio (Castilla y León, Extremadura, etc.) aplican las retribuciones del Ministerio directamente.' },
+      { question: '¿Qué es MUFACE y cómo afecta al sueldo de Tramitación Procesal?', answer: 'MUFACE es la Mutualidad General de Funcionarios Civiles del Estado. Como funcionario de Tramitación Procesal cotizas a MUFACE (1,69% del sueldo) en lugar de a la Seguridad Social. Te permite elegir entre sanidad pública y seguro privado (Adeslas, DKV, etc.) sin coste adicional, además de prestaciones por incapacidad y jubilación.' },
+      { question: '¿Se puede ascender de Tramitación a Gestión Procesal?', answer: 'Sí. La promoción interna de Tramitación (C1) a Gestión Procesal (A2) se realiza mediante un examen reducido (menos temas y ejercicios que el acceso libre). Necesitas titulación universitaria y al menos 2 años de servicio en Tramitación. El ascenso supone pasar de ~22.000€ a ~28.000€ brutos anuales, un incremento de aproximadamente 6.000€ al año.' },
+    ],
+  },
+
+  // ─── Post 73 — Justicia: Comparativa Auxilio vs Tramitación vs Gestión ────────
+  {
+    slug: 'auxilio-vs-tramitacion-vs-gestion-procesal-comparativa',
+    title: 'Comparativa completa: Auxilio vs Tramitación vs Gestión Procesal 2026',
+    description:
+      'Tabla comparativa de los 3 cuerpos de Justicia: requisitos, temas (26/37/68), ejercicios, sueldo (~18K/22K/28K), plazas (425/1.155/725 Ministerio + CCAA), funciones diarias y carrera profesional. Cuál elegir según tu perfil.',
+    date: '2026-03-25',
+    keywords: [
+      'diferencia auxilio tramitación gestión',
+      'qué oposición justicia elegir',
+      'comparativa oposiciones justicia 2026',
+      'auxilio vs tramitación vs gestión',
+      'oposiciones justicia cuál es más fácil',
+      'cuerpos generales administración justicia',
+    ],
+    content: `
+<h2>Los 3 cuerpos generales de la Administración de Justicia</h2>
+<p>
+  Las oposiciones de Justicia ofrecen tres caminos distintos según tu formación, disponibilidad
+  de estudio y objetivos profesionales. <strong>Auxilio Judicial (C2), Tramitación Procesal (C1)
+  y Gestión Procesal (A2)</strong> comparten muchas ventajas (estabilidad, MUFACE, horario de mañana),
+  pero se diferencian en exigencia, sueldo y funciones.
+</p>
+<p>
+  Esta guía te ayuda a decidir cuál es la mejor opción para ti en 2026, con datos verificados
+  de la OEP 2025.
+</p>
+
+<h2>Tabla comparativa completa</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Característica</th>
+      <th>Auxilio Judicial (C2)</th>
+      <th>Tramitación Procesal (C1)</th>
+      <th>Gestión Procesal (A2)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Titulación</strong></td>
+      <td>ESO o equivalente</td>
+      <td>Bachillerato o equivalente</td>
+      <td>Grado universitario</td>
+    </tr>
+    <tr>
+      <td><strong>Temas</strong></td>
+      <td>26</td>
+      <td>37</td>
+      <td>68</td>
+    </tr>
+    <tr>
+      <td><strong>Ejercicios</strong></td>
+      <td>2 (test + caso práctico test)</td>
+      <td>3 (test + caso práctico test + ofimática test)</td>
+      <td>3 (test + caso práctico test 5 opciones + desarrollo escrito)</td>
+    </tr>
+    <tr>
+      <td><strong>Penalización</strong></td>
+      <td>1/4 en ambos ejercicios</td>
+      <td>1/4 en los 3 ejercicios</td>
+      <td>1/4 en Ej.1, <strong>1/5 en Ej.2</strong>, tribunal en Ej.3</td>
+    </tr>
+    <tr>
+      <td><strong>Plazas OEP 2025 (Ministerio)</strong></td>
+      <td>425</td>
+      <td>1.155</td>
+      <td>725</td>
+    </tr>
+    <tr>
+      <td><strong>Plazas CCAA (adicionales)</strong></td>
+      <td>Sí (cada CCAA convoca aparte)</td>
+      <td>Sí (cada CCAA convoca aparte)</td>
+      <td>Sí (cada CCAA convoca aparte)</td>
+    </tr>
+    <tr>
+      <td><strong>Sueldo bruto anual inicio</strong></td>
+      <td>~18.000€</td>
+      <td>~22.000€</td>
+      <td>~28.000€</td>
+    </tr>
+    <tr>
+      <td><strong>Neto mensual inicio (est.)</strong></td>
+      <td>~1.100-1.200€</td>
+      <td>~1.350-1.450€</td>
+      <td>~1.700-1.900€</td>
+    </tr>
+    <tr>
+      <td><strong>Examen</strong></td>
+      <td>Sept-Oct 2026</td>
+      <td>Sept-Oct 2026</td>
+      <td>Sept-Oct 2026</td>
+    </tr>
+    <tr>
+      <td><strong>Tiempo prep. estimado</strong></td>
+      <td>6-10 meses</td>
+      <td>10-14 meses</td>
+      <td>14-20 meses</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Funciones en el día a día</h2>
+<h3>Auxilio Judicial (C2)</h3>
+<p>
+  El Cuerpo de Auxilio es el más operativo. Tus funciones principales son:
+</p>
+<ul>
+  <li>Actos de comunicación: notificaciones, citaciones, emplazamientos, requerimientos</li>
+  <li>Colaboración con el LAJ en embargos y lanzamientos</li>
+  <li>Mantenimiento del orden en las salas de vistas</li>
+  <li>Custodia de expedientes y documentación</li>
+  <li>Registro de entrada y salida de documentos</li>
+</ul>
+
+<h3>Tramitación Procesal (C1)</h3>
+<p>
+  Tramitación es el cuerpo de gestión administrativa del juzgado:
+</p>
+<ul>
+  <li>Tramitación de procedimientos judiciales (civiles, penales, contenciosos)</li>
+  <li>Redacción de diligencias y actas bajo supervisión del LAJ</li>
+  <li>Gestión del archivo judicial</li>
+  <li>Uso de aplicaciones procesales (Minerva, Lexnet, Atlante)</li>
+  <li>Atención al público profesional (abogados, procuradores)</li>
+  <li>Registro Civil: inscripciones, certificaciones, expedientes</li>
+</ul>
+
+<h3>Gestión Procesal (A2)</h3>
+<p>
+  Gestión es el cuerpo de mayor responsabilidad:
+</p>
+<ul>
+  <li>Supervisión de la tramitación procesal</li>
+  <li>Sustitución del LAJ en caso de ausencia o vacancia</li>
+  <li>Resolución de recursos de reposición contra decretos del LAJ</li>
+  <li>Dirección técnica de la Oficina Judicial</li>
+  <li>Funciones de jefatura en secciones de la Oficina Judicial</li>
+  <li>Coordinación de Auxilio y Tramitación</li>
+</ul>
+
+<h2>Temario compartido: ventaja estratégica</h2>
+<p>
+  Una de las mayores ventajas de las oposiciones de Justicia es que los tres cuerpos
+  <strong>comparten gran parte del temario</strong>:
+</p>
+<ul>
+  <li><strong>Bloque I (Organización):</strong> los temas 1-15 de Auxilio y Tramitación son idénticos. Gestión comparte los 8 primeros y añade 1 tema extra (Justicia de Paz)</li>
+  <li><strong>Derecho Procesal:</strong> Auxilio tiene 11 temas de procesal (resumidos), Tramitación tiene 16 (más detallados) y Gestión tiene 51 (completos)</li>
+</ul>
+<p>
+  Esto significa que si preparas Tramitación, ya tienes cubierto el 90% del temario de Auxilio.
+  Y si preparas Gestión, llevas Tramitación prácticamente hecha. Muchos opositores se presentan
+  a dos convocatorias a la vez.
+</p>
+<p>
+  <strong>El temario base es el mismo para las convocatorias del Ministerio y de cada Comunidad
+  Autónoma.</strong> Las CCAA solo añaden 1-5 temas sobre derecho foral o lengua cooficial.
+  Puedes preparar una vez y presentarte a múltiples convocatorias.
+</p>
+
+<h2>Plazas: Tramitación lidera con diferencia</h2>
+<p>
+  La OEP 2025 ofrece un total de <strong>2.305 plazas</strong> solo del Ministerio entre los
+  tres cuerpos. A estas se suman las plazas que cada Comunidad Autónoma con competencias
+  transferidas convoca por separado.
+</p>
+<ul>
+  <li><strong>Auxilio Judicial:</strong> 425 plazas Ministerio (382 general + 43 discapacidad)</li>
+  <li><strong>Tramitación Procesal:</strong> 1.155 plazas Ministerio (1.039 general + 116 discapacidad)</li>
+  <li><strong>Gestión Procesal:</strong> 725 plazas Ministerio (652 general + 73 discapacidad)</li>
+</ul>
+<p>
+  Tramitación Procesal casi triplica las plazas de Auxilio. Más plazas = nota de corte
+  potencialmente más baja = más probabilidades de obtener plaza.
+</p>
+
+<h2>Carrera profesional: la escalera de Justicia</h2>
+<p>
+  Una de las ventajas únicas de Justicia es la <strong>promoción interna</strong>. Puedes entrar
+  por el cuerpo que se ajuste a tu situación actual y ascender con el tiempo:
+</p>
+<ol>
+  <li><strong>Auxilio Judicial (C2)</strong> → con Bachillerato + 2 años de servicio → examen reducido → <strong>Tramitación (C1)</strong></li>
+  <li><strong>Tramitación (C1)</strong> → con Grado + 2 años de servicio → examen reducido → <strong>Gestión (A2)</strong></li>
+  <li><strong>Gestión (A2)</strong> → con experiencia → posibilidad de acceder a LAJ u otros cuerpos superiores</li>
+</ol>
+<p>
+  La promoción interna tiene plazas reservadas y ejercicios reducidos. Es una vía mucho
+  más sencilla que el acceso libre. Muchos funcionarios de Auxilio acaban en Tramitación
+  o Gestión con pocos años de servicio.
+</p>
+
+<h2>¿Cuál elegir? Guía según tu perfil</h2>
+
+<h3>Elige Auxilio Judicial si...</h3>
+<ul>
+  <li>Tienes la ESO y quieres opositar lo antes posible</li>
+  <li>Dispones de poco tiempo de estudio (6-10 meses, 26 temas)</li>
+  <li>Quieres entrar rápido al sistema y luego ascender por promoción interna</li>
+  <li>No te importa empezar con un sueldo de ~18.000€ porque valoras la estabilidad</li>
+</ul>
+
+<h3>Elige Tramitación Procesal si...</h3>
+<ul>
+  <li>Tienes Bachillerato y quieres el mejor ratio plazas/esfuerzo</li>
+  <li>Puedes dedicar 10-14 meses a preparar 37 temas</li>
+  <li>Quieres un sueldo de entrada de ~22.000€ sin necesitar carrera universitaria</li>
+  <li>Te gustaría trabajar en gestión administrativa y tramitación de procedimientos</li>
+  <li>1.155 plazas del Ministerio + CCAA te dan la mayor probabilidad de plaza</li>
+</ul>
+
+<h3>Elige Gestión Procesal si...</h3>
+<ul>
+  <li>Tienes titulación universitaria y quieres el mejor sueldo de los tres cuerpos</li>
+  <li>Eres capaz de redactar desarrollo escrito bajo presión (Ej.3 corregido por tribunal)</li>
+  <li>Puedes dedicar 14-20 meses a preparar 68 temas</li>
+  <li>Te motivan las funciones de responsabilidad y supervisión</li>
+  <li>~28.000€ de entrada y perspectiva de carrera larga justifican la inversión</li>
+</ul>
+
+<h2>Prepara cualquiera de los tres cuerpos con las mismas herramientas</h2>
+<p>
+  En <a href="/register">OpoRuta</a> puedes preparar Auxilio Judicial, Tramitación Procesal
+  y Gestión Procesal con tests adaptados a cada temario, simulacros con penalización real,
+  cronómetro y análisis de tus temas más débiles con IA. Como el temario es compartido,
+  lo que estudias para un cuerpo te sirve para los demás.
+</p>
+<p>
+  <strong><a href="/register">Regístrate gratis y empieza a preparar tu oposición de Justicia</a></strong>.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Plazas y datos de la OEP 2025 (BOE-A-2025-27053). Los sueldos son estimaciones basadas en retribuciones oficiales. El temario es común para Ministerio y Comunidades Autónomas. Las CCAA convocan plazas adicionales.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuál es la diferencia entre Auxilio, Tramitación y Gestión Procesal?', answer: 'Son los tres cuerpos generales de la Administración de Justicia, ordenados de menor a mayor exigencia. Auxilio Judicial (C2) requiere ESO, tiene 26 temas y sueldo de ~18.000€. Tramitación Procesal (C1) requiere Bachillerato, tiene 37 temas y sueldo de ~22.000€. Gestión Procesal (A2) requiere Grado universitario, tiene 68 temas, incluye desarrollo escrito y el sueldo ronda los 28.000€.' },
+      { question: '¿Qué oposición de Justicia tiene más plazas en 2026?', answer: 'Tramitación Procesal lidera con 1.155 plazas del Ministerio en la OEP 2025 (examen septiembre-octubre 2026). Gestión Procesal ofrece 725 y Auxilio Judicial 425. A estas cifras se suman las plazas que cada Comunidad Autónoma con competencias transferidas convoca por separado, con el mismo temario base.' },
+      { question: '¿Puedo presentarme a Auxilio y Tramitación a la vez?', answer: 'Sí. Los temarios comparten gran parte del contenido (los temas 1-15 de organización son idénticos). Si preparas Tramitación (37 temas), llevas cubierto el 90% de Auxilio (26 temas). Muchos opositores se presentan a ambas convocatorias para maximizar opciones. El temario base es el mismo para Ministerio y CCAA.' },
+      { question: '¿Se puede ascender de Auxilio a Tramitación o Gestión?', answer: 'Sí, mediante promoción interna. Con Bachillerato + 2 años de servicio en Auxilio, puedes presentarte a un examen reducido para Tramitación. Con Grado + 2 años en Tramitación, accedes a Gestión por la misma vía. La promoción interna tiene plazas reservadas y es significativamente más sencilla que el acceso libre.' },
+      { question: '¿Cuánto tiempo necesito para preparar cada oposición de Justicia?', answer: 'Auxilio Judicial: 6-10 meses (26 temas, 2 ejercicios test). Tramitación Procesal: 10-14 meses (37 temas, 3 ejercicios test). Gestión Procesal: 14-20 meses (68 temas, 3 ejercicios incluyendo desarrollo escrito). Estos plazos asumen estudio constante de 2-3 horas diarias.' },
+      { question: '¿Qué oposición de Justicia es más fácil?', answer: 'Auxilio Judicial es la que requiere menor titulación (ESO), menos temas (26) y menor tiempo de preparación (6-10 meses). Sin embargo, tiene menos plazas (425 vs 1.155 de Tramitación). Tramitación ofrece el mejor equilibrio entre dificultad y oportunidades. Gestión es la más exigente pero la mejor retribuida. Depende de tu formación y tiempo disponible.' },
+    ],
+  },
+
+  // ─── Post 74 — Justicia: Opositar a Justicia trabajando ──────────────────────
+  {
+    slug: 'opositar-justicia-trabajando-plan-semanal',
+    title: 'Opositar a Justicia trabajando: plan semanal realista para Auxilio y Tramitación',
+    description:
+      'Plan de estudio de 15 horas semanales compatibles con trabajo a jornada completa. Calendario de 8 meses para Auxilio (26 temas) y 12 meses para Tramitación (37 temas). Técnicas, repasos y cuándo empezar simulacros.',
+    date: '2026-03-25',
+    keywords: [
+      'opositar justicia trabajando',
+      'preparar auxilio judicial trabajando',
+      'plan estudio oposiciones justicia',
+      'opositar tramitación procesal trabajando',
+      'estudiar oposiciones con trabajo',
+      'plan semanal oposiciones justicia',
+    ],
+    content: `
+<h2>Sí, puedes opositar a Justicia con trabajo a jornada completa</h2>
+<p>
+  La mayoría de opositores que se presentan a Auxilio Judicial o Tramitación Procesal
+  trabajan a la vez. No es lo ideal, pero es perfectamente viable si organizas bien tu
+  tiempo. La clave no es estudiar más horas, sino estudiar <strong>de forma constante
+  y con método</strong>.
+</p>
+<p>
+  Este plan está diseñado para <strong>15 horas semanales de estudio efectivo</strong>,
+  compatibles con una jornada laboral de 8 horas. Es ambicioso pero realista: muchos
+  opositores que han sacado plaza de Auxilio o Tramitación lo han hecho con horarios similares.
+</p>
+
+<h2>La distribución semanal: 15 horas en 7 días</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Día</th>
+      <th>Horario sugerido</th>
+      <th>Horas</th>
+      <th>Actividad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Lunes</td>
+      <td>20:00-22:00</td>
+      <td>2h</td>
+      <td>Tema nuevo: primera lectura + subrayado</td>
+    </tr>
+    <tr>
+      <td>Martes</td>
+      <td>20:00-22:00</td>
+      <td>2h</td>
+      <td>Mismo tema: esquema + repaso activo</td>
+    </tr>
+    <tr>
+      <td>Miércoles</td>
+      <td>20:00-22:00</td>
+      <td>2h</td>
+      <td>Test del tema + repaso de errores</td>
+    </tr>
+    <tr>
+      <td>Jueves</td>
+      <td>20:00-22:00</td>
+      <td>2h</td>
+      <td>Repaso de temas anteriores (spaced repetition)</td>
+    </tr>
+    <tr>
+      <td>Viernes</td>
+      <td>Descanso</td>
+      <td>0h</td>
+      <td>Descanso total — tu cerebro consolida</td>
+    </tr>
+    <tr>
+      <td>Sábado</td>
+      <td>10:00-12:30</td>
+      <td>2,5h</td>
+      <td>Tema nuevo + test</td>
+    </tr>
+    <tr>
+      <td>Domingo</td>
+      <td>10:00-12:30</td>
+      <td>2,5h</td>
+      <td>Repaso semanal + simulacro (cuando toque)</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  <strong>Total: 13-15 horas semanales.</strong> El viernes es sagrado: descansar es parte del
+  método. Si algún día no puedes, no intentes "recuperar" 4 horas el fin de semana. Es mejor
+  mantener la constancia con sesiones cortas que hacer maratones esporádicos.
+</p>
+
+<h2>Calendario para Auxilio Judicial: 8 meses (26 temas)</h2>
+<p>
+  Con 15h/semana y un ritmo de ~1,5 temas nuevos por semana (dejando tiempo para repasos):
+</p>
+
+<h3>Meses 1-2: Bloque I - Organización del Estado (T1-8)</h3>
+<ul>
+  <li>Constitución, Corona, Cortes, Gobierno, Poder Judicial, CGPJ, TC</li>
+  <li>Son los temas más "teóricos" pero también los más transversales: aparecen en todas las oposiciones</li>
+  <li><strong>Ritmo:</strong> 1 tema/semana + repaso</li>
+</ul>
+
+<h3>Meses 3-4: Bloque I - Organización judicial (T9-15)</h3>
+<ul>
+  <li>Juzgados, Audiencias, TS, oficina judicial, LAJ, personal al servicio</li>
+  <li>Son los temas más "propios" de Justicia: conceptos que necesitarás para el Bloque II</li>
+  <li><strong>Ritmo:</strong> 1 tema/semana + intensificar repasos de T1-8</li>
+</ul>
+
+<h3>Meses 5-6: Bloque II - Derecho Procesal (T16-26)</h3>
+<ul>
+  <li>Procedimientos civiles, penales, contenciosos, laborales, comunicaciones, Registro Civil</li>
+  <li>El bloque más difícil de Auxilio: muchos conceptos nuevos y plazos que memorizar</li>
+  <li><strong>Ritmo:</strong> 1,5 temas/semana. Usa esquemas de plazos procesales</li>
+</ul>
+
+<h3>Meses 7-8: Repaso intensivo + simulacros</h3>
+<ul>
+  <li>Ya no hay temas nuevos. Dedica el 70% del tiempo a repasar y el 30% a hacer tests y simulacros completos</li>
+  <li>Haz al menos <strong>1 simulacro completo por semana</strong> (100 preguntas + caso práctico, con cronómetro y penalización)</li>
+  <li>Identifica tus 5 temas más débiles y dale prioridad</li>
+</ul>
+
+<h2>Calendario para Tramitación Procesal: 12 meses (37 temas)</h2>
+<p>
+  Tramitación tiene 11 temas más que Auxilio, principalmente en Derecho Procesal (más detallado)
+  y un bloque de Ofimática. Con 15h/semana:
+</p>
+
+<h3>Meses 1-3: Bloque I - Organización (T1-15)</h3>
+<ul>
+  <li>Idéntico a Auxilio. Si ya preparaste Auxilio, puedes hacer repaso rápido en 1 mes</li>
+  <li><strong>Ritmo:</strong> 1,5 temas/semana</li>
+</ul>
+
+<h3>Meses 4-7: Bloque II - Derecho Procesal (T16-31)</h3>
+<ul>
+  <li>16 temas de procesal (más extensos que los de Auxilio)</li>
+  <li>LEC, LECrim, contencioso, laboral, recursos, comunicaciones, Registro Civil, archivo</li>
+  <li><strong>Ritmo:</strong> 1 tema/semana. No aceleres: el procesal es el bloque que decide el examen</li>
+</ul>
+
+<h3>Meses 8-9: Bloque III - Ofimática (T32-37)</h3>
+<ul>
+  <li>6 temas prácticos: Windows, Word 365, Outlook 365, Internet</li>
+  <li>Estudia con el ordenador delante. Practica las operaciones reales</li>
+  <li><strong>Ritmo:</strong> 1 tema/semana + práctica en el PC</li>
+</ul>
+
+<h3>Meses 10-12: Repaso intensivo + simulacros</h3>
+<ul>
+  <li>3 meses completos de repaso cíclico. Primer mes: repasar todo el temario una vez</li>
+  <li>Segundo mes: tests por tema (identificar lagunas) + simulacros semanales</li>
+  <li>Tercer mes: 2 simulacros/semana + repaso solo de temas débiles</li>
+  <li><strong>Objetivo:</strong> llegar al examen habiendo hecho al menos 8-10 simulacros completos</li>
+</ul>
+
+<h2>Técnicas de estudio para sesiones cortas</h2>
+<p>
+  Con solo 2 horas por sesión, cada minuto cuenta. Estas técnicas están probadas para
+  maximizar la retención en sesiones breves:
+</p>
+<ol>
+  <li><strong>Lectura activa (no pasiva):</strong> no leas sin más. Subraya, anota en los márgenes, hazte preguntas mentales después de cada párrafo</li>
+  <li><strong>Esquemas propios:</strong> después de leer un tema, haz un esquema de 1 página de memoria. Lo que no recuerdas es lo que necesitas repasar</li>
+  <li><strong>Spaced repetition:</strong> repasa cada tema a los 1, 3, 7, 14 y 30 días. Es la técnica con más evidencia científica para la memorización a largo plazo</li>
+  <li><strong>Tests inmediatos:</strong> después de estudiar un tema, haz 10-15 preguntas de test de ese tema. El esfuerzo de recuperar la información la fija mejor que releerla</li>
+  <li><strong>Regla de los 5 primeros minutos:</strong> si no tienes ganas de estudiar, comprométete solo a 5 minutos. El 90% de las veces seguirás hasta completar la sesión</li>
+</ol>
+
+<h2>Cuándo empezar los simulacros</h2>
+<p>
+  Un error muy común es dejar los simulacros para el último mes. Los simulacros cumplen
+  dos funciones insustituibles:
+</p>
+<ul>
+  <li><strong>Gestión del tiempo:</strong> 100 preguntas en 100 minutos (Tramitación Ej.1) requiere un ritmo de 1 minuto por pregunta. Si no lo practicas, el día del examen te quedarás sin tiempo</li>
+  <li><strong>Familiarizarte con la penalización:</strong> la penalización 1/4 cambia por completo tu estrategia. Solo practicando aprendes cuándo arriesgar y cuándo dejar en blanco</li>
+</ul>
+<p>
+  <strong>Recomendación:</strong> empieza los simulacros cuando hayas cubierto el 60-70%
+  del temario. Para Auxilio, a partir del mes 5. Para Tramitación, a partir del mes 8.
+  Haz un simulacro semanal al principio y sube a 2-3 por semana en el último mes.
+</p>
+
+<h2>El temario es el mismo para Ministerio y Comunidades Autónomas</h2>
+<p>
+  Gran ventaja estratégica: el temario base de Auxilio y Tramitación es <strong>idéntico
+  para la convocatoria del Ministerio de Justicia y las de cada Comunidad Autónoma</strong>.
+  Las CCAA con competencias transferidas (Andalucía, Cataluña, País Vasco, Valencia, Canarias,
+  etc.) solo añaden entre 1 y 5 temas propios sobre derecho foral o lengua cooficial.
+</p>
+<p>
+  Esto significa que con un solo plan de estudio puedes presentarte a múltiples convocatorias
+  y multiplicar tus oportunidades de obtener plaza.
+</p>
+
+<h2>Errores frecuentes del opositor que trabaja</h2>
+<ul>
+  <li><strong>"Esta semana no puedo, ya recuperaré":</strong> la constancia supera al volumen. Estudiar 1 hora 5 días es mejor que 5 horas 1 día</li>
+  <li><strong>"Primero me leo todo y luego hago tests":</strong> los tests son parte del estudio, no un extra para el final. Haz tests desde la primera semana</li>
+  <li><strong>"Necesito una academia para organizarme":</strong> con un buen plan y disciplina, puedes prepararte sin academia. Muchos opositores con plaza lo han hecho así</li>
+  <li><strong>"Voy a estudiar los temas en orden y repasar al final":</strong> si estudias el T1 en enero y no lo repasas hasta agosto, lo habrás olvidado. El repaso cíclico es obligatorio</li>
+  <li><strong>"Con 26 temas me da tiempo de sobra":</strong> 26 temas de Auxilio no son 26 capítulos de un libro. Son temas jurídicos densos que requieren comprensión y memorización de artículos, plazos y procedimientos</li>
+</ul>
+
+<h2>Herramientas que ahorran tiempo al opositor que trabaja</h2>
+<p>
+  En <a href="/register">OpoRuta</a> puedes hacer tests de 10-15 preguntas por tema en 15 minutos
+  (perfecto para sesiones cortas), simulacros completos con cronómetro y penalización 1/4,
+  y un sistema de repaso espaciado que te dice exactamente qué repasar cada día. Todo
+  disponible 24/7 desde el móvil o el ordenador.
+</p>
+<p>
+  <strong><a href="/register">Regístrate gratis y empieza tu plan de estudio hoy</a></strong>.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Los plazos de preparación son orientativos y dependen de la experiencia previa y la capacidad de estudio. El temario de Auxilio (26 temas) y Tramitación (37 temas) es el mismo para convocatorias del Ministerio y Comunidades Autónomas.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuántas horas al día necesito para preparar Auxilio Judicial trabajando?', answer: 'Con 2 horas diarias de lunes a jueves y 2,5 horas sábado y domingo (viernes descanso), acumulas unas 13-15 horas semanales de estudio efectivo. Con este ritmo, puedes preparar los 26 temas de Auxilio Judicial en 8 meses, incluyendo repaso y simulacros. La clave es la constancia diaria, no las maratones esporádicas.' },
+      { question: '¿Cuántos meses necesito para preparar Tramitación Procesal trabajando?', answer: 'Con 15 horas semanales de estudio, el plan realista para Tramitación Procesal (37 temas) es de 12 meses: 3 meses para Organización (T1-15), 4 meses para Derecho Procesal (T16-31), 2 meses para Ofimática (T32-37) y 3 meses de repaso intensivo y simulacros. Si ya tienes base de Auxilio, puedes reducirlo a 8-10 meses.' },
+      { question: '¿Cuándo debo empezar a hacer simulacros de oposiciones de Justicia?', answer: 'Empieza los simulacros cuando hayas cubierto el 60-70% del temario: a partir del mes 5 para Auxilio y del mes 8 para Tramitación. Comienza con 1 simulacro semanal y sube a 2-3 por semana en el último mes. Los simulacros son imprescindibles para practicar la gestión del tiempo (1 min/pregunta) y la estrategia ante la penalización 1/4.' },
+      { question: '¿Puedo preparar Auxilio y Tramitación a la vez trabajando?', answer: 'Sí, porque los temas 1-15 de ambas oposiciones son idénticos. Si preparas Tramitación (37 temas), ya tienes cubierto el 90% de Auxilio. La estrategia recomendada: prepara Tramitación como objetivo principal y preséntate también a Auxilio como "seguro". Solo necesitarás adaptar los temas procesales (Auxilio los resume más).' },
+      { question: '¿El temario de Justicia es el mismo para todas las comunidades autónomas?', answer: 'Sí. El temario base de Auxilio Judicial (26 temas) y Tramitación Procesal (37 temas) es idéntico para la convocatoria del Ministerio de Justicia y las de cada Comunidad Autónoma. Las CCAA con competencias transferidas solo añaden entre 1 y 5 temas propios sobre derecho foral o lengua cooficial, pero nunca modifican los temas base. Puedes preparar una vez y presentarte a múltiples convocatorias.' },
+    ],
+  },
 ]
