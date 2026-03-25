@@ -14,7 +14,7 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const metadata: Metadata = {
   title: 'Oposiciones Justicia 2026 — Auxilio, Tramitación y Gestión Procesal | OpoRuta',
   description:
-    'Prepara las oposiciones de Justicia 2026 con IA: Auxilio Judicial (C2), Tramitación Procesal (C1) y Gestión Procesal (A2). Tests verificados contra LOPJ, LEC y LO 1/2025. Más de 1.100 plazas.',
+    'Prepara las oposiciones de Justicia 2026 con IA: Auxilio Judicial (C2, 425 plazas), Tramitación Procesal (C1, 1.155 plazas) y Gestión Procesal (A2, 725 plazas). Tests verificados contra LOPJ, LEC y LO 1/2025. Más de 2.300 plazas.',
   keywords: [
     'oposiciones justicia 2026', 'auxilio judicial', 'tramitación procesal',
     'gestión procesal', 'test oposiciones justicia', 'temario justicia 2026',

@@ -35,7 +35,7 @@ const TEMAS = [
   { num: 3, titulo: 'Paquetería de Correos y Correos Express', desc: 'Servicios e-commerce y Citypaq.' },
   { num: 4, titulo: 'Productos y servicios en oficinas', desc: 'Servicios financieros. Soluciones digitales. Filatelia.' },
   { num: 5, titulo: 'Nuevas líneas de negocio', desc: 'Correos Logística. Correos Frío. Otros negocios.' },
-  { num: 6, titulo: 'Herramientas', desc: 'IRIS, SGIE, PDA, SEDI, SGTC, WUPOS, Quenda. Funciones y utilidad.' },
+  { num: 6, titulo: 'Herramientas', desc: 'IRIS, SGIE, PDA, SICER y otras. Funciones y utilidad.' },
   { num: 7, titulo: 'Procesos operativos I: admisión', desc: 'Etiquetado, franqueo, facturación, requisitos de envíos.' },
   { num: 8, titulo: 'Procesos operativos II: tratamiento y transporte', desc: 'Centros de tratamiento automatizado (CTA). Clasificación y rutas.' },
   { num: 9, titulo: 'Procesos operativos III: distribución y entrega', desc: 'RD 437/2024. Normas de entrega, avisos de llegada, buzones.' },
@@ -60,7 +60,7 @@ export default function CorreosLanding() {
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
         mainEntity: [
-          { '@type': 'Question', name: '¿Cuántas plazas hay en Correos 2026?', acceptedAnswer: { '@type': 'Answer', text: 'La última convocatoria ofertó más de 4.000 plazas de personal laboral fijo (Grupo IV). Es una de las oposiciones con más plazas de España.' } },
+          { '@type': 'Question', name: '¿Cuántas plazas hay en Correos 2026?', acceptedAnswer: { '@type': 'Answer', text: 'La última convocatoria (2023) ofertó 7.757 plazas. Para 2026 se esperan más de 4.000 plazas de personal laboral fijo (Grupo IV), dentro del plan plurianual 2025-2028. Es una de las oposiciones con más plazas de España.' } },
           { '@type': 'Question', name: '¿El examen de Correos penaliza?', acceptedAnswer: { '@type': 'Answer', text: 'No. A diferencia de AGE o Justicia, en Correos los errores no restan puntos. Cada acierto vale 0,60 puntos y los errores suman 0. Conviene responder todas las preguntas.' } },
           { '@type': 'Question', name: '¿Qué requisitos necesito para presentarme?', acceptedAnswer: { '@type': 'Answer', text: 'Título de ESO o equivalente, ser mayor de 18 años y nacionalidad española o de la UE. No se exige experiencia previa.' } },
           { '@type': 'Question', name: '¿Cuándo es el examen de Correos 2026?', acceptedAnswer: { '@type': 'Answer', text: 'Las convocatorias de Correos suelen publicarse entre marzo y mayo, con examen unas semanas después. Pendiente de publicación oficial para 2026.' } },
@@ -179,7 +179,7 @@ export default function CorreosLanding() {
         <h2 className="text-2xl font-bold">Preguntas frecuentes</h2>
         <div className="space-y-4">
           {[
-            { q: '¿Cuántas plazas hay en Correos 2026?', a: 'La última convocatoria ofertó más de 4.000 plazas de personal laboral fijo (Grupo IV). Es una de las oposiciones con más plazas de España.' },
+            { q: '¿Cuántas plazas hay en Correos 2026?', a: 'La última convocatoria (2023) ofertó 7.757 plazas. Para 2026 se esperan más de 4.000 plazas de personal laboral fijo (Grupo IV), dentro del plan plurianual 2025-2028. Es una de las oposiciones con más plazas de España.' },
             { q: '¿El examen de Correos penaliza?', a: 'No. Los errores no restan. Cada acierto vale 0,60 puntos. Conviene responder todas las preguntas.' },
             { q: '¿Qué requisitos necesito?', a: 'Título de ESO o equivalente, mayor de 18 años y nacionalidad española o UE.' },
             { q: '¿Cuándo es el examen?', a: 'Las convocatorias suelen publicarse entre marzo y mayo. Pendiente de fecha oficial para 2026.' },

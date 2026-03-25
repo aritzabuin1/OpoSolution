@@ -14,7 +14,7 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const metadata: Metadata = {
   title: 'Test Tramitación Procesal 2026 — Practica gratis con preguntas tipo examen | OpoRuta',
   description:
-    'Prepara las oposiciones de Tramitación Procesal y Administrativa 2026 con tests online gratis. 37 temas, 100 preguntas con penalización, +1.100 plazas. Entrena con IA y aprueba a la primera.',
+    'Prepara las oposiciones de Tramitación Procesal y Administrativa 2026 con tests online gratis. 37 temas, 100 preguntas con penalización, 1.155 plazas. Entrena con IA y aprueba a la primera.',
   keywords: [
     'test tramitación procesal 2026', 'oposiciones tramitación procesal',
     'examen tramitación procesal online', 'preguntas tramitación procesal',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Test Tramitación Procesal 2026 — Practica gratis | OpoRuta',
-    description: 'Tests online gratis para oposiciones de Tramitación Procesal. 37 temas, 3 ejercicios, +1.100 plazas.',
+    description: 'Tests online gratis para oposiciones de Tramitación Procesal. 37 temas, 3 ejercicios, 1.155 plazas.',
     url: `${APP_URL}/oposiciones/justicia/tramitacion-procesal`,
     type: 'website',
   },
@@ -50,30 +50,30 @@ const TEMAS = [
   { num: 15, titulo: 'Protección de datos', desc: 'RGPD y LOPDGDD. Tratamiento de datos en la Administración de Justicia.' },
 
   // Bloque II — Derecho procesal (16 temas)
-  { num: 16, titulo: 'Jurisdicción y competencia civil', desc: 'LEC. Órganos civiles. Fuero territorial. Cuestiones de competencia. Declinatoria.' },
-  { num: 17, titulo: 'Juicio ordinario', desc: 'Demanda, contestación, audiencia previa, juicio, sentencia. Cuantía > 6.000€.' },
-  { num: 18, titulo: 'Juicio verbal', desc: 'Ámbito, demanda sucinta, vista. Cuantía ≤ 6.000€. Especialidades.' },
-  { num: 19, titulo: 'Ejecución civil', desc: 'Títulos ejecutivos. Despacho de ejecución. Embargo. Realización de bienes.' },
-  { num: 20, titulo: 'Medidas cautelares civiles', desc: 'Presupuestos, tipos, adopción con/sin audiencia, caución, modificación.' },
-  { num: 21, titulo: 'Jurisdicción voluntaria', desc: 'Ley 15/2015. Expedientes de jurisdicción voluntaria. Competencia del LAJ.' },
-  { num: 22, titulo: 'Principios del proceso penal', desc: 'LECrim. Acción penal. Denuncia y querella. Instrucción. Secreto sumarial.' },
-  { num: 23, titulo: 'Procedimiento abreviado', desc: 'Ámbito (penas ≤ 9 años). Diligencias previas. Preparación y juicio oral.' },
-  { num: 24, titulo: 'Juicio sobre delitos leves', desc: 'Competencia. Citación. Celebración del juicio. Sentencia in voce.' },
-  { num: 25, titulo: 'Tribunal del Jurado', desc: 'LO 5/1995. Competencia. Selección jurados. Veredicto. Objeto del veredicto.' },
-  { num: 26, titulo: 'Proceso penal del menor', desc: 'LO 5/2000. Medidas. Competencia del Juzgado de Menores. Instrucción del Fiscal.' },
-  { num: 27, titulo: 'Jurisdicción contencioso-administrativa', desc: 'LJCA. Órganos. Recurso contencioso. Procedimiento abreviado. Ejecución de sentencias.' },
-  { num: 28, titulo: 'Jurisdicción laboral', desc: 'LRJS. Juzgados de lo Social. Conciliación previa. Proceso ordinario y modalidades.' },
-  { num: 29, titulo: 'Actos procesales', desc: 'Actos de comunicación. Notificaciones, citaciones, requerimientos. Auxilio judicial.' },
-  { num: 30, titulo: 'Registro Civil', desc: 'Ley 20/2011. Hechos inscribibles. Expedientes registrales. Competencia del LAJ.' },
-  { num: 31, titulo: 'Cooperación jurídica internacional', desc: 'Ley 29/2015. Exhortos. Comisiones rogatorias. Reconocimiento de resoluciones.' },
+  { num: 16, titulo: 'Procedimientos declarativos LEC. MASC', desc: 'Juicio ordinario, verbal, medios adecuados de solución de controversias.' },
+  { num: 17, titulo: 'Procedimientos de ejecución LEC', desc: 'Embargos, subastas. Medidas cautelares.' },
+  { num: 18, titulo: 'Procesos especiales LEC', desc: 'Matrimoniales, monitorio, cambiario.' },
+  { num: 19, titulo: 'Jurisdicción voluntaria', desc: 'Ley 15/2015. Expedientes de jurisdicción voluntaria. Competencia del LAJ.' },
+  { num: 20, titulo: 'Procedimientos penales LECrim', desc: 'Habeas Corpus. Instrucción. Denuncia y querella.' },
+  { num: 21, titulo: 'Juicio sobre delitos leves', desc: 'Competencia. Citación. Celebración del juicio. Sentencia.' },
+  { num: 22, titulo: 'Recurso contencioso-administrativo', desc: 'LJCA. Órganos. Procedimiento abreviado. Ejecución de sentencias.' },
+  { num: 23, titulo: 'El proceso laboral', desc: 'LRJS. Juzgados de lo Social. Conciliación previa. Proceso ordinario y modalidades.' },
+  { num: 24, titulo: 'Recursos', desc: 'Recursos ordinarios y extraordinarios en los distintos órdenes jurisdiccionales.' },
+  { num: 25, titulo: 'Actos procesales', desc: 'Requisitos de los actos procesales. Plazos y términos. Nulidad de actuaciones.' },
+  { num: 26, titulo: 'Resoluciones de órganos judiciales. Resoluciones del LAJ', desc: 'Providencias, autos, sentencias. Decretos y diligencias del Letrado de la Administración de Justicia.' },
+  { num: 27, titulo: 'Comunicación con otros Tribunales', desc: 'Oficios, mandamientos, exhortos. Cooperación jurídica internacional.' },
+  { num: 28, titulo: 'Comunicación a las partes', desc: 'Notificaciones, requerimientos, citaciones, emplazamientos.' },
+  { num: 29, titulo: 'El Registro Civil', desc: 'Estructura. Ley 20/2011. Hechos inscribibles. Expedientes registrales.' },
+  { num: 30, titulo: 'Las inscripciones', desc: 'Nacimiento, matrimonio, defunción. Fe pública registral.' },
+  { num: 31, titulo: 'Archivo judicial y documentación judicial', desc: 'Organización, conservación y expurgo de documentación judicial.' },
 
   // Bloque III — Ofimática (6 temas)
-  { num: 32, titulo: 'Procesador de textos: Word avanzado', desc: 'Estilos, tablas, combinación de correspondencia, macros, formularios.' },
-  { num: 33, titulo: 'Hoja de cálculo: Excel avanzado', desc: 'Funciones, tablas dinámicas, gráficos, filtros, validación de datos.' },
-  { num: 34, titulo: 'Bases de datos', desc: 'Conceptos fundamentales. Tablas, consultas, formularios e informes. Access.' },
-  { num: 35, titulo: 'Correo electrónico y agenda', desc: 'Outlook. Envío, recepción, organización. Calendario y contactos.' },
-  { num: 36, titulo: 'Navegación y búsqueda en Internet', desc: 'Navegadores. Búsqueda eficiente. Seguridad. Intranet judicial.' },
-  { num: 37, titulo: 'Sistema operativo', desc: 'Windows. Gestión de archivos y carpetas. Configuración básica. Impresoras.' },
+  { num: 32, titulo: 'Informática básica', desc: 'Conceptos fundamentales. Hardware y software. Sistemas de información.' },
+  { num: 33, titulo: 'El entorno Windows (10 y 11)', desc: 'Escritorio, configuración, gestión de archivos y carpetas.' },
+  { num: 34, titulo: 'El explorador de Windows', desc: 'Navegación, búsqueda, organización de archivos. Impresoras y periféricos.' },
+  { num: 35, titulo: 'Word 365', desc: 'Edición, formato, estilos, tablas, combinación de correspondencia.' },
+  { num: 36, titulo: 'Outlook 365', desc: 'Correo electrónico, calendario, contactos, tareas.' },
+  { num: 37, titulo: 'La Red Internet', desc: 'Navegadores, búsqueda, seguridad. Intranet judicial.' },
 ]
 
 const FAQS = [
@@ -83,7 +83,7 @@ const FAQS = [
   },
   {
     q: '¿Cómo es el examen de Tramitación Procesal?',
-    a: 'Consta de 3 ejercicios: un test de 100 preguntas en 90 minutos (60% de la nota), un caso práctico con 2 supuestos en 30 minutos (20%) y un ejercicio de ofimática en 30 minutos (20%). El test penaliza: cada error resta 1/4 del valor del acierto.',
+    a: 'Consta de 3 ejercicios tipo test con penalización (1/4): Ej.1 — 100 preguntas en 100 minutos (60 pts máx, 30 mín); Ej.2 — 10 preguntas procesales en 30 minutos (20 pts máx, 10 mín); Ej.3 — 20 preguntas de ofimática en 40 minutos (20 pts máx, 10 mín). Todos penalizan: cada error resta 1/4 del valor del acierto.',
   },
   {
     q: '¿Qué requisitos necesito para presentarme?',
@@ -99,7 +99,7 @@ const FAQS = [
   },
   {
     q: '¿En qué se diferencia Tramitación de Auxilio Judicial?',
-    a: 'Tramitación Procesal es cuerpo C1 (Bachillerato), con mayor sueldo y responsabilidad. Auxilio Judicial es C2 (ESO). Tramitación exige 37 temas frente a 26 de Auxilio, y añade caso práctico y ofimática como ejercicios adicionales.',
+    a: 'Tramitación Procesal es cuerpo C1 (Bachillerato), con mayor sueldo y responsabilidad. Auxilio Judicial es C2 (ESO). Tramitación exige 37 temas frente a 26 de Auxilio, y tiene 3 ejercicios tipo test (general + procesal + ofimática) frente al ejercicio único de Auxilio.',
   },
 ]
 
@@ -129,14 +129,14 @@ export default function TramitacionProcesalLanding() {
       <section className="text-center space-y-6">
         <Badge variant="secondary" className="text-sm px-4 py-1">
           <Scale className="w-4 h-4 mr-1.5 inline" />
-          +1.100 plazas · Cuerpo C1
+          1.155 plazas · Cuerpo C1
         </Badge>
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
           Oposiciones <span className="text-indigo-600">Tramitación Procesal</span> 2026
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Practica con tests online gratis. 37 temas, 3 ejercicios (test + caso práctico + ofimática),
-          100 preguntas con penalización. Tu puerta de entrada al Cuerpo C1 de Justicia.
+          Practica con tests online gratis. 37 temas, 3 ejercicios tipo test con penalización,
+          100 + 10 + 20 preguntas. Tu puerta de entrada al Cuerpo C1 de Justicia.
         </p>
         <div className="flex items-center justify-center gap-4 flex-wrap">
           <Link href="/register?oposicion=tramitacion-procesal">
@@ -162,9 +162,9 @@ export default function TramitacionProcesalLanding() {
             <div className="grid sm:grid-cols-4 gap-3 text-center">
               {[
                 { label: '100 preguntas', desc: '+ 4 de reserva' },
-                { label: '90 minutos', desc: '54 seg por pregunta' },
+                { label: '100 minutos', desc: '60 seg por pregunta' },
                 { label: 'Penaliza', desc: 'Error resta 1/4' },
-                { label: '60 pts máximo', desc: 'Acierto +1 pt' },
+                { label: '60 pts máx / 30 mín', desc: 'Acierto +0,60 pts' },
               ].map(({ label, desc }) => (
                 <div key={label} className="bg-indigo-50 dark:bg-indigo-950/20 rounded-lg p-3">
                   <p className="font-semibold text-sm">{label}</p>
@@ -175,18 +175,19 @@ export default function TramitacionProcesalLanding() {
           </CardContent>
         </Card>
 
-        {/* Ejercicio 2: Caso práctico */}
+        {/* Ejercicio 2: Test procesal */}
         <Card className="border-indigo-200 dark:border-indigo-800">
           <CardContent className="pt-6 space-y-3">
             <div className="flex items-center gap-2">
               <FileText className="h-6 w-6 text-indigo-600" />
-              <h3 className="font-bold">Ejercicio 2 — Caso práctico (20% de la nota)</h3>
+              <h3 className="font-bold">Ejercicio 2 — Test procesal (20% de la nota)</h3>
             </div>
-            <div className="grid sm:grid-cols-3 gap-3 text-center">
+            <div className="grid sm:grid-cols-4 gap-3 text-center">
               {[
-                { label: '2 supuestos', desc: 'Redacción de resoluciones' },
-                { label: '30 minutos', desc: '15 min por supuesto' },
-                { label: '20 pts máximo', desc: 'Valoración del tribunal' },
+                { label: '10 preguntas', desc: '+ 2 de reserva' },
+                { label: '30 minutos', desc: '3 min por pregunta' },
+                { label: 'Penaliza', desc: 'Error resta 1/4' },
+                { label: '20 pts máx / 10 mín', desc: 'Acierto +2,00 pts' },
               ].map(({ label, desc }) => (
                 <div key={label} className="bg-indigo-50 dark:bg-indigo-950/20 rounded-lg p-3">
                   <p className="font-semibold text-sm">{label}</p>
@@ -197,18 +198,19 @@ export default function TramitacionProcesalLanding() {
           </CardContent>
         </Card>
 
-        {/* Ejercicio 3: Ofimática */}
+        {/* Ejercicio 3: Test ofimática */}
         <Card className="border-indigo-200 dark:border-indigo-800">
           <CardContent className="pt-6 space-y-3">
             <div className="flex items-center gap-2">
               <Monitor className="h-6 w-6 text-indigo-600" />
-              <h3 className="font-bold">Ejercicio 3 — Ofimática (20% de la nota)</h3>
+              <h3 className="font-bold">Ejercicio 3 — Test ofimática (20% de la nota)</h3>
             </div>
-            <div className="grid sm:grid-cols-3 gap-3 text-center">
+            <div className="grid sm:grid-cols-4 gap-3 text-center">
               {[
-                { label: 'Word + Excel', desc: 'Ejercicio práctico real' },
-                { label: '30 minutos', desc: 'En ordenador del tribunal' },
-                { label: '20 pts máximo', desc: 'Valoración del tribunal' },
+                { label: '20 preguntas', desc: '+ 4 de reserva' },
+                { label: '40 minutos', desc: '2 min por pregunta' },
+                { label: 'Penaliza', desc: 'Error resta 1/4' },
+                { label: '20 pts máx / 10 mín', desc: 'Acierto +1,00 pts' },
               ].map(({ label, desc }) => (
                 <div key={label} className="bg-indigo-50 dark:bg-indigo-950/20 rounded-lg p-3">
                   <p className="font-semibold text-sm">{label}</p>
@@ -222,7 +224,7 @@ export default function TramitacionProcesalLanding() {
         <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
           <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
             <Gavel className="w-4 h-4 inline mr-1.5" />
-            El test penaliza — cada error resta 1/4 del valor del acierto. Deja en blanco lo que no sepas.
+            Los 3 ejercicios son tipo test con penalización — cada error resta 1/4 del valor del acierto. Deja en blanco lo que no sepas.
           </p>
         </div>
       </section>
@@ -312,7 +314,7 @@ export default function TramitacionProcesalLanding() {
         <div className="grid sm:grid-cols-2 gap-4">
           {[
             { icon: Sparkles, title: 'Tests con IA', desc: 'Preguntas generadas y verificadas contra la legislación procesal real. LEC, LECrim, LOPJ y más.' },
-            { icon: Gavel, title: 'Penalización real', desc: 'Scoring idéntico al examen: acierto +0,60, error -0,15 (1/4). Practica con la presión real del test.' },
+            { icon: Gavel, title: 'Penalización real', desc: 'Scoring idéntico al examen: los 3 ejercicios penalizan, error resta 1/4 del acierto. Practica con la presión real.' },
             { icon: Scale, title: '37 temas cubiertos', desc: 'Todo el temario oficial: derecho constitucional, procesal (civil, penal, laboral, contencioso) y ofimática.' },
             { icon: Users, title: 'Precio único 49,99€', desc: 'Sin suscripción. Acceso ilimitado hasta que apruebes. 20 análisis detallados incluidos.' },
           ].map(({ icon: Icon, title, desc }) => (

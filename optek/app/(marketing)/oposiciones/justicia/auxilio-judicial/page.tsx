@@ -67,11 +67,11 @@ const FAQS = [
   },
   {
     q: '¿El examen de Auxilio Judicial penaliza?',
-    a: 'Sí. En el primer ejercicio (test), cada acierto suma 1 punto y cada error resta 1/4 del valor del acierto. Las preguntas en blanco no puntúan. Es importante no responder al azar.',
+    a: 'Sí, en ambos ejercicios. En el primer ejercicio (test), cada acierto suma 0,60 puntos y cada error resta 0,15 (1/4). En el segundo ejercicio (caso práctico), cada acierto suma 1,00 punto y cada error resta 0,25 (1/4). Las preguntas en blanco no puntúan.',
   },
   {
     q: '¿Cuántos ejercicios tiene la oposición?',
-    a: 'Dos ejercicios eliminatorios. El primero es un test de 104 preguntas (75 minutos, con penalización). El segundo es un caso práctico con 2 supuestos de 10 preguntas cada uno (45 minutos, sin penalización).',
+    a: 'Dos ejercicios eliminatorios el mismo día. El primero es un test de 104 preguntas (100 minutos, con penalización, mínimo 30 puntos). El segundo es un caso práctico con 42 preguntas sobre 2 supuestos de diligencia judicial (60 minutos, con penalización, mínimo 20 puntos).',
   },
   {
     q: '¿Qué requisitos necesito para presentarme?',
@@ -153,9 +153,9 @@ export default function AuxilioJudicialLanding() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { icon: BookOpen, label: '104 preguntas', desc: '100 ordinarias + 4 reserva' },
-              { icon: Clock, label: '75 minutos', desc: '~43 seg por pregunta' },
-              { icon: AlertTriangle, label: 'Con penalización', desc: 'Error = -1/4 del acierto' },
-              { icon: Calculator, label: '60 pts máximo', desc: 'Acierto = +1 punto' },
+              { icon: Clock, label: '100 minutos', desc: '~58 seg por pregunta' },
+              { icon: AlertTriangle, label: 'Con penalización', desc: 'Error = -0,15 (1/4 del acierto)' },
+              { icon: Calculator, label: '60 pts máximo', desc: 'Acierto = +0,60 pts · Mín. 30 pts' },
             ].map(({ icon: Icon, label, desc }) => (
               <Card key={label}>
                 <CardContent className="pt-6 text-center space-y-2">
@@ -179,10 +179,10 @@ export default function AuxilioJudicialLanding() {
           <h3 className="text-lg font-semibold text-blue-600">Segundo ejercicio — Caso práctico</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { icon: FileText, label: '2 supuestos', desc: '10 preguntas cada uno' },
-              { icon: Clock, label: '45 minutos', desc: '2 min 15 seg por pregunta' },
-              { icon: CheckCircle, label: 'Sin penalización', desc: 'Error = 0 puntos' },
-              { icon: Calculator, label: '40 pts máximo', desc: '2 pts por acierto' },
+              { icon: FileText, label: '42 preguntas', desc: '40 + 2 reserva · 2 casos prácticos' },
+              { icon: Clock, label: '60 minutos', desc: '~1 min 26 seg por pregunta' },
+              { icon: AlertTriangle, label: 'Con penalización', desc: 'Error = -0,25 (1/4 del acierto)' },
+              { icon: Calculator, label: '40 pts máximo', desc: 'Acierto = +1,00 pt · Mín. 20 pts' },
             ].map(({ icon: Icon, label, desc }) => (
               <Card key={label}>
                 <CardContent className="pt-6 text-center space-y-2">
@@ -193,10 +193,10 @@ export default function AuxilioJudicialLanding() {
               </Card>
             ))}
           </div>
-          <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
-            <p className="text-sm font-medium text-green-800 dark:text-green-200">
-              <CheckCircle className="w-4 h-4 inline mr-1.5" />
-              Sin penalización en el caso práctico — responde todas las preguntas.
+          <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
+            <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
+              <AlertTriangle className="w-4 h-4 inline mr-1.5" />
+              Con penalización también en el caso práctico — acierto +1,00, error -0,25 (1/4). Mínimo 20 puntos para aprobar.
             </p>
           </div>
         </div>
@@ -229,7 +229,7 @@ export default function AuxilioJudicialLanding() {
         <div className="grid sm:grid-cols-2 gap-4">
           {[
             { icon: Sparkles, title: 'Tests con IA', desc: 'Preguntas generadas y verificadas contra la legislación real: Constitución, LOPJ, LO 1/2025, LEC, LECrim, TREBEP, LPAC y LRJSP.' },
-            { icon: AlertTriangle, title: 'Scoring con penalización', desc: 'OpoRuta replica el scoring real: acierto +0,60, error -0,15 (1/4). Aprende a gestionar el riesgo antes del examen.' },
+            { icon: AlertTriangle, title: 'Scoring con penalización', desc: 'OpoRuta replica el scoring real de ambos ejercicios. Ej1: +0,60 / -0,15. Ej2: +1,00 / -0,25. Aprende a gestionar el riesgo.' },
             { icon: Shield, title: '26 temas cubiertos', desc: 'Desde Constitución hasta Protección de datos. Cada test se genera con artículos reales del temario oficial.' },
             { icon: Users, title: 'Precio único 49,99€', desc: 'Sin suscripción. Acceso ilimitado hasta que apruebes. 20 análisis detallados incluidos.' },
           ].map(({ icon: Icon, title, desc }) => (

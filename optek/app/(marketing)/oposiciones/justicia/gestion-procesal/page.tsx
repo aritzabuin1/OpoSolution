@@ -34,45 +34,51 @@ export const metadata: Metadata = {
 const BLOQUES = [
   {
     num: 'I',
-    titulo: 'Derecho constitucional y organización',
+    titulo: 'Organización del Estado y Administración de Justicia',
     temas: 16,
+    rango: 'T1-16',
     color: 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300',
-    desc: 'Constitución, UE, organización judicial, LAJ, oficina judicial, personal al servicio de la Administración, LPAC, LRJSP, TREBEP.',
+    desc: 'Constitución, UE, organización judicial, LAJ, oficina judicial, Justicia de Paz (exclusivo Gestión), personal, LPAC, LRJSP, TREBEP.',
   },
   {
     num: 'II',
-    titulo: 'Derecho civil y mercantil',
-    temas: 12,
+    titulo: 'Normas comunes y procedimientos civiles',
+    temas: 23,
+    rango: 'T17-39',
     color: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300',
-    desc: 'Jurisdicción civil, capacidad, obligaciones, contratos, derechos reales, sucesiones, familia, sociedades, concursal, propiedad intelectual.',
+    desc: 'Partes, representación, jurisdicción, actos procesales, resoluciones, comunicación. Declarativos, ordinario, verbal, especiales, voluntaria, recursos, casación, ejecución, apremio, cautelares, costas.',
+  },
+  {
+    num: '',
+    titulo: 'Registro Civil',
+    temas: 3,
+    rango: 'T40-42',
+    color: 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300',
+    desc: 'Registro Civil, asientos, publicidad registral.',
   },
   {
     num: 'III',
-    titulo: 'Derecho procesal civil',
-    temas: 12,
-    color: 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300',
-    desc: 'Jurisdicción y competencia, partes procesales, juicio ordinario, verbal, cambiario, ejecución, medidas cautelares, jurisdicción voluntaria.',
+    titulo: 'Procedimiento penal',
+    temas: 14,
+    rango: 'T43-56',
+    color: 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300',
+    desc: 'Sistema procesal penal completo: procedimiento ordinario, abreviado, jurado, menores, violencia de género, Habeas Corpus.',
   },
   {
     num: 'IV',
-    titulo: 'Derecho penal y procesal penal',
-    temas: 12,
-    color: 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300',
-    desc: 'Derecho penal general, delitos específicos, procedimiento penal, abreviado, jurado, menores, violencia de género.',
-  },
-  {
-    num: 'V',
-    titulo: 'Derecho administrativo y laboral',
-    temas: 10,
+    titulo: 'Contencioso-administrativo y laboral',
+    temas: 11,
+    rango: 'T57-67',
     color: 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300',
-    desc: 'Contencioso-administrativo, laboral, registros civiles, cooperación internacional, igualdad, PRL, protección de datos.',
+    desc: 'Contencioso-administrativo (8 temas detallados), proceso laboral (3 temas).',
   },
   {
-    num: 'VI',
-    titulo: 'Ofimática',
-    temas: 6,
+    num: '',
+    titulo: 'Derecho mercantil',
+    temas: 1,
+    rango: 'T68',
     color: 'bg-gray-100 dark:bg-gray-800/30 text-gray-700 dark:text-gray-300',
-    desc: 'Word, Excel, bases de datos, correo electrónico, navegación web, sistemas operativos.',
+    desc: 'Concurso de acreedores.',
   },
 ]
 
@@ -83,15 +89,15 @@ const FAQS = [
   },
   {
     q: '¿Qué diferencia hay entre Gestión Procesal, Tramitación y Auxilio?',
-    a: 'Gestión Procesal (A2) es el más exigente: requiere grado universitario, tiene 68 temas y 3 ejercicios (test + caso práctico + desarrollo). Tramitación (C1) tiene 54 temas y 2 ejercicios, y Auxilio (C2) tiene 26 temas y 1 ejercicio tipo test.',
+    a: 'Gestión Procesal (A2) es el más exigente: requiere grado universitario, tiene 68 temas y 3 ejercicios (test + caso práctico + desarrollo). Tramitación (C1) tiene 37 temas y 3 ejercicios, y Auxilio (C2) tiene 26 temas y 2 ejercicios tipo test.',
   },
   {
     q: '¿El examen de Gestión Procesal penaliza?',
-    a: 'Sí. En el primer ejercicio (test), cada error resta 1/4 del valor del acierto. Dejar en blanco no penaliza. Es fundamental no responder al azar.',
+    a: 'Sí. En el primer ejercicio (test), cada error resta 1/4 del valor del acierto (-0,15 por fallo). En el caso práctico, la penalización es 1/5 (-0,30 por fallo). Dejar en blanco no penaliza. Es fundamental no responder al azar.',
   },
   {
     q: '¿Cuántos ejercicios tiene la oposición?',
-    a: 'Tres ejercicios: 1) Test de 100 preguntas en 90 minutos (60 pts). 2) Caso práctico: 2 supuestos con 5 preguntas cada uno en 45 minutos (15 pts). 3) Desarrollo escrito: 5 preguntas en 45 minutos sobre temas 17-39 y 43-67 (25 pts).',
+    a: 'Tres ejercicios eliminatorios: 1) Test de 100 preguntas en 100 minutos (60 pts, min 30). 2) Caso práctico tipo test: 10 preguntas en 30 minutos (15 pts, min 7,5). 3) Desarrollo escrito: 5 preguntas en 45 minutos sobre temas 17-39 y 43-67 (25 pts, min 12,5).',
   },
   {
     q: '¿Qué sueldo tiene un Gestor Procesal?',
@@ -169,10 +175,10 @@ export default function GestionProcesalLanding() {
           </h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { icon: BookOpen, label: '100 preguntas', desc: '4 opciones, 1 correcta' },
-              { icon: Clock, label: '90 minutos', desc: '54 seg por pregunta' },
-              { icon: AlertTriangle, label: 'Penaliza errores', desc: 'Acierto +1, error -1/3' },
-              { icon: FileText, label: '68 temas', desc: 'Todo el temario' },
+              { icon: BookOpen, label: '100 preguntas (+4 reserva)', desc: '4 opciones, 1 correcta' },
+              { icon: Clock, label: '100 minutos', desc: '60 seg por pregunta' },
+              { icon: AlertTriangle, label: 'Penaliza errores', desc: 'Acierto +0,60 · error -0,15 (1/4)' },
+              { icon: FileText, label: 'Min 30 pts de 60', desc: 'Eliminatorio' },
             ].map(({ icon: Icon, label, desc }) => (
               <Card key={label}>
                 <CardContent className="pt-6 text-center space-y-2">
@@ -197,11 +203,12 @@ export default function GestionProcesalLanding() {
             <span className="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">2</span>
             Caso práctico — 15 puntos
           </h3>
-          <div className="grid sm:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { icon: FileText, label: '2 supuestos', desc: '5 preguntas cada uno' },
-              { icon: Clock, label: '45 minutos', desc: '4,5 min por pregunta' },
-              { icon: Scale, label: 'Aplicación práctica', desc: 'Casos reales de juzgado' },
+              { icon: FileText, label: '10 preguntas (+2 reserva)', desc: '2 supuestos, 5 preguntas c/u' },
+              { icon: Clock, label: '30 minutos', desc: '3 min por pregunta' },
+              { icon: AlertTriangle, label: 'Penaliza 1/5', desc: 'Acierto +1,50 · error -0,30' },
+              { icon: Scale, label: 'Min 7,5 pts de 15', desc: 'Eliminatorio' },
             ].map(({ icon: Icon, label, desc }) => (
               <Card key={label}>
                 <CardContent className="pt-6 text-center space-y-2">
@@ -212,6 +219,12 @@ export default function GestionProcesalLanding() {
               </Card>
             ))}
           </div>
+          <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
+            <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
+              <AlertTriangle className="w-4 h-4 inline mr-1.5" />
+              El caso práctico tiene ratio de penalización 1/5 (única entre los cuerpos de Justicia). Cada error resta -0,30 sobre +1,50 de acierto.
+            </p>
+          </div>
         </div>
 
         {/* Ejercicio 3: Desarrollo */}
@@ -220,11 +233,12 @@ export default function GestionProcesalLanding() {
             <span className="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">3</span>
             Desarrollo escrito — 25 puntos
           </h3>
-          <div className="grid sm:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { icon: BookOpen, label: '5 preguntas', desc: 'Desarrollo por escrito' },
+              { icon: BookOpen, label: '5 preguntas', desc: '0-5 pts por pregunta' },
               { icon: Clock, label: '45 minutos', desc: '9 min por pregunta' },
               { icon: GraduationCap, label: 'Temas 17-39 y 43-67', desc: 'Civil, mercantil, penal, procesal' },
+              { icon: Scale, label: 'Min 12,5 pts de 25', desc: 'Eliminatorio' },
             ].map(({ icon: Icon, label, desc }) => (
               <Card key={label}>
                 <CardContent className="pt-6 text-center space-y-2">
@@ -246,17 +260,17 @@ export default function GestionProcesalLanding() {
 
       {/* Temario por bloques */}
       <section className="space-y-6">
-        <h2 className="text-2xl font-bold">Temario completo — 68 temas en 6 bloques</h2>
+        <h2 className="text-2xl font-bold">Temario completo — 68 temas</h2>
         <div className="grid gap-3">
           {BLOQUES.map(b => (
-            <div key={b.num} className="flex gap-4 items-start p-4 rounded-lg border">
-              <span className={`text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shrink-0 ${b.color}`}>
-                {b.num}
+            <div key={b.rango} className="flex gap-4 items-start p-4 rounded-lg border">
+              <span className={`text-xs font-bold rounded-full w-10 h-10 flex items-center justify-center shrink-0 ${b.color}`}>
+                {b.num || b.rango}
               </span>
               <div className="space-y-1">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <p className="font-medium text-sm">{b.titulo}</p>
-                  <Badge variant="secondary" className="text-xs">{b.temas} temas</Badge>
+                  <p className="font-medium text-sm">{b.num ? `Bloque ${b.num}: ` : ''}{b.titulo}</p>
+                  <Badge variant="secondary" className="text-xs">{b.temas} {b.temas === 1 ? 'tema' : 'temas'} ({b.rango})</Badge>
                 </div>
                 <p className="text-xs text-muted-foreground">{b.desc}</p>
               </div>
