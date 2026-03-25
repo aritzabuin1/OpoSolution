@@ -1,0 +1,171 @@
+{
+  "oposicion": "auxilio-judicial",
+  "oposicion_id": "e0000000-0000-0000-0000-000000000001",
+  "nota": "Temario base idéntico para convocatoria Ministerio y CCAA (CCAA añaden 1-5 temas extra)",
+  "mapeo": {
+    "1": {
+      "tema": "La Constitución Española de 1978",
+      "leyes": [
+        { "ley_codigo": "BOE-A-1978-31229", "nombre": "Constitución Española", "articulos": "todos" }
+      ]
+    },
+    "2": {
+      "tema": "Derecho de igualdad y no discriminación",
+      "leyes": [
+        { "ley_codigo": "BOE-A-2007-6115", "nombre": "LO 3/2007 Igualdad", "articulos": "todos" },
+        { "ley_codigo": "BOE-A-2004-21760", "nombre": "LO 1/2004 Violencia de Género", "articulos": "todos" },
+        { "ley_codigo": "BOE-A-2022-11589", "nombre": "Ley 15/2022 igualdad trato", "articulos": "todos" },
+        { "ley_codigo": "BOE-A-2023-5366", "nombre": "Ley 4/2023 LGTBI", "articulos": "todos" }
+      ]
+    },
+    "3": {
+      "tema": "El Gobierno y la Administración",
+      "leyes": [
+        { "ley_codigo": "BOE-A-1978-31229", "nombre": "CE", "articulos": "97-107" },
+        { "ley_codigo": "BOE-A-1997-25336", "nombre": "Ley 50/1997 Gobierno", "articulos": "todos" }
+      ]
+    },
+    "4": {
+      "tema": "Organización territorial del Estado",
+      "leyes": [
+        { "ley_codigo": "BOE-A-1978-31229", "nombre": "CE", "articulos": "137-158" },
+        { "ley_codigo": "BOE-A-1985-5392", "nombre": "Ley 7/1985 LBRL", "articulos": "1-50" }
+      ]
+    },
+    "5": {
+      "tema": "La Unión Europea",
+      "leyes": [],
+      "nota": "Tratados UE (no BOE). Contenido de manual"
+    },
+    "6": {
+      "tema": "El Poder Judicial. CGPJ. Ministerio Fiscal",
+      "leyes": [
+        { "ley_codigo": "BOE-A-1985-12666", "nombre": "LOPJ", "articulos": "1-28, 104-148, 541-542" },
+        { "ley_codigo": "BOE-A-1978-31229", "nombre": "CE", "articulos": "117-127" }
+      ]
+    },
+    "7": {
+      "tema": "Organización y competencia (I): TS, AN, TSJ, AP",
+      "leyes": [
+        { "ley_codigo": "BOE-A-1985-12666", "nombre": "LOPJ", "articulos": "53-103" }
+      ]
+    },
+    "8": {
+      "tema": "Organización y competencia (II): Tribunales de Instancia [LO 1/2025]",
+      "leyes": [
+        { "ley_codigo": "BOE-A-1985-12666", "nombre": "LOPJ", "articulos": "reformados por LO 1/2025" },
+        { "ley_codigo": "BOE-A-2025-76", "nombre": "LO 1/2025", "articulos": "1 (modificación LOPJ)" }
+      ]
+    },
+    "9": {
+      "tema": "Carta de Derechos de los Ciudadanos ante la Justicia",
+      "leyes": [],
+      "nota": "Carta aprobada por Congreso 2002 (no tiene rango de ley orgánica)"
+    },
+    "10": {
+      "tema": "Modernización de la Oficina Judicial [LO 1/2025]",
+      "leyes": [
+        { "ley_codigo": "BOE-A-1985-12666", "nombre": "LOPJ", "articulos": "435-450" },
+        { "ley_codigo": "BOE-A-2025-76", "nombre": "LO 1/2025", "articulos": "1 (modernización)" }
+      ]
+    },
+    "11": {
+      "tema": "El LAJ: funciones y competencias",
+      "leyes": [
+        { "ley_codigo": "BOE-A-1985-12666", "nombre": "LOPJ", "articulos": "452-453 bis, 456-463" }
+      ]
+    },
+    "12": {
+      "tema": "Cuerpos de funcionarios",
+      "leyes": [
+        { "ley_codigo": "BOE-A-1985-12666", "nombre": "LOPJ", "articulos": "454-470" }
+      ]
+    },
+    "13": {
+      "tema": "Los Cuerpos Generales (I): derechos y deberes",
+      "leyes": [
+        { "ley_codigo": "BOE-A-1985-12666", "nombre": "LOPJ", "articulos": "471-504" },
+        { "ley_codigo": "BOE-A-2015-11719", "nombre": "TREBEP", "articulos": "14-95" }
+      ]
+    },
+    "14": {
+      "tema": "Los Cuerpos Generales (II): régimen disciplinario",
+      "leyes": [
+        { "ley_codigo": "BOE-A-1985-12666", "nombre": "LOPJ", "articulos": "534-540" }
+      ]
+    },
+    "15": {
+      "tema": "Libertad sindical. PRL",
+      "leyes": [
+        { "ley_codigo": "BOE-A-1978-31229", "nombre": "CE", "articulos": "28" },
+        { "ley_codigo": "BOE-A-1985-12666", "nombre": "LOPJ", "articulos": "elecciones sindicales" },
+        { "ley_codigo": "BOE-A-2015-11719", "nombre": "TREBEP", "articulos": "sindicales" },
+        { "ley_codigo": "BOE-A-1995-24292", "nombre": "Ley 31/1995 PRL", "articulos": "1-40" }
+      ]
+    },
+    "16": {
+      "tema": "Procedimientos declarativos LEC. MASC [LO 1/2025]",
+      "leyes": [
+        { "ley_codigo": "BOE-A-2000-323", "nombre": "LEC", "articulos": "248-447" },
+        { "ley_codigo": "BOE-A-2025-76", "nombre": "LO 1/2025", "articulos": "2-19 (MASC)" }
+      ]
+    },
+    "17": {
+      "tema": "Procedimientos de ejecución LEC. Medidas cautelares",
+      "leyes": [
+        { "ley_codigo": "BOE-A-2000-323", "nombre": "LEC", "articulos": "517-747" }
+      ]
+    },
+    "18": {
+      "tema": "Procedimientos penales LECrim. Habeas Corpus",
+      "leyes": [
+        { "ley_codigo": "BOE-A-1882-6036", "nombre": "LECrim", "articulos": "todos" }
+      ]
+    },
+    "19": {
+      "tema": "Procedimientos contencioso-administrativos",
+      "leyes": [],
+      "nota": "Ley 29/1998 LJCA — NO scrapeada aún. Pendiente"
+    },
+    "20": {
+      "tema": "El proceso laboral",
+      "leyes": [],
+      "nota": "Ley 36/2011 LRJS — NO scrapeada aún. Pendiente"
+    },
+    "21": {
+      "tema": "Los actos procesales",
+      "leyes": [
+        { "ley_codigo": "BOE-A-2000-323", "nombre": "LEC", "articulos": "129-168" }
+      ]
+    },
+    "22": {
+      "tema": "Resoluciones de los órganos judiciales",
+      "leyes": [
+        { "ley_codigo": "BOE-A-2000-323", "nombre": "LEC", "articulos": "206-215" }
+      ]
+    },
+    "23": {
+      "tema": "Actos de comunicación con Tribunales",
+      "leyes": [
+        { "ley_codigo": "BOE-A-2000-323", "nombre": "LEC", "articulos": "169-177" }
+      ]
+    },
+    "24": {
+      "tema": "Actos de comunicación a las partes",
+      "leyes": [
+        { "ley_codigo": "BOE-A-2000-323", "nombre": "LEC", "articulos": "149-168" }
+      ]
+    },
+    "25": {
+      "tema": "El Registro Civil",
+      "leyes": [],
+      "nota": "Ley 20/2011 Registro Civil — NO scrapeada aún. Pendiente"
+    },
+    "26": {
+      "tema": "Archivo judicial y documentación judicial",
+      "leyes": [
+        { "ley_codigo": "BOE-A-1985-12666", "nombre": "LOPJ", "articulos": "archivo" }
+      ]
+    }
+  }
+}

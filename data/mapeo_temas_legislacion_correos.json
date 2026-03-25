@@ -1,0 +1,85 @@
+{
+  "oposicion": "correos",
+  "oposicion_id": "d0000000-0000-0000-0000-000000000001",
+  "mapeo": {
+    "1": {
+      "tema": "Marco normativo postal y naturaleza jurídica",
+      "leyes": [
+        { "ley_codigo": "BOE-A-2010-20139", "nombre": "Ley 43/2010 servicio postal universal", "articulos": "1-68" },
+        { "ley_codigo": "BOE-A-2024-10010", "nombre": "RD 437/2024 reglamento postal", "articulos": "1-3" }
+      ]
+    },
+    "2": {
+      "tema": "Experiencia de personas. Diversidad, Igualdad, PRL, RSC, ODS",
+      "leyes": [
+        { "ley_codigo": "BOE-A-2007-6115", "nombre": "LO 3/2007 Igualdad", "articulos": "1-15, 42-50" },
+        { "ley_codigo": "BOE-A-1995-24292", "nombre": "Ley 31/1995 PRL", "articulos": "1-54" }
+      ]
+    },
+    "3": {
+      "tema": "Paquetería Correos y Correos Express. E-commerce, Citypaq",
+      "leyes": [
+        { "ley_codigo": "BOE-A-2010-20139", "nombre": "Ley 43/2010", "articulos": "20-25" }
+      ],
+      "nota": "Contenido mayoritariamente interno Correos, no legislativo"
+    },
+    "4": {
+      "tema": "Productos en Oficinas. Financieros. Digitales. Filatelia",
+      "leyes": [
+        { "ley_codigo": "BOE-A-2020-14046", "nombre": "Ley 6/2020 servicios electrónicos confianza", "articulos": "1-7" }
+      ],
+      "nota": "Pendiente scrapear Ley 6/2020"
+    },
+    "5": {
+      "tema": "Nuevas líneas de negocio: Logística, Correos Frío",
+      "leyes": [],
+      "nota": "Sin legislación directa — contenido interno Correos"
+    },
+    "6": {
+      "tema": "Herramientas (IRIS, SGIE, PDA, SICER)",
+      "leyes": [],
+      "nota": "Sin legislación directa — herramientas internas"
+    },
+    "7": {
+      "tema": "Procesos operativos I: Admisión",
+      "leyes": [
+        { "ley_codigo": "BOE-A-2010-20139", "nombre": "Ley 43/2010", "articulos": "23, 37-44" },
+        { "ley_codigo": "BOE-A-2024-10010", "nombre": "RD 437/2024", "articulos": "12-16, 24, 28" }
+      ]
+    },
+    "8": {
+      "tema": "Procesos operativos II: Tratamiento y Transporte",
+      "leyes": [
+        { "ley_codigo": "BOE-A-2010-20139", "nombre": "Ley 43/2010", "articulos": "20-25" },
+        { "ley_codigo": "BOE-A-2024-10010", "nombre": "RD 437/2024", "articulos": "12-35" }
+      ]
+    },
+    "9": {
+      "tema": "Procesos operativos III: Distribución y Entrega",
+      "leyes": [
+        { "ley_codigo": "BOE-A-2010-20139", "nombre": "Ley 43/2010", "articulos": "24-25" },
+        { "ley_codigo": "BOE-A-2024-10010", "nombre": "RD 437/2024", "articulos": "17-31" }
+      ]
+    },
+    "10": {
+      "tema": "El cliente: Atención y calidad. Protocolos de Ventas",
+      "leyes": [
+        { "ley_codigo": "BOE-A-2010-20139", "nombre": "Ley 43/2010", "articulos": "10-12" }
+      ],
+      "nota": "Reclamaciones e indemnizaciones en Ley 43. Protocolos son internos"
+    },
+    "11": {
+      "tema": "Internacionalización y Aduanas",
+      "leyes": [],
+      "nota": "UPU (convenio internacional, no BOE). Aduanas UE. Sin legislación española directa"
+    },
+    "12": {
+      "tema": "Normas cumplimiento: RGPD, blanqueo, ciberseguridad",
+      "leyes": [
+        { "ley_codigo": "BOE-A-2018-16673", "nombre": "LO 3/2018 LOPDGDD", "articulos": "todos" },
+        { "ley_codigo": "BOE-A-2010-6737", "nombre": "Ley 10/2010 blanqueo capitales", "articulos": "1-5, 17-21, 26-33" }
+      ],
+      "nota": "RGPD es reglamento UE, no scrapeable desde BOE"
+    }
+  }
+}
