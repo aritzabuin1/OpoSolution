@@ -32,8 +32,8 @@ export const metadata: Metadata = {
 const TEMAS = [
   { num: 1, titulo: 'Marco normativo postal', desc: 'Naturaleza jurídica de Correos. Organismos reguladores nacionales e internacionales. Ley 43/2010, RD 437/2024.' },
   { num: 2, titulo: 'Experiencia de personas en Correos', desc: 'Diversidad, inclusión e igualdad. PRL y bienestar. RSC, ODS, sostenibilidad. Emprendimiento e innovación.' },
-  { num: 3, titulo: 'Productos: comunicación y paquetería', desc: 'Correos y Correos Express. Servicios e-commerce y Citypaq.' },
-  { num: 4, titulo: 'Productos: oficinas y servicios financieros', desc: 'Giros, burofax. Soluciones digitales. Filatelia.' },
+  { num: 3, titulo: 'Paquetería de Correos y Correos Express', desc: 'Servicios e-commerce y Citypaq.' },
+  { num: 4, titulo: 'Productos y servicios en oficinas', desc: 'Servicios financieros. Soluciones digitales. Filatelia.' },
   { num: 5, titulo: 'Nuevas líneas de negocio', desc: 'Correos Logística. Correos Frío. Otros negocios.' },
   { num: 6, titulo: 'Herramientas', desc: 'IRIS, SGIE, PDA, SEDI, SGTC, WUPOS, Quenda. Funciones y utilidad.' },
   { num: 7, titulo: 'Procesos operativos I: admisión', desc: 'Etiquetado, franqueo, facturación, requisitos de envíos.' },

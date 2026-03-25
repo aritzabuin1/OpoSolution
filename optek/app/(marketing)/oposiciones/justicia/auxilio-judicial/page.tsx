@@ -30,33 +30,34 @@ export const metadata: Metadata = {
   alternates: { canonical: `${APP_URL}/oposiciones/justicia/auxilio-judicial` },
 }
 
+// 26 temas oficiales — Anexo VI.c BOE-A-2025-27053 (verificado contra administraciondejusticia.com + formacion.ninja)
 const TEMAS = [
-  { num: 1, titulo: 'Constitución Española I', desc: 'Título Preliminar. Derechos y libertades fundamentales. Garantías y suspensión.' },
-  { num: 2, titulo: 'Constitución Española II', desc: 'La Corona. Las Cortes Generales. El Gobierno y la Administración. El Poder Judicial.' },
-  { num: 3, titulo: 'Constitución Española III', desc: 'Organización territorial del Estado. El Tribunal Constitucional. Reforma constitucional.' },
-  { num: 4, titulo: 'Unión Europea', desc: 'Instituciones de la UE. Libertades fundamentales. Fuentes del Derecho comunitario.' },
-  { num: 5, titulo: 'Organización del Poder Judicial', desc: 'Principios. El Consejo General del Poder Judicial. Composición y funciones.' },
-  { num: 6, titulo: 'Juzgados y tribunales', desc: 'Organización y competencia. Órganos jurisdiccionales: estructura y funciones.' },
-  { num: 7, titulo: 'El Letrado de la Administración de Justicia', desc: 'Funciones. Fe pública judicial. Ordenación del proceso.' },
-  { num: 8, titulo: 'La nueva oficina judicial', desc: 'LO 1/2025. Estructura y organización. Unidades procesales de apoyo directo y servicios comunes.' },
-  { num: 9, titulo: 'Personal al servicio de la Administración de Justicia', desc: 'Cuerpos generales y especiales. Funciones del Cuerpo de Auxilio Judicial.' },
-  { num: 10, titulo: 'Modernización tecnológica de la Justicia', desc: 'Expediente judicial electrónico. Lexnet. Firma electrónica. Sede judicial electrónica.' },
-  { num: 11, titulo: 'Jurisdicción y competencia civil', desc: 'Concepto. Clases de jurisdicción. Competencia objetiva, funcional y territorial.' },
-  { num: 12, titulo: 'Juicio ordinario y verbal', desc: 'Proceso de declaración. Demanda, contestación, audiencia previa, juicio, sentencia.' },
-  { num: 13, titulo: 'Medidas cautelares y ejecución', desc: 'Tipos de medidas cautelares. Proceso de ejecución: títulos ejecutivos.' },
-  { num: 14, titulo: 'Jurisdicción voluntaria', desc: 'Ley 15/2015. Expedientes de jurisdicción voluntaria. Tramitación.' },
-  { num: 15, titulo: 'Proceso penal: procedimiento abreviado', desc: 'Principios del proceso penal. Fases: instrucción, intermedia, juicio oral. LECrim.' },
-  { num: 16, titulo: 'Juicio por delitos leves y jurado', desc: 'Procedimiento para delitos leves. Tribunal del Jurado: composición y competencia.' },
-  { num: 17, titulo: 'Proceso contencioso-administrativo', desc: 'Ley 29/1998. Órganos. Recurso contencioso-administrativo: procedimiento.' },
-  { num: 18, titulo: 'Proceso laboral', desc: 'Ley 36/2011. Jurisdicción social. Proceso ordinario, despido, seguridad social.' },
-  { num: 19, titulo: 'Actos procesales y de comunicación', desc: 'Requisitos. Notificaciones, citaciones, emplazamientos, requerimientos. Auxilio judicial.' },
-  { num: 20, titulo: 'Registro Civil', desc: 'Ley 20/2011. Organización. Hechos y actos inscribibles. Procedimiento registral.' },
-  { num: 21, titulo: 'Cooperación jurídica internacional', desc: 'Exhortos, comisiones rogatorias. Reglamentos europeos de cooperación judicial.' },
-  { num: 22, titulo: 'LPAC — Ley 39/2015', desc: 'Procedimiento administrativo común. Interesados. Fases. Recursos administrativos.' },
-  { num: 23, titulo: 'LRJSP — Ley 40/2015', desc: 'Régimen jurídico del sector público. Órganos administrativos. Funcionamiento.' },
-  { num: 24, titulo: 'TREBEP', desc: 'Estatuto del Empleado Público. Derechos y deberes de los funcionarios. Situaciones administrativas.' },
-  { num: 25, titulo: 'Igualdad y violencia de género', desc: 'LO 3/2007 Igualdad efectiva. LO 1/2004 Violencia de género. Medidas de protección.' },
-  { num: 26, titulo: 'Protección de datos', desc: 'RGPD y LOPDGDD. Principios. Derechos del interesado. Delegado de protección de datos.' },
+  { num: 1, titulo: 'La Constitución Española de 1978', desc: 'Estructura y contenido. Atribuciones de la Corona. Cortes Generales. Elaboración de leyes. Tribunal Constitucional.' },
+  { num: 2, titulo: 'Derecho de igualdad y no discriminación', desc: 'LO 3/2007 Igualdad. LO 1/2004 Violencia de Género. Ley 15/2022. Ley 4/2023 LGTBI.' },
+  { num: 3, titulo: 'El Gobierno y la Administración', desc: 'Organización administrativa: Ministros, Secretarios de Estado, Subsecretarios, Directores Generales.' },
+  { num: 4, titulo: 'Organización territorial del Estado', desc: 'Las CCAA. Estatutos de Autonomía. Administración Local: provincia y municipio.' },
+  { num: 5, titulo: 'La Unión Europea', desc: 'Competencias. Parlamento Europeo, Consejo, Comisión, TJUE, Tribunal de Cuentas.' },
+  { num: 6, titulo: 'El Poder Judicial', desc: 'CGPJ. Jueces y Magistrados. Independencia judicial. El Ministerio Fiscal.' },
+  { num: 7, titulo: 'Organización y competencia (I)', desc: 'TS, AN, TSJ y Audiencias Provinciales.' },
+  { num: 8, titulo: 'Organización y competencia (II)', desc: 'Tribunales de Instancia y Tribunal Central de Instancia. Oficinas de Justicia. Juzgados de Paz. [LO 1/2025]' },
+  { num: 9, titulo: 'Carta de Derechos de los Ciudadanos ante la Justicia', desc: 'Derechos de información, atención, gestión. Derecho a justicia gratuita.' },
+  { num: 10, titulo: 'Modernización de la Oficina Judicial', desc: 'La nueva oficina judicial (LOPJ + LO 1/2025). Nuevas tecnologías. Presentación telemática de escritos.' },
+  { num: 11, titulo: 'El Letrado de la Administración de Justicia', desc: 'Funciones y competencias en la LOPJ.' },
+  { num: 12, titulo: 'Cuerpos de funcionarios de la Administración de Justicia', desc: 'Funciones y formas de acceso en los cuerpos generales.' },
+  { num: 13, titulo: 'Los Cuerpos Generales (I)', desc: 'Derechos y deberes de los funcionarios. Situaciones administrativas.' },
+  { num: 14, titulo: 'Los Cuerpos Generales (II)', desc: 'Régimen disciplinario. Delitos y penas: clases.' },
+  { num: 15, titulo: 'Libertad sindical', desc: 'El sindicato en la CE. Elecciones sindicales (LOPJ y TREBEP). PRL.' },
+  { num: 16, titulo: 'Procedimientos declarativos en la LEC', desc: 'Juicio ordinario y verbal. Procedimientos especiales. MASC (medios adecuados de solución de controversias). [LO 1/2025]' },
+  { num: 17, titulo: 'Procedimientos de ejecución en la LEC', desc: 'Ejecución dineraria y no dineraria. Medidas cautelares. Embargo, lanzamiento, depósitos.' },
+  { num: 18, titulo: 'Procedimientos penales en la LECrim', desc: 'Proceso ordinario, abreviado, delitos leves, jurado, rápidos. Habeas Corpus.' },
+  { num: 19, titulo: 'Procedimientos contencioso-administrativos', desc: 'Ley 29/1998. Órganos y competencias. Recurso contencioso-administrativo.' },
+  { num: 20, titulo: 'El proceso laboral', desc: 'Ley 36/2011. Jurisdicción social. Procesos ordinarios, despido, seguridad social.' },
+  { num: 21, titulo: 'Los actos procesales', desc: 'Requisitos. Nulidad, anulabilidad, irregularidad. Plazos y términos: cómputo y control.' },
+  { num: 22, titulo: 'Resoluciones de los órganos judiciales', desc: 'Clases, contenido y características. Resoluciones de órganos colegiados. Resoluciones del LAJ.' },
+  { num: 23, titulo: 'Actos de comunicación con Tribunales y Autoridades', desc: 'Oficios y mandamientos. Auxilio judicial: exhortos. Cooperación jurídica internacional.' },
+  { num: 24, titulo: 'Actos de comunicación a las partes', desc: 'Notificaciones, requerimientos, citaciones y emplazamientos. Nuevas tecnologías.' },
+  { num: 25, titulo: 'El Registro Civil', desc: 'Estructura. Oficinas: Central, Generales y Consulares. Funciones.' },
+  { num: 26, titulo: 'Archivo judicial y documentación judicial', desc: 'Formas de remisión. Nuevas tecnologías en archivos. Juntas de expurgo.' },
 ]
 
 const FAQS = [
@@ -66,7 +67,7 @@ const FAQS = [
   },
   {
     q: '¿El examen de Auxilio Judicial penaliza?',
-    a: 'Sí. En el primer ejercicio (test), cada acierto suma 1 punto y cada error resta 1/3 de punto. Las preguntas en blanco no puntúan. Es importante no responder al azar.',
+    a: 'Sí. En el primer ejercicio (test), cada acierto suma 1 punto y cada error resta 1/4 del valor del acierto. Las preguntas en blanco no puntúan. Es importante no responder al azar.',
   },
   {
     q: '¿Cuántos ejercicios tiene la oposición?',
@@ -153,7 +154,7 @@ export default function AuxilioJudicialLanding() {
             {[
               { icon: BookOpen, label: '104 preguntas', desc: '100 ordinarias + 4 reserva' },
               { icon: Clock, label: '75 minutos', desc: '~43 seg por pregunta' },
-              { icon: AlertTriangle, label: 'Con penalización', desc: 'Error = -1/3 punto' },
+              { icon: AlertTriangle, label: 'Con penalización', desc: 'Error = -1/4 del acierto' },
               { icon: Calculator, label: '60 pts máximo', desc: 'Acierto = +1 punto' },
             ].map(({ icon: Icon, label, desc }) => (
               <Card key={label}>
@@ -228,7 +229,7 @@ export default function AuxilioJudicialLanding() {
         <div className="grid sm:grid-cols-2 gap-4">
           {[
             { icon: Sparkles, title: 'Tests con IA', desc: 'Preguntas generadas y verificadas contra la legislación real: Constitución, LOPJ, LO 1/2025, LEC, LECrim, TREBEP, LPAC y LRJSP.' },
-            { icon: AlertTriangle, title: 'Scoring con penalización', desc: 'OpoRuta replica el scoring real: acierto +1, error -1/3. Aprende a gestionar el riesgo antes del examen.' },
+            { icon: AlertTriangle, title: 'Scoring con penalización', desc: 'OpoRuta replica el scoring real: acierto +0,60, error -0,15 (1/4). Aprende a gestionar el riesgo antes del examen.' },
             { icon: Shield, title: '26 temas cubiertos', desc: 'Desde Constitución hasta Protección de datos. Cada test se genera con artículos reales del temario oficial.' },
             { icon: Users, title: 'Precio único 49,99€', desc: 'Sin suscripción. Acceso ilimitado hasta que apruebes. 20 análisis detallados incluidos.' },
           ].map(({ icon: Icon, title, desc }) => (

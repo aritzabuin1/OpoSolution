@@ -83,7 +83,7 @@ const FAQS = [
   },
   {
     q: '¿Cómo es el examen de Tramitación Procesal?',
-    a: 'Consta de 3 ejercicios: un test de 100 preguntas en 90 minutos (60% de la nota), un caso práctico con 2 supuestos en 30 minutos (20%) y un ejercicio de ofimática en 30 minutos (20%). El test penaliza: cada error resta 1/3 del valor de un acierto.',
+    a: 'Consta de 3 ejercicios: un test de 100 preguntas en 90 minutos (60% de la nota), un caso práctico con 2 supuestos en 30 minutos (20%) y un ejercicio de ofimática en 30 minutos (20%). El test penaliza: cada error resta 1/4 del valor del acierto.',
   },
   {
     q: '¿Qué requisitos necesito para presentarme?',
@@ -163,7 +163,7 @@ export default function TramitacionProcesalLanding() {
               {[
                 { label: '100 preguntas', desc: '+ 4 de reserva' },
                 { label: '90 minutos', desc: '54 seg por pregunta' },
-                { label: 'Penaliza', desc: 'Error resta 1/3' },
+                { label: 'Penaliza', desc: 'Error resta 1/4' },
                 { label: '60 pts máximo', desc: 'Acierto +1 pt' },
               ].map(({ label, desc }) => (
                 <div key={label} className="bg-indigo-50 dark:bg-indigo-950/20 rounded-lg p-3">
@@ -222,7 +222,7 @@ export default function TramitacionProcesalLanding() {
         <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
           <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
             <Gavel className="w-4 h-4 inline mr-1.5" />
-            El test penaliza — cada error resta 1/3 del valor de un acierto. Deja en blanco lo que no sepas.
+            El test penaliza — cada error resta 1/4 del valor del acierto. Deja en blanco lo que no sepas.
           </p>
         </div>
       </section>
@@ -312,7 +312,7 @@ export default function TramitacionProcesalLanding() {
         <div className="grid sm:grid-cols-2 gap-4">
           {[
             { icon: Sparkles, title: 'Tests con IA', desc: 'Preguntas generadas y verificadas contra la legislación procesal real. LEC, LECrim, LOPJ y más.' },
-            { icon: Gavel, title: 'Penalización real', desc: 'Scoring idéntico al examen: acierto +1, error -1/3. Practica con la presión real del test.' },
+            { icon: Gavel, title: 'Penalización real', desc: 'Scoring idéntico al examen: acierto +0,60, error -0,15 (1/4). Practica con la presión real del test.' },
             { icon: Scale, title: '37 temas cubiertos', desc: 'Todo el temario oficial: derecho constitucional, procesal (civil, penal, laboral, contencioso) y ofimática.' },
             { icon: Users, title: 'Precio único 49,99€', desc: 'Sin suscripción. Acceso ilimitado hasta que apruebes. 20 análisis detallados incluidos.' },
           ].map(({ icon: Icon, title, desc }) => (

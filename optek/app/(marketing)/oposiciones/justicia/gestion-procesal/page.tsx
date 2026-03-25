@@ -87,7 +87,7 @@ const FAQS = [
   },
   {
     q: '¿El examen de Gestión Procesal penaliza?',
-    a: 'Sí. En el primer ejercicio (test), cada error resta 1/3 del valor de un acierto. Dejar en blanco no penaliza. Es fundamental no responder al azar.',
+    a: 'Sí. En el primer ejercicio (test), cada error resta 1/4 del valor del acierto. Dejar en blanco no penaliza. Es fundamental no responder al azar.',
   },
   {
     q: '¿Cuántos ejercicios tiene la oposición?',
@@ -186,7 +186,7 @@ export default function GestionProcesalLanding() {
           <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
             <p className="text-sm font-medium text-red-800 dark:text-red-200">
               <AlertTriangle className="w-4 h-4 inline mr-1.5" />
-              Penaliza errores — cada fallo resta 1/3 del valor de un acierto. No respondas al azar.
+              Penaliza errores — cada fallo resta 1/4 del valor del acierto. No respondas al azar.
             </p>
           </div>
         </div>
@@ -276,7 +276,7 @@ export default function GestionProcesalLanding() {
             { icon: Sparkles, title: 'Tests con IA sobre 68 temas', desc: 'Preguntas generadas y verificadas contra la legislación real: LEC, LECrim, Ley Concursal, LOPJ y más.' },
             { icon: FileText, title: 'Caso práctico corregido con IA', desc: 'Entrena supuestos de juzgado con corrección inteligente. El segundo ejercicio ya no te pillará por sorpresa.' },
             { icon: GraduationCap, title: 'Desarrollo con feedback', desc: 'Practica las preguntas de desarrollo (temas 17-39 y 43-67) y recibe análisis detallado de tu respuesta.' },
-            { icon: Shield, title: 'Simulacros con penalización real', desc: 'Practica con el scoring oficial: acierto +1, error -1/3. Aprende cuándo arriesgar y cuándo dejar en blanco.' },
+            { icon: Shield, title: 'Simulacros con penalización real', desc: 'Practica con el scoring oficial: acierto +0,60, error -0,15 (1/4). Aprende cuándo arriesgar y cuándo dejar en blanco.' },
             { icon: Scale, title: 'Legislación siempre actualizada', desc: 'Ley Concursal, LO Protección de Testigos, Ley de Mediación, Registros Civiles — todo verificado contra BOE.' },
             { icon: Users, title: 'Precio único 49,99 euros', desc: 'Sin suscripción. Acceso ilimitado hasta que apruebes. 20 análisis detallados incluidos.' },
           ].map(({ icon: Icon, title, desc }) => (
