@@ -8,7 +8,6 @@
  */
 
 import { useState } from 'react'
-import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -59,33 +58,33 @@ export function ProfileForm({
 
   async function handleSave() {
     setSaving(true)
-    const supabase = createClient()
 
-    // Use .select() to get the updated row back — if 0 rows affected (RLS block),
-    // .single() will error, making silent failures visible.
-    const { data: updated, error } = await supabase
-      .from('profiles')
-      .update({
-        full_name: nombre.trim() || null,
-        oposicion_id: selectedOposicion,
-        fecha_examen: fecha || null,
-        horas_diarias_estudio: dedicacion,
+    try {
+      const res = await fetch('/api/user/update-profile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          full_name: nombre.trim() || null,
+          oposicion_id: selectedOposicion,
+          fecha_examen: fecha || null,
+          horas_diarias_estudio: dedicacion,
+        }),
       })
-      .eq('id', userId)
-      .select('oposicion_id')
-      .single()
 
-    setSaving(false)
-    if (error || !updated) {
-      console.error('[ProfileForm] update failed:', error?.message ?? 'no rows returned')
-      toast.error(`No se pudo guardar: ${error?.message ?? 'sin respuesta del servidor'}`)
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.error ?? `Error ${res.status}`)
+      }
+    } catch (err) {
+      setSaving(false)
+      const msg = err instanceof Error ? err.message : 'Error desconocido'
+      toast.error(`No se pudo guardar: ${msg}`)
       return
     }
 
+    setSaving(false)
     toast.success('Perfil actualizado correctamente')
-    // Notify hooks (useIsPremium, etc.) that oposición changed
     window.dispatchEvent(new Event(OPOSICION_CHANGED_EVENT))
-    // Reload page to update sidebar features (Server Component can't react to client changes)
     if (selectedOposicion !== initialOposicionId) {
       window.location.reload()
     }
