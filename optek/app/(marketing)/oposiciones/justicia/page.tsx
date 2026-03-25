@@ -1,0 +1,190 @@
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent } from '@/components/ui/card'
+import { JsonLd } from '@/components/shared/JsonLd'
+import {
+  Scale, BookOpen, ArrowRight, Users, Clock,
+  GraduationCap, Briefcase, FileText,
+} from 'lucide-react'
+
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
+
+export const metadata: Metadata = {
+  title: 'Oposiciones Justicia 2026 — Auxilio, Tramitación y Gestión Procesal | OpoRuta',
+  description:
+    'Prepara las oposiciones de Justicia 2026 con IA: Auxilio Judicial (C2), Tramitación Procesal (C1) y Gestión Procesal (A2). Tests verificados contra LOPJ, LEC y LO 1/2025. Más de 1.100 plazas.',
+  keywords: [
+    'oposiciones justicia 2026', 'auxilio judicial', 'tramitación procesal',
+    'gestión procesal', 'test oposiciones justicia', 'temario justicia 2026',
+    'LO 1/2025 justicia', 'examen auxilio judicial',
+  ],
+  openGraph: {
+    title: 'Oposiciones Justicia 2026 — Auxilio, Tramitación y Gestión | OpoRuta',
+    description: 'Tests con IA para Auxilio Judicial, Tramitación y Gestión Procesal. Temario actualizado con LO 1/2025.',
+    url: `${APP_URL}/oposiciones/justicia`,
+    type: 'website',
+  },
+  alternates: { canonical: `${APP_URL}/oposiciones/justicia` },
+}
+
+const CUERPOS = [
+  {
+    nombre: 'Auxilio Judicial',
+    nivel: 'C2',
+    slug: 'auxilio-judicial',
+    temas: 26,
+    plazas: 425,
+    ejercicios: 2,
+    sueldo: '~18.000€/año',
+    requisito: 'ESO o equivalente',
+    desc: 'Funciones de apoyo en juzgados: actos de comunicación, ejecuciones, registro, guardia.',
+    color: 'blue',
+    icon: Briefcase,
+  },
+  {
+    nombre: 'Tramitación Procesal',
+    nivel: 'C1',
+    slug: 'tramitacion-procesal',
+    temas: 37,
+    plazas: 1155,
+    ejercicios: 3,
+    sueldo: '~22.000€/año',
+    requisito: 'Bachillerato o equivalente',
+    desc: 'Tramitación de procedimientos judiciales, fe pública, gestión procesal informatizada.',
+    color: 'indigo',
+    icon: FileText,
+  },
+  {
+    nombre: 'Gestión Procesal',
+    nivel: 'A2',
+    slug: 'gestion-procesal',
+    temas: 68,
+    plazas: 725,
+    ejercicios: 3,
+    sueldo: '~28.000€/año',
+    requisito: 'Grado universitario',
+    desc: 'Dirección técnico-procesal, redacción de resoluciones, coordinación de oficina judicial.',
+    color: 'purple',
+    icon: GraduationCap,
+  },
+]
+
+export default function JusticiaHub() {
+  return (
+    <main className="mx-auto max-w-4xl px-4 py-12 space-y-16">
+      {/* JSON-LD */}
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+          { '@type': 'Question', name: '¿Qué oposiciones hay en Justicia?', acceptedAnswer: { '@type': 'Answer', text: 'Hay tres cuerpos principales: Auxilio Judicial (C2), Tramitación Procesal (C1) y Gestión Procesal (A2). Cada uno con diferente nivel de requisitos, temario y sueldo.' } },
+          { '@type': 'Question', name: '¿Qué ha cambiado con la LO 1/2025?', acceptedAnswer: { '@type': 'Answer', text: 'La Ley Orgánica 1/2025 del Servicio Público de Justicia sustituye parcialmente a la LOPJ. Afecta a temas de organización judicial, Letrado de la Administración de Justicia y oficina judicial.' } },
+          { '@type': 'Question', name: '¿Cuándo son los exámenes de Justicia 2026?', acceptedAnswer: { '@type': 'Answer', text: 'Los exámenes de la OEP 2024 se celebrarán previsiblemente entre septiembre y noviembre de 2025. La OEP 2025 se espera para 2026.' } },
+        ],
+      }} />
+
+      {/* Hero */}
+      <section className="text-center space-y-6">
+        <Badge variant="secondary" className="text-sm px-4 py-1">
+          <Scale className="w-4 h-4 mr-1.5 inline" />
+          +2.300 plazas · 3 cuerpos · Temario actualizado LO 1/2025
+        </Badge>
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+          Oposiciones <span className="text-indigo-600">Justicia</span> 2026
+        </h1>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Auxilio Judicial, Tramitación Procesal y Gestión Procesal.
+          Tests con IA verificados contra la legislación vigente, incluida la nueva LO 1/2025.
+        </p>
+        <Badge variant="outline" className="text-xs">Próximamente — Estamos preparando el contenido</Badge>
+      </section>
+
+      {/* 3 cuerpos */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-bold">Elige tu cuerpo</h2>
+        <div className="grid gap-6">
+          {CUERPOS.map(c => {
+            const Icon = c.icon
+            return (
+              <Link key={c.slug} href={`/oposiciones/justicia/${c.slug}`}>
+                <Card className="hover:border-indigo-400 hover:shadow-md transition-all cursor-pointer">
+                  <CardContent className="pt-6 space-y-4">
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center gap-3">
+                        <Icon className="h-8 w-8 text-indigo-600 shrink-0" />
+                        <div>
+                          <h3 className="text-lg font-bold">{c.nombre}</h3>
+                          <p className="text-sm text-muted-foreground">{c.desc}</p>
+                        </div>
+                      </div>
+                      <Badge variant="secondary">{c.nivel}</Badge>
+                    </div>
+                    <div className="flex flex-wrap gap-3 text-xs">
+                      <span className="flex items-center gap-1"><BookOpen className="w-3.5 h-3.5" /> {c.temas} temas</span>
+                      <span className="flex items-center gap-1"><Users className="w-3.5 h-3.5" /> {c.plazas} plazas</span>
+                      <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {c.ejercicios} ejercicios</span>
+                      <span className="flex items-center gap-1"><GraduationCap className="w-3.5 h-3.5" /> {c.requisito}</span>
+                      <span className="font-medium text-green-700">{c.sueldo}</span>
+                    </div>
+                    <div className="flex justify-end">
+                      <span className="text-sm text-indigo-600 font-medium flex items-center gap-1">
+                        Ver detalles <ArrowRight className="w-4 h-4" />
+                      </span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            )
+          })}
+        </div>
+      </section>
+
+      {/* LO 1/2025 highlight */}
+      <section className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-xl p-6 space-y-3">
+        <h2 className="text-lg font-bold flex items-center gap-2">
+          <Scale className="w-5 h-5 text-amber-600" />
+          Novedad: LO 1/2025 del Servicio Público de Justicia
+        </h2>
+        <p className="text-sm text-muted-foreground">
+          La nueva ley orgánica modifica la organización judicial y afecta directamente al temario.
+          OpoRuta actualiza automáticamente las preguntas para reflejar los cambios en la LOPJ,
+          la figura del Letrado de la Administración de Justicia y la nueva oficina judicial.
+        </p>
+        <Link href="/blog/cambios-temario-justicia-2026-lo-1-2025" className="text-sm text-amber-700 font-medium hover:underline">
+          Leer análisis completo de los cambios →
+        </Link>
+      </section>
+
+      {/* FAQ */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-bold">Preguntas frecuentes</h2>
+        <div className="space-y-4">
+          {[
+            { q: '¿Qué oposiciones hay en Justicia?', a: 'Tres cuerpos: Auxilio Judicial (C2, ESO), Tramitación Procesal (C1, Bachillerato) y Gestión Procesal (A2, Grado). Cada uno con distinto temario, sueldo y nivel de exigencia.' },
+            { q: '¿Qué ha cambiado con la LO 1/2025?', a: 'Sustituye parcialmente a la LOPJ. Afecta a temas de organización judicial, oficina judicial y el papel del Letrado de la Administración de Justicia.' },
+            { q: '¿Se pueden preparar dos cuerpos a la vez?', a: 'Sí. Auxilio y Tramitación comparten muchos temas (Constitución, LOPJ, procedimiento). Con el Pack Doble accedes a ambos por 79,99€.' },
+            { q: '¿Cuándo son los exámenes?', a: 'Los de la OEP 2024 se esperan entre septiembre y noviembre de 2025. La siguiente convocatoria (OEP 2025) previsiblemente en 2026.' },
+          ].map(({ q, a }) => (
+            <div key={q} className="border rounded-lg p-4">
+              <p className="font-medium text-sm">{q}</p>
+              <p className="text-sm text-muted-foreground mt-1">{a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="text-center py-8 space-y-4 bg-indigo-50 dark:bg-indigo-950/20 rounded-2xl">
+        <h2 className="text-2xl font-bold">Próximamente en OpoRuta</h2>
+        <p className="text-muted-foreground">Estamos preparando el contenido de Justicia. Regístrate para ser el primero en acceder.</p>
+        <Link href="/register">
+          <Button size="lg" className="gap-2">
+            Crear cuenta gratis <ArrowRight className="w-4 h-4" />
+          </Button>
+        </Link>
+      </section>
+    </main>
+  )
+}

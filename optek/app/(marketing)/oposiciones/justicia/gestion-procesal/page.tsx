@@ -1,0 +1,353 @@
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent } from '@/components/ui/card'
+import { JsonLd } from '@/components/shared/JsonLd'
+import {
+  BookOpen, CheckCircle, Clock, Scale, Shield,
+  ArrowRight, Users, Sparkles, GraduationCap, FileText,
+  AlertTriangle, Gavel,
+} from 'lucide-react'
+
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
+
+export const metadata: Metadata = {
+  title: 'Test Gestión Procesal 2026 — Practica gratis con preguntas del examen | OpoRuta',
+  description:
+    'Prepara las oposiciones de Gestión Procesal y Administrativa (A2) 2026. 68 temas, 3 ejercicios, 725 plazas. Tests con IA, caso práctico y desarrollo. El examen más completo de Justicia.',
+  keywords: [
+    'test gestión procesal 2026', 'oposiciones gestión procesal', 'examen gestión procesal online',
+    'temario gestión procesal 2026', 'test gestión procesal gratis', 'caso práctico gestión procesal',
+    'preparar oposiciones justicia A2', 'gestión procesal y administrativa',
+    'oposiciones justicia 2026', 'cuerpo gestión procesal',
+  ],
+  openGraph: {
+    title: 'Test Gestión Procesal 2026 — Practica gratis | OpoRuta',
+    description: 'Tests online gratis para Gestión Procesal y Administrativa (A2). 68 temas, 3 ejercicios, 725 plazas.',
+    url: `${APP_URL}/oposiciones/justicia/gestion-procesal`,
+    type: 'website',
+  },
+  alternates: { canonical: `${APP_URL}/oposiciones/justicia/gestion-procesal` },
+}
+
+const BLOQUES = [
+  {
+    num: 'I',
+    titulo: 'Derecho constitucional y organización',
+    temas: 16,
+    color: 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300',
+    desc: 'Constitución, UE, organización judicial, LAJ, oficina judicial, personal al servicio de la Administración, LPAC, LRJSP, TREBEP.',
+  },
+  {
+    num: 'II',
+    titulo: 'Derecho civil y mercantil',
+    temas: 12,
+    color: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300',
+    desc: 'Jurisdicción civil, capacidad, obligaciones, contratos, derechos reales, sucesiones, familia, sociedades, concursal, propiedad intelectual.',
+  },
+  {
+    num: 'III',
+    titulo: 'Derecho procesal civil',
+    temas: 12,
+    color: 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300',
+    desc: 'Jurisdicción y competencia, partes procesales, juicio ordinario, verbal, cambiario, ejecución, medidas cautelares, jurisdicción voluntaria.',
+  },
+  {
+    num: 'IV',
+    titulo: 'Derecho penal y procesal penal',
+    temas: 12,
+    color: 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300',
+    desc: 'Derecho penal general, delitos específicos, procedimiento penal, abreviado, jurado, menores, violencia de género.',
+  },
+  {
+    num: 'V',
+    titulo: 'Derecho administrativo y laboral',
+    temas: 10,
+    color: 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300',
+    desc: 'Contencioso-administrativo, laboral, registros civiles, cooperación internacional, igualdad, PRL, protección de datos.',
+  },
+  {
+    num: 'VI',
+    titulo: 'Ofimática',
+    temas: 6,
+    color: 'bg-gray-100 dark:bg-gray-800/30 text-gray-700 dark:text-gray-300',
+    desc: 'Word, Excel, bases de datos, correo electrónico, navegación web, sistemas operativos.',
+  },
+]
+
+const FAQS = [
+  {
+    q: '¿Cuántas plazas hay en Gestión Procesal 2026?',
+    a: 'La OEP 2024 ofertó 725 plazas para el Cuerpo de Gestión Procesal y Administrativa (A2). Es el cuerpo superior de Justicia con titulación universitaria.',
+  },
+  {
+    q: '¿Qué diferencia hay entre Gestión Procesal, Tramitación y Auxilio?',
+    a: 'Gestión Procesal (A2) es el más exigente: requiere grado universitario, tiene 68 temas y 3 ejercicios (test + caso práctico + desarrollo). Tramitación (C1) tiene 54 temas y 2 ejercicios, y Auxilio (C2) tiene 26 temas y 1 ejercicio tipo test.',
+  },
+  {
+    q: '¿El examen de Gestión Procesal penaliza?',
+    a: 'Sí. En el primer ejercicio (test), cada error resta 1/3 del valor de un acierto. Dejar en blanco no penaliza. Es fundamental no responder al azar.',
+  },
+  {
+    q: '¿Cuántos ejercicios tiene la oposición?',
+    a: 'Tres ejercicios: 1) Test de 100 preguntas en 90 minutos (60 pts). 2) Caso práctico: 2 supuestos con 5 preguntas cada uno en 45 minutos (15 pts). 3) Desarrollo escrito: 5 preguntas en 45 minutos sobre temas 17-39 y 43-67 (25 pts).',
+  },
+  {
+    q: '¿Qué sueldo tiene un Gestor Procesal?',
+    a: 'Aproximadamente 28.000 euros al año en 14 pagas, como funcionario del Grupo A2. Además, se perciben trienios, productividad y complementos por destino.',
+  },
+  {
+    q: '¿Puedo preparar Gestión Procesal con OpoRuta?',
+    a: 'Estamos desarrollando el módulo completo de Gestión Procesal con los 68 temas, incluyendo simulacros de caso práctico corregidos con IA. Déjanos tu email y te avisamos en cuanto esté disponible.',
+  },
+]
+
+export default function GestionProcesalLanding() {
+  return (
+    <main className="mx-auto max-w-4xl px-4 py-12 space-y-16">
+      {/* JSON-LD */}
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'Course',
+        name: 'Preparación Oposiciones Gestión Procesal y Administrativa 2026',
+        description: 'Tests online con IA para oposiciones de Gestión Procesal (A2). 68 temas, 3 ejercicios, caso práctico corregido con IA.',
+        provider: { '@type': 'Organization', name: 'OpoRuta', url: APP_URL },
+        hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'online' },
+      }} />
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: FAQS.map(({ q, a }) => ({
+          '@type': 'Question',
+          name: q,
+          acceptedAnswer: { '@type': 'Answer', text: a },
+        })),
+      }} />
+
+      {/* Hero */}
+      <section className="text-center space-y-6">
+        <div className="flex items-center justify-center gap-2 flex-wrap">
+          <Badge variant="secondary" className="text-sm px-4 py-1">
+            <Scale className="w-4 h-4 mr-1.5 inline" />
+            725 plazas · Grupo A2
+          </Badge>
+          <Badge variant="outline" className="text-sm px-3 py-1 border-purple-300 text-purple-700 dark:text-purple-300">
+            Próximamente
+          </Badge>
+        </div>
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+          Oposiciones <span className="text-purple-600">Gestión Procesal</span> 2026
+        </h1>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          El cuerpo más exigente de Justicia. 68 temas, 3 ejercicios, titulación universitaria.
+          Prepárate con tests, casos prácticos y desarrollo corregidos con IA.
+        </p>
+        <div className="flex items-center justify-center gap-4 flex-wrap">
+          <Link href="/register?oposicion=gestion-procesal">
+            <Button size="lg" className="gap-2 bg-purple-600 hover:bg-purple-700">
+              Avísame al lanzar <ArrowRight className="w-4 h-4" />
+            </Button>
+          </Link>
+          <Link href="/oposiciones/justicia">
+            <Button variant="outline" size="lg" className="gap-2">
+              <Gavel className="w-4 h-4" /> Ver todos los cuerpos de Justicia
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* Estructura del examen — 3 ejercicios */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-bold">Estructura del examen — 3 ejercicios</h2>
+
+        {/* Ejercicio 1: Test */}
+        <div className="space-y-3">
+          <h3 className="text-lg font-semibold flex items-center gap-2">
+            <span className="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">1</span>
+            Ejercicio tipo test — 60 puntos
+          </h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { icon: BookOpen, label: '100 preguntas', desc: '4 opciones, 1 correcta' },
+              { icon: Clock, label: '90 minutos', desc: '54 seg por pregunta' },
+              { icon: AlertTriangle, label: 'Penaliza errores', desc: 'Acierto +1, error -1/3' },
+              { icon: FileText, label: '68 temas', desc: 'Todo el temario' },
+            ].map(({ icon: Icon, label, desc }) => (
+              <Card key={label}>
+                <CardContent className="pt-6 text-center space-y-2">
+                  <Icon className="h-8 w-8 text-purple-600 mx-auto" />
+                  <p className="font-semibold">{label}</p>
+                  <p className="text-xs text-muted-foreground">{desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+            <p className="text-sm font-medium text-red-800 dark:text-red-200">
+              <AlertTriangle className="w-4 h-4 inline mr-1.5" />
+              Penaliza errores — cada fallo resta 1/3 del valor de un acierto. No respondas al azar.
+            </p>
+          </div>
+        </div>
+
+        {/* Ejercicio 2: Caso práctico */}
+        <div className="space-y-3">
+          <h3 className="text-lg font-semibold flex items-center gap-2">
+            <span className="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">2</span>
+            Caso práctico — 15 puntos
+          </h3>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {[
+              { icon: FileText, label: '2 supuestos', desc: '5 preguntas cada uno' },
+              { icon: Clock, label: '45 minutos', desc: '4,5 min por pregunta' },
+              { icon: Scale, label: 'Aplicación práctica', desc: 'Casos reales de juzgado' },
+            ].map(({ icon: Icon, label, desc }) => (
+              <Card key={label}>
+                <CardContent className="pt-6 text-center space-y-2">
+                  <Icon className="h-8 w-8 text-purple-600 mx-auto" />
+                  <p className="font-semibold">{label}</p>
+                  <p className="text-xs text-muted-foreground">{desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Ejercicio 3: Desarrollo */}
+        <div className="space-y-3">
+          <h3 className="text-lg font-semibold flex items-center gap-2">
+            <span className="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">3</span>
+            Desarrollo escrito — 25 puntos
+          </h3>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {[
+              { icon: BookOpen, label: '5 preguntas', desc: 'Desarrollo por escrito' },
+              { icon: Clock, label: '45 minutos', desc: '9 min por pregunta' },
+              { icon: GraduationCap, label: 'Temas 17-39 y 43-67', desc: 'Civil, mercantil, penal, procesal' },
+            ].map(({ icon: Icon, label, desc }) => (
+              <Card key={label}>
+                <CardContent className="pt-6 text-center space-y-2">
+                  <Icon className="h-8 w-8 text-purple-600 mx-auto" />
+                  <p className="font-semibold">{label}</p>
+                  <p className="text-xs text-muted-foreground">{desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <div className="bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4">
+            <p className="text-sm font-medium text-purple-800 dark:text-purple-200">
+              <GraduationCap className="w-4 h-4 inline mr-1.5" />
+              El ejercicio de desarrollo es eliminatorio y cubre derecho civil, mercantil, penal y procesal.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Temario por bloques */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-bold">Temario completo — 68 temas en 6 bloques</h2>
+        <div className="grid gap-3">
+          {BLOQUES.map(b => (
+            <div key={b.num} className="flex gap-4 items-start p-4 rounded-lg border">
+              <span className={`text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shrink-0 ${b.color}`}>
+                {b.num}
+              </span>
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <p className="font-medium text-sm">{b.titulo}</p>
+                  <Badge variant="secondary" className="text-xs">{b.temas} temas</Badge>
+                </div>
+                <p className="text-xs text-muted-foreground">{b.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="text-xs text-muted-foreground text-center">
+          Temario completo del Anexo VI.a (BOE-A-2025-27053). Los temas 17-39 y 43-67 entran en el ejercicio de desarrollo.
+        </p>
+      </section>
+
+      {/* Cómo te ayuda OpoRuta */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-bold">¿Cómo te ayuda OpoRuta?</h2>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {[
+            { icon: Sparkles, title: 'Tests con IA sobre 68 temas', desc: 'Preguntas generadas y verificadas contra la legislación real: LEC, LECrim, Ley Concursal, LOPJ y más.' },
+            { icon: FileText, title: 'Caso práctico corregido con IA', desc: 'Entrena supuestos de juzgado con corrección inteligente. El segundo ejercicio ya no te pillará por sorpresa.' },
+            { icon: GraduationCap, title: 'Desarrollo con feedback', desc: 'Practica las preguntas de desarrollo (temas 17-39 y 43-67) y recibe análisis detallado de tu respuesta.' },
+            { icon: Shield, title: 'Simulacros con penalización real', desc: 'Practica con el scoring oficial: acierto +1, error -1/3. Aprende cuándo arriesgar y cuándo dejar en blanco.' },
+            { icon: Scale, title: 'Legislación siempre actualizada', desc: 'Ley Concursal, LO Protección de Testigos, Ley de Mediación, Registros Civiles — todo verificado contra BOE.' },
+            { icon: Users, title: 'Precio único 49,99 euros', desc: 'Sin suscripción. Acceso ilimitado hasta que apruebes. 20 análisis detallados incluidos.' },
+          ].map(({ icon: Icon, title, desc }) => (
+            <Card key={title}>
+              <CardContent className="pt-6 space-y-2">
+                <Icon className="h-6 w-6 text-purple-600" />
+                <p className="font-semibold text-sm">{title}</p>
+                <p className="text-xs text-muted-foreground">{desc}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Requisitos */}
+      <section className="space-y-4">
+        <h2 className="text-2xl font-bold">Requisitos</h2>
+        <ul className="space-y-2 text-sm">
+          {[
+            'Nacionalidad española o de un Estado miembro de la UE',
+            'Mayor de 18 años',
+            'Grado universitario, diplomatura, ingeniería técnica o equivalente',
+            'No haber sido separado del servicio de la Administración de Justicia',
+            'No tener antecedentes penales',
+          ].map(r => (
+            <li key={r} className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
+              <span>{r}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4">
+          <p className="text-sm text-purple-800 dark:text-purple-200">
+            <GraduationCap className="w-4 h-4 inline mr-1.5" />
+            <strong>Grupo A2</strong> — se requiere titulación universitaria. Es el cuerpo más alto de la Administración de Justicia al que se accede con grado.
+            Sueldo aproximado: 28.000 euros/año en 14 pagas.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ visual */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-bold">Preguntas frecuentes</h2>
+        <div className="space-y-4">
+          {FAQS.map(({ q, a }) => (
+            <div key={q} className="border rounded-lg p-4">
+              <p className="font-medium text-sm">{q}</p>
+              <p className="text-sm text-muted-foreground mt-1">{a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA final */}
+      <section className="text-center py-8 space-y-4 bg-purple-50 dark:bg-purple-950/20 rounded-2xl">
+        <h2 className="text-2xl font-bold">La oposición más completa de Justicia</h2>
+        <p className="text-muted-foreground max-w-xl mx-auto">
+          68 temas, 3 ejercicios, titulación universitaria. Gestión Procesal no es para todos,
+          pero si te atreves, OpoRuta te prepara con IA.
+        </p>
+        <Link href="/register?oposicion=gestion-procesal">
+          <Button size="lg" className="gap-2 bg-purple-600 hover:bg-purple-700">
+            Avísame al lanzar <ArrowRight className="w-4 h-4" />
+          </Button>
+        </Link>
+        <p className="text-xs text-muted-foreground">
+          <Link href="/oposiciones/justicia" className="underline hover:text-purple-600">
+            Ver todos los cuerpos de Justicia
+          </Link>
+        </p>
+      </section>
+    </main>
+  )
+}

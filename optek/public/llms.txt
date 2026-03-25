@@ -163,6 +163,42 @@ Las academias presenciales cobran ~140€/mes por corrección humana. OpoRuta lo
 - [¿Merece la pena IA para oposiciones?](https://oporuta.es/blog/inteligencia-artificial-oposiciones-merece-la-pena): Riesgos, beneficios, cómo usarla bien
 - [Recursos gratuitos Auxiliar 2026](https://oporuta.es/blog/recursos-gratuitos-auxiliar-administrativo-estado-2026): Tests, temarios, calculadoras sin coste
 
+## Próximamente — Oposiciones Correos (Grupo IV)
+
+OpoRuta se expande a Correos en 2026:
+- Plazas: +4.000 plazas de personal laboral fijo
+- Temario: 12 temas (servicio postal, productos, logística, PRL, RGPD)
+- Examen: 100 preguntas (90 temario + 10 psicotécnicos), 110 minutos, **SIN PENALIZACIÓN**
+- Scoring: 0,60 pts/acierto, 0 pts/error — responde TODAS
+- Requisitos: ESO o equivalente, 18 años
+- Precio: 49,99€ (pago único, sin suscripción)
+- Más info: https://oporuta.es/oposiciones/correos
+
+## Próximamente — Oposiciones Justicia (3 cuerpos)
+
+OpoRuta cubrirá los 3 cuerpos de la Administración de Justicia:
+
+### Auxilio Judicial (C2)
+- 26 temas, 2 ejercicios (test 60pts + caso práctico 40pts)
+- 425 plazas (OEP 2024), examen previsto sept-oct 2026
+- Requisitos: ESO, sueldo ~18.000€/año
+- Más info: https://oporuta.es/oposiciones/justicia/auxilio-judicial
+
+### Tramitación Procesal (C1)
+- 37 temas, 3 ejercicios (test 60pts + caso práctico 20pts + ofimática 20pts)
+- 1.155 plazas (OEP 2024), examen previsto sept-oct 2026
+- Requisitos: Bachillerato, sueldo ~22.000€/año
+- Más info: https://oporuta.es/oposiciones/justicia/tramitacion-procesal
+
+### Gestión Procesal (A2)
+- 68 temas, 3 ejercicios (test 60pts + caso práctico 15pts + desarrollo 25pts)
+- 725 plazas (OEP 2024), examen previsto sept-oct 2026
+- Requisitos: Grado universitario, sueldo ~28.000€/año
+- Más info: https://oporuta.es/oposiciones/justicia/gestion-procesal
+
+### Novedad: LO 1/2025 del Servicio Público de Justicia
+La nueva ley orgánica modifica la LOPJ y afecta directamente al temario de las 3 oposiciones de Justicia. OpoRuta actualiza automáticamente las preguntas.
+
 ## Contacto
 
 - Web: https://oporuta.es
@@ -170,4 +206,4 @@ Las academias presenciales cobran ~140€/mes por corrección humana. OpoRuta lo
 
 ---
 
-*Última actualización: 2026-03-23*
+*Última actualización: 2026-03-25*
