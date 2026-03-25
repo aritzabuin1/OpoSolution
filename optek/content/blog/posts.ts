@@ -10633,4 +10633,683 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Cuánto tiempo se necesita para preparar Gestión Procesal?', answer: 'La preparación típica dura entre 14 y 24 meses con 3-4 horas diarias. Los 68 temas requieren unos 10-13 meses de estudio del temario y 4-6 meses adicionales de repaso, simulacros y práctica del ejercicio de desarrollo escrito.' },
     ],
   },
+
+  // ─── Post 60 — Correos: Nota de corte 2023 ─────────────────────────────────
+  {
+    slug: 'nota-corte-correos-2023-cuanto-necesitas',
+    title: 'Nota de corte Correos 2023: cuánto necesitas para aprobar',
+    description:
+      'Datos reales de la convocatoria de Correos 2023 (7.757 plazas): nota mínima para REP y ATC, cómo se puntúa el examen, peso de los méritos y variación por provincia.',
+    date: '2026-03-25',
+    dateModified: '2026-03-25',
+    keywords: [
+      'nota corte correos',
+      'aprobar correos puntuacion',
+      'nota corte correos 2023',
+      'cuantas preguntas acertar correos',
+      'puntuacion examen correos',
+    ],
+    content: `
+<h2>¿Qué fue la convocatoria de Correos 2023?</h2>
+<p>
+  La última convocatoria de Correos se publicó en 2023 con <strong>7.757 plazas</strong> de personal laboral fijo,
+  repartidas entre los puestos de <strong>REP</strong> (Reparto y Agente de Clasificación) y <strong>ATC</strong>
+  (Atención al Cliente). El examen se celebró el <strong>7 de mayo de 2023</strong>.
+</p>
+<p>
+  Entender la nota de corte de esta convocatoria es clave para preparar la próxima, ya que el formato del examen
+  se ha mantenido estable: 100 preguntas tipo test (90 de temario + 10 psicotécnicas), 110 minutos y <strong>sin penalización</strong>.
+</p>
+
+<h2>¿Cómo se puntúa el examen de Correos?</h2>
+<p>El sistema de puntuación es muy sencillo:</p>
+<ul>
+  <li><strong>Acierto:</strong> +0,60 puntos</li>
+  <li><strong>Error:</strong> 0 puntos (no penaliza)</li>
+  <li><strong>En blanco:</strong> 0 puntos</li>
+</ul>
+<p>
+  La puntuación máxima del examen es <strong>60 puntos</strong> (100 preguntas × 0,60). A esto se suman
+  hasta <strong>40 puntos de méritos</strong> (experiencia en Correos, formación, idiomas, carnet de conducir),
+  para un total máximo de 100 puntos en el proceso de concurso-oposición.
+</p>
+
+<h2>Nota de corte Correos 2023: datos reales</h2>
+<p>
+  Las notas de corte variaron según el puesto y la provincia, pero los datos de referencia son:
+</p>
+<ul>
+  <li><strong>REP (Reparto):</strong> mínimo aproximado de <strong>55 respuestas correctas</strong> (33 puntos sobre 60) para entrar en la fase de méritos</li>
+  <li><strong>ATC (Atención al Cliente):</strong> mínimo aproximado de <strong>60 respuestas correctas</strong> (36 puntos sobre 60) para entrar en la fase de méritos</li>
+</ul>
+<p>
+  <strong>Atención:</strong> estas cifras son el mínimo orientativo para «pasar el corte» de la fase de oposición.
+  La nota final depende de los méritos. Muchos candidatos con 55 aciertos en REP no obtuvieron plaza si no tenían
+  puntos por experiencia previa en Correos.
+</p>
+
+<h2>¿Por qué ATC exige más nota que REP?</h2>
+<p>
+  Hay menos plazas de ATC que de REP, y el perfil suele atraer a más candidatos con experiencia previa.
+  El resultado es una mayor competencia y, por tanto, una nota de corte más alta.
+</p>
+<p>
+  Además, las preguntas del examen ATC se centran más en atención al cliente, productos financieros
+  y servicios de oficina (temas 4, 10), que requieren un conocimiento más detallado.
+</p>
+
+<h2>La nota de corte varía por provincia</h2>
+<p>
+  Correos asigna plazas por provincias. Las grandes ciudades (Madrid, Barcelona, Valencia, Sevilla, Bilbao)
+  suelen tener notas de corte más altas porque:
+</p>
+<ul>
+  <li>Más candidatos eligen esas provincias como destino preferente</li>
+  <li>Los méritos promedios son más altos (más personal eventual con experiencia)</li>
+</ul>
+<p>
+  En provincias menos demandadas, la nota de corte puede bajar significativamente. Elegir bien la provincia
+  es una decisión estratégica que puede marcar la diferencia.
+</p>
+
+<h2>¿Cuánto pesan los méritos? (40 puntos)</h2>
+<p>
+  El proceso selectivo de Correos es un <strong>concurso-oposición</strong> donde el examen solo supone el 60%
+  de la puntuación total. Los méritos valen hasta 40 puntos y se distribuyen así:
+</p>
+<ul>
+  <li><strong>Experiencia en Correos:</strong> el mérito con mayor peso. Haber trabajado como eventual o interino suma puntos directos</li>
+  <li><strong>Formación académica:</strong> titulación universitaria, FP, cursos relacionados</li>
+  <li><strong>Idiomas:</strong> certificados oficiales de lenguas extranjeras</li>
+  <li><strong>Carnet de conducir:</strong> valorado especialmente para puestos REP</li>
+</ul>
+<p>
+  <strong>Implicación práctica:</strong> un candidato con 50 aciertos y 30 puntos de méritos (80 total)
+  puede superar a otro con 65 aciertos pero sin méritos (39 total). Por eso es crucial maximizar
+  también la fase de méritos.
+</p>
+
+<h2>Estrategia: ¿cuántos aciertos necesitas realmente?</h2>
+<p>Depende de tu situación con los méritos:</p>
+<ul>
+  <li><strong>Con experiencia previa en Correos (20+ puntos de méritos):</strong> apunta a 55-60 aciertos como mínimo seguro</li>
+  <li><strong>Sin experiencia previa (0-10 puntos de méritos):</strong> necesitarás 70+ aciertos para compensar la diferencia. Cada acierto extra vale 0,60 puntos y puede ser decisivo</li>
+</ul>
+<p>
+  La buena noticia: como <strong>no hay penalización</strong>, debes responder a las 100 preguntas. Dejar una en
+  blanco es tirar 0,60 puntos a la basura.
+</p>
+
+<h2>Prepárate con tests del formato real</h2>
+<p>
+  En <a href="/register?oposicion=correos">OpoRuta</a> puedes practicar con tests de los 12 temas del temario
+  de Correos, con corrección inmediata y el mismo sistema de puntuación del examen real (0,60 por acierto, sin penalización).
+</p>
+<p>
+  <strong><a href="/register?oposicion=correos">Regístrate gratis y empieza a practicar</a></strong> — llega al examen
+  sabiendo exactamente cuántos puntos necesitas.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Fuente: datos de la convocatoria de Correos 2023 (7.757 plazas, examen 07/05/2023).</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuál fue la nota de corte de Correos en 2023?', answer: 'En la convocatoria de 2023 (7.757 plazas), la nota de corte orientativa fue de unas 55 respuestas correctas para REP (Reparto) y unas 60 para ATC (Atención al Cliente). Estas cifras son el mínimo para acceder a la fase de méritos, no para obtener plaza directamente.' },
+      { question: '¿Penalizan las respuestas incorrectas en el examen de Correos?', answer: 'No. En el examen de Correos las respuestas incorrectas puntúan 0 (no restan). Cada acierto vale 0,60 puntos y la puntuación máxima es 60. Siempre conviene responder a todas las preguntas.' },
+      { question: '¿Cuántos puntos vale la fase de méritos en Correos?', answer: 'La fase de méritos vale hasta 40 puntos sobre 100. Se valora la experiencia previa en Correos (máximo peso), formación académica, idiomas y carnet de conducir. El examen vale los otros 60 puntos.' },
+      { question: '¿Varía la nota de corte de Correos según la provincia?', answer: 'Sí. Las provincias más demandadas (Madrid, Barcelona, Valencia) tienen notas de corte más altas porque más candidatos las eligen y los méritos promedios son mayores. Elegir provincias menos solicitadas es una estrategia válida para mejorar tus opciones.' },
+      { question: '¿Cuántas preguntas tiene el examen de Correos?', answer: 'El examen tiene 100 preguntas tipo test: 90 sobre los 12 temas del temario y 10 psicotécnicas. Se dispone de 110 minutos. Cada acierto suma 0,60 puntos (máximo 60 puntos).' },
+    ],
+  },
+
+  // ─── Post 61 — Correos: REP vs ATC ─────────────────────────────────────────
+  {
+    slug: 'correos-rep-vs-atc-que-puesto-elegir',
+    title: 'Correos REP vs ATC: ¿qué puesto elegir en 2026?',
+    description:
+      'Comparativa completa entre los puestos de Reparto (REP) y Atención al Cliente (ATC) en las oposiciones de Correos: diferencias en el examen, nota de corte, trabajo diario, sueldo y carrera profesional.',
+    date: '2026-03-25',
+    dateModified: '2026-03-25',
+    keywords: [
+      'correos reparto o atencion al cliente',
+      'REP vs ATC correos',
+      'puesto correos elegir',
+      'diferencia REP ATC correos',
+      'oposiciones correos puesto',
+    ],
+    content: `
+<h2>¿Qué son los puestos REP y ATC en Correos?</h2>
+<p>
+  Cuando te presentas a las <a href="/oposiciones/correos">oposiciones de Correos</a>, debes elegir uno de los dos
+  grandes puestos operativos:
+</p>
+<ul>
+  <li><strong>REP — Reparto y Agente de Clasificación:</strong> el cartero clásico. Se encarga del reparto de
+  correspondencia, paquetería y clasificación de envíos en los centros logísticos</li>
+  <li><strong>ATC — Atención al Cliente:</strong> trabaja en las oficinas de Correos atendiendo al público,
+  gestionando envíos, servicios financieros y productos de la cartera comercial</li>
+</ul>
+<p>
+  Ambos puestos comparten el mismo proceso selectivo (concurso-oposición con 60 pts examen + 40 pts méritos)
+  y el mismo temario de 12 temas, pero <strong>el examen tiene preguntas diferentes</strong> adaptadas a cada puesto.
+</p>
+
+<h2>Diferencias en el examen</h2>
+<p>
+  Aunque el formato es idéntico (100 preguntas, 110 minutos, sin penalización, 0,60 pts por acierto),
+  las preguntas se adaptan al puesto:
+</p>
+<ul>
+  <li><strong>Examen REP:</strong> más preguntas sobre procesos operativos (temas 7, 8, 9: admisión, tratamiento,
+  transporte, distribución y entrega), rutas de reparto, herramientas de movilidad (PDA) y logística</li>
+  <li><strong>Examen ATC:</strong> más preguntas sobre productos y servicios (temas 3, 4, 5), servicios financieros,
+  atención al cliente (tema 10), protocolos de venta y herramientas de oficina</li>
+</ul>
+<p>
+  En ambos casos, los temas comunes (marco normativo, RGPD, PRL, igualdad) aparecen con el mismo peso.
+</p>
+
+<h2>Nota de corte: ATC es más exigente</h2>
+<p>
+  En la última convocatoria de 2023 (7.757 plazas):
+</p>
+<ul>
+  <li><strong>REP:</strong> nota de corte orientativa de ~55 respuestas correctas (33 puntos)</li>
+  <li><strong>ATC:</strong> nota de corte orientativa de ~60 respuestas correctas (36 puntos)</li>
+</ul>
+<p>
+  La razón: hay menos plazas de ATC proporcionalmente, y el perfil atrae a candidatos con experiencia
+  previa en oficina, lo que eleva la competencia.
+</p>
+
+<h2>El trabajo diario: dos mundos diferentes</h2>
+<h3>REP — Reparto</h3>
+<ul>
+  <li>Jornada de mañana (6:00-14:00 aprox.)</li>
+  <li>Trabajo al aire libre: ruta de reparto a pie, moto o furgoneta</li>
+  <li>Clasificación en centros logísticos (turno de noche en algunos casos)</li>
+  <li>Actividad física: caminar kilómetros, cargar paquetes</li>
+  <li>Autonomía: una vez sales con la ruta, trabajas solo</li>
+  <li><strong>Se requiere carnet de conducir B</strong> para reparto motorizado</li>
+</ul>
+<h3>ATC — Atención al Cliente</h3>
+<ul>
+  <li>Horario de oficina (8:30-14:30, con tardes en algunas oficinas)</li>
+  <li>Trabajo en interior: mostrador de atención al público</li>
+  <li>Venta de productos: envíos, servicios financieros, seguros, filatelia</li>
+  <li>Gestión informática: terminales, aplicaciones corporativas</li>
+  <li>Trato directo con el cliente durante toda la jornada</li>
+  <li>No requiere carnet de conducir (aunque puntúa como mérito)</li>
+</ul>
+
+<h2>Salario: prácticamente igual</h2>
+<p>
+  Ambos puestos pertenecen al mismo grupo profesional de Correos, por lo que el <strong>salario base es idéntico</strong>.
+  Las diferencias vienen por complementos:
+</p>
+<ul>
+  <li><strong>REP:</strong> ~1.300-1.600€ netos/mes (jornada completa). Puede tener plus de reparto y dietas</li>
+  <li><strong>ATC:</strong> ~1.300-1.600€ netos/mes (jornada completa). Plus de oficina en algunos casos</li>
+</ul>
+<p>
+  Las pagas extraordinarias (14 pagas/año) son iguales para ambos puestos.
+</p>
+
+<h2>Progresión profesional</h2>
+<p>
+  En Correos la carrera profesional es horizontal (cambio de puesto) más que vertical:
+</p>
+<ul>
+  <li>Desde REP puedes pasar a ATC (y viceversa) a través de concursos internos</li>
+  <li>Ambos puestos dan acceso a jefaturas de equipo, coordinación de centros, etc.</li>
+  <li>La experiencia acumulada es el principal mérito para futuras convocatorias y promociones</li>
+</ul>
+
+<h2>¿Cuál elegir? Criterios de decisión</h2>
+<ul>
+  <li><strong>Elige REP si:</strong> prefieres trabajar al aire libre, te gusta la actividad física, valoras la autonomía,
+  tienes carnet de conducir y no te importan los madrugones</li>
+  <li><strong>Elige ATC si:</strong> prefieres trabajo de oficina, se te da bien el trato con personas, te interesan
+  los servicios financieros, prefieres un horario más estándar y no quieres depender del carnet</li>
+  <li><strong>Si solo te importa aprobar:</strong> REP tiene nota de corte más baja y más plazas — es estadísticamente
+  más fácil de conseguir</li>
+</ul>
+
+<h2>Prepárate para el puesto que elijas</h2>
+<p>
+  En <a href="/register?oposicion=correos">OpoRuta</a> puedes practicar con tests adaptados a los 12 temas
+  del temario de Correos, incluyendo los temas operativos (7-9) que pesan más en REP y los temas de productos
+  y servicios (3-5, 10) que pesan más en ATC.
+</p>
+<p>
+  <strong><a href="/register?oposicion=correos">Regístrate gratis y empieza a practicar</a></strong>.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Fuente: convocatoria de Correos 2023 y datos sindicales CCOO.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuál es la diferencia entre REP y ATC en Correos?', answer: 'REP (Reparto y Agente de Clasificación) trabaja en la calle repartiendo correspondencia y paquetes, o en centros logísticos clasificando envíos. ATC (Atención al Cliente) trabaja en oficinas atendiendo al público y vendiendo productos y servicios de Correos. Ambos comparten temario pero las preguntas del examen se adaptan a cada puesto.' },
+      { question: '¿Qué puesto de Correos es más fácil de aprobar?', answer: 'REP tiene una nota de corte más baja (unas 55 correctas frente a 60 de ATC en 2023) y generalmente más plazas disponibles, lo que lo hace estadísticamente más accesible. Sin embargo, requiere carnet de conducir B para reparto motorizado.' },
+      { question: '¿Se cobra lo mismo en REP y ATC de Correos?', answer: 'Sí, el salario base es idéntico ya que ambos puestos pertenecen al mismo grupo profesional. Las diferencias son mínimas y dependen de complementos específicos. Ambos cobran entre 1.300 y 1.600€ netos/mes a jornada completa (14 pagas).' },
+      { question: '¿Necesito carnet de conducir para Correos?', answer: 'Para REP con reparto motorizado sí es imprescindible el carnet B. Para Agente de Clasificación (dentro de REP) y para ATC no es obligatorio, aunque se valora como mérito en la fase de concurso.' },
+      { question: '¿Puedo cambiar de REP a ATC después de aprobar?', answer: 'Sí. Correos permite el cambio de puesto a través de concursos internos de traslado. La experiencia acumulada en cualquiera de los dos puestos se valora como mérito.' },
+    ],
+  },
+
+  // ─── Post 62 — Correos: Psicotécnicos tipos y ejemplos ─────────────────────
+  {
+    slug: 'psicotecnicos-correos-tipos-ejemplos',
+    title: 'Psicotécnicos Correos: los 10 tipos que entran en el examen',
+    description:
+      'Las 10 preguntas psicotécnicas del examen de Correos: tipos (verbal, numérico, lógico, espacial, memoria), ejemplos reales y estrategia para no dejar ninguna en blanco.',
+    date: '2026-03-25',
+    dateModified: '2026-03-25',
+    keywords: [
+      'psicotecnicos correos',
+      'test psicotecnico correos ejemplos',
+      'preguntas psicotecnicas correos',
+      'examen correos psicotecnicos',
+      'tipos psicotecnicos oposiciones',
+    ],
+    content: `
+<h2>¿Cuántos psicotécnicos hay en el examen de Correos?</h2>
+<p>
+  El examen de <a href="/oposiciones/correos">oposiciones de Correos</a> consta de <strong>100 preguntas en 110
+  minutos</strong>: 90 preguntas sobre el temario de 12 temas y <strong>10 preguntas psicotécnicas integradas</strong>.
+</p>
+<p>
+  Cada pregunta psicotécnica vale <strong>0,60 puntos</strong> (igual que las de temario), lo que suma un total de
+  <strong>6 puntos sobre 60</strong>. Y como el examen de Correos <strong>no penaliza los errores</strong>,
+  dejar un psicotécnico en blanco es tirar 0,60 puntos. Siempre hay que intentar responder.
+</p>
+
+<h2>Los 10 tipos de preguntas psicotécnicas</h2>
+<p>
+  Basándonos en exámenes anteriores de Correos (2021, 2023), estas son las categorías más frecuentes:
+</p>
+
+<h3>1. Series numéricas</h3>
+<p>
+  Encontrar el número que completa la serie. La dificultad va desde sumas simples hasta combinaciones
+  de operaciones.
+</p>
+<p><strong>Ejemplo:</strong> 2, 6, 18, 54, ___</p>
+<p>Respuesta: 162 (cada número se multiplica por 3).</p>
+
+<h3>2. Series alfanuméricas</h3>
+<p>
+  Combinación de letras y números siguiendo un patrón. Debes identificar la regla que conecta ambas secuencias.
+</p>
+<p><strong>Ejemplo:</strong> A1, C3, E5, G7, ___</p>
+<p>Respuesta: I9 (letras avanzan de 2 en 2, números avanzan de 2 en 2).</p>
+
+<h3>3. Razonamiento verbal — Sinónimos y antónimos</h3>
+<p>
+  Identificar la palabra con significado similar u opuesto. Evalúa vocabulario y comprensión lingüística.
+</p>
+<p><strong>Ejemplo:</strong> ¿Cuál es el sinónimo de «diligente»? a) Perezoso b) Cuidadoso c) Confuso d) Rápido</p>
+<p>Respuesta: b) Cuidadoso.</p>
+
+<h3>4. Razonamiento verbal — Analogías</h3>
+<p>
+  Completar relaciones lógicas entre palabras: A es a B como C es a ___.
+</p>
+<p><strong>Ejemplo:</strong> Médico es a hospital como maestro es a ___</p>
+<p>Respuesta: escuela (relación profesional-lugar de trabajo).</p>
+
+<h3>5. Razonamiento abstracto — Patrones geométricos</h3>
+<p>
+  Identificar qué figura completa una secuencia visual. Rotaciones, simetrías, transformaciones.
+</p>
+<p><strong>Ejemplo:</strong> Una secuencia de cuadrados que rotan 45° en cada paso. ¿Cuál es el siguiente?</p>
+
+<h3>6. Razonamiento abstracto — Figuras excluidas</h3>
+<p>
+  Identificar cuál de las figuras no sigue el patrón del grupo. Requiere encontrar la propiedad común.
+</p>
+
+<h3>7. Razonamiento numérico — Operaciones</h3>
+<p>
+  Problemas aritméticos que evalúan cálculo mental: porcentajes, proporciones, regla de tres.
+</p>
+<p><strong>Ejemplo:</strong> Si un paquete pesa 2,5 kg y el precio es 0,80€/kg, ¿cuánto cuesta el envío?</p>
+<p>Respuesta: 2,00€.</p>
+
+<h3>8. Atención y percepción</h3>
+<p>
+  Contar elementos, encontrar diferencias o detectar errores en cadenas de datos. Evalúa concentración
+  y velocidad de procesamiento.
+</p>
+<p><strong>Ejemplo:</strong> ¿Cuántas veces aparece "27" en esta secuencia? 27 72 27 22 77 27 72 27</p>
+<p>Respuesta: 4 veces.</p>
+
+<h3>9. Memoria visual</h3>
+<p>
+  Memorizar una imagen o tabla durante unos segundos y responder preguntas sobre ella.
+  Menos frecuente, pero puede aparecer.
+</p>
+
+<h3>10. Razonamiento espacial</h3>
+<p>
+  Identificar cómo queda una figura al plegarla, rotarla o reflejarla. Pensamiento tridimensional.
+</p>
+
+<h2>Estrategia para los psicotécnicos de Correos</h2>
+<ul>
+  <li><strong>Nunca dejes uno en blanco:</strong> no hay penalización. Incluso responder al azar te da un 25% de probabilidad de sumar 0,60 puntos</li>
+  <li><strong>No les dediques demasiado tiempo:</strong> son 10 de 100 preguntas. Si llevas más de 1,5 minutos en un psicotécnico, marca la opción más probable y sigue</li>
+  <li><strong>Practica regularmente:</strong> los psicotécnicos mejoran mucho con la práctica. 10 minutos diarios durante 2 meses marca una diferencia enorme</li>
+  <li><strong>Identifica tu debilidad:</strong> si se te dan mal las series numéricas pero bien las verbales, dedica más tiempo a las numéricas</li>
+  <li><strong>Son 6 puntos «fáciles»:</strong> con práctica, puedes acertar 7-8 de 10 (4,2-4,8 puntos). Eso puede ser la diferencia entre aprobar y no</li>
+</ul>
+
+<h2>¿Cómo entrenar psicotécnicos para Correos?</h2>
+<p>
+  En <a href="/register?oposicion=correos">OpoRuta</a> puedes practicar con psicotécnicos
+  integrados en el formato real del examen de Correos: series numéricas, razonamiento verbal,
+  patrones abstractos y más. Corrección inmediata y explicación de cada respuesta.
+</p>
+<p>
+  <strong><a href="/register?oposicion=correos">Regístrate gratis y empieza a entrenar</a></strong> — los 6 puntos de psicotécnicos pueden decidir tu plaza.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Fuente: exámenes oficiales de Correos 2021 y 2023.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuántos psicotécnicos hay en el examen de Correos?', answer: '10 preguntas psicotécnicas integradas dentro del examen de 100 preguntas. Cada una vale 0,60 puntos, sumando un total de 6 puntos sobre 60. Se dispone de 110 minutos para el examen completo (no hay tiempo separado para psicotécnicos).' },
+      { question: '¿Qué tipo de psicotécnicos caen en Correos?', answer: 'Los más frecuentes son: series numéricas, series alfanuméricas, razonamiento verbal (sinónimos, antónimos, analogías), razonamiento abstracto (patrones geométricos), razonamiento numérico (cálculo, porcentajes), y atención/percepción. Ocasionalmente aparecen memoria visual y razonamiento espacial.' },
+      { question: '¿Penalizan los errores en los psicotécnicos de Correos?', answer: 'No. El examen de Correos no penaliza ninguna respuesta incorrecta, ni de temario ni psicotécnicas. Siempre conviene responder, ya que tienes un 25% de probabilidad de acertar al azar y sumar 0,60 puntos.' },
+      { question: '¿Cómo preparar los psicotécnicos de Correos?', answer: 'Con práctica diaria de 10-15 minutos durante al menos 2 meses. Enfócate en tus puntos débiles (series numéricas suelen ser las más difíciles). Usa tests cronometrados para ganar velocidad. Con entrenamiento, es realista acertar 7-8 de 10 psicotécnicos.' },
+    ],
+  },
+
+  // ─── Post 63 — Correos: Méritos 2026 ───────────────────────────────────────
+  {
+    slug: 'meritos-correos-2026-puntos-extra',
+    title: 'Méritos Correos 2026: cómo sumar hasta 40 puntos extra',
+    description:
+      'Guía completa de la fase de méritos en las oposiciones de Correos: hasta 40 puntos por experiencia laboral, formación, idiomas y carnet de conducir. Estrategia para candidatos con y sin experiencia previa.',
+    date: '2026-03-25',
+    dateModified: '2026-03-25',
+    keywords: [
+      'meritos correos oposiciones',
+      'puntos experiencia correos',
+      'fase meritos correos 2026',
+      'baremo correos oposiciones',
+      'concurso oposicion correos',
+    ],
+    content: `
+<h2>¿Cómo funciona el concurso-oposición de Correos?</h2>
+<p>
+  Las <a href="/oposiciones/correos">oposiciones de Correos</a> se resuelven mediante un sistema de
+  <strong>concurso-oposición</strong>, donde la puntuación total (máximo 100 puntos) se divide en:
+</p>
+<ul>
+  <li><strong>Fase de oposición (examen):</strong> hasta 60 puntos — 100 preguntas tipo test, cada acierto 0,60 pts, sin penalización</li>
+  <li><strong>Fase de concurso (méritos):</strong> hasta 40 puntos — experiencia laboral, formación, idiomas y otros méritos valorables</li>
+</ul>
+<p>
+  Esto significa que los méritos representan el <strong>40% de tu puntuación final</strong>. Un candidato
+  con buena nota en el examen pero sin méritos puede ser superado por otro con nota media y muchos méritos.
+</p>
+
+<h2>Categorías de méritos y su peso</h2>
+<p>
+  Basándonos en la convocatoria de 2023 (7.757 plazas), los méritos se organizan así:
+</p>
+
+<h3>1. Experiencia laboral en Correos (mayor peso)</h3>
+<p>
+  Es el mérito más valioso. Se valora haber trabajado previamente en Correos como personal eventual,
+  interino o con contrato temporal.
+</p>
+<ul>
+  <li>Se computa por meses/años de servicio</li>
+  <li>No importa si fue en REP o ATC — toda la experiencia en Correos suma</li>
+  <li>Es acumulativa: si trabajaste en varias campañas (Navidad, verano), se suman</li>
+</ul>
+<p>
+  <strong>Dato clave:</strong> muchos candidatos con plaza en Correos empezaron como eventuales, acumularon
+  experiencia y después aprobaron la oposición con una nota de examen modesta pero compensada con méritos.
+</p>
+
+<h3>2. Formación académica</h3>
+<p>
+  Se valoran las titulaciones oficiales superiores al requisito mínimo (Graduado en ESO/Bachillerato):
+</p>
+<ul>
+  <li><strong>FP Grado Medio o Superior</strong> relacionado con el puesto</li>
+  <li><strong>Titulación universitaria</strong> (Grado, Diplomatura, Licenciatura)</li>
+  <li><strong>Cursos de formación</strong> relacionados con el sector postal, logística, atención al cliente</li>
+</ul>
+<p>
+  Si ya tienes un título universitario o FP, estos puntos son «gratis». Si estás estudiando, completar
+  una FP antes de la convocatoria puede sumar puntos valiosos.
+</p>
+
+<h3>3. Idiomas</h3>
+<p>
+  Se valoran los certificados oficiales de lenguas extranjeras:
+</p>
+<ul>
+  <li>Inglés, francés, alemán, portugués y otras lenguas oficiales</li>
+  <li>El nivel se acredita con certificados reconocidos (Cambridge, DELF, Escuela Oficial de Idiomas, etc.)</li>
+  <li>A mayor nivel de certificación, más puntos</li>
+</ul>
+<p>
+  <strong>Consejo:</strong> si tienes meses antes de la convocatoria, preparar un B1 o B2 de inglés puede
+  darte puntos extra con relativamente poco esfuerzo.
+</p>
+
+<h3>4. Carnet de conducir</h3>
+<p>
+  El carnet de conducir B se valora como mérito, especialmente para los puestos de REP (Reparto).
+  Para reparto motorizado es obligatorio, pero incluso para ATC puntúa como mérito.
+</p>
+
+<h2>Estrategia según tu situación</h2>
+
+<h3>Si tienes experiencia previa en Correos</h3>
+<ul>
+  <li>Tus méritos probablemente sumen 20-35 puntos. Eso es una ventaja enorme</li>
+  <li>Necesitas una nota de examen más modesta para alcanzar la puntuación total necesaria</li>
+  <li>Apunta a 55-65 aciertos en el examen para estar tranquilo</li>
+  <li>Enfócate en los temas que ya conoces del trabajo diario — serán tu punto fuerte</li>
+</ul>
+
+<h3>Si no tienes experiencia previa</h3>
+<ul>
+  <li>Tus méritos probablemente sumen 5-15 puntos (formación + idiomas + carnet)</li>
+  <li>Necesitas compensar con una nota alta en el examen: <strong>apunta a 70+ aciertos</strong></li>
+  <li>La buena noticia: sin penalización, cada pregunta que respondas es una oportunidad sin riesgo</li>
+  <li>Maximiza tus méritos antes de la convocatoria: saca un certificado de idiomas, completa un curso de logística</li>
+</ul>
+
+<h3>Si estás en medio (algo de experiencia)</h3>
+<ul>
+  <li>Calcula cuántos méritos puedes documentar y haz la resta: ¿cuántos puntos de examen necesitas?</li>
+  <li>Ejemplo: con 15 pts de méritos y objetivo de 80 total, necesitas 65 pts de examen = 108 aciertos... que es imposible (máx 100 preguntas × 0,60 = 60). Necesitas al menos 65 pts totales = 50 de examen + 15 méritos</li>
+  <li>La nota de corte real depende de la provincia y el puesto (REP vs ATC)</li>
+</ul>
+
+<h2>Cómo documentar tus méritos</h2>
+<ul>
+  <li><strong>Experiencia laboral:</strong> certificados de servicios prestados por Correos, vida laboral de la Seguridad Social</li>
+  <li><strong>Formación:</strong> títulos oficiales, certificados de cursos con horas acreditadas</li>
+  <li><strong>Idiomas:</strong> certificados oficiales reconocidos (no basta con poner «inglés medio» en el CV)</li>
+  <li><strong>Carnet:</strong> copia del permiso de conducir en vigor</li>
+</ul>
+<p>
+  <strong>Importante:</strong> empieza a recopilar la documentación <em>antes</em> de que se publique la convocatoria.
+  Los plazos de presentación son ajustados y no querrás perder puntos por no tener un certificado a tiempo.
+</p>
+
+<h2>Prepara el examen para maximizar tu nota total</h2>
+<p>
+  Los méritos no se pueden cambiar a corto plazo, pero la nota del examen sí. En
+  <a href="/register?oposicion=correos">OpoRuta</a> puedes practicar con tests de los 12 temas
+  del temario de Correos con corrección inmediata y el mismo sistema de puntuación del examen real.
+</p>
+<p>
+  <strong><a href="/register?oposicion=correos">Regístrate gratis y empieza a practicar</a></strong> — cada acierto extra son 0,60 puntos más cerca de tu plaza.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Fuente: bases de la convocatoria de Correos 2023 (7.757 plazas).</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuántos puntos de méritos hay en las oposiciones de Correos?', answer: 'Hasta 40 puntos sobre 100. El proceso selectivo de Correos es un concurso-oposición donde el examen vale 60 puntos (60%) y los méritos 40 puntos (40%). Se valoran experiencia laboral en Correos, formación académica, idiomas y carnet de conducir.' },
+      { question: '¿Qué mérito vale más en Correos?', answer: 'La experiencia laboral previa en Correos es el mérito con mayor peso. Haber trabajado como eventual o interino (campañas de Navidad, verano, etc.) acumula puntos directos que suponen una ventaja considerable sobre candidatos sin experiencia.' },
+      { question: '¿Puedo aprobar Correos sin experiencia previa?', answer: 'Sí, pero necesitas una nota de examen alta (70+ aciertos sobre 100) para compensar la falta de méritos por experiencia. La ventaja es que el examen no penaliza errores, así que puedes intentar todas las preguntas. Complementa con méritos de formación, idiomas y carnet de conducir.' },
+      { question: '¿Los méritos de Correos se pueden preparar antes de la convocatoria?', answer: 'Algunos sí: puedes obtener un certificado de idiomas (B1/B2 inglés), completar cursos de formación relacionados con logística o atención al cliente, y sacarte el carnet de conducir. La experiencia laboral en Correos solo se obtiene trabajando como eventual o temporal.' },
+      { question: '¿Cuándo se presentan los méritos de Correos?', answer: 'Los méritos se presentan después de realizar el examen, dentro del plazo que establece la convocatoria. Es importante tener toda la documentación preparada (certificados de servicios, títulos, certificados de idiomas) antes de que se publique la convocatoria para no perder puntos por falta de acreditación.' },
+    ],
+  },
+
+  // ─── Post 64 — Correos: Preparar sin academia 3 meses ──────────────────────
+  {
+    slug: 'preparar-correos-sin-academia-3-meses',
+    title: 'Preparar Correos sin academia: plan de estudio 3 meses',
+    description:
+      'Plan semanal para preparar las oposiciones de Correos en 3 meses sin academia: orden de temas, horas diarias, simulacros, recursos gratuitos y estrategia de examen.',
+    date: '2026-03-25',
+    dateModified: '2026-03-25',
+    keywords: [
+      'preparar correos sin academia',
+      'plan estudio correos',
+      'oposiciones correos por libre',
+      'estudiar correos 3 meses',
+      'temario correos autodidacta',
+    ],
+    content: `
+<h2>¿Se puede preparar Correos en 3 meses sin academia?</h2>
+<p>
+  Sí. El temario de <a href="/oposiciones/correos">oposiciones de Correos</a> tiene <strong>12 temas</strong>,
+  frente a los 26-68 temas de otras oposiciones. Con una dedicación de <strong>2-3 horas diarias</strong>,
+  es perfectamente viable cubrir todo el temario, hacer simulacros y llegar preparado al examen en 12 semanas.
+</p>
+<p>
+  Además, el examen de Correos tiene características que favorecen la preparación autodidacta:
+</p>
+<ul>
+  <li><strong>No penaliza errores:</strong> cada acierto suma 0,60 pts, los fallos valen 0. Esto reduce el estrés y la necesidad de «dominar» cada tema al 100%</li>
+  <li><strong>100 preguntas tipo test:</strong> formato objetivo que se entrena con práctica repetida</li>
+  <li><strong>Temario práctico:</strong> muchos temas describen procesos operativos reales de Correos, no legislación abstracta</li>
+</ul>
+
+<h2>El plan de 3 meses: semana a semana</h2>
+
+<h3>Semanas 1-2: Temas operativos (los que más caen)</h3>
+<p>
+  Empieza por los temas con <strong>mayor peso en el examen</strong>:
+</p>
+<ul>
+  <li><strong>Tema 7 — Procesos operativos I: Admisión</strong></li>
+  <li><strong>Tema 8 — Procesos operativos II: Tratamiento y Transporte</strong></li>
+  <li><strong>Tema 9 — Procesos operativos III: Distribución y Entrega</strong></li>
+</ul>
+<p>
+  Estos tres temas acumulan aproximadamente el 25-30% de las preguntas del examen. Son prácticos y descriptivos:
+  cómo se admite un envío, cómo se clasifica, cómo se reparte. Haz tests de cada tema desde el primer día.
+</p>
+<p><strong>Ritmo:</strong> 1 tema cada 4-5 días. Estudia 1,5h + haz 10-15 preguntas test (0,5h).</p>
+
+<h3>Semanas 3-4: Productos y servicios</h3>
+<ul>
+  <li><strong>Tema 3 — Paquetería, e-commerce, Citypaq</strong></li>
+  <li><strong>Tema 4 — Servicios de oficina, financieros, filatelia</strong></li>
+  <li><strong>Tema 5 — Correos Logística, Correos Frío, nuevas líneas de negocio</strong></li>
+</ul>
+<p>
+  Otro bloque con mucho peso (20-25% del examen). Son temas muy cambiantes entre convocatorias porque
+  Correos actualiza sus productos. Usa material actualizado a 2026.
+</p>
+<p><strong>Ritmo:</strong> 1 tema cada 3-4 días. Estudia 1,5h + test (0,5h).</p>
+
+<h3>Semanas 5-6: Marco normativo y personas</h3>
+<ul>
+  <li><strong>Tema 1 — Marco normativo postal:</strong> Ley 43/2010, RD 437/2024 (reemplaza al derogado RD 1829/1999), organismos reguladores</li>
+  <li><strong>Tema 2 — Experiencia de personas:</strong> PRL, igualdad (LO 3/2007), RSC, ODS, diversidad</li>
+</ul>
+<p>
+  Estos temas son más «teóricos» pero no demasiado extensos. El tema 1 requiere memorizar artículos clave
+  de la Ley Postal. El tema 2 es transversal (igualdad, PRL) y aparece en muchas oposiciones.
+</p>
+<p><strong>Ritmo:</strong> 1 tema cada 4 días. Estudia 1,5h + test (0,5h).</p>
+
+<h3>Semanas 7-8: Temas complementarios</h3>
+<ul>
+  <li><strong>Tema 6 — Herramientas corporativas:</strong> IRIS, SGIE, PDA, SICER (software interno de Correos)</li>
+  <li><strong>Tema 10 — Atención al cliente y ventas:</strong> protocolos, calidad del servicio</li>
+  <li><strong>Tema 11 — Internacionalización y aduanas:</strong> UPU, envíos internacionales</li>
+  <li><strong>Tema 12 — Normas de cumplimiento:</strong> RGPD, blanqueo de capitales, ética, ciberseguridad</li>
+</ul>
+<p>
+  Son 4 temas en 2 semanas: ritmo de 1 tema cada 3 días. El tema 6 (herramientas) es el más específico;
+  si nunca has trabajado en Correos, busca vídeos explicativos de las aplicaciones.
+</p>
+<p><strong>Ritmo:</strong> 1 tema cada 3 días. Estudia 1h + test (0,5h).</p>
+
+<h3>Semanas 9-10: Repaso general + psicotécnicos</h3>
+<ul>
+  <li>Repasa los temas más flojos (mira tus resultados de tests anteriores)</li>
+  <li>Dedica 15 minutos diarios a <a href="/blog/psicotecnicos-correos-tipos-ejemplos">psicotécnicos</a>: series numéricas, razonamiento verbal, patrones</li>
+  <li>Haz un test de 20 preguntas por tema cada día, alternando temas</li>
+  <li>Identifica tus 3 temas más débiles y refuérzalos</li>
+</ul>
+
+<h3>Semanas 11-12: Simulacros y estrategia de examen</h3>
+<ul>
+  <li>Haz <strong>al menos 3-4 simulacros completos</strong> de 100 preguntas en 110 minutos</li>
+  <li>Simula condiciones reales: sin pausas, sin consultar, cronometrado</li>
+  <li>Analiza cada simulacro: ¿dónde pierdes puntos? ¿En qué temas?</li>
+  <li>La última semana: repasa solo tus errores, no intentes aprender nada nuevo</li>
+</ul>
+
+<h2>Recursos gratuitos para preparar Correos</h2>
+<ul>
+  <li><strong>Temarios oficiales:</strong> busca los PDFs de convocatorias anteriores en la web de Correos</li>
+  <li><strong>Exámenes anteriores:</strong> los exámenes REP y ATC de 2021 y 2023 están disponibles en formato PDF</li>
+  <li><strong>Legislación:</strong> BOE para Ley 43/2010, RD 437/2024, RGPD. Son gratis y son fuente directa</li>
+  <li><strong>YouTube:</strong> varios canales explican el temario tema por tema (busca «oposiciones Correos 2026»)</li>
+  <li><strong><a href="/register?oposicion=correos">OpoRuta</a>:</strong> tests por tema con corrección inmediata, simulacros del formato real y seguimiento de tu progreso</li>
+</ul>
+
+<h2>5 estrategias clave para el día del examen</h2>
+<ol>
+  <li><strong>Responde a todo:</strong> no hay penalización. Dejar una pregunta en blanco es perder 0,60 puntos gratis</li>
+  <li><strong>Gestiona el tiempo:</strong> 110 minutos para 100 preguntas = 66 segundos por pregunta. Si llevas más de 90 segundos en una, márcala y sigue</li>
+  <li><strong>Lee bien el enunciado:</strong> muchas preguntas de Correos incluyen «excepto», «no es correcto», «cuál de las siguientes». Un error de lectura es un error evitable</li>
+  <li><strong>Primera pasada rápida:</strong> responde todo lo que sepas seguro. Segunda pasada: las dudosas. Tercera: las que dejaste en blanco (marca algo siempre)</li>
+  <li><strong>Confía en tu preparación:</strong> si has seguido este plan, habrás respondido más de 2.000 preguntas antes del examen. Estás preparado</li>
+</ol>
+
+<h2>¿Merece la pena una academia?</h2>
+<p>
+  Una academia aporta estructura y material actualizado, pero tiene coste (300-600€) y horarios fijos.
+  Con 12 temas, un buen temario actualizado y tests con corrección, puedes prepararlo perfectamente por tu cuenta.
+</p>
+<p>
+  La clave del autodidacta es la <strong>disciplina</strong>: fija un horario diario, cumple el plan semana
+  a semana y haz simulacros cronometrados. Si puedes hacer eso, no necesitas academia.
+</p>
+
+<h2>Empieza hoy tu preparación</h2>
+<p>
+  En <a href="/register?oposicion=correos">OpoRuta</a> puedes empezar a hacer tests por tema
+  ahora mismo, sin compromiso. Cada test incluye corrección inmediata y explicación detallada.
+  Sigue el plan de 3 meses y llegarás al examen con miles de preguntas resueltas.
+</p>
+<p>
+  <strong><a href="/register?oposicion=correos">Regístrate gratis y empieza por los temas operativos (7, 8, 9)</a></strong>.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Fuente: temario oficial de Correos y exámenes de 2021 y 2023.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Se puede preparar Correos en 3 meses?', answer: 'Sí. Con 12 temas y 2-3 horas diarias de estudio, puedes cubrir todo el temario en 8 semanas y dedicar las 4 restantes a repasos y simulacros. El formato del examen (100 preguntas tipo test sin penalización) favorece la preparación intensiva.' },
+      { question: '¿Cuántas horas al día hay que estudiar para Correos?', answer: '2-3 horas diarias es suficiente para un plan de 3 meses. Si dispones de menos tiempo, amplía a 4-5 meses. Lo importante es la constancia diaria, no estudiar 8 horas un día y descansar tres.' },
+      { question: '¿Qué temas de Correos son los más importantes?', answer: 'Los temas con más peso en el examen son los de Procesos Operativos (temas 7, 8, 9) y Productos y Servicios (temas 3, 4, 5). Juntos representan aproximadamente el 50-55% de las preguntas. Empieza por ellos.' },
+      { question: '¿Es mejor academia o estudiar por libre para Correos?', answer: 'Con 12 temas, un temario actualizado y tests con corrección, es perfectamente viable preparar Correos por libre. La academia aporta estructura (300-600€), pero la clave es la disciplina: fijar un horario y cumplir el plan. Si puedes hacerlo solo, no necesitas academia.' },
+      { question: '¿Cuántos tests debo hacer para aprobar Correos?', answer: 'Los opositores que aprueban suelen resolver entre 2.000 y 3.000 preguntas antes del examen. Un plan realista es 20 preguntas diarias por tema entre semana y un simulacro de 100 preguntas cada sábado.' },
+    ],
+  },
 ]
