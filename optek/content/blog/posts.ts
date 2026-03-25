@@ -9081,4 +9081,1556 @@ export const blogPosts: BlogPost[] = [
 <p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Retribuciones según RDL 14/2025 de 2 de diciembre (tablas salariales 2026 publicadas por la SEPG del Ministerio de Hacienda).</em></p>
     `.trim(),
   },
+
+  // ─── Post 52 — Correos: Guía completa examen 2026 ─────────────────────────
+  {
+    slug: 'examen-correos-2026-guia-completa',
+    title: 'Examen Correos 2026: guía completa (temario, scoring, plazas)',
+    description:
+      'Todo sobre las oposiciones de Correos 2026: más de 4.000 plazas, 12 temas, examen de 100 preguntas sin penalización, proceso selectivo y consejos para aprobar.',
+    date: '2026-03-25',
+    dateModified: '2026-03-25',
+    keywords: [
+      'examen correos 2026',
+      'oposiciones correos',
+      'test correos online',
+      'plazas correos 2026',
+      'temario correos 2026',
+    ],
+    content: `
+<h2>Oposiciones Correos 2026: más de 4.000 plazas para personal operativo</h2>
+<p>
+  La convocatoria de Correos 2026 es una de las mayores ofertas de empleo público del año.
+  Se esperan <strong>más de 4.000 plazas</strong> correspondientes a las Ofertas de Empleo Público de 2022 y 2023,
+  destinadas a los puestos de <strong>Reparto, Agente de Clasificación y Atención al Cliente</strong>
+  dentro del Grupo Profesional IV (Personal Operativo).
+</p>
+<p>
+  A diferencia de las oposiciones de la Administración General del Estado, el proceso de Correos
+  es un <strong>concurso-oposición</strong>: la fase de examen (hasta 60 puntos) se complementa
+  con una valoración de méritos (hasta 40 puntos). Esto significa que la experiencia previa
+  en Correos, la formación complementaria y los idiomas también cuentan.
+</p>
+
+<h2>¿Cómo es el examen de Correos 2026?</h2>
+<p>
+  El examen consiste en una prueba única tipo test con las siguientes características:
+</p>
+<ul>
+  <li><strong>100 preguntas</strong> con 4 opciones de respuesta (solo una correcta)</li>
+  <li><strong>90 preguntas de contenido teórico</strong> sobre los 12 temas del temario</li>
+  <li><strong>10 preguntas psicotécnicas</strong> (razonamiento verbal, numérico y abstracto)</li>
+  <li><strong>Duración:</strong> 110 minutos</li>
+  <li><strong>Sin penalización por errores:</strong> las respuestas incorrectas no restan puntos</li>
+</ul>
+<p>
+  Este último punto es crucial: al no haber penalización, <strong>nunca dejes una pregunta en blanco</strong>.
+  Incluso si no sabes la respuesta, marca una opción al azar — tienes un 25% de probabilidad de acertar
+  sin ningún riesgo.
+</p>
+
+<h3>Sistema de puntuación</h3>
+<p>
+  Cada pregunta acertada vale <strong>0,60 puntos</strong>, lo que da un máximo de 60 puntos.
+  Las respuestas en blanco e incorrectas puntúan 0. La nota de corte varía según el puesto:
+</p>
+<ul>
+  <li><strong>Reparto / Agente de Clasificación:</strong> ~55 preguntas correctas (33 puntos aprox.)</li>
+  <li><strong>Atención al Cliente:</strong> ~60 preguntas correctas (36 puntos aprox.) — más exigente</li>
+</ul>
+
+<h2>Los 12 temas del temario de Correos 2026</h2>
+<p>
+  El temario se estructura en cinco bloques formativos con 12 temas en total:
+</p>
+<ul>
+  <li><strong>Tema 1 — Marco Normativo Postal:</strong> Naturaleza jurídica de Correos, organismos reguladores nacionales e internacionales (UPU, IPC), organización del Grupo Correos</li>
+  <li><strong>Tema 2 — Experiencia de Personas:</strong> Diversidad e inclusión, PRL, RSC, ODS, sostenibilidad, emprendimiento e innovación</li>
+  <li><strong>Temas 3 a 5 — Productos y Servicios:</strong> Envíos postales (cartas, paquetería, notificaciones), tarifas, soluciones logísticas, servicios digitales</li>
+  <li><strong>Tema 6 — Herramientas:</strong> Aplicaciones informáticas internas de Correos (SGIE, PDA, herramientas de movilidad)</li>
+  <li><strong>Temas 7 a 9 — Procesos Operativos:</strong> Admisión (Tema 7), Tratamiento y Transporte (Tema 8), Distribución y Entrega (Tema 9)</li>
+  <li><strong>Tema 10 — Atención al Cliente:</strong> Protocolos de venta, calidad del servicio, gestión de reclamaciones</li>
+  <li><strong>Tema 11 — Internacionalización:</strong> Envíos internacionales, aduanas, normativa de importación/exportación</li>
+  <li><strong>Tema 12 — Normas de Cumplimiento:</strong> Protección de datos (RGPD/LOPDGDD), blanqueo de capitales, ética y transparencia, ciberseguridad</li>
+</ul>
+
+<h2>Proceso selectivo completo</h2>
+<p>
+  El proceso de selección en Correos sigue estas fases:
+</p>
+<ol>
+  <li><strong>Publicación de la convocatoria:</strong> se espera en el segundo semestre de 2026 (BOE)</li>
+  <li><strong>Inscripción:</strong> plazo de aproximadamente 15-20 días desde la publicación</li>
+  <li><strong>Examen tipo test:</strong> 100 preguntas, 110 minutos, sin penalización</li>
+  <li><strong>Valoración de méritos:</strong> hasta 40 puntos por experiencia en Correos, formación, idiomas, etc.</li>
+  <li><strong>Nota final:</strong> examen (máx. 60) + méritos (máx. 40) = hasta 100 puntos</li>
+  <li><strong>Elección de destino:</strong> por orden de puntuación, se eligen las plazas disponibles</li>
+</ol>
+
+<h3>¿Qué méritos puntúan?</h3>
+<ul>
+  <li><strong>Antigüedad en Correos:</strong> el mérito con mayor peso (haber trabajado como eventual o interino)</li>
+  <li><strong>Formación complementaria:</strong> cursos homologados, certificaciones</li>
+  <li><strong>Idiomas:</strong> certificados oficiales de idiomas extranjeros</li>
+  <li><strong>Otros méritos:</strong> titulaciones superiores al mínimo exigido</li>
+</ul>
+
+<h2>Requisitos para presentarse</h2>
+<ul>
+  <li>Nacionalidad española o de un Estado miembro de la UE</li>
+  <li>Tener <strong>18 años cumplidos</strong></li>
+  <li>Titulación mínima: <strong>ESO, Graduado Escolar o equivalente</strong></li>
+  <li>No haber sido separado del servicio de Correos o de la Administración Pública</li>
+  <li><strong>Carnet de conducir B</strong> (imprescindible para puestos de Reparto motorizado)</li>
+</ul>
+
+<h2>5 consejos para aprobar el examen de Correos</h2>
+
+<h3>1. Aprovecha que no hay penalización</h3>
+<p>
+  Esta es la mayor ventaja del examen de Correos frente a otras oposiciones.
+  Responde <strong>siempre</strong> a todas las preguntas. Si dudas entre dos opciones, elige una.
+  Si no tienes ni idea, marca al azar. Nunca dejes nada en blanco.
+</p>
+
+<h3>2. Prioriza los temas operativos (3-9)</h3>
+<p>
+  Los temas de productos, servicios y procesos operativos acumulan el mayor número de preguntas.
+  Son los más prácticos y los que más se repiten convocatoria tras convocatoria. Si dominas los
+  temas 3 a 9, tienes más de la mitad del examen controlado.
+</p>
+
+<h3>3. No subestimes el Tema 12 (cumplimiento normativo)</h3>
+<p>
+  Protección de datos y blanqueo de capitales son temas que muchos candidatos estudian a última hora.
+  Las preguntas suelen ser directas y memorísticas — si las estudias bien, son puntos fáciles.
+</p>
+
+<h3>4. Practica con psicotécnicos</h3>
+<p>
+  Las 10 preguntas psicotécnicas son un regalo si las has entrenado: series numéricas, analogías
+  verbales y razonamiento abstracto. Son 6 puntos potenciales que puedes asegurar con 2 semanas
+  de práctica específica.
+</p>
+
+<h3>5. Haz simulacros cronometrados</h3>
+<p>
+  110 minutos para 100 preguntas parece cómodo, pero la gestión del tiempo es clave. Practica
+  al menos 3 simulacros completos antes del examen para medir tu ritmo.
+</p>
+
+<h2>¿Cuánto gana un empleado de Correos?</h2>
+<p>
+  El salario en Correos varía según el puesto y la jornada:
+</p>
+<ul>
+  <li><strong>Reparto a jornada completa:</strong> ~1.300-1.500€ netos/mes (14 pagas)</li>
+  <li><strong>Atención al Cliente:</strong> ~1.400-1.600€ netos/mes</li>
+  <li><strong>Complementos:</strong> nocturnidad, festivos, productividad variable</li>
+</ul>
+<p>
+  Además, como personal laboral fijo de una empresa pública, tienes <strong>estabilidad laboral</strong>,
+  horarios definidos y posibilidades de promoción interna.
+</p>
+
+<h2>Prepárate con tests actualizados</h2>
+<p>
+  La mejor forma de preparar el examen de Correos es haciendo tests por tema y simulacros
+  completos con el formato real. En <a href="/register?oposicion=correos">OpoRuta</a> puedes
+  practicar con preguntas actualizadas al temario 2026, verificadas contra la normativa vigente,
+  con corrección inmediata y explicaciones detalladas.
+</p>
+<p>
+  <strong><a href="/register?oposicion=correos">Regístrate gratis y empieza a practicar</a></strong> — sin compromiso, sin suscripción.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Fuente: convocatorias anteriores de Correos y BOE.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuántas plazas hay en la convocatoria de Correos 2026?', answer: 'Se esperan más de 4.000 plazas para personal operativo (Reparto, Agente de Clasificación y Atención al Cliente), correspondientes a las OEP de 2022 y 2023.' },
+      { question: '¿El examen de Correos tiene penalización por errores?', answer: 'No. En el examen de Correos las respuestas incorrectas no restan puntos. Cada acierto vale 0,60 puntos y los errores puntúan 0, por lo que siempre conviene responder a todas las preguntas.' },
+      { question: '¿Cuántos temas tiene el temario de Correos 2026?', answer: 'El temario consta de 12 temas organizados en 5 bloques: marco normativo, experiencia de personas, productos y servicios (3 temas), herramientas, procesos operativos (3 temas), atención al cliente, internacionalización y normas de cumplimiento.' },
+      { question: '¿Necesito carnet de conducir para opositar a Correos?', answer: 'Para los puestos de Reparto motorizado sí es imprescindible el carnet B. Para Agente de Clasificación y Atención al Cliente no es obligatorio, aunque puede valorarse como mérito.' },
+      { question: '¿Cuándo es el examen de Correos 2026?', answer: 'La fecha oficial aún no se ha confirmado. Se espera que la convocatoria se publique en el segundo semestre de 2026, con los exámenes previstos para finales de 2026 o principios de 2027.' },
+    ],
+  },
+
+  // ─── Post 53 — Correos: Test online gratis ─────────────────────────────────
+  {
+    slug: 'test-correos-online-gratis',
+    title: 'Test Correos online gratis: practica con preguntas del examen',
+    description:
+      'Practica con tests tipo examen de Correos 2026 online y gratis. Preguntas actualizadas de los 12 temas, psicotécnicos y simulacros con corrección inmediata.',
+    date: '2026-03-25',
+    dateModified: '2026-03-25',
+    keywords: [
+      'test correos gratis',
+      'preguntas examen correos',
+      'preparar oposiciones correos',
+      'test correos online',
+      'simulacro correos 2026',
+    ],
+    content: `
+<h2>¿Por qué practicar con tests es la clave para aprobar Correos?</h2>
+<p>
+  El examen de Correos es 100% tipo test: <strong>100 preguntas en 110 minutos</strong>.
+  No hay desarrollo, no hay caso práctico, no hay oral. Tu capacidad para resolver
+  preguntas de cuatro opciones con rapidez y precisión es literalmente todo lo que
+  necesitas para aprobar.
+</p>
+<p>
+  Los estudios sobre retención de información muestran que practicar con tests
+  (<em>testing effect</em>) es entre 2 y 3 veces más efectivo que releer apuntes.
+  Cada vez que respondes una pregunta, tu cerebro refuerza la conexión con el dato correcto
+  — y cuando fallas, la corrección inmediata fija la información mejor que horas de lectura pasiva.
+</p>
+
+<h2>¿Qué tipos de preguntas aparecen en el examen de Correos?</h2>
+<p>
+  El examen combina dos tipos de preguntas muy diferentes:
+</p>
+
+<h3>Preguntas teóricas (90 del examen)</h3>
+<p>
+  Cubren los 12 temas del temario y suelen ser de tres tipos:
+</p>
+<ul>
+  <li><strong>Memorísticas:</strong> datos concretos sobre normativa, productos o procesos. Ejemplo: "¿Cuál es el plazo máximo de entrega de un envío postal ordinario?" — requieren estudio directo del temario</li>
+  <li><strong>De aplicación:</strong> situaciones prácticas del día a día en Correos. Ejemplo: "Un cliente quiere enviar un paquete de 35 kg a Francia, ¿qué servicio le ofreces?" — requieren entender los productos y servicios</li>
+  <li><strong>Normativas:</strong> preguntas sobre RGPD, blanqueo de capitales, PRL. Ejemplo: "¿Qué debe hacer un empleado de Correos si detecta un envío sospechoso de contener sustancias ilegales?" — requieren conocer los protocolos</li>
+</ul>
+
+<h3>Preguntas psicotécnicas (10 del examen)</h3>
+<p>
+  Evalúan capacidades cognitivas sin relación con el temario:
+</p>
+<ul>
+  <li><strong>Series numéricas:</strong> completar secuencias lógicas de números</li>
+  <li><strong>Razonamiento verbal:</strong> sinónimos, antónimos, analogías</li>
+  <li><strong>Razonamiento abstracto:</strong> patrones en figuras geométricas</li>
+  <li><strong>Atención y percepción:</strong> comparar listas, detectar diferencias</li>
+</ul>
+<p>
+  Las psicotécnicas son 10 preguntas × 0,60 puntos = <strong>6 puntos</strong>.
+  Puede parecer poco, pero en un examen sin penalización donde la nota de corte ronda
+  los 33-36 puntos, esos 6 puntos pueden marcar la diferencia entre entrar y quedarse fuera.
+</p>
+
+<h2>El sistema de puntuación explicado</h2>
+<p>
+  Correos utiliza un sistema sencillo:
+</p>
+<ul>
+  <li><strong>Acierto:</strong> +0,60 puntos</li>
+  <li><strong>Error:</strong> 0 puntos (sin penalización)</li>
+  <li><strong>En blanco:</strong> 0 puntos</li>
+  <li><strong>Máximo posible:</strong> 100 × 0,60 = 60 puntos</li>
+</ul>
+<p>
+  Al no haber penalización, la estrategia óptima es siempre responder. Si puedes descartar
+  1 opción, tu probabilidad de acertar sube al 33%. Si descartas 2, al 50%.
+  Pero incluso sin saber nada, el 25% de probabilidad al azar es mejor que 0.
+</p>
+
+<h2>Cómo aprovechar al máximo los tests de práctica</h2>
+
+<h3>1. Estudia el tema primero, haz el test después</h3>
+<p>
+  El test no sustituye al estudio — lo refuerza. Lee el tema una vez, haz un resumen
+  rápido con los datos clave (plazos, nombres, porcentajes) y luego haz 15-20 preguntas
+  de ese tema. Verás qué datos se te escapan y cuáles ya dominas.
+</p>
+
+<h3>2. Revisa CADA error</h3>
+<p>
+  La corrección es donde realmente aprendes. Cuando falles una pregunta, no te limites
+  a ver la respuesta correcta: entiende <strong>por qué</strong> las otras opciones son
+  incorrectas. Esto te prepara para las variaciones que el examinador pueda hacer
+  sobre el mismo concepto.
+</p>
+
+<h3>3. Haz simulacros completos con tiempo</h3>
+<p>
+  Al menos 1 vez por semana, haz un test de 100 preguntas en 110 minutos. Esto te ayuda a:
+</p>
+<ul>
+  <li>Gestionar el reloj (1 min 6 seg por pregunta de media)</li>
+  <li>Acostumbrarte a la fatiga mental de 2 horas de concentración</li>
+  <li>Identificar los temas en los que necesitas refuerzo</li>
+</ul>
+
+<h3>4. Repite los tests que hayas hecho mal</h3>
+<p>
+  Si en un test de un tema concreto sacas menos del 70%, repítelo a los 3-4 días
+  después de repasar. La repetición espaciada es la forma más eficiente de fijar
+  información a largo plazo.
+</p>
+
+<h2>¿Cuántos tests necesito hacer para aprobar?</h2>
+<p>
+  No hay un número mágico, pero los opositores que aprueban suelen haber hecho
+  <strong>al menos 2.000-3.000 preguntas</strong> antes del examen. Con 12 temas y
+  unas 150-200 preguntas por tema, eso significa repasar cada tema al menos 1-2 veces
+  completo en formato test.
+</p>
+<p>
+  Un plan realista para 3 meses de preparación:
+</p>
+<ul>
+  <li><strong>Lunes a viernes:</strong> 1 test de 20 preguntas por tema estudiado ese día</li>
+  <li><strong>Sábado:</strong> simulacro completo de 100 preguntas cronometrado</li>
+  <li><strong>Domingo:</strong> repaso de errores de la semana</li>
+</ul>
+
+<h2>Practica ahora con tests de Correos</h2>
+<p>
+  En <a href="/register?oposicion=correos">OpoRuta</a> puedes empezar a practicar
+  gratis con tests del temario de Correos 2026. Cada test incluye:
+</p>
+<ul>
+  <li>Preguntas actualizadas al temario vigente</li>
+  <li>Corrección inmediata con explicación de cada respuesta</li>
+  <li>Estadísticas de rendimiento por tema</li>
+  <li>Historial de errores para repaso dirigido</li>
+</ul>
+<p>
+  <strong><a href="/register?oposicion=correos">Empieza a practicar gratis</a></strong> — y llega al examen habiendo resuelto miles de preguntas.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Dónde puedo hacer tests de Correos gratis online?', answer: 'En OpoRuta puedes hacer tests gratuitos del temario de Correos 2026 con corrección inmediata y explicaciones detalladas. También existen opciones como TestParaOpos (tests básicos sin IA) y apps móviles, aunque la mayoría tienen contenido limitado o desactualizado.' },
+      { question: '¿Cuántas preguntas tiene el examen de Correos?', answer: 'El examen tiene 100 preguntas tipo test: 90 de contenido teórico sobre los 12 temas del temario y 10 psicotécnicas. Se dispone de 110 minutos para completarlo.' },
+      { question: '¿Penalizan los errores en el examen de Correos?', answer: 'No. A diferencia de otras oposiciones como Auxilio Judicial o Administrativo del Estado, en el examen de Correos los errores no restan puntos. Cada acierto suma 0,60 puntos y los fallos puntúan 0, por lo que siempre conviene responder a todas las preguntas.' },
+      { question: '¿Cuántos tests debo hacer para aprobar Correos?', answer: 'Los opositores que aprueban suelen haber resuelto entre 2.000 y 3.000 preguntas antes del examen. Un plan realista es hacer 20 preguntas diarias por tema entre semana y un simulacro completo de 100 preguntas cada sábado.' },
+      { question: '¿Qué tipo de preguntas psicotécnicas caen en el examen de Correos?', answer: 'Las 10 preguntas psicotécnicas del examen evalúan series numéricas, razonamiento verbal (sinónimos, antónimos), razonamiento abstracto (patrones geométricos) y atención/percepción. Valen 6 puntos en total y se pueden entrenar con práctica específica.' },
+    ],
+  },
+
+  // ─── Post 54 — Correos: Temario 12 temas explicados ───────────────────────
+  {
+    slug: 'temario-correos-2026-temas',
+    title: 'Temario Correos 2026: los 12 temas explicados uno a uno',
+    description:
+      'Desglose completo de los 12 temas del temario de oposiciones a Correos 2026. Qué estudiar en cada tema, leyes clave, consejos de estudio y priorización.',
+    date: '2026-03-25',
+    dateModified: '2026-03-25',
+    keywords: [
+      'temario correos',
+      'temas oposiciones correos 2026',
+      'temario correos 2026 pdf',
+      'qué estudiar oposiciones correos',
+    ],
+    content: `
+<h2>El temario de Correos 2026: 12 temas en 5 bloques</h2>
+<p>
+  El temario oficial de las oposiciones de Correos consta de <strong>12 temas</strong>
+  organizados en 5 bloques formativos. A diferencia de oposiciones como Auxilio Judicial (26 temas)
+  o Administrativo del Estado (30 temas), el temario de Correos es más reducido y práctico,
+  centrado en las funciones reales del puesto.
+</p>
+<p>
+  Esto tiene una ventaja y un inconveniente: la ventaja es que se puede preparar en menos tiempo
+  (3-4 meses); el inconveniente es que, con menos temario, cada tema tiene más peso en el examen
+  y los examinadores pueden profundizar más en los detalles.
+</p>
+
+<h2>Tema 1 — Marco Normativo Postal</h2>
+<h3>¿Qué cubre?</h3>
+<p>
+  Este tema aborda la base legal y organizativa de Correos:
+</p>
+<ul>
+  <li>Naturaleza jurídica de Correos (Sociedad Anónima Estatal, operador designado por la Ley Postal)</li>
+  <li>Ley 43/2010, del servicio postal universal, de los derechos de los usuarios y del mercado postal</li>
+  <li>Organismos reguladores: CNMC (Comisión Nacional de los Mercados y la Competencia)</li>
+  <li>Organizaciones postales internacionales: UPU (Unión Postal Universal), IPC, PostEurop</li>
+  <li>Estructura del Grupo Correos: Correos, Correos Express, Nexea, Correos Telecom</li>
+</ul>
+<h3>Consejo de estudio</h3>
+<p>
+  Memoriza la estructura del Grupo Correos y las funciones de cada filial — es una pregunta recurrente.
+  Aprende los datos clave de la Ley 43/2010: qué es el servicio postal universal, qué envíos incluye,
+  cuáles son los plazos de entrega obligatorios.
+</p>
+
+<h2>Tema 2 — Experiencia de Personas</h2>
+<h3>¿Qué cubre?</h3>
+<p>
+  Un tema transversal sobre cultura corporativa y responsabilidad social:
+</p>
+<ul>
+  <li>Diversidad, inclusión e igualdad en Correos</li>
+  <li>Prevención de riesgos laborales (PRL) aplicada al puesto de reparto y oficina</li>
+  <li>Responsabilidad Social Corporativa (RSC) y plan de sostenibilidad</li>
+  <li>Objetivos de Desarrollo Sostenible (ODS) de la ONU aplicados a Correos</li>
+  <li>Bienestar laboral: conciliación, salud mental, protocolos anti-acoso</li>
+</ul>
+<h3>Consejo de estudio</h3>
+<p>
+  Las preguntas de PRL son muy concretas: EPIs obligatorios para reparto, protocolo ante accidente
+  laboral, ergonomía en clasificación. Los ODS se preguntan de forma genérica (cuáles son, cómo se
+  alinean con Correos). Haz un esquema con los 17 ODS y marca los 4-5 que Correos destaca.
+</p>
+
+<h2>Temas 3, 4 y 5 — Productos y Servicios Postales</h2>
+<h3>¿Qué cubren?</h3>
+<p>
+  Son los temas con <strong>más peso en el examen</strong>. Cubren toda la cartera de productos de Correos:
+</p>
+<ul>
+  <li><strong>Tema 3:</strong> Productos postales nacionales — carta ordinaria, certificada, urgente, burofax, Paq Estándar, Paq Premium, Paq Today</li>
+  <li><strong>Tema 4:</strong> Servicios adicionales — acuse de recibo, reembolso, seguro, valor declarado, gestión de aduanas</li>
+  <li><strong>Tema 5:</strong> Servicios digitales y de paquetería — Correos Prepago, Citypaq, soluciones e-commerce, marketplace Correos</li>
+</ul>
+<h3>Consejo de estudio</h3>
+<p>
+  Haz una tabla comparativa con todos los productos: nombre, peso máximo, dimensiones, plazo de entrega,
+  precio orientativo y servicios adicionales compatibles. Las preguntas suelen comparar productos
+  ("¿Cuál es la diferencia entre Paq Estándar y Paq Premium?") o pedir datos concretos
+  ("¿Cuál es el peso máximo de una carta certificada?").
+</p>
+
+<h2>Tema 6 — Herramientas Corporativas</h2>
+<h3>¿Qué cubre?</h3>
+<ul>
+  <li>SGIE (Sistema de Gestión Integral de Envíos): el sistema central de trazabilidad</li>
+  <li>PDA y dispositivos de movilidad para reparto</li>
+  <li>Herramientas de gestión de oficina (IRIS, Conecta)</li>
+  <li>Aplicaciones de atención al cliente (web Correos, app Correos)</li>
+</ul>
+<h3>Consejo de estudio</h3>
+<p>
+  Las preguntas sobre herramientas son muy prácticas: "¿Para qué sirve el SGIE?" o
+  "¿Qué datos se registran en la PDA al entregar un envío certificado?". Si has trabajado
+  en Correos como eventual, este tema te resultará fácil. Si no, busca vídeos explicativos
+  — visualizar la herramienta ayuda mucho más que memorizar.
+</p>
+
+<h2>Temas 7, 8 y 9 — Procesos Operativos</h2>
+<h3>¿Qué cubren?</h3>
+<p>
+  El ciclo completo de un envío desde que entra hasta que se entrega:
+</p>
+<ul>
+  <li><strong>Tema 7 — Admisión:</strong> Recepción de envíos, comprobación de requisitos, etiquetado, franqueo, documentación</li>
+  <li><strong>Tema 8 — Tratamiento y Transporte:</strong> Clasificación (manual y automática), encaminamiento, transporte terrestre/aéreo</li>
+  <li><strong>Tema 9 — Distribución y Entrega:</strong> Preparación de la ruta, intentos de entrega, avisos, devoluciones, envíos a lista</li>
+</ul>
+<h3>Consejo de estudio</h3>
+<p>
+  Estos tres temas son el núcleo del trabajo diario. Las preguntas piden conocer los protocolos
+  específicos: "¿Cuántos intentos de entrega se realizan antes de dejar aviso?",
+  "¿Qué se hace con un envío rechazado por el destinatario?". Estudia los flujos paso a paso
+  y haz tests para identificar los detalles que se preguntan.
+</p>
+
+<h2>Tema 10 — Atención al Cliente</h2>
+<h3>¿Qué cubre?</h3>
+<ul>
+  <li>Protocolos de atención presencial y telefónica</li>
+  <li>Gestión de reclamaciones y sugerencias</li>
+  <li>Técnicas de venta cruzada (cross-selling) y up-selling</li>
+  <li>Indicadores de calidad del servicio</li>
+  <li>Derechos del usuario postal</li>
+</ul>
+<h3>Consejo de estudio</h3>
+<p>
+  Especialmente importante si te presentas a plazas de <strong>Atención al Cliente</strong>,
+  donde la nota de corte es más alta. Aprende los plazos de reclamación, los derechos del
+  usuario según la Ley 43/2010 y los protocolos de venta de Correos.
+</p>
+
+<h2>Tema 11 — Internacionalización y Aduanas</h2>
+<h3>¿Qué cubre?</h3>
+<ul>
+  <li>Envíos internacionales: tipos, zonas, tarifas diferenciadas</li>
+  <li>Normativa aduanera: declaración CN22 y CN23, restricciones por país</li>
+  <li>Convenios postales internacionales (Convenio de la UPU)</li>
+  <li>Envíos EMS (Express Mail Service)</li>
+</ul>
+<h3>Consejo de estudio</h3>
+<p>
+  Tema más técnico pero con menos preguntas. Céntrate en los formularios aduaneros
+  (CN22 para envíos pequeños, CN23 para los de mayor valor), las zonas postales
+  y los artículos prohibidos en envíos internacionales.
+</p>
+
+<h2>Tema 12 — Normas de Cumplimiento</h2>
+<h3>¿Qué cubre?</h3>
+<ul>
+  <li><strong>Protección de datos:</strong> RGPD y LOPDGDD aplicados a Correos (tratamiento de datos de clientes, secreto postal)</li>
+  <li><strong>Blanqueo de capitales:</strong> Ley 10/2010 — obligaciones de Correos como sujeto obligado (operaciones con giros postales)</li>
+  <li><strong>Ética y transparencia:</strong> Código ético de Correos, canal de denuncias</li>
+  <li><strong>Ciberseguridad:</strong> Protocolos de seguridad de la información, phishing, ingeniería social</li>
+</ul>
+<h3>Consejo de estudio</h3>
+<p>
+  El RGPD y la prevención de blanqueo de capitales son los dos focos principales.
+  Memoriza los derechos ARCO-POL (acceso, rectificación, cancelación, oposición, portabilidad,
+  olvido, limitación) y las operaciones de Correos sujetas a control de blanqueo
+  (giros postales a partir de cierta cuantía).
+</p>
+
+<h2>Cómo priorizar el estudio del temario</h2>
+<p>
+  Con 12 temas y 90 preguntas teóricas, la distribución aproximada es:
+</p>
+<ul>
+  <li><strong>Alta prioridad (50-55% del examen):</strong> Temas 3-5 (productos) + Temas 7-9 (operativos) — ~50 preguntas</li>
+  <li><strong>Media prioridad (25-30%):</strong> Tema 1 (normativa) + Tema 10 (cliente) + Tema 12 (cumplimiento) — ~25 preguntas</li>
+  <li><strong>Menor prioridad (15-20%):</strong> Tema 2 (personas) + Tema 6 (herramientas) + Tema 11 (internacional) — ~15 preguntas</li>
+</ul>
+<p>
+  Esto no significa que debas ignorar los temas de menor prioridad — sino que debes
+  <strong>dominar</strong> los de alta prioridad antes de dedicar tiempo a los demás.
+</p>
+
+<h2>Empieza a estudiar tema por tema</h2>
+<p>
+  En <a href="/register?oposicion=correos">OpoRuta</a> puedes hacer tests específicos
+  de cada uno de los 12 temas con preguntas actualizadas al temario 2026. Tras cada test,
+  ves exactamente qué has fallado y por qué — sin perder tiempo repasando lo que ya sabes.
+</p>
+<p>
+  <strong><a href="/register?oposicion=correos">Regístrate gratis y empieza con el tema que elijas</a></strong>.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Fuente: temarios oficiales de convocatorias anteriores de Correos.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuántos temas tiene el temario de Correos 2026?', answer: 'El temario consta de 12 temas organizados en 5 bloques: marco normativo postal, experiencia de personas, productos y servicios (3 temas), herramientas, procesos operativos (3 temas), atención al cliente, internacionalización y normas de cumplimiento.' },
+      { question: '¿Cuáles son los temas más importantes del temario de Correos?', answer: 'Los temas con más peso en el examen son los de Productos y Servicios (temas 3, 4, 5) y Procesos Operativos (temas 7, 8, 9), que juntos acumulan aproximadamente el 50-55% de las preguntas.' },
+      { question: '¿El temario de Correos 2026 ha cambiado respecto al anterior?', answer: 'El temario mantiene la estructura de 12 temas, pero se actualiza con cada convocatoria para reflejar cambios en productos, herramientas digitales y normativa. Los cambios principales suelen estar en servicios digitales (tema 5), herramientas corporativas (tema 6) y ciberseguridad (tema 12).' },
+      { question: '¿Se puede preparar el temario de Correos en 3 meses?', answer: 'Sí. Con 12 temas y una dedicación de 2-3 horas diarias, puedes cubrir todo el temario en 6-8 semanas (1 tema cada 3-4 días) y dedicar las 4-6 semanas restantes a repasos, simulacros y refuerzo de los temas más flojos.' },
+      { question: '¿Qué leyes hay que estudiar para las oposiciones de Correos?', answer: 'Las leyes clave son: Ley 43/2010 del servicio postal universal, RGPD y LOPDGDD (protección de datos), Ley 10/2010 de prevención de blanqueo de capitales, y normativa de PRL aplicable al sector postal.' },
+    ],
+  },
+
+  // ─── Post 55 — Justicia: Auxilio Judicial vs Tramitación Procesal ─────────
+  {
+    slug: 'auxilio-judicial-vs-tramitacion-procesal',
+    title: 'Auxilio Judicial vs Tramitación Procesal: ¿cuál elegir en 2026?',
+    description:
+      'Comparativa completa entre Auxilio Judicial y Tramitación Procesal: temario, examen, sueldo, plazas, dificultad y perfil ideal para cada oposición en 2026.',
+    date: '2026-03-25',
+    dateModified: '2026-03-25',
+    keywords: [
+      'auxilio judicial o tramitación',
+      'diferencias auxilio tramitación',
+      'auxilio judicial vs tramitación procesal',
+      'qué oposición de justicia elegir',
+      'oposiciones justicia 2026',
+    ],
+    content: `
+<h2>La gran duda de los opositores de Justicia</h2>
+<p>
+  Si estás pensando en opositar a Justicia, seguramente te hayas planteado la pregunta que
+  todo el mundo se hace: <strong>¿Auxilio Judicial o Tramitación Procesal?</strong>
+</p>
+<p>
+  Son los dos cuerpos más populares de la Administración de Justicia, con miles de opositores
+  compitiendo cada año. Comparten temario parcialmente (los primeros 15 temas de organización
+  son prácticamente idénticos), pero se diferencian en exigencia, funciones y retribuciones.
+</p>
+<p>
+  En esta comparativa analizamos ambas oposiciones con datos reales de la convocatoria 2026
+  para que puedas tomar una decisión informada.
+</p>
+
+<h2>Comparativa rápida: Auxilio Judicial vs Tramitación Procesal</h2>
+<ul>
+  <li><strong>Grupo:</strong> Auxilio Judicial = C1 | Tramitación Procesal = B (equivalente a antiguo C1)</li>
+  <li><strong>Titulación requerida:</strong> Auxilio = ESO/Graduado Escolar | Tramitación = Bachillerato o equivalente</li>
+  <li><strong>Plazas OEP 2025:</strong> Auxilio = 425 plazas | Tramitación = 1.251 plazas</li>
+  <li><strong>Temas:</strong> Auxilio = 26 temas | Tramitación = 37 temas (31 derecho + 6 ofimática)</li>
+  <li><strong>Ejercicios:</strong> Auxilio = 2 (test + caso práctico) | Tramitación = 3 (test + caso práctico + ofimática)</li>
+  <li><strong>Sueldo bruto mensual:</strong> Auxilio = 1.600-2.000€ | Tramitación = 1.700-2.400€</li>
+  <li><strong>Sueldo con guardias:</strong> Auxilio = hasta 2.500-3.000€ | Tramitación = hasta 2.800-3.200€</li>
+</ul>
+
+<h2>Temario: ¿cuánto más hay que estudiar para Tramitación?</h2>
+<p>
+  Auxilio Judicial tiene <strong>26 temas</strong> divididos en dos bloques:
+</p>
+<ul>
+  <li><strong>Bloque I (Temas 1-15):</strong> Constitución, organización del Estado, Poder Judicial, LOPJ/LO 1/2025, personal al servicio de la Administración de Justicia</li>
+  <li><strong>Bloque II (Temas 16-26):</strong> Procedimientos civiles, penales, contencioso-administrativos, laborales, Registro Civil, archivo judicial</li>
+</ul>
+<p>
+  Tramitación Procesal tiene <strong>37 temas</strong> en tres bloques:
+</p>
+<ul>
+  <li><strong>Bloque I (Temas 1-15):</strong> Prácticamente idéntico al de Auxilio — organización, Constitución, Poder Judicial</li>
+  <li><strong>Bloque II (Temas 16-31):</strong> Derecho procesal más amplio — incluye temas de jurisdicción voluntaria, ejecución, mediación y MASC</li>
+  <li><strong>Bloque III (Temas 32-37):</strong> Ofimática — Windows 11 y Microsoft 365 (Word, Excel, bases de datos, correo electrónico)</li>
+</ul>
+<p>
+  En la práctica, si preparas Tramitación, el <strong>70% del temario jurídico ya te vale para
+  Auxilio</strong>. Muchos opositores preparan ambas simultáneamente, presentándose a las dos
+  convocatorias para duplicar sus opciones.
+</p>
+
+<h2>Estructura del examen: las diferencias clave</h2>
+
+<h3>Auxilio Judicial — 2 ejercicios</h3>
+<ul>
+  <li><strong>Ejercicio 1 (test teórico):</strong> 100 preguntas + 4 de reserva, 100 minutos. Cada acierto suma 0,60 puntos, cada error resta 0,15. Mínimo para aprobar: 30/60 puntos</li>
+  <li><strong>Ejercicio 2 (caso práctico):</strong> 2 supuestos con 40 preguntas tipo test en total, 60 minutos. Cada acierto suma 1 punto, cada error resta 0,25. Mínimo: 20/40 puntos</li>
+</ul>
+
+<h3>Tramitación Procesal — 3 ejercicios</h3>
+<ul>
+  <li><strong>Ejercicio 1 (test teórico):</strong> 100 preguntas + 4 de reserva, 100 minutos. Penalización: cada error resta 0,15 sobre acierto de 0,60</li>
+  <li><strong>Ejercicio 2 (caso práctico):</strong> Supuestos prácticos tipo test. Cada acierto 0,60, cada error resta 0,50</li>
+  <li><strong>Ejercicio 3 (ofimática):</strong> 20 preguntas + 4 de reserva sobre Windows 11 y Microsoft 365, 30 minutos</li>
+</ul>
+<p>
+  La diferencia práctica más importante: Tramitación tiene un <strong>tercer ejercicio de ofimática</strong>
+  que puede ser decisivo. Es eliminatorio — si no lo apruebas, estás fuera aunque hayas aprobado
+  los otros dos. Pero si dominas Word y Excel, son puntos relativamente fáciles de asegurar.
+</p>
+
+<h2>Plazas y ratio de competencia</h2>
+<p>
+  La convocatoria OEP 2025 (publicada BOE 30/12/2025) ofrece:
+</p>
+<ul>
+  <li><strong>Auxilio Judicial:</strong> 425 plazas (382 libre + 43 discapacidad)</li>
+  <li><strong>Tramitación Procesal:</strong> 1.251 plazas (1.135 libre + 116 discapacidad)</li>
+</ul>
+<p>
+  Tramitación ofrece casi 3 veces más plazas. Sin embargo, también atrae más opositores.
+  El ratio histórico de opositores por plaza suele ser similar en ambas (entre 8:1 y 12:1).
+</p>
+
+<h2>Sueldo: ¿cuánto más se cobra en Tramitación?</h2>
+<p>
+  La diferencia salarial entre ambos cuerpos es moderada pero existe:
+</p>
+<ul>
+  <li><strong>Auxilio Judicial (C1):</strong> sueldo base ~988€/mes + complementos = 1.600-2.000€ brutos/mes. Con guardias: hasta 2.500-3.000€</li>
+  <li><strong>Tramitación Procesal (B):</strong> sueldo base superior + complementos = 1.700-2.400€ brutos/mes. Con guardias: hasta 2.800-3.200€</li>
+</ul>
+<p>
+  La diferencia neta real ronda los <strong>200-300€/mes</strong>, que a lo largo de una carrera
+  de 30+ años suma una cantidad significativa. Pero el factor más determinante del sueldo final
+  no es el cuerpo, sino el <strong>destino</strong> (CCAA con complementos altos: Madrid, Cataluña,
+  País Vasco) y las <strong>guardias</strong>.
+</p>
+
+<h2>Funciones: ¿qué haces en cada puesto?</h2>
+
+<h3>Auxilio Judicial</h3>
+<ul>
+  <li>Orden en sala durante juicios y vistas</li>
+  <li>Ejecución de embargos, lanzamientos y desahucios</li>
+  <li>Actos de comunicación: notificaciones, citaciones, requerimientos</li>
+  <li>Custodia de documentos y piezas de convicción</li>
+  <li>Funciones de Policía Judicial por delegación</li>
+  <li>Guardias (nocturnas, fines de semana, festivos)</li>
+</ul>
+
+<h3>Tramitación Procesal</h3>
+<ul>
+  <li>Tramitación de procedimientos: registro, reparto, seguimiento de plazos</li>
+  <li>Gestión del expediente judicial electrónico</li>
+  <li>Redacción de diligencias de ordenación</li>
+  <li>Práctica de actos procesales que no requieran intervención del LAJ</li>
+  <li>Atención al público y profesionales (abogados, procuradores)</li>
+  <li>Funciones ofimáticas avanzadas</li>
+</ul>
+
+<h2>Matriz de decisión: ¿cuál te conviene más?</h2>
+
+<h3>Elige Auxilio Judicial si…</h3>
+<ul>
+  <li>Solo tienes la ESO o Graduado Escolar</li>
+  <li>Prefieres un temario más corto (26 vs 37 temas)</li>
+  <li>No te importa hacer guardias (son el gran plus salarial de Auxilio)</li>
+  <li>Te atrae el trabajo de campo: notificaciones, embargos, orden en sala</li>
+  <li>Quieres empezar a opositar cuanto antes con menos carga de estudio</li>
+</ul>
+
+<h3>Elige Tramitación Procesal si…</h3>
+<ul>
+  <li>Tienes Bachillerato o equivalente</li>
+  <li>Dominas ofimática (Word, Excel) — el tercer ejercicio te dará ventaja</li>
+  <li>Prefieres trabajo de oficina (tramitación de expedientes, menos calle)</li>
+  <li>Buscas un sueldo ligeramente superior a largo plazo</li>
+  <li>Hay 3 veces más plazas y quieres maximizar probabilidades</li>
+</ul>
+
+<h3>Prepara ambas si…</h3>
+<ul>
+  <li>Tienes Bachillerato y estás dispuesto a estudiar los 37 temas</li>
+  <li>Quieres presentarte a las dos convocatorias y duplicar opciones</li>
+  <li>Ya estás preparando una y quieres ampliar: de Auxilio a Tramitación solo necesitas 11 temas más</li>
+</ul>
+
+<h2>El factor LO 1/2025: ambas oposiciones cambian</h2>
+<p>
+  La <strong>Ley Orgánica 1/2025</strong> de medidas en materia de eficiencia del Servicio Público de Justicia
+  introduce cambios importantes que afectan a ambos temarios: los nuevos Tribunales de Instancia,
+  las Oficinas de Justicia, los MASC (Medios Adecuados de Solución de Controversias) y la reorganización
+  territorial de los órganos judiciales. Es fundamental estudiar con temario actualizado a esta ley.
+</p>
+<p>
+  <a href="/blog/cambios-temario-justicia-2026-lo-1-2025">Lee nuestro análisis de los cambios de la LO 1/2025</a>
+  para saber exactamente qué temas se ven afectados.
+</p>
+
+<h2>Empieza a preparar tu oposición de Justicia</h2>
+<p>
+  En <a href="/register">OpoRuta</a> puedes preparar tanto Auxilio Judicial como Tramitación Procesal
+  con tests actualizados a la LO 1/2025, corrección con IA y seguimiento de tu progreso tema a tema.
+</p>
+<p>
+  <strong><a href="/register">Regístrate gratis y empieza a practicar</a></strong>.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Fuente: BOE 30/12/2025 (convocatoria OEP 2025).</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Qué diferencia hay entre Auxilio Judicial y Tramitación Procesal?', answer: 'Auxilio Judicial (Grupo C1, ESO) tiene 26 temas y 2 ejercicios; Tramitación Procesal (Grupo B, Bachillerato) tiene 37 temas y 3 ejercicios (incluye ofimática). Tramitación tiene más plazas (1.251 vs 425 en 2026) y un sueldo ligeramente superior (~200-300€/mes más).' },
+      { question: '¿Se puede preparar Auxilio Judicial y Tramitación Procesal a la vez?', answer: 'Sí, y es muy recomendable. Los 15 primeros temas (organización) son prácticamente idénticos en ambas. Si preparas Tramitación, te sirve para Auxilio con solo adaptar los temas procesales. Solo necesitas añadir los 6 temas de ofimática y los temas procesales adicionales.' },
+      { question: '¿Cuánto cobra un Auxilio Judicial en 2026?', answer: 'Un Auxilio Judicial en 2026 cobra entre 1.600 y 2.000€ brutos mensuales sin guardias (14 pagas). Con guardias, el sueldo puede llegar a 2.500-3.000€/mes, dependiendo del destino y la frecuencia de guardias.' },
+      { question: '¿Cuántas plazas de Tramitación Procesal hay en 2026?', answer: 'La convocatoria OEP 2025, publicada en BOE el 30/12/2025, ofrece 1.251 plazas de Tramitación Procesal: 1.135 de acceso libre y 116 reservadas para personas con discapacidad.' },
+      { question: '¿Cuánto cobra un Tramitador Procesal en 2026?', answer: 'Un Tramitador Procesal cobra entre 1.700 y 2.400€ brutos/mes (14 pagas). Con guardias y complementos, puede llegar a 2.800-3.200€/mes. Las CCAA con mejores complementos son Madrid, Cataluña y País Vasco.' },
+      { question: '¿Es más difícil aprobar Tramitación que Auxilio Judicial?', answer: 'Tramitación exige más estudio (37 temas vs 26 y un ejercicio de ofimática adicional), pero ofrece casi 3 veces más plazas. El ratio de opositores por plaza es similar en ambas (8:1 a 12:1). Si dominas ofimática, Tramitación puede ser incluso más asequible porque el tercer ejercicio te da puntos "extra".' },
+    ],
+  },
+
+  // ─── Post 56 — Justicia: Cambios temario LO 1/2025 ────────────────────────
+  {
+    slug: 'cambios-temario-justicia-2026-lo-1-2025',
+    title: 'Cambios temario Justicia 2026: LO 1/2025 explicada',
+    description:
+      'Análisis de los cambios en el temario de oposiciones de Justicia por la LO 1/2025: Tribunales de Instancia, Oficinas de Justicia, MASC y cómo estudiar la nueva ley.',
+    date: '2026-03-25',
+    dateModified: '2026-03-25',
+    keywords: [
+      'temario justicia 2026 cambios',
+      'LO 1/2025 oposiciones',
+      'tribunales de instancia oposiciones',
+      'cambios LOPJ 2025',
+      'temario auxilio judicial actualizado',
+    ],
+    content: `
+<h2>La mayor reforma judicial en décadas: LO 1/2025</h2>
+<p>
+  La <strong>Ley Orgánica 1/2025, de 2 de enero, de medidas en materia de eficiencia del
+  Servicio Público de Justicia</strong> (BOE-A-2025-76) es la reforma más profunda de la
+  organización judicial española desde la LOPJ de 1985.
+</p>
+<p>
+  Para los opositores de Justicia (Auxilio Judicial, Tramitación Procesal y Gestión Procesal),
+  esta ley supone un cambio radical en el temario: <strong>varios temas quedan obsoletos</strong>
+  y nuevos conceptos como los Tribunales de Instancia, las Oficinas de Justicia o los MASC
+  (Medios Adecuados de Solución de Controversias) pasan a ser materia de examen.
+</p>
+<p>
+  Si estás estudiando con material anterior a 2025, <strong>necesitas actualizar urgentemente</strong>.
+  Estudiar la organización judicial "antigua" te hará fallar preguntas que antes acertarías.
+</p>
+
+<h2>¿Qué cambia la LO 1/2025?</h2>
+<p>
+  Los cambios principales se agrupan en cuatro grandes bloques:
+</p>
+
+<h3>1. Tribunales de Instancia: adiós a los juzgados unipersonales</h3>
+<p>
+  El cambio más visible. La LO 1/2025 sustituye los tradicionales <strong>juzgados unipersonales</strong>
+  (Juzgado de Primera Instancia nº 1, Juzgado de lo Penal nº 3, etc.) por <strong>Tribunales
+  de Instancia</strong> — órganos colegiados provinciales divididos en secciones especializadas.
+</p>
+<p>
+  En la práctica esto significa:
+</p>
+<ul>
+  <li>Un solo Tribunal de Instancia por provincia (en lugar de decenas de juzgados independientes)</li>
+  <li>Secciones especializadas: civil, penal, contencioso-administrativo, social, mercantil, violencia sobre la mujer, vigilancia penitenciaria, etc.</li>
+  <li>Se mantiene el <strong>Tribunal Central de Instancia</strong> para asuntos de ámbito nacional</li>
+  <li>Constitución escalonada: 1 de julio de 2025, 1 de octubre de 2025 y 31 de diciembre de 2025</li>
+</ul>
+
+<h3>2. Oficinas de Justicia en el municipio</h3>
+<p>
+  Los antiguos <strong>Juzgados de Paz</strong> se transforman en <strong>Oficinas de Justicia
+  en el municipio</strong> con funciones reforzadas:
+</p>
+<ul>
+  <li>Funciones de registro, información y orientación al ciudadano</li>
+  <li>Tramitación de determinados expedientes de jurisdicción voluntaria</li>
+  <li>Mediación y MASC como primera vía de resolución</li>
+  <li>Uso intensivo de tecnología: videoconferencia, expediente digital</li>
+</ul>
+
+<h3>3. Medios Adecuados de Solución de Controversias (MASC)</h3>
+<p>
+  La LO 1/2025 impulsa la resolución de conflictos fuera del juicio:
+</p>
+<ul>
+  <li><strong>Mediación:</strong> facilitada por las Oficinas de Justicia</li>
+  <li><strong>Conciliación:</strong> previa a la vía judicial en determinados procedimientos</li>
+  <li><strong>Justicia restaurativa:</strong> en el ámbito penal, con participación de víctima e infractor</li>
+  <li><strong>Negociación asistida:</strong> con abogados de ambas partes</li>
+</ul>
+<p>
+  Los MASC son materia nueva que no existía en temarios anteriores y que ya forma parte
+  del programa oficial de las tres oposiciones de Justicia.
+</p>
+
+<h3>4. Modernización tecnológica y Oficina Judicial digital</h3>
+<ul>
+  <li>Expediente judicial electrónico obligatorio</li>
+  <li>Celebración de vistas y actuaciones por videoconferencia</li>
+  <li>Firma electrónica para actos procesales</li>
+  <li>Nuevas competencias tecnológicas para los funcionarios de Justicia</li>
+</ul>
+
+<h2>¿Qué temas del temario cambian?</h2>
+<p>
+  Los cambios afectan principalmente a los temas de organización judicial y oficina judicial.
+  Los temas más afectados son:
+</p>
+
+<h3>Auxilio Judicial (26 temas)</h3>
+<ul>
+  <li><strong>Temas 8-9:</strong> Organización de los Tribunales — nueva estructura de Tribunales de Instancia y secciones</li>
+  <li><strong>Tema 11:</strong> La Oficina Judicial — rediseño completo con las Oficinas de Justicia</li>
+  <li><strong>Tema 14-15:</strong> Personal al servicio de la Administración de Justicia — nuevas funciones adaptadas a la estructura por Tribunales</li>
+  <li><strong>Temas procesales (16-26):</strong> Referencias a "juzgados" sustituidas por "secciones del Tribunal de Instancia"</li>
+</ul>
+
+<h3>Tramitación Procesal (37 temas)</h3>
+<p>
+  Todos los cambios de Auxilio más:
+</p>
+<ul>
+  <li><strong>Temas adicionales de MASC:</strong> mediación, conciliación, justicia restaurativa</li>
+  <li><strong>Jurisdicción voluntaria:</strong> nueva tramitación en Oficinas de Justicia</li>
+  <li><strong>Ofimática (temas 32-37):</strong> sin cambios significativos (Windows 11 + Microsoft 365)</li>
+</ul>
+
+<h3>Gestión Procesal (68 temas)</h3>
+<p>
+  Los cambios más extensos por la amplitud del temario:
+</p>
+<ul>
+  <li>Toda la parte de organización judicial (Bloque I) requiere actualización completa</li>
+  <li>Los procedimientos (Bloque III) cambian terminología y competencias</li>
+  <li>Nuevos contenidos sobre MASC y justicia restaurativa</li>
+</ul>
+
+<h2>Cómo estudiar los cambios de la LO 1/2025</h2>
+
+<h3>1. Lee la Exposición de Motivos</h3>
+<p>
+  Antes de lanzarte a los artículos, lee la Exposición de Motivos de la LO 1/2025
+  (BOE-A-2025-76). En 15 páginas te explica <strong>por qué</strong> se hace cada cambio,
+  lo que te ayudará a responder preguntas tipo test que buscan el "sentido" de la reforma.
+</p>
+
+<h3>2. Céntrate en las 5 ideas clave</h3>
+<p>
+  No necesitas memorizar los 350+ artículos de la ley. Entiende estas 5 ideas:
+</p>
+<ol>
+  <li>Juzgados unipersonales → Tribunales de Instancia (colegiados, provinciales, con secciones)</li>
+  <li>Juzgados de Paz → Oficinas de Justicia en el municipio</li>
+  <li>Resolución alternativa (MASC) como primera opción antes del juicio</li>
+  <li>Digitalización obligatoria del expediente judicial</li>
+  <li>Especialización de secciones (civil, penal, mercantil, etc.) dentro de cada Tribunal</li>
+</ol>
+
+<h3>3. Compara "antes vs después"</h3>
+<p>
+  Para cada concepto clave, haz una tabla con la situación anterior (LOPJ 1985) y la actual
+  (LO 1/2025). Las preguntas de examen suelen plantear la comparación: "¿Qué órgano sustituye
+  a los Juzgados de Primera Instancia?" o "¿Dónde se tramitan ahora los expedientes de
+  jurisdicción voluntaria que antes iban al Juzgado de Paz?".
+</p>
+
+<h3>4. Practica con tests actualizados</h3>
+<p>
+  Es fundamental que los tests que uses estén actualizados a la LO 1/2025. Preguntas basadas
+  en la LOPJ antigua no solo no te ayudan, sino que pueden fijarte información incorrecta.
+</p>
+
+<h2>Calendario de implantación</h2>
+<p>
+  La reforma se aplica de forma escalonada:
+</p>
+<ul>
+  <li><strong>3 de abril de 2025:</strong> Entrada en vigor general de la LO 1/2025</li>
+  <li><strong>1 de julio de 2025:</strong> Primera fase de constitución de Tribunales de Instancia</li>
+  <li><strong>1 de octubre de 2025:</strong> Segunda fase</li>
+  <li><strong>31 de diciembre de 2025:</strong> Constitución completa de todos los Tribunales de Instancia</li>
+</ul>
+<p>
+  Para el examen de 2026, la LO 1/2025 estará <strong>plenamente vigente</strong>. No hay
+  excusa para presentarse sin haberla estudiado.
+</p>
+
+<h2>Prepárate con material actualizado</h2>
+<p>
+  En <a href="/register">OpoRuta</a> todos los tests de Justicia están actualizados a la
+  LO 1/2025 y verificados contra la legislación vigente. No estudies con preguntas obsoletas
+  — cada pregunta está referenciada al artículo exacto de la ley actual.
+</p>
+<p>
+  <strong><a href="/register">Regístrate gratis y practica con temario actualizado a la LO 1/2025</a></strong>.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Fuente: BOE-A-2025-76 (LO 1/2025, de 2 de enero).</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Qué es la LO 1/2025 y cómo afecta a las oposiciones de Justicia?', answer: 'La Ley Orgánica 1/2025 es la reforma más importante de la organización judicial desde 1985. Sustituye los juzgados unipersonales por Tribunales de Instancia, crea las Oficinas de Justicia municipales e introduce los MASC. Afecta al temario de Auxilio Judicial, Tramitación Procesal y Gestión Procesal.' },
+      { question: '¿Qué son los Tribunales de Instancia?', answer: 'Son los nuevos órganos judiciales creados por la LO 1/2025 que sustituyen a los juzgados unipersonales. Existe un Tribunal de Instancia por provincia, organizado en secciones especializadas (civil, penal, contencioso, social, mercantil, etc.). Se constituyeron de forma escalonada entre julio y diciembre de 2025.' },
+      { question: '¿Qué son los MASC en las oposiciones de Justicia?', answer: 'MASC son los Medios Adecuados de Solución de Controversias, introducidos por la LO 1/2025 como alternativa al juicio. Incluyen mediación, conciliación, justicia restaurativa y negociación asistida. Es materia nueva en el temario de las tres oposiciones de Justicia.' },
+      { question: '¿El temario de Auxilio Judicial 2026 ya incluye la LO 1/2025?', answer: 'Sí. La convocatoria publicada en BOE el 30/12/2025 ya contempla el programa actualizado con la LO 1/2025. Los temas de organización judicial (8-11) y funciones del personal (14-15) están adaptados a la nueva estructura de Tribunales de Instancia.' },
+      { question: '¿Puedo estudiar con temario anterior a la LO 1/2025?', answer: 'No es recomendable. Los temas de organización judicial, competencias de los órganos y funciones del personal han cambiado sustancialmente. Estudiar con material anterior te hará memorizar información incorrecta. Asegúrate de que tu material está actualizado al menos a enero de 2025.' },
+    ],
+  },
+
+  // ─── Post 57 — Justicia: Guía completa Auxilio Judicial 2026 ──────────────
+  {
+    slug: 'guia-auxilio-judicial-2026',
+    title: 'Guía completa Auxilio Judicial 2026: temario, examen y plazas',
+    description:
+      'Todo sobre las oposiciones de Auxilio Judicial 2026: 425 plazas, 26 temas, 2 ejercicios con penalización, sueldo de hasta 3.000€/mes con guardias, requisitos y plan de estudio.',
+    date: '2026-03-25',
+    dateModified: '2026-03-25',
+    keywords: [
+      'auxilio judicial 2026',
+      'oposiciones auxilio judicial',
+      'temario auxilio judicial',
+      'plazas auxilio judicial 2026',
+      'examen auxilio judicial',
+      'sueldo auxilio judicial',
+    ],
+    content: `
+<h2>Oposiciones de Auxilio Judicial 2026: datos esenciales</h2>
+<p>
+  El Cuerpo de Auxilio Judicial es uno de los tres cuerpos generales de la Administración
+  de Justicia y el más accesible en cuanto a requisitos de titulación. La convocatoria OEP 2025,
+  publicada en el BOE el 30 de diciembre de 2025, ofrece <strong>425 plazas</strong>
+  (382 de acceso libre + 43 reservadas para personas con discapacidad).
+</p>
+<p>
+  Es una oposición con una demanda constante, un temario asequible (26 temas) y un sueldo
+  que, con guardias, puede superar los 2.500€ mensuales. Si buscas estabilidad laboral y
+  un puesto con funciones variadas (no solo oficina), Auxilio Judicial es una opción muy sólida.
+</p>
+
+<h2>Requisitos para opositar a Auxilio Judicial</h2>
+<ul>
+  <li><strong>Nacionalidad:</strong> española o de un Estado miembro de la UE (o asimilados)</li>
+  <li><strong>Edad:</strong> tener cumplidos 16 años y no exceder la edad de jubilación forzosa</li>
+  <li><strong>Titulación:</strong> Graduado en ESO, Graduado Escolar, FP I o equivalente (Grupo C1)</li>
+  <li><strong>Capacidad funcional:</strong> no padecer enfermedad o limitación que impida el desempeño del puesto</li>
+  <li><strong>Habilitación:</strong> no haber sido separado del servicio de la Administración de Justicia ni inhabilitado para funciones públicas</li>
+  <li><strong>Antecedentes:</strong> no tener antecedentes penales</li>
+</ul>
+<p>
+  <strong>No se exige carnet de conducir</strong> ni titulación universitaria. Es una de las
+  oposiciones de la función pública con requisitos de entrada más bajos, lo que la hace
+  accesible para perfiles muy diversos.
+</p>
+
+<h2>Temario: 26 temas en 2 bloques</h2>
+<p>
+  El programa oficial (según BOE 30/12/2025, actualizado a la LO 1/2025) consta de 26 temas:
+</p>
+
+<h3>Bloque I — Organización del Estado y Poder Judicial (Temas 1-15)</h3>
+<ul>
+  <li><strong>Tema 1:</strong> La Constitución Española de 1978: estructura, la Corona, las Cortes Generales, el Tribunal Constitucional</li>
+  <li><strong>Tema 2:</strong> Igualdad y no discriminación (LO 3/2007) y violencia de género (LO 1/2004)</li>
+  <li><strong>Tema 3:</strong> El Gobierno y la Administración. Organización territorial del Estado. Las CCAA</li>
+  <li><strong>Tema 4:</strong> La Unión Europea: instituciones, fuentes del Derecho de la UE</li>
+  <li><strong>Tema 5:</strong> El Poder Judicial. El CGPJ. El Tribunal Supremo</li>
+  <li><strong>Tema 6:</strong> Organización y competencia de los Tribunales (actualizado LO 1/2025 — Tribunales de Instancia)</li>
+  <li><strong>Tema 7:</strong> Los Tribunales de Instancia: estructura, secciones, competencias</li>
+  <li><strong>Tema 8:</strong> La jurisdicción: extensión, límites, conflictos jurisdiccionales</li>
+  <li><strong>Tema 9:</strong> La Oficina Judicial: concepto, organización, UPAD y SCOP</li>
+  <li><strong>Tema 10:</strong> El Letrado de la Administración de Justicia: funciones, competencias</li>
+  <li><strong>Tema 11:</strong> El Ministerio Fiscal: organización y funciones</li>
+  <li><strong>Tema 12:</strong> Los cuerpos generales: Gestión Procesal, Tramitación Procesal y Auxilio Judicial</li>
+  <li><strong>Tema 13:</strong> Derechos y deberes de los funcionarios de Justicia. Régimen disciplinario</li>
+  <li><strong>Tema 14:</strong> La LOPJ/LO 1/2025: el estatuto de jueces y magistrados</li>
+  <li><strong>Tema 15:</strong> Modernización de la Oficina Judicial: expediente digital, LexNET, nuevas tecnologías</li>
+</ul>
+
+<h3>Bloque II — Derecho Procesal (Temas 16-26)</h3>
+<ul>
+  <li><strong>Tema 16:</strong> Los procedimientos declarativos civiles (LEC)</li>
+  <li><strong>Tema 17:</strong> Los procedimientos de ejecución civil</li>
+  <li><strong>Tema 18:</strong> El proceso penal: fases, procedimientos (LECrim)</li>
+  <li><strong>Tema 19:</strong> El proceso contencioso-administrativo (LJCA)</li>
+  <li><strong>Tema 20:</strong> El proceso laboral (LRJS)</li>
+  <li><strong>Tema 21:</strong> Los actos procesales: actos de comunicación (notificaciones, citaciones, requerimientos, emplazamientos)</li>
+  <li><strong>Tema 22:</strong> Los actos procesales del LAJ: diligencias de ordenación, decretos</li>
+  <li><strong>Tema 23:</strong> Los actos de comunicación en detalle: formas, plazos, efectos</li>
+  <li><strong>Tema 24:</strong> La cooperación jurisdiccional: auxilio judicial interno e internacional</li>
+  <li><strong>Tema 25:</strong> El Registro Civil: estructura, Oficinas del Registro Civil, funciones</li>
+  <li><strong>Tema 26:</strong> Archivo judicial: conceptos, documentación, expurgo, nuevas tecnologías</li>
+</ul>
+
+<h2>Estructura del examen: 2 ejercicios eliminatorios</h2>
+<p>
+  Ambos ejercicios se realizan el mismo día. Son eliminatorios — debes superar cada uno
+  por separado para obtener plaza.
+</p>
+
+<h3>Primer ejercicio — Test teórico</h3>
+<ul>
+  <li><strong>Formato:</strong> 100 preguntas tipo test + 4 de reserva, 4 opciones por pregunta</li>
+  <li><strong>Tiempo:</strong> 100 minutos (~1 minuto por pregunta)</li>
+  <li><strong>Puntuación:</strong> acierto = +0,60 puntos | error = -0,15 puntos | blanco = 0</li>
+  <li><strong>Máximo:</strong> 60 puntos</li>
+  <li><strong>Mínimo para aprobar:</strong> 30 puntos (50%)</li>
+</ul>
+<p>
+  La penalización es de 1/4 del valor de un acierto. Esto significa que si no puedes descartar
+  ninguna opción, es mejor dejar en blanco. Pero si puedes eliminar 1 opción, estadísticamente
+  te conviene responder.
+</p>
+
+<h3>Segundo ejercicio — Caso práctico</h3>
+<ul>
+  <li><strong>Formato:</strong> 2 supuestos prácticos con un total de 40 preguntas tipo test</li>
+  <li><strong>Tiempo:</strong> 60 minutos (~1,5 minutos por pregunta)</li>
+  <li><strong>Puntuación:</strong> acierto = +1 punto | error = -0,25 puntos | blanco = 0</li>
+  <li><strong>Máximo:</strong> 40 puntos</li>
+  <li><strong>Mínimo para aprobar:</strong> 20 puntos (50%)</li>
+</ul>
+<p>
+  Los casos prácticos plantean situaciones reales del trabajo de un auxiliar judicial:
+  un embargo, una notificación, un procedimiento de ejecución. Exigen no solo conocer la ley,
+  sino saber <strong>aplicarla</strong>. La penalización aquí es más suave (-0,25 por error vs
+  +1 por acierto), lo que favorece responder cuando hay duda razonable.
+</p>
+
+<h2>Sueldo de Auxilio Judicial en 2026</h2>
+<p>
+  El salario de un auxiliar judicial se compone de varios conceptos:
+</p>
+<ul>
+  <li><strong>Sueldo base (Grupo C1):</strong> ~988€/mes</li>
+  <li><strong>Complemento de destino:</strong> varía según el nivel del puesto (nivel 15-17)</li>
+  <li><strong>Complemento específico:</strong> depende del órgano judicial y la CCAA</li>
+  <li><strong>Complemento general del puesto:</strong> 200-400€/mes según destino</li>
+  <li><strong>Trienios:</strong> ~46-51€ brutos/mes por cada 3 años de servicio</li>
+</ul>
+<p>
+  <strong>Total sin guardias:</strong> 1.600-2.000€ brutos/mes (14 pagas)
+</p>
+<p>
+  <strong>Total con guardias:</strong> 2.500-3.000€ brutos/mes. Las guardias (nocturnas,
+  fines de semana, festivos) son opcionales pero muy solicitadas por su compensación
+  económica, que puede añadir 500-700€ mensuales.
+</p>
+<p>
+  Las CCAA con mejores complementos retributivos son Madrid, Cataluña y País Vasco,
+  donde la diferencia puede superar los 200€ brutos/mes respecto a otras comunidades.
+</p>
+
+<h2>¿En qué consiste el trabajo de un Auxiliar Judicial?</h2>
+<p>
+  El Cuerpo de Auxilio Judicial es el más "de campo" de los tres cuerpos de Justicia.
+  Las funciones principales son:
+</p>
+<ul>
+  <li><strong>Actos de comunicación:</strong> realizar notificaciones, citaciones, requerimientos y emplazamientos — entregar documentos judiciales a las partes</li>
+  <li><strong>Orden en sala:</strong> mantener el orden durante juicios y vistas, acompañar a detenidos</li>
+  <li><strong>Ejecución:</strong> participar en embargos, lanzamientos (desahucios) y diligencias de entrada y registro</li>
+  <li><strong>Custodia:</strong> guardar expedientes, piezas de convicción y documentos</li>
+  <li><strong>Registro:</strong> registro de entrada/salida de documentos</li>
+  <li><strong>Guardias:</strong> servicio nocturno y de festivos en los órganos judiciales</li>
+</ul>
+
+<h2>Plan de estudio: cómo preparar Auxilio Judicial</h2>
+<p>
+  Con 26 temas, la preparación típica dura entre <strong>8 y 14 meses</strong> dependiendo
+  de las horas diarias de estudio y el nivel previo de conocimientos jurídicos.
+</p>
+
+<h3>Plan para 10 meses (ritmo moderado, 2-3h/día)</h3>
+<ul>
+  <li><strong>Meses 1-3:</strong> Bloque I (temas 1-15) — 1 tema cada 5-6 días con tests de repaso</li>
+  <li><strong>Meses 4-6:</strong> Bloque II (temas 16-26) — temas procesales, más densos, 1 cada 7-8 días</li>
+  <li><strong>Meses 7-8:</strong> Repaso completo + tests por tema + primeros simulacros completos</li>
+  <li><strong>Meses 9-10:</strong> Simulacros intensivos (2-3 por semana) + repaso de errores + casos prácticos</li>
+</ul>
+
+<h3>Consejos clave</h3>
+<ul>
+  <li><strong>La LO 1/2025 es prioritaria:</strong> los temas de organización judicial (6-9) y oficina judicial (9-10, 15) han cambiado sustancialmente. <a href="/blog/cambios-temario-justicia-2026-lo-1-2025">Lee nuestro análisis de los cambios</a></li>
+  <li><strong>Derecho procesal = práctica:</strong> los temas 16-26 se estudian mejor con casos prácticos que con lectura pasiva</li>
+  <li><strong>Simulacros desde el mes 5:</strong> no esperes a acabar el temario para empezar a practicar el formato de examen</li>
+  <li><strong>Cuida los plazos:</strong> son la fuente de preguntas más frecuente. Haz una tabla con todos los plazos procesales</li>
+</ul>
+
+<h2>Exámenes anteriores y notas de corte</h2>
+<p>
+  Las notas de corte históricas del primer ejercicio de Auxilio Judicial se sitúan entre
+  <strong>28 y 35 puntos sobre 60</strong>, dependiendo de la convocatoria y el número de plazas.
+  En la convocatoria 2025 (OEP 2024), la nota de corte fue de ~30 puntos, lo que equivale a
+  acertar unas 60-65 preguntas de 100 (teniendo en cuenta la penalización).
+</p>
+<p>
+  Puedes descargar exámenes oficiales anteriores en la web del Ministerio de Justicia
+  para practicar con preguntas reales.
+</p>
+
+<h2>¿Por qué opositar a Auxilio Judicial en 2026?</h2>
+<ul>
+  <li><strong>425 plazas:</strong> oferta generosa para un cuerpo con alta demanda</li>
+  <li><strong>Solo ESO:</strong> no necesitas titulación universitaria ni bachillerato</li>
+  <li><strong>Sueldo competitivo:</strong> hasta 3.000€/mes con guardias</li>
+  <li><strong>Variedad de funciones:</strong> no es solo trabajo de oficina — incluye calle, sala y ejecuciones</li>
+  <li><strong>Estabilidad total:</strong> plaza fija como funcionario del Estado</li>
+  <li><strong>Promoción interna:</strong> puedes presentarte a Tramitación y Gestión Procesal estando dentro</li>
+</ul>
+
+<h2>Empieza tu preparación</h2>
+<p>
+  En <a href="/register">OpoRuta</a> puedes practicar con tests de Auxilio Judicial
+  actualizados a la LO 1/2025, con corrección detallada y referencia al artículo exacto
+  de la ley. Tests por tema, simulacros completos y seguimiento de tu progreso.
+</p>
+<p>
+  <strong><a href="/register">Regístrate gratis y empieza a preparar tu oposición</a></strong>.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Fuente: BOE 30/12/2025 (convocatoria OEP 2025).</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuántas plazas de Auxilio Judicial hay en 2026?', answer: 'La convocatoria OEP 2025 ofrece 425 plazas: 382 de acceso libre y 43 reservadas para personas con discapacidad. Publicada en BOE el 30 de diciembre de 2025.' },
+      { question: '¿Qué titulación se necesita para Auxilio Judicial?', answer: 'Se necesita el título de Graduado en ESO, Graduado Escolar, FP I o equivalente. Es un cuerpo del Grupo C1, por lo que no se exige Bachillerato ni titulación universitaria.' },
+      { question: '¿Cuántos temas tiene el temario de Auxilio Judicial?', answer: 'El temario consta de 26 temas divididos en dos bloques: Bloque I (temas 1-15) sobre organización del Estado y Poder Judicial, y Bloque II (temas 16-26) sobre Derecho Procesal (civil, penal, contencioso, laboral, Registro Civil y archivo).' },
+      { question: '¿Cómo es el examen de Auxilio Judicial?', answer: 'Consta de 2 ejercicios el mismo día: un test teórico de 100 preguntas en 100 minutos (penalización -0,15 por error, mínimo 30/60 puntos) y un caso práctico de 40 preguntas en 60 minutos (penalización -0,25 por error, mínimo 20/40 puntos).' },
+      { question: '¿Cuánto cobra un Auxilio Judicial en 2026?', answer: 'Entre 1.600 y 2.000€ brutos/mes sin guardias (14 pagas). Con guardias (nocturnas, festivos), el sueldo puede alcanzar 2.500-3.000€/mes. Las CCAA con mejores complementos son Madrid, Cataluña y País Vasco.' },
+      { question: '¿Cuánto tiempo se tarda en preparar Auxilio Judicial?', answer: 'La preparación típica dura entre 8 y 14 meses con 2-3 horas diarias de estudio. Con dedicación intensiva (4-6h/día), se puede preparar en 5-7 meses. Es recomendable empezar los simulacros completos a partir del mes 5.' },
+      { question: '¿Qué funciones hace un Auxilio Judicial?', answer: 'Las funciones principales son: actos de comunicación (notificaciones, citaciones), orden en sala durante juicios, participación en embargos y lanzamientos, custodia de expedientes y piezas de convicción, registro de documentos y guardias (nocturnas y festivos).' },
+      { question: '¿Cuándo es el examen de Auxilio Judicial 2026?', answer: 'Los exámenes están previstos para el segundo semestre de 2026, probablemente septiembre-octubre. La fecha exacta se comunicará con al menos 3 meses de antelación por parte del Ministerio de Justicia.' },
+    ],
+  },
+
+  // ─── Post 58 — Justicia: Guía completa Tramitación Procesal 2026 ──────────
+  {
+    slug: 'guia-tramitacion-procesal-2026',
+    title: 'Guía completa Tramitación Procesal 2026: todo lo que necesitas saber',
+    description:
+      'Todo sobre las oposiciones de Tramitación Procesal 2026: 1.251 plazas, 37 temas, 3 ejercicios incluida ofimática, sueldo, requisitos y plan de estudio.',
+    date: '2026-03-25',
+    dateModified: '2026-03-25',
+    keywords: [
+      'tramitación procesal 2026',
+      'oposiciones tramitación procesal',
+      'temario tramitación procesal',
+      'plazas tramitación procesal 2026',
+      'examen tramitación procesal',
+      'sueldo tramitación procesal',
+    ],
+    content: `
+<h2>Oposiciones de Tramitación Procesal 2026: la oposición de Justicia con más plazas</h2>
+<p>
+  El Cuerpo de Tramitación Procesal y Administrativa es el cuerpo intermedio de la
+  Administración de Justicia y, en la convocatoria 2026, el que más plazas ofrece:
+  <strong>1.251 plazas</strong> (1.135 de acceso libre + 116 para personas con discapacidad)
+  según la OEP 2025 publicada en BOE el 30 de diciembre de 2025.
+</p>
+<p>
+  Con casi 3 veces más plazas que Auxilio Judicial (425) y más que Gestión Procesal (864),
+  Tramitación es la apuesta más sólida si buscas maximizar tus probabilidades de obtener plaza.
+</p>
+
+<h2>Requisitos para opositar a Tramitación Procesal</h2>
+<ul>
+  <li><strong>Nacionalidad:</strong> española o de un Estado miembro de la UE</li>
+  <li><strong>Edad:</strong> cumplir 16 años y no exceder la edad de jubilación forzosa</li>
+  <li><strong>Titulación:</strong> Bachillerato, Técnico (FP Grado Medio) o equivalente. No se requiere titulación universitaria</li>
+  <li><strong>Capacidad funcional:</strong> no padecer enfermedad o limitación incompatible con el puesto</li>
+  <li><strong>Habilitación:</strong> no haber sido separado ni inhabilitado para funciones públicas</li>
+</ul>
+<p>
+  La diferencia principal con Auxilio Judicial es la titulación: Tramitación exige Bachillerato
+  (o equivalente), mientras que Auxilio solo requiere la ESO.
+</p>
+
+<h2>Temario: 37 temas en 3 bloques</h2>
+<p>
+  El programa oficial de Tramitación Procesal consta de <strong>37 temas</strong>,
+  11 más que Auxilio Judicial. La diferencia se concentra en un bloque de derecho procesal
+  más extenso y en 6 temas de ofimática.
+</p>
+
+<h3>Bloque I — Organización del Estado y Poder Judicial (Temas 1-15)</h3>
+<p>
+  Prácticamente idéntico al Bloque I de Auxilio Judicial:
+</p>
+<ul>
+  <li>Constitución Española, organización territorial, UE</li>
+  <li>Poder Judicial, CGPJ, Tribunal Supremo</li>
+  <li>Tribunales de Instancia (LO 1/2025), Oficinas de Justicia</li>
+  <li>Oficina Judicial, LAJ, Ministerio Fiscal</li>
+  <li>Cuerpos de funcionarios, derechos y deberes, régimen disciplinario</li>
+  <li>Modernización, expediente digital, LexNET</li>
+</ul>
+
+<h3>Bloque II — Derecho Procesal (Temas 16-31)</h3>
+<p>
+  Más extenso que en Auxilio, con 16 temas de procedimientos:
+</p>
+<ul>
+  <li><strong>Temas 16-18:</strong> Proceso civil (LEC) — procedimientos declarativos, ejecución, medidas cautelares</li>
+  <li><strong>Temas 19-21:</strong> Proceso penal (LECrim) — instrucción, juicio oral, procedimiento abreviado, juicio rápido</li>
+  <li><strong>Temas 22-23:</strong> Proceso contencioso-administrativo (LJCA) y proceso laboral (LRJS)</li>
+  <li><strong>Temas 24-25:</strong> Actos procesales, actos de comunicación, cooperación jurisdiccional</li>
+  <li><strong>Temas 26-27:</strong> Jurisdicción voluntaria, MASC (mediación, conciliación, justicia restaurativa)</li>
+  <li><strong>Temas 28-29:</strong> Registro Civil, Registro de Últimas Voluntades</li>
+  <li><strong>Temas 30-31:</strong> Archivo judicial, documentación, nuevas tecnologías aplicadas</li>
+</ul>
+
+<h3>Bloque III — Ofimática (Temas 32-37)</h3>
+<p>
+  El bloque exclusivo de Tramitación que no existe en Auxilio:
+</p>
+<ul>
+  <li><strong>Tema 32:</strong> Informática básica: hardware, software, sistemas operativos</li>
+  <li><strong>Tema 33:</strong> Windows 11: configuración, explorador, gestión de archivos</li>
+  <li><strong>Tema 34:</strong> Microsoft Word 365: formato, estilos, tablas, combinar correspondencia</li>
+  <li><strong>Tema 35:</strong> Microsoft Excel 365: fórmulas, funciones, gráficos, tablas dinámicas</li>
+  <li><strong>Tema 36:</strong> Bases de datos: conceptos, Microsoft Access, consultas básicas</li>
+  <li><strong>Tema 37:</strong> Correo electrónico y trabajo colaborativo: Outlook, Teams, seguridad</li>
+</ul>
+
+<h2>Estructura del examen: 3 ejercicios eliminatorios</h2>
+
+<h3>Ejercicio 1 — Test teórico</h3>
+<ul>
+  <li><strong>Formato:</strong> 100 preguntas + 4 de reserva sobre los temas 1-31</li>
+  <li><strong>Tiempo:</strong> 100 minutos</li>
+  <li><strong>Puntuación:</strong> acierto = +0,60 | error = -0,15 | blanco = 0</li>
+  <li><strong>Máximo:</strong> 60 puntos | <strong>Mínimo:</strong> 30 puntos</li>
+</ul>
+
+<h3>Ejercicio 2 — Caso práctico</h3>
+<ul>
+  <li><strong>Formato:</strong> supuestos prácticos con preguntas tipo test sobre situaciones reales de tramitación</li>
+  <li><strong>Puntuación:</strong> acierto = +0,60 | error = -0,50 | blanco = 0</li>
+  <li><strong>Nota mínima:</strong> 10 puntos sobre 20</li>
+</ul>
+<p>
+  Atención: la penalización en el caso práctico de Tramitación es <strong>más severa</strong>
+  que en Auxilio (-0,50 vs -0,25). Esto hace que la estrategia de "responder cuando dudes"
+  sea más arriesgada. Solo responde si puedes descartar al menos 2 opciones.
+</p>
+
+<h3>Ejercicio 3 — Ofimática</h3>
+<ul>
+  <li><strong>Formato:</strong> 20 preguntas + 4 de reserva sobre Windows 11 y Microsoft 365</li>
+  <li><strong>Tiempo:</strong> 30 minutos</li>
+  <li><strong>Contenido:</strong> preguntas prácticas sobre Word, Excel, Windows 11 y herramientas colaborativas</li>
+</ul>
+<p>
+  El ejercicio de ofimática puede ser tu <strong>mayor ventaja competitiva</strong> o tu talón
+  de Aquiles. Si trabajas habitualmente con Office, las preguntas te resultarán familiares
+  (combinaciones de teclas, funciones de Excel, opciones de Word). Si no, necesitas practicar
+  específicamente.
+</p>
+
+<h2>Sueldo de Tramitación Procesal en 2026</h2>
+<ul>
+  <li><strong>Sueldo base (Grupo B):</strong> superior al de Auxilio (C1)</li>
+  <li><strong>Total sin guardias:</strong> 1.700-2.400€ brutos/mes (14 pagas)</li>
+  <li><strong>Total con guardias:</strong> 2.800-3.200€ brutos/mes</li>
+  <li><strong>Trienios:</strong> ~55-60€ brutos/mes por cada 3 años de servicio</li>
+  <li><strong>Sueldo neto aproximado:</strong> 1.400-1.900€/mes sin guardias</li>
+</ul>
+<p>
+  La diferencia con Auxilio Judicial es de unos <strong>200-300€/mes</strong>, que en una carrera
+  de 30 años supone entre 72.000€ y 108.000€ más en total.
+</p>
+
+<h2>Funciones de un Tramitador Procesal</h2>
+<p>
+  El tramitador es el "motor administrativo" del órgano judicial:
+</p>
+<ul>
+  <li><strong>Tramitación de expedientes:</strong> registro, reparto, seguimiento de plazos, impulso procesal</li>
+  <li><strong>Gestión documental:</strong> expediente electrónico, archivo, digitalización</li>
+  <li><strong>Redacción:</strong> diligencias de ordenación, oficios, comunicaciones</li>
+  <li><strong>Atención al público:</strong> profesionales (abogados, procuradores) y ciudadanos</li>
+  <li><strong>Apoyo al LAJ:</strong> preparación de decretos, actas, citaciones</li>
+  <li><strong>Funciones ofimáticas:</strong> elaboración de documentos, bases de datos, estadística judicial</li>
+</ul>
+
+<h2>Plan de estudio: cómo preparar Tramitación Procesal</h2>
+<p>
+  Con 37 temas, la preparación típica dura entre <strong>10 y 18 meses</strong>:
+</p>
+
+<h3>Plan para 12 meses (2-3h/día)</h3>
+<ul>
+  <li><strong>Meses 1-3:</strong> Bloque I (temas 1-15) — organización, base compartida con Auxilio</li>
+  <li><strong>Meses 4-7:</strong> Bloque II (temas 16-31) — derecho procesal, el bloque más denso</li>
+  <li><strong>Meses 8-9:</strong> Bloque III (temas 32-37) — ofimática, práctica con ejercicios reales</li>
+  <li><strong>Meses 10-12:</strong> Repaso general + simulacros intensivos + casos prácticos + repaso ofimática</li>
+</ul>
+
+<h3>Tip estratégico: prepara Auxilio simultáneamente</h3>
+<p>
+  Si estudias Tramitación, ya tienes el 70% del temario de Auxilio cubierto. Considera
+  presentarte a ambas convocatorias — duplicas tus opciones con un esfuerzo adicional mínimo.
+  <a href="/blog/auxilio-judicial-vs-tramitacion-procesal">Lee nuestra comparativa Auxilio vs Tramitación</a>.
+</p>
+
+<h2>¿Por qué Tramitación Procesal en 2026?</h2>
+<ul>
+  <li><strong>1.251 plazas:</strong> la mayor oferta de los tres cuerpos de Justicia</li>
+  <li><strong>Solo Bachillerato:</strong> no necesitas titulación universitaria</li>
+  <li><strong>Sueldo competitivo:</strong> hasta 3.200€/mes con guardias</li>
+  <li><strong>Trabajo estable:</strong> plaza fija como funcionario del Estado</li>
+  <li><strong>La ofimática es ventaja:</strong> si dominas Office, el tercer ejercicio te da puntos extra</li>
+  <li><strong>Promoción interna:</strong> puedes ascender a Gestión Procesal (A2) desde dentro</li>
+</ul>
+
+<h2>Empieza a preparar tu oposición</h2>
+<p>
+  En <a href="/register">OpoRuta</a> puedes practicar con tests de Tramitación Procesal
+  actualizados a la LO 1/2025: tests por tema, simulacros completos, ejercicios de ofimática
+  y seguimiento de tu progreso.
+</p>
+<p>
+  <strong><a href="/register">Regístrate gratis y empieza hoy</a></strong>.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Fuente: BOE 30/12/2025 (convocatoria OEP 2025).</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuántas plazas de Tramitación Procesal hay en 2026?', answer: 'La convocatoria OEP 2025 ofrece 1.251 plazas: 1.135 de acceso libre y 116 reservadas para personas con discapacidad. Es la oposición de Justicia con más plazas en 2026.' },
+      { question: '¿Qué titulación se necesita para Tramitación Procesal?', answer: 'Se necesita el título de Bachillerato, Técnico (FP Grado Medio) o equivalente. A diferencia de Auxilio Judicial, que solo exige la ESO, Tramitación requiere un nivel educativo superior.' },
+      { question: '¿Cuántos temas tiene Tramitación Procesal?', answer: 'El temario consta de 37 temas en 3 bloques: Bloque I (15 temas de organización), Bloque II (16 temas de derecho procesal) y Bloque III (6 temas de ofimática — Windows 11 y Microsoft 365).' },
+      { question: '¿Cómo es el examen de Tramitación Procesal?', answer: 'Consta de 3 ejercicios eliminatorios: test teórico de 100 preguntas (100 min), caso práctico con preguntas tipo test, y prueba de ofimática de 20 preguntas sobre Windows 11 y Microsoft 365 (30 min). Todos tienen penalización por errores.' },
+      { question: '¿Cuánto cobra un Tramitador Procesal en 2026?', answer: 'Entre 1.700 y 2.400€ brutos/mes sin guardias (14 pagas). Con guardias puede llegar a 2.800-3.200€/mes. El sueldo neto se sitúa entre 1.400 y 1.900€/mes sin guardias, dependiendo del destino.' },
+      { question: '¿Cuánto se tarda en preparar Tramitación Procesal?', answer: 'La preparación típica dura entre 10 y 18 meses con 2-3 horas diarias. Con 37 temas, se necesitan unos 7-9 meses para cubrir el temario completo y 3-4 meses adicionales de repaso y simulacros intensivos.' },
+      { question: '¿Es difícil el ejercicio de ofimática de Tramitación Procesal?', answer: 'Depende de tu nivel previo. Si trabajas habitualmente con Word y Excel, las preguntas serán familiares. Si no, necesitas preparación específica: funciones de Excel, formato avanzado de Word, gestión de archivos en Windows 11. Es un ejercicio eliminatorio que puede decidir tu resultado.' },
+      { question: '¿Se puede preparar Tramitación y Auxilio a la vez?', answer: 'Sí, y es muy recomendable. Los 15 primeros temas son prácticamente idénticos. Si preparas Tramitación, ya tienes el 70% del temario de Auxilio cubierto. Presentarte a ambas duplica tus opciones de obtener plaza.' },
+    ],
+  },
+
+  // ─── Post 59 — Justicia: Gestión Procesal A2 2026 ─────────────────────────
+  {
+    slug: 'gestion-procesal-a2-2026',
+    title: 'Gestión Procesal A2 2026: la oposición más completa de Justicia',
+    description:
+      'Guía completa de Gestión Procesal y Administrativa 2026: 864 plazas, 68 temas, 3 ejercicios con desarrollo escrito, sueldo de hasta 2.800€ brutos/mes, requisitos y plan de estudio.',
+    date: '2026-03-25',
+    dateModified: '2026-03-25',
+    keywords: [
+      'gestión procesal 2026',
+      'oposiciones gestión procesal',
+      'gestión procesal A2',
+      'temario gestión procesal 2026',
+      'plazas gestión procesal',
+      'sueldo gestión procesal',
+    ],
+    content: `
+<h2>Gestión Procesal A2: el cuerpo superior de la Administración de Justicia</h2>
+<p>
+  El Cuerpo de Gestión Procesal y Administrativa es el más alto de los tres cuerpos generales
+  de Justicia. Pertenece al <strong>Subgrupo A2</strong>, lo que exige titulación universitaria
+  y ofrece las funciones de mayor responsabilidad y el mejor sueldo de los tres cuerpos.
+</p>
+<p>
+  La convocatoria OEP 2025 ofrece <strong>864 plazas</strong>, una cifra históricamente alta
+  que refleja la necesidad de personal cualificado tras la reforma de la LO 1/2025.
+  Es una oposición exigente (68 temas, 3 ejercicios con desarrollo escrito), pero la recompensa
+  es una plaza de funcionario con un sueldo de entrada superior a 27.000€ anuales.
+</p>
+
+<h2>Requisitos para opositar a Gestión Procesal</h2>
+<ul>
+  <li><strong>Nacionalidad:</strong> española o de un Estado miembro de la UE</li>
+  <li><strong>Edad:</strong> cumplir 16 años y no exceder la edad de jubilación forzosa</li>
+  <li><strong>Titulación:</strong> Diplomatura, Grado universitario, Ingeniería Técnica, Arquitectura Técnica o equivalente (Subgrupo A2)</li>
+  <li><strong>Capacidad funcional:</strong> no padecer enfermedad o limitación incompatible</li>
+  <li><strong>Habilitación:</strong> no haber sido separado ni inhabilitado para funciones públicas</li>
+</ul>
+<p>
+  La exigencia de <strong>titulación universitaria</strong> marca la diferencia con Auxilio (ESO)
+  y Tramitación (Bachillerato). Cualquier grado universitario es válido — no tiene que ser Derecho,
+  aunque los graduados en Derecho parten con ventaja por la familiaridad con el temario jurídico.
+</p>
+
+<h2>Temario: 68 temas en 3 bloques</h2>
+<p>
+  Es el temario más extenso de las oposiciones de Justicia, más del doble que Auxilio (26 temas)
+  y casi el doble que Tramitación (37 temas).
+</p>
+
+<h3>Bloque I — Derecho Constitucional y Organización (≈20 temas)</h3>
+<ul>
+  <li>Constitución Española: derechos fundamentales, órganos constitucionales, Tribunal Constitucional</li>
+  <li>Organización territorial del Estado: CCAA, competencias, financiación</li>
+  <li>La Unión Europea: instituciones, fuentes del Derecho, principios</li>
+  <li>El Poder Judicial: CGPJ, Tribunal Supremo, organización de tribunales</li>
+  <li>La LO 1/2025: Tribunales de Instancia, Oficinas de Justicia, modernización</li>
+  <li>Estatuto de jueces y magistrados</li>
+</ul>
+
+<h3>Bloque II — Oficina Judicial y Funcionarios (≈15 temas)</h3>
+<ul>
+  <li>Los tres cuerpos generales: funciones, competencias, régimen jurídico</li>
+  <li>La Oficina Judicial: UPAD, SCOP, organización</li>
+  <li>El Letrado de la Administración de Justicia</li>
+  <li>Derechos, deberes y régimen disciplinario</li>
+  <li>Modernización tecnológica: expediente electrónico, firma digital, LexNET</li>
+  <li>Protección de datos y seguridad de la información en Justicia</li>
+</ul>
+
+<h3>Bloque III — Derecho Procesal (≈33 temas)</h3>
+<p>
+  El bloque más extenso y denso, cubriendo todos los órdenes jurisdiccionales en profundidad:
+</p>
+<ul>
+  <li><strong>Proceso civil (LEC):</strong> jurisdicción y competencia, procedimientos declarativos (ordinario, verbal), ejecución, medidas cautelares, procesos especiales, recursos</li>
+  <li><strong>Proceso penal (LECrim):</strong> instrucción, procedimiento ordinario, abreviado, juicio rápido, jurado, menores, violencia de género</li>
+  <li><strong>Proceso contencioso-administrativo (LJCA):</strong> procedimiento ordinario, abreviado, recursos</li>
+  <li><strong>Proceso laboral (LRJS):</strong> proceso ordinario, despido, seguridad social, recursos</li>
+  <li><strong>Jurisdicción voluntaria:</strong> expedientes, actos de comunicación, MASC</li>
+  <li><strong>Registro Civil:</strong> organización, funciones, procedimientos registrales</li>
+</ul>
+
+<h2>Estructura del examen: 3 ejercicios eliminatorios</h2>
+
+<h3>Ejercicio 1 — Test teórico (máx. 60 puntos)</h3>
+<ul>
+  <li><strong>Formato:</strong> 100 preguntas + 4 de reserva sobre los 68 temas</li>
+  <li><strong>Tiempo:</strong> 100 minutos</li>
+  <li><strong>Puntuación:</strong> acierto = +0,60 | error = -0,15 | blanco = 0</li>
+  <li><strong>Mínimo para aprobar:</strong> 30 puntos</li>
+</ul>
+
+<h3>Ejercicio 2 — Supuesto práctico (máx. 15 puntos)</h3>
+<ul>
+  <li><strong>Formato:</strong> 10 preguntas tipo test referidas a un caso práctico</li>
+  <li><strong>Tiempo:</strong> 30 minutos</li>
+  <li><strong>Contenido:</strong> situaciones reales del trabajo de un gestor procesal</li>
+</ul>
+
+<h3>Ejercicio 3 — Desarrollo escrito (máx. 25 puntos)</h3>
+<ul>
+  <li><strong>Formato:</strong> 5 preguntas de desarrollo sobre el programa del temario</li>
+  <li><strong>Tiempo:</strong> 45 minutos</li>
+  <li><strong>Evaluación:</strong> conocimiento del tema, capacidad de síntesis, redacción jurídica</li>
+</ul>
+<p>
+  El <strong>tercer ejercicio de desarrollo</strong> es lo que distingue a Gestión Procesal
+  de las otras dos oposiciones de Justicia. No es tipo test — debes redactar respuestas
+  argumentadas que demuestren dominio profundo de la materia. Esto exige un nivel de
+  preparación significativamente mayor: no basta con reconocer la respuesta correcta,
+  tienes que ser capaz de <strong>explicarla</strong>.
+</p>
+
+<h2>Sueldo de Gestión Procesal en 2026</h2>
+<ul>
+  <li><strong>Sueldo base (Subgrupo A2):</strong> ~1.150€/mes</li>
+  <li><strong>Complemento de destino:</strong> nivel 18-22, según el puesto</li>
+  <li><strong>Complemento específico:</strong> variable según órgano judicial y CCAA</li>
+  <li><strong>Total sin guardias:</strong> 2.400-2.800€ brutos/mes (14 pagas)</li>
+  <li><strong>Sueldo neto:</strong> ~1.800-2.300€/mes</li>
+  <li><strong>Con guardias y complementos:</strong> posible superar los 3.000€ brutos/mes</li>
+  <li><strong>Trienios (A2):</strong> ~65-70€ brutos/mes por cada 3 años de servicio</li>
+</ul>
+<p>
+  A lo largo de una carrera de 30 años, la diferencia salarial acumulada entre Gestión (A2) y
+  Tramitación (B) puede superar los <strong>150.000-200.000€</strong>.
+  El salario anual bruto de entrada ronda los 27.000-29.000€.
+</p>
+
+<h2>Funciones de un Gestor Procesal</h2>
+<p>
+  El gestor procesal es el funcionario de Justicia con más responsabilidad después del LAJ (Letrado
+  de la Administración de Justicia):
+</p>
+<ul>
+  <li><strong>Tramitación avanzada:</strong> impulso de procedimientos, control de plazos, preparación de resoluciones</li>
+  <li><strong>Colaboración directa con el LAJ:</strong> asistencia en decretos, actas, diligencias complejas</li>
+  <li><strong>Coordinación del personal:</strong> supervisión de tramitadores y auxiliares</li>
+  <li><strong>Funciones registrales:</strong> actos del Registro Civil de mayor complejidad</li>
+  <li><strong>Gestión administrativa:</strong> estadística judicial, gestión de expedientes complejos</li>
+  <li><strong>Funciones sustitutorias:</strong> puede sustituir al LAJ en determinadas actuaciones</li>
+</ul>
+
+<h2>Plan de estudio: cómo preparar Gestión Procesal</h2>
+<p>
+  Con 68 temas y un ejercicio de desarrollo escrito, la preparación típica dura entre
+  <strong>14 y 24 meses</strong>. Es una oposición que exige constancia y profundidad.
+</p>
+
+<h3>Plan para 18 meses (3-4h/día)</h3>
+<ul>
+  <li><strong>Meses 1-4:</strong> Bloque I (organización y constitucional) — base jurídica sólida</li>
+  <li><strong>Meses 5-7:</strong> Bloque II (oficina judicial y funcionarios) — más práctico</li>
+  <li><strong>Meses 8-13:</strong> Bloque III (derecho procesal) — el bloque más extenso y denso. Dedica 1 semana a cada tema</li>
+  <li><strong>Meses 14-15:</strong> Repaso general + tests por tema + primeros simulacros</li>
+  <li><strong>Meses 16-18:</strong> Simulacros intensivos + ejercicios de desarrollo escrito (redactar 2-3 por semana) + casos prácticos</li>
+</ul>
+
+<h3>Consejos específicos para Gestión Procesal</h3>
+<ul>
+  <li><strong>Practica el desarrollo escrito desde el mes 6:</strong> no esperes al final. La capacidad de redactar respuestas jurídicas claras y completas se entrena con meses de práctica</li>
+  <li><strong>El Bloque III es decisivo:</strong> con ~33 temas de derecho procesal, es donde se ganan o pierden las plazas. Los procedimientos civiles y penales acumulan el mayor peso</li>
+  <li><strong>Estudia leyes procesales directamente:</strong> LEC, LECrim, LJCA y LRJS. No te limites a resúmenes — para el desarrollo necesitas dominar la estructura completa de cada ley</li>
+  <li><strong>Si vienes de Tramitación o Auxilio:</strong> el Bloque I ya lo tienes prácticamente controlado. Céntrate en el Bloque III y en el ejercicio de desarrollo</li>
+</ul>
+
+<h2>¿A quién le conviene Gestión Procesal?</h2>
+<ul>
+  <li><strong>Graduados en Derecho:</strong> parten con ventaja por el conocimiento procesal previo</li>
+  <li><strong>Funcionarios de Auxilio o Tramitación:</strong> la promoción interna reduce el temario y da puntos adicionales</li>
+  <li><strong>Perfiles con capacidad de redacción:</strong> el tercer ejercicio exige expresión escrita de nivel alto</li>
+  <li><strong>Quienes buscan el máximo sueldo en Justicia:</strong> A2 es el techo salarial de los cuerpos generales</li>
+  <li><strong>Opositores con tiempo:</strong> si puedes dedicar 18+ meses de preparación, la recompensa es la mayor</li>
+</ul>
+
+<h2>Gestión Procesal vs Auxilio Judicial vs Tramitación</h2>
+<ul>
+  <li><strong>Gestión (A2):</strong> 864 plazas, 68 temas, grado universitario, sueldo hasta 2.800€/mes, ejercicio de desarrollo</li>
+  <li><strong>Tramitación (B):</strong> 1.251 plazas, 37 temas, bachillerato, sueldo hasta 2.400€/mes, ejercicio ofimática</li>
+  <li><strong>Auxilio (C1):</strong> 425 plazas, 26 temas, ESO, sueldo hasta 2.000€/mes, caso práctico</li>
+</ul>
+<p>
+  Si cumples los requisitos de titulación y tienes tiempo para preparar 68 temas, Gestión Procesal
+  es la inversión con mayor retorno a largo plazo.
+  <a href="/blog/auxilio-judicial-vs-tramitacion-procesal">Compara Auxilio y Tramitación aquí</a>.
+</p>
+
+<h2>Empieza a preparar tu oposición</h2>
+<p>
+  En <a href="/register">OpoRuta</a> puedes preparar Gestión Procesal con tests actualizados
+  a la LO 1/2025, corrección detallada por artículo y seguimiento de tu progreso tema a tema.
+</p>
+<p>
+  <strong><a href="/register">Regístrate gratis y empieza a practicar</a></strong>.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Fuente: BOE 30/12/2025 (convocatoria OEP 2025).</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuántas plazas de Gestión Procesal hay en 2026?', answer: 'La convocatoria OEP 2025 ofrece 864 plazas de Gestión Procesal y Administrativa. Es la segunda oposición de Justicia con más plazas tras Tramitación Procesal (1.251).' },
+      { question: '¿Qué titulación se necesita para Gestión Procesal?', answer: 'Se requiere titulación universitaria: Diplomatura, Grado, Ingeniería Técnica o Arquitectura Técnica. Cualquier grado es válido, no tiene que ser Derecho, aunque los juristas parten con ventaja por la naturaleza del temario.' },
+      { question: '¿Cuántos temas tiene Gestión Procesal?', answer: 'El temario consta de 68 temas divididos en 3 bloques: organización constitucional y judicial (~20 temas), oficina judicial y funcionarios (~15 temas) y derecho procesal (~33 temas con todos los órdenes jurisdiccionales).' },
+      { question: '¿Cómo es el examen de Gestión Procesal?', answer: 'Consta de 3 ejercicios eliminatorios: test de 100 preguntas en 100 min (máx. 60 puntos), supuesto práctico de 10 preguntas test en 30 min (máx. 15 puntos) y desarrollo escrito de 5 preguntas en 45 min (máx. 25 puntos). El ejercicio de desarrollo es exclusivo de Gestión.' },
+      { question: '¿Cuánto cobra un Gestor Procesal en 2026?', answer: 'Entre 2.400 y 2.800€ brutos/mes sin guardias (14 pagas), lo que equivale a un salario anual bruto de 27.000-29.000€. El sueldo neto se sitúa entre 1.800 y 2.300€/mes. Con guardias y complementos puede superar los 3.000€ brutos/mes.' },
+      { question: '¿Cuánto tiempo se necesita para preparar Gestión Procesal?', answer: 'La preparación típica dura entre 14 y 24 meses con 3-4 horas diarias. Los 68 temas requieren unos 10-13 meses de estudio del temario y 4-6 meses adicionales de repaso, simulacros y práctica del ejercicio de desarrollo escrito.' },
+    ],
+  },
 ]

@@ -1,10 +1,25 @@
 # Plan2: Expansión OpoRuta — Correos + Justicia
 
+## 🔴 REGLAS CRÍTICAS — LEER ANTES DE HACER NADA
+
+1. **La app actual NO se toca** hasta que Correos y Justicia estén 100% activas.
+   - La landing page, el pricing inline, la navegación → TODO queda intacto.
+   - Solo se trabaja en código nuevo (migrations, sub-landings, contenido, scoring engine).
+   - La página /precios existe pero NO se enlaza desde ningún sitio hasta el lanzamiento.
+2. **Seguir las fases EN ORDEN**: FASE 0 → FASE 1 → FASE 2 → FASE S.
+   - No saltar a FASE S (landing multi-rama) antes de tener el contenido listo.
+3. **Cada tarea se marca [x] SOLO cuando el código está en el repo** (committed o en archivos locales verificados).
+   - No marcar tareas como completadas si no se ha verificado que el código existe.
+4. **Sub-landings SEO son independientes** — se pueden crear porque no afectan la app actual.
+5. **Al empezar una sesión nueva**: leer este plan, verificar qué hay realmente en el código, y continuar desde donde se dejó.
+
+---
+
 ## Pricing
 
 | Pack | AGE | Justicia | Correos |
 |------|-----|----------|---------|
-| Individual C2/IV | 49.99€ | 49.99€ | 39.99€ |
+| Individual C2/IV | 49.99€ | 49.99€ | 49.99€ |
 | Individual C1 | 49.99€ | 49.99€ | — |
 | Individual A2 | 69.99€ | 79.99€ | — |
 | Doble (C1+C2) | 79.99€ | 79.99€ | — |
@@ -34,17 +49,17 @@
 - [x] `activa=true` → seleccionable como ahora
 - [x] `components/cuenta/ProfileForm.tsx`: eliminar OPOSICIONES[] hardcoded, recibir como prop
 - [x] `app/(dashboard)/cuenta/page.tsx`: query oposiciones, pasar a ProfileForm
-- [ ] `lib/utils/oposicion-labels.ts`: eliminar mapa estático, query DB
-- [ ] `components/shared/PrimerTestSelector.tsx`: ya es dinámico, solo añadir badge "Próximamente" para inactivas
+- [x] `lib/utils/oposicion-labels.ts`: eliminar mapa estático, query DB (async + cache 5min)
+- [x] `components/shared/PrimerTestSelector.tsx`: ya es dinámico, solo añadir badge "Próximamente" para inactivas
 
 ### 0.3 Motor de scoring configurable
-- [ ] Crear `lib/utils/scoring.ts` con función `calcularPuntuacion(aciertos, errores, config)`
-- [ ] Config soporta array de ejercicios (Auxilio=2, Tramitación=3, Correos=1)
-- [ ] Cada ejercicio: {nombre, preguntas, acierto, error, max, min_aprobado, penaliza}
-- [ ] `app/(dashboard)/tests/[id]/resultados/page.tsx`: fetch scoring_config de la oposición del test
-- [ ] Si penaliza=false → mostrar "Sin penalización — responde todas las preguntas" en vez de fórmula -1/3
-- [ ] Si penaliza=true → mostrar fórmula con valores reales del scoring_config
-- [ ] `lib/utils/simulacro-ranking.ts`: aceptar scoring_config param
+- [x] Crear `lib/utils/scoring.ts` con función `calcularPuntuacion(aciertos, errores, config)`
+- [x] Config soporta array de ejercicios (Auxilio=2, Tramitación=3, Correos=1)
+- [x] Cada ejercicio: {nombre, preguntas, acierto, error, max, min_aprobado, penaliza}
+- [x] `app/(dashboard)/tests/[id]/resultados/page.tsx`: fetch scoring_config de la oposición del test
+- [x] Si penaliza=false → mostrar "Sin penalización — responde todas las preguntas" en vez de fórmula -1/3
+- [x] Si penaliza=true → mostrar fórmula con valores reales del scoring_config
+- [x] `lib/utils/simulacro-ranking.ts`: aceptar scoring_config param
 
 ### 0.4 Stripe rama-aware combos
 - [ ] `lib/stripe/client.ts`: crear mapa COMBO_PACKS con oposicion IDs por rama
@@ -247,11 +262,11 @@ Estructura:
 
 ### S.4 Sub-landings por rama (SEO critical)
 - [ ] `app/(marketing)/oposiciones/administracion/page.tsx` — ya parcialmente existe, refactorizar
-- [ ] `app/(marketing)/oposiciones/correos/page.tsx` — NUEVA
-- [ ] `app/(marketing)/oposiciones/justicia/page.tsx` — NUEVA (hub)
-- [ ] `app/(marketing)/oposiciones/justicia/auxilio-judicial/page.tsx` — NUEVA
-- [ ] `app/(marketing)/oposiciones/justicia/tramitacion-procesal/page.tsx` — NUEVA
-- [ ] `app/(marketing)/oposiciones/justicia/gestion-procesal/page.tsx` — NUEVA
+- [x] `app/(marketing)/oposiciones/correos/page.tsx` — NUEVA
+- [x] `app/(marketing)/oposiciones/justicia/page.tsx` — NUEVA (hub)
+- [x] `app/(marketing)/oposiciones/justicia/auxilio-judicial/page.tsx` — NUEVA
+- [x] `app/(marketing)/oposiciones/justicia/tramitacion-procesal/page.tsx` — NUEVA
+- [x] `app/(marketing)/oposiciones/justicia/gestion-procesal/page.tsx` — NUEVA
 
 Cada sub-landing incluye:
 - [ ] Hero con datos oficiales (plazas, fecha examen, temario)
@@ -272,14 +287,16 @@ Cada sub-landing incluye:
 - [ ] Schema markup interactivo
 
 ### S.6 Blog SEO — Calendario de publicación
-- [ ] Semana 1-2 (quick wins):
+- [x] Semana 1-2 (quick wins):
   - "Cambios temario Justicia 2026: LO 1/2025 explicada"
   - "Auxilio Judicial vs Tramitación Procesal: ¿cuál elegir?"
   - "Examen Correos 2026: guía completa (temario, scoring, plazas)"
-- [ ] Semana 3-4 (pilares):
+- [x] Semana 3-4 (pilares):
   - "Guía completa Auxilio Judicial 2026" (3000+ palabras, pilar)
   - "Guía completa Tramitación Procesal 2026" (pilar)
   - "Test Correos online gratis: practica con preguntas reales"
+  - "Temario Correos 2026: los 12 temas explicados"
+  - "Gestión Procesal A2 2026: la oposición más completa de Justicia"
 - [ ] Semana 5-8 (long-tail):
   - "Test auxilio judicial tema 1 constitución"
   - "Simulacro tramitación procesal online"
@@ -296,9 +313,9 @@ Cada sub-landing incluye:
 - [ ] GDPR: opt-in explícito, enlace baja
 
 ### S.8 Sitemap + robots + SEO técnico
-- [ ] Actualizar `app/sitemap.ts` con todas las nuevas rutas
-- [ ] Actualizar `app/robots.ts` para permitir indexación de /oposiciones/*
-- [ ] `public/llms.txt` y `public/llms-full.txt`: añadir info Correos + Justicia
+- [x] Actualizar `app/sitemap.ts` con todas las nuevas rutas
+- [x] Actualizar `app/robots.ts` para permitir indexación de /oposiciones/*
+- [x] `public/llms.txt` y `public/llms-full.txt`: añadir info Correos + Justicia
 - [ ] Open Graph images dinámicas por oposición
 
 ---
