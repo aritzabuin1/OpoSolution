@@ -107,7 +107,9 @@ export function Sidebar({ isAdmin = false, features }: SidebarProps) {
               <span className="flex-1">{label}</span>
               {isLocked && (
                 <div className="relative">
-                  <Lock className="h-3 w-3 text-amber-500" />
+                  <span className="inline-flex items-center rounded-full bg-amber-100 px-1.5 py-0.5 text-[9px] font-bold text-amber-700 uppercase tracking-wider">
+                    PRO
+                  </span>
                   {/* Tooltip on hover */}
                   <div className="pointer-events-none absolute left-full ml-3 top-1/2 -translate-y-1/2 z-50 hidden group-hover/nav:block w-56 p-3 rounded-lg bg-popover border shadow-lg">
                     <p className="text-xs font-semibold text-foreground">{label}</p>

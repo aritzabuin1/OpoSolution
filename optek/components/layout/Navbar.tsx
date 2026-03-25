@@ -91,7 +91,11 @@ export function Navbar({ isAdmin = false, features }: { isAdmin?: boolean; featu
               >
                 <Icon className="h-4 w-4" />
                 <span className="flex-1">{label}</span>
-                {isLocked && <Lock className="h-3 w-3 text-amber-500" />}
+                {isLocked && (
+                  <span className="inline-flex items-center rounded-full bg-amber-100 px-1.5 py-0.5 text-[9px] font-bold text-amber-700 uppercase tracking-wider">
+                    PRO
+                  </span>
+                )}
               </Link>
             )
           })}

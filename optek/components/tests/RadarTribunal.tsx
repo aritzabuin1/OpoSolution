@@ -2,8 +2,8 @@
 
 import { Lock, TrendingUp, Shield, Target, Zap } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
+import { BuyButton } from '@/components/cuenta/BuyButton'
+import { useOposicionTier } from '@/lib/hooks/useOposicionTier'
 
 export interface RadarArticulo {
   legislacion_id: string
@@ -26,6 +26,7 @@ interface RadarTribunalProps {
 }
 
 export default function RadarTribunal({ articulos, isPaid, freeLimit = 3 }: RadarTribunalProps) {
+  const { tier, price } = useOposicionTier()
   // Free users see the LEAST important articles (bottom of ranking)
   // so they know the tool works but need Premium for the top ones
   const visibleArticulos = isPaid ? articulos : articulos.slice(-freeLimit)
@@ -149,11 +150,9 @@ export default function RadarTribunal({ articulos, isPaid, freeLimit = 3 }: Rada
           </div>
 
           <div className="space-y-2 pt-2">
-            <Button asChild size="lg" className="px-8">
-              <Link href="/cuenta">Desbloquear Radar completo — 49,99 EUR</Link>
-            </Button>
+            <BuyButton tier={tier} label={`Desbloquear Radar completo — ${price}`} size="default" className="px-8" />
             <p className="text-xs text-muted-foreground">
-              Pago unico · Incluye tests ilimitados + 20 analisis detallados + simulacros
+              Pago único · Incluye tests ilimitados + 20 análisis detallados + simulacros
             </p>
           </div>
         </div>

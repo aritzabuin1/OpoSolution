@@ -39,9 +39,22 @@ export async function POST(request: NextRequest) {
   if ('horas_diarias_estudio' in body) update.horas_diarias_estudio = body.horas_diarias_estudio
 
   // 2. Upsert via service client (bypasses RLS — safe because we verified identity above)
-  // Uses upsert instead of update: if the profile row doesn't exist (e.g. trigger
-  // handle_new_user didn't fire), it creates it. Otherwise it updates.
   const serviceClient = await createServiceClient()
+
+  // If switching to A2 (GACE), grant 1 free supuesto práctico (if they have 0)
+  const A2_OPOSICION_ID = 'c2000000-0000-0000-0000-000000000001'
+  if (update.oposicion_id === A2_OPOSICION_ID) {
+    const { data: currentProfile } = await serviceClient
+      .from('profiles')
+      .select('supuestos_balance')
+      .eq('id', user.id)
+      .single()
+    const currentBalance = (currentProfile as { supuestos_balance?: number } | null)?.supuestos_balance ?? 0
+    if (currentBalance === 0) {
+      update.supuestos_balance = 1
+    }
+  }
+
   const { data, error } = await serviceClient
     .from('profiles')
     .upsert({ id: user.id, email: user.email ?? '', ...update }, { onConflict: 'id' })

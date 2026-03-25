@@ -223,12 +223,15 @@ export function EditorView({ temas, freeCorrectionsUsed, hasPaidAccess }: Editor
       </Button>
 
       {freeLimitReached && (
-        <p className="text-center text-sm text-muted-foreground">
-          Has usado tus 2 correcciones gratuitas.{' '}
-          <a href="/cuenta" className="text-primary underline">
-            Ver planes de pago
-          </a>
-        </p>
+        <div className="rounded-lg border border-primary/20 bg-primary/5 p-4 text-center space-y-2">
+          <p className="text-sm font-medium">Has usado tus 2 correcciones gratuitas</p>
+          <p className="text-xs text-muted-foreground">
+            Desbloquea correcciones ilimitadas + tests ilimitados + simulacros
+          </p>
+          <Button size="sm" onClick={() => setShowPaywall(true)}>
+            Desbloquear Premium
+          </Button>
+        </div>
       )}
 
       {/* Paywall Dialog — se muestra sobre el editor sin reemplazarlo */}

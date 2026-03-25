@@ -2,8 +2,8 @@
 
 import { Lock, TrendingUp, Shield, Target, Zap } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
+import { BuyButton } from '@/components/cuenta/BuyButton'
+import { useOposicionTier } from '@/lib/hooks/useOposicionTier'
 
 export interface RadarTema {
   tema_id: string
@@ -27,6 +27,7 @@ function getBloqueLabel(_numero: number, bloque?: string): { label: string; colo
 }
 
 export default function RadarTemas({ temas, isPaid, freeLimit = 5 }: RadarTemasProps) {
+  const { tier, price } = useOposicionTier()
   const maxApariciones = temas.length > 0 ? Math.max(...temas.map(t => t.num_apariciones)) : 1
   // Free users see the LEAST important temas (bottom of ranking)
   const visibleTemas = isPaid ? temas : temas.slice(-freeLimit)
@@ -139,11 +140,9 @@ export default function RadarTemas({ temas, isPaid, freeLimit = 5 }: RadarTemasP
           </div>
 
           <div className="space-y-2 pt-2">
-            <Button asChild size="lg" className="px-8">
-              <Link href="/cuenta">Desbloquear Radar completo — 49,99 EUR</Link>
-            </Button>
+            <BuyButton tier={tier} label={`Desbloquear Radar completo — ${price}`} size="default" className="px-8" />
             <p className="text-xs text-muted-foreground">
-              Pago unico · Incluye tests ilimitados + 20 analisis detallados + simulacros
+              Pago único · Incluye tests ilimitados + 20 análisis detallados + simulacros
             </p>
           </div>
         </div>

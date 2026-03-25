@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { FileText, Sparkles, Clock, CheckCircle2, Lock } from 'lucide-react'
 import Link from 'next/link'
+import { BuyButton } from '@/components/cuenta/BuyButton'
 
 export const metadata = {
   title: 'Supuesto Práctico — OpoRuta',
@@ -160,12 +161,14 @@ export default async function SupuestoPracticoPage() {
         </Card>
       ) : (
         <Card className="border-amber-200">
-          <CardContent className="pt-6 text-center space-y-3">
+          <CardContent className="pt-6 text-center space-y-4">
             <Lock className="h-8 w-8 text-amber-500 mx-auto" />
             <p className="font-medium">No tienes supuestos disponibles</p>
             <p className="text-sm text-muted-foreground">
-              Compra el Pack Gestión del Estado (A2) para obtener 5 supuestos prácticos con corrección IA.
+              El Pack A2 incluye 5 supuestos prácticos con corrección IA + rúbrica oficial INAP.
             </p>
+            <BuyButton tier="pack_a2" label="Desbloquear — 69,99€" />
+            <p className="text-xs text-muted-foreground">Pago único · Sin suscripción</p>
           </CardContent>
         </Card>
       )}
