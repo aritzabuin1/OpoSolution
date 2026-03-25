@@ -36,48 +36,19 @@ export async function POST(request: NextRequest) {
   if ('fecha_examen' in body) update.fecha_examen = body.fecha_examen
   if ('horas_diarias_estudio' in body) update.horas_diarias_estudio = body.horas_diarias_estudio
 
-  // 2. Update via service client (bypasses RLS — safe because we verified identity above)
+  // 2. Upsert via service client (bypasses RLS — safe because we verified identity above)
+  // Uses upsert instead of update: if the profile row doesn't exist (e.g. trigger
+  // handle_new_user didn't fire), it creates it. Otherwise it updates.
   const serviceClient = await createServiceClient()
-
-  // Step A: do the update (no .select, no .single — raw result)
-  const { error: updateError } = await serviceClient
+  const { data, error } = await serviceClient
     .from('profiles')
-    .update(update)
-    .eq('id', user.id)
-
-  if (updateError) {
-    return NextResponse.json(
-      { error: `UPDATE failed: ${updateError.message} [${updateError.code}]` },
-      { status: 500 }
-    )
-  }
-
-  // Step B: read back to confirm (no .single() — just check what we get)
-  const { data: rows, error: readError } = await serviceClient
-    .from('profiles')
+    .upsert({ id: user.id, email: user.email, ...update }, { onConflict: 'id' })
     .select('oposicion_id')
-    .eq('id', user.id)
+    .single()
 
-  if (readError) {
-    return NextResponse.json(
-      { error: `READ error: ${readError.message} [${readError.code}]` },
-      { status: 500 }
-    )
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 })
   }
 
-  const arr = rows as Array<{ oposicion_id: string }> | null
-  if (!arr || arr.length === 0) {
-    // Service client can't find the profile — likely wrong SUPABASE_SERVICE_ROLE_KEY
-    // Try a count of ALL profiles to test service client access
-    const { count } = await serviceClient
-      .from('profiles')
-      .select('id', { count: 'exact', head: true })
-
-    return NextResponse.json(
-      { error: `Profile no encontrado. userId=${user.id}, totalProfiles=${count ?? 'null (no access)'}` },
-      { status: 500 }
-    )
-  }
-
-  return NextResponse.json({ ok: true, oposicion_id: arr[0].oposicion_id })
+  return NextResponse.json({ ok: true, oposicion_id: data.oposicion_id })
 }
