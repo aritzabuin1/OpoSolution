@@ -161,8 +161,8 @@ export default async function CuentaPage() {
           <BuyButton tier="recarga" label="Recargar" variant="default" />
         </div>
       )}
-      {/* Banner supuestos prácticos — solo oposiciones A2 */}
-      {hasSupuestoPractico && (
+      {/* Banner supuestos prácticos — solo oposiciones A2, premium only para recarga */}
+      {hasSupuestoPractico && isPremium && (
         <div className="rounded-xl border border-emerald-300/30 bg-emerald-50/50 dark:bg-emerald-950/20 p-5 flex items-center justify-between gap-4">
           <div>
             <p className="font-semibold text-sm flex items-center gap-2">
@@ -176,6 +176,21 @@ export default async function CuentaPage() {
           {!flags?.is_admin && supuestosBalance < 3 && (
             <BuyButton tier={'recarga_sup' as 'recarga'} label="Recargar 14,99€" variant="default" />
           )}
+        </div>
+      )}
+      {/* Free A2: recarga de supuestos bloqueada — necesita pack primero */}
+      {hasSupuestoPractico && !isPremium && (
+        <div className="rounded-xl border border-muted/50 bg-muted/20 p-5 flex items-center justify-between gap-4 opacity-60">
+          <div>
+            <p className="font-semibold text-sm text-muted-foreground flex items-center gap-2">
+              <Sparkles className="h-4 w-4" />
+              Recarga supuestos — 14,99€ · +5 correcciones
+            </p>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              Disponible con el Pack A2. Compra el pack y podrás recargar supuestos cuando los necesites.
+            </p>
+          </div>
+          <BuyButton tier="pack_a2" label="Comprar pack" variant="outline" />
         </div>
       )}
 
