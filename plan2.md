@@ -15,25 +15,25 @@
 ## FASE 0 — Arquitectura base
 
 ### 0.1 Migration: rama + scoring_config + campos nuevos en oposiciones
-- [ ] Crear `supabase/migrations/20260326_047_rama_scoring.sql`
-- [ ] ALTER TABLE oposiciones ADD COLUMN rama TEXT
-- [ ] ALTER TABLE oposiciones ADD COLUMN scoring_config JSONB
-- [ ] ALTER TABLE oposiciones ADD COLUMN nivel TEXT
-- [ ] ALTER TABLE oposiciones ADD COLUMN orden INT DEFAULT 0
-- [ ] ALTER TABLE oposiciones ADD COLUMN plazas INT
-- [ ] ALTER TABLE oposiciones ADD COLUMN fecha_examen_aprox DATE
-- [ ] Backfill C2 Auxiliar AGE: rama='age', nivel='C2', orden=1, scoring_config con penaliza=true, error_factor=0.333
-- [ ] Backfill C1 Admin AGE: rama='age', nivel='C1', orden=2, scoring_config
-- [ ] Backfill A2 Gestión AGE: rama='age', nivel='A2', orden=3, scoring_config
+- [x] Crear `supabase/migrations/20260326_047_rama_scoring.sql`
+- [x] ALTER TABLE oposiciones ADD COLUMN rama TEXT
+- [x] ALTER TABLE oposiciones ADD COLUMN scoring_config JSONB
+- [x] ALTER TABLE oposiciones ADD COLUMN nivel TEXT
+- [x] ALTER TABLE oposiciones ADD COLUMN orden INT DEFAULT 0
+- [x] ALTER TABLE oposiciones ADD COLUMN plazas INT
+- [x] ALTER TABLE oposiciones ADD COLUMN fecha_examen_aprox DATE
+- [x] Backfill C2 Auxiliar AGE: rama='age', nivel='C2', orden=1, scoring_config con penaliza=true, error_factor=0.333
+- [x] Backfill C1 Admin AGE: rama='age', nivel='C1', orden=2, scoring_config
+- [x] Backfill A2 Gestión AGE: rama='age', nivel='A2', orden=3, scoring_config
 
 ### 0.2 Registro dinámico — eliminar arrays hardcoded
-- [ ] `app/(auth)/register/page.tsx`: convertir OPOSICIONES[] a query `SELECT FROM oposiciones ORDER BY rama, orden`
-- [ ] Crear Client Component `RegisterForm.tsx` que recibe oposiciones como prop
-- [ ] Agrupar por rama con headers ("Administración del Estado", "Justicia", "Correos")
-- [ ] `activa=false` → badge "Próximamente", no seleccionable (disabled + opacity)
-- [ ] `activa=true` → seleccionable como ahora
-- [ ] `components/cuenta/ProfileForm.tsx`: eliminar OPOSICIONES[] hardcoded, recibir como prop
-- [ ] `app/(dashboard)/cuenta/page.tsx`: query oposiciones, pasar a ProfileForm
+- [x] `app/(auth)/register/page.tsx`: convertir OPOSICIONES[] a query `SELECT FROM oposiciones ORDER BY rama, orden`
+- [x] Crear Client Component `RegisterForm.tsx` que recibe oposiciones como prop
+- [x] Agrupar por rama con headers ("Administración del Estado", "Justicia", "Correos")
+- [x] `activa=false` → badge "Próximamente", no seleccionable (disabled + opacity)
+- [x] `activa=true` → seleccionable como ahora
+- [x] `components/cuenta/ProfileForm.tsx`: eliminar OPOSICIONES[] hardcoded, recibir como prop
+- [x] `app/(dashboard)/cuenta/page.tsx`: query oposiciones, pasar a ProfileForm
 - [ ] `lib/utils/oposicion-labels.ts`: eliminar mapa estático, query DB
 - [ ] `components/shared/PrimerTestSelector.tsx`: ya es dinámico, solo añadir badge "Próximamente" para inactivas
 
