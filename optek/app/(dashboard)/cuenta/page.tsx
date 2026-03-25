@@ -274,13 +274,31 @@ export default async function CuentaPage() {
               <span className="text-4xl font-bold">{flags?.is_admin ? '∞' : supuestosBalance}</span>
               <div>
                 <p className="text-sm text-muted-foreground">supuestos prácticos restantes</p>
-                {!flags?.is_admin && supuestosBalance === 0 && (
+                {!flags?.is_admin && supuestosBalance === 0 && !isPremium && (
                   <p className="text-xs text-red-600 mt-1">
-                    Compra el Pack A2 o una recarga para practicar supuestos
+                    No te quedan correcciones de supuesto
+                  </p>
+                )}
+                {!flags?.is_admin && supuestosBalance === 0 && isPremium && (
+                  <p className="text-xs text-red-600 mt-1">
+                    No te quedan correcciones — recarga para continuar
                   </p>
                 )}
               </div>
             </div>
+            {/* Free user sin balance: CTA para comprar pack */}
+            {!flags?.is_admin && supuestosBalance === 0 && !isPremium && (
+              <div className="mt-4 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/20 text-sm flex items-center justify-between gap-4">
+                <div>
+                  <p className="font-medium">Pack A2 — 5 supuestos con corrección IA</p>
+                  <p className="text-muted-foreground text-xs mt-0.5">
+                    69,99€ · pago único · incluye tests ilimitados + análisis
+                  </p>
+                </div>
+                <BuyButton tier="pack_a2" label="Comprar" variant="default" />
+              </div>
+            )}
+            {/* Premium con balance bajo: CTA recarga */}
             {!flags?.is_admin && supuestosBalance < 3 && isPremium && (
               <div className="mt-4 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/20 text-sm flex items-center justify-between gap-4">
                 <div>
