@@ -417,3 +417,77 @@ ${dataCard(`
 </p>
 ${ctaButton(`Empezar hoy →`, '/#precios')}`
 }
+
+// ─── Hot Lead 5 temas — show analysis value ─────────────────────────────────
+
+export function renderHotLead5(data: {
+  nombre: string | null
+  oposicionNombre: string
+  temasExplored: number
+  avgScore: number | null
+  totalTemas: number
+}): string {
+  const saludo = data.nombre ? `${data.nombre}, ` : ''
+  const nota = data.avgScore !== null ? Math.round(data.avgScore) : null
+  const notaText = nota !== null
+    ? nota >= 70
+      ? `Tu nota media es <strong>${nota}%</strong> — vas bien encaminado.`
+      : `Tu nota media es <strong>${nota}%</strong> — hay margen de mejora.`
+    : ''
+
+  return `
+<p style="font-size:16px;color:#1f2937;line-height:1.6;">
+  ${saludo}ya has explorado <strong>${data.temasExplored} temas</strong> de ${data.oposicionNombre}. ${notaText}
+</p>
+<p style="font-size:15px;color:#374151;line-height:1.6;">
+  ¿Sabes que puedes <strong>analizar cada error con IA</strong>? Cuando fallas una pregunta,
+  la IA te explica paso a paso por qué — primero te ayuda a razonar, luego te revela
+  la respuesta con la cita legal exacta.
+</p>
+<p style="font-size:15px;color:#374151;line-height:1.6;">
+  Tienes <strong>2 análisis gratuitos</strong>. Haz un test, falla alguna pregunta, y prueba el análisis.
+  Verás la diferencia entre estudiar solo y estudiar con un tutor que sabe la ley de memoria.
+</p>
+${ctaButton('Hacer un test y probar el análisis IA →', '/tests')}
+<p style="font-size:13px;color:#6b7280;margin-top:16px;">
+  Te quedan ${data.totalTemas - data.temasExplored} temas gratis por explorar.
+</p>`
+}
+
+// ─── Hot Lead 10+ temas — urgency, push to buy ──────────────────────────────
+
+export function renderHotLead10(data: {
+  nombre: string | null
+  oposicionNombre: string
+  oposicionSlug: string | null
+  temasExplored: number
+  avgScore: number | null
+  totalTemas: number
+}): string {
+  const saludo = data.nombre ? `${data.nombre}, ` : ''
+  const pct = Math.round((data.temasExplored / data.totalTemas) * 100)
+  const nota = data.avgScore !== null ? Math.round(data.avgScore) : null
+
+  return `
+<p style="font-size:16px;color:#1f2937;line-height:1.6;">
+  ${saludo}has explorado <strong>${data.temasExplored} de ${data.totalTemas} temas</strong> (${pct}%).
+  ${nota !== null ? `Tu nota media: <strong>${nota}%</strong>.` : ''}
+</p>
+<p style="font-size:15px;color:#374151;line-height:1.6;">
+  Ya conoces la herramienta. Sabes que funciona. Pero con 1 test por tema, no puedes
+  <strong>repetir los temas que peor llevas</strong> ni elegir la dificultad.
+</p>
+<p style="font-size:15px;color:#374151;line-height:1.6;">
+  Con el Pack Oposición desbloqueas:
+</p>
+<ul style="font-size:14px;color:#374151;line-height:1.8;padding-left:20px;">
+  <li><strong>Tests ilimitados</strong> — repite cualquier tema las veces que quieras</li>
+  <li><strong>Elige dificultad</strong> — fácil, media, difícil o progresivo</li>
+  <li><strong>20 análisis detallados con IA</strong> — cada error explicado con la ley exacta</li>
+  <li><strong>Simulacros oficiales INAP</strong> — con penalización real</li>
+</ul>
+<p style="font-size:15px;color:#374151;line-height:1.6;">
+  <strong>${precio(data.oposicionSlug)} · Pago único · Sin suscripción.</strong>
+</p>
+${ctaButton(`Desbloquear tests ilimitados — ${precio(data.oposicionSlug)} →`, '/cuenta')}`
+}

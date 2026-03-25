@@ -25,6 +25,8 @@ import {
   renderWallHit,
   renderUrgencyD21,
   renderFinal30d,
+  renderHotLead5,
+  renderHotLead10,
   wrapNurtureTemplate,
 } from '@/lib/email/nurture-templates'
 import { logger } from '@/lib/logger'
@@ -37,6 +39,8 @@ const MIN_DAYS_BETWEEN_EMAILS = 4
 
 // Email keys in priority order (highest first)
 const EMAIL_KEYS = [
+  'hot_lead_10',
+  'hot_lead_5',
   'wall_hit',
   'final_30d',
   'first_test_analysis',
@@ -68,6 +72,7 @@ interface NurtureCandidate {
   first_test_score: number | null
   // Tema counts (for new free tier model)
   total_temas: number
+  temas_explored: number       // unique temas completed by this user
 }
 
 export interface NurtureResult {
@@ -206,6 +211,7 @@ async function fetchCandidatesDirect(supabase: any): Promise<NurtureCandidate[]>
     avgScore: number | null
     lastTest: string | null
     scores: number[]
+    temas: Set<string>       // unique temas explored
     firstTestAt: string | null
     firstTestScore: number | null
     firstTestTemaId: string | null
@@ -213,12 +219,13 @@ async function fetchCandidatesDirect(supabase: any): Promise<NurtureCandidate[]>
   const statsMap = new Map<string, UserStats>()
   for (const t of testStats ?? []) {
     const entry = statsMap.get(t.user_id) ?? {
-      completed: 0, avgScore: null, lastTest: null, scores: [],
+      completed: 0, avgScore: null, lastTest: null, scores: [], temas: new Set<string>(),
       firstTestAt: null, firstTestScore: null, firstTestTemaId: null,
     }
     if (t.completado) {
       entry.completed++
       if (t.puntuacion != null) entry.scores.push(t.puntuacion)
+      if (t.tema_id) entry.temas.add(t.tema_id)
       // Track earliest completed test for first_test_analysis email
       if (!entry.firstTestAt || t.created_at < entry.firstTestAt) {
         entry.firstTestAt = t.created_at
@@ -288,6 +295,7 @@ async function fetchCandidatesDirect(supabase: any): Promise<NurtureCandidate[]>
       first_test_tema: firstTestTema,
       first_test_score: stats?.firstTestScore ?? null,
       total_temas: p.oposicion_id ? (temaCountMap.get(p.oposicion_id) ?? 0) : 0,
+      temas_explored: stats?.temas.size ?? 0,
     })
   }
 
@@ -306,8 +314,19 @@ function selectEmail(
   )
   const alreadySent = new Set(user.sent_keys)
 
-  // Priority order: wall_hit > final_30d > urgency > progress > value > activation
+  // Priority order: hot_lead > wall_hit > final_30d > urgency > progress > value > activation
   // Each email is sent only once (UNIQUE constraint)
+
+  // Email HOT LEAD (warm): 5+ temas — show value of analysis IA
+  if (user.temas_explored >= 5 && !alreadySent.has('hot_lead_5')) {
+    return 'hot_lead_5'
+  }
+
+  // Email HOT LEAD (hot): 10+ temas or >50% — urgency, push to buy
+  const halfTemas = Math.ceil(user.total_temas / 2)
+  if (user.temas_explored >= Math.min(10, halfTemas) && !alreadySent.has('hot_lead_10')) {
+    return 'hot_lead_10'
+  }
 
   // Email 4: Wall hit (triggered by behavior, not time)
   if (user.free_tests_used >= FREE_TEST_LIMIT && !alreadySent.has('wall_hit')) {
@@ -474,6 +493,39 @@ async function renderEmail(
         }),
       }
     }
+
+    case 'hot_lead_5': {
+      const body = renderHotLead5({
+        nombre,
+        oposicionNombre,
+        temasExplored: user.temas_explored,
+        avgScore: user.avg_score,
+        totalTemas: user.total_temas,
+      })
+      return {
+        subject: nombre
+          ? `${nombre}, ${user.temas_explored} temas explorados — ¿has probado el análisis IA?`
+          : `${user.temas_explored} temas explorados — ¿has probado el análisis IA?`,
+        html: wrapNurtureTemplate(body, { userId: user.id }),
+      }
+    }
+
+    case 'hot_lead_10': {
+      const body = renderHotLead10({
+        nombre,
+        oposicionNombre,
+        oposicionSlug,
+        temasExplored: user.temas_explored,
+        avgScore: user.avg_score,
+        totalTemas: user.total_temas,
+      })
+      return {
+        subject: nombre
+          ? `${nombre}, ya conoces OpoRuta — es hora de ir a por todas`
+          : 'Ya conoces OpoRuta — es hora de ir a por todas',
+        html: wrapNurtureTemplate(body, { userId: user.id }),
+      }
+    }
   }
 }
 
@@ -496,6 +548,7 @@ export async function previewNurtureEmail(emailKey: string): Promise<{ subject: 
     first_test_tema: 'Ley 39/2015 (LPAC)',
     first_test_score: 50,
     total_temas: 28,
+    temas_explored: 8,
   }
 
   const daysUntilExam = Math.max(0, Math.ceil((EXAM_DATE.getTime() - Date.now()) / (1000 * 60 * 60 * 24)))
