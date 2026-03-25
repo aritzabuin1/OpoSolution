@@ -1,14 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createServiceClient } from '@/lib/supabase/server'
 
 /**
  * POST /api/user/update-profile
  *
- * Server-side profile update. Uses the server Supabase client which has
- * a fresh session from request cookies — avoids browser client RLS issues
- * where auth.uid() can be null if the token expired client-side.
+ * Server-side profile update.
+ * 1. Verify identity via createClient (user-scoped, cookies)
+ * 2. Perform update via createServiceClient (service_role, bypasses RLS)
+ *
+ * Why service client for the update: in API routes, the anon client's JWT
+ * can't be refreshed (setAll silently fails) → expired token → auth.uid()=null
+ * → RLS blocks the UPDATE with 0 rows. Service client bypasses this.
+ * Security: we verify the user first, then update only THEIR profile.
  */
 export async function POST(request: NextRequest) {
+  // 1. Auth — verify the user's identity from cookies
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
@@ -23,34 +29,25 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Body inválido' }, { status: 400 })
   }
 
-  // Only allow updating specific fields
+  // Only allow updating specific fields (whitelist)
   const update: Record<string, unknown> = {}
   if ('full_name' in body) update.full_name = body.full_name
   if ('oposicion_id' in body) update.oposicion_id = body.oposicion_id
   if ('fecha_examen' in body) update.fecha_examen = body.fecha_examen
   if ('horas_diarias_estudio' in body) update.horas_diarias_estudio = body.horas_diarias_estudio
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data, error } = await (supabase as any)
+  // 2. Update via service client (bypasses RLS — safe because we verified identity above)
+  const serviceClient = await createServiceClient()
+  const { data, error } = await serviceClient
     .from('profiles')
     .update(update)
     .eq('id', user.id)
     .select('oposicion_id')
+    .single()
 
   if (error) {
-    return NextResponse.json(
-      { error: error.message, code: error.code, details: error.details, hint: error.hint },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: error.message }, { status: 500 })
   }
 
-  const rows = data as Array<{ oposicion_id: string }> | null
-  if (!rows || rows.length === 0) {
-    return NextResponse.json(
-      { error: `Update afectó 0 filas. userId=${user.id}, fields=${Object.keys(update).join(',')}` },
-      { status: 500 }
-    )
-  }
-
-  return NextResponse.json({ ok: true, oposicion_id: rows[0].oposicion_id })
+  return NextResponse.json({ ok: true, oposicion_id: data.oposicion_id })
 }
