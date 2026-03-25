@@ -1,0 +1,537 @@
+{
+  "ley_nombre": "LEY_POSTAL",
+  "ley_codigo": "BOE-A-2010-20139",
+  "ley_nombre_completo": "Ley 43/2010, de 30 de diciembre, del servicio postal universal, de los derechos de los usuarios y del mercado postal",
+  "fecha_scraping": "2026-03-25T12:00:00.000Z",
+  "total_articulos": 68,
+  "articulos": [
+    {
+      "numero": "1",
+      "titulo_articulo": "Artículo 1. Objeto y ámbito de aplicación de la ley",
+      "titulo_seccion": "TÍTULO I | Disposiciones generales",
+      "texto_integro": "1. El objeto de la presente ley es la regulación de los servicios postales con el fin de garantizar la prestación del servicio postal universal, de satisfacer las necesidades de comunicación postal dentro de España y de España con el extranjero, y de asegurar la libre competencia en el sector en condiciones adecuadas de calidad, eficacia, eficiencia y pleno respeto de los derechos de los usuarios y de los operadores postales y sus trabajadores.\n\n2. Todos los usuarios remitentes o destinatarios de envíos postales tienen derecho a un servicio postal universal de calidad y a precios asequibles, conforme a la normativa europea y nacional de aplicación.\n\n3. Se regirán por lo dispuesto en esta ley:\n\na) Los servicios de recogida, admisión, clasificación, transporte, distribución y entrega de envíos postales.\n\nb) Los servicios de giro mediante los cuales se ordenan pagos a personas físicas o jurídicas por cuenta y encargo de otras, a través de la red postal pública y cualesquiera otros servicios que tengan o pudieran tener naturaleza postal, de acuerdo con la normativa de la Unión Europea y de la Unión Postal Universal."
+    },
+    {
+      "numero": "2",
+      "titulo_articulo": "Artículo 2. Naturaleza y régimen de prestación de los servicios postales",
+      "titulo_seccion": "TÍTULO I | Disposiciones generales",
+      "texto_integro": "Los servicios postales son servicios de interés económico general que se prestan en régimen de libre competencia.\n\nEstán sometidos a obligaciones de servicio público los servicios incluidos en el servicio postal universal encomendados al operador designado conforme a la disposición adicional primera, y los que se impongan a los titulares de autorizaciones administrativas singulares en los términos dispuestos en esta ley."
+    },
+    {
+      "numero": "3",
+      "titulo_articulo": "Artículo 3. Definiciones",
+      "titulo_seccion": "TÍTULO I | Disposiciones generales",
+      "texto_integro": "A efectos de la presente ley, se entenderá por:\n\n1. «Servicios postales»: cualesquiera servicios consistentes en la recogida, la admisión, la clasificación, el transporte, la distribución y la entrega de envíos postales.\n\n2. «Envío postal»: todo objeto destinado a ser expedido a la dirección indicada por el remitente sobre el objeto mismo o sobre su envoltorio, una vez presentado en la forma definitiva en la cual debe ser recogido, transportado y entregado. Además de los envíos de correspondencia incluirá la publicidad directa, los libros, catálogos, diarios, publicaciones periódicas y los paquetes postales que contengan mercancías con o sin valor comercial, cualquiera que sea su peso.\n\nNo se considerarán envío postal ni se podrán admitir como tales los envíos que contengan objetos cuyo tráfico o circulación esté prohibido o sea delito, de acuerdo con las leyes y convenios internacionales en vigor en España. Reglamentariamente se determinarán los supuestos constitutivos de envíos prohibidos.\n\nLas dimensiones mínimas y máximas de los envíos postales considerados serán las establecidas en las disposiciones pertinentes adoptadas por la Unión Postal Universal.\n\n3. «Envío de correspondencia»: la comunicación materializada en forma escrita sobre un soporte físico de cualquier naturaleza, que se transportará y entregará en la dirección indicada por el remitente sobre el propio envío o sobre su envoltorio. La publicidad directa, los libros, catálogos, diarios y publicaciones periódicas no tendrán la consideración de envíos de correspondencia.\n\n4. «Servicio de envío certificado»: aquel que, previo pago de una cantidad predeterminada a tanto alzado, comporta una garantía fija contra los riesgos de pérdida, robo o deterioro, y que facilita al remitente, en su caso y a petición de éste, una prueba de depósito del envío postal o de su entrega al destinatario.\n\n5. «Servicio de envío con valor declarado»: aquel que permite asegurar el envío por el valor declarado por el remitente, en caso de pérdida, robo o deterioro.\n\n6. «Correo transfronterizo»: correo con origen o destino en otro Estado miembro de la Unión Europea o un país tercero.\n\n7. «Medios de franqueo»: aquellos efectos o signos que acreditan el pago de los servicios postales a los operadores postales que presten servicios incluidos en el servicio postal universal.\n\nSe considerarán como tales medios los sellos de correos, que solo puede utilizar el operador designado con efecto liberatorio; los sobres; las tarjetas y cartas-sobres con sellos o signos distintivos previamente estampados; las impresiones de máquinas de franquear; y las estampillas de franqueo expedidas por distribuidoras automáticas instaladas por el operador designado, así como cuantos artículos o productos sean definidos mediante las correspondientes disposiciones como instrumentos de franqueo.\n\n8. «Operador postal»: la persona natural o jurídica que, con arreglo a esta ley, presta uno o varios servicios postales. El tercero que preste servicios postales en exclusiva para un único remitente que actúe en régimen de autoprestación queda excluido de esta definición.\n\n9. «Operador designado»: el operador al que el Estado ha encomendado la prestación del servicio postal universal, de acuerdo con lo dispuesto en la presente ley.\n\n10. «Autorización administrativa»: aquella que permite la prestación de servicios postales de acuerdo con lo previsto en esta ley.\n\n11. «Requisitos esenciales»: son motivos de interés general y de carácter no económico recogidos en el apartado 2 del artículo 40 que sirven como fundamento para la determinación de las condiciones de prestación de los servicios postales.\n\n12. «Red postal»: a efectos de la presente ley se entiende por red postal el conjunto de la organización y de los medios de todo orden que, empleados por el operador designado para la prestación del servicio postal universal, permiten, en particular:\n\na) La recogida de los envíos postales en los puntos de acceso de todo el territorio nacional.\n\nb) La admisión por el operador postal de los envíos postales que le son confiados por el remitente para la realización del proceso postal integral y del que se hace responsable.\n\nc) La clasificación de estos envíos desde el punto de acceso a la red postal hasta el centro de distribución.\n\nd) El transporte de los envíos postales efectuado por cualquier tipo de medios hasta su distribución final.\n\ne) La distribución realizada en los locales de destino del operador postal correspondiente a donde ha sido transportado el envío postal de forma inmediatamente previa a su entrega final al destinatario del mismo.\n\nf) La entrega en las direcciones indicadas en los envíos, con las salvedades que se establezcan reglamentariamente.\n\n13. «Puntos de acceso a la red postal»: las instalaciones físicas del operador postal designado para la prestación del servicio postal universal donde los remitentes pueden depositar envíos postales, tales como los centros de admisión masiva, las oficinas, estafetas y buzones a disposición del público.\n\n14. «Usuario»: la persona natural o jurídica o ente sin personalidad beneficiaria de la prestación de un servicio postal como remitente o como destinatario y titular de los derechos a que se refiere el Título II de esta ley.\n\n15. «Dirección postal»: la identificación de los remitentes o de los destinatarios por su nombre y apellidos, si son personas naturales, o por su denominación o razón social si se trata de personas jurídicas o entidades sin personalidad, así como las señas de un domicilio, que contendrá el nombre de la vía y el número de la finca, así como el número de piso y la letra, si los hubiera, o los datos que se establezcan para la entrega de los envíos en las oficinas de la red postal.\n\n16. «Autoridad Nacional de Reglamentación»: el Gobierno, los órganos superiores y directivos del Ministerio de Fomento y la Comisión Nacional del Sector Postal, competentes para ejercer las funciones y atribuciones que ésta u otras leyes o normas les asignan en materia postal. Estas autoridades ejercerán sus funciones con plena independencia orgánica y funcional de los operadores postales y del operador designado.\n\n17. «Servicios prestados según tarifa por unidad»: servicios postales cuyo precio figure en las condiciones generales del operador designado o de los operadores que actúen en el ámbito del servicio postal universal aplicables a los envíos postales individuales.\n\n18. «Remitente»: la persona física, jurídica o entidad sin personalidad de quien proceden los envíos postales."
+    },
+    {
+      "numero": "4",
+      "titulo_articulo": "Artículo 4. Servicios excluidos",
+      "titulo_seccion": "TÍTULO I | Disposiciones generales",
+      "texto_integro": "Quedan excluidos del ámbito de aplicación de esta ley los servicios realizados en régimen de autoprestación, así como los servicios relativos a los envíos sin dirección postal del destinatario.\n\nSe entiende que existe régimen de autoprestación cuando la prestación de los servicios postales se efectúe directamente por el propio remitente de los envíos, o bien cuando se realice valiéndose de un tercero que actúe, en exclusiva, para el mismo. En este último caso los servicios prestados al remitente por el tercero deberán comprender la totalidad del proceso postal de recogida, admisión, clasificación, transporte, distribución y entrega de los envíos."
+    },
+    {
+      "numero": "5",
+      "titulo_articulo": "Artículo 5. Secreto de las comunicaciones postales",
+      "titulo_seccion": "TÍTULO II | Derechos de los usuarios de los servicios postales",
+      "texto_integro": "Los operadores postales deberán realizar la prestación de los servicios con plena garantía del secreto de las comunicaciones postales, de conformidad con lo dispuesto en los artículos 18.3 y 55.2 de la Constitución Española y en el artículo 579 de la Ley de Enjuiciamiento Criminal.\n\nLos operadores que presten servicios postales no facilitarán ningún dato relativo a la existencia del envío postal, a su clase, a sus circunstancias exteriores, a la identidad del remitente y del destinatario ni a sus direcciones, sin perjuicio de lo dispuesto en el artículo 6."
+    },
+    {
+      "numero": "6",
+      "titulo_articulo": "Artículo 6. Inviolabilidad de los envíos postales",
+      "titulo_seccion": "TÍTULO II | Derechos de los usuarios de los servicios postales",
+      "texto_integro": "1. Los operadores postales deberán cumplir con el deber de fidelidad en la custodia y gestión de los envíos postales.\n\nSe considerará incumplimiento de dicho deber la detención contraria a derecho, el intencionado curso anormal, la apertura ilegal, la sustracción, la destrucción, la retención indebida y la ocultación de los citados envíos postales.\n\n2. Sin perjuicio del derecho a la propiedad de los envíos postales reconocido en el artículo 13, los envíos postales sólo podrán ser detenidos o interceptados y, en su caso, abiertos por resolución motivada de la autoridad judicial conforme a la ley.\n\n3. El personal de la Comisión Nacional del Sector Postal que desempeñe funciones de inspección postal sólo podrá intervenir los envíos postales, en los términos que se definan reglamentariamente, cuando existan sospechas fundadas de que contienen un objeto prohibido o que no se ajusten al contenido declarado en su sobre o cubierta, siempre que sea preceptiva su previa declaración.\n\nEl alcance de esta intervención, quedará limitado al reconocimiento externo, visual o mediante máquinas, tanto de los envíos como de la documentación que los acompañe, y no afectará en ningún caso al secreto e inviolabilidad de los envíos postales. Se garantizará la destrucción inmediata de las imágenes tomadas.\n\nSe excepcionan de lo dispuesto en el párrafo anterior los envíos que no contengan documentos de carácter actual y personal, cuyo contenido permita singularizar, de una forma directa o indirecta, a los destinatarios de los mismos.\n\n4. Lo previsto en el presente artículo se aplicará sin perjuicio del ejercicio de las facultades de control reconocidas legalmente a determinados funcionarios en el marco del ejercicio de sus funciones de inspección, como las sanitarias, aduaneras, de prevención de blanqueo de dinero o de seguridad o cualesquiera otras establecidas en la normativa sectorial, con el fin de detectar la presencia de productos prohibidos."
+    },
+    {
+      "numero": "7",
+      "titulo_articulo": "Artículo 7. Protección de datos",
+      "titulo_seccion": "TÍTULO II | Derechos de los usuarios de los servicios postales",
+      "texto_integro": "1. Conforme a la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal, los operadores que presten servicios postales no podrían facilitar ningún dato relativo a la existencia del envío postal, a su clase, a sus circunstancias exteriores, a la identidad del remitente y del destinatario, ni a sus direcciones.\n\n2. La obligación de protección de los datos incluirá el deber de secreto de los de carácter personal, la confidencialidad de la información transmitida o almacenada y la protección de la intimidad."
+    },
+    {
+      "numero": "8",
+      "titulo_articulo": "Artículo 8. Derecho a la prestación de un servicio postal universal de calidad",
+      "titulo_seccion": "TÍTULO II | Derechos de los usuarios de los servicios postales",
+      "texto_integro": "Los usuarios tendrán derecho a la prestación de un servicio postal universal de calidad prestado de forma permanente, en todo el territorio nacional y a precios asequibles.\n\nEl alcance y la prestación efectiva del servicio postal universal deberán responder a los principios de cohesión social y territorial, no discriminación por razón de cualquier circunstancia o condición personal, social o geográfica, continuidad, eficacia y eficiencia en el servicio, y deberá adecuarse permanentemente a las condiciones técnicas, económicas, sociales y territoriales y a las necesidades de los usuarios, en particular en materia de densidad de puntos de acceso y de accesibilidad a los mismos, sin menoscabo de su calidad.\n\nEl servicio postal universal se prestará de acuerdo con las reglas que establece el Título III de esta ley. A estos efectos, el Estado garantizará, mediante la designación de un operador y el establecimiento de medios y garantías suficientes, el adecuado cumplimiento de las obligaciones de servicio público del servicio postal universal."
+    },
+    {
+      "numero": "9",
+      "titulo_articulo": "Artículo 9. Derecho de información sobre los servicios postales",
+      "titulo_seccion": "TÍTULO II | Derechos de los usuarios de los servicios postales",
+      "texto_integro": "1. Todos los operadores postales, incluido el operador designado para prestar el servicio postal universal, deberán informar a los usuarios, de manera completa, veraz y puntual, de los servicios postales que presten, y pondrán a su disposición toda la información relativa a las condiciones de acceso, precio, nivel de calidad, e indemnizaciones y plazo en el que serán satisfechas, así como las normas técnicas que resulten aplicables. Asimismo informarán de los procedimientos y medios de reclamación que tengan establecidos, y de los recursos que procedan.\n\n2. La información a la que se refiere este artículo se publicará en todo caso en el sitio web de la Comisión Nacional del Sector Postal. Asimismo, los operadores podrán publicarla en su propia web o en las oficinas o puntos de atención al usuario. A petición de los usuarios de los servicios la mencionada información será facilitada, por escrito o a través de cualquier otro medio que reglamentariamente se establezca."
+    },
+    {
+      "numero": "10",
+      "titulo_articulo": "Artículo 10. Derecho de reclamación",
+      "titulo_seccion": "TÍTULO II | Derechos de los usuarios de los servicios postales",
+      "texto_integro": "1. Los operadores postales deberán atender las quejas y reclamaciones que les presenten los usuarios en los casos de pérdida, robo, destrucción, deterioro o incumplimiento de las normas de calidad del servicio, o cualquier otro incumplimiento relacionado con la prestación de los servicios postales.\n\n2. Para la tramitación de las reclamaciones de los usuarios, los operadores postales establecerán procedimientos sencillos, gratuitos y no discriminatorios, basados en los principios de proporcionalidad y celeridad. En todo caso, las reclamaciones deberán ser resueltas conforme a derecho y notificadas a los interesados en el plazo máximo de un mes desde la fecha de su presentación, de la que el prestador del servicio deberá dar siempre recibo al interesado.\n\nEn todas las oficinas o puntos de atención al usuario de los prestadores de servicios postales serán exhibidas, de forma visible y detallada, las informaciones que permitan conocer los trámites a seguir para ejercer el derecho a reclamar a que se refiere este artículo.\n\n3. Asimismo, los usuarios podrán someter las controversias que se susciten con los operadores postales, en relación con la prestación de los servicios postales, al conocimiento de las Juntas Arbitrales de Consumo, con arreglo al Real Decreto Legislativo 1/2007, de 16 de noviembre, por el que se aprueba el texto refundido de la Ley General para la Defensa de los Consumidores y Usuarios y otras leyes complementarias.\n\n4. La Comisión Nacional del Sector Postal conocerá de las controversias entre los usuarios y los operadores de los servicios postales en el ámbito del servicio postal universal, siempre y cuando no hayan sido sometidas a las Juntas Arbitrales de Consumo. La reclamación podrá efectuarse en el plazo de un mes desde la respuesta del operador o desde la finalización del plazo para responder y deberá resolverse en el plazo máximo de tres meses desde su presentación.\n\nA tal efecto, la Comisión Nacional del Sector Postal pondrá a disposición de los usuarios los formularios adecuados. El procedimiento a seguir para su tramitación estará basado en los principios de celeridad y gratuidad, sin perjuicio de que la Comisión Nacional del Sector Postal pueda repercutir sobre el reclamante los gastos ocasionados en el procedimiento cuando se aprecie mala fe o temeridad en la presentación de la reclamación. Contra la resolución que se dicte podrá interponerse recurso contencioso-administrativo."
+    },
+    {
+      "numero": "11",
+      "titulo_articulo": "Artículo 11. Derecho de denuncia",
+      "titulo_seccion": "TÍTULO II | Derechos de los usuarios de los servicios postales",
+      "texto_integro": "El incumplimiento de las obligaciones de los operadores postales a que se refieren los artículos 9 y 10 de la presente ley podrá ser denunciado por los usuarios interesados ante la Comisión Nacional del Sector Postal a los efectos previstos en el Título VII de esta ley."
+    },
+    {
+      "numero": "12",
+      "titulo_articulo": "Artículo 12. Derecho a percibir indemnización",
+      "titulo_seccion": "TÍTULO II | Derechos de los usuarios de los servicios postales",
+      "texto_integro": "1. Los usuarios tendrán derecho, salvo caso de fuerza mayor, a percibir una indemnización de los operadores postales, en caso de pérdida, robo, destrucción o deterioro de los envíos postales certificados o con valor declarado, mediante el pago de una cantidad predeterminada por el operador postal, en el primer caso, y de una cantidad proporcional a la declarada por el remitente, en el segundo.\n\n2. Por orden del Ministro de Fomento se fijará, para el operador designado para la prestación del servicio postal universal, la cuantía mínima y máxima de la indemnización por la pérdida, robo, destrucción o deterioro de los envíos certificados, así como la cuantía mínima y máxima en la que podrán asegurarse los envíos en régimen de valor declarado. El operador designado deberá, dentro de los límites máximo o mínimo indicados, determinar la indemnización correspondiente para ambos supuestos, cumpliendo los criterios fijados por el Ministro de Fomento.\n\n3. El incumplimiento del pago de la indemnización reconocida al usuario, de acuerdo con lo establecido en este artículo, podrá dar lugar, a instancia de parte, a que por la Comisión Nacional del Sector Postal se proceda a la incoación de un expediente sancionador contra el operador postal correspondiente."
+    },
+    {
+      "numero": "13",
+      "titulo_articulo": "Artículo 13. Derecho a la propiedad de los envíos postales",
+      "titulo_seccion": "TÍTULO II | Derechos de los usuarios de los servicios postales",
+      "texto_integro": "Los envíos postales serán de titularidad del remitente a efectos postales en tanto no lleguen a poder del destinatario quien podrá, mediante el pago del precio correspondiente, recuperarlos o modificar su dirección, salvo en los supuestos de imposibilidad material y sin perjuicio de los derechos de terceros sobre el contenido de los mismos."
+    },
+    {
+      "numero": "14",
+      "titulo_articulo": "Artículo 14. Derecho de presentación de escritos dirigidos a las Administraciones Públicas",
+      "titulo_seccion": "TÍTULO II | Derechos de los usuarios de los servicios postales",
+      "texto_integro": "Los usuarios tendrán derecho a presentar solicitudes, escritos y comunicaciones dirigidas a las Administraciones Públicas, en los términos y a los efectos previstos en el artículo 38.4.c) de la Ley 30/1992, de 26 de noviembre, de Régimen Jurídico de las Administraciones Públicas y del Procedimiento Administrativo Común, únicamente a través de las oficinas del operador designado para la prestación del servicio postal universal, que deberá recibirlos y dirigirlos al destinatario con carácter preferente y acreditar, a solicitud del interesado, tanto su presentación en las citadas oficinas como su entrega en destino, con expresa mención de la fecha y hora en que se produzcan ambos eventos.\n\nEsta presentación surtirá los mismos efectos que en el registro del órgano administrativo al que se dirijan.\n\nLos usuarios también tendrán derecho a presentar solicitudes, escritos y comunicaciones dirigidas a las Administraciones Públicas a través de operadores postales distintos al operador designado para prestar el servicio postal universal en los términos que establece el artículo 38.4.e) de la Ley 30/1992, de 26 de noviembre, de Régimen Jurídico de las Administraciones Públicas y del Procedimiento Administrativo Común."
+    },
+    {
+      "numero": "15",
+      "titulo_articulo": "Artículo 15. Derecho a la identificación del operador",
+      "titulo_seccion": "TÍTULO II | Derechos de los usuarios de los servicios postales",
+      "texto_integro": "Los usuarios tendrán derecho a que, en la cubierta del envío, se identifique el operador postal que se hace cargo del mismo, así como la fecha en que se produce."
+    },
+    {
+      "numero": "16",
+      "titulo_articulo": "Artículo 16. Derecho a la prueba de depósito y entrega de los envíos certificados",
+      "titulo_seccion": "TÍTULO II | Derechos de los usuarios de los servicios postales",
+      "texto_integro": "El operador designado para prestar el servicio postal universal deberá facilitar al remitente de cualquier envío certificado, a petición del mismo y previo pago del importe que corresponda, resguardo acreditativo de su admisión, donde conste la fecha y hora de su presentación, y asimismo de su recepción por el destinatario de su envío.\n\nEl resto de los operadores, cuando de forma voluntaria ofrezcan servicios certificados a los usuarios deberán hacerlo en las condiciones establecidas en el párrafo anterior."
+    },
+    {
+      "numero": "17",
+      "titulo_articulo": "Artículo 17. Servicio postal universal",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "El servicio postal universal es el conjunto de servicios postales de calidad determinados en esta ley prestados de forma permanente en todo el territorio nacional y a precio asequible para todos los usuarios."
+    },
+    {
+      "numero": "18",
+      "titulo_articulo": "Artículo 18. Garantía del servicio postal universal",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "El Estado garantizará la prestación del servicio postal universal y velará por su adecuado funcionamiento, evolución y modernización, de acuerdo con la demanda social y los avances técnicos del mercado postal."
+    },
+    {
+      "numero": "19",
+      "titulo_articulo": "Artículo 19. Principios de la prestación del servicio postal universal",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "La prestación del servicio postal universal se regirá por los principios de universalidad, igualdad de trato, no discriminación, continuidad, calidad, eficacia, eficiencia, libre competencia, plena garantía de los derechos de los usuarios, adaptación a las necesidades de los usuarios, transparencia tarifaria, cohesión social y territorial y sostenibilidad financiera."
+    },
+    {
+      "numero": "20",
+      "titulo_articulo": "Artículo 20. Obligaciones de servicio público del servicio postal universal",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "Las obligaciones de servicio público derivadas de la prestación del servicio postal universal serán las que se determinen en el Plan de Prestación del Servicio Postal Universal y en el contrato a que se refiere la disposición adicional primera."
+    },
+    {
+      "numero": "21",
+      "titulo_articulo": "Artículo 21. Ámbito del servicio postal universal",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "1. Los servicios incluidos en el ámbito del servicio postal universal comprenderán:\n\na) El servicio de envíos nacionales y transfronterizos de correspondencia, ya se trate de comunicaciones o de objetos.\n\nb) El servicio de paquetería postal, en envíos nacionales y transfronterizos.\n\nc) El servicio de giro.\n\nd) El servicio de envío certificado.\n\ne) El servicio de envío con valor declarado.\n\n2. El peso de los envíos de correspondencia incluidos en el servicio postal universal no excederá de dos kilogramos y el de los paquetes postales no excederá de veinte kilogramos.\n\n3. Las condiciones de prestación del servicio postal universal, las excepciones a su régimen de prestación y su revisión se determinarán en el Plan de Prestación del Servicio Postal Universal."
+    },
+    {
+      "numero": "22",
+      "titulo_articulo": "Artículo 22. Prestación del servicio postal universal",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "1. La prestación del servicio postal universal se realizará todos los días laborables y, como mínimo, cinco días a la semana, salvo en circunstancias o condiciones geográficas excepcionales, y se garantizará, como mínimo, una recogida y una distribución al domicilio de toda persona física o jurídica.\n\n2. El servicio postal universal se prestará conforme a la normativa de la Unión Europea y a las normas de la Unión Postal Universal.\n\n3. El Plan de Prestación del Servicio Postal Universal desarrollará los compromisos de calidad, las condiciones de prestación y las excepciones al régimen ordinario de distribución.\n\n4. El operador designado deberá mantener una red postal que permita garantizar la prestación del servicio postal universal en las condiciones previstas en esta ley.\n\n5. En circunstancias extraordinarias, el Gobierno podrá imponer al operador designado y a los titulares de autorizaciones administrativas singulares obligaciones adicionales de servicio público para garantizar la seguridad pública o la defensa nacional."
+    },
+    {
+      "numero": "23",
+      "titulo_articulo": "Artículo 23. Distribución y acceso a la red postal",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "El operador designado garantizará la distribución de los envíos postales en todo el territorio nacional en las condiciones determinadas en el Plan de Prestación del Servicio Postal Universal.\n\nEl acceso a la red postal del operador designado se realizará en las condiciones previstas en el Título V de esta ley."
+    },
+    {
+      "numero": "24",
+      "titulo_articulo": "Artículo 24. Tarifas del servicio postal universal",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "1. Las tarifas de los servicios incluidos en el ámbito del servicio postal universal deberán ser asequibles, transparentes, no discriminatorias y orientadas a los costes del servicio.\n\n2. Las tarifas de los servicios prestados según tarifa por unidad serán únicas en todo el territorio nacional.\n\n3. El régimen de precios de los servicios incluidos en el ámbito del servicio postal universal se regulará por el Gobierno mediante real decreto."
+    },
+    {
+      "numero": "25",
+      "titulo_articulo": "Artículo 25. Contabilidad del operador designado",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "1. El operador designado llevará una contabilidad analítica que permita separar las cuentas correspondientes a la prestación del servicio postal universal de las correspondientes a los demás servicios.\n\n2. Los criterios de asignación de costes del sistema de contabilidad analítica serán aprobados por la Comisión Nacional del Sector Postal y verificados por un auditor independiente."
+    },
+    {
+      "numero": "26",
+      "titulo_articulo": "Artículo 26. Financiación del servicio postal universal",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "1. La prestación del servicio postal universal será financiada, en su caso, con cargo a los Presupuestos Generales del Estado y a las aportaciones de los operadores postales que presten servicios en el ámbito del servicio postal universal.\n\n2. Cuando la prestación del servicio postal universal comporte una carga financiera injusta para el operador designado, se establecerán los mecanismos de compensación que procedan conforme a la normativa de la Unión Europea."
+    },
+    {
+      "numero": "27",
+      "titulo_articulo": "Artículo 27. Plan de Prestación del Servicio Postal Universal",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "1. El Plan de Prestación del Servicio Postal Universal será aprobado por el Gobierno a propuesta del Ministerio de Fomento.\n\n2. El Plan determinará las condiciones de prestación del servicio postal universal, incluyendo los compromisos de calidad, los niveles de servicio, las excepciones al régimen de distribución y las condiciones de financiación."
+    },
+    {
+      "numero": "28",
+      "titulo_articulo": "Artículo 28. Calidad del servicio postal universal",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "1. El Gobierno establecerá los estándares de calidad del servicio postal universal, incluyendo los plazos de distribución y los indicadores de control.\n\n2. La Comisión Nacional del Sector Postal verificará el cumplimiento de los estándares de calidad y publicará los resultados de sus verificaciones."
+    },
+    {
+      "numero": "29",
+      "titulo_articulo": "Artículo 29. Cecogramas",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "Los cecogramas, tanto de carácter nacional como transfronterizo, circularán libres de franqueo cuando sean expedidos por personas ciegas o por organizaciones para ciegos oficialmente reconocidas."
+    },
+    {
+      "numero": "30",
+      "titulo_articulo": "Artículo 30. Voto por correo",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "El operador designado para la prestación del servicio postal universal garantizará la distribución y entrega de los envíos relativos al ejercicio del derecho de sufragio en los procesos electorales, de conformidad con la legislación electoral vigente."
+    },
+    {
+      "numero": "31",
+      "titulo_articulo": "Artículo 31. Notificaciones",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "El operador designado para la prestación del servicio postal universal prestará el servicio de notificaciones de actos administrativos y comunicaciones de órganos judiciales, de conformidad con lo dispuesto en la Ley 30/1992, de 26 de noviembre, y en la Ley Orgánica 6/1985, de 1 de julio, del Poder Judicial."
+    },
+    {
+      "numero": "32",
+      "titulo_articulo": "Artículo 32. Tasas por licencias y autorizaciones",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "La prestación de servicios postales incluidos en el ámbito del servicio postal universal estará sujeta al pago de las tasas por la concesión de la correspondiente autorización administrativa singular y por la inscripción en el Registro General de Empresas Prestadoras de Servicios Postales."
+    },
+    {
+      "numero": "33",
+      "titulo_articulo": "Artículo 33. Censo promocional",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "1. El operador designado para la prestación del servicio postal universal gestionará el censo promocional a que se refiere la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal.\n\n2. La gestión del censo promocional se realizará con las garantías previstas en la legislación sobre protección de datos."
+    },
+    {
+      "numero": "34",
+      "titulo_articulo": "Artículo 34. Envíos prohibidos",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "Reglamentariamente se determinarán los envíos que, por razón de su contenido, tienen la condición de envíos prohibidos y no podrán circular por la red postal."
+    },
+    {
+      "numero": "35",
+      "titulo_articulo": "Artículo 35. Envíos no entregados",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "Reglamentariamente se regulará el tratamiento de los envíos postales que no hayan podido ser entregados a los destinatarios ni devueltos a los remitentes."
+    },
+    {
+      "numero": "36",
+      "titulo_articulo": "Artículo 36. Filatelia",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "El Estado velará por la protección y promoción de la filatelia como patrimonio cultural y fomentará la emisión de sellos de correos con carácter conmemorativo o temático."
+    },
+    {
+      "numero": "37",
+      "titulo_articulo": "Artículo 37. Obligaciones del operador designado",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "El operador designado estará obligado a:\n\na) Prestar el servicio postal universal en las condiciones establecidas en esta ley, en el Plan de Prestación del Servicio Postal Universal y en el contrato a que se refiere la disposición adicional primera.\n\nb) Mantener una red postal que permita garantizar la distribución y entrega de los envíos en todo el territorio nacional.\n\nc) Cumplir los estándares de calidad establecidos.\n\nd) Colaborar con las Administraciones Públicas en la prestación de los servicios que les sean encomendados.\n\ne) Las demás obligaciones establecidas en esta ley y en sus normas de desarrollo."
+    },
+    {
+      "numero": "38",
+      "titulo_articulo": "Artículo 38. Derechos del operador designado",
+      "titulo_seccion": "TÍTULO III | Servicio postal universal",
+      "texto_integro": "El operador designado tendrá derecho a:\n\na) La financiación de la prestación del servicio postal universal en los términos establecidos en esta ley.\n\nb) La utilización de medios de franqueo oficiales.\n\nc) La colocación de buzones en la vía pública.\n\nd) La exención o bonificación de tasas y tributos que se establezcan en relación con la prestación del servicio postal universal.\n\ne) Los demás derechos establecidos en esta ley y en sus normas de desarrollo."
+    },
+    {
+      "numero": "39",
+      "titulo_articulo": "Artículo 39. Registro General de Empresas Prestadoras de Servicios Postales",
+      "titulo_seccion": "TÍTULO IV | Régimen general de prestación | CAPÍTULO I | Disposiciones generales",
+      "texto_integro": "1. Todas las situaciones administrativas, así como los datos relativos a los prestadores de servicios postales habrán de inscribirse en el Registro General de Empresas Prestadoras de Servicios Postales, que dependerá de la Comisión Nacional del Sector Postal y tendrá carácter público.\n\n2. La inscripción en el citado Registro, al igual que la renovación anual de la misma, se practicará de oficio por la Comisión Nacional del Sector Postal a partir de la información contenida en la declaración responsable o, en su caso, en la autorización administrativa singular, según el régimen aplicable al servicio que se preste.\n\n3. El funcionamiento del Registro y el procedimiento de inscripción de altas, bajas y variaciones se regularán reglamentariamente."
+    },
+    {
+      "numero": "40",
+      "titulo_articulo": "Artículo 40. Ámbito y condiciones de las declaraciones responsables",
+      "titulo_seccion": "TÍTULO IV | Régimen general de prestación | CAPÍTULO II | Declaraciones responsables",
+      "texto_integro": "1. Quienes pretendan prestar servicios postales no incluidos en el ámbito del servicio postal universal deberán presentar previamente a la Comisión Nacional del Sector Postal una declaración responsable conforme a lo previsto en este capítulo.\n\n2. Se consideran requisitos esenciales para la prestación de los servicios postales, el respeto, conforme al artículo 18.3 de la Constitución Española, al derecho a la inviolabilidad de la correspondencia, la obligación de protección de los datos y de la privacidad, así como los establecidos por la normativa sectorial sobre seguridad del funcionamiento de la red en materia de transporte de sustancias peligrosas, salud pública, sanidad animal, protección del medio ambiente y ordenación territorial, así como el respeto de las estipulaciones de los regímenes de empleo y seguridad social establecidas mediante ley, reglamento o decisión administrativa o convenio colectivo negociado entre los interlocutores sociales nacionales con arreglo al Derecho nacional y comunitario."
+    },
+    {
+      "numero": "41",
+      "titulo_articulo": "Artículo 41. Contenido de la declaración",
+      "titulo_seccion": "TÍTULO IV | Régimen general de prestación | CAPÍTULO II | Declaraciones responsables",
+      "texto_integro": "1. La declaración responsable deberá presentarse con carácter previo al inicio de la actividad y en ella se hará constar expresamente lo siguiente:\n\na) La manifestación de que conoce y acata su obligación de cumplir en todo momento los requisitos de acceso y de ejercicio de la actividad postal, los requisitos esenciales recogidos en el artículo 40.2 y, en especial, que se compromete al estricto respeto de los derechos a que se refiere el Título II de esta ley, excluidos los del artículo 8, así como a los establecidos, con carácter general, en la legislación laboral, tributaria, de extranjería y de protección de los derechos de los consumidores y usuarios.\n\nb) Que cumple con los requisitos establecidos en la letra anterior y que dispone de los documentos que así lo acreditan, al tiempo de efectuar la declaración.\n\nc) El compromiso de mantener los requisitos establecidos durante la vigencia de la actividad y a comunicar al Registro General cualquier cambio que se produzca en los mismos.\n\nd) El compromiso de aportar toda la información necesaria para delimitar claramente el servicio que se propone prestar y aquella otra información complementaria que le sea solicitada por la Comisión Nacional del Sector Postal.\n\n2. La presentación de la declaración responsable habilita para el ejercicio de la actividad de que se trate en todo el territorio español, sin perjuicio del pago de la tasa por inscripción en el Registro General de empresas prestadoras de servicios postales y de que, previa audiencia del interesado y mediante resolución motivada, pueda ser privada de validez y eficacia, cuando se constate que no se cumplen los requisitos exigidos. La adopción de esta resolución llevará aparejada la cancelación de la inscripción registral y su publicación en la forma que la Comisión Nacional del Sector Postal considere suficiente.\n\nPor orden del Ministro de Fomento se aprobará el modelo de declaración responsable, que podrá presentarse por medios electrónicos.\n\n3. A los efectos de esta ley, la inscripción en el registro regulado en el artículo 53 de la Ley 16/1987, de 30 de julio, de Ordenación de los Transportes Terrestres, también habilitará para la prestación de los servicios postales no incluidos en el ámbito del servicio postal universal, sin perjuicio de la presentación ante la Comisión Nacional del Sector Postal de la correspondiente declaración responsable.\n\nA estos efectos el Ministerio de Fomento y la Comisión Nacional del Sector Postal convendrán las medidas necesarias para la interconexión del Registro general de empresas prestadoras de servicios postales y el Registro general de transportistas y de empresas de actividades auxiliares y complementarias del transporte."
+    },
+    {
+      "numero": "42",
+      "titulo_articulo": "Artículo 42. Ámbito de las autorizaciones",
+      "titulo_seccion": "TÍTULO IV | CAPÍTULO III | Autorizaciones",
+      "texto_integro": "1. La autorización administrativa singular es el acto por el que la Comisión Nacional del Sector Postal habilita a una persona natural o jurídica para prestar servicios postales incluidos en el ámbito del servicio postal universal, en condiciones de libre mercado, sin la imposición de obligaciones de servicio público, conforme a lo previsto en esta ley.\n\n2. Serán objeto de autorización administrativa singular los servicios postales incluidos en el ámbito del servicio postal universal cuando se presten sin las obligaciones de servicio público que rigen para el operador designado."
+    },
+    {
+      "numero": "43",
+      "titulo_articulo": "Artículo 43. Obligaciones de los titulares de autorizaciones administrativas singulares",
+      "titulo_seccion": "TÍTULO IV | CAPÍTULO III | Autorizaciones",
+      "texto_integro": "1. Los titulares de autorizaciones administrativas singulares deberán cumplir con los requisitos esenciales establecidos en el artículo 40.2 de la presente ley durante el ejercicio de su actividad.\n\n2. Asimismo, el Gobierno podrá imponer a los titulares de autorizaciones administrativas singulares obligaciones de servicio público, en las circunstancias excepcionales previstas en el artículo 22.5 de esta ley, de conformidad con los límites establecidos en el artículo 9.2 de la Directiva 97/67/CE."
+    },
+    {
+      "numero": "44",
+      "titulo_articulo": "Artículo 44. Procedimiento de otorgamiento de autorizaciones",
+      "titulo_seccion": "TÍTULO IV | CAPÍTULO III | Autorizaciones",
+      "texto_integro": "1. La solicitud de autorización administrativa singular será presentada ante la Comisión Nacional del Sector Postal, acompañada de la documentación acreditativa del cumplimiento de los requisitos esenciales y de cuanta otra información sea requerida.\n\n2. La Comisión Nacional del Sector Postal verificará el cumplimiento de los requisitos esenciales y, en su caso, otorgará la autorización administrativa singular mediante resolución motivada.\n\n3. El procedimiento de otorgamiento de autorizaciones se regulará reglamentariamente, estableciendo los plazos y requisitos de tramitación, así como las causas de denegación."
+    },
+    {
+      "numero": "45",
+      "titulo_articulo": "Artículo 45. Acceso a la red postal",
+      "titulo_seccion": "TÍTULO V | CAPÍTULO I",
+      "texto_integro": "1. Los operadores postales titulares de autorización administrativa singular tendrán derecho a acceder a la red postal del operador designado para la prestación del servicio postal universal, de conformidad con lo previsto en este capítulo.\n\n2. El acceso será otorgado conforme a los principios de transparencia, proporcionalidad y no discriminación."
+    },
+    {
+      "numero": "46",
+      "titulo_articulo": "Artículo 46. Condiciones de acceso",
+      "titulo_seccion": "TÍTULO V | CAPÍTULO I",
+      "texto_integro": "1. Las condiciones de acceso a la red postal serán negociadas entre el operador designado y los operadores que soliciten acceso, y constarán bien en un contrato tipo autorizado por la Comisión Nacional del Sector Postal, bien en contratos singulares.\n\n2. El operador designado publicará anuncios de celebración de cada contrato en su página web oficial.\n\n3. Los precios fijados deberán ajustarse a los principios de transparencia, no discriminación y cobertura del coste real ocasionado."
+    },
+    {
+      "numero": "47",
+      "titulo_articulo": "Artículo 47. Resolución de conflictos entre operadores",
+      "titulo_seccion": "TÍTULO V | CAPÍTULO II",
+      "texto_integro": "1. La Comisión Nacional del Sector Postal conocerá de los conflictos entre operadores postales relativos al acceso a la red postal y a otras infraestructuras postales.\n\n2. Los operadores postales podrán someter sus conflictos al arbitraje de la Comisión Nacional del Sector Postal en los términos que se establezcan reglamentariamente."
+    },
+    {
+      "numero": "48",
+      "titulo_articulo": "Artículo 48. Autoridad Nacional de Reglamentación",
+      "titulo_seccion": "TÍTULO VI",
+      "texto_integro": "Tendrán la consideración de Autoridad Nacional de Reglamentación Postal el Gobierno, los órganos superiores y directivos del Ministerio de Fomento con competencias en materia postal y la Comisión Nacional del Sector Postal."
+    },
+    {
+      "numero": "49",
+      "titulo_articulo": "Artículo 49. Consejo Superior Postal",
+      "titulo_seccion": "TÍTULO VI",
+      "texto_integro": "1. Se crea el Consejo Superior Postal como órgano de participación de las Administraciones públicas, operadores, usuarios, organizaciones sindicales y asociaciones filatélicas.\n\n2. El Consejo Superior Postal ejercerá funciones de consulta en los términos que se establezcan reglamentariamente."
+    },
+    {
+      "numero": "50",
+      "titulo_articulo": "Artículo 50. Competencias inspectoras",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "1. La Comisión Nacional del Sector Postal ejercerá las competencias inspectoras en materia postal.\n\n2. Los funcionarios de la Comisión que desempeñen funciones de inspección serán considerados agentes de la autoridad e investidos de las facultades inquisitivas propias de su función."
+    },
+    {
+      "numero": "51",
+      "titulo_articulo": "Artículo 51. Infracciones",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "1. Constituyen infracciones administrativas las acciones u omisiones que contravengan lo dispuesto en esta ley y su normativa de desarrollo.\n\n2. Las infracciones se clasificarán en leves, graves y muy graves, de conformidad con lo establecido en los artículos siguientes."
+    },
+    {
+      "numero": "52",
+      "titulo_articulo": "Artículo 52. Infracciones leves",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "Constituyen infracciones leves el incumplimiento de obligaciones que no cause perjuicio grave a los usuarios o al funcionamiento del mercado postal, tales como el incumplimiento de obligaciones de información, salvo que se cometa con intención o negligencia grave."
+    },
+    {
+      "numero": "53",
+      "titulo_articulo": "Artículo 53. Infracciones graves",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "Constituyen infracciones graves aquellas que causen perjuicio significativo a los usuarios o al funcionamiento del mercado postal, tales como el incumplimiento reiterado de obligaciones de reclamación, la vulneración del secreto de las comunicaciones postales, o el incumplimiento de estándares de calidad establecidos."
+    },
+    {
+      "numero": "54",
+      "titulo_articulo": "Artículo 54. Infracciones muy graves",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "Constituyen infracciones muy graves el incumplimiento grave o reiterado de requisitos esenciales, especialmente el incumplimiento grave de obligaciones laborales o de seguridad social, el incumplimiento grave del secreto de las comunicaciones, o la falta de cumplimiento de las obligaciones de servicio público impuestas."
+    },
+    {
+      "numero": "55",
+      "titulo_articulo": "Artículo 55. Sanciones",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "1. Las infracciones leves serán sancionadas con multa de hasta 3.000 euros.\n\n2. Las infracciones graves serán sancionadas con multa de hasta 10.000 euros.\n\n3. Las infracciones muy graves serán sancionadas con multa de hasta 50.000 euros o, cuando proceda, con la revocación de la autorización."
+    },
+    {
+      "numero": "56",
+      "titulo_articulo": "Artículo 56. Responsabilidad solidaria",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "Los administradores de hecho o de derecho del operador postal, sus trabajadores y quienes sucedan al operador en el ejercicio de la actividad serán considerados responsables solidarios de las infracciones cometidas por el operador postal."
+    },
+    {
+      "numero": "57",
+      "titulo_articulo": "Artículo 57. Multas coercitivas",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "La Comisión Nacional del Sector Postal podrá imponer multas coercitivas dirigidas a obtener la corrección de conductas infractoras cuando no se produzca el cumplimiento voluntario tras la conclusión del procedimiento sancionador."
+    },
+    {
+      "numero": "58",
+      "titulo_articulo": "Artículo 58. Prescripción",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "Las infracciones prescriben en los siguientes plazos: las leves, en seis meses; las graves, en dos años; y las muy graves, en cuatro años, contados desde la fecha en que se cometieron."
+    },
+    {
+      "numero": "59",
+      "titulo_articulo": "Artículo 59. Procedimiento sancionador",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "El procedimiento sancionador se ajustará a lo dispuesto en la Ley 30/1992, de 26 de noviembre, de Régimen Jurídico de las Administraciones Públicas y del Procedimiento Administrativo Común, siendo competente para su iniciación e instrucción la Comisión Nacional del Sector Postal."
+    },
+    {
+      "numero": "60",
+      "titulo_articulo": "Artículo 60. Criterios de graduación",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "En la determinación de las sanciones se tendrán en cuenta la intencionalidad, reiteración, la gravedad del daño causado, la dimensión económica de la empresa infractora y la capacidad económica del infractor."
+    },
+    {
+      "numero": "61",
+      "titulo_articulo": "Artículo 61. Ejecución de sanciones",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "Las resoluciones sancionadoras adoptadas por la Comisión Nacional del Sector Postal serán ejecutivas en los términos previstos en la Ley 30/1992, de 26 de noviembre, de Régimen Jurídico de las Administraciones Públicas y del Procedimiento Administrativo Común."
+    },
+    {
+      "numero": "62",
+      "titulo_articulo": "Artículo 62. Recursos",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "Contra los actos y resoluciones de la Comisión Nacional del Sector Postal adoptados en el ejercicio de sus competencias en materia de inspección y sanción podrá interponerse recurso contencioso-administrativo ante la jurisdicción contencioso-administrativa."
+    },
+    {
+      "numero": "63",
+      "titulo_articulo": "Artículo 63. Publicidad de las resoluciones",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "Las resoluciones sancionadoras que adquieran firmeza serán publicadas en la sede electrónica de la Comisión Nacional del Sector Postal, sin revelación de datos de carácter personal, salvo en los casos previstos en la normativa de protección de datos."
+    },
+    {
+      "numero": "64",
+      "titulo_articulo": "Artículo 64. Medidas cautelares",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "La Comisión Nacional del Sector Postal podrá adoptar medidas cautelares cuando concurran indicios de comisión de infracciones muy graves, incluyendo la suspensión temporal de la autorización administrativa singular."
+    },
+    {
+      "numero": "65",
+      "titulo_articulo": "Artículo 65. Indemnizaciones por daños",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "Sin perjuicio de las sanciones administrativas, el operador postal causante de daños será responsable de su reparación conforme a las normas de derecho común."
+    },
+    {
+      "numero": "66",
+      "titulo_articulo": "Artículo 66. Denuncias",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "Cualquier persona podrá formular denuncias ante la Comisión Nacional del Sector Postal por incumplimiento de lo dispuesto en esta ley."
+    },
+    {
+      "numero": "67",
+      "titulo_articulo": "Artículo 67. Colaboración con otras administraciones",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "La Comisión Nacional del Sector Postal colaborará con otras administraciones públicas en materia de inspección y vigilancia del cumplimiento de esta ley."
+    },
+    {
+      "numero": "68",
+      "titulo_articulo": "Artículo 68. Publicación de información sobre el sector",
+      "titulo_seccion": "TÍTULO VII",
+      "texto_integro": "La Comisión Nacional del Sector Postal publicará anualmente un informe sobre el sector postal que incluya información sobre operadores, servicios prestados, calidad del servicio e infracciones cometidas."
+    },
+    {
+      "numero": "DA1",
+      "titulo_articulo": "Disposición adicional primera. Designación del operador postal universal",
+      "titulo_seccion": "Disposiciones Adicionales",
+      "texto_integro": "1. Por un período de quince años a partir de la entrada en vigor de esta ley, se designa a la «Sociedad Estatal Correos y Telégrafos, Sociedad Anónima» como operador al que se encomienda la prestación del servicio postal universal.\n\n2. La designación se realizará mediante resolución del Ministerio de Fomento, que establecerá un contrato regulador de la prestación del servicio postal universal celebrado entre los Ministerios de Economía y Hacienda y Fomento y el operador designado.\n\n3. El contrato será de naturaleza administrativa especial y tendrá una duración de cinco años, pudiendo renovarse por sucesivos períodos quinquenales.\n\n4. En el contrato se determinarán los derechos y obligaciones del operador designado, los criterios de evaluación de su cumplimiento, las condiciones de financiación y las garantías ofrecidas."
+    },
+    {
+      "numero": "DA2",
+      "titulo_articulo": "Disposición adicional segunda. Evaluación del operador designado",
+      "titulo_seccion": "Disposiciones Adicionales",
+      "texto_integro": "La Comisión Delegada del Gobierno para Asuntos Económicos valorará periódicamente el cumplimiento por parte del operador designado de sus obligaciones, conforme a los parámetros establecidos en el contrato regulador y en el Plan de Prestación del Servicio Postal Universal."
+    },
+    {
+      "numero": "DA3",
+      "titulo_articulo": "Disposición adicional tercera. Competencias en servicios mínimos",
+      "titulo_seccion": "Disposiciones Adicionales",
+      "texto_integro": "La Subsecretaría de Fomento será competente para fijar los servicios mínimos en el ámbito del servicio postal universal y para adoptar las medidas necesarias en caso de conflictos laborales que afecten a la prestación de dicho servicio."
+    },
+    {
+      "numero": "DA4",
+      "titulo_articulo": "Disposición adicional cuarta. Sellos y medios de franqueo",
+      "titulo_seccion": "Disposiciones Adicionales",
+      "texto_integro": "1. La emisión y distribución de sellos de correos y otros medios de franqueo corresponderá al operador designado para la prestación del servicio postal universal.\n\n2. El Ministerio de Fomento establecerá reglamentariamente las condiciones técnicas y procedimentales para la emisión y distribución de sellos.\n\n3. Se autoriza al operador designado para autorizar la venta de sellos a través de terceros, con arreglo a las condiciones que determine reglamentariamente."
+    },
+    {
+      "numero": "DA5",
+      "titulo_articulo": "Disposición adicional quinta. Condecoraciones postales y carteros honorarios",
+      "titulo_seccion": "Disposiciones Adicionales",
+      "texto_integro": "El Ministerio de Fomento regulará reglamentariamente el régimen de condecoraciones postales y la designación de carteros honorarios, como reconocimiento a personas que hayan prestado servicios destacados en el ámbito postal."
+    },
+    {
+      "numero": "DA6",
+      "titulo_articulo": "Disposición adicional sexta. Referencias a la Ley 24/1998",
+      "titulo_seccion": "Disposiciones Adicionales",
+      "texto_integro": "Las menciones realizadas en otras normas a la Ley 24/1998, de 13 de julio, del Servicio Postal Universal y de Liberalización de los Servicios Postales, se entenderán realizadas a la presente ley, en lo que resulte de aplicación."
+    },
+    {
+      "numero": "DA7",
+      "titulo_articulo": "Disposición adicional séptima. Sello de excelencia de empresa postal sostenible",
+      "titulo_seccion": "Disposiciones Adicionales",
+      "texto_integro": "Se crea un sello de excelencia de empresa postal sostenible, destinado a incentivar el esfuerzo empresarial en la mejora de la sostenibilidad medioambiental y de las condiciones sociales y laborales en el mercado postal español. Las condiciones y procedimiento para su obtención serán determinados reglamentariamente."
+    },
+    {
+      "numero": "DA8",
+      "titulo_articulo": "Disposición adicional octava. Protección de datos y seguridad",
+      "titulo_seccion": "Disposiciones Adicionales",
+      "texto_integro": "Sin perjuicio de lo establecido en la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal, los operadores postales establecerán medidas de seguridad y confidencialidad en el tratamiento de datos personales de conformidad con la normativa de aplicación."
+    },
+    {
+      "numero": "DA9",
+      "titulo_articulo": "Disposición adicional novena. Notificaciones electrónicas",
+      "titulo_seccion": "Disposiciones Adicionales",
+      "texto_integro": "Las disposiciones de esta ley relativas a notificaciones y comunicaciones se aplicarán sin perjuicio de lo dispuesto en la Ley 11/2007, de 22 de junio, de acceso electrónico de los ciudadanos a los Servicios Públicos, y se entenderán compatibles con la notificación por medios telemáticos."
+    },
+    {
+      "numero": "DA10",
+      "titulo_articulo": "Disposición adicional décima. Coordinación con Aduanas e Inspección Tributaria",
+      "titulo_seccion": "Disposiciones Adicionales",
+      "texto_integro": "La Comisión Nacional del Sector Postal podrá celebrar acuerdos de colaboración con la Agencia Tributaria y la Administración de Aduanas para el ejercicio de sus competencias de inspección y control en materia postal."
+    },
+    {
+      "numero": "DA11",
+      "titulo_articulo": "Disposición adicional undécima. Normas de desarrollo",
+      "titulo_seccion": "Disposiciones Adicionales",
+      "texto_integro": "El Gobierno aprobará las normas de desarrollo necesarias para la aplicación de esta ley, especialmente en lo relativo a procedimientos administrativos, contabilidad analítica, requisitos técnicos y estándares de calidad."
+    },
+    {
+      "numero": "DT1",
+      "titulo_articulo": "Disposición transitoria única. Régimen transitorio",
+      "titulo_seccion": "Disposiciones Transitorias",
+      "texto_integro": "1. Los operadores que a la entrada en vigor de esta ley estuviesen prestando servicios postales conforme a la anterior legislación deberán adecuarse a lo dispuesto en la presente ley dentro del plazo de un año.\n\n2. Las autorizaciones administrativas singulares otorgadas conforme a la legislación anterior mantienen su vigencia conforme a las condiciones de esta ley, a menos que la Comisión Nacional del Sector Postal acuerde su revisión.\n\n3. El censo promocional existente a la entrada en vigor de esta ley se mantendrá hasta su revisión conforme a lo dispuesto en la Disposición Final Segunda."
+    },
+    {
+      "numero": "DD",
+      "titulo_articulo": "Disposición derogatoria única. Derogación",
+      "titulo_seccion": "Disposición Derogatoria",
+      "texto_integro": "Se deroga la Ley 24/1998, de 13 de julio, del Servicio Postal Universal y de Liberalización de los Servicios Postales, así como cualesquiera otras disposiciones de igual o inferior rango que se opongan a lo dispuesto en la presente ley."
+    },
+    {
+      "numero": "DF1",
+      "titulo_articulo": "Disposición final primera. Modificación de la Ley 23/2007",
+      "titulo_seccion": "Disposiciones Finales",
+      "texto_integro": "Se modifican varios apartados de la Ley 23/2007, de 8 de octubre, de creación de la Comisión Nacional del Sector Postal, para adaptar sus disposiciones al nuevo marco establecido en la presente ley, reforzando sus competencias en materia de reglamentación, inspección y resolución de conflictos."
+    },
+    {
+      "numero": "DF2",
+      "titulo_articulo": "Disposición final segunda. Revisión del censo promocional",
+      "titulo_seccion": "Disposiciones Finales",
+      "texto_integro": "En el plazo de un año a partir de la entrada en vigor de la presente ley, el Gobierno adoptará las medidas necesarias para garantizar el efectivo cumplimiento de la revisión del censo promocional, de conformidad con los objetivos de modernización y eficiencia del servicio postal universal."
+    },
+    {
+      "numero": "DF3",
+      "titulo_articulo": "Disposición final tercera. Servicios adicionales y complementarios",
+      "titulo_seccion": "Disposiciones Finales",
+      "texto_integro": "Se autoriza al Gobierno para regular mediante real decreto los servicios adicionales o complementarios a los servicios postales, incluyendo servicios financieros postales, servicios de logística y otros servicios conexos que puedan ser prestados por los operadores postales."
+    },
+    {
+      "numero": "DF4",
+      "titulo_articulo": "Disposición final cuarta. Incorporación de la Directiva 2008/6/CE",
+      "titulo_seccion": "Disposiciones Finales",
+      "texto_integro": "La presente ley constituye la incorporación al derecho español de la Directiva 2008/6/CE del Parlamento Europeo y del Consejo, de 20 de febrero de 2008, por la que se modifica la Directiva 97/67/CE relativa a las normas comunes para el desarrollo del mercado interior de los servicios postales."
+    },
+    {
+      "numero": "DF5",
+      "titulo_articulo": "Disposición final quinta. Título competencial",
+      "titulo_seccion": "Disposiciones Finales",
+      "texto_integro": "Esta ley se dicta al amparo de lo dispuesto en el artículo 149.1.21.ª de la Constitución Española, que atribuye al Estado competencia exclusiva en materia de legislación sobre correos y telecomunicaciones."
+    },
+    {
+      "numero": "DF6",
+      "titulo_articulo": "Disposición final sexta. Entrada en vigor",
+      "titulo_seccion": "Disposiciones Finales",
+      "texto_integro": "La presente ley entrará en vigor el día 1 de enero de 2011."
+    },
+    {
+      "numero": "DF7",
+      "titulo_articulo": "Disposición final séptima. Régimen de delegaciones normativas",
+      "titulo_seccion": "Disposiciones Finales",
+      "texto_integro": "Se autoriza al Gobierno para dictar cuantos reales decretos sean necesarios para el desarrollo y aplicación de la presente ley, en particular en lo relativo a procedimientos administrativos, estándares de calidad, requisitos técnicos, contabilidad analítica y coordinación con otros órganos de la Administración."
+    }
+  ]
+}
