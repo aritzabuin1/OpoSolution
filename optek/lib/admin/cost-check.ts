@@ -1,22 +1,19 @@
 import { createServiceClient } from '@/lib/supabase/server'
 import { getInfraMetrics, type InfraMetrics } from '@/lib/admin/infrastructure'
+import { getFuelTank, getCostPerUser, getFreeTierMetrics } from '@/lib/admin/metrics'
+import { getConversionMetrics, getOnboardingFunnel, getFeatureEngagement, getChurnMetrics } from '@/lib/admin/analytics'
 import { logger } from '@/lib/logger'
 
 /**
- * lib/admin/cost-check.ts — Enhanced monitoring + alerting
+ * lib/admin/cost-check.ts — Monitoring + weekly digest + critical alerts
  *
- * Logica reutilizable de monitorizacion de costes + infraestructura + crecimiento.
+ * Email strategy:
+ *   - WEEKLY (lunes 08:00 UTC): digest completo con métricas de negocio
+ *   - INMEDIATO: solo alertas críticas (DB > 90%, error spike, margen negativo)
+ *
  * Llamada desde:
- *   - GET /api/cron/check-costs (ruta manual con CRON_SECRET)
- *   - GET /api/cron/boe-watch  (cron 07:00 UTC — piggyback del dia anterior)
- *
- * Envia email a aritzabuin1@gmail.com cuando se detectan:
- *   - Costes IA por encima del umbral diario
- *   - Tasa de verificacion baja
- *   - Infraestructura cerca del limite free tier (Supabase, Upstash, Vercel)
- *   - Crecimiento rapido que proyecta alcanzar limites
- *   - Tasa de errores elevada
- *   - Hitos de negocio (primera venta, etc.)
+ *   - GET /api/cron/boe-watch  (cron 07:00 UTC — diario, pero email solo lunes o críticos)
+ *   - GET /api/cron/check-costs (ruta manual)
  */
 
 const DAILY_COST_ALERT_USD = 10.0
@@ -94,25 +91,25 @@ export async function runCostCheck(date?: string): Promise<CostCheckResult> {
     'runCostCheck completed'
   )
 
-  // -- Alertas por email ---
-  const hasAlerts = costAlert || verificationAlert ||
-    infraAlerts.length > 0 || growthAlerts.length > 0 ||
-    errorAlerts.length > 0 || businessAlerts.length > 0
+  // -- Email strategy: weekly digest on Mondays, critical alerts immediately ---
+  const isMonday = new Date().getUTCDay() === 1
+  const isCritical = infra.semaphore === 'error' || errorAlerts.length > 0 ||
+    (infra.db.pct >= 90) || costAlert
+
   let emailSent = false
 
-  if (hasAlerts) {
+  if (isCritical) {
+    // Critical alerts: send immediately regardless of day
     emailSent = await sendAlertEmail({
-      date: target,
-      totalCostUSD,
-      costAlert,
-      verificationRate,
-      verificationAlert,
-      infraAlerts,
-      growthAlerts,
-      businessAlerts,
-      errorAlerts,
-      infra,
+      date: target, totalCostUSD, costAlert, verificationRate, verificationAlert,
+      infraAlerts, growthAlerts, businessAlerts, errorAlerts, infra,
     })
+  }
+
+  if (isMonday) {
+    // Monday: send weekly digest with full business metrics
+    const digestSent = await sendWeeklyDigest(infra)
+    if (digestSent) emailSent = true
   }
 
   return {
@@ -373,6 +370,123 @@ async function sendAlertEmail(params: {
     return true
   } catch (err) {
     logger.error({ err }, 'Error enviando alert email')
+    return false
+  }
+}
+
+// ─── Weekly Digest ──────────────────────────────────────────────────────────
+
+async function sendWeeklyDigest(infra: InfraMetrics): Promise<boolean> {
+  if (!process.env.RESEND_API_KEY) return false
+
+  try {
+    const [fuelTank, costPerUser, freeTier, conversion, funnel, engagement, churn] = await Promise.all([
+      getFuelTank(),
+      getCostPerUser(),
+      getFreeTierMetrics(),
+      getConversionMetrics(),
+      getOnboardingFunnel(),
+      getFeatureEngagement(),
+      getChurnMetrics(),
+    ])
+
+    const weekEnd = new Date().toISOString().split('T')[0]
+    const weekStart = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+
+    const semaphore = infra.semaphore === 'ok' ? '🟢' : infra.semaphore === 'warning' ? '🟡' : '🔴'
+
+    const html = `
+      <div style="font-family:system-ui,-apple-system,sans-serif;max-width:640px;margin:0 auto;color:#1f2937;">
+        <h2 style="margin:0 0 4px;">📊 OpoRuta — Digest Semanal</h2>
+        <p style="margin:0 0 20px;color:#6b7280;font-size:14px;">${weekStart} → ${weekEnd}</p>
+
+        <!-- USUARIOS -->
+        <h3 style="color:#2563eb;margin:20px 0 8px;border-bottom:1px solid #e5e7eb;padding-bottom:4px;">👥 Usuarios</h3>
+        <table style="width:100%;font-size:14px;border-collapse:collapse;">
+          <tr><td style="padding:4px 0;color:#6b7280;">Registros totales</td><td style="text-align:right;font-weight:600;">${conversion.totalUsers}</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">Free / Paid</td><td style="text-align:right;font-weight:600;">${conversion.freeUsers} / ${conversion.paidUsers}</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">Nuevos esta semana</td><td style="text-align:right;font-weight:600;">${infra.growth.newUsersWeek}</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">DAU (hoy)</td><td style="text-align:right;font-weight:600;">${infra.growth.dauToday}</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">Churn 7d</td><td style="text-align:right;font-weight:600;${churn.churnPct > 50 ? 'color:#dc2626;' : ''}">${churn.churnPct}% (${churn.churned7d} inactivos)</td></tr>
+        </table>
+
+        <!-- FREE TIER -->
+        <h3 style="color:#059669;margin:20px 0 8px;border-bottom:1px solid #e5e7eb;padding-bottom:4px;">🆓 Free Tier</h3>
+        <table style="width:100%;font-size:14px;border-collapse:collapse;">
+          <tr><td style="padding:4px 0;color:#6b7280;">Free users</td><td style="text-align:right;font-weight:600;">${freeTier.totalFreeUsers}</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">Media temas explorados</td><td style="text-align:right;font-weight:600;">${freeTier.avgTemasExplored}</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">1+ / 3+ / 5+ temas</td><td style="text-align:right;font-weight:600;">${freeTier.usersExplored1Plus} / ${freeTier.usersExplored3Plus} / ${freeTier.usersExplored5Plus}</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">Nota media free</td><td style="text-align:right;font-weight:600;">${freeTier.avgScoreFree !== null ? freeTier.avgScoreFree + '%' : '—'}</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">Conversión free→paid</td><td style="text-align:right;font-weight:600;${freeTier.conversionRate < 2 ? 'color:#dc2626;' : 'color:#059669;'}">${freeTier.conversionRate}%</td></tr>
+        </table>
+
+        <!-- FUNNEL -->
+        <h3 style="color:#7c3aed;margin:20px 0 8px;border-bottom:1px solid #e5e7eb;padding-bottom:4px;">📈 Funnel Onboarding</h3>
+        <table style="width:100%;font-size:14px;border-collapse:collapse;">
+          <tr><td style="padding:4px 0;color:#6b7280;">Registro</td><td style="text-align:right;font-weight:600;">${funnel.registered}</td><td style="text-align:right;color:#6b7280;font-size:12px;">100%</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">→ 1 tema</td><td style="text-align:right;font-weight:600;">${funnel.explored1Tema}</td><td style="text-align:right;color:#6b7280;font-size:12px;">${funnel.pctExplored1}%</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">→ 3 temas</td><td style="text-align:right;font-weight:600;">${funnel.explored3Temas}</td><td style="text-align:right;color:#6b7280;font-size:12px;">${funnel.pctExplored3}%</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">→ 5 temas</td><td style="text-align:right;font-weight:600;">${funnel.explored5Temas}</td><td style="text-align:right;color:#6b7280;font-size:12px;">${funnel.pctExplored5}%</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">→ Compra</td><td style="text-align:right;font-weight:600;">${funnel.purchased}</td><td style="text-align:right;color:#6b7280;font-size:12px;">${funnel.pctPurchased}%</td></tr>
+        </table>
+
+        <!-- REVENUE -->
+        <h3 style="color:#059669;margin:20px 0 8px;border-bottom:1px solid #e5e7eb;padding-bottom:4px;">💰 Revenue</h3>
+        <table style="width:100%;font-size:14px;border-collapse:collapse;">
+          <tr><td style="padding:4px 0;color:#6b7280;">Compras esta semana</td><td style="text-align:right;font-weight:600;">${infra.business.purchasesWeek}</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">Revenue semana</td><td style="text-align:right;font-weight:600;">€${infra.business.revenueWeekEur.toFixed(2)}</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">Revenue total</td><td style="text-align:right;font-weight:600;">€${fuelTank.ingresos.toFixed(2)}</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">Conversión</td><td style="text-align:right;font-weight:600;">${conversion.conversionPct}%</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">Días medio a conversión</td><td style="text-align:right;font-weight:600;">${conversion.avgDaysToConvert ?? '—'}</td></tr>
+        </table>
+
+        <!-- COSTES -->
+        <h3 style="color:#d97706;margin:20px 0 8px;border-bottom:1px solid #e5e7eb;padding-bottom:4px;">⚡ Costes IA</h3>
+        <table style="width:100%;font-size:14px;border-collapse:collapse;">
+          <tr><td style="padding:4px 0;color:#6b7280;">Tests free bank (€0)</td><td style="text-align:right;font-weight:600;">${fuelTank.testsFreeBank}</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">Tests IA</td><td style="text-align:right;font-weight:600;">${fuelTank.testsIA} (€${fuelTank.costeIA.toFixed(2)})</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">Coste/test IA</td><td style="text-align:right;font-weight:600;">€${costPerUser.costeMedioTestIA.toFixed(3)}</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">Coste/usuario</td><td style="text-align:right;font-weight:600;">€${costPerUser.costeMedioUsuario.toFixed(2)}</td></tr>
+          <tr><td style="padding:4px 0;color:#6b7280;">Margen bruto</td><td style="text-align:right;font-weight:600;${fuelTank.margenPct < 20 ? 'color:#dc2626;' : 'color:#059669;'}">${fuelTank.margenPct.toFixed(1)}%</td></tr>
+        </table>
+
+        <!-- ENGAGEMENT -->
+        <h3 style="color:#6366f1;margin:20px 0 8px;border-bottom:1px solid #e5e7eb;padding-bottom:4px;">🎯 Feature Engagement (30d)</h3>
+        <table style="width:100%;font-size:14px;border-collapse:collapse;">
+          ${engagement.slice(0, 7).map(f => `<tr><td style="padding:3px 0;color:#6b7280;">${f.feature}</td><td style="text-align:right;font-weight:600;">${f.count}</td><td style="text-align:right;color:#6b7280;font-size:12px;">${f.pct}%</td></tr>`).join('')}
+        </table>
+
+        <!-- INFRA -->
+        <h3 style="color:#6b7280;margin:20px 0 8px;border-bottom:1px solid #e5e7eb;padding-bottom:4px;">${semaphore} Infraestructura</h3>
+        <table style="width:100%;font-size:13px;border-collapse:collapse;color:#6b7280;">
+          <tr><td style="padding:3px 0;">BD</td><td style="text-align:right;">${infra.db.sizeMB.toFixed(0)} MB / ${infra.db.limitMB} MB</td></tr>
+          <tr><td style="padding:3px 0;">MAU</td><td style="text-align:right;">${infra.auth.mau30d} / ${infra.auth.limitMAU.toLocaleString()}</td></tr>
+          <tr><td style="padding:3px 0;">Vercel</td><td style="text-align:right;">~${infra.vercel.estimatedInvocationsMonth.toLocaleString()} / ${infra.vercel.limitInvocationsMonth.toLocaleString()}</td></tr>
+          <tr><td style="padding:3px 0;">Errores 24h</td><td style="text-align:right;">${infra.errors.totalErrors24h} (${infra.errors.errorRate24h.toFixed(1)}%)</td></tr>
+        </table>
+
+        <p style="margin-top:24px;font-size:13px;color:#9ca3af;">
+          <a href="https://oporuta.es/admin">Admin Dashboard</a> ·
+          <a href="https://oporuta.es/admin/analytics">Analytics</a> ·
+          <a href="https://oporuta.es/admin/economics">Economics</a>
+        </p>
+      </div>
+    `
+
+    const { Resend } = await import('resend')
+    const resend = new Resend(process.env.RESEND_API_KEY)
+
+    await resend.emails.send({
+      from: 'OpoRuta <alerts@oporuta.es>',
+      to: [ALERT_TO_EMAIL],
+      subject: `📊 OpoRuta Digest Semanal — ${weekStart} → ${weekEnd}`,
+      html,
+    })
+
+    logger.info('Weekly digest email sent')
+    return true
+  } catch (err) {
+    logger.error({ err }, 'Error sending weekly digest')
     return false
   }
 }
