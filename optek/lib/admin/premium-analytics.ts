@@ -34,7 +34,7 @@ export interface AtRiskUser {
   category: 'hot_lead' | 'pre_churn' | 'premium_inactive'
   temasExplored: number
   lastActivity: string | null
-  daysSinceActive: number
+  daysSince: number
   totalSpent: number
 }
 
