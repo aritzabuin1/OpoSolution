@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
   const serviceClient = await createServiceClient()
   const { data, error } = await serviceClient
     .from('profiles')
-    .upsert({ id: user.id, email: user.email, ...update }, { onConflict: 'id' })
+    .upsert({ id: user.id, email: user.email ?? '', ...update }, { onConflict: 'id' })
     .select('oposicion_id')
     .single()
 
