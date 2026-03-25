@@ -102,11 +102,11 @@
   - [x] Ley 31/1995 PRL (79 entries, 144KB)
   - [x] Ley 10/2010 blanqueo capitales (94 entries, 236KB)
 - [x] Mapeo tema↔legislación (data/mapeo_temas_legislacion_correos.json)
-- [ ] Indexar legislación en tabla `legislacion` (ejecutar `pnpm ingest:legislacion`) **← necesita migrations aplicadas**
+- [ ] Indexar legislación en tabla `legislacion` (ejecutar `pnpm ingest:legislacion`) **← migrations aplicadas ✅, ejecutar ingest**
 - [ ] Tagear artículos con tema_ids de Correos **← después de indexar**
 - [ ] Generar free bank: `pnpm generate:free-bank --oposicion correos` **← necesita legislación indexada**
-- [ ] Descargar exámenes 2023+2021 (13 PDFs) **← agente en curso**
-- [ ] Parsear PDFs e insertar en preguntas_oficiales **← necesita PDFs descargados**
+- [x] Descargar exámenes 2023+2021 (15 PDFs descargados, 25MB)
+- [ ] Parsear PDFs e insertar en preguntas_oficiales (`pnpm parse:examenes --dir examenes_correos`)
 
 ### 1.3 Landing SEO Correos
 - [x] Crear `app/(marketing)/oposiciones/correos/page.tsx` (temario oficial verificado, scoring, FAQ)
@@ -154,13 +154,13 @@
   - [x] Ley 31/1995 PRL — scrapeada (79 entries, 144KB)
 - [x] Mapeo tema↔legislación para Auxilio (data/mapeo_temas_legislacion_auxilio.json)
 - [ ] Mapeo tema↔legislación para Tramitación y Gestión **← pendiente**
-- [ ] Indexar legislación nueva en tabla `legislacion` **← necesita migrations aplicadas**
+- [ ] Indexar legislación nueva en tabla `legislacion` **← migrations aplicadas ✅, ejecutar ingest**
 - [ ] Tagear artículos con tema_ids Justicia **← después de indexar**
 - [ ] Verificar temas ACTUALIZADOS LO 1/2025: T8, T10, T16, T18
 - **Leyes pendientes de scrapear**: LJCA (Ley 29/1998), LRJS (Ley 36/2011), Ley 20/2011 Registro Civil
 
 ### 2.3 Contenido Justicia — Exámenes oficiales
-- [ ] Descargar cuadernillos + plantillas MJU **← agente en curso (~20 PDFs)**
+- [x] Descargar cuadernillos + plantillas MJU (15 PDFs descargados, 2.7MB)
   - Auxilio OEP 2024 (27/09/2025): Ej1 A/B + Ej2 A/B + plantillas
   - Tramitación OEP 2024: Ej1 A/B + Ej2 A/B + plantilla
   - Gestión OEP 2024: Ej1 A/B + Ej2 + plantillas
