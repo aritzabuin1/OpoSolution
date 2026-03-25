@@ -488,31 +488,6 @@ export default async function ResultadosPage({ params }: Props) {
         />
       </div>
 
-      {/* Nudge análisis IA — prominente para users que nunca lo han usado */}
-      {preguntasErroneas.length > 0 && freeAnalysisRemaining > 0 && !hasPaidAccess && (
-        <Card className="border-blue-300 bg-gradient-to-r from-blue-50 to-indigo-50">
-          <CardContent className="flex items-start gap-3 pt-4 pb-4">
-            <span className="mt-0.5 text-xl">✨</span>
-            <div className="flex-1">
-              <p className="text-sm font-semibold text-blue-900">
-                ¿Por qué has fallado {preguntasErroneas.length} pregunta{preguntasErroneas.length !== 1 ? 's' : ''}?
-              </p>
-              <p className="text-xs text-blue-700 mt-1">
-                La IA te lo explica paso a paso: primero te ayuda a razonar, luego te revela la respuesta con la cita legal exacta.
-              </p>
-              <p className="text-xs text-blue-600 mt-1 font-medium">
-                Gratis — te {freeAnalysisRemaining === 1 ? 'queda 1 análisis' : `quedan ${freeAnalysisRemaining} análisis`}
-              </p>
-            </div>
-            <a href="#analisis-ia" className="shrink-0">
-              <Button size="sm" variant="default" className="bg-blue-600 hover:bg-blue-700">
-                Analizar errores
-              </Button>
-            </a>
-          </CardContent>
-        </Card>
-      )}
-
       {/* PostTestConversionTrigger — free users see conversion CTA, paid see motivational */}
       {!esRepaso && (
         <PostTestConversionTrigger

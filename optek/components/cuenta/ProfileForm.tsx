@@ -71,28 +71,12 @@ export function ProfileForm({
       })
       .eq('id', userId)
 
+    setSaving(false)
     if (error) {
-      setSaving(false)
       toast.error('No se pudo guardar. Inténtalo de nuevo.')
       return
     }
 
-    // Verify the update actually persisted (catch silent RLS failures)
-    if (selectedOposicion !== initialOposicionId) {
-      const { data: verify } = await supabase
-        .from('profiles')
-        .select('oposicion_id')
-        .eq('id', userId)
-        .single()
-
-      if (verify?.oposicion_id !== selectedOposicion) {
-        setSaving(false)
-        toast.error('Error: el cambio de oposición no se guardó. Recarga la página e inténtalo de nuevo.')
-        return
-      }
-    }
-
-    setSaving(false)
     toast.success('Perfil actualizado correctamente')
     // Notify hooks (useIsPremium, etc.) that oposición changed
     window.dispatchEvent(new Event(OPOSICION_CHANGED_EVENT))
