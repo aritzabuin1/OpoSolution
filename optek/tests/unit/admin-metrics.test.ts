@@ -113,8 +113,8 @@ describe('getFuelTank', () => {
 
 describe('getAlerts', () => {
   it('genera alerta error cuando margen < 20%', () => {
-    const fuelTank = { ingresos: 100, costes: 85, margen: 15, margenPct: 15 }
-    const costPerUser = { costeMedioTest: 0.005, costeMedioUsuario: 0.10, usuariosActivos30d: 10, testsUltimos30d: 20 }
+    const fuelTank = { ingresos: 100, costes: 85, margen: 15, margenPct: 15, testsFreeBank: 0, testsIA: 10, costeIA: 85 }
+    const costPerUser = { costeMedioTestIA: 0.005, costeMedioTestGlobal: 0.003, costeMedioUsuario: 0.10, usuariosActivos30d: 10, testsUltimos30d: 20, testsFreeBankCount: 0, testsIACount: 10 }
 
     const alerts = getAlerts(fuelTank, costPerUser)
 
@@ -123,8 +123,8 @@ describe('getAlerts', () => {
   })
 
   it('genera alerta error cuando coste por usuario > €0.50', () => {
-    const fuelTank = { ingresos: 500, costes: 100, margen: 400, margenPct: 80 }
-    const costPerUser = { costeMedioTest: 0.05, costeMedioUsuario: 0.75, usuariosActivos30d: 5, testsUltimos30d: 10 }
+    const fuelTank = { ingresos: 500, costes: 100, margen: 400, margenPct: 80, testsFreeBank: 0, testsIA: 10, costeIA: 100 }
+    const costPerUser = { costeMedioTestIA: 0.05, costeMedioTestGlobal: 0.03, costeMedioUsuario: 0.75, usuariosActivos30d: 5, testsUltimos30d: 10, testsFreeBankCount: 0, testsIACount: 10 }
 
     const alerts = getAlerts(fuelTank, costPerUser)
 
@@ -133,8 +133,8 @@ describe('getAlerts', () => {
   })
 
   it('retorna info OK cuando todo está dentro de rango saludable', () => {
-    const fuelTank = { ingresos: 500, costes: 50, margen: 450, margenPct: 90 }
-    const costPerUser = { costeMedioTest: 0.005, costeMedioUsuario: 0.10, usuariosActivos30d: 50, testsUltimos30d: 500 }
+    const fuelTank = { ingresos: 500, costes: 50, margen: 450, margenPct: 90, testsFreeBank: 400, testsIA: 100, costeIA: 50 }
+    const costPerUser = { costeMedioTestIA: 0.005, costeMedioTestGlobal: 0.001, costeMedioUsuario: 0.10, usuariosActivos30d: 50, testsUltimos30d: 500, testsFreeBankCount: 400, testsIACount: 100 }
 
     const alerts = getAlerts(fuelTank, costPerUser)
 
@@ -144,8 +144,8 @@ describe('getAlerts', () => {
   })
 
   it('genera alerta warning cuando hay costes pero no ingresos', () => {
-    const fuelTank = { ingresos: 0, costes: 5.50, margen: -5.50, margenPct: -100 }
-    const costPerUser = { costeMedioTest: 0.005, costeMedioUsuario: 0.05, usuariosActivos30d: 10, testsUltimos30d: 100 }
+    const fuelTank = { ingresos: 0, costes: 5.50, margen: -5.50, margenPct: -100, testsFreeBank: 80, testsIA: 20, costeIA: 5.50 }
+    const costPerUser = { costeMedioTestIA: 0.005, costeMedioTestGlobal: 0.001, costeMedioUsuario: 0.05, usuariosActivos30d: 10, testsUltimos30d: 100, testsFreeBankCount: 80, testsIACount: 20 }
 
     const alerts = getAlerts(fuelTank, costPerUser)
 
@@ -164,7 +164,7 @@ describe('getCostPerUser', () => {
 
     const result = await getCostPerUser()
 
-    expect(result.costeMedioTest).toBe(0)
+    expect(result.costeMedioTestIA).toBe(0)
     expect(result.costeMedioUsuario).toBe(0)
     expect(result.usuariosActivos30d).toBe(0)
     expect(result.testsUltimos30d).toBe(0)

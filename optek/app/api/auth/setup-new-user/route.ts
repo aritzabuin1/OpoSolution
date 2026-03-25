@@ -43,7 +43,7 @@ export async function POST() {
     // Send welcome email (sendWelcomeEmail is idempotent — Resend deduplicates)
     if (user.email) {
       const nombre = user.user_metadata?.full_name as string | undefined
-      const oposicionLabel = oposicionId ? resolveOposicionLabel(oposicionId) : undefined
+      const oposicionLabel = oposicionId ? await resolveOposicionLabel(oposicionId) : undefined
       void sendWelcomeEmail({ to: user.email, nombre })
       void sendNewUserNotification({ email: user.email, nombre, oposicion: oposicionLabel, confirmed: true })
 

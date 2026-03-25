@@ -28,6 +28,7 @@ import { ShareButton } from '@/components/shared/ShareButton'
 import { StickyAnalysisCTA } from '@/components/shared/StickyAnalysisCTA'
 import { PostTestConversionTrigger } from '@/components/tests/PostTestConversionTrigger'
 import { calcularNotaSimulacro } from '@/lib/utils/simulacro-ranking'
+import { parseScoringConfig, describePenalizacion } from '@/lib/utils/scoring'
 import { getAniosConvocatoriaBatch } from '@/lib/utils/cross-reference'
 import { checkPaidAccess, getOposicionFromProfile } from '@/lib/freemium'
 
@@ -134,6 +135,19 @@ export default async function ResultadosPage({ params }: Props) {
   const oposicionId = await getOposicionFromProfile(serviceSupabase, user.id)
   const hasPaidAccess = await checkPaidAccess(serviceSupabase, user.id, oposicionId)
 
+  // ── Fetch scoring_config from oposición ──────────────────────────────────
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: opoData } = oposicionId
+    ? await (serviceSupabase as any)
+        .from('oposiciones')
+        .select('scoring_config, slug')
+        .eq('id', oposicionId)
+        .single()
+    : { data: null }
+  const scoringConfig = parseScoringConfig((opoData as { scoring_config?: unknown })?.scoring_config)
+  const oposicionSlug = (opoData as { slug?: string })?.slug ?? undefined
+  const penalizaDesc = describePenalizacion(scoringConfig)
+
   // Free corrector usage for nudge
   const { data: profileData } = await serviceSupabase
     .from('profiles')
@@ -161,11 +175,13 @@ export default async function ResultadosPage({ params }: Props) {
   ).length
   const sinResponder = preguntas.filter((_, i) => respuestas[i] === null).length
 
-  // ── Puntuación con penalización oficial (§2.6A.9) ──────────────────────────
-  // Correcta = +1 punto, Incorrecta = -1/3 punto, En blanco = 0
-  // Solo se aplica en simulacros oficiales (examen_oficial_id IS NOT NULL)
+  // ── Puntuación con penalización configurable (§0.3 + §2.6A.9) ─────────────
+  // Uses scoring_config from the oposición: penaliza=false → no penalty (e.g. Correos)
+  const ejConfig = scoringConfig?.ejercicios?.[0]
+  const penaliza = ejConfig?.penaliza ?? true
+  const errorFactor = ejConfig?.error ?? (1 / 3)
   const notaConPenalizacion = esSimulacroOficial
-    ? Math.max(0, aciertos - errores / 3)
+    ? Math.max(0, penaliza ? aciertos - errores * errorFactor : aciertos)
     : null
   const notaConPenalizacionSobre100 = notaConPenalizacion !== null
     ? Math.round((notaConPenalizacion / preguntas.length) * 100 * 10) / 10
@@ -291,7 +307,7 @@ export default async function ResultadosPage({ params }: Props) {
             </div>
           </div>
           <p className="text-[11px] text-amber-700 border-t border-amber-200 pt-2">
-            Fórmula oficial: correcta +1 · incorrecta -1/3 · en blanco 0
+            {penalizaDesc}
           </p>
         </div>
       )}

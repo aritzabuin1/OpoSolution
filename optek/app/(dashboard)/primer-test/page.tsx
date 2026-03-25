@@ -21,11 +21,12 @@ export default async function PrimerTestPage() {
 
   if (!user) redirect('/login')
 
-  const { data: oposiciones } = await supabase
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: oposiciones } = await (supabase as any)
     .from('oposiciones')
-    .select('id, nombre, slug, descripcion, num_temas')
-    .eq('activa', true)
-    .order('nombre')
+    .select('id, nombre, slug, descripcion, num_temas, activa, rama, plazas')
+    .order('rama')
+    .order('orden')
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh] px-4 py-12">

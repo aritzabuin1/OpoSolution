@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
     const createdAt = new Date(user.created_at).getTime()
     const isRecentUser = Date.now() - createdAt < 60 * 60 * 1000
     if (isRecentUser) {
-      const oposicionLabel = resolveOposicionLabel(update.oposicion_id as string)
+      const oposicionLabel = await resolveOposicionLabel(update.oposicion_id as string)
       void sendNewUserNotification({
         email: user.email,
         nombre: user.user_metadata?.full_name as string | undefined,

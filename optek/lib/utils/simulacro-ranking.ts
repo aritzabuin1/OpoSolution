@@ -49,6 +49,7 @@ const CORTES_OFICIALES = CORTES_POR_OPOSICION['aux-admin-estado']
  * @param totalPreguntas - Total de preguntas del simulacro
  * @param anio - Año de la convocatoria (number | null)
  * @param oposicionSlug - Slug de la oposición (optional, defaults to C2)
+ * @param scoringConfig - Scoring config from DB (optional, uses default -1/3 if absent)
  * @returns resultado del ranking, o null si no hay datos para ese año
  */
 export function calcularNotaSimulacro(
@@ -56,15 +57,25 @@ export function calcularNotaSimulacro(
   errores: number,
   totalPreguntas: number,
   anio: number | null,
-  oposicionSlug?: string
+  oposicionSlug?: string,
+  scoringConfig?: { ejercicios: Array<{ penaliza: boolean; error: number; acierto: number }> } | null
 ): SimulacroRankingResult | null {
   if (!anio) return null
   const cortes = oposicionSlug ? (CORTES_POR_OPOSICION[oposicionSlug] ?? CORTES_OFICIALES) : CORTES_OFICIALES
   const corte = cortes[String(anio)]
   if (!corte) return null
 
-  const notaRaw = aciertos - errores / 3               // puntos directos (sobre totalPreguntas)
-  const notaSobre10 = (notaRaw / totalPreguntas) * 10   // normalizada sobre 10
+  // Use scoring_config if available, otherwise default to AGE penalty (-1/3)
+  const ej = scoringConfig?.ejercicios?.[0]
+  const penaliza = ej?.penaliza ?? true
+  const errorFactor = ej?.error ?? (1 / 3)
+  const aciertoPts = ej?.acierto ?? 1
+
+  const notaRaw = penaliza
+    ? (aciertos * aciertoPts) - (errores * errorFactor)
+    : aciertos * aciertoPts
+  const maxPuntos = totalPreguntas * aciertoPts
+  const notaSobre10 = (Math.max(0, notaRaw) / maxPuntos) * 10
   const notaRedondeada = Math.round(notaSobre10 * 100) / 100
 
   return {

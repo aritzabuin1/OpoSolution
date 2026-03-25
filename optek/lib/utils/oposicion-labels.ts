@@ -1,13 +1,45 @@
 /**
  * Maps oposicion UUIDs to human-readable labels.
- * Used by admin notification emails to show which oposicion a user selected.
+ * Queries DB dynamically — no more hardcoded arrays.
  */
-const OPOSICION_LABELS: Record<string, string> = {
-  'a0000000-0000-0000-0000-000000000001': 'Auxiliar Administrativo (C2)',
-  'b0000000-0000-0000-0000-000000000001': 'Administrativo del Estado (C1)',
-  'c2000000-0000-0000-0000-000000000001': 'Gestión del Estado (A2)',
+
+import { createServiceClient } from '@/lib/supabase/server'
+
+// In-memory cache (per serverless instance, refreshes on cold start)
+let cache: Map<string, string> | null = null
+let cacheTime = 0
+const CACHE_TTL_MS = 5 * 60 * 1000 // 5 minutes
+
+async function loadLabels(): Promise<Map<string, string>> {
+  if (cache && Date.now() - cacheTime < CACHE_TTL_MS) return cache
+
+  try {
+    const supabase = await createServiceClient()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data } = await (supabase as any)
+      .from('oposiciones')
+      .select('id, nombre')
+
+    const map = new Map<string, string>()
+    if (data) {
+      for (const row of data as { id: string; nombre: string }[]) {
+        map.set(row.id, row.nombre)
+      }
+    }
+    cache = map
+    cacheTime = Date.now()
+    return map
+  } catch {
+    // Fallback if DB unreachable
+    return cache ?? new Map()
+  }
 }
 
-export function resolveOposicionLabel(oposicionId: string): string {
-  return OPOSICION_LABELS[oposicionId] ?? oposicionId
+/**
+ * Resolves an oposicion UUID to its display name.
+ * Async — queries DB with in-memory cache.
+ */
+export async function resolveOposicionLabel(oposicionId: string): Promise<string> {
+  const labels = await loadLabels()
+  return labels.get(oposicionId) ?? oposicionId
 }
