@@ -79,24 +79,24 @@
 - [ ] INSERT oposiciones: id=d0000000..., slug='correos', rama='correos', nivel='IV', activa=false
 - [ ] features: {"psicotecnicos": true, "cazatrampas": true, "supuesto_practico": false, "ofimatica": false}
 - [ ] scoring_config: {"ejercicios": [{"nombre":"Test","preguntas":100,"minutos":110,"acierto":0.60,"error":0,"max":60,"penaliza":false}]}
-- [ ] INSERT 12 temas:
-  - T1: Marco normativo postal. Naturaleza jurídica Correos. Organismos reguladores.
-  - T2: Organización interna. Red de oficinas. Zonas y sectores.
-  - T3: Productos y servicios postales. Tarifas.
-  - T4: Servicios financieros y parapostales. Giros. Burofax.
-  - T5: Soluciones logísticas. Paquetería express. E-commerce.
-  - T6: Procesos de admisión.
-  - T7: Procesos de clasificación, tratamiento y transporte.
-  - T8: Procesos de distribución y entrega.
-  - T9: Atención al cliente. Reclamaciones. Calidad.
-  - T10: Igualdad, diversidad, inclusión. PRL.
-  - T11: Certificado digital, firma electrónica, notificaciones electrónicas.
-  - T12: Protección de datos. RGPD.
+- [ ] INSERT 12 temas (VERIFICADO — temario oficial 2023, confirmado 8+ fuentes):
+  - T1: Marco normativo postal y naturaleza jurídica. Organismos reguladores.
+  - T2: Experiencia de personas en Correos. Diversidad, Igualdad, PRL, RSC, ODS.
+  - T3: Paquetería de Correos y Correos Express. E-commerce y Citypaq.
+  - T4: Productos y servicios en Oficinas. Servicios Financieros. Soluciones Digitales. Filatelia.
+  - T5: Nuevas líneas de negocio: Correos Logística. Correos Frío.
+  - T6: Herramientas (IRIS, SGIE, PDA, SICER). Funciones y utilidad.
+  - T7: Procesos operativos I: Admisión.
+  - T8: Procesos operativos II: Tratamiento y Transporte.
+  - T9: Procesos operativos III: Distribución y Entrega.
+  - T10: El cliente: Atención al cliente y calidad. Protocolos de Ventas.
+  - T11: Internacionalización y Aduanas.
+  - T12: Normas de cumplimiento: Protección de datos, Blanqueo de Capitales, Ciberseguridad.
 
 ### 1.2 Contenido Correos
 - [ ] Indexar legislación en tabla `legislacion`:
   - Ley 43/2010 del servicio postal universal
-  - RD 1829/1999 Reglamento servicios postales
+  - RD 437/2024 Reglamento servicios postales (SUSTITUYE al derogado RD 1829/1999)
   - RGPD + LOPDGDD
   - Ley Orgánica 3/2007 Igualdad
   - Ley 31/1995 PRL
@@ -126,16 +126,18 @@
 ### 2.1 Migration: 3 oposiciones + temas
 - [ ] Crear `supabase/migrations/20260326_049_justicia.sql`
 - [ ] INSERT Auxilio Judicial C2: 26 temas, rama='justicia', nivel='C2', activa=false
-  - Temas exactos del Anexo VI.c del BOE-A-2025-27053
-  - scoring_config con 2 ejercicios (test 60pts + práctico 40pts)
+  - Temas verificados del Anexo VI.c BOE-A-2025-27053 (ver data/research-auxilio-judicial-2026.md)
+  - scoring_config: Ej1 (test 100q/100min, +0.60/-0.15 **ratio 1/4**, max 60, min 30) + Ej2 (práctico 42q/60min, +1.00/-0.25 **ratio 1/4**, max 40, min 20)
+  - **PENALIZACIÓN JUSTICIA = 1/4 (no 1/3 como AGE)**
 - [ ] INSERT Tramitación Procesal C1: 37 temas, rama='justicia', nivel='C1', activa=false
-  - Temas del Anexo VI.b (incluye Bloque III ofimática)
-  - scoring_config con 3 ejercicios (test 60pts + práctico 20pts + ofimática 20pts)
+  - Temas verificados del Anexo VI.b (ver data/research-tramitacion-gestion-2026.md)
+  - scoring_config: Ej1 (test 104q/100min, +0.60/-0.15, 1/4) + Ej2 (práctico 12q/30min, +2.00/-0.50, 1/4) + Ej3 (ofimática 24q/40min, +1.00/-0.25, 1/4)
   - features: ofimatica=true
 - [ ] INSERT Gestión Procesal A2: 68 temas, rama='justicia', nivel='A2', activa=false
-  - Temas del Anexo VI.a
-  - scoring_config con 3 ejercicios (test 60pts + práctico 15pts + desarrollo 25pts)
+  - Temas verificados del Anexo VI.a (ver data/research-tramitacion-gestion-2026.md)
+  - scoring_config: Ej1 (test 104q/100min, +0.60/-0.15, 1/4) + Ej2 (práctico 12q/30min, +1.50/-0.30, **ratio 1/5**) + Ej3 (desarrollo 5q/45min, tribunal-graded, max 25, min 12.5)
   - features: supuesto_practico=true
+  - **NOTA: Ej2 de Gestión tiene ratio 1/5 (anomalía respecto a otros cuerpos que son 1/4)**
 
 ### 2.2 Contenido Justicia — Legislación
 - [ ] Scrape BOE consolidado:
