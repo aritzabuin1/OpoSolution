@@ -11312,4 +11312,839 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Cuántos tests debo hacer para aprobar Correos?', answer: 'Los opositores que aprueban suelen resolver entre 2.000 y 3.000 preguntas antes del examen. Un plan realista es 20 preguntas diarias por tema entre semana y un simulacro de 100 preguntas cada sábado.' },
     ],
   },
+
+  // ─── Post 65 — Justicia: Sueldo Auxilio Judicial 2026 ──────────────────────
+  {
+    slug: 'sueldo-auxilio-judicial-2026-nomina',
+    title: 'Sueldo Auxilio Judicial 2026: nómina desglosada al céntimo',
+    description:
+      'Desglose completo de la nómina de un Auxilio Judicial en 2026: sueldo base, complementos, guardias, trienios y comparativa con Tramitación y Gestión Procesal.',
+    date: '2026-03-25',
+    dateModified: '2026-03-25',
+    keywords: [
+      'sueldo auxilio judicial',
+      'nomina auxilio judicial 2026',
+      'cuánto cobra un auxilio judicial',
+      'sueldo auxilio judicial con guardias',
+      'retribuciones auxilio judicial',
+    ],
+    content: `
+<h2>¿Cuánto cobra un Auxilio Judicial en 2026?</h2>
+<p>
+  Es la primera pregunta que se hace cualquier opositor — y la respuesta no es un solo número.
+  La nómina de un funcionario de Justicia se compone de <strong>sueldo base + complementos</strong>,
+  y puede variar hasta 800€/mes según el destino y las guardias. Vamos a desglosarlo todo.
+</p>
+<p>
+  El Auxilio Judicial pertenece al <strong>Grupo C1</strong> de la Administración de Justicia.
+  Cobra en <strong>14 pagas</strong> (12 mensuales + 2 pagas extra en junio y diciembre).
+</p>
+
+<h2>Desglose de la nómina mensual (2026)</h2>
+<p>Estos son los conceptos retributivos de un Auxilio Judicial de entrada sin antigüedad:</p>
+<ul>
+  <li><strong>Sueldo base (Grupo C1):</strong> ~988€/mes</li>
+  <li><strong>Complemento de destino (nivel 15-17):</strong> ~420-480€/mes</li>
+  <li><strong>Complemento específico:</strong> ~300-500€/mes (varía por CCAA y órgano judicial)</li>
+  <li><strong>Complemento de productividad:</strong> ~50-100€/mes (no garantizado)</li>
+</ul>
+<p>
+  <strong>Total bruto sin guardias: 1.600-2.000€/mes</strong> (según destino y CCAA).
+</p>
+<p>
+  <strong>Total bruto anual: ~22.500-28.000€</strong> en 14 pagas.
+</p>
+
+<h2>Las guardias: el gran plus salarial de Auxilio Judicial</h2>
+<p>
+  Una de las características únicas de Auxilio Judicial frente a Tramitación y Gestión es
+  que realiza <strong>guardias</strong> (noches, fines de semana y festivos) para actos de
+  comunicación urgente, órdenes de protección y actuaciones que no pueden esperar al día siguiente.
+</p>
+<ul>
+  <li><strong>Guardia nocturna entre semana:</strong> ~80-120€ por guardia</li>
+  <li><strong>Guardia de fin de semana completo:</strong> ~200-350€</li>
+  <li><strong>Guardia en festivo:</strong> ~150-250€</li>
+</ul>
+<p>
+  En destinos con guardias frecuentes (juzgados de guardia en ciudades medianas), un Auxilio
+  Judicial puede sumar <strong>400-800€ extra al mes</strong>. Esto eleva el sueldo bruto
+  mensual total a <strong>2.200-2.800€</strong>, y en casos excepcionales puede superar los 3.000€.
+</p>
+<p>
+  <strong>Importante:</strong> las guardias son obligatorias por turno, no voluntarias. En
+  destinos con muchos funcionarios (Madrid, Barcelona), te tocan menos guardias; en destinos
+  pequeños, más frecuentes pero mejor pagadas proporcionalmente.
+</p>
+
+<h2>Trienios: el sueldo crece con la antigüedad</h2>
+<p>
+  Por cada 3 años de servicio, un Auxilio Judicial percibe un <strong>trienio del Grupo C1</strong>:
+</p>
+<ul>
+  <li><strong>Valor del trienio C1:</strong> ~42-45€ brutos/mes</li>
+  <li><strong>Tras 9 años (3 trienios):</strong> +~130€/mes</li>
+  <li><strong>Tras 30 años (10 trienios):</strong> +~430€/mes</li>
+</ul>
+<p>
+  Los trienios se cobran en las 14 pagas. Un funcionario con 20+ años de antigüedad
+  puede cobrar <strong>300-400€ más al mes</strong> solo por trienios.
+</p>
+
+<h2>Sueldo neto: ¿cuánto llega a la cuenta?</h2>
+<p>
+  Tras IRPF (~15-19% para estos tramos) y Seguridad Social (~6,35%), la nómina neta se queda
+  aproximadamente así:
+</p>
+<ul>
+  <li><strong>Sin guardias (entrada):</strong> ~1.300-1.600€ netos/mes</li>
+  <li><strong>Con guardias regulares:</strong> ~1.700-2.200€ netos/mes</li>
+  <li><strong>Con antigüedad (10+ años) + guardias:</strong> ~1.900-2.400€ netos/mes</li>
+</ul>
+<p>
+  La retención de IRPF sube conforme cobras más, por lo que las guardias tributan a un tipo
+  marginal algo superior. Aun así, <strong>siempre compensa hacerlas</strong> económicamente.
+</p>
+
+<h2>¿Dónde se cobra más? Las CCAA con mejor complemento</h2>
+<p>
+  El complemento específico varía significativamente entre CCAA:
+</p>
+<ul>
+  <li><strong>País Vasco y Navarra:</strong> los complementos más altos (~500-600€/mes). También mayor coste de vida</li>
+  <li><strong>Madrid y Cataluña:</strong> complementos altos (~400-500€/mes), guardias frecuentes en juzgados grandes</li>
+  <li><strong>Andalucía, Valencia, Galicia:</strong> complementos medios (~300-400€/mes), pero coste de vida más bajo</li>
+  <li><strong>Canarias y Baleares:</strong> complemento de residencia adicional</li>
+</ul>
+<p>
+  El <strong>poder adquisitivo real</strong> puede ser mayor en provincias medianas (Salamanca,
+  Cáceres, Teruel) donde el complemento es decente y la vivienda cuesta la mitad que en Madrid.
+</p>
+
+<h2>Comparativa salarial: Auxilio vs Tramitación vs Gestión</h2>
+<ul>
+  <li><strong>Auxilio Judicial (C1):</strong> 1.600-2.000€ brutos/mes sin guardias | hasta 2.800€ con guardias</li>
+  <li><strong>Tramitación Procesal (B):</strong> 1.700-2.400€ brutos/mes sin guardias | hasta 3.200€ con guardias</li>
+  <li><strong>Gestión Procesal (A2):</strong> 2.400-2.800€ brutos/mes sin guardias | hasta 3.500€ con guardias</li>
+</ul>
+<p>
+  La diferencia entre Auxilio y Tramitación es de unos <strong>200-300€ brutos/mes</strong>.
+  A lo largo de 30 años de carrera, eso son unos <strong>100.000-130.000€ brutos</strong> de diferencia acumulada.
+  Merece la pena valorar si la inversión extra en estudio (11 temas más + ofimática) compensa.
+  <a href="/blog/auxilio-judicial-vs-tramitacion-procesal">Compara ambas oposiciones aquí</a>.
+</p>
+
+<h2>Otras ventajas económicas del funcionario de Justicia</h2>
+<ul>
+  <li><strong>Empleo fijo para toda la vida:</strong> no hay despido, no hay ERE, no hay incertidumbre</li>
+  <li><strong>MUFACE (mutualismo):</strong> acceso a seguros médicos privados sin coste adicional (Adeslas, DKV, Asisa)</li>
+  <li><strong>Vacaciones:</strong> 22 días hábiles de vacaciones + días de asuntos propios (hasta 6)</li>
+  <li><strong>Horario:</strong> jornada de mañana (8:00-15:00) en la mayoría de destinos</li>
+  <li><strong>Excedencias, reducciones de jornada y conciliación</strong> con garantía de reingreso</li>
+  <li><strong>Plan de pensiones:</strong> jubilación con el 80-100% de la base reguladora tras 30-35 años</li>
+</ul>
+
+<h2>Empieza a preparar tu plaza de Auxilio Judicial</h2>
+<p>
+  Con <strong>425 plazas</strong> en la convocatoria 2026 y un sueldo que puede superar los
+  2.500€ con guardias, Auxilio Judicial ofrece estabilidad laboral y económica con solo 26 temas.
+</p>
+<p>
+  En <a href="/register">OpoRuta</a> puedes preparar Auxilio Judicial con tests actualizados
+  a la LO 1/2025 y penalización real de 1/4. <strong><a href="/register">Regístrate gratis
+  y empieza a practicar</a></strong>.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Datos orientativos basados en BOE, CGPJ y nóminas reales de funcionarios. Las retribuciones exactas dependen del destino, CCAA y complementos individuales.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuánto cobra un Auxilio Judicial al mes en 2026?', answer: 'Un Auxilio Judicial de nueva entrada cobra entre 1.600 y 2.000€ brutos mensuales sin guardias (14 pagas). Con guardias regulares, la nómina puede llegar a 2.200-2.800€ brutos/mes. El sueldo neto se sitúa entre 1.300 y 2.200€ según destino y guardias.' },
+      { question: '¿Cuánto se cobra de guardias en Auxilio Judicial?', answer: 'Las guardias de Auxilio Judicial aportan entre 400 y 800€ extra al mes. Una guardia nocturna entre semana se paga a 80-120€, un fin de semana completo entre 200 y 350€, y los festivos entre 150 y 250€. Son obligatorias por turno rotatorio.' },
+      { question: '¿Cuánto vale un trienio de Auxilio Judicial?', answer: 'Cada trienio del Grupo C1 aporta unos 42-45€ brutos/mes adicionales, cobrados en las 14 pagas. Tras 30 años de servicio (10 trienios), el complemento de antigüedad suma unos 430€/mes extra a la nómina.' },
+      { question: '¿En qué comunidad autónoma cobra más un Auxilio Judicial?', answer: 'País Vasco y Navarra tienen los complementos más altos (500-600€/mes de complemento específico), seguidos de Madrid y Cataluña (400-500€). Sin embargo, el poder adquisitivo real puede ser mayor en provincias medianas con menor coste de vida.' },
+      { question: '¿Cuánto cobra un Auxilio Judicial más que un Tramitador Procesal?', answer: 'Un Auxilio Judicial cobra unos 200-300€ brutos/mes menos que un Tramitador Procesal. La diferencia acumulada en 30 años ronda los 100.000-130.000€ brutos. Tramitación exige Bachillerato y 11 temas más de temario, pero ofrece casi 3 veces más plazas.' },
+    ],
+  },
+
+  // ─── Post 66 — Justicia: Temas más preguntados Auxilio Judicial ─────────────
+  {
+    slug: 'temas-mas-preguntados-auxilio-judicial',
+    title: 'Temas más preguntados en Auxilio Judicial: análisis de exámenes',
+    description:
+      'Análisis de los temas que más caen en el examen de Auxilio Judicial: Constitución, LOPJ, LEC y LECrim dominan. Estrategia de estudio por peso real de cada bloque.',
+    date: '2026-03-25',
+    dateModified: '2026-03-25',
+    keywords: [
+      'temas que mas caen auxilio judicial',
+      'preguntas frecuentes auxilio judicial examen',
+      'temas importantes auxilio judicial',
+      'qué estudiar auxilio judicial',
+      'temario auxilio judicial priorizar',
+    ],
+    content: `
+<h2>No todos los temas pesan lo mismo en el examen</h2>
+<p>
+  El temario de Auxilio Judicial tiene <strong>26 temas</strong>, pero no todos aparecen
+  con la misma frecuencia en el examen. Analizando las convocatorias de los últimos años
+  (OEP 2019, 2021, 2022, 2024), hay un patrón claro: ciertos bloques temáticos concentran
+  la mayoría de las preguntas, y conocerlos te permite <strong>priorizar tu estudio</strong>
+  para maximizar tu nota.
+</p>
+<p>
+  El examen tiene <strong>100 preguntas puntuables + 4 de reserva</strong> en el Ejercicio 1
+  (test teórico, 100 minutos), distribuidas entre los 26 temas. Veamos qué sale más.
+</p>
+
+<h2>Bloque I — Organización del Estado y Poder Judicial (Temas 1-15)</h2>
+<p>
+  Este bloque acumula aproximadamente el <strong>55-60% de las preguntas</strong> del
+  Ejercicio 1. Es el bloque con más peso y el que determina si apruebas o no.
+</p>
+
+<h3>Temas con más preguntas (alta frecuencia)</h3>
+<ul>
+  <li><strong>T1 — Constitución Española:</strong> 8-12 preguntas por examen. Derechos fundamentales
+    (arts. 14-29), Título Preliminar y organización del Estado. Es el tema rey — siempre el más preguntado</li>
+  <li><strong>T7-T8 — LOPJ y Organización Judicial:</strong> 10-15 preguntas combinadas. Composición de
+    órganos judiciales, jurisdicción, competencias del CGPJ, los nuevos Tribunales de Instancia (LO 1/2025).
+    Desde la reforma, aún más importante</li>
+  <li><strong>T14-T15 — Personal al servicio de la Administración de Justicia:</strong> 8-10 preguntas.
+    Cuerpos de funcionarios, derechos/deberes, régimen disciplinario, situaciones administrativas.
+    Preguntas muy concretas sobre artículos del LOPJ</li>
+</ul>
+
+<h3>Temas de frecuencia media</h3>
+<ul>
+  <li><strong>T2-T3 — Corona, Cortes Generales, Gobierno:</strong> 4-6 preguntas. Funciones del Rey,
+    composición de las Cámaras, investidura, moción de censura</li>
+  <li><strong>T4-T5 — Poder Judicial (principios) y CGPJ:</strong> 3-5 preguntas. Independencia judicial,
+    composición y funciones del CGPJ</li>
+  <li><strong>T9-T10 — Secretaría Judicial y Oficina Judicial:</strong> 4-6 preguntas. Estructura,
+    funciones del LAJ, nuevas Oficinas de Justicia (LO 1/2025)</li>
+</ul>
+
+<h3>Temas de baja frecuencia (pero no ignorables)</h3>
+<ul>
+  <li><strong>T6 — Organización territorial:</strong> 2-3 preguntas. CCAA, municipios, provincias</li>
+  <li><strong>T11 — Ministerio Fiscal:</strong> 2-3 preguntas. Funciones, organización, principios</li>
+  <li><strong>T12-T13 — Derechos de los ciudadanos ante la Justicia, modernización:</strong> 2-4 preguntas.
+    Carta de derechos, administración electrónica, expediente digital</li>
+</ul>
+
+<h2>Bloque II — Derecho Procesal (Temas 16-26)</h2>
+<p>
+  Este bloque supone el <strong>40-45% restante del Ejercicio 1</strong> y es decisivo
+  en el <strong>Ejercicio 2 (caso práctico)</strong>, donde pesa casi al 100%.
+</p>
+
+<h3>Temas estrella del Bloque II</h3>
+<ul>
+  <li><strong>T16-T17 — Proceso civil (LEC):</strong> 8-12 preguntas en Ej.1 + dominio necesario para Ej.2.
+    Procedimientos declarativos, ejecución, embargos, subastas. La LEC es la ley más preguntada después
+    de la Constitución y la LOPJ</li>
+  <li><strong>T18 — Proceso penal (LECrim):</strong> 6-8 preguntas. Procedimiento abreviado, juicio rápido,
+    juicio por delitos leves, Habeas Corpus. Muy presente también en el Ejercicio 2</li>
+  <li><strong>T22-T23 — Actos de comunicación y Registro Civil:</strong> 5-7 preguntas combinadas.
+    Notificaciones, citaciones, emplazamientos — competencia directa de Auxilio Judicial</li>
+</ul>
+
+<h3>Temas de frecuencia media-baja</h3>
+<ul>
+  <li><strong>T19 — Contencioso-administrativo:</strong> 3-4 preguntas. Procedimiento ordinario y abreviado</li>
+  <li><strong>T20 — Proceso laboral:</strong> 2-3 preguntas. Despido, conciliación previa</li>
+  <li><strong>T21 — Actos procesales, plazos y recursos:</strong> 4-6 preguntas. Cómputo de plazos,
+    tipos de resoluciones, recursos de reposición y apelación</li>
+  <li><strong>T24-T26 — Registro Civil, archivo judicial, expediente digital:</strong> 4-6 preguntas.
+    Funciones registrales, documentación judicial, nuevo expediente electrónico</li>
+</ul>
+
+<h2>Mapa de prioridades: dónde invertir tu tiempo</h2>
+<p>
+  Basándonos en el análisis de frecuencia, esta es la distribución óptima de tu tiempo de estudio:
+</p>
+<ul>
+  <li><strong>Prioridad MÁXIMA (40% del tiempo):</strong> Constitución (T1), LOPJ/organización judicial
+    (T7-T8), personal de Justicia (T14-T15), LEC (T16-T17). Estos temas acumulan más de la mitad
+    de las preguntas</li>
+  <li><strong>Prioridad ALTA (30% del tiempo):</strong> LECrim (T18), actos de comunicación (T22-T23),
+    actos procesales/plazos (T21), CGPJ (T4-T5), Oficina Judicial (T9-T10)</li>
+  <li><strong>Prioridad MEDIA (20% del tiempo):</strong> Corona y Cortes (T2-T3), contencioso (T19),
+    laboral (T20), Registro Civil (T24-T25)</li>
+  <li><strong>Prioridad BAJA (10% del tiempo):</strong> organización territorial (T6), Ministerio Fiscal
+    (T11), modernización (T12-T13), archivo judicial (T26). No los ignores, pero no pierdas semanas aquí</li>
+</ul>
+
+<h2>Estrategia para el Ejercicio 2 (caso práctico)</h2>
+<p>
+  El Ejercicio 2 tiene <strong>40 preguntas en 60 minutos</strong> sobre supuestos prácticos.
+  Aquí el Bloque II es rey: la mayoría de los casos se basan en procedimientos civiles (LEC),
+  penales (LECrim) y actos de comunicación.
+</p>
+<ul>
+  <li><strong>Domina la LEC (T16-T17):</strong> plazos, tipos de procedimiento, embargos, subastas. Los casos prácticos suelen plantear situaciones de ejecución</li>
+  <li><strong>Domina la LECrim (T18):</strong> diferencias entre procedimiento ordinario, abreviado y juicio rápido. Competencias en instrucción. Plazos de detención</li>
+  <li><strong>Actos de comunicación (T22):</strong> cómo y cuándo se practica cada tipo. Errores comunes en notificaciones. Es la función principal de Auxilio Judicial</li>
+</ul>
+<p>
+  <strong>Consejo:</strong> practica con casos prácticos reales desde el primer mes de estudio.
+  La teoría sin aplicación no basta para el Ejercicio 2.
+</p>
+
+<h2>El factor LO 1/2025: temas que cambian</h2>
+<p>
+  La <strong>Ley Orgánica 1/2025</strong> ha modificado varios temas del Bloque I:
+</p>
+<ul>
+  <li><strong>T8 — Tribunales de Instancia:</strong> sustituyen a los juzgados de primera instancia e instrucción en muchas demarcaciones</li>
+  <li><strong>T10 — Oficinas de Justicia:</strong> nueva estructura que reemplaza parcialmente a las secretarías judiciales</li>
+  <li><strong>MASC:</strong> los Medios Adecuados de Solución de Controversias aparecen como novedad transversal</li>
+</ul>
+<p>
+  <a href="/blog/cambios-temario-justicia-2026-lo-1-2025">Lee nuestro análisis completo de la LO 1/2025</a>.
+  Es fundamental estudiar con temario actualizado.
+</p>
+
+<h2>Prepárate con tests que replican el examen real</h2>
+<p>
+  En <a href="/register">OpoRuta</a> puedes practicar Auxilio Judicial tema a tema con la
+  penalización real de 1/4 y análisis de tus puntos débiles. El sistema identifica qué temas
+  necesitas reforzar basándose en tus resultados.
+</p>
+<p>
+  <strong><a href="/register">Regístrate gratis y empieza a practicar</a></strong>.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Análisis basado en exámenes OEP 2019-2024 y convocatoria OEP 2025 (BOE 30/12/2025).</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Qué temas caen más en el examen de Auxilio Judicial?', answer: 'Los temas con más preguntas son: Constitución Española (T1, 8-12 preguntas), LOPJ y organización judicial (T7-T8, 10-15 preguntas combinadas), personal al servicio de la Administración de Justicia (T14-T15, 8-10 preguntas) y proceso civil LEC (T16-T17, 8-12 preguntas). Estos cuatro bloques acumulan más del 50% del examen.' },
+      { question: '¿Cuántas preguntas tiene el examen de Auxilio Judicial?', answer: 'El Ejercicio 1 tiene 100 preguntas puntuables + 4 de reserva en 100 minutos. El Ejercicio 2 tiene 40 preguntas + 2 de reserva en 60 minutos sobre casos prácticos. En total, 140 preguntas puntuables en un mismo día de examen.' },
+      { question: '¿Qué es más importante para aprobar, el Bloque I o el Bloque II?', answer: 'El Bloque I (organización) pesa un 55-60% en el Ejercicio 1 y es imprescindible para aprobar el test teórico. Pero el Bloque II (derecho procesal) domina el Ejercicio 2 (caso práctico) casi al 100%. Necesitas aprobar ambos ejercicios, así que no puedes descuidar ningún bloque.' },
+      { question: '¿Sale la LO 1/2025 en el examen de Auxilio Judicial 2026?', answer: 'Sí. La convocatoria OEP 2025 ya incluye las modificaciones de la LO 1/2025 en el temario. Los temas afectados son principalmente T8 (Tribunales de Instancia), T10 (Oficinas de Justicia) y los relativos a MASC (Medios Adecuados de Solución de Controversias). Es imprescindible estudiar con temario actualizado.' },
+      { question: '¿Cómo priorizar el estudio de Auxilio Judicial con poco tiempo?', answer: 'Dedica el 40% del tiempo a Constitución, LOPJ, personal de Justicia y LEC (los temas que más pesan). El 30% a LECrim, actos de comunicación y actos procesales. El 20% a Corona, Cortes, contencioso y laboral. Y solo el 10% a temas de baja frecuencia como organización territorial o archivo judicial.' },
+    ],
+  },
+
+  // ─── Post 67 — Justicia: Penalización examen Auxilio Judicial ───────────────
+  {
+    slug: 'penalizacion-examen-auxilio-judicial',
+    title: 'Penalización examen Auxilio Judicial: cuándo arriesgar y cuándo dejar en blanco',
+    description:
+      'La penalización en Auxilio Judicial es 1/4 (NO 1/3 como en AGE). Fórmula exacta por ejercicio, ejemplos numéricos y estrategia matemática para maximizar tu nota.',
+    date: '2026-03-25',
+    dateModified: '2026-03-25',
+    keywords: [
+      'penalizacion auxilio judicial',
+      'formula puntuacion auxilio judicial',
+      'penalización examen justicia 2026',
+      'cuándo dejar en blanco auxilio judicial',
+      'sistema puntuación auxilio judicial',
+    ],
+    content: `
+<h2>La penalización de Auxilio Judicial NO es 1/3 — es 1/4</h2>
+<p>
+  <strong>Esto es lo más importante que vas a leer sobre el examen de Auxilio Judicial</strong>:
+  la penalización por respuesta incorrecta es <strong>1/4 del valor del acierto</strong>, no 1/3
+  como en las oposiciones de la AGE (Auxiliar Administrativo, Administrativo del Estado).
+</p>
+<p>
+  ¿Por qué importa? Porque cambia completamente tu estrategia. Con penalización 1/4, el
+  valor esperado de responder al azar es <strong>ligeramente positivo</strong> si puedes
+  descartar una sola opción. Vamos a verlo con números exactos.
+</p>
+
+<h2>Ejercicio 1 — Test teórico: los números exactos</h2>
+<ul>
+  <li><strong>Preguntas:</strong> 100 puntuables + 4 de reserva</li>
+  <li><strong>Tiempo:</strong> 100 minutos</li>
+  <li><strong>Acierto:</strong> +0,60 puntos</li>
+  <li><strong>Error:</strong> -0,15 puntos (exactamente 1/4 de 0,60)</li>
+  <li><strong>Blanco:</strong> 0 puntos</li>
+  <li><strong>Puntuación máxima:</strong> 60 puntos</li>
+  <li><strong>Mínimo para aprobar:</strong> 30 puntos (50% del máximo)</li>
+</ul>
+
+<h3>Valor esperado de responder al azar (4 opciones)</h3>
+<p>Si no sabes nada y respondes al azar entre 4 opciones:</p>
+<ul>
+  <li>Probabilidad de acertar: 1/4 = 25%</li>
+  <li>Probabilidad de fallar: 3/4 = 75%</li>
+  <li>Valor esperado = (1/4 × 0,60) + (3/4 × -0,15) = 0,15 - 0,1125 = <strong>+0,0375</strong></li>
+</ul>
+<p>
+  <strong>Sorpresa: el valor esperado es ligeramente positivo (+0,0375 puntos por pregunta)</strong>.
+  Esto significa que, matemáticamente, incluso responder al azar total no te perjudica en el
+  Ejercicio 1. Pero ojo: la varianza es alta, y en un examen real no querrás depender de la suerte.
+</p>
+
+<h3>Si puedes descartar 1 opción (3 opciones restantes)</h3>
+<ul>
+  <li>Valor esperado = (1/3 × 0,60) + (2/3 × -0,15) = 0,20 - 0,10 = <strong>+0,10 puntos</strong></li>
+</ul>
+<p>
+  <strong>Regla clara: si descartas 1 opción, responde SIEMPRE.</strong> El beneficio esperado
+  es significativamente positivo.
+</p>
+
+<h3>Si puedes descartar 2 opciones (2 opciones restantes, 50/50)</h3>
+<ul>
+  <li>Valor esperado = (1/2 × 0,60) + (1/2 × -0,15) = 0,30 - 0,075 = <strong>+0,225 puntos</strong></li>
+</ul>
+<p>Sin duda, responde siempre que estés entre dos opciones.</p>
+
+<h2>Ejercicio 2 — Caso práctico: los números exactos</h2>
+<ul>
+  <li><strong>Preguntas:</strong> 40 puntuables + 2 de reserva</li>
+  <li><strong>Tiempo:</strong> 60 minutos</li>
+  <li><strong>Acierto:</strong> +1,00 punto</li>
+  <li><strong>Error:</strong> -0,25 puntos (exactamente 1/4 de 1,00)</li>
+  <li><strong>Blanco:</strong> 0 puntos</li>
+  <li><strong>Puntuación máxima:</strong> 40 puntos</li>
+  <li><strong>Mínimo para aprobar:</strong> 20 puntos (50% del máximo)</li>
+</ul>
+
+<h3>Valor esperado al azar en el Ejercicio 2</h3>
+<ul>
+  <li>Valor esperado = (1/4 × 1,00) + (3/4 × -0,25) = 0,25 - 0,1875 = <strong>+0,0625</strong></li>
+</ul>
+<p>
+  Misma conclusión: responder al azar tiene valor esperado ligeramente positivo. Pero con
+  solo 40 preguntas, cada error duele más (resta 0,25 puntos).
+</p>
+
+<h2>Ejemplo práctico completo: simulación de nota</h2>
+
+<h3>Escenario A — Estrategia conservadora (dejas 15 en blanco)</h3>
+<p>Ejercicio 1:</p>
+<ul>
+  <li>70 aciertos × 0,60 = +42,00</li>
+  <li>15 errores × 0,15 = -2,25</li>
+  <li>15 en blanco = 0</li>
+  <li><strong>Total: 39,75 puntos</strong> (aprobado con holgura)</li>
+</ul>
+
+<h3>Escenario B — Estrategia agresiva (no dejas ninguna en blanco)</h3>
+<p>Ejercicio 1:</p>
+<ul>
+  <li>70 aciertos × 0,60 = +42,00</li>
+  <li>30 errores × 0,15 = -4,50</li>
+  <li><strong>Total: 37,50 puntos</strong> (aprobado, pero 2,25 puntos menos)</li>
+</ul>
+
+<h3>Escenario C — El peligro real (muchos fallos)</h3>
+<p>Ejercicio 1:</p>
+<ul>
+  <li>50 aciertos × 0,60 = +30,00</li>
+  <li>40 errores × 0,15 = -6,00</li>
+  <li>10 en blanco = 0</li>
+  <li><strong>Total: 24,00 puntos</strong> (SUSPENSO — no llega a 30)</li>
+</ul>
+<p>
+  Si este opositor hubiera dejado en blanco 20 de esas 40 erróneas y hubiera acertado
+  las otras 20 con algo de razonamiento, su nota sería: (50+10)×0,60 - 10×0,15 = 36 - 1,5 =
+  <strong>34,50 puntos (aprobado)</strong>. La diferencia entre aprobar y suspender está en
+  <strong>saber cuándo NO responder</strong>.
+</p>
+
+<h2>La regla de oro por ejercicio</h2>
+
+<h3>Ejercicio 1 (test teórico)</h3>
+<ul>
+  <li><strong>Descartas 2+ opciones:</strong> responde SIEMPRE (valor esperado > +0,22)</li>
+  <li><strong>Descartas 1 opción:</strong> responde (valor esperado +0,10)</li>
+  <li><strong>No descartas ninguna:</strong> responde si no te queda tiempo para pensarlo mejor. El valor esperado es +0,04, pero la varianza puede jugarte en contra</li>
+</ul>
+
+<h3>Ejercicio 2 (caso práctico)</h3>
+<ul>
+  <li><strong>Descartas 1+ opción:</strong> responde siempre</li>
+  <li><strong>No descartas ninguna:</strong> valora dejarlo en blanco. Con solo 40 preguntas, cada error de 0,25 puntos pesa más proporcionalmente</li>
+</ul>
+
+<h2>Diferencia clave con las oposiciones AGE</h2>
+<p>
+  En las oposiciones de la AGE (Auxiliar Administrativo, C1 Administrativo del Estado), la
+  penalización es <strong>1/3</strong>. Esto hace que el valor esperado al azar sea exactamente
+  0 — responder al azar no te beneficia ni te perjudica.
+</p>
+<p>
+  En Justicia (Auxilio Judicial, Tramitación, Gestión), la penalización es <strong>1/4</strong>.
+  Esto te da un margen matemático ligeramente favorable al responder, lo que significa que
+  <strong>la estrategia óptima en Justicia es más agresiva que en AGE</strong>.
+</p>
+
+<h2>Puntuación mínima para aprobar: la matemática de los 30 puntos</h2>
+<p>
+  Para aprobar el Ejercicio 1 necesitas <strong>30 puntos sobre 60</strong>. ¿Cuántas preguntas
+  necesitas acertar como mínimo?
+</p>
+<ul>
+  <li>Si aciertas X y fallas Y (de 100): 0,60X - 0,15Y = 30</li>
+  <li>Si X + Y = 100 (no dejas ninguna en blanco): 0,60X - 0,15(100-X) = 30 → 0,75X = 45 → <strong>X = 60 aciertos</strong></li>
+  <li>Si dejas 20 en blanco y fallas 10: 0,60X - 0,15(10) = 30 → X = <strong>52,5 → 53 aciertos</strong> (de 80 contestadas)</li>
+</ul>
+<p>
+  Conclusión: necesitas acertar entre el <strong>60-66% de las preguntas que respondas</strong>,
+  dependiendo de cuántas dejes en blanco.
+</p>
+
+<h2>Practica con penalización real</h2>
+<p>
+  El error más grave de los opositores de Justicia es practicar sin penalización. Si tus tests
+  de entrenamiento no aplican la fórmula 1/4, estás generando hábitos equivocados.
+</p>
+<p>
+  En <a href="/register">OpoRuta</a>, todos los tests y simulacros de Auxilio Judicial aplican
+  la <strong>penalización exacta de 1/4</strong>. Verás tu nota real con descuento, cuántos puntos
+  perdiste por errores y si habrías aprobado.
+</p>
+<p>
+  <strong><a href="/register">Regístrate gratis y entrena con penalización real</a></strong>.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Fuente: Orden PJC/1549/2025 (BOE 30/12/2025). Las puntuaciones se refieren a la convocatoria OEP 2025.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuál es la penalización en el examen de Auxilio Judicial?', answer: 'La penalización es 1/4 del valor del acierto. En el Ejercicio 1: acierto = +0,60, error = -0,15. En el Ejercicio 2: acierto = +1,00, error = -0,25. Las respuestas en blanco no puntúan. Esta penalización es más favorable que la de AGE (1/3).' },
+      { question: '¿Cuántos puntos necesito para aprobar Auxilio Judicial?', answer: 'Necesitas un mínimo de 30 puntos en el Ejercicio 1 (sobre 60 posibles) y 20 puntos en el Ejercicio 2 (sobre 40 posibles). En total, el mínimo teórico es 50 puntos sobre 100, pero la nota de corte real suele ser superior debido a la competencia.' },
+      { question: '¿Merece la pena responder al azar en Auxilio Judicial?', answer: 'Matemáticamente sí: con penalización 1/4 y 4 opciones, el valor esperado al azar es +0,04 puntos por pregunta (ligeramente positivo). Sin embargo, la estrategia óptima es responder si puedes descartar al menos 1 opción (valor esperado +0,10) y ser cauto solo cuando no tengas ni idea del tema.' },
+      { question: '¿Es diferente la penalización en Auxilio Judicial y en Auxiliar Administrativo?', answer: 'Sí, son diferentes. Auxilio Judicial (Justicia) penaliza 1/4 del acierto, mientras que Auxiliar Administrativo (AGE/INAP) penaliza 1/3 del acierto. La penalización de Justicia es más suave, lo que favorece una estrategia más agresiva al responder.' },
+      { question: '¿Cuántas preguntas hay que acertar para aprobar el Ejercicio 1?', answer: 'Depende de cuántas dejes en blanco. Si contestas las 100: necesitas al menos 60 aciertos. Si dejas 20 en blanco y fallas 10: necesitas 53 aciertos de 80 contestadas. La clave es acertar entre el 60-66% de las preguntas que respondas.' },
+    ],
+  },
+
+  // ─── Post 68 — Justicia: Preparar Auxilio Judicial sin academia ─────────────
+  {
+    slug: 'preparar-auxilio-judicial-sin-academia-10-meses',
+    title: 'Preparar Auxilio Judicial sin academia: plan de estudio de 10 meses',
+    description:
+      'Plan completo para preparar Auxilio Judicial por libre en 10 meses: distribución de los 26 temas, recursos gratuitos, técnicas de estudio y calendario mes a mes.',
+    date: '2026-03-25',
+    dateModified: '2026-03-25',
+    keywords: [
+      'preparar auxilio judicial sin academia',
+      'plan estudio auxilio judicial',
+      'auxilio judicial por libre',
+      'cuánto tiempo preparar auxilio judicial',
+      'estudiar auxilio judicial desde cero',
+    ],
+    content: `
+<h2>¿Se puede preparar Auxilio Judicial sin academia?</h2>
+<p>
+  Sí, y cada vez más opositores lo hacen. Con <strong>26 temas</strong> y un examen 100% tipo
+  test, Auxilio Judicial es una de las oposiciones de Justicia más accesibles para preparar
+  por libre. No necesitas un preparador que te dicte apuntes — necesitas un plan, constancia
+  y los recursos adecuados.
+</p>
+<p>
+  Este plan está diseñado para <strong>10 meses de preparación</strong> dedicando
+  <strong>3-4 horas diarias</strong> (6 días a la semana, 1 de descanso). Si dispones de
+  más horas, puedes acortarlo; si tienes menos, amplíalo a 12-14 meses.
+</p>
+<p>
+  La convocatoria OEP 2025 ofrece <strong>425 plazas</strong> con examen previsto para
+  septiembre-octubre 2026. Si empiezas ahora, llegas con margen.
+</p>
+
+<h2>Fase 1 — Bloque I: Organización (Meses 1-4)</h2>
+<p>
+  Los temas 1-15 son la base jurídica de la oposición y suponen el <strong>55-60% del
+  Ejercicio 1</strong>. Empezar por aquí tiene sentido: son más teóricos pero fundamentales.
+</p>
+
+<h3>Mes 1 — Constitución y Estado (T1-T3)</h3>
+<ul>
+  <li><strong>T1 — Constitución Española:</strong> el tema más extenso y más preguntado. Dedica 2 semanas completas. Memoriza artículos clave: 1, 9, 14-29, 53, 117, 122-123, 159-165</li>
+  <li><strong>T2 — Corona y Cortes Generales:</strong> funciones del Rey, composición de Congreso/Senado, investidura, moción de censura</li>
+  <li><strong>T3 — Gobierno y Administración:</strong> funciones del Gobierno, Consejo de Ministros, Administración periférica</li>
+</ul>
+<p><strong>Test de autoevaluación:</strong> al final del mes, haz un test de 30 preguntas sobre T1-T3. Si sacas menos de 20 correctas, repasa antes de seguir.</p>
+
+<h3>Mes 2 — Poder Judicial y CGPJ (T4-T8)</h3>
+<ul>
+  <li><strong>T4-T5 — Poder Judicial, CGPJ:</strong> principios de independencia e inamovilidad, composición y funciones del CGPJ (20 miembros)</li>
+  <li><strong>T6 — Organización territorial:</strong> comunidades autónomas, provincias, municipios</li>
+  <li><strong>T7-T8 — Organización de Tribunales y Juzgados:</strong> jurisdicción ordinaria, órganos colegiados, juzgados, Tribunales de Instancia (LO 1/2025). <strong>Tema clave — muchas preguntas</strong></li>
+</ul>
+
+<h3>Mes 3 — Oficina Judicial y Ministerio Fiscal (T9-T13)</h3>
+<ul>
+  <li><strong>T9-T10 — LAJ y Oficina Judicial:</strong> funciones del Letrado de la Administración de Justicia, estructura de la Oficina de Justicia, MASC</li>
+  <li><strong>T11 — Ministerio Fiscal:</strong> principios, organización, Fiscal General del Estado</li>
+  <li><strong>T12-T13 — Derechos ciudadanos y modernización:</strong> Carta de Derechos, expediente judicial electrónico, administración electrónica</li>
+</ul>
+
+<h3>Mes 4 — Personal de Justicia + Repaso Bloque I (T14-T15)</h3>
+<ul>
+  <li><strong>T14-T15 — Personal al servicio de la Administración de Justicia:</strong> cuerpos de funcionarios, ingreso, situaciones administrativas, derechos/deberes, régimen disciplinario. <strong>Muy preguntado — 8-10 preguntas</strong></li>
+  <li><strong>Semanas 3-4:</strong> repaso completo del Bloque I. Haz 1 simulacro de 50 preguntas solo de T1-T15</li>
+</ul>
+
+<h2>Fase 2 — Bloque II: Derecho Procesal (Meses 5-8)</h2>
+<p>
+  Los temas 16-26 cubren los procedimientos judiciales. Son más prácticos y densos — cada
+  tema requiere comprender <strong>leyes procesales completas</strong> (LEC, LECrim, LJCA, LRJS).
+</p>
+
+<h3>Mes 5 — Proceso civil (T16-T17)</h3>
+<ul>
+  <li><strong>T16 — Procedimientos declarativos LEC:</strong> ordinario, verbal, cuantías, plazos, competencia</li>
+  <li><strong>T17 — Ejecución LEC:</strong> títulos ejecutivos, embargo, subasta judicial, medidas cautelares. <strong>Imprescindible para el Ejercicio 2</strong></li>
+</ul>
+<p>Consejo: lee los artículos clave de la LEC directamente (arts. 248-250 para ordinario/verbal, 517 para títulos ejecutivos, 571+ para ejecución).</p>
+
+<h3>Mes 6 — Proceso penal y otros órdenes (T18-T20)</h3>
+<ul>
+  <li><strong>T18 — LECrim:</strong> procedimiento ordinario, abreviado, juicio rápido, delitos leves, Habeas Corpus. Muchas preguntas en ambos ejercicios</li>
+  <li><strong>T19 — Contencioso-administrativo (LJCA):</strong> procedimiento ordinario y abreviado, recurso de casación</li>
+  <li><strong>T20 — Proceso laboral (LRJS):</strong> procedimiento ordinario, despido, conciliación previa</li>
+</ul>
+
+<h3>Mes 7 — Actos procesales y comunicación (T21-T23)</h3>
+<ul>
+  <li><strong>T21 — Actos procesales y plazos:</strong> cómputo de plazos (arts. 130-136 LEC), tipos de resoluciones, recursos (reposición, apelación)</li>
+  <li><strong>T22 — Actos de comunicación:</strong> notificaciones, citaciones, emplazamientos, requerimientos. <strong>Tema clave de Auxilio — es tu función principal</strong></li>
+  <li><strong>T23 — Registro Civil:</strong> organización, funciones, asientos, certificaciones</li>
+</ul>
+
+<h3>Mes 8 — Registro Civil y archivo + Repaso Bloque II (T24-T26)</h3>
+<ul>
+  <li><strong>T24-T25 — Registro Civil (continuación):</strong> inscripciones, expedientes registrales</li>
+  <li><strong>T26 — Archivo judicial y expediente electrónico:</strong> documentación judicial, expurgo, digitalización</li>
+  <li><strong>Semanas 3-4:</strong> repaso Bloque II. Simulacro de 40 preguntas de T16-T26 (formato Ejercicio 2)</li>
+</ul>
+
+<h2>Fase 3 — Consolidación y simulacros (Meses 9-10)</h2>
+<p>
+  Los últimos dos meses son para <strong>asentar, repasar y entrenar el formato examen</strong>.
+  Ya deberías haber visto todo el temario al menos una vez. Ahora toca convertir conocimiento
+  en puntos.
+</p>
+
+<h3>Mes 9 — Repaso intensivo + puntos débiles</h3>
+<ul>
+  <li><strong>Semana 1-2:</strong> repaso rápido de los 26 temas (1 tema/día, lectura activa + esquemas)</li>
+  <li><strong>Semana 3-4:</strong> identifica tus 5-6 temas más débiles (los que peor te salen en tests) y refuérzalos. No dediques más tiempo a lo que ya dominas</li>
+  <li><strong>Tests diarios:</strong> 20-30 preguntas/día por tema, siempre con penalización activada</li>
+</ul>
+
+<h3>Mes 10 — Simulacros a tope</h3>
+<ul>
+  <li><strong>Semana 1-2:</strong> 1 simulacro completo cada 2 días (100 preguntas Ej.1 + 40 preguntas Ej.2). Cronometrado: 100 min + 60 min</li>
+  <li><strong>Semana 3:</strong> análisis de errores de todos los simulacros. ¿Dónde pierdes más puntos? Últimos repasos quirúrgicos</li>
+  <li><strong>Última semana:</strong> repaso ligero (1-2h/día), descanso y preparación mental. No metas información nueva — consolida</li>
+</ul>
+
+<h2>Recursos gratuitos imprescindibles</h2>
+<ul>
+  <li><strong>BOE — Legislación oficial:</strong> Constitución, LOPJ, LEC, LECrim, LJCA, LRJS. Todo accesible en boe.es</li>
+  <li><strong>Exámenes anteriores:</strong> el Ministerio de Justicia publica los exámenes de convocatorias pasadas con plantillas de respuestas</li>
+  <li><strong>Noticias Jurídicas (noticias.juridicas.com):</strong> legislación consolidada y actualizada</li>
+  <li><strong><a href="/register">OpoRuta</a>:</strong> tests por tema con penalización 1/4, simulacros reales y seguimiento de progreso — empieza gratis</li>
+</ul>
+
+<h2>Errores comunes del opositor por libre</h2>
+<ul>
+  <li><strong>Estudiar sin hacer tests:</strong> la teoría sin práctica no se fija. Haz tests desde la primera semana</li>
+  <li><strong>No respetar el plan:</strong> si te atrasas 1 semana, ajusta el calendario pero NO abandones la estructura. El plan existe para que no te pierdas</li>
+  <li><strong>Ignorar el Ejercicio 2:</strong> muchos opositores aprueban el Ej.1 y suspenden el Ej.2 porque no practican casos prácticos. Empieza los supuestos desde el mes 5</li>
+  <li><strong>Practicar sin penalización:</strong> si tus tests no descuentan 1/4, estás creando malos hábitos. <a href="/blog/penalizacion-examen-auxilio-judicial">Lee nuestra guía de penalización</a></li>
+  <li><strong>No descansar:</strong> 1 día libre a la semana es obligatorio. El cerebro consolida mientras descansa</li>
+</ul>
+
+<h2>¿Es mejor academia o por libre?</h2>
+<p>
+  Una academia te da estructura, actualización de temario y preparador. Pero cuesta
+  <strong>150-300€/mes durante 10+ meses</strong>. Con Auxilio Judicial (26 temas, 100% test),
+  preparar por libre es perfectamente viable si:
+</p>
+<ul>
+  <li>Tienes disciplina para seguir un plan</li>
+  <li>Accedes a legislación actualizada (BOE + LO 1/2025)</li>
+  <li>Practicas con tests que apliquen la penalización real</li>
+  <li>Haces simulacros cronometrados regularmente</li>
+</ul>
+<p>
+  Lo que NO puedes ahorrarte: <strong>el material actualizado a la LO 1/2025</strong> y una
+  herramienta de tests con corrección fiable.
+</p>
+
+<h2>Empieza tu preparación hoy</h2>
+<p>
+  En <a href="/register">OpoRuta</a> tienes tests de Auxilio Judicial actualizados a la
+  LO 1/2025, con penalización real de 1/4, simulacros cronometrados y seguimiento de tu
+  progreso tema a tema. Empieza gratis y ve si el formato te funciona.
+</p>
+<p>
+  <strong><a href="/register">Regístrate gratis y empieza a practicar</a></strong>.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Plan orientativo basado en la convocatoria OEP 2025 (BOE 30/12/2025). 425 plazas, examen previsto septiembre-octubre 2026.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuánto tiempo se necesita para preparar Auxilio Judicial sin academia?', answer: 'Con 3-4 horas diarias (6 días/semana), un plan de 10 meses es suficiente para cubrir los 26 temas y practicar con simulacros. Si tienes menos tiempo disponible, amplía a 12-14 meses. Con más de 4 horas diarias, puedes acortarlo a 7-8 meses.' },
+      { question: '¿Es mejor academia o preparar Auxilio Judicial por libre?', answer: 'Con 26 temas y examen 100% test, Auxilio Judicial es viable por libre si tienes disciplina y material actualizado. La academia aporta estructura y preparador (150-300€/mes), pero el coste total (1.500-3.000€) es alto. La clave por libre: plan realista, legislación actualizada a la LO 1/2025 y tests con penalización real de 1/4.' },
+      { question: '¿Cuántos temas tiene Auxilio Judicial?', answer: 'El temario consta de 26 temas en 2 bloques: Bloque I (temas 1-15) sobre organización del Estado, Constitución y Poder Judicial, y Bloque II (temas 16-26) sobre derecho procesal (civil, penal, contencioso, laboral, Registro Civil).' },
+      { question: '¿Qué hay que estudiar primero en Auxilio Judicial?', answer: 'Empieza por el Bloque I (organización, temas 1-15): es la base jurídica y supone el 55-60% del Ejercicio 1. Después el Bloque II (procesal, temas 16-26), que es más práctico y domina el Ejercicio 2. La Constitución (T1) y la LOPJ (T7-T8) deben ser tus primeras prioridades.' },
+      { question: '¿Cuántas plazas de Auxilio Judicial hay en 2026?', answer: 'La convocatoria OEP 2025 ofrece 425 plazas de Auxilio Judicial: 382 de acceso libre y 43 reservadas para personas con discapacidad. El examen está previsto para septiembre-octubre 2026. La titulación mínima es ESO o Graduado Escolar.' },
+    ],
+  },
+
+  // ─── Post 69 — Justicia: Nota de corte Auxilio Judicial 2025 ────────────────
+  {
+    slug: 'nota-corte-auxilio-judicial-2025',
+    title: 'Nota de corte Auxilio Judicial 2025: cuánto necesitas para aprobar',
+    description:
+      'Puntuación mínima para aprobar cada ejercicio de Auxilio Judicial, nota de corte real por competencia y estrategia para superar el listón en 2026.',
+    date: '2026-03-25',
+    dateModified: '2026-03-25',
+    keywords: [
+      'nota corte auxilio judicial 2025',
+      'puntuacion minima auxilio judicial',
+      'nota corte auxilio judicial 2026',
+      'cuánto hay que sacar auxilio judicial',
+      'aprobado auxilio judicial puntuación',
+    ],
+    content: `
+<h2>Aprobar no es lo mismo que obtener plaza</h2>
+<p>
+  En Auxilio Judicial hay dos "notas de corte" que debes distinguir:
+</p>
+<ul>
+  <li><strong>Mínimo para aprobar cada ejercicio:</strong> es la puntuación fijada en la convocatoria.
+    Si no la alcanzas, estás eliminado. Es un suelo, no un objetivo</li>
+  <li><strong>Nota de corte real:</strong> es la puntuación del último opositor que obtiene plaza.
+    Depende de la competencia real: cuántas personas se presentan, cómo de bien lo hacen y cuántas
+    plazas hay. Esta nota siempre es <strong>significativamente más alta</strong> que el mínimo</li>
+</ul>
+<p>
+  Tu objetivo no es "aprobar" — es <strong>quedar entre los 425 mejores</strong> (plazas de
+  turno libre, convocatoria OEP 2025).
+</p>
+
+<h2>Puntuación mínima oficial por ejercicio</h2>
+<p>
+  Según la Orden PJC/1549/2025 (BOE 30/12/2025), los mínimos para no ser eliminado son:
+</p>
+
+<h3>Ejercicio 1 — Test teórico</h3>
+<ul>
+  <li><strong>Puntuación máxima:</strong> 60 puntos (100 preguntas × 0,60)</li>
+  <li><strong>Mínimo para aprobar:</strong> 30 puntos (50% del máximo)</li>
+  <li><strong>Penalización:</strong> -0,15 por error (1/4 del acierto)</li>
+</ul>
+
+<h3>Ejercicio 2 — Caso práctico</h3>
+<ul>
+  <li><strong>Puntuación máxima:</strong> 40 puntos (40 preguntas × 1,00)</li>
+  <li><strong>Mínimo para aprobar:</strong> 20 puntos (50% del máximo)</li>
+  <li><strong>Penalización:</strong> -0,25 por error (1/4 del acierto)</li>
+</ul>
+
+<p>
+  <strong>Nota total máxima: 100 puntos</strong> (60 + 40). Mínimo teórico para no ser eliminado:
+  <strong>50 puntos</strong> (30 + 20). Pero con 50 puntos no obtienes plaza.
+</p>
+
+<h2>Nota de corte real: lo que realmente necesitas</h2>
+<p>
+  La nota de corte real (el último aprobado con plaza) depende de cada convocatoria. Basándonos
+  en datos históricos de las oposiciones de Justicia:
+</p>
+<ul>
+  <li><strong>Convocatorias con muchas plazas (>400):</strong> la nota de corte tiende a bajar ligeramente porque hay más margen. Aun así, se sitúa entre 55-65 puntos sobre 100</li>
+  <li><strong>Convocatorias con pocas plazas (<200):</strong> la competencia es mayor y la nota de corte puede superar los 70 puntos</li>
+  <li><strong>Factor OEP macro 2025:</strong> con 425 plazas de turno libre, se espera una nota de corte en el rango <strong>58-66 puntos sobre 100</strong></li>
+</ul>
+<p>
+  <strong>Recomendación:</strong> prepárate para sacar al menos <strong>65-70 puntos</strong>.
+  Así tendrás margen de seguridad incluso si la nota de corte sube por una convocatoria
+  especialmente competida.
+</p>
+
+<h2>¿Cómo se calcula tu nota final?</h2>
+<p>
+  La nota final es la <strong>suma directa</strong> de los puntos obtenidos en cada ejercicio:
+</p>
+<ul>
+  <li><strong>Nota final = Puntos Ej.1 + Puntos Ej.2</strong></li>
+  <li>No hay media ponderada entre ejercicios — se suman directamente</li>
+  <li>Cada ejercicio es eliminatorio: si no llegas al mínimo en uno, no se suma el otro</li>
+</ul>
+
+<h3>Ejemplo de nota competitiva</h3>
+<p>Un opositor con buenas opciones de plaza:</p>
+<ul>
+  <li>Ejercicio 1: 75 aciertos, 15 errores, 10 en blanco → (75×0,60) - (15×0,15) = 45 - 2,25 = <strong>42,75 puntos</strong></li>
+  <li>Ejercicio 2: 28 aciertos, 7 errores, 5 en blanco → (28×1,00) - (7×0,25) = 28 - 1,75 = <strong>26,25 puntos</strong></li>
+  <li><strong>Total: 69 puntos</strong> — probablemente suficiente para plaza en una convocatoria de 425 plazas</li>
+</ul>
+
+<h2>Factores que mueven la nota de corte</h2>
+<ul>
+  <li><strong>Número de plazas:</strong> más plazas = nota de corte más baja. La OEP 2025 ofrece 425 — cifra generosa</li>
+  <li><strong>Opositores presentados:</strong> la ratio histórica es 8:1 a 12:1 (opositores por plaza). Con 425 plazas, se esperan 3.500-5.000 presentados</li>
+  <li><strong>Dificultad del examen:</strong> si el Tribunal pone un examen más difícil, las notas bajan en general y la nota de corte también</li>
+  <li><strong>LO 1/2025:</strong> al ser una ley nueva, puede haber más preguntas sobre ella. Los opositores con temario desactualizado perderán puntos aquí</li>
+  <li><strong>Acumulación de convocatorias:</strong> muchos opositores repiten de convocatorias anteriores. La experiencia previa sube el nivel medio</li>
+</ul>
+
+<h2>Estrategia para superar la nota de corte</h2>
+<p>
+  No basta con "saber el temario". Necesitas una estrategia de examen que maximice tus puntos:
+</p>
+
+<h3>En el Ejercicio 1 (objetivo: 40-45 puntos)</h3>
+<ul>
+  <li><strong>Primera pasada rápida (60 min):</strong> responde las 60-70 preguntas que tengas claras. No pierdas tiempo en las dudosas</li>
+  <li><strong>Segunda pasada (30 min):</strong> vuelve a las preguntas dudosas. Intenta descartar opciones. Si descartas 1, responde; si no descartas ninguna, valora dejar en blanco</li>
+  <li><strong>Revisión (10 min):</strong> repasa las primeras 20 preguntas — los errores por nervios son más frecuentes al inicio</li>
+</ul>
+
+<h3>En el Ejercicio 2 (objetivo: 24-28 puntos)</h3>
+<ul>
+  <li><strong>Lee el supuesto completo primero:</strong> dedica 5 minutos a entender el caso antes de responder. Muchas preguntas se responden mejor con el contexto global</li>
+  <li><strong>Las preguntas están conectadas:</strong> la respuesta a una pregunta puede darte pistas sobre otra del mismo supuesto</li>
+  <li><strong>Gestión del tiempo:</strong> 60 minutos para 40 preguntas = 1,5 min/pregunta. No te atasques en una</li>
+</ul>
+
+<h3>Nota objetivo desglosada</h3>
+<ul>
+  <li><strong>Escenario seguro:</strong> 43 (Ej.1) + 27 (Ej.2) = <strong>70 puntos</strong> — plaza casi segura</li>
+  <li><strong>Escenario competitivo:</strong> 38 (Ej.1) + 24 (Ej.2) = <strong>62 puntos</strong> — con opciones</li>
+  <li><strong>Escenario límite:</strong> 33 (Ej.1) + 22 (Ej.2) = <strong>55 puntos</strong> — depende de la convocatoria</li>
+</ul>
+
+<h2>El mínimo no es tu objetivo — la plaza sí</h2>
+<p>
+  Demasiados opositores se preparan "para aprobar" (50 puntos) y luego se quedan sin plaza
+  porque la nota de corte real es 60+. <strong>Prepárate para sacar 65-70</strong> y tendrás
+  el margen necesario.
+</p>
+<p>
+  La diferencia entre 55 y 65 puntos suele ser: 10 preguntas más acertadas, 5 menos falladas.
+  Eso se consigue con <strong>práctica intensiva de simulacros con penalización</strong> —
+  exactamente lo que no puedes hacer solo con temario.
+</p>
+
+<h2>Practica con simulacros que replican el examen real</h2>
+<p>
+  En <a href="/register">OpoRuta</a> puedes hacer simulacros completos de Auxilio Judicial
+  con las 100+40 preguntas, cronómetro, penalización 1/4 y desglose de nota por ejercicio.
+  Verás si habrías aprobado y dónde necesitas mejorar.
+</p>
+<p>
+  <strong><a href="/register">Regístrate gratis y haz tu primer simulacro</a></strong>.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Las notas de corte reales se publican tras la resolución de cada convocatoria. Los datos históricos son orientativos y pueden variar significativamente entre convocatorias.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuál es la nota de corte de Auxilio Judicial en 2025?', answer: 'La nota de corte real (último opositor con plaza) varía por convocatoria. Históricamente se sitúa entre 55 y 66 puntos sobre 100. Con 425 plazas en la OEP 2025, se estima en el rango 58-66 puntos. El mínimo oficial para no ser eliminado es 50 (30 en Ej.1 + 20 en Ej.2), pero no basta para plaza.' },
+      { question: '¿Cuántos puntos necesito para aprobar cada ejercicio de Auxilio Judicial?', answer: 'Necesitas mínimo 30 puntos en el Ejercicio 1 (sobre 60 posibles, test teórico de 100 preguntas) y 20 puntos en el Ejercicio 2 (sobre 40 posibles, caso práctico de 40 preguntas). Ambos ejercicios son eliminatorios: si no llegas al mínimo en uno, quedas fuera.' },
+      { question: '¿Cuántas plazas de Auxilio Judicial hay en la convocatoria 2025?', answer: 'La OEP 2025 convoca 425 plazas de Auxilio Judicial por turno libre (382 acceso general + 43 reserva discapacidad). El examen está previsto para septiembre-octubre 2026. La titulación requerida es ESO o equivalente.' },
+      { question: '¿Cuántos opositores se presentan a Auxilio Judicial?', answer: 'El ratio histórico es de 8 a 12 opositores por plaza. Con 425 plazas, se esperan entre 3.500 y 5.000 personas presentándose al examen. Muchos son repetidores de convocatorias anteriores con experiencia previa.' },
+      { question: '¿Qué nota hay que sacar para tener plaza segura en Auxilio Judicial?', answer: 'Para maximizar tus opciones, apunta a 65-70 puntos sobre 100 (ejemplo: 42 en Ej.1 + 26 en Ej.2 = 68 puntos). Con esa nota, obtener plaza es altamente probable en cualquier convocatoria con 400+ plazas. La clave: 10 preguntas más acertadas y 5 menos falladas marcan la diferencia entre plaza y lista de espera.' },
+    ],
+  },
 ]
