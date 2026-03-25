@@ -649,7 +649,7 @@ export default async function AnalyticsPage() {
             <CardTitle className="text-base">Free Tier v2 — Funnel de Conversión <MetricInfo text="Métricas del nuevo free tier (1 test/tema, todos los temas abiertos). Mide cuántos temas exploran los free users y si convierten." /></CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
               <div className="space-y-1">
                 <p className="text-2xl font-bold">{freeTier.totalFreeUsers}</p>
                 <p className="text-xs text-muted-foreground">Free users</p>
@@ -659,18 +659,16 @@ export default async function AnalyticsPage() {
                 <p className="text-xs text-muted-foreground">Media temas explorados</p>
               </div>
               <div className="space-y-1">
-                <p className="text-2xl font-bold">{freeTier.usersExplored5Plus}</p>
-                <p className="text-xs text-muted-foreground">Users con 5+ temas</p>
+                <p className="text-2xl font-bold">{freeTier.usersExplored1Plus} / {freeTier.usersExplored3Plus} / {freeTier.usersExplored5Plus}</p>
+                <p className="text-xs text-muted-foreground">1+ / 3+ / 5+ temas</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-2xl font-bold">{freeTier.avgScoreFree !== null ? `${freeTier.avgScoreFree}%` : '—'}</p>
+                <p className="text-xs text-muted-foreground">Nota media free</p>
               </div>
               <div className="space-y-1">
                 <p className="text-2xl font-bold">{freeTier.conversionRate}%</p>
                 <p className="text-xs text-muted-foreground">Tasa conversión</p>
-              </div>
-            </div>
-            <div className="mt-4 pt-3 border-t">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Análisis IA gratuitos consumidos</span>
-                <span className="font-semibold">{freeTier.freeAnalysisUsed}</span>
               </div>
             </div>
           </CardContent>
