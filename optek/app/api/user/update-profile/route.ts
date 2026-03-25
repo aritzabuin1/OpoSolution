@@ -30,20 +30,27 @@ export async function POST(request: NextRequest) {
   if ('fecha_examen' in body) update.fecha_examen = body.fecha_examen
   if ('horas_diarias_estudio' in body) update.horas_diarias_estudio = body.horas_diarias_estudio
 
-  const { data, error } = await supabase
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data, error } = await (supabase as any)
     .from('profiles')
     .update(update)
     .eq('id', user.id)
     .select('oposicion_id')
-    .single()
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    return NextResponse.json(
+      { error: error.message, code: error.code, details: error.details, hint: error.hint },
+      { status: 500 }
+    )
   }
 
-  if (!data) {
-    return NextResponse.json({ error: 'No se encontró el perfil' }, { status: 404 })
+  const rows = data as Array<{ oposicion_id: string }> | null
+  if (!rows || rows.length === 0) {
+    return NextResponse.json(
+      { error: `Update afectó 0 filas. userId=${user.id}, fields=${Object.keys(update).join(',')}` },
+      { status: 500 }
+    )
   }
 
-  return NextResponse.json({ ok: true, oposicion_id: data.oposicion_id })
+  return NextResponse.json({ ok: true, oposicion_id: rows[0].oposicion_id })
 }
