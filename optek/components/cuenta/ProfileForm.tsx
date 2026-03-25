@@ -60,20 +60,25 @@ export function ProfileForm({
   async function handleSave() {
     setSaving(true)
     const supabase = createClient()
-    const { error } = await supabase
+
+    // Use .select() to get the updated row back — if 0 rows affected (RLS block),
+    // .single() will error, making silent failures visible.
+    const { data: updated, error } = await supabase
       .from('profiles')
       .update({
         full_name: nombre.trim() || null,
         oposicion_id: selectedOposicion,
         fecha_examen: fecha || null,
         horas_diarias_estudio: dedicacion,
-        updated_at: new Date().toISOString(),
       })
       .eq('id', userId)
+      .select('oposicion_id')
+      .single()
 
     setSaving(false)
-    if (error) {
-      toast.error('No se pudo guardar. Inténtalo de nuevo.')
+    if (error || !updated) {
+      console.error('[ProfileForm] update failed:', error?.message ?? 'no rows returned')
+      toast.error(`No se pudo guardar: ${error?.message ?? 'sin respuesta del servidor'}`)
       return
     }
 
@@ -82,7 +87,6 @@ export function ProfileForm({
     window.dispatchEvent(new Event(OPOSICION_CHANGED_EVENT))
     // Reload page to update sidebar features (Server Component can't react to client changes)
     if (selectedOposicion !== initialOposicionId) {
-      // Full reload ensures Server Components see the new oposicion_id
       window.location.reload()
     }
   }
