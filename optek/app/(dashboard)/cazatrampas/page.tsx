@@ -173,8 +173,17 @@ export default function CazaTrampasPage() {
             disabled={isGenerating}
             size="lg"
           >
-            <Target className="h-4 w-4 mr-2" />
-            {isGenerating ? 'Generando ejercicio...' : 'Generar ejercicio'}
+            {isGenerating ? (
+              <>
+                <span className="h-4 w-4 mr-2 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                Generando ejercicio...
+              </>
+            ) : (
+              <>
+                <Target className="h-4 w-4 mr-2" />
+                Generar ejercicio
+              </>
+            )}
           </Button>
 
           {isGenerating && (
