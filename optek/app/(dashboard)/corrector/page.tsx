@@ -53,6 +53,12 @@ export default async function CorrectorPage() {
     .single()
   const userOposicionId = (profileOpo as { oposicion_id?: string } | null)?.oposicion_id ?? DEFAULT_OPOSICION_ID
 
+  // Corrector de desarrollos solo para A2 (GACE) — C2/C1 no tienen ejercicio escrito
+  const A2_OPOSICION_ID = 'c2000000-0000-0000-0000-000000000001'
+  if (userOposicionId !== A2_OPOSICION_ID) {
+    redirect('/tests')
+  }
+
   const [temasResult, profileResult, comprasResult, correccionesResult] = await Promise.all([
     supabase.from('temas').select('id, numero, titulo').eq('oposicion_id', userOposicionId).order('numero'),
     supabase
