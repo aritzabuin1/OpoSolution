@@ -15,12 +15,21 @@ import { toast } from 'sonner'
 import { Loader2 } from 'lucide-react'
 import { OPOSICION_CHANGED_EVENT } from '@/lib/hooks/useIsPremium'
 
-// TODO: query oposiciones WHERE activa = true (requires server component or API)
-const OPOSICIONES = [
-  { id: 'a0000000-0000-0000-0000-000000000001', label: 'Auxiliar Administrativo (C2)' },
-  { id: 'b0000000-0000-0000-0000-000000000001', label: 'Administrativo del Estado (C1)' },
-  { id: 'c2000000-0000-0000-0000-000000000001', label: 'Gestión del Estado (A2)' },
-] as const
+// Fallback if oposiciones prop is empty (migration not applied yet)
+const FALLBACK_OPOSICIONES = [
+  { id: 'a0000000-0000-0000-0000-000000000001', nombre: 'Auxiliar Administrativo (C2)', activa: true },
+  { id: 'b0000000-0000-0000-0000-000000000001', nombre: 'Administrativo del Estado (C1)', activa: true },
+  { id: 'c2000000-0000-0000-0000-000000000001', nombre: 'Gestión del Estado (A2)', activa: true },
+]
+
+interface OposicionItem {
+  id: string
+  nombre: string
+  slug?: string
+  rama?: string | null
+  nivel?: string | null
+  activa: boolean
+}
 
 interface ProfileFormProps {
   userId: string
@@ -28,8 +37,9 @@ interface ProfileFormProps {
   email: string
   oposicionNombre: string | null
   oposicionId: string | null
-  fechaExamen: string | null // ISO date string (YYYY-MM-DD)
+  fechaExamen: string | null
   horasSemanales: number | null
+  oposiciones?: OposicionItem[]
 }
 
 const DEDICACION_OPTIONS = [
@@ -47,7 +57,11 @@ export function ProfileForm({
   oposicionId: initialOposicionId,
   fechaExamen,
   horasSemanales,
+  oposiciones: oposicionesProp,
 }: ProfileFormProps) {
+  const OPOSICIONES = (oposicionesProp && oposicionesProp.length > 0)
+    ? oposicionesProp.filter(o => o.activa)
+    : FALLBACK_OPOSICIONES
   const [nombre, setNombre] = useState(initialName ?? '')
   const [fecha, setFecha] = useState(fechaExamen ?? '')
   const [selectedOposicion, setSelectedOposicion] = useState(
@@ -121,7 +135,7 @@ export function ProfileForm({
             className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
           >
             {OPOSICIONES.map((op) => (
-              <option key={op.id} value={op.id}>{op.label}</option>
+              <option key={op.id} value={op.id}>{op.nombre}</option>
             ))}
           </select>
           <p className="text-xs text-muted-foreground">Cambia aquí si preparas otra oposición</p>

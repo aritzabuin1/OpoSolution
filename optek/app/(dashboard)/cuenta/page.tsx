@@ -56,6 +56,15 @@ export default async function CuentaPage() {
   } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
+  // All oposiciones (for dynamic ProfileForm selector)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: allOposicionesRaw } = await (supabase as any)
+    .from('oposiciones')
+    .select('id, nombre, slug, rama, nivel, activa')
+    .order('rama')
+    .order('orden')
+  const allOposiciones = (allOposicionesRaw ?? []) as Array<{ id: string; nombre: string; slug: string; rama: string | null; nivel: string | null; activa: boolean }>
+
   // Profile + oposición
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: profile } = await (supabase as any)
@@ -208,6 +217,7 @@ export default async function CuentaPage() {
             oposicionId={profile?.oposicion_id ?? null}
             fechaExamen={profile?.fecha_examen ?? null}
             horasSemanales={profile?.horas_diarias_estudio ?? null}
+            oposiciones={allOposiciones}
           />
         </CardContent>
       </Card>
