@@ -30,7 +30,7 @@ import { useIsPremium } from '@/lib/hooks/useIsPremium'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-export type PaywallCode = 'PAYWALL_TESTS' | 'PAYWALL_CORRECTIONS'
+export type PaywallCode = 'PAYWALL_TESTS' | 'PAYWALL_CORRECTIONS' | 'PAYWALL_SIMULACROS'
 
 /** Oposicion IDs for contextual pack selection */
 const C1_OPOSICION_ID = 'b0000000-0000-0000-0000-000000000001'
@@ -153,7 +153,7 @@ export function PaywallGate({ open, onClose, code, temaId, oposicionId }: Paywal
           <span className="line-through text-destructive/60">Academia presencial: desde 150€/mes</span>
           {' · '}
           <span className="font-semibold text-foreground">
-            OpoRuta: {code === 'PAYWALL_TESTS' || !isPremium ? '49,99€' : 'desde 8,99€'} una sola vez
+            OpoRuta: {code === 'PAYWALL_TESTS' || code === 'PAYWALL_SIMULACROS' || !isPremium ? '49,99€' : 'desde 8,99€'} una sola vez
           </span>
         </div>
 

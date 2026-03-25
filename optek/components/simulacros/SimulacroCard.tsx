@@ -257,15 +257,15 @@ export function SimulacroCard({ examen }: SimulacroCardProps) {
                     <span className={`font-medium ${
                       isFree ? 'text-amber-800' : incluirPsicotecnicos ? 'text-primary' : 'text-foreground'
                     }`}>
-                      Modo Examen Real
+                      Incluir psicotécnicos
                     </span>
                     {isFree ? (
                       <span className="ml-1 text-amber-600">
-                        — Simula el examen completo con psicotecnicas
+                        — Opcional: añade 30 preguntas psicotécnicas
                       </span>
                     ) : (
                       <span className="ml-1 text-muted-foreground">
-                        — Anade 30 psicotecnicas al inicio
+                        — Añade 30 psicotécnicas al inicio (como en el examen real)
                       </span>
                     )}
                     {incluirPsicotecnicos && !isFree && (
@@ -324,8 +324,17 @@ export function SimulacroCard({ examen }: SimulacroCardProps) {
                 onClick={handleIniciar}
                 disabled={isStarting}
               >
-                <Play className="h-4 w-4 mr-2" />
-                {isStarting ? 'Iniciando...' : 'Iniciar Simulacro'}
+                {isStarting ? (
+                  <>
+                    <span className="h-4 w-4 mr-2 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                    Preparando simulacro...
+                  </>
+                ) : (
+                  <>
+                    <Play className="h-4 w-4 mr-2" />
+                    Iniciar Simulacro
+                  </>
+                )}
               </Button>
 
               {examen.fuente_url && (

@@ -215,12 +215,12 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias }: Simulac
                   isFree ? 'text-amber-800' : incluirPsicotecnicos ? 'text-primary' : 'text-foreground'
                 }`}
               >
-                Modo Examen Real
+                Incluir psicotécnicos
               </span>
               {isFree ? (
-                <span className="ml-1 text-amber-600">— Simula el examen completo con psicotecnicas</span>
+                <span className="ml-1 text-amber-600">— Opcional: añade 30 preguntas psicotécnicas</span>
               ) : (
-                <span className="ml-1 text-muted-foreground">— Anade 30 psicotecnicas al inicio</span>
+                <span className="ml-1 text-muted-foreground">— Añade 30 psicotécnicas al inicio (como en el examen real)</span>
               )}
               {incluirPsicotecnicos && !isFree && (
                 <span className="ml-1 font-semibold text-primary">
@@ -278,8 +278,17 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias }: Simulac
           onClick={handleIniciar}
           disabled={isStarting || totalPreguntas === 0}
         >
-          <Play className="h-4 w-4 mr-2" />
-          {isStarting ? 'Iniciando...' : 'Iniciar Simulacro Mixto'}
+          {isStarting ? (
+            <>
+              <span className="h-4 w-4 mr-2 animate-spin rounded-full border-2 border-current border-t-transparent" />
+              Preparando simulacro...
+            </>
+          ) : (
+            <>
+              <Play className="h-4 w-4 mr-2" />
+              Iniciar Simulacro Mixto
+            </>
+          )}
         </Button>
       </CardContent>
 
