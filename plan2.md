@@ -145,7 +145,7 @@
 ### 2.2 Contenido Justicia — Legislación
 - [x] Scrape BOE consolidado:
   - [x] Constitución Española — ya en BD (184 arts)
-  - [x] LO 6/1985 LOPJ parcial — ya en BD (728 arts, Libros I-III). **Scraping completo en curso**
+  - [x] LO 6/1985 LOPJ COMPLETA — 726 entries (655 arts + 71 disp, 8 Libros, 964KB)
   - [x] **LO 1/2025 Servicio Público Justicia** — scrapeada (86 entries, 891KB) ← CRÍTICA
   - [x] Ley 1/2000 LEC — scrapeada COMPLETA (905 arts, 1.3MB)
   - [x] LECrim 1882 — scrapeada COMPLETA (1067 arts, 852KB)
@@ -167,6 +167,10 @@
 - [ ] Parsear PDFs con execution/parse-exam-pdf.ts
 - [ ] Insertar en examenes_oficiales + preguntas_oficiales
 
+### 2.3b Temas pendientes Gestión Procesal
+- [ ] Insertar T17-T68 (52 temas procesales) en tabla `temas` para Gestión Procesal
+  - Ver data/research-tramitacion-gestion-2026.md para lista completa verificada
+
 ### 2.4 Contenido Justicia — Free bank
 - [ ] Generar para Auxilio: `pnpm generate:free-bank --oposicion auxilio-judicial`
 - [ ] Generar para Tramitación: `pnpm generate:free-bank --oposicion tramitacion-procesal`
@@ -185,6 +189,10 @@
 - [ ] Calculadora nota Justicia (por ejercicio, con penalización 1/4)
 - [x] Blog: 15 posts Justicia (guías + long-tail + comparativas)
 - [x] Actualizar sitemap.ts
+
+### 2.6b Stripe Justicia (ARITZ manual)
+- [ ] Crear 5 productos en Stripe Dashboard: pack_auxilio, pack_tramitacion, pack_gestion_j, pack_doble_justicia, pack_triple_justicia
+- [ ] Añadir 5 env vars STRIPE_PRICE_PACK_* en Vercel
 
 ### 2.7 Activación progresiva Justicia
 - [ ] Fase 2a: Activar Auxilio C2 (26 temas, ~24k inscritos)
