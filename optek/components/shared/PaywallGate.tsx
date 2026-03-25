@@ -97,15 +97,19 @@ export function PaywallGate({ open, onClose, code, temaId, oposicionId }: Paywal
   const [loading, setLoading] = useState<string | null>(null)
   const isPremium = useIsPremium()
 
-  const options = code === 'PAYWALL_TESTS'
+  const options = code === 'PAYWALL_TESTS' || code === 'PAYWALL_SIMULACROS'
     ? getTestOptions(oposicionId)
     : getCorrectionOptions(isPremium === true, oposicionId)
-  const title = code === 'PAYWALL_TESTS'
+  const title = code === 'PAYWALL_SIMULACROS'
+    ? 'Simulacros ilimitados'
+    : code === 'PAYWALL_TESTS'
     ? 'Continúa preparando tu oposición'
     : isPremium
       ? 'Recarga tus análisis'
       : 'Desbloquea análisis detallados'
-  const description = code === 'PAYWALL_TESTS'
+  const description = code === 'PAYWALL_SIMULACROS'
+    ? 'Has agotado tus 3 simulacros gratuitos. Con el Pack Oposición tienes simulacros ilimitados con preguntas oficiales INAP y penalización real.'
+    : code === 'PAYWALL_TESTS'
     ? 'Ya has completado tu test gratuito de este tema. Desbloquea acceso ilimitado para seguir practicando.'
     : isPremium
       ? 'Te has quedado sin análisis detallados. Recarga tu saldo para continuar.'

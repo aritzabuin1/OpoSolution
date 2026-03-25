@@ -59,6 +59,19 @@ export default async function SimulacrosPage() {
     .eq('oposicion_id', userOposicionId)
   const isPremium = (purchaseCount ?? 0) > 0 || flags?.is_founder === true || flags?.is_admin === true
 
+  // Free simulacro quota
+  let freeSimUsed = 0
+  if (!isPremium) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: simProfile } = await (supabase as any)
+      .from('profiles')
+      .select('free_simulacro_used')
+      .eq('id', user.id)
+      .single()
+    freeSimUsed = (simProfile as { free_simulacro_used?: number } | null)?.free_simulacro_used ?? 0
+  }
+  const freeSimRemaining = Math.max(0, 3 - freeSimUsed)
+
   // Cargar examenes SOLO de la oposición del usuario
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const examenesTable = (supabase as any).from('examenes_oficiales')
@@ -132,8 +145,11 @@ export default async function SimulacrosPage() {
         <div className="flex items-start gap-2 rounded-lg bg-blue-50 border border-blue-100 px-4 py-3">
           <Info className="h-4 w-4 text-blue-600 shrink-0 mt-0.5" />
           <p className="text-xs text-blue-700">
-            Prueba un simulacro <strong>gratis</strong> con exámenes reales del INAP.
-            Simulacros ilimitados con el Pack Oposición.
+            {freeSimRemaining > 0 ? (
+              <>Tienes <strong>{freeSimRemaining} simulacro{freeSimRemaining !== 1 ? 's' : ''} gratis</strong> con exámenes reales del INAP (20 preguntas). Simulacros ilimitados con el Pack Oposición.</>
+            ) : (
+              <>Has agotado tus 3 simulacros gratuitos. <strong>Desbloquea simulacros ilimitados</strong> con el Pack Oposición.</>
+            )}
           </p>
         </div>
       )}

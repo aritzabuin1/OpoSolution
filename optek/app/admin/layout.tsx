@@ -9,7 +9,7 @@
 import { redirect } from 'next/navigation'
 import { verifyAdmin } from '@/lib/admin/auth'
 import Link from 'next/link'
-import { BarChart3, LineChart, Server, Settings } from 'lucide-react'
+import { Activity, BarChart3, BookOpen, Calendar, LineChart, Server, Settings, Users } from 'lucide-react'
 import { ExportMetricsButton } from '@/components/admin/ExportMetricsButton'
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -47,6 +47,34 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           >
             <Server className="h-3.5 w-3.5 shrink-0" />
             Infra
+          </Link>
+          <Link
+            href="/admin/users"
+            className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
+          >
+            <Users className="h-3.5 w-3.5 shrink-0" />
+            Users
+          </Link>
+          <Link
+            href="/admin/retention"
+            className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
+          >
+            <Calendar className="h-3.5 w-3.5 shrink-0" />
+            Retención
+          </Link>
+          <Link
+            href="/admin/content"
+            className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
+          >
+            <BookOpen className="h-3.5 w-3.5 shrink-0" />
+            Contenido
+          </Link>
+          <Link
+            href="/admin/activity"
+            className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
+          >
+            <Activity className="h-3.5 w-3.5 shrink-0" />
+            Actividad
           </Link>
           <ExportMetricsButton />
           <Link

@@ -347,7 +347,7 @@ export function SimulacroCard({ examen }: SimulacroCardProps) {
       <PaywallGate
         open={showPaywall}
         onClose={() => setShowPaywall(false)}
-        code="PAYWALL_TESTS"
+        code="PAYWALL_SIMULACROS"
       />
     </Card>
   )

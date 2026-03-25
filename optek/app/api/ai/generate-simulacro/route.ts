@@ -103,7 +103,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error: `Los simulacros de ${numPreguntas} preguntas requieren acceso Premium. Los usuarios gratuitos pueden hacer simulacros de ${FREE_LIMITS.simulacroMaxPreguntas} preguntas.`,
-        code: 'PAYWALL_TESTS',
+        code: 'PAYWALL_SIMULACROS',
       },
       { status: 402 }
     )
@@ -134,7 +134,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error: `Has agotado tu simulacro gratuito. Desbloquea simulacros ilimitados con el Pack Oposición.`,
-          code: 'PAYWALL_TESTS',
+          code: 'PAYWALL_SIMULACROS',
         },
         { status: 402 }
       )

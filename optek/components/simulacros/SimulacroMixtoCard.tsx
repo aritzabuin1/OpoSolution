@@ -286,7 +286,7 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias }: Simulac
       <PaywallGate
         open={showPaywall}
         onClose={() => setShowPaywall(false)}
-        code="PAYWALL_TESTS"
+        code="PAYWALL_SIMULACROS"
       />
     </Card>
   )
