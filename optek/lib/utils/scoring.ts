@@ -158,11 +158,15 @@ export function describePenalizacion(config: ScoringConfig | null): string {
     return 'Sin penalización — responde todas las preguntas'
   }
 
-  const errorStr = ej.error === 0.333 || ej.error === 1 / 3
-    ? '1/3'
-    : ej.error.toString()
+  // Detect common penalty ratios for human-readable display
+  const ratio = ej.acierto > 0 ? ej.error / ej.acierto : 0
+  let errorStr: string
+  if (Math.abs(ratio - 1 / 3) < 0.01) errorStr = '1/3'        // AGE
+  else if (Math.abs(ratio - 1 / 4) < 0.01) errorStr = '1/4'    // Justicia
+  else if (Math.abs(ratio - 1 / 5) < 0.01) errorStr = '1/5'    // Gestión Ej.2
+  else errorStr = ej.error.toString()
 
-  return `Acierto: +${ej.acierto} · Error: -${errorStr} · En blanco: 0`
+  return `Acierto: +${ej.acierto} · Error: -${errorStr} del acierto · En blanco: 0`
 }
 
 /**
