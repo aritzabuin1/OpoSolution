@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { stripe, CORRECTIONS_GRANTED, SUPUESTOS_GRANTED, C1_OPOSICION_ID, C2_OPOSICION_ID, A2_OPOSICION_ID } from '@/lib/stripe/client'
+import { stripe, CORRECTIONS_GRANTED, SUPUESTOS_GRANTED, TIER_TO_OPOSICION } from '@/lib/stripe/client'
 import { createServiceClient } from '@/lib/supabase/server'
 import { sendPostPurchaseEmail } from '@/lib/email/client'
 import { logger } from '@/lib/logger'
@@ -112,11 +112,21 @@ async function handleStripeEvent(
 
       // Mapear tier del checkout → tipo que acepta el CHECK constraint de compras
       // BD: CHECK (tipo IN ('tema', 'pack_oposicion', 'subscription'))
+      // ALL pack tiers map to 'pack_oposicion' — the constraint doesn't distinguish ramas
       const TIER_TO_DB_TIPO: Record<string, string> = {
         pack: 'pack_oposicion',
         pack_c1: 'pack_oposicion',
+        pack_a2: 'pack_oposicion',
         pack_doble: 'pack_oposicion',
+        pack_triple: 'pack_oposicion',
+        pack_correos: 'pack_oposicion',
+        pack_auxilio: 'pack_oposicion',
+        pack_tramitacion: 'pack_oposicion',
+        pack_gestion_j: 'pack_oposicion',
+        pack_doble_justicia: 'pack_oposicion',
+        pack_triple_justicia: 'pack_oposicion',
         recarga: 'pack_oposicion',
+        recarga_sup: 'pack_oposicion',
         fundador: 'pack_oposicion',
       }
       const dbTipo = TIER_TO_DB_TIPO[tier] ?? 'pack_oposicion'
@@ -124,63 +134,30 @@ async function handleStripeEvent(
       // 1. Registrar compra(s)
       // RECARGA: NO crea fila en compras — solo otorga créditos (paso 2).
       // Si creara fila, checkPaidAccess la contaría como acceso premium (bug: 8,99€ desbloquea todo).
-      if (tier === 'pack_triple') {
-        // Pack Triple AGE: 3 filas en compras (C2 + C1 + A2)
-        await supabase.from('compras').insert([
-          {
+      if (tier === 'recarga' || tier === 'recarga_sup') {
+        // Skip compra insert for recargas — only grant credits in step 2
+      } else {
+        // Resolve oposicion IDs from TIER_TO_OPOSICION (supports combos)
+        const mapping = TIER_TO_OPOSICION[tier as keyof typeof TIER_TO_OPOSICION]
+        const oposicionIds = Array.isArray(mapping)
+          ? mapping
+          : mapping ? [mapping] : [oposicionIdMeta]
+
+        // Insert one compra row per oposición (combos get multiple rows)
+        const compraRows = oposicionIds
+          .filter(id => id) // skip empty
+          .map((opId, idx) => ({
             user_id: userId,
-            oposicion_id: C2_OPOSICION_ID,
-            tema_id: null,
-            stripe_checkout_session_id: session.id,
+            oposicion_id: opId,
+            tema_id: idx === 0 ? (session.metadata?.tema_id ?? null) : null,
+            stripe_checkout_session_id: idx === 0 ? session.id : `${session.id}_${idx}`,
             tipo: dbTipo,
-            amount_paid: session.amount_total ?? 0,
-          },
-          {
-            user_id: userId,
-            oposicion_id: C1_OPOSICION_ID,
-            tema_id: null,
-            stripe_checkout_session_id: `${session.id}_c1`,
-            tipo: dbTipo,
-            amount_paid: 0,
-          },
-          {
-            user_id: userId,
-            oposicion_id: A2_OPOSICION_ID,
-            tema_id: null,
-            stripe_checkout_session_id: `${session.id}_a2`,
-            tipo: dbTipo,
-            amount_paid: 0,
-          },
-        ])
-      } else if (tier === 'pack_doble') {
-        // Pack Doble: 2 filas en compras (una C1 + una C2)
-        await supabase.from('compras').insert([
-          {
-            user_id: userId,
-            oposicion_id: C2_OPOSICION_ID,
-            tema_id: null,
-            stripe_checkout_session_id: session.id,
-            tipo: dbTipo,
-            amount_paid: session.amount_total ?? 0,
-          },
-          {
-            user_id: userId,
-            oposicion_id: C1_OPOSICION_ID,
-            tema_id: null,
-            stripe_checkout_session_id: `${session.id}_c1`,
-            tipo: dbTipo,
-            amount_paid: 0,
-          },
-        ])
-      } else if (tier !== 'recarga' && tier !== 'recarga_sup') {
-        await supabase.from('compras').insert({
-          user_id: userId,
-          oposicion_id: oposicionIdMeta,
-          tema_id: session.metadata?.tema_id ?? null,
-          stripe_checkout_session_id: session.id,
-          tipo: dbTipo,
-          amount_paid: session.amount_total ?? 0,
-        })
+            amount_paid: idx === 0 ? (session.amount_total ?? 0) : 0,
+          }))
+
+        if (compraRows.length > 0) {
+          await supabase.from('compras').insert(compraRows)
+        }
       }
 
       // 2. Otorgar correcciones según tier de producto (pool compartido)

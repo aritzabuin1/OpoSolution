@@ -19,7 +19,12 @@ import { logger } from '@/lib/logger'
  */
 
 const BodySchema = z.object({
-  tier: z.enum(['pack', 'pack_c1', 'pack_a2', 'pack_doble', 'pack_triple', 'recarga', 'recarga_sup', 'fundador']),
+  tier: z.enum([
+    'pack', 'pack_c1', 'pack_a2', 'pack_doble', 'pack_triple',
+    'pack_correos',
+    'pack_auxilio', 'pack_tramitacion', 'pack_gestion_j', 'pack_doble_justicia', 'pack_triple_justicia',
+    'recarga', 'recarga_sup', 'fundador',
+  ]),
   temaId: z.string().uuid().optional(),
   oposicionId: z.string().uuid().optional(),
 })
@@ -45,7 +50,11 @@ export async function POST(request: NextRequest) {
   const { tier, temaId } = body
 
   // Derivar oposicionId del tier (no confiar en body — previene suplantación)
-  const oposicionId = TIER_TO_OPOSICION[tier as StripePriceTier] || ''
+  const oposicionMapping = TIER_TO_OPOSICION[tier as StripePriceTier]
+  // For combo packs (arrays), serialize as comma-separated for metadata
+  const oposicionId = Array.isArray(oposicionMapping)
+    ? oposicionMapping.join(',')
+    : (oposicionMapping || '')
 
   // Recarga solo para usuarios premium (forzar compra de pack primero)
   if (tier === 'recarga') {
