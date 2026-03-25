@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
+import { sendNewUserNotification } from '@/lib/email/client'
+import { resolveOposicionLabel } from '@/lib/utils/oposicion-labels'
 
 /**
  * POST /api/user/update-profile
@@ -48,6 +50,23 @@ export async function POST(request: NextRequest) {
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 })
+  }
+
+  // Notify admin when oposicion is set for NEW users (Google sign-in onboarding:
+  // setup-new-user runs before /primer-test, so oposicion is missing in that email)
+  // Only for users created in the last hour (onboarding window)
+  if (update.oposicion_id && user.email) {
+    const createdAt = new Date(user.created_at).getTime()
+    const isRecentUser = Date.now() - createdAt < 60 * 60 * 1000
+    if (isRecentUser) {
+      const oposicionLabel = resolveOposicionLabel(update.oposicion_id as string)
+      void sendNewUserNotification({
+        email: user.email,
+        nombre: user.user_metadata?.full_name as string | undefined,
+        oposicion: oposicionLabel,
+        confirmed: true,
+      })
+    }
   }
 
   return NextResponse.json({ ok: true, oposicion_id: data.oposicion_id })

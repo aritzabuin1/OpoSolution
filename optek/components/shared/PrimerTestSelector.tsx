@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase/client'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { BookOpen, Loader2 } from 'lucide-react'
@@ -32,11 +31,12 @@ export function PrimerTestSelector({ oposiciones, userId }: Props) {
     if (selecting) return
     setSelecting(oposicion.id)
 
-    const supabase = createClient()
-    await supabase
-      .from('profiles')
-      .update({ oposicion_id: oposicion.id })
-      .eq('id', userId)
+    // Update profile via server API (browser client has RLS issues with expired tokens)
+    await fetch('/api/user/update-profile', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ oposicion_id: oposicion.id }),
+    })
 
     // Marcar onboarding completado en cookie (para evitar DB check en cada request)
     document.cookie = 'oporuta_onboarded=1; path=/; max-age=31536000; SameSite=Lax'
