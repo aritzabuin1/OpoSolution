@@ -209,6 +209,11 @@ export default async function EconomicsPage() {
                 <div className="h-3 w-full bg-muted-foreground/20 rounded-full" />
               )}
             </div>
+            {/* Free bank vs IA desglose */}
+            <div className="flex gap-4 text-xs text-muted-foreground border-t pt-2 mt-2">
+              <span>Tests free bank: <strong>{fuelTank.testsFreeBank}</strong> (€0)</span>
+              <span>Tests IA: <strong>{fuelTank.testsIA}</strong> (€{fuelTank.costeIA.toFixed(2)})</span>
+            </div>
           </div>
         </CardContent>
       </Card>
@@ -222,15 +227,24 @@ export default async function EconomicsPage() {
             <CardTitle className="text-base">💸 Coste por usuario (30d) <MetricInfo text="Cuanto cuesta en APIs de IA cada test generado y cada usuario activo al mes. Objetivo: <0.01 EUR/test y <0.50 EUR/usuario. Si sube, optimizar prompts o cambiar modelo." /></CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-3 gap-3">
               <div>
                 <p className="text-xs text-muted-foreground uppercase tracking-wide">
-                  Coste/test
+                  Coste/test IA
                 </p>
                 <p className="text-xl font-bold">
-                  €{costPerUser.costeMedioTest.toFixed(3)}
+                  €{costPerUser.costeMedioTestIA.toFixed(3)}
                 </p>
-                <p className="text-[10px] text-muted-foreground">objetivo &lt;€0.01</p>
+                <p className="text-[10px] text-muted-foreground">solo tests con IA</p>
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground uppercase tracking-wide">
+                  Coste/test global
+                </p>
+                <p className="text-xl font-bold text-green-600">
+                  €{costPerUser.costeMedioTestGlobal.toFixed(3)}
+                </p>
+                <p className="text-[10px] text-muted-foreground">incl. free bank (€0)</p>
               </div>
               <div>
                 <p className="text-xs text-muted-foreground uppercase tracking-wide">
@@ -241,6 +255,11 @@ export default async function EconomicsPage() {
                 </p>
                 <p className="text-[10px] text-muted-foreground">umbral €0.50</p>
               </div>
+            </div>
+            <div className="flex gap-4 text-xs text-muted-foreground border-t pt-2">
+              <span>Tests free bank: <strong>{costPerUser.testsFreeBankCount}</strong> (€0)</span>
+              <span>Tests IA: <strong>{costPerUser.testsIACount}</strong></span>
+              <span>Usuarios activos: <strong>{costPerUser.usuariosActivos30d}</strong></span>
             </div>
             <div className="space-y-1 border-t pt-3">
               <div className="flex justify-between text-xs">

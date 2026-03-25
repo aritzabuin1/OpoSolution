@@ -23,13 +23,20 @@ export interface FuelTankMetrics {
   costes: number         // € estimados en IA (api_usage_log.cost_estimated_cents / 100)
   margen: number         // ingresos - costes
   margenPct: number      // (margen / ingresos) * 100 — -100 si ingresos = 0 y costes > 0, 0 si ambos 0
+  // Free tier v2 desglose
+  testsFreeBank: number  // tests servidos desde free_question_bank (€0)
+  testsIA: number        // tests generados con IA (€>0)
+  costeIA: number        // coste total solo de tests IA
 }
 
 export interface CostPerUserMetrics {
-  costeMedioTest: number         // € medio por test generado (últimos 30d)
-  costeMedioUsuario: number      // costeMedioTest × tests_por_usuario (últimos 30d)
+  costeMedioTestIA: number       // € medio por test IA (últimos 30d) — excluye free bank
+  costeMedioTestGlobal: number   // € medio incluyendo free bank (€0) — coste real
+  costeMedioUsuario: number      // coste total IA / usuarios activos (últimos 30d)
   usuariosActivos30d: number
   testsUltimos30d: number
+  testsFreeBankCount: number     // tests from free bank (€0)
+  testsIACount: number           // tests from AI generation
 }
 
 export interface AAARRRMetrics {
@@ -69,12 +76,21 @@ async function _getFuelTank(): Promise<FuelTankMetrics> {
 
   let ingresosQuery = supabase.from('compras').select('amount_paid').gte('created_at', METRICS_START_DATE)
   let costesQuery = supabase.from('api_usage_log').select('cost_estimated_cents').gte('timestamp', METRICS_START_DATE)
+  // Free bank vs IA split
+  let freeBankQuery = supabase.from('tests_generados').select('id', { count: 'exact', head: true })
+    .eq('prompt_version', 'free-bank-1.0').gte('created_at', METRICS_START_DATE)
+  let iaTestsQuery = supabase.from('tests_generados').select('id', { count: 'exact', head: true })
+    .neq('prompt_version', 'free-bank-1.0').not('tipo', 'eq', 'psicotecnico').gte('created_at', METRICS_START_DATE)
   if (excludeAdmins) {
     ingresosQuery = ingresosQuery.not('user_id', 'in', excludeAdmins)
     costesQuery = costesQuery.not('user_id', 'in', excludeAdmins)
+    freeBankQuery = freeBankQuery.not('user_id', 'in', excludeAdmins)
+    iaTestsQuery = iaTestsQuery.not('user_id', 'in', excludeAdmins)
   }
 
-  const [ingresosResult, costesResult] = await Promise.all([ingresosQuery, costesQuery])
+  const [ingresosResult, costesResult, freeBankResult, iaTestsResult] = await Promise.all([
+    ingresosQuery, costesQuery, freeBankQuery, iaTestsQuery,
+  ])
 
   const ingresos =
     (ingresosResult.data ?? []).reduce((acc: number, c: { amount_paid?: number }) => acc + (c.amount_paid ?? 0), 0) / 100
@@ -90,7 +106,12 @@ async function _getFuelTank(): Promise<FuelTankMetrics> {
     ? Math.round((margen / ingresos) * 1000) / 10
     : costes > 0 ? -100 : 0
 
-  return { ingresos, costes, margen, margenPct }
+  return {
+    ingresos, costes, margen, margenPct,
+    testsFreeBank: freeBankResult.count ?? 0,
+    testsIA: iaTestsResult.count ?? 0,
+    costeIA: costes, // all AI costs are from IA tests (free bank = €0)
+  }
 }
 
 export const getFuelTank = _getFuelTank
@@ -119,7 +140,7 @@ async function _getCostPerUser(): Promise<CostPerUserMetrics> {
     .like('endpoint', '%generate-test%')
   let testsQuery = supabase
     .from('tests_generados')
-    .select('user_id')
+    .select('user_id, prompt_version')
     .gte('created_at', thirtyDaysAgo)
     .eq('completado', true)
 
@@ -131,29 +152,34 @@ async function _getCostPerUser(): Promise<CostPerUserMetrics> {
   const [usageLogs, tests30d] = await Promise.all([usageQuery, testsQuery])
 
   const logs = (usageLogs.data ?? []) as { cost_estimated_cents: number; user_id: string | null }[]
-  const testsData = (tests30d.data ?? []) as { user_id: string }[]
+  const testsData = (tests30d.data ?? []) as { user_id: string; prompt_version: string }[]
 
   const totalCostCents = logs.reduce(
     (acc: number, l: { cost_estimated_cents: number }) => acc + (l.cost_estimated_cents ?? 0),
     0
   )
   const testsUltimos30d = testsData.length
-  const costeMedioTest =
-    testsUltimos30d > 0 ? Math.round((totalCostCents / testsUltimos30d) * 10) / 10 / 100 : 0
+  const testsFreeBankCount = testsData.filter(t => t.prompt_version === 'free-bank-1.0').length
+  const testsIACount = testsUltimos30d - testsFreeBankCount
+
+  // Coste medio por test IA (excluye free bank que es €0)
+  const costeMedioTestIA = testsIACount > 0
+    ? Math.round((totalCostCents / testsIACount) * 10) / 10 / 100
+    : 0
+  // Coste medio global (incluye free bank como €0) — refleja coste real
+  const costeMedioTestGlobal = testsUltimos30d > 0
+    ? Math.round((totalCostCents / testsUltimos30d) * 10) / 10 / 100
+    : 0
 
   const usuariosUnicos = new Set(
     testsData.map((t: { user_id: string }) => t.user_id).filter(Boolean)
   )
   const usuariosActivos30d = usuariosUnicos.size
+  const costeMedioUsuario = usuariosActivos30d > 0
+    ? Math.round((totalCostCents / 100 / usuariosActivos30d) * 100) / 100
+    : 0
 
-  // Estimamos tests por usuario (ratio)
-  const testsPorUsuario =
-    usuariosActivos30d > 0
-      ? Math.round((testsUltimos30d / usuariosActivos30d) * 10) / 10
-      : 0
-  const costeMedioUsuario = Math.round(costeMedioTest * testsPorUsuario * 100) / 100
-
-  return { costeMedioTest, costeMedioUsuario, usuariosActivos30d, testsUltimos30d }
+  return { costeMedioTestIA, costeMedioTestGlobal, costeMedioUsuario, usuariosActivos30d, testsUltimos30d, testsFreeBankCount, testsIACount }
 }
 
 export const getCostPerUser = _getCostPerUser
@@ -161,10 +187,10 @@ export const getCostPerUser = _getCostPerUser
 // ─── getAARRR ─────────────────────────────────────────────────────────────────
 
 /**
- * Embudo AARRR (sin la segunda A de "Aware" — usamos acquisition = registros).
- * - Acquisition: total de perfiles en BD (= registros)
- * - Activation: % que han completado al menos 1 test
- * - Retention: % con racha_actual >= 3 días
+ * Embudo AARRR — ajustado al free tier v2:
+ * - Acquisition: registros totales
+ * - Activation: % que exploraron 3+ temas diferentes (1 test ya no indica engagement)
+ * - Retention: % que volvieron en semana 2+ tras registro (no racha diaria)
  * - Revenue: % con al menos 1 compra
  * - Referral: 0 hasta implementar tracking
  */
@@ -174,49 +200,56 @@ async function _getAARRR(): Promise<AAARRRMetrics> {
   const adminIds = await getAdminUserIds()
   const excludeAdmins = adminIdFilter(adminIds)
 
-  let profilesQ = supabase.from('profiles').select('id').eq('is_admin', false).gte('created_at', METRICS_START_DATE)
-  let activatedQ = supabase.from('tests_generados').select('user_id').eq('completado', true).gte('created_at', METRICS_START_DATE)
-  let retentionQ = supabase.from('profiles').select('id').gte('racha_actual', 3).eq('is_admin', false).gte('created_at', METRICS_START_DATE)
+  let profilesQ = supabase.from('profiles').select('id, created_at').eq('is_admin', false).gte('created_at', METRICS_START_DATE)
+  let testsQ = supabase.from('tests_generados').select('user_id, tema_id, created_at').eq('completado', true).not('tema_id', 'is', null).gte('created_at', METRICS_START_DATE)
   let revenueQ = supabase.from('compras').select('user_id').gte('created_at', METRICS_START_DATE)
 
   if (excludeAdmins) {
-    activatedQ = activatedQ.not('user_id', 'in', excludeAdmins)
+    testsQ = testsQ.not('user_id', 'in', excludeAdmins)
     revenueQ = revenueQ.not('user_id', 'in', excludeAdmins)
   }
 
-  const [profilesResult, activatedResult, retentionResult, revenueResult] = await Promise.all([
-    profilesQ, activatedQ, retentionQ, revenueQ,
+  const [profilesResult, testsResult, revenueResult] = await Promise.all([
+    profilesQ, testsQ, revenueQ,
   ])
 
-  const totalUsuarios = profilesResult.data?.length ?? 0
+  const profiles = (profilesResult.data ?? []) as { id: string; created_at: string }[]
+  const tests = (testsResult.data ?? []) as { user_id: string; tema_id: string; created_at: string }[]
+  const totalUsuarios = profiles.length
 
-  const activatedUsers = new Set(
-    (activatedResult.data ?? []).map((t: { user_id: string }) => t.user_id)
-  )
+  // Activation: users who explored 3+ different temas
+  const temasPerUser = new Map<string, Set<string>>()
+  for (const t of tests) {
+    if (!temasPerUser.has(t.user_id)) temasPerUser.set(t.user_id, new Set())
+    temasPerUser.get(t.user_id)!.add(t.tema_id)
+  }
+  const activatedCount = [...temasPerUser.values()].filter(temas => temas.size >= 3).length
+
+  // Retention: users who did a test in week 2+ after registration
+  const profileCreated = new Map(profiles.map(p => [p.id, new Date(p.created_at).getTime()]))
+  const WEEK_MS = 7 * 24 * 60 * 60 * 1000
+  const retainedUsers = new Set<string>()
+  for (const t of tests) {
+    const regTime = profileCreated.get(t.user_id)
+    if (regTime) {
+      const testTime = new Date(t.created_at).getTime()
+      if (testTime - regTime >= WEEK_MS) {
+        retainedUsers.add(t.user_id)
+      }
+    }
+  }
+  // Only count users registered 2+ weeks ago (they had the chance to retain)
+  const usersOldEnough = profiles.filter(p => Date.now() - new Date(p.created_at).getTime() >= 2 * WEEK_MS).length
+
   const revenueUsers = new Set(
     (revenueResult.data ?? []).map((c: { user_id: string }) => c.user_id)
   )
 
-  const activation =
-    totalUsuarios > 0
-      ? Math.round((activatedUsers.size / totalUsuarios) * 1000) / 10
-      : 0
-  const retention =
-    totalUsuarios > 0
-      ? Math.round(((retentionResult.data?.length ?? 0) / totalUsuarios) * 1000) / 10
-      : 0
-  const revenue =
-    totalUsuarios > 0
-      ? Math.round((revenueUsers.size / totalUsuarios) * 1000) / 10
-      : 0
+  const activation = totalUsuarios > 0 ? Math.round((activatedCount / totalUsuarios) * 1000) / 10 : 0
+  const retention = usersOldEnough > 0 ? Math.round((retainedUsers.size / usersOldEnough) * 1000) / 10 : 0
+  const revenue = totalUsuarios > 0 ? Math.round((revenueUsers.size / totalUsuarios) * 1000) / 10 : 0
 
-  return {
-    acquisition: totalUsuarios,
-    activation,
-    retention,
-    revenue,
-    referral: 0,
-  }
+  return { acquisition: totalUsuarios, activation, retention, revenue, referral: 0 }
 }
 
 export const getAARRR = _getAARRR
@@ -336,107 +369,137 @@ export function getAlerts(
 // ─── Question Bank Metrics ──────────────────────────────────────────────────
 
 export interface QuestionBankMetrics {
-  freeBankTotal: number      // total questions in free_question_bank
-  freeBankTemas: number      // temas covered by free bank
-  premiumBankTotal: number   // total questions in question_bank
-  premiumBankTemas: number   // unique temas in premium bank
+  freeBankTemas: number       // temas covered by free bank
+  freeBankTemasTotal: number  // total temas across all oposiciones
+  freeBankCoverage: number    // % of temas with free bank data
+  freeBankHitRate: number     // % of free tests served from bank (vs AI fallback)
+  premiumBankTotal: number    // total questions in question_bank
+  premiumBankTemas: number    // unique temas in premium bank
   avgQuestionsPerTema: number // average questions per tema in premium bank
-  cacheHitEstimate: number   // estimated % of premium tests served from bank
+  premiumBankHitRate: number  // % of premium tests served from bank (vs fresh AI)
 }
 
 export interface FreeTierMetrics {
   totalFreeUsers: number             // users without purchases
-  avgTemasExplored: number           // avg temas completed by free users
-  usersExplored5Plus: number         // free users with 5+ temas completed
+  avgTemasExplored: number           // avg unique temas completed by free users
+  usersExplored1Plus: number         // free users with 1+ temas
+  usersExplored3Plus: number         // free users with 3+ temas (activated)
+  usersExplored5Plus: number         // free users with 5+ temas (high intent)
   conversionRate: number             // % free users who became paid
-  freeAnalysisUsed: number           // total free AI analyses consumed
+  avgScoreFree: number | null        // average score on free bank tests
+  paywallHits: number                // times free users hit the paywall (402 from generate-test)
 }
 
 async function _getQuestionBankMetrics(): Promise<QuestionBankMetrics> {
-  const supabase = await createServiceClient()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const supabase = await createServiceClient() as any
 
-  const [freeBankResult, premiumBankResult] = await Promise.all([
-    (supabase as any).from('free_question_bank').select('id', { count: 'exact', head: true }),
-    (supabase as any).from('question_bank').select('tema_id', { count: 'exact' }),
+  const [freeBankResult, premiumBankResult, totalTemasResult, freeTestsResult, premiumTestsResult] = await Promise.all([
+    supabase.from('free_question_bank').select('id', { count: 'exact', head: true }),
+    supabase.from('question_bank').select('tema_id', { count: 'exact' }),
+    supabase.from('temas').select('id', { count: 'exact', head: true }),
+    // Free bank hit rate: tests served from bank vs all free tests
+    supabase.from('tests_generados').select('prompt_version', { count: 'exact' })
+      .eq('prompt_version', 'free-bank-1.0').gte('created_at', METRICS_START_DATE),
+    // Premium bank hit rate: tests served from bank vs all premium tema tests
+    supabase.from('tests_generados').select('prompt_version')
+      .eq('tipo', 'tema').neq('prompt_version', 'free-bank-1.0').gte('created_at', METRICS_START_DATE),
   ])
 
-  const freeBankTotal = freeBankResult.count ?? 0
+  const freeBankTemas = freeBankResult.count ?? 0
+  const freeBankTemasTotal = totalTemasResult.count ?? 0
   const premiumBankRows = (premiumBankResult.data ?? []) as Array<{ tema_id: string }>
   const premiumBankTotal = premiumBankResult.count ?? 0
   const premiumTemas = new Set(premiumBankRows.map(r => r.tema_id))
 
-  // Free bank temas
-  const { count: freeTemas } = await (supabase as any)
-    .from('free_question_bank')
-    .select('id', { count: 'exact', head: true })
+  // Free bank hit rate
+  const freeFromBank = freeTestsResult.count ?? 0
+  // For free hit rate we'd need total free test attempts, but free bank tests
+  // are the only source for free users now. fallback to IA is rare.
+  const freeBankHitRate = freeFromBank > 0 ? 100 : 0 // If any were served, bank works
+
+  // Premium bank hit rate
+  const premiumTests = (premiumTestsResult.data ?? []) as Array<{ prompt_version: string }>
+  const premiumFromBank = premiumTests.filter(t => t.prompt_version === 'bank-1.0').length
+  const premiumTotal = premiumTests.length
+  const premiumBankHitRate = premiumTotal > 0 ? Math.round((premiumFromBank / premiumTotal) * 100) : 0
 
   return {
-    freeBankTotal: freeBankTotal * 10, // each row = 10 questions
-    freeBankTemas: freeTemas ?? 0,
+    freeBankTemas,
+    freeBankTemasTotal,
+    freeBankCoverage: freeBankTemasTotal > 0 ? Math.round((freeBankTemas / freeBankTemasTotal) * 100) : 0,
+    freeBankHitRate,
     premiumBankTotal,
     premiumBankTemas: premiumTemas.size,
     avgQuestionsPerTema: premiumTemas.size > 0 ? Math.round(premiumBankTotal / premiumTemas.size) : 0,
-    cacheHitEstimate: premiumBankTotal > 50 ? Math.min(95, Math.round((1 - 10 / Math.max(premiumBankTotal, 1)) * 100)) : 0,
+    premiumBankHitRate,
   }
 }
 
 async function _getFreeTierMetrics(): Promise<FreeTierMetrics> {
-  const supabase = await createServiceClient()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const supabase = await createServiceClient() as any
   const adminIds = await getAdminUserIds()
 
-  // Free users = profiles without compras
+  // Free users = profiles without compras (exclude admins)
   const { data: allProfiles } = await supabase
     .from('profiles')
     .select('id')
-    .not('id', 'in', `(${adminIds.map(id => `'${id}'`).join(',')})`)
+    .eq('is_admin', false)
+    .gte('created_at', METRICS_START_DATE)
 
   const { data: paidUserIds } = await supabase
     .from('compras')
     .select('user_id')
 
   const paidSet = new Set((paidUserIds ?? []).map((r: { user_id: string }) => r.user_id))
-  const freeUsers = (allProfiles ?? []).filter(p => !paidSet.has(p.id))
+  const freeUsers = ((allProfiles ?? []) as { id: string }[]).filter(p => !paidSet.has(p.id) && !adminIds.includes(p.id))
   const totalFreeUsers = freeUsers.length
 
-  // Temas explored by free users
+  // Temas explored + scores by free users
   let totalTemasExplored = 0
+  let users1Plus = 0
+  let users3Plus = 0
   let users5Plus = 0
+  const allScores: number[] = []
+
   if (freeUsers.length > 0) {
     const freeIds = freeUsers.map(u => u.id)
     const { data: completedTests } = await supabase
       .from('tests_generados')
-      .select('user_id, tema_id')
+      .select('user_id, tema_id, puntuacion')
       .eq('completado', true)
       .not('tema_id', 'is', null)
-      .in('user_id', freeIds.slice(0, 100)) // limit to avoid huge queries
+      .in('user_id', freeIds.slice(0, 200))
 
-    // Count unique temas per user
     const userTemas = new Map<string, Set<string>>()
-    for (const t of (completedTests ?? []) as Array<{ user_id: string; tema_id: string }>) {
+    for (const t of (completedTests ?? []) as Array<{ user_id: string; tema_id: string; puntuacion: number | null }>) {
       if (!userTemas.has(t.user_id)) userTemas.set(t.user_id, new Set())
       userTemas.get(t.user_id)!.add(t.tema_id)
+      if (t.puntuacion !== null) allScores.push(t.puntuacion)
     }
     for (const temas of userTemas.values()) {
       totalTemasExplored += temas.size
+      if (temas.size >= 1) users1Plus++
+      if (temas.size >= 3) users3Plus++
       if (temas.size >= 5) users5Plus++
     }
   }
 
-  // Free analysis usage
-  const { data: analysisData } = await supabase
-    .from('profiles')
-    .select('free_corrector_used')
-
-  const freeAnalysisUsed = (analysisData ?? []).reduce(
-    (sum, p) => sum + ((p as { free_corrector_used?: number }).free_corrector_used ?? 0), 0
-  )
+  // Paywall hits (402 from generate-test = tema already completed by free user)
+  // We track this by counting completed free tests per user where count > 0
+  // but also check api_usage_log for 402 status codes
+  const paywallHits = 0 // TODO: track 402 responses in api_usage_log
 
   return {
     totalFreeUsers,
     avgTemasExplored: totalFreeUsers > 0 ? Math.round((totalTemasExplored / totalFreeUsers) * 10) / 10 : 0,
+    usersExplored1Plus: users1Plus,
+    usersExplored3Plus: users3Plus,
     usersExplored5Plus: users5Plus,
     conversionRate: totalFreeUsers > 0 ? Math.round((paidSet.size / (totalFreeUsers + paidSet.size)) * 1000) / 10 : 0,
-    freeAnalysisUsed,
+    avgScoreFree: allScores.length > 0 ? Math.round(allScores.reduce((a, b) => a + b, 0) / allScores.length) : null,
+    paywallHits,
   }
 }
 

@@ -254,29 +254,30 @@ export default async function AnalyticsPage() {
           <CardContent className="space-y-3">
             <FunnelBar label="Registro" value={funnel.registered} total={funnel.registered} desc="registros totales" />
             <FunnelBar label="Tour" value={funnel.tourCompleted} total={funnel.registered} desc="completaron el tour" />
-            <FunnelBar label="1er test" value={funnel.firstTest} total={funnel.registered} desc="completaron 1 test" />
-            <FunnelBar label="2o test" value={funnel.secondTest} total={funnel.registered} desc="completaron 2+ tests" />
+            <FunnelBar label="1 tema" value={funnel.explored1Tema} total={funnel.registered} desc="exploraron 1+ tema" />
+            <FunnelBar label="3 temas" value={funnel.explored3Temas} total={funnel.registered} desc="exploraron 3+ temas (activados)" />
+            <FunnelBar label="5 temas" value={funnel.explored5Temas} total={funnel.registered} desc="exploraron 5+ temas (alta intención)" />
             <FunnelBar label="Compra" value={funnel.purchased} total={funnel.registered} desc="compraron" />
 
             {/* Drop-off highlights */}
             <div className="border-t pt-2 space-y-1">
-              <p className="text-[10px] text-muted-foreground font-medium">Drop-off criticos:</p>
+              <p className="text-[10px] text-muted-foreground font-medium">Drop-off críticos:</p>
               {funnel.registered > 0 && (
                 <>
                   <p className="text-[10px]">
-                    Registro → Tour: <Badge variant={funnel.tourCompletionRate >= 50 ? 'default' : 'destructive'} className="text-[10px] ml-1">
-                      {funnel.tourCompletionRate}% completaron
-                    </Badge>
-                  </p>
-                  <p className="text-[10px]">
-                    Registro → 1er test: <span className={`font-bold ${funnel.pctFirstTest < 50 ? 'text-red-600' : 'text-green-600'}`}>
-                      {(100 - funnel.pctFirstTest).toFixed(1)}% se pierde
+                    Registro → 1 tema: <span className={`font-bold ${funnel.pctExplored1 < 50 ? 'text-red-600' : 'text-green-600'}`}>
+                      {(100 - funnel.pctExplored1).toFixed(1)}% no hace ni 1 test
                     </span>
                   </p>
-                  {funnel.firstTest > 0 && (
+                  <p className="text-[10px]">
+                    1 tema → 3 temas: <span className={`font-bold ${funnel.explored1Tema > 0 && funnel.explored3Temas / funnel.explored1Tema < 0.5 ? 'text-red-600' : 'text-green-600'}`}>
+                      {funnel.explored1Tema > 0 ? ((1 - funnel.explored3Temas / funnel.explored1Tema) * 100).toFixed(1) : 0}% se pierde
+                    </span>
+                  </p>
+                  {funnel.explored5Temas > 0 && (
                     <p className="text-[10px]">
-                      1er test → Compra: <span className={`font-bold ${funnel.pctPurchased < 10 ? 'text-amber-600' : 'text-green-600'}`}>
-                        {funnel.firstTest > 0 ? ((1 - funnel.purchased / funnel.firstTest) * 100).toFixed(1) : 0}% se pierde
+                      5 temas → Compra: <span className={`font-bold ${funnel.explored5Temas > 0 && funnel.purchased / funnel.explored5Temas < 0.2 ? 'text-amber-600' : 'text-green-600'}`}>
+                        {funnel.explored5Temas > 0 ? ((1 - funnel.purchased / funnel.explored5Temas) * 100).toFixed(1) : 0}% se pierde
                       </span>
                     </p>
                   )}
@@ -680,24 +681,29 @@ export default async function AnalyticsPage() {
       {questionBank && (
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">Banco de Preguntas <MetricInfo text="Estado del banco fijo (free tier, €0) y progresivo (premium, coste→€0). El cache hit rate indica qué % de tests se sirven sin IA." /></CardTitle>
+            <CardTitle className="text-base">Banco de Preguntas <MetricInfo text="Free bank: preguntas fijas por tema, €0. Premium bank: preguntas progresivas generadas con IA, coste→€0 tras primera generación. Hit rate = % tests servidos desde banco." /></CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="rounded-lg bg-blue-50 p-3">
-                <p className="text-xs text-blue-600 font-medium mb-1">Banco Free</p>
-                <p className="text-lg font-bold text-blue-900">{questionBank.freeBankTotal} preguntas</p>
-                <p className="text-xs text-blue-700">{questionBank.freeBankTemas} temas cubiertos</p>
+                <p className="text-xs text-blue-600 font-medium mb-1">Free Bank</p>
+                <p className="text-lg font-bold text-blue-900">{questionBank.freeBankTemas} temas</p>
+                <p className="text-xs text-blue-700">de {questionBank.freeBankTemasTotal} totales ({questionBank.freeBankCoverage}%)</p>
+              </div>
+              <div className="rounded-lg bg-blue-50 p-3">
+                <p className="text-xs text-blue-600 font-medium mb-1">Free Hit Rate</p>
+                <p className="text-lg font-bold text-blue-900">{questionBank.freeBankHitRate}%</p>
+                <p className="text-xs text-blue-700">servidos sin IA</p>
               </div>
               <div className="rounded-lg bg-green-50 p-3">
-                <p className="text-xs text-green-600 font-medium mb-1">Banco Premium</p>
+                <p className="text-xs text-green-600 font-medium mb-1">Premium Bank</p>
                 <p className="text-lg font-bold text-green-900">{questionBank.premiumBankTotal} preguntas</p>
                 <p className="text-xs text-green-700">{questionBank.premiumBankTemas} temas · ~{questionBank.avgQuestionsPerTema}/tema</p>
               </div>
-              <div className="rounded-lg bg-amber-50 p-3">
-                <p className="text-xs text-amber-600 font-medium mb-1">Cache Hit Rate</p>
-                <p className="text-lg font-bold text-amber-900">{questionBank.cacheHitEstimate}%</p>
-                <p className="text-xs text-amber-700">Tests sin IA (estimado)</p>
+              <div className="rounded-lg bg-green-50 p-3">
+                <p className="text-xs text-green-600 font-medium mb-1">Premium Hit Rate</p>
+                <p className="text-lg font-bold text-green-900">{questionBank.premiumBankHitRate}%</p>
+                <p className="text-xs text-green-700">servidos desde banco</p>
               </div>
             </div>
           </CardContent>

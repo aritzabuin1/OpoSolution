@@ -51,11 +51,13 @@ export interface ChurnMetrics {
 
 export interface OnboardingFunnel {
   registered: number
-  firstTest: number
-  secondTest: number
+  explored1Tema: number      // completed 1+ unique tema
+  explored3Temas: number     // completed 3+ unique temas (activated)
+  explored5Temas: number     // completed 5+ unique temas (high intent)
   purchased: number
-  pctFirstTest: number
-  pctSecondTest: number
+  pctExplored1: number
+  pctExplored3: number
+  pctExplored5: number
   pctPurchased: number
   tourCompletionRate: number
   tourCompleted: number
@@ -95,6 +97,13 @@ export interface CompletionRate {
   completed: number
   abandoned: number
   completionPct: number
+  // Free tier v2 split
+  freeBankCompleted: number
+  freeBankTotal: number
+  freeBankCompletionPct: number
+  iaCompleted: number
+  iaTotal: number
+  iaCompletionPct: number
 }
 
 export interface AnalysisUsageByType {
@@ -205,7 +214,7 @@ async function _getFeatureEngagement(): Promise<FeatureEngagement[]> {
   const excludeAdmins = adminIdFilter(adminIds)
   const thirtyDaysAgo = new Date(Math.max(Date.now() - 30 * 24 * 60 * 60 * 1000, new Date(METRICS_START_DATE).getTime())).toISOString()
 
-  let testsQ = supabase.from('tests_generados').select('tipo').gte('created_at', thirtyDaysAgo)
+  let testsQ = supabase.from('tests_generados').select('tipo, prompt_version').gte('created_at', thirtyDaysAgo)
   let cazaQ = supabase.from('cazatrampas_intentos').select('id').gte('created_at', thirtyDaysAgo)
   let flashQ = supabase.from('flashcard_reviews').select('id').gte('created_at', thirtyDaysAgo)
   if (excludeAdmins) {
@@ -216,15 +225,28 @@ async function _getFeatureEngagement(): Promise<FeatureEngagement[]> {
 
   const [testsRes, cazaRes, flashRes] = await Promise.all([testsQ, cazaQ, flashQ])
 
-  const tests = (testsRes.data ?? []) as { tipo: string }[]
+  const tests = (testsRes.data ?? []) as { tipo: string; prompt_version: string }[]
+
+  // Split tema tests into free bank vs IA
+  let freeBankCount = 0
+  let iaTestCount = 0
   const testsByTipo = new Map<string, number>()
   for (const t of tests) {
-    testsByTipo.set(t.tipo, (testsByTipo.get(t.tipo) ?? 0) + 1)
+    if (t.tipo === 'tema') {
+      if (t.prompt_version === 'free-bank-1.0') {
+        freeBankCount++
+      } else {
+        iaTestCount++
+      }
+    } else {
+      testsByTipo.set(t.tipo, (testsByTipo.get(t.tipo) ?? 0) + 1)
+    }
   }
 
   const features: { feature: string; count: number }[] = [
-    { feature: 'Tests (tema)', count: testsByTipo.get('tema') ?? 0 },
-    { feature: 'Psicotecnicos', count: testsByTipo.get('psicotecnico') ?? 0 },
+    { feature: 'Tests free bank', count: freeBankCount },
+    { feature: 'Tests IA premium', count: iaTestCount },
+    { feature: 'Psicotécnicos', count: testsByTipo.get('psicotecnico') ?? 0 },
     { feature: 'Simulacros', count: testsByTipo.get('simulacro') ?? 0 },
     { feature: 'Radar', count: testsByTipo.get('radar') ?? 0 },
     { feature: 'Caza-Trampas', count: cazaRes.data?.length ?? 0 },
@@ -278,7 +300,7 @@ async function _getOnboardingFunnel(): Promise<OnboardingFunnel> {
   const excludeAdmins = adminIdFilter(adminIds)
 
   let profilesQ = supabase.from('profiles').select('id, onboarding_completed_at').eq('is_admin', false).gte('created_at', METRICS_START_DATE)
-  let testsQ = supabase.from('tests_generados').select('user_id').eq('completado', true).gte('created_at', METRICS_START_DATE)
+  let testsQ = supabase.from('tests_generados').select('user_id, tema_id').eq('completado', true).not('tema_id', 'is', null).gte('created_at', METRICS_START_DATE)
   let comprasQ = supabase.from('compras').select('user_id').gte('created_at', METRICS_START_DATE)
   if (excludeAdmins) {
     testsQ = testsQ.not('user_id', 'in', excludeAdmins)
@@ -290,23 +312,29 @@ async function _getOnboardingFunnel(): Promise<OnboardingFunnel> {
   const profiles = (profilesRes.data ?? []) as { id: string; onboarding_completed_at: string | null }[]
   const registered = profiles.length
   const tourCompleted = profiles.filter(p => p.onboarding_completed_at !== null).length
-  const testsByUser = new Map<string, number>()
-  for (const t of (testsRes.data ?? []) as { user_id: string }[]) {
-    testsByUser.set(t.user_id, (testsByUser.get(t.user_id) ?? 0) + 1)
+
+  // Count unique temas per user (free tier v2: 1 test/tema, all temas open)
+  const temasPerUser = new Map<string, Set<string>>()
+  for (const t of (testsRes.data ?? []) as { user_id: string; tema_id: string }[]) {
+    if (!temasPerUser.has(t.user_id)) temasPerUser.set(t.user_id, new Set())
+    temasPerUser.get(t.user_id)!.add(t.tema_id)
   }
 
-  const firstTest = [...testsByUser.values()].filter(c => c >= 1).length
-  const secondTest = [...testsByUser.values()].filter(c => c >= 2).length
+  const explored1Tema = [...temasPerUser.values()].filter(s => s.size >= 1).length
+  const explored3Temas = [...temasPerUser.values()].filter(s => s.size >= 3).length
+  const explored5Temas = [...temasPerUser.values()].filter(s => s.size >= 5).length
   const purchasedUsers = new Set((comprasRes.data ?? []).map((c: { user_id: string }) => c.user_id))
   const purchased = purchasedUsers.size
 
   return {
     registered,
-    firstTest,
-    secondTest,
+    explored1Tema,
+    explored3Temas,
+    explored5Temas,
     purchased,
-    pctFirstTest: registered > 0 ? Math.round((firstTest / registered) * 1000) / 10 : 0,
-    pctSecondTest: registered > 0 ? Math.round((secondTest / registered) * 1000) / 10 : 0,
+    pctExplored1: registered > 0 ? Math.round((explored1Tema / registered) * 1000) / 10 : 0,
+    pctExplored3: registered > 0 ? Math.round((explored3Temas / registered) * 1000) / 10 : 0,
+    pctExplored5: registered > 0 ? Math.round((explored5Temas / registered) * 1000) / 10 : 0,
     pctPurchased: registered > 0 ? Math.round((purchased / registered) * 1000) / 10 : 0,
     tourCompleted,
     tourCompletionRate: registered > 0 ? Math.round((tourCompleted / registered) * 1000) / 10 : 0,
@@ -438,24 +466,34 @@ async function _getCompletionRate(): Promise<CompletionRate> {
   const adminIds = await getAdminUserIds()
   const excludeAdmins = adminIdFilter(adminIds)
 
-  let completedQ = supabase.from('tests_generados').select('id', { count: 'exact', head: true }).eq('completado', true).gte('created_at', METRICS_START_DATE)
-  let allQ = supabase.from('tests_generados').select('id', { count: 'exact', head: true }).gte('created_at', METRICS_START_DATE)
-  if (excludeAdmins) {
-    completedQ = completedQ.not('user_id', 'in', excludeAdmins)
-    allQ = allQ.not('user_id', 'in', excludeAdmins)
-  }
+  // Get all tests with completion status + source
+  let testsQ = supabase.from('tests_generados').select('completado, prompt_version').gte('created_at', METRICS_START_DATE)
+  if (excludeAdmins) testsQ = testsQ.not('user_id', 'in', excludeAdmins)
+  const { data: testsData } = await testsQ
 
-  const [completedRes, allRes] = await Promise.all([completedQ, allQ])
+  const tests = (testsData ?? []) as { completado: boolean; prompt_version: string }[]
 
-  const completed = completedRes.count ?? 0
-  const total = allRes.count ?? 0
+  const total = tests.length
+  const completed = tests.filter(t => t.completado).length
   const abandoned = total - completed
 
+  // Free bank split
+  const freeTests = tests.filter(t => t.prompt_version === 'free-bank-1.0')
+  const freeBankTotal = freeTests.length
+  const freeBankCompleted = freeTests.filter(t => t.completado).length
+
+  // IA split (everything that's not free bank)
+  const iaTests = tests.filter(t => t.prompt_version !== 'free-bank-1.0')
+  const iaTotal = iaTests.length
+  const iaCompleted = iaTests.filter(t => t.completado).length
+
   return {
-    total,
-    completed,
-    abandoned,
+    total, completed, abandoned,
     completionPct: total > 0 ? Math.round((completed / total) * 1000) / 10 : 0,
+    freeBankCompleted, freeBankTotal,
+    freeBankCompletionPct: freeBankTotal > 0 ? Math.round((freeBankCompleted / freeBankTotal) * 1000) / 10 : 0,
+    iaCompleted, iaTotal,
+    iaCompletionPct: iaTotal > 0 ? Math.round((iaCompleted / iaTotal) * 1000) / 10 : 0,
   }
 }
 
