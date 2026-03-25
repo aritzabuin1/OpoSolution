@@ -52,19 +52,32 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  // Step B: read back to confirm
-  const { data: row, error: readError } = await serviceClient
+  // Step B: read back to confirm (no .single() — just check what we get)
+  const { data: rows, error: readError } = await serviceClient
     .from('profiles')
     .select('oposicion_id')
     .eq('id', user.id)
-    .single()
 
-  if (readError || !row) {
+  if (readError) {
     return NextResponse.json(
-      { error: `READ failed: ${readError?.message ?? 'no profile row'}` },
+      { error: `READ error: ${readError.message} [${readError.code}]` },
       { status: 500 }
     )
   }
 
-  return NextResponse.json({ ok: true, oposicion_id: row.oposicion_id })
+  const arr = rows as Array<{ oposicion_id: string }> | null
+  if (!arr || arr.length === 0) {
+    // Service client can't find the profile — likely wrong SUPABASE_SERVICE_ROLE_KEY
+    // Try a count of ALL profiles to test service client access
+    const { count } = await serviceClient
+      .from('profiles')
+      .select('id', { count: 'exact', head: true })
+
+    return NextResponse.json(
+      { error: `Profile no encontrado. userId=${user.id}, totalProfiles=${count ?? 'null (no access)'}` },
+      { status: 500 }
+    )
+  }
+
+  return NextResponse.json({ ok: true, oposicion_id: arr[0].oposicion_id })
 }
