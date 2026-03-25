@@ -38,16 +38,33 @@ export async function POST(request: NextRequest) {
 
   // 2. Update via service client (bypasses RLS — safe because we verified identity above)
   const serviceClient = await createServiceClient()
-  const { data, error } = await serviceClient
+
+  // Step A: do the update (no .select, no .single — raw result)
+  const { error: updateError } = await serviceClient
     .from('profiles')
     .update(update)
     .eq('id', user.id)
-    .select('oposicion_id')
-    .single()
 
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+  if (updateError) {
+    return NextResponse.json(
+      { error: `UPDATE failed: ${updateError.message} [${updateError.code}]` },
+      { status: 500 }
+    )
   }
 
-  return NextResponse.json({ ok: true, oposicion_id: data.oposicion_id })
+  // Step B: read back to confirm
+  const { data: row, error: readError } = await serviceClient
+    .from('profiles')
+    .select('oposicion_id')
+    .eq('id', user.id)
+    .single()
+
+  if (readError || !row) {
+    return NextResponse.json(
+      { error: `READ failed: ${readError?.message ?? 'no profile row'}` },
+      { status: 500 }
+    )
+  }
+
+  return NextResponse.json({ ok: true, oposicion_id: row.oposicion_id })
 }
