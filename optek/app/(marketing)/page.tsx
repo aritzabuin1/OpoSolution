@@ -700,8 +700,12 @@ export default async function LandingPage() {
                   <li className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 shrink-0" /> Temario actualizado LO 1/2025</li>
                 </ul>
                 <div className="pt-2">
-                  <p className="text-[11px] text-muted-foreground mb-2">Déjanos tu email y te avisamos:</p>
-                  <WaitlistForm oposicionSlug="auxilio-judicial" />
+                  <p className="text-[11px] text-muted-foreground mb-2">Elige tu cuerpo y te avisamos:</p>
+                  <WaitlistForm oposicionSlug={[
+                    { slug: 'auxilio-judicial', label: 'Auxilio Judicial (C2) — 26 temas' },
+                    { slug: 'tramitacion-procesal', label: 'Tramitación Procesal (C1) — 37 temas' },
+                    { slug: 'gestion-procesal', label: 'Gestión Procesal (A2) — 68 temas' },
+                  ]} />
                 </div>
               </CardContent>
             </Card>
