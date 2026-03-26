@@ -533,3 +533,180 @@ export async function sendPostPurchaseEmail(params: {
     return { success: false, error: msg }
   }
 }
+
+// ─── Waitlist Confirmation (on signup) ───────────────────────────────────────
+
+export async function sendWaitlistConfirmation(params: {
+  to: string
+  oposicionNombre: string
+}): Promise<EmailResult> {
+  const resend = getResend()
+  if (!resend) return { success: false, error: 'Resend no configurado' }
+
+  const log = logger.child({ route: 'email:waitlist-confirmation' })
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
+
+  const html = `
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estás en la lista de espera — OpoRuta</title>
+</head>
+<body style="margin:0;padding:0;background:#f4f4f5;font-family:system-ui,-apple-system,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f5;padding:40px 20px;">
+    <tr><td align="center">
+      <table width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.1);">
+        <tr>
+          <td style="background:#1B4F72;padding:24px 40px;text-align:center;">
+            <span style="color:#ffffff;font-size:24px;font-weight:700;">OpoRuta</span>
+            <p style="color:#A9CCE3;margin:4px 0 0;font-size:13px;">El camino más corto hacia el aprobado</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:32px 40px 24px;">
+            <h1 style="margin:0 0 16px;font-size:22px;color:#111827;font-weight:700;">
+              ¡Te has apuntado a la lista de espera!
+            </h1>
+            <p style="margin:0 0 16px;font-size:15px;color:#374151;line-height:1.6;">
+              Hemos registrado tu email para <strong>${params.oposicionNombre}</strong>.
+              Te avisaremos en cuanto esté disponible en OpoRuta.
+            </p>
+            <p style="margin:0 0 16px;font-size:15px;color:#374151;line-height:1.6;">
+              Mientras tanto, puedes explorar las oposiciones que ya tenemos disponibles
+              (Auxiliar C2, Administrativo C1 y Gestión A2).
+            </p>
+            <table cellpadding="0" cellspacing="0" width="100%">
+              <tr><td align="center">
+                <a href="${appUrl}/register" style="display:inline-block;padding:14px 32px;background:#1B4F72;color:#ffffff;text-decoration:none;border-radius:8px;font-size:16px;font-weight:700;">
+                  Ver oposiciones disponibles
+                </a>
+              </td></tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:20px 40px;background:#f9fafb;border-top:1px solid #e5e7eb;">
+            <p style="margin:0;font-size:12px;color:#6b7280;text-align:center;line-height:1.5;">
+              Recibes este email porque te apuntaste a la lista de espera en OpoRuta.<br/>
+              <a href="${appUrl}/legal/privacidad" style="color:#6b7280;">Privacidad</a>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`.trim()
+
+  try {
+    const { data, error } = await resend.emails.send({
+      from: FROM_ADDRESS,
+      replyTo: REPLY_TO,
+      to: [params.to],
+      subject: `Lista de espera: ${params.oposicionNombre} — OpoRuta`,
+      html,
+    })
+
+    if (error) {
+      log.error({ error: error.message }, 'Waitlist confirmation email error')
+      return { success: false, error: error.message }
+    }
+    log.info({ id: data?.id, to: params.to }, 'Waitlist confirmation email enviado')
+    return { success: true, id: data?.id }
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err)
+    log.error({ error: msg }, 'Waitlist confirmation email exception')
+    return { success: false, error: msg }
+  }
+}
+
+// ─── Waitlist Notification (on activation) ──────────────────────────────────
+
+export async function sendWaitlistActivation(params: {
+  to: string
+  oposicionNombre: string
+  oposicionSlug: string
+}): Promise<EmailResult> {
+  const resend = getResend()
+  if (!resend) return { success: false, error: 'Resend no configurado' }
+
+  const log = logger.child({ route: 'email:waitlist-activation' })
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
+
+  const html = `
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${params.oposicionNombre} ya disponible en OpoRuta</title>
+</head>
+<body style="margin:0;padding:0;background:#f4f4f5;font-family:system-ui,-apple-system,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f5;padding:40px 20px;">
+    <tr><td align="center">
+      <table width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.1);">
+        <tr>
+          <td style="background:#1B4F72;padding:24px 40px;text-align:center;">
+            <span style="color:#ffffff;font-size:24px;font-weight:700;">OpoRuta</span>
+            <p style="color:#A9CCE3;margin:4px 0 0;font-size:13px;">El camino más corto hacia el aprobado</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:32px 40px 24px;">
+            <h1 style="margin:0 0 16px;font-size:22px;color:#111827;font-weight:700;">
+              ¡${params.oposicionNombre} ya está disponible!
+            </h1>
+            <p style="margin:0 0 16px;font-size:15px;color:#374151;line-height:1.6;">
+              Te apuntaste a la lista de espera y queríamos ser los primeros en avisarte:
+              <strong>${params.oposicionNombre}</strong> ya está disponible en OpoRuta.
+            </p>
+            <p style="margin:0 0 24px;font-size:15px;color:#374151;line-height:1.6;">
+              Ya puedes hacer tests gratuitos, practicar con preguntas verificadas y
+              preparar tu oposición con IA.
+            </p>
+            <table cellpadding="0" cellspacing="0" width="100%">
+              <tr><td align="center">
+                <a href="${appUrl}/register?oposicion=${params.oposicionSlug}" style="display:inline-block;padding:14px 32px;background:#1B4F72;color:#ffffff;text-decoration:none;border-radius:8px;font-size:16px;font-weight:700;">
+                  Empieza gratis ahora →
+                </a>
+              </td></tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:20px 40px;background:#f9fafb;border-top:1px solid #e5e7eb;">
+            <p style="margin:0;font-size:12px;color:#6b7280;text-align:center;line-height:1.5;">
+              Recibes este email porque te apuntaste a la lista de espera en OpoRuta.<br/>
+              <a href="${appUrl}/legal/privacidad" style="color:#6b7280;">Privacidad</a>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`.trim()
+
+  try {
+    const { data, error } = await resend.emails.send({
+      from: FROM_ADDRESS,
+      replyTo: REPLY_TO,
+      to: [params.to],
+      subject: `¡${params.oposicionNombre} ya disponible en OpoRuta!`,
+      html,
+    })
+
+    if (error) {
+      log.error({ error: error.message }, 'Waitlist activation email error')
+      return { success: false, error: error.message }
+    }
+    log.info({ id: data?.id, to: params.to, slug: params.oposicionSlug }, 'Waitlist activation email enviado')
+    return { success: true, id: data?.id }
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err)
+    log.error({ error: msg }, 'Waitlist activation email exception')
+    return { success: false, error: msg }
+  }
+}
