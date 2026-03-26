@@ -174,6 +174,238 @@
 
 ---
 
+## FASE 2.5 — Supuesto Práctico C1 (formato test)
+
+> **Contexto**: Desde OEP 2023-2024 (BOE-A-2024-14098), la Parte 2 del examen C1 Administrativo del Estado
+> es un supuesto práctico en formato TEST (20 preguntas tipo test sobre un caso narrativo). NO es desarrollo
+> escrito como en A2. Ningún competidor ofrece práctica de esto. Es un diferenciador brutal.
+
+### Fuentes oficiales
+
+| Fuente | Referencia | Contenido |
+|--------|-----------|-----------|
+| BOE-A-2024-14098 | Convocatoria OEP 2023-2024 | Define estructura: ejercicio único, 2 partes, 100 min |
+| BOE-A-2025-26262 | Convocatoria OEP 2025 | Confirma mismo formato test para supuesto |
+| INAP Sede — ADVO-L 2024 Modelo A | `data/examenes_c1/2024/examen_a.pdf` (pág. 8-14) | Supuestos I y II completos con preguntas + respuestas |
+| INAP Sede — ADVO-L 2024 Modelo B | `data/examenes_c1/2024/examen_b.pdf` | Idem modelo B |
+| INAP Sede — Plantillas definitivas | `data/examenes_c1/2024/plantilla_a.pdf`, `plantilla_b.pdf` | Respuestas correctas |
+
+### Estructura real del examen (verificada contra PDF 2024)
+
+**Ejercicio único, 2 partes eliminatorias, 100 minutos total:**
+
+| Parte | Preguntas | Bloques | Puntuación | Mínimo |
+|-------|-----------|---------|------------|--------|
+| 1ª — Cuestionario | 70 (+5 reserva) | I-V (40 legal) + VI (30 ofimática) | 0-50 | 25 |
+| 2ª — Supuesto práctico | 20 (+5 reserva) | II, III, IV, V | 0-50 | 25 |
+
+**Formato del supuesto** (extraído del examen real 2024):
+- Narrativa continua (~1 página): un funcionario GACE (A2) en un organismo con diversas situaciones laborales
+- NO es "5 expedientes con 4 preguntas cada uno" — es una historia coherente que toca múltiples áreas
+- Las 20 preguntas fluyen por aspectos del caso: provisión de puestos, contratación, presupuestos, personal, procedimiento administrativo
+- El opositor elige 1 de 2 supuestos propuestos
+- Penalización -1/3 (valor por pregunta: 2,50 pts → error penaliza 0,83 pts)
+
+**Ejemplo real — Supuesto I, Convocatoria 2024:**
+> "Dña. Estela Sánchez Ruiz, funcionaria del Cuerpo de Gestión de la Administración Civil del Estado,
+> viene ocupando un puesto en comisión de servicios..."
+> → 20 preguntas sobre: provisión puestos, interinos EBEP, incapacidad permanente SS, subvenciones,
+> recurso de alzada, reorganización ministerial, Registro Central de Personal, etc.
+
+### Bugs existentes a corregir (detectados durante análisis)
+
+#### BUG-SP1: Calculadora C1 — bloques incorrectos
+- **Archivo**: `CalculadoraNotaC1.tsx:307`
+- **Actual**: "Caso práctico (bloques II y V)"
+- **Correcto**: "Caso práctico (bloques II, III, IV y V)"
+- **Impacto**: Información incorrecta al usuario
+
+#### BUG-SP2: Simulacro — filtro hardcoded `numero <= 60`
+- **Archivo**: `generate-simulacro/route.ts:188` y `:259`
+- **Problema**: Filtra preguntas con número > 60. C2 tiene 60 preguntas, pero C1 tiene 70 en Parte 1. Al ingestar C1, las preguntas 61-70 serían excluidas.
+- **Fix**: Hacer el filtro dinámico según la oposición (consultar `scoring_config.ejercicios[0].preguntas`)
+
+#### BUG-SP3: Timer hardcoded para C2
+- **Archivo**: `tests/[id]/page.tsx:84-85`
+- **Actual**: `FULL_EXAM_QUESTIONS = 100`, `FULL_EXAM_SECONDS = 90 * 60`
+- **Problema**: C1 tiene 90 preguntas puntuables en 100 minutos (no 100 en 90)
+- **Fix**: Obtener valores de `scoring_config` de la oposición del test
+
+#### BUG-SP4: Datos C1 2024 incompletos
+- **Problema**: `parsed_a.json` y `parsed_b.json` solo tienen 70 preguntas (Parte 1). La Parte 2 (supuestos) NO está parseada aunque sí está en los PDFs (páginas 8-14).
+
+### Modelo de negocio: banco progresivo (mismo patrón que tests)
+
+**Unidad atómica = supuesto completo** (caso + 20 preguntas). No se pueden mezclar preguntas de supuestos distintos.
+
+| Tier | Qué ve | Coste IA | Fuente |
+|------|--------|----------|--------|
+| **Free** | Siempre el mismo supuesto: el oficial INAP 2024 | $0 | `free_supuesto_bank` |
+| **Premium (banco lleno)** | Supuesto no visto del banco | $0 | `supuesto_bank` |
+| **Premium (banco vacío)** | Supuesto generado por IA → se guarda en banco | ~$0.35 | IA + save to bank |
+
+**Curva de reducción de coste:**
+
+| Usuarios premium | Supuestos en banco | % servido sin IA | Coste medio/sesión |
+|---|---|---|---|
+| 0 (seed) | 5 pre-generados + 2 oficiales | 100% | $0 |
+| 1-10 | 7-15 | ~80% | ~$0.07 |
+| 10-50 | 15-25 | ~95% | ~$0.02 |
+| 50+ | 25-30 (tope) | ~99% | ~$0.00 |
+
+**Tope del banco: ~30 supuestos.** Con 4 bloques × ~7 temas/bloque, las combinaciones temáticas son finitas. Un opositor que ha hecho 30 supuestos distintos ya domina el formato. A partir de 30, recicla supuestos no vistos por ese usuario.
+
+**Seed inicial**: Pre-generar 5 supuestos con IA ($1.75) + parsear 2 oficiales 2024 = 7 supuestos día 1.
+
+### Modelo de datos
+
+#### Tabla `free_supuesto_bank` (free tier — 1 supuesto fijo)
+```sql
+CREATE TABLE free_supuesto_bank (
+  id            uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  oposicion_id  uuid NOT NULL REFERENCES oposiciones(id),
+  caso          jsonb NOT NULL,     -- {titulo, escenario, bloques_cubiertos}
+  preguntas     jsonb NOT NULL,     -- Pregunta[] (20 preguntas, mismo schema)
+  es_oficial    boolean DEFAULT false, -- true = parseado del INAP
+  fuente        text,               -- 'INAP-2024-ADVO-L-ModeloA-SupuestoI'
+  created_at    timestamptz DEFAULT now(),
+  UNIQUE (oposicion_id)             -- Solo 1 por oposición (free = todos ven el mismo)
+);
+```
+
+#### Tabla `supuesto_bank` (premium tier — banco progresivo)
+```sql
+CREATE TABLE supuesto_bank (
+  id             uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  oposicion_id   uuid NOT NULL REFERENCES oposiciones(id),
+  caso           jsonb NOT NULL,     -- {titulo, escenario, bloques_cubiertos}
+  preguntas      jsonb NOT NULL,     -- Pregunta[] (20 preguntas)
+  es_oficial     boolean DEFAULT false,
+  fuente         text,               -- 'ai-supuesto-c1-1.0' | 'INAP-2024-...'
+  -- Métricas
+  times_served   int DEFAULT 0,
+  avg_score      numeric(4,1),       -- Media de puntuación de usuarios
+  error_reports  int DEFAULT 0,
+  created_at     timestamptz DEFAULT now()
+);
+
+CREATE INDEX idx_sbank_opo ON supuesto_bank (oposicion_id);
+```
+
+#### Tabla `user_supuestos_seen` (tracking)
+```sql
+CREATE TABLE user_supuestos_seen (
+  user_id      uuid NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  supuesto_id  uuid NOT NULL REFERENCES supuesto_bank(id) ON DELETE CASCADE,
+  score        numeric(4,1),  -- Puntuación obtenida (0-50)
+  seen_at      timestamptz DEFAULT now(),
+  PRIMARY KEY (user_id, supuesto_id)
+);
+```
+
+#### Cambio en `tests_generados`
+```sql
+-- Añadir 'supuesto_c1' al check constraint de tipo
+ALTER TABLE tests_generados DROP CONSTRAINT tests_generados_tipo_check;
+ALTER TABLE tests_generados ADD CONSTRAINT tests_generados_tipo_check
+  CHECK (tipo IN ('tema', 'simulacro', 'repaso_errores', 'psicotecnico', 'supuesto_c1'));
+
+-- Añadir columna para caso del supuesto (NULL para otros tipos de test)
+ALTER TABLE tests_generados ADD COLUMN supuesto_caso jsonb;
+-- Contiene: {titulo, escenario, bloques_cubiertos} — solo cuando tipo='supuesto_c1'
+```
+
+#### Feature flag: sin flag nuevo
+Lógica basada en `nivel` (ya existe en migration 047):
+- `nivel = 'A2'` + `supuesto_practico = true` → supuesto desarrollo (existente)
+- `nivel = 'C1'` → supuesto test (nuevo, este feature)
+- `nivel = 'C2'` → sin supuesto
+
+### Fases de ejecución
+
+#### Fase 2.5a — Datos oficiales + bugs (sin IA, sin coste)
+- [ ] **BUG-SP1**: Fix calculadora bloques II→V (`CalculadoraNotaC1.tsx:307`)
+- [ ] **BUG-SP2**: Fix filtro `numero <= 60` dinámico por oposición (`generate-simulacro/route.ts`)
+- [ ] **BUG-SP3**: Fix timer dinámico por oposición (`tests/[id]/page.tsx`)
+- [ ] **BUG-SP4**: Parsear Parte 2 de PDFs 2024 (supuestos I y II, modelos A y B)
+  - Extraer caso narrativo + 20 preguntas + 5 reserva + respuestas correctas
+  - Crear `data/examenes_c1/2024/supuesto_1a.json`, `supuesto_2a.json` (modelo A)
+  - Validar contra plantilla definitiva INAP
+- [ ] Migration: crear tablas `free_supuesto_bank`, `supuesto_bank`, `user_supuestos_seen`
+- [ ] Migration: añadir `supuesto_c1` al check constraint + columna `supuesto_caso`
+- [ ] Ingestar supuesto oficial 2024 (Supuesto I) en `free_supuesto_bank` → free users ven este
+
+#### Fase 2.5b — Backend generación IA
+- [ ] Crear `lib/ai/supuesto-practico-test.ts`:
+  - System prompt basado en formato real 2024 (few-shot con supuesto oficial)
+  - Input: contexto legal bloques II-V (via retrieval existente)
+  - Output: `{titulo, escenario, preguntas: Pregunta[20]}`
+  - Cada pregunta lleva campo `bloque: 'II'|'III'|'IV'|'V'` para desglose
+  - Validación post-generación: rechazar si no hay ≥1 pregunta por bloque
+- [ ] Crear `/api/ai/generate-supuesto-test`:
+  - Free user: servir de `free_supuesto_bank` (check: ya lo ha hecho? → paywall)
+  - Premium user: servir de `supuesto_bank` (unseen). Si no hay unseen → generar con IA → guardar en banco
+  - Guardar test en `tests_generados` con `tipo='supuesto_c1'` + `supuesto_caso` JSON
+  - `prompt_version: 'free-supuesto-1.0'` | `'supuesto-bank-1.0'` | `'ai-supuesto-c1-1.0'`
+- [ ] Verificación legal: reutilizar batch verification existente
+- [ ] Script seed: `execution/generate-supuesto-bank.ts` — pre-generar 5 supuestos ($1.75)
+
+#### Fase 2.5c — Frontend
+- [ ] Página `/supuesto-practico-c1`:
+  - Explicación del formato + datos del examen real
+  - Botón "Practicar supuesto práctico"
+  - Free: badge "1 supuesto gratis (examen oficial INAP 2024)"
+  - Premium: badge "Supuestos ilimitados"
+- [ ] Adaptar `tests/[id]/page.tsx` para `tipo === 'supuesto_c1'`:
+  - Cabecera: "Supuesto Práctico C1" con badge "Parte 2 del examen"
+  - **Desktop**: split view — caso a la izquierda (sticky), preguntas a la derecha
+  - **Mobile**: drawer/sheet colapsable "Ver caso" con FAB, preguntas debajo
+  - Timer referencia: "~30 min en el examen real" (informativo, no obligatorio)
+- [ ] Adaptar `tests/[id]/resultados/page.tsx`:
+  - Puntuación sobre 50 (no sobre 10 como tests normales)
+  - Desglose por bloque (II, III, IV, V)
+  - Indicador: "Con esta nota + tu Parte 1 → ¿habrías aprobado?"
+- [ ] Sidebar: mostrar "Supuesto Práctico" para usuarios C1 (condicional por `nivel`)
+- [ ] Freemium gating: PaywallGate con code `PAYWALL_SUPUESTO_C1`
+
+#### Fase 2.5d — Integración con simulacro completo (nice-to-have)
+- [ ] Opción en simulacros C1: "Examen completo: Parte 1 (70 preguntas) + Parte 2 (supuesto)"
+  - Combina preguntas oficiales de Parte 1 + supuesto del banco
+  - Timer: 100 minutos total
+  - Resultados: nota por parte + nota total + ¿supera corte 2024 (47,33)?
+
+### Estimación de costes
+
+| Concepto | Coste |
+|----------|-------|
+| Seed banco (5 supuestos × $0.35) | $1.75 (one-time) |
+| Parseo supuestos oficiales 2024 | $0 (manual/script) |
+| Primeros 50 premium users (~5 generaciones IA) | ~$1.75 |
+| Coste ongoing (banco lleno, >50 users) | ~$0/mes |
+| **Coste total hasta break-even** | **~$3.50** |
+
+### Requisitos del checklist
+
+| # | Requisito | Cómo se aplica |
+|---|-----------|---------------|
+| 1 | Error Handling | Fallback si IA falla: servir del banco aunque sea repetido |
+| 2 | Logging | Log generación, reuse del banco, errores verificación |
+| 5 | Input Validation | Zod schema para request endpoint |
+| 6 | Testing | Golden Dataset = supuesto oficial 2024 (comparar calidad IA vs real) |
+| 8 | Prompt Injection | System prompt resistente |
+| 11 | Rate Limiting | Reutilizar rate limit de generate-test |
+| 20 | Prompt Versioning | Tracked en tests_generados.prompt_version |
+
+### Lo que NO hacemos (decisiones conscientes)
+- **NO** tabla nueva para cada pregunta — la unidad es el supuesto completo (caso + 20 preguntas)
+- **NO** generamos 2 supuestos para elegir — en práctica, 1 es suficiente (ahorra 50% coste)
+- **NO** cronómetro obligatorio — solo referencia informativa
+- **NO** soporte exámenes pre-2024 (formato desarrollo antiguo, no relevante)
+- **NO** flag nuevo en features — usamos `nivel='C1'` para la lógica condicional
+- **NO** deduplicación a nivel pregunta — no tiene sentido separar preguntas de su caso
+
+---
+
 ## FASE 3 — Futuras (solo estructura)
 
 ### 3.1 Hacienda C1 (AEAT)
