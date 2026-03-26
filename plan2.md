@@ -155,8 +155,8 @@
 ### 2.4 Contenido Justicia — Free bank
 - [x] Ingestar Auxilio 2024: 59 preguntas oficiales
 - [x] Free bank Auxilio: 25/26 temas (250 preguntas). Tema 14 "Régimen disciplinario" pendiente (no bloqueante)
-- [ ] Free bank Tramitación: EN PROGRESO (~29/37)
-- [ ] Free bank Gestión: EN PROGRESO (~27/68)
+- [x] Free bank Tramitación: 37/37 temas (370 preguntas, 0 errores)
+- [x] Free bank Gestión: 67/68 temas (670 preguntas, 1 timeout T35)
 
 ### 2.5 Rúbrica supuesto práctico A2
 - [ ] Investigar criterios corrección tribunal para Gestión Procesal
