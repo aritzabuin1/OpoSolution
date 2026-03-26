@@ -576,8 +576,9 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 2. ~~**GAP-5**: Fix scoring_config C1 AGE (prerequisito de FASE 2.5)~~ **COMPLETADO** — Migration 051
 3. ~~**GAP-3**: Multi-exercise scoring genérico (prerequisito de Justicia)~~ **COMPLETADO** — overload EjercicioData[], resultados page usa calcularEjercicio, 25 tests
 4. ~~**FASE 2.5b-c**: Supuesto práctico test genérico~~ **COMPLETADO** — supuesto-test.ts + endpoint + page + SupuestoTestRunner + resultados + migration 054 + ingesta oficial
-5. **GAP-2**: Ofimática ejercicio separado (solo si activamos Tramitación)
-6. **GAP-4**: Desarrollo escrito Gestión Procesal (solo si activamos Gestión Procesal)
+5. **AUTO-FILL FREE BANK**: Si un free user genera test para un tema sin free bank, guardar también en `free_question_bank` (auto-popula T14 Auxilio y T35 Gestión con la primera generación IA)
+6. **GAP-2**: Ofimática ejercicio separado (solo si activamos Tramitación)
+7. **GAP-4**: Desarrollo escrito Gestión Procesal (solo si activamos Gestión Procesal)
 
 ---
 
