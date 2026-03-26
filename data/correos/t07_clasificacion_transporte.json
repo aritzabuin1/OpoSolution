@@ -1,0 +1,43 @@
+{
+  "tema": 7,
+  "titulo": "Clasificación, tratamiento y transporte de envíos postales",
+  "contenido": [
+    {
+      "subtema": "El proceso de clasificación: visión general",
+      "texto": "La clasificación (o tratamiento) es la fase operativa en la que los envíos se separan y agrupan según su destino para ser encaminados de forma eficiente. El flujo general es: 1) Los envíos admitidos en oficinas y buzones se recogen y transportan al Centro de Tratamiento correspondiente. 2) En el centro se descargan, se verifica su integridad y se introducen en el proceso de clasificación. 3) Se clasifican por destino (código postal, zona, provincia, ruta). 4) Se forman despachos (agrupaciones de envíos con mismo destino o ruta). 5) Los despachos se cargan en los vehículos de transporte correspondientes. 6) Los envíos llegan al Centro de Tratamiento o Unidad de Reparto de destino, donde se realiza una segunda clasificación por sección de reparto."
+    },
+    {
+      "subtema": "Centros de Tratamiento Automatizado (CTA)",
+      "texto": "Los CTA son grandes instalaciones industriales donde se procesan la mayoría de los envíos: 1) CTA de correspondencia: equipados con máquinas de clasificación automática de cartas (OCR - reconocimiento óptico de caracteres, y BCR - reconocimiento de códigos de barras). Proceso: desfasado/desembandejado → enfrentado y sellado → lectura automática de dirección → codificación (impresión de código de barras naranja fluorescente con los datos de encaminamiento) → clasificación en casilleros por destino. Capacidad: hasta 40.000 cartas/hora por máquina. 2) CTA de paquetería: equipados con sorters (clasificadoras de paquetes) que leen la etiqueta y dirigen cada paquete al muelle de carga correspondiente. Capacidad: hasta 10.000-15.000 paquetes/hora. Los principales CTA están en Madrid, Barcelona, Valencia, Sevilla, Bilbao, Zaragoza."
+    },
+    {
+      "subtema": "Tratamiento manual y videocodificación",
+      "texto": "No todos los envíos pueden clasificarse automáticamente: 1) Rechazo de máquina: envíos que la OCR no puede leer (mala caligrafía, dirección borrosa, formato irregular) se derivan a clasificación manual. 2) Videocodificación: sistema semi-automático donde la imagen del sobre se envía a una pantalla y un operador teclea el código postal. El sobre se marca con código fluorescente y se reincorpora al flujo automático. La videocodificación puede realizarse en remoto (centros de videocodificación). 3) Clasificación manual: los operarios separan los envíos en casilleros físicos según destino. Se utiliza para envíos que no pasan por máquina (formato especial, urgentes, etc.). 4) Paquetería no mecanizable: paquetes de gran tamaño o forma irregular se clasifican manualmente en muelles de carga."
+    },
+    {
+      "subtema": "Tipos de clasificación según nivel",
+      "texto": "La clasificación se realiza en varios niveles progresivos: 1) Clasificación primaria (o de salida): en el CTA de origen, los envíos se agrupan por CTA de destino o por provincia. Se forman despachos para cada destino troncal. 2) Clasificación secundaria (o de llegada): en el CTA de destino, los envíos se clasifican por unidad de reparto, oficina de destino o sector. 3) Clasificación terciaria (o de casillero): en la unidad de reparto, el cartero clasifica los envíos de su sección por calle y número (el 'paseo' o recorrido de reparto). Esta clasificación la hace el cartero antes de salir a repartir, ordenando los envíos según el itinerario de su ruta. Las máquinas más modernas realizan la clasificación hasta el nivel de sección de reparto (secuenciación), reduciendo el trabajo manual del cartero."
+    },
+    {
+      "subtema": "Formación de despachos y encaminamiento",
+      "texto": "Un despacho es una agrupación cerrada de envíos con un mismo destino de encaminamiento. Elementos: 1) Contenedor: bandeja, saca (bolsa), jaula o contenedor rodante según el tipo y volumen de envíos. 2) Etiqueta de despacho: identifica el origen, destino, tipo de envíos y número de envíos contenidos. 3) Documentación: factura de despacho (lista de envíos registrados contenidos). Para despachos internacionales: CN31 (cartas), CN33 (paquetes), CN37 (encaminamientos). 4) Cierre y precinto: los despachos se cierran con precinto de seguridad numerado para garantizar la inviolabilidad. 5) El encaminamiento define la ruta que sigue cada despacho a través de la red de transporte, optimizando las conexiones y minimizando los tiempos de tránsito."
+    },
+    {
+      "subtema": "Red de transporte: estructura y planificación",
+      "texto": "La red de transporte de Correos tiene tres niveles: 1) Red troncal (nodal): conexiones entre CTA principales. Operada con camiones articulados, tráileres y transporte aéreo. Frecuencia: diaria, con salidas nocturnas para conectar los principales CTA. 2) Red provincial (radial): desde el CTA/CTP provincial hasta las oficinas de reparto y oficinas postales. Camiones medianos y furgonetas. Múltiples expediciones diarias. 3) Red auxiliar (alimentación): conexiones entre oficinas pequeñas, buzones y nodos provinciales. Vehículos ligeros, servicio rural. La planificación se recoge en el 'Plan de Transporte', documento que detalla todas las rutas, horarios, frecuencias y vehículos asignados. Los horarios se diseñan para que los envíos admitidos un día lleguen a destino en los plazos comprometidos (D+1, D+3, etc.)."
+    },
+    {
+      "subtema": "Transporte aéreo",
+      "texto": "El transporte aéreo se utiliza para: 1) Envíos urgentes de larga distancia: permite cumplir plazos de D+1 entre puntos alejados de la península. 2) Tráfico insular: conexión obligada con Canarias y Baleares. Correos contrata bodega en vuelos comerciales y, en períodos de alto volumen, fleta vuelos charter. 3) Tráfico internacional: la mayoría de los envíos postales internacionales se transportan por vía aérea. El despacho se realiza en las Oficinas de Cambio Internacional (aeropuerto de Madrid-Barajas como hub principal). 4) Los envíos aéreos se tratan con prioridad en los CTA para cumplir los horarios de los vuelos. 5) Restricciones: el transporte aéreo está sujeto a normativa de seguridad aérea (screening de envíos, prohibición de mercancías peligrosas en bodega de avión)."
+    },
+    {
+      "subtema": "Control de calidad en el tratamiento",
+      "texto": "Correos implementa controles de calidad en la fase de clasificación y transporte: 1) Indicadores de calidad del SPU: la normativa exige que el 93% de los envíos ordinarios se entreguen en D+3 y el 99% en D+5. Correos es auditado por organismos independientes. 2) Envíos-test: se introducen envíos de prueba en el sistema para medir tiempos reales de tránsito (sistema UNEX de la IPC para envíos internacionales). 3) Lectura de eventos: cada lectura de código de barras en la cadena genera un registro temporal que permite medir el tiempo en cada fase. 4) Objetivos de clasificación: porcentaje de envíos clasificados correctamente a la primera (objetivo >99%). 5) Planes de contingencia: para picos de volumen (Black Friday, Navidad, elecciones), retrasos por meteorología o huelgas, Correos activa planes con recursos adicionales (turnos extra, refuerzos de personal, transporte suplementario)."
+    },
+    {
+      "subtema": "Tratamiento internacional: oficinas de cambio",
+      "texto": "Las Oficinas de Cambio Internacional son los puntos de entrada y salida del correo internacional: 1) Funciones: despacho de aduanas, verificación documental (CN22/CN23), control de seguridad, clasificación por país de destino o procedencia. 2) Proceso de exportación: los envíos internacionales llegan al CTA, se clasifican por país, se forman despachos internacionales con documentación CN (listas, facturas), se encaminan a la oficina de cambio, se entregan al transportista aéreo o terrestre. 3) Proceso de importación: los despachos llegan del extranjero a la oficina de cambio, se abren, se realiza el control aduanero (en coordinación con la Agencia Tributaria/Aduanas), se cobran aranceles e IVA si procede, se incorporan a la red nacional para su distribución. 4) Datos electrónicos anticipados: desde 2021, la normativa UPU exige el envío de datos electrónicos (ITMATT) antes de la llegada física del correo, para facilitar la evaluación de riesgo aduanero y de seguridad."
+    }
+  ],
+  "fuente": "correos.es / temario oficial convocatoria 2024-2025 / normativa UPU / normativa postal nacional"
+}

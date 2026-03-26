@@ -1,0 +1,47 @@
+{
+  "tema": 8,
+  "titulo": "Distribución y entrega de envíos postales",
+  "contenido": [
+    {
+      "subtema": "Concepto de distribución y entrega",
+      "texto": "La distribución es la fase final de la cadena postal, que comprende desde la llegada de los envíos a la unidad de reparto hasta su entrega efectiva al destinatario. Es la operación de 'última milla', la más costosa y compleja de todo el proceso postal (representa aproximadamente el 50-60% del coste total de un envío). Incluye: la recepción de envíos en la unidad de reparto, la clasificación de casillero por el cartero, la preparación de la ruta, el reparto domiciliario, la gestión de intentos fallidos, y las actividades posteriores (devolución de no entregados, entrega en lista, etc.)."
+    },
+    {
+      "subtema": "Unidades de reparto y secciones",
+      "texto": "La unidad de reparto es el centro operativo desde el que los carteros realizan la distribución: 1) Ubicación: generalmente en las oficinas principales o en locales independientes en zonas de alto volumen. 2) Secciones de reparto: cada unidad se divide en secciones, cada una asignada a un cartero. La sección comprende un conjunto de calles, números y códigos postales. Se define por el volumen de trabajo (número de entregas) y la extensión geográfica. 3) Tipos de secciones: urbanas (bloques de pisos, alta densidad), semiurbanas (zonas residenciales de menor densidad), rurales (grandes extensiones con población dispersa). 4) Cada sección tiene un recorrido o 'paseo' definido: el itinerario óptimo que sigue el cartero para realizar todas las entregas."
+    },
+    {
+      "subtema": "La jornada del cartero",
+      "texto": "La jornada tipo de un cartero urbano: 1) Inicio de jornada en la unidad de reparto. 2) Recepción de los envíos de su sección procedentes del CTA. 3) Clasificación de casillero: el cartero clasifica los envíos por calle y número, siguiendo el orden de su recorrido de reparto. Este trabajo se denomina 'hacer el paseo'. Las máquinas secuenciadoras más modernas entregan la correspondencia ya ordenada. 4) Preparación de la ruta: cargar envíos en cartera/carro/vehículo, organizar paquetes, preparar impresos de notificaciones. 5) Salida a reparto: el cartero recorre su sección entregando envíos en los buzones domiciliarios o en mano (para envíos registrados que requieren firma). 6) Gestión de intentos fallidos: avisos de llegada para envíos registrados cuando el destinatario está ausente. 7) Regreso a la unidad: entrega de envíos no repartidos, liquidación de certificados y registrados, rendición de cuentas (si ha cobrado reembolsos o giros)."
+    },
+    {
+      "subtema": "Modalidades de entrega",
+      "texto": "Las diferentes formas de entrega según el tipo de envío: 1) Entrega en buzón domiciliario: para envíos ordinarios (cartas sin certificar, publicidad). Se depositan en el buzón del portal o vivienda. 2) Entrega en mano con firma: para envíos certificados, paquetes registrados, notificaciones. El destinatario o persona autorizada firma en la PDA del cartero. Se registra la hora, fecha y DNI del receptor. 3) Entrega en oficina (lista): el destinatario recoge el envío en una oficina de Correos, presentando DNI y el aviso de llegada. Custodia: 15 días para envíos nacionales, 30 días para internacionales. 4) Entrega en punto de conveniencia o CityPaq: alternativa cuando el destinatario no está en casa. 5) Entrega con entrega exclusiva: solo al destinatario personal, no a terceros. 6) Entrega a domicilio de paquetería: el cartero o repartidor entrega paquetes en la puerta, pudiendo dejar en portería con consentimiento."
+    },
+    {
+      "subtema": "Gestión de ausencias e intentos fallidos",
+      "texto": "Cuando el destinatario no se encuentra para recibir un envío registrado: 1) Primer intento: el cartero intenta la entrega en el domicilio. Si no hay nadie, deja un 'Aviso de Llegada' (M4) en el buzón, indicando los datos del envío y la oficina donde puede recogerlo. 2) Segundo intento (según producto): para ciertos productos (Paq Premium) se realiza un segundo intento al día siguiente o cuando el destinatario lo solicite. 3) Custodia en oficina: el envío se deposita en la oficina de referencia del código postal, donde permanece 15 días (envíos nacionales) o 30 días (internacionales). El destinatario recibe SMS/email informando de la disponibilidad. 4) Notificaciones administrativas: si el destinatario no recoge la notificación en 7 días, se devuelve al organismo remitente con indicación de 'ausente/rehusado/desconocido', produciéndose efectos legales. 5) Devolución al remitente: transcurrido el plazo sin recoger, el envío se devuelve al remitente (si indicó dirección de retorno)."
+    },
+    {
+      "subtema": "Reparto rural",
+      "texto": "El reparto rural tiene características específicas: 1) Secciones rurales: extensas geográficamente pero con baja densidad de entregas. El cartero rural recorre decenas de kilómetros, visitando núcleos de población dispersos. 2) Enlace rural: además de repartir, el cartero rural actúa como enlace entre la oficina y los vecinos, pudiendo admitir envíos, vender sellos, entregar giros y realizar gestiones diversas. 3) Medios de transporte: vehículo propio (con compensación económica) o vehículo de Correos, según la zona. En algunos casos, moto o incluso a pie para núcleos pequeños. 4) Frecuencia: la normativa del SPU establece la frecuencia mínima de reparto rural (al menos 3 días/semana para poblaciones aisladas, 5 días/semana para el resto). 5) Servicios adicionales: el cartero rural puede actuar como punto de acceso a servicios financieros y administrativos en zonas sin oficina bancaria."
+    },
+    {
+      "subtema": "Entrega de paquetería y última milla",
+      "texto": "La entrega de paquetes presenta desafíos específicos: 1) Volumen creciente: el auge del e-commerce ha multiplicado los volúmenes de paquetería, transformando la operativa de reparto. 2) Franjas horarias: algunos productos permiten al destinatario elegir franja de entrega. 3) Opciones de redirección: el destinatario puede cambiar la fecha, hora o lugar de entrega a través de la app o web de Correos antes del intento. 4) Entrega en portería/vecino: previa autorización del destinatario, el paquete puede dejarse con el portero o un vecino. 5) Punto de conveniencia y CityPaq: alternativas de recogida que evitan segundos intentos. 6) Prueba de Entrega Electrónica (PEE): firma digital capturada en la PDA del repartidor, con geolocalización y marca temporal. 7) Entrega sin contacto: implementada durante la pandemia, permite entregar sin firma física cuando el destinatario lo autoriza."
+    },
+    {
+      "subtema": "Devoluciones y envíos no entregables",
+      "texto": "Gestión de envíos que no pueden entregarse: 1) Causas de no entrega: destinatario desconocido, dirección incorrecta/insuficiente, rehusado por el destinatario, fallecido, ausente tras agotar intentos y plazo de custodia, buzón lleno. 2) Devolución al remitente: si la dirección del remitente está indicada, el envío se devuelve sin coste adicional (para envíos del SPU). Se indica la causa de no entrega. 3) Envíos sin dirección de retorno: pasan al servicio de 'Envíos no distribuibles'. Se intenta identificar al remitente. Si no es posible tras un período de custodia, se procede a la destrucción según protocolos (con acta). Los envíos con valor se custodian durante más tiempo. 4) Centro de Envíos No Distribuibles: ubicado en Madrid, gestiona los envíos que no pueden entregarse ni devolverse."
+    },
+    {
+      "subtema": "Herramientas tecnológicas del cartero",
+      "texto": "El cartero moderno utiliza diversas herramientas tecnológicas: 1) PDA (Personal Digital Assistant) / Handheld: dispositivo portátil con funciones de lectura de códigos de barras, captura de firma digital, GPS, cámara, conexión de datos. Permite registrar cada evento de entrega en tiempo real. 2) SGIE móvil: aplicación en la PDA que gestiona los envíos asignados, registra entregas, intentos, ausencias, y sincroniza con el sistema central. 3) Aplicación de rutas: software de optimización de recorridos que sugiere el orden óptimo de entregas. 4) Comunicación: el cartero está conectado con la unidad de reparto y puede recibir instrucciones o asignaciones adicionales durante la ruta. 5) Geolocalización: permite el seguimiento en tiempo real de la posición del cartero para informar al destinatario del estado de la entrega ('tu envío está de camino')."
+    },
+    {
+      "subtema": "Indicadores de calidad en la distribución",
+      "texto": "La calidad de la distribución se mide con indicadores clave: 1) Tasa de entrega en primer intento: porcentaje de envíos entregados sin necesidad de segundo intento. Objetivo: maximizar para reducir costes y mejorar satisfacción. 2) Plazo de entrega: cumplimiento de los plazos comprometidos (D+1, D+3, etc.). Se mide con envíos-test y datos del sistema de seguimiento. 3) Tasa de reclamaciones: número de reclamaciones sobre el total de envíos. 4) Encuestas de satisfacción: valoración por parte de destinatarios y remitentes. 5) Tasa de extravío: envíos perdidos sobre el total. 6) NPS (Net Promoter Score): indicador de recomendación del servicio. La CNMC supervisa el cumplimiento de los estándares de calidad del SPU y puede sancionar a Correos por incumplimiento."
+    }
+  ],
+  "fuente": "correos.es / temario oficial convocatoria 2024-2025 / normativa SPU / Ley 43/2010"
+}

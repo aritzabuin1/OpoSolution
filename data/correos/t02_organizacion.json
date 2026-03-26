@@ -1,0 +1,43 @@
+{
+  "tema": 2,
+  "titulo": "Organización interna de Correos",
+  "contenido": [
+    {
+      "subtema": "Naturaleza jurídica y estructura societaria",
+      "texto": "Correos es una Sociedad Anónima Estatal (Sociedad Estatal Correos y Telégrafos, S.A., S.M.E.) cuyo capital social pertenece íntegramente al Estado español a través de la Sociedad Estatal de Participaciones Industriales (SEPI). Es el operador designado para prestar el Servicio Postal Universal (SPU) en España conforme a la Ley 43/2010 del servicio postal universal, de los derechos de los usuarios y del mercado postal. El Grupo Correos está compuesto por la sociedad matriz y sus filiales: Correos Express (paquetería urgente), Nexea (gestión documental y comunicaciones), y Correos Telecom (infraestructuras de telecomunicaciones)."
+    },
+    {
+      "subtema": "Órganos de gobierno",
+      "texto": "El gobierno de Correos se estructura en: 1) Junta General de Accionistas (SEPI como accionista único). 2) Consejo de Administración: máximo órgano de administración, compuesto por el Presidente/a, Consejeros independientes y Consejeros representantes del Estado. 3) Presidente/a del Consejo de Administración y de la Sociedad. 4) Comisiones del Consejo: Comisión de Auditoría y Control, Comisión de Nombramientos y Retribuciones, y Comisión de Estrategia. La gestión ejecutiva recae en la Dirección General y las Direcciones Corporativas."
+    },
+    {
+      "subtema": "Estructura directiva y organizativa central",
+      "texto": "La organización central se articula en torno a varias Direcciones Corporativas: Dirección de Operaciones (responsable de la red logística, admisión, clasificación, transporte y distribución), Dirección Comercial (ventas, marketing, desarrollo de productos), Dirección de Tecnología e Innovación (sistemas informáticos, transformación digital), Dirección de Personas y Organización (recursos humanos, relaciones laborales), Dirección Financiera (contabilidad, control de gestión, tesorería), Dirección de Regulación y Asuntos Institucionales, y Secretaría General (asesoría jurídica, cumplimiento normativo). Cada dirección se subdivide en subdirecciones y departamentos funcionales."
+    },
+    {
+      "subtema": "Red de oficinas",
+      "texto": "Correos cuenta con más de 2.400 oficinas postales distribuidas por todo el territorio nacional, constituyendo una de las redes de atención presencial más extensas de España. Las oficinas se clasifican en: 1) Oficinas principales o de referencia: ubicadas en capitales de provincia y grandes ciudades, con servicios completos. 2) Oficinas auxiliares o sucursales: en municipios medianos, con servicios básicos y algunos especializados. 3) Oficinas técnicas de admisión: especializadas en grandes clientes y admisiones masivas. 4) Oficinas rurales y puntos de atención: en zonas rurales con menor demanda, pueden tener horarios reducidos. 5) Oficinas de cambio internacional: especializadas en tráfico postal internacional. Además, Correos ha desarrollado los 'CityPaq' (terminales de paquetería automatizada) en ubicaciones urbanas y centros comerciales."
+    },
+    {
+      "subtema": "Zonas y sectores",
+      "texto": "El territorio nacional se organiza operativamente en Zonas Postales, cada una dirigida por un Director/a de Zona. Las zonas se subdividen en Sectores, que agrupan varios municipios y se corresponden con las Unidades de Reparto. La estructura territorial es: 1) Zona Postal: unidad territorial amplia, generalmente supraprovincial, que agrupa varias provincias con criterios logísticos y de volumen. 2) Jefatura Provincial: cada provincia tiene una jefatura que coordina las operaciones en su ámbito. 3) Sector: subdivisión operativa que agrupa varias secciones de reparto en un área geográfica determinada. 4) Sección de reparto: unidad mínima de reparto asignada a un cartero, definida por calles, números y códigos postales. El código postal (CP) de 5 dígitos es clave para la organización: los 2 primeros dígitos indican la provincia, y los 3 restantes la zona de reparto dentro de esa provincia."
+    },
+    {
+      "subtema": "Centros logísticos y de tratamiento",
+      "texto": "La red logística de Correos se articula en torno a: 1) Centros de Tratamiento Automatizado (CTA): grandes instalaciones con maquinaria de clasificación automática para correspondencia y paquetería. Los principales están en Madrid (CTA de Vallecas y Barajas), Barcelona, Valencia, Sevilla, Bilbao, Zaragoza y Málaga. 2) Centros de Tratamiento Provincial (CTP): centros de menor tamaño en capitales de provincia para clasificación y distribución provincial. 3) Unidades de Servicios Especiales (USE): centros especializados en envíos registrados, certificados y paquetería. 4) Centros de admisión masiva: para grandes clientes corporativos. 5) Oficinas de Cambio Internacional: para tráfico postal con el extranjero (Madrid-Barajas como principal). La red logística incluye también almacenes reguladores y plataformas de cross-docking."
+    },
+    {
+      "subtema": "Personal y categorías profesionales",
+      "texto": "Correos cuenta con aproximadamente 50.000 empleados. Las principales categorías profesionales son: 1) Personal de reparto: carteros/as urbanos y rurales (el colectivo más numeroso). 2) Personal de oficinas: agentes/técnicos de atención al cliente en oficinas. 3) Personal de tratamiento: operarios en centros de clasificación. 4) Personal de conducción: conductores de la red de transporte. 5) Personal directivo y técnico: jefaturas, mandos intermedios y técnicos especializados. La relación laboral se rige por el Convenio Colectivo del Grupo Correos. La selección de personal laboral fijo se realiza mediante convocatorias públicas (oposiciones) que incluyen pruebas de conocimientos, psicotécnicas y otras. También existe personal funcionario en situación de consolidación por la antigua condición de organismo autónomo."
+    },
+    {
+      "subtema": "Transformación digital y Plan Estratégico",
+      "texto": "Correos ha implementado sucesivos planes estratégicos de transformación. El Plan Estratégico vigente se centra en: 1) Diversificación: evolución de operador postal a plataforma de servicios (logística, e-commerce, servicios financieros, identidad digital). 2) Digitalización: automatización de procesos, inteligencia artificial para clasificación, app móvil Correos, oficina virtual, Pre-registro de envíos, Correos ID (identidad digital), buzón digital. 3) Sostenibilidad: flota eléctrica, reducción de huella de carbono, edificios eficientes. 4) Orientación al cliente: mejora de la experiencia, omnicanalidad, personalización de servicios. 5) Eficiencia operativa: optimización de rutas, automatización de centros de tratamiento, mejora de la última milla."
+    },
+    {
+      "subtema": "Filiales del Grupo Correos",
+      "texto": "1) Correos Express: filial especializada en paquetería urgente y transporte exprés. Opera con su propia red de distribución y ofrece servicios de entrega en 24/48 horas tanto para empresas como particulares. 2) Nexea: filial de gestión documental y comunicaciones empresariales. Ofrece servicios de impresión, ensobrado, gestión de comunicaciones certificadas, digitalización de documentos y soluciones de marketing directo. 3) Correos Telecom: gestiona la infraestructura de telecomunicaciones del grupo, incluyendo la red de fibra óptica que conecta las instalaciones de Correos, y ofrece servicios de conectividad a terceros."
+    }
+  ],
+  "fuente": "correos.es / temario oficial convocatoria 2024-2025 / información pública del Grupo Correos"
+}

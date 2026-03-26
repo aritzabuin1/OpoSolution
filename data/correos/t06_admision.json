@@ -1,0 +1,39 @@
+{
+  "tema": 6,
+  "titulo": "Procesos de admisión de envíos postales",
+  "contenido": [
+    {
+      "subtema": "Concepto y canales de admisión",
+      "texto": "La admisión es el proceso por el cual Correos acepta un envío postal del remitente y se compromete a su entrega. Canales de admisión: 1) Admisión en oficina: el remitente acude a una oficina de Correos y entrega el envío en ventanilla. El empleado verifica las condiciones y registra el envío. 2) Admisión en buzón: para envíos ordinarios (sin seguimiento), el remitente deposita el envío franqueado en un buzón de Correos. Los buzones se recogen según frecuencia establecida. 3) Admisión a domicilio (recogida): un cartero o mensajero recoge el envío en la dirección del remitente, servicio disponible para particulares y empresas. 4) Admisión masiva: grandes clientes entregan envíos en lotes en oficinas técnicas o centros de admisión, con procesos automatizados. 5) Admisión telemática: envíos preparados online (etiqueta generada, pago realizado) y depositados en oficina, buzón o punto de recogida."
+    },
+    {
+      "subtema": "Requisitos de admisión",
+      "texto": "Para que un envío sea admitido debe cumplir: 1) Dirección del destinatario: completa y legible (nombre, dirección, código postal, localidad, provincia, y país si es internacional). 2) Franqueo correcto: sellos, etiquetas de franqueo o franqueo pagado (para envíos prepagados). 3) Dimensiones y peso dentro de los límites del producto: carta ordinaria hasta 2 kg, paquete postal hasta 20 kg (SPU) o 30 kg (productos comerciales). Dimensiones máximas según normativa UPU (largo + perímetro transversal no superior a 3 m, lado mayor no superior a 1,50 m). 4) Contenido permitido: prohibidos objetos peligrosos, explosivos, materias infecciosas, narcóticos, animales vivos (salvo excepciones), armas, y otros según normativa postal y de transporte. 5) Embalaje adecuado: que proteja el contenido y no deteriore otros envíos."
+    },
+    {
+      "subtema": "Franqueo y formas de pago",
+      "texto": "El franqueo es el pago del porte postal. Formas de franqueo: 1) Sellos (estampillas): el método tradicional. Se adhieren al envío por el valor correspondiente a la tarifa. 2) Etiquetas de franqueo: generadas por máquinas expendedoras en oficinas o impresas en casa/oficina tras contratación online. 3) Franqueo pagado (PP - Port Payé): para envíos masivos de empresas con contrato, se imprime una marca de franqueo pagado en el envío. El coste se liquida periódicamente. 4) Franqueo en destino: el destinatario paga el porte (usado en publicorreo con respuesta comercial). 5) Máquinas de franquear: las empresas pueden disponer de máquinas homologadas que imprimen el franqueo. 6) Franqueo online: pago a través de la web o app de Correos al pre-registrar un envío. 7) Franquicia postal: envíos oficiales de organismos públicos exentos de franqueo."
+    },
+    {
+      "subtema": "Proceso de admisión en ventanilla",
+      "texto": "Pasos del proceso de admisión en oficina: 1) El cliente presenta el envío y solicita el servicio deseado. 2) El empleado verifica: dirección correcta, peso (se pesa el envío), dimensiones, contenido declarado, embalaje adecuado. 3) Se selecciona el producto (carta certificada, paquete, etc.) y los servicios adicionales (AR, seguro, reembolso, urgente). 4) Se calcula la tarifa según producto, peso, destino y servicios adicionales. 5) Se cobra al cliente (efectivo, tarjeta, prepago). 6) Se genera el número de seguimiento (código de barras) para envíos registrados. 7) Se entrega resguardo/justificante de admisión al remitente. 8) El envío se deposita para su posterior clasificación y encaminamiento. Para envíos certificados, el empleado registra el envío en el sistema SGIE (Sistema de Gestión Integral de Envíos)."
+    },
+    {
+      "subtema": "Admisión masiva y grandes clientes",
+      "texto": "Las empresas con grandes volúmenes de envíos tienen procesos diferenciados: 1) Contrato comercial: acuerdo marco que define productos, tarifas con descuento, forma de pago (facturación periódica), y condiciones de admisión. 2) Pre-tratamiento por el cliente: las empresas preparan los envíos clasificados por código postal, en bandejas o contenedores normalizados, con etiquetado según especificaciones de Correos. 3) Admisión en oficina técnica o centro de admisión: los envíos se entregan en instalaciones específicas, se verifican mediante muestreo y se registran electrónicamente por lotes. 4) Intercambio electrónico de datos (EDI): los datos de los envíos se transmiten electrónicamente antes de la entrega física, agilizando el proceso. 5) Recogida: Correos puede recoger los envíos en las instalaciones del cliente."
+    },
+    {
+      "subtema": "Admisión de envíos internacionales",
+      "texto": "Los envíos internacionales requieren pasos adicionales: 1) Documentación aduanera: para envíos fuera de la UE, el remitente debe cumplimentar la declaración de aduanas CN22 (para envíos con contenido de valor inferior a 300 EUR) o CN23 (para valores superiores o mercancías comerciales). Desde 2021 es obligatoria la declaración electrónica (datos anticipados). 2) Descripción detallada del contenido: tipo de mercancía, cantidad, valor, peso, código arancelario si es posible. 3) Restricciones por país: cada país de destino puede tener restricciones específicas sobre importaciones, que Correos debe verificar. 4) Envíos con mercancías: la UE exige datos electrónicos anticipados (sistema ITMATT) para todos los envíos postales internacionales con mercancías. 5) El sistema IPC (International Post Corporation) coordina el intercambio de datos entre operadores postales."
+    },
+    {
+      "subtema": "Admisión de envíos especiales",
+      "texto": "Ciertos tipos de envíos tienen procesos de admisión específicos: 1) Notificaciones administrativas y judiciales: se admiten en oficina con formularios específicos, se registran con indicación del organismo remitente y tipo de notificación. 2) Voto por correo: durante los períodos electorales, Correos admite los sobres de voto por correo con procedimientos especiales de custodia y seguridad. El elector solicita el voto por correo, recibe la documentación, emite su voto y lo deposita en Correos, que lo custodia y entrega a la mesa electoral. 3) Envíos con valor declarado: se precinta y lacra el envío, se registra el valor declarado. 4) Envíos con reembolso: se indica el importe a cobrar al destinatario. 5) Sustancias biológicas y perecederas: embalaje especial homologado."
+    },
+    {
+      "subtema": "Sistema SGIE y trazabilidad desde la admisión",
+      "texto": "El SGIE (Sistema de Gestión Integral de Envíos) es la plataforma tecnológica central de Correos para la gestión operativa: 1) Registro de admisión: cada envío registrado recibe un código de barras único de 13 dígitos (formato S10 de la UPU para envíos internacionales). 2) Lectura en cada punto de la cadena: admisión, clasificación, transporte, llegada a unidad de reparto, intento de entrega, entrega. 3) Información en tiempo real: el estado del envío se actualiza en cada lectura y es consultable por el remitente y destinatario vía web, app o teléfono. 4) Interoperabilidad: para envíos internacionales, el sistema se conecta con los sistemas de tracking de otros operadores postales. 5) Estadísticas y calidad: los datos del SGIE alimentan los indicadores de calidad del servicio (porcentaje de entregas en plazo, tiempos medios, etc.)."
+    }
+  ],
+  "fuente": "correos.es / temario oficial convocatoria 2024-2025 / normativa postal UPU / Ley 43/2010"
+}

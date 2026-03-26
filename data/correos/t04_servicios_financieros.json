@@ -1,0 +1,43 @@
+{
+  "tema": 4,
+  "titulo": "Servicios financieros y parapostales de Correos",
+  "contenido": [
+    {
+      "subtema": "Giro postal nacional",
+      "texto": "El giro postal es un servicio financiero incluido en el Servicio Postal Universal que permite el envío de dinero a través de la red de Correos. Modalidades de giro nacional: 1) Giro inmediato: transferencia de dinero disponible para el destinatario en minutos. Se puede cobrar en cualquier oficina de Correos presentando DNI. Límite de importe según normativa vigente. 2) Giro urgente: disponible en el plazo de unas horas. 3) Giro a domicilio: el cartero entrega el dinero en el domicilio del destinatario. Requiere identificación. Para el remitente: se presenta en oficina con DNI, indica destinatario e importe, paga el importe más la comisión. Para el destinatario: recibe aviso y cobra presentando DNI. Las comisiones varían según modalidad e importe."
+    },
+    {
+      "subtema": "Giro postal internacional",
+      "texto": "Permite enviar dinero a otros países a través de la red postal internacional. Modalidades: 1) Giro IFS (International Financial System): sistema electrónico de la UPU para transferencias postales internacionales. Operativo con los países adheridos al convenio IFS. 2) Giro UPU: giro tradicional entre administraciones postales. Más lento pero con mayor cobertura de países. 3) Eurogiro: sistema de transferencias dentro de la red Eurogiro (principalmente Europa). Los importes máximos, comisiones y plazos dependen del país de destino y la modalidad elegida. Se requiere DNI del remitente y datos completos del destinatario. Correos actúa como intermediario, no como entidad financiera, sujeto a la normativa de prevención de blanqueo de capitales."
+    },
+    {
+      "subtema": "Western Union y envío de dinero",
+      "texto": "Correos tiene acuerdos de colaboración con Western Union para ofrecer servicios de envío y recepción de dinero internacional en sus oficinas. El servicio permite: enviar dinero a más de 200 países, recibir transferencias desde el extranjero, cobro en minutos en la oficina de Correos. Se requiere DNI/pasaporte y los datos de la transferencia (MTCN - Money Transfer Control Number para cobros). Las comisiones las establece Western Union según importe y destino. Este servicio es especialmente utilizado por la comunidad inmigrante en España y complementa la oferta de giros postales tradicionales."
+    },
+    {
+      "subtema": "Correos Prepago (tarjeta financiera)",
+      "texto": "Correos Prepago es una tarjeta prepago Mastercard que se puede adquirir en oficinas de Correos. Características: 1) No requiere cuenta bancaria ni vinculación con entidad financiera. 2) Se recarga en oficinas, online o por transferencia. 3) Permite compras en establecimientos físicos y online, pagos contactless, y retirada de efectivo en cajeros. 4) Diferentes tipos: Correos Prepago estándar, Correos Prepago joven. 5) Límites de carga y uso según normativa de medios de pago. 6) Útil para personas sin acceso bancario (inclusión financiera), compras online seguras, control de gasto, y viajes. La tarjeta se emite bajo la licencia de una entidad de dinero electrónico asociada."
+    },
+    {
+      "subtema": "Servicios bancarios en oficinas (acuerdos con entidades)",
+      "texto": "Correos ofrece servicios financieros básicos en sus oficinas mediante acuerdos con entidades bancarias, especialmente relevante en zonas rurales sin sucurssal bancaria (desertificación bancaria). Servicios: 1) Ingreso y retirada de efectivo para clientes de bancos asociados. 2) Cobro de pensiones y prestaciones públicas. 3) Pago de recibos y tributos. 4) Recarga de tarjetas prepago. Estos servicios se enmarcan en el compromiso de Correos con la cohesión territorial y el acceso a servicios básicos en el medio rural. El acuerdo con entidades bancarias permite que los clientes de estos bancos realicen operaciones básicas en oficinas de Correos, convirtiendo a Correos en un punto de acceso al efectivo en zonas despobladas."
+    },
+    {
+      "subtema": "Burofax como servicio parapostal",
+      "texto": "El burofax, además de ser un producto postal, tiene una dimensión parapostal como servicio de comunicación fehaciente con valor jurídico. Modalidades detalladas: 1) Burofax con acuse de recibo: certifica que el documento fue entregado al destinatario, con fecha y firma. 2) Burofax con certificación de contenido: además del AR, un funcionario/empleado de Correos da fe del contenido exacto del documento enviado, adjuntando copia sellada. 3) Burofax con ambos servicios (AR + certificación de contenido): máxima garantía jurídica. Usos frecuentes: comunicaciones laborales (despidos, reclamaciones), requerimientos de pago, resolución de contratos, convocatorias de juntas, cualquier comunicación donde sea necesario probar el envío, la recepción y/o el contenido. Admisión en oficina o por vía telemática."
+    },
+    {
+      "subtema": "Servicios de cobros y pagos",
+      "texto": "Correos gestiona diversos servicios de intermediación en cobros y pagos: 1) Reembolso: el destinatario paga una cantidad al recibir el envío postal; Correos transfiere esa cantidad al remitente descontando una comisión. Útil para ventas por correo/e-commerce. 2) Pago de tributos y tasas: las oficinas de Correos actúan como punto de pago para tasas administrativas, multas y tributos municipales. 3) Cobro de pensiones: mediante acuerdos con la Seguridad Social, los pensionistas pueden cobrar su pensión en oficinas de Correos, especialmente en zonas rurales. 4) Venta de productos de terceros: lotería, cupones ONCE, sellos fiscales, impresos oficiales."
+    },
+    {
+      "subtema": "Servicios de identificación y certificación digital",
+      "texto": "Correos ha desarrollado servicios parapostales vinculados a la identidad digital: 1) Correos ID: plataforma de identidad digital que permite identificarse electrónicamente para trámites con empresas y administraciones. Niveles de seguridad: básico (verificación por email/móvil), sustancial (verificación presencial o por vídeo). 2) Servicio de verificación de identidad presencial: en oficinas de Correos para procesos de alta en servicios de terceros. 3) Firma electrónica: servicios de firma digital para documentos. 4) Certificado de Correos: emisión y renovación de certificados digitales en colaboración con entidades de certificación. Estos servicios posicionan a Correos como operador de confianza digital, extendiendo su papel tradicional de confianza postal al ámbito electrónico."
+    },
+    {
+      "subtema": "Prevención de blanqueo de capitales",
+      "texto": "Al ofrecer servicios financieros (giros, tarjeta prepago, Western Union), Correos está sujeto a la normativa de prevención de blanqueo de capitales y financiación del terrorismo (Ley 10/2010). Obligaciones: 1) Identificación del cliente (KYC - Know Your Customer): DNI/pasaporte obligatorio para operaciones financieras. 2) Límites de importe: restricciones en las cantidades que se pueden enviar/recibir sin documentación adicional. 3) Comunicación de operaciones sospechosas: Correos debe informar al SEPBLAC (Servicio Ejecutivo de la Comisión de Prevención del Blanqueo de Capitales). 4) Formación del personal: los empleados que gestionan servicios financieros reciben formación específica en PBC. 5) Registro de operaciones: todas las transacciones financieras quedan registradas durante el período legal."
+    }
+  ],
+  "fuente": "correos.es / temario oficial convocatoria 2024-2025 / Ley 43/2010 / normativa SPU"
+}

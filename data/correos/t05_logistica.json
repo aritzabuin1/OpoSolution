@@ -1,0 +1,43 @@
+{
+  "tema": 5,
+  "titulo": "Logística, paquetería urgente y soluciones de e-commerce",
+  "contenido": [
+    {
+      "subtema": "Correos Express: paquetería urgente",
+      "texto": "Correos Express es la filial del Grupo Correos especializada en paquetería urgente y transporte exprés. Características: 1) Red propia de distribución con más de 1.500 rutas diarias y cobertura nacional completa. 2) Servicios principales: CorreosExpress Paq 10 (entrega antes de las 10:00), Paq 14 (antes de las 14:00), Paq 24 (en 24 horas), Paq 48/72 (entrega económica). 3) Servicios especializados: mercancía peligrosa (ADR), temperatura controlada, entregas en sábado. 4) Integración con comercios electrónicos mediante APIs y plugins para plataformas (Shopify, WooCommerce, PrestaShop, Magento). 5) Red de puntos de conveniencia y taquillas automáticas para recogida."
+    },
+    {
+      "subtema": "Soluciones de e-commerce",
+      "texto": "Correos ha desarrollado un ecosistema completo para el comercio electrónico: 1) Correos Marketplace: plataforma para que pequeños comercios vendan online con la logística integrada de Correos. 2) Comandia: plataforma de creación de tiendas online con logística integrada. 3) Soluciones de envío para e-commerce: integración con las principales plataformas de venta online, generación masiva de etiquetas, gestión de envíos vía API/FTP. 4) Fulfillment: Correos almacena, prepara y envía los pedidos del vendedor desde sus centros logísticos. 5) Cross-border e-commerce: soluciones de envío internacional con gestión aduanera simplificada para vendedores españoles. 6) Tu Tienda en Correos: escaparate dentro de la web de Correos para pymes."
+    },
+    {
+      "subtema": "Logística inversa y devoluciones",
+      "texto": "La logística inversa es clave para el e-commerce. Correos ofrece: 1) Paq Retorno: servicio de devolución donde el comprador deposita el paquete en una oficina o punto de conveniencia sin coste (el vendedor paga). 2) Etiqueta de devolución incluida: el vendedor puede incluir una etiqueta prepagada en el envío original. 3) Recogida a domicilio de devoluciones: un cartero recoge el paquete en casa del comprador. 4) Gestión integral de devoluciones: Correos puede gestionar la recepción, verificación del estado del producto y reintegración en stock del vendedor. 5) Portal de devoluciones personalizable: plataforma web donde el comprador gestiona su devolución, elige método y genera etiqueta."
+    },
+    {
+      "subtema": "CityPaq y red de puntos de conveniencia",
+      "texto": "CityPaq son terminales de paquetería automatizada (taquillas o lockers) instalados por Correos en ubicaciones de alta accesibilidad: 1) Ubicaciones: centros comerciales, estaciones de transporte, edificios de oficinas, universidades, zonas residenciales. 2) Funcionamiento: el destinatario recibe un código por SMS/email, acude al terminal, introduce el código y la taquilla se abre. Disponible 24/7. 3) Red de puntos de conveniencia: establecimientos comerciales colaboradores (quioscos, tiendas, gasolineras) donde se pueden recoger y depositar paquetes. Más de 8.000 puntos en España. 4) HomePaq: versión doméstica del buzón inteligente para comunidades de vecinos. Estas soluciones abordan el problema de la 'última milla' cuando el destinatario no está en casa."
+    },
+    {
+      "subtema": "Transporte y red logística",
+      "texto": "La red de transporte de Correos se organiza en: 1) Red troncal (larga distancia): conexiones entre Centros de Tratamiento principales, operada con camiones de gran tonelaje y transporte aéreo (vuelos nocturnos para envíos urgentes). 2) Red provincial: conexiones entre el CTA/CTP y las oficinas/unidades de reparto de cada provincia. 3) Red auxiliar: rutas de alimentación entre oficinas pequeñas y nodos provinciales. 4) Transporte aéreo: para envíos urgentes y destinos insulares (Canarias, Baleares), Correos utiliza bodegas de vuelos comerciales y vuelos dedicados. 5) Transporte internacional: por vía aérea (principal) y terrestre (para países limítrofes y Europa). La planificación de rutas y horarios es crítica: los 'planes de transporte' definen los itinerarios, frecuencias y horarios de toda la red."
+    },
+    {
+      "subtema": "Logística especializada y de valor añadido",
+      "texto": "Más allá de la paquetería estándar, Correos ofrece servicios logísticos especializados: 1) Logística farmacéutica: transporte y distribución de productos farmacéuticos con control de temperatura y trazabilidad completa. 2) Logística documental: gestión, almacenamiento, digitalización y destrucción certificada de documentación empresarial (a través de Nexea). 3) Valija (servicio de correspondencia corporativa): recogida y entrega regular de correspondencia entre sedes de una empresa. 4) Logística electoral: Correos gestiona el voto por correo en todas las elecciones (generales, autonómicas, municipales, europeas), incluyendo la distribución de documentación electoral y la custodia del voto hasta el escrutinio. 5) Correos frío: transporte refrigerado para alimentación y otros productos sensibles a la temperatura."
+    },
+    {
+      "subtema": "Soluciones internacionales y aduanas",
+      "texto": "Correos gestiona la logística internacional incluyendo: 1) Despacho aduanero: como operador postal, Correos realiza el despacho aduanero de los envíos postales internacionales. Desde julio 2021, todos los envíos importados a la UE están sujetos a IVA (fin de la exención de 22 EUR). 2) IOSS (Import One-Stop Shop): sistema de la UE para la gestión del IVA en importaciones de e-commerce. Correos ofrece integración con IOSS para vendedores. 3) Declaraciones CN22/CN23: formularios de aduanas obligatorios para envíos fuera de la UE. CN22 para envíos de bajo valor, CN23 para envíos de mayor valor. 4) Oficinas de Cambio Internacional: Madrid-Barajas (principal), Barcelona, Las Palmas. Procesan todos los envíos postales que entran y salen del país. 5) Acuerdos bilaterales con operadores postales extranjeros para mejorar tiempos y seguimiento."
+    },
+    {
+      "subtema": "Tecnología aplicada a la logística",
+      "texto": "Correos ha incorporado tecnología avanzada en su cadena logística: 1) Clasificación automatizada: máquinas OCR (reconocimiento óptico de caracteres) que leen direcciones y códigos postales para clasificar envíos automáticamente. Velocidad: hasta 40.000 cartas/hora y 10.000 paquetes/hora. 2) Códigos de barras y RFID: seguimiento en tiempo real de todos los envíos registrados a lo largo de la cadena. 3) Handheld PDA: dispositivos portátiles para carteros con gestión de entregas, firma digital, GPS y comunicación en tiempo real. 4) Optimización de rutas: algoritmos de inteligencia artificial para planificar rutas de reparto eficientes. 5) Big Data: análisis predictivo de volúmenes para dimensionar recursos. 6) Blockchain: Correos ha pilotado tecnología blockchain para trazabilidad de envíos."
+    },
+    {
+      "subtema": "Sostenibilidad en la logística",
+      "texto": "Correos ha implementado medidas de sostenibilidad en su operativa logística: 1) Flota eléctrica: incorporación progresiva de vehículos eléctricos y de bajas emisiones para reparto urbano (furgonetas, motos, triciclos y bicicletas eléctricas). 2) Huella de carbono: cálculo y compensación de emisiones de CO2. Servicio de envío 'neutro en carbono'. 3) Eficiencia energética: renovación de instalaciones con certificación energética, paneles solares en centros logísticos. 4) Embalaje sostenible: promoción de embalajes reciclados y reciclables, reducción de plásticos. 5) Rutas optimizadas: menor consumo de combustible gracias a la planificación inteligente. 6) Correos ha obtenido certificaciones ISO 14001 (gestión ambiental) y participa en programas de reducción de emisiones del sector postal."
+    }
+  ],
+  "fuente": "correos.es / temario oficial convocatoria 2024-2025 / información pública Grupo Correos y Correos Express"
+}

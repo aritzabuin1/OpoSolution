@@ -1,0 +1,47 @@
+{
+  "tema": 3,
+  "titulo": "Productos y servicios postales de Correos",
+  "contenido": [
+    {
+      "subtema": "Servicio Postal Universal (SPU)",
+      "texto": "El SPU garantiza a todos los ciudadanos el acceso a un servicio postal de calidad a precio asequible en todo el territorio nacional. Incluye: 1) Recogida, admisión, clasificación, transporte, distribución y entrega de envíos postales nacionales e internacionales de hasta 2 kg para cartas y 20 kg para paquetes. 2) Servicio de giro postal. 3) Envíos certificados y valores declarados. Los plazos del SPU son: D+3 para el 93% de los envíos nacionales ordinarios y D+5 para el 99%. Las tarifas del SPU son aprobadas por la CNMC (Comisión Nacional de los Mercados y la Competencia) y publicadas en el BOE."
+    },
+    {
+      "subtema": "Carta ordinaria y carta certificada",
+      "texto": "Carta ordinaria: envío postal básico sin seguimiento ni confirmación de entrega. Tarifas según peso (hasta 20g, 20-50g, 50-100g, 100-500g, 500g-1kg, 1-2kg) y ámbito (nacional, internacional por zonas). Carta certificada: envío postal con seguimiento, prueba de depósito y entrega con firma del destinatario. Incluye número de seguimiento, intento de entrega con aviso si ausente, custodia en oficina durante 15 días. Modalidades especiales: carta certificada urgente (entrega en D+1 en capitales), carta certificada con acuse de recibo (AR) que devuelve al remitente un documento firmado por el destinatario como prueba de entrega."
+    },
+    {
+      "subtema": "Notificaciones administrativas y judiciales",
+      "texto": "Correos es operador de referencia para la entrega de notificaciones de las Administraciones Públicas y órganos judiciales. Tipos: 1) Notificación administrativa (Ley 39/2015): envío certificado con acuse de recibo que cumple requisitos legales para comunicaciones administrativas. Si el destinatario está ausente, se deja aviso y se custodia 7 días en oficina; pasado el plazo sin recoger, se devuelve al remitente y surte efecto legal de notificación intentada. 2) Notificación judicial: similar pero regulada por la LEC, con plazos y procedimientos específicos. 3) Notificaciones electrónicas: a través de la Dirección Electrónica Habilitada (DEH) y el servicio Notific@."
+    },
+    {
+      "subtema": "Paquetería nacional",
+      "texto": "Correos ofrece varios productos de paquetería: 1) Paq Estándar: paquete con seguimiento, entrega en 3-5 días laborables, peso máximo 30 kg. Entrega en domicilio con opción de dejar en punto de conveniencia. 2) Paq Premium: entrega en 24-48 horas en península, con seguimiento detallado, gestión de incidencias y opciones de entrega flexibles. 3) Paq Today: entrega en el mismo día en determinadas ciudades. 4) Paq Retorno: servicio de logística inversa para devoluciones de e-commerce. El destinatario puede recoger en oficina, CityPaq o punto de conveniencia. Opciones adicionales: entrega en franja horaria, aviso por SMS/email, autorización a terceros."
+    },
+    {
+      "subtema": "Paquetería internacional",
+      "texto": "1) Paq Light Internacional: paquetes pequeños hasta 2 kg, tarifa económica, con seguimiento. 2) Paq Estándar Internacional: paquetes hasta 30 kg con seguimiento completo, tiempos de entrega según destino (5-10 días Europa, 10-20 días resto del mundo). 3) Paq Premium Internacional: servicio urgente con seguimiento puerta a puerta, entrega en 2-5 días Europa. 4) EMS (Express Mail Service): servicio exprés de la UPU (Unión Postal Universal), el más rápido para destinos internacionales. 5) Correos opera dentro de los acuerdos de la UPU y acuerdos bilaterales con operadores postales de otros países. Para envíos fuera de la UE se requiere documentación aduanera (CN22 para envíos menores de 300 EUR, CN23 para valores superiores)."
+    },
+    {
+      "subtema": "Publicorreo y marketing directo",
+      "texto": "Servicios de marketing postal: 1) Publicorreo Óptimo: envío masivo de publicidad no personalizada con descuentos por volumen. Peso máximo 100g. Sin dirección concreta, se distribuye por zonas de reparto seleccionadas. 2) Publicorreo Estándar: envío publicitario personalizado (con dirección del destinatario), tarifas por volumen, opciones de formato y personalización. 3) Publicorreo Premium: con certificación de entrega y mayor personalización. 4) Servicios asociados: diseño, impresión, ensobrado (a través de Nexea), segmentación de bases de datos, gestión de campañas. Los envíos publicitarios tienen tarifas reducidas respecto a la correspondencia ordinaria."
+    },
+    {
+      "subtema": "Servicio de telegramas y burofax",
+      "texto": "1) Telegrama: comunicación urgente transmitida electrónicamente y entregada en formato impreso al destinatario en su domicilio. Plazos: entrega en 3-4 horas en zona urbana. Modalidades: telegrama nacional, internacional, con copia certificada y con acuse de recibo. Tiene valor legal como medio fehaciente de comunicación. 2) Burofax: servicio de envío urgente de documentos con valor probatorio ante terceros. Modalidades: burofax estándar, burofax premium (con acuse de recibo y certificación de contenido). El burofax con certificación de contenido permite que Correos certifique el texto exacto del documento enviado, lo que le otorga pleno valor probatorio en procedimientos judiciales. Entrega en 24 horas."
+    },
+    {
+      "subtema": "Servicios digitales",
+      "texto": "1) Correos Online (oficina virtual): gestión de envíos desde la web, generación de etiquetas, pago online, solicitud de recogida a domicilio. 2) App Correos: seguimiento de envíos, gestión de entregas, localización de oficinas, pre-registro de envíos, buzón digital. 3) Correos ID: servicio de identidad digital que permite identificarse electrónicamente para trámites. 4) Mi Buzón Digital: servicio de recepción de correspondencia digitalizada. 5) Correos Prepago: tarjeta prepago recargable para compras online y pagos. 6) Pre-registro de envíos: permite preparar el envío online antes de acudir a la oficina, reduciendo tiempos de espera."
+    },
+    {
+      "subtema": "Tarifas y normativa de precios",
+      "texto": "Las tarifas de Correos se estructuran en: 1) Tarifas del SPU: reguladas y aprobadas por la CNMC, publicadas en el BOE. Revisión anual. Incluyen carta ordinaria, certificada, paquete postal, giro. 2) Tarifas comerciales (fuera del SPU): fijadas libremente por Correos en competencia con otros operadores. Incluyen Paq Premium, Paq Today, servicios express. 3) Descuentos por volumen: para grandes clientes y empresas con contratos, descuentos progresivos según volumen de envíos. 4) Franquicias: ciertos organismos públicos gozan de franquicia postal (envíos oficiales sin coste). Los factores determinantes del precio son: peso, dimensiones, ámbito geográfico (nacional/internacional por zonas), tipo de servicio (ordinario/urgente), y servicios adicionales (certificado, AR, seguro, reembolso)."
+    },
+    {
+      "subtema": "Valores añadidos y servicios complementarios",
+      "texto": "Servicios adicionales que se pueden añadir a los envíos: 1) Certificado: prueba de depósito y seguimiento. 2) Acuse de recibo (AR): prueba de entrega firmada devuelta al remitente. 3) Valor declarado: seguro por el valor real del contenido hasta un límite. 4) Reembolso: el destinatario paga una cantidad al recibir el envío, que se devuelve al remitente. 5) Prueba de Entrega Electrónica (PEE): imagen digital de la firma de entrega. 6) Entrega exclusiva al destinatario: solo se entrega a la persona indicada, no a terceros. 7) Entrega en franja horaria. 8) Recogida a domicilio: Correos recoge el envío en la dirección del remitente. 9) Seguro adicional: cobertura extra por pérdida o deterioro."
+    }
+  ],
+  "fuente": "correos.es / temario oficial convocatoria 2024-2025 / catálogo de productos Correos"
+}
