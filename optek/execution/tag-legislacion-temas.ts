@@ -78,14 +78,14 @@ const JUSTICIA_RULES: TaggingRule[] = [
   { ley_codigo: 'CE', oposicion_slug: 'auxilio-judicial', temas: [1, 2, 3] },
   { ley_codigo: 'CE', oposicion_slug: 'tramitacion-procesal', temas: [1, 2, 3] },
   { ley_codigo: 'CE', oposicion_slug: 'gestion-procesal', temas: [1, 2, 3, 4, 5] },
-  // LOPJ → organización judicial
-  { ley_codigo: 'LOPJ', oposicion_slug: 'auxilio-judicial', temas: [4, 5, 6, 7, 8, 9, 10] },
-  { ley_codigo: 'LOPJ', oposicion_slug: 'tramitacion-procesal', temas: [4, 5, 6, 7, 8, 9] },
-  { ley_codigo: 'LOPJ', oposicion_slug: 'gestion-procesal', temas: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] },
-  // LO 1/2025 Servicio Público de Justicia
-  { ley_codigo: 'LO_SPJ', oposicion_slug: 'auxilio-judicial', temas: [8, 10] },
-  { ley_codigo: 'LO_SPJ', oposicion_slug: 'tramitacion-procesal', temas: [8, 10] },
-  { ley_codigo: 'LO_SPJ', oposicion_slug: 'gestion-procesal', temas: [16, 18] },
+  // LOPJ → organización judicial (T6+ en Auxilio/Tramit, T6+ en Gestión)
+  { ley_codigo: 'LOPJ', oposicion_slug: 'auxilio-judicial', temas: [6, 7, 8, 9, 10] },
+  { ley_codigo: 'LOPJ', oposicion_slug: 'tramitacion-procesal', temas: [6, 7, 8, 9] },
+  { ley_codigo: 'LOPJ', oposicion_slug: 'gestion-procesal', temas: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15] },
+  // LO 1/2025 Servicio Público de Justicia (Tribunales Instancia, Oficina Judicial, MASC)
+  { ley_codigo: 'LO_SPJ', oposicion_slug: 'auxilio-judicial', temas: [8, 10, 16] },
+  { ley_codigo: 'LO_SPJ', oposicion_slug: 'tramitacion-procesal', temas: [8, 10, 16] },
+  { ley_codigo: 'LO_SPJ', oposicion_slug: 'gestion-procesal', temas: [8, 11, 36] },
   // TREBEP → personal de Justicia
   { ley_codigo: 'TREBEP', oposicion_slug: 'auxilio-judicial', temas: [11, 12, 13] },
   { ley_codigo: 'TREBEP', oposicion_slug: 'tramitacion-procesal', temas: [10, 11, 12] },
