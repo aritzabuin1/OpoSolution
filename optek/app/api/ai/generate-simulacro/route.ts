@@ -144,12 +144,13 @@ export async function POST(request: NextRequest) {
   // ── 4. Buscar examen/s y cargar preguntas ────────────────────────────────
 
   // §BUG-SP2: obtener scoring_config para filtro dinámico de preguntas de reserva
-  const { data: opoData } = await serviceSupabase
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: opoData } = await (serviceSupabase as any)
     .from('oposiciones')
     .select('scoring_config')
     .eq('id', oposicionId)
     .single()
-  const scoringConfig = opoData?.scoring_config as { ejercicios?: { preguntas?: number }[] } | null
+  const scoringConfig = (opoData as { scoring_config?: unknown } | null)?.scoring_config as { ejercicios?: { preguntas?: number }[] } | null
   // Preguntas puntuables del primer ejercicio (test teórico) — fallback 60 para C2 AGE
   const maxPreguntasPuntuables = scoringConfig?.ejercicios?.[0]?.preguntas ?? 60
 
