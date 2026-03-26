@@ -19,7 +19,7 @@ import {
 // ─── Constants (C1 Administrativo del Estado) ────────────────────────────────
 
 const PARTE1_MAX_PREGUNTAS = 70 // 40 legislación (bloques I+V) + 30 ofimática (bloque VI)
-const PARTE2_MAX_PREGUNTAS = 20 // Supuesto práctico (bloques II+V), 20 puntuables (+5 reserva)
+const PARTE2_MAX_PREGUNTAS = 20 // Supuesto práctico (bloques II, III, IV y V), 20 puntuables (+5 reserva)
 const PARTE1_MAX_PUNTOS = 50
 const PARTE2_MAX_PUNTOS = 50
 const MINIMO_APROBADO = 25
@@ -304,7 +304,7 @@ export function CalculadoraNotaC1() {
                 <Badge variant="outline" className="font-mono">{PARTE2_MAX_PREGUNTAS} preguntas</Badge>
               </CardTitle>
               <p className="text-xs text-muted-foreground mt-1">
-                Caso práctico (bloques II y V) — 20 puntuables + 5 reserva
+                Caso práctico (bloques II, III, IV y V) — 20 puntuables + 5 reserva
               </p>
             </CardHeader>
             <CardContent className="space-y-5">
@@ -472,7 +472,7 @@ export function CalculadoraNotaC1() {
             </li>
             <li>
               <strong>Segunda parte — Supuesto Práctico (20 preguntas):</strong> Eliges 1 de 2 casos
-              prácticos sobre los bloques II y V (gestión de personal, contratación, presupuestos).
+              prácticos sobre los bloques II, III, IV y V (procedimiento administrativo, gestión de personal, contratación, presupuestos).
               Calificación: 0-50 puntos. Mínimo: 25 puntos. Las 5 preguntas de reserva no son puntuables.
             </li>
           </ul>

@@ -1,6 +1,9 @@
 # Exam PDFs (binary, too large for git — regenerate with download scripts)
 data/examenes_correos/
 data/examenes_justicia/
+data/examenes_auxilio/
+data/examenes_tramitacion/
+data/examenes_gestion_procesal/
 
 # Python
 __pycache__/

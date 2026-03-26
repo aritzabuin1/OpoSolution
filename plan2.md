@@ -89,7 +89,10 @@
 - [x] Ejecutar `pnpm tag:legislacion --rama correos` — 2.679 artículos taggeados
 - [ ] Scrape contenido operativo correos.es (productos, tarifas, organización) — EN PROGRESO
 - [ ] Generar free bank: `pnpm generate:free-bank --oposicion correos`
-- [ ] Buscar e ingestar examen oficial 2023 (web Correos post-convocatoria)
+- [x] Descargar exámenes oficiales 2023 (REP+ATC, modelos A+B, plantillas) — 16 PDFs desde blob Correos
+- [x] Descargar exámenes oficiales 2021 (REP+ATC, modelos A+B) — 10 PDFs
+- [ ] Parsear e ingestar exámenes 2023 en BD
+- [ ] Generar free bank: `pnpm generate:free-bank --oposicion correos`
 
 ### 1.3 Landing SEO Correos
 - [x] Crear `app/(marketing)/oposiciones/correos/page.tsx`
@@ -143,7 +146,7 @@
 ### 2.3 Contenido Justicia — Exámenes oficiales
 - [x] Directorios creados: examenes_auxilio/, examenes_tramitacion/, examenes_gestion_procesal/
 - [x] ingest-examenes.ts adaptado para slugs Justicia (auxilio-judicial, tramitacion-procesal, gestion-procesal)
-- [ ] Descargar cuadernillos + plantillas de MJU — EN PROGRESO (agente buscando)
+- [x] Descargar cuadernillos + plantillas de MJU — Auxilio 22 PDFs (2008-2025), Tramitación 14 PDFs (2011-2025), Gestión 14 PDFs (2023-2025)
 - [ ] Parsear PDFs con execution/ingest-examenes.ts
 - [ ] Insertar en examenes_oficiales + preguntas_oficiales
 
@@ -369,16 +372,19 @@ Lógica basada en `scoring_config.ejercicios`:
 ### Fases de ejecución
 
 #### Fase 2.5a — Datos oficiales + bugs (sin IA, sin coste)
-- [ ] **BUG-SP1**: Fix calculadora bloques II→V (`CalculadoraNotaC1.tsx:307`)
-- [ ] **BUG-SP2**: Fix filtro `numero <= 60` dinámico por oposición (`generate-simulacro/route.ts`)
-- [ ] **BUG-SP3**: Fix timer dinámico por oposición (`tests/[id]/page.tsx`)
-- [ ] **BUG-SP4**: Parsear Parte 2 de PDFs 2024 (supuestos I y II, modelos A y B)
-  - Extraer caso narrativo + 20 preguntas + 5 reserva + respuestas correctas
-  - Crear `data/examenes_c1/2024/supuesto_1a.json`, `supuesto_2a.json` (modelo A)
-  - Validar contra plantilla definitiva INAP
-- [ ] **BUG-SP5**: Fix scoring_config C1 AGE (ver GAP-5 abajo): 2 ejercicios, 90q, 100 min
-- [ ] Migration: crear tablas `free_supuesto_bank`, `supuesto_bank`, `user_supuestos_seen`
-- [ ] Migration: añadir `supuesto_test` al check constraint + columna `supuesto_caso`
+- [x] **BUG-SP1**: Fix calculadora bloques II→V (`CalculadoraNotaC1.tsx` — 3 ocurrencias corregidas)
+- [x] **BUG-SP2**: Fix filtro `numero <= 60` dinámico por oposición (`generate-simulacro/route.ts` — usa scoring_config.ejercicios[0].preguntas)
+- [x] **BUG-SP3**: Fix timer dinámico por oposición (`tests/[id]/page.tsx` — fetch scoring_config, soporta minutos_total)
+- [x] **BUG-SP4**: Parsear Parte 2 de PDFs 2024 (supuestos I y II, modelo A)
+  - Extraído con Anthropic documents API (Vision) — script `execution/extract-supuestos-c1.ts`
+  - `supuestos_a.json`: 2 supuestos, 40 preguntas, escenarios completos, respuestas mergeadas con plantilla
+  - Validación OK: 0 missing correcta, 1 anulada (Supuesto II pregunta 3)
+- [x] **BUG-SP5**: Fix scoring_config C1 AGE — migration 051 (2 ejercicios: Cuestionario 70q + Supuesto 20q, 100 min total)
+- [x] Migration 052: crear tablas `free_supuesto_bank`, `supuesto_bank`, `user_supuestos_seen` + RLS
+- [x] Migration 052: añadir `supuesto_test` al check constraint + columna `supuesto_caso`
+- [x] Migration 053: Fix scoring_config Correos (reserva 0→10, min_aprobado por puesto)
+- [x] **AUDITORÍA**: Migration 049 (Justicia ×3) verificada campo por campo contra BOE-A-2025-27053 — CERO discrepancias
+- [x] **EXÁMENES DESCARGADOS**: Correos 26 PDFs (2021+2023), Auxilio 22 PDFs (2008-2025), Tramitación 14 PDFs (2011-2025), Gestión 14 PDFs (2023-2025)
 - [ ] Ingestar supuesto oficial 2024 (Supuesto I) en `free_supuesto_bank` → free users ven este
 
 #### Fase 2.5b — Backend generación IA (módulo genérico)
@@ -548,7 +554,7 @@ El sistema de corrección IA (`/api/ai/corregir-supuesto`) es reutilizable pero 
   "minutos_total": 100
 }
 ```
-Bloqueante para FASE 2.5.
+~~Bloqueante para FASE 2.5.~~ **RESUELTO** — Migration 051 aplicada.
 
 ### GAP-6: Correos — psicotécnicos embebidos vs módulo separado
 
@@ -572,9 +578,9 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 
 ### Orden de implementación recomendado
 
-1. **FASE 2.5a** (ya planificada): Fix bugs existentes + parsear supuesto oficial 2024
-2. **GAP-5**: Fix scoring_config C1 AGE (prerequisito de FASE 2.5)
-3. **GAP-3**: Multi-exercise scoring genérico (prerequisito de Justicia)
+1. ~~**FASE 2.5a**: Fix bugs existentes + parsear supuesto oficial 2024~~ **COMPLETADO**
+2. ~~**GAP-5**: Fix scoring_config C1 AGE (prerequisito de FASE 2.5)~~ **COMPLETADO** — Migration 051
+3. **GAP-3**: Multi-exercise scoring genérico (prerequisito de Justicia) ← **SIGUIENTE**
 4. **FASE 2.5b-c**: Supuesto práctico test genérico (C1 AGE primero, luego Justicia)
 5. **GAP-2**: Ofimática ejercicio separado (solo si activamos Tramitación)
 6. **GAP-4**: Desarrollo escrito Gestión Procesal (solo si activamos Gestión Procesal)

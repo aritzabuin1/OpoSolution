@@ -49,11 +49,19 @@ function stripHtml(html: string): string {
     .replace(/<\/li>/gi, '\n')
     .replace(/<li[^>]*>/gi, '- ')
     .replace(/<[^>]+>/g, '')
+    // Decode HTML entities FIRST (before cleanup patterns that match accented text)
     .replace(/&nbsp;/g, ' ')
     .replace(/&amp;/g, '&')
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')
+    .replace(/&oacute;/gi, 'ó')
+    .replace(/&aacute;/gi, 'á')
+    .replace(/&eacute;/gi, 'é')
+    .replace(/&iacute;/gi, 'í')
+    .replace(/&uacute;/gi, 'ú')
+    .replace(/&ntilde;/gi, 'ñ')
+    .replace(/&Uacute;/gi, 'Ú')
     .replace(/&#171;/g, '«')
     .replace(/&#187;/g, '»')
     .replace(/&#x[0-9a-f]+;/gi, '')
@@ -65,11 +73,15 @@ function stripHtml(html: string): string {
     .replace(/^\s*Jurisprudencia\s*$/gm, '')
     .replace(/^\s*Concordancias\s*$/gm, '')
     // Remove "Seleccionar redacción" blocks (BOE version selectors)
-    .replace(/Seleccionar redacci[oó]n:[\s\S]*?(?=\n\n|\Z)/g, '')
+    // These may span multiple lines and contain version info
+    .replace(/Seleccionar redacci[oó]n:[\s\S]*?(?=\n\n|$)/g, '')
     .replace(/[ÚU]ltima actualizaci[oó]n,\s+publicada el[^\n]*/g, '')
     .replace(/Modificaci[oó]n publicada el[^\n]*/g, '')
-    .replace(/Texto original, publicado el[^\n]*/g, '')
+    .replace(/Texto original,?\s+publicado el[^\n]*/g, '')
+    .replace(/Texto consolidado a fecha[^\n]*/g, '')
+    .replace(/Texto a[ñn]adido,?\s+publicado el[^\n]*/g, '')
     .replace(/Se (?:modifica|añade|suprime|deroga|renumera)[^\n]*Ref\.\s*BOE-A-\d+-\d+/g, '')
+    .replace(/en vigor a partir del[^\n]*/g, '')
     .replace(/\n{3,}/g, '\n\n')
     .trim()
 }
@@ -82,6 +94,49 @@ function isTocEntry(texto: string): boolean {
   if (artRefCount > 10 && artRefCount / lines > 0.3) return true
   if (texto.length > 10000 && artRefCount > 20) return true
   return false
+}
+
+// ─── Parse grouped derogated articles (e.g. "Arts. 48 a 50. (Derogados)") ────
+
+function parseGroupedDerogated(html: string): Articulo[] {
+  const results: Articulo[] = []
+  const seen = new Set<string>()
+
+  // First strip all HTML tags to get clean text for pattern matching
+  const plainText = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ')
+
+  // BOE groups derogated articles like:
+  //   "Arts. 48 a 50. (Derogados) Se derogan por..."
+  //   "Arts. 601 a 610. (Sin contenido) Se dejan sin contenido por..."
+  const groupedPattern = /Arts?\.\s+(\d+)\s+a\s+(\d+)\.\s*\(([^)]+)\)\s*([^[]*?)(?=\[|Arts?\.\s+\d|$)/gi
+  let match
+  while ((match = groupedPattern.exec(plainText)) !== null) {
+    const start = parseInt(match[1], 10)
+    const end = parseInt(match[2], 10)
+    const status = match[3].trim()
+    const detail = match[4]?.trim() || ''
+    if (isNaN(start) || isNaN(end) || end - start > 50 || end <= start) continue
+
+    const reason = `Arts. ${start} a ${end}. (${status}) ${detail}`.substring(0, 200).trim()
+
+    for (let i = start; i <= end; i++) {
+      const num = String(i)
+      if (seen.has(num)) continue
+      seen.add(num)
+
+      const statusLabel = status.toLowerCase().includes('derogad') ? 'Derogado' :
+                          status.toLowerCase().includes('sin contenido') ? 'Sin contenido' : status
+
+      results.push({
+        numero: num,
+        titulo_articulo: `Artículo ${i}. (${statusLabel})`,
+        titulo_seccion: '',
+        texto_integro: reason,
+      })
+    }
+  }
+
+  return results
 }
 
 // ─── Parse articles from BOE HTML ─────────────────────────────────────────────
@@ -127,7 +182,17 @@ function parseArticles(html: string): Articulo[] {
     const texto = stripHtml(bodyHtml).trim()
 
     // Clean leading period/dot from text
-    const textoClean = texto.replace(/^\s*\.\s*/, '').trim()
+    let textoClean = texto.replace(/^\s*\.\s*/, '').trim()
+
+    // Remove trailing section headers that leak from next section
+    textoClean = textoClean
+      .replace(/\n(?:LIBRO|TÍTULO|TITULO|CAPÍTULO|CAPITULO|SECCIÓN|SECCION)\s+[IVXLCDM\d]+[^\n]*$/gm, '')
+      .replace(/\n(?:Cap[ií]tulo\s+[IVXLCDM\d]+)[^\n]*$/gm, '')
+      .replace(/\nDe (?:la|las|los|el)\s+[^\n]{5,80}$/gm, (m) => {
+        // Only remove if it looks like a section title (short, at end)
+        return m.trim().length < 80 ? '' : m
+      })
+      .trim()
 
     if (textoClean.length < 10) continue // Skip empty stubs
     if (isTocEntry(textoClean)) continue // Skip TOC entries
@@ -219,6 +284,13 @@ function deduplicateArticles(rawArticles: Articulo[]): Articulo[] {
       if (c.texto_integro.length > 30 && c.texto_integro.length < 20000) score += 8
       else if (c.texto_integro.length >= 20000) score += 3
       else score += 1
+      // Penalize entries that look like false positives:
+      // - Text starts with comma or lowercase (truncated mid-sentence)
+      if (/^[,;]/.test(c.texto_integro)) score -= 20
+      // - Title contains "de la Constitución", "del Código", etc. (cross-reference, not real title)
+      if (/(?:de la Constituci[oó]n|del C[oó]digo|de la Ley)/i.test(titleWords)) score -= 15
+      // - Very short text (<50 chars) that starts with fragment
+      if (c.texto_integro.length < 50) score -= 5
       return { art: c, score }
     })
     scored.sort((a, b) => b.score - a.score)
@@ -274,7 +346,17 @@ async function main() {
   const rawArticles = parseArticles(html)
   console.log(`  Artículos raw: ${rawArticles.length}`)
 
-  const articles = deduplicateArticles(rawArticles)
+  // Parse grouped derogated articles (e.g. "Artículos 48 a 50")
+  const groupedDerogated = parseGroupedDerogated(html)
+  console.log(`  Artículos agrupados (derogados/sin contenido): ${groupedDerogated.length}`)
+
+  // Merge: regular articles take priority over grouped placeholders
+  const regularNums = new Set(rawArticles.map(a => a.numero))
+  const newFromGrouped = groupedDerogated.filter(a => !regularNums.has(a.numero))
+  console.log(`  Nuevos de agrupados (no duplicados): ${newFromGrouped.length}`)
+
+  const allRaw = [...rawArticles, ...newFromGrouped]
+  const articles = deduplicateArticles(allRaw)
   console.log(`  Artículos tras deduplicar: ${articles.length}`)
 
   // Parse disposiciones

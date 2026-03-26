@@ -58,7 +58,7 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: test, error } = await (supabase as any)
     .from('tests_generados')
-    .select('id, preguntas, completado, tipo, examen_oficial_id, tema_id, temas(titulo)')
+    .select('id, preguntas, completado, tipo, examen_oficial_id, tema_id, oposicion_id, temas(titulo)')
     .eq('id', id)
     .eq('user_id', user.id)
     .single()
@@ -79,12 +79,27 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
     ? 'Repaso de errores'
     : ((test.temas as { titulo: string } | null)?.titulo ?? 'Test de práctica')
 
-  // §2.6.2 — Tiempo límite proporcional: 100 preguntas puntuables = 90 min (examen oficial)
-  // Nota: el cuadernillo tiene 110 (100 puntuables + 10 reserva), pero el tiempo es para las 100
-  const FULL_EXAM_QUESTIONS = 100
-  const FULL_EXAM_SECONDS = 90 * 60
+  // §BUG-SP3 — Timer dinámico desde scoring_config de la oposición
+  // Cada oposición tiene distinto nº de preguntas y tiempo (C2: 100q/90min, C1: 90q/100min, etc.)
+  let fullExamQuestions = 100
+  let fullExamSeconds = 90 * 60
+  if (test.oposicion_id) {
+    const serviceSupabase = await createServiceClient()
+    const { data: opoData } = await serviceSupabase
+      .from('oposiciones')
+      .select('scoring_config')
+      .eq('id', test.oposicion_id)
+      .single()
+    const sc = opoData?.scoring_config as { ejercicios?: { preguntas?: number; minutos?: number | null }[]; minutos_total?: number } | null
+    if (sc?.ejercicios?.[0]) {
+      fullExamQuestions = sc.ejercicios[0].preguntas ?? 100
+      // Usar minutos del ejercicio, o minutos_total si es compartido (C1 AGE: null por ejercicio, 100 min total)
+      const minutos = sc.ejercicios[0].minutos ?? sc.minutos_total ?? 90
+      fullExamSeconds = minutos * 60
+    }
+  }
   const tiempoLimite = esSimulacro
-    ? Math.round((preguntas.length / FULL_EXAM_QUESTIONS) * FULL_EXAM_SECONDS)
+    ? Math.round((preguntas.length / fullExamQuestions) * fullExamSeconds)
     : undefined
 
   // §2.17.6 — BreadcrumbList schema

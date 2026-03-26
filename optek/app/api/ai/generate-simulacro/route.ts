@@ -142,6 +142,17 @@ export async function POST(request: NextRequest) {
   }
 
   // ── 4. Buscar examen/s y cargar preguntas ────────────────────────────────
+
+  // §BUG-SP2: obtener scoring_config para filtro dinámico de preguntas de reserva
+  const { data: opoData } = await serviceSupabase
+    .from('oposiciones')
+    .select('scoring_config')
+    .eq('id', oposicionId)
+    .single()
+  const scoringConfig = opoData?.scoring_config as { ejercicios?: { preguntas?: number }[] } | null
+  // Preguntas puntuables del primer ejercicio (test teórico) — fallback 60 para C2 AGE
+  const maxPreguntasPuntuables = scoringConfig?.ejercicios?.[0]?.preguntas ?? 60
+
   type ExamenRow = { id: string; anio: number; convocatoria: string }
   // §2.6.3: incluimos tema_id para desglose por tema en resultados
   type PreguntaRow = {
@@ -182,10 +193,10 @@ export async function POST(request: NextRequest) {
           .eq('examen_id', ex.id)
       )
     )
-    // Excluir preguntas de reserva (defense in depth — no deben existir en BD pero por seguridad)
+    // Excluir preguntas de reserva (defense in depth — §BUG-SP2: dinámico por oposición)
     const todasPreguntas = pregResultados
       .flatMap((r: { data: PreguntaRow[] | null }) => r.data ?? [])
-      .filter((p: PreguntaRow) => p.numero <= 60)
+      .filter((p: PreguntaRow) => p.numero <= maxPreguntasPuntuables)
 
     if (todasPreguntas.length === 0) {
       return NextResponse.json(
@@ -255,8 +266,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Excluir preguntas de reserva (defense in depth)
-    preguntasData = (pregData as PreguntaRow[]).filter((p) => p.numero <= 60)
+    // Excluir preguntas de reserva (defense in depth — §BUG-SP2: dinámico por oposición)
+    preguntasData = (pregData as PreguntaRow[]).filter((p) => p.numero <= maxPreguntasPuntuables)
   }
 
   // Garantía de tipo — examen y preguntasData siempre tienen valor en este punto
