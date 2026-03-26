@@ -572,7 +572,7 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 1. ~~**FASE 2.5a**: Fix bugs existentes + parsear supuesto oficial 2024~~ **COMPLETADO**
 2. ~~**GAP-5**: Fix scoring_config C1 AGE (prerequisito de FASE 2.5)~~ **COMPLETADO** — Migration 051
 3. ~~**GAP-3**: Multi-exercise scoring genérico (prerequisito de Justicia)~~ **COMPLETADO** — overload EjercicioData[], resultados page usa calcularEjercicio, 25 tests
-4. **FASE 2.5b-c**: Supuesto práctico test genérico (C1 AGE primero, luego Justicia) ← **SIGUIENTE**
+4. ~~**FASE 2.5b-c**: Supuesto práctico test genérico~~ **COMPLETADO** — supuesto-test.ts + endpoint + page + SupuestoTestRunner + resultados + migration 054 + ingesta oficial
 5. **GAP-2**: Ofimática ejercicio separado (solo si activamos Tramitación)
 6. **GAP-4**: Desarrollo escrito Gestión Procesal (solo si activamos Gestión Procesal)
 
