@@ -16,6 +16,7 @@ import {
   GraduationCap,
   Flame,
   Clock,
+  Layers,
   Sparkles,
 } from 'lucide-react'
 import { createServiceClient } from '@/lib/supabase/server'
@@ -667,9 +668,9 @@ export default async function LandingPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <ul className="space-y-1.5 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 shrink-0" /> 12 temas</li>
-                  <li className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 shrink-0" /> 4.055 plazas</li>
-                  <li className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 shrink-0" /> Sin penalización</li>
+                  <li className="flex items-center gap-2"><BookOpen className="h-3.5 w-3.5 shrink-0" /> 12 temas</li>
+                  <li className="flex items-center gap-2"><Users className="h-3.5 w-3.5 shrink-0" /> 4.055 plazas</li>
+                  <li className="flex items-center gap-2"><ShieldCheck className="h-3.5 w-3.5 shrink-0" /> Sin penalización</li>
                 </ul>
                 <div className="pt-2">
                   <p className="text-[11px] text-muted-foreground mb-2">Déjanos tu email y te avisamos:</p>
@@ -696,8 +697,8 @@ export default async function LandingPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <ul className="space-y-1.5 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 shrink-0" /> 3 cuerpos disponibles</li>
-                  <li className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 shrink-0" /> Temario actualizado LO 1/2025</li>
+                  <li className="flex items-center gap-2"><Layers className="h-3.5 w-3.5 shrink-0" /> 3 cuerpos disponibles</li>
+                  <li className="flex items-center gap-2"><BookOpen className="h-3.5 w-3.5 shrink-0" /> Temario actualizado LO 1/2025</li>
                 </ul>
                 <div className="pt-2">
                   <p className="text-[11px] text-muted-foreground mb-2">Elige tu cuerpo y te avisamos:</p>
