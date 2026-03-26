@@ -406,6 +406,125 @@ Lógica basada en `nivel` (ya existe en migration 047):
 
 ---
 
+## GAPS TRANSVERSALES — Detectados durante auditoría de FASE 2.5
+
+> Auditoría completa de todas las oposiciones vs lo que la app implementa realmente.
+> Datos verificados contra migrations 039, 047, 048, 049 y el código fuente.
+
+### GAP-1: Supuesto práctico TEST — afecta a 4 oposiciones (no solo C1 AGE)
+
+El mismo patrón del supuesto C1 AGE (FASE 2.5) se repite en Justicia:
+
+| Oposición | Ejercicio | Preguntas test | Tiempo | Penalización | scoring_config |
+|-----------|-----------|----------------|--------|-------------|----------------|
+| **AGE C1** | Ej. único Parte 2 | 20q (+5 reserva) | ~30 min | -1/3 | **NO MODELADO** (solo 1 ejercicio en config) |
+| **Auxilio Judicial C2** | Ej.2 Supuesto | 40q (+2 reserva) | 60 min | -1/4 (error=0.25) | ✅ Definido en migration 049 |
+| **Tramitación C1** | Ej.2 Supuesto | 10q (+2 reserva) | 30 min | -1/4 (error=0.50) | ✅ Definido en migration 049 |
+| **Gestión Procesal A2** | Ej.2 Caso práctico | 10q (+2 reserva) | 30 min | -1/5 (error=0.30) | ✅ Definido en migration 049 |
+
+**Decisión arquitectónica**: La FASE 2.5 debe construirse como **módulo genérico parametrizable** (bloques, num_preguntas, penalización, prompt) en vez de hardcodear para C1 AGE. Así se reutiliza para las 3 oposiciones de Justicia.
+
+**Diferencia clave Justicia vs AGE**: En Justicia, el supuesto es un **ejercicio separado** con su propio timer y nota mínima eliminatoria. En AGE C1, es la "Parte 2" del ejercicio único (comparte los 100 min con Parte 1).
+
+### GAP-2: Ofimática como ejercicio separado — Tramitación C1
+
+Tramitación Procesal tiene **3 ejercicios**, el tercero es ofimática:
+- 20 preguntas sobre Word 365, 40 min, +1.00/-0.25, max=20, min_aprobado=10
+- 6 temas de ofimática (32-37) YA insertados en BD (migration 049)
+- `features.ofimatica = true` pero **no hay UI, ni generación, ni ejercicio separado**
+
+**Alcance**: No es bloqueante para activación de Auxilio/Gestión (no tienen ofimática). Sí bloqueante para Tramitación.
+
+### GAP-3: Multi-exercise scoring — `scoring.ts:123` solo calcula ejercicio 1
+
+```typescript
+// Multi-exercise: for now, calculate first exercise only
+const ej = calcularEjercicio(aciertos, errores, enBlanco, sc.ejercicios[0])
+```
+
+**Oposiciones afectadas:**
+- Auxilio C2 (2 ej.): solo puntúa Ej.1 (60pts), ignora Ej.2 (40pts)
+- Tramitación C1 (3 ej.): solo puntúa Ej.1 (60pts), ignora Ej.2+3 (40pts)
+- Gestión Procesal A2 (3 ej.): solo puntúa Ej.1 (60pts), ignora Ej.2+3 (40pts)
+- GACE A2 (2 ej.): Ej.2 tiene su propio flujo en `/supuesto-practico`, funciona parcialmente
+
+**No bloqueante ahora** (todas inactivas), pero **bloqueante antes de activar cualquier oposición de Justicia**.
+
+**Fix**: `calcularPuntuacion()` ya acepta arrays en la interfaz (`EjercicioResult[]`). Solo falta que la UI envíe aciertos/errores por ejercicio y que el scorer los procese.
+
+### GAP-4: Desarrollo escrito — solo GACE A2, falta Gestión Procesal A2
+
+| | GACE A2 (AGE) | Gestión Procesal A2 (Justicia) |
+|---|---|---|
+| Cuerpo | Administración Civil del Estado | Administración de Justicia |
+| Ejercicio | Ej.2: 5 cuestiones, 150 min | Ej.3: 5 cuestiones, 45 min |
+| Bloques | IV (derecho admin), V (RRHH), VI (financiero) | Temas 17-39 y 43-67 (procesal) |
+| Rúbrica | INAP (Conocimiento 30, Análisis 10, Sistemática 5, Expresión 5) | MJU — rúbrica distinta, por investigar |
+| Implementación | ✅ `supuesto-practico.ts` + corrección IA | ❌ No implementado |
+| Feature flag | `supuesto_practico: true` | `supuesto_practico: true` |
+
+El sistema de corrección IA (`/api/ai/corregir-supuesto`) es reutilizable pero necesita:
+- Prompt adaptado con rúbrica MJU en vez de INAP
+- Temas procesales (derecho procesal civil, penal, laboral) en vez de AGE (contratación, presupuestos)
+
+**No bloqueante para activación de Auxilio/Tramitación.** Bloqueante solo para Gestión Procesal A2.
+
+### GAP-5: scoring_config de AGE C1 incorrecto
+
+**Migration 047 dice:**
+```json
+{"ejercicios": [{"nombre": "Test teórico", "preguntas": 100, "minutos": 90, ...}]}
+```
+
+**Examen real (verificado contra PDF INAP 2024):**
+- 90 preguntas puntuables (70 Parte 1 + 20 Parte 2), NO 100
+- 100 minutos, NO 90
+- Las 2 partes tienen valor por pregunta MUY distinto: 50/70=0.714 pts vs 50/20=2.50 pts
+- Debería tener 2 ejercicios en scoring_config (como ya hace Auxilio/Tramitación)
+
+**Fix**: Actualizar scoring_config de C1 a 2 ejercicios:
+```json
+{
+  "ejercicios": [
+    {"nombre": "Cuestionario", "preguntas": 70, "minutos": null, "acierto": 0.714, "error": 0.238, "max": 50, "min_aprobado": 25, "penaliza": true},
+    {"nombre": "Supuesto práctico", "preguntas": 20, "minutos": null, "acierto": 2.50, "error": 0.833, "max": 50, "min_aprobado": 25, "penaliza": true}
+  ],
+  "minutos_total": 100
+}
+```
+Bloqueante para FASE 2.5.
+
+### GAP-6: Correos — psicotécnicos embebidos vs módulo separado
+
+`scoring_config` de Correos dice `preguntas_psicotecnicos: 10` (embebidos en el test de 100). Pero `features.psicotecnicos: true` muestra el módulo `/psicotecnicos` en la sidebar como si fueran un ejercicio aparte.
+
+En realidad para Correos los psicotécnicos van **mezclados dentro del examen**, no como práctica separada. La UX actual (módulo aparte de 30 psicotécnicos calibrado para AGE C2) no es representativa del examen de Correos.
+
+**Prioridad baja** — no bloquea la activación. Los usuarios de Correos pueden practicar psicotécnicos por separado aunque el examen los mezcle.
+
+### Resumen por oposición: qué falta para activar
+
+| Oposición | Test básico | Simulacros oficiales | Supuesto test | Ofimática | Desarrollo escrito | Multi-scoring | Estado |
+|-----------|------------|---------------------|---------------|-----------|-------------------|---------------|--------|
+| **AGE C2** | ✅ | ✅ | N/A | N/A | N/A | N/A (1 ej.) | **ACTIVA** |
+| **AGE C1** | ✅ | sin datos | FASE 2.5 | N/A | N/A | FASE 2.5 (fix scoring_config) | inactiva |
+| **GACE A2** | ✅ | sin datos | N/A | N/A | ✅ | parcial | inactiva |
+| **Correos** | ✅ | sin datos | N/A | N/A | N/A | N/A (1 ej.) | **solo falta free bank + datos** |
+| **Auxilio C2** | ✅ | sin datos | **FALTA** | N/A | N/A | **FALTA** | inactiva |
+| **Tramitación C1** | ✅ | sin datos | **FALTA** | **FALTA** | N/A | **FALTA** | inactiva |
+| **Gestión Proc. A2** | ✅ | sin datos | **FALTA** | N/A | **FALTA** (rúbrica MJU) | **FALTA** | inactiva |
+
+### Orden de implementación recomendado
+
+1. **FASE 2.5a** (ya planificada): Fix bugs existentes + parsear supuesto oficial 2024
+2. **GAP-5**: Fix scoring_config C1 AGE (prerequisito de FASE 2.5)
+3. **GAP-3**: Multi-exercise scoring genérico (prerequisito de Justicia)
+4. **FASE 2.5b-c**: Supuesto práctico test genérico (C1 AGE primero, luego Justicia)
+5. **GAP-2**: Ofimática ejercicio separado (solo si activamos Tramitación)
+6. **GAP-4**: Desarrollo escrito Gestión Procesal (solo si activamos Gestión Procesal)
+
+---
+
 ## FASE 3 — Futuras (solo estructura)
 
 ### 3.1 Hacienda C1 (AEAT)
