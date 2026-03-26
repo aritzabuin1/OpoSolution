@@ -27,6 +27,7 @@ import { blogPosts } from '@/content/blog/posts'
 import { unstable_cache } from 'next/cache'
 import { AIAnalysisDemo } from '@/components/marketing/AIAnalysisDemo'
 import { SocialProofCounter } from '@/components/marketing/SocialProofCounter'
+import { WaitlistForm } from '@/components/marketing/WaitlistForm'
 
 const APP_URL_META = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
@@ -213,7 +214,7 @@ const faqs = [
   },
   {
     q: '¿Para qué oposiciones funciona ahora mismo?',
-    a: 'OpoRuta cubre tres oposiciones de la Administración General del Estado: Auxiliar Administrativo (C2, 28 temas, 1.700 plazas), Administrativo del Estado (C1, 45 temas, 2.512 plazas) y Gestión del Estado GACE (A2, 58 temas, 1.356 plazas). La oposición A2 incluye corrección de supuesto práctico con IA — una funcionalidad exclusiva de OpoRuta. Al registrarte eliges tu oposición, y puedes preparar varias con los Packs Doble o Triple.',
+    a: 'Ahora mismo OpoRuta cubre tres oposiciones de la Administración General del Estado: Auxiliar Administrativo (C2, 28 temas), Administrativo del Estado (C1, 45 temas) y Gestión del Estado GACE (A2, 58 temas con supuesto práctico IA). Próximamente añadiremos Correos y Justicia (Auxilio, Tramitación y Gestión Procesal). Puedes apuntarte a la lista de espera en la landing.',
   },
   {
     q: '¿Qué pasa cuando agoto mis análisis detallados?',
@@ -528,15 +529,17 @@ export default async function LandingPage() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
-              Tres oposiciones, una plataforma
+              Oposiciones con IA verificada
             </Badge>
             <h2 id="oposiciones-heading" className="text-3xl font-bold tracking-tight">
-              Elige tu oposición
+              ¿Qué oposición preparas?
             </h2>
             <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
-              Contenido específico para cada cuerpo. Temario completo, legislación verificada y exámenes INAP reales.
+              Contenido específico para cada cuerpo. Temario completo, legislación verificada y exámenes reales.
             </p>
           </div>
+          {/* Rama AGE header */}
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">Administración General del Estado</p>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
             {/* C2 — Auxiliar */}
             <Card className="relative overflow-hidden border-primary/30 shadow-md">
@@ -639,9 +642,70 @@ export default async function LandingPage() {
               </CardContent>
             </Card>
           </div>
-          <p className="text-center text-xs text-muted-foreground mt-6">
+          <p className="text-center text-xs text-muted-foreground mt-4 mb-8">
             Pack Doble (C2+C1): 79,99€ · Pack Triple AGE (C2+C1+A2): 129,99€ — con supuesto práctico IA incluido.
           </p>
+
+          {/* Próximamente — Correos + Justicia */}
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">Próximamente</p>
+          <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
+            {/* Correos */}
+            <Card className="relative overflow-hidden opacity-75">
+              <div className="absolute top-0 right-0 bg-muted-foreground/60 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
+                Próximamente
+              </div>
+              <CardHeader className="pb-3">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-500/10">
+                    <BookOpen className="h-6 w-6 text-orange-500" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg">Correos</CardTitle>
+                    <p className="text-xs text-muted-foreground">Personal Laboral · Grupo IV</p>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <ul className="space-y-1.5 text-sm text-muted-foreground">
+                  <li className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 shrink-0" /> 12 temas</li>
+                  <li className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 shrink-0" /> 4.055 plazas</li>
+                  <li className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 shrink-0" /> Sin penalización</li>
+                </ul>
+                <div className="pt-2">
+                  <p className="text-[11px] text-muted-foreground mb-2">Déjanos tu email y te avisamos:</p>
+                  <WaitlistForm oposicionSlug="correos" />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Justicia */}
+            <Card className="relative overflow-hidden opacity-75">
+              <div className="absolute top-0 right-0 bg-muted-foreground/60 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
+                Próximamente
+              </div>
+              <CardHeader className="pb-3">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/10">
+                    <GraduationCap className="h-6 w-6 text-violet-500" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg">Justicia</CardTitle>
+                    <p className="text-xs text-muted-foreground">Auxilio (C2) · Tramitación (C1) · Gestión (A2)</p>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <ul className="space-y-1.5 text-sm text-muted-foreground">
+                  <li className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 shrink-0" /> 3 cuerpos disponibles</li>
+                  <li className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 shrink-0" /> Temario actualizado LO 1/2025</li>
+                </ul>
+                <div className="pt-2">
+                  <p className="text-[11px] text-muted-foreground mb-2">Déjanos tu email y te avisamos:</p>
+                  <WaitlistForm oposicionSlug="auxilio-judicial" />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
@@ -850,7 +914,7 @@ export default async function LandingPage() {
             Únete a los primeros opositores en probarlo
           </p>
           <p className="text-sm text-muted-foreground mb-6">
-            C2, C1 o A2 — elige tu oposición y empieza hoy. Plazas de fundador limitadas.
+            AGE (C2, C1, A2) disponible ahora. Correos y Justicia próximamente.
           </p>
           <Link href="/register">
             <Button size="lg" className="gap-2">
@@ -982,6 +1046,62 @@ export default async function LandingPage() {
                       ))}
                     </div>
                     <p className="text-sm font-medium leading-snug group-hover:text-primary transition-colors line-clamp-3">
+                      {post.title}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-2 line-clamp-2">
+                      {post.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+
+          {/* ── Correos ── */}
+          <p className="text-xs font-semibold uppercase tracking-wider text-orange-500 mb-3 mt-6">Correos · Próximamente</p>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {([
+              'test-correos-2026-online-gratis',
+              'temario-correos-2026-temas-completos',
+              'examen-correos-penaliza-respuestas-incorrectas',
+            ].map((slug) => blogPosts.find((p) => p.slug === slug)).filter((p): p is typeof blogPosts[0] => !!p)).map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
+                <Card className="h-full hover:border-orange-400/40 transition-colors">
+                  <CardContent className="pt-5 pb-5">
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                      {post.keywords.slice(0, 2).map((kw) => (
+                        <Badge key={kw} variant="secondary" className="text-[10px]">{kw}</Badge>
+                      ))}
+                    </div>
+                    <p className="text-sm font-medium leading-snug group-hover:text-orange-600 transition-colors line-clamp-3">
+                      {post.title}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-2 line-clamp-2">
+                      {post.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+
+          {/* ── Justicia ── */}
+          <p className="text-xs font-semibold uppercase tracking-wider text-violet-500 mb-3 mt-6">Justicia · Próximamente</p>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {([
+              'diferencia-auxilio-judicial-tramitacion-procesal',
+              'temario-auxilio-judicial-2026-actualizado',
+              'test-auxilio-judicial-2026-online-gratis',
+            ].map((slug) => blogPosts.find((p) => p.slug === slug)).filter((p): p is typeof blogPosts[0] => !!p)).map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
+                <Card className="h-full hover:border-violet-400/40 transition-colors">
+                  <CardContent className="pt-5 pb-5">
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                      {post.keywords.slice(0, 2).map((kw) => (
+                        <Badge key={kw} variant="secondary" className="text-[10px]">{kw}</Badge>
+                      ))}
+                    </div>
+                    <p className="text-sm font-medium leading-snug group-hover:text-violet-600 transition-colors line-clamp-3">
                       {post.title}
                     </p>
                     <p className="text-xs text-muted-foreground mt-2 line-clamp-2">

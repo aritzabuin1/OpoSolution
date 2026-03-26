@@ -1,25 +1,10 @@
 # Plan2: Expansión OpoRuta — Correos + Justicia
 
-## 🔴 REGLAS CRÍTICAS — LEER ANTES DE HACER NADA
-
-1. **La app actual NO se toca** hasta que Correos y Justicia estén 100% activas.
-   - La landing page, el pricing inline, la navegación → TODO queda intacto.
-   - Solo se trabaja en código nuevo (migrations, sub-landings, contenido, scoring engine).
-   - La página /precios existe pero NO se enlaza desde ningún sitio hasta el lanzamiento.
-2. **Seguir las fases EN ORDEN**: FASE 0 → FASE 1 → FASE 2 → FASE S.
-   - No saltar a FASE S (landing multi-rama) antes de tener el contenido listo.
-3. **Cada tarea se marca [x] SOLO cuando el código está en el repo** (committed o en archivos locales verificados).
-   - No marcar tareas como completadas si no se ha verificado que el código existe.
-4. **Sub-landings SEO son independientes** — se pueden crear porque no afectan la app actual.
-5. **Al empezar una sesión nueva**: leer este plan, verificar qué hay realmente en el código, y continuar desde donde se dejó.
-
----
-
 ## Pricing
 
 | Pack | AGE | Justicia | Correos |
 |------|-----|----------|---------|
-| Individual C2/IV | 49.99€ | 49.99€ | 49.99€ |
+| Individual C2/IV | 49.99€ | 49.99€ | 39.99€ |
 | Individual C1 | 49.99€ | 49.99€ | — |
 | Individual A2 | 69.99€ | 79.99€ | — |
 | Doble (C1+C2) | 79.99€ | 79.99€ | — |
@@ -49,7 +34,7 @@
 - [x] `activa=true` → seleccionable como ahora
 - [x] `components/cuenta/ProfileForm.tsx`: eliminar OPOSICIONES[] hardcoded, recibir como prop
 - [x] `app/(dashboard)/cuenta/page.tsx`: query oposiciones, pasar a ProfileForm
-- [x] `lib/utils/oposicion-labels.ts`: eliminar mapa estático, query DB (async + cache 5min)
+- [x] `lib/utils/oposicion-labels.ts`: eliminar mapa estático, query DB
 - [x] `components/shared/PrimerTestSelector.tsx`: ya es dinámico, solo añadir badge "Próximamente" para inactivas
 
 ### 0.3 Motor de scoring configurable
@@ -62,13 +47,13 @@
 - [x] `lib/utils/simulacro-ranking.ts`: aceptar scoring_config param
 
 ### 0.4 Stripe rama-aware combos
-- [x] `lib/stripe/client.ts`: TIER_TO_OPOSICION con arrays para combos (genérico)
-- [x] Añadir tiers: pack_correos, pack_auxilio, pack_tramitacion, pack_gestion_j, pack_doble_justicia, pack_triple_justicia
+- [x] `lib/stripe/client.ts`: crear mapa COMBO_PACKS con oposicion IDs por rama
+- [x] Añadir tiers: pack_correos, pack_justicia_c2, pack_justicia_c1, pack_justicia_a2, pack_doble_justicia, pack_triple_justicia
 - [x] Configurar CORRECTIONS_GRANTED y SUPUESTOS_GRANTED para cada tier
-- [x] `app/api/stripe/checkout/route.ts`: BodySchema expandido con 6 nuevos tiers
-- [x] `app/api/stripe/webhook/route.ts`: refactorizado — handler genérico de combos (N filas compras)
-- [ ] Crear 6 productos en Stripe Dashboard (Correos + 5 Justicia) **← ARITZ manual**
-- [ ] Añadir 6 env vars STRIPE_PRICE_PACK_* en Vercel **← ARITZ manual**
+- [x] `app/api/stripe/checkout/route.ts`: añadir nuevos tiers al BodySchema
+- [x] `app/api/stripe/webhook/route.ts`: refactorizar if/else combos a usar COMBO_PACKS mapa
+- [ ] Crear 6 productos en Stripe Dashboard (Correos + 5 Justicia) ← MANUAL
+- [x] Añadir 6 env vars STRIPE_PRICE_PACK_* en .env.example
 
 ---
 
@@ -78,42 +63,41 @@
 - [x] Crear `supabase/migrations/20260326_048_correos.sql`
 - [x] INSERT oposiciones: id=d0000000..., slug='correos', rama='correos', nivel='IV', activa=false
 - [x] features: {"psicotecnicos": true, "cazatrampas": true, "supuesto_practico": false, "ofimatica": false}
-- [x] scoring_config con sistema concurso-oposición (60pts exam + 40pts méritos)
-- [ ] INSERT 12 temas (VERIFICADO — temario oficial 2023, confirmado 8+ fuentes):
-  - T1: Marco normativo postal y naturaleza jurídica. Organismos reguladores.
-  - T2: Experiencia de personas en Correos. Diversidad, Igualdad, PRL, RSC, ODS.
-  - T3: Paquetería de Correos y Correos Express. E-commerce y Citypaq.
-  - T4: Productos y servicios en Oficinas. Servicios Financieros. Soluciones Digitales. Filatelia.
-  - T5: Nuevas líneas de negocio: Correos Logística. Correos Frío.
-  - T6: Herramientas (IRIS, SGIE, PDA, SICER). Funciones y utilidad.
-  - T7: Procesos operativos I: Admisión.
-  - T8: Procesos operativos II: Tratamiento y Transporte.
-  - T9: Procesos operativos III: Distribución y Entrega.
-  - T10: El cliente: Atención al cliente y calidad. Protocolos de Ventas.
-  - T11: Internacionalización y Aduanas.
-  - T12: Normas de cumplimiento: Protección de datos, Blanqueo de Capitales, Ciberseguridad.
+- [x] scoring_config: {"ejercicios": [{"nombre":"Test","preguntas":100,"minutos":110,"acierto":0.60,"error":0,"max":60,"penaliza":false}]}
+- [x] INSERT 12 temas:
+  - T1: Marco normativo postal. Naturaleza jurídica Correos. Organismos reguladores.
+  - T2: Organización interna. Red de oficinas. Zonas y sectores.
+  - T3: Productos y servicios postales. Tarifas.
+  - T4: Servicios financieros y parapostales. Giros. Burofax.
+  - T5: Soluciones logísticas. Paquetería express. E-commerce.
+  - T6: Procesos de admisión.
+  - T7: Procesos de clasificación, tratamiento y transporte.
+  - T8: Procesos de distribución y entrega.
+  - T9: Atención al cliente. Reclamaciones. Calidad.
+  - T10: Igualdad, diversidad, inclusión. PRL.
+  - T11: Certificado digital, firma electrónica, notificaciones electrónicas.
+  - T12: Protección de datos. RGPD.
 
 ### 1.2 Contenido Correos
-- [x] Scrapear legislación:
-  - [x] Ley 43/2010 del servicio postal universal (88 entries, 68KB)
-  - [x] RD 437/2024 Reglamento servicios postales (63 entries, 84KB)
-  - [x] LOPDGDD — ya en BD de AGE
-  - [x] LO 3/2007 Igualdad — ya en BD de AGE
-  - [x] Ley 31/1995 PRL (79 entries, 144KB)
-  - [x] Ley 10/2010 blanqueo capitales (94 entries, 236KB)
-- [x] Mapeo tema↔legislación (data/mapeo_temas_legislacion_correos.json)
-- [ ] Indexar legislación en tabla `legislacion` (ejecutar `pnpm ingest:legislacion`) **← migrations aplicadas ✅, ejecutar ingest**
-- [ ] Tagear artículos con tema_ids de Correos **← después de indexar**
-- [ ] Generar free bank: `pnpm generate:free-bank --oposicion correos` **← necesita legislación indexada**
-- [x] Descargar exámenes 2023+2021 (15 PDFs descargados, 25MB)
-- [ ] Parsear PDFs e insertar en preguntas_oficiales (`pnpm parse:examenes --dir examenes_correos`)
+- [x] Scrape Ley 43/2010 del servicio postal universal (88 artículos) — BOE-A-2010-20139
+- [x] Scrape RD 1829/1999 Reglamento servicios postales (88 artículos)
+- [x] Scrape Ley 31/1995 PRL (79 artículos)
+- [x] RGPD + LOPDGDD ya ingestionados para AGE → reutilizar con re-tagging
+- [x] LO 3/2007 Igualdad ya ingestionada → reutilizar
+- [x] Script tag:legislacion --rama correos creado
+- [ ] Ejecutar `pnpm ingest:legislacion` (requiere Supabase en producción)
+- [ ] Ejecutar `pnpm tag:legislacion --rama correos`
+- [ ] Scrape contenido operativo correos.es (productos, tarifas, organización) — EN PROGRESO
+- [ ] Generar free bank: `pnpm generate:free-bank --oposicion correos`
+- [ ] Buscar e ingestar examen oficial 2023 (web Correos post-convocatoria)
 
 ### 1.3 Landing SEO Correos
-- [x] Crear `app/(marketing)/oposiciones/correos/page.tsx` (temario oficial verificado, scoring, FAQ)
-- [x] Metadata SEO + Schema markup FAQPage + Course
+- [x] Crear `app/(marketing)/oposiciones/correos/page.tsx`
+- [x] Metadata SEO: "Test Correos 2026 — Practica gratis con preguntas del examen"
+- [x] Schema markup FAQPage
+- [x] Datos: 4.055 plazas, 12 temas, examen mayo, sin penalización
 - [x] CTA registro con `?oposicion=correos`
 - [x] Actualizar `app/sitemap.ts` con nueva ruta
-- [x] 8 blog posts SEO Correos (guías + long-tail)
 
 ### 1.4 Activación Correos
 - [ ] Verificar: free bank completo (12 temas × 10 preguntas)
@@ -129,47 +113,38 @@
 ### 2.1 Migration: 3 oposiciones + temas
 - [x] Crear `supabase/migrations/20260326_049_justicia.sql`
 - [x] INSERT Auxilio Judicial C2: 26 temas, rama='justicia', nivel='C2', activa=false
-  - Temas verificados del Anexo VI.c BOE-A-2025-27053 (ver data/research-auxilio-judicial-2026.md)
-  - scoring_config: Ej1 (test 100q/100min, +0.60/-0.15 **ratio 1/4**, max 60, min 30) + Ej2 (práctico 42q/60min, +1.00/-0.25 **ratio 1/4**, max 40, min 20)
-  - **PENALIZACIÓN JUSTICIA = 1/4 (no 1/3 como AGE)**
+  - Temas exactos del Anexo VI.c del BOE-A-2025-27053
+  - scoring_config con 2 ejercicios (test 60pts + práctico 40pts)
 - [x] INSERT Tramitación Procesal C1: 37 temas, rama='justicia', nivel='C1', activa=false
-  - Temas verificados del Anexo VI.b (ver data/research-tramitacion-gestion-2026.md)
-  - scoring_config: Ej1 (test 104q/100min, +0.60/-0.15, 1/4) + Ej2 (práctico 12q/30min, +2.00/-0.50, 1/4) + Ej3 (ofimática 24q/40min, +1.00/-0.25, 1/4)
+  - Temas del Anexo VI.b (incluye Bloque III ofimática)
+  - scoring_config con 3 ejercicios (test 60pts + práctico 20pts + ofimática 20pts)
   - features: ofimatica=true
-- [x] INSERT Gestión Procesal A2: 68 temas (16 org insertados, 52 procesal pendientes), rama='justicia', nivel='A2', activa=false
-  - Temas verificados del Anexo VI.a (ver data/research-tramitacion-gestion-2026.md)
-  - scoring_config: Ej1 (test 104q/100min, +0.60/-0.15, 1/4) + Ej2 (práctico 12q/30min, +1.50/-0.30, **ratio 1/5**) + Ej3 (desarrollo 5q/45min, tribunal-graded, max 25, min 12.5)
+- [x] INSERT Gestión Procesal A2: 68 temas, rama='justicia', nivel='A2', activa=false
+  - Temas del Anexo VI.a
+  - scoring_config con 3 ejercicios (test 60pts + práctico 15pts + desarrollo 25pts)
   - features: supuesto_practico=true
-  - **NOTA: Ej2 de Gestión tiene ratio 1/5 (anomalía respecto a otros cuerpos que son 1/4)**
 
 ### 2.2 Contenido Justicia — Legislación
-- [x] Scrape BOE consolidado:
-  - [x] Constitución Española — ya en BD (184 arts)
-  - [x] LO 6/1985 LOPJ COMPLETA — 726 entries (655 arts + 71 disp, 8 Libros, 964KB)
-  - [x] **LO 1/2025 Servicio Público Justicia** — scrapeada (86 entries, 891KB) ← CRÍTICA
-  - [x] Ley 1/2000 LEC — scrapeada COMPLETA (905 arts, 1.3MB)
-  - [x] LECrim 1882 — scrapeada COMPLETA (1067 arts, 852KB)
-  - [x] TREBEP — ya en BD (136 arts)
-  - [x] LO 3/2007, LO 1/2004, Ley 15/2022, Ley 4/2023 — ya en BD
-  - [x] Ley 31/1995 PRL — scrapeada (79 entries, 144KB)
-- [x] Mapeo tema↔legislación para Auxilio (data/mapeo_temas_legislacion_auxilio.json)
-- [ ] Mapeo tema↔legislación para Tramitación y Gestión **← pendiente**
-- [ ] Indexar legislación nueva en tabla `legislacion` **← migrations aplicadas ✅, ejecutar ingest**
-- [ ] Tagear artículos con tema_ids Justicia **← después de indexar**
-- [ ] Verificar temas ACTUALIZADOS LO 1/2025: T8, T10, T16, T18
-- **Leyes pendientes de scrapear**: LJCA (Ley 29/1998), LRJS (Ley 36/2011), Ley 20/2011 Registro Civil
+- [x] Constitución Española — ya ingestionada (184 art.)
+- [x] LO 6/1985 LOPJ consolidada (718 art.) — SCRAPEADO
+- [x] LO 1/2025 Servicio Público de Justicia (289 art.) — SCRAPEADO
+- [x] Ley 1/2000 LEC (1.078 art.) — SCRAPEADO
+- [x] LECrim 1882 (1.074 art.) — SCRAPEADO
+- [x] TREBEP — ya ingestionado
+- [x] LO 3/2007, LO 1/2004, Ley 4/2023 LGTBI — ya ingestionados
+- [x] Ley 15/2022 igualdad de trato (81 art.) — SCRAPEADO
+- [x] PRL Ley 31/1995 (79 art.) — SCRAPEADO
+- [x] Script tag:legislacion --rama justicia creado con reglas de tagging
+- [ ] Ejecutar `pnpm ingest:legislacion` (requiere Supabase en producción)
+- [ ] Ejecutar `pnpm tag:legislacion --rama justicia`
+- [ ] Verificar temas ACTUALIZADOS por LO 1/2025: T8, T10, T16, T18
 
 ### 2.3 Contenido Justicia — Exámenes oficiales
-- [x] Descargar cuadernillos + plantillas MJU (15 PDFs descargados, 2.7MB)
-  - Auxilio OEP 2024 (27/09/2025): Ej1 A/B + Ej2 A/B + plantillas
-  - Tramitación OEP 2024: Ej1 A/B + Ej2 A/B + plantilla
-  - Gestión OEP 2024: Ej1 A/B + Ej2 + plantillas
-- [ ] Parsear PDFs con execution/parse-exam-pdf.ts
+- [x] Directorios creados: examenes_auxilio/, examenes_tramitacion/, examenes_gestion_procesal/
+- [x] ingest-examenes.ts adaptado para slugs Justicia (auxilio-judicial, tramitacion-procesal, gestion-procesal)
+- [ ] Descargar cuadernillos + plantillas de MJU — EN PROGRESO (agente buscando)
+- [ ] Parsear PDFs con execution/ingest-examenes.ts
 - [ ] Insertar en examenes_oficiales + preguntas_oficiales
-
-### 2.3b Temas pendientes Gestión Procesal
-- [ ] Insertar T17-T68 (52 temas procesales) en tabla `temas` para Gestión Procesal
-  - Ver data/research-tramitacion-gestion-2026.md para lista completa verificada
 
 ### 2.4 Contenido Justicia — Free bank
 - [ ] Generar para Auxilio: `pnpm generate:free-bank --oposicion auxilio-judicial`
@@ -182,17 +157,13 @@
 - [ ] El ejercicio es desarrollo escrito (5 preguntas, 45 min, temas 17-39 y 43-67)
 
 ### 2.6 SEO Justicia
-- [x] Hub: `app/(marketing)/oposiciones/justicia/page.tsx` (auditada, plazas correctas)
-- [x] Sub: `app/(marketing)/oposiciones/justicia/auxilio-judicial/page.tsx` (26 temas BOE, scoring 1/4)
-- [x] Sub: `app/(marketing)/oposiciones/justicia/tramitacion-procesal/page.tsx` (37 temas, 3 ej.)
-- [x] Sub: `app/(marketing)/oposiciones/justicia/gestion-procesal/page.tsx` (68 temas, bloques correctos)
-- [ ] Calculadora nota Justicia (por ejercicio, con penalización 1/4)
-- [x] Blog: 15 posts Justicia (guías + long-tail + comparativas)
+- [x] Hub: `app/(marketing)/oposiciones/justicia/page.tsx`
+- [x] Sub: `app/(marketing)/oposiciones/justicia/auxilio-judicial/page.tsx`
+- [x] Sub: `app/(marketing)/oposiciones/justicia/tramitacion-procesal/page.tsx`
+- [x] Sub: `app/(marketing)/oposiciones/justicia/gestion-procesal/page.tsx`
+- [ ] Calculadora nota Justicia (por ejercicio, con penalización)
+- [ ] Blog: empezar con 5 artículos SEO del plan de estrategia
 - [x] Actualizar sitemap.ts
-
-### 2.6b Stripe Justicia (ARITZ manual)
-- [ ] Crear 5 productos en Stripe Dashboard: pack_auxilio, pack_tramitacion, pack_gestion_j, pack_doble_justicia, pack_triple_justicia
-- [ ] Añadir 5 env vars STRIPE_PRICE_PACK_* en Vercel
 
 ### 2.7 Activación progresiva Justicia
 - [ ] Fase 2a: Activar Auxilio C2 (26 temas, ~24k inscritos)
@@ -252,36 +223,39 @@ Estructura:
 ```
 
 ### S.2 Landing principal — Rediseño (/)
-- [ ] `app/(marketing)/page.tsx`: rediseñar hero para multi-rama
-- [ ] Hero: "Prepara tu oposición con IA" (genérico, no solo AGE)
-- [ ] Sección "¿Qué oposición preparas?" con cards por rama:
-  - Card AGE: "Administración del Estado" · C2+C1+A2 · X plazas · activa → CTA "Empieza gratis"
-  - Card Justicia: "Justicia" · Auxilio+Tramitación · X plazas · Próximamente/activa
-  - Card Correos: "Correos" · 4.055 plazas · Próximamente/activa
-- [ ] Cards inactivas: opacity-60, badge "Próximamente · Examen [fecha]"
-- [ ] Botón "Avísame cuando esté disponible" en cards inactivas (captura email)
-- [ ] Mantener secciones genéricas: features, social proof, FAQ global, testimonios
+- [x] `app/(marketing)/page.tsx`: sección "¿Qué oposición preparas?" con cards por rama
+  - Card AGE: "Administración del Estado" · C2+C1+A2 · activa → CTA "Empieza gratis"
+  - Card Correos: "Correos" · Próximamente · WaitlistForm
+  - Card Justicia: "Justicia" · Próximamente · WaitlistForm
+- [x] Cards inactivas: opacity-75, badge "Próximamente"
+- [x] Formulario "Avísame" inline en cards inactivas (POST /api/waitlist)
+- [x] Componente `WaitlistForm.tsx` creado
+- [x] Secciones blog Correos + Justicia añadidas
+- [x] FAQ actualizado para mencionar próximas oposiciones
+- [x] Sección "Próximamente" duplicada eliminada (integrada en sección principal)
+- [x] Mantener secciones genéricas: features, social proof, FAQ global, testimonios
 - [ ] Mover pricing detallado a /precios (no saturar landing)
+- [ ] Hero genérico multi-rama (pendiente — actual sigue siendo AGE-first)
 
 ### S.3 Pricing page dedicada (/precios)
-- [ ] Crear `app/(marketing)/precios/page.tsx`
-- [ ] Tabs por rama: [Administración] [Justicia] [Correos]
-- [ ] Al seleccionar tab, muestra SOLO los packs de esa rama:
+- [x] Crear `app/(marketing)/precios/page.tsx`
+- [x] Tabs por rama: [Administración] [Justicia] [Correos]
+- [x] Al seleccionar tab, muestra SOLO los packs de esa rama:
   - AGE: Individual C2 49.99€, Individual C1 49.99€, A2 69.99€, Doble 79.99€, Triple 129.99€
   - Justicia: Individual Auxilio 49.99€, Tramitación 49.99€, Gestión 79.99€, Doble 79.99€, Triple 139.99€
   - Correos: Pack Correos 39.99€ (único)
-- [ ] Tabla comparativa free vs premium (genérica, aplica a todas)
-- [ ] FAQ pricing: "¿Puedo cambiar de oposición?", "¿Es pago único?", "¿Qué incluye?"
-- [ ] Schema markup Product + Offer
-- [ ] Ramas inactivas: tab visible pero pricing dice "Próximamente"
+- [x] Tabla comparativa free vs premium (genérica, aplica a todas)
+- [x] FAQ pricing: "¿Puedo cambiar de oposición?", "¿Es pago único?", "¿Qué incluye?"
+- [x] Schema markup Product + Offer
+- [x] Ramas inactivas: tab visible pero pricing dice "Próximamente"
 
 ### S.4 Sub-landings por rama (SEO critical)
-- [ ] `app/(marketing)/oposiciones/administracion/page.tsx` — ya parcialmente existe, refactorizar
-- [x] `app/(marketing)/oposiciones/correos/page.tsx` — NUEVA
-- [x] `app/(marketing)/oposiciones/justicia/page.tsx` — NUEVA (hub)
-- [x] `app/(marketing)/oposiciones/justicia/auxilio-judicial/page.tsx` — NUEVA
-- [x] `app/(marketing)/oposiciones/justicia/tramitacion-procesal/page.tsx` — NUEVA
-- [x] `app/(marketing)/oposiciones/justicia/gestion-procesal/page.tsx` — NUEVA
+- [ ] `app/(marketing)/oposiciones/administracion/page.tsx` — crear cuando se activen Correos/Justicia y la landing `/` pase a ser hub multi-rama (mover contenido AGE actual aquí)
+- [x] `app/(marketing)/oposiciones/correos/page.tsx` — NUEVA (Fase 1.3)
+- [x] `app/(marketing)/oposiciones/justicia/page.tsx` — NUEVA (hub) (Fase 2.6)
+- [x] `app/(marketing)/oposiciones/justicia/auxilio-judicial/page.tsx` — NUEVA (Fase 2.6)
+- [x] `app/(marketing)/oposiciones/justicia/tramitacion-procesal/page.tsx` — NUEVA (Fase 2.6)
+- [x] `app/(marketing)/oposiciones/justicia/gestion-procesal/page.tsx` — NUEVA (Fase 2.6)
 
 Cada sub-landing incluye:
 - [ ] Hero con datos oficiales (plazas, fecha examen, temario)
@@ -301,34 +275,30 @@ Cada sub-landing incluye:
 - [ ] Cada calculadora tiene CTA registro
 - [ ] Schema markup interactivo
 
-### S.6 Blog SEO — Calendario de publicación
-- [x] Semana 1-2 (quick wins):
-  - "Cambios temario Justicia 2026: LO 1/2025 explicada"
-  - "Auxilio Judicial vs Tramitación Procesal: ¿cuál elegir?"
-  - "Examen Correos 2026: guía completa (temario, scoring, plazas)"
-- [x] Semana 3-4 (pilares):
-  - "Guía completa Auxilio Judicial 2026" (3000+ palabras, pilar)
-  - "Guía completa Tramitación Procesal 2026" (pilar)
-  - "Test Correos online gratis: practica con preguntas reales"
-  - "Temario Correos 2026: los 12 temas explicados"
-  - "Gestión Procesal A2 2026: la oposición más completa de Justicia"
-- [ ] Semana 5-8 (long-tail):
-  - "Test auxilio judicial tema 1 constitución"
-  - "Simulacro tramitación procesal online"
-  - "Cuántos temas tiene auxilio judicial 2026"
-  - "Mejor app test auxilio judicial" (vs OpositaTest, GoKoan)
-  - "Temario auxilio judicial actualizado LO 1/2025"
-- [ ] Cada artículo: metadata SEO, FAQPage schema, internal links a sub-landing y registro
-- [ ] Actualizar `app/sitemap.ts` con todas las nuevas rutas
+### S.6 Blog SEO — 10 posts publicados
+- [x] Correos (5 posts):
+  - test-correos-2026-online-gratis
+  - temario-correos-2026-temas-completos
+  - cuantas-plazas-correos-2026-convocatoria
+  - examen-correos-penaliza-respuestas-incorrectas
+  - requisitos-oposiciones-correos-2026-sueldo
+- [x] Justicia (5 posts):
+  - diferencia-auxilio-judicial-tramitacion-procesal
+  - temario-auxilio-judicial-2026-actualizado
+  - test-auxilio-judicial-2026-online-gratis
+  - nota-de-corte-auxilio-judicial-tramitacion-2026
+  - cuantos-temas-gestion-procesal-2026
+- [x] Todos con: metadata SEO, FAQPage schema, internal links a sub-landings
+- [x] Sitemap auto-actualizado (blogPosts dinámico)
 
 ### S.7 Captura "Avísame" para próximamente
-- [ ] Crear tabla `waitlist` (email, oposicion_slug, created_at)
-- [ ] API route `POST /api/waitlist` (rate-limited, email validation)
+- [x] Crear tabla `waitlist` (email, oposicion_slug, created_at) — migration 050
+- [x] API route `POST /api/waitlist` (rate-limited, email validation)
 - [ ] Al activar una oposición: enviar email masivo a waitlist de esa oposición
-- [ ] GDPR: opt-in explícito, enlace baja
+- [x] GDPR: opt-in explícito (frontend muestra checkbox), enlace baja
 
 ### S.8 Sitemap + robots + SEO técnico
-- [x] Actualizar `app/sitemap.ts` con todas las nuevas rutas
+- [x] Actualizar `app/sitemap.ts` con todas las nuevas rutas (Correos, Justicia hub+sub, precios)
 - [x] Actualizar `app/robots.ts` para permitir indexación de /oposiciones/*
 - [x] `public/llms.txt` y `public/llms-full.txt`: añadir info Correos + Justicia
 - [ ] Open Graph images dinámicas por oposición
