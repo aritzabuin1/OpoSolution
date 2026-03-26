@@ -33,9 +33,9 @@ import { WaitlistForm } from '@/components/marketing/WaitlistForm'
 const APP_URL_META = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
 export const metadata: Metadata = {
-  title: 'OpoRuta — Oposiciones AGE con IA: Auxiliar C2, Administrativo C1 y Gestión A2',
+  title: 'OpoRuta — Oposiciones con IA: AGE, Correos y Justicia',
   description:
-    'Plataforma de preparación para oposiciones de la AGE: Auxiliar (C2, 28 temas), Administrativo (C1, 45 temas) y Gestión del Estado GACE (A2, 58 temas con supuesto práctico corregido por IA). Tests verificados, simulacros INAP y Radar del Tribunal. 5.500+ plazas. Desde 0€.',
+    'Plataforma de preparación para oposiciones con IA: AGE (Auxiliar C2, Administrativo C1, Gestión A2), Correos y Justicia (Auxilio, Tramitación, Gestión Procesal). Tests verificados, simulacros oficiales y Radar del Tribunal. 10.000+ plazas. Desde 0€.',
   keywords: [
     'oposiciones administracion general estado 2026',
     'oposiciones auxiliar administrativo 2026',
@@ -43,13 +43,17 @@ export const metadata: Metadata = {
     'preparar auxiliar administrativo estado',
     'test oposiciones online IA',
     'simulacro INAP auxiliar administrativo',
-    'examen administrativo estado',
-    'IA oposiciones administracion estado',
+    'oposiciones correos 2026',
+    'test correos online gratis',
+    'oposiciones justicia 2026',
+    'oposiciones auxilio judicial',
+    'oposiciones tramitacion procesal',
+    'IA oposiciones',
   ],
   openGraph: {
-    title: 'OpoRuta — Oposiciones AGE con IA: Auxiliar C2, Administrativo C1 y Gestión A2',
+    title: 'OpoRuta — Oposiciones con IA: AGE, Correos y Justicia',
     description:
-      'Tests verificados, simulacros INAP, Radar del Tribunal y supuesto práctico con IA. Auxiliar (C2) + Administrativo (C1) + Gestión GACE (A2). 5.500+ plazas. Empieza gratis.',
+      'Tests verificados, simulacros oficiales, Radar del Tribunal y supuesto práctico con IA. AGE + Correos + Justicia. 10.000+ plazas. Empieza gratis.',
     type: 'website',
     url: APP_URL_META,
     images: [{ url: `${APP_URL_META}/api/og?tipo=blog&tema=${encodeURIComponent('OpoRuta — El camino más corto hacia el aprobado')}`, width: 1200, height: 630 }],
@@ -59,8 +63,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'OpoRuta — Oposiciones AGE con IA: Auxiliar C2, Administrativo C1 y Gestión A2',
-    description: 'Tests verificados, simulacros INAP, Radar del Tribunal y supuesto práctico con IA. C2 + C1 + A2 GACE. Empieza gratis.',
+    title: 'OpoRuta — Oposiciones con IA: AGE, Correos y Justicia',
+    description: 'Tests verificados, simulacros oficiales, Radar del Tribunal y supuesto práctico con IA. AGE + Correos + Justicia. Empieza gratis.',
   },
 }
 
