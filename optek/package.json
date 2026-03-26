@@ -33,7 +33,8 @@
     "generate:free-bank": "tsx --env-file=.env.local execution/generate-free-bank.ts",
     "seed:supuestos": "tsx --env-file=.env.local execution/generate-supuesto-bank.ts",
     "scrape:ofimatica": "tsx execution/scrape-microsoft-learn.ts",
-    "ingest:ofimatica": "tsx --env-file=.env.local execution/ingest-conocimiento.ts"
+    "ingest:ofimatica": "tsx --env-file=.env.local execution/ingest-conocimiento.ts",
+    "ingest:correos": "tsx --env-file=.env.local execution/ingest-conocimiento-correos.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",

@@ -459,6 +459,26 @@ function getBloqueForTema(temaNumero: number): string {
   return 'ofimatica'
 }
 
+/**
+ * Detects if a tema has conocimiento_tecnico content (not Bloque II).
+ * Used for Correos operational temas that have content in conocimiento_tecnico
+ * but don't have bloque='II' in the temas table.
+ * Returns the bloque string if found, null otherwise.
+ */
+async function detectConocimientoBloque(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  supabase: any,
+  temaId: string
+): Promise<string | null> {
+  const { data } = await supabase
+    .from('conocimiento_tecnico')
+    .select('bloque')
+    .eq('tema_id', temaId)
+    .limit(1)
+    .maybeSingle()
+  return (data as { bloque?: string } | null)?.bloque ?? null
+}
+
 export async function buildContext(
   temaId: string,
   query?: string,
@@ -479,22 +499,26 @@ export async function buildContext(
   const temaNumero: number | null = temaRow?.numero ?? null
   const esBloqueII = temaRow?.bloque === 'II'
 
+  // Check if this tema has conocimiento_tecnico content (Bloque II ofimatica OR Correos operativo)
+  const conocimientoBloque = esBloqueII
+    ? getBloqueForTema(temaNumero!)
+    : await detectConocimientoBloque(supabase, temaId)
+
   let articulos: ArticuloContext[] = []
   let strategy: RetrievalContext['strategy'] = 'tema_ids'
   let weakArticulosCount = 0
 
-  if (esBloqueII) {
-    // ── Bloque II: buscar en conocimiento_tecnico ─────────────────────────────
-    // El Weakness RAG no aplica a Bloque II (no hay legislacion_id en preguntas técnicas)
-    const bloque = getBloqueForTema(temaNumero!)
-    const secciones = await retrieveByBloque(temaId, bloque, 15)
+  if (conocimientoBloque) {
+    // ── Conocimiento técnico: buscar en conocimiento_tecnico ─────────────────
+    // Aplica a Bloque II (ofimática AGE) y temas operativos (Correos, etc.)
+    const secciones = await retrieveByBloque(temaId, conocimientoBloque, 15)
 
     if (secciones.length > 0) {
       // Adaptar SeccionContext → ArticuloContext para reutilizar el formateo
       articulos = secciones.map((s) => ({
         id: s.id,
-        ley_nombre: `[${bloque.toUpperCase()}]`,
-        ley_codigo: bloque,
+        ley_nombre: `[${conocimientoBloque.toUpperCase()}]`,
+        ley_codigo: conocimientoBloque,
         articulo_numero: '',
         apartado: null,
         titulo_capitulo: s.titulo_seccion,
@@ -505,8 +529,8 @@ export async function buildContext(
     }
 
     logger.info(
-      { temaId, temaNumero, bloque, secciones: articulos.length },
-      '[retrieval] buildContext Bloque II'
+      { temaId, temaNumero, bloque: conocimientoBloque, secciones: articulos.length },
+      '[retrieval] buildContext conocimiento_tecnico'
     )
   } else {
     // ── Bloque I: buscar en legislacion ──────────────────────────────────────
@@ -602,11 +626,14 @@ export async function buildContext(
 
   const tokensEstimados = Math.ceil(totalChars / 4)
 
+  // esBloqueII is true for any tema using conocimiento_tecnico (Bloque II ofimatica, Correos operativo, etc.)
+  const usesConocimientoTecnico = !!conocimientoBloque
+
   logger.info(
     {
       temaId,
       temaNumero,
-      esBloqueII,
+      esBloqueII: usesConocimientoTecnico,
       userId: userId ? userId.slice(0, 8) : undefined,
       query: query?.slice(0, 50),
       articulos: articulosTruncados.length,
@@ -622,7 +649,7 @@ export async function buildContext(
     articulos: articulosTruncados,
     tokensEstimados,
     strategy,
-    esBloqueII,
+    esBloqueII: usesConocimientoTecnico,
     temaNumero,
     weakArticulosCount,
   }
