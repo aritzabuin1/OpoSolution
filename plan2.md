@@ -87,9 +87,9 @@
 - [x] Script tag:legislacion --rama correos creado
 - [x] Ejecutar `pnpm ingest:legislacion` — 10.476 artículos upserted
 - [x] Ejecutar `pnpm tag:legislacion --rama correos` — 2.679 artículos taggeados
-- [ ] Scrape contenido operativo correos.es (productos, tarifas, organización) — BLOQUEANTE para temas 3-5, 9
-- [x] Generar free bank parcial: temas legales (1,2,6,7,8,10,11,12) OK. Temas operativos (3-5,9) fallan — necesitan conocimiento_tecnico
-  - Fix: aliases LEY_POSTAL + RD_POSTAL registrados en citation-aliases.ts
+- [x] Contenido operativo Correos: 93 secciones ingestadas en conocimiento_tecnico (bloque='correos') + migration 056
+- [x] Free bank COMPLETA: 12/12 temas × 10 preguntas = 120 preguntas
+  - Fix: aliases LEY_POSTAL + RD_POSTAL + retrieval.ts detectConocimientoBloque()
 - [x] Descargar exámenes oficiales 2023 (REP+ATC, modelos A+B, plantillas) — 16 PDFs desde blob Correos
 - [x] Descargar exámenes oficiales 2021 (REP+ATC, modelos A+B) — 10 PDFs
 - [x] Parsear e ingestar exámenes 2023 en BD — 55 preguntas modelo A (REP) con `--oposicion correos`
