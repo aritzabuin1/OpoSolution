@@ -42,7 +42,12 @@ const navItems: NavItem[] = [
     premiumDesc: 'Descubre que articulos caen mas en los examenes INAP. Prioriza lo que el tribunal realmente pregunta.',
   },
   {
-    href: '/supuesto-practico', label: 'Supuesto Práctico', icon: FileText,
+    href: '/supuesto-test', label: 'Supuesto Test', icon: FileText,
+    premiumDesc: 'Practica el supuesto práctico con preguntas tipo test vinculadas a un caso real.',
+    featureKey: 'supuesto_test',
+  },
+  {
+    href: '/supuesto-practico', label: 'Supuesto Escrito', icon: FileText,
     premium: true,
     premiumDesc: 'Practica el segundo ejercicio con corrección IA usando la rúbrica oficial del INAP.',
     featureKey: 'supuesto_practico',
@@ -55,6 +60,7 @@ interface OposicionFeatures {
   psicotecnicos?: boolean
   cazatrampas?: boolean
   supuesto_practico?: boolean
+  supuesto_test?: boolean
   ofimatica?: boolean
 }
 

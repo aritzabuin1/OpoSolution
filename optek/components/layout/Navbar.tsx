@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { BarChart3, BookOpen, Brain, CalendarCheck, ClipboardList, LayoutDashboard, Layers, Lock, LogOut, Menu, Target, TrendingUp, Trophy, User, X } from 'lucide-react'
+import { BarChart3, BookOpen, Brain, CalendarCheck, ClipboardList, FileText, LayoutDashboard, Layers, Lock, LogOut, Menu, Target, TrendingUp, Trophy, User, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { createClient } from '@/lib/supabase/client'
 import { NotificationBell } from '@/components/shared/NotificationBell'
@@ -32,11 +32,12 @@ const navItems: NavItem[] = [
   { href: '/cazatrampas', label: 'Caza-Trampas', icon: Target, tourId: 'nav-cazatrampas' },
   { href: '/reto-diario', label: 'Reto Diario', icon: CalendarCheck, tourId: 'nav-reto-diario' },
   { href: '/radar', label: 'Radar Tribunal', icon: TrendingUp, premium: true, tourId: 'nav-radar' },
+  { href: '/supuesto-test', label: 'Supuesto Test', icon: FileText, featureKey: 'supuesto_test' },
   { href: '/logros', label: 'Logros', icon: Trophy },
   { href: '/cuenta', label: 'Mi cuenta', icon: User },
 ]
 
-export function Navbar({ isAdmin = false, features }: { isAdmin?: boolean; features?: { psicotecnicos?: boolean; cazatrampas?: boolean; supuesto_practico?: boolean } }) {
+export function Navbar({ isAdmin = false, features }: { isAdmin?: boolean; features?: { psicotecnicos?: boolean; cazatrampas?: boolean; supuesto_practico?: boolean; supuesto_test?: boolean } }) {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
   const router = useRouter()

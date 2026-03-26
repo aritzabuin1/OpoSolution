@@ -385,49 +385,52 @@ Lógica basada en `scoring_config.ejercicios`:
 - [x] Migration 053: Fix scoring_config Correos (reserva 0→10, min_aprobado por puesto)
 - [x] **AUDITORÍA**: Migration 049 (Justicia ×3) verificada campo por campo contra BOE-A-2025-27053 — CERO discrepancias
 - [x] **EXÁMENES DESCARGADOS**: Correos 26 PDFs (2021+2023), Auxilio 22 PDFs (2008-2025), Tramitación 14 PDFs (2011-2025), Gestión 14 PDFs (2023-2025)
-- [ ] Ingestar supuesto oficial 2024 (Supuesto I) en `free_supuesto_bank` → free users ven este
+- [x] Ingestar supuesto oficial 2024 (Supuesto I) en `free_supuesto_bank` → free users ven este
+  - Script `execution/ingest-supuestos-bank.ts` + `pnpm ingest:supuestos` (pendiente ejecutar tras aplicar migration 052)
 
 #### Fase 2.5b — Backend generación IA (módulo genérico)
-- [ ] Crear `lib/ai/supuesto-test.ts` (genérico, NO específico de C1):
+- [x] Crear `lib/ai/supuesto-test.ts` (genérico, NO específico de C1):
   - Interface `SupuestoTestConfig` parametrizable (numCasos, preguntasPorCaso, etc.)
-  - Prompt factory: `getSupuestoTestPrompt(config, contextoLegal)` con templates por rama:
+  - Prompt factory: `getSystemPrompt(config)` + `buildUserPrompt(config, contextoLegal)` con templates por rama:
     - `administrativo`: caso de funcionario en organismo AGE (LPAC, EBEP, presupuestos)
     - `procesal`: caso de diligencias judiciales (LEC, LECrim, ejecuciones)
-  - Few-shot: incluir supuesto oficial como ejemplo (AGE 2024, Justicia sept 2025)
-  - Output: `{titulo, escenario, preguntas: Pregunta[N]}`
-  - Validación post-generación: rechazar si cobertura temática insuficiente
-- [ ] Crear `/api/ai/generate-supuesto-test` (endpoint único para todas las oposiciones):
+  - Few-shot: ejemplo oficial INAP 2024 (Supuesto I)
+  - Output: `SupuestoGeneradoSchema` (Zod): `{titulo, escenario, bloques_cubiertos, preguntas[]}`
+  - Validación post-generación: rechazar si < 50% preguntas esperadas
+  - 4 configs: administrativo-estado, auxilio-judicial, tramitacion-procesal, gestion-procesal
+- [x] Crear `/api/ai/generate-supuesto-test` (endpoint único para todas las oposiciones):
   - Detecta oposición del usuario → carga `SupuestoTestConfig` correspondiente
-  - Free user: servir de `free_supuesto_bank` (check: ya lo ha hecho? → paywall)
+  - Free user: servir de `free_supuesto_bank` (check: ya lo ha hecho? → paywall 402)
   - Premium user: servir de `supuesto_bank` (unseen, filtrado por oposicion_id)
   - Si no hay unseen → generar con IA → guardar en banco (scoped por oposicion_id)
   - Guardar test en `tests_generados` con `tipo='supuesto_test'` + `supuesto_caso` JSON
   - `prompt_version: 'free-supuesto-1.0'` | `'supuesto-bank-1.0'` | `'ai-supuesto-test-1.0'`
-  - Para Auxilio (2 casos): generar 2 casos en paralelo, concatenar preguntas
+  - Fallback: si IA falla, sirve cualquier supuesto del banco (aunque sea repetido)
+  - Rate limit: 5/día
 - [ ] Verificación legal: reutilizar batch verification existente
 - [ ] Script seed: `execution/generate-supuesto-bank.ts --oposicion <slug>`
   - AGE C1: pre-generar 5 supuestos ($1.75)
   - Justicia: pre-generar cuando se activen (mismo script, distinto --oposicion)
 
 #### Fase 2.5c — Frontend (genérico)
-- [ ] Página `/supuesto-practico-test` (genérica, adapta contenido por oposición):
-  - Explicación del formato + datos del examen real (distintos por oposición)
-  - Botón "Practicar supuesto práctico"
+- [x] Página `/supuesto-test` (genérica, adapta contenido por oposición):
+  - Explicación del formato + stats del examen (preguntas, tiempo, max, min aprobado)
+  - SupuestoTestLauncher: CTA con loading state, paywall para free que ya lo hizo
   - Free: badge "1 supuesto gratis (examen oficial)"
-  - Premium: badge "Supuestos ilimitados"
-- [ ] Adaptar `tests/[id]/page.tsx` para `tipo === 'supuesto_test'`:
-  - Cabecera dinámica: "Supuesto Práctico — [nombre oposición]"
-  - **Desktop**: split view — caso a la izquierda (sticky), preguntas a la derecha
-  - **Mobile**: drawer/sheet colapsable "Ver caso" con FAB, preguntas debajo
-  - Para Auxilio (2 casos): separador visual entre Caso 1 y Caso 2
-  - Timer: usar `scoring_config.ejercicios[N].minutos` (60/30 min) o referencia si compartido
+  - Premium: contador de supuestos practicados
+- [x] Adaptar `tests/[id]/page.tsx` para `tipo === 'supuesto_test'`:
+  - Cabecera dinámica indigo "Supuesto Práctico" + badges
+  - Fetch `supuesto_caso` de tests_generados
+  - **Desktop**: split view (SupuestoTestRunner) — caso sticky izquierda, TestRunner derecha
+  - **Mobile**: caso colapsable + FAB "Ver caso" cuando colapsado
+  - Timer: busca ejercicio "supuesto/práctico" en scoring_config
+- [x] Sidebar + Navbar: "Supuesto Test" con featureKey `supuesto_test`
+- [x] Migration 054: `supuesto_test: true` en features de C1 AGE + 3 Justicia
 - [ ] Adaptar `tests/[id]/resultados/page.tsx`:
   - Puntuación sobre max del ejercicio (50, 40, 20, 15 según oposición)
   - Desglose por área temática
   - AGE C1: "Con esta nota + tu Parte 1 → ¿habrías aprobado?"
   - Justicia: "Has superado / no has superado el mínimo eliminatorio"
-- [ ] Sidebar: mostrar "Supuesto Práctico" si la oposición tiene ejercicio supuesto en scoring_config
-- [ ] Freemium gating: PaywallGate con code `PAYWALL_SUPUESTO_TEST`
 
 #### Fase 2.5d — Integración con simulacro completo (nice-to-have)
 - [ ] AGE C1: "Examen completo: Parte 1 (70 preguntas) + Parte 2 (supuesto)"

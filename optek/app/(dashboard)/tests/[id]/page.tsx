@@ -11,8 +11,9 @@ import type { Metadata } from 'next'
 import { notFound, redirect } from 'next/navigation'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { TestRunner } from '@/components/tests/TestRunner'
+import { SupuestoTestRunner } from '@/components/supuesto-test/SupuestoTestRunner'
 import { Badge } from '@/components/ui/badge'
-import { Trophy, RefreshCw } from 'lucide-react'
+import { Trophy, RefreshCw, FileText } from 'lucide-react'
 import type { Pregunta } from '@/types/ai'
 import { JsonLd } from '@/components/shared/JsonLd'
 
@@ -35,7 +36,9 @@ export async function generateMetadata({ params }: TestDetailPageProps): Promise
   if (!data) return {}
 
   const title =
-    data.tipo === 'simulacro' && data.examen_oficial_id
+    data.tipo === 'supuesto_test'
+      ? 'Supuesto Práctico'
+      : data.tipo === 'simulacro' && data.examen_oficial_id
       ? 'Simulacro INAP'
       : data.tipo === 'repaso_errores'
       ? 'Repaso de errores'
@@ -58,7 +61,7 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: test, error } = await (supabase as any)
     .from('tests_generados')
-    .select('id, preguntas, completado, tipo, examen_oficial_id, tema_id, oposicion_id, temas(titulo)')
+    .select('id, preguntas, completado, tipo, examen_oficial_id, tema_id, oposicion_id, supuesto_caso, temas(titulo)')
     .eq('id', id)
     .eq('user_id', user.id)
     .single()
@@ -73,7 +76,11 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
   const preguntas = test.preguntas as unknown as Pregunta[]
   const esSimulacro = test.tipo === 'simulacro' && !!test.examen_oficial_id
   const esRepaso = test.tipo === 'repaso_errores'
-  const temaTitulo = esSimulacro
+  const esSupuestoTest = test.tipo === 'supuesto_test'
+  const supuestoCaso = test.supuesto_caso as { titulo?: string; escenario?: string; bloques_cubiertos?: string[] } | null
+  const temaTitulo = esSupuestoTest
+    ? 'Supuesto Práctico'
+    : esSimulacro
     ? 'Simulacro Oficial INAP'
     : esRepaso
     ? 'Repaso de errores'
@@ -83,22 +90,33 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
   // Cada oposición tiene distinto nº de preguntas y tiempo (C2: 100q/90min, C1: 90q/100min, etc.)
   let fullExamQuestions = 100
   let fullExamSeconds = 90 * 60
+  let tiempoLimiteSupuesto: number | undefined
   if (test.oposicion_id) {
     const serviceSupabase = await createServiceClient()
-    const { data: opoData } = await serviceSupabase
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: opoData } = await (serviceSupabase as any)
       .from('oposiciones')
       .select('scoring_config')
       .eq('id', test.oposicion_id)
       .single()
-    const sc = opoData?.scoring_config as { ejercicios?: { preguntas?: number; minutos?: number | null }[]; minutos_total?: number } | null
+    const sc = (opoData as { scoring_config?: unknown } | null)?.scoring_config as { ejercicios?: { nombre?: string; preguntas?: number; minutos?: number | null }[]; minutos_total?: number } | null
     if (sc?.ejercicios?.[0]) {
       fullExamQuestions = sc.ejercicios[0].preguntas ?? 100
-      // Usar minutos del ejercicio, o minutos_total si es compartido (C1 AGE: null por ejercicio, 100 min total)
       const minutos = sc.ejercicios[0].minutos ?? sc.minutos_total ?? 90
       fullExamSeconds = minutos * 60
     }
+    // For supuesto_test: use the supuesto exercise timer if available
+    if (esSupuestoTest && sc?.ejercicios) {
+      const ejSup = sc.ejercicios.find(e => (e.nombre?.toLowerCase().includes('supuesto') || e.nombre?.toLowerCase().includes('práctico')))
+      if (ejSup?.minutos) {
+        tiempoLimiteSupuesto = ejSup.minutos * 60
+      }
+    }
   }
-  const tiempoLimite = esSimulacro
+
+  const tiempoLimite = esSupuestoTest
+    ? tiempoLimiteSupuesto
+    : esSimulacro
     ? Math.round((preguntas.length / fullExamQuestions) * fullExamSeconds)
     : undefined
 
@@ -139,12 +157,35 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
           </div>
         </div>
       )}
-      <TestRunner
-        testId={id}
-        preguntas={preguntas}
-        temaTitulo={temaTitulo}
-        tiempoLimiteSegundos={tiempoLimite}
-      />
+
+      {/* Cabecera contextual para supuesto práctico test */}
+      {esSupuestoTest && (
+        <div className="flex items-center gap-2 rounded-lg bg-indigo-50 border border-indigo-200 px-4 py-3">
+          <FileText className="h-4 w-4 text-indigo-600 shrink-0" />
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-sm font-medium text-indigo-800">Supuesto Práctico</span>
+            <Badge variant="secondary" className="text-[10px]">Caso + preguntas test</Badge>
+            {tiempoLimite && <Badge variant="outline" className="text-[10px]">{Math.round(tiempoLimite / 60)} min</Badge>}
+          </div>
+        </div>
+      )}
+
+      {esSupuestoTest && supuestoCaso ? (
+        <SupuestoTestRunner
+          testId={id}
+          preguntas={preguntas}
+          caso={supuestoCaso}
+          temaTitulo={supuestoCaso.titulo ?? 'Supuesto Práctico'}
+          tiempoLimiteSegundos={tiempoLimite}
+        />
+      ) : (
+        <TestRunner
+          testId={id}
+          preguntas={preguntas}
+          temaTitulo={temaTitulo}
+          tiempoLimiteSegundos={tiempoLimite}
+        />
+      )}
     </div>
     </>
   )
