@@ -40,8 +40,16 @@ const EXAMENES_DIR = resolveExamenesDir()
 
 // Map directory to oposición slug
 function resolveOposicionSlug(): string {
+  // Support --oposicion <slug> flag for explicit override
+  const opoIdx = process.argv.indexOf('--oposicion')
+  if (opoIdx !== -1 && process.argv[opoIdx + 1]) return process.argv[opoIdx + 1]
+
   const dirIdx = process.argv.indexOf('--dir')
   const dirName = dirIdx !== -1 ? process.argv[dirIdx + 1] : ''
+  if (dirName?.includes('correos')) return 'correos'
+  if (dirName?.includes('auxilio')) return 'auxilio-judicial'
+  if (dirName?.includes('tramitacion')) return 'tramitacion-procesal'
+  if (dirName?.includes('gestion_procesal')) return 'gestion-procesal'
   if (dirName?.includes('a2') || dirName?.includes('gace')) return 'gestion-estado'
   if (dirName?.includes('c1')) return 'administrativo-estado'
   return 'aux-admin-estado'
@@ -261,10 +269,10 @@ function discoverParsedJsons(targetAnno?: string): JsonDescubierto[] {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
-  // Filter out --dir flag and its value from positional args
+  // Filter out --dir and --oposicion flags and their values from positional args
   const positionalArgs = process.argv.slice(2).filter((arg, i, arr) => {
-    if (arg === '--dir') return false
-    if (i > 0 && arr[i - 1] === '--dir') return false
+    if (arg === '--dir' || arg === '--oposicion') return false
+    if (i > 0 && (arr[i - 1] === '--dir' || arr[i - 1] === '--oposicion')) return false
     return true
   })
   const [targetAnno] = positionalArgs
