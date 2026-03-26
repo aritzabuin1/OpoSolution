@@ -91,7 +91,7 @@
 - [ ] Generar free bank: `pnpm generate:free-bank --oposicion correos`
 - [x] Descargar exámenes oficiales 2023 (REP+ATC, modelos A+B, plantillas) — 16 PDFs desde blob Correos
 - [x] Descargar exámenes oficiales 2021 (REP+ATC, modelos A+B) — 10 PDFs
-- [ ] Parsear e ingestar exámenes 2023 en BD
+- [x] Parsear e ingestar exámenes 2023 en BD — 55 preguntas modelo A (REP) con `--oposicion correos`
 - [ ] Generar free bank: `pnpm generate:free-bank --oposicion correos`
 
 ### 1.3 Landing SEO Correos
@@ -140,8 +140,8 @@
 - [x] Script tag:legislacion --rama justicia creado con reglas de tagging
 - [x] Ejecutar `pnpm ingest:legislacion` — 10.476 artículos upserted (compartido con Correos)
 - [x] Ejecutar `pnpm tag:legislacion --rama justicia` — 20.941 artículos taggeados
-- [ ] Verificar temas ACTUALIZADOS por LO 1/2025: T8, T10, T16, T18
-- [ ] Fix: tema_ids no resueltos para Gestión Procesal (temas 17-22, 60, 66, 67) — verificar numeración en migración 049
+- [x] Verificar temas ACTUALIZADOS por LO 1/2025: T8, T10, T16 OK (ya tagged [LO 1/2025]). T18 no afectado (LECrim no reformada)
+- [x] Fix: tema_ids no resueltos para Gestión Procesal → Migration 055 inserta temas 17-68 (52 temas). Tagging LO_SPJ corregido
 
 ### 2.3 Contenido Justicia — Exámenes oficiales
 - [x] Directorios creados: examenes_auxilio/, examenes_tramitacion/, examenes_gestion_procesal/
