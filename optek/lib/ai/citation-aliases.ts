@@ -112,6 +112,60 @@ export const CITATION_ALIASES: Record<string, string> = {
   'contratos del sector publico': 'LCSP',
   'contratación pública': 'LCSP',
   'contratacion publica': 'LCSP',
+
+  // LEY_POSTAL — Ley 43/2010, del servicio postal universal
+  'ley postal': 'LEY_POSTAL',
+  'ley_postal': 'LEY_POSTAL',
+  'ley 43/2010': 'LEY_POSTAL',
+  'servicio postal universal': 'LEY_POSTAL',
+  'servicio postal': 'LEY_POSTAL',
+  'ley del servicio postal': 'LEY_POSTAL',
+
+  // RD_POSTAL — RD 1829/1999, Reglamento de servicios postales
+  'rd postal': 'RD_POSTAL',
+  'rd_postal': 'RD_POSTAL',
+  'rd 1829/1999': 'RD_POSTAL',
+  'reglamento postal': 'RD_POSTAL',
+  'reglamento de servicios postales': 'RD_POSTAL',
+  'reglamento servicios postales': 'RD_POSTAL',
+
+  // LEC — Ley 1/2000, de Enjuiciamiento Civil
+  'lec': 'LEC',
+  'ley 1/2000': 'LEC',
+  'enjuiciamiento civil': 'LEC',
+  'ley de enjuiciamiento civil': 'LEC',
+
+  // LECrim — LECrim 1882, de Enjuiciamiento Criminal
+  'lecrim': 'LECrim',
+  'lecriminal': 'LECrim',
+  'ley de enjuiciamiento criminal': 'LECrim',
+  'enjuiciamiento criminal': 'LECrim',
+
+  // PRL — Ley 31/1995, de Prevención de Riesgos Laborales
+  'prl': 'PRL',
+  'ley 31/1995': 'PRL',
+  'prevención de riesgos': 'PRL',
+  'prevencion de riesgos': 'PRL',
+  'riesgos laborales': 'PRL',
+  'prevención de riesgos laborales': 'PRL',
+
+  // LO_SPJ — LO 1/2025, del Servicio Público de Justicia
+  'lo_spj': 'LO_SPJ',
+  'lo 1/2025': 'LO_SPJ',
+  'servicio público de justicia': 'LO_SPJ',
+  'servicio publico de justicia': 'LO_SPJ',
+
+  // SUBVENCIONES — Ley 38/2003, General de Subvenciones
+  'subvenciones': 'SUBVENCIONES',
+  'ley 38/2003': 'SUBVENCIONES',
+  'ley de subvenciones': 'SUBVENCIONES',
+  'ley general de subvenciones': 'SUBVENCIONES',
+
+  // LGSS — RDL 8/2015, Ley General de la Seguridad Social
+  'lgss': 'LGSS',
+  'rdl 8/2015': 'LGSS',
+  'seguridad social': 'LGSS',
+  'ley general de la seguridad social': 'LGSS',
 }
 
 // Mapa compacto: "número/año" → ley_nombre en BD
@@ -130,6 +184,13 @@ const LEY_POR_NUMERO: Record<string, string> = {
   '50/1997': 'LGOB',
   '19/2013': 'TRANSPARENCIA',
   '9/2017': 'LCSP',
+  '43/2010': 'LEY_POSTAL',
+  '1829/1999': 'RD_POSTAL',
+  '1/2000': 'LEC',
+  '31/1995': 'PRL',
+  '1/2025': 'LO_SPJ',
+  '38/2003': 'SUBVENCIONES',
+  '8/2015': 'LGSS',
 }
 
 // Regex para extraer patrón "X/YYYY" de cadenas como "Ley 39/2015", "LO 3/2018", "RDLeg 5/2015"
