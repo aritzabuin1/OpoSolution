@@ -144,6 +144,7 @@ const TYPE_ICONS: Record<string, string> = {
   analysis: '🔬',
   purchase: '💳',
   supuesto: '📄',
+  nurture: '📧',
 }
 
 const TYPE_COLORS: Record<string, string> = {
@@ -153,6 +154,7 @@ const TYPE_COLORS: Record<string, string> = {
   analysis: 'border-purple-200',
   purchase: 'border-emerald-200',
   supuesto: 'border-amber-200',
+  nurture: 'border-pink-200',
 }
 
 function TimelineRow({ event }: { event: TimelineEvent }) {

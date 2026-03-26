@@ -9,7 +9,7 @@
 import { redirect } from 'next/navigation'
 import { verifyAdmin } from '@/lib/admin/auth'
 import Link from 'next/link'
-import { Activity, BarChart3, BookOpen, Calendar, LineChart, Server, Settings, Users } from 'lucide-react'
+import { Activity, BarChart3, BookOpen, Calendar, LineChart, Mail, Server, Settings, Users } from 'lucide-react'
 import { ExportMetricsButton } from '@/components/admin/ExportMetricsButton'
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -68,6 +68,13 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           >
             <BookOpen className="h-3.5 w-3.5 shrink-0" />
             Contenido
+          </Link>
+          <Link
+            href="/admin/nurture"
+            className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
+          >
+            <Mail className="h-3.5 w-3.5 shrink-0" />
+            Nurture
           </Link>
           <Link
             href="/admin/activity"

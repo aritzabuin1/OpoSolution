@@ -49,7 +49,7 @@ export interface UserDetail {
 }
 
 export interface TimelineEvent {
-  type: 'register' | 'test' | 'test_completed' | 'analysis' | 'purchase' | 'supuesto'
+  type: 'register' | 'test' | 'test_completed' | 'analysis' | 'purchase' | 'supuesto' | 'nurture'
   date: string
   detail: string
   meta?: Record<string, unknown>
@@ -280,7 +280,204 @@ export async function getUserTimeline(userId: string, limit = 50): Promise<Timel
     })
   }
 
+  // Nurture emails
+  const { data: nurtureRows } = await supabase
+    .from('nurture_emails_sent')
+    .select('email_key, sent_at')
+    .eq('user_id', userId)
+    .order('sent_at', { ascending: false })
+
+  for (const n of (nurtureRows ?? []) as Array<{ email_key: string; sent_at: string }>) {
+    events.push({
+      type: 'nurture',
+      date: n.sent_at,
+      detail: `Nurture email: ${n.email_key}`,
+      meta: { emailKey: n.email_key },
+    })
+  }
+
   // Sort by date descending
   events.sort((a, b) => b.date.localeCompare(a.date))
   return events.slice(0, limit)
+}
+
+// ─── Nurture Emails per User ─────────────────────────────────────────────────
+
+export interface NurtureEmailSent {
+  emailKey: string
+  sentAt: string
+}
+
+export async function getUserNurtureEmails(userId: string): Promise<NurtureEmailSent[]> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const supabase = await createServiceClient() as any
+
+  const { data } = await supabase
+    .from('nurture_emails_sent')
+    .select('email_key, sent_at')
+    .eq('user_id', userId)
+    .order('sent_at', { ascending: true })
+
+  return ((data ?? []) as Array<{ email_key: string; sent_at: string }>).map(r => ({
+    emailKey: r.email_key,
+    sentAt: r.sent_at,
+  }))
+}
+
+// ─── Global Nurture Funnel ───────────────────────────────────────────────────
+
+export interface NurtureFunnelRow {
+  emailKey: string
+  sent: number
+  optedOut: number
+  converted: number
+  optOutEmails: string[]
+  convertedEmails: string[]
+}
+
+export async function getNurtureFunnel(): Promise<NurtureFunnelRow[]> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const supabase = await createServiceClient() as any
+
+  // All sent nurture emails
+  const { data: allSent } = await supabase
+    .from('nurture_emails_sent')
+    .select('user_id, email_key, sent_at')
+    .order('sent_at', { ascending: true })
+
+  const sentRows = (allSent ?? []) as Array<{ user_id: string; email_key: string; sent_at: string }>
+
+  // Users who opted out
+  const { data: optedOutProfiles } = await supabase
+    .from('profiles')
+    .select('id, email, email_nurture_opt_out')
+    .eq('email_nurture_opt_out', true)
+
+  const optedOutMap = new Map(
+    ((optedOutProfiles ?? []) as Array<{ id: string; email: string }>).map(p => [p.id, p.email])
+  )
+
+  // Users who purchased (converted)
+  const { data: purchasers } = await supabase
+    .from('compras')
+    .select('user_id, created_at')
+    .order('created_at', { ascending: true })
+
+  const purchaseMap = new Map<string, string>() // userId → first purchase date
+  for (const p of (purchasers ?? []) as Array<{ user_id: string; created_at: string }>) {
+    if (!purchaseMap.has(p.user_id)) purchaseMap.set(p.user_id, p.created_at)
+  }
+
+  // Get emails for all users who received nurture
+  const nurtureUserIds = [...new Set(sentRows.map(r => r.user_id))]
+  const { data: profilesData } = await supabase
+    .from('profiles')
+    .select('id, email')
+    .in('id', nurtureUserIds.length > 0 ? nurtureUserIds : ['none'])
+
+  const emailMap = new Map(
+    ((profilesData ?? []) as Array<{ id: string; email: string }>).map(p => [p.id, p.email])
+  )
+
+  // Group by email_key
+  const byKey = new Map<string, { userIds: Set<string>; lastSentPerUser: Map<string, string> }>()
+  for (const r of sentRows) {
+    if (!byKey.has(r.email_key)) byKey.set(r.email_key, { userIds: new Set(), lastSentPerUser: new Map() })
+    const entry = byKey.get(r.email_key)!
+    entry.userIds.add(r.user_id)
+    entry.lastSentPerUser.set(r.user_id, r.sent_at)
+  }
+
+  // For each email_key, find the LAST nurture email sent to each user before they opted out or purchased
+  // A user "opted out on email X" = X was the last nurture they received before opting out
+  // A user "converted after email X" = X was the last nurture they received before purchasing
+
+  // Build per-user: ordered list of nurture emails received
+  const userNurtureOrder = new Map<string, Array<{ key: string; sentAt: string }>>()
+  for (const r of sentRows) {
+    if (!userNurtureOrder.has(r.user_id)) userNurtureOrder.set(r.user_id, [])
+    userNurtureOrder.get(r.user_id)!.push({ key: r.email_key, sentAt: r.sent_at })
+  }
+
+  // For opted-out users: last email before opt-out
+  const optOutOnEmail = new Map<string, string[]>() // emailKey → emails[]
+  for (const [userId] of optedOutMap) {
+    const nurtures = userNurtureOrder.get(userId)
+    if (nurtures && nurtures.length > 0) {
+      const lastKey = nurtures[nurtures.length - 1].key
+      if (!optOutOnEmail.has(lastKey)) optOutOnEmail.set(lastKey, [])
+      optOutOnEmail.get(lastKey)!.push(emailMap.get(userId) ?? userId)
+    }
+  }
+
+  // For converted users: last nurture email before first purchase
+  const convertedOnEmail = new Map<string, string[]>() // emailKey → emails[]
+  for (const [userId, purchaseDate] of purchaseMap) {
+    const nurtures = userNurtureOrder.get(userId)
+    if (nurtures && nurtures.length > 0) {
+      // Last nurture sent BEFORE purchase
+      const before = nurtures.filter(n => n.sentAt < purchaseDate)
+      if (before.length > 0) {
+        const lastKey = before[before.length - 1].key
+        if (!convertedOnEmail.has(lastKey)) convertedOnEmail.set(lastKey, [])
+        convertedOnEmail.get(lastKey)!.push(emailMap.get(userId) ?? userId)
+      }
+    }
+  }
+
+  // Build funnel rows
+  const EMAIL_ORDER = [
+    'activation_d2', 'first_test_analysis', 'value_radar_d5', 'progress_d10',
+    'wall_hit', 'urgency_d21', 'final_30d', 'hot_lead_5', 'hot_lead_10',
+  ]
+
+  const result: NurtureFunnelRow[] = []
+  for (const key of EMAIL_ORDER) {
+    const entry = byKey.get(key)
+    result.push({
+      emailKey: key,
+      sent: entry?.userIds.size ?? 0,
+      optedOut: optOutOnEmail.get(key)?.length ?? 0,
+      converted: convertedOnEmail.get(key)?.length ?? 0,
+      optOutEmails: optOutOnEmail.get(key) ?? [],
+      convertedEmails: convertedOnEmail.get(key) ?? [],
+    })
+  }
+
+  // Add any keys not in the predefined order
+  for (const [key, entry] of byKey) {
+    if (!EMAIL_ORDER.includes(key)) {
+      result.push({
+        emailKey: key,
+        sent: entry.userIds.size,
+        optedOut: optOutOnEmail.get(key)?.length ?? 0,
+        converted: convertedOnEmail.get(key)?.length ?? 0,
+        optOutEmails: optOutOnEmail.get(key) ?? [],
+        convertedEmails: convertedOnEmail.get(key) ?? [],
+      })
+    }
+  }
+
+  return result
+}
+
+// ─── Waitlist ────────────────────────────────────────────────────────────────
+
+export interface WaitlistEntry {
+  email: string
+  oposicionSlug: string
+  createdAt: string
+  notifiedAt: string | null
+}
+
+export async function getWaitlistEntries(): Promise<WaitlistEntry[]> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const supabase = await createServiceClient() as any
+  const { data } = await supabase
+    .from('waitlist')
+    .select('email, oposicion_slug, created_at, notified_at')
+    .order('created_at', { ascending: false })
+
+  return ((data ?? []) as Array<{ email: string; oposicion_slug: string; created_at: string; notified_at: string | null }>)
+    .map(r => ({ email: r.email, oposicionSlug: r.oposicion_slug, createdAt: r.created_at, notifiedAt: r.notified_at }))
 }
