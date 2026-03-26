@@ -87,12 +87,12 @@
 - [x] Script tag:legislacion --rama correos creado
 - [x] Ejecutar `pnpm ingest:legislacion` — 10.476 artículos upserted
 - [x] Ejecutar `pnpm tag:legislacion --rama correos` — 2.679 artículos taggeados
-- [ ] Scrape contenido operativo correos.es (productos, tarifas, organización) — EN PROGRESO
-- [ ] Generar free bank: `pnpm generate:free-bank --oposicion correos`
+- [ ] Scrape contenido operativo correos.es (productos, tarifas, organización) — BLOQUEANTE para temas 3-5, 9
+- [x] Generar free bank parcial: temas legales (1,2,6,7,8,10,11,12) OK. Temas operativos (3-5,9) fallan — necesitan conocimiento_tecnico
+  - Fix: aliases LEY_POSTAL + RD_POSTAL registrados en citation-aliases.ts
 - [x] Descargar exámenes oficiales 2023 (REP+ATC, modelos A+B, plantillas) — 16 PDFs desde blob Correos
 - [x] Descargar exámenes oficiales 2021 (REP+ATC, modelos A+B) — 10 PDFs
 - [x] Parsear e ingestar exámenes 2023 en BD — 55 preguntas modelo A (REP) con `--oposicion correos`
-- [ ] Generar free bank: `pnpm generate:free-bank --oposicion correos`
 
 ### 1.3 Landing SEO Correos
 - [x] Crear `app/(marketing)/oposiciones/correos/page.tsx`
@@ -147,7 +147,9 @@
 - [x] Directorios creados: examenes_auxilio/, examenes_tramitacion/, examenes_gestion_procesal/
 - [x] ingest-examenes.ts adaptado para slugs Justicia (auxilio-judicial, tramitacion-procesal, gestion-procesal)
 - [x] Descargar cuadernillos + plantillas de MJU — Auxilio 22 PDFs (2008-2025), Tramitación 14 PDFs (2011-2025), Gestión 14 PDFs (2023-2025)
-- [ ] Parsear PDFs con execution/ingest-examenes.ts
+- [x] Parsear Auxilio 2024: `parsed_a.json` — 99 preguntas con plantilla (regex OK)
+- [ ] Ingestar Auxilio 2024: `pnpm ingest:examenes --dir examenes_auxilio --oposicion auxilio-judicial 2024`
+- [ ] Parsear + ingestar Auxilio 2025, Tramitación 2024/2025, Gestión 2024/2025
 - [ ] Insertar en examenes_oficiales + preguntas_oficiales
 
 ### 2.4 Contenido Justicia — Free bank
@@ -408,9 +410,9 @@ Lógica basada en `scoring_config.ejercicios`:
   - Fallback: si IA falla, sirve cualquier supuesto del banco (aunque sea repetido)
   - Rate limit: 5/día
 - [ ] Verificación legal: reutilizar batch verification existente
-- [ ] Script seed: `execution/generate-supuesto-bank.ts --oposicion <slug>`
-  - AGE C1: pre-generar 5 supuestos ($1.75)
-  - Justicia: pre-generar cuando se activen (mismo script, distinto --oposicion)
+- [x] Script seed: `execution/generate-supuesto-bank.ts` creado (opcional — banco se llena solo con uso premium)
+  - 2 supuestos oficiales INAP 2024 ya en banco → primeros premium tienen contenido día 1
+  - Ejecutar solo si se quiere pre-poblar: `pnpm seed:supuestos --oposicion <slug> --count 5`
 
 #### Fase 2.5c — Frontend (genérico)
 - [x] Página `/supuesto-test` (genérica, adapta contenido por oposición):
