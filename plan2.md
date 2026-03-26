@@ -103,9 +103,9 @@
 - [x] Actualizar `app/sitemap.ts` con nueva ruta
 
 ### 1.4 Activación Correos
-- [ ] Verificar: free bank completo (12 temas × 10 preguntas)
-- [ ] Verificar: legislación indexada
-- [ ] Verificar: Stripe producto creado + env var
+- [x] Verificar: free bank completo (12/12 temas × 10 preguntas = 120 preguntas)
+- [x] Verificar: legislación indexada (2.679 artículos + 93 secciones conocimiento_tecnico)
+- [ ] Verificar: Stripe producto creado + env var ← MANUAL
 - [ ] `UPDATE oposiciones SET activa = true WHERE slug = 'correos'`
 - [ ] Deploy y probar flujo completo
 
@@ -153,9 +153,10 @@
 - [ ] Insertar en examenes_oficiales + preguntas_oficiales
 
 ### 2.4 Contenido Justicia — Free bank
-- [ ] Generar para Auxilio: `pnpm generate:free-bank --oposicion auxilio-judicial`
-- [ ] Generar para Tramitación: `pnpm generate:free-bank --oposicion tramitacion-procesal`
-- [ ] Generar para Gestión: `pnpm generate:free-bank --oposicion gestion-procesal`
+- [x] Ingestar Auxilio 2024: 59 preguntas oficiales
+- [x] Free bank Auxilio: 25/26 temas (250 preguntas). Tema 14 "Régimen disciplinario" pendiente (no bloqueante)
+- [ ] Free bank Tramitación: EN PROGRESO (~29/37)
+- [ ] Free bank Gestión: EN PROGRESO (~27/68)
 
 ### 2.5 Rúbrica supuesto práctico A2
 - [ ] Investigar criterios corrección tribunal para Gestión Procesal
@@ -173,7 +174,7 @@
 - [x] Actualizar sitemap.ts
 
 ### 2.7 Activación progresiva Justicia
-- [ ] Fase 2a: Activar Auxilio C2 (26 temas, ~24k inscritos)
+- [ ] Fase 2a: Activar Auxilio Judicial (26 temas, ~24k inscritos) — free bank 25/26 ✅, examen 2024 59q ✅, falta Stripe
 - [ ] Fase 2b: Activar Tramitación C1 (37 temas, ~30k inscritos)
 - [ ] Fase 2c: Activar Gestión A2 (68 temas, necesita corrección IA desarrollo)
 
