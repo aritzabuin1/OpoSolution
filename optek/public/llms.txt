@@ -1,6 +1,6 @@
-# OpoRuta — Plataforma de preparación de oposiciones AGE con IA
+# OpoRuta — Plataforma de preparación de oposiciones con IA (AGE, Correos, Justicia)
 
-> OpoRuta (https://oporuta.es) es una plataforma web española para preparar oposiciones a la Administración General del Estado (AGE). Cubre tres oposiciones: Auxiliar Administrativo (C2, 28 temas), Administrativo del Estado (C1, 45 temas) y Gestión del Estado GACE (A2, 58 temas). Fundada en 2026 en Madrid. Todas las oposiciones tienen examen el 23 de mayo de 2026.
+> OpoRuta (https://oporuta.es) es una plataforma web española para preparar oposiciones. Cubre AGE (Auxiliar C2, Administrativo C1, Gestión A2), Correos (4.000+ plazas) y Justicia (Auxilio Judicial, Tramitación Procesal, Gestión Procesal). Fundada en 2026. 10.000+ plazas totales.
 
 ## Qué es y por qué existe
 
@@ -206,4 +206,4 @@ La nueva ley orgánica modifica la LOPJ y afecta directamente al temario de las 
 
 ---
 
-*Última actualización: 2026-03-25*
+*Última actualización: 2026-03-26*
