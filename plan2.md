@@ -497,22 +497,9 @@ Tramitación Procesal tiene **3 ejercicios**, el tercero es ofimática:
 
 **Alcance**: No es bloqueante para activación de Auxilio/Gestión (no tienen ofimática). Sí bloqueante para Tramitación.
 
-### GAP-3: Multi-exercise scoring — `scoring.ts:123` solo calcula ejercicio 1
+### ~~GAP-3: Multi-exercise scoring~~ — RESUELTO
 
-```typescript
-// Multi-exercise: for now, calculate first exercise only
-const ej = calcularEjercicio(aciertos, errores, enBlanco, sc.ejercicios[0])
-```
-
-**Oposiciones afectadas:**
-- Auxilio C2 (2 ej.): solo puntúa Ej.1 (60pts), ignora Ej.2 (40pts)
-- Tramitación C1 (3 ej.): solo puntúa Ej.1 (60pts), ignora Ej.2+3 (40pts)
-- Gestión Procesal A2 (3 ej.): solo puntúa Ej.1 (60pts), ignora Ej.2+3 (40pts)
-- GACE A2 (2 ej.): Ej.2 tiene su propio flujo en `/supuesto-practico`, funciona parcialmente
-
-**No bloqueante ahora** (todas inactivas), pero **bloqueante antes de activar cualquier oposición de Justicia**.
-
-**Fix**: `calcularPuntuacion()` ya acepta arrays en la interfaz (`EjercicioResult[]`). Solo falta que la UI envíe aciertos/errores por ejercicio y que el scorer los procese.
+**Fix implementado**: `calcularPuntuacion()` acepta overload `EjercicioData[]` para scoring multi-ejercicio completo. `_calcularMulti()` interno procesa todos los ejercicios, verifica `min_aprobado` por ejercicio, `aprobado` global requiere todos. `describePenalizacion()` soporta multi-ejercicio con separador `|` y filtro por índice. Results page usa `calcularEjercicio` del engine + muestra `min_aprobado` pass/fail. 25 tests unitarios.
 
 ### GAP-4: Desarrollo escrito — solo GACE A2, falta Gestión Procesal A2
 
@@ -580,8 +567,8 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 
 1. ~~**FASE 2.5a**: Fix bugs existentes + parsear supuesto oficial 2024~~ **COMPLETADO**
 2. ~~**GAP-5**: Fix scoring_config C1 AGE (prerequisito de FASE 2.5)~~ **COMPLETADO** — Migration 051
-3. **GAP-3**: Multi-exercise scoring genérico (prerequisito de Justicia) ← **SIGUIENTE**
-4. **FASE 2.5b-c**: Supuesto práctico test genérico (C1 AGE primero, luego Justicia)
+3. ~~**GAP-3**: Multi-exercise scoring genérico (prerequisito de Justicia)~~ **COMPLETADO** — overload EjercicioData[], resultados page usa calcularEjercicio, 25 tests
+4. **FASE 2.5b-c**: Supuesto práctico test genérico (C1 AGE primero, luego Justicia) ← **SIGUIENTE**
 5. **GAP-2**: Ofimática ejercicio separado (solo si activamos Tramitación)
 6. **GAP-4**: Desarrollo escrito Gestión Procesal (solo si activamos Gestión Procesal)
 

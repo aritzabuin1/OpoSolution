@@ -28,7 +28,7 @@ import { ShareButton } from '@/components/shared/ShareButton'
 import { StickyAnalysisCTA } from '@/components/shared/StickyAnalysisCTA'
 import { PostTestConversionTrigger } from '@/components/tests/PostTestConversionTrigger'
 import { calcularNotaSimulacro } from '@/lib/utils/simulacro-ranking'
-import { parseScoringConfig, describePenalizacion } from '@/lib/utils/scoring'
+import { parseScoringConfig, describePenalizacion, calcularEjercicio } from '@/lib/utils/scoring'
 import { getAniosConvocatoriaBatch } from '@/lib/utils/cross-reference'
 import { checkPaidAccess, getOposicionFromProfile } from '@/lib/freemium'
 
@@ -175,14 +175,17 @@ export default async function ResultadosPage({ params }: Props) {
   ).length
   const sinResponder = preguntas.filter((_, i) => respuestas[i] === null).length
 
-  // ── Puntuación con penalización configurable (§0.3 + §2.6A.9) ─────────────
-  // Uses scoring_config from the oposición: penaliza=false → no penalty (e.g. Correos)
+  // ── Puntuación con penalización configurable (§0.3 + §2.6A.9 + GAP-3) ─────
+  // Uses calcularEjercicio from scoring engine for consistent calculation
   const ejConfig = scoringConfig?.ejercicios?.[0]
-  const penaliza = ejConfig?.penaliza ?? true
-  const errorFactor = ejConfig?.error ?? (1 / 3)
-  const notaConPenalizacion = esSimulacroOficial
-    ? Math.max(0, penaliza ? aciertos - errores * errorFactor : aciertos)
+  const ejercicioResult = esSimulacroOficial && ejConfig
+    ? calcularEjercicio(aciertos, errores, sinResponder, ejConfig)
     : null
+  const notaConPenalizacion = ejercicioResult?.puntosDirectos ?? (
+    esSimulacroOficial
+      ? Math.max(0, aciertos - errores * (1 / 3))
+      : null
+  )
   const notaConPenalizacionSobre100 = notaConPenalizacion !== null
     ? Math.round((notaConPenalizacion / preguntas.length) * 100 * 10) / 10
     : null
@@ -287,17 +290,20 @@ export default async function ResultadosPage({ params }: Props) {
       </div>
 
       {/* Puntuación con penalización — solo para simulacros oficiales */}
-      {esSimulacroOficial && notaConPenalizacion !== null && (
+      {esSimulacroOficial && ejercicioResult && (
         <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 space-y-3">
           <p className="text-xs font-semibold text-amber-800 uppercase tracking-wide">
             Puntuación oficial con penalización
+            {ejConfig && scoringConfig && scoringConfig.ejercicios.length > 1
+              ? ` — ${ejConfig.nombre}`
+              : ''}
           </p>
           <div className="flex items-end justify-between">
             <div>
               <p className="text-3xl font-extrabold text-amber-700 tabular-nums">
-                {notaConPenalizacion.toFixed(2)}
+                {ejercicioResult.notaSobreMax.toFixed(2)}
               </p>
-              <p className="text-xs text-amber-600">puntos sobre {preguntas.length}</p>
+              <p className="text-xs text-amber-600">puntos sobre {ejConfig!.max}</p>
             </div>
             <div className="text-right">
               <p className={`text-2xl font-bold tabular-nums ${getPuntuacionColor(notaConPenalizacionSobre100 ?? 0)}`}>
@@ -306,6 +312,16 @@ export default async function ResultadosPage({ params }: Props) {
               <p className="text-xs text-muted-foreground">nota sobre 100</p>
             </div>
           </div>
+          {ejConfig!.min_aprobado !== null && (
+            <div className={`flex items-center gap-2 text-xs font-medium ${
+              ejercicioResult.aprobado ? 'text-green-700' : 'text-red-700'
+            }`}>
+              {ejercicioResult.aprobado ? <CheckCircle2 className="h-3.5 w-3.5" /> : <XCircle className="h-3.5 w-3.5" />}
+              {ejercicioResult.aprobado
+                ? `Superas el mínimo eliminatorio (${ejConfig!.min_aprobado})`
+                : `No alcanzas el mínimo eliminatorio (${ejConfig!.min_aprobado}). Necesitas ${(ejConfig!.min_aprobado - ejercicioResult.notaSobreMax).toFixed(2)} puntos más.`}
+            </div>
+          )}
           <p className="text-[11px] text-amber-700 border-t border-amber-200 pt-2">
             {penalizaDesc}
           </p>

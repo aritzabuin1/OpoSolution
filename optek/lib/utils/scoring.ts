@@ -19,6 +19,13 @@ export interface EjercicioConfig {
   penaliza: boolean     // si los errores penalizan
 }
 
+/** Per-exercise input data for multi-exercise scoring */
+export interface EjercicioData {
+  aciertos: number
+  errores: number
+  enBlanco: number
+}
+
 export interface ScoringConfig {
   ejercicios: EjercicioConfig[]
 }
@@ -96,32 +103,49 @@ export function calcularEjercicio(
 /**
  * Calculates the full score for a test using the oposición's scoring_config.
  *
- * For single-exercise oposiciones (most common), pass aciertos/errores/enBlanco directly.
- * For multi-exercise, pass arrays.
+ * Overload 1 (single exercise): pass scalar aciertos/errores/enBlanco.
+ * Overload 2 (multi-exercise): pass EjercicioData[] with one entry per exercise.
+ *
+ * When called with scalars on a multi-exercise config, only the first exercise
+ * is scored (backward compatible). Use the array form for full multi-exercise scoring.
  */
 export function calcularPuntuacion(
   aciertos: number,
   errores: number,
   enBlanco: number,
   config?: ScoringConfig | null
+): ScoringResult
+export function calcularPuntuacion(
+  ejerciciosData: EjercicioData[],
+  config?: ScoringConfig | null
+): ScoringResult
+export function calcularPuntuacion(
+  aciertosOrData: number | EjercicioData[],
+  erroresOrConfig?: number | ScoringConfig | null,
+  enBlancoArg?: number,
+  configArg?: ScoringConfig | null
 ): ScoringResult {
-  const sc = config ?? DEFAULT_SCORING_CONFIG
-
-  // Single exercise: use first config
-  if (sc.ejercicios.length === 1) {
-    const ej = calcularEjercicio(aciertos, errores, enBlanco, sc.ejercicios[0])
-    return {
-      ejercicios: [ej],
-      notaTotal: ej.notaSobreMax,
-      maxTotal: sc.ejercicios[0].max,
-      notaSobre10: ej.notaSobre10,
-      penaliza: sc.ejercicios[0].penaliza,
-      aprobado: ej.aprobado !== false, // true if no min or passes min
-    }
+  // Detect which overload was called
+  if (Array.isArray(aciertosOrData)) {
+    // Overload 2: multi-exercise with EjercicioData[]
+    const ejerciciosData = aciertosOrData
+    const sc = (erroresOrConfig as ScoringConfig | null | undefined) ?? DEFAULT_SCORING_CONFIG
+    return _calcularMulti(ejerciciosData, sc)
   }
 
-  // Multi-exercise: for now, calculate first exercise only
-  // (multi-exercise scoring requires separate aciertos per exercise)
+  // Overload 1: scalar (single exercise or first-exercise-only)
+  const aciertos = aciertosOrData
+  const errores = erroresOrConfig as number
+  const enBlanco = enBlancoArg!
+  const sc = configArg ?? DEFAULT_SCORING_CONFIG
+
+  // Single exercise: straightforward
+  if (sc.ejercicios.length === 1) {
+    return _calcularMulti([{ aciertos, errores, enBlanco }], sc)
+  }
+
+  // Multi-exercise config but scalar input: score only first exercise
+  // (backward compatible — caller doesn't have per-exercise data)
   const ej = calcularEjercicio(aciertos, errores, enBlanco, sc.ejercicios[0])
   const maxTotal = sc.ejercicios.reduce((sum, e) => sum + e.max, 0)
 
@@ -129,9 +153,32 @@ export function calcularPuntuacion(
     ejercicios: [ej],
     notaTotal: ej.notaSobreMax,
     maxTotal,
-    notaSobre10: ej.notaSobre10,
+    notaSobre10: (ej.notaSobreMax / maxTotal) * 10,
     penaliza: sc.ejercicios.some(e => e.penaliza),
     aprobado: ej.aprobado !== false,
+  }
+}
+
+/** Internal: scores all exercises from EjercicioData[] */
+function _calcularMulti(
+  ejerciciosData: EjercicioData[],
+  config: ScoringConfig
+): ScoringResult {
+  const results = config.ejercicios.map((ejConfig, i) => {
+    const data = ejerciciosData[i] ?? { aciertos: 0, errores: 0, enBlanco: ejConfig.preguntas }
+    return calcularEjercicio(data.aciertos, data.errores, data.enBlanco, ejConfig)
+  })
+
+  const maxTotal = config.ejercicios.reduce((sum, e) => sum + e.max, 0)
+  const notaTotal = results.reduce((sum, r) => sum + r.notaSobreMax, 0)
+
+  return {
+    ejercicios: results,
+    notaTotal: Math.round(notaTotal * 100) / 100,
+    maxTotal,
+    notaSobre10: maxTotal > 0 ? Math.round((notaTotal / maxTotal) * 10 * 100) / 100 : 0,
+    penaliza: config.ejercicios.some(e => e.penaliza),
+    aprobado: results.every(r => r.aprobado !== false),
   }
 }
 
@@ -149,24 +196,40 @@ export function parseScoringConfig(raw: unknown): ScoringConfig | null {
 
 /**
  * Human-readable penalty description for the UI.
+ * For multi-exercise configs, describes each exercise separately.
+ * Optional `ejercicioIndex` returns only that exercise's description.
  */
-export function describePenalizacion(config: ScoringConfig | null): string {
+export function describePenalizacion(
+  config: ScoringConfig | null,
+  ejercicioIndex?: number
+): string {
   if (!config) return 'Acierto: +1 · Error: -1/3 · En blanco: 0'
 
-  const ej = config.ejercicios[0]
-  if (!ej.penaliza) {
-    return 'Sin penalización — responde todas las preguntas'
-  }
+  const ejercicios = ejercicioIndex !== undefined
+    ? [config.ejercicios[ejercicioIndex]].filter(Boolean)
+    : config.ejercicios
 
-  // Detect common penalty ratios for human-readable display
-  const ratio = ej.acierto > 0 ? ej.error / ej.acierto : 0
-  let errorStr: string
-  if (Math.abs(ratio - 1 / 3) < 0.01) errorStr = '1/3'        // AGE
-  else if (Math.abs(ratio - 1 / 4) < 0.01) errorStr = '1/4'    // Justicia
-  else if (Math.abs(ratio - 1 / 5) < 0.01) errorStr = '1/5'    // Gestión Ej.2
-  else errorStr = ej.error.toString()
+  if (ejercicios.length === 0) return ''
 
-  return `Acierto: +${ej.acierto} · Error: -${errorStr} del acierto · En blanco: 0`
+  const descriptions = ejercicios.map(ej => {
+    if (!ej.penaliza) {
+      return config.ejercicios.length > 1
+        ? `${ej.nombre}: Sin penalización`
+        : 'Sin penalización — responde todas las preguntas'
+    }
+
+    const ratio = ej.acierto > 0 ? ej.error / ej.acierto : 0
+    let errorStr: string
+    if (Math.abs(ratio - 1 / 3) < 0.01) errorStr = '1/3'
+    else if (Math.abs(ratio - 1 / 4) < 0.01) errorStr = '1/4'
+    else if (Math.abs(ratio - 1 / 5) < 0.01) errorStr = '1/5'
+    else errorStr = ej.error.toString()
+
+    const prefix = config.ejercicios.length > 1 ? `${ej.nombre}: ` : ''
+    return `${prefix}Acierto: +${ej.acierto} · Error: -${errorStr} del acierto · En blanco: 0`
+  })
+
+  return descriptions.join(' | ')
 }
 
 /**
