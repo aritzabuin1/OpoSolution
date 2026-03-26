@@ -85,8 +85,8 @@
 - [x] RGPD + LOPDGDD ya ingestionados para AGE → reutilizar con re-tagging
 - [x] LO 3/2007 Igualdad ya ingestionada → reutilizar
 - [x] Script tag:legislacion --rama correos creado
-- [ ] Ejecutar `pnpm ingest:legislacion` (requiere Supabase en producción)
-- [ ] Ejecutar `pnpm tag:legislacion --rama correos`
+- [x] Ejecutar `pnpm ingest:legislacion` — 10.476 artículos upserted
+- [x] Ejecutar `pnpm tag:legislacion --rama correos` — 2.679 artículos taggeados
 - [ ] Scrape contenido operativo correos.es (productos, tarifas, organización) — EN PROGRESO
 - [ ] Generar free bank: `pnpm generate:free-bank --oposicion correos`
 - [ ] Buscar e ingestar examen oficial 2023 (web Correos post-convocatoria)
@@ -135,9 +135,10 @@
 - [x] Ley 15/2022 igualdad de trato (81 art.) — SCRAPEADO
 - [x] PRL Ley 31/1995 (79 art.) — SCRAPEADO
 - [x] Script tag:legislacion --rama justicia creado con reglas de tagging
-- [ ] Ejecutar `pnpm ingest:legislacion` (requiere Supabase en producción)
-- [ ] Ejecutar `pnpm tag:legislacion --rama justicia`
+- [x] Ejecutar `pnpm ingest:legislacion` — 10.476 artículos upserted (compartido con Correos)
+- [x] Ejecutar `pnpm tag:legislacion --rama justicia` — 20.941 artículos taggeados
 - [ ] Verificar temas ACTUALIZADOS por LO 1/2025: T8, T10, T16, T18
+- [ ] Fix: tema_ids no resueltos para Gestión Procesal (temas 17-22, 60, 66, 67) — verificar numeración en migración 049
 
 ### 2.3 Contenido Justicia — Exámenes oficiales
 - [x] Directorios creados: examenes_auxilio/, examenes_tramitacion/, examenes_gestion_procesal/
@@ -161,7 +162,8 @@
 - [x] Sub: `app/(marketing)/oposiciones/justicia/auxilio-judicial/page.tsx`
 - [x] Sub: `app/(marketing)/oposiciones/justicia/tramitacion-procesal/page.tsx`
 - [x] Sub: `app/(marketing)/oposiciones/justicia/gestion-procesal/page.tsx`
-- [ ] Calculadora nota Justicia (por ejercicio, con penalización)
+- [x] Calculadora nota Justicia (por ejercicio, con penalización) — `/herramientas/calculadora-nota-justicia`
+- [x] Calculadora nota Correos — `/herramientas/calculadora-nota-correos`
 - [ ] Blog: empezar con 5 artículos SEO del plan de estrategia
 - [x] Actualizar sitemap.ts
 
@@ -289,7 +291,7 @@ Cada sub-landing incluye:
 - [x] Email confirmación inmediato al apuntarse (`sendWaitlistConfirmation`)
 - [x] Script `notify-waitlist.ts` para envío masivo al activar oposición (`sendWaitlistActivation`)
 - [x] GDPR: opt-in explícito (frontend muestra checkbox), enlace baja
-- [ ] Panel admin: ver waitlist entries (actualmente solo visible en Supabase Dashboard)
+- [x] Panel admin: `/admin/nurture` — funnel nurture emails + waitlist entries
 
 ### S.8 Sitemap + robots + SEO técnico
 - [x] Actualizar `app/sitemap.ts` con todas las nuevas rutas (Correos, Justicia hub+sub, precios)
