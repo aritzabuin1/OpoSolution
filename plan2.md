@@ -275,27 +275,21 @@ Cada sub-landing incluye:
 - [ ] Cada calculadora tiene CTA registro
 - [ ] Schema markup interactivo
 
-### S.6 Blog SEO — 10 posts publicados
-- [x] Correos (5 posts):
-  - test-correos-2026-online-gratis
-  - temario-correos-2026-temas-completos
-  - cuantas-plazas-correos-2026-convocatoria
-  - examen-correos-penaliza-respuestas-incorrectas
-  - requisitos-oposiciones-correos-2026-sueldo
-- [x] Justicia (5 posts):
-  - diferencia-auxilio-judicial-tramitacion-procesal
-  - temario-auxilio-judicial-2026-actualizado
-  - test-auxilio-judicial-2026-online-gratis
-  - nota-de-corte-auxilio-judicial-tramitacion-2026
-  - cuantos-temas-gestion-procesal-2026
+### S.6 Blog SEO — 15 posts publicados (Correos + Justicia)
+- [x] Correos (5 posts): test-correos, temario, plazas, penalización, requisitos
+- [x] Justicia (10 posts): diferencia-auxilio-tramitación, temario-auxilio, test-auxilio, nota-corte, gestion-procesal, temario-tramitación, gestion-procesal-guía, LO-1/2025-cambios, sueldo-justicia, preparar-por-libre
+- [x] Total: 70 posts en content/blog/posts.ts (55 AGE + 5 Correos + 10 Justicia)
 - [x] Todos con: metadata SEO, FAQPage schema, internal links a sub-landings
 - [x] Sitemap auto-actualizado (blogPosts dinámico)
+- [x] Landing muestra 3 posts destacados por rama (12 total)
 
 ### S.7 Captura "Avísame" para próximamente
 - [x] Crear tabla `waitlist` (email, oposicion_slug, created_at) — migration 050
 - [x] API route `POST /api/waitlist` (rate-limited, email validation)
-- [ ] Al activar una oposición: enviar email masivo a waitlist de esa oposición
+- [x] Email confirmación inmediato al apuntarse (`sendWaitlistConfirmation`)
+- [x] Script `notify-waitlist.ts` para envío masivo al activar oposición (`sendWaitlistActivation`)
 - [x] GDPR: opt-in explícito (frontend muestra checkbox), enlace baja
+- [ ] Panel admin: ver waitlist entries (actualmente solo visible en Supabase Dashboard)
 
 ### S.8 Sitemap + robots + SEO técnico
 - [x] Actualizar `app/sitemap.ts` con todas las nuevas rutas (Correos, Justicia hub+sub, precios)
@@ -308,7 +302,7 @@ Cada sub-landing incluye:
 ## Verificación final
 
 ### Funcional
-- [ ] Landing: Ve ramas AGE (CTA) + Correos/Justicia (Próximamente con datos + "Avísame")
+- [x] Landing: Ve ramas AGE (CTA) + Correos/Justicia (Próximamente con datos + "Avísame")
 - [ ] Pricing page: tabs por rama, pricing correcto, inactivas con "Próximamente"
 - [ ] Registro: ramas agrupadas, activas seleccionables, inactivas con badge
 - [ ] Activar Correos → seleccionable en registro + landing, 12 temas aparecen
