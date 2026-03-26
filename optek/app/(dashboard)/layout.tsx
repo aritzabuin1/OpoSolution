@@ -19,7 +19,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
   const isAdmin = await checkIsAdmin()
 
   // Fetch user's oposición features for dynamic sidebar
-  let features: { psicotecnicos?: boolean; cazatrampas?: boolean; supuesto_practico?: boolean } | undefined
+  let features: { psicotecnicos?: boolean; cazatrampas?: boolean; supuesto_practico?: boolean; supuesto_test?: boolean; ofimatica?: boolean } | undefined
   try {
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
