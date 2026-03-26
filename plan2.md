@@ -386,7 +386,7 @@ Lógica basada en `scoring_config.ejercicios`:
 - [x] **AUDITORÍA**: Migration 049 (Justicia ×3) verificada campo por campo contra BOE-A-2025-27053 — CERO discrepancias
 - [x] **EXÁMENES DESCARGADOS**: Correos 26 PDFs (2021+2023), Auxilio 22 PDFs (2008-2025), Tramitación 14 PDFs (2011-2025), Gestión 14 PDFs (2023-2025)
 - [x] Ingestar supuesto oficial 2024 (Supuesto I) en `free_supuesto_bank` → free users ven este
-  - Script `execution/ingest-supuestos-bank.ts` + `pnpm ingest:supuestos` (pendiente ejecutar tras aplicar migration 052)
+  - Script `execution/ingest-supuestos-bank.ts` + `pnpm ingest:supuestos` ✅ ejecutado (S.I 20q free + S.I 20q + S.II 19q bank)
 
 #### Fase 2.5b — Backend generación IA (módulo genérico)
 - [x] Crear `lib/ai/supuesto-test.ts` (genérico, NO específico de C1):
@@ -426,11 +426,12 @@ Lógica basada en `scoring_config.ejercicios`:
   - Timer: busca ejercicio "supuesto/práctico" en scoring_config
 - [x] Sidebar + Navbar: "Supuesto Test" con featureKey `supuesto_test`
 - [x] Migration 054: `supuesto_test: true` en features de C1 AGE + 3 Justicia
-- [ ] Adaptar `tests/[id]/resultados/page.tsx`:
-  - Puntuación sobre max del ejercicio (50, 40, 20, 15 según oposición)
-  - Desglose por área temática
-  - AGE C1: "Con esta nota + tu Parte 1 → ¿habrías aprobado?"
-  - Justicia: "Has superado / no has superado el mínimo eliminatorio"
+- [x] Adaptar `tests/[id]/resultados/page.tsx`:
+  - Cabecera indigo "Supuesto Práctico" + badge "Formato test"
+  - Panel scoring: puntuación sobre max ejercicio (50/40/20/15), colores indigo
+  - min_aprobado pass/fail con CheckCircle2/XCircle + texto "Superas/No alcanzas el mínimo eliminatorio"
+  - describePenalizacion por ejercicio específico del supuesto
+  - OG metadata: tipo 'supuesto' para compartir
 
 #### Fase 2.5d — Integración con simulacro completo (nice-to-have)
 - [ ] AGE C1: "Examen completo: Parte 1 (70 preguntas) + Parte 2 (supuesto)"

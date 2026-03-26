@@ -52,8 +52,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const score = data.puntuacion ?? 0
   const esSimulacro = data.tipo === 'simulacro' && !!data.examen_oficial_id
-  const tipo = esSimulacro ? 'simulacro' : 'test'
-  const tema = esSimulacro
+  const tipo = data.tipo === 'supuesto_test' ? 'supuesto' : esSimulacro ? 'simulacro' : 'test'
+  const tema = data.tipo === 'supuesto_test'
+    ? 'Supuesto Práctico'
+    : esSimulacro
     ? 'Simulacro Oficial INAP'
     : ((data.temas as { titulo: string } | null)?.titulo ?? '')
 
@@ -97,6 +99,7 @@ interface TestData {
   tipo?: string
   examen_oficial_id?: string | null
   tema_id?: string | null
+  supuesto_caso?: { titulo?: string; escenario?: string; bloques_cubiertos?: string[] } | null
   temas: { titulo: string } | null
 }
 
@@ -120,7 +123,7 @@ export default async function ResultadosPage({ params }: Props) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data, error } = await (supabase as any)
     .from('tests_generados')
-    .select('id, preguntas, respuestas_usuario, puntuacion, tiempo_segundos, tipo, examen_oficial_id, tema_id, temas(titulo)')
+    .select('id, preguntas, respuestas_usuario, puntuacion, tiempo_segundos, tipo, examen_oficial_id, tema_id, supuesto_caso, temas(titulo)')
     .eq('id', id)
     .eq('user_id', user.id)
     .eq('completado', true)
@@ -162,7 +165,10 @@ export default async function ResultadosPage({ params }: Props) {
   const puntuacion = test.puntuacion ?? 0
   const esSimulacroOficial = test.tipo === 'simulacro' && !!test.examen_oficial_id
   const esRepaso = test.tipo === 'repaso_errores'
-  const temaTitulo = esSimulacroOficial
+  const esSupuestoTest = test.tipo === 'supuesto_test'
+  const temaTitulo = esSupuestoTest
+    ? (test.supuesto_caso?.titulo ?? 'Supuesto Práctico')
+    : esSimulacroOficial
     ? 'Simulacro Oficial INAP'
     : esRepaso
     ? 'Repaso de errores'
@@ -175,10 +181,15 @@ export default async function ResultadosPage({ params }: Props) {
   ).length
   const sinResponder = preguntas.filter((_, i) => respuestas[i] === null).length
 
-  // ── Puntuación con penalización configurable (§0.3 + §2.6A.9 + GAP-3) ─────
-  // Uses calcularEjercicio from scoring engine for consistent calculation
-  const ejConfig = scoringConfig?.ejercicios?.[0]
-  const ejercicioResult = esSimulacroOficial && ejConfig
+  // ── Puntuación con penalización configurable (§0.3 + §2.6A.9 + GAP-3 + 2.5c) ──
+  // For supuesto_test: use the supuesto exercise from scoring_config (exercise 2)
+  // For simulacros: use exercise 1
+  const ejConfig = esSupuestoTest
+    ? scoringConfig?.ejercicios?.find(e => e.nombre.toLowerCase().includes('supuesto') || e.nombre.toLowerCase().includes('práctico'))
+      ?? scoringConfig?.ejercicios?.[0]
+    : scoringConfig?.ejercicios?.[0]
+  const showScoringPanel = esSimulacroOficial || esSupuestoTest
+  const ejercicioResult = showScoringPanel && ejConfig
     ? calcularEjercicio(aciertos, errores, sinResponder, ejConfig)
     : null
   const notaConPenalizacion = ejercicioResult?.puntosDirectos ?? (
@@ -273,6 +284,15 @@ export default async function ResultadosPage({ params }: Props) {
         </div>
       )}
 
+      {/* Cabecera supuesto práctico test */}
+      {esSupuestoTest && (
+        <div className="flex items-center gap-2 rounded-lg bg-indigo-50 border border-indigo-200 px-4 py-3">
+          <BookOpen className="h-4 w-4 text-indigo-600 shrink-0" />
+          <span className="text-sm font-medium text-indigo-800">Supuesto Práctico</span>
+          <Badge variant="secondary" className="text-[10px] ml-auto">Formato test</Badge>
+        </div>
+      )}
+
       {/* Puntuación prominente */}
       <div className="text-center space-y-2">
         <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
@@ -289,21 +309,25 @@ export default async function ResultadosPage({ params }: Props) {
         </p>
       </div>
 
-      {/* Puntuación con penalización — solo para simulacros oficiales */}
-      {esSimulacroOficial && ejercicioResult && (
-        <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 space-y-3">
-          <p className="text-xs font-semibold text-amber-800 uppercase tracking-wide">
-            Puntuación oficial con penalización
-            {ejConfig && scoringConfig && scoringConfig.ejercicios.length > 1
-              ? ` — ${ejConfig.nombre}`
-              : ''}
+      {/* Puntuación con penalización — simulacros oficiales + supuesto test */}
+      {showScoringPanel && ejercicioResult && (
+        <div className={`rounded-xl border p-4 space-y-3 ${
+          esSupuestoTest
+            ? 'border-indigo-200 bg-indigo-50'
+            : 'border-amber-200 bg-amber-50'
+        }`}>
+          <p className={`text-xs font-semibold uppercase tracking-wide ${
+            esSupuestoTest ? 'text-indigo-800' : 'text-amber-800'
+          }`}>
+            {esSupuestoTest ? 'Puntuación del supuesto' : 'Puntuación oficial con penalización'}
+            {ejConfig && ejConfig.nombre ? ` — ${ejConfig.nombre}` : ''}
           </p>
           <div className="flex items-end justify-between">
             <div>
-              <p className="text-3xl font-extrabold text-amber-700 tabular-nums">
+              <p className={`text-3xl font-extrabold tabular-nums ${esSupuestoTest ? 'text-indigo-700' : 'text-amber-700'}`}>
                 {ejercicioResult.notaSobreMax.toFixed(2)}
               </p>
-              <p className="text-xs text-amber-600">puntos sobre {ejConfig!.max}</p>
+              <p className={`text-xs ${esSupuestoTest ? 'text-indigo-600' : 'text-amber-600'}`}>puntos sobre {ejConfig!.max}</p>
             </div>
             <div className="text-right">
               <p className={`text-2xl font-bold tabular-nums ${getPuntuacionColor(notaConPenalizacionSobre100 ?? 0)}`}>
@@ -322,8 +346,12 @@ export default async function ResultadosPage({ params }: Props) {
                 : `No alcanzas el mínimo eliminatorio (${ejConfig!.min_aprobado}). Necesitas ${(ejConfig!.min_aprobado - ejercicioResult.notaSobreMax).toFixed(2)} puntos más.`}
             </div>
           )}
-          <p className="text-[11px] text-amber-700 border-t border-amber-200 pt-2">
-            {penalizaDesc}
+          <p className={`text-[11px] border-t pt-2 ${
+            esSupuestoTest ? 'text-indigo-700 border-indigo-200' : 'text-amber-700 border-amber-200'
+          }`}>
+            {esSupuestoTest && ejConfig
+              ? describePenalizacion(scoringConfig, scoringConfig?.ejercicios.indexOf(ejConfig))
+              : penalizaDesc}
           </p>
         </div>
       )}
