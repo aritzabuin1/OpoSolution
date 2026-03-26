@@ -174,11 +174,14 @@
 
 ---
 
-## FASE 2.5 — Supuesto Práctico C1 (formato test)
+## FASE 2.5 — Supuesto Práctico formato TEST (módulo genérico, 4 oposiciones)
 
-> **Contexto**: Desde OEP 2023-2024 (BOE-A-2024-14098), la Parte 2 del examen C1 Administrativo del Estado
-> es un supuesto práctico en formato TEST (20 preguntas tipo test sobre un caso narrativo). NO es desarrollo
-> escrito como en A2. Ningún competidor ofrece práctica de esto. Es un diferenciador brutal.
+> **Contexto**: Varias oposiciones tienen un ejercicio de "supuesto práctico" en formato TEST: caso narrativo
+> + preguntas tipo test vinculadas al caso. NO es desarrollo escrito. Es el mismo patrón en 4 oposiciones
+> (AGE C1, Auxilio C2, Tramitación C1, Gestión Procesal A2). Ningún competidor ofrece práctica de esto.
+>
+> El módulo se construye **genérico y parametrizable**, implementando primero para AGE C1 y reutilizando
+> para Justicia cuando se activen esas oposiciones.
 
 ### Fuentes oficiales
 
@@ -190,7 +193,48 @@
 | INAP Sede — ADVO-L 2024 Modelo B | `data/examenes_c1/2024/examen_b.pdf` | Idem modelo B |
 | INAP Sede — Plantillas definitivas | `data/examenes_c1/2024/plantilla_a.pdf`, `plantilla_b.pdf` | Respuestas correctas |
 
-### Estructura real del examen (verificada contra PDF 2024)
+### Formato del supuesto test en las 4 oposiciones (verificado contra BOE + exámenes reales)
+
+Fuentes: BOE-A-2024-14098 (AGE C1), BOE-A-2025-27053 Anexos III-V (Justicia), examen INAP 2024, examen MJU sept 2025.
+
+| | AGE C1 | Auxilio Judicial C2 | Tramitación C1 | Gestión Procesal A2 |
+|---|---|---|---|---|
+| **Nº de casos** | 2 (elige 1) | **2 (responde ambos)** | 1 | 1 |
+| **Preguntas** | 20 (+5 reserva) | **40 (+2 reserva)** = 20+20 | 10 (+2 reserva) | 10 (+2 reserva) |
+| **Temática** | Administrativo: LPAC, EBEP, presupuestos, contratación, oficinas | Procesal: LEC, LECrim, ejecuciones, comunicaciones, jurisdicción voluntaria | Procesal: temas 1-31 | Procesal: todo el programa |
+| **Penalización** | -1/3 | -1/4 | -1/4 | -1/5 |
+| **Timer** | Compartido (100 min total con Parte 1) | Separado: 60 min | Separado: 30 min | Separado: 30 min |
+| **Max pts** | 50 (min 25) | 40 (min 20) | 20 (min 10) | 15 (min 7.5) |
+| **Ejercicio** | Parte 2 del ejercicio único | Ejercicio 2 (separado) | Ejercicio 2 (separado) | Ejercicio 2 (separado) |
+
+**Diferencias clave:**
+- **Auxilio** es el único donde **respondes los 2 casos** (no eliges). Son 20 preguntas por caso.
+- En **AGE C1** eliges 1 de 2 supuestos propuestos (solo respondes 20 preguntas del elegido).
+- En **Justicia** el supuesto es un ejercicio con timer independiente. En **AGE** comparte los 100 min con la Parte 1.
+- La temática es completamente distinta: AGE = derecho administrativo, Justicia = derecho procesal.
+- Los enunciados de los casos de Justicia son "muy largos" (análisis examen sept 2025 por Opositatest).
+
+**Lo que comparten (y justifica el módulo genérico):**
+1. Formato: caso narrativo largo + preguntas test vinculadas al caso
+2. Banco progresivo: misma lógica (unidad atómica = supuesto completo)
+3. UI: mostrar caso + preguntas con corrección y penalización
+4. Almacenamiento: `tests_generados` + `supuesto_caso` JSONB
+
+**Lo que se parametriza por oposición:**
+```typescript
+interface SupuestoTestConfig {
+  numCasos: 1 | 2              // AGE/Tramit/Gestión = 1, Auxilio = 2
+  preguntasPorCaso: number      // 20, 20, 10, 10
+  eligeCaso: boolean            // AGE = true (elige 1 de 2), resto = false
+  tematica: 'administrativo' | 'procesal'  // distinto prompt de generación
+  bloques: string[]             // AGE: ['II','III','IV','V'], Justicia: temas procesales
+  penalizacion: number          // 0.333, 0.25, 0.20
+  timerMinutos: number | null   // null = compartido con parte 1, 60/30 = separado
+  promptTemplate: string        // prompt distinto por rama
+}
+```
+
+### Estructura real del examen AGE C1 (verificada contra PDF 2024)
 
 **Ejercicio único, 2 partes eliminatorias, 100 minutos total:**
 
@@ -305,21 +349,22 @@ CREATE TABLE user_supuestos_seen (
 
 #### Cambio en `tests_generados`
 ```sql
--- Añadir 'supuesto_c1' al check constraint de tipo
+-- Añadir 'supuesto_test' al check constraint (genérico, no específico de C1)
 ALTER TABLE tests_generados DROP CONSTRAINT tests_generados_tipo_check;
 ALTER TABLE tests_generados ADD CONSTRAINT tests_generados_tipo_check
-  CHECK (tipo IN ('tema', 'simulacro', 'repaso_errores', 'psicotecnico', 'supuesto_c1'));
+  CHECK (tipo IN ('tema', 'simulacro', 'repaso_errores', 'psicotecnico', 'supuesto_test'));
 
 -- Añadir columna para caso del supuesto (NULL para otros tipos de test)
 ALTER TABLE tests_generados ADD COLUMN supuesto_caso jsonb;
--- Contiene: {titulo, escenario, bloques_cubiertos} — solo cuando tipo='supuesto_c1'
+-- Contiene: {titulo, escenario, bloques_cubiertos} — solo cuando tipo='supuesto_test'
+-- El oposicion_id ya existente determina de qué oposición es el supuesto
 ```
 
 #### Feature flag: sin flag nuevo
-Lógica basada en `nivel` (ya existe en migration 047):
-- `nivel = 'A2'` + `supuesto_practico = true` → supuesto desarrollo (existente)
-- `nivel = 'C1'` → supuesto test (nuevo, este feature)
-- `nivel = 'C2'` → sin supuesto
+Lógica basada en `scoring_config.ejercicios`:
+- Si la oposición tiene un ejercicio con nombre que contiene "supuesto" o "caso práctico" → mostrar módulo supuesto test
+- Si `features.supuesto_practico = true` → mostrar módulo supuesto desarrollo (GACE A2, Gestión Procesal Ej.3)
+- Ambos pueden coexistir (Gestión Procesal tiene Ej.2 caso test + Ej.3 desarrollo escrito)
 
 ### Fases de ejecución
 
@@ -331,58 +376,71 @@ Lógica basada en `nivel` (ya existe en migration 047):
   - Extraer caso narrativo + 20 preguntas + 5 reserva + respuestas correctas
   - Crear `data/examenes_c1/2024/supuesto_1a.json`, `supuesto_2a.json` (modelo A)
   - Validar contra plantilla definitiva INAP
+- [ ] **BUG-SP5**: Fix scoring_config C1 AGE (ver GAP-5 abajo): 2 ejercicios, 90q, 100 min
 - [ ] Migration: crear tablas `free_supuesto_bank`, `supuesto_bank`, `user_supuestos_seen`
-- [ ] Migration: añadir `supuesto_c1` al check constraint + columna `supuesto_caso`
+- [ ] Migration: añadir `supuesto_test` al check constraint + columna `supuesto_caso`
 - [ ] Ingestar supuesto oficial 2024 (Supuesto I) en `free_supuesto_bank` → free users ven este
 
-#### Fase 2.5b — Backend generación IA
-- [ ] Crear `lib/ai/supuesto-practico-test.ts`:
-  - System prompt basado en formato real 2024 (few-shot con supuesto oficial)
-  - Input: contexto legal bloques II-V (via retrieval existente)
-  - Output: `{titulo, escenario, preguntas: Pregunta[20]}`
-  - Cada pregunta lleva campo `bloque: 'II'|'III'|'IV'|'V'` para desglose
-  - Validación post-generación: rechazar si no hay ≥1 pregunta por bloque
-- [ ] Crear `/api/ai/generate-supuesto-test`:
+#### Fase 2.5b — Backend generación IA (módulo genérico)
+- [ ] Crear `lib/ai/supuesto-test.ts` (genérico, NO específico de C1):
+  - Interface `SupuestoTestConfig` parametrizable (numCasos, preguntasPorCaso, etc.)
+  - Prompt factory: `getSupuestoTestPrompt(config, contextoLegal)` con templates por rama:
+    - `administrativo`: caso de funcionario en organismo AGE (LPAC, EBEP, presupuestos)
+    - `procesal`: caso de diligencias judiciales (LEC, LECrim, ejecuciones)
+  - Few-shot: incluir supuesto oficial como ejemplo (AGE 2024, Justicia sept 2025)
+  - Output: `{titulo, escenario, preguntas: Pregunta[N]}`
+  - Validación post-generación: rechazar si cobertura temática insuficiente
+- [ ] Crear `/api/ai/generate-supuesto-test` (endpoint único para todas las oposiciones):
+  - Detecta oposición del usuario → carga `SupuestoTestConfig` correspondiente
   - Free user: servir de `free_supuesto_bank` (check: ya lo ha hecho? → paywall)
-  - Premium user: servir de `supuesto_bank` (unseen). Si no hay unseen → generar con IA → guardar en banco
-  - Guardar test en `tests_generados` con `tipo='supuesto_c1'` + `supuesto_caso` JSON
-  - `prompt_version: 'free-supuesto-1.0'` | `'supuesto-bank-1.0'` | `'ai-supuesto-c1-1.0'`
+  - Premium user: servir de `supuesto_bank` (unseen, filtrado por oposicion_id)
+  - Si no hay unseen → generar con IA → guardar en banco (scoped por oposicion_id)
+  - Guardar test en `tests_generados` con `tipo='supuesto_test'` + `supuesto_caso` JSON
+  - `prompt_version: 'free-supuesto-1.0'` | `'supuesto-bank-1.0'` | `'ai-supuesto-test-1.0'`
+  - Para Auxilio (2 casos): generar 2 casos en paralelo, concatenar preguntas
 - [ ] Verificación legal: reutilizar batch verification existente
-- [ ] Script seed: `execution/generate-supuesto-bank.ts` — pre-generar 5 supuestos ($1.75)
+- [ ] Script seed: `execution/generate-supuesto-bank.ts --oposicion <slug>`
+  - AGE C1: pre-generar 5 supuestos ($1.75)
+  - Justicia: pre-generar cuando se activen (mismo script, distinto --oposicion)
 
-#### Fase 2.5c — Frontend
-- [ ] Página `/supuesto-practico-c1`:
-  - Explicación del formato + datos del examen real
+#### Fase 2.5c — Frontend (genérico)
+- [ ] Página `/supuesto-practico-test` (genérica, adapta contenido por oposición):
+  - Explicación del formato + datos del examen real (distintos por oposición)
   - Botón "Practicar supuesto práctico"
-  - Free: badge "1 supuesto gratis (examen oficial INAP 2024)"
+  - Free: badge "1 supuesto gratis (examen oficial)"
   - Premium: badge "Supuestos ilimitados"
-- [ ] Adaptar `tests/[id]/page.tsx` para `tipo === 'supuesto_c1'`:
-  - Cabecera: "Supuesto Práctico C1" con badge "Parte 2 del examen"
+- [ ] Adaptar `tests/[id]/page.tsx` para `tipo === 'supuesto_test'`:
+  - Cabecera dinámica: "Supuesto Práctico — [nombre oposición]"
   - **Desktop**: split view — caso a la izquierda (sticky), preguntas a la derecha
   - **Mobile**: drawer/sheet colapsable "Ver caso" con FAB, preguntas debajo
-  - Timer referencia: "~30 min en el examen real" (informativo, no obligatorio)
+  - Para Auxilio (2 casos): separador visual entre Caso 1 y Caso 2
+  - Timer: usar `scoring_config.ejercicios[N].minutos` (60/30 min) o referencia si compartido
 - [ ] Adaptar `tests/[id]/resultados/page.tsx`:
-  - Puntuación sobre 50 (no sobre 10 como tests normales)
-  - Desglose por bloque (II, III, IV, V)
-  - Indicador: "Con esta nota + tu Parte 1 → ¿habrías aprobado?"
-- [ ] Sidebar: mostrar "Supuesto Práctico" para usuarios C1 (condicional por `nivel`)
-- [ ] Freemium gating: PaywallGate con code `PAYWALL_SUPUESTO_C1`
+  - Puntuación sobre max del ejercicio (50, 40, 20, 15 según oposición)
+  - Desglose por área temática
+  - AGE C1: "Con esta nota + tu Parte 1 → ¿habrías aprobado?"
+  - Justicia: "Has superado / no has superado el mínimo eliminatorio"
+- [ ] Sidebar: mostrar "Supuesto Práctico" si la oposición tiene ejercicio supuesto en scoring_config
+- [ ] Freemium gating: PaywallGate con code `PAYWALL_SUPUESTO_TEST`
 
 #### Fase 2.5d — Integración con simulacro completo (nice-to-have)
-- [ ] Opción en simulacros C1: "Examen completo: Parte 1 (70 preguntas) + Parte 2 (supuesto)"
-  - Combina preguntas oficiales de Parte 1 + supuesto del banco
+- [ ] AGE C1: "Examen completo: Parte 1 (70 preguntas) + Parte 2 (supuesto)"
   - Timer: 100 minutos total
   - Resultados: nota por parte + nota total + ¿supera corte 2024 (47,33)?
+- [ ] Justicia: "Ejercicio 2 completo" como opción en simulacros
+  - Timer independiente (60 min Auxilio, 30 min Tramitación/Gestión)
 
 ### Estimación de costes
 
 | Concepto | Coste |
 |----------|-------|
-| Seed banco (5 supuestos × $0.35) | $1.75 (one-time) |
-| Parseo supuestos oficiales 2024 | $0 (manual/script) |
-| Primeros 50 premium users (~5 generaciones IA) | ~$1.75 |
+| Seed banco AGE C1 (5 supuestos × $0.35) | $1.75 (one-time) |
+| Seed banco Justicia ×3 (5 supuestos × $0.35 × 3 opos) | $5.25 (one-time, al activar) |
+| Parseo supuestos oficiales | $0 (manual/script) |
+| Primeros 50 premium users por oposición (~5 gen IA) | ~$1.75/oposición |
 | Coste ongoing (banco lleno, >50 users) | ~$0/mes |
-| **Coste total hasta break-even** | **~$3.50** |
+| **Coste total AGE C1 hasta break-even** | **~$3.50** |
+| **Coste total incluyendo Justicia ×3** | **~$14** |
 
 ### Requisitos del checklist
 
@@ -397,12 +455,13 @@ Lógica basada en `nivel` (ya existe en migration 047):
 | 20 | Prompt Versioning | Tracked en tests_generados.prompt_version |
 
 ### Lo que NO hacemos (decisiones conscientes)
-- **NO** tabla nueva para cada pregunta — la unidad es el supuesto completo (caso + 20 preguntas)
-- **NO** generamos 2 supuestos para elegir — en práctica, 1 es suficiente (ahorra 50% coste)
-- **NO** cronómetro obligatorio — solo referencia informativa
-- **NO** soporte exámenes pre-2024 (formato desarrollo antiguo, no relevante)
-- **NO** flag nuevo en features — usamos `nivel='C1'` para la lógica condicional
+- **NO** tabla nueva para cada pregunta — la unidad es el supuesto completo (caso + N preguntas)
+- **NO** generamos 2 supuestos para elegir en AGE C1 — en práctica, 1 es suficiente (ahorra 50% coste)
+- **NO** módulo separado por oposición — 1 endpoint genérico parametrizado por `SupuestoTestConfig`
+- **NO** cronómetro obligatorio — solo referencia informativa (pero respetamos timer separado en Justicia)
+- **NO** soporte exámenes pre-2024 AGE (formato desarrollo antiguo, no relevante)
 - **NO** deduplicación a nivel pregunta — no tiene sentido separar preguntas de su caso
+- **NO** implementamos Justicia hasta activar esas oposiciones — pero la arquitectura lo soporta día 1
 
 ---
 
@@ -413,18 +472,15 @@ Lógica basada en `nivel` (ya existe en migration 047):
 
 ### GAP-1: Supuesto práctico TEST — afecta a 4 oposiciones (no solo C1 AGE)
 
-El mismo patrón del supuesto C1 AGE (FASE 2.5) se repite en Justicia:
+Resuelto por FASE 2.5 (módulo genérico). Ver tabla comparativa completa en esa sección.
 
-| Oposición | Ejercicio | Preguntas test | Tiempo | Penalización | scoring_config |
-|-----------|-----------|----------------|--------|-------------|----------------|
-| **AGE C1** | Ej. único Parte 2 | 20q (+5 reserva) | ~30 min | -1/3 | **NO MODELADO** (solo 1 ejercicio en config) |
-| **Auxilio Judicial C2** | Ej.2 Supuesto | 40q (+2 reserva) | 60 min | -1/4 (error=0.25) | ✅ Definido en migration 049 |
-| **Tramitación C1** | Ej.2 Supuesto | 10q (+2 reserva) | 30 min | -1/4 (error=0.50) | ✅ Definido en migration 049 |
-| **Gestión Procesal A2** | Ej.2 Caso práctico | 10q (+2 reserva) | 30 min | -1/5 (error=0.30) | ✅ Definido en migration 049 |
+**Diferencias clave verificadas contra BOE + exámenes reales:**
+- **AGE C1**: 2 casos, elige 1, 20 preguntas. Temática administrativa. Timer compartido.
+- **Auxilio C2**: **2 casos obligatorios** (NO elige), 20+20=40 preguntas. Temática procesal. Timer separado 60 min.
+- **Tramitación C1**: 1 caso, 10 preguntas. Temática procesal. Timer separado 30 min.
+- **Gestión Procesal A2**: 1 caso, 10 preguntas. Temática procesal. Timer separado 30 min.
 
-**Decisión arquitectónica**: La FASE 2.5 debe construirse como **módulo genérico parametrizable** (bloques, num_preguntas, penalización, prompt) en vez de hardcodear para C1 AGE. Así se reutiliza para las 3 oposiciones de Justicia.
-
-**Diferencia clave Justicia vs AGE**: En Justicia, el supuesto es un **ejercicio separado** con su propio timer y nota mínima eliminatoria. En AGE C1, es la "Parte 2" del ejercicio único (comparte los 100 min con Parte 1).
+La FASE 2.5 se construye como módulo genérico parametrizable con `SupuestoTestConfig`. Se implementa primero para AGE C1 y se reutiliza para Justicia.
 
 ### GAP-2: Ofimática como ejercicio separado — Tramitación C1
 
