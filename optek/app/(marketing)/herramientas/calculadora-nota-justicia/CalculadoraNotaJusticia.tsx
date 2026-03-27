@@ -532,6 +532,20 @@ export function CalculadoraNotaJusticia() {
           ))}
         </div>
       </section>
+
+      {/* CTA registro */}
+      <section className="text-center py-8 px-4 bg-primary/5 rounded-xl">
+        <h2 className="text-xl font-bold mb-2">Practica con preguntas reales del MJU</h2>
+        <p className="text-sm text-muted-foreground mb-4">
+          Tests con IA verificados, simulacros oficiales y Radar del Tribunal. Empieza gratis.
+        </p>
+        <a
+          href="/register"
+          className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+        >
+          Empezar gratis — sin tarjeta
+        </a>
+      </section>
     </div>
   )
 }

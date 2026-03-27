@@ -849,8 +849,8 @@ Cada sub-landing incluye:
 ### S.5 Herramientas SEO (lead magnets)
 - [x] `app/(marketing)/herramientas/calculadora-nota-justicia/page.tsx` — CREADA (sección 2.6)
 - [x] `app/(marketing)/herramientas/calculadora-nota-correos/page.tsx` — CREADA (sección 2.6)
-- [ ] Cada calculadora tiene CTA registro
-- [ ] Schema markup interactivo
+- [x] CTA registro: Justicia (CTA section añadida) + Correos (ya tenía link inline)
+- [x] Schema markup: WebApplication ya presente en ambas calculadoras
 
 ### S.6 Blog SEO — 15 posts publicados (Correos + Justicia)
 - [x] Correos (5 posts): test-correos, temario, plazas, penalización, requisitos
