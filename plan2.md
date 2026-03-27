@@ -810,8 +810,8 @@ Estructura:
 - [x] FAQ actualizado para mencionar próximas oposiciones
 - [x] Sección "Próximamente" duplicada eliminada (integrada en sección principal)
 - [x] Mantener secciones genéricas: features, social proof, FAQ global, testimonios
-- [ ] Mover pricing detallado a /precios (no saturar landing)
-- [ ] Hero genérico multi-rama (pendiente — actual sigue siendo AGE-first)
+- [x] Pricing page `/precios` creada con tabs por rama (AGE/Justicia/Correos) + comparativa free vs premium
+- [x] Hero genérico multi-rama: badge "AGE · Correos · Justicia — 10.000+ plazas en 7 oposiciones"
 
 ### S.3 Pricing page dedicada (/precios)
 - [x] Crear `app/(marketing)/precios/page.tsx`
@@ -834,13 +834,13 @@ Estructura:
 - [x] `app/(marketing)/oposiciones/justicia/gestion-procesal/page.tsx` — NUEVA (Fase 2.6)
 
 Cada sub-landing incluye:
-- [ ] Hero con datos oficiales (plazas, fecha examen, temario)
-- [ ] Estructura del examen (ejercicios, scoring, duración)
-- [ ] Temario completo (lista de temas)
-- [ ] "¿Cómo te ayuda OpoRuta?" (features específicas de esa oposición)
-- [ ] CTA registro con `?oposicion=[slug]`
-- [ ] FAQ específica (diferencia con otros cuerpos, requisitos, etc.)
-- [ ] Schema markup: FAQPage + Course + Dataset (para citabilidad LLM)
+- [x] Hero con datos oficiales (plazas, fecha examen, temario) — todas las sub-landings lo tienen
+- [x] Estructura del examen (ejercicios, scoring, duración) — cards con detalles por ejercicio
+- [x] Temario completo (lista de temas) — todos los temas oficiales listados
+- [x] "¿Cómo te ayuda OpoRuta?" (features específicas + preguntas oficiales MJU)
+- [x] CTA registro con `?oposicion=[slug]` — botones enlazados
+- [x] FAQ específica (diferencia con otros cuerpos, requisitos, etc.) — FAQs visuales
+- [x] Schema markup: FAQPage + Course (JsonLd en todas)
 
 ### S.5 Herramientas SEO (lead magnets)
 - [x] `app/(marketing)/herramientas/calculadora-nota-justicia/page.tsx` — CREADA (sección 2.6)
