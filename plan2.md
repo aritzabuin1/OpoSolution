@@ -735,7 +735,12 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 - [x] Métricas: enunciado μ±σ, opciones μ, % negativas, correcta distribution, entropy
 - [x] Calidad: detecta datasets desbalanceados (entropy <0.7) o poco representativos
 - [x] `_metrics.json` con resultados para tracking histórico
-- [ ] Modo `--generate`: generar preguntas IA y comparar con golden (requiere API key, ~$2). Pendiente implementar
+- [x] Modo `--generate` implementado y ejecutado: 7 oposiciones × 10 preguntas IA comparadas
+  - Score medio: **72/100** — aceptable. Mayor gap: opciones IA demasiado cortas (sin RAG context)
+  - Enunciados: 8-18% delta (bueno — calibración Q.2 funciona)
+  - Opciones: 42-73% delta (IA genera 3-5 words vs oficiales 7-20 — en producción con RAG se alarga)
+  - Negativas: IA sobrecompensa (20-30% vs 0-14% oficial)
+  - Reporte: `data/golden-dataset/_eval_report.json`
 
 **Prioridad**: P2 | **Coste**: ~$2/ejecución | **Estimación**: ~4h
 
