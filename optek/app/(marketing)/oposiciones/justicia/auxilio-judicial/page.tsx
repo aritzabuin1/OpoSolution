@@ -230,6 +230,7 @@ export default function AuxilioJudicialLanding() {
           {[
             { icon: Sparkles, title: 'Tests con IA', desc: 'Preguntas generadas y verificadas contra la legislación real: Constitución, LOPJ, LO 1/2025, LEC, LECrim, TREBEP, LPAC y LRJSP.' },
             { icon: AlertTriangle, title: 'Scoring con penalización', desc: 'OpoRuta replica el scoring real de ambos ejercicios. Ej1: +0,60 / -0,15. Ej2: +1,00 / -0,25. Aprende a gestionar el riesgo.' },
+            { icon: FileText, title: '199 preguntas oficiales MJU', desc: 'Exámenes reales 2024 y 2025 completos. Practica con las mismas preguntas que puso el tribunal.' },
             { icon: Shield, title: '26 temas cubiertos', desc: 'Desde Constitución hasta Protección de datos. Cada test se genera con artículos reales del temario oficial.' },
             { icon: Users, title: 'Precio único 49,99€', desc: 'Sin suscripción. Acceso ilimitado hasta que apruebes. 20 análisis detallados incluidos.' },
           ].map(({ icon: Icon, title, desc }) => (

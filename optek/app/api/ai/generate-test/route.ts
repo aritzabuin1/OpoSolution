@@ -606,6 +606,35 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Auto-fill free bank: if a free user triggered AI fallback (bank was empty),
+    // save the generated questions back to free_question_bank so future free users
+    // get instant results for this tema (auto-populates T14 Auxilio, T35 Gestión, etc.)
+    if (!hasPaidAccess && temaId && oposicionId && test.preguntas.length > 0) {
+      try {
+        const { data: temaRow } = await serviceSupabase
+          .from('temas')
+          .select('numero')
+          .eq('id', temaId)
+          .single()
+
+        if (temaRow?.numero) {
+          await (serviceSupabase as any)
+            .from('free_question_bank')
+            .upsert({
+              oposicion_id: oposicionId,
+              tema_id: temaId,
+              tema_numero: temaRow.numero,
+              preguntas: test.preguntas as unknown as Json,
+              validated: false,
+            }, { onConflict: 'oposicion_id,tema_id' })
+
+          log.info({ temaId, oposicionId, temaNumero: temaRow.numero }, 'Auto-filled free_question_bank from AI fallback')
+        }
+      } catch (autoFillErr) {
+        log.warn({ err: autoFillErr, temaId }, 'Failed to auto-fill free_question_bank (non-critical)')
+      }
+    }
+
     // Consumir crédito SOLO tras éxito (BUG-010 fix)
     if (!hasPaidAccess) {
       try {

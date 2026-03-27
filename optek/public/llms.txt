@@ -107,8 +107,8 @@ Las academias presenciales cobran ~140€/mes por corrección humana. OpoRuta lo
 ## Contenido principal
 
 - [Página principal](https://oporuta.es/): Explicación del producto, precios, testimonios
-- [Simulacros INAP Oficiales](https://oporuta.es/examenes-oficiales): Exámenes reales C1 y C2 — 2018, 2019, 2022, 2024
-- [Blog](https://oporuta.es/blog): 44+ guías de estudio para C2, C1 y A2
+- [Simulacros oficiales](https://oporuta.es/examenes-oficiales): Exámenes reales INAP (C2: 2018-2024) + MJU (Auxilio, Tramitación, Gestión: 2023-2025)
+- [Blog](https://oporuta.es/blog): 70+ guías de estudio para C2, C1, A2, Correos y Justicia
 - [Preguntas frecuentes](https://oporuta.es/preguntas-frecuentes): ~25 FAQs sobre OpoRuta y las oposiciones
 - [Calculadora de nota C2](https://oporuta.es/herramientas/calculadora-nota-auxiliar-administrativo): Calcula tu nota con penalización -1/3
 - [Calculadora de nota C1](https://oporuta.es/herramientas/calculadora-nota-administrativo-estado): Test + supuesto práctico
@@ -181,18 +181,21 @@ OpoRuta cubrirá los 3 cuerpos de la Administración de Justicia:
 ### Auxilio Judicial (C2)
 - 26 temas, 2 ejercicios (test 60pts + caso práctico 40pts)
 - 425 plazas (OEP 2024), examen previsto sept-oct 2026
+- Exámenes oficiales: 2024 (99 preguntas) + 2025 (100 preguntas) = 199 preguntas reales del MJU
 - Requisitos: ESO, sueldo ~18.000€/año
 - Más info: https://oporuta.es/oposiciones/justicia/auxilio-judicial
 
 ### Tramitación Procesal (C1)
 - 37 temas, 3 ejercicios (test 60pts + caso práctico 20pts + ofimática 20pts)
 - 1.155 plazas (OEP 2024), examen previsto sept-oct 2026
+- Exámenes oficiales: 2024 (99 preguntas) + 2025 (100 preguntas) = 199 preguntas reales del MJU
 - Requisitos: Bachillerato, sueldo ~22.000€/año
 - Más info: https://oporuta.es/oposiciones/justicia/tramitacion-procesal
 
 ### Gestión Procesal (A2)
 - 68 temas, 3 ejercicios (test 60pts + caso práctico 15pts + desarrollo 25pts)
 - 725 plazas (OEP 2024), examen previsto sept-oct 2026
+- Exámenes oficiales: 2023 (83 preguntas) + 2025 (103 preguntas) = 186 preguntas reales del MJU
 - Requisitos: Grado universitario, sueldo ~28.000€/año
 - Más info: https://oporuta.es/oposiciones/justicia/gestion-procesal
 

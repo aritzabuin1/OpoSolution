@@ -105,8 +105,10 @@
 ### 1.4 Activación Correos
 - [x] Verificar: free bank completo (12/12 temas × 10 preguntas = 120 preguntas)
 - [x] Verificar: legislación indexada (2.679 artículos + 93 secciones conocimiento_tecnico)
-- [ ] Verificar: Stripe producto creado + env var ← MANUAL
-- [ ] `UPDATE oposiciones SET activa = true WHERE slug = 'correos'`
+- [x] Verificar: exámenes oficiales 2023 ingestados (55 preguntas)
+- [x] Verificar código: registro dinámico, scoring sin penalización, dashboard scoping, Stripe tiers
+- [ ] **MANUAL Aritz**: Crear producto Stripe + copiar price_id a `STRIPE_PRICE_PACK_CORREOS` en Vercel
+- [ ] **MANUAL Aritz**: `UPDATE oposiciones SET activa = true WHERE slug = 'correos'`
 - [ ] Deploy y probar flujo completo
 
 ---
@@ -148,9 +150,15 @@
 - [x] ingest-examenes.ts adaptado para slugs Justicia (auxilio-judicial, tramitacion-procesal, gestion-procesal)
 - [x] Descargar cuadernillos + plantillas de MJU — Auxilio 22 PDFs (2008-2025), Tramitación 14 PDFs (2011-2025), Gestión 14 PDFs (2023-2025)
 - [x] Parsear Auxilio 2024: `parsed_a.json` — 99 preguntas con plantilla (regex OK)
-- [ ] Ingestar Auxilio 2024: `pnpm ingest:examenes --dir examenes_auxilio --oposicion auxilio-judicial 2024`
-- [ ] Parsear + ingestar Auxilio 2025, Tramitación 2024/2025, Gestión 2024/2025
-- [ ] Insertar en examenes_oficiales + preguntas_oficiales
+- [x] Ingestar Auxilio 2024: `pnpm ingest:examenes --dir examenes_auxilio --oposicion auxilio-judicial 2024` — 59 preguntas
+- [x] Parsear + ingestar Auxilio 2025 — 100 parseadas (regex), 100 ingestadas
+- [x] Parsear + ingestar Tramitación 2024 — 99 parseadas (GPT), 99 ingestadas
+- [x] Parsear + ingestar Tramitación 2025 — 100 parseadas (GPT), 100 ingestadas
+- [x] Parsear + ingestar Gestión 2023 — 83 parseadas (GPT), 83 ingestadas
+- [x] Parsear + ingestar Gestión 2025 — 103 parseadas (GPT), 103 ingestadas
+- [x] Fix: `MAX_PUNTUABLE` hardcodeado 60 → dinámico desde scoring_config (bug descartaba preguntas >60)
+- [ ] Gestión 2024 — falta PDF cuestionario (solo plantillas disponibles)
+- [x] Insertar en examenes_oficiales + preguntas_oficiales
 
 ### 2.4 Contenido Justicia — Free bank
 - [x] Ingestar Auxilio 2024: 59 preguntas oficiales
@@ -174,9 +182,17 @@
 - [x] Actualizar sitemap.ts
 
 ### 2.7 Activación progresiva Justicia
-- [ ] Fase 2a: Activar Auxilio Judicial (26 temas, ~24k inscritos) — free bank 25/26 ✅, examen 2024 59q ✅, falta Stripe
-- [ ] Fase 2b: Activar Tramitación C1 (37 temas, ~30k inscritos)
-- [ ] Fase 2c: Activar Gestión A2 (68 temas, necesita corrección IA desarrollo)
+- [ ] Fase 2a: Activar Auxilio Judicial (26 temas, ~24k inscritos) — free bank 25/26 ✅, exámenes 2024+2025 119q ✅
+  - **MANUAL Aritz**: Crear producto Stripe + `STRIPE_PRICE_PACK_AUXILIO` en Vercel
+  - **MANUAL Aritz**: `UPDATE oposiciones SET activa = true WHERE slug = 'auxilio-judicial'`
+- [ ] Fase 2b: Activar Tramitación C1 (37 temas, ~30k inscritos) — free bank 37/37 ✅, exámenes 2024+2025 113q ✅
+  - **MANUAL Aritz**: Crear producto Stripe + `STRIPE_PRICE_PACK_TRAMITACION` en Vercel
+  - **MANUAL Aritz**: `UPDATE oposiciones SET activa = true WHERE slug = 'tramitacion-procesal'`
+  - Bloqueante: GAP-2 ofimática como ejercicio separado (nice-to-have, no bloquea test básico)
+- [ ] Fase 2c: Activar Gestión A2 (68 temas) — free bank 67/68 ✅, exámenes 2023+2025 118q ✅
+  - **MANUAL Aritz**: Crear producto Stripe + `STRIPE_PRICE_PACK_GESTION_J` en Vercel
+  - **MANUAL Aritz**: `UPDATE oposiciones SET activa = true WHERE slug = 'gestion-procesal'`
+  - Bloqueante: GAP-4 desarrollo escrito con rúbrica MJU (solo para Ej.3)
 
 ---
 
@@ -576,7 +592,7 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 2. ~~**GAP-5**: Fix scoring_config C1 AGE (prerequisito de FASE 2.5)~~ **COMPLETADO** — Migration 051
 3. ~~**GAP-3**: Multi-exercise scoring genérico (prerequisito de Justicia)~~ **COMPLETADO** — overload EjercicioData[], resultados page usa calcularEjercicio, 25 tests
 4. ~~**FASE 2.5b-c**: Supuesto práctico test genérico~~ **COMPLETADO** — supuesto-test.ts + endpoint + page + SupuestoTestRunner + resultados + migration 054 + ingesta oficial
-5. **AUTO-FILL FREE BANK**: Si un free user genera test para un tema sin free bank, guardar también en `free_question_bank` (auto-popula T14 Auxilio y T35 Gestión con la primera generación IA)
+5. ~~**AUTO-FILL FREE BANK**: Si un free user genera test para un tema sin free bank, guardar también en `free_question_bank` (auto-popula T14 Auxilio y T35 Gestión con la primera generación IA)~~ **COMPLETADO** — upsert en generate-test route tras AI fallback
 6. **GAP-2**: Ofimática ejercicio separado (solo si activamos Tramitación)
 7. **GAP-4**: Desarrollo escrito Gestión Procesal (solo si activamos Gestión Procesal)
 

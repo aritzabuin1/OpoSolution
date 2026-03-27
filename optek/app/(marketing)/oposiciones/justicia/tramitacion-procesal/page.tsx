@@ -315,6 +315,7 @@ export default function TramitacionProcesalLanding() {
           {[
             { icon: Sparkles, title: 'Tests con IA', desc: 'Preguntas generadas y verificadas contra la legislación procesal real. LEC, LECrim, LOPJ y más.' },
             { icon: Gavel, title: 'Penalización real', desc: 'Scoring idéntico al examen: los 3 ejercicios penalizan, error resta 1/4 del acierto. Practica con la presión real.' },
+            { icon: FileText, title: '199 preguntas oficiales MJU', desc: 'Exámenes reales 2024 y 2025 completos. Practica con las mismas preguntas que puso el tribunal.' },
             { icon: Scale, title: '37 temas cubiertos', desc: 'Todo el temario oficial: derecho constitucional, procesal (civil, penal, laboral, contencioso) y ofimática.' },
             { icon: Users, title: 'Precio único 49,99€', desc: 'Sin suscripción. Acceso ilimitado hasta que apruebes. 20 análisis detallados incluidos.' },
           ].map(({ icon: Icon, title, desc }) => (

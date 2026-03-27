@@ -121,7 +121,8 @@ function hashPregunta(pregunta: PreguntaParsed): string {
 async function ingestExamen(
   supabase: SupabaseClient,
   examenParsed: ExamenParsed,
-  oposicionId: string
+  oposicionId: string,
+  maxPuntuable: number = 200
 ): Promise<{ ok: boolean; examenId?: string; preguntasInsertadas: number }> {
   console.log(
     `\n📥 Ingesta: ${examenParsed.convocatoria}${examenParsed.modelo ? ` modelo ${examenParsed.modelo}` : ''}`
@@ -141,7 +142,7 @@ async function ingestExamen(
   // Instead: try select first, then insert or update.
   const { data: existing } = await (supabase as ReturnType<typeof createClient>)
     .from('examenes_oficiales')
-    .select('id')
+    .select('id, modelo')
     .eq('oposicion_id', oposicionId)
     .eq('anio', examenParsed.anno)
     .eq('convocatoria', examenParsed.turno)
@@ -186,11 +187,10 @@ async function ingestExamen(
   const examenId = (examenRow as { id: string }).id
   console.log(`  ✅ Examen ID: ${examenId}`)
 
-  // 2. Excluir preguntas de reserva (sin respuesta verificada — credibilidad 0 tolerancia)
-  //    C1 (Administrativo): 60 puntuables + 10 reserva
-  //    C2 (Auxiliar): actualmente todos los exámenes ya vienen sin reservas
-  const MAX_PUNTUABLE = 60 // Preguntas > 60 son reserva en C1; C2 no las incluye
-  const preguntasPuntuables = examenParsed.preguntas.filter((p) => p.numero <= MAX_PUNTUABLE)
+  // 2. Excluir preguntas de reserva (sin respuesta verificada)
+  //    El límite se calcula desde scoring_config de la oposición (suma de preguntas de todos los ejercicios)
+  //    Ej: AGE C2 = 60, AGE C1 = 90 (70+20), Auxilio = 140 (100+40), Correos = 100, etc.
+  const preguntasPuntuables = examenParsed.preguntas.filter((p) => p.numero <= maxPuntuable)
   const reservasDescartadas = examenParsed.preguntas.length - preguntasPuntuables.length
   if (reservasDescartadas > 0) {
     console.log(`  ⚠️  ${reservasDescartadas} preguntas de reserva descartadas (sin respuesta verificada)`)
@@ -285,10 +285,10 @@ async function main() {
 
   const supabase = buildSupabaseClient()
 
-  // Obtener oposicion_id del slug correspondiente
+  // Obtener oposicion_id + scoring_config del slug correspondiente
   const { data: oposicion, error: opError } = await supabase
     .from('oposiciones')
-    .select('id')
+    .select('id, scoring_config')
     .eq('slug', slug)
     .single()
 
@@ -297,8 +297,20 @@ async function main() {
     process.exit(1)
   }
 
-  const oposicionId = (oposicion as { id: string }).id
-  console.log(`✅ Oposición ID: ${oposicionId}\n`)
+  const oposicionId = (oposicion as { id: string; scoring_config: unknown }).id
+
+  // Calcular máximo de preguntas puntuables desde scoring_config
+  // Suma las preguntas de todos los ejercicios (ej: Auxilio = 100 test + 40 práctico = 140)
+  // Si no hay scoring_config, fallback a 200 (no filtrar)
+  let maxPuntuable = 200
+  try {
+    const config = (oposicion as { scoring_config: unknown }).scoring_config as { ejercicios?: Array<{ preguntas?: number }> } | null
+    if (config?.ejercicios) {
+      const totalPuntuable = config.ejercicios.reduce((sum, ej) => sum + (ej.preguntas ?? 0), 0)
+      if (totalPuntuable > 0) maxPuntuable = totalPuntuable
+    }
+  } catch { /* use fallback */ }
+  console.log(`✅ Oposición ID: ${oposicionId} (max puntuable: ${maxPuntuable})\n`)
 
   const jsons = discoverParsedJsons(targetAnno)
 
@@ -315,7 +327,7 @@ async function main() {
 
   for (const { anno, filePath } of jsons) {
     const examenParsed = JSON.parse(fs.readFileSync(filePath, 'utf-8')) as ExamenParsed
-    const result = await ingestExamen(supabase, examenParsed, oposicionId)
+    const result = await ingestExamen(supabase, examenParsed, oposicionId, maxPuntuable)
 
     if (result.ok) {
       totalPreguntas += result.preguntasInsertadas
