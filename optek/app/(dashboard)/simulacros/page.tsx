@@ -124,6 +124,9 @@ export default async function SimulacrosPage() {
   const features = (opoFeatures as { features?: Record<string, boolean>; scoring_config?: { ejercicios?: Array<{ nombre?: string; preguntas?: number; minutos?: number }>; minutos_total?: number } } | null)
   const hasSupuestoPractico = features?.features?.supuesto_practico === true
   const hasSupuestoTest = features?.features?.supuesto_test === true
+  const hasPsicotecnicos = features?.features?.psicotecnicos === true
+  // Number of questions in the first exercise (cuestionario) — used for "examen completo" mode
+  const preguntasEjercicio1 = features?.scoring_config?.ejercicios?.[0]?.preguntas ?? 100
   // "Examen completo" available when oposición has both simulacros (oficial questions) AND supuesto test
   const hasExamenCompleto = hasSupuestoTest && hayExamenes
 
@@ -261,6 +264,8 @@ export default async function SimulacrosPage() {
             <SimulacroMixtoCard
               totalPreguntas={totalPreguntasCombinadas}
               numConvocatorias={examenesConCount.length}
+              hasPsicotecnicos={hasPsicotecnicos}
+              preguntasExamenCompleto={preguntasEjercicio1}
             />
           </div>
 
@@ -271,7 +276,7 @@ export default async function SimulacrosPage() {
             </h2>
             <div className="space-y-3">
               {examenesConCount.map((examen) => (
-                <SimulacroCard key={examen.id} examen={examen} />
+                <SimulacroCard key={examen.id} examen={examen} hasPsicotecnicos={hasPsicotecnicos} preguntasExamenCompleto={preguntasEjercicio1} />
               ))}
             </div>
           </div>

@@ -30,22 +30,34 @@ export interface SimulacroMixtoCardProps {
   totalPreguntas: number
   /** Número de convocatorias activas disponibles */
   numConvocatorias: number
+  /** Whether this oposición includes psicotécnicos (only C2 Auxiliar) */
+  hasPsicotecnicos?: boolean
+  /** Number of questions in first exercise (cuestionario) from scoring_config — default 100 for C2 */
+  preguntasExamenCompleto?: number
 }
 
-// ─── Constantes ───────────────────────────────────────────────────────────────
+// ─── Helpers ─────────────────────────────────────────────────────────────────
 
-const MODOS_PREGUNTAS = [
-  { label: '100 preguntas', value: 100, description: 'Examen completo oficial (100 puntuables + 10 reserva en el real)' },
-  { label: '50 preguntas', value: 50, description: 'Sesión media con preguntas mixtas' },
-  { label: '20 preguntas', value: 20, description: 'Repaso rápido variado' },
-] as const
+function buildModosPreguntas(examenCompleto: number) {
+  const modos: { label: string; value: number; description: string }[] = [
+    { label: `${examenCompleto} preguntas`, value: examenCompleto, description: `Cuestionario completo oficial (${examenCompleto} puntuables)` },
+  ]
+  // Add intermediate option if exam is large enough
+  const mitad = Math.round(examenCompleto / 2)
+  if (mitad > 20 && mitad < examenCompleto) {
+    modos.push({ label: `${mitad} preguntas`, value: mitad, description: 'Sesión media con preguntas mixtas' })
+  }
+  modos.push({ label: '20 preguntas', value: 20, description: 'Repaso rápido variado' })
+  return modos
+}
 
 // ─── Componente ──────────────────────────────────────────────────────────────
 
-export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias }: SimulacroMixtoCardProps) {
+export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias, hasPsicotecnicos = false, preguntasExamenCompleto = 100 }: SimulacroMixtoCardProps) {
   const router = useRouter()
   const isPremium = useIsPremium()
 
+  const modosPreguntas = buildModosPreguntas(preguntasExamenCompleto)
   const [numPreguntas, setNumPreguntas] = useState(20)
   const [incluirPsicotecnicos, setIncluirPsicotecnicos] = useState(false)
   const [dificultadPsico, setDificultadPsico] = useState<1 | 2 | 3>(2)
@@ -152,7 +164,7 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias }: Simulac
             Número de preguntas
           </label>
           <div className="grid gap-2">
-            {MODOS_PREGUNTAS.map((modo) => {
+            {modosPreguntas.map((modo) => {
               const lockedMode = isFree && modo.value > FREE_LIMITS.simulacroMaxPreguntas
               return (
                 <button
@@ -186,7 +198,8 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias }: Simulac
           </div>
         </div>
 
-        {/* §1.3B.13 — Modo Examen Real (+ psicotécnicas) */}
+        {/* §1.3B.13 — Modo Examen Real (+ psicotécnicas) — solo oposiciones con psicotécnicos */}
+        {hasPsicotecnicos && (
         <div className="space-y-2">
           <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
             Modo examen
@@ -266,6 +279,7 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias }: Simulac
             </div>
           )}
         </div>
+        )}
 
         {/* Aviso de penalización */}
         <p className="text-[11px] text-muted-foreground bg-amber-50 border border-amber-100 rounded-md px-3 py-2">

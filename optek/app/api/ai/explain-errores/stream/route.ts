@@ -24,8 +24,11 @@ export const maxDuration = 60
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
+const ERRORS_PER_BATCH = 10
+
 const InputSchema = z.object({
   testId: z.string().regex(UUID_REGEX, 'testId debe ser un UUID válido'),
+  batch: z.number().int().min(0).max(20).default(0),
 })
 
 export async function POST(request: NextRequest) {
@@ -50,7 +53,7 @@ export async function POST(request: NextRequest) {
   if (!parsed.success) {
     return NextResponse.json({ error: parsed.error.issues.map(i => i.message).join('; ') }, { status: 400 })
   }
-  const { testId } = parsed.data
+  const { testId, batch } = parsed.data
 
   // ── 3. Anti-spam: 3 req/min ─────────────────────────────────────────────
   const antiSpam = await checkRateLimit(user.id, 'ai-explain', 3, '1 m')
@@ -81,12 +84,20 @@ export async function POST(request: NextRequest) {
   const preguntas = testData.preguntas as Pregunta[]
   const respuestas = (testData.respuestas_usuario ?? []) as (number | null)[]
 
-  const erroneas = preguntas
+  const todasErroneas = preguntas
     .map((p, i) => ({ pregunta: p, index: i, respuesta: respuestas[i] }))
     .filter(({ pregunta, respuesta }) => respuesta !== null && respuesta !== pregunta.correcta)
 
-  if (erroneas.length === 0) {
+  if (todasErroneas.length === 0) {
     return NextResponse.json({ explicaciones: [] }, { status: 200 })
+  }
+
+  // Batch: only analyze ERRORS_PER_BATCH errors per call
+  const batchStart = batch * ERRORS_PER_BATCH
+  const erroneas = todasErroneas.slice(batchStart, batchStart + ERRORS_PER_BATCH)
+
+  if (erroneas.length === 0) {
+    return NextResponse.json({ error: 'No hay más errores por analizar en este bloque.' }, { status: 400 })
   }
 
   // ── 5. Admin check — admin skips ALL limits ─────────────────────────────
@@ -154,7 +165,7 @@ export async function POST(request: NextRequest) {
   const maxTokens = erroneas.length <= 5 ? 1500 : erroneas.length <= 10 ? 2500 : 3500
 
   log.info(
-    { userId: user.id, testId, errores: erroneas.length, maxTokens, hasPaidCredit },
+    { userId: user.id, testId, batch, erroresTotal: todasErroneas.length, erroresBatch: erroneas.length, maxTokens, hasPaidCredit },
     '[explain-errores-stream] iniciando stream'
   )
 

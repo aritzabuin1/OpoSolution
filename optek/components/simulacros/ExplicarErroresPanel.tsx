@@ -3,14 +3,16 @@
 /**
  * components/simulacros/ExplicarErroresPanel.tsx — §2.6A.6
  *
- * Panel de análisis socrático de errores.
- * Disponible en todos los tests con errores (tema, simulacro, radar, etc.).
+ * Panel de análisis socrático de errores con sistema de batches.
+ * Cada batch analiza hasta 10 errores y consume 1 crédito.
  *
- * Estados:
- *   idle      → muestra botón "Explicar mis errores con IA (1 corrección)"
+ * Ejemplo: 25 errores → 3 batches (10 + 10 + 5) = 3 créditos.
+ *
+ * Estados por batch:
+ *   idle      → muestra botón "Analizar errores X-Y (1 análisis)"
  *   loading   → spinner mientras se inicia conexión
- *   streaming → texto apareciendo token a token (primer token <500ms)
- *   done      → texto completo con scroll
+ *   streaming → texto apareciendo token a token
+ *   done      → texto completo, muestra botón para siguiente batch si queda
  *   error     → mensaje de error con retry
  *
  * Paywall: si sin créditos → muestra modal PaywallGate (PAYWALL_CORRECTIONS).
@@ -18,13 +20,14 @@
 
 import { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 import { toast } from 'sonner'
-import { Sparkles, Loader2, X } from 'lucide-react'
+import { Sparkles, Loader2, X, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PaywallGate } from '@/components/shared/PaywallGate'
 import { markdownToHtml } from '@/lib/utils/simple-markdown'
 import { trackEvent } from '@/lib/analytics/track'
 
 const LS_KEY = 'oporuta_first_analysis_seen'
+const ERRORS_PER_BATCH = 10
 
 // ─── Props ────────────────────────────────────────────────────────────────────
 
@@ -36,19 +39,35 @@ export interface ExplicarErroresPanelProps {
 
 // ─── Tipos internos ───────────────────────────────────────────────────────────
 
-type PanelState = 'idle' | 'loading' | 'streaming' | 'done' | 'error'
+type BatchState = 'idle' | 'loading' | 'streaming' | 'done' | 'error'
+
+interface BatchResult {
+  text: string
+  state: BatchState
+}
 
 // ─── Componente ──────────────────────────────────────────────────────────────
 
 export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPanelProps) {
-  const [state, setState] = useState<PanelState>('idle')
-  const [streamedText, setStreamedText] = useState('')
+  const totalBatches = Math.ceil(numErrores / ERRORS_PER_BATCH)
+  const [batchResults, setBatchResults] = useState<BatchResult[]>([])
+  const [currentBatch, setCurrentBatch] = useState(0) // next batch to analyze
+  const [activeBatchState, setActiveBatchState] = useState<BatchState>('idle')
   const [showPaywall, setShowPaywall] = useState(false)
   const [isFirstTime, setIsFirstTime] = useState(false)
-  const renderedHtml = useMemo(() => markdownToHtml(streamedText), [streamedText])
   const textRef = useRef<HTMLDivElement>(null)
 
-  // Check if user has never seen analysis before + track CTA view
+  const hasStarted = batchResults.length > 0 || activeBatchState !== 'idle'
+  const allDone = currentBatch >= totalBatches
+  const batchStart = currentBatch * ERRORS_PER_BATCH + 1
+  const batchEnd = Math.min((currentBatch + 1) * ERRORS_PER_BATCH, numErrores)
+  const errorsInBatch = batchEnd - batchStart + 1
+
+  // Combine all batch results into a single rendered HTML
+  const allText = batchResults.map(b => b.text).join('\n\n')
+  const renderedHtml = useMemo(() => markdownToHtml(allText), [allText])
+
+  // Check if user has never seen analysis before
   useEffect(() => {
     try {
       setIsFirstTime(!localStorage.getItem(LS_KEY))
@@ -61,37 +80,35 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
     try { localStorage.setItem(LS_KEY, '1') } catch { /* noop */ }
   }, [])
 
-  // Auto-scroll to bottom as text streams
+  // Auto-scroll as text streams
   useEffect(() => {
-    if (state === 'streaming' && textRef.current) {
+    if (activeBatchState === 'streaming' && textRef.current) {
       textRef.current.scrollTop = textRef.current.scrollHeight
     }
-  }, [streamedText, state])
+  }, [batchResults, activeBatchState])
 
-  async function handleExplicar() {
-    if (state === 'loading' || state === 'streaming') return
+  async function handleAnalyzeBatch() {
+    if (activeBatchState === 'loading' || activeBatchState === 'streaming') return
     trackEvent('click:analysis-cta')
-    setState('loading')
-    setStreamedText('')
+    setActiveBatchState('loading')
 
     const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 50_000) // 50s client timeout
+    const timeout = setTimeout(() => controller.abort(), 50_000)
 
     try {
       const res = await fetch('/api/ai/explain-errores/stream', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ testId }),
+        body: JSON.stringify({ testId, batch: currentBatch }),
         signal: controller.signal,
       })
 
-      // Non-streaming error responses (auth, paywall, rate limit)
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
 
         if (res.status === 402) {
           setShowPaywall(true)
-          setState('idle')
+          setActiveBatchState('idle')
           return
         }
 
@@ -99,24 +116,23 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
           toast.error('Servicio no disponible', {
             description: 'El servicio de IA está ocupado. Inténtalo en un minuto.',
           })
-          setState('error')
+          setActiveBatchState('error')
           return
         }
 
         toast.error('Error al generar explicaciones', {
           description: data?.error ?? 'Por favor inténtalo de nuevo.',
         })
-        setState('error')
+        setActiveBatchState('error')
         return
       }
 
-      // Start reading stream
       if (!res.body) {
-        setState('error')
+        setActiveBatchState('error')
         return
       }
 
-      setState('streaming')
+      setActiveBatchState('streaming')
       const reader = res.body.getReader()
       const decoder = new TextDecoder()
       let accumulated = ''
@@ -125,19 +141,39 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
         const { done, value } = await reader.read()
         if (done) break
         accumulated += decoder.decode(value, { stream: true })
-        setStreamedText(accumulated)
+        // Update batchResults with streaming text so it renders live
+        setBatchResults(prev => {
+          const updated = [...prev]
+          // Replace or add the current batch entry
+          if (updated.length <= currentBatch) {
+            updated.push({ text: accumulated, state: 'streaming' })
+          } else {
+            updated[currentBatch] = { text: accumulated, state: 'streaming' }
+          }
+          return updated
+        })
       }
 
-      // Guard against empty response from AI
       if (accumulated.trim().length === 0) {
         toast.error('El análisis no generó contenido', {
           description: 'Inténtalo de nuevo en unos segundos.',
         })
-        setState('error')
+        setActiveBatchState('error')
         return
       }
 
-      setState('done')
+      // Finalize this batch
+      setBatchResults(prev => {
+        const updated = [...prev]
+        if (updated.length <= currentBatch) {
+          updated.push({ text: accumulated, state: 'done' })
+        } else {
+          updated[currentBatch] = { text: accumulated, state: 'done' }
+        }
+        return updated
+      })
+      setActiveBatchState('done')
+      setCurrentBatch(b => b + 1)
     } catch (err) {
       if (err instanceof DOMException && err.name === 'AbortError') {
         toast.error('El análisis ha tardado demasiado', {
@@ -148,14 +184,22 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
           description: 'Comprueba tu conexión a internet e inténtalo de nuevo.',
         })
       }
-      setState('error')
+      setActiveBatchState('error')
     } finally {
       clearTimeout(timeout)
     }
   }
 
-  // ── Idle / Error state ──────────────────────────────────────────────────
-  if (state === 'idle' || state === 'error') {
+  // ── Info text about batching ──────────────────────────────────────────────
+  function batchInfoText(): string {
+    if (numErrores <= ERRORS_PER_BATCH) {
+      return `Consume 1 análisis.`
+    }
+    return `${numErrores} errores → ${totalBatches} bloques de hasta ${ERRORS_PER_BATCH} (1 análisis por bloque).`
+  }
+
+  // ── Initial idle state (never started) ────────────────────────────────────
+  if (!hasStarted) {
     return (
       <div className={`rounded-xl border border-dashed p-6 space-y-4 transition-all ${
         isFirstTime
@@ -186,19 +230,22 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
             </p>
             <p className="text-xs text-muted-foreground mt-0.5">
               La IA analiza cada error: entiende tu razonamiento, te guía al artículo correcto
-              con preguntas y te da un truco para no olvidarlo. Consume 1 análisis.
+              con preguntas y te da un truco para no olvidarlo. {batchInfoText()}
             </p>
           </div>
         </div>
 
         <Button
-          onClick={() => { dismissFirstTime(); handleExplicar() }}
+          onClick={() => { dismissFirstTime(); handleAnalyzeBatch() }}
           variant="default"
           size="sm"
           className="w-full sm:w-auto"
         >
           <Sparkles className="h-4 w-4 mr-2" />
-          {state === 'error' ? 'Reintentar' : 'Analizar mis errores (1 análisis)'}
+          {numErrores <= ERRORS_PER_BATCH
+            ? `Analizar mis ${numErrores} errores (1 análisis)`
+            : `Analizar errores 1-${Math.min(ERRORS_PER_BATCH, numErrores)} (1 análisis)`
+          }
         </Button>
 
         <PaywallGate
@@ -211,41 +258,61 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
     )
   }
 
-  // ── Loading state (connecting) ──────────────────────────────────────────
-  if (state === 'loading') {
+  // ── Loading state (connecting to current batch) ───────────────────────────
+  if (activeBatchState === 'loading') {
     return (
-      <div className="rounded-xl border border-primary/20 bg-primary/5 p-6 flex items-center gap-3">
-        <Loader2 className="h-5 w-5 animate-spin text-primary shrink-0" />
-        <div>
-          <p className="font-medium text-sm">Conectando con el tutor IA...</p>
-          <p className="text-xs text-muted-foreground">Preparando análisis socrático</p>
+      <section className="space-y-3">
+        <BatchHeader />
+        {/* Show previous batch results */}
+        {batchResults.length > 0 && (
+          <PreviousBatchesView html={renderedHtml} textRef={textRef} />
+        )}
+        <div className="rounded-xl border border-primary/20 bg-primary/5 p-6 flex items-center gap-3">
+          <Loader2 className="h-5 w-5 animate-spin text-primary shrink-0" />
+          <div>
+            <p className="font-medium text-sm">Conectando con el tutor IA...</p>
+            <p className="text-xs text-muted-foreground">
+              Analizando errores {batchStart}-{batchEnd} de {numErrores}
+            </p>
+          </div>
         </div>
-      </div>
+      </section>
     )
   }
 
-  // ── Streaming / Done state ──────────────────────────────────────────────
+  // ── Streaming / Done state ────────────────────────────────────────────────
+  const currentStreamingText = batchResults[batchResults.length - 1]?.text ?? ''
+  const isStreaming = activeBatchState === 'streaming'
+
+  // Combine completed batches HTML + current streaming text
+  const completedBatchesHtml = batchResults.slice(0, -1).map(b => b.text).join('\n\n')
+  const completedHtml = useMemo(() => markdownToHtml(completedBatchesHtml), [completedBatchesHtml])
+
   return (
     <section className="space-y-3">
-      <div className="flex items-center gap-2">
-        <Sparkles className="h-4 w-4 text-primary" />
-        <h2 className="text-sm font-semibold">
-          Análisis de errores con IA
-          {state === 'streaming' && (
-            <span className="ml-2 text-xs font-normal text-muted-foreground">
-              escribiendo...
-            </span>
-          )}
-        </h2>
-      </div>
+      <BatchHeader />
 
       <div
         ref={textRef}
         className="rounded-lg border border-primary/20 bg-muted/30 p-4 max-h-[500px] overflow-y-auto"
       >
-        {state === 'streaming' ? (
+        {/* Previously completed batches */}
+        {completedBatchesHtml && (
+          <>
+            <div
+              className="text-sm leading-relaxed prose prose-sm prose-gray dark:prose-invert max-w-none
+                prose-headings:text-foreground prose-p:text-foreground prose-li:text-foreground
+                prose-strong:text-foreground prose-code:text-foreground"
+              dangerouslySetInnerHTML={{ __html: completedHtml }}
+            />
+            <hr className="my-4 border-primary/20" />
+          </>
+        )}
+
+        {/* Current batch (streaming or done) */}
+        {isStreaming ? (
           <div className="text-sm leading-relaxed whitespace-pre-wrap">
-            {streamedText}
+            {currentStreamingText}
             <span className="inline-block w-2 h-4 bg-primary/60 animate-pulse ml-0.5 align-text-bottom" />
           </div>
         ) : (
@@ -253,10 +320,81 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
             className="text-sm leading-relaxed prose prose-sm prose-gray dark:prose-invert max-w-none
               prose-headings:text-foreground prose-p:text-foreground prose-li:text-foreground
               prose-strong:text-foreground prose-code:text-foreground"
-            dangerouslySetInnerHTML={{ __html: renderedHtml }}
+            dangerouslySetInnerHTML={{ __html: markdownToHtml(currentStreamingText) }}
           />
         )}
       </div>
+
+      {/* Progress + next batch CTA */}
+      {!isStreaming && (
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          <p className="text-xs text-muted-foreground">
+            {allDone ? (
+              <>Análisis completo — {numErrores} errores analizados en {totalBatches} {totalBatches === 1 ? 'bloque' : 'bloques'}.</>
+            ) : (
+              <>Bloque {currentBatch}/{totalBatches} completado — quedan {numErrores - currentBatch * ERRORS_PER_BATCH} errores sin analizar.</>
+            )}
+          </p>
+          {!allDone && (
+            <Button
+              onClick={handleAnalyzeBatch}
+              variant="outline"
+              size="sm"
+              className="shrink-0 gap-1.5"
+            >
+              <ChevronRight className="h-3.5 w-3.5" />
+              Analizar errores {currentBatch * ERRORS_PER_BATCH + 1}-{Math.min((currentBatch + 1) * ERRORS_PER_BATCH, numErrores)} (1 análisis)
+            </Button>
+          )}
+        </div>
+      )}
+
+      {/* Error retry for current batch */}
+      {activeBatchState === 'error' && (
+        <Button
+          onClick={handleAnalyzeBatch}
+          variant="outline"
+          size="sm"
+          className="gap-1.5"
+        >
+          <Sparkles className="h-3.5 w-3.5" />
+          Reintentar bloque {currentBatch + 1}
+        </Button>
+      )}
+
+      <PaywallGate
+        open={showPaywall}
+        onClose={() => setShowPaywall(false)}
+        code="PAYWALL_CORRECTIONS"
+        temaId={undefined}
+      />
     </section>
+  )
+}
+
+// ─── Sub-components ──────────────────────────────────────────────────────────
+
+function BatchHeader() {
+  return (
+    <div className="flex items-center gap-2">
+      <Sparkles className="h-4 w-4 text-primary" />
+      <h2 className="text-sm font-semibold">Análisis de errores con IA</h2>
+    </div>
+  )
+}
+
+function PreviousBatchesView({ html, textRef }: { html: string; textRef: React.RefObject<HTMLDivElement | null> }) {
+  return (
+    <div
+      ref={textRef}
+      className="rounded-lg border border-primary/20 bg-muted/30 p-4 max-h-[500px] overflow-y-auto"
+    >
+      <div
+        className="text-sm leading-relaxed prose prose-sm prose-gray dark:prose-invert max-w-none
+          prose-headings:text-foreground prose-p:text-foreground prose-li:text-foreground
+          prose-strong:text-foreground prose-code:text-foreground"
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
+    </div>
   )
 }
