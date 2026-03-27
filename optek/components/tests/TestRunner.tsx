@@ -373,16 +373,18 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
         </div>
 
         <div className="flex gap-2">
-          {/* Abandonar test */}
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowAbandonDialog(true)}
-            className="text-muted-foreground"
-          >
-            <LogOut className="mr-1 h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Abandonar</span>
-          </Button>
+          {/* Abandonar test — only show when there are unanswered questions */}
+          {sinResponder > 0 && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowAbandonDialog(true)}
+              className="text-muted-foreground"
+            >
+              <LogOut className="mr-1 h-3.5 w-3.5" />
+              <span className="hidden sm:inline">Abandonar</span>
+            </Button>
+          )}
 
           {/* Reportar pregunta */}
           <Button

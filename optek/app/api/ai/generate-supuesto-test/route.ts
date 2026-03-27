@@ -2,13 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { checkPaidAccess, getOposicionFromProfile } from '@/lib/freemium'
-import { callAIJSON } from '@/lib/ai/provider'
 import {
   getSupuestoTestConfig,
   hasSupuestoTest,
-  getSystemPrompt,
-  buildUserPrompt,
-  SupuestoGeneradoSchema,
 } from '@/lib/ai/supuesto-test'
 import { logger } from '@/lib/logger'
 import type { Json } from '@/types/database'
@@ -150,76 +146,57 @@ export async function POST(request: NextRequest) {
     return await saveAndReturn(serviceSupabase, user.id, oposicionId, supuesto.caso, supuesto.preguntas, 'supuesto-bank-1.0', log)
   }
 
-  // ── 7. No unseen supuestos → generate with AI → save to bank ───────────
-  log.info({ userId: user.id, slug }, '[generate-supuesto-test] generating new supuesto with AI')
+  // ── 7. No unseen supuestos → serve LEAST RECENTLY SEEN from bank ────────
+  // NO real-time AI generation. All supuestos come from the pre-verified bank.
+  // The bank is populated offline via `pnpm seed:supuestos` which generates
+  // with AI + verifies citations against BD before inserting.
+  // This guarantees: instant response + verified content + no hallucinations.
 
-  try {
-    const systemPrompt = getSystemPrompt(config)
-    const userPrompt = buildUserPrompt(config)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: oldestSeen } = await (serviceSupabase as any)
+    .from('user_supuestos_seen')
+    .select('supuesto_id, seen_at')
+    .eq('user_id', user.id)
+    .order('seen_at', { ascending: true })
+    .limit(1)
+    .single()
 
-    const result = await callAIJSON(
-      systemPrompt,
-      userPrompt,
-      SupuestoGeneradoSchema,
-      { maxTokens: 16000, requestId, useHeavyModel: true }
-    )
-
-    // Validate minimum quality
-    if (result.preguntas.length < config.preguntasPorCaso) {
-      log.warn({ got: result.preguntas.length, expected: config.preguntasPorCaso }, '[generate-supuesto-test] AI returned fewer questions than expected')
-      // Still usable if at least 50%
-      if (result.preguntas.length < Math.ceil(config.preguntasPorCaso / 2)) {
-        return NextResponse.json(
-          { error: 'Error generando el supuesto. Inténtalo de nuevo.' },
-          { status: 500 }
-        )
-      }
-    }
-
-    const caso = {
-      titulo: result.titulo,
-      escenario: result.escenario,
-      bloques_cubiertos: result.bloques_cubiertos,
-    }
-
-    // Save to supuesto_bank for future reuse
+  if (oldestSeen) {
+    const oldest = oldestSeen as { supuesto_id: string; seen_at: string }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (serviceSupabase as any)
-      .from('supuesto_bank')
-      .insert({
-        oposicion_id: oposicionId,
-        caso,
-        preguntas: result.preguntas,
-        es_oficial: false,
-        fuente: `ai-supuesto-test-${slug}-1.0`,
-      })
-
-    log.info({ userId: user.id, titulo: result.titulo, preguntas: result.preguntas.length }, '[generate-supuesto-test] AI supuesto generated and banked')
-    return await saveAndReturn(serviceSupabase, user.id, oposicionId, caso, result.preguntas, 'ai-supuesto-test-1.0', log)
-  } catch (err) {
-    log.error({ error: err instanceof Error ? err.message : String(err) }, '[generate-supuesto-test] AI generation failed')
-
-    // Fallback: serve ANY from bank (even if seen before)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: anySupuesto } = await (serviceSupabase as any)
+    const { data: recycled } = await (serviceSupabase as any)
       .from('supuesto_bank')
       .select('caso, preguntas')
-      .eq('oposicion_id', oposicionId)
-      .order('times_served', { ascending: true })
-      .limit(1)
+      .eq('id', oldest.supuesto_id)
       .single()
 
-    if (anySupuesto) {
-      const s = anySupuesto as { caso: Json; preguntas: Json }
-      log.warn({ userId: user.id }, '[generate-supuesto-test] AI failed, serving fallback from bank')
-      return await saveAndReturn(serviceSupabase, user.id, oposicionId, s.caso, s.preguntas, 'fallback-bank-1.0', log)
+    if (recycled) {
+      const s = recycled as { caso: Json; preguntas: Json }
+      log.info({ userId: user.id, recycledId: oldest.supuesto_id }, '[generate-supuesto-test] recycling oldest seen supuesto')
+      return await saveAndReturn(serviceSupabase, user.id, oposicionId, s.caso, s.preguntas, 'recycled-bank-1.0', log)
     }
-
-    return NextResponse.json(
-      { error: 'Error generando el supuesto. Inténtalo más tarde.' },
-      { status: 500 }
-    )
   }
+
+  // Absolute fallback: serve ANY from bank (least served globally)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: anySupuesto } = await (serviceSupabase as any)
+    .from('supuesto_bank')
+    .select('caso, preguntas')
+    .eq('oposicion_id', oposicionId)
+    .order('times_served', { ascending: true })
+    .limit(1)
+    .single()
+
+  if (anySupuesto) {
+    const s = anySupuesto as { caso: Json; preguntas: Json }
+    log.info({ userId: user.id }, '[generate-supuesto-test] serving least-served from bank')
+    return await saveAndReturn(serviceSupabase, user.id, oposicionId, s.caso, s.preguntas, 'bank-fallback-1.0', log)
+  }
+
+  return NextResponse.json(
+    { error: 'No hay supuestos disponibles para tu oposición. Estamos preparando más.' },
+    { status: 503 }
+  )
 }
 
 // ─── Helper: save test + return ─────────────────────────────────────────────
