@@ -654,7 +654,11 @@ async function main() {
   console.log('\n📌 Siguiente paso: verificar radar en /radar del dashboard')
 }
 
-main().catch((err) => {
-  console.error('Error fatal:', err)
-  process.exit(1)
-})
+// Only run main when executed directly (not when imported for TEMA_KEYWORDS)
+const isDirectExecution = process.argv[1]?.includes('build-radar-tribunal')
+if (isDirectExecution) {
+  main().catch((err) => {
+    console.error('Error fatal:', err)
+    process.exit(1)
+  })
+}

@@ -155,6 +155,12 @@ function escapeRegex(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 }
 
+// ─── Handcrafted keywords for C2 AGE (imported from build-radar-tribunal.ts) ──
+// These are higher quality than auto-generated because they've been hand-tuned.
+import { TEMA_KEYWORDS } from './build-radar-tribunal.js'
+
+const AGE_C2_OPOSICION_ID = 'a0000000-0000-0000-0000-000000000001'
+
 // ─── Matching logic ──────────────────────────────────────────────────────────
 
 interface TemaWithPatterns {
@@ -162,6 +168,7 @@ interface TemaWithPatterns {
   numero: number
   titulo: string
   patterns: RegExp[]
+  handcrafted: boolean // true = use lower threshold (1 match suffices)
 }
 
 /**
@@ -196,8 +203,11 @@ function findBestTema(enunciado: string, opciones: string[], temas: TemaWithPatt
     }
   }
 
-  // Minimum threshold: at least 2 keyword hits to avoid false positives
-  if (bestScore >= 2 && bestTema) {
+  // Threshold depends on keyword source:
+  // - Handcrafted (C2 AGE): 1 match suffices (patterns are specific enough)
+  // - Auto-generated: 2 matches required (patterns from titles are broader)
+  const threshold = bestTema?.handcrafted ? 1 : 2
+  if (bestScore >= threshold && bestTema) {
     return bestTema.id
   }
 
@@ -221,10 +231,16 @@ async function mapForOposicion(supabase: SupabaseClient, oposicionId: string, sl
     return { mapped: 0, total: 0 }
   }
 
-  const temas = (temasRaw as Tema[]).map(t => ({
-    ...t,
-    patterns: generateKeywords(t.titulo),
-  }))
+  const temas: TemaWithPatterns[] = (temasRaw as Tema[]).map(t => {
+    // For C2 AGE, use handcrafted TEMA_KEYWORDS from build-radar (much higher quality)
+    if (oposicionId === AGE_C2_OPOSICION_ID) {
+      const handcrafted = TEMA_KEYWORDS.find(k => k.temaNumero === t.numero)
+      if (handcrafted) {
+        return { ...t, patterns: handcrafted.patterns, handcrafted: true }
+      }
+    }
+    return { ...t, patterns: generateKeywords(t.titulo), handcrafted: false }
+  })
 
   console.log(`  📚 ${temas.length} temas cargados`)
 
