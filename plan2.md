@@ -887,23 +887,28 @@ Cada sub-landing incluye:
 
 ## Verificación final
 
-### Funcional
-- [x] Landing: Ve ramas AGE (CTA) + Correos/Justicia (Próximamente con datos + "Avísame")
-- [ ] Pricing page: tabs por rama, pricing correcto, inactivas con "Próximamente"
-- [ ] Registro: ramas agrupadas, activas seleccionables, inactivas con badge
-- [ ] Activar Correos → seleccionable en registro + landing, 12 temas aparecen
-- [ ] Free bank Correos: test instantáneo, sin espera IA
-- [ ] Scoring Correos: "Sin penalización — responde todas"
-- [ ] Pack Correos 39.99€: checkout Stripe funciona
-- [ ] Activar Auxilio: 26 temas, scoring por ejercicio con penalización
-- [ ] Pack doble Justicia 79.99€: da acceso a Auxilio + Tramitación
-- [ ] A2 Gestión: supuesto práctico visible, corrección IA funciona
-- [ ] Admin panel: muestra ramas Correos + Justicia en desglose
+> **Guía completa de verificación paso a paso**: ver `VERIFICACION_PLAN2.md`
+> Activar cada oposición individualmente: Correos → Auxilio → Tramitación → Gestión
 
-### SEO
-- [x] Sub-landings creadas: Correos + Justicia hub + 3 sub-landings
-- [x] Calculadoras Justicia + Correos creadas
-- [x] Blog: 70+ artículos publicados con internal links
-- [x] Sitemap incluye todas las nuevas rutas
-- [x] llms.txt actualizado con Correos + Justicia + preguntas oficiales MJU
+### Estado del desarrollo (código)
+- [x] Todo el código implementado y testeado (221 items completados)
+- [x] FASE Q completa: few-shot, calibración, radar multi-opo, golden dataset, eval 74/100
+- [x] PROMPT_VERSION 2.5.0 con calibración cuantitativa de 1.987 preguntas oficiales
+- [x] ~1.987 preguntas oficiales en BD (7 oposiciones, 2021-2025)
+- [x] Rúbrica MJU implementada para corrección IA Gestión Procesal
+
+### Pendiente: activación manual (Aritz)
+- [ ] Crear 6-8 productos Stripe (4 individuales + combos)
+- [ ] Configurar env vars `STRIPE_PRICE_PACK_*` en Vercel
+- [ ] Activar cada oposición en BD: `UPDATE oposiciones SET activa = true WHERE slug = '...'`
+- [ ] Seguir checklist de `VERIFICACION_PLAN2.md` paso a paso
+
+### SEO (completado)
+- [x] Sub-landings: Correos + Justicia hub + 3 sub-landings con hero/temario/FAQ/schema
+- [x] Calculadoras Justicia + Correos con CTA registro + WebApplication schema
+- [x] Blog: 70+ artículos (47 AGE + 8 Correos + 15 Justicia)
+- [x] Sitemap + robots actualizados
+- [x] llms.txt con 7 oposiciones + preguntas oficiales MJU
+- [x] Hero multi-rama: "AGE · Correos · Justicia — 10.000+ plazas"
+- [x] OG images dinámicas por tipo
 - [ ] Verificar indexación en Google (post-deploy)
