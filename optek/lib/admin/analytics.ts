@@ -248,6 +248,7 @@ async function _getFeatureEngagement(): Promise<FeatureEngagement[]> {
     { feature: 'Tests IA premium', count: iaTestCount },
     { feature: 'Psicotécnicos', count: testsByTipo.get('psicotecnico') ?? 0 },
     { feature: 'Simulacros', count: testsByTipo.get('simulacro') ?? 0 },
+    { feature: 'Supuesto Test', count: testsByTipo.get('supuesto_test') ?? 0 },
     { feature: 'Radar', count: testsByTipo.get('radar') ?? 0 },
     { feature: 'Caza-Trampas', count: cazaRes.data?.length ?? 0 },
     { feature: 'Flashcards', count: flashRes.data?.length ?? 0 },
