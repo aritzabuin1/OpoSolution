@@ -159,14 +159,16 @@ function compareMetrics(golden: DatasetMetrics, ai: DatasetMetrics): ComparisonS
 
 // ─── AI Generation ───────────────────────────────────────────────────────────
 
+const OPCION_RULE = 'CRÍTICO: Cada opción DEBE ser una frase COMPLETA de mínimo 6-8 palabras. NUNCA opciones cortas como "Sí", "No", "30 días".'
+
 const STYLE_HINTS: Record<string, string> = {
-  'correos': 'Oposiciones de Correos. Preguntas cortas (~17 palabras), directas, sobre productos postales y procesos operativos. Sin penalización.',
-  'auxilio-judicial': 'Oposiciones Auxilio Judicial (MJU). Preguntas formales (~27 palabras), opciones ~10 palabras. Cita LEC, LECrim, LOPJ.',
-  'tramitacion-procesal': 'Oposiciones Tramitación Procesal (MJU). Preguntas formales (~22 palabras), opciones largas (~15 palabras). 14% preguntas negativas.',
-  'gestion-procesal': 'Oposiciones Gestión Procesal (MJU). Preguntas ~23 palabras, opciones largas (~15 palabras). Legislación procesal.',
-  'aux-admin-estado': 'Oposiciones Auxiliar Administrativo (INAP, C2). Preguntas ~26 palabras, opciones ~7 palabras. Constitución, LPAC, TREBEP.',
-  'administrativo-estado': 'Oposiciones Administrativo del Estado (INAP, C1). Preguntas ~27 palabras, opciones ~11 palabras. LPAC, LRJSP, TREBEP.',
-  'gestion-estado': 'Oposiciones GACE A2 (INAP). Preguntas técnicas ~29 palabras, opciones ~13 palabras. LGP, LCSP, TREBEP.',
+  'correos': `Oposiciones Correos. Enunciados cortos (~17 palabras), directas, productos postales. Sin penalización. Opciones ~10 palabras. ${OPCION_RULE}`,
+  'auxilio-judicial': `Oposiciones Auxilio Judicial (MJU). Enunciados formales (~27 palabras). Opciones ~10 palabras. Cita LEC, LECrim, LOPJ. ${OPCION_RULE}`,
+  'tramitacion-procesal': `Oposiciones Tramitación Procesal (MJU). Enunciados formales (~22 palabras). Opciones largas (~15 palabras). ${OPCION_RULE}`,
+  'gestion-procesal': `Oposiciones Gestión Procesal (MJU). Enunciados ~23 palabras. Opciones largas (~15 palabras). Legislación procesal. ${OPCION_RULE}`,
+  'aux-admin-estado': `Oposiciones Auxiliar Administrativo (INAP, C2). Enunciados ~26 palabras. Opciones ~7 palabras. Constitución, LPAC, TREBEP. ${OPCION_RULE}`,
+  'administrativo-estado': `Oposiciones Administrativo del Estado (INAP, C1). Enunciados ~27 palabras. Opciones ~11 palabras. LPAC, LRJSP, TREBEP. ${OPCION_RULE}`,
+  'gestion-estado': `Oposiciones GACE A2 (INAP). Enunciados técnicos ~29 palabras. Opciones ~13 palabras. LGP, LCSP, TREBEP. ${OPCION_RULE}`,
 }
 
 async function generateAIQuestions(slug: string, count: number): Promise<Array<{ enunciado: string; opciones: string[]; correcta: number }>> {

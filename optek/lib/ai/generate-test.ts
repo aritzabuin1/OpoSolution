@@ -61,8 +61,10 @@ interface ChildLogger {
  *         oposición (getSystemGenerateTest), guías de estilo por rama (getRamaStyleHint).
  * 2.4.0: §Q.2 — calibración cuantitativa: getRamaStyleHint con datos reales de 1.987
  *         preguntas oficiales (longitud enunciado/opciones, % negativas, prefijos, bias).
+ * 2.5.0: §Q.4 — fix opciones cortas: OPCION_RULE "mínimo 6-8 palabras, frase completa".
+ *         Hint para AGE C1/C2 (antes era default vacío). Eval 72→? post-fix.
  */
-export const PROMPT_VERSION = '2.4.0'
+export const PROMPT_VERSION = '2.5.0'
 
 // Single-pass: no retries. Generate once → verify → return what passes.
 // Retries were the #1 cause of timeouts (each retry = 15-20s extra OpenAI call).

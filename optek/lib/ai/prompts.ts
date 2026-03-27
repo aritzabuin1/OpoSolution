@@ -38,40 +38,50 @@
 function getRamaStyleHint(oposicionNombre: string): string {
   const lower = oposicionNombre.toLowerCase()
 
+  // REGLA UNIVERSAL: opciones deben ser frases completas, no palabras sueltas.
+  // El eval Q.4.2 mostró que la IA genera opciones de 3-5 palabras sin esta instrucción,
+  // mientras que los exámenes oficiales usan 7-20 palabras por opción.
+  const OPCION_RULE = 'CRÍTICO: Cada opción debe ser una frase COMPLETA y autosuficiente (mínimo 6-8 palabras). NUNCA opciones de 1-3 palabras como "Sí", "No", "30 días". Ejemplo correcto: "El plazo máximo será de treinta días hábiles contados desde la notificación".'
+
   if (lower.includes('correos')) {
     return `ESTILO CORREOS (calibrado con 413 preguntas oficiales):
-- Enunciados CORTOS y directos (~17 palabras de media). Sobre productos postales, procesos operativos y normativa.
+- Enunciados CORTOS y directos (~17 palabras). Sobre productos postales, procesos operativos y normativa.
 - NO penaliza errores — distractores claramente incorrectos, no engañosos.
-- ~12% preguntas negativas ("señale la incorrecta").
-- Opciones de ~10 palabras. NO añadas prefijo "A)" a las opciones (OpoRuta lo añade automáticamente).
-- Cita normativa postal (Ley 43/2010, RD 1829/1999) cuando aplique.`
+- Opciones de ~10 palabras cada una. NO añadas prefijo "A)" (OpoRuta lo añade).
+- Cita normativa postal (Ley 43/2010, RD 1829/1999) cuando aplique.
+${OPCION_RULE}`
   }
 
   if (lower.includes('tramitación') || lower.includes('gestión procesal')) {
     return `ESTILO JUSTICIA MJU — TRAMITACIÓN/GESTIÓN (calibrado con ~385 preguntas oficiales):
 - Enunciados de ~22 palabras. Formales: "Conforme a...", "Indique la respuesta correcta...".
 - Opciones LARGAS (~15 palabras), frases completas. NO añadas prefijo "A)" (OpoRuta lo añade).
-- 10-14% preguntas negativas.
-- Cita siempre la ley específica (LEC, LECrim, LOPJ, LO 1/2025). Penalización -1/4.`
+- Cita siempre la ley específica (LEC, LECrim, LOPJ, LO 1/2025). Penalización -1/4.
+${OPCION_RULE}`
   }
 
   if (lower.includes('auxilio')) {
     return `ESTILO JUSTICIA MJU — AUXILIO JUDICIAL (calibrado con 280 preguntas oficiales):
 - Enunciados de ~27 palabras. Formales pero más concisos que Tramitación.
-- Opciones de ~10 palabras. Solo ~4% negativas (la menor de todas las oposiciones).
-- Cita LEC, LECrim, LOPJ, LO 1/2025, TREBEP. Penalización -1/4.`
+- Opciones de ~10 palabras cada una, frases completas.
+- Cita LEC, LECrim, LOPJ, LO 1/2025, TREBEP. Penalización -1/4.
+${OPCION_RULE}`
   }
 
   if (lower.includes('gestión') && lower.includes('estado')) {
     return `ESTILO GACE A2 (calibrado con 318 preguntas oficiales):
 - Enunciados de ~29 palabras (los más largos). Nivel técnico alto, Grupo A2.
-- Opciones de ~13 palabras. 11% negativas.
+- Opciones de ~13 palabras cada una, frases completas con contenido legislativo.
 - Incluye supuestos prácticos en enunciados cuando sea apropiado.
-- Cita legislación avanzada (LPAC, LGP, LCSP, TREBEP). Penalización -1/3.`
+- Cita legislación avanzada (LPAC, LGP, LCSP, TREBEP). Penalización -1/3.
+${OPCION_RULE}`
   }
 
-  // Default: AGE C1/C2 — balanced, no special hints needed
-  return ''
+  // AGE C1/C2 (default)
+  return `ESTILO AGE (calibrado con ~591 preguntas oficiales INAP):
+- C2: opciones de ~7 palabras. C1: opciones de ~11 palabras.
+- ~7% preguntas negativas.
+${OPCION_RULE}`
 }
 
 /** Parameterized system prompt for MCQ generation — accepts oposición name */
