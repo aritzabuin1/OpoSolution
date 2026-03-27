@@ -431,11 +431,13 @@ export async function retrieveExamples(
     : null
 
   // Fallback: if no tema-specific questions, try random from same oposición
+  // Use descending numero order to vary examples (not always the first 3 inserted)
   if (!preguntas && oposicionId) {
     const { data: fallbackData } = await supabase
       .from('preguntas_oficiales')
       .select('numero, enunciado, opciones, correcta, examenes_oficiales!inner(oposicion_id)')
       .eq('examenes_oficiales.oposicion_id', oposicionId)
+      .order('numero', { ascending: false })
       .limit(limit)
 
     if (fallbackData && (fallbackData as unknown[]).length > 0) {
@@ -453,7 +455,7 @@ export async function retrieveExamples(
       const opcLines = opcArr
         .map((op, idx) => `   ${letras[idx]}) ${String(op)}`)
         .join('\n')
-      const respuesta = letras[p.correcta]
+      const respuesta = letras[p.correcta] ?? '?'
       return `${i + 1}. ${p.enunciado}\n${opcLines}\n   [Respuesta: ${respuesta}]`
     })
     .join('\n\n')
