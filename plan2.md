@@ -92,7 +92,8 @@
   - Fix: aliases LEY_POSTAL + RD_POSTAL + retrieval.ts detectConocimientoBloque()
 - [x] Descargar exámenes oficiales 2023 (REP+ATC, modelos A+B, plantillas) — 16 PDFs desde blob Correos
 - [x] Descargar exámenes oficiales 2021 (REP+ATC, modelos A+B) — 10 PDFs
-- [x] Parsear e ingestar exámenes 2023 en BD — 55 preguntas modelo A (REP) con `--oposicion correos`
+- [x] Parsear e ingestar exámenes 2023 en BD — ~280 preguntas (REP 95q + ATC 93q + variantes) con `--oposicion correos`
+- [ ] Parsear exámenes 2021 — PDFs descargados, sin plantillas de respuestas
 
 ### 1.3 Landing SEO Correos
 - [x] Crear `app/(marketing)/oposiciones/correos/page.tsx`
@@ -150,8 +151,8 @@
 - [x] ingest-examenes.ts adaptado para slugs Justicia (auxilio-judicial, tramitacion-procesal, gestion-procesal)
 - [x] Descargar cuadernillos + plantillas de MJU — Auxilio 22 PDFs (2008-2025), Tramitación 14 PDFs (2011-2025), Gestión 14 PDFs (2023-2025)
 - [x] Parsear Auxilio 2024: `parsed_a.json` — 99 preguntas con plantilla (regex OK)
-- [x] Ingestar Auxilio 2024: `pnpm ingest:examenes --dir examenes_auxilio --oposicion auxilio-judicial 2024` — 59 preguntas
-- [x] Parsear + ingestar Auxilio 2025 — 100 parseadas (regex), 100 ingestadas
+- [x] Ingestar Auxilio 2024 ej1: 99 preguntas + ej2 caso práctico: 36 preguntas = 135 total
+- [x] Parsear + ingestar Auxilio 2025 ej1: 100 preguntas + ej2 caso práctico: 34 preguntas = 134 total
 - [x] Parsear + ingestar Tramitación 2024 — 99 parseadas (GPT), 99 ingestadas
 - [x] Parsear + ingestar Tramitación 2025 — 100 parseadas (GPT), 100 ingestadas
 - [x] Parsear + ingestar Gestión 2023 — 83 parseadas (GPT), 83 ingestadas
@@ -178,7 +179,7 @@
 - [x] Sub: `app/(marketing)/oposiciones/justicia/gestion-procesal/page.tsx`
 - [x] Calculadora nota Justicia (por ejercicio, con penalización) — `/herramientas/calculadora-nota-justicia`
 - [x] Calculadora nota Correos — `/herramientas/calculadora-nota-correos`
-- [ ] Blog: empezar con 5 artículos SEO del plan de estrategia
+- [x] Blog: 15 posts Justicia + 8 posts Correos publicados (posts.ts)
 - [x] Actualizar sitemap.ts
 
 ### 2.7 Activación progresiva Justicia
@@ -576,15 +577,15 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 
 ### Resumen por oposición: qué falta para activar
 
-| Oposición | Test básico | Simulacros oficiales | Supuesto test | Ofimática | Desarrollo escrito | Multi-scoring | Estado |
-|-----------|------------|---------------------|---------------|-----------|-------------------|---------------|--------|
-| **AGE C2** | ✅ | ✅ | N/A | N/A | N/A | N/A (1 ej.) | **ACTIVA** |
-| **AGE C1** | ✅ | sin datos | FASE 2.5 | N/A | N/A | FASE 2.5 (fix scoring_config) | inactiva |
-| **GACE A2** | ✅ | sin datos | N/A | N/A | ✅ | parcial | inactiva |
-| **Correos** | ✅ | sin datos | N/A | N/A | N/A | N/A (1 ej.) | **solo falta free bank + datos** |
-| **Auxilio C2** | ✅ | sin datos | **FALTA** | N/A | N/A | **FALTA** | inactiva |
-| **Tramitación C1** | ✅ | sin datos | **FALTA** | **FALTA** | N/A | **FALTA** | inactiva |
-| **Gestión Proc. A2** | ✅ | sin datos | **FALTA** | N/A | **FALTA** (rúbrica MJU) | **FALTA** | inactiva |
+| Oposición | Test | Simulacros | Supuesto test | Ofimática | Desarrollo | Multi-scoring | Estado |
+|-----------|------|-----------|---------------|-----------|------------|---------------|--------|
+| **AGE C2** | ✅ | ✅ 311q | N/A | N/A | N/A | N/A (1 ej.) | **ACTIVA** |
+| **AGE C1** | ✅ | ✅ 280q | ✅ FASE 2.5 | N/A | N/A | ✅ | inactiva (Stripe) |
+| **GACE A2** | ✅ | ✅ 218q | N/A | N/A | ✅ | parcial | inactiva (Stripe) |
+| **Correos** | ✅ | ✅ ~280q | N/A | N/A | N/A | N/A (1 ej.) | **solo falta Stripe** |
+| **Auxilio C2** | ✅ | ✅ ~269q | ✅ FASE 2.5 | N/A | N/A | ✅ | **solo falta Stripe** |
+| **Tramitación C1** | ✅ | ✅ 199q | pendiente | **FALTA** | N/A | ✅ | inactiva (ofi+Stripe) |
+| **Gestión Proc. A2** | ✅ | ✅ 186q | pendiente | N/A | **FALTA** (MJU) | ✅ | inactiva (dev+Stripe) |
 
 ### Orden de implementación recomendado
 
@@ -605,18 +606,18 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 > few-shot examples, calibración de estilo y evaluación, para que las preguntas generadas sean
 > indistinguibles de las oficiales.
 
-### Inventario de preguntas oficiales (post-fix MAX_PUNTUABLE)
+### Inventario de preguntas oficiales en BD (post-fix MAX_PUNTUABLE + REP/ATC + ej2)
 
-| Oposición | Preguntas | Años | Fuente |
-|-----------|-----------|------|--------|
-| C2 AGE | 311 | 2018-2024 | INAP |
-| C1 AGE | 280 | 2019-2024 | INAP |
-| A2 GACE | 218 | 2018-2024 | INAP |
-| Correos | ~280 | 2023 (REP+ATC) | Correos |
-| Auxilio Judicial | ~269 | 2024-2025 (ej1+ej2) | MJU |
-| Tramitación | 199 | 2024-2025 | MJU |
-| Gestión Procesal | 186 | 2023-2025 | MJU |
-| **Total** | **~1.743** | | |
+| Oposición | Preguntas | Años | Fuente | tema_id mapeado |
+|-----------|-----------|------|--------|-----------------|
+| C2 AGE | 311 | 2018-2024 | INAP | 27% (TEMA_KEYWORDS radar) |
+| C1 AGE | 280 | 2019-2024 | INAP | 56% |
+| A2 GACE | 218 | 2018-2024 | INAP | 90% |
+| Correos | ~280 | 2023 (REP+ATC) | Correos | 44% |
+| Auxilio Judicial | ~269 | 2024-2025 (ej1+ej2) | MJU | 56% |
+| Tramitación | 199 | 2024-2025 | MJU | 35% |
+| Gestión Procesal | 186 | 2023-2025 | MJU | 54% |
+| **Total** | **~1.743** | | | **45% (736/1620)** |
 
 ### Q.0 Prerequisito: Mapear tema_id en preguntas_oficiales (BLOQUEANTE)
 
@@ -847,18 +848,15 @@ Cada sub-landing incluye:
 - [ ] Schema markup: FAQPage + Course + Dataset (para citabilidad LLM)
 
 ### S.5 Herramientas SEO (lead magnets)
-- [ ] `app/(marketing)/herramientas/calculadora-nota-justicia/page.tsx`
-  - Input: aciertos/errores por ejercicio → output: nota, ¿aprobado?
-  - Datos reales de scoring por cuerpo (Auxilio 2 ej., Tramitación 3 ej.)
-- [ ] `app/(marketing)/herramientas/calculadora-nota-correos/page.tsx`
-  - Scoring sin penalización. Incluir méritos (experiencia, idiomas).
+- [x] `app/(marketing)/herramientas/calculadora-nota-justicia/page.tsx` — CREADA (sección 2.6)
+- [x] `app/(marketing)/herramientas/calculadora-nota-correos/page.tsx` — CREADA (sección 2.6)
 - [ ] Cada calculadora tiene CTA registro
 - [ ] Schema markup interactivo
 
 ### S.6 Blog SEO — 15 posts publicados (Correos + Justicia)
 - [x] Correos (5 posts): test-correos, temario, plazas, penalización, requisitos
 - [x] Justicia (10 posts): diferencia-auxilio-tramitación, temario-auxilio, test-auxilio, nota-corte, gestion-procesal, temario-tramitación, gestion-procesal-guía, LO-1/2025-cambios, sueldo-justicia, preparar-por-libre
-- [x] Total: 70 posts en content/blog/posts.ts (55 AGE + 5 Correos + 10 Justicia)
+- [x] Total: 70+ posts en content/blog/posts.ts (47 AGE + 8 Correos + 15 Justicia)
 - [x] Todos con: metadata SEO, FAQPage schema, internal links a sub-landings
 - [x] Sitemap auto-actualizado (blogPosts dinámico)
 - [x] Landing muestra 3 posts destacados por rama (12 total)
@@ -895,8 +893,9 @@ Cada sub-landing incluye:
 - [ ] Admin panel: muestra ramas Correos + Justicia en desglose
 
 ### SEO
-- [ ] Sub-landings indexables con schema markup correcto
-- [ ] Calculadoras funcionan y aparecen en Google
-- [ ] Blog artículos publicados con internal links
-- [ ] Sitemap incluye todas las nuevas rutas
-- [ ] llms.txt actualizado para citabilidad IA
+- [x] Sub-landings creadas: Correos + Justicia hub + 3 sub-landings
+- [x] Calculadoras Justicia + Correos creadas
+- [x] Blog: 70+ artículos publicados con internal links
+- [x] Sitemap incluye todas las nuevas rutas
+- [x] llms.txt actualizado con Correos + Justicia + preguntas oficiales MJU
+- [ ] Verificar indexación en Google (post-deploy)
