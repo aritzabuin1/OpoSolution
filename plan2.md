@@ -93,7 +93,7 @@
 - [x] Descargar exámenes oficiales 2023 (REP+ATC, modelos A+B, plantillas) — 16 PDFs desde blob Correos
 - [x] Descargar exámenes oficiales 2021 (REP+ATC, modelos A+B) — 10 PDFs
 - [x] Parsear e ingestar exámenes 2023 en BD — ~280 preguntas (REP 95q + ATC 93q + variantes) con `--oposicion correos`
-- [ ] Parsear exámenes 2021 — PDFs descargados, sin plantillas de respuestas
+- [x] Parsear exámenes 2021 — plantillas descargadas de blob Correos (veropo.com). REP 48q + ATC 24q parseadas
 
 ### 1.3 Landing SEO Correos
 - [x] Crear `app/(marketing)/oposiciones/correos/page.tsx`
@@ -158,7 +158,7 @@
 - [x] Parsear + ingestar Gestión 2023 — 83 parseadas (GPT), 83 ingestadas
 - [x] Parsear + ingestar Gestión 2025 — 103 parseadas (GPT), 103 ingestadas
 - [x] Fix: `MAX_PUNTUABLE` hardcodeado 60 → dinámico desde scoring_config (bug descartaba preguntas >60)
-- [ ] Gestión 2024 — falta PDF cuestionario (solo plantillas disponibles)
+- [x] Gestión 2024 — cuestionario + plantilla descargados de MJU (sept 2024, OEP 2023). Parseando e ingistando
 - [x] Insertar en examenes_oficiales + preguntas_oficiales
 
 ### 2.4 Contenido Justicia — Free bank
@@ -168,8 +168,12 @@
 - [x] Free bank Gestión: 67/68 temas (670 preguntas, 1 timeout T35)
 
 ### 2.5 Rúbrica supuesto práctico A2
-- [ ] Investigar criterios corrección tribunal para Gestión Procesal
-- [ ] Adaptar corrección IA (ya implementada para AGE A2) con rúbrica Justicia
+- [x] Investigar criterios corrección tribunal para Gestión Procesal — **ENCONTRADOS**:
+  - 5 preguntas × 5 pts = 25 pts máximo, mínimo 12.5 (50%)
+  - Criterios: nivel de conocimiento, claridad y orden de ideas, expresión escrita, presentación
+  - 45 minutos, temas 17-39 y 43-67, espacio limitado por el tribunal
+  - Fuente: [OpositaTest](https://blog.opositatest.com/gestion-procesal-tercer-ejercicio) + convocatoria BOE
+- [ ] Adaptar corrección IA (ya implementada para AGE A2) con rúbrica Justicia MJU
 - [ ] El ejercicio es desarrollo escrito (5 preguntas, 45 min, temas 17-39 y 43-67)
 
 ### 2.6 SEO Justicia
