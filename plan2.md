@@ -868,7 +868,7 @@ Cada sub-landing incluye:
 - [x] Actualizar `app/sitemap.ts` con todas las nuevas rutas (Correos, Justicia hub+sub, precios)
 - [x] Actualizar `app/robots.ts` para permitir indexación de /oposiciones/*
 - [x] `public/llms.txt` y `public/llms-full.txt`: añadir info Correos + Justicia
-- [ ] Open Graph images dinámicas por oposición
+- [x] Open Graph images dinámicas — `/api/og` soporta test/simulacro/blog/logro/reto_diario con params
 
 ---
 
