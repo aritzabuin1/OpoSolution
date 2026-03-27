@@ -448,7 +448,7 @@ export default async function LandingPage() {
       <section aria-labelledby="hero-heading" className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-background py-20 sm:py-32">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
           <Badge variant="secondary" className="mb-6 text-xs font-medium px-3 py-1">
-            Administración General del Estado · C2 + C1 + A2 · 5.500+ plazas
+            AGE · Correos · Justicia — 10.000+ plazas en 7 oposiciones
           </Badge>
 
           <ExamCountdown examDate="2026-05-23" />
@@ -459,8 +459,8 @@ export default async function LandingPage() {
             <span className="text-primary">Entrena con lo que pregunta el tribunal.</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Prepara Auxiliar (C2), Administrativo (C1) o Gestión del Estado (A2) con tests verificados e IA
-            y cada cita legal verificada al artículo exacto. Sabrás si estás avanzando.
+            Prepara AGE (C2, C1, A2), Correos o Justicia (Auxilio, Tramitación, Gestión Procesal)
+            con tests verificados por IA y cada cita legal comprobada al artículo exacto.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/register">
