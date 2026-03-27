@@ -384,50 +384,82 @@ export async function retrieveByExamenOficial(
   return ((data ?? []) as unknown[]) as PreguntaOficialContext[]
 }
 
-// ─── 6b. retrieveExamples — preguntas oficiales INAP como ejemplos de estilo ──
+// ─── 6b. retrieveExamples — preguntas oficiales como ejemplos de estilo ───────
+
+/** Map oposición rama to tribunal label for the prompt header */
+function getTribunalLabel(oposicionSlug?: string): string {
+  if (!oposicionSlug) return 'TRIBUNAL'
+  if (oposicionSlug.includes('correos')) return 'CORREOS'
+  if (['auxilio-judicial', 'tramitacion-procesal', 'gestion-procesal'].includes(oposicionSlug))
+    return 'MJU (Ministerio de Justicia)'
+  return 'INAP'
+}
 
 /**
- * Recupera preguntas de exámenes oficiales del INAP para un tema dado.
+ * Recupera preguntas de exámenes oficiales para un tema dado.
  * Se usan como ejemplos de estilo en el prompt de generación — para que el
  * modelo entienda cómo pregunta realmente el tribunal (nivel, redacción, trampas).
  *
- * @param temaId  UUID del tema del temario
- * @param limit   Máximo de ejemplos (default: 3 — suficiente para calibrar sin sobrecargar el contexto)
- * @returns       Texto formateado listo para insertar en el prompt, o '' si no hay datos
+ * Filtra por oposición para no mezclar estilos entre ramas (INAP vs MJU vs Correos).
+ * Si no hay preguntas por tema, intenta fallback por oposición (preguntas aleatorias).
+ *
+ * @param temaId       UUID del tema del temario
+ * @param limit        Máximo de ejemplos (default: 3)
+ * @param oposicionId  UUID de la oposición (para filtrar por rama)
+ * @param oposicionSlug Slug de la oposición (para el header del prompt)
+ * @returns            Texto formateado listo para insertar en el prompt, o '' si no hay datos
  */
-export async function retrieveExamples(temaId: string, limit = 3): Promise<string> {
+export async function retrieveExamples(
+  temaId: string,
+  limit = 3,
+  oposicionId?: string,
+  oposicionSlug?: string,
+): Promise<string> {
   const supabase = getUntypedClient()
 
-  const { data, error } = await supabase
+  // Primary: by tema_id (most relevant)
+  let query = supabase
     .from('preguntas_oficiales')
     .select('numero, enunciado, opciones, correcta')
     .eq('tema_id', temaId)
     .limit(limit)
 
-  if (error || !data || (data as unknown[]).length === 0) {
-    return ''
+  const { data, error } = await query
+
+  let preguntas = (!error && data && (data as unknown[]).length > 0)
+    ? data as { numero: number; enunciado: string; opciones: string[]; correcta: number }[]
+    : null
+
+  // Fallback: if no tema-specific questions, try random from same oposición
+  if (!preguntas && oposicionId) {
+    const { data: fallbackData } = await supabase
+      .from('preguntas_oficiales')
+      .select('numero, enunciado, opciones, correcta, examenes_oficiales!inner(oposicion_id)')
+      .eq('examenes_oficiales.oposicion_id', oposicionId)
+      .limit(limit)
+
+    if (fallbackData && (fallbackData as unknown[]).length > 0) {
+      preguntas = fallbackData as unknown as { numero: number; enunciado: string; opciones: string[]; correcta: number }[]
+    }
   }
 
-  const preguntas = data as {
-    numero: number
-    enunciado: string
-    opciones: string[]
-    correcta: number
-  }[]
+  if (!preguntas || preguntas.length === 0) return ''
 
   const letras = ['A', 'B', 'C', 'D']
 
   const formatted = preguntas
     .map((p, i) => {
-      const opcLines = p.opciones
-        .map((op: string, idx: number) => `   ${letras[idx]}) ${op}`)
+      const opcArr = Array.isArray(p.opciones) ? p.opciones : Object.values(p.opciones as Record<string, unknown>)
+      const opcLines = opcArr
+        .map((op, idx) => `   ${letras[idx]}) ${String(op)}`)
         .join('\n')
       const respuesta = letras[p.correcta]
       return `${i + 1}. ${p.enunciado}\n${opcLines}\n   [Respuesta: ${respuesta}]`
     })
     .join('\n\n')
 
-  return `EJEMPLOS REALES DEL INAP (calibrar estilo y nivel — no copiar contenido):\n${formatted}`
+  const label = getTribunalLabel(oposicionSlug)
+  return `EJEMPLOS REALES DEL ${label} (calibrar estilo y nivel — no copiar contenido):\n${formatted}`
 }
 
 // ─── 7. buildContext — contexto completo para Claude ─────────────────────────

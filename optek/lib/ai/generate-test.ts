@@ -29,6 +29,7 @@ import { callAIJSON } from '@/lib/ai/provider'
 import {
   SYSTEM_GENERATE_TEST,
   SYSTEM_GENERATE_TEST_BLOQUE2,
+  getSystemGenerateTest,
   buildGenerateTestPrompt,
   buildGenerateTestBloque2Prompt,
 } from '@/lib/ai/prompts'
@@ -89,19 +90,26 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   const log = requestId ? logger.child({ requestId }) : logger
   const start = Date.now()
 
-  // ── 1. Contexto RAG + título del tema + ejemplos INAP (todo en paralelo) ──
+  // ── 1. Contexto RAG + título del tema + ejemplos oficiales (todo en paralelo) ──
 
-  const [ctx, temaTitulo, ejemplosExamenRaw] = await Promise.all([
+  const [ctx, temaTitulo, ejemplosExamenRaw, opoInfo] = await Promise.all([
     buildContext(temaId, undefined, userId), // §2.11: userId habilita weakness-weighted RAG
     fetchTemaTitulo(temaId),
-    retrieveExamples(temaId, 3),             // §1.4.4: preguntas oficiales INAP
+    retrieveExamples(temaId, 3, oposicionId, undefined), // §Q.1: preguntas oficiales (fallback por oposición)
+    oposicionId ? fetchOposicionInfo(oposicionId) : Promise.resolve({ nombre: 'oposición', slug: '' }),
   ])
+
+  // Re-fetch examples with slug now that we have it (only if first call returned empty and we have opoInfo)
+  let ejemplosExamenFinal = ejemplosExamenRaw
+  if (!ejemplosExamenRaw && oposicionId && opoInfo.slug) {
+    ejemplosExamenFinal = await retrieveExamples(temaId, 3, oposicionId, opoInfo.slug)
+  }
 
   const contexto = formatContext(ctx)
   const { esBloqueII, temaNumero } = ctx
 
   // Solo usar ejemplos en Bloque I (legal), Bloque II no tiene preguntas INAP
-  const ejemplosExamen = esBloqueII ? '' : ejemplosExamenRaw
+  const ejemplosExamen = esBloqueII ? '' : (ejemplosExamenFinal || '')
 
   log.info(
     { temaId, tokensEstimados: ctx.tokensEstimados, strategy: ctx.strategy, temaTitulo, esBloqueII, temaNumero },
@@ -127,7 +135,10 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   // Vercel Hobby maxDuration=60s, SDK timeout=55s → margen seguro.
 
   const CHUNK_SIZE = 10
-  const systemPrompt = esBloqueII ? SYSTEM_GENERATE_TEST_BLOQUE2 : SYSTEM_GENERATE_TEST
+  // §Q.1: Use parameterized system prompt with oposición name (not hardcoded "Auxiliar")
+  const systemPrompt = esBloqueII
+    ? SYSTEM_GENERATE_TEST_BLOQUE2
+    : (opoInfo.nombre !== 'oposición' ? getSystemGenerateTest(opoInfo.nombre) : SYSTEM_GENERATE_TEST)
 
   /** Compute maxTokens based on chunk size and difficulty */
   function computeMaxTokens(n: number): number {
@@ -746,6 +757,21 @@ async function fetchTemaTitulo(temaId: string): Promise<string> {
     return data?.titulo ?? `Tema ${temaId.slice(0, 8)}`
   } catch {
     return `Tema ${temaId.slice(0, 8)}`
+  }
+}
+
+/** Fetch oposición nombre + slug for parameterized prompts */
+async function fetchOposicionInfo(oposicionId: string): Promise<{ nombre: string; slug: string }> {
+  try {
+    const supabase = await createServiceClient()
+    const { data } = await supabase
+      .from('oposiciones')
+      .select('nombre, slug')
+      .eq('id', oposicionId)
+      .single()
+    return { nombre: data?.nombre ?? 'oposición', slug: data?.slug ?? '' }
+  } catch {
+    return { nombre: 'oposición', slug: '' }
   }
 }
 

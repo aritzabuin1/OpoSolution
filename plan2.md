@@ -650,18 +650,21 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 
 #### Q.1.1 Extender retrieveExamples a todas las oposiciones
 - [x] `retrieveExamples()` ya es genérica (busca en `preguntas_oficiales` por `tema_id`)
-- [ ] Tras Q.0 (mapeo tema_id), funciona automáticamente para todas las oposiciones
-- [ ] Cambiar label "INAP" → dinámico: "INAP" para AGE, "MJU" para Justicia, "Correos" para Correos
-- **Archivo**: `lib/ai/retrieval.ts:430` — cambiar `EJEMPLOS REALES DEL INAP` por parámetro
+- [x] Añadido `oposicionId` + `oposicionSlug` como params opcionales
+- [x] Fallback: si no hay preguntas por tema, busca aleatorias de la misma oposición
+- [x] Label dinámico: "INAP" para AGE, "MJU (Ministerio de Justicia)" para Justicia, "CORREOS" para Correos
+- [x] `generate-test.ts`: pasa `oposicionId` a `retrieveExamples()` + fetch `opoInfo` en paralelo
+- **Archivos**: `lib/ai/retrieval.ts`, `lib/ai/generate-test.ts`
 
 #### Q.1.2 Adaptar system prompt por rama
-- [ ] `getSystemGenerateTest(oposicionNombre)` ya acepta nombre pero el prompt dice "Administración General del Estado"
-- [ ] Crear variantes por rama:
-  - AGE: "oposiciones a la AGE" (actual)
-  - Justicia: "oposiciones a la Administración de Justicia" + referencias a LEC, LECrim, LOPJ
-  - Correos: "oposiciones a Correos (Grupo IV)" + "SIN PENALIZACIÓN: las preguntas deben ser claras, no tricky"
-- [ ] El estilo de Correos es distinto: preguntas más directas, sin distractores legales complejos
-- **Archivo**: `lib/ai/prompts.ts` — añadir `getSystemGenerateTestByRama(rama)` o enriquecer `getSystemGenerateTest()`
+- [x] `generate-test.ts` ahora usa `getSystemGenerateTest(opoInfo.nombre)` en vez de `SYSTEM_GENERATE_TEST` estático
+- [x] `fetchOposicionInfo(oposicionId)` helper para nombre+slug
+- [x] `getRamaStyleHint(oposicionNombre)` en prompts.ts — inyecta guía de estilo por rama:
+  - **Correos**: preguntas directas, operativas, sin trampas (no penaliza), normativa postal
+  - **Justicia**: formales, extensas, "Conforme a...", frases completas, leyes procesales, -1/4
+  - **GACE A2**: nivel técnico alto, supuestos prácticos, legislación avanzada, -1/3
+  - **AGE C1/C2**: sin hint extra (ya era el default)
+- **Archivos**: `lib/ai/prompts.ts`, `lib/ai/generate-test.ts`
 
 #### Q.1.3 Few-shot para supuesto test
 - [ ] `lib/ai/supuesto-test.ts` ya tiene few-shot del supuesto oficial INAP 2024 (Supuesto I) para AGE C1
@@ -671,7 +674,7 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 
 **Prioridad**: P0
 **Coste**: $0 extra (few-shot = texto estático en prompt, +500 tokens/request ≈ $0.001)
-**Estimación**: ~3h (tras Q.0)
+**Estado**: Q.1.1 + Q.1.2 ✅ COMPLETADOS. Q.1.3 pendiente
 
 ### Q.2 Análisis de estilo + calibración por oposición
 
@@ -679,21 +682,19 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 
 #### Q.2.1 Script de análisis (one-time)
 - [ ] Crear `execution/analyze-exam-style.ts`
-- [ ] Métricas por oposición:
-  - Longitud media del enunciado (palabras)
-  - Longitud media de cada opción (palabras)
-  - Ratio preguntas con "NO es correcto" / "INCORRECTA" (negativas)
-  - Ratio preguntas con cita explícita vs implícita
-  - Distribución de correctas (¿sesgadas a B/C como algunos tribunales?)
-  - Palabras clave frecuentes en distractores
-- [ ] Output: `data/exam-style-analysis.json` con estadísticas por oposición
+- [ ] Métricas por oposición (extraídas del análisis del agente sobre parsed JSONs):
+  - Longitud media del enunciado: AGE ~30-50 palabras, Auxilio ~40-70, Correos ~25-50
+  - Formato opciones: Correos prefija "A.", "B." en texto (OpoRuta los añade — instruir NO duplicar)
+  - Ratio preguntas negativas ("señale la INCORRECTA")
+  - Distribución de correctas (sesgo a B/C)
+  - Patrón de distractores: Auxilio usa frases completas, Correos alternativas operativas
+- [ ] Output: `data/exam-style-analysis.json`
 
-#### Q.2.2 Inyectar guía de estilo en prompts
-- [ ] Añadir instrucciones de calibración al system prompt basadas en el análisis:
-  - "Las preguntas del MJU para Auxilio Judicial tienen en media 25 palabras por enunciado"
-  - "El 30% de las preguntas son negativas ('señale la INCORRECTA')"
-  - "Los distractores suelen cambiar plazos (30 días → 15 días) o requisitos"
-- **Archivo**: `lib/ai/prompts.ts` — enriquecer system prompt
+#### Q.2.2 Calibración específica por oposición
+- [x] Hints de estilo por rama ya inyectados en Q.1.2 (`getRamaStyleHint`)
+- [ ] Refinar con datos cuantitativos del análisis Q.2.1:
+  - "Enunciados de ~X palabras", "Y% preguntas negativas", "distractores cambian plazos/requisitos"
+- **Archivo**: `lib/ai/prompts.ts` — enriquecer `getRamaStyleHint()` con datos reales
 
 **Prioridad**: P1 (mejora incremental sobre Q.1)
 **Coste**: $0 (análisis determinista)

@@ -24,10 +24,36 @@
  * REGLA CRÍTICA: SOLO usa el contexto legislativo proporcionado en el user prompt.
  * No completar con conocimiento general del modelo.
  */
+/**
+ * §Q.1: Per-rama style guidelines injected into system prompt.
+ * Based on analysis of 1.800 official exam questions across 7 oposiciones.
+ */
+function getRamaStyleHint(oposicionNombre: string): string {
+  const lower = oposicionNombre.toLowerCase()
+
+  if (lower.includes('correos')) {
+    return `ESTILO CORREOS: Las preguntas deben ser directas y prácticas, sobre productos postales, procesos operativos y normativa de Correos. NO penaliza errores — los distractores deben ser claramente incorrectos pero no engañosos. Usa lenguaje operativo (admisión, distribución, entrega, clasificación). Cita normativa postal (Ley 43/2010, RD 1829/1999) cuando aplique.`
+  }
+
+  if (lower.includes('auxilio') || lower.includes('tramitación') || lower.includes('gestión procesal')) {
+    return `ESTILO JUSTICIA (MJU): Las preguntas deben ser formales y extensas, como en exámenes MJU reales. Los enunciados suelen empezar con "Conforme a...", "Indique la respuesta correcta...". Las opciones deben ser frases completas (no palabras sueltas). Cita siempre la ley específica (LEC, LECrim, LOPJ, LO 1/2025, TREBEP). Penalización -1/4.`
+  }
+
+  if (lower.includes('gestión') && lower.includes('estado')) {
+    return `ESTILO GACE A2: Las preguntas deben ser de nivel técnico alto, propias de un Grupo A2. Incluye supuestos prácticos en los enunciados cuando sea apropiado. Cita legislación avanzada (LPAC, LGP, LCSP, TREBEP). Penalización -1/3.`
+  }
+
+  // Default: AGE (C1 or C2)
+  return ''
+}
+
 /** Parameterized system prompt for MCQ generation — accepts oposición name */
 export function getSystemGenerateTest(oposicionNombre: string): string {
-  return `Eres un experto en oposiciones a la Administración General del Estado española.
+  // §Q.1: Per-rama style hint (first line after role)
+  const ramaHint = getRamaStyleHint(oposicionNombre)
+  return `Eres un experto en oposiciones españolas.
 Tu tarea es generar preguntas tipo test de opción múltiple (MCQ) para el examen de ${oposicionNombre}.
+${ramaHint}
 
 REGLAS OBLIGATORIAS:
 1. SOLO usa información del CONTEXTO LEGISLATIVO proporcionado. Nunca inventes artículos ni datos.
