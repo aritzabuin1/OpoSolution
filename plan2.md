@@ -672,19 +672,22 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 
 ### Q.2 Análisis de estilo + calibración por oposición (PENDIENTE)
 
-#### Q.2.1 Script de análisis (one-time)
-- [ ] Crear `execution/analyze-exam-style.ts` — lee parsed JSONs, calcula métricas
-- [ ] Métricas por oposición:
-  - Longitud media enunciado (palabras): AGE ~30-50, Auxilio ~40-70, Correos ~25-50
-  - Longitud media opciones
-  - % preguntas negativas ("señale la INCORRECTA")
-  - Distribución correctas (posible sesgo a B/C en algunos tribunales)
-  - Correos: opciones con prefijo "A.", "B." en texto (OpoRuta añade letras → instruir NO duplicar)
-- [ ] Output: `data/exam-style-analysis.json`
+#### Q.2.1 Script de análisis ✅
+- [x] `execution/analyze-exam-style.ts` creado — `pnpm analyze:style`
+- [x] 1.987 preguntas oficiales analizadas. Hallazgos clave:
+  - C2 AGE: 26 words/enunciado, 7 words/opción, 7% negativas, balanced, 0% prefijos
+  - Correos: **17 words** (shortest), 10 words/opción, 12% negativas, bias D (24%)
+  - Tramitación: 22 words, **15 words/opción** (longest), **98% prefijadas**, 14% negativas, bias C
+  - Gestión Procesal: 23 words, 15 words/opción, **100% prefijadas**, bias D (25%)
+  - Auxilio: 27 words, 10 words/opción, **4% negativas** (fewest), 24% prefijadas, bias B
+  - GACE A2: **29 words** (longest), 13 words/opción, 11% negativas, balanced
+- [x] Output: `data/exam-style-analysis.json`
 
-#### Q.2.2 Calibración cuantitativa
-- [x] Hints cualitativos ya inyectados en Q.1.2 (`getRamaStyleHint`)
-- [ ] Refinar con datos cuantitativos de Q.2.1 → enriquecer `getRamaStyleHint()` con métricas reales
+#### Q.2.2 Calibración cuantitativa ✅
+- [x] `getRamaStyleHint()` reescrito con datos reales de Q.2.1
+- [x] Cada rama ahora incluye: longitud media enunciado/opciones, % negativas, instrucciones sobre prefijos
+- [x] Correos + Tramitación + Gestión Procesal: "NO añadas prefijo A/B (OpoRuta lo añade)"
+- [x] PROMPT_VERSION bumped 2.3.0 → **2.4.0**
 - **Archivo**: `lib/ai/prompts.ts`
 
 **Prioridad**: P1 | **Coste**: $0 | **Estimación**: ~2h

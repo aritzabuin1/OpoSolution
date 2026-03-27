@@ -25,25 +25,52 @@
  * No completar con conocimiento general del modelo.
  */
 /**
- * §Q.1: Per-rama style guidelines injected into system prompt.
- * Based on analysis of 1.800 official exam questions across 7 oposiciones.
+ * §Q.2: Per-rama style guidelines injected into system prompt.
+ * Calibrated with data from analyze-exam-style.ts (1.987 official questions).
+ *
+ * Key findings from analysis:
+ * - Correos: shortest enunciados (17 words), 12% negativas, bias D
+ * - Tramitación/Gestión: 98-100% opciones con prefijo "A)", longest options (15 words), 10-14% negativas
+ * - Auxilio: 24% prefijadas, bias B, 4% negativas (fewest)
+ * - AGE: balanced correctas, 0% prefijos, 7% negativas
+ * - GACE A2: longest enunciados (29 words), 11% negativas, 13 words/opción
  */
 function getRamaStyleHint(oposicionNombre: string): string {
   const lower = oposicionNombre.toLowerCase()
 
   if (lower.includes('correos')) {
-    return `ESTILO CORREOS: Las preguntas deben ser directas y prácticas, sobre productos postales, procesos operativos y normativa de Correos. NO penaliza errores — los distractores deben ser claramente incorrectos pero no engañosos. Usa lenguaje operativo (admisión, distribución, entrega, clasificación). Cita normativa postal (Ley 43/2010, RD 1829/1999) cuando aplique.`
+    return `ESTILO CORREOS (calibrado con 413 preguntas oficiales):
+- Enunciados CORTOS y directos (~17 palabras de media). Sobre productos postales, procesos operativos y normativa.
+- NO penaliza errores — distractores claramente incorrectos, no engañosos.
+- ~12% preguntas negativas ("señale la incorrecta").
+- Opciones de ~10 palabras. NO añadas prefijo "A)" a las opciones (OpoRuta lo añade automáticamente).
+- Cita normativa postal (Ley 43/2010, RD 1829/1999) cuando aplique.`
   }
 
-  if (lower.includes('auxilio') || lower.includes('tramitación') || lower.includes('gestión procesal')) {
-    return `ESTILO JUSTICIA (MJU): Las preguntas deben ser formales y extensas, como en exámenes MJU reales. Los enunciados suelen empezar con "Conforme a...", "Indique la respuesta correcta...". Las opciones deben ser frases completas (no palabras sueltas). Cita siempre la ley específica (LEC, LECrim, LOPJ, LO 1/2025, TREBEP). Penalización -1/4.`
+  if (lower.includes('tramitación') || lower.includes('gestión procesal')) {
+    return `ESTILO JUSTICIA MJU — TRAMITACIÓN/GESTIÓN (calibrado con ~385 preguntas oficiales):
+- Enunciados de ~22 palabras. Formales: "Conforme a...", "Indique la respuesta correcta...".
+- Opciones LARGAS (~15 palabras), frases completas. NO añadas prefijo "A)" (OpoRuta lo añade).
+- 10-14% preguntas negativas.
+- Cita siempre la ley específica (LEC, LECrim, LOPJ, LO 1/2025). Penalización -1/4.`
+  }
+
+  if (lower.includes('auxilio')) {
+    return `ESTILO JUSTICIA MJU — AUXILIO JUDICIAL (calibrado con 280 preguntas oficiales):
+- Enunciados de ~27 palabras. Formales pero más concisos que Tramitación.
+- Opciones de ~10 palabras. Solo ~4% negativas (la menor de todas las oposiciones).
+- Cita LEC, LECrim, LOPJ, LO 1/2025, TREBEP. Penalización -1/4.`
   }
 
   if (lower.includes('gestión') && lower.includes('estado')) {
-    return `ESTILO GACE A2: Las preguntas deben ser de nivel técnico alto, propias de un Grupo A2. Incluye supuestos prácticos en los enunciados cuando sea apropiado. Cita legislación avanzada (LPAC, LGP, LCSP, TREBEP). Penalización -1/3.`
+    return `ESTILO GACE A2 (calibrado con 318 preguntas oficiales):
+- Enunciados de ~29 palabras (los más largos). Nivel técnico alto, Grupo A2.
+- Opciones de ~13 palabras. 11% negativas.
+- Incluye supuestos prácticos en enunciados cuando sea apropiado.
+- Cita legislación avanzada (LPAC, LGP, LCSP, TREBEP). Penalización -1/3.`
   }
 
-  // Default: AGE (C1 or C2)
+  // Default: AGE C1/C2 — balanced, no special hints needed
   return ''
 }
 

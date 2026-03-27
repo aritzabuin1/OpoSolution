@@ -59,8 +59,10 @@ interface ChildLogger {
  * 2.2.0: Explicaciones pedagógicas (cita textual + por qué cada distractor es incorrecto).
  * 2.3.0: §Q.1 — few-shot examples filtrados por oposición, system prompt parametrizado por
  *         oposición (getSystemGenerateTest), guías de estilo por rama (getRamaStyleHint).
+ * 2.4.0: §Q.2 — calibración cuantitativa: getRamaStyleHint con datos reales de 1.987
+ *         preguntas oficiales (longitud enunciado/opciones, % negativas, prefijos, bias).
  */
-export const PROMPT_VERSION = '2.3.0'
+export const PROMPT_VERSION = '2.4.0'
 
 // Single-pass: no retries. Generate once → verify → return what passes.
 // Retries were the #1 cause of timeouts (each retry = 15-20s extra OpenAI call).

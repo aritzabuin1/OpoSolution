@@ -229,7 +229,7 @@ describe('§1.7.4 — generateTest: flujo completo', () => {
 
     expect(result.id).toBe('test-guardado-uuid')
     expect(result.temaId).toBe(TEMA_ID)
-    expect(result.promptVersion).toBe('2.3.0')
+    expect(result.promptVersion).toBe('2.4.0')
     expect(result.preguntas).toHaveLength(3)
     expect(result.createdAt).toMatch(/^\d{4}-\d{2}-\d{2}T/)
   })
