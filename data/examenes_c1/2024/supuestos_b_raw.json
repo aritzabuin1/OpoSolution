@@ -1,0 +1,490 @@
+{
+  "supuestos": [
+    {
+      "titulo": "SUPUESTO I",
+      "escenario": "D. Juan Rodríguez, perteneciente al Cuerpo de Gestión de la Administración Civil del Estado, presta sus servicios en el área de contratación administrativa de la Subdirección General de Administración Financiera, dentro del Ministerio de Industria y Turismo. Un día, mientras caminaba hacia su trabajo, recibió la noticia de que su pareja de hecho había sufrido un accidente grave que requería una intervención quirúrgica sin hospitalización y necesitaría reposo domiciliario. D. Juan Rodríguez sueña con hacer un viaje largo por el mundo con ella, pero para lograrlo necesita ahorrar y disponer de más días de asuntos particulares.\n\nPor otro lado, uno de sus compañeros busca un destino en la administración de su comunidad autónoma de nacimiento a través de convocatorias de libre designación que se publican periódicamente. Este compañero tiene una amplia trayectoria dentro de la administración, habiendo promocionado desde el subgrupo C2 al C1 después de diez años de servicio. Comenzó con un nivel 14 y en un año pasó a ocupar un nivel 17. Finalmente, su compañero logra garantizar su movilidad a otra comunidad autónoma; sin embargo, por razones del servicio, en su unidad de origen necesitan retenerlo para cumplir con los objetivos de ejecución presupuestaria para el ejercicio corriente.\n\nEn su unidad, D. Juan Rodríguez Hernández debe tramitar una indemnización por comisión de servicio según el Real Decreto 462/2002 para una compañera, personal laboral temporal del grupo profesional M3.\n\nEn materia de industria, su Ministerio requiere un acuerdo con efectos jurídicos con el Ministerio de Transportes y Movilidad Sostenible para la cofinanciación de un proyecto de desarrollo del vehículo eléctrico.\n\nDentro de la Subdirección General de Administración Financiera dada su necesidad, se ha puesto en marcha la tramitación de un contrato de obras por procedimiento abierto para rehabilitar una de sus dependencias en Madrid, que se encuentra obsoleta. Sin embargo, uno de los licitadores no está conforme con los pliegos de la licitación y tiene la voluntad de interponer un recurso especial en materia de contratación. A este contrato de obras se le suma la necesidad de licitar un contrato de servicios para asistencia técnica y dirección de obra.\n\nAdemás, a D. Juan Rodríguez le han asignado la tramitación de un contrato para la adquisición de tarjetas de combustible para el repostaje en estaciones de servicio de los vehículos oficiales del Ministerio, que se tramitará a través del vigente Acuerdo Marco 21/2023. Hasta la tramitación de este contrato, el Ministerio no tiene ninguno en vigor y un vehículo necesita repostar, por lo que proponen cubrir el gasto mediante el sistema de anticipos de caja fija.",
+      "preguntas": [
+        {
+          "numero": 1,
+          "enunciado": "¿Tiene D. Juan Rodríguez derecho a algún permiso como resultado del accidente de su pareja de hecho?",
+          "opciones": [
+            "No tiene permiso.",
+            "1 día hábil.",
+            "3 días hábiles.",
+            "5 días hábiles."
+          ]
+        },
+        {
+          "numero": 2,
+          "enunciado": "¿Aumentarán los días de permiso por asuntos particulares a los que tiene derecho D. Juan Rodríguez conforme acumule antigüedad en la Administración?",
+          "opciones": [
+            "Sí, las Administraciones Públicas podrán establecer hasta dos días adicionales de permiso por asuntos particulares al cumplir el quinto trienio, incrementándose, como máximo, en un día adicional por cada trienio cumplido a partir del octavo.",
+            "Sí, las Administraciones Públicas podrán establecer hasta dos días adicionales de permiso por asuntos particulares al cumplir el sexto trienio, incrementándose, como máximo, en un día adicional por cada trienio cumplido a partir del octavo.",
+            "Sí, las Administraciones Públicas podrán establecer hasta tres días adicionales de permiso por asuntos particulares al cumplir el sexto trienio, incrementándose, como máximo, en un día adicional por cada trienio cumplido a partir del octavo.",
+            "Sí, las Administraciones Públicas podrán establecer hasta tres días adicionales de permiso por asuntos particulares al cumplir el quinto trienio, incrementándose, como máximo, en un día adicional por cada trienio cumplido a partir del octavo."
+          ]
+        },
+        {
+          "numero": 3,
+          "enunciado": "Según se comenta en el enunciado, el compañero de D. Juan Rodríguez se incorporó a la administración con un nivel 14 y en un año pasó a ocupar un nivel 17, ¿cuánto tiempo tardó desde su toma de posesión en consolidar el nivel 17?",
+          "opciones": [
+            "5 años, siempre que haya obtenido la plaza de nivel 17 con carácter definitivo por alguno de los sistemas de provisión de puestos de trabajo.",
+            "5 años, no siendo necesario haber obtenido la plaza de nivel 17 con carácter definitivo por alguno de los sistemas de provisión de puestos de trabajo.",
+            "6 años, siempre que haya obtenido la plaza de nivel 17 con carácter definitivo por alguno de los sistemas de provisión de puestos de trabajo.",
+            "6 años, no siendo necesario haber obtenido la plaza de nivel 17 con carácter definitivo por alguno de los sistemas de provisión de puestos de trabajo."
+          ]
+        },
+        {
+          "numero": 4,
+          "enunciado": "Con respecto al tiempo que se puede diferir el cese cuando se está tramitando la libre designación a otra comunidad autónoma, indique la respuesta correcta:",
+          "opciones": [
+            "El Subsecretario del Departamento donde preste servicios el funcionario podrá diferir el cese por necesidades del servicio hasta veinte días hábiles, comunicándose a la unidad a que haya sido destinado el funcionario.",
+            "Excepcionalmente, a propuesta del Departamento, por exigencias del normal funcionamiento de los servicios, la Subsecretaría del Departamento donde preste servicios el funcionario podrá aplazar la fecha de cese hasta un máximo de tres meses.",
+            "El Subsecretario del Departamento donde preste servicios el funcionario podrá diferir el cese por necesidades del servicio hasta quince días hábiles, comunicándose a la unidad a que haya sido destinado el funcionario.",
+            "Excepcionalmente, a propuesta del Departamento, por exigencias del normal funcionamiento de los servicios, la Secretaría de Estado para la Administración Pública podrá aplazar la fecha de cese hasta un máximo de seis meses."
+          ]
+        },
+        {
+          "numero": 5,
+          "enunciado": "A la hora de tramitar la comisión de servicio para la compañera de D. Juan Rodríguez, señale a qué grupo a efectos de indemnización por razón del servicio pertenece atendiendo al IV Convenio colectivo único para el personal laboral de la Administración General del Estado:",
+          "opciones": [
+            "1.",
+            "2.",
+            "3.",
+            "4."
+          ]
+        },
+        {
+          "numero": 6,
+          "enunciado": "Si la orden de comisión de servicio es firmada de manera errónea por un órgano que no es competente por razón de jerarquía, marque al respecto la afirmación correcta:",
+          "opciones": [
+            "La Administración podrá convalidar los actos nulos, subsanando los vicios de que adolezcan.",
+            "El acto de convalidación producirá efecto desde el día siguiente a su fecha, salvo lo dispuesto en el artículo 39.3 para la retroactividad de los actos administrativos.",
+            "Dada la consideración de error material o, de hecho, es preceptivo retrotraer las actuaciones realizadas e incoar nuevamente el procedimiento administrativo.",
+            "Si el vicio consistiera en incompetencia no determinante de nulidad, la convalidación podrá realizarse por el órgano competente cuando sea superior jerárquico del que dictó el acto viciado."
+          ]
+        },
+        {
+          "numero": 7,
+          "enunciado": "Con respecto al acuerdo con efectos jurídicos con el Ministerio de Transportes y Movilidad Sostenible, ¿qué figura jurídica sería necesario emplear?",
+          "opciones": [
+            "Protocolo General de Actuación.",
+            "Consorcio.",
+            "Pacto bilateral.",
+            "Convenio."
+          ]
+        },
+        {
+          "numero": 8,
+          "enunciado": "Siguiendo con el acuerdo con efectos jurídicos al que hace referencia la pregunta anterior, indique la respuesta correcta relativa al plazo de vigencia:",
+          "opciones": [
+            "Deberá tener una duración determinada, que no podrá ser superior a tres años.",
+            "En cualquier momento antes de la finalización, los firmantes del convenio podrán acordar unánimemente su prórroga por un periodo de hasta dos años adicionales o su extinción.",
+            "No cabe la posibilidad de prorrogar un acuerdo con implicaciones económicas prestablecidas.",
+            "Deberá tener una duración determinada, que no podrá ser superior a cuatro años, salvo que normativamente se prevea un plazo superior."
+          ]
+        },
+        {
+          "numero": 9,
+          "enunciado": "En relación con el licitador que no está conforme con los pliegos de la licitación del contrato de obras y tiene voluntad de interponer un recurso especial en materia de contratación, señale la respuesta correcta:",
+          "opciones": [
+            "Son susceptibles de recurso especial en materia de contratación los contratos de obras cuyo valor estimado sea superior a tres millones de euros. No procederá la interposición de recursos administrativos ordinarios.",
+            "Son susceptibles de recurso especial en materia de contratación los contratos de obras cuyo valor estimado sea superior a dos millones de euros. Alternativamente procede la interposición de recursos administrativos ordinarios.",
+            "Son susceptibles de recurso especial en materia de contratación los contratos de obras cuyo valor estimado sea superior a tres millones de euros. Alternativamente procede la interposición de recursos administrativos ordinarios.",
+            "Son susceptibles de recurso especial en materia de contratación los contratos de obras cuyo valor estimado sea superior a dos millones de euros. No procederá la interposición de recursos administrativos ordinarios."
+          ]
+        },
+        {
+          "numero": 10,
+          "enunciado": "¿Cuál es el órgano competente para resolver el recurso especial en materia de contratación?",
+          "opciones": [
+            "Tribunal Administrativo Central de Recursos Contractuales.",
+            "Junta Administrativa de Recursos Contractuales.",
+            "Autoridad Central de Recursos Contractuales.",
+            "Oficina Independiente de Regulación y Supervisión en la Contratación."
+          ]
+        },
+        {
+          "numero": 11,
+          "enunciado": "En caso de que el contrato sea susceptible de recurso especial en materia de contratación ¿cuántos días hay que esperar para la formalización del contrato desde que se remita la notificación de la adjudicación a los licitadores y candidatos?",
+          "opciones": [
+            "5 días naturales.",
+            "10 días hábiles.",
+            "15 días hábiles.",
+            "15 días naturales."
+          ]
+        },
+        {
+          "numero": 12,
+          "enunciado": "Marque qué tipo de documento contable habrá que realizar cuando se haya formalizado el contrato de obras y, por tanto, se haya comprometido el gasto:",
+          "opciones": [
+            "OK",
+            "D",
+            "A",
+            "RC"
+          ]
+        },
+        {
+          "numero": 13,
+          "enunciado": "Durante la ejecución del contrato de obras surge la necesidad de utilizar un exceso de mediciones sobre las unidades de obra previstas, que supone un incremento del gasto del 8 por ciento del precio del contrato inicial. Señale cómo proceder en estos casos:",
+          "opciones": [
+            "Los excesos de mediciones no tienen consideración de modificación contractual si el incremento del gasto es inferior al 10 por ciento del precio del contrato.",
+            "Cabe adjudicar estas unidades a un nuevo contratista en caso de que no se haya contemplado como modificación prevista dentro del pliego de cláusulas administrativas particulares.",
+            "Se deberá tramitar una modificación no prevista de las recogidas en el artículo 205 de la Ley de Contratos del Sector Público que podrá alcanzar hasta un 50% del precio inicial del contrato.",
+            "Las modificaciones previstas en los pliegos no deben superar el 15 por ciento que indica el artículo 204 de la Ley de Contratos del Sector Público."
+          ]
+        },
+        {
+          "numero": 14,
+          "enunciado": "Para licitar el contrato de servicios de asistencia técnica a la obra, ¿puede emplearse el procedimiento simplificado previsto en el artículo 159 de la Ley de Contratos del Sector Público, sabiendo que el valor estimado del contrato es de 70.000 euros?",
+          "opciones": [
+            "Sí, el límite de valor estimado que no se puede superar para tramitar un contrato de servicios por procedimiento abierto simplificado es de 83.000 euros.",
+            "Sí, el límite de valor estimado que no se puede superar para tramitar un contrato de servicios por procedimiento abierto simplificado es de 113.000 euros.",
+            "Sí, el límite de valor estimado que no se puede superar para tramitar un contrato de servicios por procedimiento abierto simplificado es de 123.000 euros.",
+            "Sí, el límite de valor estimado que no se puede superar para tramitar un contrato de servicios por procedimiento abierto simplificado es de 143.000 euros."
+          ]
+        },
+        {
+          "numero": 15,
+          "enunciado": "En caso de tramitarse un procedimiento abierto simplificado para el contrato de servicio de asistencia técnica a la obra, indique cuál sería el plazo mínimo para presentación de proposiciones a contar desde el siguiente a la publicación en el perfil de contratante del anuncio de licitación:",
+          "opciones": [
+            "No podrá ser inferior a quince días.",
+            "No podrá ser inferior a veinte días.",
+            "No podrá ser inferior a veintiséis días.",
+            "No podrá ser inferior a treinta días."
+          ]
+        },
+        {
+          "numero": 16,
+          "enunciado": "En el caso de que el contratista al que se le adjudique el contrato de obra para rehabilitar las dependencias del Ministerio de Industria y Turismo incurra en demora respecto al cumplimiento del plazo total, la Administración podrá optar por la resolución del contrato o por:",
+          "opciones": [
+            "La imposición de penalidades diarias en la proporción de 0,40 euros por cada mil euros del presupuesto máximo del contrato.",
+            "La imposición de penalidades diarias en la proporción de 0,50 euros por cada mil euros del precio del contrato, IVA excluido",
+            "La imposición de penalidades diarias en la proporción de 0,60 euros por cada mil euros del precio del contrato, IVA excluido.",
+            "La imposición de penalidades no superiores al 10 por ciento del precio del contrato, IVA excluido, y el total de las mismas no podrá superar el 50 por cien del precio del contrato."
+          ]
+        },
+        {
+          "numero": 17,
+          "enunciado": "Con respecto al acuerdo marco 21/2023 vigente para el suministro de combustibles en estaciones de servicio. Señale cuál es la respuesta correcta sobre la duración máxima de un acuerdo marco:",
+          "opciones": [
+            "La duración de un acuerdo marco no podrá exceder de tres años, salvo en casos excepcionales, debidamente justificados. La duración de los contratos basados en un acuerdo marco estará vinculada a la duración del acuerdo marco.",
+            "La duración de un acuerdo marco no podrá exceder de cuatro años, salvo en casos excepcionales, debidamente justificados. La duración de los contratos basados en un acuerdo marco será independiente de la duración del acuerdo marco.",
+            "La duración de un acuerdo marco no podrá exceder de tres años, salvo en casos excepcionales, debidamente justificados. La duración de los contratos basados en un acuerdo marco será independiente de la duración del acuerdo marco.",
+            "La duración de un acuerdo marco no podrá exceder de cuatro años, salvo en casos excepcionales, debidamente justificados. La duración de los contratos basados en un acuerdo marco estará vinculada a la duración del acuerdo marco."
+          ]
+        },
+        {
+          "numero": 18,
+          "enunciado": "Atendiendo a la Resolución de 20 de enero de 2014, de la Dirección General de Presupuestos, por la que se establecen los códigos que definen la clasificación económica, indique el capítulo, artículo, concepto y subconcepto que corresponde a la compra de combustible:",
+          "opciones": [
+            "132.01",
+            "221.03",
+            "332.01",
+            "642.03"
+          ]
+        },
+        {
+          "numero": 19,
+          "enunciado": "Suponiendo que se quieran adquirir a través del acuerdo marco 21/2023 tarjetas de combustible por un total de base imponible de 10.000 euros con una duración de 24 meses sin posibilidad de prórroga, y sabiendo que la modificación prevista en el pliego es del 20%, calcule el valor estimado del contrato.",
+          "opciones": [
+            "10.000 euros.",
+            "12.000 euros.",
+            "12.100 euros.",
+            "14.520 euros."
+          ]
+        },
+        {
+          "numero": 20,
+          "enunciado": "Fuera del acuerdo marco, en caso de que se decidiera pagar a un proveedor la adquisición de combustible por el sistema de anticipos de caja fija, ¿cuál sería el importe máximo a pagar por este sistema?",
+          "opciones": [
+            "5.000 euros incluyendo el IVA.",
+            "5.000 euros sin incluir el IVA.",
+            "5.000 euros incluyendo la correspondiente prorrata del IVA.",
+            "Podrán ser superiores a los 5.000 euros por razón del servicio."
+          ]
+        }
+      ],
+      "reserva": [
+        {
+          "numero": 1,
+          "enunciado": "En relación a la libre designación solicitada por el compañero de D. Juan Rodríguez, ¿cuál es el plazo del que dispone el Ministerio de Turismo y Comercio para emitir informe al respecto?",
+          "opciones": [
+            "10 días naturales.",
+            "10 días hábiles.",
+            "15 días hábiles.",
+            "15 días naturales."
+          ]
+        },
+        {
+          "numero": 2,
+          "enunciado": "El Subdirector General de Recursos Humanos dicta un acto por el que se le niega la concesión de una licencia por estudios a Juan Rodríguez por delegación de su superior jerárquica, la Directora General. ¿Que recurso podría interponer D. Juan Rodríguez y en qué plazo?",
+          "opciones": [
+            "Un recurso de alzada en un plazo de un mes.",
+            "Un recurso potestativo de reposición en el plazo de dos meses o directamente un recurso ante la Jurisdicción Contencioso-administrativa en un plazo de un mes.",
+            "Un recurso potestativo de reposición en el plazo de un mes o directamente un recurso ante la Jurisdicción Contencioso-administrativa en un plazo de dos meses.",
+            "Un recurso de alzada en un plazo de dos meses."
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "SUPUESTO II",
+      "escenario": "Dña. Estela Sánchez Ruiz, funcionaria del Cuerpo de Gestión de la Administración Civil del Estado, viene ocupando un puesto en comisión de servicios desde hace un año, denominado Jefe/Jefa de Servicio de Procedimientos Administrativos, de nivel de complemento de destino 26, adscrito a la Subsecretaría del Ministerio de Agricultura, Pesca y Alimentación. La persona titular de la Subdirección General a la que está adscrita dicha funcionaria le encarga que prepare el borrador de una convocatoria de subvenciones para agricultores afectados por la sequía en las comunidades autónomas de Madrid, Castilla-La Mancha y Extremadura.\n\nAdemás, a Dña. Estela también se le encarga que informe sobre un recurso de alzada que se ha recibido en la Subdirección General.\n\nLa mencionada funcionaria considera que cada vez recibe más encargos y está pensando seriamente cambiar de puesto de trabajo o promocionar a otro Cuerpo, al considerarse mal retribuida. Incluso ha llegado a plantear en alguna ocasión a sus superiores jerárquicos la posibilidad de que se contrate a alguien para que le ayude en sus tareas. Y es que la situación le está creando cierto estrés y duda incluso de que esté gestionando adecuadamente toda la información que maneja, con posibles errores en lo referente a la protección de datos, lo cual le produce el temor de poder ser sancionada o, incluso, perder su empleo.",
+      "preguntas": [
+        {
+          "numero": 1,
+          "enunciado": "En el informe a elaborar sobre el recurso de alzada, ¿cuál de los siguientes enunciados sería el correcto?:",
+          "opciones": [
+            "Si el recurso se ha interpuesto ante el órgano que dictó el acto impugnado, este debe resolverlo.",
+            "Si el acto impugnado ha sido expreso, el plazo para la interposición del recurso es de tres meses.",
+            "El plazo máximo para dictar y notificar la resolución del recurso será de un mes.",
+            "Contra la resolución del recurso de alzada no cabrá ningún otro recurso administrativo, salvo, en su caso, el extraordinario de revisión."
+          ]
+        },
+        {
+          "numero": 2,
+          "enunciado": "Dña. Estela, al analizar la documentación de la que dispone en relación al recurso de alzada interpuesto, aprecia que habrían de tenerse en cuenta nuevos hechos no recogidos en el expediente originario, por lo que decide incluir en su informe una propuesta para que esos hechos se pongan de manifiesto a los interesados para que estos puedan formular las alegaciones que estimen procedentes en un plazo:",
+          "opciones": [
+            "No inferior a diez días ni superior a quince.",
+            "No inferior a diez días ni superior a un mes.",
+            "De un mes desde la fecha del trámite de audiencia de los interesados.",
+            "De tres meses a contar desde el conocimiento de los hechos."
+          ]
+        },
+        {
+          "numero": 3,
+          "enunciado": "Pero Dña. Estela, antes de terminar su informe, se da cuenta de que a ella se le ha solicitado informe sobre un recurso de alzada, pero el recurrente lo ha calificado como recurso de reposición, calificación que ella considera claramente como errónea, por lo que sería correcta la siguiente actuación:",
+          "opciones": [
+            "Propone suspender la tramitación del recurso por calificación errónea por parte del recurrente.",
+            "Propone continuar con la tramitación del recurso, dado que del recurso presentado se deduce su verdadero carácter de recurso de alzada.",
+            "Propone la inadmisión del recurso por carecer manifiestamente de fundamento.",
+            "Propone la suspensión de su eficacia y su publicación en el Boletín Oficial del Estado."
+          ]
+        },
+        {
+          "numero": 4,
+          "enunciado": "Ante las dudas sobre la protección de datos, Dña. Estela, sabiendo que existe un delegado de protección de datos en el Ministerio de Agricultura, Pesca y Alimentación, piensa que sería una buena idea plantear una consulta para determinar si los procesos de tratamiento de datos son correctos. ¿Podría el delegado de protección de datos tener acceso a esos datos personales?",
+          "opciones": [
+            "Sí.",
+            "No.",
+            "Sí, salvo que se oponga a dicho acceso el responsable o el encargado del tratamiento de datos.",
+            "No, dado que este acceso solo le es permitido a la Agencia Española de Protección de Datos."
+          ]
+        },
+        {
+          "numero": 5,
+          "enunciado": "En el caso de que la persona que ha interpuesto el recurso de alzada presente una reclamación ante la Agencia Española de Protección de Datos por entender vulnerada la protección de sus datos, dicha Agencia podrá remitir esa reclamación al delegado de protección de datos del Ministerio de Agricultura, Pesca y Alimentación a fin de que este responda en el plazo de:",
+          "opciones": [
+            "Un mes.",
+            "Dos meses.",
+            "Quince días.",
+            "Tres meses."
+          ]
+        },
+        {
+          "numero": 6,
+          "enunciado": "Si como consecuencia de la actuación indicada en la anterior pregunta, el Ministerio de Agricultura, Pesca y Alimentación demuestra haber adoptado medidas para el cumplimiento de la normativa aplicable, la Agencia Española de Protección de Datos:",
+          "opciones": [
+            "Declarará caducado el procedimiento.",
+            "Efectuará un requerimiento al delegado de protección de datos del Ministerio de Agricultura, Pesca y Alimentación.",
+            "Efectuará una advertencia al responsable del tratamiento de datos del Ministerio de Agricultura, Pesca y Alimentación.",
+            "Podrá inadmitir a trámite la reclamación."
+          ]
+        },
+        {
+          "numero": 7,
+          "enunciado": "Fruto del estrés que sufre Dña. Estela, esta acaba discutiendo con la persona titular de la Subdirección General a la que está adscrita. En el marco de esa discusión, Dña. Estela llega a amenazar con dar publicidad en las redes sociales y medios de comunicación a toda la documentación a la que tiene acceso por razón de su cargo de Jefa de Servicio. Ante esta amenaza, su superior jerárquico le informa de que dicha conducta podría ser constitutiva de:",
+          "opciones": [
+            "Falta leve.",
+            "Falta grave.",
+            "Falta muy grave.",
+            "Despido disciplinario."
+          ]
+        },
+        {
+          "numero": 8,
+          "enunciado": "A la vista de lo que le puede suponer a Dña. Estela el hecho de llevar a cabo su amenaza, esta estudia la normativa aplicable y constata que su actuación podría llevar aparejada una sanción:",
+          "opciones": [
+            "De separación del servicio.",
+            "De despido disciplinario.",
+            "De suspensión de funciones por dos años.",
+            "De traslado con cambio de residencia por un año."
+          ]
+        },
+        {
+          "numero": 9,
+          "enunciado": "A la luz de la normativa aplicable en materia de régimen disciplinario, Dña. Estela sabe que en el caso de que se iniciara un procedimiento disciplinario contra ella, el Subsecretario del Ministerio de Agricultura, Pesca y Alimentación podría o debería nombrar un instructor o instructora del mismo, y que debería ser, en dicho caso, una persona funcionaria perteneciente a un cuerpo o escala del subgrupo:",
+          "opciones": [
+            "C1.",
+            "A2 en todo caso.",
+            "A1 o A2.",
+            "Solo se exige que sea funcionario público."
+          ]
+        },
+        {
+          "numero": 10,
+          "enunciado": "Dña. Estela comienza a barajar posibilidades respecto a su futuro profesional y piensa en solicitar una excedencia voluntaria por interés particular, sabiendo que si se le comienza a instruir un expediente disciplinario:",
+          "opciones": [
+            "Deberá acreditar un período mínimo de servicios de tres años.",
+            "No se le podrá conceder la excedencia voluntaria mientras dure la instrucción del procedimiento disciplinario.",
+            "La concesión de excedencia voluntaria por interés particular quedará subordinada a las necesidades del servicio debidamente motivadas.",
+            "No se le podrá conceder por un período superior a tres años."
+          ]
+        },
+        {
+          "numero": 11,
+          "enunciado": "Entre una de las posibilidades sobre las que piensa Dña. Estela, se encuentra la de ampliar sus retribuciones e ir labrándose un futuro en el sector privado trabajando como jefa de los servicios administrativos de una sociedad limitada perteneciente a un tío abuelo suyo que se dedica a la contratación de obras con el sector público. ¿Podría ser compatible esta actividad privada con su condición de funcionaria del Estado?",
+          "opciones": [
+            "No, conforme a la Ley de Incompatibilidades del personal al servicio de las Administraciones Públicas.",
+            "Sí, siempre que informe favorablemente la personal titular de la Subsecretaría del Ministerio de Agricultura, Pesca y Alimentación.",
+            "Podría ser compatible si la actividad privada no modificara la jornada y horario de trabajo de Dña. Estela.",
+            "Hay que atender al grado de parentesco del propietario de la empresa con Dña. Estela para dilucidar esta cuestión, así como la configuración jurídica de la empresa."
+          ]
+        },
+        {
+          "numero": 12,
+          "enunciado": "No obstante las posibilidades que se está planteando Dña. Estela, también podría promocionar a otro cuerpo o escala de un subgrupo superior, como, por ejemplo, el Cuerpo Superior de Administradores Civiles del Estado. ¿Sería posible en el caso de esta funcionaria?",
+          "opciones": [
+            "No, porque está desempeñando un puesto en comisión de servicios desde hace un año.",
+            "Sería posible si dicha funcionaria tiene una antigüedad de, al menos, dos años en el Cuerpo de Gestión de la Administración Civil del Estado y posee la titulación y el resto de los requisitos establecidos con carácter general para el acceso al Cuerpo Superior de Administradores Civiles del Estado.",
+            "Sería posible siempre que se haga a través de los procedimientos previstos en el Estatuto de los Trabajadores o en el convenio colectivo correspondiente.",
+            "Sería posible siempre y cuando concurra a los sistemas de evaluación que la Administración General del Estado determine, dándose audiencia a la interesada, y por la correspondiente resolución motivada."
+          ]
+        },
+        {
+          "numero": 13,
+          "enunciado": "También cabría la posibilidad de que Dña. Estela participase en un procedimiento de provisión de puestos de trabajo por el sistema de libre designación en el Ministerio de Asuntos Exteriores, Unión Europea y Cooperación, para la cual se requeriría antes de su nombramiento:",
+          "opciones": [
+            "Informe favorable de la Secretaría de Estado de Función Pública.",
+            "Ser funcionaria del subgrupo A1.",
+            "Informe favorable del Ministerio de Agricultura, Pesca y Alimentación.",
+            "Informe favorable de la Secretaría de Estado de Administración Pública."
+          ]
+        },
+        {
+          "numero": 14,
+          "enunciado": "Ya que Dña. Estela considera que en su Unidad hay una gran carga de trabajo que no puede ser adecuadamente asumida, decide proponerle a su Subdirectora General que gestione la posibilidad del nombramiento de funcionarios interinos por exceso o acumulación de tareas conforme al texto refundido de la Ley del Estatuto Básico del Empleado Público, sabiendo que pueden ser nombrados:",
+          "opciones": [
+            "Por un período máximo de tres años.",
+            "Por plazo máximo de nueve meses, dentro de un período de dieciocho meses.",
+            "Con una duración máxima de tres años, ampliables hasta doce meses más.",
+            "Por el tiempo que dure la cobertura de los puestos conforme a la correspondiente Oferta de Empleo Público."
+          ]
+        },
+        {
+          "numero": 15,
+          "enunciado": "Dña. Estela tiene cierto temor por las consecuencias del estrés que sufre, y conoce el caso de un compañero suyo, personal laboral fijo, al que el Instituto Nacional de la Seguridad Social declaró en situación de incapacidad permanente, pero no recuerda en qué grado, aunque sí sabe que la Ley General de la Seguridad Social indica cuatro grados posibles y que son:",
+          "opciones": [
+            "Parcial, total, transitoria y gran invalidez.",
+            "Total, absoluta, reglamentaria y gran invalidez.",
+            "Parcial, revisable, total y gran invalidez.",
+            "Parcial, total, absoluta y gran invalidez."
+          ]
+        },
+        {
+          "numero": 16,
+          "enunciado": "De todas formas, Dña. Estela sabe que se le ha asignado una tarea importante en materia de subvenciones que por sus deberes como funcionaria debe atender, por lo que comienza a analizar la Ley General de Subvenciones, y viendo que las subvenciones no van a ser financiadas con cargo a fondos de la Unión Europea, concluye que el régimen jurídico aplicable a las mismas es:",
+          "opciones": [
+            "Las normas de derecho privado en todo caso.",
+            "El derecho comunitario, dado que las subvenciones van dirigidas a varias Comunidades Autónomas.",
+            "El derecho privado y las restantes normas de desarrollo y, en su defecto, el derecho administrativo.",
+            "La Ley General de Subvenciones y sus disposiciones de desarrollo, las restantes normas de derecho administrativo y, en su defecto, las normas de derecho privado."
+          ]
+        },
+        {
+          "numero": 17,
+          "enunciado": "Antes de comenzar a preparar el borrador de la convocatoria de subvenciones, Dña. Estela comprueba si el Ministerio de Agricultura, Pesca y Alimentación dispone del plan en el que se concreten los objetivos y efectos que se pretenden con las subvenciones a otorgar por el Departamento, el plazo necesario para su consecución, los costes previsibles y sus fuentes de financiación, es decir, si el Ministerio dispone del:",
+          "opciones": [
+            "Plan anual de subvenciones.",
+            "Plan estratégico de subvenciones.",
+            "Plan trienal de subvenciones.",
+            "Plan plurianual de subvenciones."
+          ]
+        },
+        {
+          "numero": 18,
+          "enunciado": "Con carácter previo a la convocatoria de subvenciones, Dña. Estela sabe que debe efectuar:",
+          "opciones": [
+            "El compromiso del gasto.",
+            "La aprobación del gasto.",
+            "El reconocimiento de la obligación.",
+            "El reconocimiento de la obligación y la propuesta de gasto."
+          ]
+        },
+        {
+          "numero": 19,
+          "enunciado": "¿Qué documento contable reflejaría la fase del gasto contemplada en la anterior pregunta?",
+          "opciones": [
+            "OK",
+            "D",
+            "A",
+            "RC"
+          ]
+        },
+        {
+          "numero": 20,
+          "enunciado": "Dña. Estela, en el transcurso de la gestión económica de la convocatoria de subvenciones, aprecia que el crédito en el capítulo 4 del presupuesto de gastos del Ministerio de Agricultura, Pesca y Alimentación es insuficiente para atender la nueva convocatoria, estimando que se necesitan 10 millones más de euros sobre un total de 100 millones que aparecen en dicho capítulo. Ante esto, propone que se tramite un crédito extraordinario o un suplemento de crédito que debería financiarse:",
+          "opciones": [
+            "Mediante baja en los créditos del Fondo de Contingencia o en otros no financieros que se consideren adecuados.",
+            "Con deuda pública o con baja en otros créditos de la misma naturaleza financiera.",
+            "Con cargo a la parte del remanente de tesorería al fin del ejercicio anterior que no hayan sido aplicados en el presupuestos del Ministerio, o con mayores ingresos sobre los previstos inicialmente.",
+            "Mediante la transferencia de créditos destinados a subvenciones nominativas."
+          ]
+        }
+      ],
+      "reserva": [
+        {
+          "numero": 1,
+          "enunciado": "¿En qué plazo podrá Dña. Estela presentar su solicitud de participación en la libre designación del Ministerio de Asuntos Exteriores, Unión Europea y Cooperación?",
+          "opciones": [
+            "10 días hábiles siguientes al de la publicación de la convocatoria.",
+            "15 días hábiles siguientes al de la publicación de la convocatoria.",
+            "20 días hábiles siguientes al de la publicación de la convocatoria.",
+            "Un mes a partir de la publicación de la convocatoria."
+          ]
+        },
+        {
+          "numero": 2,
+          "enunciado": "Dña. Estela, que reside en Madrid, tiene que acudir a un curso como formadora durante tres días en Valladolid. El día de regreso la comisión de servicio concluye a las 21 horas. ¿Qué gastos se le abonarán a la funcionaria respecto de ese último día?",
+          "opciones": [
+            "50 por 100 de los gastos de manutención.",
+            "100 por 100 de los gastos de manutención.",
+            "50 por 100 de los gastos de manutención, abonándose adicionalmente el otro 50 por 100 cuando la cena se realice fuera de la residencia habitual, previa justificación con factura o recibo del correspondiente establecimiento.",
+            "Gastos de alojamiento."
+          ]
+        },
+        {
+          "numero": 3,
+          "enunciado": "Dña. Estela tiene un compañero personal laboral fijo, grupo profesional E1. ¿Qué titulación mínima posee?",
+          "opciones": [
+            "Sin titulación prevista en el sistema educativo.",
+            "Título de Graduado en Educación Secundaria Obligatoria o Título Profesional Básico o equivalentes.",
+            "Título de Bachiller o Técnico o equivalentes.",
+            "Título clasificado en el Nivel 1 del Marco Español de Cualificaciones para la Educación Superior o equivalentes."
+          ]
+        },
+        {
+          "numero": 4,
+          "enunciado": "Transcurrido el plazo máximo para resolver el recurso de alzada sin que hubiese recaído resolución, el recurrente podría entender que:",
+          "opciones": [
+            "Habría caducado el procedimiento de recurso.",
+            "Habría prescrito el procedimiento de recurso.",
+            "Se habría desestimado el recurso interpuesto.",
+            "Se habría estimado el recurso interpuesto."
+          ]
+        },
+        {
+          "numero": 5,
+          "enunciado": "Como consecuencia de la pérdida de efectivos producida por un elevado número de jubilaciones en el último año, el Ministerio de Agricultura, Pesca y Alimentación se plantea fusionar la Subdirección General en la que presta servicio Dña. Estela y otra Subdirección General de la misma Dirección General. ¿A través de qué instrumento jurídico se podrá articular esta reorganización ministerial?",
+          "opciones": [
+            "Por Orden del Ministro de Agricultura, Pesca y Alimentación, a propuesta del Ministerio para la Transformación Digital y de la Función Pública.",
+            "Por Orden del Ministro de Agricultura, Pesca y Alimentación, previa autorización del Ministro para la Transformación Digital y de la Función Pública.",
+            "Por Real Decreto del Consejo de Ministros, a propuesta del Ministro de Agricultura, Pesca y Alimentación.",
+            "Por Real Decreto del Consejo de Ministros, a iniciativa del Ministro de Agricultura, Pesca y Alimentación y a propuesta del Ministro para la Transformación Digital y de la Función Pública."
+          ]
+        }
+      ]
+    }
+  ]
+}

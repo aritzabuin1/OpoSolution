@@ -1,0 +1,266 @@
+{
+  "convocatoria": "2024",
+  "anno": 2024,
+  "turno": "libre",
+  "modelo": "B",
+  "cuerpo": "Cuerpo General Administrativo de la Administración del Estado",
+  "parte": "Segunda parte — Supuesto Práctico",
+  "supuestos": [
+    {
+      "id": "supuesto_1",
+      "titulo": "Supuesto I",
+      "preguntas": [
+        {
+          "numero": 1,
+          "correcta": 3,
+          "anulada": false
+        },
+        {
+          "numero": 2,
+          "correcta": 1,
+          "anulada": false
+        },
+        {
+          "numero": 3,
+          "correcta": null,
+          "anulada": true
+        },
+        {
+          "numero": 4,
+          "correcta": 0,
+          "anulada": false
+        },
+        {
+          "numero": 5,
+          "correcta": 1,
+          "anulada": false
+        },
+        {
+          "numero": 6,
+          "correcta": 3,
+          "anulada": false
+        },
+        {
+          "numero": 7,
+          "correcta": 3,
+          "anulada": false
+        },
+        {
+          "numero": 8,
+          "correcta": 3,
+          "anulada": false
+        },
+        {
+          "numero": 9,
+          "correcta": 0,
+          "anulada": false
+        },
+        {
+          "numero": 10,
+          "correcta": 0,
+          "anulada": false
+        },
+        {
+          "numero": 11,
+          "correcta": 2,
+          "anulada": false
+        },
+        {
+          "numero": 12,
+          "correcta": 1,
+          "anulada": false
+        },
+        {
+          "numero": 13,
+          "correcta": 0,
+          "anulada": false
+        },
+        {
+          "numero": 14,
+          "correcta": 3,
+          "anulada": false
+        },
+        {
+          "numero": 15,
+          "correcta": 0,
+          "anulada": false
+        },
+        {
+          "numero": 16,
+          "correcta": 2,
+          "anulada": false
+        },
+        {
+          "numero": 17,
+          "correcta": 1,
+          "anulada": false
+        },
+        {
+          "numero": 18,
+          "correcta": 1,
+          "anulada": false
+        },
+        {
+          "numero": 19,
+          "correcta": 1,
+          "anulada": false
+        },
+        {
+          "numero": 20,
+          "correcta": 3,
+          "anulada": false
+        }
+      ],
+      "preguntas_reserva": [
+        {
+          "numero": 1,
+          "correcta": 3
+        },
+        {
+          "numero": 2,
+          "correcta": 2
+        },
+        {
+          "numero": 3,
+          "correcta": 2
+        },
+        {
+          "numero": 4,
+          "correcta": 0
+        },
+        {
+          "numero": 5,
+          "correcta": 3
+        }
+      ]
+    },
+    {
+      "id": "supuesto_2",
+      "titulo": "Supuesto II",
+      "preguntas": [
+        {
+          "numero": 1,
+          "correcta": 3,
+          "anulada": false
+        },
+        {
+          "numero": 2,
+          "correcta": 0,
+          "anulada": false
+        },
+        {
+          "numero": 3,
+          "correcta": 1,
+          "anulada": false
+        },
+        {
+          "numero": 4,
+          "correcta": 0,
+          "anulada": false
+        },
+        {
+          "numero": 5,
+          "correcta": 0,
+          "anulada": false
+        },
+        {
+          "numero": 6,
+          "correcta": 3,
+          "anulada": false
+        },
+        {
+          "numero": 7,
+          "correcta": 2,
+          "anulada": false
+        },
+        {
+          "numero": 8,
+          "correcta": 0,
+          "anulada": false
+        },
+        {
+          "numero": 9,
+          "correcta": 2,
+          "anulada": false
+        },
+        {
+          "numero": 10,
+          "correcta": 1,
+          "anulada": false
+        },
+        {
+          "numero": 11,
+          "correcta": 0,
+          "anulada": false
+        },
+        {
+          "numero": 12,
+          "correcta": 1,
+          "anulada": false
+        },
+        {
+          "numero": 13,
+          "correcta": 2,
+          "anulada": false
+        },
+        {
+          "numero": 14,
+          "correcta": 1,
+          "anulada": false
+        },
+        {
+          "numero": 15,
+          "correcta": 3,
+          "anulada": false
+        },
+        {
+          "numero": 16,
+          "correcta": 3,
+          "anulada": false
+        },
+        {
+          "numero": 17,
+          "correcta": 1,
+          "anulada": false
+        },
+        {
+          "numero": 18,
+          "correcta": 1,
+          "anulada": false
+        },
+        {
+          "numero": 19,
+          "correcta": 2,
+          "anulada": false
+        },
+        {
+          "numero": 20,
+          "correcta": 0,
+          "anulada": false
+        }
+      ],
+      "preguntas_reserva": [
+        {
+          "numero": 1,
+          "correcta": 1
+        },
+        {
+          "numero": 2,
+          "correcta": 0
+        },
+        {
+          "numero": 3,
+          "correcta": 1
+        },
+        {
+          "numero": 4,
+          "correcta": 2
+        },
+        {
+          "numero": 5,
+          "correcta": 3
+        }
+      ]
+    }
+  ]
+}

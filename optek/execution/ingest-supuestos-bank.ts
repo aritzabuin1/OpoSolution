@@ -49,9 +49,10 @@ interface RawPregunta {
 interface RawSupuesto {
   id: string
   titulo: string
-  caso: { escenario: string }
+  caso?: { escenario: string }
+  escenario?: string  // modelo B has escenario at top level
   preguntas: RawPregunta[]
-  preguntas_reserva?: { numero: number; correcta: number }[]
+  preguntas_reserva?: { numero: number; correcta: number; enunciado?: string; opciones?: string[] }[]
 }
 
 interface RawFile {
@@ -63,9 +64,10 @@ interface RawFile {
 // ─── Transform to DB schema ─────────────────────────────────────────────────
 
 function transformCaso(supuesto: RawSupuesto) {
+  const escenario = supuesto.escenario ?? supuesto.caso?.escenario ?? ''
   return {
     titulo: supuesto.titulo,
-    escenario: supuesto.caso.escenario,
+    escenario,
     bloques_cubiertos: ['II', 'III', 'IV', 'V'], // AGE C1 supuesto covers these blocks
   }
 }
@@ -146,6 +148,48 @@ async function main() {
         console.log('  ✅ Inserted into supuesto_bank')
       }
     }
+  }
+
+  // ── 3. Insert Modelo B supuestos into supuesto_bank ────────────────────
+  const dataBPath = path.join(__dirname, '..', '..', 'data', 'examenes_c1', '2024', 'supuestos_b.json')
+  if (fs.existsSync(dataBPath)) {
+    const rawB: RawFile = JSON.parse(fs.readFileSync(dataBPath, 'utf-8'))
+    console.log(`\nLoaded ${rawB.supuestos.length} supuestos from Modelo B`)
+
+    for (const supuesto of rawB.supuestos) {
+      const bankRecord = {
+        oposicion_id: oposicionId,
+        caso: transformCaso(supuesto),
+        preguntas: transformPreguntas(supuesto),
+        es_oficial: true,
+        fuente: `INAP-${rawB.anno}-ADVO-L-ModeloB-${supuesto.id}`,
+      }
+
+      console.log(`📋 supuesto_bank (B): "${supuesto.titulo}" (${bankRecord.preguntas.length} preguntas)`)
+      if (!dryRun) {
+        const { data: existing } = await supabase
+          .from('supuesto_bank')
+          .select('id')
+          .eq('fuente', bankRecord.fuente)
+          .maybeSingle()
+
+        if (existing) {
+          console.log('  ⏭️  Already exists, skipping')
+          continue
+        }
+
+        const { error } = await supabase
+          .from('supuesto_bank')
+          .insert(bankRecord)
+        if (error) {
+          console.error('  ❌ Error inserting supuesto_bank:', error.message)
+        } else {
+          console.log('  ✅ Inserted into supuesto_bank')
+        }
+      }
+    }
+  } else {
+    console.log('\nNo modelo B file found, skipping')
   }
 
   // ── Summary ─────────────────────────────────────────────────────────────
