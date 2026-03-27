@@ -19,7 +19,7 @@ import { SimulacroMixtoCard } from '@/components/simulacros/SimulacroMixtoCard'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { Trophy, Info, FileText, Sparkles, ArrowRight } from 'lucide-react'
+import { Trophy, Info, FileText, Sparkles, ArrowRight, Layers } from 'lucide-react'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -118,10 +118,14 @@ export default async function SimulacrosPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: opoFeatures } = await (supabase as any)
     .from('oposiciones')
-    .select('features')
+    .select('features, scoring_config')
     .eq('id', userOposicionId)
     .single()
-  const hasSupuestoPractico = (opoFeatures as { features?: { supuesto_practico?: boolean } } | null)?.features?.supuesto_practico === true
+  const features = (opoFeatures as { features?: Record<string, boolean>; scoring_config?: { ejercicios?: Array<{ nombre?: string; preguntas?: number; minutos?: number }>; minutos_total?: number } } | null)
+  const hasSupuestoPractico = features?.features?.supuesto_practico === true
+  const hasSupuestoTest = features?.features?.supuesto_test === true
+  // "Examen completo" available when oposición has both simulacros (oficial questions) AND supuesto test
+  const hasExamenCompleto = hasSupuestoTest && hayExamenes
 
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-8">
@@ -182,6 +186,70 @@ export default async function SimulacrosPage() {
           </CardContent>
         </Card>
       )}
+
+      {/* §2.5d — Estructura del examen (múltiples ejercicios) */}
+      {(() => {
+        const ejercicios = features?.scoring_config?.ejercicios
+        const minTotal = features?.scoring_config?.minutos_total
+        if (!ejercicios || ejercicios.length <= 1) return null
+
+        return (
+          <Card className="border-indigo-300/40 bg-gradient-to-r from-indigo-50 to-indigo-50/30 dark:from-indigo-950/20 dark:to-transparent">
+            <CardContent className="pt-5 pb-5">
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-100 dark:bg-indigo-900/40 shrink-0">
+                  <Layers className="h-5 w-5 text-indigo-600" />
+                </div>
+                <div className="flex-1 space-y-3">
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-semibold text-sm">Estructura del examen</h3>
+                    <Badge variant="outline" className="text-[10px] border-indigo-300 text-indigo-700">
+                      {ejercicios.length} ejercicios{minTotal ? ` · ${minTotal} min` : ''}
+                    </Badge>
+                  </div>
+                  <div className="space-y-1.5">
+                    {ejercicios.map((ej, i) => (
+                      <div key={i} className="flex items-center gap-2 text-xs">
+                        <span className="font-mono text-[10px] bg-indigo-100 dark:bg-indigo-900/40 rounded px-1.5 py-0.5 text-indigo-700">{i + 1}</span>
+                        <span className="font-medium">{ej.nombre ?? `Ejercicio ${i + 1}`}</span>
+                        <span className="text-muted-foreground">
+                          {ej.preguntas ? `${ej.preguntas}q` : ''}{ej.minutos ? ` · ${ej.minutos} min` : ''}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {hayExamenes && (
+                      <Button asChild size="sm" variant="outline" className="gap-1.5 border-indigo-200 text-indigo-700 hover:bg-indigo-50">
+                        <Link href="#convocatorias">
+                          <Trophy className="h-3.5 w-3.5" />
+                          Simulacro Ej. 1
+                        </Link>
+                      </Button>
+                    )}
+                    {hasSupuestoTest && (
+                      <Button asChild size="sm" className="gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white">
+                        <Link href="/supuesto-test">
+                          <FileText className="h-3.5 w-3.5" />
+                          Supuesto Práctico (test)
+                        </Link>
+                      </Button>
+                    )}
+                    {hasSupuestoPractico && (
+                      <Button asChild size="sm" className="gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white">
+                        <Link href="/supuesto-practico">
+                          <Sparkles className="h-3.5 w-3.5" />
+                          Supuesto (desarrollo)
+                        </Link>
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )
+      })()}
 
       {hayExamenes ? (
         <div className="space-y-6">

@@ -458,10 +458,10 @@ Lógica basada en `scoring_config.ejercicios`:
   - OG metadata: tipo 'supuesto' para compartir
 
 #### Fase 2.5d — Integración con simulacro completo (nice-to-have)
-- [ ] AGE C1: "Examen completo: Parte 1 (70 preguntas) + Parte 2 (supuesto)"
+- [x] "Estructura del examen" card genérico en simulacros: muestra todos los ejercicios de scoring_config con links a simulacro (ej1) + supuesto test + supuesto práctico según features
   - Timer: 100 minutos total
   - Resultados: nota por parte + nota total + ¿supera corte 2024 (47,33)?
-- [ ] Justicia: "Ejercicio 2 completo" como opción en simulacros
+- [x] Justicia: card genérico muestra los 2-3 ejercicios de cada oposición (Auxilio 2ej, Tramitación 3ej, Gestión 3ej)
   - Timer independiente (60 min Auxilio, 30 min Tramitación/Gestión)
 
 ### Estimación de costes
