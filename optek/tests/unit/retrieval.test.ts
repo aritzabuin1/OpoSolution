@@ -313,7 +313,7 @@ describe('retrieveExamples — §1.4.4', () => {
     const { retrieveExamples } = await import('@/lib/ai/retrieval')
     const result = await retrieveExamples('tema-uuid-lpac', 2)
 
-    expect(result).toContain('EJEMPLOS REALES DEL INAP')
+    expect(result).toContain('EJEMPLOS REALES DEL TRIBUNAL')
     expect(result).toContain('plazo máximo para resolver')
     expect(result).toContain('B) 3 meses')
     expect(result).toContain('[Respuesta: B]')

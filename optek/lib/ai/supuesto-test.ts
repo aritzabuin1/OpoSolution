@@ -154,6 +154,26 @@ REGLAS:
 - La explicación debe citar la ley específica (ej: "Art. 69.2 LPAC").
 - Numera las preguntas empezando por 1.`
 
+const EJEMPLO_AUXILIO_MJU = `**EJEMPLO (Convocatoria MJU 2024, Ejercicio 2 Auxilio Judicial — ABREVIADO):**
+
+Escenario: Caso práctico de procedimiento monitorio. Un acreedor presenta solicitud de monitorio ante el Juzgado de Primera Instancia por deuda documentada de 4.500 euros. El caso incluye cuestiones sobre competencia territorial, intervención de abogado y procurador, presentación electrónica, plazos de requerimiento y oposición del deudor.
+
+Pregunta 1: "¿En este tipo de procedimientos es preceptiva la intervención de abogado y procurador?"
+a) Sí, al exceder la cuantía reclamada la cantidad de 2.000 euros.
+b) Sí, cualquiera que sea la cuantía reclamada.
+c) No.
+d) Es preceptiva la intervención de abogado, pero no la de procurador.
+Correcta: a)
+
+Pregunta 2: "De conformidad con lo previsto en el artículo 814 de la LEC, ¿es válida la presentación de la petición a través de la sede electrónica?"
+a) No, únicamente podrá extenderse en impreso presentándose en la oficina de registro.
+b) No, únicamente podrá extenderse en impreso o formulario obtenido en papel.
+c) Sí, facilitando todos los extremos de identidad, domicilios, origen y cuantía de la deuda y documentos del art. 812 LEC.
+d) Sí, sin necesidad de acompañar los documentos del art. 812 LEC.
+Correcta: c)
+
+Las preguntas del MJU son formales, extensas y citan artículos de la LEC/LECrim/LOPJ específicamente.`
+
 const SYSTEM_PROCESAL = `Eres un experto en oposiciones de Justicia (Auxilio Judicial, Tramitación Procesal, Gestión Procesal).
 
 Tu tarea: generar un SUPUESTO PRÁCTICO en formato TEST idéntico al del examen real MJU.
@@ -172,6 +192,8 @@ FORMATO OBLIGATORIO:
 4. DIFICULTAD: nivel examen MJU — los enunciados de los casos son largos y detallados.
 
 5. CADA PREGUNTA tiene: enunciado, 4 opciones (a-d), 1 correcta (0-indexed), explicación breve citando ley y artículo.
+
+${EJEMPLO_AUXILIO_MJU}
 
 REGLAS:
 - El escenario debe ser UNA historia procesal continua.

@@ -662,12 +662,13 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
   - `'Gestión de la Administración Civil del Estado'` → includes('gestión') && includes('estado') ✅
   - ⚠️ Matching es frágil (depende de nombres DB) — si se cambian nombres, revisar `getRamaStyleHint()`
 
-#### Q.1.3 Few-shot para supuesto test (PENDIENTE)
-- [ ] `supuesto-test.ts`: SYSTEM_PROCESAL no tiene few-shot (SYSTEM_ADMINISTRATIVO sí tiene EJEMPLO_AGE_C1)
-- [ ] Añadir few-shot de Auxilio ej2 2024 (41q parseadas, caso práctico procesal) como EJEMPLO_AUXILIO
-- [ ] Considerar reemplazar EJEMPLO_AGE_C1 abreviado por el supuesto completo de `supuestos_a.json` (~200 palabras escenario + 2-3 preguntas reales)
+#### Q.1.3 Few-shot para supuesto test ✅
+- [x] `EJEMPLO_AUXILIO_MJU` añadido: procedimiento monitorio real del examen MJU Auxilio 2024 ej2
+  - Escenario procesal (competencia, abogado/procurador, sede electrónica, plazos LEC)
+  - 2 preguntas de ejemplo con opciones completas y respuesta verificada contra plantilla
+- [x] Inyectado en `SYSTEM_PROCESAL` (como `EJEMPLO_AGE_C1` está en `SYSTEM_ADMINISTRATIVO`)
+- [ ] Considerar reemplazar EJEMPLO_AGE_C1 abreviado por supuesto completo (nice-to-have)
 - **Archivo**: `lib/ai/supuesto-test.ts`
-- **Coste**: $0
 
 ### Q.2 Análisis de estilo + calibración por oposición (PENDIENTE)
 
