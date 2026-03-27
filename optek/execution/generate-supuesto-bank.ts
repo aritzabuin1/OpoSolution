@@ -22,9 +22,9 @@ import {
   SupuestoGeneradoSchema,
   type SupuestoPregunta,
 } from '../lib/ai/supuesto-test'
-import { callAIJSON } from '../lib/ai/provider'
 import { extractCitations, batchVerifyCitations } from '../lib/ai/verification'
 import { resolveLeyNombre } from '../lib/ai/citation-aliases'
+import OpenAI from 'openai'
 import * as dotenv from 'dotenv'
 
 dotenv.config({ path: '.env.local' })
@@ -109,18 +109,26 @@ async function main() {
     }
 
     try {
-      // a. Call AI
-      const result = await callAIJSON(
-        systemPrompt,
-        userPrompt,
-        SupuestoGeneradoSchema,
-        {
-          maxTokens: 16000,
-          useHeavyModel: true,
-          requestId: `seed-supuesto-${opoSlug}-${i}`,
-          endpoint: 'generate-supuesto-bank',
-        }
-      )
+      // a. Call AI directly (offline script — 3 min timeout, not limited by Vercel 55s)
+      const openai = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY,
+        timeout: 180_000, // 3 min
+        maxRetries: 1,
+      })
+
+      const completion = await openai.chat.completions.create({
+        model: 'gpt-4o',
+        max_completion_tokens: 16000,
+        temperature: 0.7,
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: userPrompt },
+        ],
+        response_format: { type: 'json_object' },
+      })
+
+      const rawJson = completion.choices[0]?.message?.content ?? ''
+      const result = SupuestoGeneradoSchema.parse(JSON.parse(rawJson))
 
       console.log(`  Generated "${result.titulo}" — ${result.preguntas.length} preguntas, bloques: ${result.bloques_cubiertos.join(', ')}`)
 

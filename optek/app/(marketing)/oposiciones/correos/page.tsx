@@ -86,7 +86,11 @@ export default function CorreosLanding() {
               Empieza gratis <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
-          <Badge variant="outline" className="text-xs">Próximamente — Avísame al lanzar</Badge>
+          <Link href="/precios">
+            <Badge variant="outline" className="text-xs cursor-pointer hover:bg-muted transition-colors">
+              49,99€ pago único — Ver precios
+            </Badge>
+          </Link>
         </div>
       </section>
 

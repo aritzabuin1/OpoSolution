@@ -219,7 +219,7 @@ const faqs = [
   },
   {
     q: '¿Para qué oposiciones funciona ahora mismo?',
-    a: 'Ahora mismo OpoRuta cubre tres oposiciones de la Administración General del Estado: Auxiliar Administrativo (C2, 28 temas), Administrativo del Estado (C1, 45 temas) y Gestión del Estado GACE (A2, 58 temas con supuesto práctico IA). Próximamente añadiremos Correos y Justicia (Auxilio, Tramitación y Gestión Procesal). Puedes apuntarte a la lista de espera en la landing.',
+    a: 'OpoRuta cubre las tres oposiciones de la Administración General del Estado: Auxiliar Administrativo (C2, 28 temas), Administrativo del Estado (C1, 45 temas) y Gestión del Estado GACE (A2, 58 temas con supuesto práctico IA). También Correos (12 temas, sin penalización, 4.055 plazas). Próximamente añadiremos Justicia (Auxilio, Tramitación y Gestión Procesal).',
   },
   {
     q: '¿Qué pasa cuando agoto mis análisis detallados?',
@@ -651,13 +651,12 @@ export default async function LandingPage() {
             Pack Doble (C2+C1): 79,99€ · Pack Triple AGE (C2+C1+A2): 129,99€ — con supuesto práctico IA incluido.
           </p>
 
-          {/* Próximamente — Correos + Justicia */}
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">Próximamente</p>
-          <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
-            {/* Correos */}
-            <Card className="relative overflow-hidden opacity-75">
-              <div className="absolute top-0 right-0 bg-muted-foreground/60 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
-                Próximamente
+          {/* Correos — Disponible */}
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">Correos</p>
+          <div className="grid gap-6 md:grid-cols-1 max-w-lg mx-auto mb-10">
+            <Card className="relative overflow-hidden border-orange-400/30 shadow-md">
+              <div className="absolute top-0 right-0 bg-orange-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
+                Disponible
               </div>
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-3 mb-2">
@@ -672,17 +671,27 @@ export default async function LandingPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <ul className="space-y-1.5 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2"><BookOpen className="h-3.5 w-3.5 shrink-0" /> 12 temas</li>
-                  <li className="flex items-center gap-2"><Users className="h-3.5 w-3.5 shrink-0" /> 4.055 plazas</li>
-                  <li className="flex items-center gap-2"><ShieldCheck className="h-3.5 w-3.5 shrink-0" /> Sin penalización</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 12 temas</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 4.055 plazas</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> Sin penalización</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 100 preguntas + psicotécnicos</li>
                 </ul>
-                <div className="pt-2">
-                  <p className="text-[11px] text-muted-foreground mb-2">Déjanos tu email y te avisamos:</p>
-                  <WaitlistForm oposicionSlug="correos" />
+                <div className="flex items-center justify-between pt-2">
+                  <span className="text-lg font-bold">49,99€ <span className="text-xs font-normal text-muted-foreground">pago único</span></span>
                 </div>
+                <Link href="/register?oposicion=correos" className="block pt-1">
+                  <Button className="w-full gap-2 bg-orange-500 hover:bg-orange-600 text-white" size="sm">
+                    Empieza gratis
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
+          </div>
 
+          {/* Próximamente — Justicia */}
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">Próximamente</p>
+          <div className="grid gap-6 md:grid-cols-1 max-w-lg mx-auto">
             {/* Justicia */}
             <Card className="relative overflow-hidden opacity-75">
               <div className="absolute top-0 right-0 bg-muted-foreground/60 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
@@ -923,7 +932,7 @@ export default async function LandingPage() {
             Únete a los primeros opositores en probarlo
           </p>
           <p className="text-sm text-muted-foreground mb-6">
-            AGE (C2, C1, A2) disponible ahora. Correos y Justicia próximamente.
+            AGE (C2, C1, A2) y Correos disponibles ahora. Justicia próximamente.
           </p>
           <Link href="/register">
             <Button size="lg" className="gap-2">
@@ -1067,7 +1076,7 @@ export default async function LandingPage() {
           </div>
 
           {/* ── Correos ── */}
-          <p className="text-xs font-semibold uppercase tracking-wider text-orange-500 mb-3 mt-6">Correos · Próximamente</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-orange-500 mb-3 mt-6">Correos</p>
           <div className="grid gap-4 sm:grid-cols-3">
             {([
               'test-correos-2026-online-gratis',

@@ -19,7 +19,7 @@ import { SimulacroMixtoCard } from '@/components/simulacros/SimulacroMixtoCard'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { Trophy, Info, FileText, Sparkles, ArrowRight, Layers } from 'lucide-react'
+import { Trophy, Info, FileText, Sparkles, ArrowRight, Layers, BookOpen } from 'lucide-react'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -125,8 +125,14 @@ export default async function SimulacrosPage() {
   const hasSupuestoPractico = features?.features?.supuesto_practico === true
   const hasSupuestoTest = features?.features?.supuesto_test === true
   const hasPsicotecnicos = features?.features?.psicotecnicos === true
-  // Number of questions in the first exercise (cuestionario) — used for "examen completo" mode
+  // Number of questions per exercise from scoring_config
   const preguntasEjercicio1 = features?.scoring_config?.ejercicios?.[0]?.preguntas ?? 100
+  const preguntasSupuesto = features?.scoring_config?.ejercicios?.find(
+    (e) => e.nombre?.toLowerCase().includes('supuesto') || e.nombre?.toLowerCase().includes('práctico')
+  )?.preguntas ?? 20
+  // Penalización description
+  const penaliza = features?.scoring_config?.ejercicios?.[0]?.preguntas !== undefined
+  const penalizacionDesc = penaliza ? `Penalización real: incorrecta descuenta según la fórmula oficial del examen.` : undefined
   // "Examen completo" available when oposición has both simulacros (oficial questions) AND supuesto test
   const hasExamenCompleto = hasSupuestoTest && hayExamenes
 
@@ -221,20 +227,22 @@ export default async function SimulacrosPage() {
                       </div>
                     ))}
                   </div>
-                  <div className="flex flex-wrap gap-2 pt-1">
-                    {hayExamenes && (
-                      <Button asChild size="sm" variant="outline" className="gap-1.5 border-indigo-200 text-indigo-700 hover:bg-indigo-50">
-                        <Link href="#convocatorias">
-                          <Trophy className="h-3.5 w-3.5" />
-                          Simulacro Ej. 1
-                        </Link>
-                      </Button>
-                    )}
+                  <p className="text-[11px] text-muted-foreground pt-1">
+                    El simulacro incluye ambas partes con el tiempo total del examen real.
+                    Para practicar cada parte por separado:
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Button asChild size="sm" variant="outline" className="gap-1.5 border-indigo-200 text-indigo-700 hover:bg-indigo-50">
+                      <Link href="/tests">
+                        <BookOpen className="h-3.5 w-3.5" />
+                        Practicar Cuestionario
+                      </Link>
+                    </Button>
                     {hasSupuestoTest && (
-                      <Button asChild size="sm" className="gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white">
+                      <Button asChild size="sm" variant="outline" className="gap-1.5 border-indigo-200 text-indigo-700 hover:bg-indigo-50">
                         <Link href="/supuesto-test">
                           <FileText className="h-3.5 w-3.5" />
-                          Supuesto Práctico (test)
+                          Practicar Supuesto
                         </Link>
                       </Button>
                     )}
@@ -266,6 +274,9 @@ export default async function SimulacrosPage() {
               numConvocatorias={examenesConCount.length}
               hasPsicotecnicos={hasPsicotecnicos}
               preguntasExamenCompleto={preguntasEjercicio1}
+              hasSupuestoTest={hasSupuestoTest}
+              preguntasSupuesto={preguntasSupuesto}
+              penalizacionDesc={penalizacionDesc}
             />
           </div>
 
@@ -276,7 +287,7 @@ export default async function SimulacrosPage() {
             </h2>
             <div className="space-y-3">
               {examenesConCount.map((examen) => (
-                <SimulacroCard key={examen.id} examen={examen} hasPsicotecnicos={hasPsicotecnicos} preguntasExamenCompleto={preguntasEjercicio1} />
+                <SimulacroCard key={examen.id} examen={examen} hasPsicotecnicos={hasPsicotecnicos} preguntasExamenCompleto={preguntasEjercicio1} hasSupuestoTest={hasSupuestoTest} preguntasSupuesto={preguntasSupuesto} penalizacionDesc={penalizacionDesc} />
               ))}
             </div>
           </div>

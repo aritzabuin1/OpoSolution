@@ -12,9 +12,9 @@
  * Sin paywall — los simulacros son gratuitos.
  */
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
-import { Shuffle, Play, Brain, BookOpen, Lock, Crown } from 'lucide-react'
+import { Shuffle, Play, Brain, BookOpen, Lock } from 'lucide-react'
 import { toast } from 'sonner'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -32,33 +32,23 @@ export interface SimulacroMixtoCardProps {
   numConvocatorias: number
   /** Whether this oposición includes psicotécnicos (only C2 Auxiliar) */
   hasPsicotecnicos?: boolean
-  /** Number of questions in first exercise (cuestionario) from scoring_config — default 100 for C2 */
+  /** Number of questions in first exercise (cuestionario) from scoring_config */
   preguntasExamenCompleto?: number
-}
-
-// ─── Helpers ─────────────────────────────────────────────────────────────────
-
-function buildModosPreguntas(examenCompleto: number) {
-  const modos: { label: string; value: number; description: string }[] = [
-    { label: `${examenCompleto} preguntas`, value: examenCompleto, description: `Cuestionario completo oficial (${examenCompleto} puntuables)` },
-  ]
-  // Add intermediate option if exam is large enough
-  const mitad = Math.round(examenCompleto / 2)
-  if (mitad > 20 && mitad < examenCompleto) {
-    modos.push({ label: `${mitad} preguntas`, value: mitad, description: 'Sesión media con preguntas mixtas' })
-  }
-  modos.push({ label: '20 preguntas', value: 20, description: 'Repaso rápido variado' })
-  return modos
+  /** Whether this oposición has supuesto test (caso práctico formato test) */
+  hasSupuestoTest?: boolean
+  /** Number of supuesto questions (from scoring_config ejercicio 2) */
+  preguntasSupuesto?: number
+  /** Penalización description for the exam */
+  penalizacionDesc?: string
 }
 
 // ─── Componente ──────────────────────────────────────────────────────────────
 
-export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias, hasPsicotecnicos = false, preguntasExamenCompleto = 100 }: SimulacroMixtoCardProps) {
+export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias, hasPsicotecnicos = false, preguntasExamenCompleto = 100, hasSupuestoTest = false, preguntasSupuesto = 0, penalizacionDesc }: SimulacroMixtoCardProps) {
   const router = useRouter()
   const isPremium = useIsPremium()
 
-  const modosPreguntas = buildModosPreguntas(preguntasExamenCompleto)
-  const [numPreguntas, setNumPreguntas] = useState(20)
+  const totalExamen = preguntasExamenCompleto + (hasSupuestoTest ? preguntasSupuesto : 0)
   const [incluirPsicotecnicos, setIncluirPsicotecnicos] = useState(false)
   const [dificultadPsico, setDificultadPsico] = useState<1 | 2 | 3>(2)
   const [isStarting, setIsStarting] = useState(false)
@@ -66,10 +56,6 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias, hasPsicot
 
   const isStartingRef = useRef(false)
   const isFree = isPremium !== true
-
-  useEffect(() => {
-    if (isPremium === true && numPreguntas === 20) setNumPreguntas(50)
-  }, [isPremium]) // eslint-disable-line react-hooks/exhaustive-deps
 
   async function handleIniciar() {
     if (isStartingRef.current || totalPreguntas === 0) return
@@ -82,9 +68,10 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias, hasPsicot
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           modo: 'mixto',
-          numPreguntas,
+          numPreguntas: preguntasExamenCompleto,
           incluirPsicotecnicos,
           dificultadPsico,
+          incluirSupuesto: hasSupuestoTest,
         }),
       })
 
@@ -158,43 +145,15 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias, hasPsicot
       </CardHeader>
 
       <CardContent className="space-y-4 pt-0">
-        {/* Selector de número de preguntas */}
-        <div className="space-y-1.5">
-          <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-            Número de preguntas
-          </label>
-          <div className="grid gap-2">
-            {modosPreguntas.map((modo) => {
-              const lockedMode = isFree && modo.value > FREE_LIMITS.simulacroMaxPreguntas
-              return (
-                <button
-                  key={modo.value}
-                  onClick={() => {
-                    if (lockedMode) { setShowPaywall(true); return }
-                    setNumPreguntas(modo.value)
-                  }}
-                  className={`w-full rounded-md border px-3 py-2 text-left text-xs transition-colors ${
-                    lockedMode
-                      ? 'border-amber-200 bg-amber-50/50 text-amber-800 cursor-not-allowed'
-                      : numPreguntas === modo.value
-                        ? 'border-primary bg-primary/10 text-primary font-medium'
-                        : 'border-border bg-background text-foreground hover:bg-muted'
-                  }`}
-                >
-                  <span className="flex items-center justify-between">
-                    <span>
-                      <span className="font-medium">{modo.label}</span>
-                      <span className="ml-2 text-muted-foreground">— {modo.description}</span>
-                    </span>
-                    {lockedMode && (
-                      <span className="shrink-0 flex items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold text-amber-700">
-                        <Crown className="h-3 w-3" /> Premium
-                      </span>
-                    )}
-                  </span>
-                </button>
-              )
-            })}
+        {/* Estructura del examen */}
+        <div className="rounded-md border border-primary/20 bg-primary/5 px-3 py-2.5 space-y-1.5">
+          <p className="text-xs font-semibold text-primary uppercase tracking-wide">Examen completo</p>
+          <div className="text-xs text-foreground space-y-0.5">
+            <p>{preguntasExamenCompleto} preguntas — Cuestionario</p>
+            {hasSupuestoTest && (
+              <p>{preguntasSupuesto} preguntas — Supuesto práctico (caso + preguntas vinculadas)</p>
+            )}
+            <p className="text-muted-foreground font-medium">Total: {totalExamen} preguntas</p>
           </div>
         </div>
 
@@ -237,7 +196,7 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias, hasPsicot
               )}
               {incluirPsicotecnicos && !isFree && (
                 <span className="ml-1 font-semibold text-primary">
-                  ({numPreguntas + 30} preguntas total)
+                  ({totalExamen + 30} preguntas total)
                 </span>
               )}
             </div>
@@ -282,9 +241,11 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias, hasPsicot
         )}
 
         {/* Aviso de penalización */}
-        <p className="text-[11px] text-muted-foreground bg-amber-50 border border-amber-100 rounded-md px-3 py-2">
-          ⚠️ Penalización real: incorrecta descuenta 1/3 del valor de una correcta.
-        </p>
+        {penalizacionDesc && (
+          <p className="text-[11px] text-muted-foreground bg-amber-50 border border-amber-100 rounded-md px-3 py-2">
+            {penalizacionDesc}
+          </p>
+        )}
 
         {/* Botón iniciar */}
         <Button
@@ -300,7 +261,7 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias, hasPsicot
           ) : (
             <>
               <Play className="h-4 w-4 mr-2" />
-              Iniciar Simulacro Mixto
+              Iniciar Simulacro ({totalExamen} preguntas)
             </>
           )}
         </Button>

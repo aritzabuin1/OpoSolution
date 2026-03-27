@@ -87,10 +87,11 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
     : ((test.temas as { titulo: string } | null)?.titulo ?? 'Test de práctica')
 
   // §BUG-SP3 — Timer dinámico desde scoring_config de la oposición
-  // Cada oposición tiene distinto nº de preguntas y tiempo (C2: 100q/90min, C1: 90q/100min, etc.)
   let fullExamQuestions = 100
   let fullExamSeconds = 90 * 60
   let tiempoLimiteSupuesto: number | undefined
+  let preguntasCuestionarioConfig: number | undefined
+  type ScoringEjercicio = { nombre?: string; preguntas?: number; minutos?: number | null }
   if (test.oposicion_id) {
     const serviceSupabase = await createServiceClient()
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -99,13 +100,13 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
       .select('scoring_config')
       .eq('id', test.oposicion_id)
       .single()
-    const sc = (opoData as { scoring_config?: unknown } | null)?.scoring_config as { ejercicios?: { nombre?: string; preguntas?: number; minutos?: number | null }[]; minutos_total?: number } | null
+    const sc = (opoData as { scoring_config?: unknown } | null)?.scoring_config as { ejercicios?: ScoringEjercicio[]; minutos_total?: number } | null
     if (sc?.ejercicios?.[0]) {
-      fullExamQuestions = sc.ejercicios[0].preguntas ?? 100
-      const minutos = sc.ejercicios[0].minutos ?? sc.minutos_total ?? 90
+      fullExamQuestions = sc.ejercicios.reduce((sum, ej) => sum + (ej.preguntas ?? 0), 0) || 100
+      const minutos = sc.minutos_total ?? sc.ejercicios[0].minutos ?? 90
       fullExamSeconds = minutos * 60
+      preguntasCuestionarioConfig = sc.ejercicios[0].preguntas
     }
-    // For supuesto_test: use the supuesto exercise timer if available
     if (esSupuestoTest && sc?.ejercicios) {
       const ejSup = sc.ejercicios.find(e => (e.nombre?.toLowerCase().includes('supuesto') || e.nombre?.toLowerCase().includes('práctico')))
       if (ejSup?.minutos) {
@@ -114,8 +115,11 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
     }
   }
 
+  const simulacroConSupuesto = esSimulacro && !!supuestoCaso
   const tiempoLimite = esSupuestoTest
     ? tiempoLimiteSupuesto
+    : simulacroConSupuesto
+    ? fullExamSeconds // Full exam time (e.g. 100 min for C1) — user distributes between parts
     : esSimulacro
     ? Math.round((preguntas.length / fullExamQuestions) * fullExamSeconds)
     : undefined
@@ -140,9 +144,10 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
         <div className="flex items-center gap-2 rounded-lg bg-primary/5 border border-primary/20 px-4 py-3">
           <Trophy className="h-4 w-4 text-primary shrink-0" />
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-sm font-medium">Simulacro Oficial INAP</span>
+            <span className="text-sm font-medium">Simulacro Oficial{simulacroConSupuesto ? ' — Examen completo' : ''}</span>
             <Badge variant="secondary" className="text-[10px]">Penalización activa</Badge>
-            <Badge variant="outline" className="text-[10px]">{Math.round((preguntas.length / 100) * 90)} min</Badge>
+            {tiempoLimite && <Badge variant="outline" className="text-[10px]">{Math.round(tiempoLimite / 60)} min</Badge>}
+            {simulacroConSupuesto && <Badge variant="outline" className="text-[10px] border-indigo-300 text-indigo-700">Incluye supuesto</Badge>}
           </div>
         </div>
       )}
@@ -170,13 +175,14 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
         </div>
       )}
 
-      {esSupuestoTest && supuestoCaso ? (
+      {(esSupuestoTest || simulacroConSupuesto) && supuestoCaso ? (
         <SupuestoTestRunner
           testId={id}
           preguntas={preguntas}
           caso={supuestoCaso}
-          temaTitulo={supuestoCaso.titulo ?? 'Supuesto Práctico'}
+          temaTitulo={simulacroConSupuesto ? 'Simulacro Oficial' : (supuestoCaso.titulo ?? 'Supuesto Práctico')}
           tiempoLimiteSegundos={tiempoLimite}
+          preguntasCuestionario={simulacroConSupuesto ? preguntasCuestionarioConfig : undefined}
         />
       ) : (
         <TestRunner

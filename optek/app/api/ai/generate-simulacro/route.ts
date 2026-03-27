@@ -46,6 +46,8 @@ const GenerateSimulacroSchema = z
      * - 'mixto': mezcla preguntas de TODAS las convocatorias disponibles
      */
     modo: z.enum(['anio', 'mixto']).optional().default('anio'),
+    /** Include supuesto práctico (caso + questions from bank) as Part 2 */
+    incluirSupuesto: z.boolean().optional().default(false),
   })
   .refine(
     (d) => d.modo === 'mixto' || d.examenId !== undefined || d.anno !== undefined,
@@ -88,7 +90,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: `Input inválido: ${errores}` }, { status: 400 })
   }
 
-  const { examenId, anno, numPreguntas, incluirPsicotecnicos, dificultadPsico, modo } = parsed.data
+  const { examenId, anno, numPreguntas, incluirPsicotecnicos, dificultadPsico, modo, incluirSupuesto } = parsed.data
 
   // ── 3. Freemium gating — scoped por oposición ──────────────────────────
   const serviceSupabase = await createServiceClient()
@@ -349,6 +351,76 @@ export async function POST(request: NextRequest) {
     preguntas = preguntasOficiales
   }
 
+  // ── 7b. Incluir supuesto práctico (Parte 2) si la oposición lo tiene ─────
+  let supuestoCaso: { titulo: string; escenario: string; bloques_cubiertos: string[] } | null = null
+
+  if (incluirSupuesto) {
+    // Fetch unseen supuesto from bank
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: unseenSupuestos } = await (serviceSupabase as any)
+      .from('supuesto_bank')
+      .select('id, caso, preguntas')
+      .eq('oposicion_id', oposicionId)
+      .not('id', 'in', `(SELECT supuesto_id FROM user_supuestos_seen WHERE user_id = '${user.id}')`)
+      .limit(1)
+
+    type SupuestoRow = { id: string; caso: { titulo?: string; escenario?: string; bloques_cubiertos?: string[] }; preguntas: Pregunta[] }
+    let supuestoRow: SupuestoRow | null = null
+
+    if (unseenSupuestos && (unseenSupuestos as unknown[]).length > 0) {
+      supuestoRow = (unseenSupuestos as SupuestoRow[])[0]
+      // Mark as seen
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await (serviceSupabase as any)
+        .from('user_supuestos_seen')
+        .insert({ user_id: user.id, supuesto_id: supuestoRow!.id })
+    } else {
+      // Recycle oldest seen
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data: oldestSeen } = await (serviceSupabase as any)
+        .from('user_supuestos_seen')
+        .select('supuesto_id')
+        .eq('user_id', user.id)
+        .order('seen_at', { ascending: true })
+        .limit(1)
+        .single()
+      if (oldestSeen) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const { data: recycled } = await (serviceSupabase as any)
+          .from('supuesto_bank')
+          .select('id, caso, preguntas')
+          .eq('id', (oldestSeen as { supuesto_id: string }).supuesto_id)
+          .single()
+        if (recycled) supuestoRow = recycled as SupuestoRow
+      }
+    }
+
+    if (supuestoRow) {
+      supuestoCaso = {
+        titulo: supuestoRow.caso?.titulo ?? 'Supuesto Práctico',
+        escenario: supuestoRow.caso?.escenario ?? '',
+        bloques_cubiertos: supuestoRow.caso?.bloques_cubiertos ?? [],
+      }
+      // Append supuesto questions after cuestionario
+      const supPreguntas = (supuestoRow.preguntas as unknown as Pregunta[]).map((p) => ({
+        ...p,
+        // Remove cita if present — supuesto questions don't have field-level citas
+        enunciado: p.enunciado,
+        opciones: p.opciones,
+        correcta: p.correcta,
+        explicacion: p.explicacion ?? '',
+      }))
+      preguntas = [...preguntas, ...supPreguntas]
+      promptVersion = incluirPsicotecnicos ? 'oficial-psico-supuesto-1.0' : 'oficial-supuesto-1.0'
+      log.info(
+        { supuestoId: supuestoRow.id, supPreguntas: supPreguntas.length },
+        '[generate-simulacro] supuesto práctico incluido en simulacro'
+      )
+    } else {
+      log.warn({ userId: user.id }, '[generate-simulacro] no supuesto available in bank')
+    }
+  }
+
   // ── 8. Guardar en BD ──────────────────────────────────────────────────────
   const { data: testRow, error: insertError } = await serviceSupabase
     .from('tests_generados')
@@ -358,6 +430,7 @@ export async function POST(request: NextRequest) {
       examen_oficial_id: examen.id,
       tipo: 'simulacro',
       preguntas: preguntas as unknown as Json,
+      supuesto_caso: supuestoCaso as unknown as Json,
       completado: false,
       prompt_version: promptVersion,
       oposicion_id: oposicionId,

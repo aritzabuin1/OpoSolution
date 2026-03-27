@@ -46,6 +46,10 @@ interface TestRunnerProps {
    * Ejemplo: 5400 = 90 minutos, 2700 = 45 minutos.
    */
   tiempoLimiteSegundos?: number
+  /** Callback when current question changes (for simulacro completo Part 1→2 transition) */
+  onQuestionChange?: (idx: number) => void
+  /** Question index where Part 2 starts (shows divider between parts) */
+  partDivider?: number
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -78,7 +82,7 @@ function formatTimer(segundos: number): string {
 
 // ─── Componente ──────────────────────────────────────────────────────────────
 
-export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos }: TestRunnerProps) {
+export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos, onQuestionChange, partDivider }: TestRunnerProps) {
   const router = useRouter()
 
   const [current, setCurrent] = useState(0)
@@ -247,7 +251,10 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
 
   // ── Navegación ────────────────────────────────────────────────────────────
   function goTo(idx: number) {
-    if (idx >= 0 && idx < totalPreguntas) setCurrent(idx)
+    if (idx >= 0 && idx < totalPreguntas) {
+      setCurrent(idx)
+      onQuestionChange?.(idx)
+    }
   }
 
   // ── Finalizar ─────────────────────────────────────────────────────────────
@@ -329,14 +336,18 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
       {/* Grid de navegación por número */}
       <div className="flex flex-wrap gap-1.5 max-h-24 overflow-y-auto sm:max-h-none sm:overflow-visible">
         {preguntas.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => goTo(idx)}
-            className={getGridBtnClass(idx, current, respuestas)}
-            aria-label={`Ir a pregunta ${idx + 1}`}
-          >
-            {idx + 1}
-          </button>
+          <span key={idx} className="contents">
+            {partDivider !== undefined && idx === partDivider && (
+              <span className="w-full text-[10px] font-semibold text-indigo-600 uppercase tracking-wider mt-1 mb-0.5">Parte 2 — Supuesto</span>
+            )}
+            <button
+              onClick={() => goTo(idx)}
+              className={getGridBtnClass(idx, current, respuestas)}
+              aria-label={`Ir a pregunta ${idx + 1}`}
+            >
+              {idx + 1}
+            </button>
+          </span>
         ))}
       </div>
 
