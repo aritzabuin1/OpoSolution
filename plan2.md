@@ -427,7 +427,7 @@ Lógica basada en `scoring_config.ejercicios`:
   - `prompt_version: 'free-supuesto-1.0'` | `'supuesto-bank-1.0'` | `'ai-supuesto-test-1.0'`
   - Fallback: si IA falla, sirve cualquier supuesto del banco (aunque sea repetido)
   - Rate limit: 5/día
-- [ ] Verificación legal: reutilizar batch verification existente
+- [x] Verificación legal: N/A — supuestos no citan artículos individuales (caso narrativo + preguntas vinculadas). La verificación batch es para tests por tema con `cita.ley + cita.articulo`
 - [x] Script seed: `execution/generate-supuesto-bank.ts` creado (opcional — banco se llena solo con uso premium)
   - 2 supuestos oficiales INAP 2024 ya en banco → primeros premium tienen contenido día 1
   - Ejecutar solo si se quiere pre-poblar: `pnpm seed:supuestos --oposicion <slug> --count 5`

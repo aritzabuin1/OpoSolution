@@ -57,8 +57,10 @@ interface ChildLogger {
  *        `cita` ahora opcional en PreguntaSchema.
  * 2.1.0: §1.4.4 — ejemplos reales INAP en prompt Bloque I (retrieveExamples).
  * 2.2.0: Explicaciones pedagógicas (cita textual + por qué cada distractor es incorrecto).
+ * 2.3.0: §Q.1 — few-shot examples filtrados por oposición, system prompt parametrizado por
+ *         oposición (getSystemGenerateTest), guías de estilo por rama (getRamaStyleHint).
  */
-export const PROMPT_VERSION = '2.2.0'
+export const PROMPT_VERSION = '2.3.0'
 
 // Single-pass: no retries. Generate once → verify → return what passes.
 // Retries were the #1 cause of timeouts (each retry = 15-20s extra OpenAI call).
@@ -92,24 +94,22 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
 
   // ── 1. Contexto RAG + título del tema + ejemplos oficiales (todo en paralelo) ──
 
-  const [ctx, temaTitulo, ejemplosExamenRaw, opoInfo] = await Promise.all([
+  // Fetch oposición info first (needed for slug in retrieveExamples header)
+  const opoInfo = oposicionId
+    ? await fetchOposicionInfo(oposicionId)
+    : { nombre: 'oposición', slug: '' }
+
+  const [ctx, temaTitulo, ejemplosExamenRaw] = await Promise.all([
     buildContext(temaId, undefined, userId), // §2.11: userId habilita weakness-weighted RAG
     fetchTemaTitulo(temaId),
-    retrieveExamples(temaId, 3, oposicionId, undefined), // §Q.1: preguntas oficiales (fallback por oposición)
-    oposicionId ? fetchOposicionInfo(oposicionId) : Promise.resolve({ nombre: 'oposición', slug: '' }),
+    retrieveExamples(temaId, 3, oposicionId, opoInfo.slug), // §Q.1: preguntas oficiales (fallback por oposición)
   ])
-
-  // Re-fetch examples with slug now that we have it (only if first call returned empty and we have opoInfo)
-  let ejemplosExamenFinal = ejemplosExamenRaw
-  if (!ejemplosExamenRaw && oposicionId && opoInfo.slug) {
-    ejemplosExamenFinal = await retrieveExamples(temaId, 3, oposicionId, opoInfo.slug)
-  }
 
   const contexto = formatContext(ctx)
   const { esBloqueII, temaNumero } = ctx
 
-  // Solo usar ejemplos en Bloque I (legal), Bloque II no tiene preguntas INAP
-  const ejemplosExamen = esBloqueII ? '' : (ejemplosExamenFinal || '')
+  // Solo usar ejemplos en Bloque I (legal), Bloque II no tiene preguntas oficiales
+  const ejemplosExamen = esBloqueII ? '' : ejemplosExamenRaw
 
   log.info(
     { temaId, tokensEstimados: ctx.tokensEstimados, strategy: ctx.strategy, temaTitulo, esBloqueII, temaNumero },
