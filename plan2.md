@@ -598,6 +598,159 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 
 ---
 
+## FASE Q — Calidad IA: Usar exámenes oficiales para mejorar generación
+
+> **Contexto**: Tenemos ~1.800 preguntas oficiales reales de 7 oposiciones. Actualmente la IA genera
+> preguntas sin ver cómo pregunta realmente el tribunal. Esta fase usa los exámenes oficiales como
+> few-shot examples, calibración de estilo y evaluación, para que las preguntas generadas sean
+> indistinguibles de las oficiales.
+
+### Inventario de preguntas oficiales (post-fix MAX_PUNTUABLE)
+
+| Oposición | Preguntas | Años | Fuente |
+|-----------|-----------|------|--------|
+| C2 AGE | 311 | 2018-2024 | INAP |
+| C1 AGE | 280 | 2019-2024 | INAP |
+| A2 GACE | 218 | 2018-2024 | INAP |
+| Correos | ~280 | 2023 (REP+ATC) | Correos |
+| Auxilio Judicial | ~269 | 2024-2025 (ej1+ej2) | MJU |
+| Tramitación | 199 | 2024-2025 | MJU |
+| Gestión Procesal | 186 | 2023-2025 | MJU |
+| **Total** | **~1.743** | | |
+
+### Q.0 Prerequisito: Mapear tema_id en preguntas_oficiales (BLOQUEANTE)
+
+**Problema**: Las preguntas ingestadas tienen `tema_id: null`. `retrieveExamples()` filtra por `tema_id` → devuelve vacío para Justicia/Correos.
+
+**Solución**: Script `execution/map-preguntas-tema.ts` que:
+1. Carga todos los temas de la oposición con títulos + keywords
+2. Carga preguntas oficiales sin `tema_id` de esa oposición
+3. Para cada pregunta, usa keyword matching (determinista, 0€) contra el enunciado:
+   - Path A: detectar citas explícitas (ej: "art. 21 LEC" → tema procesal civil)
+   - Path B: keywords del título del tema (ej: "comunicaciones judiciales" → T12 Auxilio)
+   - Path C: si ambos fallan, `tema_id = null` (no forzar asignación incorrecta)
+4. UPDATE `preguntas_oficiales SET tema_id = X WHERE id = Y`
+
+**Archivos**:
+- [x] Crear `execution/map-preguntas-tema.ts` — genera keywords automáticas de títulos de temas
+- [x] Ejecutar para las 7 oposiciones — 736/1.620 preguntas mapeadas (45%)
+  - GACE A2: 90% | C1 AGE: 56% | Auxilio: 56% | Gestión Proc: 54% | Correos: 44% | Tramitación: 35% | C2 AGE: 27%
+- [ ] Mejorar keywords manualmente para oposiciones <50% (C2 AGE ya tiene TEMA_KEYWORDS en build-radar)
+- [ ] Verificar: `SELECT oposicion_id, COUNT(*) as mapped FROM preguntas_oficiales WHERE tema_id IS NOT NULL GROUP BY oposicion_id`
+
+**Prioridad**: P0 (sin esto, Q.1 y Q.3 no funcionan)
+**Coste**: $0 (determinista)
+**Estimación**: ~2h
+
+### Q.1 Few-shot examples en prompts (MAYOR ROI)
+
+**Estado actual**: `retrieveExamples(temaId, 3)` en `generate-test.ts:97` recupera 3 preguntas oficiales por `tema_id`. Solo funciona para AGE C2 (que sí tiene `tema_id` mapeado). El resultado se inyecta en el prompt como `EJEMPLOS REALES DEL INAP`.
+
+**Mejoras**:
+
+#### Q.1.1 Extender retrieveExamples a todas las oposiciones
+- [x] `retrieveExamples()` ya es genérica (busca en `preguntas_oficiales` por `tema_id`)
+- [ ] Tras Q.0 (mapeo tema_id), funciona automáticamente para todas las oposiciones
+- [ ] Cambiar label "INAP" → dinámico: "INAP" para AGE, "MJU" para Justicia, "Correos" para Correos
+- **Archivo**: `lib/ai/retrieval.ts:430` — cambiar `EJEMPLOS REALES DEL INAP` por parámetro
+
+#### Q.1.2 Adaptar system prompt por rama
+- [ ] `getSystemGenerateTest(oposicionNombre)` ya acepta nombre pero el prompt dice "Administración General del Estado"
+- [ ] Crear variantes por rama:
+  - AGE: "oposiciones a la AGE" (actual)
+  - Justicia: "oposiciones a la Administración de Justicia" + referencias a LEC, LECrim, LOPJ
+  - Correos: "oposiciones a Correos (Grupo IV)" + "SIN PENALIZACIÓN: las preguntas deben ser claras, no tricky"
+- [ ] El estilo de Correos es distinto: preguntas más directas, sin distractores legales complejos
+- **Archivo**: `lib/ai/prompts.ts` — añadir `getSystemGenerateTestByRama(rama)` o enriquecer `getSystemGenerateTest()`
+
+#### Q.1.3 Few-shot para supuesto test
+- [ ] `lib/ai/supuesto-test.ts` ya tiene few-shot del supuesto oficial INAP 2024 (Supuesto I) para AGE C1
+- [ ] Añadir few-shot de Auxilio ej2 (caso práctico 2024, ya parseado) para rama procesal
+- [ ] El prompt de supuesto debe reflejar el estilo del tribunal: caso narrativo largo → preguntas vinculadas
+- **Archivo**: `lib/ai/supuesto-test.ts` — `getSystemPrompt(config)` por rama
+
+**Prioridad**: P0
+**Coste**: $0 extra (few-shot = texto estático en prompt, +500 tokens/request ≈ $0.001)
+**Estimación**: ~3h (tras Q.0)
+
+### Q.2 Análisis de estilo + calibración por oposición
+
+**Objetivo**: Analizar las 1.743 preguntas oficiales para extraer patrones de estilo por oposición/tribunal.
+
+#### Q.2.1 Script de análisis (one-time)
+- [ ] Crear `execution/analyze-exam-style.ts`
+- [ ] Métricas por oposición:
+  - Longitud media del enunciado (palabras)
+  - Longitud media de cada opción (palabras)
+  - Ratio preguntas con "NO es correcto" / "INCORRECTA" (negativas)
+  - Ratio preguntas con cita explícita vs implícita
+  - Distribución de correctas (¿sesgadas a B/C como algunos tribunales?)
+  - Palabras clave frecuentes en distractores
+- [ ] Output: `data/exam-style-analysis.json` con estadísticas por oposición
+
+#### Q.2.2 Inyectar guía de estilo en prompts
+- [ ] Añadir instrucciones de calibración al system prompt basadas en el análisis:
+  - "Las preguntas del MJU para Auxilio Judicial tienen en media 25 palabras por enunciado"
+  - "El 30% de las preguntas son negativas ('señale la INCORRECTA')"
+  - "Los distractores suelen cambiar plazos (30 días → 15 días) o requisitos"
+- **Archivo**: `lib/ai/prompts.ts` — enriquecer system prompt
+
+**Prioridad**: P1 (mejora incremental sobre Q.1)
+**Coste**: $0 (análisis determinista)
+**Estimación**: ~2h
+
+### Q.3 Radar del Tribunal multi-oposición
+
+**Estado actual**: `build-radar-tribunal.ts` solo funciona para C2 AGE (hardcodeado). Usa keyword matching para mapear preguntas a artículos de legislación.
+
+#### Q.3.1 Generalizar build-radar-tribunal.ts
+- [ ] Aceptar `--oposicion <slug>` como parámetro
+- [ ] Cargar keywords de temas dinámicamente por oposición
+- [ ] Output scoped por `oposicion_id` en `frecuencias_articulos` y `frecuencias_temas`
+- **Archivo**: `execution/build-radar-tribunal.ts`
+
+#### Q.3.2 RadarTribunal.tsx multi-oposición
+- [ ] Ya filtra por `oposicion_id` — solo necesita datos en las tablas
+- [ ] Tras Q.3.1, ejecutar `pnpm build:radar --oposicion auxilio-judicial` etc.
+- **Archivo**: No necesita cambios si los datos están
+
+**Prioridad**: P1
+**Coste**: $0
+**Estimación**: ~3h
+
+### Q.4 Golden dataset + evaluación
+
+**Objetivo**: Medir la calidad de las preguntas IA comparándolas con las oficiales.
+
+#### Q.4.1 Golden dataset por oposición
+- [ ] Seleccionar 20 preguntas oficiales representativas por oposición
+- [ ] Almacenar en `data/golden-dataset/[slug].json`
+- [ ] Cada entrada: {enunciado, opciones, correcta, tema, dificultad_estimada}
+
+#### Q.4.2 Eval runner comparativo
+- [ ] Adaptar `execution/run-evals.ts` para:
+  - Generar N preguntas IA para los mismos temas del golden dataset
+  - Comparar: longitud enunciado, presencia de cita, calidad distractores
+  - Score: format_match (0-1), citation_accuracy (0-1), style_similarity (0-1)
+- [ ] Dashboard: `/admin/evals` con resultados por oposición
+
+**Prioridad**: P2 (nice-to-have, QA avanzado)
+**Coste**: ~$2 por ejecución completa (genera preguntas para comparar)
+**Estimación**: ~4h
+
+### Orden de ejecución
+
+1. **Q.0** → Mapear tema_id (BLOQUEANTE, 0€) ← PRIMERO
+2. **Q.1** → Few-shot examples + prompts por rama (0€) ← MAYOR IMPACTO
+3. **Q.2** → Análisis de estilo + calibración (0€) ← MEJORA INCREMENTAL
+4. **Q.3** → Radar multi-oposición (0€) ← FEATURE VISIBLE
+5. **Q.4** → Golden dataset + evals (~$2) ← QA
+
+**Coste total**: ~$2 (solo Q.4 tiene coste)
+**Impacto estimado**: Las preguntas IA deberían pasar de "genéricas de academia" a "indistinguibles del tribunal" en estilo y formato.
+
+---
+
 ## FASE 3 — Futuras (solo estructura)
 
 ### 3.1 Hacienda C1 (AEAT)
