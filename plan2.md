@@ -724,16 +724,18 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 
 ### Q.4 Golden dataset + evaluación (PENDIENTE)
 
-#### Q.4.1 Golden dataset por oposición
-- [ ] Seleccionar 20 preguntas oficiales representativas por oposición
-- [ ] Almacenar en `data/golden-dataset/[slug].json`
-- [ ] Métricas baseline: longitud, formato, complejidad
+#### Q.4.1 Golden dataset por oposición ✅
+- [x] `build-golden-dataset.ts` (`pnpm build:golden`) — selecciona 20 preguntas representativas por oposición
+- [x] 7 datasets generados en `data/golden-dataset/[slug].json` (140 preguntas total)
+- [x] Criterios: variedad longitud (buckets short/medium/long × positive/negative), años recientes, respuesta verificada
+- [x] Cada entry: enunciado, opciones, correcta, fuente, enunciado_words, opcion_media_words, es_negativa
 
-#### Q.4.2 Eval runner comparativo
-- [ ] Crear `execution/eval-question-quality.ts`
-- [ ] Generar N preguntas IA para los mismos temas → comparar con oficiales
-- [ ] Scores: format_match (0-1), citation_accuracy (0-1), style_similarity (0-1)
-- [ ] Ejecutar tras cada bump de `PROMPT_VERSION`
+#### Q.4.2 Eval runner baseline ✅
+- [x] `eval-question-quality.ts` (`pnpm eval:quality`) — analiza golden dataset, calcula baseline metrics
+- [x] Métricas: enunciado μ±σ, opciones μ, % negativas, correcta distribution, entropy
+- [x] Calidad: detecta datasets desbalanceados (entropy <0.7) o poco representativos
+- [x] `_metrics.json` con resultados para tracking histórico
+- [ ] Modo `--generate`: generar preguntas IA y comparar con golden (requiere API key, ~$2). Pendiente implementar
 
 **Prioridad**: P2 | **Coste**: ~$2/ejecución | **Estimación**: ~4h
 

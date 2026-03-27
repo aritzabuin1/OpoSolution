@@ -21,6 +21,8 @@
     "map:themes": "tsx --env-file=.env.local execution/auto-map-themes.ts",
     "map:preguntas-tema": "tsx --env-file=.env.local execution/map-preguntas-tema.ts",
     "analyze:style": "tsx execution/analyze-exam-style.ts",
+    "build:golden": "tsx execution/build-golden-dataset.ts",
+    "eval:quality": "tsx execution/eval-question-quality.ts",
     "check:coverage": "tsx --env-file=.env.local execution/check-mapping-coverage.ts",
     "eval:generate": "tsx --env-file=.env.local execution/run-evals.ts generate",
     "eval:correct": "tsx --env-file=.env.local execution/run-evals.ts correct",
