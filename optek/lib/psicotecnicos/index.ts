@@ -14,19 +14,33 @@ import { generateNumeric } from './numeric'
 import { generateSeries } from './series'
 import { generateVerbal } from './verbal'
 import { generateOrganization } from './organization'
+import { generateReading } from './reading'
+import { generateGraphs } from './graphs'
+import { generateFigures } from './figures'
 import type { Dificultad, PsicotecnicoQuestion } from './types'
 
-// ─── Distribución por defecto ─────────────────────────────────────────────────
+// ─── Distribuciones por oposición ────────────────────────────────────────────
 
 /**
- * Distribución de categorías (fracción del total de preguntas).
- * Suma debe ser 1.0.
+ * AGE C2 Auxiliar: series numéricas, analogías verbales, organización.
+ * 30 preguntas al inicio del examen (separadas del temario).
  */
 const DEFAULT_DISTRIBUCION: Record<string, number> = {
   numerico:     0.40,
   series:       0.25,
   verbal:       0.20,
   organizacion: 0.15,
+}
+
+/**
+ * Correos: comprensión lectora, interpretación de gráficos, series de figuras.
+ * 10 preguntas mezcladas dentro del examen de 100.
+ * Fuente: OpositaTest, CEAC, exámenes oficiales Correos 2023.
+ */
+const CORREOS_DISTRIBUCION: Record<string, number> = {
+  comprension_lectora: 0.35,
+  graficos:            0.35,
+  figuras:             0.30,
 }
 
 // ─── generatePsicotecnicos ────────────────────────────────────────────────────
@@ -90,10 +104,15 @@ export function generatePsicotecnicos(
   const preguntas: PsicotecnicoQuestion[] = []
 
   const generadores: Array<() => PsicotecnicoQuestion[]> = [
+    // AGE types
     () => generateNumeric(counts['numerico'] ?? 0, dificultad),
     () => generateSeries(counts['series'] ?? 0, dificultad),
     () => generateVerbal(counts['verbal'] ?? 0, dificultad),
     () => generateOrganization(counts['organizacion'] ?? 0, dificultad),
+    // Correos types
+    () => generateReading(counts['comprension_lectora'] ?? 0, dificultad),
+    () => generateGraphs(counts['graficos'] ?? 0, dificultad),
+    () => generateFigures(counts['figuras'] ?? 0, dificultad),
   ]
 
   for (const gen of generadores) {
@@ -111,6 +130,9 @@ export function generatePsicotecnicos(
     series: (d) => generateSeries(1, d),
     verbal: (d) => generateVerbal(1, d),
     organizacion: (d) => generateOrganization(1, d),
+    comprension_lectora: (d) => generateReading(1, d),
+    graficos: (d) => generateGraphs(1, d),
+    figuras: (d) => generateFigures(1, d),
   }
   // Solo categorías con cuota > 0 para respetar la distribución solicitada
   const catKeys = Object.keys(catGeneradores).filter((k) => (counts[k] ?? 0) > 0)
@@ -143,6 +165,18 @@ export function generatePsicotecnicos(
   }
 
   return preguntas
+}
+
+// ─── Helper: distribución por oposición ──────────────────────────────────────
+
+/**
+ * Returns the correct psicotécnico distribution for a given oposición slug.
+ * - Correos: comprensión lectora + gráficos + figuras
+ * - Default (AGE C2, etc.): numérico + series + verbal + organización
+ */
+export function getDistribucionPsicotecnicos(oposicionSlug?: string): Record<string, number> {
+  if (oposicionSlug?.includes('correos')) return CORREOS_DISTRIBUCION
+  return DEFAULT_DISTRIBUCION
 }
 
 // Re-exportar tipos y generadores individuales para facilitar el acceso

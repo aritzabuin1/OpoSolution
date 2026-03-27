@@ -3,7 +3,7 @@ import { z } from 'zod'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { generateTest, generateTopFrecuentesTest } from '@/lib/ai/generate-test'
-import { generatePsicotecnicos } from '@/lib/psicotecnicos/index'
+import { generatePsicotecnicos, getDistribucionPsicotecnicos } from '@/lib/psicotecnicos/index'
 import { withTimeout, TimeoutError } from '@/lib/utils/timeout'
 import { logger } from '@/lib/logger'
 import { FREE_LIMITS, checkPaidAccess, checkIsAdmin, getOposicionFromTema, getOposicionFromProfile, canTakeFreeTemaTest, findIncompleteTest, FREE_QUESTIONS_PER_TEST } from '@/lib/freemium'
@@ -285,6 +285,12 @@ export async function POST(request: NextRequest) {
 
   // ── 5A. Motor determinista de psicotécnicos (coste API €0) ────────────────
   if (tipo === 'psicotecnico') {
+    // Fetch oposición slug to determine psicotécnico type (AGE vs Correos)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: opoSlugData } = oposicionId ? await (serviceSupabase as any)
+      .from('oposiciones').select('slug').eq('id', oposicionId).single() : { data: null }
+    const opoSlug = (opoSlugData as { slug?: string } | null)?.slug
+    const distribucion = getDistribucionPsicotecnicos(opoSlug)
     // Free users: límite de psicotécnicos
     if (!hasPaidAccess) {
       const { data: profilePsico } = await serviceSupabase
@@ -315,9 +321,9 @@ export async function POST(request: NextRequest) {
         const nDificil = Math.round(numPreguntas * 0.2)
         const nMedia = numPreguntas - nFacil - nDificil
         const mixed = [
-          ...generatePsicotecnicos(nFacil, 1).map(q => ({ ...q, dif: 'facil' as const })),
-          ...generatePsicotecnicos(nMedia, 2).map(q => ({ ...q, dif: 'media' as const })),
-          ...generatePsicotecnicos(nDificil, 3).map(q => ({ ...q, dif: 'dificil' as const })),
+          ...generatePsicotecnicos(nFacil, 1, distribucion).map(q => ({ ...q, dif: 'facil' as const })),
+          ...generatePsicotecnicos(nMedia, 2, distribucion).map(q => ({ ...q, dif: 'media' as const })),
+          ...generatePsicotecnicos(nDificil, 3, distribucion).map(q => ({ ...q, dif: 'dificil' as const })),
         ]
         // Fisher-Yates shuffle
         for (let i = mixed.length - 1; i > 0; i--) {
@@ -333,7 +339,7 @@ export async function POST(request: NextRequest) {
         }))
       } else {
         const dificultadNum = dificultad === 'facil' ? 1 : dificultad === 'media' ? 2 : 3
-        const psicoPreguntasRaw = generatePsicotecnicos(numPreguntas, dificultadNum)
+        const psicoPreguntasRaw = generatePsicotecnicos(numPreguntas, dificultadNum, distribucion)
         preguntas = psicoPreguntasRaw.map((q) => ({
           enunciado: q.enunciado,
           opciones: q.opciones,

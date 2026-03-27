@@ -12,6 +12,10 @@ export type CategoriaPsicotecnico =
   | 'series'
   | 'verbal'
   | 'organizacion'
+  // Correos-specific
+  | 'comprension_lectora'
+  | 'graficos'
+  | 'figuras'
 
 export type SubtipoPsicotecnico =
   // Numérico
@@ -30,6 +34,13 @@ export type SubtipoPsicotecnico =
   // Organización
   | 'intruso'
   | 'ordenacion'
+  // Correos-specific
+  | 'lectura_texto'
+  | 'lectura_normativa'
+  | 'tabla_datos'
+  | 'calculo_grafico'
+  | 'patron_simbolos'
+  | 'patron_secuencia'
 
 /**
  * Pregunta psicotécnica generada de forma determinista.
