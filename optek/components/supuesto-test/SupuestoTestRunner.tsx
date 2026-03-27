@@ -34,7 +34,8 @@ export function SupuestoTestRunner({
   temaTitulo,
   tiempoLimiteSegundos,
 }: SupuestoTestRunnerProps) {
-  const [casoExpanded, setCasoExpanded] = useState(true)
+  // Mobile: start collapsed so questions + buttons are visible immediately
+  const [casoExpanded, setCasoExpanded] = useState(false)
 
   return (
     <>
@@ -74,11 +75,15 @@ export function SupuestoTestRunner({
               ? <ChevronUp className="h-4 w-4 text-indigo-600" />
               : <ChevronDown className="h-4 w-4 text-indigo-600" />}
           </CardHeader>
-          {casoExpanded && (
+          {casoExpanded ? (
             <CardContent className="px-4 pb-4">
               <p className="text-sm leading-relaxed text-foreground whitespace-pre-line">
                 {caso.escenario}
               </p>
+            </CardContent>
+          ) : (
+            <CardContent className="px-4 pb-3 pt-0">
+              <p className="text-xs text-indigo-600">Pulsa para leer el caso antes de responder</p>
             </CardContent>
           )}
         </Card>
