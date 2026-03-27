@@ -694,16 +694,18 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 
 **🔴 BUG DETECTADO**: `temaNumeroToId` carga ALL temas sin filtrar por oposición → colisión de claves (tema 1 de C2 sobrescrito por tema 1 de Gestión). Corrompe `frecuencias_temas`.
 
-#### Q.3.1 Fix build-radar-tribunal.ts
-- [ ] **Fix temaNumeroToId collision**: cargar temas filtrados por `oposicion_id`, o cambiar key del map a `"oposicionId:numero"`
-- [ ] Reemplazar `TEMA_KEYWORDS` hardcodeados por keywords dinámicas de títulos de temas (reutilizar `generateKeywords()` de `map-preguntas-tema.ts`)
-- [ ] NO añadir `--oposicion` flag — el script ya procesa todas las oposiciones. El fix es hacer Path C multi-oposición
+#### Q.3.1 Fix build-radar-tribunal.ts ✅
+- [x] **Fix temaNumeroToId collision**: key cambiada a `"oposicionId:numero"` — temas query incluye `oposicion_id, titulo`
+- [x] `buildOpoKeywordMaps()`: genera keywords dinámicas por título de tema para cada oposición. C2 AGE mantiene `TEMA_KEYWORDS` handcrafted (más precisos)
+- [x] `classifyByTemaForOposicion()`: clasifica usando keyword map de la oposición del examen, no la global
+- [x] `generateKeywordsFromTitle()`: reutiliza approach de `map-preguntas-tema.ts` — stop words, law refs, abbreviations
 - **Archivo**: `execution/build-radar-tribunal.ts`
 
-#### Q.3.2 Ejecutar radar para todas las oposiciones
-- [ ] Tras fix Q.3.1, re-ejecutar `pnpm build:radar`
-- [ ] RadarTribunal.tsx ya filtra por `oposicion_id` — no necesita cambios
-- [ ] Verificar: cada oposición tiene datos en `frecuencias_articulos` y `frecuencias_temas`
+#### Q.3.2 Ejecutar radar para todas las oposiciones ✅
+- [x] `pnpm build:radar` ejecutado — 1.000 preguntas procesadas
+- [x] Path A+B (artículos): 72 registros en 6 oposiciones (19% cobertura — normal, pocas citas explícitas)
+- [x] Path C (temas): **260 registros** en 7 oposiciones (**83% cobertura** — antes solo C2 AGE)
+- [x] RadarTribunal.tsx ya filtra por `oposicion_id` — no necesita cambios
 
 **Prioridad**: P1 | **Coste**: $0 | **Estimación**: ~3h
 

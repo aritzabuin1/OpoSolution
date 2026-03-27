@@ -162,6 +162,121 @@ export function classifyByTema(text: string): number[] {
 interface TemaRow {
   id: string
   numero: number
+  oposicion_id: string
+  titulo: string
+}
+
+// ─── Dynamic keyword generation from tema titles ─────────────────────────────
+// Reuses the approach from map-preguntas-tema.ts for oposiciones that don't have
+// handcrafted TEMA_KEYWORDS (which are only for C2 AGE temas 1-28).
+
+function escapeRegexStr(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+const STOP_WORDS = new Set([
+  'del', 'de', 'la', 'el', 'los', 'las', 'un', 'una', 'en', 'por', 'para',
+  'con', 'sin', 'sobre', 'entre', 'que', 'como', 'más', 'sus', 'su', 'al',
+  'y', 'o', 'ni', 'pero', 'tema', 'concepto', 'nociones', 'generales',
+  'especial', 'referencia', 'regulación', 'régimen', 'general', 'clases',
+  'tipos', 'naturaleza', 'jurídica', 'marco', 'normativo',
+])
+
+function generateKeywordsFromTitle(titulo: string): RegExp[] {
+  const patterns: RegExp[] = []
+  const phrases = titulo.split(/[.,;]/).map(s => s.trim()).filter(s => s.length > 3)
+
+  for (const phrase of phrases) {
+    const words = phrase.split(/\s+/).filter(w => w.length > 2)
+    const significant = words.filter(w => !STOP_WORDS.has(w.toLowerCase()))
+
+    if (significant.length >= 2 && significant.length <= 5) {
+      const pattern = significant.map(w => escapeRegexStr(w)).join('\\s+(?:\\w+\\s+){0,2}')
+      try { patterns.push(new RegExp(pattern, 'i')) } catch { /* skip */ }
+    }
+
+    for (const word of significant) {
+      if (word.length >= 5) {
+        try { patterns.push(new RegExp(`\\b${escapeRegexStr(word)}`, 'i')) } catch { /* skip */ }
+      }
+    }
+  }
+
+  // Law references in title
+  const lawPatterns = titulo.match(/(?:ley|lo|rd|rdl)\s+[\d/]+/gi)
+  if (lawPatterns) {
+    for (const law of lawPatterns) {
+      try { patterns.push(new RegExp(escapeRegexStr(law).replace(/\s+/g, '\\s+'), 'i')) } catch { /* skip */ }
+    }
+  }
+
+  // Uppercase abbreviations (3+ chars)
+  const abbreviations = titulo.match(/\b[A-Z]{3,}\b/g)
+  if (abbreviations) {
+    for (const abbr of abbreviations) {
+      try { patterns.push(new RegExp(`\\b${escapeRegexStr(abbr)}\\b`)) } catch { /* skip */ }
+    }
+  }
+
+  return patterns
+}
+
+/** Per-oposición keyword map: oposicionId → Array<{temaNumero, patterns}> */
+type OpoKeywordMap = Map<string, Array<{ temaNumero: number; patterns: RegExp[] }>>
+
+/** C2 AGE oposicion ID — use hardcoded TEMA_KEYWORDS for this one (higher quality) */
+const AGE_C2_OPOSICION_ID = 'a0000000-0000-0000-0000-000000000001'
+
+function buildOpoKeywordMaps(temas: TemaRow[]): OpoKeywordMap {
+  const maps: OpoKeywordMap = new Map()
+
+  for (const tema of temas) {
+    if (!maps.has(tema.oposicion_id)) {
+      maps.set(tema.oposicion_id, [])
+    }
+    const arr = maps.get(tema.oposicion_id)!
+
+    // For C2 AGE, use handcrafted TEMA_KEYWORDS (more precise than auto-generated)
+    if (tema.oposicion_id === AGE_C2_OPOSICION_ID) {
+      const handcrafted = TEMA_KEYWORDS.find(k => k.temaNumero === tema.numero)
+      if (handcrafted) {
+        arr.push({ temaNumero: tema.numero, patterns: handcrafted.patterns })
+        continue
+      }
+    }
+
+    // For all other oposiciones, generate keywords from titulo
+    const patterns = generateKeywordsFromTitle(tema.titulo)
+    if (patterns.length > 0) {
+      arr.push({ temaNumero: tema.numero, patterns })
+    }
+  }
+
+  return maps
+}
+
+/**
+ * Classify a question into temas for a specific oposición.
+ * Returns array of matching temaNumeros.
+ */
+function classifyByTemaForOposicion(
+  text: string,
+  oposicionId: string,
+  keywordMaps: OpoKeywordMap,
+): number[] {
+  const keywords = keywordMaps.get(oposicionId)
+  if (!keywords) return []
+
+  const matched = new Set<number>()
+  for (const { temaNumero, patterns } of keywords) {
+    for (const pattern of patterns) {
+      if (pattern.test(text)) {
+        matched.add(temaNumero)
+        break
+      }
+    }
+  }
+  return [...matched]
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -417,12 +532,13 @@ async function main() {
   // Path C: Clasificación por tema (28 temas) — alimenta frecuencias_temas
   // ═══════════════════════════════════════════════════════════════════════════
 
-  console.log('\n🎯 Path C: Clasificando preguntas por tema (28 temas)...')
+  console.log('\n🎯 Path C: Clasificando preguntas por tema (multi-oposición)...')
 
-  // Load temas table to map numero → id
+  // Load temas table with oposicion_id + titulo for dynamic keyword generation
   const { data: temasData, error: temasErr } = await supabase
     .from('temas')
-    .select('id, numero')
+    .select('id, numero, oposicion_id, titulo')
+    .order('oposicion_id')
     .order('numero')
 
   if (temasErr || !temasData) {
@@ -432,11 +548,19 @@ async function main() {
   }
 
   const temas = temasData as TemaRow[]
-  const temaNumeroToId = new Map<number, string>()
+
+  // Build per-oposición keyword maps (C2 AGE uses handcrafted TEMA_KEYWORDS, rest auto-generated)
+  const keywordMaps = buildOpoKeywordMaps(temas)
+
+  // Build per-oposición temaNumeroToId map: "oposicionId:numero" → temaId
+  const temaNumeroToId = new Map<string, string>()
   for (const t of temas) {
-    temaNumeroToId.set(t.numero, t.id)
+    temaNumeroToId.set(`${t.oposicion_id}:${t.numero}`, t.id)
   }
-  console.log(`   ${temas.length} temas cargados`)
+
+  const oposicionesWithKeywords = [...keywordMaps.keys()]
+  const totalTemaKeywords = [...keywordMaps.values()].reduce((sum, arr) => sum + arr.length, 0)
+  console.log(`   ${temas.length} temas cargados (${oposicionesWithKeywords.length} oposiciones, ${totalTemaKeywords} keyword sets)`)
 
   // Classify each question — keyed by "oposicionId|temaId"
   const temaFrec = new Map<string, Acumulador>()
@@ -447,12 +571,15 @@ async function main() {
     const anio = pregunta.examenes_oficiales.anio
     const oposicionId = pregunta.examenes_oficiales.oposicion_id
     const fullText = `${pregunta.enunciado} ${(pregunta.opciones ?? []).join(' ')}`
-    const temasDetectados = classifyByTema(fullText)
+
+    // Use oposición-specific keyword map instead of global TEMA_KEYWORDS
+    const temasDetectados = classifyByTemaForOposicion(fullText, oposicionId, keywordMaps)
 
     if (temasDetectados.length > 0) {
       temaMatched++
       for (const temaNumero of temasDetectados) {
-        const temaId = temaNumeroToId.get(temaNumero)
+        // Use oposición-scoped key to get correct tema UUID
+        const temaId = temaNumeroToId.get(`${oposicionId}:${temaNumero}`)
         if (!temaId) continue
         const k = `${oposicionId}|${temaId}`
         if (!temaFrec.has(k)) {
