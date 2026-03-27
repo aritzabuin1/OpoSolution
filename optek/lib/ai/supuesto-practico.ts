@@ -2,18 +2,25 @@
  * lib/ai/supuesto-practico.ts
  *
  * Prompts y lógica para el sistema de supuestos prácticos con IA.
- * EXCLUSIVO para oposiciones con supuesto a desarrollar (GACE A2).
+ * Soporta múltiples rúbricas según oposición:
  *
  * Dos fases:
  *   1. Generación: crea un caso realista con 5 cuestiones
- *   2. Corrección: evalúa las respuestas con la rúbrica oficial INAP
+ *   2. Corrección: evalúa las respuestas con la rúbrica oficial correspondiente
  *
- * Rúbrica oficial INAP (2024):
+ * Rúbrica INAP — GACE A2:
  *   - Conocimiento aplicado: 0-30 pts (60%)
  *   - Análisis: 0-10 pts (20%)
  *   - Sistemática: 0-5 pts (10%)
  *   - Expresión escrita: 0-5 pts (10%)
  *   Total: 0-50 pts. Mínimo para aprobar: 25 pts.
+ *
+ * Rúbrica MJU — Gestión Procesal (tercer ejercicio):
+ *   - Conocimiento: 0-3 pts por pregunta (60%)
+ *   - Claridad y orden de ideas: 0-1 pt por pregunta (20%)
+ *   - Expresión escrita: 0-0.5 pts por pregunta (10%)
+ *   - Presentación: 0-0.5 pts por pregunta (10%)
+ *   Total: 5 pts × 5 preguntas = 25 pts. Mínimo para aprobar: 12.5 pts.
  */
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -103,7 +110,64 @@ Responde ÚNICAMENTE con JSON válido:
 
 // ─── System Prompt: Corrección ───────────────────────────────────────────────
 
-export function getSystemCorregirSupuesto(legislacionRelevante: string): string {
+export function getSystemCorregirSupuesto(legislacionRelevante: string, oposicionSlug?: string): string {
+  if (oposicionSlug === 'gestion-procesal') {
+    return getSystemCorregirSupuestoMJU(legislacionRelevante)
+  }
+  return getSystemCorregirSupuestoINAP(legislacionRelevante)
+}
+
+function getSystemCorregirSupuestoMJU(legislacionRelevante: string): string {
+  return `Eres un tribunal de oposiciones del Ministerio de Justicia evaluando el tercer ejercicio (desarrollo escrito) del Cuerpo de Gestión Procesal y Administrativa (A2).
+
+EVALÚA las respuestas del opositor siguiendo la RÚBRICA OFICIAL del MJU:
+
+CONTEXTO: 5 preguntas a desarrollar, temas 17-39 y 43-67, 45 minutos.
+Total máximo: 25 puntos (5 pts × 5 preguntas). Aprobado: ≥ 12,5 puntos.
+
+RÚBRICA POR PREGUNTA (5 pts máximo cada una):
+
+1. CONOCIMIENTO (0-3 pts, 60%): ¿Demuestra dominio del tema? ¿Cita normativa procesal correcta (LEC, LECrim, LOPJ, LO 1/2025)? ¿Datos (plazos, competencias, órganos) correctos?
+   Escala: 0=no sabe, 1=básico, 2=sólido, 3=dominio completo
+
+2. CLARIDAD Y ORDEN (0-1 pt, 20%): ¿Estructura lógica? ¿Esquema coherente (concepto→desarrollo→conclusión)?
+   Escala: 0=desordenado, 0.5=aceptable, 1=muy claro
+
+3. EXPRESIÓN ESCRITA (0-0,5 pts, 10%): Redacción correcta, vocabulario jurídico-procesal adecuado.
+   Escala: 0=deficiente, 0.25=aceptable, 0.5=excelente
+
+4. PRESENTACIÓN (0-0,5 pts, 10%): Distribución del espacio, epígrafes, limpieza.
+   Escala: 0=deficiente, 0.25=aceptable, 0.5=excelente
+
+LEGISLACIÓN DE REFERENCIA:
+${legislacionRelevante}
+
+FORMATO DE SALIDA (texto plano):
+
+**PUNTUACIÓN: X / 25** (Aprobado ✅ / Suspendido ❌)
+
+**Conocimiento**: X/15 — [qué normas citó bien y cuáles faltaron]
+**Claridad**: X/5 — [estructura y coherencia]
+**Expresión**: X/2,5 — [calidad de redacción]
+**Presentación**: X/2,5 — [formato y limpieza]
+
+**Pregunta 1** — X/5 (conocimiento: X/3, claridad: X/1, expresión: X/0.5, presentación: X/0.5)
+✅ [Lo que hizo bien]
+❌ [Lo que falló — qué norma debía citar]
+La clave: [respuesta correcta esencial en 1-2 frases]
+
+[... hasta Pregunta 5]
+
+**CONSEJO FINAL**: [2-3 frases: temas a reforzar, leyes procesales a repasar]
+
+REGLAS:
+- NO repitas el enunciado de la pregunta
+- NO copies artículos enteros — cita número y explica la idea clave
+- 4-6 frases por pregunta
+- El opositor paga por este feedback — debe aprender algo útil en cada pregunta`
+}
+
+function getSystemCorregirSupuestoINAP(legislacionRelevante: string): string {
   return `Eres un tribunal de oposiciones del INAP evaluando el segundo ejercicio (supuesto práctico) del Cuerpo de Gestión de la Administración Civil del Estado (GACE, A2).
 
 EVALÚA las respuestas del opositor siguiendo la RÚBRICA OFICIAL del INAP:
@@ -216,5 +280,5 @@ RESPUESTAS DEL OPOSITOR A LAS 5 CUESTIONES:
 
 ${respuestasTexto}
 
-Evalúa cada respuesta según la rúbrica oficial del INAP y genera la corrección completa.`
+Evalúa cada respuesta según la rúbrica oficial y genera la corrección completa.`
 }

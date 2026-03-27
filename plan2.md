@@ -173,8 +173,10 @@
   - Criterios: nivel de conocimiento, claridad y orden de ideas, expresión escrita, presentación
   - 45 minutos, temas 17-39 y 43-67, espacio limitado por el tribunal
   - Fuente: [OpositaTest](https://blog.opositatest.com/gestion-procesal-tercer-ejercicio) + convocatoria BOE
-- [ ] Adaptar corrección IA (ya implementada para AGE A2) con rúbrica Justicia MJU
-- [ ] El ejercicio es desarrollo escrito (5 preguntas, 45 min, temas 17-39 y 43-67)
+- [x] Adaptar corrección IA con rúbrica MJU: `getSystemCorregirSupuesto(leg, slug)` despacha a INAP o MJU
+  - `getSystemCorregirSupuestoMJU()`: rúbrica 4 criterios (conocimiento 3pts + claridad 1pt + expresión 0.5pts + presentación 0.5pts) × 5 preguntas = 25 pts, min 12.5
+  - Endpoint `corregir-supuesto/stream` resuelve slug desde oposicion_id y lo pasa
+- [x] Formato: desarrollo escrito (5 preguntas, 45 min, temas 17-39 y 43-67) — documentado en prompt MJU
 
 ### 2.6 SEO Justicia
 - [x] Hub: `app/(marketing)/oposiciones/justicia/page.tsx`

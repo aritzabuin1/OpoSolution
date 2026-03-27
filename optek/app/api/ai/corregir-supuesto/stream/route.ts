@@ -74,6 +74,18 @@ export async function POST(request: NextRequest) {
   const caso = (supuestoRow as { caso: SupuestoGenerado }).caso
   const oposicionId = (supuestoRow as { oposicion_id: string }).oposicion_id
 
+  // Resolve oposición slug for rubric selection (INAP vs MJU)
+  let oposicionSlug = ''
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: opoRow } = await (serviceSupabase as any)
+      .from('oposiciones')
+      .select('slug')
+      .eq('id', oposicionId)
+      .single()
+    oposicionSlug = (opoRow as { slug?: string } | null)?.slug ?? ''
+  } catch { /* fallback to INAP rubric */ }
+
   // Check supuestos balance (admin bypass)
   const isAdmin = await checkIsAdmin(serviceSupabase, user.id)
   let canCorrect = isAdmin
@@ -127,7 +139,7 @@ export async function POST(request: NextRequest) {
     respuestasNum[parseInt(key, 10)] = val
   }
 
-  const systemPrompt = getSystemCorregirSupuesto(legislacionTexto || 'No se ha podido cargar la legislación de referencia. Evalúa basándote en tu conocimiento de las leyes españolas.')
+  const systemPrompt = getSystemCorregirSupuesto(legislacionTexto || 'No se ha podido cargar la legislación de referencia. Evalúa basándote en tu conocimiento de las leyes españolas.', oposicionSlug)
   const userPrompt = buildCorreccionPrompt({ caso, respuestas: respuestasNum })
 
   // Save respuestas to DB before streaming
