@@ -69,9 +69,9 @@ export default async function CuentaPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: profile } = await (supabase as any)
     .from('profiles')
-    .select('full_name, email, oposicion_id, fecha_examen, corrections_balance, free_corrector_used, horas_diarias_estudio, supuestos_balance')
+    .select('full_name, email, oposicion_id, fecha_examen, corrections_balance, free_corrector_used, horas_diarias_estudio')
     .eq('id', user.id)
-    .single() as { data: { full_name: string | null; email: string; oposicion_id: string; fecha_examen: string | null; corrections_balance: number; free_corrector_used: number; horas_diarias_estudio: number | null; supuestos_balance: number } | null }
+    .single() as { data: { full_name: string | null; email: string; oposicion_id: string; fecha_examen: string | null; corrections_balance: number; free_corrector_used: number; horas_diarias_estudio: number | null } | null }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: oposicion } = profile?.oposicion_id
@@ -126,7 +126,7 @@ export default async function CuentaPage() {
   const isC1 = userOposicionId === 'b0000000-0000-0000-0000-000000000001'
   const isA2 = userOposicionId === 'c2000000-0000-0000-0000-000000000001'
   const packTier = isA2 ? 'pack_a2' as const : isC1 ? 'pack_c1' : 'pack'
-  const supuestosBalance = (profile as Record<string, unknown>)?.supuestos_balance as number ?? 0
+  // supuestosBalance removed — supuestos now use unified créditos IA (2 per use)
   const opoFeatures = (oposicion as Record<string, unknown>)?.features as { supuesto_practico?: boolean } | null
   // Supuesto práctico: solo si la oposición lo tiene (A2). Admin NO override — debe depender de la oposición elegida.
   const hasSupuestoPractico = opoFeatures?.supuesto_practico === true
@@ -170,39 +170,21 @@ export default async function CuentaPage() {
           <BuyButton tier="recarga" label="Recargar" variant="default" />
         </div>
       )}
-      {/* Banner supuestos prácticos — solo oposiciones A2, premium only para recarga */}
-      {hasSupuestoPractico && isPremium && (
-        <div className="rounded-xl border border-emerald-300/30 bg-emerald-50/50 dark:bg-emerald-950/20 p-5 flex items-center justify-between gap-4">
-          <div>
-            <p className="font-semibold text-sm flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-emerald-600" />
-              {flags?.is_admin ? 'Supuestos prácticos ilimitados (admin)' : `Te quedan ${supuestosBalance} supuestos prácticos`}
-            </p>
-            <p className="text-xs text-muted-foreground mt-0.5">
-              Caso práctico tipo INAP corregido con IA · rúbrica oficial del tribunal
-            </p>
-          </div>
-          {!flags?.is_admin && supuestosBalance < 3 && (
-            <BuyButton tier="recarga" label="Recargar créditos IA 9,99€" variant="default" />
+      {/* Info supuestos prácticos — solo oposiciones A2, consume créditos IA */}
+      {hasSupuestoPractico && (
+        <div className="rounded-xl border border-emerald-300/30 bg-emerald-50/50 dark:bg-emerald-950/20 p-5">
+          <p className="font-semibold text-sm flex items-center gap-2">
+            <Sparkles className="h-4 w-4 text-emerald-600" />
+            Supuestos prácticos con IA
+          </p>
+          <p className="text-xs text-muted-foreground mt-1">
+            Caso práctico corregido con rúbrica oficial del tribunal. Cada supuesto consume 2 créditos IA (la IA genera tu caso + lo corrige).
+          </p>
+          {!isPremium && (
+            <p className="text-xs text-amber-600 mt-1">Necesitas el Pack para acceder a supuestos prácticos.</p>
           )}
         </div>
       )}
-      {/* Free A2: recarga de supuestos bloqueada — necesita pack primero */}
-      {hasSupuestoPractico && !isPremium && (
-        <div className="rounded-xl border border-muted/50 bg-muted/20 p-5 flex items-center justify-between gap-4 opacity-60">
-          <div>
-            <p className="font-semibold text-sm text-muted-foreground flex items-center gap-2">
-              <Sparkles className="h-4 w-4" />
-              Recarga supuestos — 14,99€ · +5 correcciones
-            </p>
-            <p className="text-xs text-muted-foreground mt-0.5">
-              Disponible con el Pack A2. Compra el pack y podrás recargar supuestos cuando los necesites.
-            </p>
-          </div>
-          <BuyButton tier="pack_a2" label="Comprar pack" variant="outline" />
-        </div>
-      )}
-
       {/* ── §1.14.1 Perfil ────────────────────────────────────────────────── */}
       <Card>
         <CardHeader>
@@ -282,62 +264,7 @@ export default async function CuentaPage() {
         </CardContent>
       </Card>
 
-      {/* ── Supuestos prácticos (solo oposiciones con supuesto) ──────────── */}
-      {hasSupuestoPractico && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-emerald-500" />
-              Supuestos prácticos disponibles
-            </CardTitle>
-            <p className="text-xs text-muted-foreground mt-1">
-              Los supuestos prácticos son ejercicios de desarrollo escrito (como el 2º ejercicio del examen). La IA genera un caso realista y corrige tu respuesta con la rúbrica oficial del tribunal. Consume 2 créditos IA (generar + corregir).
-            </p>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center gap-4">
-              <span className="text-4xl font-bold">{flags?.is_admin ? '∞' : supuestosBalance}</span>
-              <div>
-                <p className="text-sm text-muted-foreground">supuestos prácticos restantes</p>
-                {!flags?.is_admin && supuestosBalance === 0 && !isPremium && (
-                  <p className="text-xs text-red-600 mt-1">
-                    No te quedan correcciones de supuesto
-                  </p>
-                )}
-                {!flags?.is_admin && supuestosBalance === 0 && isPremium && (
-                  <p className="text-xs text-red-600 mt-1">
-                    No te quedan correcciones — recarga para continuar
-                  </p>
-                )}
-              </div>
-            </div>
-            {/* Free user sin balance: CTA para comprar pack */}
-            {!flags?.is_admin && supuestosBalance === 0 && !isPremium && (
-              <div className="mt-4 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/20 text-sm flex items-center justify-between gap-4">
-                <div>
-                  <p className="font-medium">Pack A2 — 5 supuestos con corrección IA</p>
-                  <p className="text-muted-foreground text-xs mt-0.5">
-                    69,99€ · pago único · incluye tests ilimitados + análisis
-                  </p>
-                </div>
-                <BuyButton tier="pack_a2" label="Comprar" variant="default" />
-              </div>
-            )}
-            {/* Premium con balance bajo: CTA recarga */}
-            {!flags?.is_admin && supuestosBalance < 3 && isPremium && (
-              <div className="mt-4 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/20 text-sm flex items-center justify-between gap-4">
-                <div>
-                  <p className="font-medium">Recarga de créditos IA</p>
-                  <p className="text-muted-foreground text-xs mt-0.5">
-                    +10 créditos IA · 9,99€ · pago único · Supuesto desarrollo = 2 créditos
-                  </p>
-                </div>
-                <BuyButton tier="recarga" label="Recargar" variant="default" />
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      )}
+      {/* Supuestos prácticos section removed — uses unified créditos IA (2 per supuesto) */}
 
       {/* ── §1.14.2 Mis compras ───────────────────────────────────────────── */}
       <Card>
