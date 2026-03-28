@@ -41,7 +41,7 @@ export function FeedbackButton() {
   const [mensaje, setMensaje] = useState('')
   const [isSending, setIsSending] = useState(false)
 
-  // Allow other components (e.g. FounderBetaBanner) to open this modal via custom event
+  // Allow other components to open this modal via custom event
   useEffect(() => {
     function handleOpenFeedback() { setOpen(true) }
     window.addEventListener('oporuta:open-feedback', handleOpenFeedback)

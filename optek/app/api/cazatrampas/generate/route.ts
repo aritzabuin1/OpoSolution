@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
   const { temaId, numErrores } = parsed.data
 
   // ── Rate limit diferenciado (§2.12.17) ──────────────────────────────────────
-  // Paid users (compra OR is_founder) → sin límite
+  // Paid users (compra OR is_admin) → sin límite
   // Free users → FREE_DAILY_LIMIT partidas/día
   const svcSupabase = await createServiceClient()
   const oposicionId = temaId

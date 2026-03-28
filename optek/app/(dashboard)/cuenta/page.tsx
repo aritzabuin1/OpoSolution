@@ -99,15 +99,15 @@ export default async function CuentaPage() {
       }[] | null
     }
 
-  // Check premium status: compras scoped por oposición OR is_founder OR is_admin
+  // Check premium status: compras scoped por oposición OR is_admin
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: profileFlags } = await (supabase as any)
     .from('profiles')
-    .select('is_founder, is_admin')
+    .select('is_admin')
     .eq('id', user.id)
     .single()
 
-  const flags = profileFlags as { is_founder?: boolean; is_admin?: boolean } | null
+  const flags = profileFlags as { is_admin?: boolean } | null
   const paidBalance = profile?.corrections_balance ?? 0
   const freeUsed = (profile as Record<string, unknown>)?.free_corrector_used as number ?? 0
   const freeRemaining = Math.max(0, 2 - freeUsed)
@@ -120,7 +120,7 @@ export default async function CuentaPage() {
     .eq('user_id', user.id)
     .eq('oposicion_id', userOposicionId)
   const hasPurchases = (purchaseCountForOpo ?? 0) > 0
-  const isPremium = hasPurchases || flags?.is_founder === true || flags?.is_admin === true
+  const isPremium = hasPurchases || flags?.is_admin === true
 
   // Tier de pack correcto según oposición del usuario
   const isC1 = userOposicionId === 'b0000000-0000-0000-0000-000000000001'

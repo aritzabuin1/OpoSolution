@@ -19,7 +19,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { Suspense } from 'react'
-import { CalendarCheck, CheckCircle2, ClipboardCheck, Flame, Layers, Star, Target, TrendingUp, Trophy } from 'lucide-react'
+import { CalendarCheck, CheckCircle2, ClipboardCheck, Flame, Layers, Target, TrendingUp, Trophy } from 'lucide-react'
 
 export const metadata: Metadata = { title: 'Mi Dashboard' }
 import { createClient } from '@/lib/supabase/server'
@@ -39,7 +39,6 @@ import { calcularIPR } from '@/lib/utils/ipr'
 import { LoadingSpinner } from '@/components/shared/LoadingSpinner'
 import { ExamCountdownBanner } from '@/components/dashboard/ExamCountdownBanner'
 import { RoadmapCard } from '@/components/dashboard/RoadmapCard'
-import { FounderBetaBanner } from '@/components/dashboard/FounderBetaBanner'
 import { getDashboardPhase } from '@/lib/utils/dashboard-phase'
 import { DEFAULT_OPOSICION_ID } from '@/lib/freemium'
 import { OnboardingTour } from '@/components/onboarding/OnboardingTour'
@@ -78,14 +77,6 @@ export default async function DashboardPage() {
     .select('full_name, oposicion_id, corrections_balance, fecha_examen')
     .eq('id', user.id)
     .single()
-
-  // is_founder — migration 019 (best-effort: null hasta aplicar)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: founderData } = await (supabase as any)
-    .from('profiles')
-    .select('is_founder')
-    .eq('id', user.id)
-    .single() as { data: { is_founder: boolean } | null }
 
   // Racha + último test + onboarding — columnas de migrations 008/037 (best-effort)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -292,9 +283,6 @@ export default async function DashboardPage() {
         </div>
       )}
 
-      {/* ── Founder Beta Banner ─────────────────────────────────────────── */}
-      {founderData?.is_founder && <FounderBetaBanner />}
-
       {/* ── Re-engagement banner (lapsed users) ───────────────────────── */}
       {phase === 'lapsed' && diasSinPracticar !== null && (
         <ReEngagementBanner
@@ -417,12 +405,6 @@ export default async function DashboardPage() {
             nombre={nombreUsuario}
             diasParaExamen={diasParaExamen}
           />
-          {founderData?.is_founder && (
-            <Badge className="bg-amber-500 hover:bg-amber-500 text-white gap-1 text-xs">
-              <Star className="h-3 w-3 fill-white" />
-              Miembro Fundador
-            </Badge>
-          )}
         </div>
 
         {/* CTAs rápidos */}

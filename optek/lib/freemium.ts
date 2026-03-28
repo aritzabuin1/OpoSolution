@@ -157,17 +157,16 @@ export async function checkPaidAccess(
       .eq('oposicion_id', oposicionId),  // SIEMPRE filtrar por oposición
     supabase
       .from('profiles')
-      .select('is_founder, is_admin')
+      .select('is_admin')
       .eq('id', userId)
       .single(),
   ])
 
   const hasPurchase = (purchaseCount ?? 0) > 0
-  const prof = profileData as { is_founder?: boolean; is_admin?: boolean } | null
-  const isFounder = prof?.is_founder === true
+  const prof = profileData as { is_admin?: boolean } | null
   const isAdmin = prof?.is_admin === true
 
-  return hasPurchase || isFounder || isAdmin
+  return hasPurchase || isAdmin
 }
 
 // ─── Helpers para derivar oposicionId ────────────────────────────────────────

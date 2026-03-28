@@ -45,8 +45,7 @@ export default async function UserDetailPage({ params }: Props) {
         </div>
         <div className="flex gap-2">
           {user.isAdmin && <Badge className="bg-red-100 text-red-700">Admin</Badge>}
-          {user.isFounder && <Badge className="bg-amber-100 text-amber-700">Founder</Badge>}
-          {user.isPremium && !user.isAdmin && !user.isFounder && <Badge className="bg-green-100 text-green-700">Premium</Badge>}
+          {user.isPremium && !user.isAdmin && <Badge className="bg-green-100 text-green-700">Premium</Badge>}
           {!user.isPremium && <Badge variant="secondary">Free</Badge>}
         </div>
       </div>

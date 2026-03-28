@@ -29,7 +29,6 @@ export interface UserDetail {
   oposicionId: string | null
   oposicionNombre: string | null
   isAdmin: boolean
-  isFounder: boolean
   isPremium: boolean
   createdAt: string
   // Balances
@@ -126,7 +125,7 @@ export async function getUserDetail(userId: string): Promise<UserDetail | null> 
 
   const { data: profile } = await supabase
     .from('profiles')
-    .select('id, email, full_name, oposicion_id, is_admin, is_founder, corrections_balance, free_corrector_used, supuestos_balance, free_tests_used, racha_actual, created_at')
+    .select('id, email, full_name, oposicion_id, is_admin, corrections_balance, free_corrector_used, supuestos_balance, free_tests_used, racha_actual, created_at')
     .eq('id', userId)
     .single()
 
@@ -170,8 +169,7 @@ export async function getUserDetail(userId: string): Promise<UserDetail | null> 
     oposicionId: (p.oposicion_id as string) ?? null,
     oposicionNombre,
     isAdmin: p.is_admin === true,
-    isFounder: p.is_founder === true,
-    isPremium: purchasesArr.length > 0 || p.is_founder === true || p.is_admin === true,
+    isPremium: purchasesArr.length > 0 || p.is_admin === true,
     createdAt: p.created_at as string,
     correctionsBalance: (p.corrections_balance as number) ?? 0,
     freeCorrectionsUsed: (p.free_corrector_used as number) ?? 0,

@@ -85,7 +85,7 @@ export default async function TestsPage({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [temasResult, profileResult, comprasResult, testsResult, oposicionResult] = await Promise.all([
     (supabase as any).from('temas').select('id, numero, titulo, descripcion, bloque').eq('oposicion_id', oposicionId).order('numero') as Promise<{ data: { id: string; numero: number; titulo: string; descripcion: string | null; bloque?: string }[] | null }>,
-    (supabase as any).from('profiles').select('free_tests_used, is_admin, is_founder').eq('id', user.id).single(),
+    (supabase as any).from('profiles').select('free_tests_used, is_admin').eq('id', user.id).single(),
     supabase
       .from('compras')
       .select('id', { count: 'exact', head: true })
@@ -103,8 +103,8 @@ export default async function TestsPage({
   ])
 
   const temas = temasResult.data ?? []
-  const prof = profileResult.data as { free_tests_used?: number; is_admin?: boolean; is_founder?: boolean } | null
-  const hasPaidAccess = (comprasResult.count ?? 0) > 0 || prof?.is_admin === true || prof?.is_founder === true
+  const prof = profileResult.data as { free_tests_used?: number; is_admin?: boolean } | null
+  const hasPaidAccess = (comprasResult.count ?? 0) > 0 || prof?.is_admin === true
   const testsAnteriores = (testsResult.data ?? []) as TestAnterior[]
   const oposicionSlug = (oposicionResult.data as { slug?: string } | null)?.slug ?? 'aux-admin-estado'
 

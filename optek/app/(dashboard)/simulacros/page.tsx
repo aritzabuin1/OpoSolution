@@ -46,10 +46,10 @@ export default async function SimulacrosPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: profileFlags } = await (supabase as any)
     .from('profiles')
-    .select('is_founder, is_admin, oposicion_id')
+    .select('is_admin, oposicion_id')
     .eq('id', user.id)
     .single()
-  const flags = profileFlags as { is_founder?: boolean; is_admin?: boolean; oposicion_id?: string } | null
+  const flags = profileFlags as { is_admin?: boolean; oposicion_id?: string } | null
   const userOposicionId = flags?.oposicion_id ?? DEFAULT_OPOSICION_ID
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { count: purchaseCount } = await (supabase as any)
@@ -57,7 +57,7 @@ export default async function SimulacrosPage() {
     .select('id', { count: 'exact', head: true })
     .eq('user_id', user.id)
     .eq('oposicion_id', userOposicionId)
-  const isPremium = (purchaseCount ?? 0) > 0 || flags?.is_founder === true || flags?.is_admin === true
+  const isPremium = (purchaseCount ?? 0) > 0 || flags?.is_admin === true
 
   // Free simulacro quota
   let freeSimUsed = 0

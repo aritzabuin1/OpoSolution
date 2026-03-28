@@ -93,7 +93,7 @@ export async function POST(request: NextRequest) {
 
   const { tipo, temaId, numPreguntas, dificultad } = parsed.data
 
-  // ── 3. ¿Tiene acceso de pago? (compra OR is_founder) — scoped por oposición
+  // ── 3. ¿Tiene acceso de pago? (compra OR is_admin) — scoped por oposición
   const serviceSupabase = await createServiceClient()
 
   // Derivar oposicionId del temaId (Pattern A) o del profile (Pattern B)

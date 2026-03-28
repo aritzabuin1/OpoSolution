@@ -127,7 +127,6 @@ async function handleStripeEvent(
         pack_triple_justicia: 'pack_oposicion',
         recarga: 'pack_oposicion',
         recarga_sup: 'pack_oposicion',
-        fundador: 'pack_oposicion',
       }
       const dbTipo = TIER_TO_DB_TIPO[tier] ?? 'pack_oposicion'
 
@@ -186,16 +185,6 @@ async function handleStripeEvent(
           .update({ supuestos_balance: currentBalance + supuestosToGrant })
           .eq('id', userId)
         log.info({ sessionId: session.id, tier, supuestosToGrant, newBalance: currentBalance + supuestosToGrant }, 'Supuestos prácticos otorgados')
-      }
-
-      // 3. Founder badge (§1.21.3): 20 plazas GLOBALES
-      if (tier === 'fundador') {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        await (supabase as any)
-          .from('profiles')
-          .update({ is_founder: true })
-          .eq('id', userId)
-        log.info({ sessionId: session.id, userId }, 'Founder badge activado')
       }
 
       log.info({ sessionId: session.id, tier, dbTipo }, 'Compra registrada')

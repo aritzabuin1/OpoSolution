@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { stripe, STRIPE_PRICES, CORRECTIONS_GRANTED, FOUNDER_LIMIT } from '@/lib/stripe/client'
+import { stripe, STRIPE_PRICES, CORRECTIONS_GRANTED } from '@/lib/stripe/client'
 import { createServiceClient } from '@/lib/supabase/server'
 import { logger } from '@/lib/logger'
 import { verifyCronSecret } from '@/lib/auth/cron-auth'
@@ -120,22 +120,7 @@ export async function GET(request: NextRequest) {
     checks['db_corrections_balance'] = { ok: false, detail: `Exception: ${err instanceof Error ? err.message : String(err)}` }
   }
 
-  // 5. Founder counter
-  try {
-    const { count } = await supabase
-      .from('profiles')
-      .select('*', { count: 'exact', head: true })
-      .eq('is_founder', true)
-    const founderCount = count ?? 0
-    checks['founder_status'] = {
-      ok: true,
-      detail: `${founderCount}/${FOUNDER_LIMIT} founder slots used (${FOUNDER_LIMIT - founderCount} remaining)`,
-    }
-  } catch {
-    checks['founder_status'] = { ok: false, detail: 'Cannot query is_founder' }
-  }
-
-  // 6. Webhook endpoint check — list recent webhook endpoints
+  // 5. Webhook endpoint check — list recent webhook endpoints
   try {
     const endpoints = await stripe.webhookEndpoints.list({ limit: 5 })
     const activeEndpoints = endpoints.data.filter(e => e.status === 'enabled')

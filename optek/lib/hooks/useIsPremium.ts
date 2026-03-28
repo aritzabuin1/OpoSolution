@@ -29,12 +29,11 @@ export function useIsPremium(): boolean | null {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: profileData } = await (supabase as any)
       .from('profiles')
-      .select('oposicion_id, is_founder, is_admin')
+      .select('oposicion_id, is_admin')
       .eq('id', user.id)
       .single()
 
-    const prof = profileData as { oposicion_id?: string; is_founder?: boolean; is_admin?: boolean } | null
-    const isFounder = prof?.is_founder === true
+    const prof = profileData as { oposicion_id?: string; is_admin?: boolean } | null
     const isAdmin = prof?.is_admin === true
     const oposicionId = prof?.oposicion_id ?? 'a0000000-0000-0000-0000-000000000001'
 
@@ -47,7 +46,7 @@ export function useIsPremium(): boolean | null {
       .limit(1)
 
     const hasPurchase = (compraData?.length ?? 0) > 0
-    setIsPremium(hasPurchase || isFounder || isAdmin)
+    setIsPremium(hasPurchase || isAdmin)
   }, [])
 
   useEffect(() => {

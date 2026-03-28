@@ -10,7 +10,6 @@ import {
   ShieldCheck,
   TrendingUp,
   ArrowRight,
-  Users,
   MessageCircleQuestion,
   BookOpen,
   GraduationCap,
@@ -19,13 +18,10 @@ import {
   Layers,
   Sparkles,
 } from 'lucide-react'
-import { createServiceClient } from '@/lib/supabase/server'
-import { FOUNDER_LIMIT } from '@/lib/stripe/client'
 import { JsonLd } from '@/components/shared/JsonLd'
 import { RoadHero } from '@/components/marketing/RoadHero'
 import { ExamCountdown } from '@/components/marketing/ExamCountdown'
 import { blogPosts } from '@/content/blog/posts'
-import { unstable_cache } from 'next/cache'
 import { AIAnalysisDemo } from '@/components/marketing/AIAnalysisDemo'
 import { SocialProofCounter } from '@/components/marketing/SocialProofCounter'
 import { WaitlistForm } from '@/components/marketing/WaitlistForm'
@@ -410,32 +406,9 @@ const jsonLdApp = {
   },
 }
 
-// FOUNDER_LIMIT importado de lib/stripe/client.ts (fuente única de verdad)
-
 // ─── Página ────────────────────────────────────────────────────────────────────
 
-const getFounderCount = unstable_cache(
-  async () => {
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const supabase = await createServiceClient() as any
-      const { count } = await supabase
-        .from('profiles')
-        .select('*', { count: 'exact', head: true })
-        .eq('is_founder', true)
-        .eq('is_admin', false)
-      return count ?? 0
-    } catch {
-      return 0
-    }
-  },
-  ['founder-count'],
-  { revalidate: 300, tags: ['founder-count'] } // Cache 5 minutes
-)
-
 export default async function LandingPage() {
-  const founderCount = await getFounderCount()
-  const founderRemaining = Math.max(0, FOUNDER_LIMIT - founderCount)
 
   return (
     <>
@@ -486,48 +459,6 @@ export default async function LandingPage() {
           <RoadHero />
         </div>
       </section>
-
-      {/* ─── Founder Pricing Banner (§1.21.3) — auto-oculto cuando vendido ─ */}
-      {founderRemaining > 0 && (
-        <section className="py-8 bg-amber-50 dark:bg-amber-950/30 border-y border-amber-200 dark:border-amber-800">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="flex-1 text-center md:text-left">
-                <div className="flex items-center gap-2 justify-center md:justify-start mb-2">
-                  <Badge className="bg-amber-500 text-white hover:bg-amber-500 text-xs">
-                    Oferta Fundador
-                  </Badge>
-                  <span className="flex items-center gap-1 text-sm text-amber-700 dark:text-amber-400 font-medium">
-                    <Users className="h-3.5 w-3.5" />
-                    {founderRemaining <= 5
-                      ? `¡Solo quedan ${founderRemaining} plazas!`
-                      : `Quedan ${founderRemaining} plazas`}
-                  </span>
-                </div>
-                <p className="font-semibold text-foreground">
-                  Accede antes que nadie con precio de fundador
-                </p>
-                <p className="text-sm text-muted-foreground mt-1">
-                  30 análisis detallados · Tests ilimitados · Badge Miembro Fundador permanente
-                </p>
-              </div>
-              <div className="flex items-center gap-4 shrink-0">
-                <div className="text-center">
-                  <p className="text-sm text-muted-foreground line-through">49,99€</p>
-                  <p className="text-3xl font-bold text-amber-600 dark:text-amber-400">24,99€</p>
-                  <p className="text-xs text-muted-foreground">pago único</p>
-                </div>
-                <Link href="/register?plan=fundador">
-                  <Button className="bg-amber-500 hover:bg-amber-600 text-white gap-2">
-                    Soy Fundador
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* ─── Elige tu oposición (T-15) ────────────────────────────────── */}
       <section aria-labelledby="oposiciones-heading" className="py-20">

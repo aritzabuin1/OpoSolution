@@ -77,7 +77,6 @@ OpoRuta funciona con un modelo de pago único (sin suscripción):
 - **Plan Gratuito**: 1 test gratuito en cada tema (todos los temas abiertos), 3 simulacros de 20 preguntas, 3 sesiones de psicotécnicos, 3 cazatrampas/día, 2 análisis detallados con IA. Sin tarjeta de crédito.
 - **Pack Oposición (49,99 EUR)**: Acceso ilimitado a tests en los 28 temas, simulacros completos (hasta 100 preguntas), flashcards, radar del tribunal completo, cazatrampas ilimitado, 20 análisis detallados. Pago único, sin suscripción.
 - **Recarga de Análisis (8,99 EUR)**: 10 análisis detallados adicionales para quienes agotan los incluidos en el Pack.
-- **Fundador (24,99 EUR)**: 30 análisis detallados + badge exclusivo de fundador. Limitado a 20 plazas.
 
 ### Preguntas frecuentes
 

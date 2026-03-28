@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { stripe, STRIPE_PRICES, FOUNDER_LIMIT, TIER_TO_OPOSICION, type StripePriceTier } from '@/lib/stripe/client'
+import { stripe, STRIPE_PRICES, TIER_TO_OPOSICION, type StripePriceTier } from '@/lib/stripe/client'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { logger } from '@/lib/logger'
 
@@ -9,7 +9,7 @@ import { logger } from '@/lib/logger'
  *
  * Crea una Stripe Checkout Session y retorna la URL de pago.
  *
- * Body: { tier: 'pack'|'pack_c1'|'pack_doble'|'recarga'|'fundador', temaId?: string, oposicionId?: string }
+ * Body: { tier: 'pack'|'pack_c1'|'pack_doble'|'recarga'|..., temaId?: string, oposicionId?: string }
  *
  * El userId se obtiene de la sesión Supabase (no del body — previene suplantación).
  * Los metadata de Stripe se usan en el webhook para completar la compra.
@@ -23,7 +23,7 @@ const BodySchema = z.object({
     'pack', 'pack_c1', 'pack_a2', 'pack_doble', 'pack_triple',
     'pack_correos',
     'pack_auxilio', 'pack_tramitacion', 'pack_gestion_j', 'pack_doble_justicia', 'pack_triple_justicia',
-    'recarga', 'recarga_sup', 'fundador',
+    'recarga', 'recarga_sup',
   ]),
   temaId: z.string().uuid().optional(),
   oposicionId: z.string().uuid().optional(),
@@ -66,32 +66,18 @@ export async function POST(request: NextRequest) {
         .eq('user_id', user.id),
       serviceClient
         .from('profiles')
-        .select('is_founder, is_admin')
+        .select('is_admin')
         .eq('id', user.id)
         .single(),
     ])
-    const prof = profileData as { is_founder?: boolean; is_admin?: boolean } | null
-    const hasPremium = (purchaseCount ?? 0) > 0 || prof?.is_founder === true || prof?.is_admin === true
+    const prof = profileData as { is_admin?: boolean } | null
+    const hasPremium = (purchaseCount ?? 0) > 0 || prof?.is_admin === true
     if (!hasPremium) {
       log.warn({ userId: user.id }, 'Free user intentó comprar recarga')
       return NextResponse.json(
         { error: 'La recarga solo está disponible para usuarios premium. Adquiere primero un Pack Oposición.' },
         { status: 402 }
       )
-    }
-  }
-
-  // Para tier fundador: verificar que quedan plazas (20 GLOBALES)
-  if (tier === 'fundador') {
-    const serviceClient = await createServiceClient()
-    const { count } = await serviceClient
-      .from('profiles')
-      .select('*', { count: 'exact', head: true })
-      .eq('is_founder', true)
-      .eq('is_admin', false)
-    if ((count ?? 0) >= FOUNDER_LIMIT) {
-      log.warn({ count, limit: FOUNDER_LIMIT }, 'Plazas fundador agotadas')
-      return NextResponse.json({ error: 'Las plazas de Fundador se han agotado. Puedes adquirir el Pack Oposición al precio normal.' }, { status: 410 })
     }
   }
 

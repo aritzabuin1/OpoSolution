@@ -13402,4 +13402,62 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Cuándo es el examen de Auxiliar Administrativo 2026?', answer: 'El 23 de mayo de 2026. Quedan pocas semanas — empieza a practicar cuanto antes.' },
     ],
   },
+
+  // ─── Post 76 — Correos: Simulacro examen completo online ────────────────────
+  {
+    slug: 'simulacro-correos-2026-examen-completo-online',
+    title: 'Simulacro Correos 2026 — Examen Completo Online con Timer (110 minutos)',
+    description: 'Practica un simulacro completo del examen de Correos 2026: 100 preguntas, 110 minutos, sin penalizacion. Con examenes reales de 2021 y 2023.',
+    date: '2026-03-28',
+    keywords: ['simulacro correos online', 'examen correos 2026 simulacro', 'simulacro correos gratis', 'practicar examen correos online', 'examen correos tipo test online', 'simulacro oposiciones correos', 'test correos 100 preguntas'],
+    content: `
+<h2>¿Por que hacer simulacros de Correos?</h2>
+<p>El examen de Correos es el <strong>7 de mayo de 2026</strong>. Son 100 preguntas en 110 minutos — algo mas de 1 minuto por pregunta. Sin penalizacion por errores, lo que cambia completamente la estrategia: <strong>debes responder TODAS las preguntas</strong>.</p>
+<p>Un simulacro completo te permite:</p>
+<ul>
+  <li><strong>Medir tu ritmo real</strong> — ¿llegas a las 100 preguntas en 110 minutos?</li>
+  <li><strong>Gestionar la fatiga</strong> — la concentracion baja a partir de la pregunta 60</li>
+  <li><strong>Practicar la estrategia sin penalizacion</strong> — responde todo, incluso lo que no sepas</li>
+  <li><strong>Detectar tus temas debiles</strong> — el desglose por tema te dice donde flaqueas</li>
+</ul>
+
+<h2>Como funciona el simulacro en OpoRuta</h2>
+<p>OpoRuta tiene ingestados los examenes oficiales de Correos de <strong>2021 y 2023</strong> (REP y ATC). Cuando haces un simulacro:</p>
+<ol>
+  <li>Se seleccionan 100 preguntas de convocatorias reales</li>
+  <li>Se activa un timer de 110 minutos (como en el examen)</li>
+  <li>Sin penalizacion — responde todas, no dejes ninguna en blanco</li>
+  <li>Al terminar: puntuacion, desglose por tema, y analisis de errores con IA</li>
+</ol>
+
+<h2>Estrategia para un examen sin penalizacion</h2>
+<p>El examen de Correos es el unico de las grandes oposiciones que <strong>no penaliza los errores</strong>. Esto significa:</p>
+<ul>
+  <li><strong>Responde SIEMPRE</strong> — una respuesta al azar tiene 25% de probabilidad de acertar</li>
+  <li><strong>No pierdas tiempo dudando</strong> — marca algo y sigue</li>
+  <li><strong>Prioriza las faciles</strong> — haz primero las que sepas seguro, luego vuelve a las dudosas</li>
+  <li><strong>Los ultimos 10 minutos</strong> — repasa las que dejaste en duda y asegurate de que no hay ninguna en blanco</li>
+</ul>
+
+<h2>¿Cuantos simulacros debo hacer?</h2>
+<p>Con el examen el 7 de mayo y 40 dias por delante, la recomendacion es:</p>
+<ul>
+  <li><strong>Semanas 1-3</strong>: 1 simulacro completo por semana + tests diarios por tema</li>
+  <li><strong>Semanas 4-5</strong>: 2 simulacros por semana + repaso de errores</li>
+  <li><strong>Ultima semana</strong>: 1 simulacro final + repaso ligero</li>
+</ul>
+<p>Total: <strong>8-10 simulacros antes del examen</strong>. En OpoRuta tienes acceso ilimitado con el Pack Correos (49,99€, pago unico).</p>
+
+<h2>Empieza tu primer simulacro ahora</h2>
+<p><strong><a href="/register?oposicion=correos">Crea tu cuenta gratis</a></strong> y haz 1 simulacro completo sin coste. Veras tu nota, el desglose por tema y sabras exactamente donde estas. Quedan 40 dias — cada simulacro te acerca mas al aprobado.</p>
+<p><a href="/precios">Ver precios</a> · <a href="/oposiciones/correos">Mas info sobre la oposicion de Correos</a></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Es gratis hacer un simulacro de Correos en OpoRuta?', answer: 'Si. Tu primer simulacro completo (100 preguntas, 110 minutos) es gratis. Para simulacros ilimitados necesitas el Pack Correos (49,99€ pago unico).' },
+      { question: '¿Las preguntas del simulacro son de examenes reales?', answer: 'Si. OpoRuta tiene ingestados los examenes oficiales de Correos de 2021 y 2023 (puestos REP y ATC). Las preguntas del simulacro son reales, no inventadas.' },
+      { question: '¿Hay penalizacion en el simulacro de Correos?', answer: 'No, igual que en el examen real. En Correos no se penalizan los errores — cada acierto suma 0,60 puntos y los fallos no restan. Por eso debes responder TODAS las preguntas.' },
+      { question: '¿Cuanto dura el simulacro?', answer: '110 minutos, igual que el examen real. El timer se activa al empezar y puedes ver cuanto tiempo te queda en todo momento.' },
+      { question: '¿Que resultados veo al terminar?', answer: 'Puntuacion total, desglose por tema (para saber donde flaqueas), numero de aciertos/errores, y la opcion de analizar tus errores con IA (explica por que fallaste cada pregunta).' },
+    ],
+  },
 ]

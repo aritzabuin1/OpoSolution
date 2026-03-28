@@ -14,7 +14,6 @@ import Stripe from 'stripe'
  *   STRIPE_PRICE_PACK_TRIPLE  → Pack Triple AGE (C1+C2+A2)   129.99€  one-time  → +40 análisis + 5 supuestos
  *   STRIPE_PRICE_RECARGA      → Recarga análisis                8.99€  one-time  → +10 análisis
  *   STRIPE_PRICE_RECARGA_SUP  → Recarga supuestos              14.99€  one-time  → +5 supuestos
- *   STRIPE_PRICE_FOUNDER      → Fundador (global)              24.99€  one-time  → +30 análisis + badge
  *
  * Tests: ilimitados para usuarios con compra. Límite silencioso 20/día vía Upstash.
  * Caza-Trampas: 3/día free, ilimitado paid (§2.12.17).
@@ -43,10 +42,9 @@ export const STRIPE_PRICES = {
   pack_gestion_j: process.env.STRIPE_PRICE_PACK_GESTION_J ?? '', // 79.99€ → Gestión Procesal A2
   pack_doble_justicia: process.env.STRIPE_PRICE_PACK_DOBLE_JUSTICIA ?? '', // 79.99€ → Auxilio + Tramitación
   pack_triple_justicia: process.env.STRIPE_PRICE_PACK_TRIPLE_JUSTICIA ?? '', // 139.99€ → Auxilio + Tramitación + Gestión
-  // Recargas + fundador
+  // Recargas
   recarga:        process.env.STRIPE_PRICE_RECARGA        ?? '', //   8.99€ → +10 análisis
   recarga_sup:    process.env.STRIPE_PRICE_RECARGA_SUP    ?? '', //  14.99€ → +5 supuestos
-  fundador:       process.env.STRIPE_PRICE_FOUNDER        ?? '', //  24.99€ → global badge
 } as const
 
 export type StripePriceTier = keyof typeof STRIPE_PRICES
@@ -67,10 +65,9 @@ export const CORRECTIONS_GRANTED: Record<StripePriceTier, number> = {
   pack_gestion_j: 20,
   pack_doble_justicia: 30,
   pack_triple_justicia: 40,
-  // Recargas + fundador
+  // Recargas
   recarga:        10,
   recarga_sup:    0,
-  fundador:       30,
 }
 
 // Supuestos prácticos que otorga cada producto (pool separado: supuestos_balance)
@@ -89,10 +86,9 @@ export const SUPUESTOS_GRANTED: Record<StripePriceTier, number> = {
   pack_gestion_j: 5,
   pack_doble_justicia: 0,
   pack_triple_justicia: 5,
-  // Recargas + fundador
+  // Recargas
   recarga:        0,
   recarga_sup:    5,
-  fundador:       5,
 }
 
 // IDs de oposición en BD (seed + migration 030 + migration 040 + futuras 048/049)
@@ -121,11 +117,8 @@ export const TIER_TO_OPOSICION: Record<StripePriceTier, string | string[]> = {
   pack_gestion_j:     GESTION_J_OPOSICION_ID,
   pack_doble_justicia: [AUXILIO_OPOSICION_ID, TRAMITACION_OPOSICION_ID],
   pack_triple_justicia: [AUXILIO_OPOSICION_ID, TRAMITACION_OPOSICION_ID, GESTION_J_OPOSICION_ID],
-  // Recargas + fundador (global)
+  // Recargas (global — no vinculados a oposición específica)
   recarga:            '',
   recarga_sup:        '',
-  fundador:           '',
 }
 
-// Número máximo de plazas de Fundador — 20 GLOBALES (no por oposición)
-export const FOUNDER_LIMIT = 20

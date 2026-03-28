@@ -21,18 +21,9 @@ const getSocialProofData = unstable_cache(
         .select('id', { count: 'exact', head: true })
         .eq('is_admin', false)
 
-      // Count total questions generated (completed tests × ~10 questions each)
-      const { count: testCount } = await supabase
-        .from('tests_generados')
-        .select('id', { count: 'exact', head: true })
-        .eq('completado', true)
-
-      return {
-        users: userCount ?? 0,
-        questions: (testCount ?? 0) * 10, // ~10 questions per test
-      }
+      return { users: userCount ?? 0 }
     } catch {
-      return { users: 0, questions: 0 }
+      return { users: 0 }
     }
   },
   ['social-proof-data'],
@@ -50,9 +41,6 @@ export async function SocialProofCounter() {
       <Users className="h-4 w-4 text-primary" />
       <span>
         <strong className="text-foreground">{data.users}+ opositores</strong> ya preparan con OpoRuta
-        {data.questions > 50 && (
-          <> · <strong className="text-foreground">{data.questions.toLocaleString('es-ES')}</strong> preguntas generadas</>
-        )}
       </span>
     </div>
   )
