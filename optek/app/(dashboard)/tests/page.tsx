@@ -196,25 +196,26 @@ export default async function TestsPage({
         />
       )}
 
-      {/* Recomendado para ti */}
-      {recommendedTema && (
-        <div className="rounded-xl border-2 border-primary/30 bg-primary/5 p-4 flex items-center gap-4">
-          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-            <ClipboardCheck className="h-5 w-5 text-primary" />
+      {/* Recomendado para ti — TemaCard completo con badge */}
+      {recommendedTema && (() => {
+        const tema = temas.find(t => t.id === recommendedTema.id)
+        if (!tema) return null
+        return (
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <ClipboardCheck className="h-4 w-4 text-primary" />
+              <p className="text-sm font-semibold text-primary">Recomendado para ti</p>
+              <Badge variant="outline" className="text-xs">{recommendedTema.reason}</Badge>
+            </div>
+            <TemaCard
+              tema={tema}
+              hasPaidAccess={hasPaidAccess}
+              freeCompleted={freeStatus.get(tema.id)?.completed ?? false}
+              freeScore={freeStatus.get(tema.id)?.score ?? null}
+            />
           </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-xs font-medium text-primary">Recomendado para ti</p>
-            <p className="text-sm font-semibold truncate">T{recommendedTema.numero}: {recommendedTema.titulo}</p>
-            <p className="text-xs text-muted-foreground">{recommendedTema.reason}</p>
-          </div>
-          <a
-            href={`#tema-${recommendedTema.numero}`}
-            className="shrink-0 inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
-          >
-            Practicar
-          </a>
-        </div>
-      )}
+        )
+      })()}
 
       {/* Todos los bloques — dinámico, funciona con 2 bloques (C2/C1) o 6 bloques (A2) */}
       {[...bloqueGroups.entries()].map(([bloque, bloqueItems]) => (
