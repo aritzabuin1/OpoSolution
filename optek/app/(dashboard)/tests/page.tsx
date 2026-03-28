@@ -119,7 +119,7 @@ export default async function TestsPage({
   type TemaWithBloque = typeof temas[number] & { bloque?: string }
   const bloqueGroups = new Map<string, typeof temas>()
   for (const tema of temas) {
-    const bloque = (tema as TemaWithBloque).bloque ?? (tema.numero <= 16 ? 'I' : 'II')
+    const bloque = (tema as TemaWithBloque).bloque ?? (tema.numero <= 15 ? 'I' : 'II')
     if (!bloqueGroups.has(bloque)) bloqueGroups.set(bloque, [])
     bloqueGroups.get(bloque)!.push(tema)
   }
