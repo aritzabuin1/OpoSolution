@@ -146,56 +146,26 @@ export async function POST(request: NextRequest) {
     return await saveAndReturn(serviceSupabase, user.id, oposicionId, supuesto.caso, supuesto.preguntas, 'supuesto-bank-1.0', log)
   }
 
-  // ── 7. No unseen supuestos → serve LEAST RECENTLY SEEN from bank ────────
-  // NO real-time AI generation. All supuestos come from the pre-verified bank.
-  // The bank is populated offline via `pnpm seed:supuestos` which generates
-  // with AI + verifies citations against BD before inserting.
-  // This guarantees: instant response + verified content + no hallucinations.
+  // ── 7. No unseen supuestos → PAYWALL (§2.7.1) ────────────────────────────
+  // Don't recycle old supuestos. Instead, prompt user to generate new ones
+  // via the batch endpoint (costs créditos IA).
 
+  // Count total supuestos in bank for this oposición
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: oldestSeen } = await (serviceSupabase as any)
-    .from('user_supuestos_seen')
-    .select('supuesto_id, seen_at')
-    .eq('user_id', user.id)
-    .order('seen_at', { ascending: true })
-    .limit(1)
-    .single()
-
-  if (oldestSeen) {
-    const oldest = oldestSeen as { supuesto_id: string; seen_at: string }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: recycled } = await (serviceSupabase as any)
-      .from('supuesto_bank')
-      .select('caso, preguntas')
-      .eq('id', oldest.supuesto_id)
-      .single()
-
-    if (recycled) {
-      const s = recycled as { caso: Json; preguntas: Json }
-      log.info({ userId: user.id, recycledId: oldest.supuesto_id }, '[generate-supuesto-test] recycling oldest seen supuesto')
-      return await saveAndReturn(serviceSupabase, user.id, oposicionId, s.caso, s.preguntas, 'recycled-bank-1.0', log)
-    }
-  }
-
-  // Absolute fallback: serve ANY from bank (least served globally)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: anySupuesto } = await (serviceSupabase as any)
+  const { count: bankTotal } = await (serviceSupabase as any)
     .from('supuesto_bank')
-    .select('caso, preguntas')
+    .select('id', { count: 'exact', head: true })
     .eq('oposicion_id', oposicionId)
-    .order('times_served', { ascending: true })
-    .limit(1)
-    .single()
 
-  if (anySupuesto) {
-    const s = anySupuesto as { caso: Json; preguntas: Json }
-    log.info({ userId: user.id }, '[generate-supuesto-test] serving least-served from bank')
-    return await saveAndReturn(serviceSupabase, user.id, oposicionId, s.caso, s.preguntas, 'bank-fallback-1.0', log)
-  }
-
+  log.info({ userId: user.id, bankTotal }, '[generate-supuesto-test] no unseen supuestos — paywall')
   return NextResponse.json(
-    { error: 'No hay supuestos disponibles para tu oposición. Estamos preparando más.' },
-    { status: 503 }
+    {
+      error: `Has completado los ${bankTotal ?? 0} supuestos disponibles. Genera 10 nuevos con créditos IA.`,
+      code: 'PAYWALL_SUPUESTO_LOTE',
+      bankTotal: bankTotal ?? 0,
+      unseenCount: 0,
+    },
+    { status: 402 }
   )
 }
 

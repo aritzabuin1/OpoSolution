@@ -69,6 +69,15 @@ export default async function SupuestoTestPage() {
 
   const hasDoneFree = !isPremium && (supuestosDone ?? 0) > 0
 
+  // §2.7: Get credits balance for batch generation CTA
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: profileCredits } = await (serviceSupabase as any)
+    .from('profiles')
+    .select('corrections_balance')
+    .eq('id', user.id)
+    .single()
+  const creditsBalance = (profileCredits as { corrections_balance?: number } | null)?.corrections_balance ?? 0
+
   // Find exercise config for the supuesto in scoring_config
   const ejSupuesto = scoringConfig?.ejercicios.find(
     e => e.nombre.toLowerCase().includes('supuesto') || e.nombre.toLowerCase().includes('práctico')
@@ -147,6 +156,7 @@ export default async function SupuestoTestPage() {
         hasDoneFree={hasDoneFree}
         supuestosDone={supuestosDone ?? 0}
         opoNombre={opoNombre}
+        creditsBalance={creditsBalance}
       />
     </div>
   )

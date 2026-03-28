@@ -8,12 +8,12 @@
  * Shows animated loading overlay while AI generates the case.
  */
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Play, Lock, Sparkles, BookOpen } from 'lucide-react'
+import { Play, Lock, Sparkles, BookOpen, Zap, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 
 const MENSAJES_SUPUESTO = [
@@ -26,34 +26,105 @@ const MENSAJES_SUPUESTO = [
   'Casi listo, últimos detalles...',
 ]
 
+const MENSAJES_BATCH = [
+  'Generando supuesto con IA...',
+  'Construyendo caso judicial complejo...',
+  'Redactando preguntas procesales...',
+  'Validando calidad del supuesto...',
+]
+
 interface Props {
   isPremium: boolean
   hasDoneFree: boolean
   supuestosDone: number
   opoNombre: string
+  creditsBalance?: number
 }
 
-export function SupuestoTestLauncher({ isPremium, hasDoneFree, supuestosDone, opoNombre }: Props) {
+export function SupuestoTestLauncher({ isPremium, hasDoneFree, supuestosDone, opoNombre, creditsBalance }: Props) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [msgIdx, setMsgIdx] = useState(0)
   const [elapsed, setElapsed] = useState(0)
+  // §2.7.3 — Batch generation state
+  const [batchMode, setBatchMode] = useState(false)
+  const [batchGenerated, setBatchGenerated] = useState(0)
+  const [batchTotal] = useState(10)
+  const [batchMsgIdx, setBatchMsgIdx] = useState(0)
 
   // Rotate messages every 3s while loading
   useEffect(() => {
-    if (!loading) return
+    if (!loading && !batchMode) return
+    const msgs = batchMode ? MENSAJES_BATCH : MENSAJES_SUPUESTO
     const interval = setInterval(() => {
-      setMsgIdx((i) => (i + 1) % MENSAJES_SUPUESTO.length)
+      if (batchMode) setBatchMsgIdx((i) => (i + 1) % msgs.length)
+      else setMsgIdx((i) => (i + 1) % msgs.length)
     }, 3000)
     return () => clearInterval(interval)
-  }, [loading])
+  }, [loading, batchMode])
 
   // Elapsed time counter (updates every second)
   useEffect(() => {
-    if (!loading) { setElapsed(0); return }
+    if (!loading && !batchMode) { setElapsed(0); return }
     const interval = setInterval(() => setElapsed((s) => s + 1), 1000)
     return () => clearInterval(interval)
-  }, [loading])
+  }, [loading, batchMode])
+
+  // §2.7.3 — Batch generation loop
+  const handleBatchGenerate = useCallback(async () => {
+    setBatchMode(true)
+    setBatchGenerated(0)
+    setBatchMsgIdx(0)
+
+    let totalGenerated = 0
+    let consecutiveErrors = 0
+
+    // Loop: call batch endpoint until 10 generated or no more credits
+    while (totalGenerated < batchTotal && consecutiveErrors < 3) {
+      try {
+        const res = await fetch('/api/ai/generate-supuesto-test-batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+        })
+
+        if (res.status === 402) {
+          const data = await res.json().catch(() => ({}))
+          if (data.code === 'INSUFFICIENT_CREDITS') {
+            toast.error('Créditos IA insuficientes. Recarga para continuar.', {
+              action: { label: 'Recargar', onClick: () => router.push('/precios') },
+            })
+          } else {
+            toast.error('Necesitas un pack premium.', {
+              action: { label: 'Ver planes', onClick: () => router.push('/precios') },
+            })
+          }
+          break
+        }
+
+        if (!res.ok) {
+          consecutiveErrors++
+          continue
+        }
+
+        const data = await res.json()
+        totalGenerated += data.generated
+        setBatchGenerated(totalGenerated)
+
+        if (data.pending === 0) break // done
+        consecutiveErrors = 0
+      } catch {
+        consecutiveErrors++
+      }
+    }
+
+    setBatchMode(false)
+    if (totalGenerated > 0) {
+      toast.success(`${totalGenerated} supuestos nuevos listos`)
+      router.refresh() // reload page to show updated count
+    } else if (consecutiveErrors >= 3) {
+      toast.error('Error generando supuestos. Inténtalo más tarde.')
+    }
+  }, [batchTotal, router])
 
   async function handleStart() {
     setLoading(true)
@@ -65,6 +136,22 @@ export function SupuestoTestLauncher({ isPremium, hasDoneFree, supuestosDone, op
       })
 
       if (res.status === 402) {
+        const data = await res.json().catch(() => ({}))
+        // §2.7.1 — Bank exhausted paywall
+        if (data.code === 'PAYWALL_SUPUESTO_LOTE') {
+          setLoading(false)
+          // Show batch generation CTA instead of generic paywall
+          if ((creditsBalance ?? 0) >= 10) {
+            // Has credits → offer to generate
+            handleBatchGenerate()
+          } else {
+            toast.error(`Has completado los ${data.bankTotal} supuestos. Genera 10 nuevos (10 créditos IA).`, {
+              action: { label: 'Recargar créditos', onClick: () => router.push('/precios') },
+              duration: 8000,
+            })
+          }
+          return
+        }
         toast.error('Hazte premium para practicar más supuestos', {
           action: { label: 'Ver planes', onClick: () => router.push('/precios') },
         })
@@ -106,6 +193,43 @@ export function SupuestoTestLauncher({ isPremium, hasDoneFree, supuestosDone, op
           <Button asChild className="bg-amber-600 hover:bg-amber-700">
             <a href="/precios">Ver planes</a>
           </Button>
+        </CardContent>
+      </Card>
+    )
+  }
+
+  // §2.7.3 — Batch generation progress
+  if (batchMode) {
+    const pct = Math.round((batchGenerated / batchTotal) * 100)
+    return (
+      <Card className="border-indigo-200 bg-indigo-50/50">
+        <CardContent className="pt-6 pb-6 space-y-4">
+          <div className="flex flex-col items-center gap-3">
+            <Loader2 className="h-10 w-10 text-indigo-600 animate-spin" />
+            <div className="text-center">
+              <p className="text-sm font-semibold text-indigo-800">
+                Generando supuesto {batchGenerated + 1} de {batchTotal}
+              </p>
+              <p className="text-xs text-indigo-600/70 animate-pulse mt-1">
+                {MENSAJES_BATCH[batchMsgIdx]}
+              </p>
+            </div>
+          </div>
+          {/* Progress bar */}
+          <div className="w-full max-w-xs mx-auto">
+            <div className="h-2 rounded-full bg-indigo-100 overflow-hidden">
+              <div
+                className="h-full rounded-full bg-indigo-500 transition-all duration-500"
+                style={{ width: `${Math.max(5, pct)}%` }}
+              />
+            </div>
+            <p className="text-xs text-center text-indigo-500 mt-1">{pct}%</p>
+          </div>
+          {elapsed > 20 && (
+            <p className="text-xs text-center text-indigo-500/70">
+              Cada supuesto tarda ~20s — merece la pena
+            </p>
+          )}
         </CardContent>
       </Card>
     )

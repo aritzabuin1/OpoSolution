@@ -124,9 +124,24 @@ export default async function CuentaPage() {
   const isPremium = hasPurchases || flags?.is_admin === true
 
   // Tier de pack correcto según oposición del usuario
-  const isC1 = userOposicionId === 'b0000000-0000-0000-0000-000000000001'
-  const isA2 = userOposicionId === 'c2000000-0000-0000-0000-000000000001'
-  const packTier = isA2 ? 'pack_a2' as const : isC1 ? 'pack_c1' : 'pack'
+  const OPOSICION_TIER_MAP: Record<string, string> = {
+    'a0000000-0000-0000-0000-000000000001': 'pack',
+    'b0000000-0000-0000-0000-000000000001': 'pack_c1',
+    'c2000000-0000-0000-0000-000000000001': 'pack_a2',
+    'd0000000-0000-0000-0000-000000000001': 'pack_correos',
+    'e0000000-0000-0000-0000-000000000001': 'pack_auxilio',
+    'e1000000-0000-0000-0000-000000000001': 'pack_tramitacion',
+    'e2000000-0000-0000-0000-000000000001': 'pack_gestion_j',
+  }
+  const packTier = (OPOSICION_TIER_MAP[userOposicionId] ?? 'pack') as 'pack' | 'pack_c1' | 'pack_a2' | 'pack_correos' | 'pack_auxilio' | 'pack_tramitacion' | 'pack_gestion_j'
+  const TIER_PRICES: Record<string, string> = {
+    pack: '49,99€', pack_c1: '49,99€', pack_a2: '69,99€',
+    pack_correos: '49,99€', pack_auxilio: '49,99€', pack_tramitacion: '49,99€', pack_gestion_j: '79,99€',
+  }
+  const TIER_CREDITS: Record<string, number> = {
+    pack: 20, pack_c1: 20, pack_a2: 25,
+    pack_correos: 20, pack_auxilio: 20, pack_tramitacion: 20, pack_gestion_j: 25,
+  }
   // supuestosBalance removed — supuestos now use unified créditos IA (2 per use)
   const opoFeatures = (oposicion as Record<string, unknown>)?.features as { supuesto_practico?: boolean } | null
   // Supuesto práctico: solo si la oposición lo tiene (A2). Admin NO override — debe depender de la oposición elegida.
@@ -143,7 +158,7 @@ export default async function CuentaPage() {
             <div>
               <p className="font-semibold text-sm">Desbloquea tests ilimitados</p>
               <p className="text-xs text-muted-foreground mt-0.5">
-                {isA2 ? 'Pack A2 — 69,99€ · tests ilimitados + 25 créditos IA' : 'Pack Oposición — 49,99€ · tests ilimitados + 20 créditos IA'} · sin suscripción
+                {`Pack Oposición — ${TIER_PRICES[packTier] ?? '49,99€'} · tests ilimitados + ${TIER_CREDITS[packTier] ?? 20} créditos IA`} · sin suscripción
               </p>
             </div>
             <BuyButton tier={packTier} label="Comprar" variant="default" />

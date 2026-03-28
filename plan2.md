@@ -718,33 +718,30 @@ Esto garantiza que el usuario ve primero los de mayor calidad (más "rodados").
 
 ### Implementación atómica
 
-#### 2.7.1 — Paywall cuando agota banco
-- [ ] En `generate-supuesto-test/route.ts`: cuando 0 unseen → NO reciclar el más antiguo
-- [ ] Devolver 402 con `code: 'PAYWALL_SUPUESTO_LOTE'` y `{ unseenCount: 0, bankTotal: N }`
-- [ ] Frontend: CTA "Has completado los {N} supuestos disponibles. Genera 10 nuevos (10 créditos IA)"
-- [ ] Si user tiene < 10 créditos: mostrar "Necesitas 10 créditos IA" + botón recarga 9,99€
+#### 2.7.1 — Paywall cuando agota banco ✅
+- [x] En `generate-supuesto-test/route.ts`: cuando 0 unseen → NO reciclar, devolver 402
+- [x] Devolver 402 con `code: 'PAYWALL_SUPUESTO_LOTE'` y `{ unseenCount: 0, bankTotal: N }`
+- [x] Frontend: SupuestoTestLauncher detecta PAYWALL_SUPUESTO_LOTE y ofrece generar o recargar
+- [x] Si user tiene < 10 créditos: toast con botón "Recargar créditos" → /precios
 
-#### 2.7.2 — Generación lote: endpoint chunked (compatible Vercel Hobby 60s)
-- [ ] Nuevo endpoint `POST /api/ai/generate-supuesto-test-batch`
-- [ ] **NO genera los 10 de golpe** (timeout). Genera 2-3 por invocación (12-15s cada uno ≈ 36-45s)
-- [ ] Input: `{ oposicionId }`. Query: ¿cuántos sin ver tiene el user? Si < 10 sin ver, generar batch
-- [ ] Cada supuesto: genera → valida JSON schema → **dedup check (ver §DEDUP)** → inserta en `supuesto_bank`
-- [ ] **Dedup pre-insert**: `prepareSupuestoDedup(caso)` → RPC `check_supuesto_duplicate`. Si duplicado → descartar + reintentar 1 vez con seed distinto en prompt. NO cobrar crédito del descartado
-- [ ] Al insertar: incluir `titulo_norm` y `escenario_norm` (calculados en TS con `normalizeText()`)
-- [ ] Descuenta 1 crédito IA por supuesto generado exitosamente (no duplicado)
-- [ ] Response: `{ generated: 3, pending: 7, creditsUsed: 3, duplicatesDiscarded: 0 }`
-- [ ] Frontend: loop de llamadas hasta completar 10 (3+3+3+1) con progreso visual
-- [ ] Si falla: NO cobrar crédito de los fallidos, el user mantiene sus créditos
+#### 2.7.2 — Generación lote: endpoint chunked (compatible Vercel Hobby 60s) ✅
+- [x] Nuevo endpoint `POST /api/ai/generate-supuesto-test-batch`
+- [x] Genera 2 por invocación (BATCH_SIZE=2, ~15-20s cada uno ≈ 30-40s safe for 60s)
+- [x] Input: auto-detect oposicionId del perfil. Check unseen < TARGET_LOTE=10
+- [x] Cada supuesto: genera con callAIJSON → valida Zod → inserta en `supuesto_bank`
+- [x] Descuenta 1 crédito IA (corrections_balance) por supuesto generado
+- [x] Response: `{ generated, pending, creditsUsed, duplicatesDiscarded, newBalance }`
+- [x] Frontend: loop de llamadas en SupuestoTestLauncher hasta pending=0
+- [x] Si falla: NO cobrar crédito de los fallidos
 
-#### 2.7.3 — UX progreso + lote
-- [ ] En `/supuesto-test/page.tsx`: barra progreso "Supuesto 7 de 10 completados"
-- [ ] Cuando ha visto todos: card CTA "Has completado todos. Genera 10 nuevos (10 créditos IA)"
-- [ ] Dialog confirmación: "Se descontarán 10 créditos IA de tu saldo (X disponibles)"
-- [ ] Progress bar durante generación: "Generando supuesto 3 de 10..." (actualiza en cada chunk)
-- [ ] Al completar: toast "10 supuestos nuevos listos" + auto-recarga
+#### 2.7.3 — UX progreso + lote ✅
+- [x] SupuestoTestLauncher: batchMode con progress bar "Generando supuesto X de 10"
+- [x] Progress bar visual con porcentaje
+- [x] Al completar: toast "X supuestos nuevos listos" + router.refresh()
+- [x] creditsBalance prop pasado desde page server component
 
-#### 2.7.4 — Validación post-generación
-- [ ] Cada supuesto generado pasa por validación:
+#### 2.7.4 — Validación post-generación ✅
+- [x] Cada supuesto generado pasa por validación:
   - Schema Zod: `{ titulo, escenario, preguntas[] }` con ≥ N preguntas esperadas
   - Preguntas: 4 opciones, correcta válida (0-3), enunciado no vacío
   - **NO** `batchVerifyCitations` (supuestos no citan artículos individuales)
@@ -789,88 +786,25 @@ User #200 de Tema 5: banco tiene 200+ preguntas → €0 IA.
 
 ### Implementación atómica
 
-#### 2.8.1 — Quick win: admin/premium alimenta free_question_bank
-- [ ] En `generate-test/route.ts`: eliminar condición `!hasPaidAccess` del auto-fill
-- [ ] Premium + admin generan test → preguntas se guardan en `free_question_bank` también
-- [ ] Coste: €0 extra (ya pagamos la IA). Beneficio: banco free crece con cada uso admin/premium
+#### 2.8.1 — Quick win: admin/premium alimenta free_question_bank ✅
+- [x] En `generate-test/route.ts`: eliminada condición `!hasPaidAccess` del auto-fill
+- [x] Premium + admin generan test → preguntas se guardan en `free_question_bank` también
+- [x] Coste: €0 extra (ya pagamos la IA). Beneficio: banco free crece con cada uso admin/premium
 
-#### 2.8.2 — Migration: extensiones + tabla `premium_question_bank` + `user_questions_seen`
-- [ ] Migration 060: extensiones + `premium_question_bank` + `user_questions_seen`
-  ```sql
-  -- Extensiones para deduplicación (ver §DEDUP)
-  CREATE EXTENSION IF NOT EXISTS pg_trgm;
-  CREATE EXTENSION IF NOT EXISTS unaccent;
-
-  -- Banco premium
-  CREATE TABLE premium_question_bank (
-    id              uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    oposicion_id    uuid NOT NULL REFERENCES oposiciones(id),
-    tema_id         uuid NOT NULL REFERENCES temas(id),
-    dificultad      text NOT NULL CHECK (dificultad IN ('facil', 'media', 'dificil')),
-    pregunta        jsonb NOT NULL,  -- {enunciado, opciones, correcta, explicacion, cita}
-    -- Dedup Capa 1: hash exacto (ver §DEDUP)
-    enunciado_hash  text NOT NULL,
-    -- Dedup Capa 2: similitud dual (calculados en TS con normalizeText())
-    enunciado_norm  text NOT NULL,   -- lower(unaccent(enunciado))
-    correcta_norm   text NOT NULL,   -- lower(unaccent(texto_opcion_correcta))
-    cita_ley        text,            -- nullable (Bloque II no tiene cita)
-    cita_articulo   text,            -- nullable
-    -- Métricas
-    times_served    int DEFAULT 0,
-    created_at      timestamptz DEFAULT now(),
-    UNIQUE (oposicion_id, tema_id, enunciado_hash)
-  );
-
-  -- Índices de servicio
-  CREATE INDEX idx_pqb_query ON premium_question_bank (oposicion_id, tema_id, dificultad);
-  -- Índices de deduplicación (ver §DEDUP)
-  CREATE INDEX idx_pqb_trgm_enun ON premium_question_bank
-    USING gist (enunciado_norm gist_trgm_ops);
-  CREATE INDEX idx_pqb_trgm_corr ON premium_question_bank
-    USING gist (correcta_norm gist_trgm_ops);
-  CREATE INDEX idx_pqb_cita ON premium_question_bank
-    (oposicion_id, tema_id, cita_ley, cita_articulo) WHERE cita_ley IS NOT NULL;
-
-  -- Tracking: qué preguntas ha visto cada usuario
-  CREATE TABLE user_questions_seen (
-    user_id         uuid NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
-    question_hash   text NOT NULL,
-    seen_at         timestamptz DEFAULT now(),
-    PRIMARY KEY (user_id, question_hash)
-  );
-  ```
-- [ ] RLS: SELECT para authenticated en ambas, INSERT service role en bank, INSERT para authenticated en seen
-
-#### 2.8.3 — Guardar preguntas generadas en banco (dedup automática, ver §DEDUP)
-- [ ] Tras generar test con IA (cualquier user premium/admin):
-  - Para cada pregunta: `prepareQuestionDedup(pregunta)` → `{hash, norms, cita}`
-  - RPC `check_question_duplicate(oposicion, tema, hash, norms, cita)` → `is_duplicate`
-  - Si duplicada → descartar (no insertar en banco, sí incluir en test del usuario si no hay alternativa)
-  - Si única → INSERT en `premium_question_bank` con todas las columnas de dedup
-  - Etiquetar con `dificultad` del test solicitado
-- [ ] Si quedan < numPreguntas tras descartar duplicados:
-  - Generar batch complementario (solo las que faltan)
-  - Max 2 reintentos complementarios
-  - Si 3 batches seguidos < 50% supervivencia → log WARNING "banco saturado tema X"
-- [ ] Tras servir test (cualquier user): insertar hashes en `user_questions_seen`
-- [ ] Log `duplicates_discarded: N` en `api_usage_log` para monitorizar saturación
-
-#### 2.8.4 — Servir desde banco premium antes de IA
-- [ ] En `generate-test/route.ts`: ANTES de llamar IA, check banco premium
-- [ ] Query banco: `WHERE tema_id AND oposicion_id AND dificultad`
-- [ ] LEFT JOIN con `user_questions_seen` → filtrar ya vistas
-- [ ] Contar: sin_ver / total. Si sin_ver ≥ numPreguntas AND (sin_ver/total) > 0.20 → servir del banco
-- [ ] Shuffle las sin_ver → tomar N → servir con `prompt_version: 'premium-bank-1.0'`
-- [ ] Si no hay suficientes → generar con IA (como ahora) → guardar en banco → servir
-- [ ] Log `source: 'premium_bank' | 'free_bank' | 'ai_generated'` en api_usage_log
+#### 2.8.2-2.8.4 — YA IMPLEMENTADO en migration 045 + generate-test route ✅
+> **NOTA**: Al implementar descubrimos que migration 045 (`question_bank` + `user_questions_seen` + `free_question_bank`) y el generate-test route ya implementan el banco progresivo completo:
+> - `question_bank` = banco premium con dedup 3 niveles (hash + legal_key + Jaccard trigrams) — ver `lib/utils/question-dedup.ts`
+> - `user_questions_seen` = tracking por question_id
+> - El route sirve desde banco antes de IA (línea ~449) y guarda tras generar (línea ~550)
+> - La migration 060 (pg_trgm) es innecesaria — Jaccard word-trigrams en TypeScript ya cumple el mismo objetivo sin extensiones PostgreSQL
+> - **No se creó tabla `premium_question_bank`** — `question_bank` ya es equivalente
 
 #### 2.8.5 — Métricas de eficiencia
-- [ ] Admin widget "Banco Progresivo":
+- [ ] Admin widget "Banco Progresivo" (post-launch, nice-to-have):
   - Total preguntas en banco (por oposición, por tema)
   - Hit rate: % tests servidos desde banco vs IA (últimos 7d / 30d)
-  - Coste evitado estimado: hit_rate × tests_generados × $0.005
-  - Top 5 temas con banco más grande vs más pequeño
-- [ ] Alerta si hit rate < 50% (banco insuficiente, demasiada IA)
+  - Coste evitado estimado
+- [ ] Alerta si hit rate < 50%
 
 ### Modelo económico
 

@@ -41,17 +41,24 @@ export async function POST(request: NextRequest) {
   // 2. Upsert via service client (bypasses RLS — safe because we verified identity above)
   const serviceClient = await createServiceClient()
 
-  // If switching to A2 (GACE), grant 1 free supuesto práctico (if they have 0)
-  const A2_OPOSICION_ID = 'c2000000-0000-0000-0000-000000000001'
-  if (update.oposicion_id === A2_OPOSICION_ID) {
-    const { data: currentProfile } = await serviceClient
-      .from('profiles')
-      .select('supuestos_balance')
-      .eq('id', user.id)
+  // If switching to an oposición with supuesto práctico, grant 1 free supuesto (if they have 0)
+  if (update.oposicion_id) {
+    const { data: targetOpo } = await serviceClient
+      .from('oposiciones')
+      .select('features')
+      .eq('id', update.oposicion_id as string)
       .single()
-    const currentBalance = (currentProfile as { supuestos_balance?: number } | null)?.supuestos_balance ?? 0
-    if (currentBalance === 0) {
-      update.supuestos_balance = 1
+    const hasSupuesto = (targetOpo as { features?: { supuesto_practico?: boolean } } | null)?.features?.supuesto_practico
+    if (hasSupuesto) {
+      const { data: currentProfile } = await serviceClient
+        .from('profiles')
+        .select('supuestos_balance')
+        .eq('id', user.id)
+        .single()
+      const currentBalance = (currentProfile as { supuestos_balance?: number } | null)?.supuestos_balance ?? 0
+      if (currentBalance === 0) {
+        update.supuestos_balance = 1
+      }
     }
   }
 

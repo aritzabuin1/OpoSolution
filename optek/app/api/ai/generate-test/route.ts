@@ -612,10 +612,10 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Auto-fill free bank: if a free user triggered AI fallback (bank was empty),
-    // save the generated questions back to free_question_bank so future free users
-    // get instant results for this tema (auto-populates T14 Auxilio, T35 Gestión, etc.)
-    if (!hasPaidAccess && temaId && oposicionId && test.preguntas.length > 0) {
+    // §2.8.1 — Auto-fill free bank: ANY user (free, premium, admin) that triggers AI generation
+    // saves questions back to free_question_bank for future free users.
+    // Premium/admin pay for the AI → everyone benefits (banco progresivo).
+    if (temaId && oposicionId && test.preguntas.length > 0) {
       try {
         const { data: temaRow } = await serviceSupabase
           .from('temas')

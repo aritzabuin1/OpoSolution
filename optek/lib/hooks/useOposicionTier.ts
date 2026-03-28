@@ -10,17 +10,30 @@
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 
+type PackTier = 'pack' | 'pack_c1' | 'pack_a2' | 'pack_correos' | 'pack_auxilio' | 'pack_tramitacion' | 'pack_gestion_j'
+
 interface OposicionTier {
-  tier: 'pack' | 'pack_c1' | 'pack_a2'
+  tier: PackTier
   price: string
   oposicionId: string
   loading: boolean
 }
 
-const TIER_MAP: Record<string, { tier: 'pack' | 'pack_c1' | 'pack_a2'; price: string }> = {
+const TIER_MAP: Record<string, { tier: PackTier; price: string }> = {
+  // C2 AGE — Auxiliar Administrativo
   'a0000000-0000-0000-0000-000000000001': { tier: 'pack', price: '49,99€' },
+  // C1 AGE — Administrativo
   'b0000000-0000-0000-0000-000000000001': { tier: 'pack_c1', price: '49,99€' },
+  // A2 AGE
   'c2000000-0000-0000-0000-000000000001': { tier: 'pack_a2', price: '69,99€' },
+  // Correos
+  'd0000000-0000-0000-0000-000000000001': { tier: 'pack_correos', price: '49,99€' },
+  // Auxilio Judicial
+  'e0000000-0000-0000-0000-000000000001': { tier: 'pack_auxilio', price: '49,99€' },
+  // Tramitación Procesal
+  'e1000000-0000-0000-0000-000000000001': { tier: 'pack_tramitacion', price: '49,99€' },
+  // Gestión Procesal
+  'e2000000-0000-0000-0000-000000000001': { tier: 'pack_gestion_j', price: '79,99€' },
 }
 
 const DEFAULT = { tier: 'pack' as const, price: '49,99€' }
