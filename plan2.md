@@ -602,6 +602,75 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 5. ~~**AUTO-FILL FREE BANK**: Si un free user genera test para un tema sin free bank, guardar también en `free_question_bank` (auto-popula T14 Auxilio y T35 Gestión con la primera generación IA)~~ **COMPLETADO** — upsert en generate-test route tras AI fallback
 6. **GAP-2**: Ofimática ejercicio separado (solo si activamos Tramitación)
 7. **GAP-4**: Desarrollo escrito Gestión Procesal (solo si activamos Gestión Procesal)
+8. **MODELO NEGOCIO SUPUESTOS TEST** — Pack recarga supuestos test (implementar antes de activar Justicia)
+
+---
+
+## FASE 2.7 — Modelo de negocio: Pack Supuestos Test (flywheel)
+
+> **Aplica a**: C1 AGE, Auxilio Judicial, Tramitación Procesal, Gestión Procesal (ej2)
+> **NO aplica a**: C2 AGE (no tiene supuesto test), Correos (no tiene supuesto), A2 GACE desarrollo (tiene su propia recarga)
+
+### Concepto
+
+El banco de supuestos test crece con cada compra de pack. Los usuarios financian la creación de contenido para los siguientes.
+
+### Flujo detallado
+
+```
+Banco inicial: 13 supuestos oficiales + IA verificados (coste nuestro: ~$5)
+
+Usuario A (premium) → hace los 13 → los agota
+  → Paywall: "Pack 10 supuestos nuevos — 9,99€"
+  → Paga → generamos 10 con IA + verificamos contra BD
+  → Banco = 23 supuestos
+
+Usuario B (nuevo premium) → ve los 23 desde el día 1
+  → Hace los 13 iniciales + los 10 del Usuario A = 23
+  → Los agota → compra pack
+  → SE LE MUESTRAN los 10 que ya pagó el Usuario A (NO generamos nuevos)
+  → Cobramos 9,99€ sin gastar en API
+  → Banco sigue en 23
+
+Usuario B agota los 23 → compra OTRO pack
+  → Ahora SÍ generamos 10 nuevos (no hay más sin ver)
+  → Banco = 33
+
+Usuario C → ve 33 desde el día 1... y así sucesivamente
+```
+
+### Regla de generación
+
+Solo generamos nuevos supuestos cuando `supuesto_bank` NO tiene suficientes sin ver para el usuario que compra:
+- Si hay ≥10 sin ver → servir del banco (coste $0)
+- Si hay <10 sin ver → generar los que faltan hasta 10 (coste variable)
+- Cada supuesto generado se verifica con `batchVerifyCitations` antes de bancar
+
+### Modelo económico
+
+| Escenario | Ingresos | Coste API | Margen |
+|-----------|----------|-----------|--------|
+| Pack 1 (primeros 10 usuarios) | 9,99€ × 10 = 99,90€ | ~$5 (generar 10) | ~95€ |
+| Pack 2 (usuarios 11-20) | 9,99€ × 10 = 99,90€ | $0 (banco ya tiene 23+) | ~100€ |
+| Pack 3+ | 9,99€ por pack | $0 hasta agotar banco | ~100% margen |
+
+### Implementación
+
+1. **Nuevo tier Stripe**: `recarga_supuesto_test` — 9,99€ → +10 supuestos test
+2. **Campo BD**: `supuestos_test_balance` en profiles (o reutilizar lógica de `user_supuestos_seen`)
+3. **Paywall**: cuando `user_supuestos_seen` tiene TODOS los del banco → mostrar "Pack 10 supuestos — 9,99€"
+4. **Post-compra**: webhook incrementa balance → endpoint sirve del banco (sin ver) → si no hay, genera en background con `generate-supuesto-bank.ts`
+5. **Cada oposición independiente**: el banco es por `oposicion_id`. C1 AGE tiene su banco, Auxilio el suyo, etc.
+
+### Diferencia con recarga supuestos desarrollo (A2 GACE)
+
+| | Supuesto TEST | Supuesto DESARROLLO |
+|---|---|---|
+| Recarga | `recarga_supuesto_test` 9,99€ → 10 supuestos | `recarga_sup` 14,99€ → 5 supuestos |
+| Contenido | Caso + MCQ (verificado contra BD) | Caso + 5 cuestiones (IA genera + corrige) |
+| Cada usuario ve | Solo la recarga que le corresponde | Solo la recarga que le corresponde |
+| Oposiciones | C1 AGE, Auxilio, Tramitación, Gestión ej2 | A2 GACE, Gestión Procesal ej3 |
+| Gestión Procesal A2 | Tiene AMBAS (ej2 = test, ej3 = desarrollo) | |
 
 ---
 
