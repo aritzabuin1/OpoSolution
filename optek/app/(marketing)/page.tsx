@@ -461,7 +461,7 @@ export default async function LandingPage() {
       </section>
 
       {/* ─── Elige tu oposición (T-15) ────────────────────────────────── */}
-      <section aria-labelledby="oposiciones-heading" className="py-20">
+      <section aria-labelledby="oposiciones-heading" className="py-12">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
