@@ -53,11 +53,23 @@ export async function GET(request: NextRequest) {
     }
 
     // ── Elegir artículo aleatorio con texto suficientemente largo ───────────
+    // Filtrar por leyes compartidas por TODAS las oposiciones (CE, LOPJ, EBEP, etc.)
+    // para que el reto diario sea relevante sin importar la oposición del usuario.
+    // Leyes específicas (LPAC, LEC, LECrim, Ley Postal) se excluyen del reto global.
+    const LEYES_COMPARTIDAS = [
+      'Constitución Española',
+      'CE',
+      'LOPJ',
+      'Ley Orgánica del Poder Judicial',
+      'EBEP',
+      'TREBEP',
+    ]
     const { data: candidatos, error: fetchErr } = await supabase
       .from('legislacion')
       .select('id, ley_nombre, articulo_numero, titulo_capitulo, texto_integro')
       .eq('activo', true)
       .not('texto_integro', 'is', null)
+      .in('ley_nombre', LEYES_COMPARTIDAS)
       .limit(80)
 
     if (fetchErr || !candidatos || candidatos.length === 0) {

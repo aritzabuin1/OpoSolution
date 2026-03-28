@@ -39,12 +39,16 @@ export async function generateRetoDiarioOnDemand(fecha: string): Promise<{
 
   if (existing) return existing
 
-  // Elegir artículo
+  // Elegir artículo de leyes compartidas por TODAS las oposiciones
+  const LEYES_COMPARTIDAS = [
+    'Constitución Española', 'CE', 'LOPJ', 'Ley Orgánica del Poder Judicial', 'EBEP', 'TREBEP',
+  ]
   const { data: candidatos, error: fetchErr } = await supabase
     .from('legislacion')
     .select('id, ley_nombre, articulo_numero, titulo_capitulo, texto_integro')
     .eq('activo', true)
     .not('texto_integro', 'is', null)
+    .in('ley_nombre', LEYES_COMPARTIDAS)
     .limit(80)
 
   if (fetchErr || !candidatos || candidatos.length === 0) {

@@ -102,7 +102,9 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
       .single()
     const sc = (opoData as { scoring_config?: unknown } | null)?.scoring_config as { ejercicios?: ScoringEjercicio[]; minutos_total?: number } | null
     if (sc?.ejercicios?.[0]) {
-      fullExamQuestions = sc.ejercicios.reduce((sum, ej) => sum + (ej.preguntas ?? 0), 0) || 100
+      // For proportional timer: use ejercicio 1 (cuestionario) questions and time only
+      // NOT total across all ejercicios — supuesto has separate timer
+      fullExamQuestions = sc.ejercicios[0].preguntas ?? 100
       const minutos = sc.minutos_total ?? sc.ejercicios[0].minutos ?? 90
       fullExamSeconds = minutos * 60
       preguntasCuestionarioConfig = sc.ejercicios[0].preguntas

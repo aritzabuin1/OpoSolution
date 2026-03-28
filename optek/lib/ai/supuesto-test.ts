@@ -53,9 +53,9 @@ const CONFIGS: Record<string, SupuestoTestConfig> = {
     tematica: 'procesal',
     bloques: ['procesal-civil', 'procesal-penal'],
     penalizacion: 0.25,
-    timerMinutos: 60,
-    maxPuntos: 40,
-    minAprobado: 20,
+    timerMinutos: 30,    // 60 total / 2 casos — we serve 1 case at a time
+    maxPuntos: 20,       // 40 total / 2 casos
+    minAprobado: 10,     // 20 total / 2 casos
   },
   'tramitacion-procesal': {
     numCasos: 1,

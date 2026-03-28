@@ -61,6 +61,17 @@ export async function generateCazaTrampas(
 
   if (temaId) {
     qb = qb.contains('tema_ids', [temaId])
+  } else if (oposicionId) {
+    // Filter legislacion to only articles belonging to temas of this oposicion
+    const { data: temasOpo } = await (supabase as any)
+      .from('temas')
+      .select('id')
+      .eq('oposicion_id', oposicionId)
+
+    if (temasOpo && (temasOpo as { id: string }[]).length > 0) {
+      const temaIds = (temasOpo as { id: string }[]).map((t) => t.id)
+      qb = qb.overlaps('tema_ids', temaIds)
+    }
   }
 
   // Traemos varios candidatos y elegimos uno con texto > 200 chars

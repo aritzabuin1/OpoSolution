@@ -16,19 +16,26 @@ export default async function RadarMini() {
   const supabase = await createClient()
 
   const { data: { user } } = await supabase.auth.getUser()
-  const isPaid = user
-    ? await (async () => {
-        const oposicionId = await getOposicionFromProfile(supabase, user.id)
-        return checkPaidAccess(supabase, user.id, oposicionId)
-      })()
-    : false
+  let isPaid = false
+  let oposicionId = ''
+  if (user) {
+    oposicionId = await getOposicionFromProfile(supabase, user.id)
+    isPaid = await checkPaidAccess(supabase, user.id, oposicionId)
+  }
 
   // Try temas view first (new), fallback to articles view (legacy)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: temasTop } = await (supabase as any)
     .from('radar_temas_view')
     .select('tema_id, tema_numero, tema_titulo, num_apariciones, anios')
+    .eq('oposicion_id', oposicionId)
     .limit(5)
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { count: totalRadarTemas } = await (supabase as any)
+    .from('radar_temas_view')
+    .select('tema_id', { count: 'exact', head: true })
+    .eq('oposicion_id', oposicionId)
 
   const rows = (temasTop ?? []) as RadarMiniTema[]
 
@@ -143,7 +150,7 @@ export default async function RadarMini() {
 
       <div className="mt-3 flex items-center gap-1.5 text-xs text-gray-400 dark:text-gray-500">
         <TrendingUp className="w-3 h-3" />
-        <span>Top 5 de 28 temas · Ver detalle completo</span>
+        <span>Top 5 de {totalRadarTemas ?? 0} temas · Ver detalle completo</span>
       </div>
     </div>
   )
