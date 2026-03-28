@@ -86,40 +86,52 @@ export function ExplicarErroresPanel({ testId, numErrores, isFirstTestWithErrors
   }, [])
 
   // ── Demo auto-trigger: first test with errors → generate preview (no credit) ──
+  const demoLaunched = useRef(false)
   useEffect(() => {
-    if (!isFirstTestWithErrors || demoState !== 'idle') return
+    if (!isFirstTestWithErrors || demoLaunched.current) return
     let demoSeen = false
     try { demoSeen = !!localStorage.getItem(LS_DEMO_KEY) } catch { /* noop */ }
     if (demoSeen) return
 
+    demoLaunched.current = true
     setDemoState('loading')
+
     const controller = new AbortController()
     const timeout = setTimeout(() => controller.abort(), 20_000)
 
-    fetch('/api/ai/explain-errores/stream', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ testId, batch: 0, demo: true }),
-      signal: controller.signal,
-    }).then(async (res) => {
-      if (!res.ok || !res.body) { setDemoState('idle'); return }
-      const reader = res.body.getReader()
-      const decoder = new TextDecoder()
-      let text = ''
-      while (true) {
-        const { done, value } = await reader.read()
-        if (done) break
-        text += decoder.decode(value, { stream: true })
-        setDemoText(text)
+    ;(async () => {
+      try {
+        const res = await fetch('/api/ai/explain-errores/stream', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ testId, batch: 0, demo: true }),
+          signal: controller.signal,
+        })
+        if (!res.ok || !res.body) { setDemoState('idle'); return }
+        const reader = res.body.getReader()
+        const decoder = new TextDecoder()
+        let text = ''
+        // eslint-disable-next-line no-constant-condition
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
+          text += decoder.decode(value, { stream: true })
+          setDemoText(text)
+        }
+        if (text.length > 0) {
+          setDemoState('done')
+          try { localStorage.setItem(LS_DEMO_KEY, '1') } catch { /* noop */ }
+        } else {
+          setDemoState('idle')
+        }
+      } catch {
+        setDemoState('idle')
+      } finally {
+        clearTimeout(timeout)
       }
-      setDemoState('done')
-      try { localStorage.setItem(LS_DEMO_KEY, '1') } catch { /* noop */ }
-    }).catch(() => {
-      setDemoState('idle') // silently fail — don't block the page
-    }).finally(() => clearTimeout(timeout))
-
-    return () => { controller.abort(); clearTimeout(timeout) }
-  }, [isFirstTestWithErrors, testId, demoState])
+    })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFirstTestWithErrors, testId])
 
   // Auto-scroll as text streams
   useEffect(() => {
