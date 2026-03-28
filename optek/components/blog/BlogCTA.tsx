@@ -5,9 +5,10 @@ import { ArrowRight } from 'lucide-react'
 interface BlogCTAProps {
   variant: 'inline' | 'bottom'
   diasParaExamen?: number
+  examLabel?: string
 }
 
-export function BlogCTA({ variant, diasParaExamen }: BlogCTAProps) {
+export function BlogCTA({ variant, diasParaExamen, examLabel = '23 de mayo' }: BlogCTAProps) {
   if (variant === 'inline') {
     return (
       <div className="not-prose my-8 rounded-xl border-2 border-amber-300/60 bg-amber-50/50 dark:bg-amber-950/20 dark:border-amber-700/40 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
@@ -34,7 +35,7 @@ export function BlogCTA({ variant, diasParaExamen }: BlogCTAProps) {
     <div className="not-prose mt-12 rounded-xl bg-gradient-to-br from-[#0f2b46] via-[#1a4a7a] to-[#2563eb] p-6 sm:p-8 text-center text-white">
       {diasParaExamen != null && diasParaExamen > 0 && (
         <p className="text-xl sm:text-2xl font-bold mb-1">
-          Quedan {diasParaExamen} días para el examen del 23 de mayo
+          Quedan {diasParaExamen} días para el examen del {examLabel}
         </p>
       )}
       <p className="text-base sm:text-lg font-medium opacity-90">

@@ -63,8 +63,11 @@ export default async function BlogPostPage({ params }: Props) {
   const readingTime = estimateReadingTime(post.content)
   const contentWithCTA = injectMidArticleCTA(post.content)
 
-  // Days to exam for bottom CTA
-  const examDate = new Date('2026-05-23')
+  // Days to exam for bottom CTA — dynamic per oposición
+  const isCorreosPost = post.slug.includes('correos') || post.keywords.some(k => k.toLowerCase().includes('correos'))
+  const examDateStr = isCorreosPost ? '2026-05-07' : '2026-05-23'
+  const examLabel = isCorreosPost ? '7 de mayo' : '23 de mayo'
+  const examDate = new Date(examDateStr)
   const diasParaExamen = Math.max(0, Math.ceil((examDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24)))
 
   const postIndex = blogPosts.findIndex((p) => p.slug === slug)
@@ -199,7 +202,7 @@ export default async function BlogPostPage({ params }: Props) {
         )}
 
         {/* CTA bottom */}
-        <BlogCTA variant="bottom" diasParaExamen={diasParaExamen} />
+        <BlogCTA variant="bottom" diasParaExamen={diasParaExamen} examLabel={examLabel} />
 
         {/* Navegación entre posts */}
         <nav aria-label="Navegacion entre articulos" className="mt-12 flex flex-col sm:flex-row gap-4 justify-between">
