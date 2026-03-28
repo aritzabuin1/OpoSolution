@@ -717,12 +717,10 @@ export function getSystemRoadmap(config: RoadmapOpoConfig): string {
     `- Tests por tema: 10, 20 o 30 preguntas | dificultad fácil, media o difícil (el usuario elige tema)`,
   ]
 
-  // Simulacros — with real convocatorias and actual question counts
+  // Simulacros — with real convocatorias
   if (convocatorias.length > 0) {
     const years = convocatorias.join(', ')
-    const ejercicio1 = scoring.ejercicios[0]
-    const numQ = ejercicio1?.preguntas ?? 100
-    tools.push(`- Simulacro oficial ${tribunalLabel}: examen completo de ${numQ} preguntas con preguntas reales del tribunal | convocatorias: ${years}, o mixto`)
+    tools.push(`- Simulacro oficial ${tribunalLabel}: examen completo con preguntas reales del tribunal | convocatorias: ${years}, o mixto`)
   }
 
   tools.push(`- Flashcards: repaso espaciado por tema (el usuario elige mazo/tema desde la lista)`)
