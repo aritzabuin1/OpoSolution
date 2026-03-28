@@ -424,8 +424,6 @@ export default async function LandingPage() {
             AGE · Correos · Justicia — 10.000+ plazas en 7 oposiciones
           </Badge>
 
-          <ExamCountdown examDate="2026-05-23" />
-
           <h1 id="hero-heading" className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl leading-tight">
             Aprueba tu oposición.
             <br />
