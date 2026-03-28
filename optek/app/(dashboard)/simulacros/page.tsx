@@ -153,57 +153,7 @@ export default async function SimulacrosPage() {
         <Trophy className="h-7 w-7 text-primary/60 shrink-0 mt-1" />
       </div>
 
-      {/* Aviso de simulacro — solo free users */}
-      {!isPremium && (
-        <div className="flex items-start gap-2 rounded-lg bg-blue-50 border border-blue-100 px-4 py-3">
-          <Info className="h-4 w-4 text-blue-600 shrink-0 mt-0.5" />
-          <p className="text-xs text-blue-700">
-            {freeSimRemaining > 0 ? (
-              <>Tienes <strong>1 simulacro completo gratis</strong> — examen real del INAP con todas las preguntas y timer oficial. Simulacros ilimitados con el Pack Oposición.</>
-            ) : (
-              <>Ya has realizado tu simulacro gratuito. <strong>Desbloquea simulacros ilimitados</strong> con el Pack Oposición.</>
-            )}
-          </p>
-        </div>
-      )}
-
-      {/* Banner supuesto práctico — solo oposiciones que lo tienen (A2 GACE) */}
-      {hasSupuestoPractico && (
-        <Card className="border-emerald-300/40 bg-gradient-to-r from-emerald-50 to-emerald-50/30 dark:from-emerald-950/20 dark:to-transparent">
-          <CardContent className="pt-5 pb-5">
-            <div className="flex items-start gap-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-900/40 shrink-0">
-                <FileText className="h-5 w-5 text-emerald-600" />
-              </div>
-              <div className="flex-1 space-y-2">
-                <div className="flex items-center gap-2">
-                  <h3 className="font-semibold text-sm">Supuesto Práctico</h3>
-                  <Badge variant="outline" className="text-[10px] border-emerald-300 text-emerald-700">2º ejercicio</Badge>
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  El examen GACE incluye un supuesto práctico a desarrollar (150 min, 5 cuestiones). La IA genera un caso realista y corrige tu respuesta con la rúbrica oficial del INAP.
-                </p>
-                <div className="flex flex-wrap gap-2 mt-1">
-                  <Button asChild size="sm" variant="outline" className="gap-1.5 border-emerald-300 text-emerald-700 hover:bg-emerald-50">
-                    <Link href="/supuesto-practico/nuevo">
-                      <Sparkles className="h-3.5 w-3.5" />
-                      Modo práctica (sin timer)
-                    </Link>
-                  </Button>
-                  <Button asChild size="sm" className="gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white">
-                    <Link href="/supuesto-practico/nuevo">
-                      <Clock className="h-3.5 w-3.5" />
-                      Modo examen (150 min)
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* §2.5d — Estructura del examen (múltiples ejercicios) */}
+      {/* §2.5d — Estructura del examen (múltiples ejercicios) — FIRST for context */}
       {(() => {
         const ejercicios = features?.scoring_config?.ejercicios
         const minTotal = features?.scoring_config?.minutos_total
@@ -235,7 +185,6 @@ export default async function SimulacrosPage() {
                     ))}
                   </div>
                   <p className="text-[11px] text-muted-foreground pt-1">
-                    El simulacro incluye ambas partes con el tiempo total del examen real.
                     Para practicar cada parte por separado:
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -269,13 +218,24 @@ export default async function SimulacrosPage() {
         )
       })()}
 
+      {/* Aviso de simulacro — solo free users */}
+      {!isPremium && (
+        <div className="flex items-start gap-2 rounded-lg bg-blue-50 border border-blue-100 px-4 py-3">
+          <Info className="h-4 w-4 text-blue-600 shrink-0 mt-0.5" />
+          <p className="text-xs text-blue-700">
+            {freeSimRemaining > 0 ? (
+              <>Tienes <strong>1 simulacro completo gratis</strong> — examen real del INAP con todas las preguntas y timer oficial. Simulacros ilimitados con el Pack Oposición.</>
+            ) : (
+              <>Ya has realizado tu simulacro gratuito. <strong>Desbloquea simulacros ilimitados</strong> con el Pack Oposición.</>
+            )}
+          </p>
+        </div>
+      )}
+
       {hayExamenes ? (
         <div className="space-y-6">
-          {/* §2.6.1 — Simulacro Mixto destacado (todas las convocatorias) */}
+          {/* §2.6.1 — Simulacro Mixto (todas las convocatorias) */}
           <div className="space-y-2">
-            <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-0.5">
-              Recomendado
-            </h2>
             <SimulacroMixtoCard
               totalPreguntas={totalPreguntasCombinadas}
               numConvocatorias={examenesConCount.length}
