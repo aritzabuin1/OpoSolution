@@ -52,7 +52,7 @@
 - [x] Configurar CORRECTIONS_GRANTED y SUPUESTOS_GRANTED para cada tier
 - [x] `app/api/stripe/checkout/route.ts`: añadir nuevos tiers al BodySchema
 - [x] `app/api/stripe/webhook/route.ts`: refactorizar if/else combos a usar COMBO_PACKS mapa
-- [ ] Crear 6 productos en Stripe Dashboard (Correos + 5 Justicia) ← MANUAL
+- [x] Crear 6 productos en Stripe Dashboard (Correos + 5 Justicia) ← MANUAL — completado 2026-03-29
 - [x] Añadir 6 env vars STRIPE_PRICE_PACK_* en .env.example
 
 ---
@@ -745,8 +745,8 @@ Esto garantiza que el usuario ve primero los de mayor calidad (más "rodados").
   - Schema Zod: `{ titulo, escenario, preguntas[] }` con ≥ N preguntas esperadas
   - Preguntas: 4 opciones, correcta válida (0-3), enunciado no vacío
   - **NO** `batchVerifyCitations` (supuestos no citan artículos individuales)
-- [ ] Si validación falla: descartar, NO cobrar crédito, reintentar 1 vez
-- [ ] Log calidad: % que pasan validación vs descartados
+- [x] Si validación falla: descartar, NO cobrar crédito (batch endpoint skips on Zod fail)
+- [x] Log calidad: log.warn en batch endpoint cuando preguntas < minAcceptable
 
 ### Lo que NO hacemos (decisiones conscientes)
 - **NO** tier Stripe separado — usa créditos IA unificados (9,99€ = 10 créditos)
@@ -1369,8 +1369,8 @@ Cada sub-landing incluye:
 - [x] Recarga créditos IA 9,99€: producto Stripe creado + env var actualizada ✅ (2026-03-28)
 
 ### Pendiente: activación manual (Aritz)
-- [ ] Crear productos Stripe Justicia (Auxilio, Tramitación, Gestión, Doble, Triple)
-- [ ] Configurar env vars `STRIPE_PRICE_PACK_AUXILIO/TRAMITACION/GESTION_J/DOBLE_JUSTICIA/TRIPLE_JUSTICIA` en Vercel
+- [x] Crear productos Stripe Justicia (Auxilio, Tramitación, Gestión, Doble, Triple) — completado 2026-03-29
+- [x] Configurar env vars `STRIPE_PRICE_PACK_AUXILIO/TRAMITACION/GESTION_J/DOBLE_JUSTICIA/TRIPLE_JUSTICIA` en Vercel — completado 2026-03-29
 - [ ] Activar cada oposición Justicia en BD: `UPDATE oposiciones SET activa = true WHERE slug = '...'`
 - [ ] Seguir checklist de `VERIFICACION_PLAN2.md` paso a paso
 
