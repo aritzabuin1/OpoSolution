@@ -69,14 +69,29 @@ export default async function SupuestoTestPage() {
 
   const hasDoneFree = !isPremium && (supuestosDone ?? 0) > 0
 
-  // §2.7: Get credits balance for batch generation CTA
+  // Credits + bank stats for supuesto CTA
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: profileCredits } = await (serviceSupabase as any)
-    .from('profiles')
-    .select('corrections_balance')
-    .eq('id', user.id)
-    .single()
+  const [{ data: profileCredits }, { count: totalBank }, { count: seenCount }] = await Promise.all([
+    (serviceSupabase as any)
+      .from('profiles')
+      .select('corrections_balance')
+      .eq('id', user.id)
+      .single(),
+    (serviceSupabase as any)
+      .from('supuesto_bank')
+      .select('id', { count: 'exact', head: true })
+      .eq('oposicion_id', oposicionId),
+    (serviceSupabase as any)
+      .from('user_supuestos_seen')
+      .select('supuesto_id', { count: 'exact', head: true })
+      .eq('user_id', user.id),
+  ])
   const creditsBalance = (profileCredits as { corrections_balance?: number } | null)?.corrections_balance ?? 0
+  const bankStats = {
+    totalBank: (totalBank as number) ?? 0,
+    seen: (seenCount as number) ?? 0,
+    unseen: Math.max(0, ((totalBank as number) ?? 0) - ((seenCount as number) ?? 0)),
+  }
 
   // Find exercise config for the supuesto in scoring_config
   const ejSupuesto = scoringConfig?.ejercicios.find(
@@ -157,6 +172,7 @@ export default async function SupuestoTestPage() {
         supuestosDone={supuestosDone ?? 0}
         opoNombre={opoNombre}
         creditsBalance={creditsBalance}
+        bankStats={bankStats}
       />
     </div>
   )
