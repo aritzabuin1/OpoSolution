@@ -7,12 +7,12 @@
  * Submit button sends to /api/ai/corregir-supuesto/stream for AI correction.
  */
 
-import { useState, useEffect, useMemo } from 'react'
-import { useParams, useRouter } from 'next/navigation'
+import { useState, useEffect, useMemo, useCallback } from 'react'
+import { useParams, useRouter, useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Loader2, Send, FileText, ArrowLeft } from 'lucide-react'
+import { Loader2, Send, FileText, ArrowLeft, Clock, AlertTriangle } from 'lucide-react'
 import { toast } from 'sonner'
 import { createClient } from '@/lib/supabase/client'
 import Link from 'next/link'
@@ -49,12 +49,34 @@ function markdownToHtml(md: string): string {
 export default function SupuestoPracticoDetailPage() {
   const { id } = useParams<{ id: string }>()
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [caso, setCaso] = useState<SupuestoCaso | null>(null)
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
   const [correctionStream, setCorrectionStream] = useState('')
   const [corrected, setCorrected] = useState(false)
   const [respuestas, setRespuestas] = useState<Record<string, string>>({})
+
+  // Timer mode: ?timer=150 (minutes) from simulacros page
+  const timerMinutes = searchParams.get('timer') ? parseInt(searchParams.get('timer')!, 10) : null
+  const [secondsLeft, setSecondsLeft] = useState<number | null>(timerMinutes ? timerMinutes * 60 : null)
+  const timerExpired = secondsLeft !== null && secondsLeft <= 0
+
+  // Countdown timer
+  useEffect(() => {
+    if (secondsLeft === null || secondsLeft <= 0 || corrected || submitting) return
+    const interval = setInterval(() => setSecondsLeft(s => (s !== null && s > 0) ? s - 1 : 0), 1000)
+    return () => clearInterval(interval)
+  }, [secondsLeft, corrected, submitting])
+
+  // Auto-submit when timer expires
+  const handleSubmitRef = useCallback(() => {
+    if (timerExpired && !corrected && !submitting && caso) {
+      toast.warning('Tiempo agotado — enviando respuestas automáticamente')
+    }
+  }, [timerExpired, corrected, submitting, caso])
+
+  useEffect(() => { handleSubmitRef() }, [handleSubmitRef])
 
   // Load supuesto data
   useEffect(() => {
@@ -159,16 +181,41 @@ export default function SupuestoPracticoDetailPage() {
         <Button asChild variant="ghost" size="icon">
           <Link href="/supuesto-practico"><ArrowLeft className="h-4 w-4" /></Link>
         </Button>
-        <div>
+        <div className="flex-1">
           <h1 className="text-xl font-bold flex items-center gap-2">
             <FileText className="h-5 w-5 text-emerald-600" />
             {caso.titulo}
           </h1>
           <p className="text-xs text-muted-foreground mt-0.5">
             5 cuestiones · Bloques IV, V y VI · Rúbrica INAP
+            {timerMinutes && ' · Modo examen'}
           </p>
         </div>
+        {/* Timer countdown */}
+        {secondsLeft !== null && !corrected && (
+          <div className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-mono font-bold ${
+            secondsLeft <= 300 ? 'bg-red-100 text-red-700 animate-pulse' :
+            secondsLeft <= 900 ? 'bg-amber-100 text-amber-700' :
+            'bg-emerald-100 text-emerald-700'
+          }`}>
+            <Clock className="h-4 w-4" />
+            {Math.floor(secondsLeft / 3600) > 0 && `${Math.floor(secondsLeft / 3600)}:`}
+            {String(Math.floor((secondsLeft % 3600) / 60)).padStart(2, '0')}:
+            {String(secondsLeft % 60).padStart(2, '0')}
+          </div>
+        )}
       </div>
+
+      {/* Timer mode banner */}
+      {timerMinutes && !corrected && (
+        <div className="flex items-start gap-2 rounded-lg bg-amber-50 border border-amber-200 px-4 py-3">
+          <AlertTriangle className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+          <p className="text-xs text-amber-700">
+            <strong>Modo examen</strong> — {timerMinutes} minutos como en el examen real.
+            Distribuye el tiempo entre las 5 cuestiones. Al agotarse el tiempo, tus respuestas se enviarán automáticamente.
+          </p>
+        </div>
+      )}
 
       {/* Contexto */}
       <Card>

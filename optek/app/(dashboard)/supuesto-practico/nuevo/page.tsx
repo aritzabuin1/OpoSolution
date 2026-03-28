@@ -19,6 +19,7 @@ import { toast } from 'sonner'
 export default function NuevoSupuestoPracticoPage() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
+  const [modoExamen, setModoExamen] = useState(false)
 
   async function handleGenerate() {
     setLoading(true)
@@ -43,7 +44,7 @@ export default function NuevoSupuestoPracticoPage() {
 
       const data = await res.json()
       toast.success('Supuesto generado — ¡a escribir!')
-      router.push(`/supuesto-practico/${data.id}`)
+      router.push(`/supuesto-practico/${data.id}${modoExamen ? '?timer=150' : ''}`)
     } catch {
       toast.error('Error de conexión. Inténtalo de nuevo.')
       setLoading(false)
@@ -75,9 +76,10 @@ export default function NuevoSupuestoPracticoPage() {
             <div className="flex items-start gap-3">
               <Clock className="h-5 w-5 text-blue-600 shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm font-medium">Sin límite de tiempo</p>
+                <p className="text-sm font-medium">Elige tu modo</p>
                 <p className="text-xs text-muted-foreground">
-                  Escribe tus respuestas a tu ritmo. En el examen real tendrás 150 minutos.
+                  <strong>Modo práctica</strong>: sin límite de tiempo, escribe a tu ritmo.<br/>
+                  <strong>Modo examen</strong>: 150 minutos como en el examen real, con countdown.
                 </p>
               </div>
             </div>
@@ -90,6 +92,28 @@ export default function NuevoSupuestoPracticoPage() {
                 </p>
               </div>
             </div>
+          </div>
+
+          {/* Mode selector */}
+          <div className="flex gap-2">
+            <button
+              onClick={() => setModoExamen(false)}
+              className={`flex-1 rounded-lg border px-4 py-3 text-left text-sm transition-colors ${
+                !modoExamen ? 'border-emerald-400 bg-emerald-50 text-emerald-800 font-medium' : 'border-border hover:bg-muted'
+              }`}
+            >
+              <p className="font-medium">Modo práctica</p>
+              <p className="text-xs text-muted-foreground mt-0.5">Sin timer — escribe a tu ritmo</p>
+            </button>
+            <button
+              onClick={() => setModoExamen(true)}
+              className={`flex-1 rounded-lg border px-4 py-3 text-left text-sm transition-colors ${
+                modoExamen ? 'border-amber-400 bg-amber-50 text-amber-800 font-medium' : 'border-border hover:bg-muted'
+              }`}
+            >
+              <p className="font-medium">Modo examen</p>
+              <p className="text-xs text-muted-foreground mt-0.5">150 min — presión real</p>
+            </button>
           </div>
 
           <div className="flex items-start gap-2 rounded-lg bg-amber-50 border border-amber-200 px-4 py-3">
