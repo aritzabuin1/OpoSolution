@@ -13113,4 +13113,208 @@ export const blogPosts: BlogPost[] = [
       { question: '¿El temario de Justicia es el mismo para todas las comunidades autónomas?', answer: 'Sí. El temario base de Auxilio Judicial (26 temas) y Tramitación Procesal (37 temas) es idéntico para la convocatoria del Ministerio de Justicia y las de cada Comunidad Autónoma. Las CCAA con competencias transferidas solo añaden entre 1 y 5 temas propios sobre derecho foral o lengua cooficial, pero nunca modifican los temas base. Puedes preparar una vez y presentarte a múltiples convocatorias.' },
     ],
   },
+
+  // ─── Post 75 — Correos: Psicotécnicos 2026 — comprensión, gráficos, figuras ──
+  {
+    slug: 'psicotecnicos-correos-2026-tipos-ejemplos-practica',
+    title: 'Psicotécnicos Correos 2026: comprensión lectora, gráficos y figuras (con ejemplos)',
+    description:
+      'Los 3 tipos de psicotécnicos del examen de Correos: comprensión lectora (35%), interpretación de gráficos (35%) y series de figuras (30%). Ejemplos, diferencias con AGE y práctica online gratis.',
+    date: '2026-03-28',
+    keywords: [
+      'psicotecnicos correos 2026',
+      'psicotecnicos correos tipos',
+      'test psicotecnicos correos online gratis',
+      'comprension lectora correos examen',
+      'interpretacion graficos correos',
+      'series figuras correos',
+      'psicotecnicos correos vs age',
+    ],
+    content: `
+<p>
+  Si preparas las <a href="/oposiciones/correos">oposiciones de Correos 2026</a>, ya sabes que el examen incluye
+  <strong>10 preguntas psicotécnicas mezcladas entre las 100 del test</strong>. Lo que quizá no sabes es que los
+  psicotécnicos de Correos son <strong>radicalmente distintos</strong> a los de otras oposiciones. Prepararte con tests
+  genéricos es tirar el tiempo. Aquí te explicamos exactamente qué entra, con ejemplos, y dónde practicar gratis.
+</p>
+
+<h2>Los 3 tipos de psicotécnicos en el examen de Correos</h2>
+<p>
+  Basándonos en las convocatorias de 2021 y 2023, los psicotécnicos de Correos se agrupan en <strong>3 categorías
+  muy concretas</strong> con un peso aproximado:
+</p>
+<ul>
+  <li><strong>Comprensión lectora:</strong> ~35% (3-4 preguntas)</li>
+  <li><strong>Interpretación de gráficos y tablas:</strong> ~35% (3-4 preguntas)</li>
+  <li><strong>Series de figuras y razonamiento abstracto:</strong> ~30% (2-3 preguntas)</li>
+</ul>
+<p>
+  <strong>Dato clave:</strong> no hay penalización por errores en el examen de Correos. Cada psicotécnico
+  vale 0,60 puntos. Dejar uno en blanco es regalar medio punto. Siempre responde.
+</p>
+
+<h2>1. Comprensión lectora (~35%)</h2>
+<p>
+  Te presentan un texto de 150-250 palabras sobre un tema relacionado con Correos (normativa postal, un comunicado
+  interno, una noticia del sector) y te hacen 2-3 preguntas sobre él. No evalúan memoria: evalúan si entiendes
+  lo que lees bajo presión de tiempo.
+</p>
+
+<h3>Ejemplo</h3>
+<blockquote>
+  <p><em>«La Sociedad Estatal Correos y Telégrafos ha ampliado su red de puntos de recogida a 4.500 establecimientos
+  colaboradores en toda España. El objetivo es reducir los intentos fallidos de entrega a domicilio, que suponen
+  un coste estimado de 1,20 euros por intento. Según datos internos, el 38% de los envíos requiere al menos un
+  segundo intento de entrega.»</em></p>
+</blockquote>
+<p><strong>Pregunta:</strong> Según el texto, ¿cuál es el objetivo principal de ampliar los puntos de recogida?</p>
+<ul>
+  <li>a) Aumentar el número de oficinas de Correos</li>
+  <li>b) Reducir los costes de los intentos fallidos de entrega</li>
+  <li>c) Ampliar la plantilla de repartidores</li>
+  <li>d) Mejorar el servicio en zonas rurales</li>
+</ul>
+<p><strong>Respuesta:</strong> b) — el texto dice explícitamente «reducir los intentos fallidos de entrega a domicilio».</p>
+
+<p>
+  La trampa habitual: las opciones incorrectas suenan razonables, pero no están en el texto. Hay que ceñirse
+  a lo que dice el párrafo, no a lo que «tiene sentido».
+</p>
+
+<h2>2. Interpretación de gráficos y tablas (~35%)</h2>
+<p>
+  Te muestran un gráfico de barras, un gráfico circular o una tabla con datos numéricos (volumen de envíos,
+  porcentajes de entregas, facturación por trimestre) y te preguntan por valores concretos, comparaciones o
+  tendencias. Requiere <strong>lectura rápida de datos + cálculo mental básico</strong>.
+</p>
+
+<h3>Ejemplo</h3>
+<p>Imagina una tabla como esta:</p>
+<table>
+  <thead><tr><th>Trimestre</th><th>Paquetería (millones)</th><th>Cartas (millones)</th></tr></thead>
+  <tbody>
+    <tr><td>T1 2025</td><td>18,2</td><td>42,1</td></tr>
+    <tr><td>T2 2025</td><td>21,5</td><td>39,8</td></tr>
+    <tr><td>T3 2025</td><td>19,7</td><td>37,4</td></tr>
+    <tr><td>T4 2025</td><td>28,3</td><td>35,6</td></tr>
+  </tbody>
+</table>
+<p><strong>Pregunta:</strong> ¿En qué trimestre fue mayor la diferencia entre paquetería y cartas?</p>
+<ul>
+  <li>a) T1 2025</li>
+  <li>b) T2 2025</li>
+  <li>c) T3 2025</li>
+  <li>d) T4 2025</li>
+</ul>
+<p>
+  <strong>Respuesta:</strong> a) T1 2025 — diferencia de 23,9 millones (42,1 - 18,2). En T4 la diferencia es solo 7,3.
+</p>
+<p>
+  La clave: no te compliques con cálculos exactos. Muchas veces basta con estimar mentalmente para descartar
+  opciones. El tiempo es tu recurso más escaso.
+</p>
+
+<h2>3. Series de figuras y razonamiento abstracto (~30%)</h2>
+<p>
+  Secuencias de figuras geométricas que siguen un patrón (rotación, adición de elementos, simetría,
+  cambio de color). Debes identificar la figura que continúa la serie o la que no encaja.
+</p>
+
+<h3>Ejemplo</h3>
+<p>
+  <strong>Serie:</strong> Un triángulo con 1 punto interior → un cuadrado con 2 puntos → un pentágono con 3 puntos → ¿?
+</p>
+<ul>
+  <li>a) Un hexágono con 3 puntos</li>
+  <li>b) Un hexágono con 4 puntos</li>
+  <li>c) Un pentágono con 4 puntos</li>
+  <li>d) Un círculo con 4 puntos</li>
+</ul>
+<p>
+  <strong>Respuesta:</strong> b) — la figura gana un lado (+1) y un punto interior (+1) en cada paso.
+</p>
+<p>
+  <strong>Consejo:</strong> busca primero el patrón más obvio (forma, número de elementos, orientación).
+  Si no lo ves en 30 segundos, marca tu mejor opción y sigue. No vale la pena perder 3 minutos en una
+  pregunta de 0,60 puntos.
+</p>
+
+<h2>¿Por qué los psicotécnicos de Correos son diferentes a los de la AGE?</h2>
+<p>
+  Este es el error más frecuente: preparar psicotécnicos de Correos con tests de Auxiliar Administrativo
+  del Estado (C2) o de otras oposiciones generales. <strong>No funcionan.</strong>
+</p>
+
+<table>
+  <thead><tr><th>Característica</th><th>Psicotécnicos Correos</th><th>Psicotécnicos AGE (C2)</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Tipos principales</strong></td><td>Comprensión lectora, gráficos, figuras</td><td>Series numéricas, razonamiento verbal, lógica formal</td></tr>
+    <tr><td><strong>Comprensión lectora</strong></td><td>35% del peso — textos sobre el sector postal</td><td>No suele aparecer como psicotécnico</td></tr>
+    <tr><td><strong>Gráficos y tablas</strong></td><td>35% — datos de Correos (envíos, facturación)</td><td>Raro o inexistente</td></tr>
+    <tr><td><strong>Series numéricas</strong></td><td>Poco frecuentes</td><td>Muy frecuentes (30-40%)</td></tr>
+    <tr><td><strong>Penalización</strong></td><td>No penaliza</td><td>Penaliza -1/3</td></tr>
+    <tr><td><strong>Integración</strong></td><td>Mezclados con temario (100 preguntas)</td><td>Sección separada (30 preguntas)</td></tr>
+    <tr><td><strong>Tiempo</strong></td><td>110 minutos para todo</td><td>90 minutos para todo</td></tr>
+  </tbody>
+</table>
+
+<p>
+  Como ves, <strong>la comprensión lectora y la interpretación de gráficos suponen el 70% de los
+  psicotécnicos de Correos</strong>, pero apenas aparecen en los exámenes de la AGE. Si entrenas con tests
+  genéricos, estás practicando series numéricas y razonamiento verbal que casi no caen en Correos, y no
+  estás practicando lo que realmente te van a preguntar.
+</p>
+
+<h2>Cuánto valen los psicotécnicos en la nota final</h2>
+<p>
+  Las 10 preguntas psicotécnicas valen <strong>6 puntos sobre 60</strong> (un 10% de la nota del examen).
+  Parece poco, pero en Correos la diferencia entre entrar y quedarse fuera suele estar en 2-3 puntos.
+  Con práctica específica, acertar 8 de 10 (4,8 puntos) es perfectamente realista. Esos 4,8 puntos pueden
+  ser tu plaza.
+</p>
+
+<h2>Estrategia de tiempo para los psicotécnicos</h2>
+<ol>
+  <li><strong>Comprensión lectora (1,5 min/pregunta):</strong> lee el texto una vez con atención. Las preguntas se responden rápido si has entendido el texto</li>
+  <li><strong>Gráficos (1 min/pregunta):</strong> identifica qué te piden (valor absoluto, comparación, tendencia) y ve directo al dato. No recalcules todo</li>
+  <li><strong>Figuras (1 min/pregunta):</strong> busca el patrón más simple primero. Si no lo ves en 30 segundos, descarta opciones imposibles y elige</li>
+</ol>
+<p>
+  Total: ~12 minutos para 10 psicotécnicos. Te quedan 98 minutos para las 90 preguntas de temario (1,09 min/pregunta).
+  Sobra tiempo si no te bloqueas.
+</p>
+
+<h2>Practica psicotécnicos de Correos gratis en OpoRuta</h2>
+<p>
+  <a href="/register?oposicion=correos">OpoRuta</a> es la <strong>única plataforma que ofrece psicotécnicos
+  específicos de Correos</strong> con los 3 tipos reales del examen: comprensión lectora con textos del sector
+  postal, interpretación de gráficos con datos de envíos, y series de figuras con el formato oficial.
+</p>
+<p>
+  No encontrarás esto en OpositaTest, Toposiciones ni en ninguna academia generalista. Ellos ofrecen
+  psicotécnicos genéricos (series numéricas, sinónimos, analogías) que no reflejan lo que te vas a encontrar
+  el día del examen.
+</p>
+<ul>
+  <li><strong>Practica gratis</strong> — 3 sesiones de psicotécnicos sin pagar nada</li>
+  <li><strong>Corrección inmediata</strong> con explicación detallada de cada respuesta</li>
+  <li><strong>Formato real:</strong> psicotécnicos mezclados con preguntas de temario, como en el examen</li>
+  <li><strong>Sin penalización:</strong> igual que en el examen oficial de Correos</li>
+</ul>
+<p>
+  <strong><a href="/register?oposicion=correos">Regístrate gratis y practica los psicotécnicos que realmente caen en Correos</a></strong>.
+  Los 6 puntos de psicotécnicos pueden ser la diferencia entre conseguir tu plaza o quedarte en lista de espera.
+</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Datos basados en exámenes oficiales de Correos 2021 y 2023. Los porcentajes por tipo son aproximados y pueden variar entre convocatorias.</em></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Qué tipos de psicotécnicos caen en el examen de Correos 2026?', answer: 'Los psicotécnicos de Correos se dividen en 3 tipos: comprensión lectora (~35%), interpretación de gráficos y tablas (~35%) y series de figuras/razonamiento abstracto (~30%). Son 10 preguntas psicotécnicas mezcladas dentro del examen de 100 preguntas, con 110 minutos en total.' },
+      { question: '¿Los psicotécnicos de Correos son iguales que los de Auxiliar Administrativo del Estado?', answer: 'No. Los psicotécnicos de Correos se centran en comprensión lectora y gráficos (70% del peso), mientras que los de la AGE (C2) priorizan series numéricas y razonamiento verbal. Además, Correos no penaliza errores y la AGE sí (-1/3). Prepararte con tests genéricos de otras oposiciones no es efectivo para Correos.' },
+      { question: '¿Penalizan los psicotécnicos en el examen de Correos?', answer: 'No. El examen de Correos no penaliza ninguna respuesta incorrecta, ni de temario ni psicotécnica. Siempre debes responder: al azar tienes un 25% de probabilidad de acertar y sumar 0,60 puntos.' },
+      { question: '¿Cuántos puntos valen los psicotécnicos en Correos?', answer: 'Las 10 preguntas psicotécnicas valen 0,60 puntos cada una, sumando 6 puntos sobre 60 (10% de la nota). En una oposición donde la diferencia entre entrar y no suele ser de 2-3 puntos, los psicotécnicos pueden decidir tu plaza.' },
+      { question: '¿Dónde puedo practicar psicotécnicos de Correos online gratis?', answer: 'OpoRuta es la única plataforma con psicotécnicos específicos de Correos: comprensión lectora con textos del sector postal, interpretación de gráficos con datos de envíos y series de figuras en formato oficial. Puedes practicar gratis con 3 sesiones de psicotécnicos sin registro de pago.' },
+      { question: '¿Cuánto tiempo debo dedicar a los psicotécnicos en el examen de Correos?', answer: 'Aproximadamente 12 minutos para las 10 preguntas: 1,5 minutos para comprensión lectora, 1 minuto para gráficos y 1 minuto para figuras. Si llevas más de 1,5 minutos en un psicotécnico, marca tu mejor opción y avanza. Te quedarán 98 minutos para las 90 preguntas de temario.' },
+    ],
+  },
 ]

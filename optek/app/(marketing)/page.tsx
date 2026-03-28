@@ -1079,9 +1079,9 @@ export default async function LandingPage() {
           <p className="text-xs font-semibold uppercase tracking-wider text-orange-500 mb-3 mt-6">Correos</p>
           <div className="grid gap-4 sm:grid-cols-3">
             {([
-              'test-correos-2026-online-gratis',
-              'temario-correos-2026-temas-completos',
-              'examen-correos-penaliza-respuestas-incorrectas',
+              'test-correos-online-gratis',
+              'temario-correos-2026-temas',
+              'psicotecnicos-correos-2026-tipos-ejemplos-practica',
             ].map((slug) => blogPosts.find((p) => p.slug === slug)).filter((p): p is typeof blogPosts[0] => !!p)).map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
                 <Card className="h-full hover:border-orange-400/40 transition-colors">
@@ -1107,9 +1107,9 @@ export default async function LandingPage() {
           <p className="text-xs font-semibold uppercase tracking-wider text-violet-500 mb-3 mt-6">Justicia · Próximamente</p>
           <div className="grid gap-4 sm:grid-cols-3">
             {([
-              'diferencia-auxilio-judicial-tramitacion-procesal',
-              'temario-auxilio-judicial-2026-actualizado',
-              'test-auxilio-judicial-2026-online-gratis',
+              'auxilio-judicial-vs-tramitacion-procesal',
+              'guia-auxilio-judicial-2026',
+              'guia-tramitacion-procesal-2026',
             ].map((slug) => blogPosts.find((p) => p.slug === slug)).filter((p): p is typeof blogPosts[0] => !!p)).map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
                 <Card className="h-full hover:border-violet-400/40 transition-colors">
