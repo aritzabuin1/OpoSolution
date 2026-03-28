@@ -447,17 +447,26 @@ export async function POST(request: NextRequest) {
   // ── 5C. Premium bank + IA generation ──────────────────────────────────────
   try {
     // For premium users with a temaId: try serving from question_bank first
+    // §2.8.4 — Banco progresivo: serve unseen questions until user has seen ≥90% of bank,
+    // then generate with AI (which also feeds the bank for other users).
     let bankServed = false
     if (hasPaidAccess && temaId) {
       try {
-        // Fetch unseen questions from bank for this (tema, dificultad)
-        const { data: unseenRows } = await (serviceSupabase as any)
-          .from('question_bank')
-          .select('id, enunciado, opciones, correcta, explicacion, cita_ley, cita_articulo, dificultad')
-          .eq('tema_id', temaId)
-          .eq('dificultad', effectiveDificultad)
-          .not('id', 'in', `(SELECT question_id FROM user_questions_seen WHERE user_id = '${user.id}')`)
-          .limit(effectiveNumPreguntas)
+        // Count total + fetch unseen questions from bank for this (tema, dificultad)
+        const [{ count: totalInBank }, { data: unseenRows }] = await Promise.all([
+          (serviceSupabase as any)
+            .from('question_bank')
+            .select('id', { count: 'exact', head: true })
+            .eq('tema_id', temaId)
+            .eq('dificultad', effectiveDificultad),
+          (serviceSupabase as any)
+            .from('question_bank')
+            .select('id, enunciado, opciones, correcta, explicacion, cita_ley, cita_articulo, dificultad')
+            .eq('tema_id', temaId)
+            .eq('dificultad', effectiveDificultad)
+            .not('id', 'in', `(SELECT question_id FROM user_questions_seen WHERE user_id = '${user.id}')`)
+            .limit(effectiveNumPreguntas),
+        ])
 
         const unseen = (unseenRows ?? []) as Array<{
           id: string; enunciado: string; opciones: Record<string, string>;
@@ -465,7 +474,11 @@ export async function POST(request: NextRequest) {
           cita_ley: string | null; cita_articulo: string | null; dificultad: string;
         }>
 
-        if (unseen.length >= effectiveNumPreguntas) {
+        const total = totalInBank ?? 0
+        const unseenRatio = total > 0 ? unseen.length / total : 0
+        // Serve from bank if: enough unseen questions AND user hasn't seen ≥90% of bank
+        // When user has seen ≥90%, generate with AI to add fresh questions to the bank
+        if (unseen.length >= effectiveNumPreguntas && unseenRatio > 0.10) {
           // Serve fully from bank (€0)
           const charToIdx = (c: string): 0 | 1 | 2 | 3 => Math.max(0, Math.min(3, c.charCodeAt(0) - 97)) as 0 | 1 | 2 | 3
           const preguntas: Pregunta[] = unseen.slice(0, effectiveNumPreguntas).map(q => {
@@ -524,9 +537,9 @@ export async function POST(request: NextRequest) {
             }, { status: 200 })
           }
         }
-        // Not enough unseen questions → fall through to AI generation
-        if (!bankServed && unseen.length > 0) {
-          log.info({ userId: user.id, temaId, unseen: unseen.length, needed: effectiveNumPreguntas }, 'Partial bank — generating remaining with AI')
+        // Not enough unseen questions OR user has seen ≥90% → fall through to AI generation
+        if (!bankServed) {
+          log.info({ userId: user.id, temaId, unseen: unseen.length, total, unseenRatio: unseenRatio.toFixed(2), needed: effectiveNumPreguntas }, 'Bank insufficient or ≥90% seen — generating with AI (feeds bank for others)')
         }
       } catch (bankErr) {
         // Bank query failed — fall through to AI generation silently
@@ -612,10 +625,10 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // §2.8.1 — Auto-fill free bank: ANY user (free, premium, admin) that triggers AI generation
-    // saves questions back to free_question_bank for future free users.
-    // Premium/admin pay for the AI → everyone benefits (banco progresivo).
-    if (temaId && oposicionId && test.preguntas.length > 0) {
+    // Auto-fill free bank: only when a FREE user triggers AI fallback (bank was empty for their tema).
+    // This populates the free bank so future free users get instant results.
+    // Premium users' questions go to question_bank (banco progresivo) above, NOT here.
+    if (!hasPaidAccess && temaId && oposicionId && test.preguntas.length > 0) {
       try {
         const { data: temaRow } = await serviceSupabase
           .from('temas')
