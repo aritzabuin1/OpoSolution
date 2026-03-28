@@ -12,9 +12,10 @@
  *   3. Redirect a /tests/[id] (reutiliza la misma UI de test MCQ)
  */
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Brain, ChevronRight, Loader2, Lock, Zap } from 'lucide-react'
+import { createClient } from '@/lib/supabase/client'
 import { trackStartTrialOnce } from '@/lib/analytics/pixel'
 import { trackGTMEvent } from '@/lib/analytics/gtm'
 import { Button } from '@/components/ui/button'
@@ -70,6 +71,19 @@ const NUM_PREGUNTAS_OPTIONS = [5, 10, 15, 20, 30] as const
 
 // ─── Componente ───────────────────────────────────────────────────────────────
 
+// Category info by oposición type
+const CATEGORIAS_AGE = [
+  { label: 'Razonamiento numérico', pct: '40%' },
+  { label: 'Series numéricas', pct: '25%' },
+  { label: 'Comprensión verbal', pct: '20%' },
+  { label: 'Organización y clasificación', pct: '15%' },
+]
+const CATEGORIAS_CORREOS = [
+  { label: 'Comprensión lectora', pct: '35%' },
+  { label: 'Interpretación de gráficos', pct: '35%' },
+  { label: 'Series de figuras', pct: '30%' },
+]
+
 export default function PsicotecnicosPage() {
   const router = useRouter()
   const isPremium = useIsPremium()
@@ -79,6 +93,23 @@ export default function PsicotecnicosPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [showPaywall, setShowPaywall] = useState(false)
+  const [isCorreos, setIsCorreos] = useState(false)
+
+  // Detect if user is Correos to show correct categories
+  useEffect(() => {
+    async function detectOpo() {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+      const { data: profile } = await supabase.from('profiles').select('oposicion_id').eq('id', user.id).single()
+      if (!profile?.oposicion_id) return
+      const { data: opo } = await (supabase as ReturnType<typeof createClient>).from('oposiciones').select('slug').eq('id', profile.oposicion_id).single()
+      if ((opo as { slug?: string } | null)?.slug?.includes('correos')) setIsCorreos(true)
+    }
+    detectOpo().catch(() => {})
+  }, [])
+
+  const categorias = isCorreos ? CATEGORIAS_CORREOS : CATEGORIAS_AGE
 
   async function handleGenerar() {
     setLoading(true)
@@ -147,22 +178,12 @@ export default function PsicotecnicosPage() {
             Contenido del test
           </p>
           <div className="grid grid-cols-2 gap-1.5 text-sm text-muted-foreground">
-            <div className="flex items-center gap-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary/60" />
-              Razonamiento numérico (40%)
-            </div>
-            <div className="flex items-center gap-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary/60" />
-              Series numéricas (25%)
-            </div>
-            <div className="flex items-center gap-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary/60" />
-              Comprensión verbal (20%)
-            </div>
-            <div className="flex items-center gap-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary/60" />
-              Organización y clasificación (15%)
-            </div>
+            {categorias.map((cat) => (
+              <div key={cat.label} className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary/60" />
+                {cat.label} ({cat.pct})
+              </div>
+            ))}
           </div>
         </CardContent>
       </Card>
