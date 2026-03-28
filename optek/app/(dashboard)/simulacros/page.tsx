@@ -19,7 +19,7 @@ import { SimulacroMixtoCard } from '@/components/simulacros/SimulacroMixtoCard'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { Trophy, Info, FileText, Sparkles, ArrowRight, Layers, BookOpen } from 'lucide-react'
+import { Trophy, Info, FileText, Sparkles, ArrowRight, Layers, BookOpen, Clock } from 'lucide-react'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -183,13 +183,20 @@ export default async function SimulacrosPage() {
                 <p className="text-xs text-muted-foreground">
                   El examen GACE incluye un supuesto práctico a desarrollar (150 min, 5 cuestiones). La IA genera un caso realista y corrige tu respuesta con la rúbrica oficial del INAP.
                 </p>
-                <Button asChild size="sm" className="gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white mt-1">
-                  <Link href="/supuesto-practico">
-                    <Sparkles className="h-3.5 w-3.5" />
-                    Practicar supuesto práctico
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
-                </Button>
+                <div className="flex flex-wrap gap-2 mt-1">
+                  <Button asChild size="sm" variant="outline" className="gap-1.5 border-emerald-300 text-emerald-700 hover:bg-emerald-50">
+                    <Link href="/supuesto-practico/nuevo">
+                      <Sparkles className="h-3.5 w-3.5" />
+                      Modo práctica (sin timer)
+                    </Link>
+                  </Button>
+                  <Button asChild size="sm" className="gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white">
+                    <Link href="/supuesto-practico/nuevo">
+                      <Clock className="h-3.5 w-3.5" />
+                      Modo examen (150 min)
+                    </Link>
+                  </Button>
+                </div>
               </div>
             </div>
           </CardContent>
@@ -248,7 +255,7 @@ export default async function SimulacrosPage() {
                     )}
                     {hasSupuestoPractico && (
                       <Button asChild size="sm" className="gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white">
-                        <Link href="/supuesto-practico">
+                        <Link href="/supuesto-practico/nuevo">
                           <Sparkles className="h-3.5 w-3.5" />
                           Supuesto (desarrollo)
                         </Link>
