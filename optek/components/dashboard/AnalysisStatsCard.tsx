@@ -35,7 +35,7 @@ export function AnalysisStatsCard({ balance }: Props) {
         : <Zap className="w-5 h-5 text-purple-500" />
       }
       value={balance}
-      label="Análisis"
+      label="Créditos IA"
       sub={isUnused ? 'sin estrenar' : 'disponibles'}
       valueClassName={isUnused ? 'text-amber-600' : undefined}
       className={isUnused ? 'border-amber-200 bg-amber-50/50 dark:border-amber-800 dark:bg-amber-950/20' : undefined}

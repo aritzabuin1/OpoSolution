@@ -505,3 +505,89 @@ async function _getFreeTierMetrics(): Promise<FreeTierMetrics> {
 
 export const getQuestionBankMetrics = _getQuestionBankMetrics
 export const getFreeTierMetrics = _getFreeTierMetrics
+
+// ─── Roadmap + Tutor IA Metrics ──────────────────────────────────────────────
+
+export interface TutorIAMetrics {
+  roadmapsGenerated: number
+  roadmapsLast7d: number
+  roadmapActivationRate: number // % of users with 3+ tests who generated roadmap
+  creditsByEndpoint: Record<string, number>
+  usersNeverUsedCredits: number
+}
+
+async function _getTutorIAMetrics(): Promise<TutorIAMetrics> {
+  const supabase = await createServiceClient()
+  const adminIds = await getAdminUserIds()
+
+  // Roadmap generation count
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: roadmapLogs } = await (supabase as any)
+    .from('api_usage_log')
+    .select('user_id, created_at')
+    .eq('endpoint', 'generate-roadmap')
+    .gte('created_at', METRICS_START_DATE)
+
+  const allRoadmaps = ((roadmapLogs ?? []) as Array<{ user_id: string; created_at: string }>)
+    .filter(r => !adminIds.includes(r.user_id))
+  const roadmapsGenerated = allRoadmaps.length
+
+  const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
+  const roadmapsLast7d = allRoadmaps.filter(r => r.created_at >= sevenDaysAgo).length
+
+  // Users with 3+ completed tests
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: activeTests } = await (supabase as any)
+    .from('tests_generados')
+    .select('user_id')
+    .eq('completado', true)
+    .gte('created_at', METRICS_START_DATE)
+
+  const testCountByUser: Record<string, number> = {}
+  for (const t of (activeTests ?? []) as Array<{ user_id: string }>) {
+    if (adminIds.includes(t.user_id)) continue
+    testCountByUser[t.user_id] = (testCountByUser[t.user_id] ?? 0) + 1
+  }
+  const usersWith3Plus = Object.entries(testCountByUser).filter(([, c]) => c >= 3).map(([id]) => id)
+  const roadmapUserSet = new Set(allRoadmaps.map(r => r.user_id))
+  const roadmapActivationRate = usersWith3Plus.length > 0
+    ? Math.round((usersWith3Plus.filter(id => roadmapUserSet.has(id)).length / usersWith3Plus.length) * 100)
+    : 0
+
+  // Credits usage by endpoint (Tutor IA endpoints)
+  const tutorEndpoints = ['explain-errores-stream', 'informe-simulacro-stream', 'explain-flashcard-stream', 'analyze-cazatrampas-stream', 'corregir-supuesto-stream', 'generate-roadmap']
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: usageLogs } = await (supabase as any)
+    .from('api_usage_log')
+    .select('endpoint, user_id')
+    .in('endpoint', tutorEndpoints)
+    .gte('created_at', METRICS_START_DATE)
+
+  const creditsByEndpoint: Record<string, number> = {}
+  for (const log of (usageLogs ?? []) as Array<{ endpoint: string; user_id: string }>) {
+    if (adminIds.includes(log.user_id)) continue
+    creditsByEndpoint[log.endpoint] = (creditsByEndpoint[log.endpoint] ?? 0) + 1
+  }
+
+  // Users who never used a credit
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: profiles } = await (supabase as any)
+    .from('profiles')
+    .select('id, free_corrector_used, corrections_balance')
+
+  const allProfiles = ((profiles ?? []) as Array<{ id: string; free_corrector_used: number; corrections_balance: number }>)
+    .filter(p => !adminIds.includes(p.id))
+  const usersNeverUsedCredits = allProfiles.filter(
+    p => (p.free_corrector_used ?? 0) === 0 && (p.corrections_balance ?? 0) >= 0
+  ).length
+
+  return {
+    roadmapsGenerated,
+    roadmapsLast7d,
+    roadmapActivationRate,
+    creditsByEndpoint,
+    usersNeverUsedCredits,
+  }
+}
+
+export const getTutorIAMetrics = _getTutorIAMetrics

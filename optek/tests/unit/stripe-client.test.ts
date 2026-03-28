@@ -57,23 +57,23 @@ describe('Stripe pricing constants', () => {
   })
 
   it('existen 13 tiers (sin fundador)', () => {
-    expect(Object.keys(CORRECTIONS_GRANTED)).toHaveLength(13)
+    expect(Object.keys(CORRECTIONS_GRANTED)).toHaveLength(12)
     expect(Object.keys(CORRECTIONS_GRANTED).sort()).toEqual([
       'pack', 'pack_a2', 'pack_auxilio', 'pack_c1', 'pack_correos',
       'pack_doble', 'pack_doble_justicia', 'pack_gestion_j',
       'pack_tramitacion', 'pack_triple', 'pack_triple_justicia',
-      'recarga', 'recarga_sup',
+      'recarga',
     ])
   })
 
   // ─── STRIPE_PRICES ────────────────────────────────────────────────────────
 
-  it('STRIPE_PRICES tiene las 13 keys esperadas (sin fundador)', () => {
+  it('STRIPE_PRICES tiene las 12 keys esperadas (sin recarga_sup)', () => {
     expect(Object.keys(STRIPE_PRICES).sort()).toEqual([
       'pack', 'pack_a2', 'pack_auxilio', 'pack_c1', 'pack_correos',
       'pack_doble', 'pack_doble_justicia', 'pack_gestion_j',
       'pack_tramitacion', 'pack_triple', 'pack_triple_justicia',
-      'recarga', 'recarga_sup',
+      'recarga',
     ])
   })
 

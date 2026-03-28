@@ -57,6 +57,7 @@ interface TestRow {
   puntuacion: number | null
   completado: boolean
   tema_id: string | null
+  tipo: string | null
   temas: { titulo: string; numero: number } | null
 }
 
@@ -90,7 +91,7 @@ export default async function DashboardPage() {
   const userOposicionId = profile?.oposicion_id ?? DEFAULT_OPOSICION_ID
   const { data: tests } = await supabase
     .from('tests_generados')
-    .select('id, created_at, puntuacion, completado, tema_id, temas(titulo, numero)')
+    .select('id, created_at, puntuacion, completado, tema_id, tipo, temas(titulo, numero)')
     .eq('user_id', user.id)
     .eq('completado', true)
     .eq('oposicion_id', userOposicionId)
@@ -249,10 +250,11 @@ export default async function DashboardPage() {
 
   const roadmapActivity = {
     testsByTema,
-    simulacrosCount: testsCompletados.filter(t => !t.tema_id).length,
-    psicotecnicosCount: 0, // no direct data available here; heuristic
-    cazatrampasCount: 0,
-    flashcardsReviewed: 0,
+    simulacrosCount: testsCompletados.filter(t => t.tipo === 'simulacro').length,
+    psicotecnicosCount: testsCompletados.filter(t => t.tipo === 'psicotecnico').length,
+    supuestoTestCount: testsCompletados.filter(t => t.tipo === 'supuesto_test').length,
+    cazatrampasCount: 0, // tracked separately in cazatrampas_sesiones (not in tests_generados)
+    flashcardsReviewed: 0, // tracked in flashcards table
   }
 
   const onboardingCompletedAt = rachaData?.onboarding_completed_at ?? null

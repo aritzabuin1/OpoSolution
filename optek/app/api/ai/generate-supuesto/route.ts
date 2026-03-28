@@ -15,7 +15,7 @@ export const maxDuration = 60
  * POST /api/ai/generate-supuesto
  *
  * Genera un supuesto práctico realista para GACE (A2).
- * Consume 1 crédito de supuesto (supuestos_balance).
+ * Consume 1 crédito IA (corrections_balance). La corrección posterior consume otro.
  * Premium only — free users cannot access.
  */
 
@@ -55,18 +55,18 @@ export async function POST(request: NextRequest) {
   const oposicionId = await getOposicionFromProfile(serviceSupabase, user.id)
 
   if (!isAdmin) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: profile } = await (serviceSupabase as any)
+    const { data: profile } = await serviceSupabase
       .from('profiles')
-      .select('supuestos_balance')
+      .select('corrections_balance, free_corrector_used')
       .eq('id', user.id)
       .single()
 
-    const balance = (profile as { supuestos_balance?: number } | null)?.supuestos_balance ?? 0
-    if (balance <= 0) {
+    const paidBalance = profile?.corrections_balance ?? 0
+    const freeRemaining = Math.max(0, 2 - (profile?.free_corrector_used ?? 0))
+    if ((paidBalance + freeRemaining) < 1) {
       return NextResponse.json({
-        error: 'No tienes supuestos prácticos disponibles.',
-        code: 'PAYWALL_SUPUESTOS',
+        error: 'No tienes créditos IA disponibles.',
+        code: 'PAYWALL_CORRECTIONS',
       }, { status: 402 })
     }
   }
@@ -115,6 +115,20 @@ Las otras 2 cuestiones pueden ser de cualquiera de los 3 bloques.`
   if (insertErr || !row) {
     log.error({ err: insertErr }, '[generate-supuesto] DB insert failed')
     return NextResponse.json({ error: 'Error al guardar el supuesto.' }, { status: 500 })
+  }
+
+  // Deduct 1 crédito IA for generation (correction will deduct another 1)
+  if (!isAdmin) {
+    const { data: p } = await serviceSupabase
+      .from('profiles')
+      .select('corrections_balance')
+      .eq('id', user.id)
+      .single()
+    if ((p?.corrections_balance ?? 0) > 0) {
+      await serviceSupabase.rpc('use_correction', { p_user_id: user.id })
+    } else {
+      await serviceSupabase.rpc('use_free_correction', { p_user_id: user.id })
+    }
   }
 
   log.info({ userId: user.id, supuestoId: (row as { id: string }).id }, '[generate-supuesto] created')

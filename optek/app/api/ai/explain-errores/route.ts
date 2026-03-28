@@ -150,15 +150,15 @@ export async function POST(request: NextRequest) {
         upsell: [
           {
             id: 'recarga',
-            name: 'Recarga de análisis',
-            price: '8,99€',
-            description: '+10 análisis detallados',
+            name: 'Recarga de créditos IA',
+            price: '9,99€',
+            description: '+10 créditos IA',
           },
           {
             id: 'pack',
             name: 'Pack Oposición',
             price: '49,99€',
-            description: 'Tests ilimitados + 20 análisis detallados + simulacros',
+            description: 'Tests ilimitados + 20 créditos IA + simulacros',
             badge: 'Más valor',
           },
         ],

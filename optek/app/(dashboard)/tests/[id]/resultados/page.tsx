@@ -160,6 +160,66 @@ export default async function ResultadosPage({ params }: Props) {
   const freeCorrectorUsed = (profileData as { free_corrector_used?: number } | null)?.free_corrector_used ?? 0
   const freeAnalysisRemaining = Math.max(0, 2 - freeCorrectorUsed)
 
+  // Check if this is the user's first completed test (for demo analysis auto-trigger)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { count: completedTestCount } = await (supabase as any)
+    .from('tests_generados')
+    .select('*', { count: 'exact', head: true })
+    .eq('user_id', user.id)
+    .eq('completado', true)
+  const isFirstTest = (completedTestCount ?? 0) <= 1
+
+  // Benchmark social: average score of all users for this oposición
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: benchmarkData } = await (serviceSupabase as any)
+    .from('tests_generados')
+    .select('puntuacion')
+    .eq('oposicion_id', oposicionId)
+    .eq('completado', true)
+    .not('puntuacion', 'is', null)
+    .limit(500)
+  const benchmarkScores = ((benchmarkData ?? []) as Array<{ puntuacion: number }>).map(r => r.puntuacion)
+  const benchmarkAvg = benchmarkScores.length >= 10
+    ? Math.round(benchmarkScores.reduce((s, v) => s + v, 0) / benchmarkScores.length)
+    : null
+
+  // Data for NextStep recommendations
+  const totalTests = completedTestCount ?? 0
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { count: simulacroCount } = await (supabase as any)
+    .from('tests_generados')
+    .select('*', { count: 'exact', head: true })
+    .eq('user_id', user.id)
+    .eq('completado', true)
+    .eq('tipo', 'simulacro')
+  const hasSimulacro = (simulacroCount ?? 0) > 0
+
+  // Find weakest tema (if user has data on multiple temas)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: allUserTests } = await (supabase as any)
+    .from('tests_generados')
+    .select('tema_id, puntuacion, temas(numero, titulo)')
+    .eq('user_id', user.id)
+    .eq('completado', true)
+    .not('tema_id', 'is', null)
+    .eq('oposicion_id', oposicionId)
+    .limit(100)
+
+  let weakestTema: { numero: number; titulo: string; avg: number } | null = null
+  if (allUserTests && allUserTests.length > 0) {
+    const byTema: Record<string, { sum: number; count: number; numero: number; titulo: string }> = {}
+    for (const t of allUserTests as Array<{ tema_id: string; puntuacion: number; temas: { numero: number; titulo: string } | null }>) {
+      if (!t.temas || t.puntuacion == null) continue
+      if (!byTema[t.tema_id]) byTema[t.tema_id] = { sum: 0, count: 0, numero: t.temas.numero, titulo: t.temas.titulo }
+      byTema[t.tema_id].sum += t.puntuacion
+      byTema[t.tema_id].count++
+    }
+    const entries = Object.values(byTema).filter(v => v.count > 0).map(v => ({ ...v, avg: Math.round(v.sum / v.count) }))
+    if (entries.length >= 2) {
+      weakestTema = entries.sort((a, b) => a.avg - b.avg)[0]
+    }
+  }
+
   const preguntas = test.preguntas
   const respuestas = test.respuestas_usuario ?? []
   const puntuacion = test.puntuacion ?? 0
@@ -307,6 +367,12 @@ export default async function ResultadosPage({ params }: Props) {
         <p className="text-sm text-muted-foreground">
           {aciertos} aciertos · {errores} errores · {sinResponder} sin responder
         </p>
+        {benchmarkAvg !== null && (
+          <p className="text-xs text-muted-foreground mt-1">
+            Tu nota: {puntuacion}% · Media opositores: {benchmarkAvg}%
+            {puntuacion > benchmarkAvg ? ' — ¡por encima de la media!' : ''}
+          </p>
+        )}
       </div>
 
       {/* Puntuación con penalización — simulacros oficiales + supuesto test */}
@@ -558,13 +624,49 @@ export default async function ResultadosPage({ params }: Props) {
         />
       )}
 
-      {/* Panel de análisis socrático IA — ANTES de las preguntas falladas */}
+      {/* ── Siguiente paso recomendado ──────────────────────────────────── */}
+      {!esRepaso && (
+        <div className="rounded-xl border border-blue-200/80 bg-blue-50/50 dark:bg-blue-950/20 dark:border-blue-800/60 p-4 flex items-center gap-3">
+          <TrendingUp className="h-5 w-5 text-blue-600 shrink-0" />
+          <div className="flex-1">
+            <p className="text-sm font-medium">Siguiente paso</p>
+            <p className="text-xs text-muted-foreground">
+              {totalTests <= 1
+                ? 'Haz el Reto Diario (3 min) para empezar tu racha de estudio'
+                : totalTests <= 3 && weakestTema
+                ? `Tu tema más débil es T${weakestTema.numero} (${weakestTema.titulo}) con ${weakestTema.avg}%. Refuérzalo`
+                : totalTests >= 3 && !hasSimulacro
+                ? `Ya conoces ${totalTests} temas. ¿Apruebas un simulacro oficial?`
+                : esSimulacroOficial && weakestTema
+                ? `Fallaste más en T${weakestTema.numero} (${weakestTema.titulo}, ${weakestTema.avg}%). Practica ahí`
+                : weakestTema
+                ? `Tu punto débil: T${weakestTema.numero} (${weakestTema.titulo}, ${weakestTema.avg}%). Mejóralo`
+                : 'Sigue practicando para mejorar tu preparación'
+              }
+            </p>
+          </div>
+          <Button asChild variant="outline" size="sm" className="shrink-0">
+            <Link href={
+              totalTests <= 1 ? '/reto-diario'
+                : totalTests >= 3 && !hasSimulacro ? '/simulacros'
+                : '/tests'
+            }>
+              {totalTests <= 1 ? 'Reto Diario'
+                : totalTests >= 3 && !hasSimulacro ? 'Simulacro'
+                : 'Practicar'}
+            </Link>
+          </Button>
+        </div>
+      )}
+
+      {/* Panel Tutor IA — ANTES de las preguntas falladas */}
       {preguntasErroneas.length > 0 && (
         <div id="analisis-ia">
           <ExplicarErroresPanel
             testId={id}
             numErrores={preguntasErroneas.length}
             opciones={preguntas.map((p) => [...p.opciones])}
+            isFirstTestWithErrors={isFirstTest}
           />
         </div>
       )}
@@ -630,6 +732,18 @@ export default async function ResultadosPage({ params }: Props) {
           </p>
         </div>
       )}
+
+      {/* ── Reto Diario CTA + Siguiente paso ────────────────────────────── */}
+      <div className="rounded-xl border border-amber-200/80 bg-amber-50/50 dark:bg-amber-950/20 dark:border-amber-800/60 p-4 flex items-center gap-3">
+        <Calendar className="h-5 w-5 text-amber-600 shrink-0" />
+        <div className="flex-1">
+          <p className="text-sm font-medium">¿Poco tiempo mañana?</p>
+          <p className="text-xs text-muted-foreground">Haz el Reto Diario (3 min) y mantén tu racha</p>
+        </div>
+        <Button asChild variant="outline" size="sm" className="shrink-0">
+          <Link href="/reto-diario">Reto Diario</Link>
+        </Button>
+      </div>
 
       {/* Sticky mobile CTA — visible solo cuando el panel IA está fuera del viewport */}
       {preguntasErroneas.length > 0 && (

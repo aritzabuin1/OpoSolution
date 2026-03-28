@@ -130,6 +130,40 @@ export default async function TestsPage({
   // ── Free tier v2: temas explorados ────────────────────────────────────────
   const temasRemaining = Math.max(0, totalTemas - temasCompleted)
 
+  // ── "Recomendado para ti": weakest tema or next unexplored ───────────────
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: allCompletedTests } = await (supabase as any)
+    .from('tests_generados')
+    .select('tema_id, puntuacion')
+    .eq('user_id', user.id)
+    .eq('completado', true)
+    .eq('oposicion_id', oposicionId)
+    .not('tema_id', 'is', null)
+    .limit(200)
+
+  const temaScoreMap: Record<string, { sum: number; count: number }> = {}
+  for (const t of (allCompletedTests ?? []) as Array<{ tema_id: string; puntuacion: number }>) {
+    if (t.puntuacion == null) continue
+    if (!temaScoreMap[t.tema_id]) temaScoreMap[t.tema_id] = { sum: 0, count: 0 }
+    temaScoreMap[t.tema_id].sum += t.puntuacion
+    temaScoreMap[t.tema_id].count++
+  }
+
+  let recommendedTema: { id: string; numero: number; titulo: string; reason: string } | null = null
+  // Priority 1: weakest tema with avg < 60%
+  const temasWithScores = temas.map(t => ({ ...t, avg: temaScoreMap[t.id] ? Math.round(temaScoreMap[t.id].sum / temaScoreMap[t.id].count) : null }))
+  const weakest = temasWithScores.filter(t => t.avg !== null && t.avg < 60).sort((a, b) => a.avg! - b.avg!)
+  if (weakest.length > 0) {
+    recommendedTema = { id: weakest[0].id, numero: weakest[0].numero, titulo: weakest[0].titulo, reason: `Tu punto débil — ${weakest[0].avg}%` }
+  } else {
+    // Priority 2: next unexplored tema
+    const exploredIds = new Set(Object.keys(temaScoreMap))
+    const unexplored = temas.filter(t => !exploredIds.has(t.id))
+    if (unexplored.length > 0) {
+      recommendedTema = { id: unexplored[0].id, numero: unexplored[0].numero, titulo: unexplored[0].titulo, reason: 'Siguiente tema por explorar' }
+    }
+  }
+
   // ─────────────────────────────────────────────────────────────────────────
   return (
     <div className="space-y-8">
@@ -162,6 +196,26 @@ export default async function TestsPage({
         />
       )}
 
+      {/* Recomendado para ti */}
+      {recommendedTema && (
+        <div className="rounded-xl border-2 border-primary/30 bg-primary/5 p-4 flex items-center gap-4">
+          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+            <ClipboardCheck className="h-5 w-5 text-primary" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-medium text-primary">Recomendado para ti</p>
+            <p className="text-sm font-semibold truncate">T{recommendedTema.numero}: {recommendedTema.titulo}</p>
+            <p className="text-xs text-muted-foreground">{recommendedTema.reason}</p>
+          </div>
+          <a
+            href={`#tema-${recommendedTema.numero}`}
+            className="shrink-0 inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+          >
+            Practicar
+          </a>
+        </div>
+      )}
+
       {/* Todos los bloques — dinámico, funciona con 2 bloques (C2/C1) o 6 bloques (A2) */}
       {[...bloqueGroups.entries()].map(([bloque, bloqueItems]) => (
         <section key={bloque}>
@@ -173,13 +227,14 @@ export default async function TestsPage({
           </div>
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {bloqueItems.map((tema) => (
+              <div key={tema.id} id={`tema-${tema.numero}`}>
               <TemaCard
-                key={tema.id}
                 tema={tema}
                 hasPaidAccess={hasPaidAccess}
                 freeCompleted={freeStatus.get(tema.id)?.completed ?? false}
                 freeScore={freeStatus.get(tema.id)?.score ?? null}
               />
+              </div>
             ))}
           </div>
         </section>

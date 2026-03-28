@@ -38,7 +38,7 @@ const PLANS: Record<Rama, Plan[]> = {
       features: [
         '1 test gratuito en cada tema',
         '3 simulacros (20 preguntas)',
-        '2 análisis detallados con IA',
+        '2 sesiones gratis con tu Tutor IA',
         'Sin tarjeta de crédito',
       ],
       cta: 'Empezar gratis',
@@ -53,7 +53,7 @@ const PLANS: Record<Rama, Plan[]> = {
       features: [
         'Tests ilimitados — Auxiliar (C2) o Administrativo (C1)',
         'Simulacros y psicotécnicos ilimitados',
-        '+20 análisis detallados + Radar del Tribunal',
+        '+20 créditos IA + Radar del Tribunal',
         'Sin suscripción — acceso permanente',
       ],
       cta: 'Comprar Pack',
@@ -68,7 +68,7 @@ const PLANS: Record<Rama, Plan[]> = {
       features: [
         'Tests ilimitados — Gestión del Estado (A2 GACE)',
         '58 temas en 6 bloques + simulacros INAP',
-        '+20 análisis + 5 supuestos prácticos con IA',
+        '+20 créditos IA + 5 supuestos prácticos con IA',
         'Corrección con rúbrica oficial INAP',
       ],
       cta: 'Comprar A2',
@@ -83,7 +83,7 @@ const PLANS: Record<Rama, Plan[]> = {
       features: [
         'Acceso completo a C1 y C2',
         'Simulacros ilimitados en ambas',
-        '+30 análisis detallados + Radar',
+        '+30 créditos IA + Radar',
         'Cambia entre oposiciones',
       ],
       cta: 'C1 + C2',
@@ -97,7 +97,7 @@ const PLANS: Record<Rama, Plan[]> = {
       badge: 'Todo incluido',
       features: [
         'Las 3 oposiciones AGE: C2 + C1 + A2',
-        '+40 análisis + 5 supuestos prácticos IA',
+        '+40 créditos IA + 5 supuestos prácticos IA',
         'Simulacros, Radar, todo ilimitado',
         'Máximo ahorro',
       ],
@@ -115,7 +115,7 @@ const PLANS: Record<Rama, Plan[]> = {
       features: [
         '1 test gratuito en cada tema',
         '3 simulacros (20 preguntas)',
-        '2 análisis detallados con IA',
+        '2 sesiones gratis con tu Tutor IA',
         'Sin tarjeta de crédito',
       ],
       cta: 'Empezar gratis',
@@ -130,7 +130,7 @@ const PLANS: Record<Rama, Plan[]> = {
       features: [
         'Tests ilimitados — Auxilio Judicial (26 temas)',
         'Simulacros y psicotécnicos ilimitados',
-        '+20 análisis detallados',
+        '+20 créditos IA',
         'Legislación verificada (LOPJ, LEC, LO 1/2025)',
       ],
       cta: 'Comprar Auxilio',
@@ -145,7 +145,7 @@ const PLANS: Record<Rama, Plan[]> = {
       features: [
         'Tests ilimitados — Tramitación Procesal (37 temas)',
         'Incluye bloque ofimática',
-        '+20 análisis detallados',
+        '+20 créditos IA',
         'Legislación actualizada LO 1/2025',
       ],
       cta: 'Comprar Tramitación',
@@ -159,7 +159,7 @@ const PLANS: Record<Rama, Plan[]> = {
       badge: 'Exclusivo',
       features: [
         'Tests ilimitados — Gestión Procesal (68 temas)',
-        '+20 análisis + supuestos prácticos IA',
+        '+20 créditos IA + supuestos prácticos IA',
         'Desarrollo escrito con corrección IA',
         'Legislación completa verificada',
       ],
@@ -175,7 +175,7 @@ const PLANS: Record<Rama, Plan[]> = {
       features: [
         'Auxilio + Tramitación (comparten temas)',
         'Simulacros ilimitados en ambas',
-        '+30 análisis detallados',
+        '+30 créditos IA',
         'Cambia entre oposiciones',
       ],
       cta: 'Auxilio + Tramitación',
@@ -192,7 +192,7 @@ const PLANS: Record<Rama, Plan[]> = {
       features: [
         '1 test gratuito en cada tema',
         '3 simulacros (20 preguntas)',
-        '2 análisis detallados con IA',
+        '2 sesiones gratis con tu Tutor IA',
         'Sin tarjeta de crédito',
       ],
       cta: 'Empezar gratis',
@@ -207,7 +207,7 @@ const PLANS: Record<Rama, Plan[]> = {
       features: [
         'Tests ilimitados — 12 temas Correos',
         'Psicotécnicos ilimitados (10 en cada examen)',
-        '+20 análisis detallados con IA',
+        '+20 créditos IA',
         'Sin penalización — scoring real',
         'Sin suscripción — acceso permanente',
       ],
@@ -222,7 +222,7 @@ const FREE_VS_PREMIUM = [
   { feature: 'Tests por tema', free: '1 por tema', premium: 'Ilimitados' },
   { feature: 'Simulacros oficiales', free: '3 (20 preguntas)', premium: 'Ilimitados (100 preguntas)' },
   { feature: 'Psicotécnicos', free: '3', premium: 'Ilimitados' },
-  { feature: 'Análisis detallados IA', free: '2', premium: '20+ incluidos' },
+  { feature: 'Tutor IA (créditos)', free: '2', premium: '20+ incluidos' },
   { feature: 'Radar del Tribunal', free: '5 artículos', premium: 'Completo' },
   { feature: 'Flashcards', free: '—', premium: 'Ilimitadas' },
   { feature: 'Caza-Trampas', free: '3/día (1-2 errores)', premium: 'Ilimitado (1-4 errores)' },
@@ -232,9 +232,9 @@ const FREE_VS_PREMIUM = [
 const FAQS = [
   { q: '¿Es pago único o suscripción?', a: 'Pago único. Sin suscripción, sin permanencia. Compras una vez y el acceso no caduca nunca.' },
   { q: '¿Puedo cambiar de oposición?', a: 'Sí. Tu pack da acceso a la oposición seleccionada. Si quieres preparar varias, los Packs Doble o Triple son la mejor opción.' },
-  { q: '¿Qué son los análisis detallados?', a: 'Cuando fallas una pregunta, la IA te explica por qué con método socrático: empatía, pregunta guía, revelación y anclaje. Es el recurso que más aprendes, por eso es limitado.' },
-  { q: '¿Puedo recargar análisis?', a: 'Sí. Desde 8,99€ puedes añadir 10 análisis más. No necesitas contratar otro pack.' },
-  { q: '¿Qué incluye exactamente el plan gratuito?', a: '1 test en cada tema (todos abiertos), 3 simulacros de 20 preguntas, 2 análisis detallados y 3 psicotécnicos. Sin tarjeta.' },
+  { q: '¿Qué es el Tutor IA?', a: 'Cuando fallas una pregunta, el Tutor IA te explica por qué con método socrático: empatía, pregunta guía, revelación y anclaje. Cada sesión consume 1 crédito IA. Es el recurso que más aprendes, por eso es limitado.' },
+  { q: '¿Puedo recargar créditos IA?', a: 'Sí. Desde 9,99€ puedes añadir 10 créditos IA más. No necesitas contratar otro pack.' },
+  { q: '¿Qué incluye exactamente el plan gratuito?', a: '1 test en cada tema (todos abiertos), 3 simulacros de 20 preguntas, 2 sesiones gratis con tu Tutor IA y 3 psicotécnicos. Sin tarjeta.' },
 ]
 
 // ─── Page ──────────────────────────────────────────────────────────────────────
@@ -338,7 +338,7 @@ export default function PreciosPage() {
         </div>
 
         <p className="text-center text-xs text-muted-foreground">
-          Recarga de análisis: 8,99€ (+10 análisis). Recarga de supuestos prácticos (A2): 14,99€ (+5 correcciones).
+          Recarga de créditos IA: 9,99€ (+10 créditos). Cada crédito = 1 sesión con tu Tutor IA. Supuesto desarrollo = 2 créditos.
         </p>
       </section>
 

@@ -672,27 +672,115 @@ export const SYSTEM_INFORME_SIMULACRO = getSystemInformeSimulacro('Auxiliar Admi
 
 // ─── Plan de Estudio Personalizado (streaming, 1 crédito) ───────────────────
 
-export function getSystemRoadmap(oposicionNombre: string, numTemas: number, bloqueInfo: string): string {
+/** Config passed from the endpoint with real DB data */
+export interface RoadmapOpoConfig {
+  oposicionNombre: string
+  numTemas: number
+  bloqueInfo: string
+  /** e.g. 'INAP', 'MJU', 'Correos' */
+  tribunalLabel: string
+  /** Available convocatoria years for simulacros */
+  convocatorias: number[]
+  /** Feature flags from oposiciones.features */
+  features: {
+    psicotecnicos?: boolean
+    cazatrampas?: boolean
+    supuesto_test?: boolean
+    supuesto_practico?: boolean
+    ofimatica?: boolean
+  }
+  /** Scoring config for context about exam format */
+  scoring: {
+    penaliza: boolean
+    ejercicios: Array<{
+      nombre: string
+      preguntas: number
+      minutos: number | null
+      penaliza: boolean
+      max: number
+      min_aprobado: number | null
+    }>
+    minutos_total?: number
+  }
+  /** Slug for rama-specific examples */
+  slug: string
+}
+
+export function getSystemRoadmap(config: RoadmapOpoConfig): string {
+  const {
+    oposicionNombre, numTemas, bloqueInfo, tribunalLabel,
+    convocatorias, features, scoring, slug,
+  } = config
+
+  // ── Build tools list dynamically ──────────────────────────────────────
+  const tools: string[] = [
+    `- Tests por tema: 10, 20 o 30 preguntas | dificultad fácil, media o difícil (el usuario elige tema)`,
+  ]
+
+  // Simulacros — with real convocatorias
+  if (convocatorias.length > 0) {
+    const years = convocatorias.join(', ')
+    tools.push(`- Simulacro oficial ${tribunalLabel}: 20, 50 o 100 preguntas | convocatorias: ${years}, o mixto`)
+  }
+
+  tools.push(`- Flashcards: repaso espaciado por tema (el usuario elige mazo/tema desde la lista)`)
+
+  if (features.cazatrampas !== false) {
+    tools.push(`- Caza-Trampas: detectar 1, 2 o 3 errores en un texto legal ALEATORIO (NO se elige tema — la app selecciona un artículo al azar)`)
+  }
+
+  tools.push(`- Repaso de errores: revisar preguntas falladas de tests anteriores (sin parámetros — automático)`)
+  tools.push(`- Radar del Tribunal: consultar qué temas caen más en exámenes ${tribunalLabel} (solo lectura, sin parámetros)`)
+  tools.push(`- Reto Diario: 1 reto por día con un artículo manipulado — practicar a diario mantiene la racha`)
+
+  if (features.supuesto_test) {
+    tools.push(`- Supuesto Práctico (formato test): caso narrativo largo + preguntas tipo test vinculadas al caso. Simula el ejercicio práctico del examen real`)
+  }
+
+  if (features.supuesto_practico) {
+    tools.push(`- Supuesto Práctico (desarrollo): caso con preguntas de desarrollo escrito, corregido por IA con rúbrica oficial`)
+  }
+
+  if (features.psicotecnicos) {
+    tools.push(`- Psicotécnicos: series numéricas, verbales, lógicas y espaciales (entrenamiento específico)`)
+  }
+
+  // ── Scoring context ───────────────────────────────────────────────────
+  const scoringLines: string[] = []
+  if (scoring.ejercicios.length === 1) {
+    const ej = scoring.ejercicios[0]
+    scoringLines.push(`Formato examen: ${ej.preguntas} preguntas, ${ej.minutos ?? scoring.minutos_total ?? '?'} minutos.`)
+    scoringLines.push(ej.penaliza
+      ? `Penalización por error: sí (cada error resta puntos). Estrategia: NO responder en blanco si puedes descartar ≥1 opción.`
+      : `Sin penalización por error. Estrategia: RESPONDER SIEMPRE, nunca dejar en blanco.`)
+  } else {
+    scoringLines.push(`Formato examen: ${scoring.ejercicios.length} ejercicios${scoring.minutos_total ? ` (${scoring.minutos_total} min total)` : ''}:`)
+    for (const ej of scoring.ejercicios) {
+      const timer = ej.minutos ? `${ej.minutos} min` : 'tiempo compartido'
+      const pen = ej.penaliza ? 'con penalización' : 'sin penalización'
+      const min = ej.min_aprobado ? `, mínimo ${ej.min_aprobado}/${ej.max}` : ''
+      scoringLines.push(`  · ${ej.nombre}: ${ej.preguntas}q, ${timer}, ${pen}${min}`)
+    }
+  }
+
+  // ── Build example JSON adapted to the oposición ───────────────────────
+  const examplePlan = getExamplePlan(slug, tribunalLabel, features)
+
   return `Eres un preparador de oposiciones al ${oposicionNombre} con 15 años de experiencia.
 
 Temario: ${numTemas} temas. ${bloqueInfo}
 
+${scoringLines.join('\n')}
+
 Herramientas de la app OpoRuta (valores EXACTOS, no inventes otros):
-- Tests por tema: 10, 20 o 30 preguntas | dificultad fácil, media o difícil (el usuario elige tema)
-- Simulacro oficial INAP: 20, 50 o 100 preguntas | convocatorias: 2018, 2019, 2022, 2024, o mixto
-- Flashcards: repaso espaciado por tema (el usuario elige mazo/tema desde la lista)
-- Caza-Trampas: detectar 1, 2 o 3 errores en un texto legal ALEATORIO (NO se elige tema — la app selecciona un artículo al azar)
-- Repaso de errores: revisar preguntas falladas de tests anteriores (sin parámetros — automático)
-- Radar del Tribunal: consultar qué temas caen más en exámenes (solo lectura, sin parámetros)
+${tools.join('\n')}
 
 Tu respuesta tiene DOS partes con propósitos MUY DIFERENTES:
 
 1) "plan" = GUÍA ESTRATÉGICA PEDAGÓGICA. NO son tareas.
    Es el consejo de un preparador experto: qué temas priorizar y por qué,
    cómo enfocar el estudio, errores a evitar, qué bloque reforzar.
-   Ejemplo: "Tema 3 (Las Cortes Generales) es uno de los más preguntados en INAP
-   y tu nota está en 45%. Necesitas entender bien la composición del Congreso y Senado
-   antes de seguir haciendo tests. Repasa la teoría y luego practica."
+   Ejemplo: ${examplePlan.planExample}
 
 2) "tareas" = ACCIONES CONCRETAS ejecutables en la app.
    Cada tarea es algo que el usuario puede hacer HOY en OpoRuta.
@@ -700,59 +788,7 @@ Tu respuesta tiene DOS partes con propósitos MUY DIFERENTES:
 
 RESPONDE SOLO CON JSON VÁLIDO. Sin markdown, sin texto fuera del JSON.
 
-{
-  "diagnostico": "2-3 frases: nivel actual, brecha vs 75%, semanas restantes",
-  "plan": [
-    {
-      "tema": 3,
-      "titulo": "Las Cortes Generales",
-      "mensaje": "Es el 2º tema más preguntado en INAP y tu nota (45%) está lejos del aprobado. Necesitas dominar la composición del Congreso, las funciones legislativas y el procedimiento de reforma. Prioridad alta esta semana."
-    },
-    {
-      "tema": 8,
-      "titulo": "LPAC: procedimiento administrativo",
-      "mensaje": "Sin datos todavía — es un tema extenso y denso. Empieza por los plazos y el silencio administrativo, que es lo que más preguntan. No intentes abarcarlo todo de golpe."
-    },
-    {
-      "tema": 25,
-      "titulo": "Excel",
-      "mensaje": "Tu nota de 78% es buena. No pierdas tiempo repitiendo lo básico — usa Caza-Trampas para detectar errores sutiles en fórmulas y consolida el dominio."
-    }
-  ],
-  "consejo": "Esta semana céntrate en Bloque I: tienes 8 temas sin probar y el examen prioriza legislación.",
-  "tareas": [
-    {
-      "tier": "quick",
-      "accion": "Repasa flashcards de Tema 5 (Las Comunidades Autónomas)",
-      "detalle": "5 minutos para refrescar conceptos clave",
-      "tema": 5
-    },
-    {
-      "tier": "quick",
-      "accion": "Haz 1 test de 10 preguntas en Tema 8 (LPAC), dificultad fácil",
-      "detalle": "Primera toma de contacto — sin presión",
-      "tema": 8
-    },
-    {
-      "tier": "challenge",
-      "accion": "Completa Tema 3 (Las Cortes): tests de 10, 20 y 30 preguntas, subiendo de fácil a difícil",
-      "detalle": "Nota actual: 45% → objetivo: 65%",
-      "tema": 3
-    },
-    {
-      "tier": "challenge",
-      "accion": "Haz 1 Caza-Trampas con 2 errores",
-      "detalle": "¿Distingues un artículo correcto de uno manipulado? Demuéstralo",
-      "tema": null
-    },
-    {
-      "tier": "star",
-      "accion": "¿Capaz de aprobar el Simulacro INAP 2024? 100 preguntas, sin mirar atrás",
-      "detalle": "Si sacas más de 70%, estás en zona de aprobado. Atrévete.",
-      "tema": null
-    }
-  ]
-}
+${examplePlan.jsonExample}
 
 REGLAS PLAN:
 - 3-5 temas, los más relevantes según datos del opositor
@@ -764,13 +800,16 @@ REGLAS PLAN:
 REGLAS TAREAS (lee primero DEDICACIÓN SEMANAL para saber cuántas):
 - "tier" SOLO: "quick", "challenge" o "star"
 - "tema": número 1-${numTemas} o null. Cada tema MÁXIMO 1 vez
-- VARÍA herramientas: NO todo tests. Mezcla: tests, simulacros, caza-trampas, flashcards, repaso errores
+- VARÍA herramientas: NO todo tests. Mezcla las herramientas disponibles listadas arriba
 - Tests: 10, 20 o 30 preguntas. Simulacros: 20, 50 o 100. Caza-Trampas: 1, 2 o 3 errores
 - Caza-Trampas: NUNCA pongas tema — el artículo es aleatorio. Solo indica el número de errores
 - Para "challenge": sugiere PROGRESIÓN (ej: "tests de 10, 20 y 30 variando dificultad")
 - Nota >70%: caza-trampas o dificultad difícil. Nota <40%: fácil 10 preguntas. Sin datos: fácil 10 preguntas
 - "star" formulado como RETO que pica, no como instrucción
 - Datos reales, NUNCA inventes notas
+${features.supuesto_test ? `- Supuesto Práctico test: inclúyelo como "challenge" o "star" si el opositor no lo ha practicado aún. Es ejercicio eliminatorio.` : ''}
+${features.supuesto_practico ? `- Supuesto Práctico desarrollo: inclúyelo como "star" si el opositor necesita practicar redacción. Es ejercicio eliminatorio.` : ''}
+${features.psicotecnicos ? `- Psicotécnicos: inclúyelos como "quick" o "challenge" — son puntos fáciles si se practican.` : ''}
 
 DEDICACIÓN SEMANAL — controla VOLUMEN de trabajo, NO dificultad:
 
@@ -805,8 +844,132 @@ REGLA UNIVERSAL: Dentro de CADA nivel, las tareas van de fácil a difícil (quic
 Nunca pongas TODO difícil ni TODO fácil — siempre hay una curva de esfuerzo que engancha al opositor.`
 }
 
-export const SYSTEM_ROADMAP = getSystemRoadmap(
-  'Auxiliar Administrativo del Estado',
-  28,
-  'Bloque I (1-16): Derecho. Bloque II (17-28): Ofimática.'
-)
+/** Generates context-appropriate examples per rama/oposición */
+function getExamplePlan(slug: string, tribunalLabel: string, features: RoadmapOpoConfig['features']) {
+  // Supuesto test task example (only if the oposición has it)
+  const supuestoTask = features.supuesto_test
+    ? `,
+    {
+      "tier": "star",
+      "accion": "Completa 1 Supuesto Práctico test — caso completo con preguntas vinculadas",
+      "detalle": "Simula el ejercicio eliminatorio real. ¿Llegas al mínimo?",
+      "tema": null
+    }`
+    : ''
+
+  const psicotecnicoTask = features.psicotecnicos
+    ? `,
+    {
+      "tier": "quick",
+      "accion": "Haz 1 sesión de psicotécnicos (series numéricas)",
+      "detalle": "5 minutos para calentar — puntos fáciles si los practicas",
+      "tema": null
+    }`
+    : ''
+
+  if (slug.includes('correos')) {
+    return {
+      planExample: `"Tema 6 (Procesos de admisión) es clave en el examen de Correos y tu nota (42%) está lejos del aprobado. Domina los tipos de envíos y las tarifas antes de seguir haciendo tests."`,
+      jsonExample: buildExampleJson({
+        plan: [
+          { tema: 6, titulo: 'Procesos de admisión', mensaje: 'Es uno de los temas más preguntados en Correos y tu nota (42%) está lejos. Domina los tipos de envíos, certificados y tarifas.' },
+          { tema: 3, titulo: 'Productos y servicios postales', mensaje: 'Sin datos — empieza por las tarifas y servicios más comunes. No intentes memorizar todo de golpe.' },
+          { tema: 12, titulo: 'Protección de datos', mensaje: 'Nota de 80% — consolida con Caza-Trampas para pillar matices del RGPD.' },
+        ],
+        tareas: [
+          { tier: 'quick', accion: 'Repasa flashcards de Tema 6 (Procesos de admisión)', detalle: '5 minutos', tema: 6 },
+          { tier: 'quick', accion: 'Haz 1 test de 10 preguntas en Tema 3 (Productos postales), dificultad fácil', detalle: 'Primera toma de contacto', tema: 3 },
+          { tier: 'challenge', accion: 'Completa Tema 6: tests de 10, 20 y 30 subiendo dificultad', detalle: 'Nota actual: 42% → objetivo: 65%', tema: 6 },
+          { tier: 'challenge', accion: 'Haz 1 Caza-Trampas con 2 errores', detalle: 'Sin penalización en Correos, pero necesitas precisión', tema: null },
+          { tier: 'star', accion: `¿Apruebas el Simulacro Correos 2023? 100 preguntas, sin penalización`, detalle: 'Recuerda: responde TODO, no hay penalización', tema: null },
+        ],
+        psicotecnicoTask,
+        supuestoTask,
+      }),
+    }
+  }
+
+  if (slug.includes('auxilio') || slug.includes('tramitacion') || slug.includes('gestion-procesal')) {
+    const isAuxilio = slug.includes('auxilio')
+    const isTramitacion = slug.includes('tramitacion')
+    return {
+      planExample: `"Tema 8 (Procedimiento civil ordinario) es recurrente en exámenes ${tribunalLabel} y tu nota (38%) es insuficiente. Céntrate en los plazos y fases del juicio ordinario."`,
+      jsonExample: buildExampleJson({
+        plan: [
+          { tema: 8, titulo: 'Procedimiento civil ordinario', mensaje: `Es recurrente en ${tribunalLabel} y tu nota (38%) está lejos. Céntrate en plazos, fases del ordinario y verbal.` },
+          { tema: 3, titulo: 'La Constitución Española', mensaje: 'Sin datos — es la base de todo. Empieza por Título Preliminar y derechos fundamentales.' },
+          { tema: isAuxilio ? 20 : 25, titulo: isTramitacion ? 'Ofimática Word' : 'Ejecución civil', mensaje: 'Nota de 75% — consolida con tests difíciles para asegurar este bloque.' },
+        ],
+        tareas: [
+          { tier: 'quick', accion: 'Repasa flashcards de Tema 3 (Constitución)', detalle: '5 minutos', tema: 3 },
+          { tier: 'quick', accion: 'Haz 1 test de 10 preguntas en Tema 8, dificultad fácil', detalle: 'Primer contacto con procesal civil', tema: 8 },
+          { tier: 'challenge', accion: 'Completa Tema 8: tests de 10, 20 y 30 subiendo dificultad', detalle: 'Nota actual: 38% → objetivo: 60%', tema: 8 },
+          { tier: 'challenge', accion: 'Haz 1 Caza-Trampas con 2 errores', detalle: 'Detecta artículos manipulados — clave para no caer en trampas del tribunal', tema: null },
+          { tier: 'star', accion: `¿Superas el Simulacro ${tribunalLabel} 2025? 100 preguntas con penalización`, detalle: 'Penalización activa — solo responde si puedes descartar opciones', tema: null },
+        ],
+        psicotecnicoTask,
+        supuestoTask,
+      }),
+    }
+  }
+
+  if (slug.includes('gestion') && slug.includes('estado')) {
+    // GACE A2
+    return {
+      planExample: `"Tema 15 (Contratos del sector público) es uno de los más densos y tu nota (35%) indica que necesitas reforzar la base. Prioriza los tipos de contratos y procedimientos de adjudicación."`,
+      jsonExample: buildExampleJson({
+        plan: [
+          { tema: 15, titulo: 'Contratos del sector público', mensaje: 'Tema denso y muy preguntado. Tu nota (35%) indica que necesitas reforzar tipos de contratos y adjudicación.' },
+          { tema: 5, titulo: 'LPAC: procedimiento administrativo', mensaje: 'Sin datos — empieza por plazos, silencio administrativo y recursos. Es la base del derecho administrativo.' },
+          { tema: 30, titulo: 'Presupuestos Generales del Estado', mensaje: 'Nota de 72% — consolida con dificultad difícil.' },
+        ],
+        tareas: [
+          { tier: 'quick', accion: 'Repasa flashcards de Tema 15 (Contratos)', detalle: '5 minutos', tema: 15 },
+          { tier: 'quick', accion: 'Haz 1 test de 10 preguntas en Tema 5 (LPAC), dificultad fácil', detalle: 'Primer contacto', tema: 5 },
+          { tier: 'challenge', accion: 'Completa Tema 15: tests de 10, 20 y 30 subiendo dificultad', detalle: 'Nota actual: 35% → objetivo: 60%', tema: 15 },
+          { tier: 'challenge', accion: 'Haz 1 Caza-Trampas con 2 errores', detalle: 'Legislación avanzada — ¿pillas el error?', tema: null },
+          { tier: 'star', accion: 'Completa 1 Supuesto Práctico de desarrollo — 5 cuestiones en 150 minutos', detalle: 'Ejercicio eliminatorio. ¿Tu redacción convence al tribunal?', tema: null },
+        ],
+        psicotecnicoTask,
+        supuestoTask,
+      }),
+    }
+  }
+
+  // Default: AGE C2 / C1
+  const isC1 = slug.includes('administrativo-estado') || slug.includes('c1')
+  return {
+    planExample: `"Tema 3 (Las Cortes Generales) es uno de los más preguntados en ${tribunalLabel} y tu nota (45%) está lejos del aprobado. Necesitas dominar la composición del Congreso y Senado."`,
+    jsonExample: buildExampleJson({
+      plan: [
+        { tema: 3, titulo: 'Las Cortes Generales', mensaje: `Es el 2º tema más preguntado en ${tribunalLabel} y tu nota (45%) está lejos del aprobado. Domina la composición del Congreso, funciones legislativas y procedimiento de reforma.` },
+        { tema: 8, titulo: isC1 ? 'LPAC: procedimiento administrativo' : 'La LPAC', mensaje: 'Sin datos — tema extenso. Empieza por plazos y silencio administrativo.' },
+        { tema: isC1 ? 20 : 25, titulo: isC1 ? 'Contratación pública' : 'Excel', mensaje: 'Nota de 78% — consolida con Caza-Trampas o dificultad difícil.' },
+      ],
+      tareas: [
+        { tier: 'quick', accion: 'Repasa flashcards de Tema 5 (Las Comunidades Autónomas)', detalle: '5 minutos', tema: 5 },
+        { tier: 'quick', accion: 'Haz 1 test de 10 preguntas en Tema 8, dificultad fácil', detalle: 'Primera toma de contacto', tema: 8 },
+        { tier: 'challenge', accion: 'Completa Tema 3: tests de 10, 20 y 30 subiendo de fácil a difícil', detalle: 'Nota actual: 45% → objetivo: 65%', tema: 3 },
+        { tier: 'challenge', accion: 'Haz 1 Caza-Trampas con 2 errores', detalle: '¿Distingues un artículo correcto de uno manipulado?', tema: null },
+        { tier: 'star', accion: `¿Capaz de aprobar el Simulacro ${tribunalLabel} 2024? 100 preguntas, sin mirar atrás`, detalle: 'Si sacas más de 70%, estás en zona de aprobado. Atrévete.', tema: null },
+      ],
+      psicotecnicoTask,
+      supuestoTask,
+    }),
+  }
+}
+
+/** Helper to build the example JSON block for the prompt */
+function buildExampleJson(opts: {
+  plan: Array<{ tema: number; titulo: string; mensaje: string }>
+  tareas: Array<{ tier: string; accion: string; detalle: string; tema: number | null }>
+  psicotecnicoTask: string
+  supuestoTask: string
+}): string {
+  return `{
+  "diagnostico": "2-3 frases: nivel actual, brecha vs 75%, semanas restantes",
+  "plan": ${JSON.stringify(opts.plan, null, 4)},
+  "consejo": "Esta semana céntrate en los temas más débiles y refuerza con práctica variada.",
+  "tareas": ${JSON.stringify(opts.tareas, null, 4)}
+}`
+}

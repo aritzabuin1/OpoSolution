@@ -139,7 +139,7 @@ const plans = [
     features: [
       '1 test gratuito en cada tema',
       '1 simulacro oficial + 3 psicotécnicos',
-      '2 análisis detallados',
+      '2 sesiones gratis con tu Tutor IA',
       'Sin tarjeta de crédito',
     ],
     cta: 'Empezar gratis',
@@ -154,7 +154,7 @@ const plans = [
     features: [
       'Tests ilimitados — Auxiliar (C2) o Administrativo (C1)',
       'Simulacros y psicotécnicos ilimitados',
-      '+20 análisis detallados + Radar',
+      '+20 créditos IA + Radar',
       'Sin suscripción — pago único',
     ],
     cta: 'Empezar mi ruta',
@@ -169,7 +169,7 @@ const plans = [
     features: [
       'Tests ilimitados — Gestión del Estado (A2 GACE)',
       '58 temas en 6 bloques + simulacros INAP',
-      '+20 análisis + 5 supuestos prácticos con IA',
+      '+20 créditos IA + 5 supuestos prácticos con IA',
       'Corrección con rúbrica oficial INAP',
     ],
     cta: 'Empezar con A2',
@@ -184,7 +184,7 @@ const plans = [
     features: [
       'Acceso completo a C1 y C2',
       'Simulacros y psicotécnicos ilimitados',
-      '+30 análisis detallados + Radar',
+      '+30 créditos IA + Radar',
       'Cambia entre oposiciones cuando quieras',
     ],
     cta: 'C1 + C2',
@@ -198,7 +198,7 @@ const plans = [
     badge: 'Todo incluido',
     features: [
       'Las 3 oposiciones AGE: C2 + C1 + A2',
-      '+40 análisis + 5 supuestos prácticos IA',
+      '+40 créditos IA + 5 supuestos prácticos IA',
       'Simulacros, Radar, todo ilimitado',
       'Máximo ahorro — preparas todo',
     ],
@@ -218,8 +218,8 @@ const faqs = [
     a: 'OpoRuta cubre las tres oposiciones de la Administración General del Estado: Auxiliar Administrativo (C2, 28 temas), Administrativo del Estado (C1, 45 temas) y Gestión del Estado GACE (A2, 58 temas con supuesto práctico IA). También Correos (12 temas, sin penalización, 4.055 plazas). Próximamente añadiremos Justicia (Auxilio, Tramitación y Gestión Procesal).',
   },
   {
-    q: '¿Qué pasa cuando agoto mis análisis detallados?',
-    a: 'Puedes recargar análisis desde 8,99€ (+10 análisis detallados) directamente desde tu panel, sin necesidad de contratar nada nuevo. Los tests de tipo test siguen siendo ilimitados — los análisis detallados son el único recurso limitado.',
+    q: '¿Qué pasa cuando agoto mis créditos IA?',
+    a: 'Puedes recargar créditos IA desde 9,99€ (+10 créditos) directamente desde tu panel, sin necesidad de contratar nada nuevo. Los tests de tipo test siguen siendo ilimitados — los créditos IA son el único recurso limitado.',
   },
   {
     q: '¿La IA puede equivocarse?',
@@ -227,7 +227,7 @@ const faqs = [
   },
   {
     q: '¿Qué incluye exactamente el plan gratuito?',
-    a: 'El plan gratuito incluye 1 test gratuito en cada tema (Constitución, LPAC, TREBEP y todos los demás), 1 simulacro oficial, 3 psicotécnicos y 2 análisis detallados. No necesitas tarjeta de crédito para empezar.',
+    a: 'El plan gratuito incluye 1 test gratuito en cada tema (Constitución, LPAC, TREBEP y todos los demás), 1 simulacro oficial, 3 psicotécnicos y 2 sesiones gratis con tu Tutor IA. No necesitas tarjeta de crédito para empezar.',
   },
   {
     q: '¿Con qué frecuencia se actualiza la legislación?',
@@ -247,7 +247,7 @@ const faqs = [
   },
   {
     q: '¿Cuánto cuesta preparar la oposición A2 (GACE)?',
-    a: 'El Pack Gestión del Estado A2 cuesta 69,99€ (pago único, sin suscripción). Incluye tests ilimitados en los 58 temas, 20 análisis detallados y 5 supuestos prácticos con corrección IA. Las academias cobran 140€/mes solo por la corrección de supuestos — con OpoRuta lo tienes todo por un pago único.',
+    a: 'El Pack Gestión del Estado A2 cuesta 69,99€ (pago único, sin suscripción). Incluye tests ilimitados en los 58 temas, 20 créditos IA y 5 supuestos prácticos con corrección IA. Las academias cobran 140€/mes solo por la corrección de supuestos — con OpoRuta lo tienes todo por un pago único.',
   },
 ]
 
@@ -374,28 +374,28 @@ const jsonLdApp = {
       price: '49.99',
       priceCurrency: 'EUR',
       name: 'Pack C2 o C1',
-      description: 'Tests ilimitados en Auxiliar (C2) o Administrativo (C1), simulacros ilimitados, 20 análisis detallados',
+      description: 'Tests ilimitados en Auxiliar (C2) o Administrativo (C1), simulacros ilimitados, 20 créditos IA',
     },
     {
       '@type': 'Offer',
       price: '69.99',
       priceCurrency: 'EUR',
       name: 'Pack Gestión del Estado A2',
-      description: 'Tests ilimitados A2 GACE (58 temas), 20 análisis detallados, 5 supuestos prácticos con corrección IA',
+      description: 'Tests ilimitados A2 GACE (58 temas), 20 créditos IA, 5 supuestos prácticos con corrección IA',
     },
     {
       '@type': 'Offer',
       price: '79.99',
       priceCurrency: 'EUR',
       name: 'Pack Doble (C2+C1)',
-      description: 'Acceso completo a C1 y C2, simulacros ilimitados, 30 análisis detallados',
+      description: 'Acceso completo a C1 y C2, simulacros ilimitados, 30 créditos IA',
     },
     {
       '@type': 'Offer',
       price: '129.99',
       priceCurrency: 'EUR',
       name: 'Pack Triple AGE (C2+C1+A2)',
-      description: 'Las 3 oposiciones AGE completas, 40 análisis, 5 supuestos prácticos IA',
+      description: 'Las 3 oposiciones AGE completas, 40 créditos IA, 5 supuestos prácticos IA',
     },
   ],
   educationalUse: 'Practice',
@@ -729,7 +729,7 @@ export default async function LandingPage() {
           <div className="text-center mt-10">
             <Link href="/register">
               <Button size="lg" className="gap-2">
-                Pruébalo con tus errores — 2 análisis gratis
+                Pruébalo con tus errores — 2 sesiones gratis
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
@@ -814,7 +814,7 @@ export default async function LandingPage() {
             </h2>
             <p className="mt-3 text-muted-foreground">
               Sin permanencias. Sin suscripción. Pago único — acceso para siempre.
-              ¿Te quedas sin análisis detallados? Recárgalos desde 8,99€.
+              ¿Te quedas sin créditos IA? Recárgalos desde 9,99€.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 max-w-7xl mx-auto">

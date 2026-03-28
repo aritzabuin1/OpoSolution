@@ -14,8 +14,8 @@ export const maxDuration = 60
 /**
  * POST /api/ai/corregir-supuesto/stream
  *
- * Corrige un supuesto práctico usando la rúbrica oficial INAP.
- * Consume 1 crédito de supuesto (supuestos_balance).
+ * Corrige un supuesto práctico usando la rúbrica oficial INAP/MJU.
+ * Consume 2 créditos IA (corrections_balance) — genera caso + corrige.
  * Streaming response for real-time feedback.
  */
 
@@ -86,26 +86,26 @@ export async function POST(request: NextRequest) {
     oposicionSlug = (opoRow as { slug?: string } | null)?.slug ?? ''
   } catch { /* fallback to INAP rubric */ }
 
-  // Check supuestos balance (admin bypass)
+  // Check créditos IA balance (admin bypass). Supuesto desarrollo = 2 créditos.
   const isAdmin = await checkIsAdmin(serviceSupabase, user.id)
   let canCorrect = isAdmin
 
   if (!isAdmin) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: profile } = await (serviceSupabase as any)
+    const { data: profile } = await serviceSupabase
       .from('profiles')
-      .select('supuestos_balance')
+      .select('corrections_balance, free_corrector_used')
       .eq('id', user.id)
       .single()
 
-    const balance = (profile as { supuestos_balance?: number } | null)?.supuestos_balance ?? 0
-    canCorrect = balance > 0
+    const paidBalance = profile?.corrections_balance ?? 0
+    const freeRemaining = Math.max(0, 2 - (profile?.free_corrector_used ?? 0))
+    canCorrect = (paidBalance + freeRemaining) >= 2
   }
 
   if (!canCorrect) {
     return NextResponse.json({
-      error: 'No tienes correcciones de supuesto disponibles.',
-      code: 'PAYWALL_SUPUESTOS',
+      error: 'Necesitas al menos 2 créditos IA para corregir un supuesto desarrollo.',
+      code: 'PAYWALL_CORRECTIONS',
     }, { status: 402 })
   }
 
@@ -178,21 +178,29 @@ export async function POST(request: NextRequest) {
     context: { supuestoId },
     oposicionId,
     onComplete: async () => {
-      // Deduct 1 supuesto credit (admin bypass)
+      // Deduct 2 créditos IA (admin bypass). Use paid credits first, then free.
       if (!isAdmin) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const { data: currentProfile } = await (serviceSupabase as any)
+        // Deduct credit 1
+        const { data: p1 } = await serviceSupabase
           .from('profiles')
-          .select('supuestos_balance')
+          .select('corrections_balance, free_corrector_used')
           .eq('id', userId)
           .single()
-        const currentBalance = (currentProfile as { supuestos_balance?: number } | null)?.supuestos_balance ?? 0
-        if (currentBalance > 0) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          await (serviceSupabase as any)
-            .from('profiles')
-            .update({ supuestos_balance: currentBalance - 1 })
-            .eq('id', userId)
+        if ((p1?.corrections_balance ?? 0) > 0) {
+          await serviceSupabase.rpc('use_correction', { p_user_id: userId })
+        } else {
+          await serviceSupabase.rpc('use_free_correction', { p_user_id: userId })
+        }
+        // Deduct credit 2
+        const { data: p2 } = await serviceSupabase
+          .from('profiles')
+          .select('corrections_balance, free_corrector_used')
+          .eq('id', userId)
+          .single()
+        if ((p2?.corrections_balance ?? 0) > 0) {
+          await serviceSupabase.rpc('use_correction', { p_user_id: userId })
+        } else {
+          await serviceSupabase.rpc('use_free_correction', { p_user_id: userId })
         }
       }
 

@@ -5,7 +5,7 @@
  *
  * Dashboard card for generating a personalized study roadmap.
  * Uses AI streaming → parses structured JSON → renders visual cards.
- * Consumes 1 analysis credit.
+ * Free users: consumes 1 IA credit. Premium users: free (retention tool).
  */
 
 import { useState, useRef, useEffect, useMemo, useCallback } from 'react'
@@ -16,6 +16,7 @@ import {
   Trophy, Lightbulb, BarChart3, GraduationCap,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useIsPremium } from '@/lib/hooks/useIsPremium'
 import {
   Dialog,
   DialogContent,
@@ -64,6 +65,7 @@ export interface UserActivity {
   testsByTema: Record<number, string[]>
   simulacrosCount: number
   psicotecnicosCount: number
+  supuestoTestCount: number
   cazatrampasCount: number
   flashcardsReviewed: number
 }
@@ -119,6 +121,9 @@ function isTaskCompleted(task: RoadmapTask, activity: UserActivity, generatedAt:
   if (/simulacro/i.test(lower)) return activity.simulacrosCount > 0
   if (/flashcard/i.test(lower)) return activity.flashcardsReviewed > 0
   if (/caza.?trampa/i.test(lower)) return activity.cazatrampasCount > 0
+  if (/supuesto/i.test(lower)) return activity.supuestoTestCount > 0
+  if (/psicot[eé]cnico/i.test(lower)) return activity.psicotecnicosCount > 0
+  if (/reto\s*diario/i.test(lower)) return true // daily challenge = always available, count as done if mentioned
 
   return false
 }
@@ -323,7 +328,7 @@ function ConfirmGenerateDialog({ open, onOpenChange, onConfirm }: {
           <DialogTitle>Generar plan de estudio</DialogTitle>
         </DialogHeader>
         <p className="text-sm text-muted-foreground">
-          Esto consumirá 1 análisis detallado. La IA analizará tu historial completo y creará un plan personalizado para esta semana.
+          La IA analizará tu historial completo y creará un plan personalizado para esta semana.
         </p>
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
@@ -341,6 +346,7 @@ function ConfirmGenerateDialog({ open, onOpenChange, onConfirm }: {
 // ── Main component ──────────────────────────────────────────────────────────
 
 export function RoadmapCard({ activity, oposicionId }: RoadmapCardProps) {
+  const isPremium = useIsPremium()
   // Storage key scoped per oposición — switching C1/C2 preserves each plan
   const STORAGE_KEY = oposicionId ? `${STORAGE_KEY_PREFIX}_${oposicionId}` : STORAGE_KEY_PREFIX
   const [state, setState] = useState<CardState>('idle')
@@ -498,7 +504,7 @@ export function RoadmapCard({ activity, oposicionId }: RoadmapCardProps) {
         >
           {state === 'error' ? <RotateCcw className="h-4 w-4" /> : <Zap className="h-4 w-4" />}
           {state === 'error' ? 'Reintentar' : 'Generar plan'}
-          <span className="text-[10px] opacity-70 ml-1">1 análisis</span>
+          {isPremium !== true && <span className="text-[10px] opacity-70 ml-1">1 crédito IA</span>}
         </Button>
 
         <ConfirmGenerateDialog
@@ -730,7 +736,7 @@ export function RoadmapCard({ activity, oposicionId }: RoadmapCardProps) {
             className="text-[11px] text-muted-foreground hover:text-foreground gap-1.5"
           >
             <RotateCcw className="h-3 w-3" />
-            Regenerar (1 análisis)
+            Regenerar{isPremium !== true ? ' (1 crédito IA)' : ''}
           </Button>
         </div>
       )}

@@ -6285,7 +6285,7 @@ export const blogPosts: BlogPost[] = [
 </p>
 <p>
   <strong><a href="/register">Empieza gratis en OpoRuta</a></strong> y practica con tests específicos
-  por tema, simulacros de convocatorias reales y análisis detallados de tus errores.
+  por tema, simulacros de convocatorias reales y tu Tutor IA para entender cada error.
 </p>
 
 <p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
@@ -6482,7 +6482,7 @@ export const blogPosts: BlogPost[] = [
 <p>
   Si cumples todos los requisitos y quieres empezar a preparar con tests del temario real,
   <strong><a href="/register">prueba OpoRuta gratis</a></strong>: tests por tema, simulacros de convocatorias
-  pasadas y análisis detallados de tus errores.
+  pasadas y tu Tutor IA para entender cada error.
 </p>
 
 <p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
@@ -6624,7 +6624,7 @@ export const blogPosts: BlogPost[] = [
 </p>
 <p>
   <strong><a href="/register">Empieza gratis en OpoRuta</a></strong> y practica con tests del temario oficial,
-  simulacros de convocatorias pasadas (2019, 2022, 2024) y análisis detallados de tus errores.
+  simulacros de convocatorias pasadas (2019, 2022, 2024) y tu Tutor IA para entender cada error.
   Cada día que pasa es un día menos para preparar.
 </p>
 
@@ -7247,7 +7247,7 @@ export const blogPosts: BlogPost[] = [
 
 <p>
   <strong><a href="/register">Empieza gratis en OpoRuta</a></strong> y practica con tests específicos
-  de la Ley 19/2013, simulacros de convocatorias reales y análisis detallados de tus errores.
+  de la Ley 19/2013, simulacros de convocatorias reales y tu Tutor IA para entender cada error.
 </p>
 
 <p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
@@ -7535,7 +7535,7 @@ export const blogPosts: BlogPost[] = [
 
 <p>
   <strong><a href="/register">Empieza gratis en OpoRuta</a></strong> y practica con tests específicos
-  del Bloque IV, simulacros de convocatorias reales y análisis detallados de tus errores.
+  del Bloque IV, simulacros de convocatorias reales y tu Tutor IA para entender cada error.
 </p>
 
 <p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
@@ -7644,7 +7644,7 @@ export const blogPosts: BlogPost[] = [
 </p>
 <p>
   Además, tienes tests para los 58 temas del temario, simulacros con preguntas oficiales,
-  flashcards con repetición espaciada y análisis detallados de tus errores.
+  flashcards con repetición espaciada y tu Tutor IA para entender cada error.
 </p>
 <p>
   <strong><a href="/register">Empieza a preparar tu oposición GACE con OpoRuta</a></strong> — incluye
@@ -8591,7 +8591,7 @@ export const blogPosts: BlogPost[] = [
     faqs: [
       { question: '¿Es fiable la corrección del supuesto práctico con IA?', answer: 'La IA de OpoRuta usa los mismos 4 criterios y ponderaciones que el tribunal INAP: conocimiento aplicado (60%), análisis (20%), sistemática (10%) y expresión (10%). Verifica tus citas legales contra la legislación vigente y ofrece feedback consistente. No sustituye al tribunal real, pero te permite practicar ilimitadamente con feedback instantáneo — algo que ninguna academia puede ofrecer.' },
       { question: '¿Puedo confiar en la nota que me da la IA?', answer: 'La nota de la IA es una referencia orientativa muy útil para medir tu progreso. Aplica los mismos criterios del tribunal de forma consistente, lo que te permite ver si mejoras con cada supuesto. La nota real del tribunal puede variar ligeramente, pero la estructura de la evaluación (qué valoran y cuánto pesa cada criterio) es idéntica.' },
-      { question: '¿Cuántos supuestos puedo practicar con OpoRuta?', answer: 'Con el Pack GACE (69,99€ pago único), puedes generar y practicar tantos supuestos como necesites. Cada caso es diferente, generado por IA con los patrones del INAP. No hay límite mensual de supuestos — solo de análisis detallados (que consumen créditos de corrección).' },
+      { question: '¿Cuántos supuestos puedo practicar con OpoRuta?', answer: 'Con el Pack GACE (69,99€ pago único), puedes generar y practicar tantos supuestos como necesites. Cada caso es diferente, generado por IA con los patrones del INAP. No hay límite mensual de supuestos — solo de créditos IA (cada sesión con tu Tutor IA consume 1 crédito).' },
       { question: '¿Mis respuestas se comparten o se usan para entrenar modelos?', answer: 'No. Tus respuestas se procesan exclusivamente para generar tu feedback y no se comparten con terceros ni se utilizan para entrenar modelos de IA. OpoRuta cumple con el RGPD y la LOPDGDD. Puedes solicitar la eliminación completa de tus datos en cualquier momento desde tu cuenta.' },
       { question: '¿Qué diferencia hay entre la corrección de OpoRuta y la de una academia?', answer: 'La principal diferencia es velocidad y coste. Una academia tarda 1-2 semanas en devolverte un supuesto corregido y cobra 140-200€/mes. OpoRuta te da feedback en segundos por 69,99€ de pago único. Además, la IA aplica la rúbrica de forma consistente en cada corrección, mientras que un preparador humano puede variar su criterio.' },
     ],
@@ -8774,7 +8774,7 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Dónde puedo corregir supuestos prácticos de GACE online?', answer: 'OpoRuta es la única plataforma que corrige supuestos prácticos de GACE online con IA, aplicando los 4 criterios oficiales del tribunal INAP. Generas un caso, escribes tu respuesta y recibes puntuación, feedback por pregunta y respuesta modelo en segundos. Las academias presenciales tardan 1-2 semanas y cobran 140-200€/mes. OpoRuta cuesta 69,99€ de pago único.' },
       { question: '¿La corrección con IA usa los mismos criterios que el tribunal INAP?', answer: 'Sí. OpoRuta aplica los 4 criterios publicados por el INAP para evaluar el segundo ejercicio de GACE: conocimiento aplicado a situaciones prácticas (60%, hasta 30 puntos), capacidad de análisis (20%, hasta 10 puntos), sistemática y organización (10%, hasta 5 puntos) y expresión escrita (10%, hasta 5 puntos). La nota orientativa es sobre 50 puntos, igual que en el examen real.' },
       { question: '¿Es fiable una corrección de supuesto hecha por IA?', answer: 'La IA aplica criterios consistentes en cada corrección y verifica las citas legales contra la legislación vigente (art. X de la ley Y existe y dice lo que afirmas). No sustituye al tribunal real, pero te permite iterar rápidamente: ver dónde fallas, qué artículos te faltan y cómo mejorar la estructura. Es una herramienta de entrenamiento, no una predicción exacta de tu nota.' },
-      { question: '¿Cuántos supuestos puedo corregir con OpoRuta?', answer: 'El Pack Gestión A2 (69,99€ pago único) incluye 5 correcciones de supuesto práctico con feedback detallado, además de tests ilimitados y 20 análisis detallados de test. Puedes adquirir correcciones adicionales con la recarga de análisis (8,99€).' },
+      { question: '¿Cuántos supuestos puedo corregir con OpoRuta?', answer: 'El Pack Gestión A2 (69,99€ pago único) incluye 5 correcciones de supuesto práctico con feedback detallado, además de tests ilimitados y 20 créditos IA (Tutor IA). Puedes adquirir créditos adicionales con la recarga de créditos IA (9,99€).' },
     ],
     content: `
 <h2>El problema de todo opositor GACE que prepara por libre: ¿quién me corrige?</h2>

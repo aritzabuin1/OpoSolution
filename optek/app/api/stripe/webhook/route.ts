@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { stripe, CORRECTIONS_GRANTED, SUPUESTOS_GRANTED, TIER_TO_OPOSICION } from '@/lib/stripe/client'
+import { stripe, CORRECTIONS_GRANTED, TIER_TO_OPOSICION } from '@/lib/stripe/client'
 import { createServiceClient } from '@/lib/supabase/server'
 import { sendPostPurchaseEmail } from '@/lib/email/client'
 import { logger } from '@/lib/logger'
@@ -126,14 +126,13 @@ async function handleStripeEvent(
         pack_doble_justicia: 'pack_oposicion',
         pack_triple_justicia: 'pack_oposicion',
         recarga: 'pack_oposicion',
-        recarga_sup: 'pack_oposicion',
       }
       const dbTipo = TIER_TO_DB_TIPO[tier] ?? 'pack_oposicion'
 
       // 1. Registrar compra(s)
       // RECARGA: NO crea fila en compras — solo otorga créditos (paso 2).
-      // Si creara fila, checkPaidAccess la contaría como acceso premium (bug: 8,99€ desbloquea todo).
-      if (tier === 'recarga' || tier === 'recarga_sup') {
+      // Si creara fila, checkPaidAccess la contaría como acceso premium (bug: 9,99€ desbloquea todo).
+      if (tier === 'recarga') {
         // Skip compra insert for recargas — only grant credits in step 2
       } else {
         // Resolve oposicion IDs from TIER_TO_OPOSICION (supports combos)
@@ -169,23 +168,7 @@ async function handleStripeEvent(
         log.info({ sessionId: session.id, tier, correctionsToGrant }, 'Correcciones otorgadas')
       }
 
-      // 2b. Otorgar supuestos prácticos si aplica (pool separado: supuestos_balance)
-      const supuestosToGrant = SUPUESTOS_GRANTED[tier] ?? 0
-      if (supuestosToGrant > 0) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const { data: currentProfile } = await (supabase as any)
-          .from('profiles')
-          .select('supuestos_balance')
-          .eq('id', userId)
-          .single()
-        const currentBalance = (currentProfile as { supuestos_balance?: number } | null)?.supuestos_balance ?? 0
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        await (supabase as any)
-          .from('profiles')
-          .update({ supuestos_balance: currentBalance + supuestosToGrant })
-          .eq('id', userId)
-        log.info({ sessionId: session.id, tier, supuestosToGrant, newBalance: currentBalance + supuestosToGrant }, 'Supuestos prácticos otorgados')
-      }
+      // supuestos_balance removed — supuesto desarrollo now uses créditos IA (2 per use)
 
       log.info({ sessionId: session.id, tier, dbTipo }, 'Compra registrada')
 

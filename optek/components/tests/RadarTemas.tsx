@@ -150,7 +150,7 @@ export default function RadarTemas({ temas, isPaid, freeLimit = 5 }: RadarTemasP
           <div className="space-y-2 pt-2">
             <BuyButton tier={tier} label={`Desbloquear Radar completo — ${price}`} size="default" className="px-8" />
             <p className="text-xs text-muted-foreground">
-              Pago único · Incluye tests ilimitados + 20 análisis detallados + simulacros
+              Pago único · Incluye tests ilimitados + 20 créditos IA + simulacros
             </p>
           </div>
         </div>

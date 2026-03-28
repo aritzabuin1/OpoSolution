@@ -61,7 +61,7 @@ function getTestOptions(oposicionId?: string): PricingOption[] {
   const tier = isA2 ? 'pack_a2' as const : isC1 ? 'pack_c1' as const : 'pack' as const
   const label = isA2 ? 'Pack Gestión del Estado A2' : isC1 ? 'Pack Administrativo C1' : 'Pack Auxiliar C2'
   const price = isA2 ? '69,99€' : '49,99€'
-  const corrections = isA2 ? '+ 20 análisis + 5 supuestos prácticos' : '+ 20 análisis detallados incluidos'
+  const corrections = isA2 ? '+ 25 créditos IA (tests + supuestos)' : '+ 20 créditos IA incluidos'
   return [
     {
       tier,
@@ -77,9 +77,9 @@ function getTestOptions(oposicionId?: string): PricingOption[] {
 const OPTIONS_RECARGA: PricingOption[] = [
   {
     tier: 'recarga',
-    label: 'Recarga de análisis',
-    price: '8,99€',
-    description: '+10 análisis detallados adicionales',
+    label: 'Recarga de créditos IA',
+    price: '9,99€',
+    description: '+10 créditos IA (Tutor IA, informes, supuestos)',
     corrections: 'Se añaden a tu cuenta al instante',
     featured: true,
   },
@@ -105,15 +105,15 @@ export function PaywallGate({ open, onClose, code, temaId, oposicionId }: Paywal
     : code === 'PAYWALL_TESTS'
     ? 'Continúa preparando tu oposición'
     : isPremium
-      ? 'Recarga tus análisis'
-      : 'Desbloquea análisis detallados'
+      ? 'Recarga tus créditos IA'
+      : 'Desbloquea tu Tutor IA'
   const description = code === 'PAYWALL_SIMULACROS'
-    ? 'Has agotado tus 3 simulacros gratuitos. Con el Pack Oposición tienes simulacros ilimitados con preguntas oficiales INAP y penalización real.'
+    ? 'Has agotado tus 3 simulacros gratuitos. Con el Pack Oposición tienes simulacros ilimitados con preguntas oficiales y penalización real.'
     : code === 'PAYWALL_TESTS'
     ? 'Ya has completado tu test gratuito de este tema. Desbloquea acceso ilimitado para seguir practicando.'
     : isPremium
-      ? 'Te has quedado sin análisis detallados. Recarga tu saldo para continuar.'
-      : 'Has utilizado tus 2 análisis gratuitos. Consigue el Pack para acceso ilimitado a tests + 20 análisis detallados.'
+      ? 'Te has quedado sin créditos IA. Recarga para que tu Tutor IA siga explicándote cada error.'
+      : 'Has usado tus 2 sesiones gratuitas con el Tutor IA. Consigue el Pack para acceso ilimitado a tests + 20 créditos IA.'
 
   async function handleBuy(tier: string) {
     setLoading(tier)
@@ -153,7 +153,7 @@ export function PaywallGate({ open, onClose, code, temaId, oposicionId }: Paywal
           <span className="line-through text-destructive/60">Academia presencial: desde 150€/mes</span>
           {' · '}
           <span className="font-semibold text-foreground">
-            OpoRuta: {code === 'PAYWALL_TESTS' || code === 'PAYWALL_SIMULACROS' || !isPremium ? '49,99€' : 'desde 8,99€'} una sola vez
+            OpoRuta: {code === 'PAYWALL_TESTS' || code === 'PAYWALL_SIMULACROS' || !isPremium ? '49,99€' : 'desde 9,99€'} una sola vez
           </span>
         </div>
 

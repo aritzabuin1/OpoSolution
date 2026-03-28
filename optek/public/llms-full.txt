@@ -68,15 +68,15 @@ El Radar del Tribunal es un análisis de frecuencia de artículos legales basado
 - **BOE Watcher**: Vigilancia automática del Boletín Oficial del Estado para detectar cambios normativos que afecten al temario.
 - **Repaso de Errores**: Extrae las preguntas falladas de los últimos 30 tests y las presenta en orden aleatorio para reforzar los puntos débiles.
 - **Mapa de Debilidades**: Muestra los 5 temas con peor rendimiento del opositor para orientar el estudio.
-- **Análisis detallados**: Explicaciones pedagógicas en formato socrático (empatía, pregunta guía, revelación, anclaje) para entender por qué se falló cada pregunta.
+- **Tutor IA**: Explicaciones pedagógicas en formato socrático (empatía, pregunta guía, revelación, anclaje) para entender por qué se falló cada pregunta. Cada sesión consume 1 crédito IA.
 
 ### Precios
 
 OpoRuta funciona con un modelo de pago único (sin suscripción):
 
-- **Plan Gratuito**: 1 test gratuito en cada tema (todos los temas abiertos), 3 simulacros de 20 preguntas, 3 sesiones de psicotécnicos, 3 cazatrampas/día, 2 análisis detallados con IA. Sin tarjeta de crédito.
-- **Pack Oposición (49,99 EUR)**: Acceso ilimitado a tests en los 28 temas, simulacros completos (hasta 100 preguntas), flashcards, radar del tribunal completo, cazatrampas ilimitado, 20 análisis detallados. Pago único, sin suscripción.
-- **Recarga de Análisis (8,99 EUR)**: 10 análisis detallados adicionales para quienes agotan los incluidos en el Pack.
+- **Plan Gratuito**: 1 test gratuito en cada tema (todos los temas abiertos), 3 simulacros de 20 preguntas, 3 sesiones de psicotécnicos, 3 cazatrampas/día, 2 sesiones gratis con tu Tutor IA. Sin tarjeta de crédito.
+- **Pack Oposición (49,99 EUR)**: Acceso ilimitado a tests en los 28 temas, simulacros completos (hasta 100 preguntas), flashcards, radar del tribunal completo, cazatrampas ilimitado, 20 créditos IA. Pago único, sin suscripción.
+- **Recarga de créditos IA (9,99 EUR)**: 10 créditos IA adicionales para quienes agotan los incluidos en el Pack. Cada crédito = 1 sesión con tu Tutor IA.
 
 ### Preguntas frecuentes
 

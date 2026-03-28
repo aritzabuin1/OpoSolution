@@ -125,7 +125,7 @@ export function buildTourSteps(config: TourConfig): TourStep[] {
     element: '[data-tour="stats"]',
     popover: {
       title: 'Tu progreso en tiempo real',
-      description: 'Tests realizados, nota media, racha de días consecutivos y análisis disponibles. Todo se actualiza automáticamente. A medida que practiques, desbloquearás el dashboard completo con gráficos de evolución, mapa de temario e IPR.',
+      description: 'Tests realizados, nota media, racha de días consecutivos y créditos IA disponibles. Todo se actualiza automáticamente. A medida que practiques, desbloquearás el dashboard completo con gráficos de evolución, mapa de temario e IPR.',
       side: 'bottom',
     },
   })
@@ -134,11 +134,11 @@ export function buildTourSteps(config: TourConfig): TourStep[] {
   steps.push({
     element: '[data-tour="stats"]',
     popover: {
-      title: 'Análisis con IA — Tu tutor socrático',
-      description: 'Cuando fallas una pregunta, la IA no te da la respuesta. '
+      title: 'Tu Tutor IA personal',
+      description: 'Cuando fallas una pregunta, tu Tutor IA no te da la respuesta. '
         + 'Te hace preguntas para que llegues tú al artículo correcto, '
         + 'y te da un truco de memoria para no olvidarlo. '
-        + 'Tienes 2 análisis gratis — úsalos en tu primer test.',
+        + 'Tienes 2 sesiones gratis — úsalas en tu primer test.',
       side: 'bottom',
     },
   })

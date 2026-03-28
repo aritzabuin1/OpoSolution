@@ -6,19 +6,17 @@ import Stripe from 'stripe'
  * NUNCA importar en componentes cliente — contiene STRIPE_SECRET_KEY.
  * Usar solo en API routes, Server Actions y server components.
  *
- * Modelo de pricing OpoRuta (ADR-0010 — Fuel Tank):
- *   STRIPE_PRICE_PACK         → Pack C2 (Auxiliar)            49.99€  one-time  → +20 análisis
- *   STRIPE_PRICE_PACK_C1      → Pack C1 (Administrativo)      49.99€  one-time  → +20 análisis
- *   STRIPE_PRICE_PACK_A2      → Pack A2 (GACE)                69.99€  one-time  → +20 análisis + 5 supuestos
- *   STRIPE_PRICE_PACK_DOBLE   → Pack Doble (C1+C2)            79.99€  one-time  → +30 análisis
- *   STRIPE_PRICE_PACK_TRIPLE  → Pack Triple AGE (C1+C2+A2)   129.99€  one-time  → +40 análisis + 5 supuestos
- *   STRIPE_PRICE_RECARGA      → Recarga análisis                8.99€  one-time  → +10 análisis
- *   STRIPE_PRICE_RECARGA_SUP  → Recarga supuestos              14.99€  one-time  → +5 supuestos
+ * Modelo de pricing OpoRuta — Créditos IA unificados:
+ *   STRIPE_PRICE_PACK         → Pack C2 (Auxiliar)            49.99€  one-time  → +20 créditos IA
+ *   STRIPE_PRICE_PACK_C1      → Pack C1 (Administrativo)      49.99€  one-time  → +20 créditos IA
+ *   STRIPE_PRICE_PACK_A2      → Pack A2 (GACE)                69.99€  one-time  → +25 créditos IA
+ *   STRIPE_PRICE_PACK_DOBLE   → Pack Doble (C1+C2)            79.99€  one-time  → +30 créditos IA
+ *   STRIPE_PRICE_PACK_TRIPLE  → Pack Triple AGE (C1+C2+A2)   129.99€  one-time  → +40 créditos IA
+ *   STRIPE_PRICE_RECARGA      → Recarga créditos IA             9.99€  one-time  → +10 créditos IA
  *
+ * 1 crédito IA = 1 sesión Tutor IA (errores, informe, flashcard).
+ * Supuesto desarrollo = 2 créditos IA (generar caso + corregir).
  * Tests: ilimitados para usuarios con compra. Límite silencioso 20/día vía Upstash.
- * Caza-Trampas: 3/día free, ilimitado paid (§2.12.17).
- * Créditos de análisis: pool compartido entre oposiciones.
- * Supuestos prácticos: pool separado (supuestos_balance).
  * Sin suscripciones. Sin caducidad. Pago único.
  */
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -42,19 +40,19 @@ export const STRIPE_PRICES = {
   pack_gestion_j: process.env.STRIPE_PRICE_PACK_GESTION_J ?? '', // 79.99€ → Gestión Procesal A2
   pack_doble_justicia: process.env.STRIPE_PRICE_PACK_DOBLE_JUSTICIA ?? '', // 79.99€ → Auxilio + Tramitación
   pack_triple_justicia: process.env.STRIPE_PRICE_PACK_TRIPLE_JUSTICIA ?? '', // 139.99€ → Auxilio + Tramitación + Gestión
-  // Recargas
-  recarga:        process.env.STRIPE_PRICE_RECARGA        ?? '', //   8.99€ → +10 análisis
-  recarga_sup:    process.env.STRIPE_PRICE_RECARGA_SUP    ?? '', //  14.99€ → +5 supuestos
+  // Recarga única
+  recarga:        process.env.STRIPE_PRICE_RECARGA        ?? '', //   9.99€ → +10 créditos IA
 } as const
 
 export type StripePriceTier = keyof typeof STRIPE_PRICES
 
-// Correcciones (análisis) que otorga cada producto (pool compartido)
+// Créditos IA que otorga cada producto (pool unificado: corrections_balance)
+// A2 packs include extra créditos for supuesto desarrollo (2 créditos × 5 supuestos = 10 extra)
 export const CORRECTIONS_GRANTED: Record<StripePriceTier, number> = {
   // AGE
   pack:           20,
   pack_c1:        20,
-  pack_a2:        20,
+  pack_a2:        25,  // 20 base + 5 extra (≈2.5 supuestos desarrollo)
   pack_doble:     30,
   pack_triple:    40,
   // Correos
@@ -62,34 +60,15 @@ export const CORRECTIONS_GRANTED: Record<StripePriceTier, number> = {
   // Justicia
   pack_auxilio:   20,
   pack_tramitacion: 20,
-  pack_gestion_j: 20,
+  pack_gestion_j: 25,  // 20 base + 5 extra
   pack_doble_justicia: 30,
-  pack_triple_justicia: 40,
-  // Recargas
+  pack_triple_justicia: 45,  // 40 base + 5 extra
+  // Recarga
   recarga:        10,
-  recarga_sup:    0,
 }
 
-// Supuestos prácticos que otorga cada producto (pool separado: supuestos_balance)
-export const SUPUESTOS_GRANTED: Record<StripePriceTier, number> = {
-  // AGE
-  pack:           0,
-  pack_c1:        0,
-  pack_a2:        5,
-  pack_doble:     0,
-  pack_triple:    5,
-  // Correos (no tiene supuesto práctico)
-  pack_correos:   0,
-  // Justicia (Gestión tiene desarrollo escrito → supuestos IA)
-  pack_auxilio:   0,
-  pack_tramitacion: 0,
-  pack_gestion_j: 5,
-  pack_doble_justicia: 0,
-  pack_triple_justicia: 5,
-  // Recargas
-  recarga:        0,
-  recarga_sup:    5,
-}
+// SUPUESTOS_GRANTED removed — supuesto desarrollo now costs 2 créditos IA
+// from the unified corrections_balance pool. No separate supuestos_balance needed.
 
 // IDs de oposición en BD (seed + migration 030 + migration 040 + futuras 048/049)
 export const C2_OPOSICION_ID = 'a0000000-0000-0000-0000-000000000001'  // AGE Auxiliar
@@ -117,8 +96,7 @@ export const TIER_TO_OPOSICION: Record<StripePriceTier, string | string[]> = {
   pack_gestion_j:     GESTION_J_OPOSICION_ID,
   pack_doble_justicia: [AUXILIO_OPOSICION_ID, TRAMITACION_OPOSICION_ID],
   pack_triple_justicia: [AUXILIO_OPOSICION_ID, TRAMITACION_OPOSICION_ID, GESTION_J_OPOSICION_ID],
-  // Recargas (global — no vinculados a oposición específica)
+  // Recarga (global — no vinculada a oposición específica)
   recarga:            '',
-  recarga_sup:        '',
 }
 

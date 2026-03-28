@@ -30,14 +30,14 @@ export default async function SupuestoPracticoPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: profileData } = await (supabase as any)
     .from('profiles')
-    .select('oposicion_id, supuestos_balance, corrections_balance, is_admin')
+    .select('oposicion_id, corrections_balance, free_corrector_used, is_admin')
     .eq('id', user.id)
     .single()
 
   const profile = profileData as {
     oposicion_id?: string
-    supuestos_balance?: number
     corrections_balance?: number
+    free_corrector_used?: number
     is_admin?: boolean
   } | null
   const isAdmin = profile?.is_admin === true
@@ -52,7 +52,10 @@ export default async function SupuestoPracticoPage() {
   const features = (opoData as { features?: { supuesto_practico?: boolean } } | null)?.features
   // Supuesto práctico solo disponible si la oposición elegida lo tiene (A2)
   const hasSupuestoPractico = features?.supuesto_practico === true
-  const balance = isAdmin ? 999 : (profile?.supuestos_balance ?? 0)
+  // Unified créditos IA: supuesto desarrollo = 2 créditos (generar + corregir)
+  const paidBalance = profile?.corrections_balance ?? 0
+  const freeRemaining = Math.max(0, 2 - (profile?.free_corrector_used ?? 0))
+  const balance = isAdmin ? 999 : Math.floor((paidBalance + freeRemaining) / 2) // show as supuestos disponibles
 
   // Load previous supuestos
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

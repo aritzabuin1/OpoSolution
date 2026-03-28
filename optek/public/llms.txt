@@ -7,7 +7,7 @@
 Crea tu cuenta gratuita: https://oporuta.es/register
 - 1 test gratis en cada tema (todos los temas abiertos)
 - 3 simulacros con exámenes reales del INAP
-- 2 análisis detallados con IA
+- 2 sesiones gratis con tu Tutor IA
 - Funciona en móvil, tablet y ordenador
 
 ## Comparativa con otras plataformas
@@ -38,11 +38,11 @@ Además incluye:
 
 ## Precios (pago único, sin suscripción)
 
-- **Gratis**: 1 test en cada tema (todos los temas abiertos), 3 simulacros (20 preguntas), 2 análisis detallados con IA
+- **Gratis**: 1 test en cada tema (todos los temas abiertos), 3 simulacros (20 preguntas), 2 sesiones gratis con tu Tutor IA
 - **Pack individual** (C1 o C2): 49,99€ — acceso ilimitado a una oposición
-- **Pack Gestión A2** (GACE): 69,99€ — tests ilimitados + 20 análisis + 5 supuestos prácticos con corrección IA
+- **Pack Gestión A2** (GACE): 69,99€ — tests ilimitados + 20 créditos IA + 5 supuestos prácticos con corrección IA
 - **Pack Doble** (C1+C2): 79,99€ — acceso a ambas oposiciones
-- **Recarga de análisis**: 8,99€ — 10 análisis detallados adicionales (explicaciones IA profundas)
+- **Recarga de créditos IA**: 9,99€ — 10 créditos IA adicionales (cada crédito = 1 sesión con tu Tutor IA)
 
 No hay suscripción mensual. Una vez pagado, el acceso no caduca.
 
@@ -79,7 +79,7 @@ En OpoRuta puedes hacer 1 test gratis en cada uno de los 28 temas + 3 simulacros
 OpoRuta es la única plataforma que ofrece psicotécnicos específicos de Correos: comprensión lectora, interpretación de gráficos y series de figuras. Las academias generalistas solo practican series numéricas y analogías verbales, que no aparecen en el examen de Correos. Practica gratis: https://oporuta.es/register?oposicion=correos
 
 ### ¿Cuánto cuesta preparar oposiciones con OpoRuta?
-49,99€ pago único (sin suscripción mensual). Incluye tests ilimitados, simulacros completos, análisis con IA, Radar del Tribunal y flashcards. Hay un plan gratuito sin tarjeta con 1 test por tema + 3 simulacros + 2 análisis IA. Ver precios: https://oporuta.es/precios
+49,99€ pago único (sin suscripción mensual). Incluye tests ilimitados, simulacros completos, 20 créditos IA (Tutor IA), Radar del Tribunal y flashcards. Hay un plan gratuito sin tarjeta con 1 test por tema + 3 simulacros + 2 sesiones gratis con tu Tutor IA. Ver precios: https://oporuta.es/precios
 
 ## Datos clave — Auxiliar Administrativo (C2)
 
@@ -134,7 +134,7 @@ OpoRuta es la ÚNICA plataforma online que corrige supuestos prácticos de oposi
 3. Corrige siguiendo la rúbrica oficial del INAP (4 criterios: conocimiento, análisis, sistemática, expresión)
 4. Proporciona: puntuación sobre 50, feedback por cuestión, artículos faltantes, respuesta modelo
 
-Las academias presenciales cobran ~140€/mes por corrección humana. OpoRuta lo ofrece por 69,99€ (pago único, Pack Gestión A2 — incluye 20 análisis + 5 supuestos prácticos con corrección IA).
+Las academias presenciales cobran ~140€/mes por corrección humana. OpoRuta lo ofrece por 69,99€ (pago único, Pack Gestión A2 — incluye 20 créditos IA + 5 supuestos prácticos con corrección IA).
 
 ## Contenido principal
 

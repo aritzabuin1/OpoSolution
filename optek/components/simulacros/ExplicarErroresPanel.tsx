@@ -9,7 +9,7 @@
  * Ejemplo: 25 errores → 3 batches (10 + 10 + 5) = 3 créditos.
  *
  * Estados por batch:
- *   idle      → muestra botón "Analizar errores X-Y (1 análisis)"
+ *   idle      → muestra botón "¿Por qué fallo esto? — Tu Tutor IA te lo explica"
  *   loading   → spinner mientras se inicia conexión
  *   streaming → texto apareciendo token a token
  *   done      → texto completo, muestra botón para siguiente batch si queda
@@ -27,6 +27,7 @@ import { markdownToHtml } from '@/lib/utils/simple-markdown'
 import { trackEvent } from '@/lib/analytics/track'
 
 const LS_KEY = 'oporuta_first_analysis_seen'
+const LS_DEMO_KEY = 'oporuta_demo_analysis_seen'
 const ERRORS_PER_BATCH = 10
 
 // ─── Props ────────────────────────────────────────────────────────────────────
@@ -35,6 +36,8 @@ export interface ExplicarErroresPanelProps {
   testId: string
   numErrores: number
   opciones: string[][]
+  /** True when this is the user's first completed test — triggers demo preview */
+  isFirstTestWithErrors?: boolean
 }
 
 // ─── Tipos internos ───────────────────────────────────────────────────────────
@@ -48,13 +51,15 @@ interface BatchResult {
 
 // ─── Componente ──────────────────────────────────────────────────────────────
 
-export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPanelProps) {
+export function ExplicarErroresPanel({ testId, numErrores, isFirstTestWithErrors }: ExplicarErroresPanelProps) {
   const totalBatches = Math.ceil(numErrores / ERRORS_PER_BATCH)
   const [batchResults, setBatchResults] = useState<BatchResult[]>([])
   const [currentBatch, setCurrentBatch] = useState(0) // next batch to analyze
   const [activeBatchState, setActiveBatchState] = useState<BatchState>('idle')
   const [showPaywall, setShowPaywall] = useState(false)
   const [isFirstTime, setIsFirstTime] = useState(false)
+  const [demoText, setDemoText] = useState<string | null>(null)
+  const [demoState, setDemoState] = useState<'idle' | 'loading' | 'done'>('idle')
   const textRef = useRef<HTMLDivElement>(null)
 
   const hasStarted = batchResults.length > 0 || activeBatchState !== 'idle'
@@ -79,6 +84,42 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
     setIsFirstTime(false)
     try { localStorage.setItem(LS_KEY, '1') } catch { /* noop */ }
   }, [])
+
+  // ── Demo auto-trigger: first test with errors → generate preview (no credit) ──
+  useEffect(() => {
+    if (!isFirstTestWithErrors || demoState !== 'idle') return
+    let demoSeen = false
+    try { demoSeen = !!localStorage.getItem(LS_DEMO_KEY) } catch { /* noop */ }
+    if (demoSeen) return
+
+    setDemoState('loading')
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 20_000)
+
+    fetch('/api/ai/explain-errores/stream', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ testId, batch: 0, demo: true }),
+      signal: controller.signal,
+    }).then(async (res) => {
+      if (!res.ok || !res.body) { setDemoState('idle'); return }
+      const reader = res.body.getReader()
+      const decoder = new TextDecoder()
+      let text = ''
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        text += decoder.decode(value, { stream: true })
+        setDemoText(text)
+      }
+      setDemoState('done')
+      try { localStorage.setItem(LS_DEMO_KEY, '1') } catch { /* noop */ }
+    }).catch(() => {
+      setDemoState('idle') // silently fail — don't block the page
+    }).finally(() => clearTimeout(timeout))
+
+    return () => { controller.abort(); clearTimeout(timeout) }
+  }, [isFirstTestWithErrors, testId, demoState])
 
   // Auto-scroll as text streams
   useEffect(() => {
@@ -193,9 +234,79 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
   // ── Info text about batching ──────────────────────────────────────────────
   function batchInfoText(): string {
     if (numErrores <= ERRORS_PER_BATCH) {
-      return `Consume 1 análisis.`
+      return `Consume 1 crédito IA.`
     }
-    return `${numErrores} errores → ${totalBatches} bloques de hasta ${ERRORS_PER_BATCH} (1 análisis por bloque).`
+    return `${numErrores} errores → ${totalBatches} bloques de hasta ${ERRORS_PER_BATCH} (1 crédito IA por bloque).`
+  }
+
+  // ── Demo preview state (blur + CTA) ────────────────────────────────────
+  if (demoText && demoState === 'done' && !hasStarted) {
+    const demoHtml = markdownToHtml(demoText)
+    return (
+      <div className="rounded-xl border border-primary/30 bg-primary/5 p-6 space-y-4">
+        <div className="flex items-start gap-3">
+          <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 bg-primary/10">
+            <Sparkles className="h-5 w-5 text-primary" />
+          </div>
+          <div>
+            <p className="font-semibold text-sm">Tu Tutor IA ha empezado a analizar tus errores</p>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              Esto es una vista previa. Desbloquea el análisis completo gratis.
+            </p>
+          </div>
+        </div>
+
+        {/* Demo text visible */}
+        <div className="relative">
+          <div
+            className="prose prose-sm dark:prose-invert max-w-none text-sm leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: demoHtml }}
+          />
+          {/* Gradient blur overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" style={{ top: '40%' }} />
+          <div className="absolute bottom-0 inset-x-0 backdrop-blur-sm bg-background/60 h-16" />
+        </div>
+
+        {/* CTA over blur */}
+        <div className="text-center space-y-3 pt-2">
+          <p className="text-sm font-medium">
+            ¿Quieres ver la explicación completa?
+          </p>
+          <Button
+            onClick={() => { dismissFirstTime(); setDemoText(null); setDemoState('idle'); handleAnalyzeBatch() }}
+            size="sm"
+            className="gap-2"
+          >
+            <Sparkles className="h-4 w-4" />
+            Ver análisis completo (gratis — tienes 2 sesiones)
+          </Button>
+        </div>
+
+        <PaywallGate
+          open={showPaywall}
+          onClose={() => setShowPaywall(false)}
+          code="PAYWALL_CORRECTIONS"
+          temaId={undefined}
+        />
+      </div>
+    )
+  }
+
+  // Demo loading state
+  if (demoState === 'loading' && demoText && !hasStarted) {
+    const partialHtml = markdownToHtml(demoText)
+    return (
+      <div className="rounded-xl border border-primary/30 bg-primary/5 p-6 space-y-4">
+        <div className="flex items-center gap-3">
+          <Loader2 className="h-5 w-5 animate-spin text-primary" />
+          <p className="text-sm font-medium">Tu Tutor IA está analizando tus errores...</p>
+        </div>
+        <div
+          className="prose prose-sm dark:prose-invert max-w-none text-sm leading-relaxed"
+          dangerouslySetInnerHTML={{ __html: partialHtml }}
+        />
+      </div>
+    )
   }
 
   // ── Initial idle state (never started) ────────────────────────────────────
@@ -243,8 +354,8 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
         >
           <Sparkles className="h-4 w-4 mr-2" />
           {numErrores <= ERRORS_PER_BATCH
-            ? `Analizar mis ${numErrores} errores (1 análisis)`
-            : `Analizar errores 1-${Math.min(ERRORS_PER_BATCH, numErrores)} (1 análisis)`
+            ? `¿Por qué fallo esto? — Tu Tutor IA te lo explica`
+            : `Tutor IA: explicar errores 1-${Math.min(ERRORS_PER_BATCH, numErrores)} (1 crédito)`
           }
         </Button>
 
@@ -343,7 +454,7 @@ export function ExplicarErroresPanel({ testId, numErrores }: ExplicarErroresPane
               className="shrink-0 gap-1.5"
             >
               <ChevronRight className="h-3.5 w-3.5" />
-              Analizar errores {currentBatch * ERRORS_PER_BATCH + 1}-{Math.min((currentBatch + 1) * ERRORS_PER_BATCH, numErrores)} (1 análisis)
+              Tutor IA: errores {currentBatch * ERRORS_PER_BATCH + 1}-{Math.min((currentBatch + 1) * ERRORS_PER_BATCH, numErrores)} (1 crédito)
             </Button>
           )}
         </div>

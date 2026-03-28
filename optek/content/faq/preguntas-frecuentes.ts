@@ -31,7 +31,7 @@ export const faqSections: FaqSection[] = [
       },
       {
         question: '¿Cuánto cuesta OpoRuta?',
-        answer: 'OpoRuta ofrece un test gratuito en cada tema (todos los temas de tu oposición) sin tarjeta para que pruebes la plataforma. El Pack Oposición cuesta 49,99€ (pago único, sin suscripción) e incluye tests ilimitados, simulacros completos, flashcards, Radar del Tribunal y 20 análisis detallados con IA. El Pack Doble (C1 + C2) cuesta 79,99€. También existe una recarga de 10 análisis adicionales por 8,99€.',
+        answer: 'OpoRuta ofrece un test gratuito en cada tema (todos los temas de tu oposición) sin tarjeta para que pruebes la plataforma. El Pack Oposición cuesta 49,99€ (pago único, sin suscripción) e incluye tests ilimitados, simulacros completos, flashcards, Radar del Tribunal y 20 créditos IA (Tutor IA). El Pack Doble (C1 + C2) cuesta 79,99€. También existe una recarga de 10 créditos IA adicionales por 9,99€.',
       },
       {
         question: '¿OpoRuta sustituye a una academia de oposiciones?',
@@ -43,7 +43,7 @@ export const faqSections: FaqSection[] = [
       },
       {
         question: '¿Puedo probar OpoRuta gratis?',
-        answer: 'Sí. Al registrarte obtienes 1 test gratuito en cada uno de los temas de tu oposición, 1 simulacro oficial de 20 preguntas, 3 sesiones de Caza-Trampas y 2 análisis detallados con IA. No se requiere tarjeta de crédito.',
+        answer: 'Sí. Al registrarte obtienes 1 test gratuito en cada uno de los temas de tu oposición, 1 simulacro oficial de 20 preguntas, 3 sesiones de Caza-Trampas y 2 sesiones gratis con tu Tutor IA. No se requiere tarjeta de crédito.',
       },
     ],
   },

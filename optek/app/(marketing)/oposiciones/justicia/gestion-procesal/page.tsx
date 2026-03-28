@@ -289,10 +289,10 @@ export default function GestionProcesalLanding() {
           {[
             { icon: Sparkles, title: 'Tests con IA sobre 68 temas', desc: 'Preguntas generadas y verificadas contra la legislación real: LEC, LECrim, Ley Concursal, LOPJ y más.' },
             { icon: FileText, title: 'Caso práctico corregido con IA', desc: 'Entrena supuestos de juzgado con corrección inteligente. El segundo ejercicio ya no te pillará por sorpresa.' },
-            { icon: GraduationCap, title: 'Desarrollo con feedback', desc: 'Practica las preguntas de desarrollo (temas 17-39 y 43-67) y recibe análisis detallado de tu respuesta.' },
+            { icon: GraduationCap, title: 'Desarrollo con feedback', desc: 'Practica las preguntas de desarrollo (temas 17-39 y 43-67) y recibe feedback detallado de tu Tutor IA.' },
             { icon: Shield, title: '186 preguntas oficiales MJU', desc: 'Exámenes reales 2023 y 2025 completos. Practica con el scoring oficial: acierto +0,60, error -0,15 (1/4).' },
             { icon: Scale, title: 'Legislación siempre actualizada', desc: 'Ley Concursal, LO Protección de Testigos, Ley de Mediación, Registros Civiles — todo verificado contra BOE.' },
-            { icon: Users, title: 'Precio único 49,99 euros', desc: 'Sin suscripción. Acceso ilimitado hasta que apruebes. 20 análisis detallados incluidos.' },
+            { icon: Users, title: 'Precio único 49,99 euros', desc: 'Sin suscripción. Acceso ilimitado hasta que apruebes. 20 créditos IA incluidos.' },
           ].map(({ icon: Icon, title, desc }) => (
             <Card key={title}>
               <CardContent className="pt-6 space-y-2">

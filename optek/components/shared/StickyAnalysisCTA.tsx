@@ -41,7 +41,7 @@ export function StickyAnalysisCTA({ numErrores }: StickyAnalysisCTAProps) {
     <div className="fixed bottom-0 inset-x-0 p-3 bg-background/95 backdrop-blur border-t md:hidden z-40">
       <Button onClick={scrollToPanel} className="w-full gap-2" size="sm">
         <Sparkles className="h-4 w-4" />
-        Analizar mis {numErrores} error{numErrores !== 1 ? 'es' : ''} con IA
+        ¿Por qué fallo? — Tutor IA ({numErrores} error{numErrores !== 1 ? 'es' : ''})
       </Button>
     </div>
   )

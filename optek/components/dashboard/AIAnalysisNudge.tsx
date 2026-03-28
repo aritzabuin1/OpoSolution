@@ -61,13 +61,13 @@ export function AIAnalysisNudge({ lastTestWithErrorsId }: AIAnalysisNudgeProps) 
       <div className="flex items-center gap-2">
         <Sparkles className="h-5 w-5 text-primary" />
         <span className="text-sm font-semibold">
-          Tienes análisis con IA disponibles
+          Tu Tutor IA está listo para ayudarte
         </span>
       </div>
 
       {/* Description */}
       <p className="text-sm text-muted-foreground pr-6">
-        Después de cada test, la IA diagnostica tus errores, encuentra patrones y te da trucos reales para no repetirlos:
+        Después de cada test, tu Tutor IA diagnostica tus errores, encuentra patrones y te da trucos reales para no repetirlos:
       </p>
 
       {/* Steps */}

@@ -4,7 +4,7 @@
  * components/simulacros/InformeSimulacroPanel.tsx
  *
  * Panel de informe personalizado IA para simulacros oficiales.
- * Consume 1 análisis detallado. Streaming de texto plano.
+ * Consume 1 crédito IA. Streaming de texto plano.
  * Complementa ExplicarErroresPanel (errores individuales) con
  * un análisis global: puntos débiles, patrones, plan de acción.
  */

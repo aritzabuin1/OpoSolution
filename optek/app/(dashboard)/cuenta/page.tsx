@@ -183,7 +183,7 @@ export default async function CuentaPage() {
             </p>
           </div>
           {!flags?.is_admin && supuestosBalance < 3 && (
-            <BuyButton tier={'recarga_sup' as 'recarga'} label="Recargar 14,99€" variant="default" />
+            <BuyButton tier="recarga" label="Recargar créditos IA 9,99€" variant="default" />
           )}
         </div>
       )}
@@ -327,12 +327,12 @@ export default async function CuentaPage() {
             {!flags?.is_admin && supuestosBalance < 3 && isPremium && (
               <div className="mt-4 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/20 text-sm flex items-center justify-between gap-4">
                 <div>
-                  <p className="font-medium">Recarga de supuestos prácticos</p>
+                  <p className="font-medium">Recarga de créditos IA</p>
                   <p className="text-muted-foreground text-xs mt-0.5">
-                    +5 correcciones de supuesto · 14,99€ · pago único
+                    +10 créditos IA · 9,99€ · pago único · Supuesto desarrollo = 2 créditos
                   </p>
                 </div>
-                <BuyButton tier={'recarga_sup' as 'recarga'} label="Recargar" variant="default" />
+                <BuyButton tier="recarga" label="Recargar" variant="default" />
               </div>
             )}
           </CardContent>

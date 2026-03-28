@@ -135,7 +135,7 @@ export async function getPremiumEngagement(): Promise<PremiumEngagement> {
   const analysisCount = (analysisRes.data ?? []).length
 
   // Recharge rate: premium users who bought 'recarga'
-  const rechargeUsers = new Set(allCompras.filter(c => c.tipo === 'recarga' || c.tipo === 'recarga_sup').map(c => c.user_id))
+  const rechargeUsers = new Set(allCompras.filter(c => c.tipo === 'recarga').map(c => c.user_id))
   const rechargeRate = Math.round((rechargeUsers.size / totalPremium) * 100)
 
   return {

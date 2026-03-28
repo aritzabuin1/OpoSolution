@@ -147,7 +147,7 @@ export default function CorreosLanding() {
             { icon: Sparkles, title: 'Tests con IA', desc: 'Preguntas generadas y verificadas contra la legislación real de Correos.' },
             { icon: Package, title: 'Sin penalización', desc: 'El scoring de OpoRuta se adapta: sin descuento por errores, como el examen real.' },
             { icon: Shield, title: 'Psicotécnicos incluidos', desc: '10 de las 100 preguntas son psicotécnicos. OpoRuta los genera automáticamente.' },
-            { icon: Users, title: 'Precio único 49,99€', desc: 'Sin suscripción. Acceso ilimitado hasta que apruebes. 20 análisis detallados incluidos.' },
+            { icon: Users, title: 'Precio único 49,99€', desc: 'Sin suscripción. Acceso ilimitado hasta que apruebes. 20 créditos IA incluidos.' },
           ].map(({ icon: Icon, title, desc }) => (
             <Card key={title}>
               <CardContent className="pt-6 space-y-2">

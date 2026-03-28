@@ -3,7 +3,7 @@ import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { checkPaidAccess, checkIsAdmin, getOposicionFromProfile, getOposicionNombreFromProfile } from '@/lib/freemium'
 import { callAIStream } from '@/lib/ai/provider'
-import { getSystemRoadmap } from '@/lib/ai/prompts'
+import { getSystemRoadmap, type RoadmapOpoConfig } from '@/lib/ai/prompts'
 import { calcularIPR } from '@/lib/utils/ipr'
 import { logger } from '@/lib/logger'
 import { createSafeStreamResponse } from '@/lib/utils/stream-helpers'
@@ -65,14 +65,17 @@ export async function POST(request: NextRequest) {
   let hasFreeCredit = false
   const oposicionId = await getOposicionFromProfile(serviceSupabase, user.id)
 
+  let isPaidAccess = false
   if (!isAdmin) {
     hasPaidCredit = (profile?.corrections_balance ?? 0) > 0
     hasFreeCredit = !hasPaidCredit && (profile?.free_corrector_used ?? 0) < 2
-    const isPaid = await checkPaidAccess(serviceSupabase, user.id, oposicionId)
+    isPaidAccess = await checkPaidAccess(serviceSupabase, user.id, oposicionId)
 
-    if (!hasPaidCredit && !hasFreeCredit && !isPaid) {
+    // Premium users: roadmap is FREE (no credit needed) — retention tool
+    // Free users: need a credit (paid or free)
+    if (!isPaidAccess && !hasPaidCredit && !hasFreeCredit) {
       return NextResponse.json({
-        error: 'No tienes análisis disponibles.',
+        error: 'No tienes créditos IA disponibles.',
         code: 'PAYWALL_CORRECTIONS',
       }, { status: 402 })
     }
@@ -93,20 +96,30 @@ export async function POST(request: NextRequest) {
     // No body or invalid JSON — fine, no previous plan
   }
 
-  // ── 5. Recopilar TODOS los datos del usuario ───────────────────────────
-  // Get oposicion info for parametrized prompts
+  // ── 5. Recopilar TODOS los datos del usuario + oposición ────────────────
   const oposicionNombre = await getOposicionNombreFromProfile(serviceSupabase, user.id)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: oposicionInfo } = await (serviceSupabase as any)
     .from('oposiciones')
-    .select('num_temas')
+    .select('num_temas, slug, features, scoring_config')
     .eq('id', oposicionId)
     .single()
-  const numTemas = (oposicionInfo as { num_temas?: number } | null)?.num_temas ?? 28
+
+  const opoRow = oposicionInfo as {
+    num_temas?: number
+    slug?: string
+    features?: Record<string, boolean>
+    scoring_config?: { ejercicios?: Array<Record<string, unknown>>; minutos_total?: number }
+  } | null
+  const numTemas = opoRow?.num_temas ?? 28
+  const opoSlug = opoRow?.slug ?? 'auxiliar-estado'
+  const opoFeatures = (opoRow?.features ?? {}) as RoadmapOpoConfig['features']
+  const opoScoringRaw = opoRow?.scoring_config
 
   const [
     { data: tests },
     { data: temas },
+    { data: examenes },
   ] = await Promise.all([
     supabase
       .from('tests_generados')
@@ -116,18 +129,34 @@ export async function POST(request: NextRequest) {
       .order('created_at', { ascending: false })
       .limit(100),
     // Filter temas by user's oposicion
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (serviceSupabase as any)
       .from('temas')
-      .select('id, numero, titulo')
+      .select('id, numero, titulo, bloque')
       .eq('oposicion_id', oposicionId)
       .order('numero', { ascending: true }),
+    // Get available convocatorias for simulacros
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (serviceSupabase as any)
+      .from('examenes_oficiales')
+      .select('anio')
+      .eq('oposicion_id', oposicionId)
+      .eq('activo', true)
+      .order('anio', { ascending: true }),
   ])
 
   const testsCompletados = tests ?? []
-  const allTemas = (temas ?? []) as Array<{ id: string; numero: number; titulo: string }>
+  const allTemas = (temas ?? []) as Array<{ id: string; numero: number; titulo: string; bloque?: string }>
+  const convocatorias = [...new Set(((examenes ?? []) as Array<{ anio: number }>).map(e => e.anio))]
   const rachaActual = profile?.racha_actual ?? 0
   const fechaExamen = profile?.fecha_examen ?? null
   const dedicacionSemanal = profile?.horas_diarias_estudio ?? null
+
+  // Activity counts by tipo (for richer context to the model)
+  const simulacrosCount = testsCompletados.filter(t => t.tipo === 'simulacro').length
+  const psicotecnicosCount = testsCompletados.filter(t => t.tipo === 'psicotecnico').length
+  const supuestoTestCount = testsCompletados.filter(t => t.tipo === 'supuesto_test').length
+  const repasoCount = testsCompletados.filter(t => t.tipo === 'repaso_errores').length
 
   // ── 5b. Calcular métricas derivadas ────────────────────────────────────
 
@@ -171,13 +200,25 @@ export async function POST(request: NextRequest) {
   }).join('\n')
 
   const parts: string[] = [
-    `DATOS DEL OPOSITOR:`,
-    `- Tests completados: ${testsCompletados.length}`,
+    `DATOS DEL OPOSITOR (${oposicionNombre}):`,
+    `- Tests por tema completados: ${testsCompletados.filter(t => t.tipo === 'tema').length}`,
+    `- Simulacros completados: ${simulacrosCount}`,
     `- Nota media global: ${testsCompletados.length > 0
       ? Math.round(testsCompletados.reduce((s, t) => s + (t.puntuacion ?? 0), 0) / testsCompletados.length) + '%'
       : 'Sin datos'}`,
     `- Racha actual: ${rachaActual} días consecutivos`,
   ]
+
+  // Activity breakdown — only show features available for this oposición
+  if (opoFeatures.supuesto_test) {
+    parts.push(`- Supuestos prácticos (test) completados: ${supuestoTestCount}${supuestoTestCount === 0 ? ' ⚠️ (ejercicio eliminatorio sin practicar)' : ''}`)
+  }
+  if (opoFeatures.psicotecnicos) {
+    parts.push(`- Psicotécnicos completados: ${psicotecnicosCount}`)
+  }
+  if (repasoCount > 0) {
+    parts.push(`- Repasos de errores realizados: ${repasoCount}`)
+  }
 
   if (ipr) {
     parts.push(
@@ -232,20 +273,53 @@ export async function POST(request: NextRequest) {
 
   let aiStream: ReadableStream<string>
   try {
-    // Build bloque info based on oposicion — use actual tema data instead of hardcoding
+    // Build bloque info from actual tema data
     const bloqueSet = new Set<string>()
+    const bloqueTemasMap: Record<string, { min: number; max: number }> = {}
     for (const t of allTemas) {
-      const b = (t as { bloque?: string }).bloque
-      if (b) bloqueSet.add(b)
-    }
-    const bloqueLabels: Record<string, string> = {
-      'I': `Bloque I (temas del inicio del temario)`,
-      'II': `Bloque II (temas del final del temario)`,
+      if (t.bloque) {
+        bloqueSet.add(t.bloque)
+        if (!bloqueTemasMap[t.bloque]) bloqueTemasMap[t.bloque] = { min: t.numero, max: t.numero }
+        else { bloqueTemasMap[t.bloque].min = Math.min(bloqueTemasMap[t.bloque].min, t.numero); bloqueTemasMap[t.bloque].max = Math.max(bloqueTemasMap[t.bloque].max, t.numero) }
+      }
     }
     const bloqueInfo = bloqueSet.size > 0
-      ? [...bloqueSet].map(b => bloqueLabels[b] ?? `Bloque ${b}`).join('. ')
+      ? [...bloqueSet].map(b => {
+          const range = bloqueTemasMap[b]
+          return range ? `Bloque ${b} (temas ${range.min}-${range.max})` : `Bloque ${b}`
+        }).join('. ')
       : `${numTemas} temas organizados en bloques según el temario oficial.`
-    const systemPrompt = getSystemRoadmap(oposicionNombre, numTemas, bloqueInfo)
+
+    // Derive tribunal label from slug
+    const tribunalLabel = opoSlug.includes('correos') ? 'Correos'
+      : (opoSlug.includes('auxilio') || opoSlug.includes('tramitacion') || opoSlug.includes('gestion-procesal')) ? 'MJU'
+      : 'INAP'
+
+    // Build scoring config for prompt
+    const ejerciciosRaw = opoScoringRaw?.ejercicios ?? []
+    const scoringForPrompt: RoadmapOpoConfig['scoring'] = {
+      penaliza: ejerciciosRaw.some((e: Record<string, unknown>) => e.penaliza === true),
+      ejercicios: ejerciciosRaw.map((e: Record<string, unknown>) => ({
+        nombre: (e.nombre as string) ?? 'Test',
+        preguntas: (e.preguntas as number) ?? 100,
+        minutos: (e.minutos as number | null) ?? null,
+        penaliza: (e.penaliza as boolean) ?? true,
+        max: (e.max as number) ?? 100,
+        min_aprobado: (e.min_aprobado as number | null) ?? null,
+      })),
+      minutos_total: opoScoringRaw?.minutos_total,
+    }
+
+    const systemPrompt = getSystemRoadmap({
+      oposicionNombre,
+      numTemas,
+      bloqueInfo,
+      tribunalLabel,
+      convocatorias,
+      features: opoFeatures,
+      scoring: scoringForPrompt,
+      slug: opoSlug,
+    })
 
     aiStream = await callAIStream(systemPrompt, userPrompt, {
       maxTokens: 4000,
@@ -273,7 +347,8 @@ export async function POST(request: NextRequest) {
     context: { totalTests: testsCompletados.length, temasConDatos: temasConDatos.length },
     oposicionId,
     onComplete: async () => {
-      if (isAdmin) return
+      // Premium users: roadmap is free (retention tool). Only free users consume credits.
+      if (isAdmin || isPaidAccess) return
       if (hasPaidCredit) {
         await serviceSupabase.rpc('use_correction', { p_user_id: userId })
       } else {

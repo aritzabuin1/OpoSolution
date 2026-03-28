@@ -24,7 +24,7 @@ import {
   getDeviceDistribution,
   getOposicionBreakdown,
 } from '@/lib/admin/analytics'
-import { getQuestionBankMetrics, getFreeTierMetrics } from '@/lib/admin/metrics'
+import { getQuestionBankMetrics, getFreeTierMetrics, getTutorIAMetrics } from '@/lib/admin/metrics'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
@@ -78,10 +78,10 @@ function ScoreColor({ val }: { val: number }) {
 // ─── Page ───────────────────────────────────────────────────────────────────────
 
 export default async function AnalyticsPage() {
-  let conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, ctaFunnel, phaseDistribution, deviceDist, oposicionBreakdown, questionBank, freeTier
+  let conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, ctaFunnel, phaseDistribution, deviceDist, oposicionBreakdown, questionBank, freeTier, tutorIA
 
   try {
-    ;[conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, ctaFunnel, phaseDistribution, deviceDist, oposicionBreakdown, questionBank, freeTier] =
+    ;[conversion, dau, engagement, churn, funnel, topTemas, temaScores, corrections, completion, feedback, analysisUsage, ctaFunnel, phaseDistribution, deviceDist, oposicionBreakdown, questionBank, freeTier, tutorIA] =
       await Promise.all([
         getConversionMetrics(),
         getDAU30d(),
@@ -100,6 +100,7 @@ export default async function AnalyticsPage() {
         getOposicionBreakdown(),
         getQuestionBankMetrics(),
         getFreeTierMetrics(),
+        getTutorIAMetrics(),
       ])
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err)
@@ -398,7 +399,7 @@ export default async function AnalyticsPage() {
         {/* 8. Uso de creditos */}
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">Creditos de Correccion <MetricInfo text="Saldo de analisis detallados de IA por usuario. Usuarios con 0 creditos son candidatos a comprar recarga. El minimo/maximo ayuda a ver la distribucion." /></CardTitle>
+            <CardTitle className="text-base">Creditos IA <MetricInfo text="Saldo de creditos IA (Tutor IA) por usuario. Usuarios con 0 creditos son candidatos a comprar recarga. El minimo/maximo ayuda a ver la distribucion." /></CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-3 gap-3">
@@ -423,7 +424,7 @@ export default async function AnalyticsPage() {
                 </span>
               </div>
               <p className="text-[10px] text-muted-foreground">
-                Usuarios con 0 creditos son candidatos a comprar recarga (8,99 EUR)
+                Usuarios con 0 creditos son candidatos a comprar recarga (9,99 EUR)
               </p>
             </div>
           </CardContent>
@@ -485,7 +486,7 @@ export default async function AnalyticsPage() {
         {/* 11. Uso de analisis por tipo */}
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">Analisis Detallados por Tipo <MetricInfo text="Desglose de como gastan los usuarios sus analisis de IA: explicar errores, informes de simulacro, flashcards o caza-trampas. Muestra donde aporta mas valor la IA." /></CardTitle>
+            <CardTitle className="text-base">Creditos IA por Tipo <MetricInfo text="Desglose de como gastan los usuarios sus creditos IA (Tutor IA): explicar errores, informes de simulacro, flashcards o caza-trampas. Muestra donde aporta mas valor la IA." /></CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             {analysisUsage.length > 0 ? (
@@ -505,7 +506,7 @@ export default async function AnalyticsPage() {
                   ))
                 })()}
                 <p className="text-[10px] text-muted-foreground border-t pt-2">
-                  Muestra donde gastan mas analisis los usuarios — util para decidir donde ampliar valor.
+                  Muestra donde gastan mas creditos IA los usuarios — util para decidir donde ampliar valor.
                 </p>
               </>
             ) : (
@@ -518,7 +519,7 @@ export default async function AnalyticsPage() {
       {/* ── Row 6b: CTA Funnel — views vs clicks ──────────────────────── */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-base">Funnel CTA Analisis <MetricInfo text="Cuantos usuarios VEN el boton de analisis IA vs cuantos lo PULSAN. Click rate bajo = el CTA no convence o el usuario no entiende el valor." /></CardTitle>
+          <CardTitle className="text-base">Funnel CTA Tutor IA <MetricInfo text="Cuantos usuarios VEN el boton de Tutor IA vs cuantos lo PULSAN. Click rate bajo = el CTA no convence o el usuario no entiende el valor." /></CardTitle>
         </CardHeader>
         <CardContent>
           {ctaFunnel.some((c: { views: number }) => c.views > 0) ? (
@@ -704,6 +705,52 @@ export default async function AnalyticsPage() {
                 <p className="text-xs text-green-700">servidos desde banco</p>
               </div>
             </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* ── Tutor IA & Roadmap ──────────────────────────────────────────── */}
+      {tutorIA && (
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base">Tutor IA y Roadmap <MetricInfo text="Uso de créditos IA por tipo de endpoint. Activación roadmap = % usuarios con 3+ tests que generaron plan. Usuarios sin estrenar = nunca usaron un crédito IA." /></CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+              <div className="rounded-lg bg-indigo-50 dark:bg-indigo-950/20 p-3">
+                <p className="text-xs text-indigo-600 font-medium mb-1">Roadmaps generados</p>
+                <p className="text-lg font-bold">{tutorIA.roadmapsGenerated}</p>
+                <p className="text-xs text-muted-foreground">{tutorIA.roadmapsLast7d} últimos 7 días</p>
+              </div>
+              <div className="rounded-lg bg-purple-50 dark:bg-purple-950/20 p-3">
+                <p className="text-xs text-purple-600 font-medium mb-1">Activación roadmap</p>
+                <p className="text-lg font-bold">{tutorIA.roadmapActivationRate}%</p>
+                <p className="text-xs text-muted-foreground">de usuarios con 3+ tests</p>
+              </div>
+              <div className="rounded-lg bg-amber-50 dark:bg-amber-950/20 p-3">
+                <p className="text-xs text-amber-600 font-medium mb-1">Créditos sin estrenar</p>
+                <p className="text-lg font-bold">{tutorIA.usersNeverUsedCredits}</p>
+                <p className="text-xs text-muted-foreground">usuarios (nunca usaron IA)</p>
+              </div>
+              <div className="rounded-lg bg-emerald-50 dark:bg-emerald-950/20 p-3">
+                <p className="text-xs text-emerald-600 font-medium mb-1">Total usos Tutor IA</p>
+                <p className="text-lg font-bold">{Object.values(tutorIA.creditsByEndpoint).reduce((s, v) => s + v, 0)}</p>
+                <p className="text-xs text-muted-foreground">créditos consumidos</p>
+              </div>
+            </div>
+            {Object.keys(tutorIA.creditsByEndpoint).length > 0 && (
+              <div className="space-y-1.5">
+                <p className="text-xs font-medium text-muted-foreground">Desglose por tipo:</p>
+                {Object.entries(tutorIA.creditsByEndpoint)
+                  .sort(([, a], [, b]) => b - a)
+                  .map(([endpoint, count]) => (
+                    <div key={endpoint} className="flex items-center justify-between text-sm">
+                      <span className="text-muted-foreground">{endpoint.replace(/-stream$/, '').replace(/-/g, ' ')}</span>
+                      <Badge variant="secondary">{count}</Badge>
+                    </div>
+                  ))}
+              </div>
+            )}
           </CardContent>
         </Card>
       )}

@@ -232,7 +232,7 @@ export default function AuxilioJudicialLanding() {
             { icon: AlertTriangle, title: 'Scoring con penalización', desc: 'OpoRuta replica el scoring real de ambos ejercicios. Ej1: +0,60 / -0,15. Ej2: +1,00 / -0,25. Aprende a gestionar el riesgo.' },
             { icon: FileText, title: '199 preguntas oficiales MJU', desc: 'Exámenes reales 2024 y 2025 completos. Practica con las mismas preguntas que puso el tribunal.' },
             { icon: Shield, title: '26 temas cubiertos', desc: 'Desde Constitución hasta Protección de datos. Cada test se genera con artículos reales del temario oficial.' },
-            { icon: Users, title: 'Precio único 49,99€', desc: 'Sin suscripción. Acceso ilimitado hasta que apruebes. 20 análisis detallados incluidos.' },
+            { icon: Users, title: 'Precio único 49,99€', desc: 'Sin suscripción. Acceso ilimitado hasta que apruebes. 20 créditos IA incluidos.' },
           ].map(({ icon: Icon, title, desc }) => (
             <Card key={title}>
               <CardContent className="pt-6 space-y-2">

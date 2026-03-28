@@ -24,12 +24,12 @@ export function GET() {
       'Cualquier opositor a la Administración General del Estado española',
     ],
     pricing: {
-      free: '1 test gratuito en cada tema + 2 análisis detallados sin tarjeta',
-      pack_c2_c1: '49,99€ pago único — temario completo + 20 análisis detallados + simulacros',
-      pack_a2_gace: '69,99€ pago único — temario + 20 análisis + 5 supuestos prácticos con corrección IA',
+      free: '1 test gratuito en cada tema + 2 sesiones gratis con tu Tutor IA sin tarjeta',
+      pack_c2_c1: '49,99€ pago único — temario completo + 20 créditos IA + simulacros',
+      pack_a2_gace: '69,99€ pago único — temario + 20 créditos IA + 5 supuestos prácticos con corrección IA',
       pack_triple_age: '129,99€ — las 3 oposiciones AGE (C2+C1+A2)',
-      recarga: '8,99€ — +10 análisis detallados',
-      recarga_supuestos: '14,99€ — +5 supuestos prácticos',
+      recarga: '9,99€ — +10 créditos IA',
+      nota_supuestos: 'Supuesto desarrollo = 2 créditos IA (la IA genera tu caso + lo corrige)',
       nota: 'Sin suscripción mensual. Pago único con acceso para siempre.',
     },
     features: [

@@ -29,6 +29,8 @@ const ERRORS_PER_BATCH = 10
 const InputSchema = z.object({
   testId: z.string().regex(UUID_REGEX, 'testId debe ser un UUID válido'),
   batch: z.number().int().min(0).max(20).default(0),
+  /** Demo mode: generates ~200 tokens preview, does NOT consume credit */
+  demo: z.boolean().default(false),
 })
 
 export async function POST(request: NextRequest) {
@@ -53,7 +55,7 @@ export async function POST(request: NextRequest) {
   if (!parsed.success) {
     return NextResponse.json({ error: parsed.error.issues.map(i => i.message).join('; ') }, { status: 400 })
   }
-  const { testId, batch } = parsed.data
+  const { testId, batch, demo } = parsed.data
 
   // ── 3. Anti-spam: 3 req/min ─────────────────────────────────────────────
   const antiSpam = await checkRateLimit(user.id, 'ai-explain', 3, '1 m')
@@ -109,7 +111,7 @@ export async function POST(request: NextRequest) {
   let hasFreeCredit = false
   const oposicionId = await getOposicionFromProfile(serviceSupabase, user.id)
 
-  if (!isAdmin) {
+  if (!isAdmin && !demo) {
     const { data: profileCredits } = await serviceSupabase
       .from('profiles')
       .select('corrections_balance, free_corrector_used')
@@ -122,7 +124,7 @@ export async function POST(request: NextRequest) {
 
     if (!hasPaidCredit && !hasFreeCredit && !isPaid) {
       return NextResponse.json({
-        error: 'No tienes análisis disponibles.',
+        error: 'No tienes créditos IA disponibles.',
         code: 'PAYWALL_CORRECTIONS',
       }, { status: 402 })
     }
@@ -161,8 +163,8 @@ export async function POST(request: NextRequest) {
   const userPrompt = `Analiza los errores del siguiente test:\n\n${preguntasTexto}`
 
   // ── 8. Stream AI response ────────────────────────────────────────────────
-  // Dynamic maxTokens based on error count
-  const maxTokens = erroneas.length <= 5 ? 1500 : erroneas.length <= 10 ? 2500 : 3500
+  // Dynamic maxTokens based on error count. Demo mode: short preview (~200 tokens)
+  const maxTokens = demo ? 300 : erroneas.length <= 5 ? 1500 : erroneas.length <= 10 ? 2500 : 3500
 
   log.info(
     { userId: user.id, testId, batch, erroresTotal: todasErroneas.length, erroresBatch: erroneas.length, maxTokens, hasPaidCredit },
@@ -197,8 +199,8 @@ export async function POST(request: NextRequest) {
     context: { testId, errores: erroneas.length },
     oposicionId,
     onComplete: async () => {
-      // Admin: no credit deduction
-      if (isAdmin) return
+      // Demo mode & admin: no credit deduction
+      if (isAdmin || demo) return
       if (hasPaidCredit) {
         await serviceSupabase.rpc('use_correction', { p_user_id: userId })
       } else {
