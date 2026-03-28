@@ -623,29 +623,40 @@ financian la creación de contenido para los siguientes. El coste IA tiende a �
 ```
 Banco inicial: 10 supuestos (oficiales INAP + pre-generados con seed)
 
-Usuario A (premium) → ve los 10 del banco (€0 IA, incluidos en pack)
+Usuario A (premium) → ve los 10 del banco en orden (€0 IA, incluidos en pack)
   → Los agota (ha visto los 10)
   → CTA: "Has completado los 10 supuestos. ¿Generar 10 nuevos? (10 créditos IA)"
   → Tiene créditos (o recarga 9,99€) → generamos 10 con IA → banco = 20
 
 Usuario B (nuevo premium) → ve los 20 desde el día 1 (€0 IA)
-  → Hace los 10 iniciales → hace los 10 del Usuario A = 20 vistos
-  → CTA: "Generar 10 nuevos (10 créditos IA)"
-  → Tiene créditos → pero hay 0 sin ver → generamos 10 nuevos → banco = 30
+  → Los ve EN ORDEN: primero los 10 originales, luego los 10 del Usuario A
+  → Agota los 20 → CTA igual → paga → NO generamos (Usuario A ya generó 10)
+  → Se le muestran las que NO ha visto → si quedan 0 sin ver → generamos 10 nuevos → banco = 30
 
 Usuario C → ve 30 desde el día 1... coste IA = €0 para nosotros
 
-REGLA: solo generamos cuando NO hay suficientes sin ver en el banco.
+REGLA CLAVE: solo generamos cuando el banco NO tiene supuestos sin ver para ESE usuario.
 Si el banco tiene supuestos que el usuario no ha visto → se los sirve (€0).
+Generar ≠ pagar. Pagar desbloquea el acceso, no siempre genera.
 ```
+
+### Orden de servicio (UX)
+
+Los supuestos se sirven por `created_at ASC`:
+1. Primero los oficiales (mayor calidad, verificados)
+2. Luego los seed pre-generados
+3. Luego los generados por otros usuarios (más probados = más fiables)
+4. Al final los recién generados
+
+Esto garantiza que el usuario ve primero los de mayor calidad (más "rodados").
 
 ### Regla de generación
 
-- Premium pide supuesto → busca en `supuesto_bank` sin ver (`NOT IN user_supuestos_seen`)
+- Premium pide supuesto → busca en `supuesto_bank` sin ver (`NOT IN user_supuestos_seen`) ORDER BY `created_at ASC`
 - Si hay ≥1 sin ver → servir del banco (€0 IA)
 - Si hay 0 sin ver → paywall "Genera 10 nuevos (10 créditos IA)"
-- Al pagar/tener créditos: generar 10 en background → guardar en banco → servir 1
-- Cada supuesto generado se verifica con `batchVerifyCitations` antes de bancar
+- Al pagar/tener créditos: generar con API chunked (Vercel Hobby 60s) → guardar en banco
+- **NO** `batchVerifyCitations` (supuestos son caso narrativo + MCQ, no tienen citas individuales). Validación: coherencia JSON + ≥ preguntas mínimas
 
 ### Modelo económico
 
@@ -660,59 +671,43 @@ Si el banco tiene supuestos que el usuario no ha visto → se los sirve (€0).
 
 ### Implementación atómica
 
-#### 2.7.1 — Admin/premium guarda en banco (quick win, sin UI)
-- [ ] En `generate-test/route.ts`: eliminar condición `!hasPaidAccess` del auto-fill
-- [ ] Premium + admin generan test → preguntas se guardan en `free_question_bank` también
-- [ ] Coste: €0 extra (ya pagamos la IA). Beneficio: banco crece con cada uso admin/premium
-
-#### 2.7.2 — Crear tabla `premium_question_bank`
-- [ ] Migration 060: `premium_question_bank (id, oposicion_id, tema_id, preguntas JSONB, times_served INT, created_at)`
-- [ ] Índice por `(oposicion_id, tema_id)`
-- [ ] RLS: SELECT para authenticated, INSERT/UPDATE solo service role
-
-#### 2.7.3 — Endpoint generate-test: servir de banco premium antes de IA
-- [ ] Premium pide test Tema 5 → query `premium_question_bank` WHERE tema_id AND oposicion_id
-- [ ] Contar preguntas totales en banco vs preguntas vistas por user (tracking en `tests_generados`)
-- [ ] Si user ha visto < 80% del banco → servir set sin ver del banco (€0 IA)
-- [ ] Si user ha visto ≥ 80% → generar con IA → guardar nuevas en banco → servir
-- [ ] `prompt_version: 'premium-bank-1.0'` vs `'ai-fresh-1.0'`
-- [ ] Metric: log `source: 'premium_bank' | 'ai_generated'` en api_usage_log
-
-#### 2.7.4 — Admin metrics: bank hit rate
-- [ ] En admin/analytics: widget "Banco Progresivo"
-- [ ] Métricas: total preguntas en banco por oposición, % servidos desde banco vs IA, coste evitado
-
-#### 2.7.5 — Supuesto test: paywall cuando agota banco
-- [ ] En `generate-supuesto-test/route.ts`: cuando 0 unseen → NO reciclar
-- [ ] Devolver 402 con `code: 'PAYWALL_SUPUESTO_LOTE'` y `unseenCount: 0, bankTotal: N`
+#### 2.7.1 — Paywall cuando agota banco
+- [ ] En `generate-supuesto-test/route.ts`: cuando 0 unseen → NO reciclar el más antiguo
+- [ ] Devolver 402 con `code: 'PAYWALL_SUPUESTO_LOTE'` y `{ unseenCount: 0, bankTotal: N }`
 - [ ] Frontend: CTA "Has completado los {N} supuestos disponibles. Genera 10 nuevos (10 créditos IA)"
+- [ ] Si user tiene < 10 créditos: mostrar "Necesitas 10 créditos IA" + botón recarga 9,99€
 
-#### 2.7.6 — Supuesto test: generación de lote con créditos IA
+#### 2.7.2 — Generación lote: endpoint chunked (compatible Vercel Hobby 60s)
 - [ ] Nuevo endpoint `POST /api/ai/generate-supuesto-test-batch`
-- [ ] Input: `{ count: 10 }` — genera `count` supuestos con IA en secuencia
-- [ ] Verifica créditos IA ≥ count (10) antes de empezar
-- [ ] Cada supuesto: genera → verifica → inserta en `supuesto_bank` → descuenta 1 crédito
-- [ ] Si falla alguno: rollback créditos no usados, devolver los que sí se generaron
-- [ ] Response: `{ generated: 8, failed: 2, creditsUsed: 8, bankTotal: 28 }`
-- [ ] Background job friendly: timeout 120s (Vercel Pro) o chunked (10 × 12s)
+- [ ] **NO genera los 10 de golpe** (timeout). Genera 2-3 por invocación (12-15s cada uno ≈ 36-45s)
+- [ ] Input: `{ oposicionId }`. Query: ¿cuántos sin ver tiene el user? Si < 10 sin ver, generar batch
+- [ ] Cada supuesto: genera → valida JSON schema → inserta en `supuesto_bank`
+- [ ] Descuenta 1 crédito IA por supuesto generado exitosamente
+- [ ] Response: `{ generated: 3, pending: 7, creditsUsed: 3 }`
+- [ ] Frontend: loop de llamadas hasta completar 10 (3+3+3+1) con progreso visual
+- [ ] Si falla: NO cobrar crédito de los fallidos, el user mantiene sus créditos
 
-#### 2.7.7 — Supuesto test: UI lote generado
-- [ ] En `/supuesto-test/page.tsx`: detectar cuando user ha visto todos → mostrar CTA lote
-- [ ] Barra progreso: "Has completado 10/10 supuestos"
-- [ ] Botón: "Generar 10 nuevos (10 créditos IA)" con confirmación
-- [ ] Loading state durante generación (puede tardar 1-2 min)
-- [ ] Al completar: toast "10 supuestos nuevos disponibles" + recarga página
+#### 2.7.3 — UX progreso + lote
+- [ ] En `/supuesto-test/page.tsx`: barra progreso "Supuesto 7 de 10 completados"
+- [ ] Cuando ha visto todos: card CTA "Has completado todos. Genera 10 nuevos (10 créditos IA)"
+- [ ] Dialog confirmación: "Se descontarán 10 créditos IA de tu saldo (X disponibles)"
+- [ ] Progress bar durante generación: "Generando supuesto 3 de 10..." (actualiza en cada chunk)
+- [ ] Al completar: toast "10 supuestos nuevos listos" + auto-recarga
 
-#### 2.7.8 — Verificación post-generación
-- [ ] Cada supuesto generado pasa por `batchVerifyCitations` antes de guardarse
-- [ ] Si verificación falla: descartar supuesto, NO cobrar crédito, generar otro
-- [ ] Log de calidad: % supuestos que pasan verificación vs descartados
+#### 2.7.4 — Validación post-generación
+- [ ] Cada supuesto generado pasa por validación:
+  - Schema Zod: `{ titulo, escenario, preguntas[] }` con ≥ N preguntas esperadas
+  - Preguntas: 4 opciones, correcta válida (0-3), enunciado no vacío
+  - **NO** `batchVerifyCitations` (supuestos no citan artículos individuales)
+- [ ] Si validación falla: descartar, NO cobrar crédito, reintentar 1 vez
+- [ ] Log calidad: % que pasan validación vs descartados
 
 ### Lo que NO hacemos (decisiones conscientes)
 - **NO** tier Stripe separado — usa créditos IA unificados (9,99€ = 10 créditos)
 - **NO** `supuestos_test_balance` campo separado — tracking via `user_supuestos_seen`
-- **NO** generación en tiempo real (1 supuesto) — siempre en lotes de 10
+- **NO** generación de 10 de golpe (timeout Vercel Hobby) — chunks de 2-3
 - **NO** el usuario elige cuántos generar — siempre 10 (simplifica UX y pricing)
+- **NO** `batchVerifyCitations` — supuestos no tienen citas individuales
 
 ---
 
@@ -732,40 +727,71 @@ Meta: banco premium crece → 80%+ tests servidos desde banco → coste ~$1/día
 Premium pide Test Tema 5 (20 preguntas, dificultad media)
 
 1. Query premium_question_bank WHERE tema_id=5 AND oposicion_id=X AND dificultad='media'
-2. Contar preguntas disponibles en banco para ese tema+dificultad
-3. Contar cuántas de esas YA ha visto el user (via tests_generados.preguntas)
+2. Filtrar preguntas cuyo hash NO está en user_questions_seen
+3. Contar: disponibles_sin_ver / total_banco
 
-Si ha visto < 80% del banco → sample 20 preguntas sin ver → servir (€0 IA)
-Si ha visto ≥ 80% → generar 20 con IA → guardar en banco → servir
+Si ha visto < 80% del banco → sample 20 sin ver → shuffle → servir (€0 IA)
+Si ha visto ≥ 80% → generar 20 con IA → guardar INDIVIDUALMENTE en banco → servir
 
 El banco crece automáticamente con cada generación IA.
+Admin genera test → también alimenta el banco (quick win).
 User #200 de Tema 5: banco tiene 200+ preguntas → €0 IA.
 ```
 
 ### Implementación atómica
 
-#### 2.8.1 — Guardar preguntas generadas en banco premium
-- [ ] Tras generar test con IA: upsert preguntas en `premium_question_bank`
-- [ ] Cada pregunta individual: `{ enunciado, opciones, correcta, explicacion, cita, dificultad }`
-- [ ] Deduplicar por hash de enunciado (evitar duplicados exactos)
-- [ ] Admin + premium: ambos alimentan el banco
+#### 2.8.1 — Quick win: admin/premium alimenta free_question_bank
+- [ ] En `generate-test/route.ts`: eliminar condición `!hasPaidAccess` del auto-fill
+- [ ] Premium + admin generan test → preguntas se guardan en `free_question_bank` también
+- [ ] Coste: €0 extra (ya pagamos la IA). Beneficio: banco free crece con cada uso admin/premium
 
-#### 2.8.2 — Tracking preguntas vistas por usuario
-- [ ] No necesita tabla nueva — `tests_generados.preguntas` ya tiene las preguntas que vio
-- [ ] Query: extraer enunciados de tests completados del user para ese tema
-- [ ] Comparar vs banco: `banco_total - vistas = disponibles sin ver`
-- [ ] Si `disponibles / banco_total > 0.20` (ha visto < 80%) → servir del banco
+#### 2.8.2 — Migration: tabla `premium_question_bank` + `user_questions_seen`
+- [ ] Migration 060: `premium_question_bank`:
+  ```
+  id              uuid PK
+  oposicion_id    uuid NOT NULL REFERENCES oposiciones(id)
+  tema_id         uuid NOT NULL REFERENCES temas(id)
+  dificultad      text NOT NULL CHECK (dificultad IN ('facil', 'media', 'dificil'))
+  pregunta        jsonb NOT NULL   -- {enunciado, opciones, correcta, explicacion, cita}
+  enunciado_hash  text NOT NULL    -- MD5 del enunciado (deduplicación)
+  times_served    int DEFAULT 0
+  created_at      timestamptz DEFAULT now()
+  UNIQUE (oposicion_id, tema_id, enunciado_hash)
+  ```
+- [ ] Índice: `(oposicion_id, tema_id, dificultad)` para queries de servicio
+- [ ] Migration 060b: `user_questions_seen`:
+  ```
+  user_id         uuid NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE
+  question_hash   text NOT NULL    -- MD5 del enunciado
+  seen_at         timestamptz DEFAULT now()
+  PRIMARY KEY (user_id, question_hash)
+  ```
+- [ ] RLS: SELECT para authenticated en ambas, INSERT service role en bank, INSERT para authenticated en seen
 
-#### 2.8.3 — Servir desde banco premium
+#### 2.8.3 — Guardar preguntas generadas en banco (automático)
+- [ ] Tras generar test con IA (cualquier user premium/admin):
+  - Extraer cada pregunta individual del array
+  - Calcular `enunciado_hash = MD5(pregunta.enunciado)`
+  - Upsert en `premium_question_bank` (ON CONFLICT → skip, no duplicar)
+  - Etiquetar con `dificultad` del test solicitado
+- [ ] Tras servir test (cualquier user): insertar hashes en `user_questions_seen`
+- [ ] Bulk insert (no 1 query por pregunta)
+
+#### 2.8.4 — Servir desde banco premium antes de IA
 - [ ] En `generate-test/route.ts`: ANTES de llamar IA, check banco premium
-- [ ] Query `premium_question_bank` WHERE tema_id AND oposicion_id AND dificultad
-- [ ] Filtrar preguntas no vistas por el user (NOT IN enunciados de sus tests)
-- [ ] Si hay ≥ numPreguntas sin ver → shuffle + servir → `prompt_version: 'premium-bank-1.0'`
-- [ ] Si no hay suficientes → generar con IA (como ahora) → guardar en banco
+- [ ] Query banco: `WHERE tema_id AND oposicion_id AND dificultad`
+- [ ] LEFT JOIN con `user_questions_seen` → filtrar ya vistas
+- [ ] Contar: sin_ver / total. Si sin_ver ≥ numPreguntas AND (sin_ver/total) > 0.20 → servir del banco
+- [ ] Shuffle las sin_ver → tomar N → servir con `prompt_version: 'premium-bank-1.0'`
+- [ ] Si no hay suficientes → generar con IA (como ahora) → guardar en banco → servir
+- [ ] Log `source: 'premium_bank' | 'free_bank' | 'ai_generated'` en api_usage_log
 
-#### 2.8.4 — Métricas de eficiencia
-- [ ] api_usage_log: `source: 'premium_bank' | 'free_bank' | 'ai_generated'`
-- [ ] Admin widget: "Banco Progresivo" — total preguntas, hit rate, coste evitado estimado
+#### 2.8.5 — Métricas de eficiencia
+- [ ] Admin widget "Banco Progresivo":
+  - Total preguntas en banco (por oposición, por tema)
+  - Hit rate: % tests servidos desde banco vs IA (últimos 7d / 30d)
+  - Coste evitado estimado: hit_rate × tests_generados × $0.005
+  - Top 5 temas con banco más grande vs más pequeño
 - [ ] Alerta si hit rate < 50% (banco insuficiente, demasiada IA)
 
 ### Modelo económico
@@ -778,9 +804,9 @@ User #200 de Tema 5: banco tiene 200+ preguntas → €0 IA.
 | 500+ | ~25.000 | ~95%+ | ~$0.25 |
 
 ### Lo que NO hacemos
-- **NO** banco separado por dificultad (una sola pool, la dificultad la pone el prompt)
 - **NO** expiración de preguntas (la legislación cambia poco, las preguntas son válidas años)
-- **NO** deduplicación semántica (solo por hash de enunciado — suficiente)
+- **NO** deduplicación semántica (hash MD5 del enunciado es suficiente)
+- **NO** tracking por JSON extraction (pesado) — tabla `user_questions_seen` con hash = JOIN rápido
 
 ---
 
