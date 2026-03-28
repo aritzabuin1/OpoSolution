@@ -5,6 +5,7 @@ import { SYSTEM_CAZATRAMPAS, buildCazaTrampasPrompt } from '@/lib/ai/prompts'
 import { CazaTrampasRawSchema } from '@/lib/ai/schemas'
 import { logger } from '@/lib/logger'
 import { verifyCronSecret } from '@/lib/auth/cron-auth'
+import { sendPushToAll } from '@/lib/push/send'
 
 // Vercel Hobby max: 60s. AI generation needs 15-40s.
 export const maxDuration = 60
@@ -164,6 +165,15 @@ export async function GET(request: NextRequest) {
     }
 
     log.info({ fecha: today, id: inserted.id }, '[reto-diario-cron] Reto diario generado')
+
+    // Send push notification to all subscribed users (fire-and-forget)
+    void sendPushToAll({
+      title: 'Reto Diario disponible',
+      body: `${articulo.ley_nombre}, art. ${articulo.articulo_numero} — ¿Encuentras los ${NUM_ERRORES} errores?`,
+      url: '/reto-diario',
+      tag: 'reto-diario',
+    }).catch(err => log.warn({ err }, '[reto-diario-cron] push notification failed'))
+
     return NextResponse.json({ ok: true, skipped: false, fecha: today, id: inserted.id })
   } catch (err) {
     // Global catch — prevents generic 500 HTML page from Vercel/Next.js

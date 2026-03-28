@@ -48,6 +48,7 @@ import { EmptyStateOverlay } from '@/components/dashboard/EmptyStateOverlay'
 import { ReEngagementBanner } from '@/components/dashboard/ReEngagementBanner'
 import { AIAnalysisNudge } from '@/components/dashboard/AIAnalysisNudge'
 import { AnalysisStatsCard } from '@/components/dashboard/AnalysisStatsCard'
+import { PushNotificationToggle } from '@/components/shared/PushNotificationToggle'
 
 // ─── Tipos locales ─────────────────────────────────────────────────────────────
 
@@ -524,6 +525,9 @@ export default async function DashboardPage() {
 
       {/* ── 2d. Plan de estudio personalizado (roadmap IA) ────────────────── */}
       {totalTests >= 3 && <RoadmapCard activity={roadmapActivity} oposicionId={profile?.oposicion_id ?? undefined} />}
+
+      {/* ── 2e. Push notification opt-in (subtle card) ───────────────────── */}
+      {totalTests >= 2 && <PushNotificationToggle variant="card" />}
 
       {/* ── 3. Gráfico de evolución ──────────────────────────────────────── */}
       <EmptyStateOverlay locked={phase === 'new' || phase === 'starting'} message="Explora más temas para ver tu evolución">

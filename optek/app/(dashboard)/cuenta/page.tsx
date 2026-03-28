@@ -15,6 +15,7 @@
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { ShoppingBag, Sparkles, Zap } from 'lucide-react'
+import { PushNotificationToggle } from '@/components/shared/PushNotificationToggle'
 
 export const metadata: Metadata = { title: 'Mi Cuenta' }
 import { createClient } from '@/lib/supabase/server'
@@ -264,7 +265,15 @@ export default async function CuentaPage() {
         </CardContent>
       </Card>
 
-      {/* Supuestos prácticos section removed — uses unified créditos IA (2 per supuesto) */}
+      {/* ── Notificaciones push ─────────────────────────────────────────── */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">Notificaciones</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <PushNotificationToggle variant="toggle" />
+        </CardContent>
+      </Card>
 
       {/* ── §1.14.2 Mis compras ───────────────────────────────────────────── */}
       <Card>
