@@ -129,6 +129,7 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">Guía completa de preparación 2025-2026</a> — temario, planificación y métodos de estudio</li>
   <li><a href="/examenes-oficiales">Simulacros oficiales INAP</a> — practica con las preguntas reales del tribunal</li>
 </ul>
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
     dateModified: '2026-03-19',
     faqs: [
@@ -415,6 +416,7 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">Guía completa de preparación</a> — planificación, métodos de estudio y herramientas</li>
   <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Cómo funciona la penalización -1/3</a> — estrategia de respuesta para el examen</li>
 </ul>
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
     dateModified: '2026-03-19',
     faqs: [
@@ -540,6 +542,7 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/constitucion-espanola-preguntas-examen-auxiliar-administrativo">Constitución Española en el examen</a> — los artículos clave</li>
   <li><a href="/blog/psicotecnicas-examen-auxiliar-administrativo-estado">Psicotécnicas del examen</a> — tipos, ejemplos y cómo practicarlas</li>
 </ul>
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
     dateModified: '2026-03-19',
     faqs: [
@@ -862,6 +865,7 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo: los 28 temas</a> — cómo organizarlos y priorizarlos</li>
   <li><a href="/blog/constitucion-espanola-oposiciones-age-articulos-clave">Constitución para C1 y C2</a> — los mismos artículos clave sirven para ambas oposiciones</li>
 </ul>
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
     dateModified: '2026-03-19',
     faqs: [
@@ -1492,6 +1496,7 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Cómo funciona la penalización -1/3</a> — estrategia de respuesta para el día del examen</li>
   <li><a href="/blog/articulos-lpac-que-mas-caen-examen-inap">Artículos de la LPAC que más caen</a> — empieza por lo que más pregunta el tribunal</li>
 </ul>
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
     dateModified: '2026-03-19',
     faqs: [
@@ -1506,7 +1511,7 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 10 ───────────────────────────────────────────────────────────────
   {
     slug: 'plazas-auxiliar-administrativo-2026',
-    title: '1.700 plazas Auxiliar Administrativo 2026: cifra récord y ratio aspirante/plaza',
+    title: '1.700 Plazas Auxiliar Administrativo del Estado 2026 — récord histórico',
     description:
       'La mayor convocatoria de la historia: 1.700 plazas de acceso libre. ¿Cuál es el ratio aspirante/plaza real? Histórico de plazas, fechas clave y por qué 2026 es tu mejor oportunidad.',
     date: '2026-03-12',
@@ -1595,6 +1600,7 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/nota-corte-auxiliar-administrativo-estado">Nota de corte de la última convocatoria</a> — qué puntuación necesitas para aprobar</li>
   <li><a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">¿C2 o C1?</a> — compara plazas, sueldo y temario antes de decidir</li>
 </ul>
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
     dateModified: '2026-03-19',
     faqs: [
@@ -1608,10 +1614,11 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 11 ───────────────────────────────────────────────────────────────
   {
     slug: 'nota-corte-auxiliar-administrativo-estado',
-    title: 'Nota de corte Auxiliar Administrativo 2024: 30 puntos — ¿La superarías?',
+    title: 'Nota de Corte Auxiliar Administrativo 2026: histórico y cálculo',
     description:
       'Nota de corte 2024: 30 puntos (parte 1) y 26,33 (parte 2) sobre 100. Histórico de cortes desde 2019, cómo se calcula con la penalización -1/3 y calculadora gratis para estimar tu nota.',
     date: '2026-03-12',
+    dateModified: '2026-03-28',
     keywords: [
       'nota de corte auxiliar administrativo estado',
       'nota corte auxiliar administrativo 2024',
@@ -1693,8 +1700,8 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">Guía completa de preparación</a> — temario, planificación y métodos de estudio</li>
   <li><a href="/blog/nota-corte-administrativo-estado-c1-como-se-calcula">Nota de corte del C1</a> — si te planteas subir al Administrativo del Estado</li>
 </ul>
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
-    dateModified: '2026-03-19',
     faqs: [
       { question: '¿Cuál es la nota de corte del examen de Auxiliar Administrativo del Estado?', answer: 'La nota de corte varía en cada convocatoria: 57,5 puntos en 2019, 60 en 2022 y 65 en 2024 (sobre 100). La tendencia es ascendente debido al aumento de opositores preparados. Para la convocatoria 2026, se estima una nota de corte en torno a 63-67 puntos.' },
       { question: '¿Cómo se calcula la nota final en el examen de Auxiliar Administrativo?', answer: 'La nota del cuestionario se calcula como: aciertos - (errores / 3). Las preguntas en blanco no puntúan. El resultado se escala sobre 50 puntos (la parte teórica vale 50% del total). La prueba práctica de ofimática aporta los otros 50 puntos. Se necesita un mínimo de 25 en cada parte.' },
@@ -1835,6 +1842,7 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Penalización -1/3 explicada</a> — cuándo arriesgar y cuándo dejar en blanco</li>
   <li><a href="/examenes-oficiales">Simulacros INAP oficiales</a> — practica con preguntas reales del tribunal</li>
 </ul>
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
     dateModified: '2026-03-19',
     faqs: [
@@ -1950,6 +1958,7 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/plazas-auxiliar-administrativo-2026">1.700 plazas en 2026</a> — la mejor convocatoria de la historia</li>
   <li><a href="/blog/psicotecnicas-examen-auxiliar-administrativo-estado">Psicotécnicos del examen</a> — no los dejes para el final</li>
 </ul>
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
   },
 
@@ -2409,7 +2418,7 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 18 ───────────────────────────────────────────────────────────────
   {
     slug: 'diferencias-auxiliar-c2-administrativo-c1-estado',
-    title: 'C1 vs C2: ¿Auxiliar o Administrativo del Estado? Sueldo, plazas y cuál elegir',
+    title: 'Diferencias C1 vs C2 (2026): Auxiliar o Administrativo — sueldo, plazas y cuál elegir',
     description:
       'Auxiliar (C2): 1.700 plazas, 28 temas, ~23.000€/año. Administrativo (C1): 2.512 plazas, 45 temas, ~28.000€/año. Tabla comparativa completa + criterios para decidir cuál te conviene.',
     date: '2026-03-21',
@@ -4080,7 +4089,7 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 29: OpoRuta vs OpositaTest ──────────────────────────────────────
   {
     slug: 'oporuta-vs-opositatest-auxiliar-administrativo-2026',
-    title: 'Alternativa a OpositaTest (2026): OpoRuta vs OpositaTest — precios y diferencias reales',
+    title: 'OpoRuta vs OpositaTest (2026): 49,99€ único vs 12€/mes — comparativa completa',
     description:
       'La mejor alternativa a OpositaTest para auxiliar administrativo y C1. Comparamos precio (12€/mes vs 49,99€ pago único), verificación de citas legales, Radar del Tribunal y simulacros INAP. Tabla punto por punto.',
     date: '2026-03-17',
@@ -4913,6 +4922,7 @@ export const blogPosts: BlogPost[] = [
 </p>
 
 <p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Fechas sujetas a posibles cambios del Tribunal.</em></p>
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
     faqs: [
       { question: '¿Cuándo es el examen de Auxiliar Administrativo del Estado 2026?', answer: 'El examen está convocado para el 23 de mayo de 2026. Es un ejercicio único tipo test de 100 preguntas (más 10 de reserva) con 90 minutos de duración y penalización de -1/3 por error.' },
@@ -5453,6 +5463,7 @@ export const blogPosts: BlogPost[] = [
 </p>
 
 <p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Importes basados en PGE 2025-2026 y nóminas reales de funcionarios C2.</em></p>
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
     faqs: [
       { question: '¿Cuánto cobra un auxiliar administrativo del estado al mes?', answer: 'Entre 1.400€ y 1.650€ netos mensuales en 14 pagas, dependiendo del destino y la antigüedad. El sueldo bruto mensual oscila entre 1.500€ y 1.900€. Los organismos con mejor complemento específico (AEAT, Seguridad Social) están en la parte alta de la horquilla.' },
@@ -5940,7 +5951,7 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 38 ───────────────────────────────────────────────────────────────
   {
     slug: 'sueldo-administrativo-estado-c1-2026-nomina',
-    title: 'Sueldo Administrativo del Estado (C1) en 2026: nómina real desglosada',
+    title: 'Sueldo Administrativo del Estado (C1) en 2026: 1.500–2.100€/mes — nómina desglosada',
     description:
       'Desglose completo de la nómina de un Administrativo del Estado C1 en 2026: sueldo base, complementos, trienios, pagas extras y salario neto mensual.',
     date: '2026-03-20',
@@ -6488,7 +6499,7 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 40 ───────────────────────────────────────────────────────────────
   {
     slug: 'calendario-oposiciones-administrativo-estado-c1-2026',
-    title: 'Calendario Administrativo del Estado (C1) 2026: todas las fechas clave',
+    title: 'Calendario Oposiciones C1 Administrativo 2026: examen 20 junio — fechas confirmadas',
     description:
       'Calendario completo de la oposición a Administrativo del Estado C1 en 2026: fecha de examen, plazos de inscripción, listas provisionales, resultados y toma de posesión.',
     date: '2026-03-20',
@@ -13315,6 +13326,80 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Cuántos puntos valen los psicotécnicos en Correos?', answer: 'Las 10 preguntas psicotécnicas valen 0,60 puntos cada una, sumando 6 puntos sobre 60 (10% de la nota). En una oposición donde la diferencia entre entrar y no suele ser de 2-3 puntos, los psicotécnicos pueden decidir tu plaza.' },
       { question: '¿Dónde puedo practicar psicotécnicos de Correos online gratis?', answer: 'OpoRuta es la única plataforma con psicotécnicos específicos de Correos: comprensión lectora con textos del sector postal, interpretación de gráficos con datos de envíos y series de figuras en formato oficial. Puedes practicar gratis con 3 sesiones de psicotécnicos sin registro de pago.' },
       { question: '¿Cuánto tiempo debo dedicar a los psicotécnicos en el examen de Correos?', answer: 'Aproximadamente 12 minutos para las 10 preguntas: 1,5 minutos para comprensión lectora, 1 minuto para gráficos y 1 minuto para figuras. Si llevas más de 1,5 minutos en un psicotécnico, marca tu mejor opción y avanza. Te quedarán 98 minutos para las 90 preguntas de temario.' },
+    ],
+  },
+
+  // ─── Post: Test Auxiliar Administrativo Online Gratis ────────────────────────
+  {
+    slug: 'test-auxiliar-administrativo-online-gratis',
+    title: 'Test Auxiliar Administrativo del Estado Online Gratis — Practica Ahora',
+    description:
+      'Practica con tests tipo examen INAP de Auxiliar Administrativo. 5 preguntas de ejemplo + acceso a tests ilimitados gratis.',
+    date: '2026-03-28',
+    keywords: [
+      'test auxiliar administrativo online',
+      'test oposiciones gratis',
+      'preguntas test auxiliar administrativo',
+      'practicar examen auxiliar administrativo',
+      'test auxiliar administrativo del estado gratis',
+      'simulacro auxiliar administrativo online',
+      'examen tipo test auxiliar administrativo',
+    ],
+    content: `
+<h2>5 preguntas de ejemplo — ¿las acertarías?</h2>
+<p>Estas 5 preguntas son del estilo exacto del examen INAP. Penalización real: cada error resta 1/3 del valor de un acierto.</p>
+
+<p><strong>Pregunta 1.</strong> Según la Constitución Española, ¿quién es el Jefe del Estado?</p>
+<p>a) El Presidente del Gobierno &nbsp; b) El Rey &nbsp; c) El Presidente del Congreso &nbsp; d) El Defensor del Pueblo</p>
+<p><em>Respuesta: b) El Rey (Art. 56 CE)</em></p>
+
+<p><strong>Pregunta 2.</strong> ¿Cuál es el plazo máximo para resolver un procedimiento administrativo cuando la norma no fija uno específico?</p>
+<p>a) 1 mes &nbsp; b) 3 meses &nbsp; c) 6 meses &nbsp; d) 1 año</p>
+<p><em>Respuesta: b) 3 meses (Art. 21.3 LPAC)</em></p>
+
+<p><strong>Pregunta 3.</strong> El recurso de alzada se interpone ante:</p>
+<p>a) El mismo órgano que dictó el acto &nbsp; b) El superior jerárquico &nbsp; c) El Consejo de Estado &nbsp; d) El Tribunal Constitucional</p>
+<p><em>Respuesta: b) El superior jerárquico del órgano que dictó el acto (Art. 121 LPAC)</em></p>
+
+<p><strong>Pregunta 4.</strong> ¿Cuántos títulos tiene la Constitución Española de 1978?</p>
+<p>a) 8 &nbsp; b) 10 &nbsp; c) 11 &nbsp; d) 12</p>
+<p><em>Respuesta: c) 11 títulos (Título Preliminar + Títulos I a X)</em></p>
+
+<p><strong>Pregunta 5.</strong> Los funcionarios interinos cesan cuando:</p>
+<p>a) Nunca, tienen plaza fija &nbsp; b) Se cubre el puesto por funcionario de carrera &nbsp; c) Al cumplir 5 años &nbsp; d) Solo por renuncia voluntaria</p>
+<p><em>Respuesta: b) Se cubre el puesto por funcionario de carrera (Art. 10.3 TREBEP)</em></p>
+
+<h2>¿Has acertado las 5? En OpoRuta tienes más</h2>
+<p>Estas preguntas son solo una muestra. En OpoRuta generas <strong>tests ilimitados</strong> de los 28 temas del examen, con:</p>
+<ul>
+  <li><strong>Preguntas verificadas</strong> contra legislación oficial del BOE</li>
+  <li><strong>Penalización real</strong> (-1/3 por error, como en el INAP)</li>
+  <li><strong>Análisis con IA</strong> que te explica por qué has fallado</li>
+  <li><strong>Simulacros completos</strong> con exámenes reales de 2019, 2022, 2024</li>
+  <li><strong>Radar del Tribunal</strong>: qué temas caen más según el INAP</li>
+</ul>
+<p><strong><a href="/register">Empieza tu primer test gratis ahora</a></strong> — sin tarjeta, sin compromiso. En 2 minutos estás practicando.</p>
+
+<h2>¿Por qué OpoRuta y no otra plataforma?</h2>
+<p>La mayoría de plataformas generan preguntas genéricas que no se parecen al examen real. OpoRuta es diferente:</p>
+<ul>
+  <li>Cada pregunta cita el artículo exacto de la ley — verificado contra el BOE</li>
+  <li>El estilo imita al tribunal INAP (calibrado con 1.987 preguntas oficiales reales)</li>
+  <li>Pagas una vez (49,99€) y accedes para siempre — sin suscripción mensual</li>
+</ul>
+<p>¿Quieres comparar? Lee nuestra <a href="/blog/oporuta-vs-opositatest-auxiliar-administrativo-2026">comparativa OpoRuta vs OpositaTest</a> o ve directamente a los <a href="/precios">precios</a>.</p>
+
+<h2>Empieza ahora — el examen es el 23 de mayo</h2>
+<p>Faltan pocas semanas. Cada día que practicas sube tu nota. <strong><a href="/register">Crea tu cuenta gratis</a></strong> y haz tu primer test en 2 minutos.</p>
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
+    `.trim(),
+    faqs: [
+      { question: '¿Es gratis practicar tests de Auxiliar Administrativo en OpoRuta?', answer: 'Sí. Puedes hacer 1 test gratuito en cada tema (28 temas), 3 simulacros con exámenes reales del INAP y 2 análisis con IA. Sin tarjeta de crédito.' },
+      { question: '¿Las preguntas son como las del examen real INAP?', answer: 'Sí. Cada pregunta está verificada contra legislación oficial del BOE y el estilo está calibrado con 1.987 preguntas reales de convocatorias 2019-2024.' },
+      { question: '¿Cuánto cuesta el acceso completo?', answer: '49,99€ pago único — sin suscripción. Incluye tests ilimitados, simulacros completos, análisis IA y Radar del Tribunal.' },
+      { question: '¿Puedo practicar desde el móvil?', answer: 'Sí. OpoRuta funciona en cualquier dispositivo: móvil, tablet y ordenador. No necesitas instalar nada.' },
+      { question: '¿Hay penalización como en el examen real?', answer: 'Sí. Cada error resta 1/3 del valor de un acierto, exactamente como en el examen INAP. Así practicas en condiciones reales.' },
+      { question: '¿Cuándo es el examen de Auxiliar Administrativo 2026?', answer: 'El 23 de mayo de 2026. Quedan pocas semanas — empieza a practicar cuanto antes.' },
     ],
   },
 ]

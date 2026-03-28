@@ -52,6 +52,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: `${APP_URL}/precios`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
     // Sub-landings por oposición (SEO critical)
     {
       url: `${APP_URL}/oposiciones/correos`,
