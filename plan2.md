@@ -332,22 +332,43 @@ interface SupuestoTestConfig {
 
 | Tier | Qué ve | Coste IA | Fuente |
 |------|--------|----------|--------|
-| **Free** | Siempre el mismo supuesto: el oficial INAP 2024 | $0 | `free_supuesto_bank` |
+| **Free** | Siempre el mismo supuesto: 1 oficial de años anteriores | $0 | `free_supuesto_bank` |
 | **Premium (banco lleno)** | Supuesto no visto del banco | $0 | `supuesto_bank` |
 | **Premium (banco vacío)** | Supuesto generado por IA → se guarda en banco | ~$0.35 | IA + save to bank |
+
+**Regla de oro: €0 en IA hasta que el cliente paga.** El seed del banco premium se construye con supuestos oficiales de años anteriores (coste $0 — solo parseo). Solo se genera con IA cuando un premium agota el banco y paga 9,99€.
+
+**Estrategia seed por oposición: oficiales primero, IA solo para el gap**
+
+1. Inventariar cuántos supuestos oficiales con formato test hay en los PDFs descargados
+2. Parsear TODOS los oficiales → `supuesto_bank` con `es_oficial=true` (coste $0)
+3. Contar: si oficiales ≥ ~10 → seed completado, €0 gastados en IA
+4. Si oficiales < ~10 → generar SOLO la diferencia con IA (nuestro coste seed)
+5. La dedup §DEDUP aplica al ingestar oficiales y al generar seed
+
+**Inventario estimado de supuestos oficiales parseables:**
+
+| Oposición | PDFs descargados | Supuestos/examen | Oficiales estimados | Seed IA necesario |
+|---|---|---|---|---|
+| AGE C1 | 2024 (A+B) | 2 supuestos/modelo | ~4 | ~6 (coste ~$2.10) |
+| Auxilio Judicial | 22 PDFs (2008-2025) | 2 por examen (ambos) | **potencialmente 20+** | **~0 si ≥10 parseables** |
+| Tramitación | 14 PDFs (2011-2025) | 1 por examen | **potencialmente 10+** | **~0 si ≥10 parseables** |
+| Gestión Procesal | 14 PDFs (2023-2025) | 1 por examen | ~3-5 | ~5-7 (coste ~$2.50) |
+
+> **IMPORTANTE**: Los números son estimados. Hay que verificar PDF por PDF cuántos contienen supuesto test en formato parseable. Los exámenes antiguos (pre-2015) pueden tener formato distinto. El inventario real se hace en la fase de parseo.
 
 **Curva de reducción de coste:**
 
 | Usuarios premium | Supuestos en banco | % servido sin IA | Coste medio/sesión |
 |---|---|---|---|
-| 0 (seed) | 5 pre-generados + 2 oficiales | 100% | $0 |
-| 1-10 | 7-15 | ~80% | ~$0.07 |
+| 0 (seed) | oficiales parseados (variable) | 100% | $0 |
+| 1-10 | seed + primeras generaciones | ~80% | ~$0.07 |
 | 10-50 | 15-25 | ~95% | ~$0.02 |
 | 50+ | 25-30 (tope) | ~99% | ~$0.00 |
 
 **Tope del banco: ~30 supuestos.** Con 4 bloques × ~7 temas/bloque, las combinaciones temáticas son finitas. Un opositor que ha hecho 30 supuestos distintos ya domina el formato. A partir de 30, recicla supuestos no vistos por ese usuario.
 
-**Seed inicial**: Pre-generar 5 supuestos con IA ($1.75) + parsear 2 oficiales 2024 = 7 supuestos día 1.
+**Seed inicial**: Parsear TODOS los oficiales ($0) + generar solo el gap hasta ~10 (variable por oposición, ver tabla arriba).
 
 ### Modelo de datos
 
@@ -374,6 +395,9 @@ CREATE TABLE supuesto_bank (
   preguntas      jsonb NOT NULL,     -- Pregunta[] (20 preguntas)
   es_oficial     boolean DEFAULT false,
   fuente         text,               -- 'ai-supuesto-c1-1.0' | 'INAP-2024-...'
+  -- Dedup (ver §DEDUP para algoritmo completo)
+  titulo_norm    text NOT NULL,      -- lower(unaccent(titulo)) — calculado en TS
+  escenario_norm text NOT NULL,      -- lower(unaccent(primeras 500 chars escenario)) — calculado en TS
   -- Métricas
   times_served   int DEFAULT 0,
   avg_score      numeric(4,1),       -- Media de puntuación de usuarios
@@ -489,13 +513,13 @@ Lógica basada en `scoring_config.ejercicios`:
 
 | Concepto | Coste |
 |----------|-------|
-| Seed banco AGE C1 (5 supuestos × $0.35) | $1.75 (one-time) |
-| Seed banco Justicia ×3 (5 supuestos × $0.35 × 3 opos) | $5.25 (one-time, al activar) |
-| Parseo supuestos oficiales | $0 (manual/script) |
-| Primeros 50 premium users por oposición (~5 gen IA) | ~$1.75/oposición |
+| Parseo supuestos oficiales (TODOS los años disponibles) | **$0** (manual/script) |
+| Seed IA AGE C1 (gap: ~10 - oficiales parseados) | ~$2.10 (one-time, solo el gap) |
+| Seed IA Justicia ×3 (gap variable por oposición) | **$0 si oficiales ≥ ~10** — hasta ~$2.50/opo si gap grande |
+| Primeros 50 premium users por oposición (~5 gen IA) | ~$1.75/oposición (pagado por el cliente) |
 | Coste ongoing (banco lleno, >50 users) | ~$0/mes |
-| **Coste total AGE C1 hasta break-even** | **~$3.50** |
-| **Coste total incluyendo Justicia ×3** | **~$14** |
+| **Coste máximo seed (peor caso: todas necesitan gap)** | **~$10** |
+| **Coste mínimo seed (oficiales cubren ≥10)** | **~$2.10** (solo AGE C1) |
 
 ### Requisitos del checklist
 
@@ -623,6 +647,7 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 7. **GAP-4**: Desarrollo escrito Gestión Procesal (solo si activamos Gestión Procesal)
 8. **FASE 2.7**: Flywheel supuestos test (créditos IA unificados) — implementar antes de activar Justicia
 9. **FASE 2.8**: Banco progresivo premium para tests por tema — optimización coste IA
+10. **DEDUP transversal**: Algoritmo de deduplicación compartido por 2.7 y 2.8 — ver §DEDUP
 
 ---
 
@@ -634,13 +659,16 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 
 ### Concepto
 
-El banco de supuestos test crece con cada generación. Los usuarios que pagan créditos IA
-financian la creación de contenido para los siguientes. El coste IA tiende a €0.
+**Regla: €0 en IA hasta que el cliente paga.** El banco arranca con supuestos oficiales
+de años anteriores (parseo = $0). Solo se genera con IA cuando un premium agota el banco
+y paga 9,99€. Los usuarios que pagan créditos IA financian contenido para los siguientes.
 
 ### Flujo detallado
 
 ```
-Banco inicial: 10 supuestos (oficiales INAP + pre-generados con seed)
+Banco inicial: N supuestos oficiales parseados (variable por oposición, ver inventario arriba)
+  → Si N < ~10: completar con seed IA hasta ~10 (nuestro único coste upfront)
+  → Si N ≥ ~10: seed completado con €0 en IA
 
 Usuario A (premium) → ve los 10 del banco en orden (€0 IA, incluidos en pack)
   → Los agota (ha visto los 10)
@@ -700,9 +728,11 @@ Esto garantiza que el usuario ve primero los de mayor calidad (más "rodados").
 - [ ] Nuevo endpoint `POST /api/ai/generate-supuesto-test-batch`
 - [ ] **NO genera los 10 de golpe** (timeout). Genera 2-3 por invocación (12-15s cada uno ≈ 36-45s)
 - [ ] Input: `{ oposicionId }`. Query: ¿cuántos sin ver tiene el user? Si < 10 sin ver, generar batch
-- [ ] Cada supuesto: genera → valida JSON schema → inserta en `supuesto_bank`
-- [ ] Descuenta 1 crédito IA por supuesto generado exitosamente
-- [ ] Response: `{ generated: 3, pending: 7, creditsUsed: 3 }`
+- [ ] Cada supuesto: genera → valida JSON schema → **dedup check (ver §DEDUP)** → inserta en `supuesto_bank`
+- [ ] **Dedup pre-insert**: `prepareSupuestoDedup(caso)` → RPC `check_supuesto_duplicate`. Si duplicado → descartar + reintentar 1 vez con seed distinto en prompt. NO cobrar crédito del descartado
+- [ ] Al insertar: incluir `titulo_norm` y `escenario_norm` (calculados en TS con `normalizeText()`)
+- [ ] Descuenta 1 crédito IA por supuesto generado exitosamente (no duplicado)
+- [ ] Response: `{ generated: 3, pending: 7, creditsUsed: 3, duplicatesDiscarded: 0 }`
 - [ ] Frontend: loop de llamadas hasta completar 10 (3+3+3+1) con progreso visual
 - [ ] Si falla: NO cobrar crédito de los fallidos, el user mantiene sus créditos
 
@@ -764,37 +794,66 @@ User #200 de Tema 5: banco tiene 200+ preguntas → €0 IA.
 - [ ] Premium + admin generan test → preguntas se guardan en `free_question_bank` también
 - [ ] Coste: €0 extra (ya pagamos la IA). Beneficio: banco free crece con cada uso admin/premium
 
-#### 2.8.2 — Migration: tabla `premium_question_bank` + `user_questions_seen`
-- [ ] Migration 060: `premium_question_bank`:
-  ```
-  id              uuid PK
-  oposicion_id    uuid NOT NULL REFERENCES oposiciones(id)
-  tema_id         uuid NOT NULL REFERENCES temas(id)
-  dificultad      text NOT NULL CHECK (dificultad IN ('facil', 'media', 'dificil'))
-  pregunta        jsonb NOT NULL   -- {enunciado, opciones, correcta, explicacion, cita}
-  enunciado_hash  text NOT NULL    -- MD5 del enunciado (deduplicación)
-  times_served    int DEFAULT 0
-  created_at      timestamptz DEFAULT now()
-  UNIQUE (oposicion_id, tema_id, enunciado_hash)
-  ```
-- [ ] Índice: `(oposicion_id, tema_id, dificultad)` para queries de servicio
-- [ ] Migration 060b: `user_questions_seen`:
-  ```
-  user_id         uuid NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE
-  question_hash   text NOT NULL    -- MD5 del enunciado
-  seen_at         timestamptz DEFAULT now()
-  PRIMARY KEY (user_id, question_hash)
+#### 2.8.2 — Migration: extensiones + tabla `premium_question_bank` + `user_questions_seen`
+- [ ] Migration 060: extensiones + `premium_question_bank` + `user_questions_seen`
+  ```sql
+  -- Extensiones para deduplicación (ver §DEDUP)
+  CREATE EXTENSION IF NOT EXISTS pg_trgm;
+  CREATE EXTENSION IF NOT EXISTS unaccent;
+
+  -- Banco premium
+  CREATE TABLE premium_question_bank (
+    id              uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+    oposicion_id    uuid NOT NULL REFERENCES oposiciones(id),
+    tema_id         uuid NOT NULL REFERENCES temas(id),
+    dificultad      text NOT NULL CHECK (dificultad IN ('facil', 'media', 'dificil')),
+    pregunta        jsonb NOT NULL,  -- {enunciado, opciones, correcta, explicacion, cita}
+    -- Dedup Capa 1: hash exacto (ver §DEDUP)
+    enunciado_hash  text NOT NULL,
+    -- Dedup Capa 2: similitud dual (calculados en TS con normalizeText())
+    enunciado_norm  text NOT NULL,   -- lower(unaccent(enunciado))
+    correcta_norm   text NOT NULL,   -- lower(unaccent(texto_opcion_correcta))
+    cita_ley        text,            -- nullable (Bloque II no tiene cita)
+    cita_articulo   text,            -- nullable
+    -- Métricas
+    times_served    int DEFAULT 0,
+    created_at      timestamptz DEFAULT now(),
+    UNIQUE (oposicion_id, tema_id, enunciado_hash)
+  );
+
+  -- Índices de servicio
+  CREATE INDEX idx_pqb_query ON premium_question_bank (oposicion_id, tema_id, dificultad);
+  -- Índices de deduplicación (ver §DEDUP)
+  CREATE INDEX idx_pqb_trgm_enun ON premium_question_bank
+    USING gist (enunciado_norm gist_trgm_ops);
+  CREATE INDEX idx_pqb_trgm_corr ON premium_question_bank
+    USING gist (correcta_norm gist_trgm_ops);
+  CREATE INDEX idx_pqb_cita ON premium_question_bank
+    (oposicion_id, tema_id, cita_ley, cita_articulo) WHERE cita_ley IS NOT NULL;
+
+  -- Tracking: qué preguntas ha visto cada usuario
+  CREATE TABLE user_questions_seen (
+    user_id         uuid NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+    question_hash   text NOT NULL,
+    seen_at         timestamptz DEFAULT now(),
+    PRIMARY KEY (user_id, question_hash)
+  );
   ```
 - [ ] RLS: SELECT para authenticated en ambas, INSERT service role en bank, INSERT para authenticated en seen
 
-#### 2.8.3 — Guardar preguntas generadas en banco (automático)
+#### 2.8.3 — Guardar preguntas generadas en banco (dedup automática, ver §DEDUP)
 - [ ] Tras generar test con IA (cualquier user premium/admin):
-  - Extraer cada pregunta individual del array
-  - Calcular `enunciado_hash = MD5(pregunta.enunciado)`
-  - Upsert en `premium_question_bank` (ON CONFLICT → skip, no duplicar)
+  - Para cada pregunta: `prepareQuestionDedup(pregunta)` → `{hash, norms, cita}`
+  - RPC `check_question_duplicate(oposicion, tema, hash, norms, cita)` → `is_duplicate`
+  - Si duplicada → descartar (no insertar en banco, sí incluir en test del usuario si no hay alternativa)
+  - Si única → INSERT en `premium_question_bank` con todas las columnas de dedup
   - Etiquetar con `dificultad` del test solicitado
+- [ ] Si quedan < numPreguntas tras descartar duplicados:
+  - Generar batch complementario (solo las que faltan)
+  - Max 2 reintentos complementarios
+  - Si 3 batches seguidos < 50% supervivencia → log WARNING "banco saturado tema X"
 - [ ] Tras servir test (cualquier user): insertar hashes en `user_questions_seen`
-- [ ] Bulk insert (no 1 query por pregunta)
+- [ ] Log `duplicates_discarded: N` en `api_usage_log` para monitorizar saturación
 
 #### 2.8.4 — Servir desde banco premium antes de IA
 - [ ] En `generate-test/route.ts`: ANTES de llamar IA, check banco premium
@@ -824,8 +883,242 @@ User #200 de Tema 5: banco tiene 200+ preguntas → €0 IA.
 
 ### Lo que NO hacemos
 - **NO** expiración de preguntas (la legislación cambia poco, las preguntas son válidas años)
-- **NO** deduplicación semántica (hash MD5 del enunciado es suficiente)
 - **NO** tracking por JSON extraction (pesado) — tabla `user_questions_seen` con hash = JOIN rápido
+- **NO** deduplicación solo por hash MD5 — insuficiente, ver §DEDUP para algoritmo completo (pg_trgm + dual similarity)
+
+---
+
+## §DEDUP — Algoritmo de Deduplicación (transversal a 2.7 y 2.8)
+
+> **Aplica a**: `premium_question_bank` (tests por tema) y `supuesto_bank` (supuestos test)
+> **Coste IA**: €0 — usa extensiones nativas de PostgreSQL (`pg_trgm` + `unaccent`)
+> **Objetivo**: 0 preguntas ni supuestos repetidos en los bancos
+
+### Problema
+
+La IA genera preguntas/supuestos con redacción distinta sobre el mismo concepto. Un hash MD5 del texto exacto solo detecta copias idénticas carácter a carácter (~0% de los duplicados reales, la IA nunca genera el mismo texto dos veces).
+
+### Principio: dos signals confirmándose mutuamente
+
+Ningún signal individual es fiable para detectar duplicados sin IA:
+
+| Signal solo | Fallo |
+|---|---|
+| Enunciado similar (pg_trgm) | "¿Cuántos **títulos** tiene la CE?" vs "¿Cuántos **artículos** tiene la CE?" → sim ~0.85 → **falso positivo** (son preguntas distintas) |
+| Correcta similar | "El Rey" es respuesta de 10+ preguntas distintas sobre art. 62 → **falso positivo** |
+| Misma cita legal | Un artículo puede generar múltiples preguntas válidas → **falso positivo** |
+
+**Regla**: se necesita **enunciado similar + al menos una confirmación** (respuesta similar O misma cita). La condición AND elimina los falsos positivos de cada signal individual.
+
+### Regla de detección para tests por tema (`premium_question_bank`)
+
+```
+is_duplicate =
+  enunciado_hash = existing_hash                      -- Capa 1: texto idéntico (safety net)
+  OR (
+    similarity(enunciado_norm, new) > 0.5              -- Capa 2: pregunta similar
+    AND (
+      similarity(correcta_norm, new_correcta) > 0.5    --   + respuesta similar
+      OR (cita_ley = new_ley AND cita_articulo = new_art  --   + O misma cita legal
+          AND new_ley IS NOT NULL)
+    )
+  )
+```
+
+**Validación con ejemplos reales:**
+
+| Q existente | Q nueva | enun_sim | corr_sim | cita | Resultado | Correcto? |
+|---|---|:---:|:---:|:---:|:---:|:---:|
+| "¿Quién nombra al Presidente?" (art.62, "El Rey") | "¿A quién corresponde nombrar al Presidente del Gobierno?" (art.62, "Al Rey") | 0.55 ✓ | 0.60 ✓ | match ✓ | **DUPLICADA** | ✅ |
+| "¿Cuántos títulos tiene la CE?" ("11") | "¿Cuántos artículos tiene la CE?" ("169") | 0.85 ✓ | 0.15 ✗ | — ✗ | **NO duplicada** | ✅ |
+| "¿Quién sanciona las leyes?" (art.62, "El Rey") | "¿Quién nombra al Presidente?" (art.62, "El Rey") | 0.35 ✗ | — | — | **NO duplicada** | ✅ |
+| "¿Qué establece el art. 14 CE?" (art.14, "Igualdad ante la ley") | "Según el artículo 14 de la Constitución:" (art.14, "La igualdad ante la ley") | 0.40 ✗ | 0.75 ✓ | match ✓ | **NO duplicada** | ⚠️ miss |
+
+> **Tasa estimada**: ~90% de duplicados reales detectados. El ~10% que escapa son reformulaciones radicales donde enunciado_sim < 0.5. Límite teórico sin embeddings/IA. Sobre 10.000 preguntas → ~100 cuasi-duplicados. Impacto UX: mínimo (shuffle aleatorio, sesiones distintas).
+
+### Regla de detección para supuestos (`supuesto_bank`)
+
+Los supuestos son textos largos (~500 palabras de escenario) y el banco es pequeño (~30 por oposición). No tienen "respuesta correcta" comparable → dedup por título + escenario.
+
+```
+is_duplicate =
+  similarity(titulo_norm, new_titulo) > 0.6            -- título reformulado
+  OR similarity(escenario_norm, new_escenario) > 0.5   -- escenario similar
+```
+
+Aquí el OR es seguro: con 500 caracteres de escenario normalizado, >50% de trigramas compartidos implica el mismo caso narrativo. Los falsos positivos son despreciables a esa longitud de texto. Con ~30 filas, sequential scan es óptimo (no necesita índice GiST).
+
+### Prerrequisitos: extensiones PostgreSQL
+
+```sql
+-- Migration 060 (una sola vez, al inicio)
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+CREATE EXTENSION IF NOT EXISTS unaccent;
+```
+
+Ambas extensiones están disponibles en Supabase por defecto. `pg_trgm` calcula similitud por trigramas (secuencias de 3 caracteres). `unaccent` normaliza acentos (á→a, é→e, etc.).
+
+### Columnas de deduplicación
+
+**En `premium_question_bank`** (ver §2.8.2 para migration completa):
+```
+enunciado_hash  text NOT NULL    -- MD5(enunciado) — Capa 1
+enunciado_norm  text NOT NULL    -- lower(unaccent(enunciado)) — Capa 2 similitud
+correcta_norm   text NOT NULL    -- lower(unaccent(texto_opcion_correcta)) — Capa 2 confirmación
+cita_ley        text             -- nullable (Bloque II no tiene cita) — Capa 2 confirmación
+cita_articulo   text             -- nullable — Capa 2 confirmación
+```
+
+**En `supuesto_bank`** (ver §2.7 para migration):
+```
+titulo_norm     text NOT NULL    -- lower(unaccent(titulo))
+escenario_norm  text NOT NULL    -- lower(unaccent(primeras 500 chars del escenario))
+```
+
+Todas las columnas `*_norm` se calculan en TypeScript al insertar (no como GENERATED columns — más portable y evita problemas con JSONB extraction en generated cols).
+
+### Índices
+
+```sql
+-- premium_question_bank: GiST para pg_trgm similarity queries
+CREATE INDEX idx_pqb_trgm_enun ON premium_question_bank
+  USING gist (enunciado_norm gist_trgm_ops);
+CREATE INDEX idx_pqb_trgm_corr ON premium_question_bank
+  USING gist (correcta_norm gist_trgm_ops);
+-- B-tree para citation match
+CREATE INDEX idx_pqb_cita ON premium_question_bank (oposicion_id, tema_id, cita_ley, cita_articulo)
+  WHERE cita_ley IS NOT NULL;
+
+-- supuesto_bank: sin índice GiST (~30 filas, seq scan más rápido)
+```
+
+### Query de deduplicación: tests por tema
+
+```sql
+-- RPC: check_question_duplicate(p_oposicion_id, p_tema_id, p_enunciado_hash,
+--   p_enunciado_norm, p_correcta_norm, p_cita_ley, p_cita_articulo)
+SELECT EXISTS (
+  SELECT 1 FROM premium_question_bank
+  WHERE oposicion_id = p_oposicion_id AND tema_id = p_tema_id
+  AND (
+    enunciado_hash = p_enunciado_hash
+    OR (
+      similarity(enunciado_norm, p_enunciado_norm) > 0.5
+      AND (
+        similarity(correcta_norm, p_correcta_norm) > 0.5
+        OR (cita_ley = p_cita_ley AND cita_articulo = p_cita_articulo
+            AND p_cita_ley IS NOT NULL)
+      )
+    )
+  )
+) AS is_duplicate;
+```
+
+### Query de deduplicación: supuestos
+
+```sql
+-- RPC: check_supuesto_duplicate(p_oposicion_id, p_titulo_norm, p_escenario_norm)
+SELECT EXISTS (
+  SELECT 1 FROM supuesto_bank
+  WHERE oposicion_id = p_oposicion_id
+  AND (
+    similarity(titulo_norm, p_titulo_norm) > 0.6
+    OR similarity(escenario_norm, p_escenario_norm) > 0.5
+  )
+) AS is_duplicate;
+```
+
+### TypeScript: `lib/utils/deduplicate.ts`
+
+```typescript
+import { createHash } from 'crypto';
+
+/** Normaliza texto para comparación por trigramas: lowercase + sin acentos + sin puntuación */
+export function normalizeText(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')  // strip acentos
+    .replace(/[^\w\s]/g, '')                            // strip puntuación
+    .trim();
+}
+
+export function md5(text: string): string {
+  return createHash('md5').update(text).digest('hex');
+}
+
+/** Extrae cita como strings normalizados para fingerprint */
+export function extractCitation(cita?: { ley?: string; articulo?: string | number }): {
+  ley: string | null;
+  articulo: string | null;
+} {
+  if (!cita?.ley || !cita?.articulo) return { ley: null, articulo: null };
+  return {
+    ley: normalizeText(cita.ley),
+    articulo: String(cita.articulo).trim(),
+  };
+}
+
+/** Prepara datos de dedup para una pregunta de test */
+export function prepareQuestionDedup(pregunta: {
+  enunciado: string;
+  opciones: { texto: string }[];
+  correcta: number;
+  cita?: { ley?: string; articulo?: string | number };
+}) {
+  const { ley, articulo } = extractCitation(pregunta.cita);
+  return {
+    enunciadoHash: md5(pregunta.enunciado),
+    enunciadoNorm: normalizeText(pregunta.enunciado),
+    correctaNorm: normalizeText(pregunta.opciones[pregunta.correcta].texto),
+    citaLey: ley,
+    citaArticulo: articulo,
+  };
+}
+
+/** Prepara datos de dedup para un supuesto test */
+export function prepareSupuestoDedup(caso: { titulo: string; escenario: string }) {
+  return {
+    tituloNorm: normalizeText(caso.titulo),
+    escenarioNorm: normalizeText(caso.escenario.slice(0, 500)),
+  };
+}
+```
+
+### Flujo en generate-test (§2.8.3 actualizado)
+
+```
+IA genera N preguntas
+  → Para cada pregunta:
+      1. prepareQuestionDedup(pregunta) → {hash, norms, cita}
+      2. RPC check_question_duplicate(oposicion, tema, hash, norms, cita)
+      3. is_duplicate? → descartar
+      4. No duplicada → INSERT en premium_question_bank + incluir en test
+  → Si quedan < numPreguntas tras descartar:
+      → Generar batch complementario (solo las que faltan)
+      → Max 2 reintentos complementarios
+      → Si 3 batches seguidos < 50% supervivencia:
+        → Log WARNING "banco saturado tema X" → servir las que hay sin ver
+```
+
+### Flujo en generate-supuesto-test-batch (§2.7.2 actualizado)
+
+```
+IA genera 1 supuesto
+  → prepareSupuestoDedup(caso) → {tituloNorm, escenarioNorm}
+  → RPC check_supuesto_duplicate(oposicion, tituloNorm, escenarioNorm)
+  → is_duplicate? → descartar, reintentar 1 vez (con seed distinto en prompt)
+  → No duplicado → INSERT en supuesto_bank (con titulo_norm, escenario_norm)
+  → Descontar 1 crédito
+```
+
+### Lo que NO hacemos (decisiones conscientes)
+
+- **NO** embeddings ni IA para deduplicar — pg_trgm + unaccent es suficiente y €0
+- **NO** deduplicación semántica perfecta — ~90% detección es el techo sin embeddings, aceptable
+- **NO** GENERATED columns — calculamos en TypeScript para portabilidad y evitar problemas con JSONB extraction
+- **NO** ordenar palabras (sort) para fingerprint — destruye significado ("Rey nombra Presidente" ≠ "Presidente nombra Rey")
+- **NO** hash de la respuesta correcta como fingerprint — la IA reformula opciones, hashes distintos para mismo concepto
+- **NO** índice GiST en supuesto_bank — ~30 filas, seq scan es más rápido
 
 ---
 
