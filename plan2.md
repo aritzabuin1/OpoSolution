@@ -108,9 +108,9 @@
 - [x] Verificar: legislación indexada (2.679 artículos + 93 secciones conocimiento_tecnico)
 - [x] Verificar: exámenes oficiales 2023 ingestados (55 preguntas)
 - [x] Verificar código: registro dinámico, scoring sin penalización, dashboard scoping, Stripe tiers
-- [ ] **MANUAL Aritz**: Crear producto Stripe + copiar price_id a `STRIPE_PRICE_PACK_CORREOS` en Vercel
-- [ ] **MANUAL Aritz**: `UPDATE oposiciones SET activa = true WHERE slug = 'correos'`
-- [ ] Deploy y probar flujo completo
+- [x] **MANUAL Aritz**: Crear producto Stripe + copiar price_id a `STRIPE_PRICE_PACK_CORREOS` en Vercel ✅
+- [x] **MANUAL Aritz**: `UPDATE oposiciones SET activa = true WHERE slug = 'correos'` ✅
+- [x] Deploy y probar flujo completo ✅ — Correos en producción 2026-03-28
 
 ---
 
@@ -1102,10 +1102,16 @@ Cada sub-landing incluye:
 - [x] ~1.987 preguntas oficiales en BD (7 oposiciones, 2021-2025)
 - [x] Rúbrica MJU implementada para corrección IA Gestión Procesal
 
+### Completado: activación manual (Aritz)
+- [x] Correos: producto Stripe + env var + activa=true ✅ (2026-03-28)
+- [x] Migration 059 (push_subscriptions) aplicada en Supabase ✅ (2026-03-28)
+- [x] VAPID keys configuradas en Vercel ✅ (2026-03-28)
+- [x] Recarga créditos IA 9,99€: producto Stripe creado + env var actualizada ✅ (2026-03-28)
+
 ### Pendiente: activación manual (Aritz)
-- [ ] Crear 6-8 productos Stripe (4 individuales + combos)
-- [ ] Configurar env vars `STRIPE_PRICE_PACK_*` en Vercel
-- [ ] Activar cada oposición en BD: `UPDATE oposiciones SET activa = true WHERE slug = '...'`
+- [ ] Crear productos Stripe Justicia (Auxilio, Tramitación, Gestión, Doble, Triple)
+- [ ] Configurar env vars `STRIPE_PRICE_PACK_AUXILIO/TRAMITACION/GESTION_J/DOBLE_JUSTICIA/TRIPLE_JUSTICIA` en Vercel
+- [ ] Activar cada oposición Justicia en BD: `UPDATE oposiciones SET activa = true WHERE slug = '...'`
 - [ ] Seguir checklist de `VERIFICACION_PLAN2.md` paso a paso
 
 ### SEO (completado)
