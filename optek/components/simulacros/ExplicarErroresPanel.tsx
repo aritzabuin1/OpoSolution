@@ -96,6 +96,16 @@ export function ExplicarErroresPanel({ testId, numErrores, isFirstTestWithErrors
     demoLaunched.current = true
     setDemoState('loading')
 
+    // Notify user + scroll to panel
+    toast('Tu Tutor IA está analizando tus errores...', {
+      description: 'Vista previa gratuita — no consume créditos',
+      duration: 5000,
+      icon: '✨',
+    })
+    setTimeout(() => {
+      document.getElementById('analisis-ia')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }, 500)
+
     const controller = new AbortController()
     const timeout = setTimeout(() => controller.abort(), 20_000)
 
