@@ -439,7 +439,7 @@ ESTRATEGIA DE RECOMENDACIÓN:
 EJEMPLOS CORRECTOS (varía entre estos):
 - "Repite un test de 20 preguntas del Tema 4 (El Poder Judicial) en dificultad media para consolidar."
 - "Prueba un Caza-Trampas con 2 errores — te obliga a leer cada artículo con atención."
-- "Haz un simulacro de 50 preguntas con penalización para ver tu nivel real."
+- "Haz un simulacro oficial completo con penalización para ver tu nivel real."
 - "Repasa tus errores anteriores — la app te vuelve a mostrar exactamente las preguntas que fallaste."
 - "Sube el nivel: test de 30 preguntas del Tema 2 (La Corona) en dificultad difícil (Premium)."
 - "Genera tu Plan de Estudios personalizado — analiza todos tus datos y te dice por dónde seguir."
@@ -519,7 +519,7 @@ ESTRATEGIA DE RECOMENDACIÓN:
 EJEMPLOS CORRECTOS (varía entre estos):
 - "Repite un test de 20 preguntas del Tema 4 (El Poder Judicial) en dificultad media para consolidar."
 - "Prueba un Caza-Trampas con 2 errores — te obliga a leer cada artículo con atención."
-- "Haz un simulacro de 50 preguntas con penalización para ver tu nivel real."
+- "Haz un simulacro oficial completo con penalización para ver tu nivel real."
 - "Repasa tus errores anteriores — la app te vuelve a mostrar exactamente las preguntas que fallaste."
 - "Sube el nivel: test de 30 preguntas del Tema 2 (La Corona) en dificultad difícil (Premium)."
 - "Genera tu Plan de Estudios personalizado — analiza todos tus datos y te dice por dónde seguir."
@@ -717,10 +717,12 @@ export function getSystemRoadmap(config: RoadmapOpoConfig): string {
     `- Tests por tema: 10, 20 o 30 preguntas | dificultad fácil, media o difícil (el usuario elige tema)`,
   ]
 
-  // Simulacros — with real convocatorias
+  // Simulacros — with real convocatorias and actual question counts
   if (convocatorias.length > 0) {
     const years = convocatorias.join(', ')
-    tools.push(`- Simulacro oficial ${tribunalLabel}: 20, 50 o 100 preguntas | convocatorias: ${years}, o mixto`)
+    const ejercicio1 = scoring.ejercicios[0]
+    const numQ = ejercicio1?.preguntas ?? 100
+    tools.push(`- Simulacro oficial ${tribunalLabel}: examen completo de ${numQ} preguntas con preguntas reales del tribunal | convocatorias: ${years}, o mixto`)
   }
 
   tools.push(`- Flashcards: repaso espaciado por tema (el usuario elige mazo/tema desde la lista)`)
@@ -801,7 +803,7 @@ REGLAS TAREAS (lee primero DEDICACIÓN SEMANAL para saber cuántas):
 - "tier" SOLO: "quick", "challenge" o "star"
 - "tema": número 1-${numTemas} o null. Cada tema MÁXIMO 1 vez
 - VARÍA herramientas: NO todo tests. Mezcla las herramientas disponibles listadas arriba
-- Tests: 10, 20 o 30 preguntas. Simulacros: 20, 50 o 100. Caza-Trampas: 1, 2 o 3 errores
+- Tests: 10, 20 o 30 preguntas. Simulacros: examen completo oficial. Caza-Trampas: 1, 2 o 3 errores
 - Caza-Trampas: NUNCA pongas tema — el artículo es aleatorio. Solo indica el número de errores
 - Para "challenge": sugiere PROGRESIÓN (ej: "tests de 10, 20 y 30 variando dificultad")
 - Nota >70%: caza-trampas o dificultad difícil. Nota <40%: fácil 10 preguntas. Sin datos: fácil 10 preguntas
@@ -881,7 +883,7 @@ function getExamplePlan(slug: string, tribunalLabel: string, features: RoadmapOp
           { tier: 'quick', accion: 'Haz 1 test de 10 preguntas en Tema 3 (Productos postales), dificultad fácil', detalle: 'Primera toma de contacto', tema: 3 },
           { tier: 'challenge', accion: 'Completa Tema 6: tests de 10, 20 y 30 subiendo dificultad', detalle: 'Nota actual: 42% → objetivo: 65%', tema: 6 },
           { tier: 'challenge', accion: 'Haz 1 Caza-Trampas con 2 errores', detalle: 'Sin penalización en Correos, pero necesitas precisión', tema: null },
-          { tier: 'star', accion: `¿Apruebas el Simulacro Correos 2023? 100 preguntas, sin penalización`, detalle: 'Recuerda: responde TODO, no hay penalización', tema: null },
+          { tier: 'star', accion: `¿Apruebas el Simulacro oficial Correos 2023? Examen completo, sin penalización`, detalle: 'Recuerda: responde TODO, no hay penalización', tema: null },
         ],
         psicotecnicoTask,
         supuestoTask,
@@ -905,7 +907,7 @@ function getExamplePlan(slug: string, tribunalLabel: string, features: RoadmapOp
           { tier: 'quick', accion: 'Haz 1 test de 10 preguntas en Tema 8, dificultad fácil', detalle: 'Primer contacto con procesal civil', tema: 8 },
           { tier: 'challenge', accion: 'Completa Tema 8: tests de 10, 20 y 30 subiendo dificultad', detalle: 'Nota actual: 38% → objetivo: 60%', tema: 8 },
           { tier: 'challenge', accion: 'Haz 1 Caza-Trampas con 2 errores', detalle: 'Detecta artículos manipulados — clave para no caer en trampas del tribunal', tema: null },
-          { tier: 'star', accion: `¿Superas el Simulacro ${tribunalLabel} 2025? 100 preguntas con penalización`, detalle: 'Penalización activa — solo responde si puedes descartar opciones', tema: null },
+          { tier: 'star', accion: `¿Superas el Simulacro oficial ${tribunalLabel} 2025? Examen completo con penalización`, detalle: 'Penalización activa — solo responde si puedes descartar opciones', tema: null },
         ],
         psicotecnicoTask,
         supuestoTask,
@@ -951,7 +953,7 @@ function getExamplePlan(slug: string, tribunalLabel: string, features: RoadmapOp
         { tier: 'quick', accion: 'Haz 1 test de 10 preguntas en Tema 8, dificultad fácil', detalle: 'Primera toma de contacto', tema: 8 },
         { tier: 'challenge', accion: 'Completa Tema 3: tests de 10, 20 y 30 subiendo de fácil a difícil', detalle: 'Nota actual: 45% → objetivo: 65%', tema: 3 },
         { tier: 'challenge', accion: 'Haz 1 Caza-Trampas con 2 errores', detalle: '¿Distingues un artículo correcto de uno manipulado?', tema: null },
-        { tier: 'star', accion: `¿Capaz de aprobar el Simulacro ${tribunalLabel} 2024? 100 preguntas, sin mirar atrás`, detalle: 'Si sacas más de 70%, estás en zona de aprobado. Atrévete.', tema: null },
+        { tier: 'star', accion: `¿Capaz de aprobar el Simulacro oficial ${tribunalLabel} 2024? Examen completo, sin mirar atrás`, detalle: 'Si sacas más de 70%, estás en zona de aprobado. Atrévete.', tema: null },
       ],
       psicotecnicoTask,
       supuestoTask,

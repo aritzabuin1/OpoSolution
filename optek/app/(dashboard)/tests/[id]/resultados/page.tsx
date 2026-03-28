@@ -167,7 +167,8 @@ export default async function ResultadosPage({ params }: Props) {
     .select('*', { count: 'exact', head: true })
     .eq('user_id', user.id)
     .eq('completado', true)
-  const isFirstTest = (completedTestCount ?? 0) <= 1
+  // Demo trigger: always pass true — client checks localStorage to avoid repeating
+  const isFirstTest = true
 
   // Benchmark social: average score of all users for this oposición
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

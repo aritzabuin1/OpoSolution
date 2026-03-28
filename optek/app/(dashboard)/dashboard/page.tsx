@@ -75,7 +75,7 @@ export default async function DashboardPage() {
   // Profile — columnas estables (siempre presentes)
   const { data: profile } = await supabase
     .from('profiles')
-    .select('full_name, oposicion_id, corrections_balance, fecha_examen')
+    .select('full_name, oposicion_id, corrections_balance, free_corrector_used, fecha_examen')
     .eq('id', user.id)
     .single()
 
@@ -262,7 +262,10 @@ export default async function DashboardPage() {
   // Last test with errors — for AI analysis nudge deep link
   const lastTestWithErrors = testsCompletados.find(t => (t.puntuacion ?? 100) < 100)
   const lastTestWithErrorsId = lastTestWithErrors?.id ?? null
-  const analysisBalance = profile?.corrections_balance ?? 0
+  // Unified credit balance: paid credits + remaining free credits
+  const paidCredits = profile?.corrections_balance ?? 0
+  const freeUsed = (profile as { free_corrector_used?: number } | null)?.free_corrector_used ?? 0
+  const analysisBalance = paidCredits > 0 ? paidCredits : Math.max(0, 2 - freeUsed)
 
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-8">

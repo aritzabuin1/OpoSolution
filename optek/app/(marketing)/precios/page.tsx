@@ -182,6 +182,21 @@ const PLANS: Record<Rama, Plan[]> = {
       href: '/register',
       highlight: false,
     },
+    {
+      name: 'Pack Triple Justicia',
+      price: '139,99€',
+      period: 'pago único',
+      badge: 'Todo incluido',
+      features: [
+        'Auxilio + Tramitación + Gestión Procesal',
+        '+45 créditos IA + supuestos prácticos IA',
+        'Simulacros, Radar, todo ilimitado',
+        'Máximo ahorro — preparas las 3',
+      ],
+      cta: 'Las tres de Justicia',
+      href: '/register',
+      highlight: false,
+    },
   ],
   correos: [
     {
