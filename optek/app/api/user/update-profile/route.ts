@@ -41,26 +41,8 @@ export async function POST(request: NextRequest) {
   // 2. Upsert via service client (bypasses RLS — safe because we verified identity above)
   const serviceClient = await createServiceClient()
 
-  // If switching to an oposición with supuesto práctico, grant 1 free supuesto (if they have 0)
-  if (update.oposicion_id) {
-    const { data: targetOpo } = await serviceClient
-      .from('oposiciones')
-      .select('features')
-      .eq('id', update.oposicion_id as string)
-      .single()
-    const hasSupuesto = (targetOpo as { features?: { supuesto_practico?: boolean } } | null)?.features?.supuesto_practico
-    if (hasSupuesto) {
-      const { data: currentProfile } = await serviceClient
-        .from('profiles')
-        .select('supuestos_balance')
-        .eq('id', user.id)
-        .single()
-      const currentBalance = (currentProfile as { supuestos_balance?: number } | null)?.supuestos_balance ?? 0
-      if (currentBalance === 0) {
-        update.supuestos_balance = 1
-      }
-    }
-  }
+  // supuestos_balance removed — supuestos now use unified créditos IA (corrections_balance)
+  // No special grant needed when switching oposición.
 
   const { data, error } = await serviceClient
     .from('profiles')

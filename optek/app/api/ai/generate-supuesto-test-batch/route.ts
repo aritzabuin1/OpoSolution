@@ -168,12 +168,8 @@ export async function POST(request: NextRequest) {
         continue
       }
 
-      // Deduct 1 credit
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      await (serviceSupabase as any)
-        .from('profiles')
-        .update({ corrections_balance: balance - creditsUsed - 1 })
-        .eq('id', user.id)
+      // Deduct 1 credit atomically via use_correction RPC (prevents race conditions)
+      await serviceSupabase.rpc('use_correction', { p_user_id: user.id })
 
       generated++
       creditsUsed++
