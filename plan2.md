@@ -189,17 +189,36 @@
 - [x] Actualizar sitemap.ts
 
 ### 2.7 Activación progresiva Justicia
-- [ ] Fase 2a: Activar Auxilio Judicial (26 temas, ~24k inscritos) — free bank 25/26 ✅, exámenes 2024+2025 119q ✅
-  - **MANUAL Aritz**: Crear producto Stripe + `STRIPE_PRICE_PACK_AUXILIO` en Vercel
-  - **MANUAL Aritz**: `UPDATE oposiciones SET activa = true WHERE slug = 'auxilio-judicial'`
-- [ ] Fase 2b: Activar Tramitación C1 (37 temas, ~30k inscritos) — free bank 37/37 ✅, exámenes 2024+2025 113q ✅
-  - **MANUAL Aritz**: Crear producto Stripe + `STRIPE_PRICE_PACK_TRAMITACION` en Vercel
-  - **MANUAL Aritz**: `UPDATE oposiciones SET activa = true WHERE slug = 'tramitacion-procesal'`
-  - Bloqueante: GAP-2 ofimática como ejercicio separado (nice-to-have, no bloquea test básico)
-- [ ] Fase 2c: Activar Gestión A2 (68 temas) — free bank 67/68 ✅, exámenes 2023+2025 118q ✅
-  - **MANUAL Aritz**: Crear producto Stripe + `STRIPE_PRICE_PACK_GESTION_J` en Vercel
-  - **MANUAL Aritz**: `UPDATE oposiciones SET activa = true WHERE slug = 'gestion-procesal'`
-  - Bloqueante: GAP-4 desarrollo escrito con rúbrica MJU (solo para Ej.3)
+> **ESTRATEGIA DE DEPLOY**: activar UNA oposición a la vez. Verificar flujo completo
+> (registro → test → simulacro → supuesto test → Tutor IA → Stripe) ANTES de activar la siguiente.
+> Usar `VERIFICACION_PLAN2.md` como checklist para cada oposición.
+> Lección aprendida: AGE + Correos requirieron 2 días de testing manual. Justicia = misma pauta.
+
+- [ ] **Fase 2a: Auxilio Judicial** (26 temas, ~24k inscritos) — free bank 25/26 ✅, exámenes 2024+2025 119q ✅
+  1. Crear producto Stripe "Pack Auxilio" 49,99€ + copiar price_id a `STRIPE_PRICE_PACK_AUXILIO` en Vercel
+  2. `UPDATE oposiciones SET activa = true WHERE slug = 'auxilio-judicial'`
+  3. Deploy
+  4. **Verificar con `VERIFICACION_PLAN2.md`**: registro con Auxilio → test → simulacro MJU → supuesto test → Tutor IA → checkout Stripe
+  5. Solo si TODO pasa → continuar con Fase 2b
+
+- [ ] **Fase 2b: Tramitación Procesal C1** (37 temas, ~30k inscritos) — free bank 37/37 ✅, exámenes 2024+2025 113q ✅
+  1. Crear producto Stripe "Pack Tramitación" 49,99€ + `STRIPE_PRICE_PACK_TRAMITACION` en Vercel
+  2. `UPDATE oposiciones SET activa = true WHERE slug = 'tramitacion-procesal'`
+  3. Deploy
+  4. **Verificar con `VERIFICACION_PLAN2.md`**: mismo checklist
+  5. Bloqueante: GAP-2 ofimática como ejercicio separado (nice-to-have, no bloquea test básico)
+
+- [ ] **Fase 2c: Gestión Procesal A2** (68 temas) — free bank 67/68 ✅, exámenes 2023+2025 118q ✅
+  1. Crear producto Stripe "Pack Gestión Procesal" 79,99€ + `STRIPE_PRICE_PACK_GESTION_J` en Vercel
+  2. `UPDATE oposiciones SET activa = true WHERE slug = 'gestion-procesal'`
+  3. Deploy
+  4. **Verificar con `VERIFICACION_PLAN2.md`**: mismo checklist + supuesto desarrollo con rúbrica MJU
+  5. Bloqueante: GAP-4 desarrollo escrito con rúbrica MJU (solo para Ej.3)
+
+- [ ] **Fase 2d: Combos Justicia** (solo tras 2a+2b+2c verificadas)
+  1. Crear producto Stripe "Pack Doble Justicia" 79,99€ + `STRIPE_PRICE_PACK_DOBLE_JUSTICIA`
+  2. Crear producto Stripe "Pack Triple Justicia" 139,99€ + `STRIPE_PRICE_PACK_TRIPLE_JUSTICIA`
+  3. Verificar: checkout combo → acceso a múltiples oposiciones → créditos IA sumados correctamente
 
 ---
 
