@@ -1102,6 +1102,20 @@ Cada sub-landing incluye:
 - [x] ~1.987 preguntas oficiales en BD (7 oposiciones, 2021-2025)
 - [x] Rúbrica MJU implementada para corrección IA Gestión Procesal
 
+### Engagement + Monetización (sesión 2026-03-28)
+- [x] **Rebrand "Tutor IA"**: "Análisis detallado" → "Tutor IA" + "créditos IA" en 41+ archivos (landing, precios, dashboard, cuenta, emails, API, blog, llms.txt, legal, onboarding)
+- [x] **Demo Tutor IA**: auto-preview blur + CTA en primer test con errores (no consume crédito, ~$0.03/user). Toast + auto-scroll para visibilidad
+- [x] **Créditos IA unificados**: 1 recarga 9,99€ = 10 créditos. Eliminado recarga_sup 14,99€ y supuestos_balance separado. Supuesto desarrollo = 2 créditos
+- [x] **Roadmap gratis premium**: no consume crédito si pagaste. Free = 1 crédito
+- [x] **Roadmap personalizado por oposición**: getSystemRoadmap() dinámico — features, scoring, convocatorias, tribunal (INAP/MJU/Correos), herramientas condicionales, ejemplos por rama
+- [x] **NextStepCard**: "Siguiente paso" inteligente en resultados (por fase: nuevo→reto, starting→tema débil, 3+→simulacro)
+- [x] **Tema recomendado**: TemaCard destacado en /tests (tema débil o no explorado)
+- [x] **Reto Diario CTA**: banner en resultados "¿Poco tiempo mañana? Haz el Reto Diario"
+- [x] **Benchmark social**: "Tu nota: X% · Media opositores: Y%" en resultados
+- [x] **Admin métricas Tutor IA**: widget con roadmaps generados, activación, créditos por tipo, usuarios sin estrenar
+- [x] **Pack Triple Justicia**: añadido en /precios (139,99€, 45 créditos IA)
+- [x] **Web Push Notifications**: service worker, migration 059, API subscribe/unsubscribe, PushNotificationToggle (card dashboard + toggle cuenta), integrado con cron reto-diario. Opt-in, 1 push/día max
+
 ### Completado: activación manual (Aritz)
 - [x] Correos: producto Stripe + env var + activa=true ✅ (2026-03-28)
 - [x] Migration 059 (push_subscriptions) aplicada en Supabase ✅ (2026-03-28)
