@@ -100,16 +100,9 @@ export async function POST(request: NextRequest) {
     checkIsAdmin(serviceSupabase, user.id),
   ])
 
-  // Free users: máx 20 preguntas por simulacro
-  if (!hasPaidAccess && numPreguntas > FREE_LIMITS.simulacroMaxPreguntas) {
-    return NextResponse.json(
-      {
-        error: `Los simulacros de ${numPreguntas} preguntas requieren acceso Premium. Los usuarios gratuitos pueden hacer simulacros de ${FREE_LIMITS.simulacroMaxPreguntas} preguntas.`,
-        code: 'PAYWALL_SIMULACROS',
-      },
-      { status: 402 }
-    )
-  }
+  // Free users: 1 complete simulacro (cuestionario only, no supuesto)
+  // Premium: unlimited simulacros with supuesto included
+  const effectiveIncluirSupuesto = hasPaidAccess ? incluirSupuesto : false
 
   if (hasPaidAccess && !isAdmin) {
     // Paid: rate limit silencioso anti-abuso
@@ -131,11 +124,11 @@ export async function POST(request: NextRequest) {
 
     const freeSimUsed = (profileSim as { free_simulacro_used?: number } | null)?.free_simulacro_used ?? 0
 
-    if (freeSimUsed >= FREE_LIMITS.simulacros) {
+    if (freeSimUsed >= 1) {
       log.info({ userId: user.id, freeSimUsed }, 'Free simulacro quota exhausted — paywall')
       return NextResponse.json(
         {
-          error: `Has agotado tu simulacro gratuito. Desbloquea simulacros ilimitados con el Pack Oposición.`,
+          error: `Ya has realizado tu simulacro gratuito. Desbloquea simulacros ilimitados con el Pack Oposición.`,
           code: 'PAYWALL_SIMULACROS',
         },
         { status: 402 }
@@ -296,14 +289,23 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  // ── 6. Selección aleatoria de preguntas oficiales ─────────────────────────
-  // Fisher-Yates shuffle para selección sin reemplazo
-  const shuffled = [...preguntasData]
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  // ── 6. Selección de preguntas oficiales ──────────────────────────────────
+  let selected: typeof preguntasData
+
+  if (!hasPaidAccess) {
+    // FREE: deterministic selection — same questions for all free users
+    // Sort by numero ascending, take first N → everyone sees the same exam
+    const sorted = [...preguntasData].sort((a, b) => a.numero - b.numero)
+    selected = sorted.slice(0, numPreguntas)
+  } else {
+    // PREMIUM: Fisher-Yates shuffle for variety
+    const shuffled = [...preguntasData]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    }
+    selected = shuffled.slice(0, numPreguntas)
   }
-  const selected = shuffled.slice(0, numPreguntas)
 
   // ── 7. Mapear preguntas oficiales a Pregunta[] ────────────────────────────
   // §2.6.3: include temaId + temaTitulo for per-tema breakdown in results page
@@ -354,7 +356,7 @@ export async function POST(request: NextRequest) {
   // ── 7b. Incluir supuesto práctico (Parte 2) si la oposición lo tiene ─────
   let supuestoCaso: { titulo: string; escenario: string; bloques_cubiertos: string[] } | null = null
 
-  if (incluirSupuesto) {
+  if (effectiveIncluirSupuesto) {
     // Fetch unseen supuesto from bank
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: unseenSupuestos } = await (serviceSupabase as any)

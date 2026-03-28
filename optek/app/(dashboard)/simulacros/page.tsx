@@ -159,9 +159,9 @@ export default async function SimulacrosPage() {
           <Info className="h-4 w-4 text-blue-600 shrink-0 mt-0.5" />
           <p className="text-xs text-blue-700">
             {freeSimRemaining > 0 ? (
-              <>Tienes <strong>{freeSimRemaining} simulacro{freeSimRemaining !== 1 ? 's' : ''} gratis</strong> con exámenes reales del INAP (20 preguntas). Simulacros ilimitados con el Pack Oposición.</>
+              <>Tienes <strong>1 simulacro completo gratis</strong> — examen real del INAP con todas las preguntas y timer oficial. Simulacros ilimitados con el Pack Oposición.</>
             ) : (
-              <>Has agotado tus 3 simulacros gratuitos. <strong>Desbloquea simulacros ilimitados</strong> con el Pack Oposición.</>
+              <>Ya has realizado tu simulacro gratuito. <strong>Desbloquea simulacros ilimitados</strong> con el Pack Oposición.</>
             )}
           </p>
         </div>
