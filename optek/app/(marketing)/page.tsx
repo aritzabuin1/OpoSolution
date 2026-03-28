@@ -542,7 +542,7 @@ export default async function LandingPage() {
             {/* A2 — Gestión del Estado (GACE) — DIFERENCIADOR */}
             <Card className="relative overflow-hidden border-emerald-400/40 shadow-lg ring-2 ring-emerald-400/20">
               <div className="absolute top-0 right-0 bg-emerald-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
-                Nuevo · Exclusivo
+                Exclusivo
               </div>
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-3 mb-2">
@@ -582,12 +582,12 @@ export default async function LandingPage() {
             Pack Doble (C2+C1): 79,99€ · Pack Triple AGE (C2+C1+A2): 129,99€ — con supuesto práctico IA incluido.
           </p>
 
-          {/* Correos — Disponible */}
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">Correos</p>
+          {/* Correos — Nuevo */}
+          <p className="text-xs font-semibold uppercase tracking-wider text-orange-500 mb-4">Correos</p>
           <div className="grid gap-6 md:grid-cols-1 max-w-lg mx-auto mb-10">
             <Card className="relative overflow-hidden border-orange-400/30 shadow-md">
               <div className="absolute top-0 right-0 bg-orange-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
-                Disponible
+                Nuevo
               </div>
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-3 mb-2">
