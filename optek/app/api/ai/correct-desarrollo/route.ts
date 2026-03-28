@@ -113,9 +113,9 @@ export async function POST(request: NextRequest) {
         upsell: [
           {
             id: 'recarga',
-            name: 'Recarga de correcciones',
-            price: '8,99€',
-            description: '+10 correcciones IA',
+            name: 'Recarga de créditos IA',
+            price: '9,99€',
+            description: '+10 créditos IA',
           },
           {
             id: 'pack',

@@ -142,7 +142,7 @@ export default async function CuentaPage() {
             <div>
               <p className="font-semibold text-sm">Desbloquea tests ilimitados</p>
               <p className="text-xs text-muted-foreground mt-0.5">
-                {isA2 ? 'Pack A2 — 69,99€ · tests ilimitados + 20 análisis + 5 supuestos prácticos IA' : 'Pack Oposición — 49,99€ · tests ilimitados + 20 análisis detallados'} · sin suscripción
+                {isA2 ? 'Pack A2 — 69,99€ · tests ilimitados + 25 créditos IA' : 'Pack Oposición — 49,99€ · tests ilimitados + 20 créditos IA'} · sin suscripción
               </p>
             </div>
             <BuyButton tier={packTier} label="Comprar" variant="default" />
@@ -150,9 +150,9 @@ export default async function CuentaPage() {
           {/* Recarga visible pero bloqueada — tentamos al usuario */}
           <div className="rounded-xl border border-muted/50 bg-muted/20 p-5 flex items-center justify-between gap-4 opacity-60">
             <div>
-              <p className="font-semibold text-sm text-muted-foreground">Recarga — 8,99€ · +10 análisis detallados</p>
+              <p className="font-semibold text-sm text-muted-foreground">Recarga — 9,99€ · +10 créditos IA</p>
               <p className="text-xs text-muted-foreground mt-0.5">
-                Disponible con el Pack Oposición. Compra el pack y podrás recargar análisis cuando los necesites.
+                Disponible con el Pack Oposición. Compra el pack y podrás recargar créditos cuando los necesites.
               </p>
             </div>
             <BuyButton tier={packTier} label="Comprar pack" variant="outline" />
@@ -162,9 +162,9 @@ export default async function CuentaPage() {
       {isPremium && balance < 5 && (
         <div className="rounded-xl border border-purple-300/30 bg-purple-50/50 dark:bg-purple-950/20 p-5 flex items-center justify-between gap-4">
           <div>
-            <p className="font-semibold text-sm">Te quedan {balance} análisis</p>
+            <p className="font-semibold text-sm">Te quedan {balance} créditos IA</p>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Recarga — 8,99€ · +10 análisis detallados · pago único
+              Recarga — 9,99€ · +10 créditos IA · pago único
             </p>
           </div>
           <BuyButton tier="recarga" label="Recargar" variant="default" />
@@ -222,27 +222,27 @@ export default async function CuentaPage() {
         </CardContent>
       </Card>
 
-      {/* ── §1.14.3 Balance de análisis detallados ──────────────────────── */}
+      {/* ── §1.14.3 Balance de créditos IA ────────────────────────────── */}
       <Card>
         <CardHeader>
           <CardTitle className="text-base flex items-center gap-2">
             <Zap className="w-4 h-4 text-purple-500" />
-            Análisis detallados disponibles
+            Créditos IA disponibles
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center gap-4">
             <span className="text-4xl font-bold">{balance}</span>
             <div>
-              <p className="text-sm text-muted-foreground">análisis detallados restantes</p>
+              <p className="text-sm text-muted-foreground">créditos IA restantes</p>
               {balance === 0 && isPremium && (
                 <p className="text-xs text-red-600 mt-1">
-                  No te quedan análisis — recarga para continuar
+                  No te quedan créditos — recarga para continuar
                 </p>
               )}
               {balance === 0 && !isPremium && (
                 <p className="text-xs text-red-600 mt-1">
-                  Compra el Pack Oposición para desbloquear más análisis
+                  Compra el Pack Oposición para desbloquear créditos IA
                 </p>
               )}
               {balance > 0 && balance < 5 && isPremium && (
@@ -252,7 +252,7 @@ export default async function CuentaPage() {
               )}
               {balance > 0 && balance < 5 && !isPremium && (
                 <p className="text-xs text-amber-600 mt-1">
-                  Quedan pocos — compra el Pack para análisis ilimitados
+                  Quedan pocos — compra el Pack para más créditos IA
                 </p>
               )}
             </div>
@@ -260,9 +260,9 @@ export default async function CuentaPage() {
           {balance < 5 && isPremium && (
             <div className="mt-4 p-3 rounded-lg bg-muted text-sm flex items-center justify-between gap-4">
               <div>
-                <p className="font-medium">Recarga de análisis detallados</p>
+                <p className="font-medium">Recarga de créditos IA</p>
                 <p className="text-muted-foreground text-xs mt-0.5">
-                  +10 análisis · 8,99€ · pago único
+                  +10 créditos IA · 9,99€ · pago único
                 </p>
               </div>
               <BuyButton tier="recarga" label="Comprar ahora" variant="default" />
@@ -271,7 +271,7 @@ export default async function CuentaPage() {
           {balance < 5 && !isPremium && (
             <div className="mt-4 p-3 rounded-lg bg-muted/50 text-sm flex items-center justify-between gap-4 opacity-60">
               <div>
-                <p className="font-medium text-muted-foreground">Recarga — 8,99€ · +10 análisis</p>
+                <p className="font-medium text-muted-foreground">Recarga — 9,99€ · +10 créditos IA</p>
                 <p className="text-muted-foreground text-xs mt-0.5">
                   Disponible con el Pack Oposición
                 </p>
@@ -291,7 +291,7 @@ export default async function CuentaPage() {
               Supuestos prácticos disponibles
             </CardTitle>
             <p className="text-xs text-muted-foreground mt-1">
-              Los supuestos prácticos son ejercicios de desarrollo escrito (como el 2º ejercicio del examen). La IA genera un caso realista y corrige tu respuesta con la rúbrica oficial del INAP. Diferente de los análisis detallados, que explican errores en tests tipo test.
+              Los supuestos prácticos son ejercicios de desarrollo escrito (como el 2º ejercicio del examen). La IA genera un caso realista y corrige tu respuesta con la rúbrica oficial del tribunal. Consume 2 créditos IA (generar + corregir).
             </p>
           </CardHeader>
           <CardContent>

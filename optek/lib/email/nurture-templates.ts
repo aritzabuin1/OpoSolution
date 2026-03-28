@@ -341,7 +341,7 @@ ${dataCard(`
     ✓ Simulacros completos (100 preguntas)<br/>
     ✓ Radar del Tribunal completo<br/>
     ✓ Flashcards con repetición espaciada<br/>
-    ✓ 20 análisis detallados con IA
+    ✓ 20 créditos IA
   </p>
 `)}
 <p style="margin:0 0 8px;font-size:15px;color:#374151;line-height:1.6;">
@@ -483,7 +483,7 @@ export function renderHotLead10(data: {
 <ul style="font-size:14px;color:#374151;line-height:1.8;padding-left:20px;">
   <li><strong>Tests ilimitados</strong> — repite cualquier tema las veces que quieras</li>
   <li><strong>Elige dificultad</strong> — fácil, media, difícil o progresivo</li>
-  <li><strong>20 análisis detallados con IA</strong> — cada error explicado con la ley exacta</li>
+  <li><strong>20 créditos IA</strong> — cada error explicado con la ley exacta</li>
   <li><strong>Simulacros oficiales INAP</strong> — con penalización real</li>
 </ul>
 <p style="font-size:15px;color:#374151;line-height:1.6;">

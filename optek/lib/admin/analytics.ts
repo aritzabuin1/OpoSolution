@@ -530,7 +530,7 @@ export async function getFeedbackSummary(): Promise<FeedbackSummary> {
   }
 }
 
-// ─── 11. Uso de análisis detallados por tipo ─────────────────────────────────
+// ─── 11. Uso de créditos IA por tipo ─────────────────────────────────
 
 const ANALYSIS_ENDPOINTS: Record<string, string> = {
   'explain-errores-stream': 'Explicar errores (simulacro)',

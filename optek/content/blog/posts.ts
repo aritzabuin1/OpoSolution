@@ -3924,7 +3924,7 @@ export const blogPosts: BlogPost[] = [
   <li><strong>Radar del Tribunal:</strong> análisis de frecuencia de artículos en exámenes INAP 2018-2024, para saber qué estudiar primero</li>
   <li><strong>Pago único:</strong> 49,99€ por oposición o 79,99€ C1+C2 — sin suscripción mensual</li>
   <li><strong>Simulacros con exámenes reales:</strong> convocatorias 2018, 2019, 2022 y 2024 en formato interactivo con penalización y explicaciones</li>
-  <li><strong>Análisis detallados con IA:</strong> explicaciones paso a paso de cada error, con método socrático</li>
+  <li><strong>Tutor IA:</strong> explicaciones paso a paso de cada error, con método socrático</li>
   <li><strong>Flashcards con repetición espaciada, psicotécnicos y Caza-Trampas</strong></li>
 </ul>
 <h3>Contras</h3>
@@ -4282,7 +4282,7 @@ export const blogPosts: BlogPost[] = [
   con cronómetro, penalización -1/3 y explicaciones de cada respuesta.
 </p>
 
-<h3>5. Análisis detallados con método socrático</h3>
+<h3>5. Tutor IA con método socrático</h3>
 <p>
   Cuando fallas una pregunta, la IA no te da la respuesta directamente: te guía
   con preguntas para que llegues tú al razonamiento correcto. Esto genera aprendizaje
@@ -8031,7 +8031,7 @@ export const blogPosts: BlogPost[] = [
       <td>✅ Sí (repetición espaciada)</td>
     </tr>
     <tr>
-      <td><strong>Análisis detallado de errores</strong></td>
+      <td><strong>Tutor IA (errores)</strong></td>
       <td>⚠️ Básico</td>
       <td>✅ Sí (del preparador)</td>
       <td>✅ Sí (IA explica cada error)</td>

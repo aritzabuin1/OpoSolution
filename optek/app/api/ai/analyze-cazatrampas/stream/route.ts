@@ -14,7 +14,7 @@ export const maxDuration = 60
  * POST /api/ai/analyze-cazatrampas/stream
  *
  * Análisis profundo IA de una sesión Caza-Trampas completada.
- * Consume 1 análisis detallado. Streaming de texto plano.
+ * Consume 1 crédito IA. Streaming de texto plano.
  */
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
 
   if (!hasPaidCredit && !hasFreeCredit && !isPaid) {
     return NextResponse.json({
-      error: 'No tienes análisis detallados disponibles.',
+      error: 'No tienes créditos IA disponibles.',
       code: 'PAYWALL_CORRECTIONS',
     }, { status: 402 })
   }

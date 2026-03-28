@@ -84,8 +84,8 @@ export default function TerminosPage() {
                 único. Tests ilimitados de todo el temario + 20 correcciones IA. Sin caducidad.
               </li>
               <li>
-                <strong className="text-foreground">Recarga de correcciones (8,99€):</strong>{' '}
-                Pago único. Añade +10 correcciones IA a tu saldo. Sin caducidad.
+                <strong className="text-foreground">Recarga de créditos IA (9,99€):</strong>{' '}
+                Pago único. Añade +10 créditos IA a tu saldo. Sin caducidad.
               </li>
             </ul>
             <p className="mt-3">

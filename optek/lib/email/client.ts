@@ -58,7 +58,7 @@ function welcomeHtml(nombre: string): string {
             </h1>
             <p style="margin:0 0 16px;font-size:15px;color:#374151;line-height:1.6;">
               Tu cuenta en OpoRuta ya está activa. Tienes <strong>un test gratuito en cada tema</strong> de tu oposición,
-              <strong>1 simulacro oficial</strong> y <strong>2 análisis detallados</strong> para empezar a avanzar hacia el aprobado hoy mismo.
+              <strong>1 simulacro oficial</strong> y <strong>2 sesiones gratis con tu Tutor IA</strong> para empezar a avanzar hacia el aprobado hoy mismo.
             </p>
             <p style="margin:0 0 24px;font-size:15px;color:#374151;line-height:1.6;">
               Tu ruta tiene tres etapas clave:
