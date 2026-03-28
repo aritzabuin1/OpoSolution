@@ -12,6 +12,7 @@ export interface RadarTema {
   num_apariciones: number
   pct_total: number
   anios: number[]
+  bloque?: string
 }
 
 interface RadarTemasProps {
@@ -22,8 +23,15 @@ interface RadarTemasProps {
 
 function getBloqueLabel(_numero: number, bloque?: string): { label: string; color: string } {
   const b = bloque ?? 'I'
-  if (b === 'I') return { label: 'Bloque I', color: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' }
-  return { label: `Bloque ${b}`, color: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300' }
+  const colors: Record<string, string> = {
+    'I':   'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
+    'II':  'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300',
+    'III': 'bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300',
+    'IV':  'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300',
+    'V':   'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300',
+    'VI':  'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300',
+  }
+  return { label: `Bloque ${b}`, color: colors[b] ?? colors['I'] }
 }
 
 export default function RadarTemas({ temas, isPaid, freeLimit = 5 }: RadarTemasProps) {
@@ -40,7 +48,7 @@ export default function RadarTemas({ temas, isPaid, freeLimit = 5 }: RadarTemasP
         {visibleTemas.map((tema, idx) => {
           const rankPos = isPaid ? idx + 1 : temas.length - freeLimit + idx + 1
           const barWidth = Math.max(8, (tema.num_apariciones / maxApariciones) * 100)
-          const bloque = getBloqueLabel(tema.tema_numero)
+          const bloque = getBloqueLabel(tema.tema_numero, tema.bloque)
 
           return (
             <div
@@ -68,7 +76,7 @@ export default function RadarTemas({ temas, isPaid, freeLimit = 5 }: RadarTemasP
                   <div className="flex-1 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
                     <div
                       className={`h-full rounded-full transition-all ${
-                        (tema as typeof tema & { bloque?: string }).bloque === 'I'
+                        tema.bloque === 'I'
                           ? 'bg-blue-500 dark:bg-blue-400'
                           : 'bg-emerald-500 dark:bg-emerald-400'
                       }`}

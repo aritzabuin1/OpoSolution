@@ -52,7 +52,21 @@ export default async function RadarPage() {
 
   const oposicionNombre = oposicionData?.nombre ?? 'la Administración del Estado'
 
-  const temas = ((temasData ?? []) as unknown) as RadarTema[]
+  // Fetch bloque info for each tema
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: temasBloque } = oposicionId
+    ? await (supabase as any).from('temas').select('id, bloque').eq('oposicion_id', oposicionId)
+    : { data: null }
+  const bloqueMap = new Map<string, string>()
+  if (temasBloque) {
+    for (const t of temasBloque as { id: string; bloque: string }[]) {
+      bloqueMap.set(t.id, t.bloque)
+    }
+  }
+
+  const temasRaw = ((temasData ?? []) as unknown) as RadarTema[]
+  // Enrich with bloque
+  const temas = temasRaw.map(t => ({ ...t, bloque: bloqueMap.get(t.tema_id) }))
   const articulos = ((radarData ?? []) as unknown) as RadarArticulo[]
 
   // Estadísticas para el header
@@ -153,7 +167,7 @@ export default async function RadarPage() {
             <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">
               Detalle por Artículo
             </h2>
-            <Badge variant="outline" className="text-xs">Bloque I — Legislación</Badge>
+            <Badge variant="outline" className="text-xs">Detalle por artículo — Legislación</Badge>
           </div>
           <RadarTribunal articulos={articulos} isPaid={isPaid} freeLimit={3} />
         </section>
@@ -166,7 +180,7 @@ export default async function RadarPage() {
           {allAnios.length > 0 ? `las convocatorias ${allAnios.join(', ')} ` : ''}
           de {oposicionNombre} (INAP).
           Cada pregunta se clasifica por tema según palabras clave del enunciado y opciones.
-          Los temas de legislación (Bloque I) incluyen detalle por artículo.
+          Los temas de legislación incluyen detalle por artículo.
           Fuente: preguntas_oficiales.
         </p>
       </div>
