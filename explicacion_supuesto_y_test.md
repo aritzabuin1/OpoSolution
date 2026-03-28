@@ -27,12 +27,13 @@ La IA solo se usa cuando no hay contenido disponible en el banco. Cada generaci�
 
 ```
 Free user pide test del Tema 5:
-  → Siempre recibe las mismas 10 preguntas de free_question_bank
-  → Puede repetirlas las veces que quiera
+  → Recibe las mismas 10 preguntas que todos los free users (free_question_bank)
+  → Solo puede hacerlo 1 VEZ por tema. Tras completarlo, el tema queda bloqueado.
+  → Para desbloquear más temas o repetir → paywall "Hazte premium"
   → Si el free bank no tiene ese tema → genera con IA (y guarda para futuros free users)
 ```
 
-Es siempre el mismo test. Sin variación. El free bank se pobla una sola vez por tema.
+Es siempre el mismo test para todos. Solo se puede hacer 1 vez por tema. El free bank se pobla una sola vez por tema.
 
 ### Flujo PREMIUM
 
@@ -266,7 +267,7 @@ Cuando ha visto todos:
 | **Unidad** | Pregunta individual | Supuesto completo (caso + 20 preguntas) |
 | **Banco** | `question_bank` | `supuesto_bank` |
 | **Tracking** | `user_questions_seen` (por pregunta) | `user_supuestos_seen` (por supuesto) |
-| **Free** | Siempre las mismas 10 preguntas | Siempre el mismo supuesto |
+| **Free** | Mismas 10 preguntas, 1 vez por tema, luego bloqueado | Siempre el mismo supuesto, 1 vez, luego bloqueado |
 | **Premium gratis** | Sirve del banco mientras quede >10% sin ver | Sirve mientras queden sin ver |
 | **Genera con IA cuando** | Ha visto ≥90% del banco O no hay suficientes | Ha visto todos (0 sin ver) + tiene crédito |
 | **Coste generación** | Incluido (no gasta crédito) | 1 crédito IA por supuesto nuevo |
