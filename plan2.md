@@ -652,39 +652,66 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 9. **FASE 2.8**: Banco progresivo premium para tests por tema — optimización coste IA
 10. **DEDUP transversal**: Algoritmo de deduplicación compartido por 2.7 y 2.8 — ver §DEDUP
 
-### PENDIENTE PRÓXIMA SESIÓN (2026-03-29)
+### SESIÓN 2026-03-29 — COMPLETADO
 
-#### A. Parsear e ingestar contenido oficial sin aprovechar (€0 IA, máxima prioridad)
+#### A. Parsear e ingestar contenido oficial
 
-| Fuente | Archivo | Tipo | Preguntas estimadas | Para qué sirve |
+| Fuente | Estado | Preguntas | Destino |
+|---|---|---|---|
+| Tramitación supuesto 2024 | ✅ Parseado + ingestado | 10+2 reserva | `free_supuesto_bank` + `supuesto_bank` |
+| Tramitación ej1 2024+2025 | ✅ Ya ingestados | 199 | `preguntas_oficiales` |
+| Gestión Procesal supuesto PJC/64 sept 2024 | ✅ Parseado + ingestado | 10+2 reserva | `free_supuesto_bank` + `supuesto_bank` |
+| Gestión Procesal ej1 2023+2024+2025 | ✅ Ingestados | 288 | `preguntas_oficiales` |
+| Correos 2021 REP | ✅ Ingestado (modelo A-REP) | 48 | `preguntas_oficiales` |
+| Correos 2021 ATC | ✅ Ingestado (modelo A-ATC) | 24 | `preguntas_oficiales` |
+| Correos 2023 ATC | ✅ Ingestado | 93 | `preguntas_oficiales` |
+| Tramitación supuesto 2025 (escaneado) | ❌ Pendiente — necesita vision AI | ~12 | `supuesto_bank` |
+| Gestión supuesto PJC/1437 sept 2025 | ⚠️ Parseado pero sin plantilla definitiva | 10+2 | `supuesto_bank` (cuando haya plantilla) |
+| Exámenes antiguos escaneados (2008-2019) | ❌ Pendiente — necesitan vision AI | ~500 | `preguntas_oficiales` |
+
+**Total ingestado esta sesión: 662 preguntas oficiales + 2 supuestos oficiales**
+
+#### A2. Supuesto bank seed (IA generados)
+
+| Oposición | Oficiales | IA seed | Total | 5 gratis premium |
 |---|---|---|---|---|
-| Tramitación supuesto 2024 | `data/examenes_justicia/tramitacion/2024/ej2_practico_a.pdf` | Supuesto test | ~12 (10+2 reserva) | `supuesto_bank` Tramitación |
-| Tramitación supuesto 2025 | `data/examenes_tramitacion/2025_ejercicio2_practicoA_scan.pdf` | Supuesto test (escaneado) | ~12 | `supuesto_bank` Tramitación |
-| Tramitación exámenes antiguos | `2011_examen.pdf`, `2015_examen.pdf`, `2016_examen.pdf`, `2019_modeloA/B.pdf` | Simulacros | ~500 preguntas | `preguntas_oficiales` → simulacros |
-| Gestión supuestos 2024 | Plantillas `practicoA/B.pdf` disponibles, falta cuadernillo | Supuesto test | ~10-12 | `supuesto_bank` Gestión |
-| Correos exámenes 2021 REP | `cuestionario_rep_a/b.pdf` + `plantilla_rep.pdf` (plantilla ya leída: 110q A+B) | Simulacros | ~220 preguntas | `preguntas_oficiales` Correos |
-| Correos exámenes 2021 ATC | `cuestionario_atc_a/b.pdf` + `plantilla_atc.pdf` | Simulacros | ~220 preguntas | `preguntas_oficiales` Correos |
+| C1 AGE | 4 | 8 | 12 | ✅ |
+| Auxilio | 4 | 1 | 5 | ✅ |
+| Tramitación | 1 | 4 | 5 | ✅ |
+| Gestión | 1 | 4 | 5 | ✅ |
 
-**Estrategia**: los PDFs modernos (2024/2025) son texto → parsear directamente. Los antiguos (2011-2019) pueden ser escaneados → necesitan IA vision. Adjuntar PDFs en el chat para parsear.
+#### B. Auditorías
 
-**Plantillas ya leídas**:
-- Tramitación 2024: 3 ejercicios completos (ej1: 1-104, ej2: 105-116, ej3: 117-140). Pregunta 120 ANULADA.
-- Correos REP 2021: 110 preguntas modelo A + 110 modelo B. Preguntas 33/68 sin respuesta (anuladas).
+- [x] `/securizar` — auditoría completa: 3 CRÍTICOS + 5 ALTOS + 4 MEDIOS arreglados
+  - RGPD: 5 tablas añadidas a delete+export, GTM consent, privacy policy actualizada
+  - Seguridad: token hardcoded eliminado, prompt injection defense, rate limit batch, session invalidation
+  - Cookie banner corregido, cookies page actualizada con GTM
+- [ ] `/testear` — pendiente
+- [ ] `/auditar` — pendiente
 
-#### B. Auditorías pendientes (lanzar en próxima sesión)
+#### C. Escalabilidad P1
 
-- [ ] `/securizar` — auditoría de seguridad + RGPD
-- [ ] `/testear` — generar tests automatizados para gaps de cobertura
-- [ ] `/auditar` — auditoría general de calidad enterprise
-
-#### C. Escalabilidad P1 pendientes (de la auditoría /escalar)
-
-- [ ] Dashboard: paralelizar 8 queries secuenciales con `Promise.all()` (~300ms mejora)
-- [ ] generate-test: batch INSERT en question_bank (N+1 → 1 query)
-- [ ] generate-test: batch UPDATE times_served (N+1 → 1 query)
-- [ ] generate-supuesto-test: paralelizar `checkPaidAccess` + `checkIsAdmin`
+- [x] Dashboard: Promise.allSettled para 5 queries paralelas (~300ms mejora)
+- [x] generate-test: batch INSERT question_bank (upsert ignoreDuplicates)
+- [x] generate-test: batch UPDATE times_served (.in() query)
+- [x] generate-supuesto-test: Promise.all para checkPaidAccess + checkIsAdmin
 - [ ] Input token cost guard en prompts de generación (MAX_INPUT_CHARS)
-- [ ] Reto diario cron: procesar solo 1 rama por invocación (evitar timeout con 3 ramas)
+- [x] Reto diario cron: auto-rotate 1 rama por invocación (1 cron, schedule `5,8,11 0 * * *`)
+
+#### C2. Bug fixes críticos descubiertos
+
+- [x] **question_bank.correcta type mismatch**: columna es `char(1)` pero código insertaba `number` → banco NUNCA se poblaba. Fix: conversión `0→'a'`, `1→'b'`, etc.
+- [x] **Promise.all → Promise.allSettled**: dashboard crasheaba entero si 1 query fallaba
+- [x] **batch INSERT → upsert ignoreDuplicates**: UNIQUE constraint rechazaba batch entero
+- [x] **Vercel Hobby 2 cron max**: 3 crons separados excedía límite → auto-rotate en 1 cron
+- [x] **Correos 2021 REP/ATC mezclados**: separados con modelos A-REP / A-ATC
+
+#### D. Funcionalidades nuevas
+
+- [x] **TutorIAModal**: popup escalonado 3 fases (behavioral science) para promover Tutor IA
+- [x] **Supuesto premium 5-free model**: primeros 5 gratis, luego 1 crédito por unlock (no por generar)
+- [x] **ExplicarErroresPanel**: eliminada X de dismiss — Tutor IA siempre visible
+- [x] **Few-shot Tramitación**: ejemplo oficial MJU 2024 añadido a prompts procesales
 
 #### D. LEC/LECrim ingestadas (2026-03-29)
 
