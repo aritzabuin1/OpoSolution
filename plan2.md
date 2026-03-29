@@ -700,10 +700,11 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 
 #### C2. Bug fixes críticos descubiertos
 
-- [x] **question_bank.correcta type mismatch**: columna es `char(1)` pero código insertaba `number` → banco NUNCA se poblaba. Fix: conversión `0→'a'`, `1→'b'`, etc.
+- [x] **question_bank.correcta type mismatch**: columna es `char(1)` pero código insertaba `number` → banco NUNCA se poblaba. Fix: conversión `0→'a'`, `1→'b'`, etc. **VERIFICADO en producción**: 11 preguntas insertadas correctamente (2026-03-29T12:08)
 - [x] **Promise.all → Promise.allSettled**: dashboard crasheaba entero si 1 query fallaba
 - [x] **batch INSERT → upsert ignoreDuplicates**: UNIQUE constraint rechazaba batch entero
-- [x] **Vercel Hobby 2 cron max**: 3 crons separados excedía límite → auto-rotate en 1 cron
+- [x] **Vercel Hobby 2 cron max**: 3 crons separados excedía límite → auto-rotate en 1 cron (1x/día, rota entre ramas)
+- [x] **Vercel Hobby no permite multi-run cron**: `"5,8,11 0 * * *"` bloqueaba TODOS los deploys. Fix: `"5 0 * * *"` (1 run/día)
 - [x] **Correos 2021 REP/ATC mezclados**: separados con modelos A-REP / A-ATC
 
 #### D. Funcionalidades nuevas
