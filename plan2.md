@@ -706,6 +706,10 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 - [x] **Vercel Hobby 2 cron max**: 3 crons separados excedía límite → auto-rotate en 1 cron (1x/día, rota entre ramas)
 - [x] **Vercel Hobby no permite multi-run cron**: `"5,8,11 0 * * *"` bloqueaba TODOS los deploys. Fix: `"5 0 * * *"` (1 run/día)
 - [x] **Correos 2021 REP/ATC mezclados**: separados con modelos A-REP / A-ATC
+- [x] **PostgREST subquery roto**: `.not('id','in','(SELECT ...)')` nunca funcionó — reemplazado por 2-step query en 5 endpoints
+- [x] **Supabase .insert().catch() roto**: PostgREST builder no soporta `.catch()` directo — reemplazado por try/catch
+- [x] **Supuesto scoring multi-caso**: Auxilio mostraba "sobre 40" (2 casos) en vez de "sobre 20" (1 caso) — auto-escala
+- [x] **Vercel deploy bloqueado**: cron `"5,8,11 0 * * *"` bloqueaba deploys (Hobby no permite multi-run) — 9 commits sin deployar durante 2h
 
 #### D. Funcionalidades nuevas
 
