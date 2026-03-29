@@ -10,6 +10,7 @@ import {
 } from '@/lib/ai/supuesto-test'
 import { callAIJSON } from '@/lib/ai/provider'
 import { logger } from '@/lib/logger'
+import { checkRateLimit } from '@/lib/utils/rate-limit'
 import type { Json } from '@/types/database'
 
 /**
@@ -39,6 +40,12 @@ export async function POST(request: NextRequest) {
 
   if (!user) {
     return NextResponse.json({ error: 'No autenticado.' }, { status: 401 })
+  }
+
+  // ── Anti-abuse rate limit ───────────────────────────────────────────────
+  const rl = await checkRateLimit(user.id, 'ai-supuesto-batch', 5, '10 m')
+  if (!rl.success) {
+    return NextResponse.json({ error: 'Demasiadas solicitudes. Espera unos minutos.' }, { status: 429 })
   }
 
   const serviceSupabase = await createServiceClient()

@@ -7,8 +7,9 @@
  * Usage: npx tsx execution/update-email-templates.ts
  */
 
-const TOKEN = process.env.SUPABASE_ACCESS_TOKEN || 'sbp_ffc357ccaa62c6b1dff0165226521f053cbba575'
-const PROJECT = 'yaxfgdvnfirazrguiykz'
+const TOKEN = process.env.SUPABASE_ACCESS_TOKEN
+if (!TOKEN) throw new Error('SUPABASE_ACCESS_TOKEN env var is required')
+const PROJECT = process.env.SUPABASE_PROJECT_REF ?? 'yaxfgdvnfirazrguiykz'
 
 // Compact, single-table email layout that Gmail won't clip
 function template(opts: { title: string; body: string; btnHref: string; btnLabel: string; expiry: string; footer: string }) {

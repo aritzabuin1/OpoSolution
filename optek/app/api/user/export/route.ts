@@ -22,6 +22,11 @@ import { logger } from '@/lib/logger'
  *   - cazatrampas_sesiones: ejercicios caza-trampas
  *   - reto_diario_resultados: participaciones en reto diario
  *   - sugerencias: feedback enviado por el usuario
+ *   - supuestos_practicos: ejercicios de supuestos prácticos
+ *   - nurture_emails_sent: emails de nurture enviados
+ *   - push_subscriptions: suscripciones push del usuario
+ *   - user_questions_seen: preguntas ya vistas por el usuario
+ *   - user_supuestos_seen: supuestos ya vistos por el usuario
  *
  * Ref: §1.17.1 PLAN.md | directives/00_DATA_GOVERNANCE.md
  */
@@ -60,6 +65,11 @@ export async function GET() {
       cazatrampasResult,
       retoResult,
       sugerenciasResult,
+      supuestosResult,
+      nurtureResult,
+      pushSubsResult,
+      questionsSeenResult,
+      supuestosSeenResult,
     ] = await Promise.all([
       service.from('profiles').select('*').eq('id', user.id).single(),
       service
@@ -122,6 +132,28 @@ export async function GET() {
         .select('id, mensaje, created_at')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false }),
+      sb
+        .from('supuestos_practicos')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false }),
+      sb
+        .from('nurture_emails_sent')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false }),
+      sb
+        .from('push_subscriptions')
+        .select('*')
+        .eq('user_id', user.id),
+      sb
+        .from('user_questions_seen')
+        .select('*')
+        .eq('user_id', user.id),
+      sb
+        .from('user_supuestos_seen')
+        .select('*')
+        .eq('user_id', user.id),
     ])
 
     // Check for Supabase errors on each query — partial export = GDPR violation risk
@@ -139,6 +171,11 @@ export async function GET() {
       cazatrampasResult.error && 'cazatrampas',
       retoResult.error && 'reto_diario',
       sugerenciasResult.error && 'sugerencias',
+      supuestosResult.error && 'supuestos_practicos',
+      nurtureResult.error && 'nurture_emails_sent',
+      pushSubsResult.error && 'push_subscriptions',
+      questionsSeenResult.error && 'user_questions_seen',
+      supuestosSeenResult.error && 'user_supuestos_seen',
     ].filter(Boolean) as string[]
 
     if (queryErrors.length > 0) {
@@ -160,6 +197,11 @@ export async function GET() {
             cazatrampas: cazatrampasResult.error?.message,
             reto_diario: retoResult.error?.message,
             sugerencias: sugerenciasResult.error?.message,
+            supuestos_practicos: supuestosResult.error?.message,
+            nurture_emails_sent: nurtureResult.error?.message,
+            push_subscriptions: pushSubsResult.error?.message,
+            user_questions_seen: questionsSeenResult.error?.message,
+            user_supuestos_seen: supuestosSeenResult.error?.message,
           },
         },
         'Export parcial — algunas tablas fallaron'
@@ -191,6 +233,11 @@ export async function GET() {
       cazatrampas: cazatrampasResult.data ?? [],
       reto_diario: retoResult.data ?? [],
       sugerencias: sugerenciasResult.data ?? [],
+      supuestos_practicos: supuestosResult.data ?? [],
+      nurture_emails_sent: nurtureResult.data ?? [],
+      push_subscriptions: pushSubsResult.data ?? [],
+      user_questions_seen: questionsSeenResult.data ?? [],
+      user_supuestos_seen: supuestosSeenResult.data ?? [],
     }
 
     log.info(

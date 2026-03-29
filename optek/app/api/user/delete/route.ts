@@ -173,6 +173,66 @@ export async function DELETE() {
       return NextResponse.json({ error: 'Error al procesar la solicitud' }, { status: 500 })
     }
 
+    // ── Paso 5g: Eliminar supuestos_practicos ──────────────────────────────────
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error: supuestosError } = await (serviceClient as any)
+      .from('supuestos_practicos')
+      .delete()
+      .eq('user_id', user.id)
+
+    if (supuestosError) {
+      log.error({ err: supuestosError, userId: user.id }, 'Error al eliminar supuestos_practicos')
+      return NextResponse.json({ error: 'Error al procesar la solicitud' }, { status: 500 })
+    }
+
+    // ── Paso 5h: Eliminar nurture_emails_sent ────────────────────────────────
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error: nurtureError } = await (serviceClient as any)
+      .from('nurture_emails_sent')
+      .delete()
+      .eq('user_id', user.id)
+
+    if (nurtureError) {
+      log.error({ err: nurtureError, userId: user.id }, 'Error al eliminar nurture_emails_sent')
+      return NextResponse.json({ error: 'Error al procesar la solicitud' }, { status: 500 })
+    }
+
+    // ── Paso 5i: Eliminar push_subscriptions ─────────────────────────────────
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error: pushSubsError } = await (serviceClient as any)
+      .from('push_subscriptions')
+      .delete()
+      .eq('user_id', user.id)
+
+    if (pushSubsError) {
+      log.error({ err: pushSubsError, userId: user.id }, 'Error al eliminar push_subscriptions')
+      return NextResponse.json({ error: 'Error al procesar la solicitud' }, { status: 500 })
+    }
+
+    // ── Paso 5j: Eliminar user_questions_seen ────────────────────────────────
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error: questionsSeenError } = await (serviceClient as any)
+      .from('user_questions_seen')
+      .delete()
+      .eq('user_id', user.id)
+
+    if (questionsSeenError) {
+      log.error({ err: questionsSeenError, userId: user.id }, 'Error al eliminar user_questions_seen')
+      return NextResponse.json({ error: 'Error al procesar la solicitud' }, { status: 500 })
+    }
+
+    // ── Paso 5k: Eliminar user_supuestos_seen ────────────────────────────────
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error: supuestosSeenError } = await (serviceClient as any)
+      .from('user_supuestos_seen')
+      .delete()
+      .eq('user_id', user.id)
+
+    if (supuestosSeenError) {
+      log.error({ err: supuestosSeenError, userId: user.id }, 'Error al eliminar user_supuestos_seen')
+      return NextResponse.json({ error: 'Error al procesar la solicitud' }, { status: 500 })
+    }
+
     // ── Paso 6: Eliminar logros ────────────────────────────────────────────────
     // Nota: la tabla 'logros' se añade en migración 008. Los tipos TS aún no la incluyen.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

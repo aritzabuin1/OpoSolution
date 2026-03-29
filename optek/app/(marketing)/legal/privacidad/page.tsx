@@ -144,6 +144,21 @@ export default function PrivacidadPage() {
                   política de privacidad
                 </a>.
               </li>
+              <li>
+                <strong className="text-foreground">Google</strong> (Google Ireland Limited, Irlanda, EEE):
+                Analítica web y optimización del servicio mediante Google Tag Manager y Google Analytics.{' '}
+                <strong>Solo se activa si aceptas cookies opcionales</strong> en el banner de consentimiento.
+                Base legal: consentimiento (Art. 6.1.a RGPD). Amparado por el EU-US Data Privacy Framework. Consulta su{' '}
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                  política de privacidad
+                </a>.
+              </li>
+              <li>
+                <strong className="text-foreground">Upstash</strong> (Upstash, Inc., Estados Unidos):
+                Rate limiting y protección contra abuso del servicio. No se almacenan datos personales
+                identificables, solo contadores de peticiones asociados a identificadores técnicos.
+                Base legal: interés legítimo (Art. 6.1.f RGPD). Amparado por el EU-US Data Privacy Framework.
+              </li>
             </ul>
             <p>
               <strong className="text-foreground">Transferencias internacionales:</strong> Algunos

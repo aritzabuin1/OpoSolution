@@ -66,6 +66,9 @@ export default function ResetPasswordPage() {
       return
     }
 
+    // Invalidate all other sessions (security: stolen sessions become useless)
+    await supabase.auth.signOut({ scope: 'others' })
+
     setDone(true)
     setLoading(false)
     setTimeout(() => router.push('/dashboard'), 2000)

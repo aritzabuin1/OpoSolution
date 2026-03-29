@@ -57,8 +57,8 @@ export function CookieBanner() {
         <div className="flex-1 min-w-0">
           <p className="text-sm font-medium mb-1">🍪 Cookies en OpoRuta</p>
           <p className="text-xs text-muted-foreground leading-relaxed">
-            Usamos cookies técnicas necesarias para el funcionamiento del servicio (sesión).
-            No usamos cookies de analítica ni publicidad.{' '}
+            Usamos cookies técnicas necesarias para el funcionamiento del servicio.
+            Con tu consentimiento, también usamos cookies de analítica y marketing para mejorar el servicio.{' '}
             <Link href="/legal/cookies" className="text-primary hover:underline">
               Más información
             </Link>

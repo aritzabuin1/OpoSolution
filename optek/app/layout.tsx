@@ -112,17 +112,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Script>
       )}
       <body className="min-h-screen bg-background font-sans antialiased" suppressHydrationWarning>
-        {/* GTM noscript fallback */}
-        {GTM_ID && (
-          <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-              height="0"
-              width="0"
-              style={{ display: 'none', visibility: 'hidden' }}
-            />
-          </noscript>
-        )}
         {/* §2.17.4-5 — Organization + WebSite JSON-LD (presentes en todas las páginas) */}
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />

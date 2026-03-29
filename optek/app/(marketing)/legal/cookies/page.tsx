@@ -97,8 +97,9 @@ export default function CookiesPage() {
               <h3 className="font-semibold mb-1">Cookies de marketing (solo con consentimiento)</h3>
               <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                 Si aceptas las cookies opcionales, cargamos <strong>Meta Pixel</strong> (Facebook)
-                para medir la eficacia de nuestras campañas publicitarias. Estas cookies <strong>solo
-                se activan si pulsas &quot;Aceptar&quot;</strong> en el banner de cookies.
+                y <strong>Google Tag Manager / Google Analytics</strong> para medir la eficacia de
+                nuestras campañas publicitarias y analizar el uso del servicio. Estas cookies{' '}
+                <strong>solo se activan si pulsas &quot;Aceptar&quot;</strong> en el banner de cookies.
               </p>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
@@ -122,6 +123,24 @@ export default function CookiesPage() {
                       <td className="py-1.5 pr-4">Meta Platforms</td>
                       <td className="py-1.5 pr-4">Atribución de clics en anuncios</td>
                       <td className="py-1.5">3 meses</td>
+                    </tr>
+                    <tr>
+                      <td className="py-1.5 pr-4 font-mono">_ga</td>
+                      <td className="py-1.5 pr-4">Google</td>
+                      <td className="py-1.5 pr-4">Identificador único de usuario para Google Analytics</td>
+                      <td className="py-1.5">2 años</td>
+                    </tr>
+                    <tr>
+                      <td className="py-1.5 pr-4 font-mono">_gid</td>
+                      <td className="py-1.5 pr-4">Google</td>
+                      <td className="py-1.5 pr-4">Identificador de sesión para Google Analytics</td>
+                      <td className="py-1.5">24 horas</td>
+                    </tr>
+                    <tr>
+                      <td className="py-1.5 pr-4 font-mono">_gat</td>
+                      <td className="py-1.5 pr-4">Google</td>
+                      <td className="py-1.5 pr-4">Limitación de frecuencia de peticiones a Google Analytics</td>
+                      <td className="py-1.5">1 minuto</td>
                     </tr>
                   </tbody>
                 </table>
