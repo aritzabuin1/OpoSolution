@@ -13986,4 +13986,789 @@ export const blogPosts: BlogPost[] = [
       { question: '¿OpoRuta verifica las preguntas contra la legislacion?', answer: 'Si. Cada pregunta que cita un articulo de la LOPJ, LEC, LECrim o cualquier ley del temario se verifica automaticamente contra el texto legal vigente del BOE. Si un articulo ha cambiado, la pregunta se actualiza.' },
     ],
   },
+
+  // ─── Post 83 — Correos: requisitos 2026 ──────────────────────────────────────
+  {
+    slug: 'requisitos-oposiciones-correos-2026-edad-titulo',
+    title: 'Requisitos Oposiciones Correos 2026: edad, titulacion y como inscribirse',
+    description: 'Todos los requisitos para opositar a Correos en 2026: edad minima, nacionalidad, titulacion, carnet de conducir y proceso de inscripcion paso a paso.',
+    date: '2026-03-30',
+    keywords: ['requisitos correos 2026', 'requisitos oposiciones correos', 'inscripcion correos 2026', 'edad oposiciones correos', 'titulacion correos', 'como inscribirse correos'],
+    content: `
+<h2>¿Quien puede presentarse a las oposiciones de Correos 2026?</h2>
+<p>La convocatoria de <strong>Correos 2026</strong> es una de las mas accesibles del empleo publico. Con <strong>4.055 plazas</strong> convocadas, los requisitos son significativamente menos exigentes que en otras oposiciones de la Administracion General del Estado. Si cumples las condiciones basicas, puedes presentarte.</p>
+<p>En esta guia repasamos todos los requisitos, resolvemos las dudas mas frecuentes y explicamos el proceso de inscripcion paso a paso. Si quieres conocer el detalle completo de la convocatoria, consulta nuestra <a href="/blog/oposiciones-correos-2026-convocatoria-plazas-fechas">guia de la convocatoria Correos 2026</a>.</p>
+
+<h2>Requisitos generales</h2>
+
+<h3>1. Edad: 18 anos cumplidos</h3>
+<p>Debes tener al menos <strong>18 anos</strong> en la fecha de finalizacion del plazo de inscripcion. No hay limite maximo de edad (a diferencia de otros cuerpos como Policia Nacional o Guardia Civil).</p>
+<p>Esto significa que si cumples 18 durante el plazo de inscripcion pero antes de que se cierre, puedes presentarte sin problema.</p>
+
+<h3>2. Nacionalidad</h3>
+<p>Pueden presentarse:</p>
+<ul>
+  <li><strong>Nacionales espanoles</strong></li>
+  <li><strong>Nacionales de la Union Europea</strong> y sus conyuges (siempre que no esten separados de derecho)</li>
+  <li><strong>Nacionales de paises con acuerdos</strong> de libre circulacion de trabajadores con la UE</li>
+</ul>
+<p>Para los puestos de <strong>reparto (REP)</strong>, se requiere ademas residencia en Espana, ya que necesitaras carnet de conducir espanol o canjeable.</p>
+
+<h3>3. Titulacion: NO se exige titulo especifico</h3>
+<p>Esta es una de las grandes ventajas de Correos: <strong>no se exige una titulacion especifica</strong>. Formalmente, el convenio colectivo de Correos establece los puestos como grupo profesional III (personal operativo), que no requiere titulacion universitaria ni de FP.</p>
+<p>Dicho esto, <strong>se recomienda tener al menos el titulo de ESO</strong> (Graduado en Educacion Secundaria Obligatoria) o equivalente. La gran mayoria de candidatos lo tienen, y el nivel de las preguntas del examen asume conocimientos basicos de comprension lectora, matematicas y logica.</p>
+
+<h3>4. Carnet de conducir (solo para reparto)</h3>
+<p>Si optas a plazas de <strong>REP (Reparto)</strong>, que son la mayoria de las 4.055 plazas, necesitas:</p>
+<ul>
+  <li><strong>Carnet de conducir B</strong> en vigor</li>
+  <li>Experiencia practica suficiente para conducir motos y furgonetas de reparto</li>
+</ul>
+<p>Para plazas de <strong>ATC (Atencion al Cliente)</strong>, no se requiere carnet de conducir.</p>
+
+<h3>5. Capacidad funcional</h3>
+<p>Debes tener la <strong>capacidad funcional</strong> para el desempeno de las tareas del puesto. En reparto, esto incluye capacidad fisica para cargar y desplazarse. Correos puede solicitar reconocimiento medico.</p>
+
+<h3>6. No estar inhabilitado</h3>
+<p>No puedes estar inhabilitado para el ejercicio de funciones publicas ni haber sido separado del servicio de cualquier Administracion Publica.</p>
+
+<h2>Como inscribirse paso a paso</h2>
+
+<h3>Paso 1: Acceder a la web de Correos</h3>
+<p>Las inscripciones se realizan exclusivamente a traves de la <strong>pagina web oficial de Correos</strong> (correos.es/empleo). No se admiten solicitudes en papel ni en oficinas fisicas.</p>
+
+<h3>Paso 2: Crear cuenta o iniciar sesion</h3>
+<p>Si es tu primera vez, necesitaras crear una cuenta con tu DNI/NIE y un correo electronico valido. Guarda bien tus credenciales.</p>
+
+<h3>Paso 3: Rellenar la solicitud</h3>
+<p>Deberas indicar:</p>
+<ul>
+  <li>Datos personales (nombre, DNI, direccion)</li>
+  <li>Tipo de puesto al que optas (REP, ATC, o ambos)</li>
+  <li><strong>Provincias de preferencia</strong> (puedes seleccionar varias, por orden de prioridad)</li>
+  <li>Meritos si los tienes (experiencia previa en Correos, idiomas, etc.)</li>
+</ul>
+
+<h3>Paso 4: Adjuntar documentacion</h3>
+<p>Tendras que subir:</p>
+<ul>
+  <li>DNI/NIE escaneado</li>
+  <li>Carnet de conducir (si optas a REP)</li>
+  <li>Titulos academicos y certificados de meritos</li>
+</ul>
+
+<h3>Paso 5: Confirmar y guardar justificante</h3>
+<p>Una vez enviada la solicitud, descarga el <strong>justificante de inscripcion</strong>. Correos no cobra tasa de examen: la inscripcion es gratuita.</p>
+
+<h2>Plazos de inscripcion</h2>
+<p>El plazo de inscripcion se publica en la convocatoria oficial. Historicamente, Correos abre un plazo de <strong>15-20 dias habiles</strong> desde la publicacion. Para la convocatoria 2026, consulta las <a href="/oposiciones/correos">fechas actualizadas en nuestra pagina de Correos</a>.</p>
+<p><strong>Consejo</strong>: no esperes al ultimo dia. Los problemas tecnicos de ultima hora son frecuentes y Correos no suele ampliar plazos.</p>
+
+<h2>¿Que pasa despues de inscribirte?</h2>
+<p>Tras el cierre del plazo, Correos publica las <strong>listas provisionales de admitidos y excluidos</strong>. Si apareces como excluido, tendras un plazo para subsanar (normalmente por documentacion incompleta). Despues se publican las listas definitivas y las fechas de examen.</p>
+
+<h2>Empieza a prepararte ahora</h2>
+<p>Cumplir los requisitos es solo el primer paso. El examen de Correos tiene 100 preguntas tipo test sin penalizacion, y la clave esta en <strong>practicar con tests actualizados</strong>. En OpoRuta puedes hacer tests gratuitos con preguntas basadas en el temario oficial de Correos.</p>
+<p><strong><a href="/register">Crea tu cuenta gratis</a></strong> y empieza a entrenar desde hoy. Si quieres una estrategia completa para el examen, lee nuestra guia de <a href="/blog/examen-correos-sin-penalizacion-estrategia-aprobar">estrategia para el examen sin penalizacion</a>.</p>
+    `.trim(),
+    faqs: [
+      { question: '¿Que titulo necesito para opositar a Correos 2026?', answer: 'No se exige titulacion especifica para las oposiciones de Correos. No necesitas titulo universitario ni de FP. Se recomienda tener al menos el titulo de ESO (Graduado en Educacion Secundaria), ya que el examen asume conocimientos basicos de comprension lectora y logica.' },
+      { question: '¿Cual es la edad minima y maxima para Correos?', answer: 'La edad minima es 18 anos cumplidos antes de que finalice el plazo de inscripcion. No hay limite maximo de edad, a diferencia de otras oposiciones como Policia Nacional.' },
+      { question: '¿Necesito carnet de conducir para opositar a Correos?', answer: 'Solo si optas a plazas de Reparto (REP), que son la mayoria. Necesitas carnet B en vigor. Para plazas de Atencion al Cliente (ATC) no se requiere carnet de conducir.' },
+      { question: '¿La inscripcion en las oposiciones de Correos es gratuita?', answer: 'Si. Correos no cobra tasa de examen. La inscripcion se realiza online a traves de correos.es/empleo y es completamente gratuita.' },
+    ],
+  },
+
+  // ─── Post 84 — Correos: plazas por provincia 2026 ────────────────────────────
+  {
+    slug: 'plazas-correos-2026-por-provincia-distribucion',
+    title: 'Plazas Correos 2026 por provincia: distribucion y donde hay mas oportunidades',
+    description: 'Distribucion de las 4.055 plazas de Correos 2026 por provincia. Madrid, Barcelona, Valencia y Sevilla concentran mas oportunidades. Diferencia REP vs ATC.',
+    date: '2026-03-30',
+    keywords: ['plazas correos 2026', 'plazas correos por provincia', 'correos plazas', 'distribucion plazas correos', 'correos plazas madrid', 'correos plazas barcelona'],
+    content: `
+<h2>4.055 plazas: ¿donde se reparten?</h2>
+<p>La convocatoria de <strong>Correos 2026</strong> ofrece <strong>4.055 plazas</strong> de personal laboral fijo, la mayor oferta de empleo publico de este ano. Pero no todas las plazas se reparten igual: la distribucion varia enormemente segun la provincia, el tipo de puesto y la demanda del servicio postal en cada zona.</p>
+<p>Entender esta distribucion es clave para tomar decisiones estrategicas: <strong>elegir provincia con mas plazas y menos competencia puede marcar la diferencia</strong> entre aprobar y quedarse fuera. En esta guia analizamos los datos disponibles para que tomes la mejor decision.</p>
+
+<h2>Tipos de plazas: REP vs ATC</h2>
+<p>Antes de ver la distribucion geografica, es importante entender los dos tipos principales:</p>
+<ul>
+  <li><strong>REP (Reparto)</strong>: constituyen la gran mayoria (~75-80% de las plazas). Incluyen reparto a pie, en moto y en furgoneta. Requieren <strong>carnet de conducir B</strong>.</li>
+  <li><strong>ATC (Atencion al Cliente)</strong>: trabajo en oficina de Correos. Menor numero de plazas pero no requieren carnet de conducir.</li>
+</ul>
+<p>La proporcion REP/ATC varia por provincia. Las grandes ciudades suelen tener mas plazas ATC (mas oficinas), mientras que las provincias rurales son casi exclusivamente REP.</p>
+
+<h2>Distribucion estimada por comunidades autonomas</h2>
+<p>Correos no publica la distribucion exacta por provincia hasta las listas definitivas, pero basandonos en convocatorias anteriores y la estructura logistica de Correos, la distribucion aproximada es:</p>
+
+<h3>Comunidades con mas plazas</h3>
+<ul>
+  <li><strong>Madrid</strong>: ~500-600 plazas (la mayor concentracion, tanto REP como ATC)</li>
+  <li><strong>Cataluna</strong>: ~400-500 plazas (Barcelona concentra la mayoria)</li>
+  <li><strong>Andalucia</strong>: ~450-550 plazas (repartidas entre Sevilla, Malaga, Granada, Cadiz)</li>
+  <li><strong>Comunidad Valenciana</strong>: ~300-350 plazas (Valencia capital + Alicante)</li>
+  <li><strong>Castilla y Leon</strong>: ~200-250 plazas (muchas REP por dispersion geografica)</li>
+  <li><strong>Galicia</strong>: ~200-250 plazas (A Coruna y Vigo como principales)</li>
+</ul>
+
+<h3>Comunidades con menos plazas</h3>
+<ul>
+  <li><strong>La Rioja</strong>: ~25-35 plazas</li>
+  <li><strong>Cantabria</strong>: ~35-45 plazas</li>
+  <li><strong>Navarra</strong>: ~40-50 plazas</li>
+  <li><strong>Baleares</strong>: ~60-80 plazas</li>
+  <li><strong>Canarias</strong>: ~100-130 plazas (complemento de destino insular)</li>
+</ul>
+
+<h2>Estrategia: ¿que provincia elegir?</h2>
+<p>La clave no es solo cuantas plazas hay, sino la <strong>ratio aspirantes/plaza</strong>. Historicamente:</p>
+<ul>
+  <li><strong>Madrid y Barcelona</strong>: mas plazas, pero tambien muchisimos mas candidatos. Ratio alta (15-20 aspirantes/plaza).</li>
+  <li><strong>Provincias medianas</strong> (Zaragoza, Valladolid, Murcia): buen equilibrio entre plazas disponibles y competencia moderada.</li>
+  <li><strong>Provincias pequenas</strong>: pocas plazas pero tambien menos candidatos. La ratio puede ser mas favorable (8-12 aspirantes/plaza).</li>
+</ul>
+<p><strong>Consejo practico</strong>: puedes seleccionar <strong>varias provincias</strong> en tu solicitud, por orden de preferencia. Incluye al menos una provincia "grande" y una o dos "medianas" como opciones realistas.</p>
+
+<h2>Factores que afectan a las plazas por provincia</h2>
+<ul>
+  <li><strong>Volumen de paqueteria</strong>: el crecimiento del e-commerce ha aumentado las plazas REP, especialmente en zonas con alta densidad de envios (Madrid, Barcelona, Valencia).</li>
+  <li><strong>Jubilaciones</strong>: Correos tiene una plantilla envejecida. Las provincias con mas jubilaciones previstas generan mas plazas de reposicion.</li>
+  <li><strong>Oficinas rurales</strong>: el compromiso de Correos con el servicio postal universal implica mantener plazas en zonas rurales de Castilla y Leon, Aragon, Extremadura y Galicia.</li>
+  <li><strong>Estacionalidad</strong>: algunas plazas se refuerzan en epocas punta (Navidad, Black Friday). Las plazas fijas de esta convocatoria son permanentes.</li>
+</ul>
+
+<h2>Complementos salariales por provincia</h2>
+<p>El sueldo base es igual en toda Espana, pero hay diferencias en complementos:</p>
+<ul>
+  <li><strong>Canarias y Baleares</strong>: complemento de insularidad (~100-150€/mes extra)</li>
+  <li><strong>Ceuta y Melilla</strong>: complemento de residencia significativo</li>
+  <li><strong>Ciudades grandes</strong>: mayor coste de vida pero tambien mas oportunidades de horas extra y productividad</li>
+</ul>
+<p>Para un desglose completo del sueldo, consulta nuestra <a href="/blog/sueldo-correos-2026-cuanto-cobra-cartero">guia de sueldo de Correos 2026</a>.</p>
+
+<h2>Prepara tu examen con ventaja</h2>
+<p>Independientemente de la provincia que elijas, el <strong>examen es el mismo para todos</strong>: 100 preguntas tipo test sin penalizacion. La diferencia la marca tu preparacion.</p>
+<p>En OpoRuta puedes practicar con <strong>tests actualizados</strong> basados en el temario oficial de Correos, incluyendo psicotecnicos y simulacros completos.</p>
+<p><strong><a href="/register">Crea tu cuenta gratis</a></strong> · <a href="/oposiciones/correos">Todo sobre Correos 2026</a> · <a href="/blog/oposiciones-correos-2026-convocatoria-plazas-fechas">Guia completa de la convocatoria</a></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuantas plazas de Correos hay en Madrid en 2026?', answer: 'Madrid concentra la mayor oferta con aproximadamente 500-600 plazas de las 4.055 totales. Sin embargo, tambien es la provincia con mas candidatos, con una ratio estimada de 15-20 aspirantes por plaza.' },
+      { question: '¿Puedo elegir varias provincias en la inscripcion de Correos?', answer: 'Si. En la solicitud puedes seleccionar varias provincias por orden de preferencia. Es recomendable incluir al menos una provincia grande y una o dos medianas como opciones alternativas.' },
+      { question: '¿Que diferencia hay entre plazas REP y ATC de Correos?', answer: 'REP (Reparto) son puestos de reparto a pie, moto o furgoneta y requieren carnet de conducir B. Son el 75-80% de las plazas. ATC (Atencion al Cliente) son puestos en oficina sin necesidad de carnet. Las grandes ciudades tienen mas proporcion de ATC.' },
+      { question: '¿En que provincia de Correos es mas facil aprobar?', answer: 'Las provincias medianas (Zaragoza, Valladolid, Murcia) suelen tener mejor ratio aspirantes/plaza (8-12) que Madrid o Barcelona (15-20). El examen es igual en todas las provincias, asi que la diferencia esta en la competencia.' },
+    ],
+  },
+
+  // ─── Post 85 — Correos: examen sin penalizacion estrategia ───────────────────
+  {
+    slug: 'examen-correos-sin-penalizacion-estrategia-aprobar',
+    title: 'Examen Correos sin penalizacion: estrategia para sacar la maxima nota',
+    description: 'El examen de Correos 2026 no penaliza errores. Estrategia completa para responder todas las preguntas y maximizar tu nota en los 110 minutos.',
+    date: '2026-03-30',
+    keywords: ['examen correos sin penalizacion', 'como aprobar correos', 'estrategia examen correos', 'examen correos 2026', 'trucos examen correos', 'correos test sin penalizacion'],
+    content: `
+<h2>La gran ventaja del examen de Correos: no penaliza</h2>
+<p>A diferencia de la mayoria de oposiciones (AGE, Justicia, Policia), el examen de <strong>Correos no penaliza las respuestas incorrectas</strong>. Esto cambia radicalmente la estrategia: <strong>nunca dejes una pregunta en blanco</strong>.</p>
+<p>En este articulo te explicamos como aprovechar esta ventaja al maximo, gestionar el tiempo en los 110 minutos del examen y maximizar tu puntuacion con una estrategia probada.</p>
+
+<h2>Regla de oro: responde TODAS las preguntas</h2>
+<p>Vamos a ver los numeros:</p>
+<ul>
+  <li>Si dejas una pregunta en blanco: <strong>0 puntos</strong></li>
+  <li>Si respondes mal: <strong>0 puntos</strong> (sin penalizacion)</li>
+  <li>Si aciertas: <strong>+1 punto</strong></li>
+</ul>
+<p>La probabilidad de acertar al azar con 4 opciones es del <strong>25%</strong>. Esto significa que por cada 4 preguntas que respondas al azar, estadisticamente acertaras 1. Dejar preguntas en blanco es regalar puntos.</p>
+<p><strong>Conclusion matematica</strong>: incluso si no tienes ni idea de la respuesta, SIEMPRE marca una opcion. No hay ningun escenario donde dejar en blanco sea mejor que responder.</p>
+
+<h2>Estructura del examen 2026</h2>
+<p>El examen de Correos consta de:</p>
+<ul>
+  <li><strong>100 preguntas tipo test</strong> con 4 opciones (A, B, C, D)</li>
+  <li><strong>110 minutos</strong> de tiempo (~1 minuto y 6 segundos por pregunta)</li>
+  <li><strong>Sin penalizacion</strong> por respuestas incorrectas</li>
+  <li>Bloques: productos postales, normativa, atencion al cliente, seguridad, reparto, psicotecnicos</li>
+</ul>
+
+<h2>Estrategia de las 3 pasadas</h2>
+<p>La tecnica mas efectiva para examenes sin penalizacion es la <strong>estrategia de las 3 pasadas</strong>:</p>
+
+<h3>Primera pasada (minutos 0-50): las que sabes seguro</h3>
+<p>Recorre todas las preguntas de principio a fin. Responde <strong>solo las que sabes con seguridad</strong> (tardas menos de 30 segundos). Marca las dudosas con un simbolo en la hoja.</p>
+<p>Objetivo: responder 50-60 preguntas en 50 minutos. Esto te da una base solida.</p>
+
+<h3>Segunda pasada (minutos 50-90): las dudosas</h3>
+<p>Vuelve a las preguntas marcadas. Ahora tienes mas tiempo para <strong>pensar, descartar opciones y razonar</strong>. Aunque no estes 100% seguro, si puedes eliminar 1-2 opciones, tu probabilidad sube del 25% al 33-50%.</p>
+<p>Tecnica de descarte:</p>
+<ul>
+  <li>Elimina las opciones que son claramente absurdas</li>
+  <li>Busca la opcion que "suena" a respuesta oficial (lenguaje formal, preciso)</li>
+  <li>Si dos opciones son muy parecidas, una de las dos suele ser la correcta</li>
+  <li>Desconfia de las opciones con palabras absolutas ("siempre", "nunca", "todos")</li>
+</ul>
+
+<h3>Tercera pasada (minutos 90-110): responde TODO lo que quede</h3>
+<p>Los ultimos 20 minutos son para asegurarte de que <strong>no queda ninguna pregunta en blanco</strong>. Si aun hay preguntas sin responder, marca una opcion (la C es estadisticamente tan valida como cualquier otra — no hay patron real).</p>
+<p>Revisa tambien que la hoja de respuestas coincide con tu cuadernillo. Un error de desfase (responder la pregunta 23 en la casilla 24) puede arruinar tu examen.</p>
+
+<h2>¿Que temas caen mas en el examen de Correos?</h2>
+<p>Basandonos en convocatorias anteriores, los bloques con mas peso son:</p>
+<ul>
+  <li><strong>Productos y servicios postales</strong> (~25-30 preguntas): tipos de envio, tarifas, plazos. Es el bloque con mas preguntas y es muy memoristico.</li>
+  <li><strong>Normativa postal y laboral</strong> (~15-20 preguntas): Ley Postal, convenio colectivo, PRL.</li>
+  <li><strong>Atencion al cliente y calidad</strong> (~10-15 preguntas): protocolos, reclamaciones, LOPD.</li>
+  <li><strong>Reparto y logistica</strong> (~10-15 preguntas): procedimientos de entrega, notificaciones, avisos.</li>
+  <li><strong>Psicotecnicos y comprension</strong> (~15-20 preguntas): series numericas, figuras, comprension lectora.</li>
+</ul>
+<p>Los psicotecnicos suelen aparecer al final del examen. Muchos candidatos llegan agotados y los responden peor. Si se te dan bien, <strong>pueden ser tu ventaja competitiva</strong>.</p>
+
+<h2>Gestion del tiempo: minuto a minuto</h2>
+<ul>
+  <li><strong>Minutos 0-5</strong>: lee las instrucciones, echa un vistazo general al examen</li>
+  <li><strong>Minutos 5-55</strong>: primera pasada completa (50 min para 100 preguntas = 30 seg/pregunta)</li>
+  <li><strong>Minutos 55-95</strong>: segunda pasada de las dudosas (40 min para 30-40 preguntas = 1 min/pregunta)</li>
+  <li><strong>Minutos 95-110</strong>: tercera pasada + revision + rellenar todo lo que quede</li>
+</ul>
+<p><strong>Alerta</strong>: cuando falten 10 minutos, <strong>deja de pensar y rellena</strong>. Es preferible responder al azar las que te quedan que dejarlas en blanco por intentar razonarlas.</p>
+
+<h2>Errores comunes que debes evitar</h2>
+<ul>
+  <li><strong>Dejar preguntas en blanco</strong>: el error mas grave en un examen sin penalizacion. Matematicamente, siempre es mejor responder.</li>
+  <li><strong>Atascarse en una pregunta</strong>: si llevas mas de 1 minuto, marcala y sigue. Volveras despues.</li>
+  <li><strong>Cambiar respuestas sin razon</strong>: tu primer instinto suele ser correcto. Solo cambia si encuentras un argumento solido.</li>
+  <li><strong>No practicar con timer</strong>: 110 minutos parecen mucho pero se pasan volando. Practica simulacros con cronometro.</li>
+</ul>
+
+<h2>Practica con la estrategia desde hoy</h2>
+<p>La mejor forma de interiorizar esta estrategia es <strong>practicar simulacros completos con timer</strong>. En OpoRuta puedes hacer tests de Correos con cronometro, ver tus estadisticas y mejorar progresivamente.</p>
+<p><strong><a href="/register">Crea tu cuenta gratis</a></strong> y haz tu primer simulacro. Tambien puedes consultar nuestros <a href="/blog/test-correos-online-gratis">tests gratuitos de Correos</a> y la <a href="/herramientas/calculadora-nota-correos">calculadora de nota</a> para estimar tu puntuacion.</p>
+    `.trim(),
+    faqs: [
+      { question: '¿El examen de Correos 2026 penaliza las respuestas incorrectas?', answer: 'No. El examen de Correos no penaliza errores. Cada respuesta correcta suma 1 punto y las incorrectas no restan nada. Por tanto, siempre debes responder todas las preguntas, incluso si no estas seguro de la respuesta.' },
+      { question: '¿Cuantas preguntas tiene el examen de Correos y cuanto tiempo hay?', answer: 'El examen tiene 100 preguntas tipo test con 4 opciones y dispones de 110 minutos para completarlo. Eso da aproximadamente 1 minuto y 6 segundos por pregunta.' },
+      { question: '¿Que temas caen mas en el examen de Correos?', answer: 'Los bloques con mas peso son: productos y servicios postales (25-30 preguntas), normativa postal y laboral (15-20), atencion al cliente (10-15), reparto y logistica (10-15) y psicotecnicos (15-20 preguntas).' },
+      { question: '¿Cual es la mejor estrategia para el examen de Correos?', answer: 'La estrategia de 3 pasadas: primera pasada rapida respondiendo lo que sabes seguro (50 min), segunda pasada razonando las dudosas con descarte (40 min), tercera pasada rellenando todo lo que quede (20 min). Nunca dejes nada en blanco.' },
+    ],
+  },
+
+  // ─── Post 86 — Justicia: plazas Auxilio Judicial 2026 ────────────────────────
+  {
+    slug: 'plazas-auxilio-judicial-2026-cuantas-comunidades',
+    title: 'Plazas Auxilio Judicial 2026: 425 plazas por comunidad autonoma',
+    description: '425 plazas de Auxilio Judicial en la OEP 2024. Distribucion por comunidades autonomas, ratio aspirantes/plaza y comparativa con anos anteriores.',
+    date: '2026-03-30',
+    keywords: ['plazas auxilio judicial 2026', 'cuantas plazas auxilio judicial', 'oposiciones auxilio judicial plazas', 'auxilio judicial plazas comunidad autonoma', 'plazas auxilio judicial por comunidad'],
+    content: `
+<h2>425 plazas de Auxilio Judicial: la oportunidad de 2026</h2>
+<p>La <strong>Oferta de Empleo Publico (OEP) 2024</strong>, publicada en el BOE, incluye <strong>425 plazas para el Cuerpo de Auxilio Judicial</strong>. Es la puerta de entrada a la Administracion de Justicia para quienes tienen titulo de ESO o equivalente (Grupo C2).</p>
+<p>En esta guia analizamos cuantas plazas hay, como se reparten por comunidad autonoma, la ratio de aspirantes y como se compara con convocatorias anteriores. Si quieres preparar esta oposicion, necesitas estos datos para tomar decisiones informadas.</p>
+
+<h2>¿Cuantas plazas de Auxilio Judicial hay en 2026?</h2>
+<p>La OEP 2024 (cuyas pruebas se celebran en 2025-2026) oferta <strong>425 plazas de turno libre</strong> para Auxilio Judicial. A estas pueden sumarse plazas de promocion interna (reservadas a funcionarios de otros cuerpos) y plazas adicionales de OEPs anteriores no ejecutadas.</p>
+<p>Es una cifra significativa. Para ponerla en contexto:</p>
+<ul>
+  <li><strong>OEP 2023</strong>: ~300 plazas de Auxilio Judicial</li>
+  <li><strong>OEP 2022</strong>: ~350 plazas</li>
+  <li><strong>OEP 2024</strong>: <strong>425 plazas</strong> (la mayor oferta reciente)</li>
+</ul>
+<p>La tendencia es claramente ascendente, impulsada por las jubilaciones masivas en la Administracion de Justicia.</p>
+
+<h2>Distribucion por comunidades autonomas</h2>
+<p>Las plazas de Auxilio Judicial se distribuyen entre los <strong>Tribunales Superiores de Justicia (TSJ)</strong> de cada comunidad autonoma. La distribucion exacta se publica con la convocatoria, pero basandonos en el historico y la estructura de juzgados:</p>
+
+<h3>Comunidades con mas plazas (estimacion)</h3>
+<ul>
+  <li><strong>Andalucia</strong>: ~65-75 plazas (mayor numero de partidos judiciales)</li>
+  <li><strong>Madrid</strong>: ~50-60 plazas</li>
+  <li><strong>Cataluna</strong>: ~40-50 plazas</li>
+  <li><strong>Comunidad Valenciana</strong>: ~35-45 plazas</li>
+  <li><strong>Castilla y Leon</strong>: ~25-30 plazas</li>
+  <li><strong>Galicia</strong>: ~25-30 plazas</li>
+</ul>
+
+<h3>Comunidades con menos plazas</h3>
+<ul>
+  <li><strong>La Rioja</strong>: ~3-5 plazas</li>
+  <li><strong>Cantabria</strong>: ~5-8 plazas</li>
+  <li><strong>Navarra</strong>: ~5-8 plazas (competencia transferida parcialmente)</li>
+  <li><strong>Baleares</strong>: ~8-12 plazas</li>
+</ul>
+<p><strong>Nota importante</strong>: Pais Vasco, Cataluna, Madrid, Andalucia, Comunidad Valenciana y Canarias gestionan sus propios medios materiales de Justicia (competencia transferida), pero las oposiciones son estatales para los tres cuerpos.</p>
+
+<h2>Ratio aspirantes por plaza</h2>
+<p>Auxilio Judicial es la oposicion mas accesible de Justicia (solo exige ESO), lo que atrae a muchos candidatos:</p>
+<ul>
+  <li><strong>Ratio media nacional</strong>: 20-25 aspirantes/plaza (inscritos)</li>
+  <li><strong>Ratio real</strong> (presentados al examen): 12-15 aspirantes/plaza (~40% no se presenta)</li>
+  <li><strong>Comunidades con mejor ratio</strong>: las menos pobladas (Extremadura, Aragon, Castilla-La Mancha)</li>
+  <li><strong>Comunidades con peor ratio</strong>: Madrid y Andalucia (mas candidatos que plazas proporcionalmente)</li>
+</ul>
+<p>Estas ratios son sensiblemente mejores que oposiciones de la AGE (C2 Auxiliar del Estado puede superar los 30 aspirantes/plaza). <strong>Justicia ofrece una ratio mas favorable.</strong></p>
+
+<h2>¿Donde conviene opositar?</h2>
+<p>Estrategicamente, debes considerar:</p>
+<ul>
+  <li><strong>Primera opcion realista</strong>: elige una comunidad donde la ratio sea favorable y estes dispuesto a trasladarte. Las CCAA del interior (Castilla y Leon, Aragon, Extremadura) suelen tener menos competencia.</li>
+  <li><strong>Movilidad posterior</strong>: una vez aprobado, puedes solicitar traslado a otra comunidad mediante concurso de traslados. Aprobar en una comunidad "facil" y trasladarte despues es una estrategia legitima.</li>
+  <li><strong>Destino forzoso</strong>: si apruebas con buena nota pero no hay plaza en tu comunidad preferida, podrias ser destinado a otra. Preparate para esa posibilidad.</li>
+</ul>
+
+<h2>Comparativa con Tramitacion y Gestion</h2>
+<p>Para que tengas una vision completa de las plazas en Justicia 2026:</p>
+<ul>
+  <li><strong>Auxilio Judicial (C2)</strong>: 425 plazas — exige ESO</li>
+  <li><strong>Tramitacion Procesal (C1)</strong>: 1.155 plazas — exige Bachillerato</li>
+  <li><strong>Gestion Procesal (A2)</strong>: 525 plazas — exige Grado universitario</li>
+</ul>
+<p>Si tienes Bachillerato, <a href="/blog/plazas-tramitacion-procesal-2026-distribucion">Tramitacion Procesal ofrece casi el triple de plazas</a>. Muchos opositores preparan ambas simultaneamente (el temario comparte ~60% de los temas). Consulta nuestra <a href="/blog/oposiciones-justicia-2026-que-cuerpo-elegir">guia para decidir que cuerpo elegir</a>.</p>
+
+<h2>Empieza a preparar Auxilio Judicial</h2>
+<p>425 plazas con ratio descendente: es un buen momento para opositar. En OpoRuta puedes practicar con tests actualizados de Auxilio Judicial, con preguntas verificadas contra la legislacion vigente (LOPJ, LEC, LECrim tras la LO 1/2025).</p>
+<p><strong><a href="/register">Crea tu cuenta gratis</a></strong> · <a href="/oposiciones/justicia/auxilio-judicial">Todo sobre Auxilio Judicial</a> · <a href="/blog/test-auxilio-judicial-online-gratis-2026">Tests gratuitos de Auxilio Judicial</a></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuantas plazas de Auxilio Judicial hay en 2026?', answer: 'La OEP 2024 oferta 425 plazas de turno libre para Auxilio Judicial, la cifra mas alta de los ultimos anos. Pueden sumarse plazas de promocion interna y OEPs anteriores no ejecutadas.' },
+      { question: '¿En que comunidad autonoma hay mas plazas de Auxilio Judicial?', answer: 'Andalucia suele concentrar el mayor numero (~65-75 plazas), seguida de Madrid (~50-60), Cataluna (~40-50) y Comunidad Valenciana (~35-45). La distribucion exacta se publica con la convocatoria.' },
+      { question: '¿Cuantos aspirantes hay por plaza en Auxilio Judicial?', answer: 'La ratio media de inscritos es de 20-25 aspirantes/plaza, pero la ratio real (presentados) baja a 12-15 porque aproximadamente un 40% no se presenta al examen. Las comunidades menos pobladas tienen ratios mas favorables.' },
+      { question: '¿Puedo aprobar Auxilio Judicial en una comunidad y trasladarme despues?', answer: 'Si. Una vez que apruebas y tomas posesion, puedes solicitar traslado a otra comunidad mediante el concurso de traslados. Es una estrategia legitima: aprobar donde hay menos competencia y trasladarte despues.' },
+    ],
+  },
+
+  // ─── Post 87 — Justicia: plazas Tramitacion Procesal 2026 ────────────────────
+  {
+    slug: 'plazas-tramitacion-procesal-2026-distribucion',
+    title: 'Plazas Tramitacion Procesal 2026: 1.155 plazas — la mayor oferta de Justicia',
+    description: '1.155 plazas de Tramitacion Procesal en la OEP 2024. Es el cuerpo con mas plazas de Justicia. Distribucion, ratio y comparativa con Auxilio y Gestion.',
+    date: '2026-03-30',
+    keywords: ['plazas tramitacion procesal 2026', 'oposiciones tramitacion procesal plazas', 'tramitacion procesal 2026 plazas', 'cuantas plazas tramitacion procesal', 'plazas justicia 2026'],
+    content: `
+<h2>1.155 plazas: la mayor oferta de la Administracion de Justicia</h2>
+<p><strong>Tramitacion Procesal y Administrativa</strong> es el cuerpo con mas plazas de la Administracion de Justicia en 2026. La <strong>OEP 2024</strong> oferta <strong>1.155 plazas de turno libre</strong>, una cifra historica que refleja la necesidad urgente de renovar la plantilla judicial en Espana.</p>
+<p>Si tienes <strong>titulo de Bachillerato</strong> (o equivalente) y buscas estabilidad laboral con buen sueldo, Tramitacion Procesal es una de las mejores opciones del empleo publico. Veamos los numeros.</p>
+
+<h2>Evolucion de plazas: tendencia ascendente</h2>
+<p>La oferta de plazas de Tramitacion lleva anos creciendo:</p>
+<ul>
+  <li><strong>OEP 2021</strong>: ~700 plazas</li>
+  <li><strong>OEP 2022</strong>: ~850 plazas</li>
+  <li><strong>OEP 2023</strong>: ~950 plazas</li>
+  <li><strong>OEP 2024</strong>: <strong>1.155 plazas</strong></li>
+</ul>
+<p>El incremento se debe a la oleada de <strong>jubilaciones</strong> en la Administracion de Justicia (edad media de la plantilla superior a 50 anos) y al compromiso del Ministerio de Justicia de reducir la tasa de temporalidad.</p>
+
+<h2>Distribucion por comunidades autonomas</h2>
+<p>Las plazas se reparten entre los TSJ segun la carga de trabajo judicial y las vacantes:</p>
+
+<h3>Comunidades con mas plazas (estimacion)</h3>
+<ul>
+  <li><strong>Andalucia</strong>: ~170-190 plazas (8 provincias, alto volumen judicial)</li>
+  <li><strong>Madrid</strong>: ~130-150 plazas</li>
+  <li><strong>Cataluna</strong>: ~100-120 plazas</li>
+  <li><strong>Comunidad Valenciana</strong>: ~90-110 plazas</li>
+  <li><strong>Galicia</strong>: ~55-65 plazas</li>
+  <li><strong>Castilla y Leon</strong>: ~50-60 plazas</li>
+  <li><strong>Canarias</strong>: ~45-55 plazas</li>
+</ul>
+
+<h3>Comunidades con menos plazas</h3>
+<ul>
+  <li><strong>La Rioja</strong>: ~8-12 plazas</li>
+  <li><strong>Cantabria</strong>: ~10-15 plazas</li>
+  <li><strong>Navarra</strong>: ~10-15 plazas</li>
+  <li><strong>Baleares</strong>: ~20-25 plazas</li>
+</ul>
+
+<h2>Ratio aspirantes por plaza</h2>
+<p>Tramitacion Procesal tiene una ratio mas favorable que Auxilio Judicial, porque exige Bachillerato (filtra candidatos):</p>
+<ul>
+  <li><strong>Ratio inscritos</strong>: 12-18 aspirantes/plaza</li>
+  <li><strong>Ratio presentados</strong>: 8-12 aspirantes/plaza (absentismo ~35%)</li>
+</ul>
+<p>Estas ratios son <strong>excelentes</strong> comparadas con oposiciones de la AGE (C1 Administrativo: 25-30 aspirantes/plaza) o Correos (20+ aspirantes/plaza). Con 1.155 plazas y ratio de ~10 presentados/plaza, Tramitacion Procesal ofrece posiblemente la <strong>mejor relacion esfuerzo/recompensa</strong> del empleo publico en 2026.</p>
+
+<h2>¿Por que Tramitacion tiene mas plazas que Auxilio o Gestion?</h2>
+<p>Tres razones principales:</p>
+<ul>
+  <li><strong>Mayor plantilla</strong>: Tramitacion Procesal es el cuerpo mas numeroso de Justicia. Hay mas puestos de tramitador que de auxiliar o gestor en cada juzgado.</li>
+  <li><strong>Mayor rotacion</strong>: el rango salarial (C1) genera mas movilidad — muchos tramitadores promocionan a Gestion o a otros cuerpos, dejando vacantes.</li>
+  <li><strong>Digitalizacion judicial</strong>: la modernizacion de juzgados requiere mas personal cualificado en tramitacion (Lexnet, expediente digital).</li>
+</ul>
+
+<h2>Comparativa con Auxilio y Gestion</h2>
+<ul>
+  <li><strong>Auxilio Judicial</strong>: 425 plazas, Grupo C2, exige ESO, ~24.000€ brutos. <a href="/blog/plazas-auxilio-judicial-2026-cuantas-comunidades">Ver plazas de Auxilio</a></li>
+  <li><strong>Tramitacion Procesal</strong>: <strong>1.155 plazas</strong>, Grupo C1, exige Bachillerato, ~28.000€ brutos</li>
+  <li><strong>Gestion Procesal</strong>: 525 plazas, Grupo A2, exige Grado, ~34.000€ brutos</li>
+</ul>
+<p>Tramitacion tiene <strong>casi el triple de plazas que Auxilio</strong> y <strong>mas del doble que Gestion</strong>. Si dudas entre cuerpos, consulta nuestra <a href="/blog/oposiciones-justicia-2026-que-cuerpo-elegir">guia para decidir: ¿Auxilio, Tramitacion o Gestion?</a></p>
+
+<h2>¿Que se necesita para aprobar?</h2>
+<p>El examen de Tramitacion Procesal consta de:</p>
+<ul>
+  <li><strong>Primer ejercicio</strong>: test de 100 preguntas + 4 de reserva (penalizacion 1/3)</li>
+  <li><strong>Segundo ejercicio</strong>: supuesto practico (caso procesal)</li>
+  <li><strong>Tercer ejercicio</strong>: prueba de ofimatica (Word, Excel)</li>
+</ul>
+<p>El temario tiene <strong>37 temas</strong> que cubren Derecho Constitucional, LOPJ, procedimientos civiles y penales, y normativa general. La clave es dominar el test (primer ejercicio eliminatorio) y practicar mucho con preguntas tipo examen.</p>
+
+<h2>Prepara Tramitacion Procesal con OpoRuta</h2>
+<p>Con 1.155 plazas, es el mejor momento para empezar. En OpoRuta tienes tests de Tramitacion Procesal con preguntas verificadas contra la legislacion vigente, incluyendo la LO 1/2025.</p>
+<p><strong><a href="/register">Crea tu cuenta gratis</a></strong> · <a href="/oposiciones/justicia/tramitacion-procesal">Todo sobre Tramitacion Procesal</a> · <a href="/blog/test-tramitacion-procesal-online-gratis-2026">Tests gratuitos de Tramitacion</a></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuantas plazas de Tramitacion Procesal hay en 2026?', answer: 'La OEP 2024 oferta 1.155 plazas de turno libre para Tramitacion Procesal y Administrativa. Es la mayor oferta de los tres cuerpos de Justicia y la cifra mas alta de los ultimos anos.' },
+      { question: '¿Por que Tramitacion Procesal tiene tantas plazas?', answer: 'Tres razones: es el cuerpo con mayor plantilla en cada juzgado, tiene alta rotacion porque muchos tramitadores promocionan a Gestion, y la digitalizacion judicial (Lexnet, expediente digital) requiere mas personal cualificado.' },
+      { question: '¿Cuantos aspirantes hay por plaza en Tramitacion Procesal?', answer: 'La ratio de presentados es de 8-12 aspirantes/plaza, mejor que Auxilio Judicial (12-15) y mucho mejor que oposiciones AGE como C1 Administrativo (25-30). Es una de las ratios mas favorables del empleo publico.' },
+      { question: '¿Que titulo necesito para Tramitacion Procesal?', answer: 'Se exige titulo de Bachillerato, Tecnico de FP (antiguo FP II) o equivalente. No se requiere titulo universitario. Es Grupo C1 de la Administracion de Justicia.' },
+    ],
+  },
+
+  // ─── Post 88 — Justicia: temario Gestion Procesal 68 temas ───────────────────
+  {
+    slug: 'temario-gestion-procesal-2026-68-temas-como-estudiar',
+    title: 'Temario Gestion Procesal 2026: los 68 temas y como organizarlos',
+    description: 'Temario completo de Gestion Procesal 2026: 68 temas en 6 bloques. Estrategia de estudio por bloques, temas prioritarios y como organizar tu preparacion.',
+    date: '2026-03-30',
+    keywords: ['temario gestion procesal 2026', 'gestion procesal temario', '68 temas gestion procesal', 'oposiciones gestion procesal temario', 'como estudiar gestion procesal'],
+    content: `
+<h2>68 temas: el temario mas extenso de Justicia</h2>
+<p>Las oposiciones de <strong>Gestion Procesal y Administrativa</strong> (Grupo A2) tienen el temario mas amplio de los tres cuerpos de la Administracion de Justicia: <strong>68 temas</strong> distribuidos en 6 bloques. Es un reto considerable, pero con una organizacion adecuada es perfectamente abarcable.</p>
+<p>En esta guia desglosamos los 6 bloques, identificamos los temas prioritarios y te damos una estrategia realista para organizar tu estudio. Si estas valorando si preparar Gestion, consulta tambien nuestra <a href="/blog/oposiciones-justicia-2026-que-cuerpo-elegir">comparativa de cuerpos de Justicia</a>.</p>
+
+<h2>Los 6 bloques del temario</h2>
+
+<h3>Bloque I — Organizacion del Estado y de la UE (temas 1-10)</h3>
+<p><strong>10 temas</strong> de Derecho Constitucional, organizacion territorial y Union Europea:</p>
+<ul>
+  <li>Constitucion Espanola: principios, derechos fundamentales, Tribunal Constitucional</li>
+  <li>Gobierno y Administracion: estructura ministerial, administracion periferica</li>
+  <li>Comunidades Autonomas: Estatutos, competencias</li>
+  <li>Union Europea: instituciones, fuentes del derecho comunitario</li>
+</ul>
+<p><strong>Peso en examen</strong>: ~10-12%. Es el bloque mas "generico" y comparte contenido con otras oposiciones (AGE, Auxiliar). Si vienes de preparar otra oposicion, probablemente ya dominas parte.</p>
+
+<h3>Bloque II — Derecho Civil y Mercantil (temas 11-23)</h3>
+<p><strong>13 temas</strong> de derecho sustantivo civil y mercantil:</p>
+<ul>
+  <li>Persona fisica y juridica, capacidad, representacion</li>
+  <li>Obligaciones y contratos</li>
+  <li>Derechos reales: propiedad, hipoteca, Registro de la Propiedad</li>
+  <li>Derecho de familia y sucesiones</li>
+  <li>Derecho Mercantil: sociedades, concursal</li>
+</ul>
+<p><strong>Peso en examen</strong>: ~15-18%. Temas densos pero con mucha logica interna. Quien entiende los conceptos base (obligaciones, contratos) navega bien el resto.</p>
+
+<h3>Bloque III — Derecho Procesal Civil (temas 24-37)</h3>
+<p><strong>14 temas</strong> centrados en la Ley de Enjuiciamiento Civil (LEC):</p>
+<ul>
+  <li>Jurisdiccion y competencia</li>
+  <li>Proceso declarativo ordinario y verbal</li>
+  <li>Prueba: tipos, practica, valoracion</li>
+  <li>Recursos: apelacion, casacion</li>
+  <li>Proceso de ejecucion</li>
+  <li>Procesos especiales: monitorio, cambiario, familia</li>
+</ul>
+<p><strong>Peso en examen</strong>: ~18-22%. Es el <strong>bloque mas importante</strong> del temario. La LEC es la ley que mas preguntas genera. Estudia con el texto legal al lado.</p>
+
+<h3>Bloque IV — Derecho Procesal Penal (temas 38-50)</h3>
+<p><strong>13 temas</strong> sobre Ley de Enjuiciamiento Criminal (LECrim):</p>
+<ul>
+  <li>Proceso penal: instruccion, juicio oral, sentencia</li>
+  <li>Juicio sobre delitos leves, procedimiento abreviado</li>
+  <li>Tribunal del Jurado</li>
+  <li>Medidas cautelares: prision provisional, libertad bajo fianza</li>
+  <li>Menores: LORPM</li>
+  <li>Recursos en el proceso penal</li>
+</ul>
+<p><strong>Peso en examen</strong>: ~15-18%. Segundo bloque en importancia. La LECrim se esta reformando progresivamente; estudia siempre con legislacion actualizada.</p>
+
+<h3>Bloque V — Derecho Contencioso-Administrativo y Laboral (temas 51-58)</h3>
+<p><strong>8 temas</strong> que cubren dos jurisdicciones especializadas:</p>
+<ul>
+  <li>Jurisdiccion contencioso-administrativa (LJCA)</li>
+  <li>Procedimiento contencioso: recurso, sentencia</li>
+  <li>Jurisdiccion social: competencia, proceso laboral ordinario</li>
+  <li>Despidos, conflictos colectivos</li>
+</ul>
+<p><strong>Peso en examen</strong>: ~10-12%. Bloque mas corto. Suele ser el "comodin" que muchos candidatos descuidan y donde se pueden ganar puntos.</p>
+
+<h3>Bloque VI — Organizacion y gestion procesal (temas 59-68)</h3>
+<p><strong>10 temas</strong> sobre la organizacion interna de la Oficina Judicial:</p>
+<ul>
+  <li>Oficina Judicial: estructura, funciones del Letrado de la Administracion de Justicia</li>
+  <li>Cuerpos de la Administracion de Justicia: funciones de Gestion, Tramitacion, Auxilio</li>
+  <li>Registro Civil</li>
+  <li>Archivo judicial, estadistica, nuevas tecnologias (Lexnet)</li>
+</ul>
+<p><strong>Peso en examen</strong>: ~12-15%. Temas muy especificos de Justicia. Es donde se demuestra que conoces el entorno de trabajo real.</p>
+
+<h2>Estrategia de estudio por bloques</h2>
+
+<h3>Orden recomendado</h3>
+<ol>
+  <li><strong>Bloque I</strong> (10 temas): empieza aqui. Es el mas asequible y te da contexto constitucional para todo lo demas.</li>
+  <li><strong>Bloque III</strong> (14 temas): el mas importante. Dedicale el 25% de tu tiempo total. La LEC es la columna vertebral del examen.</li>
+  <li><strong>Bloque IV</strong> (13 temas): LECrim. Estudialo justo despues de Procesal Civil — hay muchos paralelismos.</li>
+  <li><strong>Bloque II</strong> (13 temas): Derecho Civil sustantivo. Es mas teorico pero tiene logica interna fuerte.</li>
+  <li><strong>Bloque VI</strong> (10 temas): Organizacion Judicial. Muy memoristico pero directo.</li>
+  <li><strong>Bloque V</strong> (8 temas): Contencioso y Laboral. Dejalo para el final — es el mas corto y con menos peso.</li>
+</ol>
+
+<h3>Tiempo estimado de preparacion</h3>
+<p>Con dedicacion a tiempo parcial (3-4 horas/dia):</p>
+<ul>
+  <li><strong>Primera vuelta</strong> (estudiar todo): 6-8 meses</li>
+  <li><strong>Segunda vuelta</strong> (repasar + tests): 2-3 meses</li>
+  <li><strong>Total realista</strong>: <strong>10-14 meses</strong></li>
+</ul>
+<p>A tiempo completo (6-8 horas/dia), puedes reducirlo a 6-9 meses. Pero Gestion Procesal requiere <strong>madurez</strong> del estudio: no basta con memorizar, hay que entender los procesos judiciales.</p>
+
+<h2>Temas prioritarios (caen siempre)</h2>
+<p>Basandonos en examenes anteriores, estos temas tienen presencia constante:</p>
+<ul>
+  <li><strong>Constitucion</strong> (Bloque I, tema 1-2): derechos fundamentales, Tribunal Constitucional</li>
+  <li><strong>Proceso declarativo ordinario</strong> (Bloque III): demanda, contestacion, audiencia previa</li>
+  <li><strong>Ejecucion</strong> (Bloque III): titulos ejecutivos, embargo</li>
+  <li><strong>Instruccion penal</strong> (Bloque IV): diligencias previas, medidas cautelares</li>
+  <li><strong>Oficina Judicial</strong> (Bloque VI): funciones del LAJ, estructura</li>
+</ul>
+
+<h2>Practica con tests por bloque</h2>
+<p>La mejor forma de consolidar 68 temas es <strong>hacer tests sistematicamente</strong> por bloque y por tema. En OpoRuta puedes seleccionar temas individuales y practicar con preguntas verificadas contra la legislacion vigente.</p>
+<p><strong><a href="/register">Crea tu cuenta gratis</a></strong> y empieza con los temas de Organizacion del Estado. Si aun no has decidido si preparar Gestion, consulta la <a href="/oposiciones/justicia/gestion-procesal">pagina de Gestion Procesal</a> con toda la informacion de la oposicion.</p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuantos temas tiene el temario de Gestion Procesal?', answer: '68 temas distribuidos en 6 bloques: Organizacion del Estado (10), Derecho Civil y Mercantil (13), Procesal Civil (14), Procesal Penal (13), Contencioso y Laboral (8) y Organizacion Judicial (10). Es el temario mas extenso de los tres cuerpos de Justicia.' },
+      { question: '¿Cuanto tiempo se tarda en preparar Gestion Procesal?', answer: 'Con dedicacion de 3-4 horas diarias, entre 10 y 14 meses (6-8 meses primera vuelta + 2-3 meses repaso). A tiempo completo (6-8 horas) puede reducirse a 6-9 meses. Requiere no solo memorizar sino entender los procesos judiciales.' },
+      { question: '¿Cual es el bloque mas importante del temario de Gestion Procesal?', answer: 'El Bloque III (Derecho Procesal Civil / LEC) con 14 temas y un peso del 18-22% del examen. Es la columna vertebral del temario. Le sigue el Bloque IV (Procesal Penal / LECrim) con un 15-18%.' },
+      { question: '¿Se puede preparar Gestion Procesal sin estudios de Derecho?', answer: 'Si, pero necesitas titulo de Grado universitario (cualquier disciplina). No tener formacion juridica previa alarga la preparacion porque los conceptos de Procesal Civil y Penal son nuevos. Se recomienda empezar con el Bloque I y construir base progresivamente.' },
+    ],
+  },
+
+  // ─── Post 89 — Justicia: que cuerpo elegir 2026 ──────────────────────────────
+  {
+    slug: 'oposiciones-justicia-2026-que-cuerpo-elegir',
+    title: 'Oposiciones Justicia 2026: ¿Auxilio, Tramitacion o Gestion? Guia para decidir',
+    description: 'Comparativa completa de los 3 cuerpos de Justicia: Auxilio, Tramitacion y Gestion Procesal. Requisitos, temario, plazas, sueldo y dificultad para decidir cual preparar.',
+    date: '2026-03-30',
+    keywords: ['oposiciones justicia 2026 que cuerpo elegir', 'auxilio o tramitacion', 'justicia oposiciones', 'comparativa cuerpos justicia', 'auxilio tramitacion gestion cual elegir'],
+    content: `
+<h2>Tres cuerpos, tres oportunidades diferentes</h2>
+<p>La <strong>Administracion de Justicia</strong> ofrece en 2026 un total de <strong>2.105 plazas</strong> repartidas entre sus tres cuerpos principales. Es la mayor oferta conjunta de los ultimos anos. Pero cada cuerpo tiene requisitos, temario, sueldo y dificultad muy diferentes.</p>
+<p>En esta guia comparamos los tres en detalle para que puedas tomar la decision correcta segun tu perfil. No hay un cuerpo "mejor" en absoluto: hay un cuerpo mejor <strong>para ti</strong>.</p>
+
+<h2>Tabla comparativa rapida</h2>
+
+<h3>Auxilio Judicial (Grupo C2)</h3>
+<ul>
+  <li><strong>Plazas 2026</strong>: 425</li>
+  <li><strong>Requisito</strong>: ESO o equivalente</li>
+  <li><strong>Temas</strong>: 26</li>
+  <li><strong>Ejercicios</strong>: 2 (test + caso practico)</li>
+  <li><strong>Sueldo bruto anual</strong>: ~23.000-25.000€</li>
+  <li><strong>Neto mensual</strong>: ~1.350-1.500€</li>
+  <li><strong>Dificultad</strong>: Media</li>
+  <li><strong>Preparacion</strong>: 6-10 meses</li>
+</ul>
+
+<h3>Tramitacion Procesal (Grupo C1)</h3>
+<ul>
+  <li><strong>Plazas 2026</strong>: 1.155</li>
+  <li><strong>Requisito</strong>: Bachillerato o Tecnico FP</li>
+  <li><strong>Temas</strong>: 37</li>
+  <li><strong>Ejercicios</strong>: 3 (test + caso practico + ofimatica)</li>
+  <li><strong>Sueldo bruto anual</strong>: ~27.000-29.000€</li>
+  <li><strong>Neto mensual</strong>: ~1.550-1.700€</li>
+  <li><strong>Dificultad</strong>: Media-Alta</li>
+  <li><strong>Preparacion</strong>: 8-14 meses</li>
+</ul>
+
+<h3>Gestion Procesal (Grupo A2)</h3>
+<ul>
+  <li><strong>Plazas 2026</strong>: 525</li>
+  <li><strong>Requisito</strong>: Grado universitario</li>
+  <li><strong>Temas</strong>: 68</li>
+  <li><strong>Ejercicios</strong>: 3 (test + desarrollo + caso practico)</li>
+  <li><strong>Sueldo bruto anual</strong>: ~33.000-35.000€</li>
+  <li><strong>Neto mensual</strong>: ~1.850-2.100€</li>
+  <li><strong>Dificultad</strong>: Alta</li>
+  <li><strong>Preparacion</strong>: 10-18 meses</li>
+</ul>
+
+<h2>¿Para quien es cada cuerpo?</h2>
+
+<h3>Elige Auxilio Judicial si...</h3>
+<ul>
+  <li>Tienes ESO pero no Bachillerato (o quieres la via mas directa)</li>
+  <li>Quieres opositar con un temario abarcable (26 temas)</li>
+  <li>Valoras la estabilidad por encima del sueldo</li>
+  <li>Planeas promocionar internamente a Tramitacion en el futuro</li>
+  <li>Necesitas empezar a trabajar lo antes posible</li>
+</ul>
+<p>Auxilio es la <strong>puerta de entrada</strong>. Muchos funcionarios de Justicia empezaron aqui y luego promocionaron. <a href="/blog/plazas-auxilio-judicial-2026-cuantas-comunidades">Ver plazas de Auxilio Judicial</a>.</p>
+
+<h3>Elige Tramitacion Procesal si...</h3>
+<ul>
+  <li>Tienes Bachillerato o FP y quieres la <strong>mejor relacion plazas/esfuerzo</strong></li>
+  <li>1.155 plazas te dan mas margen de seguridad</li>
+  <li>Quieres un sueldo ~200€/mes superior a Auxilio</li>
+  <li>No te importa preparar tambien ofimatica (Word/Excel)</li>
+  <li>Buscas un punto intermedio entre accesibilidad y remuneracion</li>
+</ul>
+<p>Tramitacion es el <strong>"sweet spot"</strong> de Justicia. Mas plazas, mejor sueldo que Auxilio y temario mas corto que Gestion. <a href="/blog/plazas-tramitacion-procesal-2026-distribucion">Ver plazas de Tramitacion</a>.</p>
+
+<h3>Elige Gestion Procesal si...</h3>
+<ul>
+  <li>Tienes titulo universitario (especialmente Derecho, Ciencias Politicas, etc.)</li>
+  <li>Quieres el mejor sueldo de los tres cuerpos (~2.000€ netos)</li>
+  <li>Tienes capacidad para un temario extenso (68 temas)</li>
+  <li>Ya has estudiado oposiciones antes o tienes base juridica</li>
+  <li>Valoras las funciones de mayor responsabilidad (dirigir la tramitacion, sustituir al LAJ)</li>
+</ul>
+<p>Gestion es el <strong>cuerpo de elite</strong> de la Justicia a nivel C-A2. <a href="/blog/temario-gestion-procesal-2026-68-temas-como-estudiar">Ver temario de Gestion Procesal</a>.</p>
+
+<h2>Estrategia dual: preparar dos cuerpos a la vez</h2>
+<p>Muchos opositores preparan <strong>Auxilio + Tramitacion</strong> simultaneamente, y por buenas razones:</p>
+<ul>
+  <li>El temario de Auxilio (26 temas) esta <strong>contenido dentro</strong> del de Tramitacion (37 temas). Compartren ~20 temas.</li>
+  <li>Te presentas a las dos convocatorias. Si apruebas Tramitacion, eliges Tramitacion. Si solo apruebas Auxilio, ya tienes plaza.</li>
+  <li>El esfuerzo adicional es estudiar ~11 temas mas + ofimatica.</li>
+</ul>
+<p>La estrategia <strong>Tramitacion + Gestion</strong> es menos comun pero viable si tienes titulo universitario: comparten bloques de Procesal Civil y Penal.</p>
+
+<h2>Funciones reales de cada cuerpo</h2>
+<p>Mas alla del sueldo, importa saber que haras cada dia:</p>
+<ul>
+  <li><strong>Auxilio Judicial</strong>: actos de comunicacion (notificaciones, citaciones, emplazamientos), ejecucion de embargos, guardias en juzgados, orden en sala durante juicios.</li>
+  <li><strong>Tramitacion Procesal</strong>: tramitacion de expedientes, registro de escritos, gestion de agenda judicial (senalamiento de vistas), atencion al publico, uso intensivo de Lexnet.</li>
+  <li><strong>Gestion Procesal</strong>: direccion de la tramitacion del procedimiento (bajo supervision del LAJ), formalizacion de actos procesales, sustitucion del LAJ en determinados actos, coordinacion del equipo.</li>
+</ul>
+
+<h2>Sueldo a largo plazo: trienios y complementos</h2>
+<p>El sueldo inicial es solo el punto de partida. Con el tiempo crece gracias a los <strong>trienios</strong> (cada 3 anos de antiguedad):</p>
+<ul>
+  <li><strong>Trienio C2</strong> (Auxilio): ~42€/mes por trienio</li>
+  <li><strong>Trienio C1</strong> (Tramitacion): ~53€/mes por trienio</li>
+  <li><strong>Trienio A2</strong> (Gestion): ~65€/mes por trienio</li>
+</ul>
+<p>Un funcionario con 15 anos (5 trienios) en Gestion cobra ~325€/mes extra solo en trienios. Lee mas sobre <a href="/blog/trienios-funcionarios-2026-cuanto-cobras-antiguedad">trienios de funcionarios</a>.</p>
+
+<h2>Decide y empieza</h2>
+<p>Con <strong>2.105 plazas totales</strong> en Justicia 2026, es uno de los mejores momentos para opositar. Sea cual sea el cuerpo que elijas, la preparacion empieza con <strong>hacer tests y familiarizarte con el temario</strong>.</p>
+<p>En OpoRuta puedes practicar con tests de Auxilio Judicial y Tramitacion Procesal, con preguntas verificadas contra la legislacion vigente (LOPJ, LEC, LECrim actualizadas con la LO 1/2025).</p>
+<p><strong><a href="/register">Crea tu cuenta gratis</a></strong> · <a href="/oposiciones/justicia">Todo sobre Justicia 2026</a> · <a href="/blog/sueldo-funcionario-justicia-2026-auxilio-tramitacion-gestion">Sueldos de Justicia comparados</a></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cual es el cuerpo de Justicia mas facil de aprobar?', answer: 'Auxilio Judicial es el mas accesible (26 temas, exige solo ESO). Sin embargo, Tramitacion Procesal tiene mejor ratio aspirantes/plaza (8-12 vs 12-15) y casi el triple de plazas (1.155 vs 425). En terminos de relacion plazas/esfuerzo, Tramitacion puede ser mas favorable.' },
+      { question: '¿Puedo preparar Auxilio y Tramitacion a la vez?', answer: 'Si, y es una estrategia muy habitual. El temario de Auxilio (26 temas) esta incluido casi por completo en el de Tramitacion (37 temas). El esfuerzo adicional es estudiar ~11 temas extra y ofimatica. Te presentas a ambas y eliges la mejor.' },
+      { question: '¿Cuanto cobra un funcionario de Justicia al mes?', answer: 'Neto mensual aproximado (14 pagas): Auxilio Judicial 1.350-1.500€, Tramitacion Procesal 1.550-1.700€, Gestion Procesal 1.850-2.100€. El sueldo crece con trienios (~42-65€/mes cada 3 anos segun cuerpo) y complementos.' },
+      { question: '¿Cuantas plazas de Justicia hay en total en 2026?', answer: '2.105 plazas en total: 425 de Auxilio Judicial (C2), 1.155 de Tramitacion Procesal (C1) y 525 de Gestion Procesal (A2). Es la mayor oferta conjunta de los ultimos anos.' },
+      { question: '¿Necesito estudiar Derecho para Gestion Procesal?', answer: 'No es obligatorio — se exige cualquier Grado universitario. Pero tener formacion juridica (Derecho, Ciencias Politicas) facilita mucho el estudio de los 68 temas, especialmente los bloques de Procesal Civil y Penal. Sin base juridica, la preparacion es mas larga.' },
+    ],
+  },
+
+  // ─── Post 90 — Trienios funcionarios 2026 ────────────────────────────────────
+  {
+    slug: 'trienios-funcionarios-2026-cuanto-cobras-antiguedad',
+    title: 'Trienios Funcionarios 2026: cuanto cobras por cada 3 anos de antiguedad',
+    description: 'Importe de los trienios de funcionarios 2026 por grupo (C2: ~42€/mes, C1: ~53€/mes, A2: ~65€/mes). Como se acumulan y ejemplo de nomina con trienios.',
+    date: '2026-03-30',
+    keywords: ['trienios funcionarios 2026', 'trienio c1 2026', 'trienio c2 2026', 'trienio a2 2026', 'trienios funcionarios cuanto cobro', 'antiguedad funcionarios'],
+    content: `
+<h2>¿Que es un trienio?</h2>
+<p>Un <strong>trienio</strong> es un complemento salarial que los funcionarios publicos cobran por cada <strong>3 anos de antiguedad</strong> (servicios prestados). Es un derecho reconocido en el <strong>Estatuto Basico del Empleado Publico (TREBEP)</strong> y en los Presupuestos Generales del Estado.</p>
+<p>Los trienios son <strong>acumulativos e irreversibles</strong>: una vez que completas 3 anos de servicio, cobras ese trienio para siempre (se incorpora a tu nomina mensual). Cada 3 anos adicionales, se suma otro trienio. No hay limite maximo.</p>
+<p>Es uno de los incentivos mas atractivos del empleo publico: tu sueldo <strong>crece automaticamente</strong> con el tiempo, sin necesidad de promocionar ni cambiar de puesto.</p>
+
+<h2>Importe de los trienios por grupo (PGE 2025)</h2>
+<p>El importe de cada trienio depende del <strong>grupo/subgrupo</strong> al que pertenece el funcionario. Estos son los importes vigentes segun los Presupuestos Generales del Estado 2025:</p>
+
+<h3>Subgrupo C2 (Auxiliar Administrativo, Auxilio Judicial)</h3>
+<ul>
+  <li><strong>Importe mensual por trienio</strong>: ~42,24€ (14 pagas)</li>
+  <li><strong>Importe anual por trienio</strong>: ~591,36€</li>
+  <li><strong>Ejemplo</strong>: con 5 trienios (15 anos) cobras ~211€/mes extra</li>
+</ul>
+
+<h3>Subgrupo C1 (Administrativo AGE, Tramitacion Procesal)</h3>
+<ul>
+  <li><strong>Importe mensual por trienio</strong>: ~53,28€ (14 pagas)</li>
+  <li><strong>Importe anual por trienio</strong>: ~745,92€</li>
+  <li><strong>Ejemplo</strong>: con 5 trienios (15 anos) cobras ~266€/mes extra</li>
+</ul>
+
+<h3>Subgrupo A2 (Gestion Procesal, Tecnico medio)</h3>
+<ul>
+  <li><strong>Importe mensual por trienio</strong>: ~65,04€ (14 pagas)</li>
+  <li><strong>Importe anual por trienio</strong>: ~910,56€</li>
+  <li><strong>Ejemplo</strong>: con 5 trienios (15 anos) cobras ~325€/mes extra</li>
+</ul>
+
+<h3>Subgrupo A1 (Cuerpo Superior, Abogado del Estado, etc.)</h3>
+<ul>
+  <li><strong>Importe mensual por trienio</strong>: ~80,16€ (14 pagas)</li>
+  <li><strong>Importe anual por trienio</strong>: ~1.122,24€</li>
+  <li><strong>Ejemplo</strong>: con 5 trienios (15 anos) cobras ~401€/mes extra</li>
+</ul>
+
+<h2>Como se acumulan los trienios: ejemplo practico</h2>
+<p>Veamos como crece el sueldo de un <strong>funcionario C1 (Tramitacion Procesal)</strong> a lo largo de su carrera:</p>
+
+<ul>
+  <li><strong>Ano 0-2</strong>: sueldo base sin trienios → ~1.600€ netos/mes</li>
+  <li><strong>Ano 3</strong> (1 trienio): +53€/mes → ~1.653€ netos</li>
+  <li><strong>Ano 6</strong> (2 trienios): +106€/mes → ~1.706€ netos</li>
+  <li><strong>Ano 9</strong> (3 trienios): +160€/mes → ~1.760€ netos</li>
+  <li><strong>Ano 15</strong> (5 trienios): +266€/mes → ~1.866€ netos</li>
+  <li><strong>Ano 21</strong> (7 trienios): +373€/mes → ~1.973€ netos</li>
+  <li><strong>Ano 30</strong> (10 trienios): +533€/mes → ~2.133€ netos</li>
+</ul>
+<p>Un tramitador con 30 anos de servicio cobra <strong>mas de 500€ al mes extra</strong> solo en trienios. Esto, sumado a complementos y carrera profesional horizontal, puede suponer un sueldo neto superior a 2.100€.</p>
+
+<h2>Reglas importantes sobre los trienios</h2>
+
+<h3>¿Cuenta el tiempo como interino?</h3>
+<p><strong>Si</strong>. Desde la sentencia del TJUE y su transposicion, el <strong>tiempo trabajado como interino computa para trienios</strong>. Si has sido interino 6 anos y luego apruebas la oposicion, tomas posesion con 2 trienios ya reconocidos. Debes solicitarlo mediante instancia.</p>
+
+<h3>¿Se conservan los trienios si cambias de cuerpo?</h3>
+<p><strong>Si</strong>. Si promocionas de Auxilio (C2) a Tramitacion (C1), conservas tus trienios. Pero <strong>se recalculan al importe del nuevo grupo</strong>. Es decir, un trienio que cobrabas a ~42€ (C2) pasa a cobrarse a ~53€ (C1). Es otra razon para promocionar.</p>
+
+<h3>¿Los trienios cotizan para la jubilacion?</h3>
+<p><strong>Si</strong>. Los trienios forman parte de la base reguladora de la pension. Un funcionario con muchos trienios tendra una <strong>pension mas alta</strong>.</p>
+
+<h3>¿Se cobran trienios en excedencia?</h3>
+<p>No se cobran durante la excedencia (no estas prestando servicios), pero el tiempo anterior sigue reconocido. Al reincorporarte, tus trienios previos siguen activos y vuelves a cobrarlos.</p>
+
+<h2>Trienios en Justicia vs AGE vs Correos</h2>
+<p>Los trienios aplican a <strong>todos los funcionarios</strong> con el mismo importe por grupo, independientemente del ministerio o Administracion:</p>
+<ul>
+  <li><strong>Auxiliar del Estado (AGE, C2)</strong>: mismo trienio que Auxilio Judicial → ~42€/mes</li>
+  <li><strong>Administrativo del Estado (AGE, C1)</strong>: mismo trienio que Tramitacion → ~53€/mes</li>
+  <li><strong>Personal laboral de Correos</strong>: Correos tiene su propio convenio. Los trienios de Correos NO son identicos a los de funcionarios — se rigen por el convenio colectivo de la Sociedad Estatal Correos y Telegrafos.</li>
+</ul>
+
+<h2>¿Merece la pena opositar solo por los trienios?</h2>
+<p>Los trienios son un incentivo importante pero no el unico. El verdadero valor del empleo publico es la combinacion de:</p>
+<ul>
+  <li><strong>Estabilidad</strong>: puesto fijo de por vida</li>
+  <li><strong>Sueldo creciente</strong>: trienios + carrera profesional</li>
+  <li><strong>Horario</strong>: jornada de manana en muchos destinos</li>
+  <li><strong>Vacaciones</strong>: 22 dias habiles + dias de asuntos propios + permisos</li>
+  <li><strong>Pension</strong>: base reguladora alta gracias a trienios acumulados</li>
+</ul>
+<p>Un funcionario C1 con 30 anos de servicio habra cobrado <strong>mas de 100.000€ solo en trienios</strong> a lo largo de su carrera. Es dinero que un empleado del sector privado simplemente no tiene garantizado.</p>
+
+<h2>Empieza tu carrera como funcionario</h2>
+<p>El primer paso para empezar a acumular trienios es <strong>aprobar tu oposicion</strong>. En OpoRuta puedes preparar Auxilio Judicial (C2), Tramitacion Procesal (C1) y Auxiliar del Estado (C2) con tests verificados contra la legislacion vigente.</p>
+<p><strong><a href="/register">Crea tu cuenta gratis</a></strong> y empieza a practicar. Cuanto antes apruebes, antes empiezas a sumar trienios.</p>
+<p><a href="/blog/sueldo-funcionario-justicia-2026-auxilio-tramitacion-gestion">Sueldos de Justicia 2026</a> · <a href="/blog/oposiciones-justicia-2026-que-cuerpo-elegir">¿Que cuerpo de Justicia elegir?</a> · <a href="/oposiciones/justicia">Oposiciones de Justicia</a></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuanto cobra un funcionario C1 por trienio en 2026?', answer: 'Un funcionario del subgrupo C1 (Administrativo AGE, Tramitacion Procesal) cobra aproximadamente 53,28€ al mes por cada trienio (3 anos de antiguedad), segun los PGE 2025. Esto equivale a ~745€ anuales por trienio (14 pagas).' },
+      { question: '¿El tiempo como interino cuenta para los trienios?', answer: 'Si. El tiempo trabajado como funcionario interino computa para el calculo de trienios. Si has sido interino 6 anos y apruebas la oposicion, tomas posesion con 2 trienios reconocidos. Debes solicitarlo mediante instancia administrativa.' },
+      { question: '¿Se conservan los trienios al promocionar de cuerpo?', answer: 'Si. Si promocionas de C2 a C1, conservas todos tus trienios acumulados. Se recalculan al importe del nuevo grupo: un trienio de ~42€/mes (C2) pasa a cobrarse a ~53€/mes (C1). Es un incentivo adicional para la promocion interna.' },
+      { question: '¿Cuanto suman los trienios en toda una carrera de funcionario?', answer: 'Un funcionario C1 con 30 anos de servicio (10 trienios) cobra ~533€ al mes extra solo en trienios, lo que supone mas de 100.000€ a lo largo de toda su carrera. Los trienios son acumulativos, irreversibles y cotizan para la pension de jubilacion.' },
+    ],
+  },
 ]
