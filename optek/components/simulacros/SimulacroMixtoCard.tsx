@@ -38,17 +38,21 @@ export interface SimulacroMixtoCardProps {
   hasSupuestoTest?: boolean
   /** Number of supuesto questions (from scoring_config ejercicio 2) */
   preguntasSupuesto?: number
+  /** Whether this oposición has ofimática exercise (Tramitación C1) */
+  hasOfimatica?: boolean
+  /** Number of ofimática questions (from scoring_config ejercicio 3) */
+  preguntasOfimatica?: number
   /** Penalización description for the exam */
   penalizacionDesc?: string
 }
 
 // ─── Componente ──────────────────────────────────────────────────────────────
 
-export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias, hasPsicotecnicos = false, preguntasExamenCompleto = 100, hasSupuestoTest = false, preguntasSupuesto = 0, penalizacionDesc }: SimulacroMixtoCardProps) {
+export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias, hasPsicotecnicos = false, preguntasExamenCompleto = 100, hasSupuestoTest = false, preguntasSupuesto = 0, hasOfimatica = false, preguntasOfimatica = 0, penalizacionDesc }: SimulacroMixtoCardProps) {
   const router = useRouter()
   const isPremium = useIsPremium()
 
-  const totalExamen = preguntasExamenCompleto + (hasSupuestoTest ? preguntasSupuesto : 0)
+  const totalExamen = preguntasExamenCompleto + (hasSupuestoTest ? preguntasSupuesto : 0) + (hasOfimatica ? preguntasOfimatica : 0)
   const [incluirPsicotecnicos, setIncluirPsicotecnicos] = useState(false)
   const [dificultadPsico, setDificultadPsico] = useState<1 | 2 | 3>(2)
   const [isStarting, setIsStarting] = useState(false)
@@ -72,6 +76,7 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias, hasPsicot
           incluirPsicotecnicos,
           dificultadPsico,
           incluirSupuesto: hasSupuestoTest,
+          incluirOfimatica: hasOfimatica,
         }),
       })
 
@@ -152,6 +157,9 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias, hasPsicot
             <p>{preguntasExamenCompleto} preguntas — Cuestionario</p>
             {hasSupuestoTest && (
               <p>{preguntasSupuesto} preguntas — Supuesto práctico (caso + preguntas vinculadas)</p>
+            )}
+            {hasOfimatica && (
+              <p>{preguntasOfimatica} preguntas — Ofimática</p>
             )}
             <p className="text-muted-foreground font-medium">Total: {totalExamen} preguntas</p>
           </div>

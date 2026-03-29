@@ -50,6 +50,8 @@ interface TestRunnerProps {
   onQuestionChange?: (idx: number) => void
   /** Question index where Part 2 starts (shows divider between parts) */
   partDivider?: number
+  /** Additional part dividers with labels (e.g. Part 3 — Ofimática) */
+  extraDividers?: { index: number; label: string }[]
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -82,7 +84,7 @@ function formatTimer(segundos: number): string {
 
 // ─── Componente ──────────────────────────────────────────────────────────────
 
-export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos, onQuestionChange, partDivider }: TestRunnerProps) {
+export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos, onQuestionChange, partDivider, extraDividers }: TestRunnerProps) {
   const router = useRouter()
 
   const [current, setCurrent] = useState(0)
@@ -340,6 +342,9 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
             {partDivider !== undefined && idx === partDivider && (
               <span className="w-full text-[10px] font-semibold text-indigo-600 uppercase tracking-wider mt-1 mb-0.5">Parte 2 — Supuesto</span>
             )}
+            {extraDividers?.map(d => d.index === idx ? (
+              <span key={d.label} className="w-full text-[10px] font-semibold text-blue-600 uppercase tracking-wider mt-1 mb-0.5">{d.label}</span>
+            ) : null)}
             <button
               onClick={() => goTo(idx)}
               className={getGridBtnClass(idx, current, respuestas)}

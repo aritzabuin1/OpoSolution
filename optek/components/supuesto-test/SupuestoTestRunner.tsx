@@ -38,6 +38,8 @@ interface SupuestoTestRunnerProps {
    * When undefined, the caso is visible from the start (standalone supuesto test).
    */
   preguntasCuestionario?: number
+  /** Index where ofimática (Part 3) starts. Only set for 3-part exams (Tramitación). */
+  ofimaticaStart?: number
 }
 
 export function SupuestoTestRunner({
@@ -47,17 +49,24 @@ export function SupuestoTestRunner({
   temaTitulo,
   tiempoLimiteSegundos,
   preguntasCuestionario,
+  ofimaticaStart,
 }: SupuestoTestRunnerProps) {
   const isSimulacroCompleto = preguntasCuestionario !== undefined
+  const has3Parts = ofimaticaStart !== undefined && ofimaticaStart > 0
   // For standalone supuesto: start collapsed on mobile. For simulacro: start hidden.
   const [casoExpanded, setCasoExpanded] = useState(false)
   // Track current question to know when to reveal caso in simulacro mode
   const [currentQuestion, setCurrentQuestion] = useState(0)
 
   const isInSupuestoPart = isSimulacroCompleto
-    ? currentQuestion >= preguntasCuestionario!
+    ? has3Parts
+      ? currentQuestion >= preguntasCuestionario! && currentQuestion < ofimaticaStart
+      : currentQuestion >= preguntasCuestionario!
     : true // standalone: always in supuesto part
 
+  const isInOfimaticaPart = has3Parts && currentQuestion >= ofimaticaStart
+
+  // Show caso only during supuesto part (Part 2), not during cuestionario (Part 1) or ofimática (Part 3)
   const showCaso = isInSupuestoPart
 
   const onQuestionChange = useCallback((idx: number) => {
@@ -72,6 +81,16 @@ export function SupuestoTestRunner({
         <div className="sticky top-20 self-start max-h-[calc(100vh-6rem)] overflow-y-auto">
           {showCaso ? (
             <CasoPanel caso={caso} />
+          ) : isInOfimaticaPart ? (
+            <Card className="border-blue-200 bg-blue-50/30">
+              <CardContent className="pt-6 pb-6 text-center space-y-2">
+                <FileText className="h-8 w-8 text-blue-400 mx-auto" />
+                <p className="text-sm font-medium text-blue-700">Parte 3 — Ofimática</p>
+                <p className="text-xs text-blue-600/70">
+                  {preguntas.length - ofimaticaStart!} preguntas de informática y ofimática
+                </p>
+              </CardContent>
+            </Card>
           ) : (
             <Card className="border-muted bg-muted/30">
               <CardContent className="pt-6 pb-6 text-center space-y-2">
@@ -94,6 +113,7 @@ export function SupuestoTestRunner({
             tiempoLimiteSegundos={tiempoLimiteSegundos}
             onQuestionChange={onQuestionChange}
             partDivider={isSimulacroCompleto ? preguntasCuestionario : undefined}
+            extraDividers={has3Parts ? [{ index: ofimaticaStart!, label: 'Parte 3 — Ofimática' }] : undefined}
           />
         </div>
       </div>
@@ -102,13 +122,18 @@ export function SupuestoTestRunner({
       <div className="lg:hidden space-y-4">
         {/* Part indicator for simulacro */}
         {isSimulacroCompleto && (
-          <div className="flex gap-2">
-            <Badge variant={!isInSupuestoPart ? 'default' : 'outline'} className="text-xs">
+          <div className="flex flex-wrap gap-2">
+            <Badge variant={!isInSupuestoPart && !isInOfimaticaPart ? 'default' : 'outline'} className="text-xs">
               Parte 1: Cuestionario ({preguntasCuestionario} preg.)
             </Badge>
             <Badge variant={isInSupuestoPart ? 'default' : 'outline'} className="text-xs">
-              Parte 2: Supuesto ({preguntas.length - preguntasCuestionario!} preg.)
+              Parte 2: Supuesto ({(has3Parts ? ofimaticaStart! : preguntas.length) - preguntasCuestionario!} preg.)
             </Badge>
+            {has3Parts && (
+              <Badge variant={isInOfimaticaPart ? 'default' : 'outline'} className="text-xs">
+                Parte 3: Ofimática ({preguntas.length - ofimaticaStart!} preg.)
+              </Badge>
+            )}
           </div>
         )}
 

@@ -99,7 +99,7 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
   const esSimulacro = test.tipo === 'simulacro' && !!test.examen_oficial_id
   const esRepaso = test.tipo === 'repaso_errores'
   const esSupuestoTest = test.tipo === 'supuesto_test'
-  const supuestoCaso = test.supuesto_caso as { titulo?: string; escenario?: string; bloques_cubiertos?: string[] } | null
+  const supuestoCaso = test.supuesto_caso as { titulo?: string; escenario?: string; bloques_cubiertos?: string[]; ofimatica_start?: number } | null
 
   // §BUG-SP3 — Timer dinámico desde scoring_config de la oposición
   let fullExamQuestions = 100
@@ -213,6 +213,7 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
           temaTitulo={simulacroConSupuesto ? 'Simulacro Oficial' : (supuestoCaso.titulo ?? 'Supuesto Práctico')}
           tiempoLimiteSegundos={tiempoLimite}
           preguntasCuestionario={simulacroConSupuesto ? preguntasCuestionarioConfig : undefined}
+          ofimaticaStart={supuestoCaso?.ofimatica_start}
         />
       ) : (
         <TestRunner

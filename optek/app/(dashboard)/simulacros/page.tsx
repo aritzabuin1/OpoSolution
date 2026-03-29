@@ -129,6 +129,11 @@ export default async function SimulacrosPage() {
   const preguntasSupuesto = features?.scoring_config?.ejercicios?.find(
     (e) => e.nombre?.toLowerCase().includes('supuesto') || e.nombre?.toLowerCase().includes('práctico')
   )?.preguntas ?? 20
+  // Ofimática exercise (3rd exercise, only Tramitación)
+  const hasOfimatica = features?.features?.ofimatica === true
+  const preguntasOfimatica = features?.scoring_config?.ejercicios?.find(
+    (e) => e.nombre?.toLowerCase().includes('ofimática') || e.nombre?.toLowerCase().includes('informatica') || e.nombre?.toLowerCase().includes('informática')
+  )?.preguntas ?? 0
   // Penalización description
   const penaliza = features?.scoring_config?.ejercicios?.[0]?.preguntas !== undefined
   const penalizacionDesc = penaliza ? `Penalización real: incorrecta descuenta según la fórmula oficial del examen.` : undefined
@@ -243,6 +248,8 @@ export default async function SimulacrosPage() {
               preguntasExamenCompleto={preguntasEjercicio1}
               hasSupuestoTest={hasSupuestoTest}
               preguntasSupuesto={preguntasSupuesto}
+              hasOfimatica={hasOfimatica}
+              preguntasOfimatica={preguntasOfimatica}
               penalizacionDesc={penalizacionDesc}
             />
           </div>
