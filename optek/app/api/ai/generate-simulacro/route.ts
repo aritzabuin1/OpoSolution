@@ -148,9 +148,10 @@ export async function POST(request: NextRequest) {
     .select('scoring_config')
     .eq('id', oposicionId)
     .single()
-  const scoringConfig = (opoData as { scoring_config?: unknown } | null)?.scoring_config as { ejercicios?: { nombre?: string; preguntas?: number }[] } | null
-  // Preguntas puntuables del primer ejercicio (test teórico) — fallback 60 para C2 AGE
-  const maxPreguntasPuntuables = scoringConfig?.ejercicios?.[0]?.preguntas ?? 60
+  const scoringConfig = (opoData as { scoring_config?: unknown } | null)?.scoring_config as { ejercicios?: { nombre?: string; preguntas?: number; reserva?: number }[]; minutos_total?: number } | null
+  // Preguntas puntuables del primer ejercicio = preguntas - reserva
+  const ej1 = scoringConfig?.ejercicios?.[0]
+  const maxPreguntasPuntuables = (ej1?.preguntas ?? 60) - (ej1?.reserva ?? 0)
 
   type ExamenRow = { id: string; anio: number; convocatoria: string }
   // §2.6.3: incluimos tema_id para desglose por tema en resultados
