@@ -130,83 +130,7 @@ const differentiators = [
   },
 ]
 
-const plans = [
-  {
-    name: 'Gratis',
-    price: '0€',
-    period: 'para siempre',
-    badge: null,
-    features: [
-      '1 test gratuito en cada tema',
-      '1 simulacro oficial + 3 psicotécnicos',
-      '2 sesiones gratis con tu Tutor IA',
-      'Sin tarjeta de crédito',
-    ],
-    cta: 'Empezar gratis',
-    href: '/register',
-    variant: 'outline' as const,
-  },
-  {
-    name: 'Pack C2 o C1',
-    price: '49,99€',
-    period: 'pago único',
-    badge: 'Más popular',
-    features: [
-      'Tests ilimitados — Auxiliar (C2) o Administrativo (C1)',
-      'Simulacros y psicotécnicos ilimitados',
-      '+20 créditos IA + Radar',
-      'Sin suscripción — pago único',
-    ],
-    cta: 'Empezar mi ruta',
-    href: '/register',
-    variant: 'default' as const,
-  },
-  {
-    name: 'Pack Gestión A2',
-    price: '69,99€',
-    period: 'pago único',
-    badge: 'Exclusivo',
-    features: [
-      'Tests ilimitados — Gestión del Estado (A2 GACE)',
-      '58 temas en 6 bloques + simulacros INAP',
-      '+20 créditos IA + 5 supuestos prácticos con IA',
-      'Corrección con rúbrica oficial INAP',
-    ],
-    cta: 'Empezar con A2',
-    href: '/register',
-    variant: 'default' as const,
-  },
-  {
-    name: 'Pack Doble',
-    price: '79,99€',
-    period: 'pago único',
-    badge: 'Ahorra 20€',
-    features: [
-      'Acceso completo a C1 y C2',
-      'Simulacros y psicotécnicos ilimitados',
-      '+30 créditos IA + Radar',
-      'Cambia entre oposiciones cuando quieras',
-    ],
-    cta: 'C1 + C2',
-    href: '/register',
-    variant: 'default' as const,
-  },
-  {
-    name: 'Pack Triple AGE',
-    price: '129,99€',
-    period: 'pago único',
-    badge: 'Todo incluido',
-    features: [
-      'Las 3 oposiciones AGE: C2 + C1 + A2',
-      '+40 créditos IA + 5 supuestos prácticos IA',
-      'Simulacros, Radar, todo ilimitado',
-      'Máximo ahorro — preparas todo',
-    ],
-    cta: 'Las tres oposiciones',
-    href: '/register',
-    variant: 'default' as const,
-  },
-]
+// Pricing plans removed from landing — now at /precios with tabs per rama
 
 const faqs = [
   {
@@ -702,57 +626,32 @@ export default async function LandingPage() {
         </div>
       </section>
 
-      {/* ─── Pricing ──────────────────────────────────────────────────── */}
-      <section id="precios" aria-labelledby="pricing-heading" className="py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <Badge variant="outline" className="mb-4">
-              Precios
-            </Badge>
-            <h2 id="pricing-heading" className="text-3xl font-bold tracking-tight">
-              Empieza gratis. Paga solo por lo que necesitas.
-            </h2>
-            <p className="mt-3 text-muted-foreground">
-              Sin permanencias. Sin suscripción. Pago único — acceso para siempre.
-              ¿Te quedas sin créditos IA? Recárgalos desde 9,99€.
-            </p>
+      {/* ─── Pricing CTA ─────────────────────────────────────────────── */}
+      <section id="precios" aria-labelledby="pricing-heading" className="py-20 bg-gradient-to-b from-background to-muted/30">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center">
+          <Badge variant="outline" className="mb-4">Precios</Badge>
+          <h2 id="pricing-heading" className="text-3xl font-bold tracking-tight">
+            Empieza gratis. Paga solo por lo que necesitas.
+          </h2>
+          <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
+            Sin permanencias. Sin suscripción. Pago único — acceso para siempre.
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link href="/precios">
+              <Button size="lg" className="gap-2 px-8">
+                Ver precios por oposición
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+            <Link href="/register">
+              <Button size="lg" variant="outline" className="gap-2 px-8">
+                Empezar gratis
+              </Button>
+            </Link>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 max-w-7xl mx-auto">
-            {plans.map((plan) => (
-              <Card
-                key={plan.name}
-                className={plan.badge ? 'border-primary shadow-lg ring-1 ring-primary/20' : ''}
-              >
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-lg">{plan.name}</CardTitle>
-                    {plan.badge && (
-                      <Badge className="text-xs">{plan.badge}</Badge>
-                    )}
-                  </div>
-                  <div className="mt-2">
-                    <span className="text-3xl font-bold">{plan.price}</span>
-                    <span className="text-sm text-muted-foreground ml-1">{plan.period}</span>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <ul className="space-y-2">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2 text-sm">
-                        <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 shrink-0" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href={plan.href} className="block">
-                    <Button variant={plan.variant} className="w-full">
-                      {plan.cta}
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <p className="mt-6 text-sm text-muted-foreground">
+            Desde 49,99€ pago único · ¿Te quedas sin créditos IA? Recarga desde 9,99€
+          </p>
         </div>
       </section>
 
