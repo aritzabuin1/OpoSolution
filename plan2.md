@@ -1491,6 +1491,155 @@ Cada sub-landing incluye:
 
 ---
 
+## FASE SEO — Plan agresivo Correos + Justicia + mejora AGE
+
+> **Datos base**: Search Console 6-29 marzo 2026. De 0 a 44 clics/día en 3 semanas.
+> **Problema**: 99% del tráfico es AGE. Correos tiene 4 impresiones totales. Justicia tiene 0.
+> **Objetivo**: posicionar Correos y Justicia en 4 semanas. Escalar AGE en queries transaccionales.
+
+### Análisis Search Console (marzo 2026)
+
+**Top performers (AGE):**
+| Página | Clics | Impresiones | Posición |
+|---|---|---|---|
+| blog/supuesto-practico-c1 | 28 | 317 | 5.7 |
+| blog/psicotecnicas-auxiliar | 22 | 539 | 9.4 |
+| blog/contratacion-publica-c1 | 18 | 133 | 4.3 |
+| blog/temario-auxiliar-2025 | 13 | 621 | 6.5 |
+| landing / | 13 | 172 | 7.6 |
+| blog/sueldo-c1 | 11 | 960 | 5.4 |
+| blog/sueldo-gace | 11 | 705 | 4.6 |
+
+**Correos**: 4 impresiones totales (psicotecnicos-correos, temario-correos). 8 posts existentes → no indexados o no rankean.
+**Justicia**: 0 impresiones. 15 posts existentes → Google aún no los ha descubierto.
+
+### SEO.1 — Quick wins AGE (mejorar CTR en queries con impresiones altas y 0 clics)
+
+Queries con MUCHAS impresiones pero 0 clics = títulos/descriptions no atractivos o posición >10:
+
+- [ ] **"temario auxiliar administrativo del estado"** (41 imp, pos 5, 0 clics) → mejorar title/description del post `temario-auxiliar-2025-2026`
+- [ ] **"nota de corte auxiliar administrativo"** (30 imp, pos 14) → optimizar post `nota-corte-auxiliar`
+- [ ] **"preparar oposiciones auxiliar administrativo por libre"** (26 imp, pos 11) → optimizar post `preparar-por-libre`
+- [ ] **"cuando es el examen de administrativo del estado 2026"** (22 imp, pos 1, 0 clics!) → post existente `calendario-c1` está posición 1 pero 0 CTR → mejorar meta description urgente
+- [ ] **"plazas auxiliar administrativo del estado 2026"** (21 imp, pos 7) → optimizar post `plazas-auxiliar`
+- [ ] **"auxiliar administrativo del estado 2026"** (19 imp, pos 1, 0 clics) → landing rankea pero no convierte → mejorar meta
+- **Esfuerzo**: ~2h (solo optimización de titles + descriptions)
+
+### SEO.2 — Posts nuevos AGE (queries sin post)
+
+Queries con impresiones pero sin post dedicado:
+
+- [ ] **"sueldo base c1/c2/a2 2026"** (~50 imp combinadas) → YA EXISTE post sueldo → verificar que cubre "sueldo base" explícitamente
+- [ ] **"trienio c1/a2 2026"** (~27 imp) → NO hay post → **crear**: "Trienios funcionarios 2026: cuánto cobras por antigüedad (C2, C1, A2)"
+- [ ] **"diferencia c1 y c2 administrativo"** (10 imp, pos 6.5) → YA EXISTE post diferencias → verificar keywords
+- [ ] **"destinos auxiliar/administrativo/gace"** (~20 imp) → YA EXISTEN posts destinos → verificar que están indexados
+- [ ] **"opositatest alternativas/precio/opiniones"** (~20 imp) → YA EXISTE comparativa → añadir más keywords comparativas
+- **Esfuerzo**: ~3h (1 post nuevo + optimización de 4 existentes)
+
+### SEO.3 — Correos: posicionar desde 0 (PRIORIDAD ALTA)
+
+**Posts existentes (8):** examen-correos, test-correos, temario-correos, nota-corte-correos, rep-vs-atc, psicotecnicos-correos, meritos-correos, preparar-sin-academia
+
+**Posts nuevos necesarios (intent transaccional + informativo):**
+- [ ] **"oposiciones correos 2026 fechas convocatoria"** — mega-guide convocatoria (transaccional)
+- [ ] **"sueldo correos 2026 reparto atencion cliente"** — sueldo por puesto (informativo, alto volumen)
+- [ ] **"test correos online gratis 2026 preguntas tipo examen"** — landing page de test (transaccional, ya existe pero necesita más contenido)
+- [ ] **"temario correos 2026 12 temas que estudiar"** — ampliar el existente con más detalle por tema
+- [ ] **"examen correos sin penalizacion como aprobar"** — estrategia examen (informativo)
+- [ ] **"correos plazas 2026 cuantas hay por provincia"** — distribución geográfica (informativo, alto volumen)
+- [ ] **"correos requisitos 2026 edad titulacion"** — requisitos acceso (informativo)
+- [ ] **"calculadora nota correos 2026"** — YA EXISTE herramienta → crear post que enlace + explique
+
+**Acciones técnicas Correos:**
+- [ ] Verificar que `/oposiciones/correos` está indexada (Google Search Console → Inspeccionar URL)
+- [ ] Submit sitemap actualizado en GSC
+- [ ] Internal linking: desde posts AGE populares → link a Correos (footer CTA o "También te puede interesar")
+- [ ] Schema FAQ en todos los posts de Correos
+- **Esfuerzo**: ~6h (8 posts nuevos + optimización técnica)
+
+### SEO.4 — Justicia: posicionar 3 oposiciones desde 0 (PRIORIDAD ALTA)
+
+**Posts existentes (15):** auxilio-vs-tramitacion, cambios-lo-1-2025, guia-auxilio, guia-tramitacion, gestion-procesal-a2, sueldo-auxilio, temas-preguntados-auxilio, penalizacion-auxilio, preparar-sin-academia, nota-corte-auxilio, ofimatica-tramitacion, gestion-caso-practico, sueldo-tramitacion, comparativa-3-cuerpos, opositar-trabajando
+
+**Posts nuevos necesarios por cuerpo:**
+
+**Auxilio Judicial:**
+- [ ] **"test auxilio judicial online gratis 2026"** — transaccional, CTA directo a la app
+- [ ] **"temario auxilio judicial 2026 26 temas"** — ampliar guía existente
+- [ ] **"examen auxilio judicial 2026 como es estructura"** — informativo
+- [ ] **"plazas auxilio judicial 2026 por comunidad autonoma"** — informativo, alto volumen
+
+**Tramitación Procesal:**
+- [ ] **"test tramitacion procesal online gratis 2026"** — transaccional
+- [ ] **"temario tramitacion procesal 2026 37 temas"** — ampliar guía existente
+- [ ] **"ofimatica tramitacion procesal que entra examen"** — YA EXISTE post → optimizar para búsquedas
+- [ ] **"plazas tramitacion procesal 2026"** — informativo
+- [ ] **"examen tramitacion procesal 2026 3 ejercicios"** — estructura examen
+
+**Gestión Procesal:**
+- [ ] **"test gestion procesal online gratis 2026"** — transaccional
+- [ ] **"temario gestion procesal 2026 68 temas"** — mega-guide
+- [ ] **"caso practico gestion procesal como se evalua"** — YA EXISTE post → optimizar
+- [ ] **"plazas gestion procesal 2026"** — informativo
+- [ ] **"desarrollo escrito gestion procesal rubrica MJU"** — diferenciador (ningún competidor tiene esto)
+
+**Transversales Justicia:**
+- [ ] **"oposiciones justicia 2026 que cuerpo elegir"** — mega-comparativa (alto volumen)
+- [ ] **"sueldo funcionario justicia 2026 auxilio tramitacion gestion"** — comparativa sueldos (SEO gold)
+- [ ] **"LO 1/2025 cambios temario justicia oposiciones"** — YA EXISTE → optimizar title
+- [ ] **"calculadora nota auxilio judicial tramitacion"** — YA EXISTE herramienta → crear post
+
+**Acciones técnicas Justicia:**
+- [ ] Verificar indexación de las 4 sub-landings en GSC
+- [ ] Submit sitemap
+- [ ] Internal linking: blog posts de Justicia → sub-landings → app
+- [ ] Backlinks: responder en foros de oposiciones (ForoJusticia, etc.) con links útiles
+- **Esfuerzo**: ~10h (15 posts nuevos + optimización técnica)
+
+### SEO.5 — Acciones técnicas transversales
+
+- [ ] **Submit sitemap actualizado** en Google Search Console (con /administracion)
+- [ ] **Inspeccionar URLs** de todas las sub-landings y verificar indexación
+- [ ] **Internal linking audit**: cada post debe tener ≥2 links internos (a otro post + a sub-landing)
+- [ ] **Footer links**: añadir sección "Oposiciones" con links a las 3 sub-landings
+- [ ] **Breadcrumbs**: verificar BreadcrumbList schema en todas las páginas
+- [ ] **hreflang**: no necesario (solo España)
+- [ ] **Core Web Vitals**: verificar LCP <2.5s en todas las landing pages
+- **Esfuerzo**: ~2h
+
+### SEO.6 — Contenido comparativo (Brand awareness)
+
+Posts que atacan búsquedas de competidores (ya funciona con "opositatest"):
+
+- [ ] **"opositatest vs oporuta correos 2026"** — comparativa para Correos
+- [ ] **"opositatest vs oporuta justicia auxilio tramitacion"** — comparativa Justicia
+- [ ] **"mejores apps oposiciones justicia 2026"** — listicle
+- [ ] **"mejores apps oposiciones correos 2026"** — listicle
+- **Esfuerzo**: ~3h (4 posts)
+
+### Orden de ejecución (priorizado por impacto)
+
+1. **SEO.1** Quick wins AGE (~2h) — CTR inmediato en queries donde ya rankeamos
+2. **SEO.5** Técnico (~2h) — asegurar que las nuevas páginas se indexan
+3. **SEO.3** Correos (~6h) — rama nueva, necesita base de contenido
+4. **SEO.4** Justicia (~10h) — 3 oposiciones × contenido por cada una
+5. **SEO.2** Posts nuevos AGE (~3h) — queries con impresiones sin post
+6. **SEO.6** Comparativas (~3h) — brand awareness, menor prioridad
+
+**Total**: ~26h de contenido SEO | **Coste IA**: ~$5 (generación asistida)
+
+### KPIs a 4 semanas
+
+| Métrica | Hoy | Objetivo 4 sem |
+|---|---|---|
+| Clics/día AGE | 30-40 | 60-80 |
+| Impresiones/día Correos | ~0 | 200+ |
+| Impresiones/día Justicia | 0 | 300+ |
+| Páginas indexadas | ~60 | ~90 |
+| Posición media | 5.5 | 4.0 |
+
+---
+
 ## SESIÓN 2026-03-29b — Hardening multi-oposición + planes nuevos
 
 ### Bugs encontrados y arreglados esta sesión
