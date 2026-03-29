@@ -357,14 +357,22 @@ export async function POST(request: NextRequest) {
   let supuestoCaso: { titulo: string; escenario: string; bloques_cubiertos: string[] } | null = null
 
   if (effectiveIncluirSupuesto) {
-    // Fetch unseen supuesto from bank
+    // Fetch unseen supuesto from bank (2-step: get seen IDs, then filter)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: unseenSupuestos } = await (serviceSupabase as any)
+    const { data: simSeenRows } = await (serviceSupabase as any)
+      .from('user_supuestos_seen')
+      .select('supuesto_id')
+      .eq('user_id', user.id)
+    const simSeenIds = (simSeenRows ?? []).map((r: { supuesto_id: string }) => r.supuesto_id)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let simUnseenQuery = (serviceSupabase as any)
       .from('supuesto_bank')
       .select('id, caso, preguntas')
       .eq('oposicion_id', oposicionId)
-      .not('id', 'in', `(SELECT supuesto_id FROM user_supuestos_seen WHERE user_id = '${user.id}')`)
-      .limit(1)
+    if (simSeenIds.length > 0) {
+      simUnseenQuery = simUnseenQuery.not('id', 'in', `(${simSeenIds.join(',')})`)
+    }
+    const { data: unseenSupuestos } = await simUnseenQuery.limit(1)
 
     type SupuestoRow = { id: string; caso: { titulo?: string; escenario?: string; bloques_cubiertos?: string[] }; preguntas: Pregunta[] }
     let supuestoRow: SupuestoRow | null = null

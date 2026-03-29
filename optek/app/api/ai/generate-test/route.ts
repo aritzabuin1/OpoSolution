@@ -453,19 +453,29 @@ export async function POST(request: NextRequest) {
     if (hasPaidAccess && temaId) {
       try {
         // Count total + fetch unseen questions from bank for this (tema, dificultad)
+        // Get seen question IDs first, then filter
+        const { data: seenQRows } = await (serviceSupabase as any)
+          .from('user_questions_seen')
+          .select('question_id')
+          .eq('user_id', user.id)
+        const seenQIds = (seenQRows ?? []).map((r: { question_id: string }) => r.question_id)
+
+        let unseenBankQuery = (serviceSupabase as any)
+          .from('question_bank')
+          .select('id, enunciado, opciones, correcta, explicacion, cita_ley, cita_articulo, dificultad')
+          .eq('tema_id', temaId)
+          .eq('dificultad', effectiveDificultad)
+        if (seenQIds.length > 0) {
+          unseenBankQuery = unseenBankQuery.not('id', 'in', `(${seenQIds.join(',')})`)
+        }
+
         const [{ count: totalInBank }, { data: unseenRows }] = await Promise.all([
           (serviceSupabase as any)
             .from('question_bank')
             .select('id', { count: 'exact', head: true })
             .eq('tema_id', temaId)
             .eq('dificultad', effectiveDificultad),
-          (serviceSupabase as any)
-            .from('question_bank')
-            .select('id, enunciado, opciones, correcta, explicacion, cita_ley, cita_articulo, dificultad')
-            .eq('tema_id', temaId)
-            .eq('dificultad', effectiveDificultad)
-            .not('id', 'in', `(SELECT question_id FROM user_questions_seen WHERE user_id = '${user.id}')`)
-            .limit(effectiveNumPreguntas),
+          unseenBankQuery.limit(effectiveNumPreguntas),
         ])
 
         const unseen = (unseenRows ?? []) as Array<{

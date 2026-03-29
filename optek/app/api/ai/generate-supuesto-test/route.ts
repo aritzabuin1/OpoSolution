@@ -174,12 +174,24 @@ export async function POST(request: NextRequest) {
   const FREE_INCLUDED = 5
 
   // Fetch unseen from bank (needed for both free and paid paths)
+  // Step 1: get IDs the user has already seen
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: unseenRows } = await (serviceSupabase as any)
+  const { data: seenRows } = await (serviceSupabase as any)
+    .from('user_supuestos_seen')
+    .select('supuesto_id')
+    .eq('user_id', user.id)
+  const seenIds = (seenRows ?? []).map((r: { supuesto_id: string }) => r.supuesto_id)
+
+  // Step 2: fetch bank supuestos excluding seen ones
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let unseenQuery = (serviceSupabase as any)
     .from('supuesto_bank')
     .select('id, caso, preguntas')
     .eq('oposicion_id', oposicionId)
-    .not('id', 'in', `(SELECT supuesto_id FROM user_supuestos_seen WHERE user_id = '${user.id}')`)
+  if (seenIds.length > 0) {
+    unseenQuery = unseenQuery.not('id', 'in', `(${seenIds.join(',')})`)
+  }
+  const { data: unseenRows } = await unseenQuery
     .order('created_at', { ascending: true })
     .limit(1)
 

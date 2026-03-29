@@ -103,12 +103,21 @@ export async function POST(request: NextRequest) {
   const batchCount = Math.min(BATCH_SIZE, balance)
 
   // ── 5. Check how many unseen remain (are we done?) ──────────────────────
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { count: unseenCount } = await (serviceSupabase as any)
+  const { data: batchSeenRows } = await (serviceSupabase as any)
+    .from('user_supuestos_seen')
+    .select('supuesto_id')
+    .eq('user_id', user.id)
+  const batchSeenIds = (batchSeenRows ?? []).map((r: { supuesto_id: string }) => r.supuesto_id)
+
+  let unseenCountQuery = (serviceSupabase as any)
     .from('supuesto_bank')
     .select('id', { count: 'exact', head: true })
     .eq('oposicion_id', oposicionId)
-    .not('id', 'in', `(SELECT supuesto_id FROM user_supuestos_seen WHERE user_id = '${user.id}')`)
+  if (batchSeenIds.length > 0) {
+    unseenCountQuery = unseenCountQuery.not('id', 'in', `(${batchSeenIds.join(',')})`)
+  }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { count: unseenCount } = await unseenCountQuery
 
   if ((unseenCount ?? 0) >= TARGET_LOTE) {
     return NextResponse.json({
@@ -208,12 +217,19 @@ export async function POST(request: NextRequest) {
   }
 
   // Calculate how many more the user needs
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { count: newUnseenCount } = await (serviceSupabase as any)
+  const { data: newSeenRows } = await (serviceSupabase as any)
+    .from('user_supuestos_seen')
+    .select('supuesto_id')
+    .eq('user_id', user.id)
+  const newSeenIds = (newSeenRows ?? []).map((r: { supuesto_id: string }) => r.supuesto_id)
+  let newUnseenQuery = (serviceSupabase as any)
     .from('supuesto_bank')
     .select('id', { count: 'exact', head: true })
     .eq('oposicion_id', oposicionId)
-    .not('id', 'in', `(SELECT supuesto_id FROM user_supuestos_seen WHERE user_id = '${user.id}')`)
+  if (newSeenIds.length > 0) {
+    newUnseenQuery = newUnseenQuery.not('id', 'in', `(${newSeenIds.join(',')})`)
+  }
+  const { count: newUnseenCount } = await newUnseenQuery
 
   const stillNeeded = Math.max(0, TARGET_LOTE - (newUnseenCount ?? 0))
 
