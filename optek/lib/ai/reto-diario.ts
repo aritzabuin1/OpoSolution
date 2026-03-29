@@ -3,7 +3,7 @@
  *
  * Generación del Reto Diario como fallback si el cron no corrió.
  * Misma lógica que el cron endpoint pero sin la verificación de auth.
- * Se llama solo desde GET /api/reto-diario cuando no existe reto para hoy.
+ * Se llama solo desde GET /api/reto-diario cuando no existe reto para hoy + rama.
  */
 
 import { createServiceClient } from '@/lib/supabase/server'
@@ -15,40 +15,62 @@ import { logger } from '@/lib/logger'
 const NUM_ERRORES = 3
 
 /**
- * Genera el reto del día y lo guarda en BD.
+ * Laws relevant to each rama for reto diario generation.
+ */
+const RAMAS_CONFIG: Record<string, string[]> = {
+  age: [
+    'Constitución Española', 'CE', 'LPAC', 'LRJSP',
+    'TREBEP', 'EBEP', 'LGP', 'Ley General Presupuestaria',
+  ],
+  justicia: [
+    'Constitución Española', 'CE', 'LOPJ', 'Ley Orgánica del Poder Judicial',
+    'LEC', 'Ley de Enjuiciamiento Civil', 'LECrim', 'Ley de Enjuiciamiento Criminal',
+    'TREBEP', 'EBEP',
+  ],
+  correos: [
+    'Constitución Española', 'CE', 'TREBEP', 'EBEP',
+  ],
+}
+
+/**
+ * Genera el reto del día para una rama específica y lo guarda en BD.
  * Idempotente: si ya existe → lo retorna directamente.
  */
-export async function generateRetoDiarioOnDemand(fecha: string): Promise<{
+export async function generateRetoDiarioOnDemand(fecha: string, rama: string): Promise<{
   id: string
   fecha: string
+  rama: string
   ley_nombre: string
   articulo_numero: string
   texto_trampa: string
   num_errores: number
 }> {
-  const log = logger.child({ fecha, fn: 'generateRetoDiarioOnDemand' })
+  const log = logger.child({ fecha, rama, fn: 'generateRetoDiarioOnDemand' })
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const supabase = await createServiceClient() as any
 
   // Comprobar si ya existe (otro request concurrente puede haberlo creado)
   const { data: existing } = await supabase
     .from('reto_diario')
-    .select('id, fecha, ley_nombre, articulo_numero, texto_trampa, num_errores')
+    .select('id, fecha, rama, ley_nombre, articulo_numero, texto_trampa, num_errores')
     .eq('fecha', fecha)
+    .eq('rama', rama)
     .maybeSingle()
 
   if (existing) return existing
 
-  // Elegir artículo de leyes compartidas por TODAS las oposiciones
-  const LEYES_COMPARTIDAS = [
-    'Constitución Española', 'CE', 'LOPJ', 'Ley Orgánica del Poder Judicial', 'EBEP', 'TREBEP',
-  ]
+  // Get laws for this rama
+  const leyes = RAMAS_CONFIG[rama]
+  if (!leyes || leyes.length === 0) {
+    throw new Error(`No hay leyes configuradas para rama: ${rama}`)
+  }
+
   const { data: candidatos, error: fetchErr } = await supabase
     .from('legislacion')
     .select('id, ley_nombre, articulo_numero, titulo_capitulo, texto_integro')
     .eq('activo', true)
     .not('texto_integro', 'is', null)
-    .in('ley_nombre', LEYES_COMPARTIDAS)
+    .in('ley_nombre', leyes)
     .limit(80)
 
   if (fetchErr || !candidatos || candidatos.length === 0) {
@@ -66,7 +88,7 @@ export async function generateRetoDiarioOnDemand(fecha: string): Promise<{
 
   const articulo = validos[Math.floor(Math.random() * validos.length)]!
 
-  // Generar con GPT
+  // Generar con AI
   let textoTrampa = ''
   let erroresVerificados: ReturnType<typeof CazaTrampasRawSchema.parse>['errores_reales'] = []
   let succeeded = false
@@ -82,7 +104,7 @@ export async function generateRetoDiarioOnDemand(fecha: string): Promise<{
     const raw = await callAIJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema, {
       endpoint: 'reto-diario',
     })
-    if (!raw) { log.warn({ attempt }, 'GPT devolvió null'); continue }
+    if (!raw) { log.warn({ attempt }, 'AI devolvió null'); continue }
 
     const fallos = raw.errores_reales.filter((e) => !articulo.texto_integro.includes(e.valor_original))
     if (fallos.length > 0) { log.warn({ attempt }, 'verificación fallida'); continue }
@@ -102,13 +124,14 @@ export async function generateRetoDiarioOnDemand(fecha: string): Promise<{
     .from('reto_diario')
     .insert({
       fecha,
+      rama,
       ley_nombre: articulo.ley_nombre,
       articulo_numero: articulo.articulo_numero,
       texto_trampa: textoTrampa,
       errores_reales: erroresVerificados,
       num_errores: NUM_ERRORES,
     })
-    .select('id, fecha, ley_nombre, articulo_numero, texto_trampa, num_errores')
+    .select('id, fecha, rama, ley_nombre, articulo_numero, texto_trampa, num_errores')
     .single()
 
   if (insertErr) {
@@ -116,14 +139,15 @@ export async function generateRetoDiarioOnDemand(fecha: string): Promise<{
     if ((insertErr as { code?: string }).code === '23505') {
       const { data: retry } = await supabase
         .from('reto_diario')
-        .select('id, fecha, ley_nombre, articulo_numero, texto_trampa, num_errores')
+        .select('id, fecha, rama, ley_nombre, articulo_numero, texto_trampa, num_errores')
         .eq('fecha', fecha)
+        .eq('rama', rama)
         .single()
       if (retry) return retry
     }
     throw new Error(`DB error: ${insertErr.message}`)
   }
 
-  log.info({ id: inserted.id }, 'Reto diario generado on-demand')
+  log.info({ id: inserted.id, rama }, 'Reto diario generado on-demand')
   return inserted
 }

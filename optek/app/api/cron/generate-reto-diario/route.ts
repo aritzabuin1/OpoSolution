@@ -7,19 +7,46 @@ import { logger } from '@/lib/logger'
 import { verifyCronSecret } from '@/lib/auth/cron-auth'
 import { sendPushToAll } from '@/lib/push/send'
 
-// Vercel Hobby max: 60s. AI generation needs 15-40s.
+// Vercel Hobby max: 60s. AI generation needs 15-40s per rama.
 export const maxDuration = 60
+
+/**
+ * Laws relevant to each rama for reto diario generation.
+ * Used to filter legislacion table so the reto is relevant to the oposicion.
+ */
+const RAMAS_CONFIG: Record<string, string[]> = {
+  age: [
+    'Constitución Española', 'CE', 'LPAC', 'LRJSP',
+    'TREBEP', 'EBEP', 'LGP', 'Ley General Presupuestaria',
+  ],
+  justicia: [
+    'Constitución Española', 'CE', 'LOPJ', 'Ley Orgánica del Poder Judicial',
+    'LEC', 'Ley de Enjuiciamiento Civil', 'LECrim', 'Ley de Enjuiciamiento Criminal',
+    'TREBEP', 'EBEP',
+  ],
+  correos: [
+    'Constitución Española', 'CE', 'TREBEP', 'EBEP',
+  ],
+}
+
+type LegislacionRow = {
+  id: string
+  ley_nombre: string
+  articulo_numero: string
+  titulo_capitulo: string | null
+  texto_integro: string
+}
 
 /**
  * GET /api/cron/generate-reto-diario — §2.20.3
  *
- * Genera el Reto Diario de Caza-Trampas para hoy.
- * Idempotente: si ya existe un reto para hoy → return 200 sin acción.
+ * Genera UN Reto Diario de Caza-Trampas POR RAMA activa para hoy.
+ * Idempotente: si ya existe un reto para hoy + rama → skip esa rama.
  * Invocado por Vercel Cron (vercel.json: "5 0 * * *") a las 00:05 UTC.
  *
- * Vercel Hobby max: 60s → single attempt with comfortable timeout.
- * Si falla, el on-demand fallback (lib/ai/reto-diario.ts) genera cuando
- * el usuario visita /api/reto-diario.
+ * Vercel Hobby max: 60s → generates sequentially per rama.
+ * Si falla alguna rama, el on-demand fallback (lib/ai/reto-diario.ts) genera
+ * cuando el usuario visita /api/reto-diario.
  *
  * Autenticación: Bearer ${CRON_SECRET}.
  */
@@ -38,155 +65,163 @@ export async function GET(request: NextRequest) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const supabase = await createServiceClient() as any
 
-    // ── Verificar idempotencia: ¿ya existe reto de hoy? ────────────────────
     const today = new Date().toISOString().slice(0, 10) // YYYY-MM-DD UTC
 
-    const { data: existing } = await supabase
-      .from('reto_diario')
-      .select('id, fecha')
-      .eq('fecha', today)
-      .maybeSingle()
+    // ── Get active ramas ───────────────────────────────────────────────────
+    const { data: ramaRows, error: ramaErr } = await supabase
+      .from('oposiciones')
+      .select('rama')
+      .eq('activa', true)
 
-    if (existing) {
-      log.info({ fecha: today, id: existing.id }, '[reto-diario-cron] reto ya existe para hoy')
-      return NextResponse.json({ ok: true, skipped: true, fecha: today, id: existing.id })
+    if (ramaErr || !ramaRows || ramaRows.length === 0) {
+      log.error({ err: ramaErr }, '[reto-diario-cron] No hay oposiciones activas')
+      return NextResponse.json({ ok: false, reason: 'no_active_oposiciones' })
     }
 
-    // ── Elegir artículo aleatorio con texto suficientemente largo ───────────
-    // Filtrar por leyes compartidas por TODAS las oposiciones (CE, LOPJ, EBEP, etc.)
-    // para que el reto diario sea relevante sin importar la oposición del usuario.
-    // Leyes específicas (LPAC, LEC, LECrim, Ley Postal) se excluyen del reto global.
-    const LEYES_COMPARTIDAS = [
-      'Constitución Española',
-      'CE',
-      'LOPJ',
-      'Ley Orgánica del Poder Judicial',
-      'EBEP',
-      'TREBEP',
-    ]
-    const { data: candidatos, error: fetchErr } = await supabase
-      .from('legislacion')
-      .select('id, ley_nombre, articulo_numero, titulo_capitulo, texto_integro')
-      .eq('activo', true)
-      .not('texto_integro', 'is', null)
-      .in('ley_nombre', LEYES_COMPARTIDAS)
-      .limit(80)
+    const activeRamas = [...new Set((ramaRows as { rama: string }[]).map(r => r.rama))] as string[]
+    log.info({ ramas: activeRamas }, '[reto-diario-cron] Ramas activas')
 
-    if (fetchErr || !candidatos || candidatos.length === 0) {
-      log.error({ err: fetchErr }, '[reto-diario-cron] No hay artículos disponibles')
-      return NextResponse.json({ ok: false, reason: 'no_articles' })
-    }
+    const results: Record<string, { ok: boolean; skipped?: boolean; id?: string; reason?: string }> = {}
 
-    type LegislacionRow = {
-      id: string
-      ley_nombre: string
-      articulo_numero: string
-      titulo_capitulo: string | null
-      texto_integro: string
-    }
+    // ── Generate one reto per rama (sequential to stay within 60s) ──────────
+    for (const rama of activeRamas) {
+      const ramaLog = log.child({ rama })
 
-    const validos = (candidatos as LegislacionRow[]).filter(
-      (a) => a.texto_integro && a.texto_integro.length >= 300
-    )
+      // Check if reto already exists for today + this rama
+      const { data: existing } = await supabase
+        .from('reto_diario')
+        .select('id, fecha')
+        .eq('fecha', today)
+        .eq('rama', rama)
+        .maybeSingle()
 
-    if (validos.length === 0) {
-      log.error('[reto-diario-cron] Sin artículos con texto suficiente')
-      return NextResponse.json({ ok: false, reason: 'articles_too_short' })
-    }
+      if (existing) {
+        ramaLog.info({ id: existing.id }, '[reto-diario-cron] reto ya existe para hoy')
+        results[rama] = { ok: true, skipped: true, id: existing.id }
+        continue
+      }
 
-    const articulo = validos[Math.floor(Math.random() * validos.length)]!
-    const NUM_ERRORES = 3
+      // Get laws for this rama
+      const leyes = RAMAS_CONFIG[rama]
+      if (!leyes || leyes.length === 0) {
+        ramaLog.warn('[reto-diario-cron] No hay leyes configuradas para esta rama')
+        results[rama] = { ok: false, reason: 'no_laws_configured' }
+        continue
+      }
 
-    // ── Generar Caza-Trampas — single attempt, 8s timeout ──────────────────
-    // Vercel Hobby kills at 10s. We use AbortController to bail at 8s
-    // so we can return a clean JSON response instead of generic 500 HTML.
-    const controller = new AbortController()
-    const timer = setTimeout(() => controller.abort(), 8_000)
+      // Fetch candidate articles filtered by rama's laws
+      const { data: candidatos, error: fetchErr } = await supabase
+        .from('legislacion')
+        .select('id, ley_nombre, articulo_numero, titulo_capitulo, texto_integro')
+        .eq('activo', true)
+        .not('texto_integro', 'is', null)
+        .in('ley_nombre', leyes)
+        .limit(80)
 
-    let textoTrampa = ''
-    let erroresVerificados: ReturnType<typeof CazaTrampasRawSchema.parse>['errores_reales'] = []
-    let succeeded = false
+      if (fetchErr || !candidatos || candidatos.length === 0) {
+        ramaLog.error({ err: fetchErr }, '[reto-diario-cron] No hay artículos disponibles')
+        results[rama] = { ok: false, reason: 'no_articles' }
+        continue
+      }
 
-    try {
-      const prompt = buildCazaTrampasPrompt({
-        textoOriginal: articulo.texto_integro,
-        leyNombre: articulo.ley_nombre,
-        articuloNumero: articulo.articulo_numero,
-        numErrores: NUM_ERRORES,
-      })
+      const validos = (candidatos as LegislacionRow[]).filter(
+        (a) => a.texto_integro && a.texto_integro.length >= 300
+      )
 
-      const raw = await callAIJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema, {
-        endpoint: 'cron-reto-diario',
-      })
+      if (validos.length === 0) {
+        ramaLog.error('[reto-diario-cron] Sin artículos con texto suficiente')
+        results[rama] = { ok: false, reason: 'articles_too_short' }
+        continue
+      }
 
-      if (raw) {
-        // Verificación determinista
-        const fallos = raw.errores_reales.filter(
-          (e) => !articulo.texto_integro.includes(e.valor_original)
-        )
-        const trampaOk = raw.errores_reales.every((e) => raw.texto_trampa.includes(e.valor_trampa))
+      const articulo = validos[Math.floor(Math.random() * validos.length)]!
+      const NUM_ERRORES = 3
 
-        if (fallos.length === 0 && trampaOk) {
-          textoTrampa = raw.texto_trampa
-          erroresVerificados = raw.errores_reales
-          succeeded = true
+      // ── Generate Caza-Trampas ──────────────────────────────────────────
+      let textoTrampa = ''
+      let erroresVerificados: ReturnType<typeof CazaTrampasRawSchema.parse>['errores_reales'] = []
+      let succeeded = false
+
+      try {
+        const prompt = buildCazaTrampasPrompt({
+          textoOriginal: articulo.texto_integro,
+          leyNombre: articulo.ley_nombre,
+          articuloNumero: articulo.articulo_numero,
+          numErrores: NUM_ERRORES,
+        })
+
+        const raw = await callAIJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema, {
+          endpoint: 'cron-reto-diario',
+        })
+
+        if (raw) {
+          const fallos = raw.errores_reales.filter(
+            (e) => !articulo.texto_integro.includes(e.valor_original)
+          )
+          const trampaOk = raw.errores_reales.every((e) => raw.texto_trampa.includes(e.valor_trampa))
+
+          if (fallos.length === 0 && trampaOk) {
+            textoTrampa = raw.texto_trampa
+            erroresVerificados = raw.errores_reales
+            succeeded = true
+          } else {
+            ramaLog.warn({ fallos: fallos.length, trampaOk }, '[reto-diario-cron] verificación fallida')
+          }
         } else {
-          log.warn({ fallos: fallos.length, trampaOk }, '[reto-diario-cron] verificación fallida')
+          ramaLog.warn('[reto-diario-cron] AI devolvió null')
         }
-      } else {
-        log.warn('[reto-diario-cron] GPT devolvió null')
+      } catch (err) {
+        ramaLog.error({ err }, '[reto-diario-cron] Error en generación')
+        results[rama] = { ok: false, reason: 'generation_error' }
+        continue
       }
-    } catch (err) {
-      if (controller.signal.aborted) {
-        log.warn('[reto-diario-cron] Timeout (8s) — on-demand fallback will handle')
-        return NextResponse.json({ ok: false, reason: 'timeout', fallback: 'on-demand' })
+
+      if (!succeeded) {
+        ramaLog.warn('[reto-diario-cron] No se pudo generar — on-demand fallback will handle')
+        results[rama] = { ok: false, reason: 'verification_failed' }
+        continue
       }
-      log.error({ err }, '[reto-diario-cron] Error en generación')
-      return NextResponse.json({ ok: false, reason: 'generation_error' })
-    } finally {
-      clearTimeout(timer)
+
+      // ── Insert into DB ────────────────────────────────────────────────
+      const { data: inserted, error: insertErr } = await supabase
+        .from('reto_diario')
+        .insert({
+          fecha: today,
+          rama,
+          ley_nombre: articulo.ley_nombre,
+          articulo_numero: articulo.articulo_numero,
+          texto_trampa: textoTrampa,
+          errores_reales: erroresVerificados,
+          num_errores: NUM_ERRORES,
+        })
+        .select('id')
+        .single()
+
+      if (insertErr) {
+        if ((insertErr as { code?: string }).code === '23505') {
+          ramaLog.info('[reto-diario-cron] UNIQUE conflict — otro worker ya generó el reto')
+          results[rama] = { ok: true, skipped: true }
+          continue
+        }
+        ramaLog.error({ err: insertErr }, '[reto-diario-cron] Error insertando reto')
+        results[rama] = { ok: false, reason: 'db_insert_error' }
+        continue
+      }
+
+      ramaLog.info({ id: inserted.id }, '[reto-diario-cron] Reto diario generado')
+      results[rama] = { ok: true, skipped: false, id: inserted.id }
+
+      // Send push notification (fire-and-forget)
+      void sendPushToAll({
+        title: 'Reto Diario disponible',
+        body: `${articulo.ley_nombre}, art. ${articulo.articulo_numero} — ¿Encuentras los ${NUM_ERRORES} errores?`,
+        url: '/reto-diario',
+        tag: `reto-diario-${rama}`,
+      }).catch(err => ramaLog.warn({ err }, '[reto-diario-cron] push notification failed'))
     }
 
-    if (!succeeded) {
-      log.warn('[reto-diario-cron] No se pudo generar — on-demand fallback will handle')
-      return NextResponse.json({ ok: false, reason: 'verification_failed', fallback: 'on-demand' })
-    }
-
-    // ── Insertar en BD ──────────────────────────────────────────────────────
-    const { data: inserted, error: insertErr } = await supabase
-      .from('reto_diario')
-      .insert({
-        fecha: today,
-        ley_nombre: articulo.ley_nombre,
-        articulo_numero: articulo.articulo_numero,
-        texto_trampa: textoTrampa,
-        errores_reales: erroresVerificados,
-        num_errores: NUM_ERRORES,
-      })
-      .select('id')
-      .single()
-
-    if (insertErr) {
-      // 23505 = UNIQUE violation → race condition, otro worker ya insertó
-      if ((insertErr as { code?: string }).code === '23505') {
-        log.info('[reto-diario-cron] UNIQUE conflict — otro worker ya generó el reto')
-        return NextResponse.json({ ok: true, skipped: true, fecha: today })
-      }
-      log.error({ err: insertErr }, '[reto-diario-cron] Error insertando reto')
-      return NextResponse.json({ ok: false, reason: 'db_insert_error' })
-    }
-
-    log.info({ fecha: today, id: inserted.id }, '[reto-diario-cron] Reto diario generado')
-
-    // Send push notification to all subscribed users (fire-and-forget)
-    void sendPushToAll({
-      title: 'Reto Diario disponible',
-      body: `${articulo.ley_nombre}, art. ${articulo.articulo_numero} — ¿Encuentras los ${NUM_ERRORES} errores?`,
-      url: '/reto-diario',
-      tag: 'reto-diario',
-    }).catch(err => log.warn({ err }, '[reto-diario-cron] push notification failed'))
-
-    return NextResponse.json({ ok: true, skipped: false, fecha: today, id: inserted.id })
+    log.info({ fecha: today, results }, '[reto-diario-cron] Retos generados')
+    return NextResponse.json({ ok: true, fecha: today, results })
   } catch (err) {
     // Global catch — prevents generic 500 HTML page from Vercel/Next.js
     log.error({ err }, '[reto-diario-cron] Unhandled error')

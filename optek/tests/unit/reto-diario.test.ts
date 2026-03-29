@@ -9,6 +9,7 @@
  *   §2.20.12 — Race condition: UNIQUE violation (23505) → fetch retry + retorna existente
  *   §2.20.13 — Sin artículos disponibles → lanza error
  *   §2.20.13 — Artículos demasiado cortos → lanza error
+ *   §2.20.14 — Rama sin leyes configuradas → lanza error
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest'
@@ -18,6 +19,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 const RETO_EXISTENTE = {
   id: 'reto-uuid-001',
   fecha: '2026-03-01',
+  rama: 'age',
   ley_nombre: 'Ley 39/2015 LPAC',
   articulo_numero: '21',
   texto_trampa: 'El plazo es de cuarenta días.',
@@ -80,6 +82,8 @@ vi.mock('@/lib/logger', () => ({
 }))
 
 // ─── Mock de Supabase — construido por tabla ────────────────────────────────────
+// Chain: .select().eq('fecha').eq('rama').maybeSingle() for reto_diario
+// Chain: .select().eq('fecha').eq('rama').single() for retry after 23505
 
 function buildSupabaseMock() {
   return {
@@ -88,8 +92,10 @@ function buildSupabaseMock() {
         return {
           select: () => ({
             eq: () => ({
-              maybeSingle: mockMaybySingle,
-              single: mockSingle,
+              eq: () => ({
+                maybeSingle: mockMaybySingle,
+                single: mockSingle,
+              }),
             }),
           }),
           insert: mockInsert,
@@ -100,7 +106,9 @@ function buildSupabaseMock() {
           select: () => ({
             eq: () => ({
               not: () => ({
-                limit: () => Promise.resolve({ data: [ARTICULO_VALIDO], error: null }),
+                in: () => ({
+                  limit: () => Promise.resolve({ data: [ARTICULO_VALIDO], error: null }),
+                }),
               }),
             }),
           }),
@@ -124,55 +132,45 @@ import { callAIJSON } from '@/lib/ai/provider'
 
 describe('generateRetoDiarioOnDemand — §2.20.12 Idempotencia', () => {
   beforeEach(() => {
-    // clearAllMocks limpia el historial pero preserva las implementaciones de vi.mock factories
     vi.clearAllMocks()
   })
 
-  it('retorna el reto existente sin llamar a GPT si ya existe para esa fecha', async () => {
-    // Primera consulta: reto ya existe en BD
+  it('retorna el reto existente sin llamar a GPT si ya existe para esa fecha+rama', async () => {
     mockMaybySingle.mockResolvedValueOnce({ data: RETO_EXISTENTE, error: null })
 
-    const resultado = await generateRetoDiarioOnDemand('2026-03-01')
+    const resultado = await generateRetoDiarioOnDemand('2026-03-01', 'age')
 
     expect(resultado).toEqual(RETO_EXISTENTE)
-    // GPT NO debe haberse llamado
     expect(callAIJSON).not.toHaveBeenCalled()
   })
 
-  it('genera el reto si no existe para esa fecha', async () => {
-    // Primera consulta (check existencia): no existe
+  it('genera el reto si no existe para esa fecha+rama', async () => {
     mockMaybySingle.mockResolvedValueOnce({ data: null, error: null })
-    // GPT devuelve resultado válido
     vi.mocked(callAIJSON).mockResolvedValueOnce(GPT_RESULTADO)
-    // INSERT exitoso
     mockInsert.mockReturnValue({
       select: () => ({
         single: () => Promise.resolve({ data: RETO_EXISTENTE, error: null }),
       }),
     })
 
-    const resultado = await generateRetoDiarioOnDemand('2026-03-01')
+    const resultado = await generateRetoDiarioOnDemand('2026-03-01', 'age')
 
     expect(callAIJSON).toHaveBeenCalledTimes(1)
     expect(resultado.id).toBe(RETO_EXISTENTE.id)
   })
 
   it('UNIQUE violation (23505): hace retry fetch y retorna el existente — §2.20.12 race condition', async () => {
-    // Check inicial: no existe
     mockMaybySingle.mockResolvedValueOnce({ data: null, error: null })
-    // GPT OK
     vi.mocked(callAIJSON).mockResolvedValueOnce(GPT_RESULTADO)
-    // INSERT falla con 23505 (race condition: otro proceso lo creó antes)
     mockInsert.mockReturnValue({
       select: () => ({
         single: () =>
           Promise.resolve({ data: null, error: { code: '23505', message: 'unique_violation' } }),
       }),
     })
-    // Retry fetch: devuelve el existente
     mockSingle.mockResolvedValueOnce({ data: RETO_EXISTENTE, error: null })
 
-    const resultado = await generateRetoDiarioOnDemand('2026-03-01')
+    const resultado = await generateRetoDiarioOnDemand('2026-03-01', 'age')
 
     expect(resultado).toEqual(RETO_EXISTENTE)
   })
@@ -184,16 +182,14 @@ describe('generateRetoDiarioOnDemand — §2.20.13 Errores', () => {
   })
 
   it('lanza error si no hay artículos disponibles en BD', async () => {
-    // Check existencia: no existe
     mockMaybySingle.mockResolvedValueOnce({ data: null, error: null })
 
-    // Override: legislacion devuelve lista vacía
     const { createServiceClient } = await import('@/lib/supabase/server')
     vi.mocked(createServiceClient).mockResolvedValueOnce({
       from: (table: string) => {
         if (table === 'reto_diario') {
           return {
-            select: () => ({ eq: () => ({ maybeSingle: () => Promise.resolve({ data: null, error: null }) }) }),
+            select: () => ({ eq: () => ({ eq: () => ({ maybeSingle: () => Promise.resolve({ data: null, error: null }) }) }) }),
             insert: mockInsert,
           }
         }
@@ -202,41 +198,8 @@ describe('generateRetoDiarioOnDemand — §2.20.13 Errores', () => {
             select: () => ({
               eq: () => ({
                 not: () => ({
-                  limit: () => Promise.resolve({ data: [], error: null }),
-                }),
-              }),
-            }),
-          }
-        }
-        throw new Error(`Unexpected table: ${table}`)
-      },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any)
-
-    await expect(generateRetoDiarioOnDemand('2026-03-01')).rejects.toThrow('No hay artículos disponibles')
-  })
-
-  it('lanza error si todos los artículos son demasiado cortos (<300 chars)', async () => {
-    mockMaybySingle.mockResolvedValueOnce({ data: null, error: null })
-
-    const { createServiceClient } = await import('@/lib/supabase/server')
-    vi.mocked(createServiceClient).mockResolvedValueOnce({
-      from: (table: string) => {
-        if (table === 'reto_diario') {
-          return {
-            select: () => ({ eq: () => ({ maybeSingle: () => Promise.resolve({ data: null, error: null }) }) }),
-            insert: mockInsert,
-          }
-        }
-        if (table === 'legislacion') {
-          return {
-            select: () => ({
-              eq: () => ({
-                not: () => ({
-                  // Artículo demasiado corto — menos de 300 chars
-                  limit: () => Promise.resolve({
-                    data: [{ ...ARTICULO_VALIDO, texto_integro: 'Texto corto.' }],
-                    error: null,
+                  in: () => ({
+                    limit: () => Promise.resolve({ data: [], error: null }),
                   }),
                 }),
               }),
@@ -248,6 +211,48 @@ describe('generateRetoDiarioOnDemand — §2.20.13 Errores', () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any)
 
-    await expect(generateRetoDiarioOnDemand('2026-03-01')).rejects.toThrow('Artículos demasiado cortos')
+    await expect(generateRetoDiarioOnDemand('2026-03-01', 'age')).rejects.toThrow('No hay artículos disponibles')
+  })
+
+  it('lanza error si todos los artículos son demasiado cortos (<300 chars)', async () => {
+    mockMaybySingle.mockResolvedValueOnce({ data: null, error: null })
+
+    const { createServiceClient } = await import('@/lib/supabase/server')
+    vi.mocked(createServiceClient).mockResolvedValueOnce({
+      from: (table: string) => {
+        if (table === 'reto_diario') {
+          return {
+            select: () => ({ eq: () => ({ eq: () => ({ maybeSingle: () => Promise.resolve({ data: null, error: null }) }) }) }),
+            insert: mockInsert,
+          }
+        }
+        if (table === 'legislacion') {
+          return {
+            select: () => ({
+              eq: () => ({
+                not: () => ({
+                  in: () => ({
+                    limit: () => Promise.resolve({
+                      data: [{ ...ARTICULO_VALIDO, texto_integro: 'Texto corto.' }],
+                      error: null,
+                    }),
+                  }),
+                }),
+              }),
+            }),
+          }
+        }
+        throw new Error(`Unexpected table: ${table}`)
+      },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any)
+
+    await expect(generateRetoDiarioOnDemand('2026-03-01', 'age')).rejects.toThrow('Artículos demasiado cortos')
+  })
+
+  it('lanza error si la rama no tiene leyes configuradas', async () => {
+    mockMaybySingle.mockResolvedValueOnce({ data: null, error: null })
+
+    await expect(generateRetoDiarioOnDemand('2026-03-01', 'unknown_rama')).rejects.toThrow('No hay leyes configuradas para rama: unknown_rama')
   })
 })
