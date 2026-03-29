@@ -194,12 +194,15 @@
 > Usar `VERIFICACION_PLAN2.md` como checklist para cada oposición.
 > Lección aprendida: AGE + Correos requirieron 2 días de testing manual. Justicia = misma pauta.
 
-- [ ] **Fase 2a: Auxilio Judicial** (26 temas, ~24k inscritos) — free bank 25/26 ✅, exámenes 2024+2025 119q ✅
-  1. Crear producto Stripe "Pack Auxilio" 49,99€ + copiar price_id a `STRIPE_PRICE_PACK_AUXILIO` en Vercel
-  2. `UPDATE oposiciones SET activa = true WHERE slug = 'auxilio-judicial'`
-  3. Deploy
-  4. **Verificar con `VERIFICACION_PLAN2.md`**: registro con Auxilio → test → simulacro MJU → supuesto test → Tutor IA → checkout Stripe
-  5. Solo si TODO pasa → continuar con Fase 2b
+- [x] **Fase 2a: Auxilio Judicial** (26 temas, ~24k inscritos) — **ACTIVA** (2026-03-29)
+  - [x] Stripe "Pack Auxilio" 49,99€ creado + env var configurada
+  - [x] `activa = true` en BD
+  - [x] 4 supuestos oficiales ingestados (2024 I+II, 2025 I+II) en supuesto_bank + 1 en free_supuesto_bank
+  - [x] Migrations 061 (bloques) + 062 (reto diario rama) aplicadas
+  - [x] 6 bugs corregidos: RadarMini filtro, supuesto 30min/20pts, timer simulacro, caza-trampas filtro, reto diario per-rama, bloque fallback <=15
+  - [x] Hardcodes AGE eliminados: corrector, cuenta, update-profile, useOposicionTier
+  - [x] ExamCountdown eliminado de landing (AGE-specific)
+  - [x] Auto-update fecha_examen al cambiar oposición
 
 - [ ] **Fase 2b: Tramitación Procesal C1** (37 temas, ~30k inscritos) — free bank 37/37 ✅, exámenes 2024+2025 113q ✅
   1. Crear producto Stripe "Pack Tramitación" 49,99€ + `STRIPE_PRICE_PACK_TRAMITACION` en Vercel
@@ -1371,8 +1374,10 @@ Cada sub-landing incluye:
 ### Pendiente: activación manual (Aritz)
 - [x] Crear productos Stripe Justicia (Auxilio, Tramitación, Gestión, Doble, Triple) — completado 2026-03-29
 - [x] Configurar env vars `STRIPE_PRICE_PACK_AUXILIO/TRAMITACION/GESTION_J/DOBLE_JUSTICIA/TRIPLE_JUSTICIA` en Vercel — completado 2026-03-29
-- [ ] Activar cada oposición Justicia en BD: `UPDATE oposiciones SET activa = true WHERE slug = '...'`
-- [ ] Seguir checklist de `VERIFICACION_PLAN2.md` paso a paso
+- [x] Activar Auxilio Judicial en BD — completado 2026-03-29
+- [ ] Activar Tramitación Procesal en BD
+- [ ] Activar Gestión Procesal en BD
+- [ ] Seguir checklist de `VERIFICACION_PLAN2.md` paso a paso por cada oposición
 
 ### SEO (completado)
 - [x] Sub-landings: Correos + Justicia hub + 3 sub-landings con hero/temario/FAQ/schema
