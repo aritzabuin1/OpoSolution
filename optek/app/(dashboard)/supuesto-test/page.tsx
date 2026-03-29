@@ -93,6 +93,28 @@ export default async function SupuestoTestPage() {
     unseen: Math.max(0, ((totalBank as number) ?? 0) - ((seenCount as number) ?? 0)),
   }
 
+  // Fetch completed supuestos for "Repeat" list (premium users who exhausted free quota)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: completedSupuestos } = await (serviceSupabase as any)
+    .from('tests_generados')
+    .select('id, puntuacion, supuesto_caso, created_at')
+    .eq('user_id', user.id)
+    .eq('tipo', 'supuesto_test')
+    .eq('oposicion_id', oposicionId)
+    .eq('completado', true)
+    .order('created_at', { ascending: false })
+    .limit(20)
+
+  const completedList = ((completedSupuestos ?? []) as Array<{
+    id: string; puntuacion: number | null;
+    supuesto_caso: { titulo?: string } | null; created_at: string
+  }>).map(s => ({
+    testId: s.id,
+    titulo: s.supuesto_caso?.titulo ?? 'Supuesto práctico',
+    puntuacion: s.puntuacion,
+    fecha: s.created_at,
+  }))
+
   // Find exercise config for the supuesto in scoring_config
   const ejSupuesto = scoringConfig?.ejercicios.find(
     e => e.nombre.toLowerCase().includes('supuesto') || e.nombre.toLowerCase().includes('práctico')
@@ -173,6 +195,7 @@ export default async function SupuestoTestPage() {
         opoNombre={opoNombre}
         creditsBalance={creditsBalance}
         bankStats={bankStats}
+        completedSupuestos={completedList}
       />
     </div>
   )
