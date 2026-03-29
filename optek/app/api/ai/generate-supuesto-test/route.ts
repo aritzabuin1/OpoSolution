@@ -79,8 +79,10 @@ export async function POST(request: NextRequest) {
   const config = getSupuestoTestConfig(slug)!
 
   // ── 3. Rate limit: 10/día premium, 5/día free ────���──────────────────────
-  const isPremium = await checkPaidAccess(serviceSupabase, user.id, oposicionId)
-  const isAdmin = await checkIsAdmin(serviceSupabase, user.id)
+  const [isPremium, isAdmin] = await Promise.all([
+    checkPaidAccess(serviceSupabase, user.id, oposicionId),
+    checkIsAdmin(serviceSupabase, user.id),
+  ])
   const dailyLimit = isPremium || isAdmin ? 10 : 5
   const rateLimit = await checkRateLimit(user.id, 'supuesto-test-daily', dailyLimit, '24 h')
   if (!rateLimit.success && !isAdmin) {

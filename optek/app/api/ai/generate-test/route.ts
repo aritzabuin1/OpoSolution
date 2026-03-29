@@ -517,13 +517,19 @@ export async function POST(request: NextRequest) {
             }))
             await (serviceSupabase as any).from('user_questions_seen').insert(seenInserts).catch(() => {})
 
-            // Update times_served (non-blocking)
-            for (const q of unseen.slice(0, effectiveNumPreguntas)) {
+            // Update times_served in batch (non-blocking)
+            const servedIds = unseen.slice(0, effectiveNumPreguntas).map(q => q.id)
+            if (servedIds.length > 0) {
               await (serviceSupabase as any)
-                .from('question_bank')
-                .update({ times_served: (serviceSupabase as any).rpc ? undefined : 1 })
-                .eq('id', q.id)
-                .catch(() => {})
+                .rpc('increment_times_served', { question_ids: servedIds })
+                .catch(async () => {
+                  // Fallback if RPC doesn't exist: single update setting times_served = 1
+                  await (serviceSupabase as any)
+                    .from('question_bank')
+                    .update({ times_served: 1 })
+                    .in('id', servedIds)
+                    .catch(() => {})
+                })
             }
 
             log.info({ userId: user.id, testId: testRow.id, source: 'question_bank', count: preguntas.length }, 'Bank test served')
@@ -572,6 +578,14 @@ export async function POST(request: NextRequest) {
         const bankQuestions = (existingBank ?? []) as BankQuestion[]
         const { hashSet, legalKeyMap } = buildDedupIndex(bankQuestions)
 
+        const bankInsertBatch: Array<{
+          oposicion_id: string | null; tema_id: string; dificultad: string;
+          enunciado: string; opciones: Record<string, string> | string[];
+          correcta: number | string; explicacion: string | null;
+          cita_ley: string | null; cita_articulo: string | null;
+          enunciado_hash: string; legal_key: string | null;
+        }> = []
+
         for (const p of test.preguntas) {
           const correctIdx = typeof p.correcta === 'number' ? p.correcta : 0
           const correctText = Array.isArray(p.opciones) && correctIdx >= 0 && correctIdx < p.opciones.length
@@ -597,27 +611,32 @@ export async function POST(request: NextRequest) {
               ? { a: p.opciones[0], b: p.opciones[1], c: p.opciones[2], d: p.opciones[3] }
               : p.opciones
 
-            await (serviceSupabase as any)
-              .from('question_bank')
-              .insert({
-                oposicion_id: oposicionId,
-                tema_id: temaId,
-                dificultad: effectiveDificultad,
-                enunciado: p.enunciado,
-                opciones,
-                correcta: p.correcta,
-                explicacion: p.explicacion ?? null,
-                cita_ley: p.cita?.ley ?? null,
-                cita_articulo: p.cita?.articulo ?? null,
-                enunciado_hash: hash,
-                legal_key: legalKey,
-              })
-              .catch(() => {}) // ON CONFLICT DO NOTHING equivalent — unique constraint handles it
+            bankInsertBatch.push({
+              oposicion_id: oposicionId,
+              tema_id: temaId,
+              dificultad: effectiveDificultad,
+              enunciado: p.enunciado,
+              opciones,
+              correcta: p.correcta,
+              explicacion: p.explicacion ?? null,
+              cita_ley: p.cita?.ley ?? null,
+              cita_articulo: p.cita?.articulo ?? null,
+              enunciado_hash: hash,
+              legal_key: legalKey,
+            })
 
             // Update index for subsequent iterations
             hashSet.add(hash)
             if (legalKey) legalKeyMap.set(legalKey, 'new')
           }
+        }
+
+        // Single batch insert — unique constraint handles ON CONFLICT
+        if (bankInsertBatch.length > 0) {
+          await (serviceSupabase as any)
+            .from('question_bank')
+            .insert(bankInsertBatch)
+            .catch(() => {}) // ON CONFLICT DO NOTHING equivalent — unique constraint handles it
         }
         log.info({ userId: user.id, temaId, bankBefore: bankQuestions.length }, 'Bank populated from AI test')
       } catch (bankSaveErr) {

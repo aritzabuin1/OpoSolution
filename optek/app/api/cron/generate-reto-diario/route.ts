@@ -7,7 +7,7 @@ import { logger } from '@/lib/logger'
 import { verifyCronSecret } from '@/lib/auth/cron-auth'
 import { sendPushToAll } from '@/lib/push/send'
 
-// Vercel Hobby max: 60s. AI generation needs 15-40s per rama.
+// Vercel Hobby max: 60s. Single-rama invocation needs 15-40s.
 export const maxDuration = 60
 
 /**
@@ -38,14 +38,154 @@ type LegislacionRow = {
   texto_integro: string
 }
 
+type RamaResult = { ok: boolean; skipped?: boolean; id?: string; reason?: string }
+
+/**
+ * Generate a reto diario for a single rama.
+ * Extracted helper so the route can invoke it per-rama or in a loop.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function generateRetoForRama(rama: string, today: string, supabase: any, parentLog: any): Promise<RamaResult> {
+  const ramaLog = parentLog.child({ rama })
+
+  // Idempotency: check if reto already exists for today + this rama
+  const { data: existing } = await supabase
+    .from('reto_diario')
+    .select('id, fecha')
+    .eq('fecha', today)
+    .eq('rama', rama)
+    .maybeSingle()
+
+  if (existing) {
+    ramaLog.info({ id: existing.id }, '[reto-diario-cron] reto ya existe para hoy')
+    return { ok: true, skipped: true, id: existing.id }
+  }
+
+  // Get laws for this rama
+  const leyes = RAMAS_CONFIG[rama]
+  if (!leyes || leyes.length === 0) {
+    ramaLog.warn('[reto-diario-cron] No hay leyes configuradas para esta rama')
+    return { ok: false, reason: 'no_laws_configured' }
+  }
+
+  // Fetch candidate articles filtered by rama's laws
+  const { data: candidatos, error: fetchErr } = await supabase
+    .from('legislacion')
+    .select('id, ley_nombre, articulo_numero, titulo_capitulo, texto_integro')
+    .eq('activo', true)
+    .not('texto_integro', 'is', null)
+    .in('ley_nombre', leyes)
+    .limit(80)
+
+  if (fetchErr || !candidatos || candidatos.length === 0) {
+    ramaLog.error({ err: fetchErr }, '[reto-diario-cron] No hay artículos disponibles')
+    return { ok: false, reason: 'no_articles' }
+  }
+
+  const validos = (candidatos as LegislacionRow[]).filter(
+    (a) => a.texto_integro && a.texto_integro.length >= 300
+  )
+
+  if (validos.length === 0) {
+    ramaLog.error('[reto-diario-cron] Sin artículos con texto suficiente')
+    return { ok: false, reason: 'articles_too_short' }
+  }
+
+  const articulo = validos[Math.floor(Math.random() * validos.length)]!
+  const NUM_ERRORES = 3
+
+  // ── Generate Caza-Trampas ──────────────────────────────────────────
+  let textoTrampa = ''
+  let erroresVerificados: ReturnType<typeof CazaTrampasRawSchema.parse>['errores_reales'] = []
+  let succeeded = false
+
+  try {
+    const prompt = buildCazaTrampasPrompt({
+      textoOriginal: articulo.texto_integro,
+      leyNombre: articulo.ley_nombre,
+      articuloNumero: articulo.articulo_numero,
+      numErrores: NUM_ERRORES,
+    })
+
+    const raw = await callAIJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema, {
+      endpoint: 'cron-reto-diario',
+    })
+
+    if (raw) {
+      const fallos = raw.errores_reales.filter(
+        (e) => !articulo.texto_integro.includes(e.valor_original)
+      )
+      const trampaOk = raw.errores_reales.every((e) => raw.texto_trampa.includes(e.valor_trampa))
+
+      if (fallos.length === 0 && trampaOk) {
+        textoTrampa = raw.texto_trampa
+        erroresVerificados = raw.errores_reales
+        succeeded = true
+      } else {
+        ramaLog.warn({ fallos: fallos.length, trampaOk }, '[reto-diario-cron] verificación fallida')
+      }
+    } else {
+      ramaLog.warn('[reto-diario-cron] AI devolvió null')
+    }
+  } catch (err) {
+    ramaLog.error({ err }, '[reto-diario-cron] Error en generación')
+    return { ok: false, reason: 'generation_error' }
+  }
+
+  if (!succeeded) {
+    ramaLog.warn('[reto-diario-cron] No se pudo generar — on-demand fallback will handle')
+    return { ok: false, reason: 'verification_failed' }
+  }
+
+  // ── Insert into DB ────────────────────────────────────────────────
+  const { data: inserted, error: insertErr } = await supabase
+    .from('reto_diario')
+    .insert({
+      fecha: today,
+      rama,
+      ley_nombre: articulo.ley_nombre,
+      articulo_numero: articulo.articulo_numero,
+      texto_trampa: textoTrampa,
+      errores_reales: erroresVerificados,
+      num_errores: NUM_ERRORES,
+    })
+    .select('id')
+    .single()
+
+  if (insertErr) {
+    if ((insertErr as { code?: string }).code === '23505') {
+      ramaLog.info('[reto-diario-cron] UNIQUE conflict — otro worker ya generó el reto')
+      return { ok: true, skipped: true }
+    }
+    ramaLog.error({ err: insertErr }, '[reto-diario-cron] Error insertando reto')
+    return { ok: false, reason: 'db_insert_error' }
+  }
+
+  ramaLog.info({ id: inserted.id }, '[reto-diario-cron] Reto diario generado')
+
+  // Send push notification (fire-and-forget)
+  void sendPushToAll({
+    title: 'Reto Diario disponible',
+    body: `${articulo.ley_nombre}, art. ${articulo.articulo_numero} — ¿Encuentras los ${NUM_ERRORES} errores?`,
+    url: '/reto-diario',
+    tag: `reto-diario-${rama}`,
+  }).catch(err => ramaLog.warn({ err }, '[reto-diario-cron] push notification failed'))
+
+  return { ok: true, skipped: false, id: inserted.id }
+}
+
 /**
  * GET /api/cron/generate-reto-diario — §2.20.3
  *
- * Genera UN Reto Diario de Caza-Trampas POR RAMA activa para hoy.
- * Idempotente: si ya existe un reto para hoy + rama → skip esa rama.
- * Invocado por Vercel Cron (vercel.json: "5 0 * * *") a las 00:05 UTC.
+ * Genera UN Reto Diario de Caza-Trampas para hoy.
  *
- * Vercel Hobby max: 60s → generates sequentially per rama.
+ * Two invocation modes:
+ *   1. ?rama=age  → process ONLY that rama (fast, fits in Vercel Hobby 60s)
+ *   2. No param   → process ALL active ramas sequentially (backward compat / fallback)
+ *
+ * Idempotente: si ya existe un reto para hoy + rama → skip.
+ * Invocado por Vercel Cron (vercel.json: 3 staggered entries, one per rama).
  * Si falla alguna rama, el on-demand fallback (lib/ai/reto-diario.ts) genera
  * cuando el usuario visita /api/reto-diario.
  *
@@ -68,7 +208,24 @@ export async function GET(request: NextRequest) {
 
     const today = new Date().toISOString().slice(0, 10) // YYYY-MM-DD UTC
 
-    // ── Get active ramas ───────────────────────────────────────────────────
+    // ── Check for ?rama= query parameter ───────────────────────────────────
+    const ramaParam = request.nextUrl.searchParams.get('rama')
+
+    // ── Mode 1: Single rama (preferred — one cron invocation per rama) ─────
+    if (ramaParam) {
+      log.info({ rama: ramaParam }, '[reto-diario-cron] Single-rama mode')
+
+      if (!RAMAS_CONFIG[ramaParam]) {
+        log.warn({ rama: ramaParam }, '[reto-diario-cron] Rama desconocida')
+        return NextResponse.json({ ok: false, reason: 'unknown_rama', rama: ramaParam }, { status: 400 })
+      }
+
+      const result = await generateRetoForRama(ramaParam, today, supabase, log)
+      log.info({ fecha: today, rama: ramaParam, result }, '[reto-diario-cron] Done')
+      return NextResponse.json({ ok: result.ok, fecha: today, results: { [ramaParam]: result } })
+    }
+
+    // ── Mode 2: All ramas (backward compat / manual trigger) ───────────────
     const { data: ramaRows, error: ramaErr } = await supabase
       .from('oposiciones')
       .select('rama')
@@ -80,145 +237,13 @@ export async function GET(request: NextRequest) {
     }
 
     const activeRamas = [...new Set((ramaRows as { rama: string }[]).map(r => r.rama))] as string[]
-    log.info({ ramas: activeRamas }, '[reto-diario-cron] Ramas activas')
+    log.info({ ramas: activeRamas }, '[reto-diario-cron] All-ramas mode')
 
-    const results: Record<string, { ok: boolean; skipped?: boolean; id?: string; reason?: string }> = {}
+    const results: Record<string, RamaResult> = {}
 
-    // ── Generate one reto per rama (sequential to stay within 60s) ──────────
+    // Sequential to stay within 60s (best-effort, may timeout with many ramas)
     for (const rama of activeRamas) {
-      const ramaLog = log.child({ rama })
-
-      // Check if reto already exists for today + this rama
-      const { data: existing } = await supabase
-        .from('reto_diario')
-        .select('id, fecha')
-        .eq('fecha', today)
-        .eq('rama', rama)
-        .maybeSingle()
-
-      if (existing) {
-        ramaLog.info({ id: existing.id }, '[reto-diario-cron] reto ya existe para hoy')
-        results[rama] = { ok: true, skipped: true, id: existing.id }
-        continue
-      }
-
-      // Get laws for this rama
-      const leyes = RAMAS_CONFIG[rama]
-      if (!leyes || leyes.length === 0) {
-        ramaLog.warn('[reto-diario-cron] No hay leyes configuradas para esta rama')
-        results[rama] = { ok: false, reason: 'no_laws_configured' }
-        continue
-      }
-
-      // Fetch candidate articles filtered by rama's laws
-      const { data: candidatos, error: fetchErr } = await supabase
-        .from('legislacion')
-        .select('id, ley_nombre, articulo_numero, titulo_capitulo, texto_integro')
-        .eq('activo', true)
-        .not('texto_integro', 'is', null)
-        .in('ley_nombre', leyes)
-        .limit(80)
-
-      if (fetchErr || !candidatos || candidatos.length === 0) {
-        ramaLog.error({ err: fetchErr }, '[reto-diario-cron] No hay artículos disponibles')
-        results[rama] = { ok: false, reason: 'no_articles' }
-        continue
-      }
-
-      const validos = (candidatos as LegislacionRow[]).filter(
-        (a) => a.texto_integro && a.texto_integro.length >= 300
-      )
-
-      if (validos.length === 0) {
-        ramaLog.error('[reto-diario-cron] Sin artículos con texto suficiente')
-        results[rama] = { ok: false, reason: 'articles_too_short' }
-        continue
-      }
-
-      const articulo = validos[Math.floor(Math.random() * validos.length)]!
-      const NUM_ERRORES = 3
-
-      // ── Generate Caza-Trampas ──────────────────────────────────────────
-      let textoTrampa = ''
-      let erroresVerificados: ReturnType<typeof CazaTrampasRawSchema.parse>['errores_reales'] = []
-      let succeeded = false
-
-      try {
-        const prompt = buildCazaTrampasPrompt({
-          textoOriginal: articulo.texto_integro,
-          leyNombre: articulo.ley_nombre,
-          articuloNumero: articulo.articulo_numero,
-          numErrores: NUM_ERRORES,
-        })
-
-        const raw = await callAIJSON(SYSTEM_CAZATRAMPAS, prompt, CazaTrampasRawSchema, {
-          endpoint: 'cron-reto-diario',
-        })
-
-        if (raw) {
-          const fallos = raw.errores_reales.filter(
-            (e) => !articulo.texto_integro.includes(e.valor_original)
-          )
-          const trampaOk = raw.errores_reales.every((e) => raw.texto_trampa.includes(e.valor_trampa))
-
-          if (fallos.length === 0 && trampaOk) {
-            textoTrampa = raw.texto_trampa
-            erroresVerificados = raw.errores_reales
-            succeeded = true
-          } else {
-            ramaLog.warn({ fallos: fallos.length, trampaOk }, '[reto-diario-cron] verificación fallida')
-          }
-        } else {
-          ramaLog.warn('[reto-diario-cron] AI devolvió null')
-        }
-      } catch (err) {
-        ramaLog.error({ err }, '[reto-diario-cron] Error en generación')
-        results[rama] = { ok: false, reason: 'generation_error' }
-        continue
-      }
-
-      if (!succeeded) {
-        ramaLog.warn('[reto-diario-cron] No se pudo generar — on-demand fallback will handle')
-        results[rama] = { ok: false, reason: 'verification_failed' }
-        continue
-      }
-
-      // ── Insert into DB ────────────────────────────────────────────────
-      const { data: inserted, error: insertErr } = await supabase
-        .from('reto_diario')
-        .insert({
-          fecha: today,
-          rama,
-          ley_nombre: articulo.ley_nombre,
-          articulo_numero: articulo.articulo_numero,
-          texto_trampa: textoTrampa,
-          errores_reales: erroresVerificados,
-          num_errores: NUM_ERRORES,
-        })
-        .select('id')
-        .single()
-
-      if (insertErr) {
-        if ((insertErr as { code?: string }).code === '23505') {
-          ramaLog.info('[reto-diario-cron] UNIQUE conflict — otro worker ya generó el reto')
-          results[rama] = { ok: true, skipped: true }
-          continue
-        }
-        ramaLog.error({ err: insertErr }, '[reto-diario-cron] Error insertando reto')
-        results[rama] = { ok: false, reason: 'db_insert_error' }
-        continue
-      }
-
-      ramaLog.info({ id: inserted.id }, '[reto-diario-cron] Reto diario generado')
-      results[rama] = { ok: true, skipped: false, id: inserted.id }
-
-      // Send push notification (fire-and-forget)
-      void sendPushToAll({
-        title: 'Reto Diario disponible',
-        body: `${articulo.ley_nombre}, art. ${articulo.articulo_numero} — ¿Encuentras los ${NUM_ERRORES} errores?`,
-        url: '/reto-diario',
-        tag: `reto-diario-${rama}`,
-      }).catch(err => ramaLog.warn({ err }, '[reto-diario-cron] push notification failed'))
+      results[rama] = await generateRetoForRama(rama, today, supabase, log)
     }
 
     log.info({ fecha: today, results }, '[reto-diario-cron] Retos generados')

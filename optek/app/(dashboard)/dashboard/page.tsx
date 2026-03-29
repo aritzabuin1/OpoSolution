@@ -73,60 +73,90 @@ export default async function DashboardPage() {
   } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
-  // Profile — columnas estables (siempre presentes)
-  const { data: profile } = await supabase
+  // Profile + racha (single query — combines stable columns + migration 008/037 columns)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: profileRaw } = await (supabase as any)
     .from('profiles')
-    .select('full_name, oposicion_id, corrections_balance, free_corrector_used, fecha_examen')
+    .select('full_name, oposicion_id, corrections_balance, free_corrector_used, fecha_examen, racha_actual, ultimo_test_dia, onboarding_completed_at')
     .eq('id', user.id)
-    .single()
-
-  // Racha + último test + onboarding — columnas de migrations 008/037 (best-effort)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: rachaData } = await (supabase as any)
-    .from('profiles')
-    .select('racha_actual, ultimo_test_dia, onboarding_completed_at')
-    .eq('id', user.id)
-    .single() as { data: { racha_actual: number; ultimo_test_dia: string | null; onboarding_completed_at: string | null } | null }
-
-  // Todos los tests completados del usuario PARA SU OPOSICIÓN ACTIVA
-  const userOposicionId = profile?.oposicion_id ?? DEFAULT_OPOSICION_ID
-  const { data: tests } = await supabase
-    .from('tests_generados')
-    .select('id, created_at, puntuacion, completado, tema_id, tipo, temas(titulo, numero)')
-    .eq('user_id', user.id)
-    .eq('completado', true)
-    .eq('oposicion_id', userOposicionId)
-    .order('created_at', { ascending: false })
-    .limit(100) as { data: TestRow[] | null }
-
-  // Temas de la oposición (para el mapa)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: temas } = await (supabase as any)
-    .from('temas')
-    .select('id, numero, titulo, bloque')
-    .eq('oposicion_id', userOposicionId)
-    .order('numero') as { data: { id: string; numero: number; titulo: string; bloque?: string }[] | null }
-
-  // Flashcards pendientes de repaso hoy (migration 015 — cast necesario hasta regenerar tipos)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { count: flashcardsPendientes } = await (supabase as any)
-    .from('flashcards')
-    .select('*', { count: 'exact', head: true })
-    .eq('user_id', user.id)
-    .eq('oposicion_id', userOposicionId)
-    .lte('siguiente_repaso', new Date().toISOString()) as { count: number | null }
-
-  // Reto Diario — estado de hoy (migration 020, best-effort)
-  const today = new Date().toISOString().slice(0, 10)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: retoHoy } = await (supabase as any)
-    .from('reto_diario')
-    .select('id, num_errores, ley_nombre, articulo_numero')
-    .eq('fecha', today)
-    .maybeSingle() as {
-      data: { id: string; num_errores: number; ley_nombre: string; articulo_numero: string } | null
+    .single() as {
+      data: {
+        full_name: string | null
+        oposicion_id: string | null
+        corrections_balance: number | null
+        free_corrector_used?: number
+        fecha_examen: string | null
+        racha_actual: number
+        ultimo_test_dia: string | null
+        onboarding_completed_at: string | null
+      } | null
     }
 
+  const profile = profileRaw
+  const rachaData = profileRaw
+    ? { racha_actual: profileRaw.racha_actual, ultimo_test_dia: profileRaw.ultimo_test_dia, onboarding_completed_at: profileRaw.onboarding_completed_at }
+    : null
+
+  // All remaining queries in parallel (all depend on user.id + oposicion_id, but not on each other)
+  const userOposicionId = profile?.oposicion_id ?? DEFAULT_OPOSICION_ID
+  const today = new Date().toISOString().slice(0, 10)
+
+  const [
+    { data: tests },
+    { data: temas },
+    { count: flashcardsPendientes },
+    { data: retoHoy },
+    { data: logros },
+  ] = await Promise.all([
+    // Todos los tests completados del usuario PARA SU OPOSICIÓN ACTIVA
+    supabase
+      .from('tests_generados')
+      .select('id, created_at, puntuacion, completado, tema_id, tipo, temas(titulo, numero)')
+      .eq('user_id', user.id)
+      .eq('completado', true)
+      .eq('oposicion_id', userOposicionId)
+      .order('created_at', { ascending: false })
+      .limit(100) as unknown as Promise<{ data: TestRow[] | null }>,
+
+    // Temas de la oposición (para el mapa)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (supabase as any)
+      .from('temas')
+      .select('id, numero, titulo, bloque')
+      .eq('oposicion_id', userOposicionId)
+      .order('numero') as Promise<{ data: { id: string; numero: number; titulo: string; bloque?: string }[] | null }>,
+
+    // Flashcards pendientes de repaso hoy (migration 015 — cast necesario hasta regenerar tipos)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (supabase as any)
+      .from('flashcards')
+      .select('*', { count: 'exact', head: true })
+      .eq('user_id', user.id)
+      .eq('oposicion_id', userOposicionId)
+      .lte('siguiente_repaso', new Date().toISOString()) as Promise<{ count: number | null }>,
+
+    // Reto Diario — estado de hoy (migration 020, best-effort)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (supabase as any)
+      .from('reto_diario')
+      .select('id, num_errores, ley_nombre, articulo_numero')
+      .eq('fecha', today)
+      .maybeSingle() as Promise<{
+        data: { id: string; num_errores: number; ley_nombre: string; articulo_numero: string } | null
+      }>,
+
+    // Logros — tabla añadida en migration 008 (cast necesario hasta regenerar tipos)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (supabase as any)
+      .from('logros')
+      .select('tipo, desbloqueado_en')
+      .eq('user_id', user.id)
+      .order('desbloqueado_en', { ascending: false }) as Promise<{
+        data: { tipo: string; desbloqueado_en: string }[] | null
+      }>,
+  ])
+
+  // Reto diario result — conditional on retoHoy (needs its id)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: retoDiarioResult } = retoHoy
     ? await (supabase as any)
@@ -138,16 +168,6 @@ export default async function DashboardPage() {
           data: { trampas_encontradas: number; puntuacion: number } | null
         }
     : { data: null }
-
-  // Logros — tabla añadida en migration 008 (cast necesario hasta regenerar tipos)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: logros } = await (supabase as any)
-    .from('logros')
-    .select('tipo, desbloqueado_en')
-    .eq('user_id', user.id)
-    .order('desbloqueado_en', { ascending: false }) as {
-      data: { tipo: string; desbloqueado_en: string }[] | null
-    }
 
   // ── Derivar estadísticas ────────────────────────────────────────────────────
 
