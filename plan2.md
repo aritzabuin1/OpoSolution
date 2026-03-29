@@ -652,6 +652,46 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 9. **FASE 2.8**: Banco progresivo premium para tests por tema — optimización coste IA
 10. **DEDUP transversal**: Algoritmo de deduplicación compartido por 2.7 y 2.8 — ver §DEDUP
 
+### PENDIENTE PRÓXIMA SESIÓN (2026-03-29)
+
+#### A. Parsear e ingestar contenido oficial sin aprovechar (€0 IA, máxima prioridad)
+
+| Fuente | Archivo | Tipo | Preguntas estimadas | Para qué sirve |
+|---|---|---|---|---|
+| Tramitación supuesto 2024 | `data/examenes_justicia/tramitacion/2024/ej2_practico_a.pdf` | Supuesto test | ~12 (10+2 reserva) | `supuesto_bank` Tramitación |
+| Tramitación supuesto 2025 | `data/examenes_tramitacion/2025_ejercicio2_practicoA_scan.pdf` | Supuesto test (escaneado) | ~12 | `supuesto_bank` Tramitación |
+| Tramitación exámenes antiguos | `2011_examen.pdf`, `2015_examen.pdf`, `2016_examen.pdf`, `2019_modeloA/B.pdf` | Simulacros | ~500 preguntas | `preguntas_oficiales` → simulacros |
+| Gestión supuestos 2024 | Plantillas `practicoA/B.pdf` disponibles, falta cuadernillo | Supuesto test | ~10-12 | `supuesto_bank` Gestión |
+| Correos exámenes 2021 REP | `cuestionario_rep_a/b.pdf` + `plantilla_rep.pdf` (plantilla ya leída: 110q A+B) | Simulacros | ~220 preguntas | `preguntas_oficiales` Correos |
+| Correos exámenes 2021 ATC | `cuestionario_atc_a/b.pdf` + `plantilla_atc.pdf` | Simulacros | ~220 preguntas | `preguntas_oficiales` Correos |
+
+**Estrategia**: los PDFs modernos (2024/2025) son texto → parsear directamente. Los antiguos (2011-2019) pueden ser escaneados → necesitan IA vision. Adjuntar PDFs en el chat para parsear.
+
+**Plantillas ya leídas**:
+- Tramitación 2024: 3 ejercicios completos (ej1: 1-104, ej2: 105-116, ej3: 117-140). Pregunta 120 ANULADA.
+- Correos REP 2021: 110 preguntas modelo A + 110 modelo B. Preguntas 33/68 sin respuesta (anuladas).
+
+#### B. Auditorías pendientes (lanzar en próxima sesión)
+
+- [ ] `/securizar` — auditoría de seguridad + RGPD
+- [ ] `/testear` — generar tests automatizados para gaps de cobertura
+- [ ] `/auditar` — auditoría general de calidad enterprise
+
+#### C. Escalabilidad P1 pendientes (de la auditoría /escalar)
+
+- [ ] Dashboard: paralelizar 8 queries secuenciales con `Promise.all()` (~300ms mejora)
+- [ ] generate-test: batch INSERT en question_bank (N+1 → 1 query)
+- [ ] generate-test: batch UPDATE times_served (N+1 → 1 query)
+- [ ] generate-supuesto-test: paralelizar `checkPaidAccess` + `checkIsAdmin`
+- [ ] Input token cost guard en prompts de generación (MAX_INPUT_CHARS)
+- [ ] Reto diario cron: procesar solo 1 rama por invocación (evitar timeout con 3 ramas)
+
+#### D. LEC/LECrim ingestadas (2026-03-29)
+
+- [x] `lec_1_2000_completa.json` (905 artículos) → ingestado en `legislacion` (2.888 rows)
+- [x] `lecrim_1882_completa.json` (1.067 artículos) → ingestado en `legislacion` (3.130 rows)
+- Impacto: verificación de citas procesales ahora funciona correctamente para Justicia
+
 ---
 
 ## FASE 2.7 — Flywheel Supuestos Test (créditos IA unificados)
