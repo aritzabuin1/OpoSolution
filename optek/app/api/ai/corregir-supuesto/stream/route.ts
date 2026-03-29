@@ -179,28 +179,13 @@ export async function POST(request: NextRequest) {
     oposicionId,
     onComplete: async () => {
       // Deduct 2 créditos IA (admin bypass). Use paid credits first, then free.
+      // Atomic: try RPC directly and check return value (avoids TOCTOU race).
       if (!isAdmin) {
-        // Deduct credit 1
-        const { data: p1 } = await serviceSupabase
-          .from('profiles')
-          .select('corrections_balance, free_corrector_used')
-          .eq('id', userId)
-          .single()
-        if ((p1?.corrections_balance ?? 0) > 0) {
-          await serviceSupabase.rpc('use_correction', { p_user_id: userId })
-        } else {
-          await serviceSupabase.rpc('use_free_correction', { p_user_id: userId })
-        }
-        // Deduct credit 2
-        const { data: p2 } = await serviceSupabase
-          .from('profiles')
-          .select('corrections_balance, free_corrector_used')
-          .eq('id', userId)
-          .single()
-        if ((p2?.corrections_balance ?? 0) > 0) {
-          await serviceSupabase.rpc('use_correction', { p_user_id: userId })
-        } else {
-          await serviceSupabase.rpc('use_free_correction', { p_user_id: userId })
+        for (let i = 0; i < 2; i++) {
+          const { data: usedPaid } = await serviceSupabase.rpc('use_correction', { p_user_id: userId })
+          if (!usedPaid) {
+            await serviceSupabase.rpc('use_free_correction', { p_user_id: userId })
+          }
         }
       }
 

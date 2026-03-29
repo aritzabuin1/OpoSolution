@@ -32,39 +32,76 @@ export async function GET(request: NextRequest) {
 
   log.info('[boe-watch] cron iniciado')
 
-  // ── 1. BOE watcher ─────────────────────────────────────────────────────────
-  let boeResult: object = {}
-  try {
-    boeResult = await watchAllLeyes()
-    log.info(boeResult, '[boe-watch] BOE check completado')
-  } catch (err) {
-    log.error({ err }, '[boe-watch] BOE check error — continuando con cost check')
-    boeResult = { error: 'Fallo en comprobación BOE' }
+  // ── Global timeout: 55s safety margin (Vercel kills at 60s) ───────────────
+  const GLOBAL_TIMEOUT_MS = 55_000
+  const ac = new AbortController()
+  const timer = setTimeout(() => ac.abort(), GLOBAL_TIMEOUT_MS)
+
+  async function runAllTasks() {
+    // ── 1. BOE watcher ───────────────────────────────────────────────────────
+    let boeResult: object = {}
+    try {
+      boeResult = await watchAllLeyes()
+      log.info(boeResult, '[boe-watch] BOE check completado')
+    } catch (err) {
+      log.error({ err }, '[boe-watch] BOE check error — continuando con cost check')
+      boeResult = { error: 'Fallo en comprobación BOE' }
+    }
+
+    if (ac.signal.aborted) return { boe: boeResult, costs: { skipped: 'timeout' }, nurture: { skipped: 'timeout' } }
+
+    // ── 2. §2.23 Piggyback: cost + infra check del día anterior ─────────────
+    // Analiza costes de ayer (completo) desde el cron de 07:00 UTC.
+    // Si falla, se loguea como no crítico — no afecta al resultado BOE.
+    let costResult: CostCheckResult | { error: string }
+    try {
+      costResult = await runCostCheck() // default: ayer
+      log.info(costResult, '[boe-watch] cost+infra check completado')
+    } catch (err) {
+      log.error({ err }, '[boe-watch] cost+infra check error — no crítico')
+      costResult = { error: 'Fallo en comprobación de costes' }
+    }
+
+    if (ac.signal.aborted) return { boe: boeResult, costs: costResult, nurture: { skipped: 'timeout' } }
+
+    // ── 3. Piggyback: nurture email sequence ────────────────────────────────
+    // Sends personalized emails to free users based on registration age + behavior.
+    // If it fails, it's non-critical — doesn't affect BOE or cost check.
+    let nurtureResult: NurtureResult | { error: string }
+    try {
+      nurtureResult = await runNurtureEmails()
+      log.info(nurtureResult, '[boe-watch] nurture emails completado')
+    } catch (err) {
+      log.error({ err }, '[boe-watch] nurture emails error — no crítico')
+      nurtureResult = { error: 'Fallo en envío de nurture emails' }
+    }
+
+    return { boe: boeResult, costs: costResult, nurture: nurtureResult }
   }
 
-  // ── 2. §2.23 Piggyback: cost + infra check del día anterior ───────────────
-  // Analiza costes de ayer (completo) desde el cron de 07:00 UTC.
-  // Si falla, se loguea como no crítico — no afecta al resultado BOE.
-  let costResult: CostCheckResult | { error: string }
+  const timeoutPromise = new Promise<never>((_, reject) => {
+    ac.signal.addEventListener('abort', () => reject(new Error('GLOBAL_TIMEOUT')), { once: true })
+  })
+
+  let results: { boe: object; costs: object; nurture: object }
+  let timedOut = false
+
   try {
-    costResult = await runCostCheck() // default: ayer
-    log.info(costResult, '[boe-watch] cost+infra check completado')
+    results = await Promise.race([runAllTasks(), timeoutPromise])
   } catch (err) {
-    log.error({ err }, '[boe-watch] cost+infra check error — no crítico')
-    costResult = { error: 'Fallo en comprobación de costes' }
+    if (err instanceof Error && err.message === 'GLOBAL_TIMEOUT') {
+      log.warn('[boe-watch] Global timeout reached (55s) — returning partial results')
+      timedOut = true
+      results = { boe: { skipped: 'timeout' }, costs: { skipped: 'timeout' }, nurture: { skipped: 'timeout' } }
+    } else {
+      throw err
+    }
+  } finally {
+    clearTimeout(timer)
   }
 
-  // ── 3. Piggyback: nurture email sequence ──────────────────────────────────
-  // Sends personalized emails to free users based on registration age + behavior.
-  // If it fails, it's non-critical — doesn't affect BOE or cost check.
-  let nurtureResult: NurtureResult | { error: string }
-  try {
-    nurtureResult = await runNurtureEmails()
-    log.info(nurtureResult, '[boe-watch] nurture emails completado')
-  } catch (err) {
-    log.error({ err }, '[boe-watch] nurture emails error — no crítico')
-    nurtureResult = { error: 'Fallo en envío de nurture emails' }
-  }
-
-  return NextResponse.json({ ok: true, boe: boeResult, costs: costResult, nurture: nurtureResult }, { status: 200 })
+  return NextResponse.json(
+    { ok: !timedOut, partial: timedOut, boe: results.boe, costs: results.costs, nurture: results.nurture },
+    { status: timedOut ? 206 : 200 },
+  )
 }
