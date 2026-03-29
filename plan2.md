@@ -1617,26 +1617,45 @@ Posts que atacan búsquedas de competidores (ya funciona con "opositatest"):
 - [ ] **"mejores apps oposiciones correos 2026"** — listicle
 - **Esfuerzo**: ~3h (4 posts)
 
-### Orden de ejecución (priorizado por impacto)
+### SEO.7 — Acciones completadas (sesión 2026-03-30)
 
-1. **SEO.1** Quick wins AGE (~2h) — CTR inmediato en queries donde ya rankeamos
-2. **SEO.5** Técnico (~2h) — asegurar que las nuevas páginas se indexan
-3. **SEO.3** Correos (~6h) — rama nueva, necesita base de contenido
-4. **SEO.4** Justicia (~10h) — 3 oposiciones × contenido por cada una
-5. **SEO.2** Posts nuevos AGE (~3h) — queries con impresiones sin post
-6. **SEO.6** Comparativas (~3h) — brand awareness, menor prioridad
+- [x] **Footer**: añadida sección "Oposiciones" con links a las 6 sub-landings (AGE, Correos, Justicia hub + 3 sub). Aparece en TODAS las páginas del marketing site → link juice distribuido
+- [x] **Navbar**: añadido link "Precios" + renombrado "Simulacros INAP" → "Simulacros"
+- [x] **Sitemap**: `/oposiciones/administracion` ya incluido (sesión anterior)
+- [x] **Robots.txt**: verificado — todas las páginas de oposiciones permitidas
+- [x] **Noindex**: verificado — ninguna página marketing tiene noindex
+- [ ] **Pendiente**: Submit sitemap actualizado en Google Search Console (Aritz manual)
+- [ ] **Pendiente**: Inspeccionar URLs de Correos y Justicia en GSC
 
-**Total**: ~26h de contenido SEO | **Coste IA**: ~$5 (generación asistida)
+### Orden de ejecución (CORREGIDO — priorizado por impacto)
 
-### KPIs a 4 semanas
+1. **SEO.5** Técnico — ✅ HECHO (footer, navbar, sitemap, robots verificado)
+2. **SEO.1** Quick wins AGE (~2h) — CTR inmediato en queries posición 1 con 0 clics
+3. **SEO.6** Comparativas opositatest (~1.5h) — 270 impresiones a posición 2, QUICK WIN
+4. **SEO.3** Correos (~6h) — rama con 0 impresiones, necesita contenido + indexación
+5. **SEO.4** Justicia (~10h) — 3 oposiciones × contenido cada una
+6. **SEO.2** Posts nuevos AGE (~3h) — trienios + sueldo base (queries sin post)
+
+**Total**: ~26h de contenido SEO | **Coste IA**: ~$5
+
+### Correcciones al plan original
+
+- **Nota-corte-correos-2023**: OBSOLETO → actualizar a 2026 (URGENTE)
+- **Trienios**: post dedicado necesario (27 impresiones sin post)
+- **Títulos sueldo**: añadir "sueldo base" explícito en title + meta
+- **opositatest comparativas**: subido de prioridad 6→3 (270 imp, posición 2)
+- **SEO.5 técnico**: movido de posición 2→1 (prerequisito para Correos/Justicia)
+- **KPIs**: revisados a la baja para Correos/Justicia (0→200 imp/día es agresivo con 0 indexación)
+
+### KPIs a 4 semanas (REVISADOS)
 
 | Métrica | Hoy | Objetivo 4 sem |
 |---|---|---|
-| Clics/día AGE | 30-40 | 60-80 |
-| Impresiones/día Correos | ~0 | 200+ |
-| Impresiones/día Justicia | 0 | 300+ |
-| Páginas indexadas | ~60 | ~90 |
-| Posición media | 5.5 | 4.0 |
+| Clics/día AGE | 30-40 | 50-70 |
+| Impresiones/día Correos | ~0 | 80-150 |
+| Impresiones/día Justicia | 0 | 120-200 |
+| Páginas indexadas | ~60 | ~85 |
+| Posición media | 5.5 | 4.5 |
 
 ---
 

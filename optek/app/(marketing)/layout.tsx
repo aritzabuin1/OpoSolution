@@ -23,14 +23,14 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
             </span>
           </Link>
           <nav className="flex items-center gap-2" aria-label="Navegacion principal">
+            <Link href="/precios" className="hidden sm:block text-sm text-muted-foreground hover:text-foreground transition-colors px-2">
+              Precios
+            </Link>
             <Link href="/blog" className="hidden sm:block text-sm text-muted-foreground hover:text-foreground transition-colors px-2">
               Blog
             </Link>
             <Link href="/examenes-oficiales" className="hidden sm:block text-sm text-muted-foreground hover:text-foreground transition-colors px-2">
-              Simulacros INAP
-            </Link>
-            <Link href="/herramientas" className="hidden sm:block text-sm text-muted-foreground hover:text-foreground transition-colors px-2">
-              Herramientas
+              Simulacros
             </Link>
             <MarketingNavAuth />
           </nav>
@@ -42,7 +42,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
       {/* Marketing footer */}
       <footer aria-label="Pie de pagina" className="border-t bg-muted/30 py-12">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="grid gap-8 sm:grid-cols-3">
+          <div className="grid gap-8 sm:grid-cols-4">
             <div>
               <span className="text-lg font-bold text-primary">OpoRuta</span>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
@@ -50,21 +50,51 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-sm">Producto</h3>
+              <h3 className="font-semibold text-sm">Oposiciones</h3>
               <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
                 <li>
-                  <Link href="/#como-funciona" className="hover:text-foreground transition-colors">
-                    Cómo funciona
+                  <Link href="/oposiciones/administracion" className="hover:text-foreground transition-colors">
+                    Administración del Estado
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#precios" className="hover:text-foreground transition-colors">
+                  <Link href="/oposiciones/correos" className="hover:text-foreground transition-colors">
+                    Correos
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/oposiciones/justicia" className="hover:text-foreground transition-colors">
+                    Justicia
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/oposiciones/justicia/auxilio-judicial" className="hover:text-foreground transition-colors">
+                    Auxilio Judicial
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/oposiciones/justicia/tramitacion-procesal" className="hover:text-foreground transition-colors">
+                    Tramitación Procesal
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/oposiciones/justicia/gestion-procesal" className="hover:text-foreground transition-colors">
+                    Gestión Procesal
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold text-sm">Producto</h3>
+              <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+                <li>
+                  <Link href="/precios" className="hover:text-foreground transition-colors">
                     Precios
                   </Link>
                 </li>
                 <li>
                   <Link href="/examenes-oficiales" className="hover:text-foreground transition-colors">
-                    Simulacros INAP Oficiales
+                    Simulacros oficiales
                   </Link>
                 </li>
                 <li>
