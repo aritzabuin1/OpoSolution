@@ -26,6 +26,7 @@ import { CheckCircle2, XCircle, Clock, BarChart3, TrendingUp, Trophy, BookOpen, 
 import type { Pregunta } from '@/types/ai'
 import { ShareButton } from '@/components/shared/ShareButton'
 import { StickyAnalysisCTA } from '@/components/shared/StickyAnalysisCTA'
+import { TutorIAModal } from '@/components/tests/TutorIAModal'
 import { PostTestConversionTrigger } from '@/components/tests/PostTestConversionTrigger'
 import { calcularNotaSimulacro } from '@/lib/utils/simulacro-ranking'
 import { parseScoringConfig, describePenalizacion, calcularEjercicio } from '@/lib/utils/scoring'
@@ -749,6 +750,20 @@ export default async function ResultadosPage({ params }: Props) {
       {/* Sticky mobile CTA — visible solo cuando el panel IA está fuera del viewport */}
       {preguntasErroneas.length > 0 && (
         <StickyAnalysisCTA numErrores={preguntasErroneas.length} />
+      )}
+
+      {/* Modal Tutor IA — estrategia escalonada: 3 fases, stop tras primer uso */}
+      {preguntasErroneas.length > 0 && (
+        <TutorIAModal
+          testId={id}
+          numErrores={preguntasErroneas.length}
+          totalTests={totalTests}
+          freeAnalysisRemaining={freeAnalysisRemaining}
+          primerError={preguntasErroneas[0] ? {
+            enunciado: preguntasErroneas[0].pregunta.enunciado,
+            cita: preguntasErroneas[0].pregunta.cita ?? null,
+          } : null}
+        />
       )}
     </div>
   )
