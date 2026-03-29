@@ -16,16 +16,17 @@ export const maxDuration = 60
  */
 const RAMAS_CONFIG: Record<string, string[]> = {
   age: [
-    'Constitución Española', 'CE', 'LPAC', 'LRJSP',
-    'TREBEP', 'EBEP', 'LGP', 'Ley General Presupuestaria',
+    'CE', 'LPAC', 'LRJSP', 'TREBEP', 'LGP',
+    'LCSP', 'SUBVENCIONES', 'TRANSPARENCIA', 'LOIGUALDAD',
+    'LGOB', 'LOPDGDD', 'LOTC',
   ],
   justicia: [
-    'Constitución Española', 'CE', 'LOPJ', 'Ley Orgánica del Poder Judicial',
-    'LEC', 'Ley de Enjuiciamiento Civil', 'LECrim', 'Ley de Enjuiciamiento Criminal',
-    'TREBEP', 'EBEP',
+    'CE', 'LOPJ', 'LEC', 'LECrim', 'LECRIM', 'TREBEP',
+    'LOTC', 'LOVIGEN', 'LGTBI',
   ],
   correos: [
-    'Constitución Española', 'CE', 'TREBEP', 'EBEP',
+    'CE', 'TREBEP', 'LEY_POSTAL', 'RD_POSTAL',
+    'LOIGUALDAD', 'LGTBI', 'LOPDGDD',
   ],
 }
 
