@@ -330,7 +330,7 @@ export async function POST(request: NextRequest) {
 
   // ── 9. Log to api_usage_log for admin analytics ────────────────────────────
   try {
-    void serviceSupabase.from('api_usage_log').insert({
+    await serviceSupabase.from('api_usage_log').insert({
       user_id: user.id,
       endpoint: 'explain-errores-stream',
       model: 'batch',

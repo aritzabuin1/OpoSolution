@@ -36,15 +36,13 @@ export async function POST(request: NextRequest) {
     }
 
     const serviceSupabase = await createServiceClient()
-    // Fire-and-forget — don't block response on DB insert
-    void serviceSupabase.from('api_usage_log').insert({
+    await serviceSupabase.from('api_usage_log').insert({
       user_id: user.id,
       endpoint: event,
       model: 'track',
       tokens_in: 0,
       tokens_out: 0,
       cost_estimated_cents: 0,
-      oposicion_id: null,
     })
 
     return NextResponse.json({ ok: true })

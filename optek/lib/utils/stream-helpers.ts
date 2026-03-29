@@ -54,7 +54,7 @@ export function createSafeStreamResponse(opts: StreamPipeOptions): Response {
           const estimatedOutputTokens = Math.ceil(bytesSent / 4)
           try {
             const supabase = await createServiceClient()
-            void supabase.from('api_usage_log').insert({
+            await supabase.from('api_usage_log').insert({
               user_id: userId,
               endpoint,
               model: 'stream',

@@ -209,8 +209,9 @@ export async function POST(request: NextRequest) {
         user_id: user.id,
         endpoint: 'generate-supuesto-test-batch',
         model: 'batch',
-        prompt_tokens: 0,
-        completion_tokens: 0,
+        tokens_in: 0,
+        tokens_out: 0,
+        cost_estimated_cents: creditsUsed * 10,
         oposicion_id: oposicionId,
       })
       .catch(() => { /* best effort */ })

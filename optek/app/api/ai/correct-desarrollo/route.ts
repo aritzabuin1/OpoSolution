@@ -186,7 +186,7 @@ export async function POST(request: NextRequest) {
 
     // Log to api_usage_log for admin analytics
     try {
-      void serviceSupabase.from('api_usage_log').insert({
+      await serviceSupabase.from('api_usage_log').insert({
         user_id: user.id,
         endpoint: 'correct-desarrollo',
         model: 'batch',
