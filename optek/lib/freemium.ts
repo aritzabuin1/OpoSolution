@@ -18,6 +18,9 @@ export const FREE_QUESTIONS_PER_TEST = 10
 /**
  * Check if a free user can take a test for a specific tema.
  * Returns true if they haven't completed a test for this tema yet.
+ * Only counts COMPLETED tests — if user abandons mid-test, they can retry
+ * (same free bank questions, no AI cost). findIncompleteTest() handles
+ * returning the existing incomplete test if one exists.
  */
 export async function canTakeFreeTemaTest(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
