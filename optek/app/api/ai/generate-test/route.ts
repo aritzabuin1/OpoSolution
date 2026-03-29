@@ -567,6 +567,7 @@ export async function POST(request: NextRequest) {
     )
 
     // Save AI-generated questions to question_bank (dedup + non-blocking)
+    log.info({ hasPaidAccess, temaId: !!temaId, preguntasCount: test.preguntas.length, bankServed }, 'Bank save gate check')
     if (hasPaidAccess && temaId && test.preguntas.length > 0) {
       try {
         const { data: existingBank } = await (serviceSupabase as any)
@@ -636,12 +637,18 @@ export async function POST(request: NextRequest) {
 
         // Single batch upsert — ignoreDuplicates skips rows with existing enunciado_hash
         if (bankInsertBatch.length > 0) {
-          await (serviceSupabase as any)
+          const { error: upsertErr, count: upsertCount } = await (serviceSupabase as any)
             .from('question_bank')
             .upsert(bankInsertBatch, { onConflict: 'enunciado_hash', ignoreDuplicates: true })
-            .catch(() => {})
+            .select('id', { count: 'exact', head: true })
+          if (upsertErr) {
+            log.error({ err: upsertErr, batchSize: bankInsertBatch.length, sample: bankInsertBatch[0] }, 'question_bank upsert FAILED')
+          } else {
+            log.info({ userId: user.id, temaId, bankBefore: bankQuestions.length, inserted: upsertCount, batchSize: bankInsertBatch.length }, 'Bank populated from AI test')
+          }
+        } else {
+          log.info({ userId: user.id, temaId, bankBefore: bankQuestions.length, msg: 'all duplicates — nothing to insert' }, 'Bank: no new questions')
         }
-        log.info({ userId: user.id, temaId, bankBefore: bankQuestions.length }, 'Bank populated from AI test')
       } catch (bankSaveErr) {
         log.warn({ err: bankSaveErr }, 'Failed to save to question_bank (non-critical)')
       }
