@@ -138,8 +138,8 @@ export default function GestionProcesalLanding() {
             <Scale className="w-4 h-4 mr-1.5 inline" />
             725 plazas · Grupo A2
           </Badge>
-          <Badge variant="outline" className="text-sm px-3 py-1 border-purple-300 text-purple-700 dark:text-purple-300">
-            Próximamente
+          <Badge variant="outline" className="text-sm px-3 py-1 border-green-300 text-green-700 dark:text-green-300">
+            Disponible
           </Badge>
         </div>
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
@@ -152,7 +152,7 @@ export default function GestionProcesalLanding() {
         <div className="flex items-center justify-center gap-4 flex-wrap">
           <Link href="/register?oposicion=gestion-procesal">
             <Button size="lg" className="gap-2 bg-purple-600 hover:bg-purple-700">
-              Avísame al lanzar <ArrowRight className="w-4 h-4" />
+              Empieza gratis <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
           <Link href="/oposiciones/justicia">

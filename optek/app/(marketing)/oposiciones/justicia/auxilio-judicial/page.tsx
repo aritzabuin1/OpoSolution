@@ -116,8 +116,8 @@ export default function AuxilioJudicialLanding() {
             <Scale className="w-4 h-4 mr-1.5 inline" />
             ~425 plazas · C2
           </Badge>
-          <Badge variant="outline" className="text-xs border-amber-400 text-amber-700 dark:text-amber-400">
-            Próximamente
+          <Badge variant="outline" className="text-xs border-green-400 text-green-700 dark:text-green-400">
+            Disponible
           </Badge>
         </div>
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
@@ -133,7 +133,7 @@ export default function AuxilioJudicialLanding() {
               Empieza gratis <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
-          <Badge variant="outline" className="text-xs">Próximamente — Avísame al lanzar</Badge>
+          <Badge variant="outline" className="text-xs border-green-400 text-green-700">26 temas · 2 ejercicios</Badge>
         </div>
         <div>
           <Link href="/oposiciones/justicia" className="text-sm text-muted-foreground hover:text-foreground inline-flex items-center gap-1">

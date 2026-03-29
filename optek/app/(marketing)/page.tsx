@@ -882,6 +882,26 @@ export default async function LandingPage() {
         </div>
       </section>
 
+      {/* ─── Testimonio real ─────────────────────────────────────────── */}
+      <section className="py-16">
+        <div className="mx-auto max-w-2xl px-4 sm:px-6 text-center">
+          <div className="relative inline-block">
+            <div className="absolute -top-3 -left-3 text-5xl text-primary/20 font-serif">&ldquo;</div>
+            <blockquote className="text-xl sm:text-2xl font-medium text-foreground leading-relaxed italic px-8">
+              Me ha gustado mucho la forma que tenéis de preguntar y todos los porcentajes para saber la evolución. Estoy muy contenta.
+            </blockquote>
+            <div className="absolute -bottom-3 -right-3 text-5xl text-primary/20 font-serif">&rdquo;</div>
+          </div>
+          <div className="mt-6 flex items-center justify-center gap-3">
+            <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">M</div>
+            <div className="text-left">
+              <p className="text-sm font-semibold">Mónica</p>
+              <p className="text-xs text-muted-foreground">Auxiliar Administrativo del Estado (C2)</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ─── Motivacional ──────────────────────────────────────────────── */}
       <section className="py-20 bg-muted/20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center">

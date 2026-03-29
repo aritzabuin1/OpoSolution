@@ -144,7 +144,7 @@ export default function TramitacionProcesalLanding() {
               Empieza gratis <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
-          <Badge variant="outline" className="text-xs">Próximamente — Avísame al lanzar</Badge>
+          <Badge variant="outline" className="text-xs border-green-400 text-green-700">37 temas · 3 ejercicios</Badge>
         </div>
       </section>
 
