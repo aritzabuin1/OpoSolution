@@ -261,7 +261,7 @@ export default async function SimulacrosPage() {
             </h2>
             <div className="space-y-3">
               {examenesConCount.map((examen) => (
-                <SimulacroCard key={examen.id} examen={examen} hasPsicotecnicos={hasPsicotecnicos} preguntasExamenCompleto={preguntasEjercicio1} hasSupuestoTest={hasSupuestoTest} preguntasSupuesto={preguntasSupuesto} penalizacionDesc={penalizacionDesc} />
+                <SimulacroCard key={examen.id} examen={examen} hasPsicotecnicos={hasPsicotecnicos} preguntasExamenCompleto={preguntasEjercicio1} hasSupuestoTest={hasSupuestoTest} preguntasSupuesto={preguntasSupuesto} hasOfimatica={hasOfimatica} preguntasOfimatica={preguntasOfimatica} penalizacionDesc={penalizacionDesc} />
               ))}
             </div>
           </div>

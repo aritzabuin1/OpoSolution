@@ -122,11 +122,12 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
     opoSlug = opoRow?.slug
     const sc = opoRow?.scoring_config as { ejercicios?: ScoringEjercicio[]; minutos_total?: number } | null
     if (sc?.ejercicios?.[0]) {
-      // For proportional timer: use ejercicio 1 (cuestionario) questions and time only
-      // NOT total across all ejercicios — supuesto has separate timer
       fullExamQuestions = sc.ejercicios[0].preguntas ?? 100
-      const minutos = sc.minutos_total ?? sc.ejercicios[0].minutos ?? 90
-      fullExamSeconds = minutos * 60
+      // For "examen completo" simulacro: sum ALL ejercicios' minutos
+      // minutos_total overrides if present, otherwise sum individual exercises
+      const totalMinutos = sc.minutos_total
+        ?? (sc.ejercicios.reduce((sum, ej) => sum + (ej.minutos ?? 0), 0) || 90)
+      fullExamSeconds = totalMinutos * 60
       preguntasCuestionarioConfig = sc.ejercicios[0].preguntas
     }
     if (esSupuestoTest && sc?.ejercicios) {

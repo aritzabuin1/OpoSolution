@@ -42,6 +42,10 @@ export interface SimulacroCardProps {
   hasSupuestoTest?: boolean
   /** Number of supuesto questions */
   preguntasSupuesto?: number
+  /** Whether this oposición has ofimática exercise */
+  hasOfimatica?: boolean
+  /** Number of ofimática questions */
+  preguntasOfimatica?: number
   /** Penalización description */
   penalizacionDesc?: string
 }
@@ -61,7 +65,7 @@ function convocatoriaLabel(convocatoria: string): string {
 
 // ─── Componente ──────────────────────────────────────────────────────────────
 
-export function SimulacroCard({ examen, hasPsicotecnicos = false, preguntasExamenCompleto = 100, hasSupuestoTest = false, preguntasSupuesto = 0, penalizacionDesc }: SimulacroCardProps) {
+export function SimulacroCard({ examen, hasPsicotecnicos = false, preguntasExamenCompleto = 100, hasSupuestoTest = false, preguntasSupuesto = 0, hasOfimatica = false, preguntasOfimatica = 0, penalizacionDesc }: SimulacroCardProps) {
   const router = useRouter()
   const isPremium = useIsPremium()
 
@@ -74,7 +78,7 @@ export function SimulacroCard({ examen, hasPsicotecnicos = false, preguntasExame
   const isStartingRef = useRef(false)
   const isFree = isPremium !== true
   const isLoaded = examen.numPreguntas > 0
-  const totalExamen = preguntasExamenCompleto + (hasSupuestoTest ? preguntasSupuesto : 0)
+  const totalExamen = preguntasExamenCompleto + (hasSupuestoTest ? preguntasSupuesto : 0) + (hasOfimatica ? preguntasOfimatica : 0)
 
   async function handleIniciar() {
     if (isStartingRef.current || !isLoaded) return
@@ -91,6 +95,7 @@ export function SimulacroCard({ examen, hasPsicotecnicos = false, preguntasExame
           incluirPsicotecnicos,
           dificultadPsico,
           incluirSupuesto: hasSupuestoTest,
+          incluirOfimatica: hasOfimatica,
         }),
       })
 
