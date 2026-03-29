@@ -1513,7 +1513,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'plazas-auxiliar-administrativo-2026',
     title: '1.700 Plazas Auxiliar Administrativo del Estado 2026 — récord histórico',
     description:
-      'La mayor convocatoria de la historia: 1.700 plazas de acceso libre. ¿Cuál es el ratio aspirante/plaza real? Histórico de plazas, fechas clave y por qué 2026 es tu mejor oportunidad.',
+      '1.700 plazas de Auxiliar Administrativo del Estado en 2026 — la mayor convocatoria de la historia. Ratio aspirante/plaza real, histórico de plazas desde 2019, fechas y por qué conviene prepararse ahora.',
     date: '2026-03-12',
     keywords: [
       'plazas auxiliar administrativo 2026',
@@ -1614,7 +1614,7 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 11 ───────────────────────────────────────────────────────────────
   {
     slug: 'nota-corte-auxiliar-administrativo-estado',
-    title: 'Nota de Corte Auxiliar Administrativo 2026: histórico y cálculo',
+    title: 'Nota de Corte Auxiliar Administrativo del Estado 2026: histórico y cálculo',
     description:
       'Nota de corte 2024: 30 puntos (parte 1) y 26,33 (parte 2) sobre 100. Histórico de cortes desde 2019, cómo se calcula con la penalización -1/3 y calculadora gratis para estimar tu nota.',
     date: '2026-03-12',
@@ -4768,9 +4768,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 32 ───────────────────────────────────────────────────────────────
   {
     slug: 'calendario-oposiciones-age-2026-fechas-auxiliar-administrativo',
-    title: 'Calendario oposiciones AGE 2026: fechas clave auxiliar y administrativo del estado',
+    title: '¿Cuándo es el examen Auxiliar Administrativo del Estado 2026? Calendario AGE',
     description:
-      'Todas las fechas clave de las oposiciones AGE 2026: convocatoria BOE, inscripción, admitidos, examen 23 mayo, resultados y elección de destinos.',
+      'Examen 23 de mayo de 2026. Todas las fechas: convocatoria BOE, inscripción, admitidos, examen, resultados y elección de destinos. Calendario completo AGE (C2, C1, A2).',
     date: '2026-03-19',
     dateModified: '2026-03-19',
     keywords: [

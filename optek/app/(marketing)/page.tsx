@@ -158,20 +158,20 @@ const faqs = [
     a: 'Monitorizamos el BOE automáticamente. Cuando se publica un cambio en la legislación relevante para tu oposición, actualizamos el contenido y te notificamos para que repases los artículos modificados.',
   },
   {
-    q: '¿Cuál es la nota de corte del Auxiliar Administrativo?',
-    a: 'La última nota de corte fue 30 puntos (parte 1) y 26,33 puntos (parte 2), sobre 50 por parte. Puedes usar nuestra calculadora gratuita para simular tu nota con la penalización -1/3.',
+    q: '¿OpoRuta sirve para Correos?',
+    a: 'Sí. Correos tiene 12 temas, 100 preguntas tipo test sin penalización y más de 4.000 plazas. OpoRuta incluye tests ilimitados, psicotécnicos y simulacros con preguntas reales. Pack Correos: 49,99€ pago único.',
+  },
+  {
+    q: '¿Puedo preparar Auxilio Judicial o Tramitación con OpoRuta?',
+    a: 'Sí. OpoRuta cubre las 3 oposiciones de Justicia: Auxilio Judicial (26 temas, C2), Tramitación Procesal (37 temas + ofimática, C1) y Gestión Procesal (68 temas + desarrollo escrito, A2). Legislación actualizada con la LO 1/2025 y exámenes MJU reales.',
   },
   {
     q: '¿Se puede preparar la oposición por libre, sin academia?',
-    a: 'Sí. Los temarios de Auxiliar (28 temas), Administrativo (45 temas) y Gestión del Estado (58 temas) son abarcables sin academia. OpoRuta te ofrece tests con legislación verificada, simulacros INAP reales y análisis con IA — todo lo que necesitas para prepararte por tu cuenta.',
+    a: 'Sí. OpoRuta está diseñado para preparar por libre: tests con legislación verificada, simulacros con preguntas oficiales, Tutor IA que te explica cada error y Radar del Tribunal para saber qué cae más. Funciona para AGE, Correos y Justicia.',
   },
   {
-    q: '¿Qué es el supuesto práctico con IA para A2 (GACE)?',
-    a: 'Es una funcionalidad exclusiva de OpoRuta para la oposición Gestión del Estado (A2). La IA genera un caso práctico realista (como los del INAP) con 5 cuestiones, tú escribes tus respuestas, y la IA las corrige usando la rúbrica oficial del INAP: conocimiento aplicado (60%), análisis (20%), sistemática (10%) y expresión escrita (10%). Recibes puntuación sobre 50, feedback por cuestión y respuesta modelo. Ninguna otra plataforma online ofrece esto.',
-  },
-  {
-    q: '¿Cuánto cuesta preparar la oposición A2 (GACE)?',
-    a: 'El Pack Gestión del Estado A2 cuesta 69,99€ (pago único, sin suscripción). Incluye tests ilimitados en los 58 temas, 20 créditos IA y 5 supuestos prácticos con corrección IA. Las academias cobran 140€/mes solo por la corrección de supuestos — con OpoRuta lo tienes todo por un pago único.',
+    q: '¿Cuánto cuesta?',
+    a: 'Empieza gratis (1 test por tema + simulacro + 2 sesiones Tutor IA). Packs desde 49,99€ pago único, sin suscripción. Cada rama tiene sus packs — consulta la página de precios para ver el tuyo.',
   },
 ]
 
@@ -256,18 +256,26 @@ const jsonLdFaq = {
     },
     {
       '@type': 'Question',
-      name: '¿Se puede preparar la oposición de Auxiliar Administrativo por libre?',
+      name: '¿OpoRuta sirve para oposiciones de Correos?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Sí. El temario del Auxiliar Administrativo del Estado (28 temas) es abarcable sin academia. Necesitas un manual de referencia (Adams, MAD o CEP, entre 30-50€), los exámenes oficiales del INAP de años anteriores para practicar y una herramienta de tests tipo test para entrenar el formato real del examen. OpoRuta ofrece todo esto de forma gratuita: tests por tema con legislación verificada, simulacros INAP reales y psicotécnicos.',
+        text: 'Sí. OpoRuta cubre las oposiciones de Correos (Personal Laboral Fijo, Grupo IV) con 12 temas completos, 100 preguntas tipo test sin penalización, psicotécnicos y simulacros con preguntas de convocatorias anteriores. Más de 4.000 plazas. Pack Correos: 49,99€ pago único.',
       },
     },
     {
       '@type': 'Question',
-      name: '¿Qué tipo de psicotécnicos entran en el examen del Auxiliar Administrativo?',
+      name: '¿Puedo preparar Auxilio Judicial o Tramitación Procesal con OpoRuta?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'La primera parte del examen del Auxiliar Administrativo incluye 30 preguntas psicotécnicas que evalúan: razonamiento verbal (sinónimos, antónimos, analogías), razonamiento numérico (series, operaciones, porcentajes), razonamiento abstracto (secuencias lógicas, patrones) y aptitud administrativa (ordenación, clasificación, detección de errores). OpoRuta genera psicotécnicos de práctica con los mismos tipos que aparecen en el examen oficial.',
+        text: 'Sí. OpoRuta cubre las 3 oposiciones de Justicia del MJU: Auxilio Judicial (C2, 26 temas, 2 ejercicios), Tramitación Procesal (C1, 37 temas, 3 ejercicios incluyendo ofimática) y Gestión Procesal (A2, 68 temas, 3 ejercicios con desarrollo escrito corregido por IA). Legislación actualizada con la LO 1/2025. Más de 2.300 plazas.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cuánto cuesta OpoRuta?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Empieza gratis: 1 test por tema, 1 simulacro oficial y 2 sesiones con el Tutor IA. Packs desde 49,99€ pago único (sin suscripción) para AGE, Correos o Justicia. Packs dobles y triples con descuento. Recarga de créditos IA desde 9,99€.',
       },
     },
   ],
