@@ -22,8 +22,10 @@ interface PremiumFeaturePreviewProps {
   benefits: string[]
   /** Optional preview content (rendered below benefits, e.g. blurred sample) */
   preview?: React.ReactNode
-  /** 'pack' (C2) or 'pack_c1' (C1) — defaults to 'pack' */
-  packTier?: 'pack' | 'pack_c1'
+  /** Stripe tier — defaults to 'pack' */
+  packTier?: string
+  /** Display price — defaults to '49,99 EUR' */
+  packPrice?: string
 }
 
 export function PremiumFeaturePreview({
@@ -33,6 +35,7 @@ export function PremiumFeaturePreview({
   benefits,
   preview,
   packTier = 'pack',
+  packPrice = '49,99 EUR',
 }: PremiumFeaturePreviewProps) {
   const [loading, setLoading] = useState(false)
 
@@ -96,10 +99,10 @@ export function PremiumFeaturePreview({
         <div className="rounded-lg bg-muted/50 px-4 py-2 text-sm text-muted-foreground">
           <span className="line-through text-destructive/60">Academia presencial: desde 150 EUR/mes</span>
           {' · '}
-          <span className="font-semibold text-foreground">OpoRuta: 49,99 EUR una sola vez</span>
+          <span className="font-semibold text-foreground">OpoRuta: desde {packPrice} una sola vez</span>
         </div>
         <Button onClick={handleBuy} disabled={loading} size="lg" className="w-full max-w-xs">
-          {loading ? 'Cargando...' : 'Desbloquear Pack Oposicion — 49,99 EUR'}
+          {loading ? 'Cargando...' : `Desbloquear Pack — ${packPrice}`}
         </Button>
         <p className="text-xs text-muted-foreground">
           Pago seguro con Stripe · Sin suscripcion · Sin caducidad

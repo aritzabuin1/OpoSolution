@@ -127,16 +127,19 @@ async function generateEmbeddingWithRetry(
 async function ingestProducto(
   supabase: SupabaseClient,
   openai: OpenAI,
-  producto: ProductoJSON
+  producto: ProductoJSON,
+  oposicionId: string,
+  temaNumeroOverride?: number
 ): Promise<{ insertadas: number; actualizadas: number; errors: number }> {
-  console.log(`\n📥 Ingesta: ${producto.tema_nombre} (${producto.secciones.length} secciones)`)
+  const effectiveTemaNumero = temaNumeroOverride ?? producto.tema_numero
+  console.log(`\n📥 Ingesta: ${producto.tema_nombre} → tema ${effectiveTemaNumero} (${producto.secciones.length} secciones)`)
 
   // Obtener tema_id del temario
   const { data: tema } = await supabase
     .from('temas')
     .select('id')
-    .eq('numero', producto.tema_numero)
-    .eq('oposicion_id', 'aux-admin-estado')
+    .eq('numero', effectiveTemaNumero)
+    .eq('oposicion_id', oposicionId)
     .single()
 
   const temaId: string | null = (tema as { id: string } | null)?.id ?? null
@@ -214,18 +217,51 @@ async function ingestProducto(
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
+// Oposición slug → ID mapping for tema lookup
+const OPOSICION_SLUGS: Record<string, string> = {
+  'aux-admin-estado': 'a0000000-0000-0000-0000-000000000001',
+  'tramitacion-procesal': 'e1000000-0000-0000-0000-000000000001',
+}
+
+// When ingesting for Tramitación, the JSONs have AGE tema_numero (21,22,24,28...)
+// but Tramitación uses different tema numbers (32-37). This map translates.
+const TRAMITACION_TEMA_MAP: Record<string, number> = {
+  'tema_21_informatica_basica.json': 32,
+  'windows.json': 33,
+  // tema 34 (Explorador Windows) — covered by windows.json content
+  'word.json': 35,
+  'outlook.json': 36,
+  'tema_28_internet.json': 37,
+}
+
 async function main() {
-  const [, , target] = process.argv
-  console.log('📚 OPTEK — Ingesta de Conocimiento Técnico (Bloque II)')
+  const args = process.argv.slice(2)
+  const opoFlag = args.find(a => a.startsWith('--oposicion='))
+  const opoSlug = opoFlag ? opoFlag.split('=')[1] : 'aux-admin-estado'
+  const target = args.find(a => !a.startsWith('--'))
+  const opoId = OPOSICION_SLUGS[opoSlug]
+
+  if (!opoId) {
+    console.error(`❌ Oposición desconocida: ${opoSlug}. Disponibles: ${Object.keys(OPOSICION_SLUGS).join(', ')}`)
+    process.exit(1)
+  }
+
+  console.log(`📚 OpoRuta — Ingesta de Conocimiento Técnico (Bloque II/III)`)
+  console.log(`   Oposición: ${opoSlug} (${opoId})`)
   console.log('=========================================================')
 
   const supabase = buildSupabaseClient()
   const openai = buildOpenAI()
 
   // Descubrir JSONs disponibles
-  const jsonFiles = fs.readdirSync(OFIMATICA_DIR)
+  let jsonFiles = fs.readdirSync(OFIMATICA_DIR)
     .filter((f) => f.endsWith('.json') && f !== 'CHUNKING_STRATEGY.json')
     .filter((f) => !target || f === `${target}.json` || f === target)
+
+  // For Tramitación, only ingest files that have a mapping
+  if (opoSlug === 'tramitacion-procesal') {
+    jsonFiles = jsonFiles.filter(f => f in TRAMITACION_TEMA_MAP)
+  }
 
   if (jsonFiles.length === 0) {
     console.log('ℹ️  No se encontraron JSON en data/ofimatica/')
@@ -242,8 +278,9 @@ async function main() {
   for (const file of jsonFiles) {
     const filePath = path.join(OFIMATICA_DIR, file)
     const producto = JSON.parse(fs.readFileSync(filePath, 'utf-8')) as ProductoJSON
+    const temaOverride = opoSlug === 'tramitacion-procesal' ? TRAMITACION_TEMA_MAP[file] : undefined
 
-    const result = await ingestProducto(supabase, openai, producto)
+    const result = await ingestProducto(supabase, openai, producto, opoId, temaOverride)
     totalInsertadas += result.insertadas
     totalActualizadas += result.actualizadas
     totalErrors += result.errors

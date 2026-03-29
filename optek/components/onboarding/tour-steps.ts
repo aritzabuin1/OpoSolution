@@ -18,10 +18,16 @@ export interface TourStep {
 interface TourConfig {
   diasParaExamen: number | null
   isMobile: boolean
+  /** Organismo that administers the exam: 'INAP', 'MJU', 'Correos' */
+  organismo?: string
+  /** Number of questions in the official exam (first exercise) */
+  preguntasExamen?: number
+  /** Time in minutes for the official exam */
+  minutosExamen?: number
 }
 
 export function buildTourSteps(config: TourConfig): TourStep[] {
-  const { diasParaExamen, isMobile } = config
+  const { diasParaExamen, isMobile, organismo = 'INAP', preguntasExamen = 100, minutosExamen = 90 } = config
   const navSide = isMobile ? 'bottom' as const : 'right' as const
 
   const diasText = diasParaExamen !== null && diasParaExamen > 0
@@ -74,8 +80,8 @@ export function buildTourSteps(config: TourConfig): TourStep[] {
   steps.push({
     element: '[data-tour="nav-simulacros"]',
     popover: {
-      title: 'Simulacros con exámenes INAP reales',
-      description: '100 preguntas, 90 minutos, penalización de -1/3. Exactamente como el examen real. Usamos preguntas de exámenes INAP 2018–2024. Al terminar, te decimos si habrías superado la nota de corte.',
+      title: `Simulacros con exámenes ${organismo} reales`,
+      description: `${preguntasExamen} preguntas, ${minutosExamen} minutos, con penalización oficial. Exactamente como el examen real. Usamos preguntas de convocatorias anteriores. Al terminar, te decimos si habrías superado la nota de corte.`,
       side: navSide,
     },
   })
@@ -115,7 +121,7 @@ export function buildTourSteps(config: TourConfig): TourStep[] {
     element: '[data-tour="nav-radar"]',
     popover: {
       title: 'Radar del Tribunal — Tu arma secreta',
-      description: 'Hemos analizado TODOS los exámenes INAP de 2018 a 2024. Este ranking te dice exactamente qué temas y artículos caen más. Por ejemplo: la Constitución ha aparecido 50 veces. Así priorizas tu estudio en lo que realmente importa.',
+      description: `Hemos analizado TODOS los exámenes ${organismo} disponibles. Este ranking te dice exactamente qué temas y artículos caen más. Así priorizas tu estudio en lo que realmente importa.`,
       side: navSide,
     },
   })
@@ -147,7 +153,7 @@ export function buildTourSteps(config: TourConfig): TourStep[] {
   steps.push({
     popover: {
       title: '¡Estás listo para empezar!',
-      description: 'Genera tu primer test de 10 preguntas sobre el tema más preguntado en exámenes: La Constitución Española. Al terminar, prueba el análisis con IA para que te explique cada error paso a paso.',
+      description: 'Genera tu primer test de 10 preguntas sobre el Tema 1 de tu oposición. Al terminar, prueba el Tutor IA para que te explique cada error paso a paso.',
     },
   })
 

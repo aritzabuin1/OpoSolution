@@ -127,8 +127,8 @@ export async function POST(request: NextRequest) {
     return await saveAndReturn(serviceSupabase, user.id, oposicionId, free.caso, free.preguntas, 'free-supuesto-1.0', null, log)
   }
 
-  // ── 5. PREMIUM: get stats ───────────────────────────────────────────────
-  const [{ count: totalBank }, { count: seenCount }] = await Promise.all([
+  // ── 5. PREMIUM: get stats (scoped by oposición) ─────────────────────────
+  const [{ count: totalBank }, { data: bankIds }] = await Promise.all([
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (serviceSupabase as any)
       .from('supuesto_bank')
@@ -136,13 +136,25 @@ export async function POST(request: NextRequest) {
       .eq('oposicion_id', oposicionId),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (serviceSupabase as any)
+      .from('supuesto_bank')
+      .select('id')
+      .eq('oposicion_id', oposicionId),
+  ])
+  // Count seen only within this oposición's bank
+  const opoIds = ((bankIds as { id: string }[] | null) ?? []).map(r => r.id)
+  let seenForOpo = 0
+  if (opoIds.length > 0) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { count } = await (serviceSupabase as any)
       .from('user_supuestos_seen')
       .select('supuesto_id', { count: 'exact', head: true })
-      .eq('user_id', user.id),
-  ])
+      .eq('user_id', user.id)
+      .in('supuesto_id', opoIds)
+    seenForOpo = (count as number) ?? 0
+  }
 
   const total = totalBank ?? 0
-  const seen = seenCount ?? 0
+  const seen = seenForOpo
   const unseen = Math.max(0, total - seen)
   const stats = { totalBank: total, seen, unseen }
 

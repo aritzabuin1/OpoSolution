@@ -187,7 +187,7 @@ export default function SupuestoPracticoDetailPage() {
             {caso.titulo}
           </h1>
           <p className="text-xs text-muted-foreground mt-0.5">
-            5 cuestiones · Bloques IV, V y VI · Rúbrica INAP
+            5 cuestiones · Corrección con rúbrica oficial
             {timerMinutes && ' · Modo examen'}
           </p>
         </div>
@@ -269,7 +269,7 @@ export default function SupuestoPracticoDetailPage() {
           {submitting ? (
             <>
               <Loader2 className="h-4 w-4 animate-spin" />
-              Corrigiendo con rúbrica INAP...
+              Corrigiendo con rúbrica oficial...
             </>
           ) : (
             <>

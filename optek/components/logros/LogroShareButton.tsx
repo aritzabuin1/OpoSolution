@@ -71,7 +71,7 @@ export function LogroShareButton({ logroTitulo, logroEmoji, userName }: LogroSha
       `${logroEmoji} ${logroTitulo}`,
       '',
       'Logro conseguido preparando oposiciones en OpoRuta.',
-      'Tests con IA verificada, simulacros oficiales INAP y mucho más.',
+      'Tests con IA verificada, simulacros oficiales y mucho más.',
       '',
       `Prueba gratis: ${appUrl}`,
     ].join('\n')

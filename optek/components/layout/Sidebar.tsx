@@ -39,7 +39,7 @@ const navItems: NavItem[] = [
   {
     href: '/radar', label: 'Radar Tribunal', icon: TrendingUp, tourId: 'nav-radar',
     premium: true,
-    premiumDesc: 'Descubre que articulos caen mas en los examenes INAP. Prioriza lo que el tribunal realmente pregunta.',
+    premiumDesc: 'Descubre qué artículos caen más en los exámenes oficiales. Prioriza lo que el tribunal realmente pregunta.',
   },
   {
     href: '/supuesto-test', label: 'Supuesto Test', icon: FileText,
@@ -49,7 +49,7 @@ const navItems: NavItem[] = [
   {
     href: '/supuesto-practico', label: 'Supuesto Escrito', icon: FileText,
     premium: true,
-    premiumDesc: 'Practica el segundo ejercicio con corrección IA usando la rúbrica oficial del INAP.',
+    premiumDesc: 'Practica el ejercicio de desarrollo con corrección IA usando la rúbrica oficial.',
     featureKey: 'supuesto_practico',
   },
   { href: '/logros', label: 'Logros', icon: Trophy },

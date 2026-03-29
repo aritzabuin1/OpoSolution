@@ -32,6 +32,7 @@ import { calcularNotaSimulacro } from '@/lib/utils/simulacro-ranking'
 import { parseScoringConfig, describePenalizacion, calcularEjercicio } from '@/lib/utils/scoring'
 import { getAniosConvocatoriaBatch } from '@/lib/utils/cross-reference'
 import { checkPaidAccess, getOposicionFromProfile } from '@/lib/freemium'
+import { getOposicionDisplay } from '@/lib/utils/oposicion-display'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
@@ -54,10 +55,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const score = data.puntuacion ?? 0
   const esSimulacro = data.tipo === 'simulacro' && !!data.examen_oficial_id
   const tipo = data.tipo === 'supuesto_test' ? 'supuesto' : esSimulacro ? 'simulacro' : 'test'
+  let simulacroMeta = 'Simulacro Oficial'
+  if (esSimulacro) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: testOpo } = await (supabase as any)
+      .from('tests_generados').select('oposicion_id').eq('id', id).single()
+    if (testOpo?.oposicion_id) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data: opoM } = await (supabase as any)
+        .from('oposiciones').select('rama, slug').eq('id', testOpo.oposicion_id).single()
+      if (opoM) simulacroMeta = getOposicionDisplay({ rama: opoM.rama, slug: opoM.slug }).simulacroLabel
+    }
+  }
   const tema = data.tipo === 'supuesto_test'
     ? 'Supuesto Práctico'
     : esSimulacro
-    ? 'Simulacro Oficial INAP'
+    ? simulacroMeta
     : ((data.temas as { titulo: string } | null)?.titulo ?? '')
 
   const ogUrl = `${APP_URL}/api/og?score=${score}&tema=${encodeURIComponent(tema)}&tipo=${tipo}`
@@ -144,12 +157,13 @@ export default async function ResultadosPage({ params }: Props) {
   const { data: opoData } = oposicionId
     ? await (serviceSupabase as any)
         .from('oposiciones')
-        .select('scoring_config, slug')
+        .select('scoring_config, slug, rama')
         .eq('id', oposicionId)
         .single()
     : { data: null }
   const scoringConfig = parseScoringConfig((opoData as { scoring_config?: unknown })?.scoring_config)
   const oposicionSlug = (opoData as { slug?: string })?.slug ?? undefined
+  const opoDisplay = getOposicionDisplay({ rama: (opoData as { rama?: string })?.rama, slug: oposicionSlug })
   const penalizaDesc = describePenalizacion(scoringConfig)
 
   // Free corrector usage for nudge
@@ -231,7 +245,7 @@ export default async function ResultadosPage({ params }: Props) {
   const temaTitulo = esSupuestoTest
     ? (test.supuesto_caso?.titulo ?? 'Supuesto Práctico')
     : esSimulacroOficial
-    ? 'Simulacro Oficial INAP'
+    ? opoDisplay.simulacroLabel
     : esRepaso
     ? 'Repaso de errores'
     : (test.temas?.titulo ?? 'Test de práctica')
@@ -356,7 +370,7 @@ export default async function ResultadosPage({ params }: Props) {
       {esSimulacroOficial && (
         <div className="flex items-center gap-2 rounded-lg bg-primary/5 border border-primary/20 px-4 py-3">
           <Trophy className="h-4 w-4 text-primary shrink-0" />
-          <span className="text-sm font-medium">Simulacro Oficial INAP</span>
+          <span className="text-sm font-medium">{opoDisplay.simulacroLabel}</span>
           <Badge variant="secondary" className="text-[10px] ml-auto">Resultado oficial</Badge>
         </div>
       )}
@@ -602,7 +616,7 @@ export default async function ResultadosPage({ params }: Props) {
           <div className="flex items-center gap-2 text-sm text-muted-foreground rounded-lg bg-muted/50 px-3 py-2">
             <Calendar className="h-4 w-4 shrink-0 text-primary" />
             <span>
-              Este tema ha aparecido en exámenes INAP de:{' '}
+              Este tema ha aparecido en exámenes oficiales de:{' '}
               <span className="font-medium text-foreground">{aniosCrossRef.join(', ')}</span>
             </span>
           </div>

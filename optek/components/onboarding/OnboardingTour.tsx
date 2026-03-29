@@ -13,6 +13,9 @@ interface OnboardingTourProps {
   onboardingCompletedAt: string | null
   totalTests: number
   diasParaExamen: number | null
+  organismo?: string
+  preguntasExamen?: number
+  minutosExamen?: number
 }
 
 const REPLAY_KEY = 'oporuta_replay_tour'
@@ -22,6 +25,9 @@ export function OnboardingTour({
   onboardingCompletedAt,
   totalTests,
   diasParaExamen,
+  organismo,
+  preguntasExamen,
+  minutosExamen,
 }: OnboardingTourProps) {
   const router = useRouter()
   const tourRef = useRef<ReturnType<typeof import('driver.js').driver> | null>(null)
@@ -53,7 +59,7 @@ export function OnboardingTour({
     const timer = setTimeout(async () => {
       const { driver } = await import('driver.js')
 
-      const steps = buildTourSteps({ diasParaExamen, isMobile })
+      const steps = buildTourSteps({ diasParaExamen, isMobile, organismo, preguntasExamen, minutosExamen })
 
       // On mobile, open hamburger menu for nav-targeting steps
       const openMobileNav = () => {

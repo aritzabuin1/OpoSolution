@@ -144,7 +144,7 @@ export default function RadarTribunal({ articulos, isPaid, freeLimit = 3 }: Rada
               <Shield className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
               <div>
                 <p className="text-xs font-semibold">Datos reales</p>
-                <p className="text-[10px] text-muted-foreground">{[...new Set(articulos.flatMap((a) => a.anios))].length} convocatorias INAP</p>
+                <p className="text-[10px] text-muted-foreground">{[...new Set(articulos.flatMap((a) => a.anios))].length} convocatorias oficiales</p>
               </div>
             </div>
           </div>

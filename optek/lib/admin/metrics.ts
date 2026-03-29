@@ -524,16 +524,16 @@ async function _getTutorIAMetrics(): Promise<TutorIAMetrics> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: roadmapLogs } = await (supabase as any)
     .from('api_usage_log')
-    .select('user_id, created_at')
+    .select('user_id, timestamp')
     .eq('endpoint', 'generate-roadmap')
-    .gte('created_at', METRICS_START_DATE)
+    .gte('timestamp', METRICS_START_DATE)
 
-  const allRoadmaps = ((roadmapLogs ?? []) as Array<{ user_id: string; created_at: string }>)
+  const allRoadmaps = ((roadmapLogs ?? []) as Array<{ user_id: string; timestamp: string }>)
     .filter(r => !adminIds.includes(r.user_id))
   const roadmapsGenerated = allRoadmaps.length
 
   const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
-  const roadmapsLast7d = allRoadmaps.filter(r => r.created_at >= sevenDaysAgo).length
+  const roadmapsLast7d = allRoadmaps.filter(r => r.timestamp >= sevenDaysAgo).length
 
   // Users with 3+ completed tests
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -561,7 +561,7 @@ async function _getTutorIAMetrics(): Promise<TutorIAMetrics> {
     .from('api_usage_log')
     .select('endpoint, user_id')
     .in('endpoint', tutorEndpoints)
-    .gte('created_at', METRICS_START_DATE)
+    .gte('timestamp', METRICS_START_DATE)
 
   const creditsByEndpoint: Record<string, number> = {}
   for (const log of (usageLogs ?? []) as Array<{ endpoint: string; user_id: string }>) {

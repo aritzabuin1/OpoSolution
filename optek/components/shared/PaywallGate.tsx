@@ -32,9 +32,13 @@ import { useIsPremium } from '@/lib/hooks/useIsPremium'
 
 export type PaywallCode = 'PAYWALL_TESTS' | 'PAYWALL_CORRECTIONS' | 'PAYWALL_SIMULACROS'
 
-/** Oposicion IDs for contextual pack selection */
+/** Oposicion IDs for contextual pack selection — keep in sync with lib/stripe/client.ts */
 const C1_OPOSICION_ID = 'b0000000-0000-0000-0000-000000000001'
 const A2_OPOSICION_ID = 'c2000000-0000-0000-0000-000000000001'
+const CORREOS_OPOSICION_ID = 'd0000000-0000-0000-0000-000000000001'
+const AUXILIO_OPOSICION_ID = 'e0000000-0000-0000-0000-000000000001'
+const TRAMITACION_OPOSICION_ID = 'e1000000-0000-0000-0000-000000000001'
+const GESTION_PROC_OPOSICION_ID = 'e2000000-0000-0000-0000-000000000001'
 
 interface PaywallGateProps {
   open: boolean
@@ -45,7 +49,7 @@ interface PaywallGateProps {
 }
 
 interface PricingOption {
-  tier: 'pack' | 'pack_c1' | 'pack_a2' | 'recarga'
+  tier: string
   label: string
   price: string
   description: string
@@ -56,22 +60,37 @@ interface PricingOption {
 // ─── Pricing options por contexto y oposición ─────────────────────────────────
 
 function getTestOptions(oposicionId?: string): PricingOption[] {
-  const isC1 = oposicionId === C1_OPOSICION_ID
-  const isA2 = oposicionId === A2_OPOSICION_ID
-  const tier = isA2 ? 'pack_a2' as const : isC1 ? 'pack_c1' as const : 'pack' as const
-  const label = isA2 ? 'Pack Gestión del Estado A2' : isC1 ? 'Pack Administrativo C1' : 'Pack Auxiliar C2'
-  const price = isA2 ? '69,99€' : '49,99€'
-  const corrections = isA2 ? '+ 25 créditos IA (tests + supuestos)' : '+ 20 créditos IA incluidos'
+  // Map each oposición to its Stripe tier, label, and price
+  const config = resolvePackConfig(oposicionId)
   return [
     {
-      tier,
-      label,
-      price,
+      tier: config.tier,
+      label: config.label,
+      price: config.price,
       description: 'Todo el temario · simulacros · caza-trampas · radar',
-      corrections,
+      corrections: config.corrections,
       featured: true,
     },
   ]
+}
+
+function resolvePackConfig(oposicionId?: string): { tier: string; label: string; price: string; corrections: string } {
+  switch (oposicionId) {
+    case C1_OPOSICION_ID:
+      return { tier: 'pack_c1', label: 'Pack Administrativo C1', price: '49,99€', corrections: '+ 20 créditos IA incluidos' }
+    case A2_OPOSICION_ID:
+      return { tier: 'pack_a2', label: 'Pack Gestión del Estado A2', price: '69,99€', corrections: '+ 25 créditos IA (tests + supuestos)' }
+    case CORREOS_OPOSICION_ID:
+      return { tier: 'pack_correos', label: 'Pack Correos', price: '49,99€', corrections: '+ 20 créditos IA incluidos' }
+    case AUXILIO_OPOSICION_ID:
+      return { tier: 'pack_auxilio', label: 'Pack Auxilio Judicial', price: '49,99€', corrections: '+ 20 créditos IA incluidos' }
+    case TRAMITACION_OPOSICION_ID:
+      return { tier: 'pack_tramitacion', label: 'Pack Tramitación Procesal', price: '49,99€', corrections: '+ 20 créditos IA incluidos' }
+    case GESTION_PROC_OPOSICION_ID:
+      return { tier: 'pack_gestion_j', label: 'Pack Gestión Procesal', price: '79,99€', corrections: '+ 25 créditos IA (tests + supuestos)' }
+    default:
+      return { tier: 'pack', label: 'Pack Oposición', price: '49,99€', corrections: '+ 20 créditos IA incluidos' }
+  }
 }
 
 const OPTIONS_RECARGA: PricingOption[] = [
@@ -153,7 +172,7 @@ export function PaywallGate({ open, onClose, code, temaId, oposicionId }: Paywal
           <span className="line-through text-destructive/60">Academia presencial: desde 150€/mes</span>
           {' · '}
           <span className="font-semibold text-foreground">
-            OpoRuta: {code === 'PAYWALL_TESTS' || code === 'PAYWALL_SIMULACROS' || !isPremium ? '49,99€' : 'desde 9,99€'} una sola vez
+            OpoRuta: {code === 'PAYWALL_TESTS' || code === 'PAYWALL_SIMULACROS' || !isPremium ? `desde ${options[0]?.price ?? '49,99€'}` : 'desde 9,99€'} una sola vez
           </span>
         </div>
 

@@ -77,7 +77,7 @@ export function RadarCard({ hasPaidAccess }: RadarCardProps) {
               <Badge className="bg-blue-600 hover:bg-blue-600 text-white text-xs">Premium</Badge>
             </div>
             <p className="text-xs text-gray-600 dark:text-gray-400">
-              10 preguntas generadas a partir de los artículos que más han caído en exámenes INAP reales.
+              10 preguntas generadas a partir de los artículos que más han caído en exámenes oficiales reales.
               Practica exactamente lo que el tribunal pregunta.
             </p>
             {error && (

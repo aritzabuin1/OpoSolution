@@ -362,8 +362,16 @@ export function renderUrgencyD21(data: {
   daysUntilExam: number
   oposicionSlug: string | null
 }): string {
-  const numTemas = data.oposicionSlug === 'gestion-estado' ? 58
-    : data.oposicionSlug === 'administrativo-estado' ? 45 : 28
+  const TEMA_COUNTS: Record<string, number> = {
+    'gestion-estado': 58,
+    'administrativo-estado': 45,
+    'aux-admin-estado': 28,
+    'correos': 12,
+    'auxilio-judicial': 26,
+    'tramitacion-procesal': 37,
+    'gestion-procesal': 68,
+  }
+  const numTemas = (data.oposicionSlug ? TEMA_COUNTS[data.oposicionSlug] : null) ?? 28
   const temasPerWeek = data.daysUntilExam > 0
     ? Math.ceil(numTemas / (data.daysUntilExam / 7))
     : numTemas

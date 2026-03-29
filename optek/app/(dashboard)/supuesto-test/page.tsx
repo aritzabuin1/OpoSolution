@@ -69,9 +69,9 @@ export default async function SupuestoTestPage() {
 
   const hasDoneFree = !isPremium && (supuestosDone ?? 0) > 0
 
-  // Credits + bank stats for supuesto CTA
+  // Credits + bank stats for supuesto CTA (scoped by oposición)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [{ data: profileCredits }, { count: totalBank }, { count: seenCount }] = await Promise.all([
+  const [{ data: profileCredits }, { count: totalBank }, { data: bankIds }] = await Promise.all([
     (serviceSupabase as any)
       .from('profiles')
       .select('corrections_balance')
@@ -81,16 +81,29 @@ export default async function SupuestoTestPage() {
       .from('supuesto_bank')
       .select('id', { count: 'exact', head: true })
       .eq('oposicion_id', oposicionId),
+    // Fetch bank IDs for this oposición to scope seen count
     (serviceSupabase as any)
-      .from('user_supuestos_seen')
-      .select('supuesto_id', { count: 'exact', head: true })
-      .eq('user_id', user.id),
+      .from('supuesto_bank')
+      .select('id')
+      .eq('oposicion_id', oposicionId),
   ])
   const creditsBalance = (profileCredits as { corrections_balance?: number } | null)?.corrections_balance ?? 0
+  // Count seen supuestos ONLY from this oposición's bank
+  const opoSupuestoIds = ((bankIds as { id: string }[] | null) ?? []).map(r => r.id)
+  let seenForOpo = 0
+  if (opoSupuestoIds.length > 0) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { count } = await (serviceSupabase as any)
+      .from('user_supuestos_seen')
+      .select('supuesto_id', { count: 'exact', head: true })
+      .eq('user_id', user.id)
+      .in('supuesto_id', opoSupuestoIds)
+    seenForOpo = (count as number) ?? 0
+  }
   const bankStats = {
     totalBank: (totalBank as number) ?? 0,
-    seen: (seenCount as number) ?? 0,
-    unseen: Math.max(0, ((totalBank as number) ?? 0) - ((seenCount as number) ?? 0)),
+    seen: seenForOpo,
+    unseen: Math.max(0, ((totalBank as number) ?? 0) - seenForOpo),
   }
 
   // Fetch completed supuestos for "Repeat" list (premium users who exhausted free quota)

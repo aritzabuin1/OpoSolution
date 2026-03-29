@@ -45,11 +45,12 @@ export default async function SupuestoPracticoPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: opoData } = await (supabase as any)
     .from('oposiciones')
-    .select('nombre, features')
+    .select('nombre, features, slug, rama')
     .eq('id', profile?.oposicion_id ?? DEFAULT_OPOSICION_ID)
     .single()
 
-  const features = (opoData as { features?: { supuesto_practico?: boolean } } | null)?.features
+  const opoInfo = opoData as { nombre?: string; features?: { supuesto_practico?: boolean }; slug?: string; rama?: string } | null
+  const features = opoInfo?.features
   // Supuesto práctico solo disponible si la oposición elegida lo tiene (A2)
   const hasSupuestoPractico = features?.supuesto_practico === true
   // Unified créditos IA: supuesto desarrollo = 2 créditos (generar + corregir)
@@ -63,6 +64,7 @@ export default async function SupuestoPracticoPage() {
     .from('supuestos_practicos')
     .select('id, caso, puntuacion_total, completado, corregido, created_at')
     .eq('user_id', user.id)
+    .eq('oposicion_id', profile?.oposicion_id ?? DEFAULT_OPOSICION_ID)
     .order('created_at', { ascending: false })
     .limit(10)
 
@@ -75,6 +77,28 @@ export default async function SupuestoPracticoPage() {
     created_at: string
   }[]
 
+  // Determine rubric type: MJU (Gestión Procesal) vs INAP (GACE A2)
+  const isMJU = opoInfo?.slug === 'gestion-procesal' || opoInfo?.rama === 'justicia'
+  const rubricaLabel = isMJU ? 'MJU' : 'INAP'
+  const rubricaItems = isMJU
+    ? [
+        { label: 'Conocimiento', detail: '0-3 pts/pregunta (60%)' },
+        { label: 'Claridad y orden', detail: '0-1 pt/pregunta (20%)' },
+        { label: 'Expresión escrita', detail: '0-0.5 pts/pregunta (10%)' },
+        { label: 'Presentación', detail: '0-0.5 pts/pregunta (10%)' },
+      ]
+    : [
+        { label: 'Conocimiento aplicado', detail: '0-30 pts (60%)' },
+        { label: 'Análisis', detail: '0-10 pts (20%)' },
+        { label: 'Sistemática', detail: '0-5 pts (10%)' },
+        { label: 'Expresión escrita', detail: '0-5 pts (10%)' },
+      ]
+  const maxPuntos = isMJU ? 25 : 50
+  const minAprobado = isMJU ? 12.5 : 25
+  const numCuestiones = 5
+  const tiempoExamen = isMJU ? 45 : 150
+  const opoNombreCorto = opoInfo?.nombre ?? 'tu oposición'
+
   if (!hasSupuestoPractico) {
     return (
       <div className="space-y-6">
@@ -86,8 +110,8 @@ export default async function SupuestoPracticoPage() {
               <div>
                 <p className="font-semibold text-amber-800">Esta funcionalidad no está disponible para tu oposición</p>
                 <p className="text-sm text-amber-700 mt-1">
-                  El supuesto práctico con corrección IA está disponible para la oposición Gestión del Estado (A2 GACE),
-                  que incluye un ejercicio de desarrollo escrito en el examen oficial.
+                  El supuesto práctico con corrección IA está disponible para oposiciones que incluyen
+                  un ejercicio de desarrollo escrito en el examen oficial.
                 </p>
               </div>
             </div>
@@ -103,7 +127,7 @@ export default async function SupuestoPracticoPage() {
         <div>
           <h1 className="text-2xl font-bold">Supuesto Práctico</h1>
           <p className="text-sm text-muted-foreground mt-1">
-            Practica el segundo ejercicio del examen GACE con corrección IA
+            Practica el ejercicio de desarrollo con corrección IA
           </p>
         </div>
         <Badge variant="outline" className="gap-1">
@@ -122,24 +146,23 @@ export default async function SupuestoPracticoPage() {
                 Cómo funciona
               </h3>
               <ol className="text-sm text-muted-foreground space-y-1.5 list-decimal list-inside">
-                <li>La IA genera un caso realista tipo INAP (5 cuestiones)</li>
-                <li>Escribes tus respuestas — sin límite de tiempo o en modo examen (150 min)</li>
-                <li>La IA corrige con la rúbrica oficial del INAP</li>
-                <li>Recibes: puntuación /50, feedback detallado y respuesta modelo</li>
+                <li>La IA genera un caso realista tipo {rubricaLabel} ({numCuestiones} cuestiones)</li>
+                <li>Escribes tus respuestas — sin límite de tiempo o en modo examen ({tiempoExamen} min)</li>
+                <li>La IA corrige con la rúbrica oficial {rubricaLabel}</li>
+                <li>Recibes: puntuación /{maxPuntos}, feedback detallado y respuesta modelo</li>
               </ol>
             </div>
             <div className="space-y-3">
               <h3 className="font-semibold flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-primary" />
-                Rúbrica oficial INAP
+                Rúbrica oficial {rubricaLabel}
               </h3>
               <ul className="text-sm text-muted-foreground space-y-1.5">
-                <li><strong>Conocimiento aplicado</strong>: 0-30 pts (60%)</li>
-                <li><strong>Análisis</strong>: 0-10 pts (20%)</li>
-                <li><strong>Sistemática</strong>: 0-5 pts (10%)</li>
-                <li><strong>Expresión escrita</strong>: 0-5 pts (10%)</li>
+                {rubricaItems.map(r => (
+                  <li key={r.label}><strong>{r.label}</strong>: {r.detail}</li>
+                ))}
               </ul>
-              <p className="text-xs text-muted-foreground">Aprobado: ≥ 25/50 puntos</p>
+              <p className="text-xs text-muted-foreground">Aprobado: ≥ {minAprobado}/{maxPuntos} puntos</p>
             </div>
           </div>
         </CardContent>
@@ -150,9 +173,9 @@ export default async function SupuestoPracticoPage() {
         <Card>
           <CardContent className="pt-6 flex flex-col items-center gap-4">
             <Sparkles className="h-8 w-8 text-primary" />
-            <p className="text-center font-medium">Genera un nuevo supuesto práctico tipo INAP</p>
+            <p className="text-center font-medium">Genera un nuevo supuesto práctico tipo {rubricaLabel}</p>
             <p className="text-sm text-muted-foreground text-center max-w-md">
-              Caso realista con 5 cuestiones mezclando contratación, presupuestos y RRHH — como en el examen real.
+              Caso realista con {numCuestiones} cuestiones como en el examen real de {opoNombreCorto}.
             </p>
             <Button size="lg" className="gap-2" asChild>
               <Link href="/supuesto-practico/nuevo">
@@ -168,9 +191,9 @@ export default async function SupuestoPracticoPage() {
             <Lock className="h-8 w-8 text-amber-500 mx-auto" />
             <p className="font-medium">No tienes supuestos disponibles</p>
             <p className="text-sm text-muted-foreground">
-              El Pack A2 incluye 5 supuestos prácticos con corrección IA + rúbrica oficial INAP.
+              El Pack incluye supuestos prácticos con corrección IA + rúbrica oficial {rubricaLabel}.
             </p>
-            <BuyButton tier="pack_a2" label="Desbloquear — 69,99€" />
+            <BuyButton tier={isMJU ? 'pack_gestion_j' : 'pack_a2'} label="Desbloquear Pack" />
             <p className="text-xs text-muted-foreground">Pago único · Sin suscripción</p>
           </CardContent>
         </Card>
@@ -199,8 +222,8 @@ export default async function SupuestoPracticoPage() {
                     </div>
                     <div className="flex items-center gap-2">
                       {s.corregido && s.puntuacion_total !== null ? (
-                        <Badge variant={s.puntuacion_total >= 25 ? 'default' : 'destructive'}>
-                          {s.puntuacion_total}/50
+                        <Badge variant={s.puntuacion_total >= minAprobado ? 'default' : 'destructive'}>
+                          {s.puntuacion_total}/{maxPuntos}
                         </Badge>
                       ) : s.completado ? (
                         <Badge variant="secondary">Pendiente corrección</Badge>

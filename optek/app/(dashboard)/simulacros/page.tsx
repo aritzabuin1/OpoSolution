@@ -7,13 +7,12 @@
  * Si no hay exámenes cargados, muestra empty state informativo.
  */
 
-import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 
-export const metadata: Metadata = { title: 'Simulacros INAP' }
 import Link from 'next/link'
 import { DEFAULT_OPOSICION_ID } from '@/lib/freemium'
+import { getOposicionDisplay } from '@/lib/utils/oposicion-display'
 import { SimulacroCard } from '@/components/simulacros/SimulacroCard'
 import { SimulacroMixtoCard } from '@/components/simulacros/SimulacroMixtoCard'
 import { Badge } from '@/components/ui/badge'
@@ -118,10 +117,10 @@ export default async function SimulacrosPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: opoFeatures } = await (supabase as any)
     .from('oposiciones')
-    .select('features, scoring_config')
+    .select('features, scoring_config, rama, slug')
     .eq('id', userOposicionId)
     .single()
-  const features = (opoFeatures as { features?: Record<string, boolean>; scoring_config?: { ejercicios?: Array<{ nombre?: string; preguntas?: number; minutos?: number }>; minutos_total?: number } } | null)
+  const features = (opoFeatures as { features?: Record<string, boolean>; scoring_config?: { ejercicios?: Array<{ nombre?: string; preguntas?: number; minutos?: number }>; minutos_total?: number }; rama?: string; slug?: string } | null)
   const hasSupuestoPractico = features?.features?.supuesto_practico === true
   const hasSupuestoTest = features?.features?.supuesto_test === true
   const hasPsicotecnicos = features?.features?.psicotecnicos === true
@@ -135,6 +134,7 @@ export default async function SimulacrosPage() {
   const penalizacionDesc = penaliza ? `Penalización real: incorrecta descuenta según la fórmula oficial del examen.` : undefined
   // "Examen completo" available when oposición has both simulacros (oficial questions) AND supuesto test
   const hasExamenCompleto = hasSupuestoTest && hayExamenes
+  const opoDisplay = getOposicionDisplay({ rama: features?.rama, slug: features?.slug })
 
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-8">
@@ -144,7 +144,7 @@ export default async function SimulacrosPage() {
         <div>
           <h1 className="text-2xl font-bold flex items-center gap-2">
             Simulacros de examen
-            <Badge variant="secondary" className="text-xs font-normal">INAP Oficial</Badge>
+            <Badge variant="secondary" className="text-xs font-normal">{opoDisplay.badgeLabel}</Badge>
           </h1>
           <p className="text-muted-foreground mt-1 text-sm">
             Practica con exámenes reales de convocatorias anteriores
@@ -224,7 +224,7 @@ export default async function SimulacrosPage() {
           <Info className="h-4 w-4 text-blue-600 shrink-0 mt-0.5" />
           <p className="text-xs text-blue-700">
             {freeSimRemaining > 0 ? (
-              <>Tienes <strong>1 simulacro completo gratis</strong> — examen real del INAP con todas las preguntas y timer oficial. Simulacros ilimitados con el Pack Oposición.</>
+              <>Tienes <strong>1 simulacro completo gratis</strong> — examen real {opoDisplay.tribunalDe} con todas las preguntas y timer oficial. Simulacros ilimitados con el Pack Oposición.</>
             ) : (
               <>Ya has realizado tu simulacro gratuito. <strong>Desbloquea simulacros ilimitados</strong> con el Pack Oposición.</>
             )}
@@ -271,7 +271,7 @@ export default async function SimulacrosPage() {
             <div>
               <h2 className="font-semibold">Exámenes en preparación</h2>
               <p className="text-sm text-muted-foreground mt-1 max-w-sm mx-auto">
-                Estamos cargando las preguntas de convocatorias anteriores del INAP.
+                Estamos cargando las preguntas de convocatorias anteriores {opoDisplay.tribunalDe}.
                 Estarán disponibles muy pronto.
               </p>
             </div>
@@ -280,7 +280,7 @@ export default async function SimulacrosPage() {
           {/* Features preview */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
-              { label: 'Convocatorias reales', desc: 'Exámenes oficiales del INAP' },
+              { label: 'Convocatorias reales', desc: `Exámenes oficiales ${opoDisplay.tribunalDe}` },
               { label: 'Penalización real', desc: 'Incorrecta descuenta 1/3' },
               { label: '1 simulacro gratis', desc: 'Ilimitados con Premium' },
             ].map((f) => (

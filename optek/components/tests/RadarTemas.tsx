@@ -142,7 +142,7 @@ export default function RadarTemas({ temas, isPaid, freeLimit = 5 }: RadarTemasP
               <Shield className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
               <div>
                 <p className="text-xs font-semibold">Datos reales</p>
-                <p className="text-[10px] text-muted-foreground">Examenes INAP historicos</p>
+                <p className="text-[10px] text-muted-foreground">Exámenes oficiales históricos</p>
               </div>
             </div>
           </div>

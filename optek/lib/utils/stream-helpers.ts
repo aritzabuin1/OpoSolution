@@ -61,7 +61,6 @@ export function createSafeStreamResponse(opts: StreamPipeOptions): Response {
               tokens_in: 0,  // Input tokens not available in streaming
               tokens_out: estimatedOutputTokens,
               cost_estimated_cents: Math.round(estimatedOutputTokens * 0.0015),  // ~$15/1M output tokens
-              oposicion_id: oposicionId || null,
             })
           } catch {
             // Non-blocking — analytics logging should never break the response

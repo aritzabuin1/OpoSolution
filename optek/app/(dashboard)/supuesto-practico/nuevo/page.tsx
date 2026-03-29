@@ -30,7 +30,7 @@ export default function NuevoSupuestoPracticoPage() {
       })
 
       if (res.status === 402) {
-        toast.error('No tienes supuestos prácticos disponibles. Compra el Pack A2 o una recarga.')
+        toast.error('No tienes supuestos prácticos disponibles. Compra el Pack o una recarga de créditos IA.')
         setLoading(false)
         return
       }
@@ -56,7 +56,7 @@ export default function NuevoSupuestoPracticoPage() {
       <div>
         <h1 className="text-2xl font-bold">Nuevo Supuesto Práctico</h1>
         <p className="text-sm text-muted-foreground mt-1">
-          La IA genera un caso práctico realista tipo INAP con 5 cuestiones
+          La IA genera un caso práctico realista con 5 cuestiones adaptado a tu oposición
         </p>
       </div>
 
@@ -67,9 +67,9 @@ export default function NuevoSupuestoPracticoPage() {
             <div className="flex items-start gap-3">
               <FileText className="h-5 w-5 text-emerald-600 shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm font-medium">Caso práctico tipo INAP</p>
+                <p className="text-sm font-medium">Caso práctico tipo examen oficial</p>
                 <p className="text-xs text-muted-foreground">
-                  Un escenario realista de funcionario A2 con 5 cuestiones mezclando contratación, presupuestos y RRHH — como en el examen real.
+                  Un escenario realista con 5 cuestiones adaptadas a tu oposición — como en el examen real.
                 </p>
               </div>
             </div>
@@ -86,9 +86,9 @@ export default function NuevoSupuestoPracticoPage() {
             <div className="flex items-start gap-3">
               <Sparkles className="h-5 w-5 text-purple-600 shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm font-medium">Corrección con rúbrica INAP</p>
+                <p className="text-sm font-medium">Corrección con rúbrica oficial</p>
                 <p className="text-xs text-muted-foreground">
-                  Al enviar, la IA corrige usando los 4 criterios oficiales: conocimiento aplicado (60%), análisis (20%), sistemática (10%) y expresión (10%).
+                  Al enviar, la IA corrige usando los criterios oficiales de tu oposición (conocimiento, análisis, expresión escrita).
                 </p>
               </div>
             </div>

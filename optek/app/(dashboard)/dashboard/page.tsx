@@ -41,6 +41,7 @@ import { ExamCountdownBanner } from '@/components/dashboard/ExamCountdownBanner'
 import { RoadmapCard } from '@/components/dashboard/RoadmapCard'
 import { getDashboardPhase } from '@/lib/utils/dashboard-phase'
 import { DEFAULT_OPOSICION_ID } from '@/lib/freemium'
+import { getOposicionDisplay } from '@/lib/utils/oposicion-display'
 import { OnboardingTour } from '@/components/onboarding/OnboardingTour'
 import { NewUserHero } from '@/components/dashboard/NewUserHero'
 import { ProgressUnlockBar } from '@/components/dashboard/ProgressUnlockBar'
@@ -100,6 +101,16 @@ export default async function DashboardPage() {
   // All remaining queries in parallel (all depend on user.id + oposicion_id, but not on each other)
   const userOposicionId = profile?.oposicion_id ?? DEFAULT_OPOSICION_ID
   const today = new Date().toISOString().slice(0, 10)
+
+  // Oposición display info for onboarding tour
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: opoInfoRaw } = await (supabase as any)
+    .from('oposiciones')
+    .select('rama, slug, scoring_config')
+    .eq('id', userOposicionId)
+    .single()
+  const opoTourInfo = opoInfoRaw as { rama?: string; slug?: string; scoring_config?: { ejercicios?: Array<{ preguntas?: number; minutos?: number }>; minutos_total?: number } } | null
+  const opoDisplay = opoTourInfo ? getOposicionDisplay({ rama: opoTourInfo.rama, slug: opoTourInfo.slug }) : null
 
   // Promise.allSettled: if one query fails, the rest still return data
   const settled = await Promise.allSettled([
@@ -299,6 +310,9 @@ export default async function DashboardPage() {
         onboardingCompletedAt={onboardingCompletedAt}
         totalTests={totalTests}
         diasParaExamen={diasParaExamen}
+        organismo={opoDisplay?.organismo}
+        preguntasExamen={opoTourInfo?.scoring_config?.ejercicios?.[0]?.preguntas}
+        minutosExamen={opoTourInfo?.scoring_config?.minutos_total ?? opoTourInfo?.scoring_config?.ejercicios?.[0]?.minutos}
       />
 
       {/* ── -1. Exam Countdown Banner ──────────────────────────────────────── */}

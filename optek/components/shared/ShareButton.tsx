@@ -50,7 +50,7 @@ export function ShareButton({ score, tema, nombre, tipo = 'test', testId, result
     (testId ? `${appUrl}/tests/${testId}/resultados` : appUrl)
 
   const tipoLabel =
-    tipo === 'simulacro' ? 'Simulacro Oficial INAP' :
+    tipo === 'simulacro' ? 'Simulacro Oficial' :
     tipo === 'cazatrampas' ? 'Caza-Trampas' :
     'Test'
 
@@ -97,7 +97,7 @@ export function ShareButton({ score, tema, nombre, tipo = 'test', testId, result
       `${scoreBar}`,
       '',
       'OpoRuta es una plataforma gratuita para preparar oposiciones con IA.',
-      'Tests con preguntas verificadas, simulacros oficiales INAP y Radar del Tribunal.',
+      'Tests con preguntas verificadas, simulacros oficiales y Radar del Tribunal.',
       '',
       `Prueba gratis: ${appUrl}`,
     ].filter(Boolean).join('\n')

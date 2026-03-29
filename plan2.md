@@ -1488,3 +1488,186 @@ Cada sub-landing incluye:
 - [x] Hero multi-rama: "AGE · Correos · Justicia — 10.000+ plazas"
 - [x] OG images dinámicas por tipo
 - [ ] Verificar indexación en Google (post-deploy)
+
+---
+
+## SESIÓN 2026-03-29b — Hardening multi-oposición + planes nuevos
+
+### Bugs encontrados y arreglados esta sesión
+
+- [x] **Hardcodes "INAP" en 18 archivos**: `getOposicionDisplay()` helper creado (`lib/utils/oposicion-display.ts`). Simulacros, resultados, supuesto-practico, radar, sidebar, onboarding, share buttons — todo dinámico ahora (INAP/MJU/Correos según rama)
+- [x] **PaywallGate fallback "Pack Auxiliar C2"**: `resolvePackConfig()` con los 7 oposición IDs y tiers Stripe correctos
+- [x] **PremiumFeaturePreview precio 49,99€ hardcodeado**: nuevo prop `packPrice` dinámico
+- [x] **Onboarding tour "100 preguntas, 90 min, INAP"**: parametrizado con `organismo/preguntasExamen/minutosExamen` del `scoring_config`
+- [x] **Supuesto-test count global (no por oposición)**: `user_supuestos_seen` ahora se filtra via JOIN con `supuesto_bank.oposicion_id` en page.tsx + generate-supuesto-test route
+- [x] **Supuestos anteriores (desarrollo) mezcla oposiciones**: query `supuestos_practicos` ahora filtra `.eq('oposicion_id', ...)`
+- [x] **Puntuación "/50" hardcodeada en supuesto-practico**: ahora usa `maxPuntos` dinámico (50 INAP / 25 MJU)
+- [x] **nurture-templates.ts 28 temas fallback**: `TEMA_COUNTS` con las 7 oposiciones
+
+### Bugs arreglados (migration + script)
+
+- [x] **Gestión Procesal solo 2 bloques**: migration 061 asigna I(1-16) + II(17-68) pero el temario real tiene 6 bloques:
+  - I: Organización Común (1-16)
+  - II: Derecho Civil y Mercantil (17-22)
+  - III: Derecho Procesal Civil (23-39)
+  - IV: Derecho Procesal Penal (40-55)
+  - V: Derecho Procesal Contencioso y Laboral (56-62)
+  - VI: Organización y Gestión (63-68)
+  - **Fix**: migration 062 creada (`20260329_062_fix_gestion_bloques.sql`). **Pendiente Aritz: aplicar en Supabase Dashboard**
+
+---
+
+## FASE 2.9 — Ofimática Tramitación + Simulacro Completo 3 ejercicios
+
+> **Objetivo**: simulacro de Tramitación Procesal (C1) fiel al examen real: cuestionario + supuesto práctico + ofimática.
+> **Aplica a**: Tramitación Procesal (la única oposición activa con ofimática)
+
+### Contexto
+
+| Ejercicio | Preguntas | Minutos | Penalización | Max | Min aprobado |
+|---|---|---|---|---|---|
+| Test teórico | 100 (96+4 reserva) | 100 | 1/4 acierto | 60 | 30 |
+| Supuesto práctico | 10 (+2 reserva) | 30 | 1/4 acierto | 20 | 10 |
+| Ofimática | 20 (+4 reserva) | 40 | 1/4 acierto | 20 | 10 |
+
+`scoring_config` ya correcto (migration 049). `features.ofimatica: true`. Bloque III (temas 32-37) = ofimática.
+
+### 2.9.1 — Contenido ofimática ✅ (infra lista)
+
+Temas 32-37 de Tramitación: Informática básica, Windows 10/11, Explorador, Word 365, Outlook 365, Internet.
+
+Contenido disponible en `data/ofimatica/`:
+- `tema_21_informatica_basica.json` → tema 32 (35 KB)
+- `windows.json` → tema 33 (56 KB)
+- `word.json` → tema 35 (113 KB)
+- `outlook.json` → tema 36 (42 KB)
+- `tema_28_internet.json` → tema 37 (42 KB)
+
+- [x] `ingest-conocimiento.ts` actualizado: acepta `--oposicion=tramitacion-procesal` con mapping de temas AGE→Tramitación
+- [ ] **Pendiente Aritz**: `pnpm ingest:ofimatica --oposicion=tramitacion-procesal` (requiere OPENAI_API_KEY para embeddings)
+- [ ] Parsear `2025_ejercicio3_informatica_scan.pdf` con vision AI → preguntas oficiales ofimática
+- **Coste**: ~$0.50 (embeddings) | **Esfuerzo**: 30min (solo ejecutar)
+
+### 2.9.2 — Tests por tema de ofimática ✅ (ya funciona)
+
+Verificado: el pipeline de generación NO necesita cambios:
+1. `buildContext()` → `detectConocimientoBloque()` busca `conocimiento_tecnico` por `tema_id`
+2. Si encuentra contenido → retorna `esBloqueII: true` (nombre legacy, significa "usa conocimiento_tecnico")
+3. `generate-test.ts` → usa `SYSTEM_GENERATE_TEST_BLOQUE2` + `buildGenerateTestBloque2Prompt()`
+4. Guardrail `verificarPreguntaBloque2()` valida opciones contra contexto
+
+**Solo falta ingestar el contenido (§2.9.1)**. Una vez ingestado, los tests de ofimática se generan automáticamente.
+- Banco progresivo (`question_bank` + `free_question_bank`) funciona genéricamente — no necesita cambio.
+
+### 2.9.3 — Simulacro completo 3 partes
+
+- [ ] `SimulacroMixtoCard`: si `scoring_config.ejercicios.length >= 3` y tercer ejercicio es ofimática → mostrar 3 partes
+- [ ] Nuevo prop `hasOfimatica` + `preguntasOfimatica` en SimulacroMixtoCard
+- [ ] `generate-simulacro` endpoint: detectar 3º ejercicio → generar preguntas ofimática desde banco
+- [ ] TestRunner: navegación 3 partes (cuestionario → supuesto → ofimática)
+- [ ] Timer total proporcional (170 min para examen completo)
+- [ ] Scoring resultados: desglose 3 ejercicios (ya existe `calcularEjercicio()` genérico)
+- **Esfuerzo**: ~4h
+
+### 2.9.4 — Desarrollo escrito en simulacro (Gestión Procesal)
+
+El 3º ejercicio de Gestión Procesal es desarrollo escrito (ensayo), NO tipo test. No puede integrarse en un simulacro de tipo test. Solución UX:
+- [ ] En la card "Estructura del examen" del simulacro, junto a "Practicar Cuestionario" y "Practicar Supuesto", añadir botón "Practicar Desarrollo" → `/supuesto-practico/nuevo`
+- [ ] Aclarar en el "Examen completo" que cubre ejercicios 1 y 2 (el 3º es escritura libre)
+- **Esfuerzo**: ~30min
+
+### Orden y dependencias
+
+```
+2.9.1 (contenido) → 2.9.2 (tests tema) → 2.9.3 (simulacro completo)
+                                           2.9.4 (UX desarrollo) ← independiente
+```
+
+### Decisiones pendientes (Aritz)
+
+1. ¿Tenemos PDFs oficiales de ofimática de Tramitación?
+2. Temas 32-37: ¿es todo ofimática o incluye otros temas?
+3. ¿Activamos Tramitación YA sin ofimática (con disclaimer) o esperamos?
+4. ¿El simulacro completo de 3 partes es bloqueante para lanzamiento?
+
+---
+
+## FASE S.9 — Reestructuración Landing Multi-Rama (activación 3 ramas)
+
+> **Objetivo**: cuando las 3 ramas estén activas, la web debe ser un hub multi-oposición coherente.
+> **Bloqueante para**: activación pública de Justicia en marketing.
+> **Pre-existente**: §S.4 ya planificaba `/oposiciones/administracion` — esta sección lo detalla.
+
+### Estado actual vs objetivo
+
+| Página | Hoy | Objetivo |
+|---|---|---|
+| `/` | Landing de AGE con cards Correos/Justicia como parches | Hub genérico con 3 cards → sub-landings |
+| `/oposiciones/administracion` | **NO EXISTE** | Hub AGE (C2/C1/A2) con contenido movido desde `/` |
+| `/oposiciones/correos` | ✅ Existe | Quitar residuos "Próximamente" |
+| `/oposiciones/justicia` + sub-landings | ✅ Existe, marcada "Próximamente" | CTAs activos, quitar "Próximamente" |
+| `/precios` | Tab Justicia `activa: false` | `activa: true` |
+| Sitemap | Falta `/oposiciones/administracion` | Añadir |
+
+### S.9.1 — Refactorizar landing `/` como hub genérico
+
+- [ ] Hero neutro: badge multi-rama (ya existe), copy genérico sin mencionar una rama
+- [ ] CTA principal: "Elige tu oposición" → scroll/anchor
+- [ ] Sección "¿Qué oposición preparas?": 3 cards grandes que linkan a sub-landings
+  - AGE: "Administración del Estado" · C2+C1+A2 · 4.200+ plazas → `/oposiciones/administracion`
+  - Correos: Grupo IV · 4.055 plazas → `/oposiciones/correos`
+  - Justicia: Auxilio+Tramitación+Gestión · 2.300+ plazas → `/oposiciones/justicia`
+- [ ] **Quitar**: inline AGE content, WaitlistForm, opacity-75, "Próximamente"
+- [ ] **Mantener**: features genéricas, social proof, FAQ global (actualizar), blog por rama
+- **Esfuerzo**: ~3h
+
+### S.9.2 — Crear `/oposiciones/administracion` (hub AGE)
+
+- [ ] `app/(marketing)/oposiciones/administracion/page.tsx`
+- [ ] Estructura simétrica con `/oposiciones/justicia`:
+  - Hero: "Administración del Estado" · INAP · C2+C1+A2
+  - 3 sub-cards (Auxiliar C2 49,99€, Administrativo C1 49,99€, Gestión GACE A2 69,99€)
+  - Features específicas AGE: Bloque I+II, psicotécnicos, 2 bloques
+  - FAQ específica: diferencia C2/C1/A2, requisitos, temario
+  - CTA registro con `?oposicion=aux-admin-estado` etc.
+  - Schema: FAQPage + Course
+- [ ] Contenido reutilizado del landing actual (plazas, features, FAQ de AGE)
+- **Esfuerzo**: ~2h
+
+### S.9.3 — Activar Justicia en marketing
+
+- [ ] `precios/page.tsx`: `activa: false` → `activa: true`
+- [ ] Landing `/`: card Justicia activa (sin WaitlistForm, CTA → `/oposiciones/justicia`)
+- [ ] Sub-landings Justicia: verificar CTAs de registro funcionan
+- [ ] Ejecutar `pnpm notify:waitlist justicia` para avisar a apuntados
+- **Esfuerzo**: ~30min
+
+### S.9.4 — SEO y navegación
+
+- [ ] Sitemap: añadir `/oposiciones/administracion`
+- [ ] Footer: sección "Oposiciones" con links a las 3 sub-landings
+- [ ] Blog posts AGE: añadir internal links a `/oposiciones/administracion`
+- [ ] llms.txt: actualizar con nueva arquitectura
+- [ ] Verificar indexación Google Search Console
+- **Esfuerzo**: ~1h
+
+### Sub-landings individuales AGE (nice-to-have, NO bloqueante)
+
+- [ ] `/oposiciones/administracion/auxiliar-administrativo`
+- [ ] `/oposiciones/administracion/administrativo-estado`
+- [ ] `/oposiciones/administracion/gestion-estado`
+- Opcional: solo si el SEO lo justifica. El hub puede linkar directo a `/register?oposicion=slug`.
+
+### Orden de ejecución
+
+```
+S.9.2 (crear /administracion) → S.9.1 (refactorizar /) → S.9.3 (activar Justicia) → S.9.4 (SEO)
+```
+
+**Coste total**: ~6.5h | **Coste API**: $0
+
+### Decisiones pendientes (Aritz)
+
+1. ¿Sub-landings individuales para C2/C1/A2 AGE como en Justicia, o solo hub?
+2. ¿Orden de ramas en landing: AGE primero (más usuarios) o Justicia (más plazas)?
+3. ¿Lanzar las 3 ramas a la vez o escalonar (ej. primero Justicia, luego ajustar landing)?

@@ -16,6 +16,7 @@ import { Badge } from '@/components/ui/badge'
 import { Trophy, RefreshCw, FileText } from 'lucide-react'
 import type { Pregunta } from '@/types/ai'
 import { JsonLd } from '@/components/shared/JsonLd'
+import { getOposicionDisplay } from '@/lib/utils/oposicion-display'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
@@ -35,11 +36,32 @@ export async function generateMetadata({ params }: TestDetailPageProps): Promise
 
   if (!data) return {}
 
+  let simulacroOrganismo = 'Simulacro Oficial'
+  if (data.tipo === 'simulacro' && data.examen_oficial_id) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: testFull } = await (supabase as any)
+      .from('tests_generados')
+      .select('oposicion_id')
+      .eq('id', id)
+      .single()
+    if (testFull?.oposicion_id) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data: opo } = await (supabase as any)
+        .from('oposiciones')
+        .select('rama, slug')
+        .eq('id', testFull.oposicion_id)
+        .single()
+      if (opo) {
+        simulacroOrganismo = getOposicionDisplay({ rama: opo.rama, slug: opo.slug }).simulacroLabel
+      }
+    }
+  }
+
   const title =
     data.tipo === 'supuesto_test'
       ? 'Supuesto Práctico'
       : data.tipo === 'simulacro' && data.examen_oficial_id
-      ? 'Simulacro INAP'
+      ? simulacroOrganismo
       : data.tipo === 'repaso_errores'
       ? 'Repaso de errores'
       : (data.temas as { titulo: string } | null)?.titulo ?? 'Test de práctica'
@@ -78,29 +100,27 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
   const esRepaso = test.tipo === 'repaso_errores'
   const esSupuestoTest = test.tipo === 'supuesto_test'
   const supuestoCaso = test.supuesto_caso as { titulo?: string; escenario?: string; bloques_cubiertos?: string[] } | null
-  const temaTitulo = esSupuestoTest
-    ? 'Supuesto Práctico'
-    : esSimulacro
-    ? 'Simulacro Oficial INAP'
-    : esRepaso
-    ? 'Repaso de errores'
-    : ((test.temas as { titulo: string } | null)?.titulo ?? 'Test de práctica')
 
   // §BUG-SP3 — Timer dinámico desde scoring_config de la oposición
   let fullExamQuestions = 100
   let fullExamSeconds = 90 * 60
   let tiempoLimiteSupuesto: number | undefined
   let preguntasCuestionarioConfig: number | undefined
+  let opoRama: string | undefined
+  let opoSlug: string | undefined
   type ScoringEjercicio = { nombre?: string; preguntas?: number; minutos?: number | null }
   if (test.oposicion_id) {
     const serviceSupabase = await createServiceClient()
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: opoData } = await (serviceSupabase as any)
       .from('oposiciones')
-      .select('scoring_config')
+      .select('scoring_config, rama, slug')
       .eq('id', test.oposicion_id)
       .single()
-    const sc = (opoData as { scoring_config?: unknown } | null)?.scoring_config as { ejercicios?: ScoringEjercicio[]; minutos_total?: number } | null
+    const opoRow = opoData as { scoring_config?: unknown; rama?: string; slug?: string } | null
+    opoRama = opoRow?.rama
+    opoSlug = opoRow?.slug
+    const sc = opoRow?.scoring_config as { ejercicios?: ScoringEjercicio[]; minutos_total?: number } | null
     if (sc?.ejercicios?.[0]) {
       // For proportional timer: use ejercicio 1 (cuestionario) questions and time only
       // NOT total across all ejercicios — supuesto has separate timer
@@ -116,6 +136,14 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
       }
     }
   }
+
+  const temaTitulo = esSupuestoTest
+    ? 'Supuesto Práctico'
+    : esSimulacro
+    ? getOposicionDisplay({ rama: opoRama, slug: opoSlug }).simulacroLabel
+    : esRepaso
+    ? 'Repaso de errores'
+    : ((test.temas as { titulo: string } | null)?.titulo ?? 'Test de práctica')
 
   const simulacroConSupuesto = esSimulacro && !!supuestoCaso
   const tiempoLimite = esSupuestoTest

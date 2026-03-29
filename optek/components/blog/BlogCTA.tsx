@@ -42,7 +42,7 @@ export function BlogCTA({ variant, diasParaExamen, examLabel = '23 de mayo' }: B
         4.200+ plazas · Examen único · ¿Estás preparado?
       </p>
       <p className="text-sm opacity-70 mt-2 mb-5">
-        Prueba OpoRuta gratis: Todos los temas · Verificación BOE · Análisis INAP
+        Prueba OpoRuta gratis: Todos los temas · Verificación BOE · Tutor IA
       </p>
       <Link href="/register">
         <Button

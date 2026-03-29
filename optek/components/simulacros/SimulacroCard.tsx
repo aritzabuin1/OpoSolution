@@ -155,7 +155,7 @@ export function SimulacroCard({ examen, hasPsicotecnicos = false, preguntasExame
                   Convocatoria {examen.anio}
                 </p>
                 <Badge variant="secondary" className="text-[10px] font-medium">
-                  INAP Oficial
+                  Examen Oficial
                 </Badge>
               </div>
               <p className="mt-0.5 text-xs text-muted-foreground">

@@ -23,7 +23,7 @@ import RadarTemas, { type RadarTema } from '@/components/tests/RadarTemas'
 
 export const metadata: Metadata = {
   title: 'Radar del Tribunal',
-  description: 'Los temas y artículos que más caen en exámenes INAP reales. Practica lo que el tribunal pregunta.',
+  description: 'Los temas y artículos que más caen en exámenes oficiales reales. Practica lo que el tribunal pregunta.',
 }
 
 export default async function RadarPage() {
@@ -92,7 +92,7 @@ export default async function RadarPage() {
           </Badge>
         </div>
         <p className="text-gray-600 dark:text-gray-400 text-sm">
-          Temas y artículos que más han caído en exámenes INAP reales. Estudia lo que el tribunal realmente pregunta.
+          Temas y artículos que más han caído en exámenes oficiales reales. Estudia lo que el tribunal realmente pregunta.
         </p>
 
         {/* Estadísticas */}
@@ -139,7 +139,7 @@ export default async function RadarPage() {
             Radar en construcción
           </h3>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Los datos del Radar se generan automáticamente a partir de los exámenes INAP históricos.
+            Los datos del Radar se generan automáticamente a partir de los exámenes oficiales históricos.
             Estamos procesando la información — vuelve a intentarlo en unos minutos.
           </p>
         </div>
@@ -178,7 +178,7 @@ export default async function RadarPage() {
         <p className="text-xs text-gray-500 dark:text-gray-400">
           <strong>Metodología:</strong> Se analizan {totalPreguntas > 0 ? `${totalPreguntas} preguntas de ` : ''}
           {allAnios.length > 0 ? `las convocatorias ${allAnios.join(', ')} ` : ''}
-          de {oposicionNombre} (INAP).
+          de {oposicionNombre}.
           Cada pregunta se clasifica por tema según palabras clave del enunciado y opciones.
           Los temas de legislación incluyen detalle por artículo.
           Fuente: preguntas_oficiales.

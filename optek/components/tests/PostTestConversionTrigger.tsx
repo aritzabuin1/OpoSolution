@@ -84,7 +84,7 @@ export function PostTestConversionTrigger({
           {/* Radar frequency (if available) */}
           {radarFrequency != null && radarFrequency > 0 && (
             <p className="text-xs text-amber-800 bg-amber-100 rounded-md px-3 py-1.5">
-              Este tema ha caído en <strong>{radarFrequency} de las últimas 5 convocatorias</strong> INAP.
+              Este tema ha caído en <strong>{radarFrequency} de las últimas 5 convocatorias</strong> oficiales.
               {!isPassing && ' Necesitas dominarlo.'}
             </p>
           )}

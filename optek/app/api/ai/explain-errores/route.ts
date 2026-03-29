@@ -332,7 +332,7 @@ export async function POST(request: NextRequest) {
   try {
     void serviceSupabase.from('api_usage_log').insert({
       user_id: user.id,
-      endpoint: 'explain-errores',
+      endpoint: 'explain-errores-stream',
       model: 'batch',
       tokens_in: 0,
       tokens_out: Math.ceil(rawResponse.length / 4),
