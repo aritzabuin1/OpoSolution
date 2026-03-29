@@ -416,7 +416,7 @@ export default async function LandingPage() {
                   <ul className="space-y-1.5 text-sm text-muted-foreground">
                     <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-blue-600 shrink-0" /> Auxiliar Administrativo (C2) — 28 temas</li>
                     <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-blue-600 shrink-0" /> Administrativo del Estado (C1) — 45 temas</li>
-                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-blue-600 shrink-0" /> Gestión GACE (A2) — 58 temas + supuesto IA</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-blue-600 shrink-0" /> Gestión GACE (A2) — 58 temas + desarrollo escrito</li>
                   </ul>
                   <p className="text-xs text-muted-foreground">Simulacros INAP 2018–2024. Legislación BOE verificada.</p>
                   <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white gap-2 group-hover:translate-y-[-1px] transition-transform">
