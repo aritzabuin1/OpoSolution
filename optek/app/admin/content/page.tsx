@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { AlertTriangle, BookOpen, CheckCircle2 } from 'lucide-react'
+import { AlertTriangle, BookOpen, CheckCircle2, FileText } from 'lucide-react'
 import { verifyAdmin } from '@/lib/admin/auth'
 import { getContentHealth } from '@/lib/admin/content-health'
 
@@ -74,6 +74,49 @@ export default async function ContentPage() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Supuesto Banks */}
+      {health.supuestoBanks.length > 0 && (
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base flex items-center gap-2">
+              <FileText className="h-4 w-4 text-indigo-500" />
+              Banco de Supuestos Test
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {health.supuestoBanks.map(sb => (
+                <div key={sb.oposicionId} className="rounded-lg border p-3 space-y-2">
+                  <p className="text-sm font-medium">{sb.oposicion}</p>
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
+                    <div>
+                      <span className="text-muted-foreground">Free bank</span>
+                      <p className="font-semibold text-lg">{sb.freeBank}</p>
+                    </div>
+                    <div>
+                      <span className="text-muted-foreground">Premium bank</span>
+                      <p className="font-semibold text-lg">{sb.premiumBank}</p>
+                    </div>
+                    <div>
+                      <span className="text-muted-foreground">Oficiales</span>
+                      <p className="font-semibold text-lg text-green-600">{sb.oficiales}</p>
+                    </div>
+                    <div>
+                      <span className="text-muted-foreground">IA generados</span>
+                      <p className="font-semibold text-lg text-blue-600">{sb.iaGenerated}</p>
+                    </div>
+                    <div>
+                      <span className="text-muted-foreground">Practicados</span>
+                      <p className="font-semibold text-lg">{sb.totalServed}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Most tested */}
       <Card>

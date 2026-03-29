@@ -19,6 +19,16 @@ export interface TemaHealth {
   premiumBankQuestions: number
 }
 
+export interface SupuestoBankHealth {
+  oposicion: string
+  oposicionId: string
+  freeBank: number
+  premiumBank: number
+  oficiales: number
+  iaGenerated: number
+  totalServed: number
+}
+
 export interface ContentHealthSummary {
   totalTemas: number
   temasWithFreeBank: number
@@ -26,6 +36,7 @@ export interface ContentHealthSummary {
   avgScoreAll: number | null
   worstTemas: TemaHealth[]
   mostTestedTemas: TemaHealth[]
+  supuestoBanks: SupuestoBankHealth[]
 }
 
 export async function getContentHealth(): Promise<ContentHealthSummary> {
@@ -33,7 +44,7 @@ export async function getContentHealth(): Promise<ContentHealthSummary> {
   const supabase = await createServiceClient() as any
   const adminIds = await getAdminUserIds()
 
-  const [temasRes, freeBankRes, premiumBankRes, testsRes, reportsRes, opoRes] = await Promise.all([
+  const [temasRes, freeBankRes, premiumBankRes, testsRes, reportsRes, opoRes, freeSBankRes, premSBankRes, supTestsRes] = await Promise.all([
     supabase.from('temas').select('id, numero, titulo, oposicion_id').order('oposicion_id').order('numero'),
     supabase.from('free_question_bank').select('tema_id'),
     supabase.from('question_bank').select('tema_id'),
@@ -41,6 +52,10 @@ export async function getContentHealth(): Promise<ContentHealthSummary> {
       .eq('completado', true).not('tema_id', 'is', null).gte('created_at', METRICS_START_DATE),
     supabase.from('preguntas_reportadas').select('test_id'),
     supabase.from('oposiciones').select('id, nombre'),
+    // Supuesto banks
+    supabase.from('free_supuesto_bank').select('oposicion_id'),
+    supabase.from('supuesto_bank').select('oposicion_id, es_oficial, fuente, times_served'),
+    supabase.from('tests_generados').select('oposicion_id').eq('tipo', 'supuesto_test').eq('completado', true),
   ])
 
   const temas = (temasRes.data ?? []) as Array<{ id: string; numero: number; titulo: string; oposicion_id: string }>
@@ -78,6 +93,38 @@ export async function getContentHealth(): Promise<ContentHealthSummary> {
 
   const allScores = [...scoresByTema.values()].flat()
 
+  // Supuesto bank stats per oposicion
+  const freeSBankByOpo = new Map<string, number>()
+  for (const r of (freeSBankRes.data ?? []) as Array<{ oposicion_id: string }>) {
+    freeSBankByOpo.set(r.oposicion_id, (freeSBankByOpo.get(r.oposicion_id) ?? 0) + 1)
+  }
+  const premSBankByOpo = new Map<string, { total: number; oficiales: number; ia: number; served: number }>()
+  for (const r of (premSBankRes.data ?? []) as Array<{ oposicion_id: string; es_oficial: boolean; fuente: string; times_served: number }>) {
+    const cur = premSBankByOpo.get(r.oposicion_id) ?? { total: 0, oficiales: 0, ia: 0, served: 0 }
+    cur.total++
+    if (r.es_oficial) cur.oficiales++; else cur.ia++
+    cur.served += r.times_served ?? 0
+    premSBankByOpo.set(r.oposicion_id, cur)
+  }
+  const supTestsByOpo = new Map<string, number>()
+  for (const r of (supTestsRes.data ?? []) as Array<{ oposicion_id: string }>) {
+    supTestsByOpo.set(r.oposicion_id, (supTestsByOpo.get(r.oposicion_id) ?? 0) + 1)
+  }
+  // Only include oposiciones that have supuesto_test feature
+  const allOpoIds = new Set([...freeSBankByOpo.keys(), ...premSBankByOpo.keys()])
+  const supuestoBanks: SupuestoBankHealth[] = [...allOpoIds].map(opoId => {
+    const prem = premSBankByOpo.get(opoId) ?? { total: 0, oficiales: 0, ia: 0, served: 0 }
+    return {
+      oposicion: opoMap.get(opoId) ?? '?',
+      oposicionId: opoId,
+      freeBank: freeSBankByOpo.get(opoId) ?? 0,
+      premiumBank: prem.total,
+      oficiales: prem.oficiales,
+      iaGenerated: prem.ia,
+      totalServed: supTestsByOpo.get(opoId) ?? 0,
+    }
+  })
+
   return {
     totalTemas: temas.length,
     temasWithFreeBank: temaHealthMap.filter(t => t.hasFreeBankData).length,
@@ -85,6 +132,7 @@ export async function getContentHealth(): Promise<ContentHealthSummary> {
     avgScoreAll: allScores.length > 0 ? Math.round(allScores.reduce((a, b) => a + b, 0) / allScores.length) : null,
     worstTemas: temaHealthMap.filter(t => t.avgScore !== null).sort((a, b) => (a.avgScore ?? 100) - (b.avgScore ?? 100)).slice(0, 10),
     mostTestedTemas: [...temaHealthMap].sort((a, b) => b.testCount - a.testCount).slice(0, 10),
+    supuestoBanks,
   }
 }
 
