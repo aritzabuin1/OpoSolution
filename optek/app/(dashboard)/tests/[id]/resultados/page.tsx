@@ -246,10 +246,25 @@ export default async function ResultadosPage({ params }: Props) {
   // ── Puntuación con penalización configurable (§0.3 + §2.6A.9 + GAP-3 + 2.5c) ──
   // For supuesto_test: use the supuesto exercise from scoring_config (exercise 2)
   // For simulacros: use exercise 1
-  const ejConfig = esSupuestoTest
+  // For supuesto_test: find the supuesto exercise, then adjust for per-case scoring
+  // Auxilio has 2 mandatory cases (40pts total) but we serve 1 at a time (20pts each)
+  const rawEjConfig = esSupuestoTest
     ? scoringConfig?.ejercicios?.find(e => e.nombre.toLowerCase().includes('supuesto') || e.nombre.toLowerCase().includes('práctico'))
       ?? scoringConfig?.ejercicios?.[0]
     : scoringConfig?.ejercicios?.[0]
+
+  // Detect multi-case supuesto: if total preguntas in config >> actual preguntas, scale down
+  const supuestoNumCasos = rawEjConfig && esSupuestoTest && rawEjConfig.preguntas > preguntas.length * 1.5
+    ? Math.round(rawEjConfig.preguntas / preguntas.length)
+    : 1
+  const ejConfig = rawEjConfig && supuestoNumCasos > 1
+    ? {
+        ...rawEjConfig,
+        max: rawEjConfig.max / supuestoNumCasos,
+        min_aprobado: rawEjConfig.min_aprobado !== null ? rawEjConfig.min_aprobado / supuestoNumCasos : null,
+        preguntas: Math.round(rawEjConfig.preguntas / supuestoNumCasos),
+      }
+    : rawEjConfig
   const showScoringPanel = esSimulacroOficial || esSupuestoTest
   const ejercicioResult = showScoringPanel && ejConfig
     ? calcularEjercicio(aciertos, errores, sinResponder, ejConfig)
