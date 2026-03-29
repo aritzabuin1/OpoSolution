@@ -13460,4 +13460,530 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Que resultados veo al terminar?', answer: 'Puntuacion total, desglose por tema (para saber donde flaqueas), numero de aciertos/errores, y la opcion de analizar tus errores con IA (explica por que fallaste cada pregunta).' },
     ],
   },
+
+  // ─── Post 77 — Correos: convocatoria 2026 mega-guide ──────────────────────────
+  {
+    slug: 'oposiciones-correos-2026-convocatoria-plazas-fechas',
+    title: 'Oposiciones Correos 2026: convocatoria, 4.055 plazas y fechas',
+    description: 'Guia completa de la convocatoria Correos 2026: 4.055 plazas, requisitos, estructura del examen, temario y como preparar desde cero.',
+    date: '2026-03-30',
+    keywords: ['oposiciones correos 2026', 'convocatoria correos 2026', 'plazas correos 2026', 'examen correos 2026', 'requisitos correos 2026', 'temario correos 2026'],
+    content: `
+<h2>Convocatoria Correos 2026: todo lo que necesitas saber</h2>
+<p>Correos ha publicado su convocatoria de empleo para 2026 con <strong>4.055 plazas</strong> distribuidas en tres puestos principales: Reparto y Servicios (REP), Atencion al Cliente (ATC) y Agente de Clasificacion. Es la mayor oferta de empleo publico de Correos en los ultimos anos y una oportunidad real para quienes buscan un empleo estable sin necesidad de titulo universitario.</p>
+<p>En esta guia cubrimos todo: plazas, puestos, requisitos, estructura del examen, temario y la mejor estrategia para preparar. Si buscas informacion fiable y actualizada, estas en el sitio correcto.</p>
+
+<h2>Plazas y puestos convocados</h2>
+<p>Las <strong>4.055 plazas</strong> se reparten en tres categorias:</p>
+<ul>
+  <li><strong>Reparto y Servicios (REP)</strong> — el puesto mas demandado. Incluye reparto de paqueteria y correspondencia. Jornada partida o continua segun la unidad. Mayor complemento por nocturnidad y festividad.</li>
+  <li><strong>Atencion al Cliente (ATC)</strong> — trabajo en oficina. Atencion presencial, admision de envios, gestion de productos financieros y seguros. Horario mas regular.</li>
+  <li><strong>Agente de Clasificacion</strong> — trabajo en centros logisticos. Clasificacion y tratamiento de envios. Turnos rotativos.</li>
+</ul>
+<p>La distribucion exacta por provincia se publica en el BOE y en la web de Correos. Las provincias con mas plazas suelen ser Madrid, Barcelona, Valencia, Sevilla y Bilbao.</p>
+
+<h2>Requisitos para presentarte</h2>
+<p>Los requisitos son accesibles — no necesitas titulo universitario:</p>
+<ul>
+  <li><strong>Nacionalidad</strong>: espanola o de un Estado miembro de la UE</li>
+  <li><strong>Edad</strong>: minimo 18 anos, sin limite maximo</li>
+  <li><strong>Titulacion</strong>: Graduado en ESO, Graduado Escolar o equivalente</li>
+  <li><strong>Capacidad funcional</strong>: para REP se requiere aptitud fisica para reparto (carnet de conducir B para algunas plazas)</li>
+  <li><strong>No haber sido separado</strong> del servicio de ninguna Administracion Publica</li>
+</ul>
+<p>Para el puesto de REP, algunas convocatorias exigen <strong>carnet de conducir B</strong>. Revisa las bases especificas de tu provincia.</p>
+
+<h2>Estructura del examen</h2>
+<p>El examen de Correos tiene una estructura muy concreta:</p>
+<ul>
+  <li><strong>100 preguntas tipo test</strong> con 4 opciones de respuesta</li>
+  <li><strong>110 minutos</strong> para completarlo</li>
+  <li><strong>Sin penalizacion por errores</strong> — los fallos no restan puntos</li>
+  <li><strong>Psicotecnicos</strong>: una parte del examen incluye razonamiento verbal, numerico y abstracto</li>
+</ul>
+<p>La ausencia de penalizacion es clave: <strong>debes responder TODAS las preguntas</strong>. Una respuesta al azar tiene un 25% de probabilidad de acertar, asi que nunca dejes nada en blanco.</p>
+<p>Puedes practicar esta estructura exacta con los <a href="/blog/test-correos-online-gratis">tests gratuitos de Correos en OpoRuta</a>.</p>
+
+<h3>Psicotecnicos en el examen</h3>
+<p>Los psicotecnicos suponen aproximadamente un 20-25% del examen. Incluyen:</p>
+<ul>
+  <li><strong>Series numericas</strong>: encontrar el patron logico</li>
+  <li><strong>Razonamiento verbal</strong>: sinonimos, antonimos, analogias</li>
+  <li><strong>Razonamiento abstracto</strong>: figuras y secuencias</li>
+  <li><strong>Atencion y percepcion</strong>: deteccion de diferencias, conteo rapido</li>
+</ul>
+<p>La buena noticia: los psicotecnicos <strong>se entrenan</strong>. Con practica diaria durante 4-6 semanas se nota una mejora significativa. Consulta nuestra <a href="/blog/psicotecnicos-correos-tipos-ejemplos">guia de psicotecnicos para Correos</a> con ejemplos resueltos.</p>
+
+<h2>Temario: 12 temas</h2>
+<p>El temario oficial de Correos 2026 consta de <strong>12 temas</strong>:</p>
+<ol>
+  <li>El Grupo Correos: historia, mision, estructura</li>
+  <li>Productos y servicios postales</li>
+  <li>Productos y servicios financieros</li>
+  <li>Correos Express y paqueteria</li>
+  <li>Operativa de reparto y logistica</li>
+  <li>Normativa postal: Ley Postal y regulacion</li>
+  <li>Atencion al cliente y calidad</li>
+  <li>Prevencion de riesgos laborales</li>
+  <li>Igualdad y violencia de genero</li>
+  <li>Normativa basica: Constitucion Espanola</li>
+  <li>Sociedad de la informacion y proteccion de datos</li>
+  <li>Productos de Correos Telecom</li>
+</ol>
+<p>Para un desglose detallado de cada tema, consulta el <a href="/blog/temario-correos-2026-temas">temario completo de Correos 2026</a>.</p>
+
+<h2>Como preparar las oposiciones de Correos</h2>
+<p>Con 4.055 plazas y un examen sin penalizacion, la estrategia es clara:</p>
+<ul>
+  <li><strong>Estudia el temario por bloques</strong>: empieza por los temas mas preguntados (productos postales, operativa, normativa)</li>
+  <li><strong>Haz tests diarios</strong>: minimo 20-30 preguntas al dia para interiorizar el formato</li>
+  <li><strong>Practica psicotecnicos</strong>: 15-20 minutos diarios dedicados solo a razonamiento</li>
+  <li><strong>Simulacros completos</strong>: al menos 1 por semana con timer de 110 minutos</li>
+  <li><strong>Repasa errores</strong>: cada pregunta fallada es una oportunidad de aprendizaje</li>
+</ul>
+<p>Puedes calcular tu nota estimada antes del examen con nuestra <a href="/herramientas/calculadora-nota-correos">calculadora de nota Correos</a>.</p>
+
+<h2>¿Cuando es el examen?</h2>
+<p>La fecha del examen de Correos 2026 esta prevista para <strong>mayo de 2026</strong>. Las fechas exactas se confirman unas semanas antes en la web de Correos y el BOE. Te recomendamos empezar a preparar <strong>al menos 3 meses antes</strong> para llegar con garantias.</p>
+
+<h2>Empieza a preparar ahora</h2>
+<p>En <a href="/oposiciones/correos">OpoRuta para Correos</a> tienes tests por tema, simulacros con examenes reales (2021 y 2023), psicotecnicos y analisis de errores con IA. Tu primer test es gratis.</p>
+<p><strong><a href="/register?oposicion=correos">Crea tu cuenta gratis</a></strong> y empieza hoy.</p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuantas plazas hay en Correos 2026?', answer: '4.055 plazas distribuidas en tres puestos: Reparto y Servicios (REP), Atencion al Cliente (ATC) y Agente de Clasificacion. Es la mayor convocatoria de Correos en los ultimos anos.' },
+      { question: '¿Que requisitos necesito para opositar a Correos?', answer: 'Nacionalidad espanola o UE, minimo 18 anos, Graduado en ESO o equivalente, y capacidad funcional. Para REP puede exigirse carnet de conducir B segun la provincia.' },
+      { question: '¿Hay penalizacion en el examen de Correos?', answer: 'No. Los errores no restan puntos. Debes responder todas las preguntas — una respuesta al azar tiene un 25% de probabilidad de acertar.' },
+      { question: '¿Cuando es el examen de Correos 2026?', answer: 'La fecha prevista es mayo de 2026. Las fechas exactas se confirman en la web de Correos y el BOE unas semanas antes.' },
+      { question: '¿Como puedo preparar las oposiciones de Correos?', answer: 'Estudia el temario (12 temas), haz tests diarios, practica psicotecnicos 15-20 min/dia, y haz simulacros completos semanales. En OpoRuta puedes practicar con examenes reales y analisis de errores con IA.' },
+    ],
+  },
+
+  // ─── Post 78 — Correos: sueldo 2026 ───────────────────────────────────────────
+  {
+    slug: 'sueldo-correos-2026-reparto-atencion-cliente',
+    title: 'Sueldo Correos 2026: cuanto cobra un cartero y agente de clasificacion',
+    description: 'Sueldo de Correos en 2026 por puesto: REP, ATC y Agente de Clasificacion. Desglose de salario base, complementos, nocturnidad y comparativa.',
+    date: '2026-03-30',
+    keywords: ['sueldo correos 2026', 'cuanto cobra un cartero', 'sueldo reparto correos', 'sueldo ATC correos', 'sueldo cartero 2026', 'nómina correos'],
+    content: `
+<h2>¿Cuanto se cobra en Correos en 2026?</h2>
+<p>Una de las preguntas mas frecuentes de quienes se plantean las <a href="/oposiciones/correos">oposiciones de Correos</a> es: ¿cuanto voy a cobrar? La respuesta depende del puesto, la jornada y los complementos, pero podemos dar cifras reales basadas en el <strong>convenio colectivo de Correos vigente</strong>.</p>
+<p>En lineas generales, el sueldo bruto anual en Correos oscila entre <strong>18.000€ y 22.000€</strong> en 14 pagas, dependiendo del puesto y la antiguedad. Veamos el desglose.</p>
+
+<h2>Sueldo por puesto: REP, ATC y Agente de Clasificacion</h2>
+
+<h3>Reparto y Servicios (REP)</h3>
+<p>El cartero o personal de reparto es el puesto mas demandado y tambien el que puede llegar a cobrar mas gracias a los complementos:</p>
+<ul>
+  <li><strong>Salario base</strong>: ~1.200-1.350€ brutos/mes (14 pagas)</li>
+  <li><strong>Complemento de nocturnidad</strong>: +25% sobre salario base (para turnos que empiezan antes de las 6:00)</li>
+  <li><strong>Complemento de festividad</strong>: +75% por trabajar en festivos</li>
+  <li><strong>Complemento de productividad</strong>: variable segun zona y volumen de reparto</li>
+  <li><strong>Total anual estimado</strong>: <strong>19.000-22.000€ brutos</strong> (con complementos)</li>
+</ul>
+<p>Un cartero con jornada completa y turno de manana temprano (con nocturnidad) puede superar los 20.000€ brutos anuales sin problema.</p>
+
+<h3>Atencion al Cliente (ATC)</h3>
+<p>El personal de oficina tiene un horario mas regular pero menos complementos:</p>
+<ul>
+  <li><strong>Salario base</strong>: ~1.150-1.300€ brutos/mes (14 pagas)</li>
+  <li><strong>Horario</strong>: generalmente de lunes a viernes, horario comercial</li>
+  <li><strong>Complementos</strong>: menores que REP (sin nocturnidad habitual)</li>
+  <li><strong>Total anual estimado</strong>: <strong>18.000-20.000€ brutos</strong></li>
+</ul>
+<p>La ventaja de ATC es la <strong>conciliacion</strong>: horario predecible, sin reparto fisico, sin turnos de madrugada.</p>
+
+<h3>Agente de Clasificacion</h3>
+<p>Trabajo en centros logisticos con turnos rotativos:</p>
+<ul>
+  <li><strong>Salario base</strong>: ~1.150-1.300€ brutos/mes (14 pagas)</li>
+  <li><strong>Complemento de turnicidad</strong>: +15-20% por turnos rotativos</li>
+  <li><strong>Nocturnidad</strong>: +25% si el turno incluye noche</li>
+  <li><strong>Total anual estimado</strong>: <strong>18.500-21.000€ brutos</strong></li>
+</ul>
+
+<h2>Sueldo neto: ¿cuanto me queda en la cuenta?</h2>
+<p>Aplicando las retenciones de IRPF y Seguridad Social para un sueldo bruto de ~20.000€ en 2026:</p>
+<ul>
+  <li><strong>IRPF</strong>: ~12-14% (dependiendo de comunidad autonoma y situacion personal)</li>
+  <li><strong>Seguridad Social</strong>: ~6,35%</li>
+  <li><strong>Sueldo neto estimado</strong>: <strong>1.100-1.350€/mes</strong> en 14 pagas</li>
+</ul>
+<p>Es un sueldo modesto comparado con la funcion publica de la AGE (un Auxiliar Administrativo del Estado cobra ~24.000€ brutos), pero Correos compensa con <strong>mayor numero de plazas</strong> y <strong>requisitos mas bajos</strong> (ESO vs Bachillerato).</p>
+
+<h2>Complementos y extras</h2>
+<p>Ademas del salario base, el convenio de Correos incluye:</p>
+<ul>
+  <li><strong>Trienios</strong>: ~30-40€ brutos/mes por cada 3 anos de antiguedad</li>
+  <li><strong>Pagas extraordinarias</strong>: 2 pagas extra (junio y diciembre) incluidas en las 14 pagas</li>
+  <li><strong>Plus de transporte</strong>: variable segun provincia</li>
+  <li><strong>Vestuario</strong>: Correos proporciona uniforme para REP</li>
+  <li><strong>Formacion interna</strong>: acceso a cursos del Plan de Formacion de Correos</li>
+</ul>
+
+<h2>Comparativa: Correos vs funcionario AGE</h2>
+<p>Para poner en perspectiva:</p>
+<ul>
+  <li><strong>Correos (REP)</strong>: ~20.000€ brutos/ano — requiere ESO — 4.055 plazas en 2026</li>
+  <li><strong>Auxiliar Administrativo AGE (C2)</strong>: ~24.000€ brutos/ano — requiere ESO — 1.700 plazas</li>
+  <li><strong>Administrativo AGE (C1)</strong>: ~28.000€ brutos/ano — requiere Bachillerato — 2.500 plazas</li>
+</ul>
+<p>Correos ofrece mas plazas y un examen sin penalizacion, lo que lo convierte en una opcion muy atractiva para quienes buscan su primera oportunidad en el sector publico.</p>
+
+<h2>¿Merece la pena?</h2>
+<p>Con un sueldo neto de 1.100-1.350€/mes, <strong>14 pagas garantizadas</strong>, estabilidad laboral y posibilidad de promocion interna, Correos es una opcion solida. No es el puesto mejor pagado de la funcion publica, pero es de los mas accesibles: ESO, sin penalizacion y 4.055 plazas.</p>
+<p>Si quieres empezar a preparar, en <a href="/oposiciones/correos">OpoRuta</a> tienes tests por tema y simulacros con examenes reales.</p>
+<p><strong><a href="/register?oposicion=correos">Crea tu cuenta gratis</a></strong> y empieza hoy.</p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cual es el sueldo neto de un cartero de Correos en 2026?', answer: 'Aproximadamente 1.100-1.350€ netos al mes en 14 pagas, dependiendo del turno (la nocturnidad y festividad aumentan el sueldo). El bruto anual ronda los 19.000-22.000€.' },
+      { question: '¿Cobra mas un REP que un ATC?', answer: 'Si, generalmente. El puesto de Reparto (REP) tiene complementos de nocturnidad (+25%) y festividad (+75%) que el ATC normalmente no cobra. La diferencia puede ser de 1.000-2.000€ brutos anuales.' },
+      { question: '¿Que complementos tiene el sueldo de Correos?', answer: 'Nocturnidad (+25%), festividad (+75%), turnicidad (+15-20%), trienios (~30-40€/mes por cada 3 anos de antiguedad), plus de transporte y 14 pagas anuales.' },
+      { question: '¿Suben los sueldos de Correos cada ano?', answer: 'Si, siguiendo las revisiones del convenio colectivo. Las subidas suelen estar en linea con las de la funcion publica (2-3% anual en los ultimos anos). Ademas, los trienios incrementan el sueldo con la antiguedad.' },
+    ],
+  },
+
+  // ─── Post 79 — Justicia: test Auxilio Judicial online gratis ──────────────────
+  {
+    slug: 'test-auxilio-judicial-online-gratis-2026',
+    title: 'Test Auxilio Judicial Online Gratis 2026: practica con preguntas tipo examen',
+    description: 'Practica tests de Auxilio Judicial gratis online. Preguntas verificadas contra LOPJ, LEC y LECrim. Penalizacion 1/4 como en el examen MJU.',
+    date: '2026-03-30',
+    keywords: ['test auxilio judicial online', 'test auxilio judicial gratis', 'preguntas auxilio judicial', 'examen auxilio judicial 2026', 'test oposiciones justicia', 'auxilio judicial tipo test'],
+    content: `
+<h2>Practica tests de Auxilio Judicial online</h2>
+<p>Si estas preparando las oposiciones de <strong>Auxilio Judicial</strong>, necesitas practicar con preguntas que reflejen el examen real del Ministerio de Justicia (MJU). No preguntas inventadas — preguntas basadas en la legislacion vigente y verificadas contra el <strong>BOE</strong>.</p>
+<p>En OpoRuta puedes hacer tests de Auxilio Judicial <strong>gratis</strong>, con la misma estructura y penalizacion que encontraras el dia del examen. Aqui te explicamos que vas a encontrar y como sacarle el maximo partido.</p>
+
+<h2>¿Que incluyen los tests de Auxilio Judicial?</h2>
+<p>Cada test de Auxilio Judicial en <a href="/oposiciones/justicia/auxilio-judicial">OpoRuta</a> cubre los <strong>26 temas del temario oficial</strong>:</p>
+<ul>
+  <li><strong>Derecho Constitucional</strong>: Constitucion Espanola, derechos fundamentales, organizacion territorial</li>
+  <li><strong>Organizacion del Poder Judicial</strong>: LOPJ (Ley Organica del Poder Judicial), organos jurisdiccionales, competencias</li>
+  <li><strong>Procedimientos judiciales</strong>: LEC (Ley de Enjuiciamiento Civil), LECrim (Ley de Enjuiciamiento Criminal)</li>
+  <li><strong>Personal al servicio de la Administracion de Justicia</strong>: cuerpos, funciones, derechos y deberes</li>
+  <li><strong>Procedimiento administrativo</strong>: Ley 39/2015, Ley 40/2015</li>
+  <li><strong>Normativa complementaria</strong>: proteccion de datos, igualdad, violencia de genero</li>
+</ul>
+
+<h3>Verificacion contra legislacion vigente</h3>
+<p>Cada pregunta generada por IA se <strong>verifica automaticamente contra la legislacion</strong>. Si una pregunta cita el articulo 24 de la Constitucion o el articulo 456 de la LOPJ, OpoRuta comprueba que la cita sea correcta y que el contenido coincida con el texto legal vigente.</p>
+<p>Esto es critico en Justicia, donde un solo articulo cambiado puede invalidar una pregunta entera. Con la <strong>LO 1/2025</strong> de reforma de la LOPJ, muchos temarios estan desactualizados — OpoRuta no.</p>
+
+<h2>Penalizacion 1/4: como en el examen real</h2>
+<p>El examen de Auxilio Judicial del MJU <strong>penaliza los errores</strong>: cada respuesta incorrecta resta 1/3 del valor de un acierto (equivalente a penalizacion 1/4 sobre las opciones). En OpoRuta activamos la misma penalizacion para que practiques en condiciones reales.</p>
+<p>La estrategia cambia radicalmente respecto a Correos (sin penalizacion):</p>
+<ul>
+  <li><strong>Si tienes dudas entre 2 opciones</strong>: responde (probabilidad a favor)</li>
+  <li><strong>Si no tienes ni idea</strong>: mejor dejar en blanco</li>
+  <li><strong>Elimina opciones absurdas</strong>: si descartas 1-2 opciones, responde siempre</li>
+</ul>
+
+<h2>Simulacros con examenes reales del MJU</h2>
+<p>Ademas de tests por tema, OpoRuta ofrece <strong>simulacros completos</strong> con preguntas de convocatorias reales del Ministerio de Justicia. Incluyen:</p>
+<ul>
+  <li>100 preguntas en formato MJU</li>
+  <li>Timer activo (tiempo proporcional al numero de preguntas)</li>
+  <li>Penalizacion 1/4 activada</li>
+  <li>Desglose de resultados por tema al finalizar</li>
+  <li>Analisis de errores con IA (tutor socratico que te guia al razonamiento correcto)</li>
+</ul>
+
+<h2>¿Como empezar?</h2>
+<p>Empezar es gratis y no necesitas tarjeta de credito:</p>
+<ol>
+  <li><strong><a href="/register?oposicion=auxilio-judicial">Crea tu cuenta gratuita</a></strong> seleccionando "Auxilio Judicial"</li>
+  <li>Accede al panel y elige un tema para empezar</li>
+  <li>Haz tu primer test de 10 preguntas (gratis)</li>
+  <li>Revisa tus errores con el analisis de IA</li>
+</ol>
+<p>Con la cuenta gratuita puedes hacer <strong>5 tests completos</strong> y <strong>3 simulacros</strong>. Para acceso ilimitado, el Pack Justicia cuesta 49,99€ (pago unico, sin suscripcion).</p>
+
+<h2>¿Por que OpoRuta para Auxilio Judicial?</h2>
+<ul>
+  <li><strong>Legislacion actualizada</strong>: LO 1/2025 y todas las reformas recientes integradas</li>
+  <li><strong>Verificacion BOE</strong>: cada cita legal comprobada automaticamente</li>
+  <li><strong>Tutor IA socratico</strong>: no te da la respuesta directamente, te guia al razonamiento correcto</li>
+  <li><strong>Radar del Tribunal</strong>: analisis de frecuencia de temas en convocatorias anteriores</li>
+  <li><strong>Flashcards con repeticion espaciada</strong>: para memorizar articulos clave</li>
+</ul>
+<p>Consulta la <a href="/blog/guia-auxilio-judicial-2026">guia completa de Auxilio Judicial 2026</a> para mas detalles sobre el temario y la convocatoria.</p>
+
+<h2>Empieza a practicar ahora</h2>
+<p>Cada dia sin practicar es un dia perdido. Los tests de Auxilio Judicial en OpoRuta son gratuitos, verificados y con penalizacion real.</p>
+<p><strong><a href="/register?oposicion=auxilio-judicial">Crear cuenta gratis</a></strong> · <a href="/oposiciones/justicia/auxilio-judicial">Mas informacion sobre Auxilio Judicial</a></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Los tests de Auxilio Judicial son realmente gratis?', answer: 'Si. Puedes hacer 5 tests completos y 3 simulacros sin pagar. No necesitas tarjeta de credito para registrarte. Para acceso ilimitado el Pack Justicia cuesta 49,99€ (pago unico).' },
+      { question: '¿Que legislacion cubren las preguntas?', answer: 'LOPJ (Ley Organica del Poder Judicial), LEC (Ley de Enjuiciamiento Civil), LECrim, Constitucion Espanola, Ley 39/2015, Ley 40/2015, LO 1/2025 y toda la normativa del temario oficial de Auxilio Judicial del MJU.' },
+      { question: '¿Cuantas preguntas tiene cada test?', answer: 'Puedes elegir entre 10, 15 o 20 preguntas por test. Los simulacros completos tienen 100 preguntas con timer, igual que el examen real del MJU.' },
+      { question: '¿Hay penalizacion en los tests como en el examen real?', answer: 'Si. Cada error resta 1/3 del valor de un acierto, exactamente como en el examen del Ministerio de Justicia. Asi practicas la gestion del riesgo desde el primer dia.' },
+    ],
+  },
+
+  // ─── Post 80 — Justicia: test Tramitacion Procesal online gratis ──────────────
+  {
+    slug: 'test-tramitacion-procesal-online-gratis-2026',
+    title: 'Test Tramitacion Procesal Online Gratis 2026: practica 37 temas + ofimatica',
+    description: 'Tests de Tramitacion Procesal gratis online. 37 temas, penalizacion 1/4, legislacion LO 1/2025 actualizada. Practica con preguntas verificadas.',
+    date: '2026-03-30',
+    keywords: ['test tramitacion procesal online', 'test tramitacion procesal gratis', 'preguntas tramitacion procesal', 'examen tramitacion procesal 2026', 'oposiciones tramitacion procesal'],
+    content: `
+<h2>Tests de Tramitacion Procesal: practica los 37 temas online</h2>
+<p>La oposicion de <strong>Tramitacion Procesal y Administrativa</strong> es una de las mas demandadas del Ministerio de Justicia. Con un temario de <strong>37 temas</strong> y tres ejercicios (test + supuesto practico + ofimatica), necesitas una herramienta que te permita practicar en condiciones reales.</p>
+<p>En <a href="/oposiciones/justicia/tramitacion-procesal">OpoRuta</a> puedes hacer tests de Tramitacion Procesal <strong>gratis</strong>, con preguntas verificadas contra la legislacion vigente y la misma penalizacion 1/4 del examen del MJU.</p>
+
+<h2>¿Que cubre el temario de Tramitacion Procesal?</h2>
+<p>Los 37 temas se dividen en varios bloques:</p>
+
+<h3>Bloque I: Derecho Constitucional y organizacion del Estado</h3>
+<ul>
+  <li>Constitucion Espanola: estructura, derechos fundamentales, Tribunal Constitucional</li>
+  <li>Organizacion territorial del Estado: comunidades autonomas, administracion local</li>
+  <li>Union Europea: instituciones, fuentes del Derecho comunitario</li>
+</ul>
+
+<h3>Bloque II: Organizacion y funcionamiento del Poder Judicial</h3>
+<ul>
+  <li>LOPJ: organizacion de juzgados y tribunales</li>
+  <li>Personal al servicio de la Administracion de Justicia</li>
+  <li>Modernizacion de la Oficina Judicial</li>
+  <li><strong>LO 1/2025</strong>: reforma de la LOPJ (cambios recientes que muchos temarios no recogen)</li>
+</ul>
+
+<h3>Bloque III: Procedimientos judiciales</h3>
+<ul>
+  <li>LEC: procedimiento civil ordinario, verbal, ejecucion</li>
+  <li>LECrim: procedimiento penal, instruccion, juicio oral</li>
+  <li>Procedimiento contencioso-administrativo</li>
+  <li>Procedimiento laboral</li>
+</ul>
+
+<h3>Bloque IV: Normativa general</h3>
+<ul>
+  <li>Ley 39/2015 (Procedimiento Administrativo Comun)</li>
+  <li>Ley 40/2015 (Regimen Juridico del Sector Publico)</li>
+  <li>Proteccion de datos, igualdad, transparencia</li>
+</ul>
+
+<h2>Estructura del examen de Tramitacion Procesal</h2>
+<p>El examen consta de <strong>tres ejercicios</strong>:</p>
+<ol>
+  <li><strong>Primer ejercicio (test)</strong>: 100 preguntas tipo test con 4 opciones. Penalizacion 1/4. Es eliminatorio.</li>
+  <li><strong>Segundo ejercicio (supuesto practico)</strong>: resolucion de un caso practico procesal.</li>
+  <li><strong>Tercer ejercicio (ofimatica)</strong>: prueba practica de Word, Excel y bases de datos.</li>
+</ol>
+<p>El primer ejercicio es el filtro principal: si no lo superas, no accedes a los siguientes. Por eso es fundamental <strong>practicar el formato test</strong> intensivamente.</p>
+
+<h2>¿Que encontraras en OpoRuta?</h2>
+<p>Al registrarte en <a href="/register?oposicion=tramitacion-procesal">OpoRuta para Tramitacion Procesal</a>, accedes a:</p>
+<ul>
+  <li><strong>Tests por tema</strong>: elige cualquiera de los 37 temas y practica con 10, 15 o 20 preguntas</li>
+  <li><strong>Verificacion legislativa</strong>: cada pregunta que cita un articulo de la LOPJ, LEC o LECrim se comprueba automaticamente contra el texto legal del BOE</li>
+  <li><strong>Penalizacion real</strong>: 1/4 activada por defecto, como en el examen MJU</li>
+  <li><strong>Simulacros completos</strong>: 100 preguntas con timer</li>
+  <li><strong>Analisis de errores con IA</strong>: tutor socratico que te explica por que fallaste cada pregunta</li>
+  <li><strong>Radar del Tribunal</strong>: ve que temas se preguntan mas en convocatorias anteriores</li>
+</ul>
+
+<h3>Legislacion actualizada: LO 1/2025</h3>
+<p>La <strong>Ley Organica 1/2025</strong> ha introducido cambios significativos en la organizacion del Poder Judicial. Muchos temarios y plataformas de tests aun no reflejan estos cambios. En OpoRuta, la base de conocimiento juridico se actualiza con cada reforma publicada en el BOE.</p>
+<p>Esto es especialmente relevante en Tramitacion Procesal, donde los temas de LOPJ y Oficina Judicial son los mas preguntados.</p>
+
+<h2>Estrategia de estudio para Tramitacion Procesal</h2>
+<p>Con 37 temas y tres ejercicios, necesitas un plan estructurado:</p>
+<ul>
+  <li><strong>Primero</strong>: domina el Bloque II (LOPJ) y el Bloque III (procedimientos). Son los que mas pesan en el test.</li>
+  <li><strong>Segundo</strong>: asegura Derecho Constitucional (suelen ser preguntas mas faciles).</li>
+  <li><strong>Tercero</strong>: no descuides ofimatica — es eliminatoria y muchos opositores la subestiman.</li>
+  <li><strong>Diariamente</strong>: 20-30 preguntas tipo test + 15 min de repaso de errores.</li>
+  <li><strong>Semanalmente</strong>: 1 simulacro completo con timer.</li>
+</ul>
+
+<h2>Empieza gratis</h2>
+<p>No necesitas tarjeta de credito. Crea tu cuenta, selecciona Tramitacion Procesal y haz tu primer test ahora.</p>
+<p><strong><a href="/register?oposicion=tramitacion-procesal">Crear cuenta gratis</a></strong> · <a href="/oposiciones/justicia/tramitacion-procesal">Mas informacion sobre Tramitacion Procesal</a></p>
+<p>Si tambien te interesa Auxilio Judicial, consulta nuestros <a href="/blog/test-auxilio-judicial-online-gratis-2026">tests gratuitos de Auxilio Judicial</a>.</p>
+    `.trim(),
+    faqs: [
+      { question: '¿Los tests de Tramitacion Procesal son gratis?', answer: 'Si. Puedes hacer 5 tests completos y 3 simulacros gratis. Para acceso ilimitado, el Pack Justicia cuesta 49,99€ (pago unico, sin suscripcion mensual).' },
+      { question: '¿La legislacion esta actualizada con la LO 1/2025?', answer: 'Si. OpoRuta actualiza su base de conocimiento juridico con cada reforma publicada en el BOE, incluyendo la LO 1/2025 que modifica aspectos clave de la LOPJ.' },
+      { question: '¿Cuantos temas tiene Tramitacion Procesal?', answer: '37 temas divididos en 4 bloques: Derecho Constitucional, Poder Judicial (LOPJ), Procedimientos judiciales (LEC/LECrim) y Normativa general. El examen tiene 3 ejercicios: test, supuesto practico y ofimatica.' },
+      { question: '¿Hay penalizacion en los tests?', answer: 'Si, penalizacion 1/4 como en el examen real del MJU. Cada error resta 1/3 del valor de un acierto. Puedes practicar la gestion del riesgo desde el primer test.' },
+    ],
+  },
+
+  // ─── Post 81 — Justicia: sueldo comparativa 3 cuerpos ─────────────────────────
+  {
+    slug: 'sueldo-funcionario-justicia-2026-auxilio-tramitacion-gestion',
+    title: 'Sueldo Funcionarios Justicia 2026: Auxilio, Tramitacion y Gestion Procesal',
+    description: 'Comparativa de sueldos de funcionarios de Justicia 2026: Auxilio Judicial (~24.000€), Tramitacion (~28.000€) y Gestion Procesal (~34.000€). Desglose completo.',
+    date: '2026-03-30',
+    keywords: ['sueldo auxilio judicial 2026', 'sueldo tramitacion procesal', 'sueldo gestion procesal', 'sueldo funcionario justicia', 'cuanto cobra auxilio judicial', 'sueldo cuerpos justicia'],
+    content: `
+<h2>¿Cuanto cobra un funcionario de Justicia en 2026?</h2>
+<p>Los tres cuerpos principales de la <strong>Administracion de Justicia</strong> — Auxilio Judicial, Tramitacion Procesal y Gestion Procesal — tienen sueldos diferentes segun su grupo y nivel de responsabilidad. En esta guia comparamos los tres con datos actualizados segun los <strong>Presupuestos Generales del Estado (PGE) 2025</strong> y el convenio aplicable.</p>
+<p>Si estas decidiendo cual oposicion preparar, el sueldo es un factor importante. Pero no es el unico: tambien debes considerar el numero de plazas, la dificultad del temario y el tiempo de preparacion.</p>
+
+<h2>Tabla comparativa de sueldos</h2>
+<p>Cifras brutas anuales para funcionario de carrera con destino en peninsula (14 pagas):</p>
+
+<h3>Auxilio Judicial (Grupo C2)</h3>
+<ul>
+  <li><strong>Sueldo base</strong>: ~8.500€/ano (grupo C2)</li>
+  <li><strong>Complemento de destino</strong> (nivel 15-17): ~4.800-5.600€/ano</li>
+  <li><strong>Complemento especifico</strong>: ~9.500-10.500€/ano</li>
+  <li><strong>Pagas extras</strong>: incluidas en las 14 pagas</li>
+  <li><strong>Total bruto anual</strong>: <strong>~23.000-25.000€</strong></li>
+  <li><strong>Neto mensual estimado</strong>: ~1.350-1.500€</li>
+</ul>
+
+<h3>Tramitacion Procesal y Administrativa (Grupo C1)</h3>
+<ul>
+  <li><strong>Sueldo base</strong>: ~9.500€/ano (grupo C1)</li>
+  <li><strong>Complemento de destino</strong> (nivel 18-20): ~6.200-7.200€/ano</li>
+  <li><strong>Complemento especifico</strong>: ~11.000-12.500€/ano</li>
+  <li><strong>Total bruto anual</strong>: <strong>~27.000-29.000€</strong></li>
+  <li><strong>Neto mensual estimado</strong>: ~1.550-1.700€</li>
+</ul>
+
+<h3>Gestion Procesal y Administrativa (Grupo A2)</h3>
+<ul>
+  <li><strong>Sueldo base</strong>: ~11.500€/ano (grupo A2)</li>
+  <li><strong>Complemento de destino</strong> (nivel 22-24): ~8.000-9.500€/ano</li>
+  <li><strong>Complemento especifico</strong>: ~13.000-14.500€/ano</li>
+  <li><strong>Total bruto anual</strong>: <strong>~33.000-35.000€</strong></li>
+  <li><strong>Neto mensual estimado</strong>: ~1.850-2.050€</li>
+</ul>
+
+<h2>¿Que son los trienios?</h2>
+<p>Cada 3 anos de servicio, un funcionario percibe un <strong>trienio</strong> que se anade al sueldo de forma permanente:</p>
+<ul>
+  <li><strong>Auxilio Judicial (C2)</strong>: ~30€ brutos/mes por trienio</li>
+  <li><strong>Tramitacion Procesal (C1)</strong>: ~36€ brutos/mes por trienio</li>
+  <li><strong>Gestion Procesal (A2)</strong>: ~45€ brutos/mes por trienio</li>
+</ul>
+<p>Un funcionario con 15 anos de antiguedad tendria 5 trienios. En el caso de Gestion Procesal, eso supone +225€ brutos mensuales adicionales al sueldo base.</p>
+
+<h2>¿Influye la comunidad autonoma?</h2>
+<p>Si. El <strong>complemento especifico</strong> varia segun la comunidad autonoma donde prestes servicio. Las comunidades con competencias transferidas en Justicia (como Cataluna, Pais Vasco, Madrid, Andalucia, Comunidad Valenciana y Canarias) pueden tener complementos ligeramente diferentes.</p>
+<p>En general, las diferencias son de <strong>1.000-2.000€ brutos anuales</strong> entre comunidades. Pais Vasco y Cataluna suelen tener complementos algo superiores.</p>
+
+<h2>Comparativa rapida: Justicia vs AGE vs Correos</h2>
+<ul>
+  <li><strong>Correos (REP)</strong>: ~20.000€ brutos — ESO — sin penalizacion — 4.055 plazas</li>
+  <li><strong>Auxilio Judicial (C2)</strong>: ~24.000€ brutos — ESO — penalizacion 1/4 — examen MJU</li>
+  <li><strong>Auxiliar AGE (C2)</strong>: ~24.000€ brutos — ESO — penalizacion 1/3 — examen INAP</li>
+  <li><strong>Tramitacion Procesal (C1)</strong>: ~28.000€ brutos — Bachillerato — penalizacion 1/4 — 3 ejercicios</li>
+  <li><strong>Administrativo AGE (C1)</strong>: ~28.000€ brutos — Bachillerato — penalizacion 1/3 — 2 ejercicios</li>
+  <li><strong>Gestion Procesal (A2)</strong>: ~34.000€ brutos — Grado universitario — 3 ejercicios</li>
+</ul>
+
+<h2>¿Cual preparar?</h2>
+<p>Depende de tu titulacion y tu disponibilidad:</p>
+<ul>
+  <li><strong>Solo ESO</strong>: Auxilio Judicial ofrece mejor sueldo que Correos (+4.000€/ano) pero con penalizacion y menos plazas</li>
+  <li><strong>Bachillerato</strong>: Tramitacion Procesal tiene un sueldo competitivo (~28.000€) y buenas perspectivas de promocion interna a Gestion</li>
+  <li><strong>Grado universitario</strong>: Gestion Procesal es una de las mejores oposiciones del grupo A2 en relacion dificultad/sueldo</li>
+</ul>
+<p>Sea cual sea tu eleccion, en OpoRuta puedes preparar los tres cuerpos de Justicia con tests verificados, simulacros reales y analisis de errores con IA.</p>
+<p><strong><a href="/register">Crea tu cuenta gratis</a></strong> y elige tu oposicion.</p>
+<p><a href="/oposiciones/justicia/auxilio-judicial">Auxilio Judicial</a> · <a href="/oposiciones/justicia/tramitacion-procesal">Tramitacion Procesal</a> · <a href="/oposiciones/justicia/gestion-procesal">Gestion Procesal</a></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Cuanto cobra un Auxilio Judicial al mes?', answer: 'Aproximadamente 1.350-1.500€ netos mensuales en 14 pagas. El bruto anual ronda los 23.000-25.000€ segun nivel de destino y comunidad autonoma.' },
+      { question: '¿Cuanto cobra un funcionario de Tramitacion Procesal?', answer: 'Entre 27.000 y 29.000€ brutos anuales (1.550-1.700€ netos/mes en 14 pagas). Es grupo C1, requiere Bachillerato.' },
+      { question: '¿Cuanto gana un Gestor Procesal?', answer: 'Entre 33.000 y 35.000€ brutos anuales (1.850-2.050€ netos/mes). Es grupo A2, requiere titulo universitario (grado). Es de los sueldos mas altos del A2 en la funcion publica.' },
+      { question: '¿Cuanto suman los trienios?', answer: 'Cada trienio (3 anos de servicio) suma ~30€/mes en C2, ~36€/mes en C1 y ~45€/mes en A2. Con 15 anos de servicio un Gestor Procesal cobra +225€ mensuales adicionales por trienios.' },
+      { question: '¿Cobra mas un funcionario de Justicia en Pais Vasco?', answer: 'Generalmente si. Las comunidades con competencias transferidas (Pais Vasco, Cataluna, etc.) pueden tener complementos especificos algo superiores, con diferencias de 1.000-2.000€ brutos anuales respecto a otras comunidades.' },
+    ],
+  },
+
+  // ─── Post 82 — OpoRuta vs OpositaTest Justicia comparativa ────────────────────
+  {
+    slug: 'oporuta-vs-opositatest-justicia-auxilio-tramitacion-2026',
+    title: 'OpoRuta vs OpositaTest para Justicia 2026: comparativa honesta',
+    description: 'Comparativa entre OpoRuta y OpositaTest para oposiciones de Justicia. Diferencias en verificacion BOE, IA, precios y simulacros para Auxilio y Tramitacion.',
+    date: '2026-03-30',
+    keywords: ['opositatest justicia', 'test auxilio judicial online', 'alternativa opositatest justicia', 'oporuta vs opositatest', 'test tramitacion procesal online', 'mejor plataforma oposiciones justicia'],
+    content: `
+<h2>OpoRuta y OpositaTest: dos enfoques para preparar Justicia</h2>
+<p>Si estas preparando oposiciones de <strong>Auxilio Judicial</strong> o <strong>Tramitacion Procesal</strong>, probablemente hayas oido hablar de OpositaTest. Es la plataforma mas conocida para tests de oposiciones en Espana, con anos de trayectoria y miles de usuarios.</p>
+<p><strong>OpoRuta</strong> es mas reciente, pero tiene un enfoque diferente: verificacion automatica de legislacion contra el BOE, inteligencia artificial para generar y explicar preguntas, y un precio de pago unico (sin suscripcion mensual).</p>
+<p>En esta comparativa vamos a ser honestos: ambas plataformas tienen ventajas. Te explicamos las diferencias para que decidas cual se adapta mejor a tu forma de estudiar.</p>
+
+<h2>Comparativa de funcionalidades</h2>
+
+<h3>Preguntas y verificacion</h3>
+<ul>
+  <li><strong>OpositaTest</strong>: banco de preguntas amplio, creado manualmente por opositores y colaboradores. Gran volumen acumulado a lo largo de anos. Las preguntas se revisan periodicamente, pero la actualizacion ante reformas legislativas depende de la comunidad.</li>
+  <li><strong>OpoRuta</strong>: preguntas generadas por IA y <strong>verificadas automaticamente contra la legislacion del BOE</strong>. Si una pregunta cita un articulo de la LOPJ, LEC o LECrim, el sistema comprueba que la cita sea correcta y vigente. Con la <strong>LO 1/2025</strong>, esto marca diferencia.</li>
+</ul>
+
+<h3>Inteligencia artificial</h3>
+<ul>
+  <li><strong>OpositaTest</strong>: no utiliza IA para generacion ni explicacion de preguntas. El enfoque es tradicional: banco estatico de preguntas con estadisticas de acierto.</li>
+  <li><strong>OpoRuta</strong>: IA integrada en toda la plataforma:
+    <ul>
+      <li><strong>Tutor socratico</strong>: cuando fallas una pregunta, la IA no te da la respuesta directamente. Te hace preguntas guia para que llegues al razonamiento correcto por ti mismo.</li>
+      <li><strong>Generacion adaptativa</strong>: las preguntas se generan en funcion de tu nivel y los temas que mas necesitas repasar.</li>
+      <li><strong>Caza-Trampas</strong>: ejercicio exclusivo que presenta enunciados con errores juridicos sutiles para entrenar tu atencion al detalle.</li>
+      <li><strong>Flashcards con repeticion espaciada</strong>: generadas automaticamente para los articulos que mas te cuestan.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Simulacros</h3>
+<ul>
+  <li><strong>OpositaTest</strong>: simulacros con preguntas del banco. Amplia experiencia en formato test. Estadisticas de comparacion con otros usuarios.</li>
+  <li><strong>OpoRuta</strong>: simulacros con <strong>preguntas de examenes reales del MJU</strong> ingestadas directamente de convocatorias anteriores. Timer activo, penalizacion 1/4, desglose por tema al finalizar.</li>
+</ul>
+
+<h3>Precio</h3>
+<ul>
+  <li><strong>OpositaTest</strong>: modelo de suscripcion mensual. Dependiendo del plan y la oposicion, el coste puede oscilar entre 8-15€/mes. A lo largo de 12-18 meses de preparacion, el coste total es de 100-270€.</li>
+  <li><strong>OpoRuta</strong>: <strong>49,99€ pago unico</strong> por oposicion. Sin suscripcion, sin renovaciones. Acceso de por vida al contenido de la oposicion elegida. Para quienes preparan Auxilio + Tramitacion, hay Pack Doble por 79,99€.</li>
+</ul>
+
+<h3>Legislacion actualizada</h3>
+<ul>
+  <li><strong>OpositaTest</strong>: las preguntas se actualizan progresivamente. Puede haber un desfase entre la publicacion de una reforma (como la LO 1/2025) y su reflejo en las preguntas.</li>
+  <li><strong>OpoRuta</strong>: la base de conocimiento juridico se actualiza con cada reforma del BOE. Las preguntas se verifican en tiempo real contra el texto legal vigente.</li>
+</ul>
+
+<h2>¿Donde destaca cada plataforma?</h2>
+
+<h3>OpositaTest destaca en:</h3>
+<ul>
+  <li><strong>Trayectoria</strong>: anos de experiencia y miles de usuarios que la avalan</li>
+  <li><strong>Volumen de preguntas</strong>: banco acumulado muy amplio</li>
+  <li><strong>Comunidad</strong>: foros y comparativas con otros opositores</li>
+  <li><strong>Variedad de oposiciones</strong>: cubre muchas mas oposiciones que OpoRuta</li>
+</ul>
+
+<h3>OpoRuta destaca en:</h3>
+<ul>
+  <li><strong>Verificacion BOE</strong>: cada cita legal comprobada automaticamente</li>
+  <li><strong>IA educativa</strong>: tutor socratico, Caza-Trampas, flashcards adaptativas</li>
+  <li><strong>Legislacion actualizada</strong>: LO 1/2025 integrada desde su publicacion</li>
+  <li><strong>Precio</strong>: pago unico de 49,99€ vs suscripcion mensual</li>
+  <li><strong>Simulacros MJU reales</strong>: preguntas de examenes oficiales</li>
+</ul>
+
+<h2>¿Son compatibles?</h2>
+<p>Si. Muchos opositores usan ambas plataformas. OpositaTest para volumen de preguntas y OpoRuta para verificacion legislativa y practica con IA. No son excluyentes — son complementarias.</p>
+<p>Dicho esto, si tu presupuesto es limitado, OpoRuta ofrece <strong>mas funcionalidades por un pago unico de 49,99€</strong> que una suscripcion anual en OpositaTest.</p>
+
+<h2>Prueba OpoRuta gratis</h2>
+<p>No necesitas elegir a ciegas. <strong><a href="/register">Crea tu cuenta gratis</a></strong> y haz varios tests de Auxilio Judicial o Tramitacion Procesal. Si te convence, el Pack Justicia cuesta 49,99€. Si no, no has perdido nada.</p>
+<p><a href="/oposiciones/justicia/auxilio-judicial">Auxilio Judicial</a> · <a href="/oposiciones/justicia/tramitacion-procesal">Tramitacion Procesal</a> · <a href="/precios">Ver precios</a></p>
+    `.trim(),
+    faqs: [
+      { question: '¿Que diferencia a OpoRuta de OpositaTest para Justicia?', answer: 'OpoRuta verifica cada cita legal automaticamente contra el BOE, incluye tutor IA socratico, Caza-Trampas y flashcards adaptativas. OpositaTest tiene mas trayectoria, un banco de preguntas mas amplio y una comunidad de usuarios consolidada.' },
+      { question: '¿Cual es mas barato para preparar Justicia?', answer: 'OpoRuta: 49,99€ pago unico (sin suscripcion). OpositaTest: 8-15€/mes en suscripcion. En 12 meses de preparacion, OpositaTest cuesta entre 100 y 180€. OpoRuta siempre es 49,99€.' },
+      { question: '¿Cual es mejor para Auxilio Judicial y Tramitacion?', answer: 'Depende de lo que valores. Si priorizas verificacion legislativa actualizada (LO 1/2025), IA educativa y pago unico, OpoRuta. Si priorizas volumen de preguntas y comunidad, OpositaTest. Muchos opositores usan ambas.' },
+      { question: '¿OpoRuta verifica las preguntas contra la legislacion?', answer: 'Si. Cada pregunta que cita un articulo de la LOPJ, LEC, LECrim o cualquier ley del temario se verifica automaticamente contra el texto legal vigente del BOE. Si un articulo ha cambiado, la pregunta se actualiza.' },
+    ],
+  },
 ]
