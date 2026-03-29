@@ -168,7 +168,12 @@ export async function POST(request: NextRequest) {
     return await saveAndReturn(serviceSupabase, user.id, oposicionId, s.caso, s.preguntas, 'repeat-1.0', stats, log)
   }
 
-  // ���─ 7. MODE: new — serve unseen from bank (€0 IA) ──────────────────────
+  // -- 7. PREMIUM QUOTA: first FREE_INCLUDED supuestos are free ---------------
+  // After that, each unlock costs 1 credit (whether served from bank or AI-generated).
+  // Credits pay for ACCESS, not generation. We only call AI when bank is exhausted.
+  const FREE_INCLUDED = 5
+
+  // Fetch unseen from bank (needed for both free and paid paths)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: unseenRows } = await (serviceSupabase as any)
     .from('supuesto_bank')
@@ -178,21 +183,23 @@ export async function POST(request: NextRequest) {
     .order('created_at', { ascending: true })
     .limit(1)
 
-  if (unseenRows && (unseenRows as unknown[]).length > 0) {
+  const hasUnseen = unseenRows && (unseenRows as unknown[]).length > 0
+
+  // -- 7a. Within free quota: serve from bank, no credit ----------------------
+  if (seen < FREE_INCLUDED && hasUnseen) {
     const supuesto = (unseenRows as { id: string; caso: Json; preguntas: Json }[])[0]
 
-    // Track seen
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await (serviceSupabase as any)
       .from('user_supuestos_seen')
       .insert({ user_id: user.id, supuesto_id: supuesto.id })
-      .catch(() => {}) // ignore duplicate
+      .catch(() => {})
 
-    log.info({ userId: user.id, supuestoId: supuesto.id, source: 'bank' }, 'Served unseen from bank')
+    log.info({ userId: user.id, supuestoId: supuesto.id, seen, source: 'bank-free' }, 'Served free (within quota)')
     return await saveAndReturn(serviceSupabase, user.id, oposicionId, supuesto.caso, supuesto.preguntas, 'supuesto-bank-1.0', { ...stats, unseen: unseen - 1 }, log)
   }
 
-  // ── 8. No unseen → need credit to generate/unlock ──────────────────────
+  // -- 7b. Free quota used up OR no unseen: need credit -----------------------
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: profile } = await (serviceSupabase as any)
     .from('profiles')
@@ -203,20 +210,36 @@ export async function POST(request: NextRequest) {
   const balance = (profile as { corrections_balance?: number } | null)?.corrections_balance ?? 0
 
   if (balance < 1 && !isAdmin) {
-    log.info({ userId: user.id, balance, stats }, 'No credits, no unseen — paywall')
+    const msg = seen < FREE_INCLUDED
+      ? 'No hay supuestos disponibles en el banco. Necesitas 1 credito IA para generar uno nuevo.'
+      : `Has completado los ${FREE_INCLUDED} supuestos incluidos. Necesitas 1 credito IA para desbloquear el siguiente.`
+    log.info({ userId: user.id, balance, seen, stats }, 'No credits - paywall')
     return NextResponse.json(
-      {
-        error: `Has completado los ${total} supuestos disponibles. Necesitas 1 crédito IA para desbloquear uno nuevo.`,
-        code: 'PAYWALL_SUPUESTO_CREDITO',
-        stats,
-        balance,
-      },
+      { error: msg, code: 'PAYWALL_SUPUESTO_CREDITO', stats, balance },
       { status: 402 }
     )
   }
 
-  // ── 9. Has credit → generate with AI → save to bank → serve ────────────
-  log.info({ userId: user.id, balance }, 'Generating new supuesto with AI')
+  // -- 8. Has credit + unseen in bank: charge 1 credit, serve from bank -------
+  if (hasUnseen) {
+    const supuesto = (unseenRows as { id: string; caso: Json; preguntas: Json }[])[0]
+
+    // Deduct 1 credit
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await (serviceSupabase as any).rpc('use_correction', { p_user_id: user.id })
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await (serviceSupabase as any)
+      .from('user_supuestos_seen')
+      .insert({ user_id: user.id, supuesto_id: supuesto.id })
+      .catch(() => {})
+
+    log.info({ userId: user.id, supuestoId: supuesto.id, seen, source: 'bank-paid' }, 'Served from bank (1 credit)')
+    return await saveAndReturn(serviceSupabase, user.id, oposicionId, supuesto.caso, supuesto.preguntas, 'supuesto-bank-1.0', { ...stats, unseen: unseen - 1 }, log)
+  }
+
+  // -- 9. Has credit + 0 unseen: generate with AI, save to bank, serve --------
+  log.info({ userId: user.id, balance, seen }, 'Generating new supuesto with AI (bank exhausted)')
 
   try {
     const systemPrompt = getSystemPrompt(config)
