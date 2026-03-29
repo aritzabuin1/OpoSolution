@@ -339,15 +339,12 @@ export function ExplicarErroresPanel({ testId, numErrores, isFirstTestWithErrors
           ? 'border-amber-400/60 bg-amber-50/50 dark:bg-amber-950/20 ring-1 ring-amber-400/30 animate-[pulse_3s_ease-in-out_2]'
           : 'border-primary/30 bg-primary/5'
       }`}>
-        {/* First-time dismiss */}
+        {/* First-time highlight — no dismiss button, always visible until they click analyze */}
         {isFirstTime && (
-          <div className="flex items-center justify-between -mt-1 -mx-1 mb-1">
+          <div className="-mt-1 -mx-1 mb-1">
             <span className="text-xs font-medium text-amber-700 dark:text-amber-400">
               Nuevo — prueba cómo funciona
             </span>
-            <button onClick={dismissFirstTime} className="text-muted-foreground hover:text-foreground p-0.5" aria-label="Cerrar">
-              <X className="h-3.5 w-3.5" />
-            </button>
           </div>
         )}
 

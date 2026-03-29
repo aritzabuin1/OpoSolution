@@ -104,8 +104,12 @@ export function TutorIAModal({
     setOpen(false)
     setTimeout(() => {
       const el = document.getElementById('analisis-ia')
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }, 250)
+      if (el) {
+        // Offset for fixed header (~80px) so the panel is fully visible
+        const y = el.getBoundingClientRect().top + window.scrollY - 80
+        window.scrollTo({ top: y, behavior: 'smooth' })
+      }
+    }, 300)
   }
 
   if (numErrores === 0) return null
