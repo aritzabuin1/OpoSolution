@@ -172,7 +172,20 @@ c) Sí, facilitando todos los extremos de identidad, domicilios, origen y cuant�
 d) Sí, sin necesidad de acompañar los documentos del art. 812 LEC.
 Correcta: c)
 
-Las preguntas del MJU son formales, extensas y citan artículos de la LEC/LECrim/LOPJ específicamente.`
+Las preguntas del MJU son formales, extensas y citan artículos de la LEC/LECrim/LOPJ específicamente.
+
+**EJEMPLO 2 (Convocatoria MJU 2024, Ejercicio 2 Tramitación Procesal — ABREVIADO):**
+
+Escenario: Dª Lucía Álvarez Sotero contrajo matrimonio con D. Eduardo García Pelayo en Madrid, sin capitulaciones matrimoniales, domicilio conyugal en Navalcarnero. Dos hijos menores (2018, 2021). Eduardo se traslada a Barcelona por trabajo, Lucía se muda a Móstoles con los hijos. Lucía presenta demanda de divorcio contencioso solicitando guarda y custodia, pensión de alimentos de 400€/hijo, uso de vivienda familiar. Eduardo formula reconvención pidiendo reducción a 200€/hijo.
+
+Pregunta 1: "En el proceso de divorcio contencioso, ¿será parte el Ministerio Fiscal?"
+a) No, al tratarse de divorcio contencioso.
+b) Sí, puesto que existen hijos menores del matrimonio.
+c) Sólo será parte cuando las partes decidan convertir el procedimiento en mutuo acuerdo.
+d) El Ministerio Fiscal es parte en todos los procesos de divorcio contencioso.
+Correcta: b)
+
+Las preguntas de Tramitación cubren derecho de familia, competencia territorial, medidas provisionales, reconvención — todo vinculado al caso concreto.`
 
 const SYSTEM_PROCESAL = `Eres un experto en oposiciones de Justicia (Auxilio Judicial, Tramitación Procesal, Gestión Procesal).
 
