@@ -711,6 +711,14 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 - [x] **Supuesto scoring multi-caso**: Auxilio mostraba "sobre 40" (2 casos) en vez de "sobre 20" (1 caso) — auto-escala
 - [x] **Vercel deploy bloqueado**: cron `"5,8,11 0 * * *"` bloqueaba deploys (Hobby no permite multi-run) — 9 commits sin deployar durante 2h
 
+#### E. Verificaciones en producción (2026-03-29)
+
+- [x] **Banco progresivo de preguntas**: FUNCIONA — 21 preguntas insertadas (temas 7, 10, 2 de Auxilio). correcta como char OK
+- [x] **Banco progresivo de supuestos**: FUNCIONA — sirve supuestos diferentes del banco, reduce contador unseen correctamente
+- [x] **Supuesto scoring per-case**: FUNCIONA — Auxilio muestra "sobre 20" (1 caso) no "sobre 40" (2 casos)
+- [x] **TutorIAModal**: FUNCIONA — popup aparece, scroll al panel correcto
+- [x] **Vercel deploys**: RESTAURADO — webhook GitHub → Vercel funciona de nuevo tras fix cron
+
 #### D. Funcionalidades nuevas
 
 - [x] **TutorIAModal**: popup escalonado 3 fases (behavioral science) para promover Tutor IA
