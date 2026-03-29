@@ -98,7 +98,7 @@ export default function JusticiaHub() {
           Auxilio Judicial, Tramitación Procesal y Gestión Procesal.
           Tests con IA verificados contra la legislación vigente, incluida la nueva LO 1/2025.
         </p>
-        <Badge variant="outline" className="text-xs">Próximamente — Estamos preparando el contenido</Badge>
+        <Badge variant="outline" className="text-xs">MJU · 2.300+ plazas · 3 cuerpos disponibles</Badge>
       </section>
 
       {/* 3 cuerpos */}
@@ -177,8 +177,8 @@ export default function JusticiaHub() {
 
       {/* CTA */}
       <section className="text-center py-8 space-y-4 bg-indigo-50 dark:bg-indigo-950/20 rounded-2xl">
-        <h2 className="text-2xl font-bold">Próximamente en OpoRuta</h2>
-        <p className="text-muted-foreground">Estamos preparando el contenido de Justicia. Regístrate para ser el primero en acceder.</p>
+        <h2 className="text-2xl font-bold">Empieza a preparar Justicia hoy</h2>
+        <p className="text-muted-foreground">Tests verificados, simulacros con exámenes MJU reales y Tutor IA. Gratis para empezar.</p>
         <Link href="/register">
           <Button size="lg" className="gap-2">
             Crear cuenta gratis <ArrowRight className="w-4 h-4" />
