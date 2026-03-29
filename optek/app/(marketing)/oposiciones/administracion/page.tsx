@@ -39,7 +39,7 @@ const CUERPOS = [
     temas: 28,
     plazas: '1.700',
     ejercicios: 1,
-    sueldo: '~16.000€/año',
+    sueldo: '',
     requisito: 'ESO o equivalente',
     desc: 'Tareas de mecanización, registro, archivo, atención al público y apoyo administrativo en ministerios y organismos públicos.',
     color: 'blue',
@@ -53,7 +53,7 @@ const CUERPOS = [
     temas: 45,
     plazas: '750',
     ejercicios: 2,
-    sueldo: '~22.000€/año',
+    sueldo: '',
     requisito: 'Bachillerato o equivalente',
     desc: 'Gestión administrativa, tramitación de expedientes, contabilidad pública y gestión de personal en la AGE.',
     color: 'indigo',
@@ -67,7 +67,7 @@ const CUERPOS = [
     temas: 58,
     plazas: '200+',
     ejercicios: '2 + supuesto práctico',
-    sueldo: '~28.000€/año',
+    sueldo: '',
     requisito: 'Grado universitario',
     desc: 'Gestión y dirección de procedimientos administrativos, elaboración de informes técnicos y resolución de supuestos prácticos complejos.',
     color: 'emerald',
@@ -107,7 +107,7 @@ const FEATURES = [
 const FAQS = [
   {
     q: '¿Cuál es la diferencia entre C2, C1 y A2?',
-    a: 'C2 (Auxiliar) requiere la ESO y tiene 1 ejercicio tipo test. C1 (Administrativo) requiere Bachillerato y tiene 2 ejercicios. A2 (GACE) requiere Grado universitario e incluye un supuesto práctico de desarrollo. A mayor grupo, mayor sueldo y responsabilidad.',
+    a: 'C2 (Auxiliar) requiere la ESO y tiene 1 ejercicio tipo test. C1 (Administrativo) requiere Bachillerato y tiene 2 ejercicios. A2 (GACE) requiere Grado universitario e incluye un supuesto práctico de desarrollo. A mayor grupo, mayor responsabilidad.',
   },
   {
     q: '¿Qué requisitos necesito para presentarme?',
@@ -188,7 +188,7 @@ export default function AdministracionHub() {
                       <span className="flex items-center gap-1"><Users className="w-3.5 h-3.5" /> {c.plazas} plazas</span>
                       <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {c.ejercicios} ejercicios</span>
                       <span className="flex items-center gap-1"><GraduationCap className="w-3.5 h-3.5" /> {c.requisito}</span>
-                      <span className="font-medium text-green-700">{c.sueldo}</span>
+                      {c.sueldo && <span className="font-medium text-green-700">{c.sueldo}</span>}
                     </div>
                     <div className="flex justify-end">
                       <span className={`text-sm font-medium flex items-center gap-1 ${c.featured ? 'text-emerald-600' : 'text-blue-600'}`}>

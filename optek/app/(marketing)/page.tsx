@@ -626,50 +626,63 @@ export default async function LandingPage() {
         </div>
       </section>
 
-      {/* ─── Pricing CTA ─────────────────────────────────────────────── */}
-      <section id="precios" aria-labelledby="pricing-heading" className="py-20 bg-gradient-to-b from-background to-muted/30">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center">
-          <Badge variant="outline" className="mb-4">Precios</Badge>
-          <h2 id="pricing-heading" className="text-3xl font-bold tracking-tight">
-            Empieza gratis. Paga solo por lo que necesitas.
-          </h2>
-          <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
-            Sin permanencias. Sin suscripción. Pago único — acceso para siempre.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/precios">
-              <Button size="lg" className="gap-2 px-8">
-                Ver precios por oposición
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href="/register">
-              <Button size="lg" variant="outline" className="gap-2 px-8">
-                Empezar gratis
-              </Button>
-            </Link>
+      {/* ─── Pricing — Visual con mini-cards por rama ────────────────── */}
+      <section id="precios" aria-labelledby="pricing-heading" className="py-20 bg-gradient-to-b from-muted/40 via-primary/5 to-muted/40 border-y">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <div className="text-center mb-10">
+            <Badge variant="outline" className="mb-4">Precios</Badge>
+            <h2 id="pricing-heading" className="text-3xl font-bold tracking-tight">
+              Empieza gratis. Paga solo por lo que necesitas.
+            </h2>
+            <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
+              Sin permanencias. Sin suscripción. Pago único — acceso para siempre.
+            </p>
           </div>
-          <p className="mt-6 text-sm text-muted-foreground">
-            Desde 49,99€ pago único · ¿Te quedas sin créditos IA? Recarga desde 9,99€
-          </p>
-        </div>
-      </section>
 
-      {/* ─── Early adopter CTA ────────────────────────────────────────── */}
-      <section className="py-16 bg-muted/30">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 text-center">
-          <p className="text-lg font-semibold text-foreground mb-2">
-            Únete a los primeros opositores en probarlo
-          </p>
-          <p className="text-sm text-muted-foreground mb-6">
-            AGE (C2, C1, A2) y Correos disponibles ahora. Justicia próximamente.
-          </p>
-          <Link href="/register">
-            <Button size="lg" className="gap-2">
-              Empezar gratis — sin tarjeta
-              <ArrowRight className="h-4 w-4" />
-            </Button>
-          </Link>
+          {/* 3 mini price cards */}
+          <div className="grid gap-4 sm:grid-cols-3 max-w-4xl mx-auto mb-10">
+            {/* AGE */}
+            <div className="relative rounded-xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white dark:from-blue-950/20 dark:to-background p-6 text-center space-y-2">
+              <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider">Administración del Estado</p>
+              <p className="text-sm text-muted-foreground">C2, C1 o A2</p>
+              <p className="text-3xl font-bold text-blue-700">desde 49,99€</p>
+              <p className="text-xs text-muted-foreground">pago único · acceso ilimitado</p>
+            </div>
+            {/* Correos */}
+            <div className="relative rounded-xl border-2 border-orange-200 bg-gradient-to-br from-orange-50 to-white dark:from-orange-950/20 dark:to-background p-6 text-center space-y-2">
+              <p className="text-xs font-semibold text-orange-600 uppercase tracking-wider">Correos</p>
+              <p className="text-sm text-muted-foreground">Grupo IV</p>
+              <p className="text-3xl font-bold text-orange-700">49,99€</p>
+              <p className="text-xs text-muted-foreground">pago único · acceso ilimitado</p>
+            </div>
+            {/* Justicia */}
+            <div className="relative rounded-xl border-2 border-violet-200 bg-gradient-to-br from-violet-50 to-white dark:from-violet-950/20 dark:to-background p-6 text-center space-y-2">
+              <p className="text-xs font-semibold text-violet-600 uppercase tracking-wider">Justicia</p>
+              <p className="text-sm text-muted-foreground">Auxilio, Tramitación o Gestión</p>
+              <p className="text-3xl font-bold text-violet-700">desde 49,99€</p>
+              <p className="text-xs text-muted-foreground">pago único · acceso ilimitado</p>
+            </div>
+          </div>
+
+          {/* CTA + extras */}
+          <div className="text-center space-y-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link href="/precios">
+                <Button size="lg" className="gap-2 px-8 shadow-md">
+                  Ver todos los precios y packs
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+              <Link href="/register">
+                <Button size="lg" variant="outline" className="gap-2 px-8">
+                  Empezar gratis — sin tarjeta
+                </Button>
+              </Link>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Todos los temas gratis · Packs dobles y triples con descuento · Recarga créditos IA desde 9,99€
+            </p>
+          </div>
         </div>
       </section>
 

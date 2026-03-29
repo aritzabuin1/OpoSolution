@@ -90,8 +90,8 @@ const FAQS = [
     a: 'Título de Bachillerato, Técnico o equivalente, ser mayor de 18 años y tener nacionalidad española o de la UE. No se exige experiencia previa ni titulación universitaria.',
   },
   {
-    q: '¿Cuál es el sueldo de Tramitación Procesal?',
-    a: 'Aproximadamente 22.000€ brutos anuales en 14 pagas. A esto se suman trienios, complemento de destino y productividad. Con antigüedad puede superar los 28.000€.',
+    q: '¿Cuánto cobra un Tramitador Procesal?',
+    a: 'Aproximadamente 28.000€ brutos anuales en 14 pagas (sueldo base 1.090€/mes + complemento de destino + complemento específico). Varía según comunidad autónoma y tipo de juzgado. Con trienios puede superar los 32.000€. Fuente: PGE 2025.',
   },
   {
     q: '¿Cuándo es el examen de Tramitación Procesal 2026?',
@@ -99,7 +99,7 @@ const FAQS = [
   },
   {
     q: '¿En qué se diferencia Tramitación de Auxilio Judicial?',
-    a: 'Tramitación Procesal es cuerpo C1 (Bachillerato), con mayor sueldo y responsabilidad. Auxilio Judicial es C2 (ESO). Tramitación exige 37 temas frente a 26 de Auxilio, y tiene 3 ejercicios tipo test (general + procesal + ofimática) frente al ejercicio único de Auxilio.',
+    a: 'Tramitación Procesal es cuerpo C1 (Bachillerato), con mayor responsabilidad. Auxilio Judicial es C2 (ESO). Tramitación exige 37 temas frente a 26 de Auxilio, y tiene 3 ejercicios tipo test (general + procesal + ofimática) frente a los 2 de Auxilio.',
   },
 ]
 
@@ -349,7 +349,7 @@ export default function TramitacionProcesalLanding() {
         <div className="bg-indigo-50 dark:bg-indigo-950/20 border border-indigo-200 dark:border-indigo-800 rounded-lg p-4">
           <p className="text-sm text-indigo-800 dark:text-indigo-200">
             <Users className="w-4 h-4 inline mr-1.5" />
-            Sueldo aproximado: <strong>~22.000€/año</strong> en 14 pagas (sin contar trienios ni complementos).
+            <strong>Sueldo bruto:</strong> ~28.000€/año en 14 pagas (base + complementos). 1.155 plazas convocadas. Fuente: PGE 2025.
           </p>
         </div>
       </section>

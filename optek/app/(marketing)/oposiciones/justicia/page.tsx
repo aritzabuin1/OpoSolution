@@ -37,7 +37,6 @@ const CUERPOS = [
     temas: 26,
     plazas: 425,
     ejercicios: 2,
-    sueldo: '~18.000€/año',
     requisito: 'ESO o equivalente',
     desc: 'Funciones de apoyo en juzgados: actos de comunicación, ejecuciones, registro, guardia.',
     color: 'blue',
@@ -50,7 +49,6 @@ const CUERPOS = [
     temas: 37,
     plazas: 1155,
     ejercicios: 3,
-    sueldo: '~22.000€/año',
     requisito: 'Bachillerato o equivalente',
     desc: 'Tramitación de procedimientos judiciales, fe pública, gestión procesal informatizada.',
     color: 'indigo',
@@ -63,7 +61,6 @@ const CUERPOS = [
     temas: 68,
     plazas: 725,
     ejercicios: 3,
-    sueldo: '~28.000€/año',
     requisito: 'Grado universitario',
     desc: 'Dirección técnico-procesal, redacción de resoluciones, coordinación de oficina judicial.',
     color: 'purple',
@@ -79,7 +76,7 @@ export default function JusticiaHub() {
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
         mainEntity: [
-          { '@type': 'Question', name: '¿Qué oposiciones hay en Justicia?', acceptedAnswer: { '@type': 'Answer', text: 'Hay tres cuerpos principales: Auxilio Judicial (C2), Tramitación Procesal (C1) y Gestión Procesal (A2). Cada uno con diferente nivel de requisitos, temario y sueldo.' } },
+          { '@type': 'Question', name: '¿Qué oposiciones hay en Justicia?', acceptedAnswer: { '@type': 'Answer', text: 'Hay tres cuerpos principales: Auxilio Judicial (C2), Tramitación Procesal (C1) y Gestión Procesal (A2). Cada uno con diferente nivel de requisitos y temario.' } },
           { '@type': 'Question', name: '¿Qué ha cambiado con la LO 1/2025?', acceptedAnswer: { '@type': 'Answer', text: 'La Ley Orgánica 1/2025 del Servicio Público de Justicia sustituye parcialmente a la LOPJ. Afecta a temas de organización judicial, Letrado de la Administración de Justicia y oficina judicial.' } },
           { '@type': 'Question', name: '¿Cuándo son los exámenes de Justicia 2026?', acceptedAnswer: { '@type': 'Answer', text: 'Los exámenes de la OEP 2024 se celebrarán previsiblemente entre septiembre y noviembre de 2025. La OEP 2025 se espera para 2026.' } },
         ],
@@ -126,7 +123,7 @@ export default function JusticiaHub() {
                       <span className="flex items-center gap-1"><Users className="w-3.5 h-3.5" /> {c.plazas} plazas</span>
                       <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {c.ejercicios} ejercicios</span>
                       <span className="flex items-center gap-1"><GraduationCap className="w-3.5 h-3.5" /> {c.requisito}</span>
-                      <span className="font-medium text-green-700">{c.sueldo}</span>
+                      <span className="font-medium text-green-700">{c.plazas.toLocaleString()} plazas</span>
                     </div>
                     <div className="flex justify-end">
                       <span className="text-sm text-indigo-600 font-medium flex items-center gap-1">
@@ -162,9 +159,10 @@ export default function JusticiaHub() {
         <h2 className="text-2xl font-bold">Preguntas frecuentes</h2>
         <div className="space-y-4">
           {[
-            { q: '¿Qué oposiciones hay en Justicia?', a: 'Tres cuerpos: Auxilio Judicial (C2, ESO), Tramitación Procesal (C1, Bachillerato) y Gestión Procesal (A2, Grado). Cada uno con distinto temario, sueldo y nivel de exigencia.' },
+            { q: '¿Qué oposiciones hay en Justicia?', a: 'Tres cuerpos: Auxilio Judicial (C2, ESO), Tramitación Procesal (C1, Bachillerato) y Gestión Procesal (A2, Grado). Cada uno con distinto temario, requisitos y nivel de exigencia.' },
             { q: '¿Qué ha cambiado con la LO 1/2025?', a: 'Sustituye parcialmente a la LOPJ. Afecta a temas de organización judicial, oficina judicial y el papel del Letrado de la Administración de Justicia.' },
             { q: '¿Se pueden preparar dos cuerpos a la vez?', a: 'Sí. Auxilio y Tramitación comparten muchos temas (Constitución, LOPJ, procedimiento). Con el Pack Doble accedes a ambos por 79,99€.' },
+            { q: '¿Cuánto se cobra en Justicia?', a: 'Sueldo bruto anual aproximado (14 pagas, incluye base + complemento destino + específico): Auxilio Judicial ~24.000€, Tramitación Procesal ~28.000€, Gestión Procesal ~34.000€. Varía según comunidad autónoma, antigüedad (trienios) y tipo de juzgado. Fuente: PGE 2025 y tablas retributivas.' },
             { q: '¿Cuándo son los exámenes?', a: 'Los de la OEP 2024 se esperan entre septiembre y noviembre de 2025. La siguiente convocatoria (OEP 2025) previsiblemente en 2026.' },
           ].map(({ q, a }) => (
             <div key={q} className="border rounded-lg p-4">

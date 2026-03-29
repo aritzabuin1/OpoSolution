@@ -100,12 +100,12 @@ const FAQS = [
     a: 'Tres ejercicios eliminatorios: 1) Test de 100 preguntas en 100 minutos (60 pts, min 30). 2) Caso práctico tipo test: 10 preguntas en 30 minutos (15 pts, min 7,5). 3) Desarrollo escrito: 5 preguntas en 45 minutos sobre temas 17-39 y 43-67 (25 pts, min 12,5).',
   },
   {
-    q: '¿Qué sueldo tiene un Gestor Procesal?',
-    a: 'Aproximadamente 28.000 euros al año en 14 pagas, como funcionario del Grupo A2. Además, se perciben trienios, productividad y complementos por destino.',
+    q: '¿Cuánto cobra un Gestor Procesal?',
+    a: 'Aproximadamente 34.000€ brutos anuales en 14 pagas (sueldo base 1.294€/mes + complemento de destino + complemento específico). Varía según comunidad autónoma y tipo de juzgado. Con trienios puede superar los 38.000€. Fuente: PGE 2025.',
   },
   {
     q: '¿Puedo preparar Gestión Procesal con OpoRuta?',
-    a: 'Estamos desarrollando el módulo completo de Gestión Procesal con los 68 temas, incluyendo simulacros de caso práctico corregidos con IA. Déjanos tu email y te avisamos en cuanto esté disponible.',
+    a: 'Sí. OpoRuta incluye los 68 temas completos de Gestión Procesal, simulacros con preguntas oficiales MJU, caso práctico tipo test y desarrollo escrito con corrección IA usando la rúbrica oficial del MJU.',
   },
 ]
 
@@ -326,7 +326,7 @@ export default function GestionProcesalLanding() {
           <p className="text-sm text-purple-800 dark:text-purple-200">
             <GraduationCap className="w-4 h-4 inline mr-1.5" />
             <strong>Grupo A2</strong> — se requiere titulación universitaria. Es el cuerpo más alto de la Administración de Justicia al que se accede con grado.
-            Sueldo aproximado: 28.000 euros/año en 14 pagas.
+            <strong>Sueldo bruto:</strong> ~34.000€/año en 14 pagas (base 1.294€/mes + complementos). 725 plazas. Fuente: PGE 2025.
           </p>
         </div>
       </section>

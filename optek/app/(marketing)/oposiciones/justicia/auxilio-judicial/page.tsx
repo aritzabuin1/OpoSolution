@@ -79,7 +79,7 @@ const FAQS = [
   },
   {
     q: '¿Cuánto cobra un Auxilio Judicial?',
-    a: 'El sueldo bruto aproximado es de 18.000 € anuales repartidos en 14 pagas. Puede variar según la comunidad autónoma por complementos específicos.',
+    a: 'Aproximadamente 24.000€ brutos anuales en 14 pagas (sueldo base 988€/mes + complemento de destino + complemento específico). Varía según comunidad autónoma y tipo de juzgado. Con trienios de antigüedad puede superar los 26.000€. Fuente: PGE 2025.',
   },
   {
     q: '¿Cuándo es el examen de Auxilio Judicial 2026?',
@@ -264,7 +264,7 @@ export default function AuxilioJudicialLanding() {
         </ul>
         <div className="border rounded-lg p-4 bg-muted/50">
           <p className="text-sm text-muted-foreground">
-            <strong>Sueldo aproximado:</strong> ~18.000 €/año brutos en 14 pagas. Varía según comunidad autónoma y complementos.
+            <strong>Sueldo bruto:</strong> ~24.000€/año en 14 pagas (base + complementos). Varía según comunidad autónoma y antigüedad. Fuente: PGE 2025.
           </p>
         </div>
       </section>
