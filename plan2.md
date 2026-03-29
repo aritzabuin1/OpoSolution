@@ -719,9 +719,14 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 - [x] **TutorIAModal**: FUNCIONA — popup aparece, scroll al panel correcto
 - [x] **Vercel deploys**: RESTAURADO — webhook GitHub → Vercel funciona de nuevo tras fix cron
 
-#### F. Pendiente próxima sesión
+#### F. Completado final sesión 2026-03-29
 
-- [ ] **Supuesto UX post-gratis**: cuando el premium agota los 5 gratis, el frontend debe mostrar:
+- [x] **Supuesto UX post-gratis**: lista de completados con "Repetir" (gratis) + CTA "Desbloquear nuevo (1 crédito)" + CTA "Comprar créditos" si no tiene. Stats muestran "X gratis restantes"
+- [x] **Admin supuesto bank dashboard**: `/admin/content` muestra free/premium/oficial/IA/practicados por oposición
+- [x] **PostgREST .insert().catch() fix**: reemplazado por try/catch en generate-supuesto-test (3 ocurrencias)
+- [x] **Supuesto scoring multi-caso**: Auxilio muestra "sobre 20" (1 caso) no "sobre 40" (2 casos)
+
+#### G. Pendiente próxima sesión
   1. Lista de supuestos ya hechos con botón "Repetir" (gratis, sin crédito, usa `mode: 'repeat'`)
   2. CTA "Desbloquear nuevo supuesto (1 crédito)" → llama al endpoint normal
   3. Si no tiene créditos → CTA "Comprar créditos" → /precios
