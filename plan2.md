@@ -719,6 +719,21 @@ En realidad para Correos los psicotécnicos van **mezclados dentro del examen**,
 - [x] **TutorIAModal**: FUNCIONA — popup aparece, scroll al panel correcto
 - [x] **Vercel deploys**: RESTAURADO — webhook GitHub → Vercel funciona de nuevo tras fix cron
 
+#### F. Pendiente próxima sesión
+
+- [ ] **Supuesto UX post-gratis**: cuando el premium agota los 5 gratis, el frontend debe mostrar:
+  1. Lista de supuestos ya hechos con botón "Repetir" (gratis, sin crédito, usa `mode: 'repeat'`)
+  2. CTA "Desbloquear nuevo supuesto (1 crédito)" → llama al endpoint normal
+  3. Si no tiene créditos → CTA "Comprar créditos" → /precios
+  El backend ya soporta `mode: 'repeat'` sin cobrar crédito. Falta el frontend (SupuestoTestLauncher).
+- [ ] `/testear` — generar tests automatizados para gaps de cobertura
+- [ ] `/auditar` — auditoría general de calidad enterprise
+- [ ] Activar Tramitación (Stripe + `activa = true`) — Fase 2b
+- [ ] Activar Gestión Procesal (Stripe + `activa = true`) — Fase 2c
+- [ ] Parsear PDFs escaneados (exámenes antiguos 2008-2019) con IA vision
+- [ ] Plantilla correcta supuesto Gestión PJC/1437 sept 2025
+- [ ] Reto diario: solo genera 1 rama/día con Hobby — evaluar si suficiente o necesitamos Pro
+
 #### D. Funcionalidades nuevas
 
 - [x] **TutorIAModal**: popup escalonado 3 fases (behavioral science) para promover Tutor IA
