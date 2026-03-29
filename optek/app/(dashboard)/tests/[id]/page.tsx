@@ -108,7 +108,7 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
   let preguntasCuestionarioConfig: number | undefined
   let opoRama: string | undefined
   let opoSlug: string | undefined
-  type ScoringEjercicio = { nombre?: string; preguntas?: number; minutos?: number | null }
+  type ScoringEjercicio = { nombre?: string; preguntas?: number; minutos?: number | null; tipo?: string }
   if (test.oposicion_id) {
     const serviceSupabase = await createServiceClient()
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -123,10 +123,12 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
     const sc = opoRow?.scoring_config as { ejercicios?: ScoringEjercicio[]; minutos_total?: number } | null
     if (sc?.ejercicios?.[0]) {
       fullExamQuestions = sc.ejercicios[0].preguntas ?? 100
-      // For "examen completo" simulacro: sum ALL ejercicios' minutos
-      // minutos_total overrides if present, otherwise sum individual exercises
+      // For "examen completo" simulacro: sum simulable ejercicios' minutos
+      // Exclude tipo='tribunal' (desarrollo escrito — not part of MCQ simulacro)
+      // minutos_total overrides if present
+      const simulableEjercicios = sc.ejercicios.filter(ej => ej.tipo !== 'tribunal')
       const totalMinutos = sc.minutos_total
-        ?? (sc.ejercicios.reduce((sum, ej) => sum + (ej.minutos ?? 0), 0) || 90)
+        ?? (simulableEjercicios.reduce((sum, ej) => sum + (ej.minutos ?? 0), 0) || 90)
       fullExamSeconds = totalMinutos * 60
       preguntasCuestionarioConfig = sc.ejercicios[0].preguntas
     }
