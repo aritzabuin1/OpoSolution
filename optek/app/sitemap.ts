@@ -60,6 +60,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     // Sub-landings por oposición (SEO critical)
     {
+      url: `${APP_URL}/oposiciones/administracion`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
       url: `${APP_URL}/oposiciones/correos`,
       lastModified: now,
       changeFrequency: 'weekly',

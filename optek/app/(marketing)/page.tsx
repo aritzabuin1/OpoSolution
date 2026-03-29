@@ -24,7 +24,7 @@ import { ExamCountdown } from '@/components/marketing/ExamCountdown'
 import { blogPosts } from '@/content/blog/posts'
 import { AIAnalysisDemo } from '@/components/marketing/AIAnalysisDemo'
 import { SocialProofCounter } from '@/components/marketing/SocialProofCounter'
-import { WaitlistForm } from '@/components/marketing/WaitlistForm'
+// WaitlistForm removed — all ramas are now active
 
 const APP_URL_META = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
@@ -215,7 +215,7 @@ const faqs = [
   },
   {
     q: '¿Para qué oposiciones funciona ahora mismo?',
-    a: 'OpoRuta cubre las tres oposiciones de la Administración General del Estado: Auxiliar Administrativo (C2, 28 temas), Administrativo del Estado (C1, 45 temas) y Gestión del Estado GACE (A2, 58 temas con supuesto práctico IA). También Correos (12 temas, sin penalización, 4.055 plazas). Próximamente añadiremos Justicia (Auxilio, Tramitación y Gestión Procesal).',
+    a: 'OpoRuta cubre 7 oposiciones en 3 ramas: Administración del Estado (C2, C1, A2 con 28, 45 y 58 temas), Correos (12 temas, sin penalización, 4.055 plazas) y Justicia (Auxilio Judicial, Tramitación Procesal, Gestión Procesal). Total: más de 10.000 plazas.',
   },
   {
     q: '¿Qué pasa cuando agoto mis créditos IA?',
@@ -458,9 +458,9 @@ export default async function LandingPage() {
         </div>
       </section>
 
-      {/* ─── Elige tu oposición (T-15) ────────────────────────────────── */}
+      {/* ─── Elige tu oposición — Multi-rama hub ────────────────────── */}
       <section aria-labelledby="oposiciones-heading" className="py-12">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
               Oposiciones con IA verificada
@@ -469,189 +469,91 @@ export default async function LandingPage() {
               ¿Qué oposición preparas?
             </h2>
             <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
-              Contenido específico para cada cuerpo. Temario completo, legislación verificada y exámenes reales.
+              Elige tu rama. Contenido específico, legislación verificada y exámenes reales para cada oposición.
             </p>
           </div>
-          {/* Rama AGE header */}
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">Administración General del Estado</p>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
-            {/* C2 — Auxiliar */}
-            <Card className="relative overflow-hidden border-primary/30 shadow-md">
-              <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-[10px] font-bold px-3 py-1 rounded-bl-lg">
-                Disponible
-              </div>
-              <CardHeader className="pb-3">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                    <BookOpen className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-lg">Auxiliar Administrativo (C2)</CardTitle>
-                    <p className="text-xs text-muted-foreground">Cuerpo General Auxiliar AGE</p>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <ul className="space-y-1.5 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 28 temas (Bloque I + II)</li>
-                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 1.700 plazas convocadas</li>
-                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> Exámenes INAP 2018–2024</li>
-                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> Legislación verificada</li>
-                </ul>
-                <Link href="/register" className="block pt-2">
-                  <Button className="w-full gap-2" size="sm">
-                    Empezar con C2
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-            {/* C1 — Administrativo */}
-            <Card className="relative overflow-hidden border-amber-400/30 shadow-md">
-              <div className="absolute top-0 right-0 bg-amber-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
-                Disponible
-              </div>
-              <CardHeader className="pb-3">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10">
-                    <GraduationCap className="h-6 w-6 text-amber-600" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-lg">Administrativo del Estado (C1)</CardTitle>
-                    <p className="text-xs text-muted-foreground">Cuerpo General Administrativo AGE</p>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <ul className="space-y-1.5 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 45 temas (Bloque I + II)</li>
-                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 2.512 plazas convocadas</li>
-                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> Exámenes INAP 2019–2024</li>
-                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 21 leyes verificadas</li>
-                </ul>
-                <Link href="/register" className="block pt-2">
-                  <Button variant="outline" className="w-full gap-2 border-amber-400 text-amber-700 hover:bg-amber-50 dark:text-amber-400 dark:hover:bg-amber-950/30" size="sm">
-                    Empezar con C1
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-            {/* A2 — Gestión del Estado (GACE) — DIFERENCIADOR */}
-            <Card className="relative overflow-hidden border-emerald-400/40 shadow-lg ring-2 ring-emerald-400/20">
-              <div className="absolute top-0 right-0 bg-emerald-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
-                Exclusivo
-              </div>
-              <CardHeader className="pb-3">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10">
-                    <Sparkles className="h-6 w-6 text-emerald-600" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-lg">Gestión del Estado — GACE (A2)</CardTitle>
-                    <p className="text-xs text-muted-foreground">Cuerpo de Gestión AGE · Grupo A2</p>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <ul className="space-y-1.5 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 58 temas en 6 bloques</li>
-                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 1.356 plazas convocadas</li>
-                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 21 leyes verificadas</li>
-                  <li className="flex items-center gap-2"><Sparkles className="h-3.5 w-3.5 text-emerald-500 shrink-0" /> <strong>Supuesto práctico con corrección IA</strong></li>
-                </ul>
-                <div className="rounded-lg bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 p-2.5 mt-2">
-                  <p className="text-xs text-emerald-700 dark:text-emerald-300 text-center font-medium">
-                    La IA corrige tu supuesto con la rúbrica oficial INAP.
-                    <br />
-                    <span className="opacity-75">Ninguna otra plataforma online lo ofrece.</span>
-                  </p>
-                </div>
-                <Link href="/register" className="block pt-1">
-                  <Button className="w-full gap-2 bg-emerald-600 hover:bg-emerald-700 text-white" size="sm">
-                    Empezar con A2
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </div>
-          <p className="text-center text-xs text-muted-foreground mt-4 mb-8">
-            Pack Doble (C2+C1): 79,99€ · Pack Triple AGE (C2+C1+A2): 129,99€ — con supuesto práctico IA incluido.
-          </p>
 
-          {/* Correos — Nuevo */}
-          <p className="text-xs font-semibold uppercase tracking-wider text-orange-500 mb-4">Correos</p>
-          <div className="grid gap-6 md:grid-cols-1 max-w-lg mx-auto mb-10">
-            <Card className="relative overflow-hidden border-orange-400/30 shadow-md">
-              <div className="absolute top-0 right-0 bg-orange-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
-                Nuevo
-              </div>
-              <CardHeader className="pb-3">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-500/10">
-                    <BookOpen className="h-6 w-6 text-orange-500" />
+          {/* 3 Rama Cards */}
+          <div className="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto mb-4">
+            {/* AGE Hub Card */}
+            <Link href="/oposiciones/administracion" className="group">
+              <Card className="h-full relative overflow-hidden border-blue-300/50 shadow-lg hover:shadow-xl hover:border-blue-400 transition-all duration-300 bg-gradient-to-br from-blue-50 dark:from-blue-950/20 to-background ring-1 ring-blue-200/50 dark:ring-blue-800/50">
+                <CardHeader className="pb-4">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-blue-500/15 ring-1 ring-blue-400/30">
+                      <BookOpen className="h-7 w-7 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <Badge className="bg-blue-600 text-white text-[11px]">4.200+ plazas</Badge>
                   </div>
-                  <div>
-                    <CardTitle className="text-lg">Correos</CardTitle>
-                    <p className="text-xs text-muted-foreground">Personal Laboral · Grupo IV</p>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <ul className="space-y-1.5 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 12 temas</li>
-                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 4.055 plazas</li>
-                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> Sin penalización</li>
-                  <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" /> 100 preguntas + psicotécnicos</li>
-                </ul>
-                <div className="flex items-center justify-between pt-2">
-                  <span className="text-lg font-bold">49,99€ <span className="text-xs font-normal text-muted-foreground">pago único</span></span>
-                </div>
-                <Link href="/register?oposicion=correos" className="block pt-1">
-                  <Button className="w-full gap-2 bg-orange-500 hover:bg-orange-600 text-white" size="sm">
-                    Empieza gratis
-                    <ArrowRight className="h-3.5 w-3.5" />
+                  <CardTitle className="text-xl font-bold text-blue-900 dark:text-blue-100">Administración del Estado</CardTitle>
+                  <p className="text-sm text-blue-700 dark:text-blue-300 font-medium mt-1">INAP · C2, C1, A2</p>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <ul className="space-y-1.5 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-blue-600 shrink-0" /> Auxiliar Administrativo (C2) — 28 temas</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-blue-600 shrink-0" /> Administrativo del Estado (C1) — 45 temas</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-blue-600 shrink-0" /> Gestión GACE (A2) — 58 temas + supuesto IA</li>
+                  </ul>
+                  <p className="text-xs text-muted-foreground">Simulacros INAP 2018–2024. Legislación BOE verificada.</p>
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white gap-2 group-hover:translate-y-[-1px] transition-transform">
+                    Ver oposiciones AGE <ArrowRight className="h-4 w-4" />
                   </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </div>
+                </CardContent>
+              </Card>
+            </Link>
+            {/* Correos Hub Card */}
+            <Link href="/oposiciones/correos" className="group">
+              <Card className="h-full relative overflow-hidden border-orange-300/50 shadow-lg hover:shadow-xl hover:border-orange-400 transition-all duration-300 bg-gradient-to-br from-orange-50 dark:from-orange-950/20 to-background ring-1 ring-orange-200/50 dark:ring-orange-800/50">
+                <CardHeader className="pb-4">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-orange-500/15 ring-1 ring-orange-400/30">
+                      <Flame className="h-7 w-7 text-orange-600 dark:text-orange-400" />
+                    </div>
+                    <Badge className="bg-orange-600 text-white text-[11px]">4.055 plazas</Badge>
+                  </div>
+                  <CardTitle className="text-xl font-bold text-orange-900 dark:text-orange-100">Correos</CardTitle>
+                  <p className="text-sm text-orange-700 dark:text-orange-300 font-medium mt-1">Personal Laboral — Grupo IV</p>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <ul className="space-y-1.5 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-orange-600 shrink-0" /> 12 temas completos</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-orange-600 shrink-0" /> Sin penalización por error</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-orange-600 shrink-0" /> Psicotécnicos incluidos</li>
+                  </ul>
+                  <p className="text-xs text-muted-foreground">Tests ilimitados desde 49,99€ (pago único).</p>
+                  <Button className="w-full bg-orange-600 hover:bg-orange-700 text-white gap-2 group-hover:translate-y-[-1px] transition-transform">
+                    Ver oposición Correos <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
 
-          {/* Próximamente — Justicia */}
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">Próximamente</p>
-          <div className="grid gap-6 md:grid-cols-1 max-w-lg mx-auto">
-            {/* Justicia */}
-            <Card className="relative overflow-hidden opacity-75">
-              <div className="absolute top-0 right-0 bg-muted-foreground/60 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
-                Próximamente
-              </div>
-              <CardHeader className="pb-3">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/10">
-                    <GraduationCap className="h-6 w-6 text-violet-500" />
+            {/* Justicia Hub Card */}
+            <Link href="/oposiciones/justicia" className="group">
+              <Card className="h-full relative overflow-hidden border-violet-300/50 shadow-lg hover:shadow-xl hover:border-violet-400 transition-all duration-300 bg-gradient-to-br from-violet-50 dark:from-violet-950/20 to-background ring-1 ring-violet-200/50 dark:ring-violet-800/50">
+                <CardHeader className="pb-4">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-violet-500/15 ring-1 ring-violet-400/30">
+                      <GraduationCap className="h-7 w-7 text-violet-600 dark:text-violet-400" />
+                    </div>
+                    <Badge className="bg-violet-600 text-white text-[11px]">2.300+ plazas</Badge>
                   </div>
-                  <div>
-                    <CardTitle className="text-lg">Justicia</CardTitle>
-                    <p className="text-xs text-muted-foreground">Auxilio (C2) · Tramitación (C1) · Gestión (A2)</p>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <ul className="space-y-1.5 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2"><Layers className="h-3.5 w-3.5 shrink-0" /> 3 cuerpos disponibles</li>
-                  <li className="flex items-center gap-2"><BookOpen className="h-3.5 w-3.5 shrink-0" /> Temario actualizado LO 1/2025</li>
-                </ul>
-                <div className="pt-2">
-                  <p className="text-[11px] text-muted-foreground mb-2">Elige tu cuerpo y te avisamos:</p>
-                  <WaitlistForm oposicionSlug={[
-                    { slug: 'auxilio-judicial', label: 'Auxilio Judicial (C2) — 26 temas' },
-                    { slug: 'tramitacion-procesal', label: 'Tramitación Procesal (C1) — 37 temas' },
-                    { slug: 'gestion-procesal', label: 'Gestión Procesal (A2) — 68 temas' },
-                  ]} />
-                </div>
-              </CardContent>
-            </Card>
+                  <CardTitle className="text-xl font-bold text-violet-900 dark:text-violet-100">Justicia</CardTitle>
+                  <p className="text-sm text-violet-700 dark:text-violet-300 font-medium mt-1">MJU — Auxilio, Tramitación, Gestión</p>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <ul className="space-y-1.5 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-violet-600 shrink-0" /> Auxilio Judicial (C2) — 26 temas</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-violet-600 shrink-0" /> Tramitación Procesal (C1) — 37 temas</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-violet-600 shrink-0" /> Gestión Procesal (A2) — 68 temas</li>
+                  </ul>
+                  <p className="text-xs text-muted-foreground">Legislación LO 1/2025. Exámenes MJU con penalización real.</p>
+                  <Button className="w-full bg-violet-600 hover:bg-violet-700 text-white gap-2 group-hover:translate-y-[-1px] transition-transform">
+                    Ver oposiciones Justicia <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </div>
       </section>
@@ -1033,7 +935,7 @@ export default async function LandingPage() {
           </div>
 
           {/* ── Justicia ── */}
-          <p className="text-xs font-semibold uppercase tracking-wider text-violet-500 mb-3 mt-6">Justicia · Próximamente</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-violet-500 mb-3 mt-6">Justicia</p>
           <div className="grid gap-4 sm:grid-cols-3">
             {([
               'auxilio-judicial-vs-tramitacion-procesal',

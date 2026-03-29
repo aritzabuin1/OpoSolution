@@ -13,7 +13,7 @@ type Rama = 'age' | 'justicia' | 'correos'
 
 const RAMAS: { id: Rama; label: string; activa: boolean }[] = [
   { id: 'age', label: 'Administración del Estado', activa: true },
-  { id: 'justicia', label: 'Justicia', activa: false },
+  { id: 'justicia', label: 'Justicia', activa: true },
   { id: 'correos', label: 'Correos', activa: true },
 ]
 
