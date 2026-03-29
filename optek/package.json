@@ -34,6 +34,7 @@
     "ingest:examenes-c1": "tsx --env-file=.env.local execution/ingest-examenes.ts --dir examenes_c1",
     "ingest:supuestos": "tsx --env-file=.env.local execution/ingest-supuestos-bank.ts",
     "ingest:supuestos-auxilio": "tsx --env-file=.env.local execution/ingest-supuestos-auxilio.ts",
+    "ingest:supuestos-tramitacion": "tsx --env-file=.env.local execution/ingest-supuestos-tramitacion.ts",
     "build:radar": "tsx --env-file=.env.local execution/build-radar-tribunal.ts",
     "generate:free-bank": "tsx --env-file=.env.local execution/generate-free-bank.ts",
     "seed:supuestos": "tsx --env-file=.env.local execution/generate-supuesto-bank.ts",

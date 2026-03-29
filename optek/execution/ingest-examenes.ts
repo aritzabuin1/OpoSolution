@@ -243,8 +243,8 @@ function discoverParsedJsons(targetAnno?: string): JsonDescubierto[] {
 
   if (!fs.existsSync(EXAMENES_DIR)) return results
 
-  // Soporta YYYY y YYYY_ext (convocatoria extraordinaria)
-  const allFolders = fs.readdirSync(EXAMENES_DIR).filter((f) => /^\d{4}(_ext)?$/.test(f))
+  // Soporta YYYY, YYYY_ext, YYYY_suffix (ej: 2021_rep, 2021_atc, 2024_ej2)
+  const allFolders = fs.readdirSync(EXAMENES_DIR).filter((f) => /^\d{4}(_\w+)?$/.test(f))
   const folders = targetAnno
     ? allFolders.filter((f) => f === targetAnno || f === `${targetAnno}_ext`)
     : allFolders
