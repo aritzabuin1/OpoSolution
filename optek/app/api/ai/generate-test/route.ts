@@ -611,13 +611,16 @@ export async function POST(request: NextRequest) {
               ? { a: p.opciones[0], b: p.opciones[1], c: p.opciones[2], d: p.opciones[3] }
               : p.opciones
 
+            // Convert numeric correcta (0-3) to char ('a'-'d') for question_bank schema
+            const correctaChar = ['a', 'b', 'c', 'd'][typeof p.correcta === 'number' ? p.correcta : 0] ?? 'a'
+
             bankInsertBatch.push({
               oposicion_id: oposicionId,
               tema_id: temaId,
               dificultad: effectiveDificultad,
               enunciado: p.enunciado,
               opciones,
-              correcta: p.correcta,
+              correcta: correctaChar,
               explicacion: p.explicacion ?? null,
               cita_ley: p.cita?.ley ?? null,
               cita_articulo: p.cita?.articulo ?? null,
