@@ -208,24 +208,22 @@ export async function GET(request: NextRequest) {
 
     const today = new Date().toISOString().slice(0, 10) // YYYY-MM-DD UTC
 
-    // ── Check for ?rama= query parameter ───────────────────────────────────
+    // ── Check for ?rama= query parameter (manual trigger) ──────────────────
     const ramaParam = request.nextUrl.searchParams.get('rama')
 
-    // ── Mode 1: Single rama (preferred — one cron invocation per rama) ─────
     if (ramaParam) {
+      // Manual single-rama mode
       log.info({ rama: ramaParam }, '[reto-diario-cron] Single-rama mode')
-
       if (!RAMAS_CONFIG[ramaParam]) {
-        log.warn({ rama: ramaParam }, '[reto-diario-cron] Rama desconocida')
         return NextResponse.json({ ok: false, reason: 'unknown_rama', rama: ramaParam }, { status: 400 })
       }
-
       const result = await generateRetoForRama(ramaParam, today, supabase, log)
-      log.info({ fecha: today, rama: ramaParam, result }, '[reto-diario-cron] Done')
       return NextResponse.json({ ok: result.ok, fecha: today, results: { [ramaParam]: result } })
     }
 
-    // ── Mode 2: All ramas (backward compat / manual trigger) ───────────────
+    // ── Auto-rotate: find the FIRST active rama missing today's reto ────────
+    // Vercel Hobby = 2 cron jobs max, so we use 1 cron that runs 3x staggered.
+    // Each invocation generates for 1 rama that doesn't have a reto yet today.
     const { data: ramaRows, error: ramaErr } = await supabase
       .from('oposiciones')
       .select('rama')
@@ -237,17 +235,28 @@ export async function GET(request: NextRequest) {
     }
 
     const activeRamas = [...new Set((ramaRows as { rama: string }[]).map(r => r.rama))] as string[]
-    log.info({ ramas: activeRamas }, '[reto-diario-cron] All-ramas mode')
 
-    const results: Record<string, RamaResult> = {}
+    // Check which ramas already have a reto for today
+    const { data: existingRetos } = await supabase
+      .from('reto_diario')
+      .select('rama')
+      .eq('fecha', today)
 
-    // Sequential to stay within 60s (best-effort, may timeout with many ramas)
-    for (const rama of activeRamas) {
-      results[rama] = await generateRetoForRama(rama, today, supabase, log)
+    const ramasConReto = new Set((existingRetos ?? []).map((r: { rama: string }) => r.rama))
+    const ramasPendientes = activeRamas.filter(r => !ramasConReto.has(r))
+
+    if (ramasPendientes.length === 0) {
+      log.info({ fecha: today }, '[reto-diario-cron] Todas las ramas ya tienen reto')
+      return NextResponse.json({ ok: true, fecha: today, results: {}, message: 'all_done' })
     }
 
-    log.info({ fecha: today, results }, '[reto-diario-cron] Retos generados')
-    return NextResponse.json({ ok: true, fecha: today, results })
+    // Generate for the FIRST pending rama only (stay under 60s timeout)
+    const targetRama = ramasPendientes[0]
+    log.info({ rama: targetRama, pendientes: ramasPendientes.length }, '[reto-diario-cron] Auto-rotate')
+
+    const result = await generateRetoForRama(targetRama, today, supabase, log)
+    log.info({ fecha: today, rama: targetRama, result, remaining: ramasPendientes.length - 1 }, '[reto-diario-cron] Done')
+    return NextResponse.json({ ok: result.ok, fecha: today, results: { [targetRama]: result }, remaining: ramasPendientes.length - 1 })
   } catch (err) {
     // Global catch — prevents generic 500 HTML page from Vercel/Next.js
     log.error({ err }, '[reto-diario-cron] Unhandled error')

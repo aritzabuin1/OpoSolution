@@ -5,16 +5,8 @@
       "schedule": "0 7 * * *"
     },
     {
-      "path": "/api/cron/generate-reto-diario?rama=age",
-      "schedule": "5 0 * * *"
-    },
-    {
-      "path": "/api/cron/generate-reto-diario?rama=justicia",
-      "schedule": "8 0 * * *"
-    },
-    {
-      "path": "/api/cron/generate-reto-diario?rama=correos",
-      "schedule": "11 0 * * *"
+      "path": "/api/cron/generate-reto-diario",
+      "schedule": "5,8,11 0 * * *"
     }
   ]
 }
