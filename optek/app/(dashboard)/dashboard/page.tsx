@@ -101,13 +101,8 @@ export default async function DashboardPage() {
   const userOposicionId = profile?.oposicion_id ?? DEFAULT_OPOSICION_ID
   const today = new Date().toISOString().slice(0, 10)
 
-  const [
-    { data: tests },
-    { data: temas },
-    { count: flashcardsPendientes },
-    { data: retoHoy },
-    { data: logros },
-  ] = await Promise.all([
+  // Promise.allSettled: if one query fails, the rest still return data
+  const settled = await Promise.allSettled([
     // Todos los tests completados del usuario PARA SU OPOSICIÓN ACTIVA
     supabase
       .from('tests_generados')
@@ -155,6 +150,13 @@ export default async function DashboardPage() {
         data: { tipo: string; desbloqueado_en: string }[] | null
       }>,
   ])
+
+  // Extract results safely — if a query failed, use null/default
+  const tests = settled[0].status === 'fulfilled' ? (settled[0].value as { data: TestRow[] | null }).data : null
+  const temas = settled[1].status === 'fulfilled' ? (settled[1].value as { data: { id: string; numero: number; titulo: string; bloque?: string }[] | null }).data : null
+  const flashcardsPendientes = settled[2].status === 'fulfilled' ? (settled[2].value as { count: number | null }).count : null
+  const retoHoy = settled[3].status === 'fulfilled' ? (settled[3].value as { data: { id: string; num_errores: number; ley_nombre: string; articulo_numero: string } | null }).data : null
+  const logros = settled[4].status === 'fulfilled' ? (settled[4].value as { data: { tipo: string; desbloqueado_en: string }[] | null }).data : null
 
   // Reto diario result — conditional on retoHoy (needs its id)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

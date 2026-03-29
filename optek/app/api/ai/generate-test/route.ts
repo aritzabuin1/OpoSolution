@@ -631,12 +631,12 @@ export async function POST(request: NextRequest) {
           }
         }
 
-        // Single batch insert — unique constraint handles ON CONFLICT
+        // Single batch upsert — ignoreDuplicates skips rows with existing enunciado_hash
         if (bankInsertBatch.length > 0) {
           await (serviceSupabase as any)
             .from('question_bank')
-            .insert(bankInsertBatch)
-            .catch(() => {}) // ON CONFLICT DO NOTHING equivalent — unique constraint handles it
+            .upsert(bankInsertBatch, { onConflict: 'enunciado_hash', ignoreDuplicates: true })
+            .catch(() => {})
         }
         log.info({ userId: user.id, temaId, bankBefore: bankQuestions.length }, 'Bank populated from AI test')
       } catch (bankSaveErr) {
