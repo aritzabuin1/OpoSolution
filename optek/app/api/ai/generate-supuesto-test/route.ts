@@ -202,10 +202,7 @@ export async function POST(request: NextRequest) {
     const supuesto = (unseenRows as { id: string; caso: Json; preguntas: Json }[])[0]
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (serviceSupabase as any)
-      .from('user_supuestos_seen')
-      .insert({ user_id: user.id, supuesto_id: supuesto.id })
-      .catch(() => {})
+    try { await (serviceSupabase as any).from('user_supuestos_seen').insert({ user_id: user.id, supuesto_id: supuesto.id }) } catch { /* ignore duplicate */ }
 
     log.info({ userId: user.id, supuestoId: supuesto.id, seen, source: 'bank-free' }, 'Served free (within quota)')
     return await saveAndReturn(serviceSupabase, user.id, oposicionId, supuesto.caso, supuesto.preguntas, 'supuesto-bank-1.0', { ...stats, unseen: unseen - 1 }, log)
@@ -241,10 +238,7 @@ export async function POST(request: NextRequest) {
     await (serviceSupabase as any).rpc('use_correction', { p_user_id: user.id })
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (serviceSupabase as any)
-      .from('user_supuestos_seen')
-      .insert({ user_id: user.id, supuesto_id: supuesto.id })
-      .catch(() => {})
+    try { await (serviceSupabase as any).from('user_supuestos_seen').insert({ user_id: user.id, supuesto_id: supuesto.id }) } catch { /* ignore duplicate */ }
 
     log.info({ userId: user.id, supuestoId: supuesto.id, seen, source: 'bank-paid' }, 'Served from bank (1 credit)')
     return await saveAndReturn(serviceSupabase, user.id, oposicionId, supuesto.caso, supuesto.preguntas, 'supuesto-bank-1.0', { ...stats, unseen: unseen - 1 }, log)
@@ -313,10 +307,7 @@ export async function POST(request: NextRequest) {
     // Track seen
     const supuestoId = (inserted as { id: string }).id
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (serviceSupabase as any)
-      .from('user_supuestos_seen')
-      .insert({ user_id: user.id, supuesto_id: supuestoId })
-      .catch(() => {})
+    try { await (serviceSupabase as any).from('user_supuestos_seen').insert({ user_id: user.id, supuesto_id: supuestoId }) } catch { /* ignore duplicate */ }
 
     log.info({ userId: user.id, supuestoId, titulo: result.titulo }, 'AI supuesto generated, banked, and served')
 
