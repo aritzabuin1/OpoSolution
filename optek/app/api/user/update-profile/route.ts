@@ -41,8 +41,19 @@ export async function POST(request: NextRequest) {
   // 2. Upsert via service client (bypasses RLS — safe because we verified identity above)
   const serviceClient = await createServiceClient()
 
-  // supuestos_balance removed — supuestos now use unified créditos IA (corrections_balance)
-  // No special grant needed when switching oposición.
+  // When switching oposición, auto-update fecha_examen from oposiciones.fecha_examen_aprox
+  // so dashboard countdown shows the correct exam date
+  if (update.oposicion_id && !('fecha_examen' in body)) {
+    const { data: targetOpo } = await serviceClient
+      .from('oposiciones')
+      .select('fecha_examen_aprox')
+      .eq('id', update.oposicion_id as string)
+      .single()
+    const fechaAprox = (targetOpo as { fecha_examen_aprox?: string } | null)?.fecha_examen_aprox
+    if (fechaAprox) {
+      update.fecha_examen = fechaAprox
+    }
+  }
 
   const { data, error } = await serviceClient
     .from('profiles')
