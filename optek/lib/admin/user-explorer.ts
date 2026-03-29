@@ -229,7 +229,9 @@ export async function getUserTimeline(userId: string, limit = 50): Promise<Timel
     tipo: string; prompt_version: string; temas: { titulo: string } | null
   }>) {
     const tema = t.temas?.titulo ?? t.tipo
-    const source = t.prompt_version === 'free-bank-1.0' ? 'free bank' : 'IA'
+    const isFreeBank = t.prompt_version === 'free-bank-1.0' || t.prompt_version === 'free-supuesto-1.0'
+    const isBankServed = isFreeBank || t.prompt_version === 'supuesto-bank-1.0' || t.prompt_version === 'repeat-1.0' || t.prompt_version?.startsWith('oficial')
+    const source = isFreeBank ? 'free bank' : isBankServed ? 'banco' : 'IA'
     if (t.completado) {
       events.push({
         type: 'test_completed',
