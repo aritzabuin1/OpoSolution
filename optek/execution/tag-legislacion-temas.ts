@@ -190,7 +190,8 @@ const PENITENCIARIAS_RULES: TaggingRule[] = [
   { ley_codigo: 'LCSP', oposicion_slug: 'penitenciarias', temas: [16] },
   { ley_codigo: 'LO_IGUALDAD', oposicion_slug: 'penitenciarias', temas: [17] },
   { ley_codigo: 'LO_VG', oposicion_slug: 'penitenciarias', temas: [17] },
-  { ley_codigo: 'LOPDGDD', oposicion_slug: 'penitenciarias', temas: [46] },
+  // LOPDGDD no tiene tema propio en IIPP — se menciona transversalmente
+  // (no mapear a tema 46, que es "Régimen administrativo (2)")
   // Bloque II — Derecho Penal (10 temas) — requiere CP ingestionado
   { ley_codigo: 'CP', oposicion_slug: 'penitenciarias', temas: [18, 19, 20, 21, 22, 23, 24, 25, 26] },
   { ley_codigo: 'LECRIM', oposicion_slug: 'penitenciarias', temas: [27] },

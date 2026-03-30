@@ -67,8 +67,8 @@ export const CORRECTIONS_GRANTED: Record<StripePriceTier, number> = {
   pack_gestion_j: 25,  // 20 base + 5 extra
   pack_doble_justicia: 30,
   pack_triple_justicia: 45,  // 40 base + 5 extra
-  // Hacienda
-  pack_hacienda:  20,
+  // Hacienda (supuesto_practico=true → +5 extra para supuestos desarrollo)
+  pack_hacienda:  25,
   // Penitenciarias
   pack_penitenciarias: 20,
   // Recarga

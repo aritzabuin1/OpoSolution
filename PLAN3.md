@@ -46,9 +46,9 @@
 > Cambio respecto a anterior: de 100 a 80 preguntas, tiempo 1h40→1h30. Se eliminó formato desarrollo.
 > Esto significa: `features.supuesto_practico = false`. Ambos ejercicios se implementan como simulacro multi-parte (patrón Auxilio Judicial).
 
-### 1.1 Migration: oposición + temas
-- [ ] Crear `supabase/migrations/20260401_070_hacienda.sql`
-- [ ] INSERT oposiciones con UPSERT (ON CONFLICT (id) DO UPDATE):
+### 1.1 Migration: oposición + temas ✅ (migration 064 aplicada 2026-03-30)
+- [x] Crear `supabase/migrations/20260330_064_hacienda_penitenciarias.sql`
+- [x] INSERT oposiciones con UPSERT (ON CONFLICT (id) DO UPDATE):
   - id: `'f0000000-0000-0000-0000-000000000001'`
   - slug: `'hacienda-aeat'`, rama: `'hacienda'`, nivel: `'C1'`, activa: `false`
   - plazas: 1000, fecha_examen_aprox: `'2027-03-01'`
@@ -85,7 +85,7 @@
     ]
   }
   ```
-- [ ] INSERT 32 temas (ver §1.1.1)
+- [x] INSERT 32 temas (ver §1.1.1)
 
 #### 1.1.1 Temario completo (32 temas, 3 bloques)
 
@@ -200,24 +200,24 @@
 - [ ] Verificar que supuestos solo sacan preguntas de Bloque III (temas 13-32)
 - [ ] **NO se necesita rúbrica supuesto AEAT** (todo es tipo test, no desarrollo)
 
-### 1.6 Landing SEO
-- [ ] Crear `app/(marketing)/oposiciones/hacienda/page.tsx`
-- [ ] Metadata SEO con keywords: "oposiciones agente hacienda 2026", "temario agente hacienda", "test agente hacienda", "sueldo agente hacienda"
-- [ ] Schema markup FAQPage
-- [ ] Datos: 1.000 plazas, 32 temas, 2 ejercicios test, penalización -1/4
-- [ ] CTA registro con `?oposicion=hacienda-aeat`
-- [ ] openGraph.images con `/api/og?tipo=blog&tema=...`
-- [ ] Actualizar `app/sitemap.ts`
-- [ ] Competidores principales: OpositaTest (~25-40€/mes), Adams (~150-200€/mes), MAD, Supera Oposiciones
-- [ ] USP diferencial: preguntas verificadas contra BOE (LGT, IRPF, IVA)
+### 1.6 Landing SEO ✅ (2026-03-30)
+- [x] Crear `app/(marketing)/oposiciones/hacienda/page.tsx` — theme emerald
+- [x] Metadata SEO con keywords: "oposiciones agente hacienda 2026", "temario agente hacienda", "test agente hacienda", "sueldo agente hacienda"
+- [x] Schema markup FAQPage + Course JSON-LD
+- [x] Datos: 1.000 plazas, 32 temas, 2 ejercicios test, penalización -1/4
+- [x] CTA registro con `?oposicion=hacienda-aeat`
+- [x] openGraph.images con `/api/og?tipo=blog&tema=...`
+- [x] Actualizar `app/sitemap.ts`
+- [x] Competidores principales: OpositaTest (~25-40€/mes), Adams (~150-200€/mes), MAD, Supera Oposiciones
+- [x] USP diferencial: preguntas verificadas contra BOE (LGT, IRPF, IVA)
 
-### 1.7 Stripe
-- [ ] Añadir en `lib/stripe/client.ts`:
+### 1.7 Stripe (código ✅, productos Stripe pendientes Aritz)
+- [x] Añadir en `lib/stripe/client.ts`:
   - `STRIPE_PRICES.pack_hacienda` → env var `STRIPE_PRICE_PACK_HACIENDA`
   - `CORRECTIONS_GRANTED.pack_hacienda = 20` (sin supuesto_practico → estándar)
   - `TIER_TO_OPOSICION.pack_hacienda = 'f0000000-0000-0000-0000-000000000001'`
   - `TIER_TO_DB_TIPO.pack_hacienda = 'pack_oposicion'`
-- [ ] Añadir `'pack_hacienda'` al z.enum del checkout `BodySchema`
+- [x] Añadir `'pack_hacienda'` al z.enum del checkout `BodySchema`
 - [ ] Crear producto Stripe "Pack Hacienda 49,99€" en Dashboard — **MANUAL Aritz**
 - [ ] Añadir env var `STRIPE_PRICE_PACK_HACIENDA` en Vercel — **MANUAL Aritz**
 
@@ -260,9 +260,9 @@
 | Nota final | Ej1 + Ej2 = máx 50 pts. Desempate: 2º ejercicio |
 | Post-aprobado | Período de prácticas: 12 meses (formación + centro penitenciario) |
 
-### 2.1 Migration: oposición + temas
-- [ ] Crear `supabase/migrations/20260401_071_penitenciarias.sql`
-- [ ] INSERT oposiciones con UPSERT (ON CONFLICT (id) DO UPDATE):
+### 2.1 Migration: oposición + temas ✅ (migration 064 aplicada 2026-03-30)
+- [x] Crear `supabase/migrations/20260330_064_hacienda_penitenciarias.sql` (compartida con Hacienda)
+- [x] INSERT oposiciones con UPSERT (ON CONFLICT (id) DO UPDATE):
   - id: `'f1000000-0000-0000-0000-000000000001'`
   - slug: `'penitenciarias'`, rama: `'penitenciarias'`, nivel: `'C1'`, activa: `false`
   - plazas: 900, fecha_examen_aprox: `'2027-01-15'`
@@ -300,7 +300,7 @@
   }
   ```
   - NOTA: duración no especificada en convocatoria → estimar 120+75 min (similar a proporcional)
-- [ ] INSERT 50 temas (ver §2.1.1)
+- [x] INSERT 50 temas (ver §2.1.1)
 
 #### 2.1.1 Temario completo (50 temas, 4 bloques)
 
@@ -465,24 +465,24 @@
 - [ ] Timer: parte 1 = ~120 min (150 preguntas), parte 2 = ~75 min (50 preguntas)
 - [ ] maxPuntuable: 150 + 50 = 200
 
-### 2.6 Landing SEO
-- [ ] Crear `app/(marketing)/oposiciones/penitenciarias/page.tsx`
-- [ ] Metadata SEO con keywords: "oposiciones prisiones 2026", "temario funcionario prisiones", "test ayudante instituciones penitenciarias", "sueldo funcionario prisiones"
-- [ ] Schema markup FAQPage
-- [ ] Datos: 900 plazas, 50 temas, 200 preguntas, penalización -1/3
-- [ ] CTA registro con `?oposicion=penitenciarias`
-- [ ] openGraph.images
-- [ ] Actualizar `app/sitemap.ts`
-- [ ] Competidores: OpositaTest (~25-40€/mes), Academia de Prisiones (~50-100€/mes), MasterD (~150-250€/mes)
-- [ ] USP diferencial: preguntas verificadas contra BOE (LOGP, RP, CP) + Conducta Humana curada
+### 2.6 Landing SEO ✅ (2026-03-30)
+- [x] Crear `app/(marketing)/oposiciones/penitenciarias/page.tsx` — theme rose
+- [x] Metadata SEO con keywords: "oposiciones prisiones 2026", "temario funcionario prisiones", "test ayudante instituciones penitenciarias", "sueldo funcionario prisiones"
+- [x] Schema markup FAQPage + Course JSON-LD
+- [x] Datos: 900 plazas, 50 temas, 200 preguntas, penalización -1/3
+- [x] CTA registro con `?oposicion=penitenciarias`
+- [x] openGraph.images
+- [x] Actualizar `app/sitemap.ts`
+- [x] Competidores: OpositaTest (~25-40€/mes), Academia de Prisiones (~50-100€/mes), MasterD (~150-250€/mes)
+- [x] USP diferencial: preguntas verificadas contra BOE (LOGP, RP, CP) + Conducta Humana curada
 
-### 2.7 Stripe
-- [ ] Añadir en `lib/stripe/client.ts`:
+### 2.7 Stripe (código ✅, productos Stripe pendientes Aritz)
+- [x] Añadir en `lib/stripe/client.ts`:
   - `STRIPE_PRICES.pack_penitenciarias` → env var `STRIPE_PRICE_PACK_PENITENCIARIAS`
   - `CORRECTIONS_GRANTED.pack_penitenciarias = 20` (sin supuesto_practico → estándar)
   - `TIER_TO_OPOSICION.pack_penitenciarias = 'f1000000-0000-0000-0000-000000000001'`
   - `TIER_TO_DB_TIPO.pack_penitenciarias = 'pack_oposicion'`
-- [ ] Añadir `'pack_penitenciarias'` al z.enum del checkout `BodySchema`
+- [x] Añadir `'pack_penitenciarias'` al z.enum del checkout `BodySchema`
 - [ ] Crear producto Stripe "Pack Penitenciarias 49,99€" — **MANUAL Aritz**
 - [ ] Añadir env var `STRIPE_PRICE_PACK_PENITENCIARIAS` — **MANUAL Aritz**
 
@@ -510,7 +510,7 @@
 - [ ] Actualizar FAQ global
 
 ### 3.2 SEO transversal
-- [ ] Actualizar `llms.txt` y `/api/info` con nuevas oposiciones
+- [x] Actualizar `llms.txt` con nuevas oposiciones
 - [ ] Internal linking entre blogs de distintas ramas
 - [ ] Posts comparativos: "OpoRuta vs OpositaTest para Hacienda/IIPP"
 

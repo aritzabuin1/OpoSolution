@@ -14,14 +14,14 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const metadata: Metadata = {
   title: 'Test Instituciones Penitenciarias 2026 — Practica gratis | OpoRuta',
   description:
-    'Prepara las oposiciones de Ayudante de Instituciones Penitenciarias 2026 con tests online gratis. 50 temas, 200 preguntas, penalización -1/3. 900 plazas.',
+    'Prepara las oposiciones de Ayudante de Instituciones Penitenciarias 2026 con tests online gratis. 50 temas, 160 preguntas, penalización -1/3. 900 plazas.',
   keywords: [
     'test instituciones penitenciarias 2026', 'oposiciones prisiones', 'examen penitenciarias online',
     'temario funcionario prisiones', 'ayudante IIPP', 'test prisiones gratis', 'sueldo funcionario prisiones',
   ],
   openGraph: {
     title: 'Test Instituciones Penitenciarias 2026 — Practica gratis | OpoRuta',
-    description: 'Tests online gratis para oposiciones de Ayudante de Instituciones Penitenciarias. 50 temas, 200 preguntas, penalización -1/3.',
+    description: 'Tests online gratis para oposiciones de Ayudante de Instituciones Penitenciarias. 50 temas, 160 preguntas, penalización -1/3.',
     url: `${APP_URL}/oposiciones/penitenciarias`,
     type: 'website',
     images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Test Instituciones Penitenciarias 2026')}`, width: 1200, height: 630 }],
@@ -76,20 +76,20 @@ const BLOQUES = [
       { num: 31, titulo: 'Prestaciones de la Admón. Penitenciaria', desc: 'Asistencia sanitaria, religiosa, social, educativa.' },
       { num: 32, titulo: 'Régimen Penitenciario (1)', desc: 'Régimen ordinario, abierto y cerrado.' },
       { num: 33, titulo: 'Régimen Penitenciario (2): seguridad', desc: 'Seguridad exterior, interior, cacheos, recuentos.' },
-      { num: 34, titulo: 'Clasificación de establecimientos', desc: 'Centros tipo, CIS, hospitales, módulos.' },
-      { num: 35, titulo: 'Formas especiales de ejecución', desc: 'Jóvenes, militares, preventivos.' },
-      { num: 36, titulo: 'Tratamiento penitenciario (1)', desc: 'Concepto, principios, clasificación en grados.' },
-      { num: 37, titulo: 'Tratamiento penitenciario (2)', desc: 'Permisos de salida, programas, actividades.' },
-      { num: 38, titulo: 'Libertad condicional', desc: 'Requisitos, revocación, adelantamiento.' },
-      { num: 39, titulo: 'Mujeres y personas trans', desc: 'Unidades de madres, protección específica.' },
-      { num: 40, titulo: 'Extranjeros en prisión', desc: 'Regulación, expulsión, traslados internacionales.' },
-      { num: 41, titulo: 'Enfermedad mental y drogodependencias', desc: 'Hospitales psiquiátricos, programas de deshabituación.' },
-      { num: 42, titulo: 'Penas alternativas a prisión', desc: 'Trabajos en beneficio de la comunidad, localización permanente.' },
-      { num: 43, titulo: 'Organización de centros', desc: 'Órganos colegiados, unipersonales, funciones.' },
-      { num: 44, titulo: 'Procedimiento disciplinario', desc: 'Faltas, sanciones, procedimiento, recursos.' },
-      { num: 45, titulo: 'Régimen económico', desc: 'Peculio, economatos, gestión económica.' },
-      { num: 46, titulo: 'Protección de datos en IIPP', desc: 'LOPDGDD aplicada al ámbito penitenciario.' },
-      { num: 47, titulo: 'Prevención de suicidios', desc: 'Protocolo PPS, factores de riesgo, intervención.' },
+      { num: 34, titulo: 'Clasificación de establecimientos', desc: 'Tipos de establecimientos. Régimen ordinario.' },
+      { num: 35, titulo: 'Régimen cerrado y régimen abierto', desc: 'Objetivos y criterios de aplicación.' },
+      { num: 36, titulo: 'Tratamiento penitenciario (1)', desc: 'Concepto, fines, principios. Clasificación en grados. Programas. Permisos de salida.' },
+      { num: 37, titulo: 'Tratamiento penitenciario (2)', desc: 'Actividades educativas, culturales, deportivas. Formación, trabajo y empleo.' },
+      { num: 38, titulo: 'La relación laboral penitenciaria', desc: 'Tipos de trabajo productivo y ocupacional.' },
+      { num: 39, titulo: 'Los permisos de salida', desc: 'Ordinarios y extraordinarios. Duración y requisitos.' },
+      { num: 40, titulo: 'Libertad y excarcelación', desc: 'Libertad condicional. Suspensión de ejecución.' },
+      { num: 41, titulo: 'Formas especiales de ejecución', desc: 'Jóvenes, madres, CIS, unidades dependientes.' },
+      { num: 42, titulo: 'El régimen disciplinario', desc: 'Faltas, sanciones, ejecución y cancelación.' },
+      { num: 43, titulo: 'Juez de Vigilancia Penitenciaria', desc: 'Control de la actividad penitenciaria.' },
+      { num: 44, titulo: 'Modelo organizativo penitenciario', desc: 'Órganos colegiados y unipersonales.' },
+      { num: 45, titulo: 'Régimen administrativo (1)', desc: 'Oficina de gestión. Expediente personal del interno.' },
+      { num: 46, titulo: 'Régimen administrativo (2)', desc: 'Servicio interior. Funcionamiento administrativo.' },
+      { num: 47, titulo: 'Régimen económico', desc: 'Contabilidad general. Presupuesto. Peculio.' },
     ],
   },
   {
@@ -110,7 +110,7 @@ export default function PenitenciariasLanding() {
         '@context': 'https://schema.org',
         '@type': 'Course',
         name: 'Preparación Oposiciones Instituciones Penitenciarias 2026',
-        description: 'Tests online con IA para oposiciones de Ayudante de Instituciones Penitenciarias. 50 temas, 200 preguntas, penalización -1/3.',
+        description: 'Tests online con IA para oposiciones de Ayudante de Instituciones Penitenciarias. 50 temas, 160 preguntas, penalización -1/3.',
         provider: { '@type': 'Organization', name: 'OpoRuta', url: APP_URL },
         hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'online' },
       }} />
@@ -119,7 +119,7 @@ export default function PenitenciariasLanding() {
         '@type': 'FAQPage',
         mainEntity: [
           { '@type': 'Question', name: '¿Cuántas plazas hay en Instituciones Penitenciarias?', acceptedAnswer: { '@type': 'Answer', text: '900 plazas (OEP 2025). Histórico: 800 (2024), 756 (2023). Se esperan ~800 para 2026.' } },
-          { '@type': 'Question', name: '¿Cómo es el examen de Instituciones Penitenciarias?', acceptedAnswer: { '@type': 'Answer', text: '2 ejercicios tipo test: 150 preguntas de todo el temario + 10 supuestos × 5 preguntas = 50. Después, reconocimiento médico (Apto/No apto).' } },
+          { '@type': 'Question', name: '¿Cómo es el examen de Instituciones Penitenciarias?', acceptedAnswer: { '@type': 'Answer', text: '2 ejercicios tipo test: 120 preguntas de todo el temario + 8 supuestos × 5 preguntas = 40. Después, reconocimiento médico (Apto/No apto).' } },
           { '@type': 'Question', name: '¿Cuándo es el examen de Instituciones Penitenciarias?', acceptedAnswer: { '@type': 'Answer', text: 'Convocatoria anual. El último fue enero 2026. La próxima se espera para enero 2027.' } },
           { '@type': 'Question', name: '¿Qué bloque pesa más en el examen?', acceptedAnswer: { '@type': 'Answer', text: 'Derecho Penitenciario (temas 28-47) representa ~36% de las preguntas, seguido de Organización del Estado (~35%), Derecho Penal (~20%) y Conducta Humana (~9%).' } },
         ],
@@ -135,7 +135,7 @@ export default function PenitenciariasLanding() {
           Oposiciones <span className="text-rose-600">Instituciones Penitenciarias</span> 2026
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Practica con tests online gratis. 50 temas en 4 bloques, 200 preguntas tipo test en 2 ejercicios.
+          Practica con tests online gratis. 50 temas en 4 bloques, 120 + 40 preguntas tipo test en 2 ejercicios.
           El Derecho Penitenciario es el bloque más preguntado (~36%).
         </p>
         <div className="flex items-center justify-center gap-4 flex-wrap">
@@ -157,8 +157,8 @@ export default function PenitenciariasLanding() {
         <h2 className="text-2xl font-bold">Estructura del examen</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
-            { icon: BookOpen, label: '150 preguntas test', desc: 'Ej. 1 — todo el temario' },
-            { icon: Calculator, label: '50 preguntas supuestos', desc: 'Ej. 2 — 10 supuestos × 5 preguntas' },
+            { icon: BookOpen, label: '120 preguntas test', desc: 'Ej. 1 — todo el temario' },
+            { icon: Calculator, label: '40 preguntas supuestos', desc: 'Ej. 2 — 8 supuestos × 5 preguntas' },
             { icon: AlertTriangle, label: 'Penalización -1/3', desc: 'En ambos ejercicios' },
             { icon: CheckCircle, label: 'Aptitud médica', desc: 'Ej. 3 — Apto/No apto' },
           ].map(({ icon: Icon, label, desc }) => (
@@ -208,7 +208,7 @@ export default function PenitenciariasLanding() {
         <div className="grid sm:grid-cols-2 gap-4">
           {[
             { icon: Sparkles, title: 'Tests con IA', desc: 'Preguntas verificadas contra LOGP, Reglamento Penitenciario y Código Penal.' },
-            { icon: BookOpen, title: '200 preguntas test', desc: '150 cuestionario + 50 supuestos prácticos. Ambos tipo test.' },
+            { icon: BookOpen, title: '160 preguntas test', desc: '120 cuestionario + 40 supuestos prácticos. Ambos tipo test.' },
             { icon: Brain, title: 'Conducta Humana', desc: 'Bloque IV incluido: psicología penitenciaria, subculturas, HHSS.' },
             { icon: Users, title: 'Precio único 49,99€', desc: 'Sin suscripción. Acceso ilimitado. 20 créditos IA.' },
           ].map(({ icon: Icon, title, desc }) => (
@@ -247,7 +247,7 @@ export default function PenitenciariasLanding() {
         <div className="space-y-4">
           {[
             { q: '¿Cuántas plazas hay?', a: '900 plazas (OEP 2025). Histórico: 800 (2024), 756 (2023). Se esperan ~800 para 2026.' },
-            { q: '¿Cómo es el examen?', a: '2 ejercicios tipo test: 150 preguntas de todo el temario + 10 supuestos × 5 preguntas = 50. Después, reconocimiento médico (Apto/No apto).' },
+            { q: '¿Cómo es el examen?', a: '2 ejercicios tipo test: 120 preguntas de todo el temario + 8 supuestos × 5 preguntas = 40. Después, reconocimiento médico (Apto/No apto).' },
             { q: '¿Cuándo es el examen?', a: 'Convocatoria anual. El último fue enero 2026. La próxima se espera para enero 2027.' },
             { q: '¿Qué bloque pesa más?', a: 'Derecho Penitenciario (temas 28-47) representa ~36% de las preguntas, seguido de Organización del Estado (~35%), Derecho Penal (~20%) y Conducta Humana (~9%).' },
           ].map(({ q, a }) => (

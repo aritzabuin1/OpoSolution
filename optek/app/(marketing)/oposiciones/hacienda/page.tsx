@@ -81,8 +81,8 @@ export default function HaciendaLanding() {
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
         mainEntity: [
-          { '@type': 'Question', name: '¿Cuántas plazas hay de Agente de Hacienda?', acceptedAnswer: { '@type': 'Answer', text: '1.000 plazas libre (OEP 2025). Histórico: 851 (2024), 700 (2023), 550 (2022).' } },
-          { '@type': 'Question', name: '¿Cómo es el examen de Agente de Hacienda?', acceptedAnswer: { '@type': 'Answer', text: '2 ejercicios tipo test: 80 preguntas de todo el temario + 10 supuestos prácticos tipo test del Bloque III (Hacienda y Derecho Tributario).' } },
+          { '@type': 'Question', name: '¿Cuántas plazas hay de Agente de Hacienda?', acceptedAnswer: { '@type': 'Answer', text: '1.000 plazas libre (OEP 2025). Histórico: 851 (2024), 823 (2023), 787 (2022).' } },
+          { '@type': 'Question', name: '¿Cómo es el examen de Agente de Hacienda?', acceptedAnswer: { '@type': 'Answer', text: '2 ejercicios: 80 preguntas test de todo el temario (90 min, -1/4) + 10 supuestos prácticos de desarrollo escrito del Bloque III (2h30, respuestas breves y razonadas, 0-30 pts).' } },
           { '@type': 'Question', name: '¿Cuándo es el examen de Agente de Hacienda?', acceptedAnswer: { '@type': 'Answer', text: 'Convocatoria anual. El último fue marzo 2026. La próxima se espera para marzo 2027.' } },
           { '@type': 'Question', name: '¿Cuál es la ley más importante para Agente de Hacienda?', acceptedAnswer: { '@type': 'Answer', text: 'La Ley General Tributaria (Ley 58/2003) es con diferencia la más preguntada, cubriendo temas 13-25.' } },
         ],
@@ -98,7 +98,7 @@ export default function HaciendaLanding() {
           Oposiciones Agente de <span className="text-emerald-600">Hacienda</span> 2026
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Practica con tests online gratis. 32 temas en 3 bloques, 2 ejercicios tipo test.
+          Practica con tests online gratis. 32 temas en 3 bloques: test de 80 preguntas + 10 supuestos de desarrollo escrito.
           La LGT es la ley más preguntada — nuestras preguntas se verifican contra ella.
         </p>
         <div className="flex items-center justify-center gap-4 flex-wrap">
@@ -120,10 +120,10 @@ export default function HaciendaLanding() {
         <h2 className="text-2xl font-bold">Estructura del examen</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
-            { icon: BookOpen, label: '80 preguntas test', desc: 'Ej. 1 — todo el temario' },
-            { icon: Clock, label: '90 minutos', desc: '1 min 7 seg por pregunta' },
-            { icon: Calculator, label: 'Penalización -1/4', desc: 'Error resta 1/4 del acierto' },
-            { icon: Building2, label: '10 supuestos test', desc: 'Ej. 2 — solo Bloque III' },
+            { icon: BookOpen, label: '80 preguntas test', desc: 'Ej. 1 — todo el temario, 90 min' },
+            { icon: Calculator, label: 'Penalización -1/4', desc: 'Ej. 1 — error resta 1/4 del acierto' },
+            { icon: Building2, label: '10 supuestos escritos', desc: 'Ej. 2 — desarrollo Bloque III, 2h30' },
+            { icon: Clock, label: 'Máx. 30 puntos ej. 2', desc: 'Respuestas breves y razonadas' },
           ].map(({ icon: Icon, label, desc }) => (
             <Card key={label}>
               <CardContent className="pt-6 text-center space-y-2">
@@ -166,7 +166,7 @@ export default function HaciendaLanding() {
         <div className="grid sm:grid-cols-2 gap-4">
           {[
             { icon: Sparkles, title: 'Tests con IA', desc: 'Preguntas verificadas contra LGT, IRPF, IVA y más.' },
-            { icon: BookOpen, title: '2 ejercicios test', desc: 'Ambos ejercicios son tipo test. El 2.º son supuestos de Bloque III.' },
+            { icon: BookOpen, title: 'Supuestos con corrección IA', desc: 'Practica los 10 supuestos de desarrollo del Bloque III con corrección automática.' },
             { icon: Landmark, title: 'Radar del Tribunal', desc: 'Temas más preguntados en convocatorias AEAT anteriores.' },
             { icon: Users, title: 'Precio único 49,99€', desc: 'Sin suscripción. Acceso ilimitado. 20 créditos IA.' },
           ].map(({ icon: Icon, title, desc }) => (
@@ -203,8 +203,8 @@ export default function HaciendaLanding() {
         <h2 className="text-2xl font-bold">Preguntas frecuentes</h2>
         <div className="space-y-4">
           {[
-            { q: '¿Cuántas plazas hay?', a: '1.000 plazas libre (OEP 2025). Histórico: 851 (2024), 700 (2023), 550 (2022).' },
-            { q: '¿Cómo es el examen?', a: '2 ejercicios tipo test: 80 preguntas de todo el temario + 10 supuestos prácticos tipo test del Bloque III (Hacienda y Derecho Tributario).' },
+            { q: '¿Cuántas plazas hay?', a: '1.000 plazas libre (OEP 2025). Histórico: 851 (2024), 823 (2023), 787 (2022).' },
+            { q: '¿Cómo es el examen?', a: '2 ejercicios: 80 preguntas test de todo el temario (90 min, -1/4) + 10 supuestos prácticos de desarrollo escrito del Bloque III (2h30, respuestas breves y razonadas, 0-30 pts).' },
             { q: '¿Cuándo es el examen?', a: 'Convocatoria anual. El último fue marzo 2026. La próxima se espera para marzo 2027.' },
             { q: '¿Cuál es la ley más importante?', a: 'La Ley General Tributaria (Ley 58/2003) es con diferencia la más preguntada, cubriendo temas 13-25.' },
           ].map(({ q, a }) => (
