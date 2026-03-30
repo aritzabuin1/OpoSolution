@@ -89,7 +89,7 @@ export const TRAMITACION_OPOSICION_ID = 'e1000000-0000-0000-0000-000000000001'
 export const GESTION_J_OPOSICION_ID = 'e2000000-0000-0000-0000-000000000001'
 // Hacienda + Penitenciarias IDs (migration 064)
 export const HACIENDA_OPOSICION_ID = 'f0000000-0000-0000-0000-000000000001'
-export const PENITENCIARIAS_OPOSICION_ID = 'g0000000-0000-0000-0000-000000000001'
+export const PENITENCIARIAS_OPOSICION_ID = 'f1000000-0000-0000-0000-000000000001'
 
 // Mapeo tier → oposición(es) para checkout metadata
 export const TIER_TO_OPOSICION: Record<StripePriceTier, string | string[]> = {

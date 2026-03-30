@@ -263,7 +263,7 @@
 ### 2.1 Migration: oposición + temas
 - [ ] Crear `supabase/migrations/20260401_071_penitenciarias.sql`
 - [ ] INSERT oposiciones con UPSERT (ON CONFLICT (id) DO UPDATE):
-  - id: `'g0000000-0000-0000-0000-000000000001'`
+  - id: `'f1000000-0000-0000-0000-000000000001'`
   - slug: `'penitenciarias'`, rama: `'penitenciarias'`, nivel: `'C1'`, activa: `false`
   - plazas: 900, fecha_examen_aprox: `'2027-01-15'`
   - features: `{"psicotecnicos": false, "cazatrampas": true, "supuesto_practico": false, "ofimatica": false}`
@@ -480,7 +480,7 @@
 - [ ] Añadir en `lib/stripe/client.ts`:
   - `STRIPE_PRICES.pack_penitenciarias` → env var `STRIPE_PRICE_PACK_PENITENCIARIAS`
   - `CORRECTIONS_GRANTED.pack_penitenciarias = 20` (sin supuesto_practico → estándar)
-  - `TIER_TO_OPOSICION.pack_penitenciarias = 'g0000000-0000-0000-0000-000000000001'`
+  - `TIER_TO_OPOSICION.pack_penitenciarias = 'f1000000-0000-0000-0000-000000000001'`
   - `TIER_TO_DB_TIPO.pack_penitenciarias = 'pack_oposicion'`
 - [ ] Añadir `'pack_penitenciarias'` al z.enum del checkout `BodySchema`
 - [ ] Crear producto Stripe "Pack Penitenciarias 49,99€" — **MANUAL Aritz**
