@@ -1,0 +1,30 @@
+{
+  "tema": 48,
+  "titulo": "Elementos de la conducta humana",
+  "secciones": [
+    {
+      "titulo": "Estímulos y respuestas",
+      "contenido": "La conducta humana se analiza mediante el paradigma estímulo-respuesta (E-R). Un estímulo es cualquier evento interno o externo que provoca una respuesta del organismo. Las respuestas pueden ser: (a) respondientes o reflejas (involuntarias, provocadas por estímulos específicos, como el reflejo de retirada), (b) operantes o instrumentales (voluntarias, emitidas por el sujeto y mantenidas por sus consecuencias). En el contexto penitenciario, comprender esta distinción es esencial para diseñar programas de intervención conductual. La conducta operante es modificable mediante técnicas de condicionamiento, lo que fundamenta los programas de tratamiento penitenciario."
+    },
+    {
+      "titulo": "Condicionamiento clásico y operante",
+      "contenido": "El condicionamiento clásico (Pavlov) explica cómo estímulos neutros adquieren capacidad de provocar respuestas al asociarse con estímulos incondicionados. Conceptos clave: adquisición, extinción, generalización y discriminación. El condicionamiento operante (Skinner) explica cómo las consecuencias de la conducta modifican su probabilidad de aparición futura. Principios: refuerzo positivo (presentar estímulo agradable), refuerzo negativo (retirar estímulo aversivo), castigo positivo (presentar estímulo aversivo) y castigo negativo (retirar estímulo agradable). La extinción ocurre cuando una conducta deja de ser reforzada."
+    },
+    {
+      "titulo": "Refuerzo y castigo en el medio penitenciario",
+      "contenido": "En el sistema penitenciario, el refuerzo positivo se aplica mediante: recompensas, permisos de salida, progresión en grado, acceso a actividades. El refuerzo negativo puede incluir la retirada de restricciones al mejorar la conducta. El castigo se materializa en el régimen disciplinario: sanciones por faltas (aislamiento, privación de permisos). Los programas de economía de fichas (token economy) son un ejemplo de aplicación del condicionamiento operante en prisión: los internos obtienen fichas canjeables por privilegios al realizar conductas prosociales. La eficacia del refuerzo depende de: inmediatez, contingencia, magnitud y programa de reforzamiento (razón fija/variable, intervalo fijo/variable)."
+    },
+    {
+      "titulo": "Aprendizaje social y modelado",
+      "contenido": "La teoría del aprendizaje social (Bandura) establece que la conducta se aprende también por observación e imitación de modelos. Procesos implicados: atención, retención, reproducción motora y motivación. En prisión, el aprendizaje social explica tanto la adquisición de conductas delictivas (modelado de pares criminales) como la posibilidad de aprendizaje prosocial (programas con modelos positivos). La autoeficacia percibida (creencia en la propia capacidad) es un predictor clave del cambio conductual en programas de tratamiento."
+    },
+    {
+      "titulo": "Técnicas de evaluación de la conducta",
+      "contenido": "La evaluación conductual en el medio penitenciario utiliza múltiples métodos: (1) Observación directa: registro de frecuencia, duración e intensidad de conductas en el centro. Observación participante y no participante. Registros de observación estructurados. (2) Auto-registros: el interno registra sus propias conductas, pensamientos y emociones. Útil para identificar patrones y antecedentes. (3) Auto-informes y cuestionarios: instrumentos estandarizados como el MMPI-2, SCL-90-R, BDI-II (depresión), STAI (ansiedad), PCL-R (psicopatía). (4) Entrevista conductual: identificación de conductas problema, antecedentes, consecuencias y recursos. (5) Análisis funcional de la conducta: determina las relaciones entre antecedentes, conducta y consecuencias (modelo ABC)."
+    },
+    {
+      "titulo": "Integración de datos y realización de informes",
+      "contenido": "Los datos recogidos mediante las diferentes técnicas de evaluación se integran en informes conductuales que sirven para: clasificación inicial del interno, diseño del programa individualizado de tratamiento (PIT), evaluación de la evolución, informes para la Junta de Tratamiento y el Juez de Vigilancia Penitenciaria. El informe conductual debe incluir: datos de identificación, motivos de evaluación, técnicas utilizadas, resultados obtenidos, análisis funcional, diagnóstico conductual, pronóstico y recomendaciones de intervención. La triangulación de datos (combinar información de distintas fuentes y métodos) aumenta la fiabilidad de las conclusiones."
+    }
+  ]
+}

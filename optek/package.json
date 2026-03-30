@@ -41,7 +41,8 @@
     "scrape:ofimatica": "tsx execution/scrape-microsoft-learn.ts",
     "ingest:ofimatica": "tsx --env-file=.env.local execution/ingest-conocimiento.ts",
     "seed:ofimatica": "tsx --env-file=.env.local execution/seed-ofimatica-bank.ts",
-    "ingest:correos": "tsx --env-file=.env.local execution/ingest-conocimiento-correos.ts"
+    "ingest:correos": "tsx --env-file=.env.local execution/ingest-conocimiento-correos.ts",
+    "ingest:penitenciarias": "tsx --env-file=.env.local execution/ingest-conocimiento-penitenciarias.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",

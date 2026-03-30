@@ -1,0 +1,30 @@
+{
+  "tema": 49,
+  "titulo": "Organización social de la prisión",
+  "secciones": [
+    {
+      "titulo": "Control formal e informal en prisión",
+      "contenido": "El control social en prisión opera a dos niveles. El control formal lo ejerce la institución mediante: normativa penitenciaria (LOGP, RP), régimen disciplinario, clasificación en grados, vigilancia del personal, recuentos, cacheos y medios coercitivos. El control informal proviene de los propios internos: jerarquías no escritas, presión de grupo, código del recluso, amenazas y violencia entre internos. Ambos sistemas coexisten y a veces entran en conflicto. El personal penitenciario debe conocer ambos mecanismos para gestionar la convivencia eficazmente."
+    },
+    {
+      "titulo": "El código del recluso",
+      "contenido": "El código del recluso es un conjunto de normas no escritas que regulan la convivencia entre internos. Principios fundamentales: (1) No delatar a otros internos ('chivato' es la peor etiqueta). (2) No inmiscuirse en asuntos ajenos. (3) Mantener la 'dureza' y no mostrar debilidad. (4) No cooperar con la administración. (5) Lealtad al grupo. (6) Resolver conflictos internamente, sin acudir al funcionario. Este código varía según el tipo de centro, el perfil de la población reclusa y la cultura carcelaria. Su incumplimiento puede tener graves consecuencias para el interno (ostracismo, violencia). Los programas de tratamiento deben tener en cuenta esta realidad para ser efectivos."
+    },
+    {
+      "titulo": "Jerga y lenguaje carcelario",
+      "contenido": "El argot penitenciario cumple funciones de identidad grupal, comunicación encubierta y cohesión social. Términos frecuentes: 'talego' (condena/cárcel), 'vis a vis' (comunicación íntima), 'petate' (enseres del interno), 'chapado' (encerrado en celda), 'garaje' (celda de aislamiento), 'garito' (celda), 'patio' (zona común de recreo), 'módulo' (unidad de convivencia), 'peculio' (dinero del interno), 'conducto' (sistema de comunicación oficial). El conocimiento de este lenguaje por parte del personal facilita la comunicación, la detección de situaciones de riesgo y la prevención de incidentes."
+    },
+    {
+      "titulo": "Subculturas carcelarias",
+      "contenido": "En prisión coexisten diversas subculturas: (1) Subcultura criminal: valores del mundo delictivo, jerarquía basada en el tipo de delito y reincidencia. (2) Subcultura carcelaria: adaptación al medio penitenciario, solidaridad entre reclusos frente a la institución. (3) Subcultura de funcionarios: valores profesionales, cohesión grupal, distancia con los internos. (4) Subculturas étnicas y nacionales: agrupaciones por origen, idioma, costumbres. Las subculturas influyen en la adaptación del interno, el riesgo de victimización y las posibilidades de tratamiento. Clemmer (1940) describió el proceso de 'prisionización' como la asimilación progresiva de la subcultura carcelaria."
+    },
+    {
+      "titulo": "Hacinamiento y efectos psicológicos de la reclusión",
+      "contenido": "El hacinamiento penitenciario (ratio internos/plazas >100%) genera: aumento de la agresividad, estrés, problemas de salud, mayor conflictividad, dificultad para los programas de tratamiento. Los efectos psicológicos de la reclusión incluyen: ansiedad, depresión, despersonalización, pérdida de identidad, alteraciones del sueño, somatizaciones, dependencia institucional (institutionalización). La duración de la condena, el régimen aplicado y los factores protectores (apoyo familiar, actividades, tratamiento) modulan estos efectos. El síndrome de Ganser y las reacciones de estrés agudo son cuadros frecuentes al ingreso."
+    },
+    {
+      "titulo": "Prisionización y socialización carcelaria",
+      "contenido": "La prisionización (Clemmer, 1940) es el proceso por el cual el interno asimila progresivamente los hábitos, costumbres, tradiciones y cultura de la prisión. Factores que la intensifican: condenas largas, personalidad inestable, pocas relaciones con el exterior, identificación con internos más 'prisionizados'. La socialización carcelaria implica el aprendizaje de roles (interno nuevo, veterano, líder, chivato, protegido). La despersonalización y la pérdida de rol social exterior son especialmente dañinas. Estrategias de prevención: mantener contacto con el exterior (permisos, comunicaciones), participación en programas, progresión en grado, preparación para la libertad."
+    }
+  ]
+}

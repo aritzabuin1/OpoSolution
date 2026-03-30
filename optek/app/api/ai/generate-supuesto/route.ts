@@ -3,7 +3,7 @@ import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { checkIsAdmin, getOposicionFromProfile } from '@/lib/freemium'
 import { callAIJSON } from '@/lib/ai/provider'
-import { SYSTEM_GENERATE_SUPUESTO } from '@/lib/ai/supuesto-practico'
+import { SYSTEM_GENERATE_SUPUESTO, SYSTEM_GENERATE_SUPUESTO_AEAT } from '@/lib/ai/supuesto-practico'
 import type { SupuestoGenerado } from '@/lib/ai/supuesto-practico'
 import { logger } from '@/lib/logger'
 import { z } from 'zod'
@@ -26,7 +26,7 @@ const SupuestoSchema = z.object({
     numero: z.number(),
     enunciado: z.string(),
     subpreguntas: z.array(z.string()),
-    bloque: z.enum(['IV', 'V', 'VI']),
+    bloque: z.enum(['III', 'IV', 'V', 'VI']),
     leyes_relevantes: z.array(z.string()),
   })),
 })
@@ -71,26 +71,42 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  // Generate supuesto via AI
-  log.info({ userId: user.id }, '[generate-supuesto] generating')
+  // Resolve oposición slug to choose the right prompt
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: opoRow } = await (serviceSupabase as any)
+    .from('oposiciones')
+    .select('slug')
+    .eq('id', oposicionId)
+    .single()
+  const opoSlug = (opoRow as { slug?: string } | null)?.slug ?? ''
+  const isAEAT = opoSlug === 'hacienda-aeat'
 
-  const userPrompt = `Genera un supuesto práctico completo para el examen GACE A2 con 5 cuestiones.
+  // Generate supuesto via AI
+  log.info({ userId: user.id, opoSlug }, '[generate-supuesto] generating')
+
+  const systemPrompt = isAEAT ? SYSTEM_GENERATE_SUPUESTO_AEAT : SYSTEM_GENERATE_SUPUESTO
+
+  const userPrompt = isAEAT
+    ? `Genera 10 supuestos prácticos de Derecho Tributario (Bloque III) para el examen de Agente de Hacienda Pública.
+Distribución: 3-4 supuestos LGT, 2 IRPF, 2 IVA, 1 IS, 1 IIEE/Aduanas.
+Cada supuesto debe tener 1 pregunta concreta con respuesta breve y razonada.`
+    : `Genera un supuesto práctico completo para el examen GACE A2 con 5 cuestiones.
 Mezcla obligatoriamente: al menos 1 cuestión de contratación (Bloque IV), 1 de personal (Bloque V) y 1 de presupuestos (Bloque VI).
 Las otras 2 cuestiones pueden ser de cualquiera de los 3 bloques.`
 
   let supuesto: SupuestoGenerado
   try {
     supuesto = await callAIJSON(
-      SYSTEM_GENERATE_SUPUESTO,
+      systemPrompt,
       userPrompt,
       SupuestoSchema,
       {
-        maxTokens: 8000,
+        maxTokens: isAEAT ? 12000 : 8000, // AEAT has 10 supuestos vs 5 cuestiones
         endpoint: 'generate-supuesto',
         userId: user.id,
         requestId,
         oposicionId,
-        temperature: 0.7, // More variety in cases
+        temperature: 0.7,
       }
     )
   } catch (err) {

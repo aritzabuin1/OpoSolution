@@ -1,0 +1,30 @@
+{
+  "tema": 50,
+  "titulo": "Comportamiento social y conducta adictiva en prisión",
+  "secciones": [
+    {
+      "titulo": "Asertividad: concepto y componentes",
+      "contenido": "La asertividad es la capacidad de expresar opiniones, sentimientos y necesidades de forma directa, honesta y respetuosa, sin agredir ni someterse. Componentes: (1) Conductual: contacto visual, tono de voz firme, postura erguida, expresión facial congruente. (2) Cognitivo: creencias racionales sobre derechos propios y ajenos, autoafirmaciones positivas. (3) Emocional: regulación emocional, tolerancia a la frustración. Estilos de comunicación: pasivo (evita el conflicto, se somete), agresivo (impone, no respeta al otro), asertivo (expresa y respeta). En prisión, la asertividad es una competencia clave que muchos internos no han desarrollado, lo que contribuye a la resolución violenta de conflictos."
+    },
+    {
+      "titulo": "Habilidades sociales: definición y clasificación",
+      "contenido": "Las habilidades sociales (HHSS) son conductas aprendidas que permiten interactuar con otros de forma efectiva y satisfactoria. Clasificación: (1) Básicas: escucha activa, iniciar/mantener conversaciones, presentarse, hacer preguntas. (2) Avanzadas: pedir ayuda, dar instrucciones, disculparse, convencer. (3) Afectivas: conocer/expresar sentimientos, comprender a otros, enfrentar el enfado. (4) Alternativas a la agresión: pedir permiso, negociar, autocontrol, defender derechos sin agresión. (5) Para afrontar el estrés: formular/responder quejas, manejar presiones, prepararse para conversaciones difíciles. Goldstein (1980) desarrolló el modelo de Aprendizaje Estructurado que fundamenta muchos programas penitenciarios."
+    },
+    {
+      "titulo": "Evaluación y medida de habilidades sociales",
+      "contenido": "Instrumentos de evaluación de HHSS en el ámbito penitenciario: (1) Cuestionarios: EHS de Gismero (Escala de Habilidades Sociales), EMES (Escala Multidimensional de Expresión Social), Inventario de Asertividad de Rathus. (2) Registros de observación: en situaciones naturales (patio, comedor, talleres) o en role-playing estructurado. (3) Auto-registros: el interno registra sus interacciones y el resultado percibido. (4) Entrevista: identificar déficits específicos, situaciones problemáticas, historia de aprendizaje social. La evaluación debe ser funcional: no solo medir el déficit sino identificar en qué situaciones específicas el interno carece de habilidades y cuáles son las consecuencias."
+    },
+    {
+      "titulo": "Programas de entrenamiento en habilidades sociales en prisión",
+      "contenido": "Los programas de Entrenamiento en Habilidades Sociales (EHS) en prisión siguen el modelo de Goldstein: (1) Instrucciones: explicar la habilidad, sus componentes y su utilidad. (2) Modelado: el terapeuta o un modelo demuestra la habilidad. (3) Ensayo conductual (role-playing): el interno practica la habilidad en situaciones simuladas. (4) Retroalimentación: el grupo y el terapeuta dan feedback positivo y correctivo. (5) Generalización: tareas entre sesiones para practicar en situaciones reales. Programas específicos en IIPP: Programa de Pensamiento Prosocial (R&R de Ross y Fabiano), Programa de Competencia Psicosocial, Módulos de Respeto (basados en convivencia y HHSS), Programa PICAM (control de la agresión). La evidencia muestra que los programas de EHS reducen la reincidencia entre un 10-25%."
+    },
+    {
+      "titulo": "La conducta adictiva en prisión: prevalencia y sustancias",
+      "contenido": "La prevalencia de trastornos por uso de sustancias entre la población reclusa es significativamente superior a la población general. Estimaciones en España: 60-80% de internos han consumido drogas ilegales, 30-50% presentan dependencia activa al ingreso. Sustancias más prevalentes en prisión: heroína (históricamente la más problemática, en descenso), cocaína (creciente), cannabis (la más consumida), alcohol (fabricación clandestina: 'calimocho', fermentados), psicofármacos sin prescripción (benzodiacepinas — el 'trapicheo' más habitual), nuevas sustancias psicoactivas. El policonsumo es la norma. La patología dual (trastorno por uso de sustancias + trastorno mental) afecta al 30-40% de internos consumidores."
+    },
+    {
+      "titulo": "Programas de intervención con drogodependientes en prisión",
+      "contenido": "La Estrategia Nacional sobre Adicciones (PNSD) y la SGIP coordinan los programas: (1) Programas de deshabituación: Módulos Terapéuticos (dentro de prisión), Comunidades Terapéuticas Extrapenitenciarias (art. 182 RP), programas ambulatorios. (2) Programas de reducción de daños: intercambio de jeringuillas, tratamiento con metadona/buprenorfina (PMM — Programa de Mantenimiento con Metadona), educación sanitaria, prevención de sobredosis con naloxona. (3) Programas de prevención: talleres de educación para la salud, actividades alternativas al consumo. (4) Derivación a recursos comunitarios: centros de día, pisos de acogida, seguimiento post-penitenciario. El art. 116 RP permite la aplicación del régimen abierto a internos que sigan tratamiento de deshabituación. El art. 182 RP permite el cumplimiento en centros extrapenitenciarios."
+    }
+  ]
+}
