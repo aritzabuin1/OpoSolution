@@ -235,7 +235,7 @@
 - [x] Post: "Temario Agentes Hacienda 2026 — 32 temas completos"
 - [x] Post: "Notas de corte Agentes Hacienda — histórico y predicción"
 - [x] Post: "Cómo aprobar Agentes Hacienda — estrategia Bloque III (LGT)"
-- [ ] Calculadora nota: `/herramientas/calculadora-nota-hacienda` (penalización -1/4, 2 ejercicios)
+- [x] Calculadora nota: `/herramientas/calculadora-nota-hacienda` — ✅ 2026-03-30 (penalización -1/4, 2 ejercicios)
 
 ---
 
@@ -380,8 +380,8 @@
 - [x] **Ley 53/1984 Incompatibilidades** — ya ingestionada — tema 9
 - [ ] **RD 207/2024** Estructura orgánica Ministerio Interior — tema 7 (pendiente, no bloqueante)
 - [ ] **RD 122/2015** Estatuto EPPFETFE — temas 7, 37 (pendiente, no bloqueante)
-- [ ] **LO 4/2000 LOEX** Extranjería — tema 40 (pendiente, no bloqueante)
-- [ ] **Ley 23/2014** Reconocimiento mutuo UE — temas 28, 40 (pendiente, no bloqueante)
+- [x] **LO 4/2000 LOEX** Extranjería — 117 artículos scrapeados e ingestionados
+- [x] **Ley 23/2014** Reconocimiento mutuo UE — 238 artículos scrapeados e ingestionados
 
 **Contenido no legislativo (Bloque IV — Conducta Humana) ✅:**
 - [x] Crear contenido en `conocimiento_tecnico` para temas 48-50 — 18 secciones con embeddings
@@ -466,8 +466,8 @@
 
 ### 3.2 SEO transversal
 - [x] Actualizar `llms.txt` con nuevas oposiciones
-- [ ] Internal linking entre blogs de distintas ramas
-- [ ] Posts comparativos: "OpoRuta vs OpositaTest para Hacienda/IIPP"
+- [x] Internal linking: todos los posts nuevos linkan a sub-landings + /register
+- [x] Posts comparativos: 4 posts (vs OpositaTest + mejores apps) — ✅ 112 total
 
 ### 3.3 Registro dinámico
 - [ ] Verificar que ambas aparecen en `/register` agrupadas por rama
