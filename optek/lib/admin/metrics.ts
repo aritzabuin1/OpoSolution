@@ -187,12 +187,15 @@ export const getCostPerUser = _getCostPerUser
 // ─── getAARRR ─────────────────────────────────────────────────────────────────
 
 /**
- * Embudo AARRR — ajustado al free tier v2:
- * - Acquisition: registros totales
- * - Activation: % que exploraron 3+ temas diferentes (1 test ya no indica engagement)
- * - Retention: % que volvieron en semana 2+ tras registro (no racha diaria)
+ * Embudo AARRR — métricas accionables:
+ * - Acquisition: registros totales (sin admin)
+ * - Activation: % que completaron 3+ temas diferentes (indica engagement real)
+ * - Retention: % activos en 2+ SEMANAS DISTINTAS (no solo "volvió una vez")
  * - Revenue: % con al menos 1 compra
  * - Referral: 0 hasta implementar tracking
+ *
+ * NOTA: Admins excluidos de TODOS los cálculos para que las métricas reflejen
+ * el comportamiento real de usuarios, no la actividad de testing.
  */
 async function _getAARRR(): Promise<AAARRRMetrics> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -217,7 +220,7 @@ async function _getAARRR(): Promise<AAARRRMetrics> {
   const tests = (testsResult.data ?? []) as { user_id: string; tema_id: string; created_at: string }[]
   const totalUsuarios = profiles.length
 
-  // Activation: users who explored 3+ different temas
+  // Activation: users who explored 3+ different temas (indica que realmente probaron la app)
   const temasPerUser = new Map<string, Set<string>>()
   for (const t of tests) {
     if (!temasPerUser.has(t.user_id)) temasPerUser.set(t.user_id, new Set())
@@ -225,28 +228,28 @@ async function _getAARRR(): Promise<AAARRRMetrics> {
   }
   const activatedCount = [...temasPerUser.values()].filter(temas => temas.size >= 3).length
 
-  // Retention: users who did a test in week 2+ after registration
-  const profileCreated = new Map(profiles.map(p => [p.id, new Date(p.created_at).getTime()]))
-  const WEEK_MS = 7 * 24 * 60 * 60 * 1000
-  const retainedUsers = new Set<string>()
+  // Retention: users active in 2+ DISTINCT WEEKS (no basta con volver un solo día)
+  // Semana = ISO week number. Si un usuario hizo tests en semana 12 y semana 14, cuenta.
+  const weeksPerUser = new Map<string, Set<string>>()
   for (const t of tests) {
-    const regTime = profileCreated.get(t.user_id)
-    if (regTime) {
-      const testTime = new Date(t.created_at).getTime()
-      if (testTime - regTime >= WEEK_MS) {
-        retainedUsers.add(t.user_id)
-      }
-    }
+    if (!weeksPerUser.has(t.user_id)) weeksPerUser.set(t.user_id, new Set())
+    const d = new Date(t.created_at)
+    // ISO week key: "YYYY-WW"
+    const jan1 = new Date(d.getFullYear(), 0, 1)
+    const weekNum = Math.ceil(((d.getTime() - jan1.getTime()) / 86400000 + jan1.getDay() + 1) / 7)
+    weeksPerUser.get(t.user_id)!.add(`${d.getFullYear()}-${weekNum}`)
   }
-  // Only count users registered 2+ weeks ago (they had the chance to retain)
-  const usersOldEnough = profiles.filter(p => Date.now() - new Date(p.created_at).getTime() >= 2 * WEEK_MS).length
+  const retainedCount = [...weeksPerUser.values()].filter(weeks => weeks.size >= 2).length
+  // Denominador: solo usuarios registrados hace 2+ semanas (tuvieron tiempo de retener)
+  const TWO_WEEKS_MS = 14 * 24 * 60 * 60 * 1000
+  const usersOldEnough = profiles.filter(p => Date.now() - new Date(p.created_at).getTime() >= TWO_WEEKS_MS).length
 
   const revenueUsers = new Set(
     (revenueResult.data ?? []).map((c: { user_id: string }) => c.user_id)
   )
 
   const activation = totalUsuarios > 0 ? Math.round((activatedCount / totalUsuarios) * 1000) / 10 : 0
-  const retention = usersOldEnough > 0 ? Math.round((retainedUsers.size / usersOldEnough) * 1000) / 10 : 0
+  const retention = usersOldEnough > 0 ? Math.round((retainedCount / usersOldEnough) * 1000) / 10 : 0
   const revenue = totalUsuarios > 0 ? Math.round((revenueUsers.size / totalUsuarios) * 1000) / 10 : 0
 
   return { acquisition: totalUsuarios, activation, retention, revenue, referral: 0 }
