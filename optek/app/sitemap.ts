@@ -53,6 +53,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${APP_URL}/herramientas/calculadora-nota-hacienda`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${APP_URL}/precios`,
       lastModified: now,
       changeFrequency: 'monthly',

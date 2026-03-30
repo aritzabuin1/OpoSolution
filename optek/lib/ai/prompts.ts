@@ -77,6 +77,25 @@ ${OPCION_RULE}`
 ${OPCION_RULE}`
   }
 
+  if (lower.includes('hacienda') || lower.includes('aeat')) {
+    return `ESTILO HACIENDA AEAT (Agente de Hacienda Pública, C1):
+- Enunciados de ~22 palabras. Técnicos: cita siempre la ley específica (LGT art. X, LIRPF art. Y).
+- Opciones de ~12 palabras cada una, frases completas con datos concretos (plazos, porcentajes, importes).
+- Bloque III (Derecho Tributario) es el más importante (~55% del examen).
+- Penalización -1/4. Distractores plausibles con artículos cercanos al correcto.
+${OPCION_RULE}`
+  }
+
+  if (lower.includes('penitenciari') || lower.includes('iipp') || lower.includes('prisiones')) {
+    return `ESTILO INSTITUCIONES PENITENCIARIAS (Ayudante IIPP, C1):
+- Enunciados de ~20 palabras. Cita LOGP, Reglamento Penitenciario (RD 190/1996), Código Penal.
+- Opciones de ~10 palabras cada una, frases completas.
+- Bloque III (Derecho Penitenciario) = ~36% del examen, priorizar.
+- Bloque IV (Conducta Humana): preguntas sobre psicología penitenciaria, subculturas, HHSS.
+- Penalización -1/3.
+${OPCION_RULE}`
+  }
+
   // AGE C1/C2 (default)
   return `ESTILO AGE (calibrado con ~591 preguntas oficiales INAP):
 - C2: opciones de ~7 palabras. C1: opciones de ~11 palabras.

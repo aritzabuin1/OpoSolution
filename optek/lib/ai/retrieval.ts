@@ -392,6 +392,8 @@ function getTribunalLabel(oposicionSlug?: string): string {
   if (oposicionSlug.includes('correos')) return 'CORREOS'
   if (['auxilio-judicial', 'tramitacion-procesal', 'gestion-procesal'].includes(oposicionSlug))
     return 'MJU (Ministerio de Justicia)'
+  if (oposicionSlug === 'hacienda-aeat') return 'AEAT (Agencia Tributaria)'
+  if (oposicionSlug === 'penitenciarias') return 'SGIP (Instituciones Penitenciarias)'
   return 'INAP'
 }
 

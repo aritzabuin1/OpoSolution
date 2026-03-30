@@ -57,6 +57,26 @@ export function getOposicionDisplay(opts: {
     }
   }
 
+  // Hacienda (AEAT)
+  if (rama === 'hacienda' || lower.includes('hacienda') || lower.includes('aeat')) {
+    return {
+      organismo: 'AEAT',
+      simulacroLabel: 'Simulacro Oficial AEAT',
+      badgeLabel: 'AEAT Oficial',
+      tribunalDe: 'de la AEAT',
+    }
+  }
+
+  // Instituciones Penitenciarias (SGIP)
+  if (rama === 'penitenciarias' || lower.includes('penitenciari') || lower.includes('iipp')) {
+    return {
+      organismo: 'SGIP',
+      simulacroLabel: 'Simulacro Oficial IIPP',
+      badgeLabel: 'IIPP Oficial',
+      tribunalDe: 'de la SGIP',
+    }
+  }
+
   // Default: AGE (INAP)
   return {
     organismo: 'INAP',

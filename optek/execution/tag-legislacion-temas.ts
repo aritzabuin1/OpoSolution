@@ -79,6 +79,8 @@ const CODE_MAP: Record<string, string[]> = {
   VOLUNTARIADO: ['BOE-A-2015-11072'],       // Ley 45/2015 Voluntariado
   DEPENDENCIA:  ['BOE-A-2006-21990'],       // Ley 39/2006 Dependencia
   INCOMPATIBILIDADES: ['BOE-A-1984-25031'], // Ley 53/1984 Incompatibilidades
+  LOEX:           ['BOE-A-2000-544'],       // LO 4/2000 Extranjería
+  LEY23_2014:     ['BOE-A-2014-12029'],     // Ley 23/2014 Reconocimiento mutuo UE
 }
 
 // Resolve symbolic name to all matching ley_codigos
@@ -200,6 +202,8 @@ const PENITENCIARIAS_RULES: TaggingRule[] = [
   { ley_codigo: 'INCOMPATIBILIDADES', oposicion_slug: 'penitenciarias', temas: [9] },
   // Bloque III — leyes complementarias
   { ley_codigo: 'RD840', oposicion_slug: 'penitenciarias', temas: [40, 42] },
+  { ley_codigo: 'LOEX', oposicion_slug: 'penitenciarias', temas: [40] },
+  { ley_codigo: 'LEY23_2014', oposicion_slug: 'penitenciarias', temas: [28, 40] },
   // Bloque II — Derecho Penal (10 temas) — requiere CP ingestionado
   { ley_codigo: 'CP', oposicion_slug: 'penitenciarias', temas: [18, 19, 20, 21, 22, 23, 24, 25, 26] },
   { ley_codigo: 'LECRIM', oposicion_slug: 'penitenciarias', temas: [27] },

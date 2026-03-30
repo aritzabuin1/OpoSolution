@@ -15397,4 +15397,230 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Se puede cambiar de provincia una vez dentro de Correos?', answer: 'Si. Una vez dentro como personal fijo, puedes solicitar traslado a otra provincia en convocatorias internas. Es una estrategia habitual: entrar en una provincia menos demandada y trasladarse despues.' },
     ],
   },
+  // ─── Post: OpoRuta vs OpositaTest Hacienda ─────────────────────────────────
+  {
+    slug: 'oporuta-vs-opositatest-hacienda-2026',
+    title: 'OpoRuta vs OpositaTest para Agente de Hacienda 2026: comparativa honesta',
+    description: 'Comparamos OpoRuta y OpositaTest para preparar Agente de Hacienda Publica 2026. Verificacion BOE (LGT, IRPF, IVA), correccion IA de supuestos y precio unico vs suscripcion.',
+    date: '2026-03-30',
+    keywords: ['oporuta vs opositatest hacienda', 'comparativa plataformas agente hacienda', 'test agente hacienda online', 'oposiciones hacienda 2026 plataforma', 'opositatest hacienda alternativa'],
+    content: `<h2>Dos plataformas, dos filosofias</h2>
+<p>Si estas preparando la oposicion de <strong>Agente de Hacienda Publica (C1)</strong>, seguramente has visto dos nombres: <strong>OpoRuta</strong> y <strong>OpositaTest</strong>. Ambas ofrecen tests online, pero su enfoque es muy diferente. Aqui tienes una comparativa objetiva para que decidas con datos.</p>
+
+<h3>Lo que necesita un opositor de Hacienda</h3>
+<p>El examen de Agente de Hacienda tiene dos partes: <strong>80 preguntas tipo test</strong> (con penalizacion -1/4) y <strong>10 supuestos practicos de desarrollo escrito</strong> sobre Derecho Tributario. Para prepararlo bien necesitas:</p>
+<ul>
+<li>Preguntas de test que citen legislacion <strong>vigente</strong> (LGT, IRPF, IVA, IS cambian con cada Ley de Presupuestos)</li>
+<li>Practica de supuestos con <strong>correccion detallada</strong></li>
+<li>Cobertura completa de los <strong>32 temas</strong> del programa oficial</li>
+</ul>
+
+<h3>Tabla comparativa</h3>
+<table>
+<thead><tr><th>Caracteristica</th><th>OpoRuta</th><th>OpositaTest</th></tr></thead>
+<tbody>
+<tr><td><strong>Verificacion BOE</strong></td><td>Si — cada cita legal (LGT, IRPF, IVA, IS, IIEE) se verifica contra la base legislativa antes de mostrarse</td><td>No — banco de preguntas estatico, posibles desactualizaciones</td></tr>
+<tr><td><strong>Supuestos practicos</strong></td><td>Si — correccion con IA siguiendo rubrica oficial AEAT (4 criterios: precision, fundamentacion, estructura, coherencia)</td><td>No incluye supuestos practicos con correccion</td></tr>
+<tr><td><strong>Generacion de preguntas</strong></td><td>IA genera preguntas nuevas por tema, verificadas en tiempo real</td><td>Banco fijo de preguntas predefinidas</td></tr>
+<tr><td><strong>Precio</strong></td><td>49,99€ pago unico (acceso permanente)</td><td>25-40€/mes (suscripcion mensual)</td></tr>
+<tr><td><strong>Cobertura temario</strong></td><td>32 temas completos (3 bloques)</td><td>Variable segun plan</td></tr>
+<tr><td><strong>Penalizacion en tests</strong></td><td>Si — simula -1/4 real del examen</td><td>Si</td></tr>
+<tr><td><strong>Explicacion de errores</strong></td><td>Analisis detallado con IA (metodo socratico: pregunta guia + revelacion + anclaje)</td><td>Respuesta correcta + justificacion breve</td></tr>
+</tbody>
+</table>
+
+<h3>¿Por que importa la verificacion BOE?</h3>
+<p>La <strong>Ley General Tributaria</strong> (Ley 58/2003) tiene 259 articulos. El IRPF (Ley 35/2006) y el IVA (Ley 37/1992) se modifican casi cada ano con la Ley de Presupuestos. Si estudias con preguntas basadas en legislacion de hace 2 anos, puedes estar memorizando <strong>respuestas incorrectas</strong>.</p>
+<p>OpoRuta verifica cada cita legal contra la legislacion vigente antes de presentarte la pregunta. Si un articulo ha cambiado, la pregunta se regenera. OpositaTest usa un banco fijo que puede contener preguntas desactualizadas.</p>
+
+<h3>Supuestos practicos: la gran diferencia</h3>
+<p>El segundo ejercicio (10 supuestos de desarrollo escrito, 2h30) es donde mas opositores suspenden. Necesitas practica con <strong>correccion real</strong>, no solo leer modelos de respuesta. OpoRuta ofrece correccion IA con rubrica calibrada segun los criterios oficiales de la AEAT. OpositaTest no incluye esta funcionalidad.</p>
+
+<h3>Precio: pago unico vs suscripcion</h3>
+<p>OpoRuta cuesta <strong>49,99€ una vez</strong>. Si tu preparacion dura 12 meses (lo habitual para Hacienda), con OpositaTest gastarias entre 300-480€. La diferencia es significativa, especialmente cuando ya estas pagando academia, libros y test presenciales.</p>
+
+<h3>¿Cual elegir?</h3>
+<p>Si solo necesitas un banco de preguntas basico para repasar, OpositaTest cumple. Pero si buscas <strong>verificacion legislativa real + practica de supuestos con correccion + precio justo</strong>, OpoRuta esta disenado especificamente para eso.</p>
+
+<p><a href="/oposiciones/hacienda">Descubre OpoRuta para Agente de Hacienda →</a></p>`,
+    faqs: [
+      { question: '¿OpoRuta verifica la legislacion de Hacienda?', answer: 'Si. Cada pregunta incluye citas legales (LGT, IRPF, IVA, IS, IIEE) que se verifican contra la base legislativa vigente del BOE. Si un articulo ha cambiado, la pregunta se regenera automaticamente.' },
+      { question: '¿Puedo practicar supuestos practicos de Hacienda en OpoRuta?', answer: 'Si. OpoRuta incluye supuestos practicos de desarrollo escrito con correccion IA siguiendo la rubrica oficial de la AEAT: precision juridica, fundamentacion legal, estructura y coherencia.' },
+      { question: '¿Cuanto cuesta OpoRuta para Agente de Hacienda?', answer: '49,99€ en pago unico con acceso permanente. Sin suscripciones mensuales. OpositaTest cobra entre 25-40€ al mes, lo que supone 300-480€ en una preparacion de 12 meses.' },
+      { question: '¿OpoRuta cubre los 32 temas de Agente de Hacienda?', answer: 'Si. Los 32 temas del programa oficial estan cubiertos: Bloque I (Organizacion del Estado), Bloque II (Derecho Administrativo) y Bloque III (Hacienda Publica y Derecho Tributario).' },
+    ],
+  },
+  // ─── Post: OpoRuta vs OpositaTest Penitenciarias ───────────────────────────
+  {
+    slug: 'oporuta-vs-opositatest-penitenciarias-2026',
+    title: 'OpoRuta vs OpositaTest para Instituciones Penitenciarias 2026: comparativa',
+    description: 'Comparamos OpoRuta y OpositaTest para preparar Instituciones Penitenciarias 2026. LOGP, Reglamento Penitenciario y Codigo Penal verificados. Bloque IV Conducta Humana incluido.',
+    date: '2026-03-30',
+    keywords: ['oporuta vs opositatest penitenciarias', 'comparativa plataformas prisiones', 'test instituciones penitenciarias online', 'oposiciones penitenciarias 2026 plataforma', 'opositatest penitenciarias alternativa'],
+    content: `<h2>La oposicion de Penitenciarias tiene un temario unico</h2>
+<p>Preparar <strong>Instituciones Penitenciarias</strong> no es como preparar cualquier otra oposicion de la AGE. El temario de 50 temas incluye legislacion muy especifica (LOGP, Reglamento Penitenciario, Codigo Penal) y un <strong>Bloque IV de Conducta Humana</strong> que muchas plataformas simplemente ignoran. ¿Como comparan OpoRuta y OpositaTest para esta oposicion?</p>
+
+<h3>Lo que necesitas para Penitenciarias</h3>
+<ul>
+<li><strong>50 temas</strong> divididos en 4 bloques (Organizacion del Estado, Derecho Penal/Penitenciario, Derecho Administrativo, Conducta Humana)</li>
+<li>Legislacion penitenciaria verificada: <strong>LOGP</strong> (Ley Organica 1/1979), <strong>Reglamento Penitenciario</strong> (RD 190/1996), <strong>Codigo Penal</strong> (Ley Organica 10/1995)</li>
+<li>Preguntas sobre <strong>psicologia, sociologia y criminologia</strong> (Bloque IV)</li>
+<li>100 preguntas tipo test con penalizacion -1/3 en 90 minutos</li>
+</ul>
+
+<h3>Tabla comparativa</h3>
+<table>
+<thead><tr><th>Caracteristica</th><th>OpoRuta</th><th>OpositaTest</th></tr></thead>
+<tbody>
+<tr><td><strong>Temas cubiertos</strong></td><td>50 temas completos (4 bloques incluido Conducta Humana)</td><td>Cobertura parcial — Bloque IV Conducta Humana limitado o ausente</td></tr>
+<tr><td><strong>Verificacion legislativa</strong></td><td>Si — LOGP, RP, CP, CE verificados contra BOE</td><td>No — banco estatico de preguntas</td></tr>
+<tr><td><strong>Bloque IV (Conducta Humana)</strong></td><td>Incluido: psicologia, sociologia, criminologia con preguntas verificadas</td><td>Cobertura limitada o generica</td></tr>
+<tr><td><strong>Generacion de preguntas</strong></td><td>IA genera preguntas nuevas por tema, verificadas</td><td>Banco fijo de preguntas</td></tr>
+<tr><td><strong>Precio</strong></td><td>49,99€ pago unico</td><td>25-40€/mes suscripcion</td></tr>
+<tr><td><strong>Penalizacion</strong></td><td>Simula -1/3 real del examen</td><td>Si</td></tr>
+<tr><td><strong>Explicacion de errores</strong></td><td>Analisis IA detallado con metodo socratico</td><td>Justificacion breve</td></tr>
+<tr><td><strong>Simulacros oficiales</strong></td><td>Si — formato real 100 preguntas con timer</td><td>Si</td></tr>
+</tbody>
+</table>
+
+<h3>El Bloque IV: donde mas plataformas fallan</h3>
+<p>El Bloque IV (Conducta Humana) representa entre el <strong>15-20% del examen</strong>. Incluye temas de psicologia (motivacion, aprendizaje, personalidad), sociologia (desviacion social, subculturas carcelarias) y criminologia. Muchas plataformas no cubren estos temas porque no son legislacion pura. OpoRuta los incluye con preguntas generadas y verificadas por IA.</p>
+
+<h3>Legislacion penitenciaria: cambia mas de lo que parece</h3>
+<p>La LOGP tiene 80 articulos y el Reglamento Penitenciario 330. Aunque parecen estables, las reformas del Codigo Penal (ultima: LO 1/2025) afectan directamente al temario. Si practicas con preguntas basadas en legislacion anterior a la reforma, puedes estar memorizando <strong>respuestas que ya no son correctas</strong>.</p>
+<p>OpoRuta verifica cada cita legal. OpositaTest depende de que su equipo editorial actualice manualmente el banco de preguntas.</p>
+
+<h3>Precio en perspectiva</h3>
+<p>La preparacion de Penitenciarias suele durar <strong>9-14 meses</strong>. Con OpoRuta pagas 49,99€ una vez. Con OpositaTest a 30€/mes, gastarias entre 270-420€. Esa diferencia puede ir a libros, tests presenciales o simplemente a tu tranquilidad.</p>
+
+<h3>Veredicto</h3>
+<p>Para Penitenciarias, la cobertura del <strong>Bloque IV</strong> y la <strong>verificacion de la legislacion penal y penitenciaria</strong> son criticas. Si buscas una plataforma que cubra los 50 temas completos con legislacion verificada, OpoRuta es la opcion mas solida.</p>
+
+<p><a href="/oposiciones/penitenciarias">Descubre OpoRuta para Penitenciarias →</a></p>`,
+    faqs: [
+      { question: '¿OpoRuta cubre el Bloque IV de Conducta Humana de Penitenciarias?', answer: 'Si. Los 50 temas estan cubiertos, incluyendo el Bloque IV completo: psicologia (motivacion, aprendizaje, personalidad), sociologia (desviacion social, subculturas) y criminologia. Muchas plataformas no cubren estos temas.' },
+      { question: '¿Se verifica la legislacion penitenciaria en OpoRuta?', answer: 'Si. Cada cita legal (LOGP, Reglamento Penitenciario, Codigo Penal, Constitucion) se verifica contra la legislacion vigente del BOE antes de mostrarte la pregunta.' },
+      { question: '¿Cuanto cuesta OpoRuta para Penitenciarias vs OpositaTest?', answer: 'OpoRuta cuesta 49,99€ en pago unico. OpositaTest cobra entre 25-40€ al mes, lo que supone 270-420€ en una preparacion tipica de 9-14 meses.' },
+    ],
+  },
+  // ─── Post: Mejores apps Hacienda ───────────────────────────────────────────
+  {
+    slug: 'mejores-apps-oposiciones-hacienda-2026',
+    title: 'Las 5 mejores plataformas para preparar Agente de Hacienda 2026',
+    description: 'Comparativa de las 5 mejores plataformas y apps para preparar la oposicion de Agente de Hacienda Publica 2026: OpoRuta, OpositaTest, Adams, MAD y GoKoan. Precios, formatos y funcionalidades.',
+    date: '2026-03-30',
+    keywords: ['mejores apps oposiciones hacienda', 'plataformas agente hacienda 2026', 'test hacienda online comparativa', 'preparar hacienda online', 'apps oposiciones AEAT'],
+    content: `<h2>¿Cual es la mejor plataforma para Agente de Hacienda?</h2>
+<p>Con <strong>1.000 plazas</strong> convocadas (OEP 2025), la oposicion de Agente de Hacienda Publica es una de las mas competidas de la AGE. Elegir bien tu material de estudio puede marcar la diferencia entre aprobar o repetir. Aqui analizamos las <strong>5 plataformas mas usadas</strong> en 2026.</p>
+
+<h3>Tabla comparativa rapida</h3>
+<table>
+<thead><tr><th>Plataforma</th><th>Precio</th><th>Formato</th><th>Verificacion BOE</th><th>Supuestos practicos</th><th>IA</th></tr></thead>
+<tbody>
+<tr><td><strong>OpoRuta</strong></td><td>49,99€ unico</td><td>Tests IA + supuestos</td><td>Si</td><td>Si, con correccion IA</td><td>Si</td></tr>
+<tr><td><strong>OpositaTest</strong></td><td>25-40€/mes</td><td>Tests banco fijo</td><td>No</td><td>No</td><td>No</td></tr>
+<tr><td><strong>Adams</strong></td><td>~120€/mes (academia)</td><td>Temario + tests + clases</td><td>Manual</td><td>Si (presencial)</td><td>No</td></tr>
+<tr><td><strong>MAD</strong></td><td>~60-90€ (libro + tests)</td><td>Libro + tests online</td><td>Manual</td><td>Modelos resueltos</td><td>No</td></tr>
+<tr><td><strong>GoKoan</strong></td><td>~30€/mes</td><td>Tests + flashcards</td><td>No</td><td>No</td><td>Parcial</td></tr>
+</tbody>
+</table>
+
+<h3>1. OpoRuta — Mejor relacion calidad-precio</h3>
+<p><strong>Precio</strong>: 49,99€ pago unico. <strong>Formato</strong>: tests generados por IA con verificacion legislativa + supuestos practicos con correccion IA.</p>
+<p>OpoRuta destaca por tres cosas: cada pregunta tiene sus <strong>citas legales verificadas contra el BOE</strong> (LGT, IRPF, IVA, IS), incluye <strong>supuestos practicos con correccion IA</strong> siguiendo la rubrica oficial AEAT, y el precio es un pago unico sin suscripciones. Ademas, la explicacion de errores usa un metodo socratico que ayuda a entender el <em>por que</em>, no solo la respuesta correcta.</p>
+<p><a href="/oposiciones/hacienda">Ver OpoRuta para Hacienda →</a></p>
+
+<h3>2. OpositaTest — El clasico de siempre</h3>
+<p><strong>Precio</strong>: 25-40€/mes. <strong>Formato</strong>: banco de preguntas fijo con estadisticas.</p>
+<p>OpositaTest es la plataforma mas conocida. Su punto fuerte es la <strong>comunidad</strong> y las estadisticas comparativas con otros opositores. El punto debil: las preguntas son un banco fijo que puede quedar desactualizado con reformas legislativas, y no ofrece supuestos practicos con correccion.</p>
+
+<h3>3. Adams — La academia de referencia</h3>
+<p><strong>Precio</strong>: ~120€/mes. <strong>Formato</strong>: temario completo + clases presenciales/online + tests.</p>
+<p>Adams es la opcion mas completa pero tambien la mas cara. Incluye temario, clases con preparador, y tests presenciales. Ideal si necesitas <strong>estructura y disciplina externa</strong>. El inconveniente: el coste acumulado en 12 meses supera los 1.400€, y la verificacion legislativa depende del ritmo editorial.</p>
+
+<h3>4. MAD — Libro + tests</h3>
+<p><strong>Precio</strong>: 60-90€. <strong>Formato</strong>: libros de temario + tests online complementarios.</p>
+<p>MAD ofrece un buen temario en formato libro con tests online incluidos. Los supuestos vienen como modelos resueltos (sin correccion personalizada). Es una opcion <strong>economica y solida</strong> si prefieres estudiar con papel, pero no tiene verificacion automatica ni IA.</p>
+
+<h3>5. GoKoan — Gamificacion</h3>
+<p><strong>Precio</strong>: ~30€/mes. <strong>Formato</strong>: tests + flashcards + sistema de progresion.</p>
+<p>GoKoan apuesta por la <strong>gamificacion</strong>: puntos, rachas, niveles. Tiene flashcards integradas y un sistema de repeticion espaciada. El problema: la cobertura de Hacienda es limitada comparada con plataformas especializadas, y no incluye supuestos practicos ni verificacion legislativa.</p>
+
+<h3>¿Cual recomendamos?</h3>
+<p>Depende de tu situacion:</p>
+<ul>
+<li><strong>Mejor calidad-precio</strong>: OpoRuta (49,99€ unico, verificacion BOE, supuestos con IA)</li>
+<li><strong>Mas completa (con presupuesto)</strong>: Adams + OpoRuta como complemento de tests</li>
+<li><strong>Solo tests baratos</strong>: OpositaTest o GoKoan</li>
+<li><strong>Estudio en papel</strong>: MAD + OpoRuta para practicar online</li>
+</ul>
+
+<p><a href="/register?oposicion=hacienda-aeat">Prueba OpoRuta gratis para Agente de Hacienda →</a></p>`,
+    faqs: [
+      { question: '¿Cual es la mejor app para preparar Agente de Hacienda 2026?', answer: 'Depende de tu presupuesto. Por relacion calidad-precio, OpoRuta (49,99€ unico) ofrece verificacion BOE + supuestos con IA. Si buscas academia completa, Adams es la referencia (~120€/mes). Para tests basicos, OpositaTest (25-40€/mes).' },
+      { question: '¿Necesito academia para Agente de Hacienda?', answer: 'No es imprescindible. Muchos aprobados combinan temario (MAD o Adams) con plataformas de tests online como OpoRuta. La clave es practicar supuestos practicos del segundo ejercicio, que es donde mas gente suspende.' },
+      { question: '¿Puedo preparar Agente de Hacienda solo con apps?', answer: 'Si, aunque necesitas un buen temario de base (libro o PDF). Las apps como OpoRuta complementan el estudio con tests verificados, simulacros con penalizacion real y supuestos practicos con correccion IA.' },
+    ],
+  },
+  // ─── Post: Mejores apps Penitenciarias ─────────────────────────────────────
+  {
+    slug: 'mejores-apps-oposiciones-penitenciarias-2026',
+    title: 'Las 5 mejores plataformas para preparar Penitenciarias 2026',
+    description: 'Comparativa de las 5 mejores plataformas para preparar Instituciones Penitenciarias 2026: OpoRuta, OpositaTest, Academia de Prisiones, MasterD y FuncionarioPrisiones. Precios, cobertura y IA.',
+    date: '2026-03-30',
+    keywords: ['mejores apps oposiciones penitenciarias', 'plataformas instituciones penitenciarias 2026', 'test penitenciarias online comparativa', 'preparar prisiones online', 'apps oposiciones funcionario prisiones'],
+    content: `<h2>¿Cual es la mejor plataforma para Penitenciarias?</h2>
+<p>La oposicion de <strong>Instituciones Penitenciarias</strong> tiene un temario de 50 temas con legislacion muy especifica (LOGP, Reglamento Penitenciario, Codigo Penal) y un Bloque IV de Conducta Humana que complica la preparacion. Elegir la plataforma correcta puede ahorrarte meses de estudio ineficiente.</p>
+
+<h3>Tabla comparativa rapida</h3>
+<table>
+<thead><tr><th>Plataforma</th><th>Precio</th><th>Formato</th><th>Verif. BOE</th><th>Bloque IV</th><th>IA</th></tr></thead>
+<tbody>
+<tr><td><strong>OpoRuta</strong></td><td>49,99€ unico</td><td>Tests IA verificados</td><td>Si</td><td>Completo</td><td>Si</td></tr>
+<tr><td><strong>OpositaTest</strong></td><td>25-40€/mes</td><td>Tests banco fijo</td><td>No</td><td>Limitado</td><td>No</td></tr>
+<tr><td><strong>Academia de Prisiones</strong></td><td>~100-150€/mes</td><td>Temario + clases + tests</td><td>Manual</td><td>Si</td><td>No</td></tr>
+<tr><td><strong>MasterD</strong></td><td>~100-130€/mes</td><td>Temario + tutor + tests</td><td>Manual</td><td>Parcial</td><td>No</td></tr>
+<tr><td><strong>FuncionarioPrisiones</strong></td><td>~20-30€/mes</td><td>Tests + foros</td><td>No</td><td>Parcial</td><td>No</td></tr>
+</tbody>
+</table>
+
+<h3>1. OpoRuta — Verificacion legislativa + Bloque IV completo</h3>
+<p><strong>Precio</strong>: 49,99€ pago unico. <strong>Formato</strong>: tests generados por IA con verificacion legislativa + analisis detallado de errores.</p>
+<p>OpoRuta es la unica plataforma que <strong>verifica cada cita legal</strong> (LOGP, Reglamento Penitenciario, Codigo Penal) contra la legislacion vigente y cubre los <strong>50 temas completos incluyendo el Bloque IV de Conducta Humana</strong>. Las preguntas se generan por IA y se verifican automaticamente, asi que siempre estan actualizadas. Ademas, la explicacion de errores con metodo socratico te ayuda a entender el razonamiento, no solo a memorizar.</p>
+<p><a href="/oposiciones/penitenciarias">Ver OpoRuta para Penitenciarias →</a></p>
+
+<h3>2. OpositaTest — Popular pero limitado para esta oposicion</h3>
+<p><strong>Precio</strong>: 25-40€/mes. <strong>Formato</strong>: banco de preguntas fijo.</p>
+<p>OpositaTest tiene buena comunidad y estadisticas, pero su cobertura de Penitenciarias es <strong>limitada en el Bloque IV</strong> (Conducta Humana). Las preguntas son un banco fijo que no se verifica automaticamente contra reformas del Codigo Penal o del Reglamento Penitenciario.</p>
+
+<h3>3. Academia de Prisiones — La especialista presencial</h3>
+<p><strong>Precio</strong>: 100-150€/mes. <strong>Formato</strong>: temario + clases + tests + preparador.</p>
+<p>Academias especializadas en prisiones (como Prisiones.com o similares) ofrecen temario propio, clases con funcionarios de prisiones como preparadores, y tests presenciales. Es la opcion mas completa pero tambien la mas cara: <strong>12 meses × 125€ = 1.500€</strong>. Ideal si necesitas estructura y contacto con funcionarios en activo.</p>
+
+<h3>4. MasterD — Centro de formacion generalista</h3>
+<p><strong>Precio</strong>: 100-130€/mes. <strong>Formato</strong>: temario + tutor personal + campus online.</p>
+<p>MasterD es un centro de formacion grande que cubre muchas oposiciones. Para Penitenciarias, ofrece temario, tutor asignado y campus online con tests. La cobertura del Bloque IV es <strong>parcial</strong> (depende del preparador asignado). El coste total en 12 meses ronda los <strong>1.200-1.560€</strong>.</p>
+
+<h3>5. FuncionarioPrisiones — Comunidad + tests basicos</h3>
+<p><strong>Precio</strong>: 20-30€/mes. <strong>Formato</strong>: tests online + foros de opositores.</p>
+<p>FuncionarioPrisiones destaca por su <strong>comunidad de opositores</strong>: foros, experiencias de examen, y tests basicos. Es util como complemento pero no como herramienta principal. La cobertura del Bloque IV es parcial y las preguntas no se verifican contra legislacion vigente.</p>
+
+<h3>¿Cual elegir segun tu situacion?</h3>
+<ul>
+<li><strong>Mejor calidad-precio</strong>: OpoRuta (49,99€, verificacion BOE, 50 temas completos)</li>
+<li><strong>Preparacion integral (con presupuesto)</strong>: Academia de Prisiones + OpoRuta como complemento</li>
+<li><strong>Tests basicos baratos</strong>: FuncionarioPrisiones o OpositaTest</li>
+<li><strong>Necesitas tutor</strong>: MasterD (pero complementa con OpoRuta para tests verificados)</li>
+</ul>
+
+<h3>Consejo final</h3>
+<p>Sea cual sea tu eleccion, asegurate de que la plataforma cubra el <strong>Bloque IV de Conducta Humana</strong>. Representa un 15-20% del examen y es donde mas opositores pierden puntos por falta de preparacion especifica.</p>
+
+<p><a href="/register?oposicion=penitenciarias">Prueba OpoRuta gratis para Penitenciarias →</a></p>`,
+    faqs: [
+      { question: '¿Cual es la mejor app para preparar Penitenciarias 2026?', answer: 'Por relacion calidad-precio, OpoRuta (49,99€ unico) cubre los 50 temas con verificacion BOE y Bloque IV completo. Si buscas academia con preparador, las academias especializadas en prisiones son la referencia (~100-150€/mes).' },
+      { question: '¿Que plataforma cubre el Bloque IV de Conducta Humana?', answer: 'OpoRuta cubre los 50 temas completos incluyendo Bloque IV (psicologia, sociologia, criminologia). Muchas plataformas como OpositaTest o FuncionarioPrisiones tienen cobertura parcial o limitada de estos temas.' },
+      { question: '¿Puedo preparar Penitenciarias sin academia?', answer: 'Si. Muchos aprobados combinan temario en papel (Adams, MAD) con plataformas de tests verificados como OpoRuta. La clave es no descuidar el Bloque IV y practicar con penalizacion real -1/3 desde el principio.' },
+    ],
+  },
 ]

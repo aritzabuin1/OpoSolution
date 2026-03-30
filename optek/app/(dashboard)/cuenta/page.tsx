@@ -134,15 +134,19 @@ export default async function CuentaPage() {
     'e0000000-0000-0000-0000-000000000001': 'pack_auxilio',
     'e1000000-0000-0000-0000-000000000001': 'pack_tramitacion',
     'e2000000-0000-0000-0000-000000000001': 'pack_gestion_j',
+    'f0000000-0000-0000-0000-000000000001': 'pack_hacienda',
+    'f1000000-0000-0000-0000-000000000001': 'pack_penitenciarias',
   }
-  const packTier = (OPOSICION_TIER_MAP[userOposicionId] ?? 'pack') as 'pack' | 'pack_c1' | 'pack_a2' | 'pack_correos' | 'pack_auxilio' | 'pack_tramitacion' | 'pack_gestion_j'
+  const packTier = (OPOSICION_TIER_MAP[userOposicionId] ?? 'pack') as string
   const TIER_PRICES: Record<string, string> = {
     pack: '49,99€', pack_c1: '49,99€', pack_a2: '69,99€',
     pack_correos: '49,99€', pack_auxilio: '49,99€', pack_tramitacion: '49,99€', pack_gestion_j: '79,99€',
+    pack_hacienda: '49,99€', pack_penitenciarias: '49,99€',
   }
   const TIER_CREDITS: Record<string, number> = {
     pack: 20, pack_c1: 20, pack_a2: 25,
     pack_correos: 20, pack_auxilio: 20, pack_tramitacion: 20, pack_gestion_j: 25,
+    pack_hacienda: 20, pack_penitenciarias: 20,
   }
   // supuestosBalance removed — supuestos now use unified créditos IA (2 per use)
   const opoFeatures = (oposicion as Record<string, unknown>)?.features as { supuesto_practico?: boolean } | null
