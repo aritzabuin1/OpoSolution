@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     description: 'Tests online gratis para oposiciones Auxilio Judicial. 26 temas, 104 preguntas con penalización, ~425 plazas.',
     url: `${APP_URL}/oposiciones/justicia/auxilio-judicial`,
     type: 'website',
+    images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Test Auxilio Judicial 2026')}`, width: 1200, height: 630 }],
   },
   alternates: { canonical: `${APP_URL}/oposiciones/justicia/auxilio-judicial` },
 }

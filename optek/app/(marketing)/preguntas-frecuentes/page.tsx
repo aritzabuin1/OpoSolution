@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     description: 'Respuestas actualizadas sobre plazas, temario, examen y preparación.',
     type: 'website',
     url: `${APP_URL}/preguntas-frecuentes`,
+    images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Preguntas Frecuentes — Oposiciones 2026')}`, width: 1200, height: 630 }],
   },
   alternates: {
     canonical: `${APP_URL}/preguntas-frecuentes`,

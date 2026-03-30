@@ -27,6 +27,7 @@ export const metadata: Metadata = {
     description: 'Tests online gratis para oposiciones de Tramitación Procesal. 37 temas, 3 ejercicios, 1.155 plazas.',
     url: `${APP_URL}/oposiciones/justicia/tramitacion-procesal`,
     type: 'website',
+    images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Test Tramitación Procesal 2026')}`, width: 1200, height: 630 }],
   },
   alternates: { canonical: `${APP_URL}/oposiciones/justicia/tramitacion-procesal` },
 }

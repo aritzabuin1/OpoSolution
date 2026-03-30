@@ -53,7 +53,7 @@ export default async function SupuestoPracticoPage() {
   const features = opoInfo?.features
   // Supuesto práctico solo disponible si la oposición elegida lo tiene (A2)
   const hasSupuestoPractico = features?.supuesto_practico === true
-  // Unified créditos IA: supuesto desarrollo = 2 créditos (generar + corregir)
+  // Créditos IA: supuesto desarrollo = 2 créditos (1 generar + 1 corregir)
   const paidBalance = profile?.corrections_balance ?? 0
   const freeRemaining = Math.max(0, 2 - (profile?.free_corrector_used ?? 0))
   const balance = isAdmin ? 999 : Math.floor((paidBalance + freeRemaining) / 2) // show as supuestos disponibles

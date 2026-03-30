@@ -15,7 +15,8 @@ export const maxDuration = 60
  * POST /api/ai/corregir-supuesto/stream
  *
  * Corrige un supuesto práctico usando la rúbrica oficial INAP/MJU.
- * Consume 2 créditos IA (corrections_balance) — genera caso + corrige.
+ * Consume 1 crédito IA (corrections_balance). La generación consume otro 1.
+ * Total por supuesto desarrollo: 2 créditos (1 generar + 1 corregir).
  * Streaming response for real-time feedback.
  */
 
@@ -86,7 +87,7 @@ export async function POST(request: NextRequest) {
     oposicionSlug = (opoRow as { slug?: string } | null)?.slug ?? ''
   } catch { /* fallback to INAP rubric */ }
 
-  // Check créditos IA balance (admin bypass). Supuesto desarrollo = 2 créditos.
+  // Check créditos IA balance (admin bypass). Corrección = 1 crédito.
   const isAdmin = await checkIsAdmin(serviceSupabase, user.id)
   let canCorrect = isAdmin
 
@@ -99,12 +100,12 @@ export async function POST(request: NextRequest) {
 
     const paidBalance = profile?.corrections_balance ?? 0
     const freeRemaining = Math.max(0, 2 - (profile?.free_corrector_used ?? 0))
-    canCorrect = (paidBalance + freeRemaining) >= 2
+    canCorrect = (paidBalance + freeRemaining) >= 1
   }
 
   if (!canCorrect) {
     return NextResponse.json({
-      error: 'Necesitas al menos 2 créditos IA para corregir un supuesto desarrollo.',
+      error: 'Necesitas al menos 1 crédito IA para corregir un supuesto desarrollo.',
       code: 'PAYWALL_CORRECTIONS',
     }, { status: 402 })
   }
@@ -178,14 +179,11 @@ export async function POST(request: NextRequest) {
     context: { supuestoId },
     oposicionId,
     onComplete: async () => {
-      // Deduct 2 créditos IA (admin bypass). Use paid credits first, then free.
-      // Atomic: try RPC directly and check return value (avoids TOCTOU race).
+      // Deduct 1 crédito IA (admin bypass). Use paid credits first, then free.
       if (!isAdmin) {
-        for (let i = 0; i < 2; i++) {
-          const { data: usedPaid } = await serviceSupabase.rpc('use_correction', { p_user_id: userId })
-          if (!usedPaid) {
-            await serviceSupabase.rpc('use_free_correction', { p_user_id: userId })
-          }
+        const { data: usedPaid } = await serviceSupabase.rpc('use_correction', { p_user_id: userId })
+        if (!usedPaid) {
+          await serviceSupabase.rpc('use_free_correction', { p_user_id: userId })
         }
       }
 

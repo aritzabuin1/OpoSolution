@@ -117,7 +117,7 @@ Las otras 2 cuestiones pueden ser de cualquiera de los 3 bloques.`
     return NextResponse.json({ error: 'Error al guardar el supuesto.' }, { status: 500 })
   }
 
-  // Deduct 1 crédito IA for generation (correction will deduct another 1)
+  // Deduct 1 crédito IA for generation. Correction deducts 1 more. Total: 2/supuesto.
   if (!isAdmin) {
     const { data: p } = await serviceSupabase
       .from('profiles')

@@ -594,38 +594,72 @@ export default async function LandingPage() {
         </div>
       </section>
 
-      {/* ─── Exámenes INAP — internal link for SEO ───────────────────── */}
+      {/* ─── Exámenes oficiales — multi-rama SEO ─────────────────────── */}
       <section className="py-12 bg-muted/20 border-y">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
-          <p className="text-sm font-medium text-muted-foreground mb-4">
-            Practica con exámenes reales del INAP — preguntas oficiales de convocatorias anteriores
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 text-center">
+          <p className="text-sm font-medium text-muted-foreground mb-6">
+            Practica con exámenes oficiales reales — preguntas de convocatorias anteriores
           </p>
-          <div className="space-y-3 mb-4">
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Auxiliar (C2)</p>
-            <div className="flex flex-wrap justify-center gap-3">
-              {['inap-2024', 'inap-2022', 'inap-2019', 'inap-2018'].map((slug) => (
-                <Link key={slug} href={`/examenes-oficiales/${slug}`}>
-                  <Badge
-                    variant="outline"
-                    className="text-sm px-3 py-1.5 hover:bg-accent transition-colors cursor-pointer"
-                  >
-                    C2 — INAP {slug.split('-')[1]}
-                  </Badge>
-                </Link>
-              ))}
+          <div className="grid gap-6 sm:grid-cols-3 mb-6">
+            {/* AGE */}
+            <div className="space-y-2">
+              <Link href="/oposiciones/administracion" className="text-xs font-semibold text-muted-foreground uppercase tracking-wide hover:text-primary transition-colors block">
+                Administración del Estado
+              </Link>
+              <div className="flex flex-wrap justify-center gap-2">
+                {[
+                  { href: '/examenes-oficiales/inap-2024', label: 'C2 2024' },
+                  { href: '/examenes-oficiales/inap-2022', label: 'C2 2022' },
+                  { href: '/examenes-oficiales/inap-c1-2024', label: 'C1 2024' },
+                  { href: '/examenes-oficiales/inap-c1-2022', label: 'C1 2022' },
+                ].map(({ href, label }) => (
+                  <Link key={href} href={href}>
+                    <Badge variant="outline" className="text-xs px-2.5 py-1 hover:bg-accent transition-colors cursor-pointer">
+                      {label}
+                    </Badge>
+                  </Link>
+                ))}
+              </div>
+              <Link href="/oposiciones/administracion" className="text-xs text-primary hover:underline block mt-1">
+                Ver oposiciones AGE →
+              </Link>
             </div>
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Administrativo (C1)</p>
-            <div className="flex flex-wrap justify-center gap-3">
-              {['inap-c1-2024', 'inap-c1-2022', 'inap-c1-2019'].map((slug) => (
-                <Link key={slug} href={`/examenes-oficiales/${slug}`}>
-                  <Badge
-                    variant="outline"
-                    className="text-sm px-3 py-1.5 hover:bg-accent transition-colors cursor-pointer"
-                  >
-                    C1 — INAP {slug.split('-').pop()}
-                  </Badge>
-                </Link>
-              ))}
+            {/* Justicia */}
+            <div className="space-y-2">
+              <Link href="/oposiciones/justicia" className="text-xs font-semibold text-muted-foreground uppercase tracking-wide hover:text-primary transition-colors">
+                Justicia
+              </Link>
+              <div className="flex flex-wrap justify-center gap-2">
+                {[
+                  { href: '/oposiciones/justicia/auxilio-judicial', label: 'Auxilio 2025' },
+                  { href: '/oposiciones/justicia/tramitacion-procesal', label: 'Tramit. 2025' },
+                  { href: '/oposiciones/justicia/gestion-procesal', label: 'Gestión 2025' },
+                ].map(({ href, label }) => (
+                  <Link key={href} href={href}>
+                    <Badge variant="outline" className="text-xs px-2.5 py-1 hover:bg-accent transition-colors cursor-pointer">
+                      {label}
+                    </Badge>
+                  </Link>
+                ))}
+              </div>
+            </div>
+            {/* Correos */}
+            <div className="space-y-2">
+              <Link href="/oposiciones/correos" className="text-xs font-semibold text-muted-foreground uppercase tracking-wide hover:text-primary transition-colors">
+                Correos
+              </Link>
+              <div className="flex flex-wrap justify-center gap-2">
+                {[
+                  { href: '/oposiciones/correos', label: 'REP 2023' },
+                  { href: '/oposiciones/correos', label: 'ATC 2023' },
+                ].map(({ href, label }, i) => (
+                  <Link key={`correos-${i}`} href={href}>
+                    <Badge variant="outline" className="text-xs px-2.5 py-1 hover:bg-accent transition-colors cursor-pointer">
+                      {label}
+                    </Badge>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
           <Link href="/examenes-oficiales" className="text-sm text-primary hover:underline">

@@ -27,6 +27,7 @@ export const metadata: Metadata = {
     description: 'Tests con IA para Auxiliar C2, Administrativo C1 y Gestión GACE A2. Temario actualizado con Constitución, LPAC, TREBEP y LGP.',
     url: `${APP_URL}/oposiciones/administracion`,
     type: 'website',
+    images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Oposiciones Administración del Estado 2026')}`, width: 1200, height: 630 }],
   },
   alternates: { canonical: `${APP_URL}/oposiciones/administracion` },
 }

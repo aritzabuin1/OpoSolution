@@ -27,6 +27,7 @@ export const metadata: Metadata = {
     description: 'Tests online gratis para Gestión Procesal y Administrativa (A2). 68 temas, 3 ejercicios, 725 plazas.',
     url: `${APP_URL}/oposiciones/justicia/gestion-procesal`,
     type: 'website',
+    images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Test Gestión Procesal 2026')}`, width: 1200, height: 630 }],
   },
   alternates: { canonical: `${APP_URL}/oposiciones/justicia/gestion-procesal` },
 }

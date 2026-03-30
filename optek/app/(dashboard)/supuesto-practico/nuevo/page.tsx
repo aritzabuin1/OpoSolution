@@ -4,13 +4,15 @@
  * /supuesto-practico/nuevo — Genera un nuevo supuesto práctico con IA.
  *
  * Flow:
- * 1. User clicks "Generar supuesto"
- * 2. POST /api/ai/generate-supuesto
- * 3. Redirect to /supuesto-practico/[id] to write answers
+ * 1. Fetch user's oposición to determine timer (MJU=45min, INAP=150min)
+ * 2. User clicks "Generar supuesto"
+ * 3. POST /api/ai/generate-supuesto
+ * 4. Redirect to /supuesto-practico/[id] to write answers
  */
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { createClient as createBrowserClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Sparkles, Loader2, FileText, Clock, AlertTriangle } from 'lucide-react'
@@ -20,6 +22,39 @@ export default function NuevoSupuestoPracticoPage() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [modoExamen, setModoExamen] = useState(false)
+  const [tiempoExamen, setTiempoExamen] = useState<number>(150)
+
+  // Fetch user's oposición to determine correct timer
+  useEffect(() => {
+    async function fetchTiempo() {
+      const supabase = createBrowserClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('oposicion_id')
+        .eq('id', user.id)
+        .single()
+      if (!profile?.oposicion_id) return
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data: opo } = await (supabase as any)
+        .from('oposiciones')
+        .select('slug, rama, scoring_config')
+        .eq('id', profile.oposicion_id)
+        .single()
+      if (!opo) return
+      const isMJU = opo.slug === 'gestion-procesal' || opo.rama === 'justicia'
+      // Try to get timer from scoring_config desarrollo exercise
+      const ejercicios = opo.scoring_config?.ejercicios as { tipo?: string; minutos?: number }[] | undefined
+      const desarrollo = ejercicios?.find((e) => e.tipo === 'tribunal')
+      if (desarrollo?.minutos) {
+        setTiempoExamen(desarrollo.minutos)
+      } else {
+        setTiempoExamen(isMJU ? 45 : 150)
+      }
+    }
+    fetchTiempo()
+  }, [])
 
   async function handleGenerate() {
     setLoading(true)
@@ -44,7 +79,7 @@ export default function NuevoSupuestoPracticoPage() {
 
       const data = await res.json()
       toast.success('Supuesto generado — ¡a escribir!')
-      router.push(`/supuesto-practico/${data.id}${modoExamen ? '?timer=150' : ''}`)
+      router.push(`/supuesto-practico/${data.id}${modoExamen ? `?timer=${tiempoExamen}` : ''}`)
     } catch {
       toast.error('Error de conexión. Inténtalo de nuevo.')
       setLoading(false)
@@ -79,7 +114,7 @@ export default function NuevoSupuestoPracticoPage() {
                 <p className="text-sm font-medium">Elige tu modo</p>
                 <p className="text-xs text-muted-foreground">
                   <strong>Modo práctica</strong>: sin límite de tiempo, escribe a tu ritmo.<br/>
-                  <strong>Modo examen</strong>: 150 minutos como en el examen real, con countdown.
+                  <strong>Modo examen</strong>: {tiempoExamen} minutos como en el examen real, con countdown.
                 </p>
               </div>
             </div>
@@ -112,14 +147,14 @@ export default function NuevoSupuestoPracticoPage() {
               }`}
             >
               <p className="font-medium">Modo examen</p>
-              <p className="text-xs text-muted-foreground mt-0.5">150 min — presión real</p>
+              <p className="text-xs text-muted-foreground mt-0.5">{tiempoExamen} min — presión real</p>
             </button>
           </div>
 
           <div className="flex items-start gap-2 rounded-lg bg-amber-50 border border-amber-200 px-4 py-3">
             <AlertTriangle className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
             <p className="text-xs text-amber-700">
-              Generar un supuesto consume 1 crédito de tu balance. La corrección se realiza al enviar tus respuestas.
+              Cada supuesto consume <strong>2 créditos IA</strong> (1 para generar el caso + 1 para la corrección).
             </p>
           </div>
 
