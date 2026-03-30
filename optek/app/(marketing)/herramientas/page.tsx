@@ -49,6 +49,13 @@ const tools = [
     badge: 'C1 — Administrativo',
     parts: '70 + 20 preguntas · 100 min',
   },
+  {
+    title: 'Calculadora de nota — Agente de Hacienda',
+    description: 'Calcula tu nota con la penalización -1/4 oficial. Ejercicio 1: 80 preguntas test. Ejercicio 2: 10 supuestos de desarrollo escrito (estimación). Nota total sobre 40 puntos.',
+    href: '/herramientas/calculadora-nota-hacienda',
+    badge: 'Agente de Hacienda',
+    parts: '80 preguntas test + 10 supuestos',
+  },
 ]
 
 const jsonLd = {
