@@ -29,6 +29,7 @@ interface SupuestoTestRunnerProps {
     titulo?: string
     escenario?: string
     bloques_cubiertos?: string[]
+    supuesto_dividers?: { index: number; label: string; escenario: string }[]
   }
   temaTitulo: string
   tiempoLimiteSegundos?: number
@@ -69,6 +70,19 @@ export function SupuestoTestRunner({
   // Show caso only during supuesto part (Part 2), not during cuestionario (Part 1) or ofimática (Part 3)
   const showCaso = isInSupuestoPart
 
+  // For multi-supuesto exams: determine WHICH supuesto's escenario to show
+  const dividers = caso.supuesto_dividers ?? []
+  const currentCaso = (() => {
+    if (!isInSupuestoPart || dividers.length === 0) return caso
+    const supuestoOffset = currentQuestion - (preguntasCuestionario ?? 0)
+    // Find the last divider that starts at or before the current offset
+    let active = dividers[0]
+    for (const d of dividers) {
+      if (d.index <= supuestoOffset) active = d
+    }
+    return active ? { ...caso, titulo: active.label, escenario: active.escenario } : caso
+  })()
+
   const onQuestionChange = useCallback((idx: number) => {
     setCurrentQuestion(idx)
   }, [])
@@ -80,7 +94,7 @@ export function SupuestoTestRunner({
         {/* Caso sticky panel — hidden during Part 1 of simulacro */}
         <div className="sticky top-20 self-start max-h-[calc(100vh-6rem)] overflow-y-auto">
           {showCaso ? (
-            <CasoPanel caso={caso} />
+            <CasoPanel caso={currentCaso} />
           ) : isInOfimaticaPart ? (
             <Card className="border-blue-200 bg-blue-50/30">
               <CardContent className="pt-6 pb-6 text-center space-y-2">
@@ -113,7 +127,15 @@ export function SupuestoTestRunner({
             tiempoLimiteSegundos={tiempoLimiteSegundos}
             onQuestionChange={onQuestionChange}
             partDivider={isSimulacroCompleto ? preguntasCuestionario : undefined}
-            extraDividers={has3Parts ? [{ index: ofimaticaStart!, label: 'Parte 3 — Ofimática' }] : undefined}
+            extraDividers={[
+              // Supuesto sub-dividers (e.g. "Supuesto 1", "Supuesto 2"... within Part 2)
+              ...(caso.supuesto_dividers ?? []).map(d => ({
+                index: (preguntasCuestionario ?? 0) + d.index,
+                label: d.label,
+              })),
+              // Ofimática Part 3 (if applicable)
+              ...(has3Parts ? [{ index: ofimaticaStart!, label: 'Parte 3 — Ofimática' }] : []),
+            ].filter(d => d.index > 0)}
           />
         </div>
       </div>
@@ -147,7 +169,7 @@ export function SupuestoTestRunner({
               <div className="flex items-center gap-2">
                 <FileText className="h-4 w-4 text-indigo-600" />
                 <span className="text-sm font-semibold text-indigo-800">
-                  {caso.titulo ?? 'Caso práctico'}
+                  {currentCaso.titulo ?? 'Caso práctico'}
                 </span>
               </div>
               {casoExpanded
@@ -157,7 +179,7 @@ export function SupuestoTestRunner({
             {casoExpanded ? (
               <CardContent className="px-4 pb-4">
                 <p className="text-sm leading-relaxed text-foreground whitespace-pre-line">
-                  {caso.escenario}
+                  {currentCaso.escenario}
                 </p>
               </CardContent>
             ) : (
@@ -194,6 +216,13 @@ export function SupuestoTestRunner({
           tiempoLimiteSegundos={tiempoLimiteSegundos}
           onQuestionChange={onQuestionChange}
           partDivider={isSimulacroCompleto ? preguntasCuestionario : undefined}
+          extraDividers={[
+            ...(caso.supuesto_dividers ?? []).map(d => ({
+              index: (preguntasCuestionario ?? 0) + d.index,
+              label: d.label,
+            })),
+            ...(has3Parts ? [{ index: ofimaticaStart!, label: 'Parte 3 — Ofimática' }] : []),
+          ].filter(d => d.index > 0)}
         />
       </div>
     </>

@@ -412,7 +412,7 @@ export async function POST(request: NextRequest) {
   }
 
   // ── 7b. Incluir supuesto práctico (Parte 2) si la oposición lo tiene ─────
-  let supuestoCaso: { titulo: string; escenario: string; bloques_cubiertos: string[]; ofimatica_start?: number } | null = null
+  let supuestoCaso: { titulo: string; escenario: string; bloques_cubiertos: string[]; ofimatica_start?: number; supuesto_dividers?: { index: number; label: string; escenario: string }[] } | null = null
 
   if (effectiveIncluirSupuesto) { try {
     // How many supuestos to load: from scoring_config.num_supuestos (explicit)
@@ -470,6 +470,8 @@ export async function POST(request: NextRequest) {
 
     const allSupPreguntas: Pregunta[] = []
     const supuestoCasos: { titulo: string; escenario: string }[] = []
+    const supuestoDividers: { index: number; label: string; escenario: string }[] = []
+    let supQOffset = 0 // offset within the supuesto part (relative to supuesto start)
     for (const row of selectedSupuestos) {
       const rowPreguntas = (row.preguntas as unknown as Pregunta[]).filter(p => p?.enunciado).map((p) => ({
         enunciado: p.enunciado,
@@ -477,9 +479,16 @@ export async function POST(request: NextRequest) {
         correcta: typeof p.correcta === 'number' ? p.correcta as 0 | 1 | 2 | 3 : 0,
         explicacion: p.explicacion ?? '',
       }))
+      const titulo = row.caso?.titulo ?? `Supuesto ${supuestoCasos.length + 1}`
+      supuestoDividers.push({
+        index: supQOffset,
+        label: titulo,
+        escenario: row.caso?.escenario ?? '',
+      })
       allSupPreguntas.push(...rowPreguntas)
+      supQOffset += rowPreguntas.length
       supuestoCasos.push({
-        titulo: row.caso?.titulo ?? 'Supuesto Práctico',
+        titulo,
         escenario: row.caso?.escenario ?? '',
       })
       // Mark as seen
@@ -492,8 +501,10 @@ export async function POST(request: NextRequest) {
     if (allSupPreguntas.length > 0) {
       supuestoCaso = {
         titulo: supuestoCasos.length > 1 ? `${supuestoCasos.length} Supuestos Prácticos` : supuestoCasos[0]?.titulo ?? 'Supuesto Práctico',
-        escenario: supuestoCasos.map(s => `**${s.titulo}**\n${s.escenario}`).join('\n\n---\n\n'),
+        escenario: supuestoCasos[0]?.escenario ?? '',
         bloques_cubiertos: [],
+        // Store dividers so frontend knows where each supuesto starts within Part 2
+        supuesto_dividers: supuestoDividers.length > 1 ? supuestoDividers : undefined,
       }
       preguntas = [...preguntas, ...allSupPreguntas]
       promptVersion = incluirPsicotecnicos ? 'oficial-psico-supuesto-1.0' : 'oficial-supuesto-1.0'
