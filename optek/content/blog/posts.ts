@@ -14971,4 +14971,430 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Que leyes son mas importantes para Penitenciarias?', answer: 'La Ley Organica General Penitenciaria (LO 1/1979) y el Reglamento Penitenciario (RD 190/1996) son las mas importantes. Para Derecho Penal, el Codigo Penal (LO 10/1995). Para Bloque I, la Constitucion, TREBEP y LPAC.' },
     ],
   },
+  // ─── Post 101 ────────────────────────────────────────────────────────────────
+  {
+    slug: 'como-aprobar-agente-hacienda-estrategia',
+    title: 'Como aprobar Agente de Hacienda — Estrategia de estudio por bloques',
+    description: 'Estrategia de estudio para aprobar Agente de la Hacienda Publica. El Bloque III (LGT y procedimientos tributarios) supone mas del 50% del examen. Te explicamos como priorizar.',
+    date: '2026-03-30',
+    keywords: ['como aprobar agente hacienda', 'estrategia estudio hacienda', 'preparar oposicion hacienda', 'bloques examen AEAT', 'LGT oposiciones'],
+    content: `<h2>El examen de Agente de Hacienda: estructura y claves</h2>
+<p>La oposicion de Agente de la Hacienda Publica (C1) es una de las mas demandadas del Estado. Convoca la AEAT y el examen consta de dos ejercicios: un test de 100 preguntas (ejercicio 1) y un supuesto practico (ejercicio 2). Aprobar requiere una estrategia clara porque el temario es extenso y desigual en peso.</p>
+
+<h3>Distribucion por bloques y peso real en el examen</h3>
+<p>El temario se divide en tres bloques principales:</p>
+<ul>
+<li><strong>Bloque I — Organizacion del Estado y Derecho Administrativo (~20%)</strong>: Constitucion, organizacion territorial, procedimiento administrativo, TREBEP. Muchos temas compartidos con otras oposiciones C1.</li>
+<li><strong>Bloque II — Derecho de la Union Europea y Hacienda Publica (~25%)</strong>: Instituciones UE, presupuestos, contabilidad publica, Ley General Presupuestaria.</li>
+<li><strong>Bloque III — Derecho Tributario y procedimientos (~55%)</strong>: Ley General Tributaria (LGT), gestion, inspeccion, recaudacion, IRPF, IVA, Impuesto de Sociedades, aduanas.</li>
+</ul>
+<p><strong>Conclusion</strong>: mas de la mitad del examen es Bloque III. Si no dominas la LGT, no apruebas.</p>
+
+<h3>Estrategia de estudio recomendada</h3>
+<p>La clave es priorizar por peso y dificultad:</p>
+<ol>
+<li><strong>Meses 1-4: Bloque III completo</strong>. Empieza por la LGT (58/2003): obligaciones tributarias, procedimiento de gestion, inspeccion y recaudacion. Luego IRPF, IVA y Sociedades.</li>
+<li><strong>Meses 5-6: Bloque I</strong>. La Constitucion y el procedimiento administrativo se comparten con muchas oposiciones. Si vienes de otra oposicion C1, ya tendras ventaja.</li>
+<li><strong>Meses 7-8: Bloque II + repaso general</strong>. La parte de Hacienda Publica es mas teorica y memoristica.</li>
+<li><strong>Ultimos 2 meses: simulacros y ejercicio 2</strong>. El supuesto practico requiere soltura con la LGT. Practica casos de gestion, liquidaciones y sanciones.</li>
+</ol>
+
+<h3>¿Cuando empezar a preparar el ejercicio 2?</h3>
+<p>No antes de tener el Bloque III bien asentado. El supuesto practico aplica los mismos conceptos tributarios del test, pero en casos reales. Muchos opositores cometen el error de repartir tiempo a partes iguales entre ejercicios cuando el 80% de la preparacion del ejercicio 2 es dominar el Bloque III.</p>
+
+<h3>Errores comunes</h3>
+<ul>
+<li>Dedicar demasiado tiempo al Bloque I (Constitucion) porque es "facil" — pesa solo un 20%.</li>
+<li>No practicar con tests tipo examen desde el principio.</li>
+<li>Memorizar articulos sin entender la logica del procedimiento tributario.</li>
+</ul>
+
+<p><a href="/register?oposicion=hacienda">Practica tests de Agente de Hacienda con correccion automatica →</a></p>`,
+    faqs: [
+      { question: '¿Cual es el bloque mas importante del examen de Agente de Hacienda?', answer: 'El Bloque III (Derecho Tributario y procedimientos) supone mas del 55% del examen. La Ley General Tributaria (58/2003) es la ley mas preguntada con diferencia.' },
+      { question: '¿Cuanto tiempo se necesita para preparar Agente de Hacienda?', answer: 'Entre 10 y 14 meses a tiempo completo es lo habitual. Si compatibilizas con trabajo, calcula 18-24 meses. La clave es empezar por el Bloque III (tributario) los primeros 4 meses.' },
+      { question: '¿Cuando debo empezar a preparar el ejercicio 2 (supuesto practico)?', answer: 'No antes de dominar el Bloque III del temario. El supuesto practico aplica conceptos tributarios en casos reales, asi que la mejor preparacion es tener solida la LGT, IRPF, IVA y procedimientos.' },
+    ],
+  },
+  // ─── Post 102 ────────────────────────────────────────────────────────────────
+  {
+    slug: 'sueldo-agente-hacienda-publica-2026',
+    title: 'Sueldo de Agente de la Hacienda Publica en 2026 — Desglose completo',
+    description: 'Cuanto cobra un Agente de Hacienda en 2026. Desglose: sueldo base + complemento de destino + especifico + productividad + trienios. Comparativa con otros cuerpos C1.',
+    date: '2026-03-30',
+    keywords: ['sueldo agente hacienda', 'cuanto cobra agente hacienda', 'retribuciones AEAT', 'sueldo funcionario hacienda 2026', 'nómina agente hacienda'],
+    content: `<h2>¿Cuanto cobra un Agente de Hacienda en 2026?</h2>
+<p>El puesto de Agente de la Hacienda Publica (Grupo C1) en la AEAT es de los mejor retribuidos dentro de su grupo. La razon: el complemento especifico de la AEAT es significativamente superior al de otros cuerpos C1 generales.</p>
+
+<h3>Desglose de retribuciones brutas anuales</h3>
+<table>
+<tr><th>Concepto</th><th>Importe anual (aprox.)</th></tr>
+<tr><td>Sueldo base (C1)</td><td>8.600 €</td></tr>
+<tr><td>Complemento de destino (nivel 18-20)</td><td>6.200 - 7.400 €</td></tr>
+<tr><td>Complemento especifico AEAT</td><td>9.000 - 11.500 €</td></tr>
+<tr><td>Pagas extra (2 al ano)</td><td>Incluidas en base + destino</td></tr>
+<tr><td>Productividad variable</td><td>2.500 - 5.000 €</td></tr>
+<tr><td><strong>Total bruto anual (sin trienios)</strong></td><td><strong>26.300 - 32.500 €</strong></td></tr>
+</table>
+
+<h3>Trienios: el sueldo sube con la antiguedad</h3>
+<p>Cada 3 anos de servicio se cobra un trienio. Para el grupo C1, cada trienio supone aproximadamente <strong>530 € brutos anuales</strong>. Con 15 anos de antiguedad (5 trienios), son unos 2.650 € adicionales al ano.</p>
+
+<h3>Productividad: la variable que marca la diferencia</h3>
+<p>La AEAT tiene un sistema de productividad ligado a objetivos de recaudacion y campanas (Renta, IVA, etc.). Dependiendo de la delegacion y el equipo, la productividad puede variar entre 2.500 y 5.000 € anuales. Algunas delegaciones con mayor carga de trabajo tienden a tener productividades mas altas.</p>
+
+<h3>Comparativa con otros cuerpos C1</h3>
+<table>
+<tr><th>Cuerpo C1</th><th>Bruto anual aprox.</th></tr>
+<tr><td>Agente de Hacienda (AEAT)</td><td>26.300 - 32.500 €</td></tr>
+<tr><td>Administrativo AGE (general)</td><td>22.000 - 26.000 €</td></tr>
+<tr><td>Tramitacion Procesal (Justicia)</td><td>23.000 - 28.000 €</td></tr>
+<tr><td>Ayudante IIPP (Prisiones)</td><td>28.000 - 35.000 €</td></tr>
+</table>
+<p>El Agente de Hacienda esta por encima del Administrativo general gracias al complemento especifico AEAT. Solo Prisiones supera en retribuciones por los complementos de peligrosidad y nocturnidad.</p>
+
+<h3>Otros beneficios</h3>
+<ul>
+<li><strong>Horario</strong>: jornada de manana (7:30-15:00) con flexibilidad en muchas delegaciones.</li>
+<li><strong>Estabilidad</strong>: puesto fijo para toda la vida.</li>
+<li><strong>Promocion interna</strong>: acceso a Tecnico de Hacienda (A2) y luego Inspector (A1) con reserva de plazas.</li>
+<li><strong>Dias de asuntos propios</strong>: minimo 6 dias adicionales + moscosos + vacaciones.</li>
+</ul>
+
+<p><a href="/register?oposicion=hacienda">Empieza a preparar Agente de Hacienda con OpoRuta →</a></p>`,
+    faqs: [
+      { question: '¿Cuanto cobra un Agente de Hacienda al mes?', answer: 'Entre 1.850 y 2.300 € netos mensuales (14 pagas) al inicio. Con trienios y productividad puede superar los 2.500 € netos. Depende de la delegacion y la productividad variable.' },
+      { question: '¿El sueldo de Agente de Hacienda es mayor que el de Administrativo del Estado?', answer: 'Si. Ambos son C1, pero el complemento especifico de la AEAT es significativamente superior al del cuerpo general de Administrativos. La diferencia puede ser de 4.000-6.000 € anuales.' },
+      { question: '¿Cuanto supone cada trienio en el grupo C1?', answer: 'Aproximadamente 530 € brutos anuales por cada trienio. Se cobra cada 3 anos de servicio y es acumulativo. Con 5 trienios (15 anos) son unos 2.650 € mas al ano.' },
+    ],
+  },
+  // ─── Post 103 ────────────────────────────────────────────────────────────────
+  {
+    slug: 'como-aprobar-penitenciarias-estrategia-bloques',
+    title: 'Como aprobar Instituciones Penitenciarias — Estrategia por bloques',
+    description: 'Estrategia de estudio para aprobar Ayudante de Instituciones Penitenciarias. El Bloque III (Derecho Penitenciario) pesa un 36% del examen. Te explicamos como priorizar los 50 temas.',
+    date: '2026-03-30',
+    keywords: ['como aprobar penitenciarias', 'estrategia estudio prisiones', 'bloques penitenciarias', 'como estudiar oposiciones prisiones', 'preparar ayudante IIPP'],
+    content: `<h2>Los 4 bloques de Penitenciarias: pesos reales</h2>
+<p>La oposicion de Ayudante de Instituciones Penitenciarias (C1) tiene 50 temas en 4 bloques. El examen es un test de 150 preguntas con penalizacion. Muchos opositores estudian los bloques a partes iguales — y es un error. Los pesos son muy desiguales.</p>
+
+<h3>Distribucion por bloque</h3>
+<table>
+<tr><th>Bloque</th><th>Temas</th><th>Peso examen</th></tr>
+<tr><td>III — Derecho Penitenciario</td><td>20 temas (28-47)</td><td>~36%</td></tr>
+<tr><td>I — Org. Estado + Dcho. Admin.</td><td>17 temas (1-17)</td><td>~35%</td></tr>
+<tr><td>II — Derecho Penal</td><td>10 temas (18-27)</td><td>~20%</td></tr>
+<tr><td>IV — Conducta Humana</td><td>3 temas (48-50)</td><td>~9%</td></tr>
+</table>
+
+<h3>Estrategia de estudio recomendada</h3>
+<p>El orden optimo NO es el del temario. Es el de peso + rentabilidad:</p>
+<ol>
+<li><strong>Empieza por Bloque III (Penitenciario)</strong>. Es el bloque mas preguntado (36%) y el mas especifico de esta oposicion. La LOGP (LO 1/1979) y el Reglamento Penitenciario (RD 190/1996) son las leyes centrales. Dedica al menos 3 meses.</li>
+<li><strong>Sigue con Bloque I (Org. Estado)</strong>. 35% del examen y muchos temas compartidos con otras oposiciones C1 (Constitucion, TREBEP, LPAC). Si vienes de preparar Administrativo o Hacienda, tendras gran parte hecha.</li>
+<li><strong>Bloque II (Penal)</strong>. 20% del examen. El Codigo Penal (LO 10/1995) es denso pero las preguntas suelen ser directas: tipos de penas, delitos especificos, circunstancias modificativas.</li>
+<li><strong>Bloque IV (Conducta Humana) al final</strong>. Solo 3 temas y 9% del examen. Es el unico bloque que no se basa en legislacion BOE sino en bibliografia de psicologia. Estudialo las ultimas semanas.</li>
+</ol>
+
+<h3>Claves para el examen tipo test</h3>
+<ul>
+<li><strong>Penalizacion activa</strong>: 1/3 de error. No respondas si no puedes descartar al menos 2 opciones.</li>
+<li><strong>150 preguntas en 120 minutos</strong>: menos de 1 minuto por pregunta. La velocidad se entrena con simulacros.</li>
+<li><strong>Preguntas trampa</strong>: el Bloque III pregunta mucho sobre plazos (24h, 72h, 7 dias, 14 dias en regimen penitenciario). Haz tablas comparativas.</li>
+</ul>
+
+<h3>Errores tipicos que debes evitar</h3>
+<ul>
+<li>Empezar por el Bloque I porque "es mas facil" — el Bloque III es donde se decide la plaza.</li>
+<li>Ignorar el Bloque IV pensando que "son solo 3 temas" — esos 9% pueden ser la diferencia.</li>
+<li>No hacer simulacros con penalizacion real desde el primer mes.</li>
+</ul>
+
+<p><a href="/register?oposicion=penitenciarias">Practica los 50 temas de Penitenciarias con tests verificados →</a></p>`,
+    faqs: [
+      { question: '¿Cual es el bloque mas importante de la oposicion de Penitenciarias?', answer: 'El Bloque III (Derecho Penitenciario) con un 36% del examen. La LOGP y el Reglamento Penitenciario son las leyes mas preguntadas. Le sigue de cerca el Bloque I (Org. Estado) con un 35%.' },
+      { question: '¿Cuantas preguntas tiene el examen de Penitenciarias?', answer: '150 preguntas tipo test en 120 minutos, con penalizacion de 1/3 por error. Se necesita velocidad y precision, lo cual se entrena con simulacros.' },
+      { question: '¿Cuanto tiempo se necesita para preparar Penitenciarias?', answer: 'Entre 12 y 18 meses a tiempo completo es lo habitual para los 50 temas. Si compatibilizas con trabajo, calcula 18-24 meses. La clave es empezar por el Bloque III.' },
+    ],
+  },
+  // ─── Post 104 ────────────────────────────────────────────────────────────────
+  {
+    slug: 'sueldo-funcionario-prisiones-2026',
+    title: 'Sueldo de funcionario de prisiones en 2026 — Desglose y complementos',
+    description: 'Cuanto cobra un Ayudante de Instituciones Penitenciarias en 2026. Sueldo base + peligrosidad + nocturnidad + trienios + turnicidad. Comparativa con otros cuerpos C1.',
+    date: '2026-03-30',
+    keywords: ['sueldo funcionario prisiones', 'cuanto cobra ayudante IIPP', 'retribuciones penitenciarias', 'sueldo prisiones 2026', 'complemento peligrosidad prisiones'],
+    content: `<h2>¿Cuanto cobra un funcionario de prisiones en 2026?</h2>
+<p>El Ayudante de Instituciones Penitenciarias (Grupo C1) es uno de los cuerpos mejor pagados de su grupo. El motivo: los complementos de peligrosidad, nocturnidad y turnicidad son exclusivos de este cuerpo y elevan significativamente la nomina.</p>
+
+<h3>Desglose de retribuciones brutas anuales</h3>
+<table>
+<tr><th>Concepto</th><th>Importe anual (aprox.)</th></tr>
+<tr><td>Sueldo base (C1)</td><td>8.600 €</td></tr>
+<tr><td>Complemento de destino (nivel 18-20)</td><td>6.200 - 7.400 €</td></tr>
+<tr><td>Complemento especifico</td><td>7.500 - 9.000 €</td></tr>
+<tr><td>Complemento de peligrosidad</td><td>2.400 - 3.000 €</td></tr>
+<tr><td>Turnicidad + nocturnidad</td><td>2.000 - 4.000 €</td></tr>
+<tr><td>Pagas extra (2 al ano)</td><td>Incluidas en base + destino</td></tr>
+<tr><td><strong>Total bruto anual (sin trienios)</strong></td><td><strong>28.000 - 35.000 €</strong></td></tr>
+</table>
+
+<h3>Los complementos exclusivos de Prisiones</h3>
+<p>Lo que hace que este sueldo destaque entre los C1 son tres complementos que solo tienen los funcionarios de IIPP:</p>
+<ul>
+<li><strong>Peligrosidad</strong>: por el contacto directo con internos. Es fijo e independiente del centro.</li>
+<li><strong>Nocturnidad</strong>: por hacer turnos de noche. Varia segun la frecuencia de noches.</li>
+<li><strong>Turnicidad</strong>: por trabajar en sistema de turnos rotatorios (manana, tarde, noche).</li>
+</ul>
+<p>En total, estos complementos suman entre <strong>4.400 y 7.000 € anuales</strong> extra respecto a un Administrativo C1 estandar.</p>
+
+<h3>Trienios</h3>
+<p>Cada trienio C1 supone aproximadamente <strong>530 € brutos anuales</strong>. Un funcionario con 18 anos de servicio (6 trienios) cobra unos 3.180 € adicionales. Es acumulativo y vitalicio.</p>
+
+<h3>Comparativa con otros cuerpos C1</h3>
+<table>
+<tr><th>Cuerpo C1</th><th>Bruto anual aprox.</th></tr>
+<tr><td><strong>Ayudante IIPP (Prisiones)</strong></td><td><strong>28.000 - 35.000 €</strong></td></tr>
+<tr><td>Agente de Hacienda (AEAT)</td><td>26.300 - 32.500 €</td></tr>
+<tr><td>Tramitacion Procesal (Justicia)</td><td>23.000 - 28.000 €</td></tr>
+<tr><td>Administrativo AGE (general)</td><td>22.000 - 26.000 €</td></tr>
+</table>
+<p>Prisiones es el C1 mejor pagado gracias a los complementos de peligrosidad y turnicidad. La contrapartida es el sistema de turnos y el entorno de trabajo.</p>
+
+<h3>Consideraciones sobre el trabajo</h3>
+<ul>
+<li><strong>Turnos rotatorios</strong>: manana, tarde y noche. El sistema de turnos limita la conciliacion pero genera los complementos extra.</li>
+<li><strong>Ubicacion</strong>: los centros penitenciarios estan mayoritariamente fuera de las capitales. La eleccion de destino depende de la nota.</li>
+<li><strong>Promocion interna</strong>: acceso a cuerpos superiores (A2, A1) con reserva de plazas y parte del temario convalidado.</li>
+</ul>
+
+<p><a href="/register?oposicion=penitenciarias">Empieza a preparar Penitenciarias con OpoRuta →</a></p>`,
+    faqs: [
+      { question: '¿Cuanto cobra un funcionario de prisiones neto al mes?', answer: 'Entre 2.000 y 2.500 € netos mensuales (14 pagas) al inicio, dependiendo del centro y la frecuencia de turnos nocturnos. Con trienios puede superar los 2.800 € netos.' },
+      { question: '¿Por que cobran mas los funcionarios de prisiones que otros C1?', answer: 'Por tres complementos exclusivos: peligrosidad (contacto con internos), nocturnidad (turnos de noche) y turnicidad (turnos rotatorios). Estos complementos suman entre 4.400 y 7.000 € anuales extra.' },
+      { question: '¿Cuanto sube el sueldo con los trienios en prisiones?', answer: 'Cada trienio C1 supone unos 530 € brutos anuales. Con 6 trienios (18 anos) son 3.180 € mas al ano. Se suman a los complementos de peligrosidad y turnicidad.' },
+    ],
+  },
+  // ─── Post 105 ────────────────────────────────────────────────────────────────
+  {
+    slug: 'lo-1-2025-cambios-temario-justicia-oposiciones',
+    title: 'LO 1/2025 — Que cambia en el temario de oposiciones de Justicia',
+    description: 'La Ley Organica 1/2025 modifica la organizacion judicial y afecta al temario de Auxilio, Tramitacion y Gestion. Te explicamos los cambios clave y como adaptarte.',
+    date: '2026-03-30',
+    keywords: ['LO 1/2025 oposiciones justicia', 'cambios temario justicia', 'nueva ley justicia', 'reforma judicial 2025 oposiciones', 'LOPJ cambios temario'],
+    content: `<h2>La LO 1/2025: la mayor reforma judicial en decadas</h2>
+<p>La Ley Organica 1/2025, de 2 de enero, de medidas en materia de eficiencia del Servicio Publico de Justicia, es la reforma mas importante de la organizacion judicial desde la LOPJ de 1985. Afecta directamente al temario de las tres oposiciones del cuerpo de Justicia: Auxilio Judicial (C2), Tramitacion Procesal (C1) y Gestion Procesal (A2).</p>
+
+<h3>Cambios principales que afectan al temario</h3>
+<ul>
+<li><strong>Tribunales de Instancia</strong>: sustituyen a los actuales Juzgados unipersonales. Los Juzgados de Primera Instancia, Instruccion, Social, Contencioso, Mercantil, etc. se integran en Tribunales de Instancia provinciales con secciones especializadas.</li>
+<li><strong>Oficina Judicial reorganizada</strong>: la estructura de la Oficina Judicial se adapta a los nuevos Tribunales. Los Letrados de la Administracion de Justicia (LAJ) asumen mas competencias.</li>
+<li><strong>Digitalizacion obligatoria</strong>: expediente judicial electronico, notificaciones telematicas, comparecencias por videoconferencia. Nuevos procedimientos digitales.</li>
+<li><strong>Mediacion y MASC</strong>: los Metodos Adecuados de Solucion de Controversias (MASC) se potencian. La mediacion pasa de voluntaria a requisito previo en determinados supuestos.</li>
+<li><strong>Nuevas competencias del LAJ</strong>: los Letrados de la Administracion de Justicia asumen mas funciones (jurisdiccion voluntaria, conciliacion, ejecucion). Esto afecta especialmente a Tramitacion y Gestion.</li>
+</ul>
+
+<h3>¿A que cuerpo afecta mas?</h3>
+<table>
+<tr><th>Cuerpo</th><th>Impacto</th></tr>
+<tr><td>Auxilio Judicial (C2)</td><td>Medio: cambia la estructura organizativa pero las funciones basicas se mantienen.</td></tr>
+<tr><td>Tramitacion Procesal (C1)</td><td>Alto: nuevos procedimientos digitales, Tribunales de Instancia, mediacion obligatoria.</td></tr>
+<tr><td>Gestion Procesal (A2)</td><td>Muy alto: competencias ampliadas del LAJ, nuevos procedimientos, MASC.</td></tr>
+</table>
+
+<h3>Como adaptarte si ya estabas estudiando</h3>
+<ol>
+<li><strong>No tires tu temario antiguo</strong>. El 70-80% del contenido sigue vigente: Constitucion, procedimiento civil/penal basico, Registro Civil.</li>
+<li><strong>Actualiza los temas de organizacion judicial</strong>. Todo lo referente a "Juzgados de..." debe actualizarse a "Tribunales de Instancia". Es el cambio mas visible.</li>
+<li><strong>Anade los temas nuevos de digitalizacion</strong>. Expediente electronico, Lexnet, firma digital, notificaciones telematicas.</li>
+<li><strong>Estudia los MASC</strong>. Mediacion, conciliacion y arbitraje son temas nuevos con alta probabilidad de pregunta.</li>
+</ol>
+
+<h3>¿Cuando se aplica en los examenes?</h3>
+<p>La entrada en vigor de los Tribunales de Instancia es progresiva (2025-2026). Las convocatorias publicadas a partir de 2025 ya incluyen la LO 1/2025 en sus temarios. Si tu convocatoria se publico antes, consulta las bases por si hay anexo de actualizacion.</p>
+
+<p><a href="/register?oposicion=justicia">Prepara oposiciones de Justicia con temario actualizado →</a></p>`,
+    faqs: [
+      { question: '¿La LO 1/2025 cambia mucho el temario de oposiciones de Justicia?', answer: 'Si, especialmente en organizacion judicial (Tribunales de Instancia sustituyen a Juzgados), digitalizacion (expediente electronico obligatorio) y MASC (mediacion como requisito previo). El 70-80% del temario anterior sigue vigente.' },
+      { question: '¿A que cuerpo de Justicia afecta mas la LO 1/2025?', answer: 'A Gestion Procesal (A2) por las nuevas competencias del Letrado de la Administracion de Justicia. Tramitacion (C1) tambien se ve muy afectada. Auxilio (C2) tiene impacto medio.' },
+      { question: '¿Que son los Tribunales de Instancia de la LO 1/2025?', answer: 'Son la nueva estructura judicial que sustituye a los Juzgados unipersonales (Primera Instancia, Instruccion, Social, etc.). Se organizan como tribunales provinciales con secciones especializadas.' },
+      { question: '¿Debo comprar un temario nuevo por la LO 1/2025?', answer: 'No necesariamente. El 70-80% del contenido no cambia. Lo critico es actualizar los temas de organizacion judicial (Tribunales de Instancia) y anadir MASC y digitalizacion.' },
+    ],
+  },
+  // ─── Post 106 ────────────────────────────────────────────────────────────────
+  {
+    slug: 'sueldo-funcionario-justicia-2026',
+    title: 'Sueldo de funcionario de Justicia en 2026 — Auxilio, Tramitacion y Gestion',
+    description: 'Cuanto cobra un funcionario de Justicia en 2026. Comparativa: Auxilio Judicial (C2) vs Tramitacion Procesal (C1) vs Gestion Procesal (A2). Desglose de retribuciones.',
+    date: '2026-03-30',
+    keywords: ['sueldo funcionario justicia', 'cuanto cobra auxilio judicial', 'retribuciones tramitacion procesal', 'sueldo gestion procesal 2026', 'nomina funcionario justicia'],
+    content: `<h2>Retribuciones de los 3 cuerpos de Justicia en 2026</h2>
+<p>Los cuerpos de la Administracion de Justicia son tres: Auxilio Judicial (C2), Tramitacion Procesal (C1) y Gestion Procesal (A2). Cada uno tiene un grupo distinto y, por tanto, retribuciones diferentes. Te desglosamos cuanto cobra cada uno.</p>
+
+<h3>Auxilio Judicial (Grupo C2)</h3>
+<table>
+<tr><th>Concepto</th><th>Importe anual (aprox.)</th></tr>
+<tr><td>Sueldo base (C2)</td><td>7.300 €</td></tr>
+<tr><td>Complemento de destino (nivel 15-17)</td><td>5.000 - 5.800 €</td></tr>
+<tr><td>Complemento especifico Justicia</td><td>6.800 - 8.500 €</td></tr>
+<tr><td>Pagas extra (2)</td><td>Incluidas</td></tr>
+<tr><td><strong>Total bruto anual</strong></td><td><strong>19.500 - 22.000 €</strong></td></tr>
+</table>
+<p>Neto mensual aproximado: <strong>1.400 - 1.600 €</strong> (14 pagas).</p>
+
+<h3>Tramitacion Procesal (Grupo C1)</h3>
+<table>
+<tr><th>Concepto</th><th>Importe anual (aprox.)</th></tr>
+<tr><td>Sueldo base (C1)</td><td>8.600 €</td></tr>
+<tr><td>Complemento de destino (nivel 18-20)</td><td>6.200 - 7.400 €</td></tr>
+<tr><td>Complemento especifico Justicia</td><td>8.000 - 10.000 €</td></tr>
+<tr><td>Pagas extra (2)</td><td>Incluidas</td></tr>
+<tr><td><strong>Total bruto anual</strong></td><td><strong>23.000 - 28.000 €</strong></td></tr>
+</table>
+<p>Neto mensual aproximado: <strong>1.650 - 2.000 €</strong> (14 pagas).</p>
+
+<h3>Gestion Procesal (Grupo A2)</h3>
+<table>
+<tr><th>Concepto</th><th>Importe anual (aprox.)</th></tr>
+<tr><td>Sueldo base (A2)</td><td>10.300 €</td></tr>
+<tr><td>Complemento de destino (nivel 22-24)</td><td>8.200 - 9.400 €</td></tr>
+<tr><td>Complemento especifico Justicia</td><td>10.500 - 13.000 €</td></tr>
+<tr><td>Pagas extra (2)</td><td>Incluidas</td></tr>
+<tr><td><strong>Total bruto anual</strong></td><td><strong>29.000 - 33.000 €</strong></td></tr>
+</table>
+<p>Neto mensual aproximado: <strong>2.050 - 2.350 €</strong> (14 pagas).</p>
+
+<h3>Trienios por grupo</h3>
+<p>Los trienios varian segun el grupo:</p>
+<ul>
+<li><strong>C2 (Auxilio)</strong>: ~420 € brutos/ano por trienio</li>
+<li><strong>C1 (Tramitacion)</strong>: ~530 € brutos/ano por trienio</li>
+<li><strong>A2 (Gestion)</strong>: ~680 € brutos/ano por trienio</li>
+</ul>
+
+<h3>¿Merece la pena subir de cuerpo?</h3>
+<p>Absolutamente. La diferencia entre Auxilio (C2) y Gestion (A2) puede ser de <strong>10.000 € brutos anuales</strong>. Ademas, los funcionarios de Justicia tienen <strong>promocion interna</strong> con reserva de plazas: puedes entrar como Auxilio y promocionar a Tramitacion y luego a Gestion con parte del temario convalidado.</p>
+
+<h3>Otros beneficios comunes</h3>
+<ul>
+<li><strong>Horario</strong>: jornada de manana en la mayoria de organos judiciales.</li>
+<li><strong>Destinos</strong>: amplia oferta geografica (hay juzgados en toda Espana).</li>
+<li><strong>Estabilidad</strong>: empleo publico de por vida.</li>
+</ul>
+
+<p><a href="/register?oposicion=justicia">Empieza a preparar tu oposicion de Justicia →</a></p>`,
+    faqs: [
+      { question: '¿Cuanto cobra un Auxilio Judicial al mes?', answer: 'Entre 1.400 y 1.600 € netos mensuales (14 pagas) al inicio. Es el cuerpo C2 de Justicia. Con trienios y antiguedad puede llegar a 1.800 € netos.' },
+      { question: '¿Cual es la diferencia de sueldo entre Tramitacion y Gestion?', answer: 'Unos 5.000-6.000 € brutos anuales. Tramitacion (C1) cobra entre 23.000 y 28.000 € brutos y Gestion (A2) entre 29.000 y 33.000 €. La diferencia aumenta con los trienios.' },
+      { question: '¿Se puede promocionar dentro de los cuerpos de Justicia?', answer: 'Si. Existe promocion interna con reserva de plazas: de Auxilio (C2) a Tramitacion (C1) y de Tramitacion a Gestion (A2). Parte del temario se convalida.' },
+    ],
+  },
+  // ─── Post 107 ────────────────────────────────────────────────────────────────
+  {
+    slug: 'examen-correos-sin-penalizacion-como-aprobar',
+    title: 'Examen de Correos sin penalizacion — Como aprobar con estrategia',
+    description: 'El examen de Correos no penaliza errores. Estrategia: responde TODAS las preguntas, gestiona el tiempo (110 min, 100 preguntas) y prioriza los bloques que mas se preguntan.',
+    date: '2026-03-30',
+    keywords: ['examen correos sin penalizacion', 'como aprobar correos', 'estrategia examen correos', 'examen correos 2026', 'test correos consejos'],
+    content: `<h2>La ventaja clave: no hay penalizacion</h2>
+<p>A diferencia de casi todas las oposiciones del Estado, el examen de Correos <strong>no penaliza las respuestas incorrectas</strong>. Esto cambia completamente la estrategia: en Correos, dejar una pregunta en blanco es SIEMPRE peor que responder al azar. Tienes un 25% de probabilidad de acertar sin saber nada.</p>
+
+<h3>Formato del examen</h3>
+<ul>
+<li><strong>100 preguntas tipo test</strong> con 4 opciones de respuesta.</li>
+<li><strong>110 minutos</strong> de tiempo (1 minuto y 6 segundos por pregunta).</li>
+<li><strong>Sin penalizacion</strong>: acierto = 1 punto, error = 0 puntos, blanco = 0 puntos.</li>
+<li><strong>Nota de corte variable</strong>: depende de la convocatoria, pero suele estar entre 55 y 65 aciertos.</li>
+</ul>
+
+<h3>Estrategia en 4 pasos</h3>
+<ol>
+<li><strong>Primera pasada rapida (70 minutos)</strong>. Responde todas las preguntas que sepas con seguridad. No pierdas tiempo en las que dudes. Marca las dudosas y sigue. Objetivo: resolver 60-70 preguntas.</li>
+<li><strong>Segunda pasada para dudosas (25 minutos)</strong>. Vuelve a las preguntas marcadas. Ahora con mas calma, descarta opciones y elige la mejor. Objetivo: resolver 20-25 preguntas mas.</li>
+<li><strong>Responde TODO lo que quede (10 minutos)</strong>. Las preguntas que no has podido resolver, respondelas igualmente. No hay penalizacion: un 25% de acierto por azar suma puntos gratis.</li>
+<li><strong>Revisa si sobra tiempo (5 minutos)</strong>. Solo cambia respuestas si estas MUY seguro del error. La primera intuicion suele ser correcta.</li>
+</ol>
+
+<h3>Gestion del tiempo: la clave real</h3>
+<p>110 minutos para 100 preguntas parece holgado, pero muchos opositores se atascan en preguntas dificiles y no les da tiempo a responder todo. La regla de oro:</p>
+<ul>
+<li><strong>Si llevas mas de 90 segundos en una pregunta, marcala y sigue.</strong></li>
+<li>Es mejor responder 100 preguntas con alguna al azar que responder 80 con mucha seguridad y dejar 20 en blanco.</li>
+<li>Matematicamente: 80 aciertos seguros + 20 en blanco = 80 puntos. 75 aciertos + 25 al azar (6 aciertos esperados) = 81 puntos.</li>
+</ul>
+
+<h3>¿Que temas se preguntan mas?</h3>
+<p>El temario de Correos tiene dos bloques principales:</p>
+<ul>
+<li><strong>Bloque I — Producto y servicio postal</strong>: tipos de envios, paqueteria, Correos Express, servicios financieros, atencion al cliente. Suele ser el 50-60% del examen.</li>
+<li><strong>Bloque II — Normativa y organizacion</strong>: Ley Postal, normativa de paqueteria, prevencion de riesgos, igualdad, Constitucion. Suele ser el 40-50%.</li>
+</ul>
+<p>El Bloque I es mas practico y directo. El Bloque II requiere mas memorizacion de legislacion.</p>
+
+<p><a href="/register?oposicion=correos">Practica tests de Correos con correccion automatica →</a></p>`,
+    faqs: [
+      { question: '¿El examen de Correos penaliza las respuestas incorrectas?', answer: 'No. El examen de Correos no tiene penalizacion por errores. Cada acierto suma 1 punto y cada error suma 0 puntos (igual que dejar en blanco). Por tanto, siempre debes responder todas las preguntas.' },
+      { question: '¿Cuantas preguntas tiene el examen de Correos?', answer: '100 preguntas tipo test con 4 opciones en 110 minutos. La nota de corte suele estar entre 55 y 65 aciertos, dependiendo de la convocatoria.' },
+      { question: '¿Cual es la mejor estrategia para el examen de Correos?', answer: 'Dos pasadas: primero las que sabes (70 min), luego las dudosas (25 min), y al final responde todo lo que quede al azar (10 min). Sin penalizacion, dejar en blanco es siempre peor que responder.' },
+    ],
+  },
+  // ─── Post 108 ────────────────────────────────────────────────────────────────
+  {
+    slug: 'plazas-correos-2026-por-provincia',
+    title: 'Plazas de Correos 2026 por provincia — Donde hay mas vacantes',
+    description: 'Distribucion geografica de plazas de Correos 2026. Madrid, Barcelona y Valencia concentran mas vacantes. Te explicamos como funciona la eleccion de destino.',
+    date: '2026-03-30',
+    keywords: ['plazas correos 2026', 'plazas correos por provincia', 'destinos correos', 'vacantes correos 2026', 'donde hay plazas correos'],
+    content: `<h2>La distribucion de plazas de Correos 2026</h2>
+<p>Correos es el mayor empleador publico de Espana, con mas de 50.000 trabajadores. Cada convocatoria ofrece miles de plazas repartidas por todo el territorio nacional. La distribucion no es uniforme: las provincias con mas poblacion y mas oficinas concentran la mayor oferta.</p>
+
+<h3>Provincias con mas plazas (historicamente)</h3>
+<p>Basandonos en las ultimas convocatorias, las provincias con mas vacantes son:</p>
+<table>
+<tr><th>Provincia</th><th>% aprox. de plazas</th><th>Motivo</th></tr>
+<tr><td>Madrid</td><td>12-15%</td><td>Sede central + mayor volumen de envios</td></tr>
+<tr><td>Barcelona</td><td>8-10%</td><td>Segunda zona logistica del pais</td></tr>
+<tr><td>Valencia</td><td>5-7%</td><td>Gran zona de distribucion</td></tr>
+<tr><td>Sevilla</td><td>4-5%</td><td>Principal hub del sur</td></tr>
+<tr><td>Malaga</td><td>3-4%</td><td>Costa del Sol, turismo + residentes</td></tr>
+<tr><td>Vizcaya / Bilbao</td><td>3-4%</td><td>Hub del norte</td></tr>
+<tr><td>Alicante</td><td>3-4%</td><td>Zona residencial y turistica</td></tr>
+<tr><td>Zaragoza</td><td>2-3%</td><td>Hub logistico central</td></tr>
+</table>
+<p><strong>En total, las 8 provincias principales concentran el 40-50% de todas las plazas.</strong></p>
+
+<h3>Como funciona la eleccion de destino</h3>
+<p>El proceso de eleccion de destino en Correos funciona asi:</p>
+<ol>
+<li><strong>Apruebas el examen</strong> y entras en la bolsa de empleo.</li>
+<li><strong>Se publica la lista de vacantes</strong> por provincia y oficina.</li>
+<li><strong>Eliges destino por orden de nota</strong>: la persona con mejor nota elige primero. Por eso la nota importa mas alla de aprobar.</li>
+<li><strong>Puedes elegir varias provincias</strong> de preferencia, pero no hay garantia de obtener la primera opcion.</li>
+</ol>
+
+<h3>Estrategia para elegir destino</h3>
+<ul>
+<li><strong>Si quieres una provincia concreta</strong> (ej: Madrid), necesitas una nota alta. Las plazas mas demandadas se agotan rapido.</li>
+<li><strong>Si eres flexible geograficamente</strong>, tienes muchas mas opciones. Provincias menos demandadas (Espana interior, islas) suelen tener plazas sin cubrir.</li>
+<li><strong>Traslados posteriores</strong>: una vez dentro, puedes solicitar traslado a otra provincia en convocatorias internas. Es habitual entrar en una provincia "facil" y trasladarse despues.</li>
+</ul>
+
+<h3>Tipos de contrato</h3>
+<p>Correos ofrece distintos tipos de vinculacion:</p>
+<ul>
+<li><strong>Personal laboral fijo</strong>: contrato indefinido. Es lo que se consigue al aprobar la oposicion y ser seleccionado.</li>
+<li><strong>Personal laboral temporal</strong>: contratos de refuerzo (Navidad, verano, campanas). Se accede por bolsa de empleo.</li>
+<li><strong>Funcionario</strong>: los puestos directivos y de gestion son de carrera funcionarial, pero la mayoria de plazas de reparto y atencion son laborales.</li>
+</ul>
+
+<h3>Provincias "faciles" vs "dificiles"</h3>
+<p>Las provincias mas <strong>faciles de conseguir</strong> (menos demanda relativa a plazas): Teruel, Soria, Cuenca, Zamora, Lugo, Huesca. Las mas <strong>dificiles</strong>: Madrid, Barcelona, San Sebastian, Palma de Mallorca.</p>
+
+<p><a href="/register?oposicion=correos">Prepara el examen de Correos con tests actualizados →</a></p>`,
+    faqs: [
+      { question: '¿Donde hay mas plazas de Correos?', answer: 'Madrid (12-15% de plazas), Barcelona (8-10%), Valencia (5-7%) y Sevilla (4-5%) son las provincias con mas vacantes. Las 8 provincias principales concentran el 40-50% del total.' },
+      { question: '¿Como se elige destino en Correos?', answer: 'Por orden de nota del examen: quien mejor nota saca, elige primero entre las vacantes disponibles. Puedes indicar varias provincias de preferencia, pero la asignacion depende de la nota y las plazas restantes.' },
+      { question: '¿Se puede cambiar de provincia una vez dentro de Correos?', answer: 'Si. Una vez dentro como personal fijo, puedes solicitar traslado a otra provincia en convocatorias internas. Es una estrategia habitual: entrar en una provincia menos demandada y trasladarse despues.' },
+    ],
+  },
 ]
