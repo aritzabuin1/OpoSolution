@@ -9,12 +9,14 @@ import { CheckCircle, ArrowRight, Lock } from 'lucide-react'
 
 // ─── Pricing data by rama ──────────────────────────────────────────────────────
 
-type Rama = 'age' | 'justicia' | 'correos'
+type Rama = 'age' | 'justicia' | 'correos' | 'hacienda' | 'penitenciarias'
 
 const RAMAS: { id: Rama; label: string; activa: boolean }[] = [
   { id: 'age', label: 'Administración del Estado', activa: true },
   { id: 'justicia', label: 'Justicia', activa: true },
   { id: 'correos', label: 'Correos', activa: true },
+  { id: 'hacienda', label: 'Hacienda (AEAT)', activa: true },
+  { id: 'penitenciarias', label: 'Penitenciarias', activa: true },
 ]
 
 interface Plan {
@@ -228,6 +230,72 @@ const PLANS: Record<Rama, Plan[]> = {
       ],
       cta: 'Comprar Pack Correos',
       href: '/register?oposicion=correos',
+      highlight: true,
+    },
+  ],
+  hacienda: [
+    {
+      name: 'Gratis',
+      price: '0€',
+      period: 'para siempre',
+      badge: null,
+      features: [
+        '1 test gratuito en cada tema',
+        '3 simulacros (20 preguntas)',
+        '2 sesiones gratis con tu Tutor IA',
+        'Sin tarjeta de crédito',
+      ],
+      cta: 'Empezar gratis',
+      href: '/register?oposicion=hacienda-aeat',
+      highlight: false,
+    },
+    {
+      name: 'Pack Hacienda C1',
+      price: '49,99€',
+      period: 'pago único',
+      badge: 'Único pack',
+      features: [
+        'Tests ilimitados — 32 temas (LGT, IRPF, IVA, IS)',
+        'Simulacros con exámenes AEAT reales',
+        'Supuestos prácticos con corrección IA (rúbrica AEAT)',
+        '+20 créditos IA',
+        'Sin suscripción — acceso permanente',
+      ],
+      cta: 'Comprar Pack Hacienda',
+      href: '/register?oposicion=hacienda-aeat',
+      highlight: true,
+    },
+  ],
+  penitenciarias: [
+    {
+      name: 'Gratis',
+      price: '0€',
+      period: 'para siempre',
+      badge: null,
+      features: [
+        '1 test gratuito en cada tema',
+        '3 simulacros (20 preguntas)',
+        '2 sesiones gratis con tu Tutor IA',
+        'Sin tarjeta de crédito',
+      ],
+      cta: 'Empezar gratis',
+      href: '/register?oposicion=penitenciarias',
+      highlight: false,
+    },
+    {
+      name: 'Pack Penitenciarias C1',
+      price: '49,99€',
+      period: 'pago único',
+      badge: 'Único pack',
+      features: [
+        'Tests ilimitados — 50 temas (LOGP, RP, CP + Conducta Humana)',
+        'Simulacros 2 partes: 120 + 40 preguntas',
+        '+20 créditos IA',
+        'Penalización -1/3 como en el examen real',
+        'Sin suscripción — acceso permanente',
+      ],
+      cta: 'Comprar Pack Penitenciarias',
+      href: '/register?oposicion=penitenciarias',
       highlight: true,
     },
   ],

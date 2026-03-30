@@ -31,9 +31,9 @@ import { SocialProofCounter } from '@/components/marketing/SocialProofCounter'
 const APP_URL_META = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
 export const metadata: Metadata = {
-  title: 'OpoRuta — Oposiciones con IA: AGE, Correos y Justicia',
+  title: 'OpoRuta — Oposiciones con IA: AGE, Justicia, Correos, Hacienda, Penitenciarias',
   description:
-    'Plataforma de preparación para oposiciones con IA: AGE (Auxiliar C2, Administrativo C1, Gestión A2), Correos y Justicia (Auxilio, Tramitación, Gestión Procesal). Tests verificados, simulacros oficiales y Radar del Tribunal. 10.000+ plazas. Desde 0€.',
+    'Plataforma de preparación para oposiciones con IA: AGE (C2, C1, A2), Justicia (Auxilio, Tramitación, Gestión), Correos, Hacienda AEAT y Penitenciarias. Tests verificados contra BOE, simulacros oficiales y Tutor IA. 12.000+ plazas. Desde 0€.',
   keywords: [
     'oposiciones administracion general estado 2026',
     'oposiciones auxiliar administrativo 2026',
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
     'IA oposiciones',
   ],
   openGraph: {
-    title: 'OpoRuta — Oposiciones con IA: AGE, Correos y Justicia',
+    title: 'OpoRuta — Oposiciones con IA: AGE, Justicia, Correos, Hacienda, Penitenciarias',
     description:
-      'Tests verificados, simulacros oficiales, Radar del Tribunal y supuesto práctico con IA. AGE + Correos + Justicia. 10.000+ plazas. Empieza gratis.',
+      'Tests verificados contra BOE, simulacros oficiales y Tutor IA. AGE + Justicia + Correos + Hacienda + Penitenciarias. 12.000+ plazas. Desde 0€.',
     type: 'website',
     url: APP_URL_META,
     images: [{ url: `${APP_URL_META}/api/og?tipo=blog&tema=${encodeURIComponent('OpoRuta — El camino más corto hacia el aprobado')}`, width: 1200, height: 630 }],
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'OpoRuta — Oposiciones con IA: AGE, Correos y Justicia',
+    title: 'OpoRuta — Oposiciones con IA: AGE, Justicia, Correos, Hacienda, Penitenciarias',
     description: 'Tests verificados, simulacros oficiales, Radar del Tribunal y supuesto práctico con IA. AGE + Correos + Justicia. Empieza gratis.',
   },
 }
@@ -141,7 +141,7 @@ const faqs = [
   },
   {
     q: '¿Para qué oposiciones funciona ahora mismo?',
-    a: 'OpoRuta cubre 7 oposiciones en 3 ramas: Administración del Estado (C2, C1, A2 con 28, 45 y 58 temas), Correos (12 temas, sin penalización, 4.055 plazas) y Justicia (Auxilio Judicial, Tramitación Procesal, Gestión Procesal). Total: más de 10.000 plazas.',
+    a: 'OpoRuta cubre 9 oposiciones en 5 ramas: Administración del Estado (C2, C1, A2), Justicia (Auxilio, Tramitación, Gestión Procesal), Correos (12 temas, sin penalización), Hacienda AEAT (32 temas, LGT/IRPF/IVA) e Instituciones Penitenciarias (50 temas, LOGP/CP). Más de 12.000 plazas en total.',
   },
   {
     q: '¿Qué pasa cuando agoto mis créditos IA?',
@@ -168,8 +168,16 @@ const faqs = [
     a: 'Sí. OpoRuta cubre las 3 oposiciones de Justicia: Auxilio Judicial (26 temas, C2), Tramitación Procesal (37 temas + ofimática, C1) y Gestión Procesal (68 temas + desarrollo escrito, A2). Legislación actualizada con la LO 1/2025 y exámenes MJU reales.',
   },
   {
+    q: '¿OpoRuta sirve para Agente de Hacienda?',
+    a: 'Sí. Cubrimos los 32 temas de Agente de Hacienda Pública (C1): LGT, IRPF, IVA, IS e Impuestos Especiales verificados contra BOE. Incluye supuestos prácticos con corrección IA usando la rúbrica oficial AEAT. 1.000 plazas. Pack: 49,99€.',
+  },
+  {
+    q: '¿Puedo preparar Instituciones Penitenciarias con OpoRuta?',
+    a: 'Sí. OpoRuta cubre los 50 temas de Ayudante IIPP (C1): Derecho Penitenciario (LOGP + Reglamento), Derecho Penal (Código Penal), y Conducta Humana (psicología penitenciaria). 120 + 40 preguntas tipo test con penalización -1/3. 900 plazas. Pack: 49,99€.',
+  },
+  {
     q: '¿Se puede preparar la oposición por libre, sin academia?',
-    a: 'Sí. OpoRuta está diseñado para preparar por libre: tests con legislación verificada, simulacros con preguntas oficiales, Tutor IA que te explica cada error y Radar del Tribunal para saber qué cae más. Funciona para AGE, Correos y Justicia.',
+    a: 'Sí. OpoRuta está diseñado para preparar por libre: tests con legislación verificada, simulacros con preguntas oficiales, Tutor IA que te explica cada error y Radar del Tribunal para saber qué cae más. Funciona para AGE, Justicia, Correos, Hacienda y Penitenciarias.',
   },
   {
     q: '¿Cuánto cuesta?',
@@ -274,10 +282,26 @@ const jsonLdFaq = {
     },
     {
       '@type': 'Question',
+      name: '¿OpoRuta sirve para Agente de Hacienda?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sí. OpoRuta cubre los 32 temas de Agente de Hacienda Pública (C1 AEAT): Ley General Tributaria, IRPF, IVA, Impuesto sobre Sociedades e Impuestos Especiales verificados contra BOE. Incluye supuestos prácticos con corrección IA usando la rúbrica oficial AEAT. 1.000 plazas. Pack: 49,99€ pago único.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Puedo preparar Instituciones Penitenciarias con OpoRuta?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sí. OpoRuta cubre los 50 temas de Ayudante de Instituciones Penitenciarias (C1): Derecho Penitenciario (LOGP + Reglamento Penitenciario), Derecho Penal (Código Penal) y Conducta Humana. 120 + 40 preguntas tipo test con penalización -1/3. 900 plazas. Pack: 49,99€ pago único.',
+      },
+    },
+    {
+      '@type': 'Question',
       name: '¿Cuánto cuesta OpoRuta?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Empieza gratis: 1 test por tema, 1 simulacro oficial y 2 sesiones con el Tutor IA. Packs desde 49,99€ pago único (sin suscripción) para AGE, Correos o Justicia. Packs dobles y triples con descuento. Recarga de créditos IA desde 9,99€.',
+        text: 'Empieza gratis: 1 test por tema, 1 simulacro oficial y 2 sesiones con el Tutor IA. Packs desde 49,99€ pago único (sin suscripción) para cualquiera de las 9 oposiciones. Recarga de créditos IA desde 9,99€.',
       },
     },
   ],
@@ -355,7 +379,7 @@ export default async function LandingPage() {
       <section aria-labelledby="hero-heading" className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-background py-20 sm:py-32">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
           <Badge variant="secondary" className="mb-6 text-xs font-medium px-3 py-1">
-            AGE · Correos · Justicia — 10.000+ plazas en 7 oposiciones
+            AGE · Correos · Justicia · Hacienda · Penitenciarias — 12.000+ plazas en 9 oposiciones
           </Badge>
 
           <h1 id="hero-heading" className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl leading-tight">
@@ -364,7 +388,7 @@ export default async function LandingPage() {
             <span className="text-primary">Entrena con lo que pregunta el tribunal.</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Prepara AGE (C2, C1, A2), Correos o Justicia (Auxilio, Tramitación, Gestión Procesal)
+            Prepara AGE, Justicia, Correos, Hacienda o Penitenciarias
             con tests verificados por IA y cada cita legal comprobada al artículo exacto.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
@@ -1007,6 +1031,51 @@ export default async function LandingPage() {
                       ))}
                     </div>
                     <p className="text-sm font-medium leading-snug group-hover:text-violet-600 transition-colors line-clamp-3">
+                      {post.title}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-2 line-clamp-2">
+                      {post.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+
+          {/* Hacienda AEAT */}
+          <p className="text-xs font-semibold text-emerald-600 uppercase tracking-wide mt-8 mb-3">Hacienda (AEAT)</p>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              'test-agente-hacienda-2026',
+              'temario-agente-hacienda-2026',
+              'notas-corte-agente-hacienda',
+            ].map((slug) => blogPosts.find((p) => p.slug === slug)).filter((p): p is typeof blogPosts[0] => !!p).map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
+                <Card className="h-full hover:border-emerald-400/40 transition-colors">
+                  <CardContent className="pt-5 pb-5">
+                    <p className="font-semibold text-sm group-hover:text-emerald-600 transition-colors line-clamp-2">
+                      {post.title}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-2 line-clamp-2">
+                      {post.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+
+          {/* Penitenciarias */}
+          <p className="text-xs font-semibold text-rose-600 uppercase tracking-wide mt-8 mb-3">Instituciones Penitenciarias</p>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              'test-instituciones-penitenciarias-2026',
+              'temario-instituciones-penitenciarias-2026',
+            ].map((slug) => blogPosts.find((p) => p.slug === slug)).filter((p): p is typeof blogPosts[0] => !!p).map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
+                <Card className="h-full hover:border-rose-400/40 transition-colors">
+                  <CardContent className="pt-5 pb-5">
+                    <p className="font-semibold text-sm group-hover:text-rose-600 transition-colors line-clamp-2">
                       {post.title}
                     </p>
                     <p className="text-xs text-muted-foreground mt-2 line-clamp-2">
