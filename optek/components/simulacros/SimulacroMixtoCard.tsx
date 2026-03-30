@@ -72,7 +72,7 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias, hasPsicot
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           modo: 'mixto',
-          numPreguntas: preguntasExamenCompleto,
+          numPreguntas: Math.min(preguntasExamenCompleto, totalPreguntas),
           incluirPsicotecnicos,
           dificultadPsico,
           incluirSupuesto: hasSupuestoTest,
