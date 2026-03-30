@@ -144,10 +144,55 @@ function parseArticlesFromBOE(html: string): Articulo[] {
 
     const headingText = h.text
 
-    // Parse article number
-    const artMatch = headingText.match(
+    // Map Spanish ordinals to numbers (for old laws like LOGP that use "Artículo primero")
+    const ORDINAL_MAP: Record<string, string> = {
+      primero: '1', segundo: '2', tercero: '3', cuarto: '4', quinto: '5',
+      sexto: '6', séptimo: '7', septimo: '7', octavo: '8', noveno: '9', diez: '10',
+      once: '11', doce: '12', trece: '13', catorce: '14', quince: '15',
+      dieciséis: '16', dieciseis: '16', diecisiete: '17', dieciocho: '18', diecinueve: '19', veinte: '20',
+      veintiuno: '21', veintiún: '21', veintidós: '22', veintidos: '22', veintitrés: '23', veintitres: '23',
+      veinticuatro: '24', veinticinco: '25', veintiséis: '26', veintiseis: '26',
+      veintisiete: '27', veintiocho: '28', veintinueve: '29', treinta: '30',
+      'treinta y uno': '31', 'treinta y dos': '32', 'treinta y tres': '33', 'treinta y cuatro': '34',
+      'treinta y cinco': '35', 'treinta y seis': '36', 'treinta y siete': '37', 'treinta y ocho': '38',
+      'treinta y nueve': '39', cuarenta: '40', 'cuarenta y uno': '41', 'cuarenta y dos': '42',
+      'cuarenta y tres': '43', 'cuarenta y cuatro': '44', 'cuarenta y cinco': '45',
+      'cuarenta y seis': '46', 'cuarenta y siete': '47', 'cuarenta y ocho': '48',
+      'cuarenta y nueve': '49', cincuenta: '50', 'cincuenta y uno': '51', 'cincuenta y dos': '52',
+      'cincuenta y tres': '53', 'cincuenta y cuatro': '54', 'cincuenta y cinco': '55',
+      'cincuenta y seis': '56', 'cincuenta y siete': '57', 'cincuenta y ocho': '58',
+      'cincuenta y nueve': '59', sesenta: '60', 'sesenta y uno': '61', 'sesenta y dos': '62',
+      'sesenta y tres': '63', 'sesenta y cuatro': '64', 'sesenta y cinco': '65',
+      'sesenta y seis': '66', 'sesenta y siete': '67', 'sesenta y ocho': '68',
+      'sesenta y nueve': '69', setenta: '70', 'setenta y uno': '71', 'setenta y dos': '72',
+      'setenta y tres': '73', 'setenta y cuatro': '74', 'setenta y cinco': '75',
+      'setenta y seis': '76', 'setenta y siete': '77', 'setenta y ocho': '78',
+      'setenta y nueve': '79', ochenta: '80',
+    }
+
+    // Try numeric format first: "Artículo 14", "Artículo 177 bis"
+    let artMatch = headingText.match(
       /^Art[ií]culo\s+(\d+(?:\s+(?:bis|ter|quater|quinquies|sexies|septies|octies|novies))?)\s*\.?\s*(.*)/i
     )
+
+    // If not numeric, try ordinal format: "Artículo primero", "Artículo quince bis"
+    if (!artMatch) {
+      const ordinalMatch = headingText.match(
+        /^Art[ií]culo\s+([a-záéíóúñü]+(?:\s+y\s+[a-záéíóúñü]+)?(?:\s+(?:bis|ter|quater|quinquies))?)\s*\.?\s*(.*)/i
+      )
+      if (ordinalMatch) {
+        const raw = ordinalMatch[1].toLowerCase().trim()
+        // Split off bis/ter suffix if present
+        const suffixMatch = raw.match(/^(.+?)\s+(bis|ter|quater|quinquies)$/i)
+        const baseWord = suffixMatch ? suffixMatch[1] : raw
+        const suffix = suffixMatch ? ` ${suffixMatch[2]}` : ''
+        const num = ORDINAL_MAP[baseWord]
+        if (num) {
+          // Reconstruct as artMatch-compatible result
+          artMatch = [headingText, `${num}${suffix}`, ordinalMatch[2] || ''] as unknown as RegExpMatchArray
+        }
+      }
+    }
 
     // Parse disposiciones (with or without ordinal)
     const dispMatch = !artMatch

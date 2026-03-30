@@ -144,25 +144,25 @@
 > Bloques I-II: la mayoría ya está ingestionada para AGE.
 > Bloque III: legislación tributaria NUEVA — grueso del trabajo.
 
-**Leyes YA ingestionadas (reutilizar con re-tagging):**
-- [ ] Constitución Española 1978 — temas 1-5
-- [ ] Ley 39/2015 LPAC — temas 9-10
-- [ ] Ley 40/2015 LRJSP — temas 4, 8, 12
-- [ ] LO 3/2018 LOPDGDD + RGPD — tema 6
-- [ ] LO 3/2007 Igualdad — tema 7
-- [ ] LO 1/2004 Violencia de género — tema 7
-- [ ] Ley 9/2017 LCSP — tema 11
+**Leyes YA ingestionadas (reutilizadas con re-tagging) ✅:**
+- [x] Constitución Española 1978 — temas 1-5 (1.005 artículos taggeados)
+- [x] Ley 39/2015 LPAC — temas 8-10
+- [x] Ley 40/2015 LRJSP — temas 4, 8, 12
+- [x] LO 3/2018 LOPDGDD + RGPD — tema 6
+- [x] LO 3/2007 Igualdad — tema 7
+- [x] LO 1/2004 Violencia de género — tema 7
+- [x] Ley 9/2017 LCSP — tema 11
 
-**Leyes NUEVAS a scrapear:**
-- [ ] **Ley 58/2003 LGT** (Ley General Tributaria) — ~250 artículos — BOE-A-2003-23186
+**Leyes NUEVAS scrapeadas e ingestionadas ✅ (2026-03-30):**
+- [x] **Ley 58/2003 LGT** — 335 artículos scrapeados — BOE-A-2003-23186
   - CUBRE: temas 13-25 (>50% del examen). La ley más importante.
-- [ ] **Ley 35/2006 IRPF** — ~100 artículos relevantes — BOE-A-2006-20764
+- [x] **Ley 35/2006 IRPF** — 221 artículos — BOE-A-2006-20764
   - CUBRE: temas 26-27
-- [ ] **Ley 27/2014 Impuesto sobre Sociedades** — ~130 artículos — BOE-A-2014-12328
+- [x] **Ley 27/2014 Impuesto sobre Sociedades** — 212 artículos — BOE-A-2014-12328
   - CUBRE: tema 28
-- [ ] **Ley 37/1992 IVA** — ~170 artículos — BOE-A-1992-28740
+- [x] **Ley 37/1992 IVA** — 238 artículos — BOE-A-1992-28740
   - CUBRE: temas 29-30
-- [ ] **Ley 38/1992 Impuestos Especiales** — ~70 artículos — BOE-A-1992-28741
+- [x] **Ley 38/1992 Impuestos Especiales** — 137 artículos — BOE-A-1992-28741
   - CUBRE: tema 31
 - [ ] **Reglamento UE 952/2013 Código Aduanero** — extracto relevante (EUR-Lex, no BOE)
   - CUBRE: tema 32
@@ -171,11 +171,10 @@
 - [ ] **RD 1619/2012 Reglamento de facturación** — tema 17
 
 **Ingesta:**
-- [ ] Scrape cada ley nueva con `execution/scrape-boe.ts`
-- [ ] Ejecutar `pnpm ingest:legislacion` para upsert artículos
-- [ ] Añadir reglas de tagging en `execution/tag-legislacion-temas.ts` para rama `hacienda`
-- [ ] Ejecutar `pnpm tag:legislacion --rama hacienda --dry-run` → verificar 0 errores
-- [ ] Ejecutar `pnpm tag:legislacion --rama hacienda`
+- [x] Scrape 5 leyes tributarias core con `scrape-boe-ley-v2.ts`
+- [x] Ejecutar `pnpm ingest:legislacion` — 2.292 artículos nuevos upserted
+- [x] Reglas de tagging en `tag-legislacion-temas.ts` para rama `hacienda`
+- [x] Ejecutar `pnpm tag:legislacion --rama hacienda` — 6.655+ artículos taggeados
 - [ ] Verificar cobertura: ≥1 artículo taggeado por cada uno de los 32 temas
 
 ### 1.3 Free bank (preguntas deterministas sin IA)
@@ -400,13 +399,13 @@
 - [ ] LO 3/2018 LOPDGDD — tema 46
 - [ ] Ley 31/1995 PRL — tema 11 (ya ingestionada para Correos)
 
-**Leyes NUEVAS a scrapear:**
-- [ ] **LO 10/1995 Código Penal** — Libro I completo + títulos relevantes Libro II — BOE-A-1995-25444
+**Leyes NUEVAS scrapeadas e ingestionadas ✅ (2026-03-30):**
+- [x] **LO 10/1995 Código Penal** — 746 artículos (completo) — BOE-A-1995-25444
   - CUBRE: temas 18-27 (~20% del examen)
-  - NOTA: ley extensa. Scrapear selectivamente: Tít. Prelim, Libro I, Libro II títulos I (homicidio), III (lesiones), VI (libertad), VII (torturas), VIII (libertad sexual), X (honor), XIII (patrimonio), XVIII (falsedades), XIX (Admón. Pública), XX (Admón. Justicia)
-- [ ] **LO 1/1979 LOGP** (Ley Orgánica General Penitenciaria) — 80 artículos — BOE-A-1979-23708
+- [x] **LO 1/1979 LOGP** — 86 artículos — BOE-A-1979-23708
   - CUBRE: temas 28-47 (core del ~36% más preguntado)
-- [ ] **RD 190/1996 Reglamento Penitenciario** — 325 artículos — BOE-A-1996-3307
+  - NOTA: requirió fix en scraper v2 para soportar numeración ordinal ("Artículo primero")
+- [x] **RD 190/1996 Reglamento Penitenciario** — 317 artículos — BOE-A-1996-3307
   - CUBRE: temas 28-47 (complemento LOGP)
 - [ ] **RD 840/2011** Medidas alternativas y libertad condicional — BOE-A-2011-10598
   - CUBRE: tema 42
@@ -435,12 +434,11 @@
   - **Oportunidad de diferenciación**: ningún competidor genera bien este bloque con IA
 
 **Ingesta:**
-- [ ] Scrape cada ley nueva con `execution/scrape-boe.ts`
-- [ ] Ejecutar `pnpm ingest:legislacion` para upsert
-- [ ] Añadir reglas de tagging en `execution/tag-legislacion-temas.ts` para rama `penitenciarias`
-- [ ] Ejecutar `pnpm tag:legislacion --rama penitenciarias --dry-run` → verificar 0 errores
-- [ ] Ejecutar `pnpm tag:legislacion --rama penitenciarias`
-- [ ] Ingestar contenido_tecnico Bloque IV
+- [x] Scrape 3 leyes core (CP + LOGP + RP) con `scrape-boe-ley-v2.ts`
+- [x] Ejecutar `pnpm ingest:legislacion` — 1.149 artículos nuevos upserted
+- [x] Reglas de tagging en `tag-legislacion-temas.ts` para rama `penitenciarias`
+- [x] Ejecutar `pnpm tag:legislacion --rama penitenciarias` — en curso
+- [ ] Ingestar contenido_tecnico Bloque IV (temas 48-50)
 - [ ] Verificar cobertura: ≥1 artículo/sección por cada uno de los 50 temas
 
 ### 2.3 Free bank
