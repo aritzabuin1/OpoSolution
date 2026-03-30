@@ -402,18 +402,22 @@ export async function POST(request: NextRequest) {
   let supuestoCaso: { titulo: string; escenario: string; bloques_cubiertos: string[]; ofimatica_start?: number } | null = null
 
   if (effectiveIncluirSupuesto) {
-    // Determine how many supuestos to load from scoring_config
-    // e.g. Penitenciarias: 40 preguntas / 5 per supuesto = 8 supuestos
-    // e.g. Auxilio: 40 preguntas / ~10-20 per supuesto = 1-2 supuestos
+    // How many supuestos to load: from scoring_config.num_supuestos (explicit)
+    // This is the EXACT number from the real exam structure:
+    //   Auxilio Judicial: 2 supuestos × 20q = 40q
+    //   Administrativo C1: 1 supuesto × 20q = 20q
+    //   Tramitación: 1 supuesto × 10q = 10q
+    //   Gestión Procesal: 1 supuesto × 10q = 10q
+    //   Penitenciarias: 8 supuestos × 5q = 40q
     const ejSupuesto = scoringConfig?.ejercicios?.find(
       (e: { nombre?: string }) => {
         const n = (e.nombre ?? '').toLowerCase()
         return n.includes('supuesto') || n.includes('práctico')
       }
-    ) as { preguntas?: number } | undefined
-    const totalPreguntasSupuesto = ejSupuesto?.preguntas ?? 40
+    ) as { preguntas?: number; num_supuestos?: number } | undefined
+    const numSupuestosToLoad = ejSupuesto?.num_supuestos ?? 1 // default 1 for backward compat
 
-    // Fetch ALL available supuestos for this oposición (not just 1)
+    // Fetch unseen supuestos
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: simSeenRows } = await (serviceSupabase as any)
       .from('user_supuestos_seen')
@@ -428,32 +432,32 @@ export async function POST(request: NextRequest) {
     if (simSeenIds.length > 0) {
       simUnseenQuery = simUnseenQuery.not('id', 'in', `(${simSeenIds.join(',')})`)
     }
-    const { data: unseenSupuestos } = await simUnseenQuery.limit(20) // fetch up to 20
+    const { data: unseenSupuestos } = await simUnseenQuery.limit(numSupuestosToLoad)
 
     type SupuestoRow = { id: string; caso: { titulo?: string; escenario?: string; bloques_cubiertos?: string[] }; preguntas: Pregunta[] }
     let supuestoRows: SupuestoRow[] = (unseenSupuestos ?? []) as SupuestoRow[]
 
-    // If not enough unseen, recycle seen ones
-    if (supuestoRows.length === 0) {
+    // If not enough unseen, recycle seen ones to reach numSupuestosToLoad
+    if (supuestoRows.length < numSupuestosToLoad) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { data: allSupuestos } = await (serviceSupabase as any)
         .from('supuesto_bank')
         .select('id, caso, preguntas')
         .eq('oposicion_id', oposicionId)
-        .limit(20)
+        .limit(numSupuestosToLoad)
       supuestoRows = (allSupuestos ?? []) as SupuestoRow[]
     }
 
-    // Shuffle supuestos and collect questions until we reach totalPreguntasSupuesto
+    // Shuffle and take exactly numSupuestosToLoad
     for (let i = supuestoRows.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
       ;[supuestoRows[i], supuestoRows[j]] = [supuestoRows[j], supuestoRows[i]]
     }
+    const selectedSupuestos = supuestoRows.slice(0, numSupuestosToLoad)
 
     const allSupPreguntas: Pregunta[] = []
     const supuestoCasos: { titulo: string; escenario: string }[] = []
-    for (const row of supuestoRows) {
-      if (allSupPreguntas.length >= totalPreguntasSupuesto) break
+    for (const row of selectedSupuestos) {
       const rowPreguntas = (row.preguntas as unknown as Pregunta[]).map((p) => ({
         ...p,
         enunciado: p.enunciado,
@@ -474,18 +478,15 @@ export async function POST(request: NextRequest) {
     }
 
     if (allSupPreguntas.length > 0) {
-      // Use first supuesto's caso as the header (for UI compatibility)
       supuestoCaso = {
         titulo: supuestoCasos.length > 1 ? `${supuestoCasos.length} Supuestos Prácticos` : supuestoCasos[0]?.titulo ?? 'Supuesto Práctico',
         escenario: supuestoCasos.map(s => `**${s.titulo}**\n${s.escenario}`).join('\n\n---\n\n'),
         bloques_cubiertos: [],
       }
-      // Take exactly the number needed
-      const supPreguntasFinal = allSupPreguntas.slice(0, totalPreguntasSupuesto)
-      preguntas = [...preguntas, ...supPreguntasFinal]
+      preguntas = [...preguntas, ...allSupPreguntas]
       promptVersion = incluirPsicotecnicos ? 'oficial-psico-supuesto-1.0' : 'oficial-supuesto-1.0'
       log.info(
-        { supuestos: supuestoCasos.length, supPreguntas: supPreguntasFinal.length, totalPreguntasSupuesto },
+        { numSupuestos: selectedSupuestos.length, supPreguntas: allSupPreguntas.length, numSupuestosToLoad },
         '[generate-simulacro] supuestos prácticos incluidos en simulacro'
       )
     } else {
