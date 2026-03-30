@@ -172,6 +172,12 @@ export default async function SupuestoPracticoPage() {
               <p className="text-xs text-muted-foreground">Aprobado: ≥ {minAprobado}/{maxPuntos} puntos</p>
             </div>
           </div>
+          <div className="mt-4 flex items-start gap-2 rounded-lg bg-amber-50 border border-amber-200 px-4 py-3">
+            <Sparkles className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+            <p className="text-xs text-amber-700">
+              Cada supuesto consume <strong>2 créditos IA</strong> (1 para generar el caso + 1 para la corrección con rúbrica {rubricaLabel}).
+            </p>
+          </div>
         </CardContent>
       </Card>
 
