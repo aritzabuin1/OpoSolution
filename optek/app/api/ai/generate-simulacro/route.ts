@@ -341,36 +341,49 @@ export async function POST(request: NextRequest) {
       { oficiales: preguntasOficiales.length, faltantes, numPreguntas },
       '[generate-simulacro] completando con preguntas del banco'
     )
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: bankRows } = await (serviceSupabase as any)
-      .from('free_question_bank')
-      .select('preguntas, tema_id, tema_numero')
-      .eq('oposicion_id', oposicionId)
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data: bankRows, error: bankError } = await (serviceSupabase as any)
+        .from('free_question_bank')
+        .select('preguntas, tema_id, tema_numero')
+        .eq('oposicion_id', oposicionId)
 
-    if (bankRows && (bankRows as unknown[]).length > 0) {
-      // Flatten all bank questions with tema info
-      type BankRow = { preguntas: Pregunta[]; tema_id: string; tema_numero: number }
-      const allBankQs: Pregunta[] = []
-      for (const row of bankRows as BankRow[]) {
-        const titulo = temaMap.get(row.tema_id) ?? `T${row.tema_numero}`
-        for (const q of row.preguntas) {
-          allBankQs.push({ ...q, temaId: row.tema_id, temaTitulo: titulo })
+      if (bankError) {
+        log.error({ err: bankError }, '[generate-simulacro] error fetching free_question_bank')
+      } else if (bankRows && (bankRows as unknown[]).length > 0) {
+        type BankRow = { preguntas: unknown[]; tema_id: string; tema_numero: number }
+        const allBankQs: Pregunta[] = []
+        for (const row of bankRows as BankRow[]) {
+          const titulo = temaMap.get(row.tema_id) ?? `T${row.tema_numero}`
+          for (const q of (row.preguntas ?? []) as Pregunta[]) {
+            if (!q?.enunciado || !q?.opciones) continue // skip malformed
+            allBankQs.push({
+              enunciado: q.enunciado,
+              opciones: (q.opciones ?? ['', '', '', '']).slice(0, 4) as [string, string, string, string],
+              correcta: typeof q.correcta === 'number' ? q.correcta as 0 | 1 | 2 | 3 : 0,
+              explicacion: q.explicacion ?? '',
+              dificultad: q.dificultad,
+              temaId: row.tema_id,
+              temaTitulo: titulo,
+            })
+          }
         }
+        const officialTexts = new Set(preguntasOficiales.map(p => p.enunciado.slice(0, 80)))
+        const uniqueBankQs = allBankQs.filter(q => !officialTexts.has(q.enunciado.slice(0, 80)))
+        // Fisher-Yates shuffle
+        for (let i = uniqueBankQs.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1))
+          ;[uniqueBankQs[i], uniqueBankQs[j]] = [uniqueBankQs[j], uniqueBankQs[i]]
+        }
+        const fill = uniqueBankQs.slice(0, faltantes)
+        preguntasOficiales.push(...fill)
+        log.info(
+          { filled: fill.length, totalAhora: preguntasOficiales.length },
+          '[generate-simulacro] preguntas del banco añadidas'
+        )
       }
-      // Exclude questions with same enunciado as official ones (avoid duplicates)
-      const officialTexts = new Set(preguntasOficiales.map(p => p.enunciado.slice(0, 80)))
-      const uniqueBankQs = allBankQs.filter(q => !officialTexts.has(q.enunciado.slice(0, 80)))
-      // Fisher-Yates shuffle
-      for (let i = uniqueBankQs.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-        ;[uniqueBankQs[i], uniqueBankQs[j]] = [uniqueBankQs[j], uniqueBankQs[i]]
-      }
-      const fill = uniqueBankQs.slice(0, faltantes)
-      preguntasOficiales.push(...fill)
-      log.info(
-        { filled: fill.length, totalAhora: preguntasOficiales.length },
-        '[generate-simulacro] preguntas del banco añadidas'
-      )
+    } catch (fillErr) {
+      log.error({ err: fillErr }, '[generate-simulacro] fill from bank failed — continuing with oficiales only')
     }
   }
 
@@ -401,7 +414,7 @@ export async function POST(request: NextRequest) {
   // ── 7b. Incluir supuesto práctico (Parte 2) si la oposición lo tiene ─────
   let supuestoCaso: { titulo: string; escenario: string; bloques_cubiertos: string[]; ofimatica_start?: number } | null = null
 
-  if (effectiveIncluirSupuesto) {
+  if (effectiveIncluirSupuesto) { try {
     // How many supuestos to load: from scoring_config.num_supuestos (explicit)
     // This is the EXACT number from the real exam structure:
     //   Auxilio Judicial: 2 supuestos × 20q = 40q
@@ -458,11 +471,10 @@ export async function POST(request: NextRequest) {
     const allSupPreguntas: Pregunta[] = []
     const supuestoCasos: { titulo: string; escenario: string }[] = []
     for (const row of selectedSupuestos) {
-      const rowPreguntas = (row.preguntas as unknown as Pregunta[]).map((p) => ({
-        ...p,
+      const rowPreguntas = (row.preguntas as unknown as Pregunta[]).filter(p => p?.enunciado).map((p) => ({
         enunciado: p.enunciado,
-        opciones: p.opciones,
-        correcta: p.correcta,
+        opciones: (p.opciones ?? ['', '', '', '']).slice(0, 4) as [string, string, string, string],
+        correcta: typeof p.correcta === 'number' ? p.correcta as 0 | 1 | 2 | 3 : 0,
         explicacion: p.explicacion ?? '',
       }))
       allSupPreguntas.push(...rowPreguntas)
@@ -492,7 +504,9 @@ export async function POST(request: NextRequest) {
     } else {
       log.warn({ userId: user.id }, '[generate-simulacro] no supuesto available in bank')
     }
-  }
+  } catch (supErr) {
+    log.error({ err: supErr }, '[generate-simulacro] supuesto loading failed — continuing without supuestos')
+  } }
 
   // ── 7c. Incluir ofimática (Parte 3) si la oposición lo tiene ─────────────
   if (effectiveIncluirOfimatica) {
