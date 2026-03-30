@@ -91,7 +91,7 @@ export function SimulacroCard({ examen, hasPsicotecnicos = false, preguntasExame
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           examenId: examen.id,
-          numPreguntas: Math.min(preguntasExamenCompleto, examen.numPreguntas),
+          numPreguntas: preguntasExamenCompleto,
           incluirPsicotecnicos,
           dificultadPsico,
           incluirSupuesto: hasSupuestoTest,

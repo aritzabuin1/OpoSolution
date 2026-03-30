@@ -298,7 +298,6 @@ export async function POST(request: NextRequest) {
 
   if (!hasPaidAccess) {
     // FREE: deterministic selection — same questions for all free users
-    // Sort by numero ascending, take first N → everyone sees the same exam
     const sorted = [...preguntasData].sort((a, b) => a.numero - b.numero)
     selected = sorted.slice(0, numPreguntas)
   } else {
@@ -312,7 +311,6 @@ export async function POST(request: NextRequest) {
   }
 
   // ── 7. Mapear preguntas oficiales a Pregunta[] ────────────────────────────
-  // §2.6.3: include temaId + temaTitulo for per-tema breakdown in results page
   const preguntasOficiales: Pregunta[] = selected.map((p) => {
     const opciones = p.opciones as string[]
     const temaId = p.tema_id ?? null
@@ -332,6 +330,49 @@ export async function POST(request: NextRequest) {
       temaTitulo,
     }
   })
+
+  // ── 7a. FILL: si no hay suficientes oficiales, completar desde free_question_bank ──
+  // Garantiza que el simulacro SIEMPRE tenga numPreguntas del cuestionario,
+  // igual que el examen real. Las preguntas del banco son generadas por IA y
+  // verificadas contra legislación BOE — misma calidad que las oficiales.
+  if (preguntasOficiales.length < numPreguntas) {
+    const faltantes = numPreguntas - preguntasOficiales.length
+    log.info(
+      { oficiales: preguntasOficiales.length, faltantes, numPreguntas },
+      '[generate-simulacro] completando con preguntas del banco'
+    )
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: bankRows } = await (serviceSupabase as any)
+      .from('free_question_bank')
+      .select('preguntas, tema_id, tema_numero')
+      .eq('oposicion_id', oposicionId)
+
+    if (bankRows && (bankRows as unknown[]).length > 0) {
+      // Flatten all bank questions with tema info
+      type BankRow = { preguntas: Pregunta[]; tema_id: string; tema_numero: number }
+      const allBankQs: Pregunta[] = []
+      for (const row of bankRows as BankRow[]) {
+        const titulo = temaMap.get(row.tema_id) ?? `T${row.tema_numero}`
+        for (const q of row.preguntas) {
+          allBankQs.push({ ...q, temaId: row.tema_id, temaTitulo: titulo })
+        }
+      }
+      // Exclude questions with same enunciado as official ones (avoid duplicates)
+      const officialTexts = new Set(preguntasOficiales.map(p => p.enunciado.slice(0, 80)))
+      const uniqueBankQs = allBankQs.filter(q => !officialTexts.has(q.enunciado.slice(0, 80)))
+      // Fisher-Yates shuffle
+      for (let i = uniqueBankQs.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[uniqueBankQs[i], uniqueBankQs[j]] = [uniqueBankQs[j], uniqueBankQs[i]]
+      }
+      const fill = uniqueBankQs.slice(0, faltantes)
+      preguntasOficiales.push(...fill)
+      log.info(
+        { filled: fill.length, totalAhora: preguntasOficiales.length },
+        '[generate-simulacro] preguntas del banco añadidas'
+      )
+    }
+  }
 
   // ── §1.3B.13 — Añadir psicotécnicas al inicio ─────────────────────────────
   let preguntas: Pregunta[]
