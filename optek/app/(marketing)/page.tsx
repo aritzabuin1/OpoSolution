@@ -17,6 +17,8 @@ import {
   Clock,
   Layers,
   Sparkles,
+  Landmark,
+  Shield,
 } from 'lucide-react'
 import { JsonLd } from '@/components/shared/JsonLd'
 import { RoadHero } from '@/components/marketing/RoadHero'
@@ -405,30 +407,56 @@ export default async function LandingPage() {
             </p>
           </div>
 
-          {/* 3 Rama Cards */}
-          <div className="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto mb-4">
+          {/* 5 Rama Cards — 3 top + 2 bottom centered */}
+          <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto mb-6">
             {/* AGE Hub Card */}
             <Link href="/oposiciones/administracion" className="group">
               <Card className="h-full relative overflow-hidden border-blue-300/50 shadow-lg hover:shadow-xl hover:border-blue-400 transition-all duration-300 bg-gradient-to-br from-blue-50 dark:from-blue-950/20 to-background ring-1 ring-blue-200/50 dark:ring-blue-800/50">
-                <CardHeader className="pb-4">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-blue-500/15 ring-1 ring-blue-400/30">
-                      <BookOpen className="h-7 w-7 text-blue-600 dark:text-blue-400" />
+                <CardHeader className="pb-3">
+                  <div className="flex items-start justify-between mb-2">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/15 ring-1 ring-blue-400/30">
+                      <BookOpen className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                     </div>
                     <Badge className="bg-blue-600 text-white text-[11px]">4.200+ plazas</Badge>
                   </div>
-                  <CardTitle className="text-xl font-bold text-blue-900 dark:text-blue-100">Administración del Estado</CardTitle>
-                  <p className="text-sm text-blue-700 dark:text-blue-300 font-medium mt-1">INAP · C2, C1, A2</p>
+                  <CardTitle className="text-lg font-bold text-blue-900 dark:text-blue-100">Administración del Estado</CardTitle>
+                  <p className="text-xs text-blue-700 dark:text-blue-300 font-medium mt-0.5">INAP · C2, C1, A2</p>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <ul className="space-y-1.5 text-sm text-muted-foreground">
-                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-blue-600 shrink-0" /> Auxiliar Administrativo (C2) — 28 temas</li>
-                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-blue-600 shrink-0" /> Administrativo del Estado (C1) — 45 temas</li>
-                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-blue-600 shrink-0" /> Gestión GACE (A2) — 58 temas + desarrollo escrito</li>
+                <CardContent className="space-y-3 pt-0">
+                  <ul className="space-y-1 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-blue-600 shrink-0" /> Auxiliar (C2) — 28 temas</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-blue-600 shrink-0" /> Administrativo (C1) — 45 temas</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-blue-600 shrink-0" /> Gestión GACE (A2) — 58 temas</li>
                   </ul>
                   <p className="text-xs text-muted-foreground">Simulacros INAP 2018–2024. Legislación BOE verificada.</p>
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white gap-2 group-hover:translate-y-[-1px] transition-transform">
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white gap-2 group-hover:translate-y-[-1px] transition-transform" size="sm">
                     Ver oposiciones AGE <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+            {/* Justicia Hub Card */}
+            <Link href="/oposiciones/justicia" className="group">
+              <Card className="h-full relative overflow-hidden border-violet-300/50 shadow-lg hover:shadow-xl hover:border-violet-400 transition-all duration-300 bg-gradient-to-br from-violet-50 dark:from-violet-950/20 to-background ring-1 ring-violet-200/50 dark:ring-violet-800/50">
+                <CardHeader className="pb-3">
+                  <div className="flex items-start justify-between mb-2">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/15 ring-1 ring-violet-400/30">
+                      <GraduationCap className="h-6 w-6 text-violet-600 dark:text-violet-400" />
+                    </div>
+                    <Badge className="bg-violet-600 text-white text-[11px]">2.300+ plazas</Badge>
+                  </div>
+                  <CardTitle className="text-lg font-bold text-violet-900 dark:text-violet-100">Justicia</CardTitle>
+                  <p className="text-xs text-violet-700 dark:text-violet-300 font-medium mt-0.5">MJU · Auxilio, Tramitación, Gestión</p>
+                </CardHeader>
+                <CardContent className="space-y-3 pt-0">
+                  <ul className="space-y-1 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-violet-600 shrink-0" /> Auxilio Judicial (C2) — 26 temas</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-violet-600 shrink-0" /> Tramitación (C1) — 37 temas</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-violet-600 shrink-0" /> Gestión Procesal (A2) — 68 temas</li>
+                  </ul>
+                  <p className="text-xs text-muted-foreground">Legislación LO 1/2025. Exámenes MJU con penalización real.</p>
+                  <Button className="w-full bg-violet-600 hover:bg-violet-700 text-white gap-2 group-hover:translate-y-[-1px] transition-transform" size="sm">
+                    Ver oposiciones Justicia <ArrowRight className="h-4 w-4" />
                   </Button>
                 </CardContent>
               </Card>
@@ -436,52 +464,80 @@ export default async function LandingPage() {
             {/* Correos Hub Card */}
             <Link href="/oposiciones/correos" className="group">
               <Card className="h-full relative overflow-hidden border-orange-300/50 shadow-lg hover:shadow-xl hover:border-orange-400 transition-all duration-300 bg-gradient-to-br from-orange-50 dark:from-orange-950/20 to-background ring-1 ring-orange-200/50 dark:ring-orange-800/50">
-                <CardHeader className="pb-4">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-orange-500/15 ring-1 ring-orange-400/30">
-                      <Flame className="h-7 w-7 text-orange-600 dark:text-orange-400" />
+                <CardHeader className="pb-3">
+                  <div className="flex items-start justify-between mb-2">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-500/15 ring-1 ring-orange-400/30">
+                      <Flame className="h-6 w-6 text-orange-600 dark:text-orange-400" />
                     </div>
                     <Badge className="bg-orange-600 text-white text-[11px]">4.055 plazas</Badge>
                   </div>
-                  <CardTitle className="text-xl font-bold text-orange-900 dark:text-orange-100">Correos</CardTitle>
-                  <p className="text-sm text-orange-700 dark:text-orange-300 font-medium mt-1">Personal Laboral — Grupo IV</p>
+                  <CardTitle className="text-lg font-bold text-orange-900 dark:text-orange-100">Correos</CardTitle>
+                  <p className="text-xs text-orange-700 dark:text-orange-300 font-medium mt-0.5">Personal Laboral · Grupo IV</p>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <ul className="space-y-1.5 text-sm text-muted-foreground">
+                <CardContent className="space-y-3 pt-0">
+                  <ul className="space-y-1 text-sm text-muted-foreground">
                     <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-orange-600 shrink-0" /> 12 temas completos</li>
                     <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-orange-600 shrink-0" /> Sin penalización por error</li>
                     <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-orange-600 shrink-0" /> Psicotécnicos incluidos</li>
                   </ul>
-                  <p className="text-xs text-muted-foreground">Tests ilimitados desde 49,99€ (pago único).</p>
-                  <Button className="w-full bg-orange-600 hover:bg-orange-700 text-white gap-2 group-hover:translate-y-[-1px] transition-transform">
+                  <p className="text-xs text-muted-foreground">+4.000 plazas. Tests ilimitados desde 49,99€.</p>
+                  <Button className="w-full bg-orange-600 hover:bg-orange-700 text-white gap-2 group-hover:translate-y-[-1px] transition-transform" size="sm">
                     Ver oposición Correos <ArrowRight className="h-4 w-4" />
                   </Button>
                 </CardContent>
               </Card>
             </Link>
-
-            {/* Justicia Hub Card */}
-            <Link href="/oposiciones/justicia" className="group">
-              <Card className="h-full relative overflow-hidden border-violet-300/50 shadow-lg hover:shadow-xl hover:border-violet-400 transition-all duration-300 bg-gradient-to-br from-violet-50 dark:from-violet-950/20 to-background ring-1 ring-violet-200/50 dark:ring-violet-800/50">
-                <CardHeader className="pb-4">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-violet-500/15 ring-1 ring-violet-400/30">
-                      <GraduationCap className="h-7 w-7 text-violet-600 dark:text-violet-400" />
+          </div>
+          {/* Row 2: Hacienda + Penitenciarias centered */}
+          <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
+            {/* Hacienda Hub Card */}
+            <Link href="/oposiciones/hacienda" className="group">
+              <Card className="h-full relative overflow-hidden border-emerald-300/50 shadow-lg hover:shadow-xl hover:border-emerald-400 transition-all duration-300 bg-gradient-to-br from-emerald-50 dark:from-emerald-950/20 to-background ring-1 ring-emerald-200/50 dark:ring-emerald-800/50">
+                <CardHeader className="pb-3">
+                  <div className="flex items-start justify-between mb-2">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/15 ring-1 ring-emerald-400/30">
+                      <Landmark className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
                     </div>
-                    <Badge className="bg-violet-600 text-white text-[11px]">2.300+ plazas</Badge>
+                    <Badge className="bg-emerald-600 text-white text-[11px]">1.000 plazas</Badge>
                   </div>
-                  <CardTitle className="text-xl font-bold text-violet-900 dark:text-violet-100">Justicia</CardTitle>
-                  <p className="text-sm text-violet-700 dark:text-violet-300 font-medium mt-1">MJU — Auxilio, Tramitación, Gestión</p>
+                  <CardTitle className="text-lg font-bold text-emerald-900 dark:text-emerald-100">Hacienda (AEAT)</CardTitle>
+                  <p className="text-xs text-emerald-700 dark:text-emerald-300 font-medium mt-0.5">Agentes Hacienda Pública · C1</p>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <ul className="space-y-1.5 text-sm text-muted-foreground">
-                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-violet-600 shrink-0" /> Auxilio Judicial (C2) — 26 temas</li>
-                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-violet-600 shrink-0" /> Tramitación Procesal (C1) — 37 temas</li>
-                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-violet-600 shrink-0" /> Gestión Procesal (A2) — 68 temas</li>
+                <CardContent className="space-y-3 pt-0">
+                  <ul className="space-y-1 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-emerald-600 shrink-0" /> 32 temas (Derecho Tributario)</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-emerald-600 shrink-0" /> Test 80 preguntas + 10 supuestos escritos</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-emerald-600 shrink-0" /> LGT, IRPF, IVA verificados contra BOE</li>
                   </ul>
-                  <p className="text-xs text-muted-foreground">Legislación LO 1/2025. Exámenes MJU con penalización real.</p>
-                  <Button className="w-full bg-violet-600 hover:bg-violet-700 text-white gap-2 group-hover:translate-y-[-1px] transition-transform">
-                    Ver oposiciones Justicia <ArrowRight className="h-4 w-4" />
+                  <p className="text-xs text-muted-foreground">Supuestos con corrección IA + rúbrica AEAT oficial.</p>
+                  <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white gap-2 group-hover:translate-y-[-1px] transition-transform" size="sm">
+                    Ver oposición Hacienda <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+            {/* Penitenciarias Hub Card */}
+            <Link href="/oposiciones/penitenciarias" className="group">
+              <Card className="h-full relative overflow-hidden border-rose-300/50 shadow-lg hover:shadow-xl hover:border-rose-400 transition-all duration-300 bg-gradient-to-br from-rose-50 dark:from-rose-950/20 to-background ring-1 ring-rose-200/50 dark:ring-rose-800/50">
+                <CardHeader className="pb-3">
+                  <div className="flex items-start justify-between mb-2">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-500/15 ring-1 ring-rose-400/30">
+                      <Shield className="h-6 w-6 text-rose-600 dark:text-rose-400" />
+                    </div>
+                    <Badge className="bg-rose-600 text-white text-[11px]">900 plazas</Badge>
+                  </div>
+                  <CardTitle className="text-lg font-bold text-rose-900 dark:text-rose-100">Instituciones Penitenciarias</CardTitle>
+                  <p className="text-xs text-rose-700 dark:text-rose-300 font-medium mt-0.5">Ayudantes IIPP · C1</p>
+                </CardHeader>
+                <CardContent className="space-y-3 pt-0">
+                  <ul className="space-y-1 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-rose-600 shrink-0" /> 50 temas (Penal + Penitenciario + Psicología)</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-rose-600 shrink-0" /> 120 + 40 preguntas tipo test</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-rose-600 shrink-0" /> LOGP, Reglamento Penitenciario, CP verificados</li>
+                  </ul>
+                  <p className="text-xs text-muted-foreground">Bloque Conducta Humana incluido. ~25.000€/año sueldo.</p>
+                  <Button className="w-full bg-rose-600 hover:bg-rose-700 text-white gap-2 group-hover:translate-y-[-1px] transition-transform" size="sm">
+                    Ver oposición IIPP <ArrowRight className="h-4 w-4" />
                   </Button>
                 </CardContent>
               </Card>
@@ -600,43 +656,37 @@ export default async function LandingPage() {
           <p className="text-sm font-medium text-muted-foreground mb-6">
             Practica con exámenes oficiales reales — preguntas de convocatorias anteriores
           </p>
-          <div className="grid gap-6 sm:grid-cols-3 mb-6">
+          <div className="grid gap-5 sm:grid-cols-5 mb-6">
             {/* AGE */}
-            <div className="space-y-2">
-              <Link href="/oposiciones/administracion" className="text-xs font-semibold text-muted-foreground uppercase tracking-wide hover:text-primary transition-colors block">
-                Administración del Estado
+            <div className="space-y-2 text-center">
+              <Link href="/oposiciones/administracion" className="text-xs font-semibold text-muted-foreground uppercase tracking-wide hover:text-blue-600 transition-colors block">
+                AGE
               </Link>
-              <div className="flex flex-wrap justify-center gap-2">
+              <div className="flex flex-wrap justify-center gap-1.5">
                 {[
                   { href: '/examenes-oficiales/inap-2024', label: 'C2 2024' },
-                  { href: '/examenes-oficiales/inap-2022', label: 'C2 2022' },
                   { href: '/examenes-oficiales/inap-c1-2024', label: 'C1 2024' },
-                  { href: '/examenes-oficiales/inap-c1-2022', label: 'C1 2022' },
                 ].map(({ href, label }) => (
                   <Link key={href} href={href}>
-                    <Badge variant="outline" className="text-xs px-2.5 py-1 hover:bg-accent transition-colors cursor-pointer">
+                    <Badge variant="outline" className="text-xs px-2 py-0.5 hover:bg-accent transition-colors cursor-pointer">
                       {label}
                     </Badge>
                   </Link>
                 ))}
               </div>
-              <Link href="/oposiciones/administracion" className="text-xs text-primary hover:underline block mt-1">
-                Ver oposiciones AGE →
-              </Link>
             </div>
             {/* Justicia */}
-            <div className="space-y-2">
-              <Link href="/oposiciones/justicia" className="text-xs font-semibold text-muted-foreground uppercase tracking-wide hover:text-primary transition-colors">
+            <div className="space-y-2 text-center">
+              <Link href="/oposiciones/justicia" className="text-xs font-semibold text-muted-foreground uppercase tracking-wide hover:text-violet-600 transition-colors block">
                 Justicia
               </Link>
-              <div className="flex flex-wrap justify-center gap-2">
+              <div className="flex flex-wrap justify-center gap-1.5">
                 {[
                   { href: '/oposiciones/justicia/auxilio-judicial', label: 'Auxilio 2025' },
                   { href: '/oposiciones/justicia/tramitacion-procesal', label: 'Tramit. 2025' },
-                  { href: '/oposiciones/justicia/gestion-procesal', label: 'Gestión 2025' },
                 ].map(({ href, label }) => (
                   <Link key={href} href={href}>
-                    <Badge variant="outline" className="text-xs px-2.5 py-1 hover:bg-accent transition-colors cursor-pointer">
+                    <Badge variant="outline" className="text-xs px-2 py-0.5 hover:bg-accent transition-colors cursor-pointer">
                       {label}
                     </Badge>
                   </Link>
@@ -644,21 +694,57 @@ export default async function LandingPage() {
               </div>
             </div>
             {/* Correos */}
-            <div className="space-y-2">
-              <Link href="/oposiciones/correos" className="text-xs font-semibold text-muted-foreground uppercase tracking-wide hover:text-primary transition-colors">
+            <div className="space-y-2 text-center">
+              <Link href="/oposiciones/correos" className="text-xs font-semibold text-muted-foreground uppercase tracking-wide hover:text-orange-600 transition-colors block">
                 Correos
               </Link>
-              <div className="flex flex-wrap justify-center gap-2">
+              <div className="flex flex-wrap justify-center gap-1.5">
                 {[
                   { href: '/oposiciones/correos', label: 'REP 2023' },
                   { href: '/oposiciones/correos', label: 'ATC 2023' },
                 ].map(({ href, label }, i) => (
                   <Link key={`correos-${i}`} href={href}>
-                    <Badge variant="outline" className="text-xs px-2.5 py-1 hover:bg-accent transition-colors cursor-pointer">
+                    <Badge variant="outline" className="text-xs px-2 py-0.5 hover:bg-accent transition-colors cursor-pointer">
                       {label}
                     </Badge>
                   </Link>
                 ))}
+              </div>
+            </div>
+            {/* Hacienda */}
+            <div className="space-y-2 text-center">
+              <Link href="/oposiciones/hacienda" className="text-xs font-semibold text-muted-foreground uppercase tracking-wide hover:text-emerald-600 transition-colors block">
+                Hacienda
+              </Link>
+              <div className="flex flex-wrap justify-center gap-1.5">
+                <Link href="/oposiciones/hacienda">
+                  <Badge variant="outline" className="text-xs px-2 py-0.5 hover:bg-accent transition-colors cursor-pointer">
+                    AEAT 2024
+                  </Badge>
+                </Link>
+                <Link href="/oposiciones/hacienda">
+                  <Badge variant="outline" className="text-xs px-2 py-0.5 hover:bg-accent transition-colors cursor-pointer">
+                    AEAT 2023
+                  </Badge>
+                </Link>
+              </div>
+            </div>
+            {/* Penitenciarias */}
+            <div className="space-y-2 text-center">
+              <Link href="/oposiciones/penitenciarias" className="text-xs font-semibold text-muted-foreground uppercase tracking-wide hover:text-rose-600 transition-colors block">
+                Penitenciarias
+              </Link>
+              <div className="flex flex-wrap justify-center gap-1.5">
+                <Link href="/oposiciones/penitenciarias">
+                  <Badge variant="outline" className="text-xs px-2 py-0.5 hover:bg-accent transition-colors cursor-pointer">
+                    IIPP 2025
+                  </Badge>
+                </Link>
+                <Link href="/oposiciones/penitenciarias">
+                  <Badge variant="outline" className="text-xs px-2 py-0.5 hover:bg-accent transition-colors cursor-pointer">
+                    IIPP 2024
+                  </Badge>
+                </Link>
               </div>
             </div>
           </div>
@@ -681,27 +767,43 @@ export default async function LandingPage() {
             </p>
           </div>
 
-          {/* 3 mini price cards */}
-          <div className="grid gap-4 sm:grid-cols-3 max-w-4xl mx-auto mb-10">
+          {/* 5 mini price cards — 3 top + 2 bottom */}
+          <div className="grid gap-4 sm:grid-cols-3 max-w-4xl mx-auto mb-4">
             {/* AGE */}
-            <div className="relative rounded-xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white dark:from-blue-950/20 dark:to-background p-6 text-center space-y-2">
+            <div className="relative rounded-xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white dark:from-blue-950/20 dark:to-background p-5 text-center space-y-1.5">
               <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider">Administración del Estado</p>
-              <p className="text-sm text-muted-foreground">C2, C1 o A2</p>
-              <p className="text-3xl font-bold text-blue-700">desde 49,99€</p>
-              <p className="text-xs text-muted-foreground">pago único · acceso ilimitado</p>
-            </div>
-            {/* Correos */}
-            <div className="relative rounded-xl border-2 border-orange-200 bg-gradient-to-br from-orange-50 to-white dark:from-orange-950/20 dark:to-background p-6 text-center space-y-2">
-              <p className="text-xs font-semibold text-orange-600 uppercase tracking-wider">Correos</p>
-              <p className="text-sm text-muted-foreground">Grupo IV</p>
-              <p className="text-3xl font-bold text-orange-700">49,99€</p>
+              <p className="text-xs text-muted-foreground">C2, C1 o A2</p>
+              <p className="text-2xl font-bold text-blue-700">desde 49,99€</p>
               <p className="text-xs text-muted-foreground">pago único · acceso ilimitado</p>
             </div>
             {/* Justicia */}
-            <div className="relative rounded-xl border-2 border-violet-200 bg-gradient-to-br from-violet-50 to-white dark:from-violet-950/20 dark:to-background p-6 text-center space-y-2">
+            <div className="relative rounded-xl border-2 border-violet-200 bg-gradient-to-br from-violet-50 to-white dark:from-violet-950/20 dark:to-background p-5 text-center space-y-1.5">
               <p className="text-xs font-semibold text-violet-600 uppercase tracking-wider">Justicia</p>
-              <p className="text-sm text-muted-foreground">Auxilio, Tramitación o Gestión</p>
-              <p className="text-3xl font-bold text-violet-700">desde 49,99€</p>
+              <p className="text-xs text-muted-foreground">Auxilio, Tramitación o Gestión</p>
+              <p className="text-2xl font-bold text-violet-700">desde 49,99€</p>
+              <p className="text-xs text-muted-foreground">pago único · acceso ilimitado</p>
+            </div>
+            {/* Correos */}
+            <div className="relative rounded-xl border-2 border-orange-200 bg-gradient-to-br from-orange-50 to-white dark:from-orange-950/20 dark:to-background p-5 text-center space-y-1.5">
+              <p className="text-xs font-semibold text-orange-600 uppercase tracking-wider">Correos</p>
+              <p className="text-xs text-muted-foreground">Grupo IV</p>
+              <p className="text-2xl font-bold text-orange-700">49,99€</p>
+              <p className="text-xs text-muted-foreground">pago único · acceso ilimitado</p>
+            </div>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 max-w-lg mx-auto mb-10">
+            {/* Hacienda */}
+            <div className="relative rounded-xl border-2 border-emerald-200 bg-gradient-to-br from-emerald-50 to-white dark:from-emerald-950/20 dark:to-background p-5 text-center space-y-1.5">
+              <p className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Hacienda</p>
+              <p className="text-xs text-muted-foreground">Agentes AEAT · C1</p>
+              <p className="text-2xl font-bold text-emerald-700">49,99€</p>
+              <p className="text-xs text-muted-foreground">pago único · acceso ilimitado</p>
+            </div>
+            {/* Penitenciarias */}
+            <div className="relative rounded-xl border-2 border-rose-200 bg-gradient-to-br from-rose-50 to-white dark:from-rose-950/20 dark:to-background p-5 text-center space-y-1.5">
+              <p className="text-xs font-semibold text-rose-600 uppercase tracking-wider">Penitenciarias</p>
+              <p className="text-xs text-muted-foreground">Ayudantes IIPP · C1</p>
+              <p className="text-2xl font-bold text-rose-700">49,99€</p>
               <p className="text-xs text-muted-foreground">pago único · acceso ilimitado</p>
             </div>
           </div>
