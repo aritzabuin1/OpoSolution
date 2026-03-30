@@ -190,10 +190,10 @@
   - OEP 2021: cuestionario A/B + plantilla definitiva ✅
   - OEP 2020: cuestionario A/B + plantilla definitiva ✅
   - OEP 2025: solo plantilla provisional (cuestionario aún no publicado)
-- [ ] Descargar cuadernillos + plantillas (sede AEAT links verificados)
-- [ ] Parsear con `pnpm parse:examenes --oposicion hacienda-aeat [año]`
-- [ ] Ingestar en `examenes_oficiales` + `preguntas_oficiales`
-- [ ] NOTA: ej.2 es desarrollo escrito → no se ingesta como preguntas, se usa como referencia para rúbrica
+- [x] Descargar cuadernillos AEAT 2024 + 2023 (sede AEAT)
+- [x] Parsear: 82 preguntas (2024) + 99 preguntas (2023)
+- [x] Ingestar: 165 preguntas oficiales en `examenes_oficiales` + `preguntas_oficiales`
+- [x] NOTA: ej.2 es desarrollo escrito → no se ingesta, se usa como referencia para rúbrica
 
 ### 1.5 Supuesto práctico AEAT ✅ (2026-03-30)
 - [x] `getSystemCorregirSupuestoAEAT()` en `supuesto-practico.ts` — rúbrica 3 criterios: corrección jurídica (50%), adecuación (33%), expresión (17%). Total 0-30 pts
@@ -219,24 +219,22 @@
   - `TIER_TO_OPOSICION.pack_hacienda = 'f0000000-0000-0000-0000-000000000001'`
   - `TIER_TO_DB_TIPO.pack_hacienda = 'pack_oposicion'`
 - [x] Añadir `'pack_hacienda'` al z.enum del checkout `BodySchema`
-- [ ] Crear producto Stripe "Pack Hacienda 49,99€" en Dashboard — **MANUAL Aritz**
-- [ ] Añadir env var `STRIPE_PRICE_PACK_HACIENDA` en Vercel — **MANUAL Aritz**
+- [x] Crear producto Stripe "Pack Hacienda 49,99€" — ✅ Aritz 2026-03-30
+- [x] Añadir env var `STRIPE_PRICE_PACK_HACIENDA` en Vercel — ✅ Aritz 2026-03-30
 
-### 1.8 Activación
-- [ ] Verificar: free bank 32/32 temas completo
-- [ ] Verificar: legislación indexada (LGT + IRPF + IVA + IS + IIEE + reglamentos)
-- [ ] Verificar: registro dinámico muestra Hacienda
-- [ ] Verificar: scoring con penalización -1/4 funciona en ambos ejercicios
-- [ ] Verificar: simulacro 2 partes tipo test funciona
-- [ ] Stripe checkout → webhook → créditos asignados
-- [ ] **MANUAL Aritz**: `UPDATE oposiciones SET activa = true WHERE slug = 'hacienda-aeat'`
-- [ ] Deploy y smoke test: registro → test tema 15 (LGT) → simulacro
+### 1.8 Activación ✅ (2026-03-30)
+- [x] Verificar: free bank 32/32 temas ✅
+- [x] Verificar: legislación indexada (~10K artículos, 7 leyes tributarias)
+- [x] Verificar: scoring_config 80q test + 10 desarrollo (0-30, tribunal) ✅
+- [x] Stripe productos creados + env vars ✅
+- [x] **MANUAL Aritz**: `UPDATE oposiciones SET activa = true` — ✅ 2026-03-30
+- [ ] Smoke test E2E: registro → test tema 15 (LGT) → supuesto desarrollo → pago
 
 ### 1.9 Blog SEO Hacienda
-- [ ] Post: "Test Agentes Hacienda Pública 2026 — preguntas tipo examen"
-- [ ] Post: "Temario Agentes Hacienda 2026 — 32 temas completos"
-- [ ] Post: "Notas de corte Agentes Hacienda — histórico y predicción"
-- [ ] Post: "Cómo aprobar Agentes Hacienda — estrategia Bloque III (LGT)"
+- [x] Post: "Test Agentes Hacienda Pública 2026 — preguntas tipo examen"
+- [x] Post: "Temario Agentes Hacienda 2026 — 32 temas completos"
+- [x] Post: "Notas de corte Agentes Hacienda — histórico y predicción"
+- [x] Post: "Cómo aprobar Agentes Hacienda — estrategia Bloque III (LGT)"
 - [ ] Calculadora nota: `/herramientas/calculadora-nota-hacienda` (penalización -1/4, 2 ejercicios)
 
 ---
@@ -413,16 +411,14 @@
   - OEP 2023 (04/02/2024): test + supuestos + plantilla ✅ — ACAIP
   - OEP 2021-2022 (27/11/2022): test + supuestos ✅ — ACAIP
   - OEP 2020, 2019, 2018, 2017, 2016: disponibles vía GoKoan/OpositaTest
-- [ ] Descargar cuadernillos + plantillas (ACAIP links verificados)
-- [ ] Parsear con `pnpm parse:examenes --oposicion penitenciarias [año]`
-- [ ] Ingestar en `examenes_oficiales` + `preguntas_oficiales`
-- [ ] Supuestos (parte 2) son tipo test → ingestar con flag `ejercicio=2`
+- [x] Descargar cuadernillos IIPP 2025 + 2024 (ACAIP)
+- [x] Parsear: 40 preguntas (2025, Vision) + 5 preguntas (2024, Vision parcial — PDF escaneado)
+- [x] Ingestar: 45 preguntas oficiales en `examenes_oficiales` + `preguntas_oficiales`
 
-### 2.5 Simulacro 2 partes (cuestionario + supuestos test)
-- [ ] Ambos ejercicios son tipo test → patrón Auxilio Judicial
-- [ ] `generate-simulacro` ya soporta 2 ejercicios tipo test
-- [ ] Timer: parte 1 = 105 min (120 preguntas), parte 2 = 80 min (40 preguntas)
-- [ ] maxPuntuable: 120 + 40 = 160
+### 2.5 Simulacro 2 partes (cuestionario + supuestos test) — funciona vía scoring_config
+- [x] Ambos ejercicios son tipo test → patrón Auxilio Judicial (ya soportado)
+- [x] scoring_config define 2 ejercicios: 120q/105min + 40q/80min
+- [x] maxPuntuable: 120 + 40 = 160
 
 ### 2.6 Landing SEO ✅ (2026-03-30)
 - [x] Crear `app/(marketing)/oposiciones/penitenciarias/page.tsx` — theme rose
@@ -442,31 +438,31 @@
   - `TIER_TO_OPOSICION.pack_penitenciarias = 'f1000000-0000-0000-0000-000000000001'`
   - `TIER_TO_DB_TIPO.pack_penitenciarias = 'pack_oposicion'`
 - [x] Añadir `'pack_penitenciarias'` al z.enum del checkout `BodySchema`
-- [ ] Crear producto Stripe "Pack Penitenciarias 49,99€" — **MANUAL Aritz**
-- [ ] Añadir env var `STRIPE_PRICE_PACK_PENITENCIARIAS` — **MANUAL Aritz**
+- [x] Crear producto Stripe "Pack Penitenciarias 49,99€" — ✅ Aritz 2026-03-30
+- [x] Añadir env var `STRIPE_PRICE_PACK_PENITENCIARIAS` — ✅ Aritz 2026-03-30
 
-### 2.8 Activación
-- [ ] Verificar: free bank 50/50 temas
-- [ ] Verificar: legislación indexada
-- [ ] Verificar: simulacro 2 partes funciona (150q + 50q)
-- [ ] Stripe checkout → webhook → créditos
-- [ ] **MANUAL Aritz**: `UPDATE oposiciones SET activa = true WHERE slug = 'penitenciarias'`
-- [ ] Deploy y smoke test
+### 2.8 Activación ✅ (2026-03-30)
+- [x] Verificar: free bank 50/50 temas ✅
+- [x] Verificar: legislación indexada ✅ (~10K artículos)
+- [x] Verificar: scoring_config 120q + 40q, -1/3 ✅
+- [x] Stripe productos creados ✅
+- [x] **MANUAL Aritz**: `UPDATE oposiciones SET activa = true` — ✅ 2026-03-30
+- [ ] Smoke test E2E: registro → test → simulacro → pago
 
 ### 2.9 Blog SEO Penitenciarias
-- [ ] Post: "Test Instituciones Penitenciarias 2026 — preguntas tipo examen"
-- [ ] Post: "Temario Ayudantes Penitenciarias 2026 — 50 temas completos"
-- [ ] Post: "Notas de corte Penitenciarias — histórico"
-- [ ] Post: "Cómo aprobar Penitenciarias — estrategia por bloques"
+- [x] Post: "Test Instituciones Penitenciarias 2026 — preguntas tipo examen"
+- [x] Post: "Temario Ayudantes Penitenciarias 2026 — 50 temas completos"
+- [x] Post: "Notas de corte Penitenciarias — histórico"
+- [x] Post: "Cómo aprobar Penitenciarias — estrategia por bloques"
 
 ---
 
 ## FASE 3 — Transversales (tras activar ambas)
 
 ### 3.1 Landing principal
-- [ ] Añadir cards Hacienda y Penitenciarias en sección "¿Qué oposición preparas?"
-- [ ] Actualizar sección exámenes oficiales con nuevas ramas
-- [ ] Actualizar FAQ global
+- [x] Añadir cards Hacienda y Penitenciarias en sección "¿Qué oposición preparas?"
+- [x] Actualizar sección exámenes oficiales con nuevas ramas
+- [x] Actualizar FAQ global — 2 nuevas preguntas Hacienda + IIPP
 
 ### 3.2 SEO transversal
 - [x] Actualizar `llms.txt` con nuevas oposiciones
@@ -487,7 +483,7 @@
 - [x] Migration aplicada en Supabase remoto (064 + 065 + 066)
 - [x] Legislación taggeada: hacienda ~10.000 art., penitenciarias ~10.000 art.
 - [x] Free bank completo: Hacienda 32/32, Penitenciarias 50/50
-- [ ] Stripe producto creado + env var en Vercel — **PENDIENTE ARITZ**
+- [x] Stripe producto creado + env var en Vercel — ✅ Aritz
 - [x] `lib/stripe/client.ts` actualizado
 
 ### Smoke test (en local o preview)
@@ -498,11 +494,11 @@
 - [ ] Dashboard muestra datos de la nueva oposición
 
 ### Post-activación
-- [ ] `UPDATE oposiciones SET activa = true WHERE slug = '...'`
-- [ ] Landing page muestra la nueva oposición
-- [ ] Blog posts publicados
-- [ ] sitemap.ts actualizado
-- [ ] llms.txt actualizado
+- [x] `UPDATE oposiciones SET activa = true WHERE slug = '...'`
+- [x] Landing page muestra la nueva oposición
+- [x] Blog posts publicados — 108 total
+- [x] sitemap.ts actualizado
+- [x] llms.txt actualizado
 
 ### Gotchas conocidas (evitar repetir)
 1. **maxPuntuable**: se calcula desde scoring_config, nunca hardcodear
