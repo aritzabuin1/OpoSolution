@@ -75,6 +75,10 @@ const CODE_MAP: Record<string, string[]> = {
   CP:           ['BOE-A-1995-25444'],       // LO 10/1995 Código Penal
   LOGP:         ['BOE-A-1979-23708'],       // LO 1/1979 General Penitenciaria
   RP:           ['BOE-A-1996-3307'],        // RD 190/1996 Reglamento Penitenciario
+  RD840:        ['BOE-A-2011-10598'],       // RD 840/2011 Medidas alternativas
+  VOLUNTARIADO: ['BOE-A-2015-11072'],       // Ley 45/2015 Voluntariado
+  DEPENDENCIA:  ['BOE-A-2006-21990'],       // Ley 39/2006 Dependencia
+  INCOMPATIBILIDADES: ['BOE-A-1984-25031'], // Ley 53/1984 Incompatibilidades
 }
 
 // Resolve symbolic name to all matching ley_codigos
@@ -190,8 +194,12 @@ const PENITENCIARIAS_RULES: TaggingRule[] = [
   { ley_codigo: 'LCSP', oposicion_slug: 'penitenciarias', temas: [16] },
   { ley_codigo: 'LO_IGUALDAD', oposicion_slug: 'penitenciarias', temas: [17] },
   { ley_codigo: 'LO_VG', oposicion_slug: 'penitenciarias', temas: [17] },
-  // LOPDGDD no tiene tema propio en IIPP — se menciona transversalmente
-  // (no mapear a tema 46, que es "Régimen administrativo (2)")
+  // Leyes secundarias Bloque I
+  { ley_codigo: 'VOLUNTARIADO', oposicion_slug: 'penitenciarias', temas: [17] },
+  { ley_codigo: 'DEPENDENCIA', oposicion_slug: 'penitenciarias', temas: [17] },
+  { ley_codigo: 'INCOMPATIBILIDADES', oposicion_slug: 'penitenciarias', temas: [9] },
+  // Bloque III — leyes complementarias
+  { ley_codigo: 'RD840', oposicion_slug: 'penitenciarias', temas: [40, 42] },
   // Bloque II — Derecho Penal (10 temas) — requiere CP ingestionado
   { ley_codigo: 'CP', oposicion_slug: 'penitenciarias', temas: [18, 19, 20, 21, 22, 23, 24, 25, 26] },
   { ley_codigo: 'LECRIM', oposicion_slug: 'penitenciarias', temas: [27] },
