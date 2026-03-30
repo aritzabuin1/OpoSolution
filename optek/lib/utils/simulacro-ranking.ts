@@ -31,10 +31,20 @@ const CORTES_POR_OPOSICION: Record<string, Record<string, { nota: number; plazas
     '2022': { nota: 4.50, plazas: 1500, aspirantes: 25000 },
     '2019': { nota: 4.20, plazas: 1200, aspirantes: 20000 },
   },
-  // A2 Gestión Civil del Estado (próximamente)
+  // A2 Gestión Civil del Estado
   'gestion-estado': {
     '2024': { nota: 4.90, plazas: 2549, aspirantes: 17891 },
     '2023': { nota: 4.95, plazas: 1600, aspirantes: 12000 },
+  },
+  // Hacienda — Agente de Hacienda Pública (C1 AEAT)
+  'hacienda-aeat': {
+    '2024': { nota: 5.33, plazas: 851, aspirantes: 10000 },
+    '2023': { nota: 5.95, plazas: 823, aspirantes: 9500 },
+  },
+  // Penitenciarias — Ayudante IIPP (C1)
+  'penitenciarias': {
+    '2025': { nota: 5.50, plazas: 900, aspirantes: 13000 },
+    '2024': { nota: 5.80, plazas: 800, aspirantes: 12000 },
   },
 }
 

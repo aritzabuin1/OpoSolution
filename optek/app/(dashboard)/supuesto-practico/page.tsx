@@ -77,9 +77,10 @@ export default async function SupuestoPracticoPage() {
     created_at: string
   }[]
 
-  // Determine rubric type: MJU (Gestión Procesal) vs INAP (GACE A2)
+  // Determine rubric type: MJU (Gestión Procesal) vs AEAT (Hacienda) vs INAP (GACE A2)
   const isMJU = opoInfo?.slug === 'gestion-procesal' || opoInfo?.rama === 'justicia'
-  const rubricaLabel = isMJU ? 'MJU' : 'INAP'
+  const isAEAT = opoInfo?.slug === 'hacienda-aeat'
+  const rubricaLabel = isMJU ? 'MJU' : (isAEAT ? 'AEAT' : 'INAP')
   const rubricaItems = isMJU
     ? [
         { label: 'Conocimiento', detail: '0-3 pts/pregunta (60%)' },
@@ -87,15 +88,21 @@ export default async function SupuestoPracticoPage() {
         { label: 'Expresión escrita', detail: '0-0.5 pts/pregunta (10%)' },
         { label: 'Presentación', detail: '0-0.5 pts/pregunta (10%)' },
       ]
+    : isAEAT
+    ? [
+        { label: 'Corrección jurídica', detail: '0-1,5 pts/supuesto (50%)' },
+        { label: 'Adecuación al caso', detail: '0-1 pt/supuesto (33%)' },
+        { label: 'Expresión y estructura', detail: '0-0,5 pts/supuesto (17%)' },
+      ]
     : [
         { label: 'Conocimiento aplicado', detail: '0-30 pts (60%)' },
         { label: 'Análisis', detail: '0-10 pts (20%)' },
         { label: 'Sistemática', detail: '0-5 pts (10%)' },
         { label: 'Expresión escrita', detail: '0-5 pts (10%)' },
       ]
-  const maxPuntos = isMJU ? 25 : 50
-  const minAprobado = isMJU ? 12.5 : 25
-  const numCuestiones = 5
+  const maxPuntos = isMJU ? 25 : (isAEAT ? 30 : 50)
+  const minAprobado = isMJU ? 12.5 : (isAEAT ? 15 : 25)
+  const numCuestiones = isAEAT ? 10 : 5
   const tiempoExamen = isMJU ? 45 : 150
   const opoNombreCorto = opoInfo?.nombre ?? 'tu oposición'
 
