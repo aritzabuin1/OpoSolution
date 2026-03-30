@@ -402,7 +402,18 @@ export async function POST(request: NextRequest) {
   let supuestoCaso: { titulo: string; escenario: string; bloques_cubiertos: string[]; ofimatica_start?: number } | null = null
 
   if (effectiveIncluirSupuesto) {
-    // Fetch unseen supuesto from bank (2-step: get seen IDs, then filter)
+    // Determine how many supuestos to load from scoring_config
+    // e.g. Penitenciarias: 40 preguntas / 5 per supuesto = 8 supuestos
+    // e.g. Auxilio: 40 preguntas / ~10-20 per supuesto = 1-2 supuestos
+    const ejSupuesto = scoringConfig?.ejercicios?.find(
+      (e: { nombre?: string }) => {
+        const n = (e.nombre ?? '').toLowerCase()
+        return n.includes('supuesto') || n.includes('práctico')
+      }
+    ) as { preguntas?: number } | undefined
+    const totalPreguntasSupuesto = ejSupuesto?.preguntas ?? 40
+
+    // Fetch ALL available supuestos for this oposición (not just 1)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: simSeenRows } = await (serviceSupabase as any)
       .from('user_supuestos_seen')
@@ -417,59 +428,65 @@ export async function POST(request: NextRequest) {
     if (simSeenIds.length > 0) {
       simUnseenQuery = simUnseenQuery.not('id', 'in', `(${simSeenIds.join(',')})`)
     }
-    const { data: unseenSupuestos } = await simUnseenQuery.limit(1)
+    const { data: unseenSupuestos } = await simUnseenQuery.limit(20) // fetch up to 20
 
     type SupuestoRow = { id: string; caso: { titulo?: string; escenario?: string; bloques_cubiertos?: string[] }; preguntas: Pregunta[] }
-    let supuestoRow: SupuestoRow | null = null
+    let supuestoRows: SupuestoRow[] = (unseenSupuestos ?? []) as SupuestoRow[]
 
-    if (unseenSupuestos && (unseenSupuestos as unknown[]).length > 0) {
-      supuestoRow = (unseenSupuestos as SupuestoRow[])[0]
-      // Mark as seen
+    // If not enough unseen, recycle seen ones
+    if (supuestoRows.length === 0) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      await (serviceSupabase as any)
-        .from('user_supuestos_seen')
-        .insert({ user_id: user.id, supuesto_id: supuestoRow!.id })
-    } else {
-      // Recycle oldest seen
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { data: oldestSeen } = await (serviceSupabase as any)
-        .from('user_supuestos_seen')
-        .select('supuesto_id')
-        .eq('user_id', user.id)
-        .order('seen_at', { ascending: true })
-        .limit(1)
-        .single()
-      if (oldestSeen) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const { data: recycled } = await (serviceSupabase as any)
-          .from('supuesto_bank')
-          .select('id, caso, preguntas')
-          .eq('id', (oldestSeen as { supuesto_id: string }).supuesto_id)
-          .single()
-        if (recycled) supuestoRow = recycled as SupuestoRow
-      }
+      const { data: allSupuestos } = await (serviceSupabase as any)
+        .from('supuesto_bank')
+        .select('id, caso, preguntas')
+        .eq('oposicion_id', oposicionId)
+        .limit(20)
+      supuestoRows = (allSupuestos ?? []) as SupuestoRow[]
     }
 
-    if (supuestoRow) {
-      supuestoCaso = {
-        titulo: supuestoRow.caso?.titulo ?? 'Supuesto Práctico',
-        escenario: supuestoRow.caso?.escenario ?? '',
-        bloques_cubiertos: supuestoRow.caso?.bloques_cubiertos ?? [],
-      }
-      // Append supuesto questions after cuestionario
-      const supPreguntas = (supuestoRow.preguntas as unknown as Pregunta[]).map((p) => ({
+    // Shuffle supuestos and collect questions until we reach totalPreguntasSupuesto
+    for (let i = supuestoRows.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[supuestoRows[i], supuestoRows[j]] = [supuestoRows[j], supuestoRows[i]]
+    }
+
+    const allSupPreguntas: Pregunta[] = []
+    const supuestoCasos: { titulo: string; escenario: string }[] = []
+    for (const row of supuestoRows) {
+      if (allSupPreguntas.length >= totalPreguntasSupuesto) break
+      const rowPreguntas = (row.preguntas as unknown as Pregunta[]).map((p) => ({
         ...p,
-        // Remove cita if present — supuesto questions don't have field-level citas
         enunciado: p.enunciado,
         opciones: p.opciones,
         correcta: p.correcta,
         explicacion: p.explicacion ?? '',
       }))
-      preguntas = [...preguntas, ...supPreguntas]
+      allSupPreguntas.push(...rowPreguntas)
+      supuestoCasos.push({
+        titulo: row.caso?.titulo ?? 'Supuesto Práctico',
+        escenario: row.caso?.escenario ?? '',
+      })
+      // Mark as seen
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await (serviceSupabase as any)
+        .from('user_supuestos_seen')
+        .upsert({ user_id: user.id, supuesto_id: row.id }, { onConflict: 'user_id,supuesto_id' })
+    }
+
+    if (allSupPreguntas.length > 0) {
+      // Use first supuesto's caso as the header (for UI compatibility)
+      supuestoCaso = {
+        titulo: supuestoCasos.length > 1 ? `${supuestoCasos.length} Supuestos Prácticos` : supuestoCasos[0]?.titulo ?? 'Supuesto Práctico',
+        escenario: supuestoCasos.map(s => `**${s.titulo}**\n${s.escenario}`).join('\n\n---\n\n'),
+        bloques_cubiertos: [],
+      }
+      // Take exactly the number needed
+      const supPreguntasFinal = allSupPreguntas.slice(0, totalPreguntasSupuesto)
+      preguntas = [...preguntas, ...supPreguntasFinal]
       promptVersion = incluirPsicotecnicos ? 'oficial-psico-supuesto-1.0' : 'oficial-supuesto-1.0'
       log.info(
-        { supuestoId: supuestoRow.id, supPreguntas: supPreguntas.length },
-        '[generate-simulacro] supuesto práctico incluido en simulacro'
+        { supuestos: supuestoCasos.length, supPreguntas: supPreguntasFinal.length, totalPreguntasSupuesto },
+        '[generate-simulacro] supuestos prácticos incluidos en simulacro'
       )
     } else {
       log.warn({ userId: user.id }, '[generate-simulacro] no supuesto available in bank')
