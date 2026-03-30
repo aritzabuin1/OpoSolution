@@ -35,7 +35,7 @@ const GenerateSimulacroSchema = z
   .object({
     examenId: z.string().regex(UUID_REGEX, 'examenId debe ser un UUID válido').optional(),
     anno: z.number().int().min(2000).max(2099).optional(),
-    numPreguntas: z.number().int().min(1).max(110).optional().default(100),
+    numPreguntas: z.number().int().min(1).max(200).optional().default(100),
     /** §1.3B.13: si true, añade 30 psicotécnicas al inicio del test */
     incluirPsicotecnicos: z.boolean().optional().default(false),
     /** Dificultad de las psicotécnicas: 1 fácil, 2 media, 3 difícil */
