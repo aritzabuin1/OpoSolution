@@ -23,6 +23,8 @@ const BodySchema = z.object({
     'pack', 'pack_c1', 'pack_a2', 'pack_doble', 'pack_triple',
     'pack_correos',
     'pack_auxilio', 'pack_tramitacion', 'pack_gestion_j', 'pack_doble_justicia', 'pack_triple_justicia',
+    'pack_hacienda',
+    'pack_penitenciarias',
     'recarga',
   ]),
   temaId: z.string().uuid().optional(),

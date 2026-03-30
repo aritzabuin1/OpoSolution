@@ -40,6 +40,10 @@ export const STRIPE_PRICES = {
   pack_gestion_j: process.env.STRIPE_PRICE_PACK_GESTION_J ?? '', // 79.99€ → Gestión Procesal A2
   pack_doble_justicia: process.env.STRIPE_PRICE_PACK_DOBLE_JUSTICIA ?? '', // 79.99€ → Auxilio + Tramitación
   pack_triple_justicia: process.env.STRIPE_PRICE_PACK_TRIPLE_JUSTICIA ?? '', // 139.99€ → Auxilio + Tramitación + Gestión
+  // Hacienda
+  pack_hacienda:  process.env.STRIPE_PRICE_PACK_HACIENDA  ?? '', // 49.99€ → Agente Hacienda C1
+  // Penitenciarias
+  pack_penitenciarias: process.env.STRIPE_PRICE_PACK_PENITENCIARIAS ?? '', // 49.99€ → Ayudante IIPP C1
   // Recarga única
   recarga:        process.env.STRIPE_PRICE_RECARGA        ?? '', //   9.99€ → +10 créditos IA
 } as const
@@ -63,6 +67,10 @@ export const CORRECTIONS_GRANTED: Record<StripePriceTier, number> = {
   pack_gestion_j: 25,  // 20 base + 5 extra
   pack_doble_justicia: 30,
   pack_triple_justicia: 45,  // 40 base + 5 extra
+  // Hacienda
+  pack_hacienda:  20,
+  // Penitenciarias
+  pack_penitenciarias: 20,
   // Recarga
   recarga:        10,
 }
@@ -79,6 +87,9 @@ export const CORREOS_OPOSICION_ID = 'd0000000-0000-0000-0000-000000000001'
 export const AUXILIO_OPOSICION_ID = 'e0000000-0000-0000-0000-000000000001'
 export const TRAMITACION_OPOSICION_ID = 'e1000000-0000-0000-0000-000000000001'
 export const GESTION_J_OPOSICION_ID = 'e2000000-0000-0000-0000-000000000001'
+// Hacienda + Penitenciarias IDs (migration 064)
+export const HACIENDA_OPOSICION_ID = 'f0000000-0000-0000-0000-000000000001'
+export const PENITENCIARIAS_OPOSICION_ID = 'g0000000-0000-0000-0000-000000000001'
 
 // Mapeo tier → oposición(es) para checkout metadata
 export const TIER_TO_OPOSICION: Record<StripePriceTier, string | string[]> = {
@@ -96,6 +107,10 @@ export const TIER_TO_OPOSICION: Record<StripePriceTier, string | string[]> = {
   pack_gestion_j:     GESTION_J_OPOSICION_ID,
   pack_doble_justicia: [AUXILIO_OPOSICION_ID, TRAMITACION_OPOSICION_ID],
   pack_triple_justicia: [AUXILIO_OPOSICION_ID, TRAMITACION_OPOSICION_ID, GESTION_J_OPOSICION_ID],
+  // Hacienda
+  pack_hacienda:      HACIENDA_OPOSICION_ID,
+  // Penitenciarias
+  pack_penitenciarias: PENITENCIARIAS_OPOSICION_ID,
   // Recarga (global — no vinculada a oposición específica)
   recarga:            '',
 }

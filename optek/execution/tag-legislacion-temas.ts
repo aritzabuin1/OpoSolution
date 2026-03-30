@@ -63,6 +63,18 @@ const CODE_MAP: Record<string, string[]> = {
   LEY_IGUALDAD_TRATO: ['BOE-A-2022-11589'],
   LEY_POSTAL:   ['BOE-A-2010-20139'],
   RD_POSTAL:    ['BOE-A-1999-24919', 'BOE-A-2024-10010'],
+  // Hacienda — Bloque III tributario
+  LGT:          ['BOE-A-2003-23186'],       // Ley 58/2003 General Tributaria
+  LIRPF:        ['BOE-A-2006-20764'],       // Ley 35/2006 IRPF
+  LIS:          ['BOE-A-2014-12328'],       // Ley 27/2014 Impuesto Sociedades
+  LIVA:         ['BOE-A-1992-28740'],       // Ley 37/1992 IVA
+  LIEE:         ['BOE-A-1992-28741'],       // Ley 38/1992 Impuestos Especiales
+  RGR:          ['BOE-A-2005-14803'],       // RD 939/2005 Rgto. Gral. Recaudación
+  RGAGI:        ['BOE-A-2007-15984'],       // RD 1065/2007 Rgto. Gestión e Inspección
+  // Penitenciarias — Bloques II-III
+  CP:           ['BOE-A-1995-25444'],       // LO 10/1995 Código Penal
+  LOGP:         ['BOE-A-1979-23708'],       // LO 1/1979 General Penitenciaria
+  RP:           ['BOE-A-1996-3307'],        // RD 190/1996 Reglamento Penitenciario
 }
 
 // Resolve symbolic name to all matching ley_codigos
@@ -146,17 +158,67 @@ const CORREOS_RULES: TaggingRule[] = [
   // (no hay ley específica ingestionada, se genera con IA)
 ]
 
+const HACIENDA_RULES: TaggingRule[] = [
+  // Bloque I — Organización del Estado (7 temas)
+  { ley_codigo: 'CE', oposicion_slug: 'hacienda-aeat', temas: [1, 2, 3, 4, 5] },
+  { ley_codigo: 'LRJSP', oposicion_slug: 'hacienda-aeat', temas: [4, 8, 12] },
+  { ley_codigo: 'LOPDGDD', oposicion_slug: 'hacienda-aeat', temas: [6] },
+  { ley_codigo: 'LO_IGUALDAD', oposicion_slug: 'hacienda-aeat', temas: [7] },
+  { ley_codigo: 'LO_VG', oposicion_slug: 'hacienda-aeat', temas: [7] },
+  // Bloque II — Derecho Administrativo (5 temas)
+  { ley_codigo: 'LPAC', oposicion_slug: 'hacienda-aeat', temas: [8, 9, 10] },
+  { ley_codigo: 'LCSP', oposicion_slug: 'hacienda-aeat', temas: [11] },
+  // Bloque III — Hacienda Pública y Derecho Tributario (20 temas)
+  // LGT = core — temas 13-25 (>50% del examen)
+  { ley_codigo: 'LGT', oposicion_slug: 'hacienda-aeat', temas: [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25] },
+  { ley_codigo: 'LIRPF', oposicion_slug: 'hacienda-aeat', temas: [26, 27] },
+  { ley_codigo: 'LIS', oposicion_slug: 'hacienda-aeat', temas: [28] },
+  { ley_codigo: 'LIVA', oposicion_slug: 'hacienda-aeat', temas: [29, 30] },
+  { ley_codigo: 'LIEE', oposicion_slug: 'hacienda-aeat', temas: [31] },
+  // Reglamentos tributarios
+  { ley_codigo: 'RGR', oposicion_slug: 'hacienda-aeat', temas: [20, 21] },
+  { ley_codigo: 'RGAGI', oposicion_slug: 'hacienda-aeat', temas: [17, 18, 22, 23] },
+]
+
+const PENITENCIARIAS_RULES: TaggingRule[] = [
+  // Bloque I — Organización del Estado (17 temas)
+  { ley_codigo: 'CE', oposicion_slug: 'penitenciarias', temas: [1, 2, 3, 4, 5, 6] },
+  { ley_codigo: 'TREBEP', oposicion_slug: 'penitenciarias', temas: [9, 10] },
+  { ley_codigo: 'PRL', oposicion_slug: 'penitenciarias', temas: [11] },
+  { ley_codigo: 'LPAC', oposicion_slug: 'penitenciarias', temas: [12, 13, 14] },
+  { ley_codigo: 'LRJSP', oposicion_slug: 'penitenciarias', temas: [4, 12, 15] },
+  { ley_codigo: 'LCSP', oposicion_slug: 'penitenciarias', temas: [16] },
+  { ley_codigo: 'LO_IGUALDAD', oposicion_slug: 'penitenciarias', temas: [17] },
+  { ley_codigo: 'LO_VG', oposicion_slug: 'penitenciarias', temas: [17] },
+  { ley_codigo: 'LOPDGDD', oposicion_slug: 'penitenciarias', temas: [46] },
+  // Bloque II — Derecho Penal (10 temas) — requiere CP ingestionado
+  { ley_codigo: 'CP', oposicion_slug: 'penitenciarias', temas: [18, 19, 20, 21, 22, 23, 24, 25, 26] },
+  { ley_codigo: 'LECRIM', oposicion_slug: 'penitenciarias', temas: [27] },
+  // Bloque III — Derecho Penitenciario (20 temas) — requiere LOGP + RP ingestionados
+  { ley_codigo: 'LOGP', oposicion_slug: 'penitenciarias', temas: [28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47] },
+  { ley_codigo: 'RP', oposicion_slug: 'penitenciarias', temas: [28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47] },
+  // Bloque IV — Conducta Humana (3 temas) — no tiene legislación BOE, usa conocimiento_tecnico
+]
+
+const ALL_RULES: Record<string, TaggingRule[]> = {
+  justicia: JUSTICIA_RULES,
+  correos: CORREOS_RULES,
+  hacienda: HACIENDA_RULES,
+  penitenciarias: PENITENCIARIAS_RULES,
+}
+
 async function main() {
   const ramaArg = process.argv.find(a => a.startsWith('--rama='))?.split('=')[1]
     ?? process.argv[process.argv.indexOf('--rama') + 1]
   const dryRun = process.argv.includes('--dry-run')
 
-  if (!ramaArg || !['justicia', 'correos'].includes(ramaArg)) {
-    console.error('Usage: pnpm tag:legislacion --rama <justicia|correos> [--dry-run]')
+  const validRamas = Object.keys(ALL_RULES)
+  if (!ramaArg || !validRamas.includes(ramaArg)) {
+    console.error(`Usage: pnpm tag:legislacion --rama <${validRamas.join('|')}> [--dry-run]`)
     process.exit(1)
   }
 
-  const rules = ramaArg === 'justicia' ? JUSTICIA_RULES : CORREOS_RULES
+  const rules = ALL_RULES[ramaArg]!
   const url = process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL!
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY!
   const supabase = createClient(url, key)

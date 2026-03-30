@@ -125,6 +125,8 @@ async function handleStripeEvent(
         pack_gestion_j: 'pack_oposicion',
         pack_doble_justicia: 'pack_oposicion',
         pack_triple_justicia: 'pack_oposicion',
+        pack_hacienda: 'pack_oposicion',
+        pack_penitenciarias: 'pack_oposicion',
         recarga: 'pack_oposicion',
       }
       const dbTipo = TIER_TO_DB_TIPO[tier] ?? 'pack_oposicion'

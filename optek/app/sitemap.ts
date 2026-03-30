@@ -96,6 +96,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${APP_URL}/oposiciones/hacienda`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${APP_URL}/oposiciones/penitenciarias`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
       url: `${APP_URL}/preguntas-frecuentes`,
       lastModified: now,
       changeFrequency: 'monthly',
