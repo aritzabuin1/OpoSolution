@@ -14771,4 +14771,204 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Cuanto suman los trienios en toda una carrera de funcionario?', answer: 'Un funcionario C1 con 30 anos de servicio (10 trienios) cobra ~533€ al mes extra solo en trienios, lo que supone mas de 100.000€ a lo largo de toda su carrera. Los trienios son acumulativos, irreversibles y cotizan para la pension de jubilacion.' },
     ],
   },
+  // ─── HACIENDA — Posts SEO ──────────────────────────────────────────────────
+  {
+    slug: 'test-agente-hacienda-2026',
+    title: 'Test Agente de Hacienda 2026 — Practica gratis con preguntas tipo examen AEAT',
+    description: 'Preguntas tipo test de Agente de Hacienda Pública 2026. LGT, IRPF, IVA verificados contra BOE. 80 preguntas, penalización -1/4. Practica online gratis.',
+    date: '2026-03-30',
+    keywords: ['test agente hacienda 2026', 'preguntas examen hacienda', 'oposiciones AEAT', 'test hacienda online gratis', 'agente hacienda publica', 'examen hacienda tipo test'],
+    content: `<h2>El examen de Agente de Hacienda: lo que necesitas saber</h2>
+<p>La oposicion de Agente de Hacienda Publica (C1) es una de las mas demandadas de la AGE. Con <strong>1.000 plazas</strong> en la ultima convocatoria (OEP 2025, BOE 30/12/2025) y un ratio de ~10 opositores por plaza, la preparacion tiene que ser eficiente.</p>
+
+<h3>Estructura del examen</h3>
+<p>El examen consta de <strong>dos ejercicios eliminatorios</strong>:</p>
+<ul>
+<li><strong>Primer ejercicio</strong>: 80 preguntas tipo test (4 opciones), 90 minutos. Penalizacion -1/4 (cada error resta 1/4 del valor de un acierto). Calificacion 0-10, minimo 5.</li>
+<li><strong>Segundo ejercicio</strong>: 10 supuestos practicos de <strong>desarrollo escrito</strong> (respuestas breves y razonadas), solo Bloque III (Derecho Tributario). 2 horas 30 minutos. Calificacion 0-30, minimo 15.</li>
+</ul>
+
+<h3>¿Que es lo mas preguntado?</h3>
+<p>La <strong>Ley General Tributaria (Ley 58/2003)</strong> es con diferencia la ley mas preguntada, cubriendo los temas 13-25 del Bloque III. Le siguen el IRPF (Ley 35/2006), el IVA (Ley 37/1992), y la LPAC (Ley 39/2015).</p>
+
+<h3>La penalizacion -1/4: cuando responder</h3>
+<p>Con penalizacion -1/4, la matematica dice: <strong>responde si puedes descartar al menos 1 opcion</strong>. Con 3 opciones posibles, la esperanza matematica es positiva (0.33 × 1 - 0.67 × 0.25 = +0.16). Si no puedes descartar ninguna, deja en blanco.</p>
+
+<h3>Practica con OpoRuta</h3>
+<p>En OpoRuta puedes practicar con <strong>preguntas verificadas contra la legislacion real</strong> del BOE: LGT, IRPF, IVA, IS, IIEE. Cada cita legal se comprueba antes de mostrarte la pregunta. Ademas, tenemos supuestos practicos con correccion IA siguiendo la rubrica oficial AEAT.</p>
+
+<p><a href="/register?oposicion=hacienda-aeat">Empieza gratis →</a></p>`,
+    faqs: [
+      { question: '¿Cuantas plazas hay de Agente de Hacienda 2026?', answer: '1.000 plazas de acceso libre (OEP 2025). Historico: 851 (2024), 823 (2023), 787 (2022). La tendencia es creciente.' },
+      { question: '¿Como es el segundo ejercicio de Agente de Hacienda?', answer: '10 supuestos practicos de desarrollo escrito (respuestas breves y razonadas) sobre Derecho Tributario (Bloque III). 2 horas 30 minutos. Calificacion 0-30, minimo 15 para superar.' },
+      { question: '¿Cual es la ley mas importante para Agente de Hacienda?', answer: 'La Ley 58/2003 General Tributaria (LGT) es la ley mas preguntada con diferencia. Cubre los temas 13-25 del Bloque III: obligaciones tributarias, gestion, inspeccion, recaudacion, sanciones y revision.' },
+      { question: '¿Que sueldo cobra un Agente de Hacienda?', answer: 'El sueldo inicial ronda los 22.000-24.000€ brutos anuales (~1.700€ netos/mes). Con trienios, productividad y complementos puede llegar a 26.000-30.000€. Destinos habituales: delegaciones y administraciones de la AEAT.' },
+    ],
+  },
+  {
+    slug: 'temario-agente-hacienda-2026',
+    title: 'Temario Agente de Hacienda 2026 — Los 32 temas completos (actualizado BOE)',
+    description: 'Temario oficial de Agente de Hacienda Publica 2026 completo. 32 temas en 3 bloques: Organizacion del Estado, Derecho Administrativo y Hacienda Publica. Convocatoria BOE 30/12/2025.',
+    date: '2026-03-30',
+    keywords: ['temario agente hacienda 2026', 'temas oposicion hacienda', 'programa agente hacienda publica', 'temario AEAT 2026', '32 temas hacienda'],
+    content: `<h2>Temario completo: 32 temas en 3 bloques</h2>
+<p>El temario de Agente de Hacienda Publica se divide en 3 bloques. La convocatoria 2025-2026 (BOE n° 314, 30/12/2025) redujo de 34 a 32 temas respecto a la anterior.</p>
+
+<h3>Bloque I — Organizacion del Estado (7 temas)</h3>
+<ol>
+<li>La Constitucion Espanola de 1978</li>
+<li>Las Cortes Generales. El Defensor del Pueblo</li>
+<li>El Gobierno: composicion, nombramiento, cese, funciones</li>
+<li>La Administracion Publica. La AGE. Organizacion territorial. CCAA</li>
+<li>La Union Europea: instituciones, libertades, politicas comunes</li>
+<li>Proteccion de Datos Personales (LOPDGDD, RGPD)</li>
+<li>Politicas de igualdad de genero (LO 3/2007, LO 1/2004)</li>
+</ol>
+
+<h3>Bloque II — Derecho Administrativo (5 temas)</h3>
+<ol start="8">
+<li>Fuentes del Derecho Administrativo</li>
+<li>El acto administrativo: concepto, validez, eficacia</li>
+<li>Procedimiento administrativo comun. Recursos administrativos</li>
+<li>Contratos del sector publico (LCSP)</li>
+<li>Responsabilidad patrimonial de la Administracion</li>
+</ol>
+
+<h3>Bloque III — Hacienda Publica y Derecho Tributario (20 temas)</h3>
+<p>Este es el <strong>bloque mas importante</strong>, con 20 de los 32 temas y el contenido del segundo ejercicio.</p>
+<ol start="13">
+<li>Sistema fiscal espanol. Principios impositivos en la CE</li>
+<li>La AEAT: creacion, organizacion, funciones</li>
+<li>Derecho Tributario: conceptos, fuentes, tributos</li>
+<li>Derechos y garantias de los obligados tributarios</li>
+<li>Obligaciones formales: libros, facturas, censal, NIF</li>
+<li>Informacion y asistencia tributaria</li>
+<li>Declaraciones tributarias: autoliquidaciones, retenciones</li>
+<li>La deuda tributaria. Extincion. Aplazamientos</li>
+<li>Garantias de la deuda. Recaudacion. Apremio</li>
+<li>Gestion tributaria. Comprobacion de valores</li>
+<li>Inspeccion de Tributos</li>
+<li>Potestad sancionadora. Infracciones y sanciones</li>
+<li>Revision en via administrativa. Reclamaciones economico-administrativas</li>
+<li>IRPF (I): hecho imponible, contribuyente, base imponible</li>
+<li>IRPF (II): base liquidable, cuota, deducciones, retenciones</li>
+<li>Impuesto sobre Sociedades</li>
+<li>IVA (I): hecho imponible, sujeto pasivo, base imponible</li>
+<li>IVA (II): tipos, deducciones, regimenes especiales</li>
+<li>Impuestos Especiales</li>
+<li>Aduanas: normativa aduanera, regimenes</li>
+</ol>
+
+<h3>Cambios respecto a convocatorias anteriores</h3>
+<p>La convocatoria 2025-2026 elimino 2 temas (el antiguo tema 5 y el tema 18 de IRNR) y unifico los temas 4+5 anteriores en un nuevo tema 4. Se paso de 100 a 80 preguntas en el primer ejercicio.</p>
+
+<p><a href="/register?oposicion=hacienda-aeat">Practica los 32 temas con tests verificados →</a></p>`,
+    faqs: [
+      { question: '¿Cuantos temas tiene la oposicion de Agente de Hacienda?', answer: '32 temas en 3 bloques: Bloque I (Organizacion del Estado, 7 temas), Bloque II (Derecho Administrativo, 5 temas) y Bloque III (Hacienda Publica y Derecho Tributario, 20 temas).' },
+      { question: '¿Ha cambiado el temario de Agente de Hacienda en 2026?', answer: 'Si. La convocatoria 2025-2026 redujo de 34 a 32 temas. Se eliminaron el antiguo tema 5 (duplicado) y el tema 18 (IRNR). El primer ejercicio paso de 100 a 80 preguntas.' },
+      { question: '¿Que bloque es mas importante en Agente de Hacienda?', answer: 'El Bloque III (Hacienda Publica y Derecho Tributario) con 20 de los 32 temas. Ademas, es el unico bloque que entra en el segundo ejercicio (supuestos practicos de desarrollo escrito).' },
+    ],
+  },
+  {
+    slug: 'notas-corte-agente-hacienda',
+    title: 'Notas de corte Agente de Hacienda — Historico 2020-2024 y prediccion 2025',
+    description: 'Historico de notas de corte de Agente de Hacienda Publica. Cuanto necesitas para aprobar el primer ejercicio. Tendencia y prediccion para la proxima convocatoria.',
+    date: '2026-03-30',
+    keywords: ['nota corte agente hacienda', 'notas corte hacienda 2024', 'cuanto hay que sacar agente hacienda', 'aprobados agente hacienda'],
+    content: `<h2>Historico de notas de corte — Primer ejercicio</h2>
+<p>La nota de corte del primer ejercicio (test de 80-100 preguntas) ha variado significativamente segun el numero de plazas y la dificultad del examen:</p>
+
+<table>
+<thead><tr><th>Convocatoria</th><th>Plazas</th><th>Nota de corte</th></tr></thead>
+<tbody>
+<tr><td>OEP 2024</td><td>851</td><td>53,25</td></tr>
+<tr><td>OEP 2023</td><td>823</td><td>59,50</td></tr>
+<tr><td>OEP 2022</td><td>787</td><td>64,27</td></tr>
+<tr><td>OEP 2021</td><td>500</td><td>60,00</td></tr>
+<tr><td>OEP 2020</td><td>400</td><td>72,50</td></tr>
+</tbody>
+</table>
+
+<h3>¿Que se puede esperar para la OEP 2025?</h3>
+<p>Con 1.000 plazas (la oferta mas alta de la historia), la nota de corte deberia bajar. La tendencia clara: <strong>mas plazas = nota mas baja</strong>. Es razonable esperar una nota en torno a 50-55 sobre 100 netas.</p>
+
+<h3>¿Como se calcula la nota?</h3>
+<p>Nota neta = Aciertos - (Errores / 4). Con 80 preguntas y una nota de corte estimada de ~53, necesitarias unas <strong>55-60 netas</strong>, lo que equivale a ~65-70 aciertos con 10-15 errores.</p>
+
+<p><a href="/register?oposicion=hacienda-aeat">Practica con simulacros reales AEAT →</a></p>`,
+    faqs: [
+      { question: '¿Cual ha sido la nota de corte mas alta de Agente de Hacienda?', answer: 'La nota mas alta fue en la OEP 2020 con 72,50 sobre 100 netas, pero esa convocatoria solo tenia 400 plazas. Con la OEP 2025 (1.000 plazas), se espera una nota significativamente menor.' },
+      { question: '¿Cuantas preguntas necesito acertar para aprobar?', answer: 'Con 80 preguntas y penalizacion -1/4, necesitas aproximadamente 55-60 netas. Esto equivale a unos 65-70 aciertos con 10-15 errores, dejando 5-10 en blanco.' },
+    ],
+  },
+  // ─── PENITENCIARIAS — Posts SEO ────────────────────────────────────────────
+  {
+    slug: 'test-instituciones-penitenciarias-2026',
+    title: 'Test Instituciones Penitenciarias 2026 — Practica gratis con preguntas tipo examen',
+    description: 'Preguntas tipo test de Ayudante de Instituciones Penitenciarias 2026. LOGP, Reglamento Penitenciario, Codigo Penal verificados contra BOE. 120 + 40 preguntas. Practica gratis.',
+    date: '2026-03-30',
+    keywords: ['test instituciones penitenciarias 2026', 'oposiciones prisiones', 'examen ayudante IIPP', 'test funcionario prisiones gratis', 'preguntas penitenciarias'],
+    content: `<h2>Oposiciones de Instituciones Penitenciarias: guia rapida</h2>
+<p>Las oposiciones de <strong>Ayudante de Instituciones Penitenciarias (C1)</strong> son una de las opciones mas solidas del empleo publico. Con <strong>900 plazas</strong> en la ultima convocatoria y un sueldo de ~25.000-30.000€ brutos/ano, ofrecen estabilidad laboral real.</p>
+
+<h3>Estructura del examen</h3>
+<ul>
+<li><strong>Ejercicio 1 — Parte 1</strong>: 120 preguntas tipo test (4 opciones), 1 hora 45 minutos. Penalizacion -1/3. Calificacion 0-20, minimo 10.</li>
+<li><strong>Ejercicio 1 — Parte 2</strong>: 8 supuestos practicos con 5 preguntas cada uno = 40 preguntas tipo test. 1 hora 20 minutos. Penalizacion -1/3. Calificacion 0-20, minimo 10.</li>
+<li><strong>Ejercicio 2</strong>: Reconocimiento medico (Apto/No apto).</li>
+</ul>
+<p>Total: <strong>160 preguntas tipo test</strong> en un dia. Nota maxima: 40 puntos.</p>
+
+<h3>¿Que bloque pesa mas?</h3>
+<p>Segun analisis de convocatorias anteriores: <strong>Derecho Penitenciario (~36%)</strong> es el bloque mas preguntado, seguido de Organizacion del Estado (~35%), Derecho Penal (~20%) y Conducta Humana (~9%).</p>
+
+<h3>La penalizacion -1/3: cuando arriesgar</h3>
+<p>Con penalizacion -1/3, <strong>solo responde si puedes descartar al menos 2 opciones</strong>. Con 2 opciones posibles, la esperanza es positiva (0.50 × 1 - 0.50 × 0.33 = +0.17). Con 3 opciones, es negativa: deja en blanco.</p>
+
+<h3>Practica con OpoRuta</h3>
+<p>En OpoRuta tenemos los <strong>50 temas completos</strong> con preguntas verificadas contra la LOGP, el Reglamento Penitenciario y el Codigo Penal. Incluimos el Bloque IV (Conducta Humana) que otras plataformas no cubren.</p>
+
+<p><a href="/register?oposicion=penitenciarias">Empieza gratis →</a></p>`,
+    faqs: [
+      { question: '¿Cuantas plazas hay de Ayudante de Instituciones Penitenciarias?', answer: '900 plazas en la ultima convocatoria (OEP 2025). Historico: 800 (2024), 756 (2023), 900 (2022). Se esperan unas 800 para la proxima.' },
+      { question: '¿Cuanto cobra un funcionario de prisiones?', answer: 'El sueldo bruto anual ronda los 25.000-30.000€ (14 pagas). El sueldo neto mensual es de ~1.900-2.200€ dependiendo del destino y complementos. Incluye plus de peligrosidad.' },
+      { question: '¿Hay pruebas fisicas en las oposiciones de prisiones?', answer: 'No. No hay pruebas fisicas ni psicotecnicas. El segundo ejercicio es un reconocimiento medico (Apto/No apto) que verifica que no concurre ninguna exclusion medica del Anexo III.' },
+      { question: '¿Cuanto tiempo se tarda en preparar Penitenciarias?', answer: 'Entre 12 y 24 meses de preparacion seria (20-30 horas/semana). El temario tiene 50 temas y 4 bloques, siendo Derecho Penitenciario el mas extenso y preguntado (~36% del examen).' },
+    ],
+  },
+  {
+    slug: 'temario-instituciones-penitenciarias-2026',
+    title: 'Temario Instituciones Penitenciarias 2026 — Los 50 temas completos',
+    description: 'Temario oficial de Ayudante de Instituciones Penitenciarias 2026. 50 temas en 4 bloques: Organizacion del Estado, Derecho Penal, Derecho Penitenciario y Conducta Humana.',
+    date: '2026-03-30',
+    keywords: ['temario instituciones penitenciarias 2026', 'temas oposiciones prisiones', 'programa funcionario prisiones', '50 temas penitenciarias', 'temario IIPP 2026'],
+    content: `<h2>Temario completo: 50 temas en 4 bloques</h2>
+<p>El temario de Ayudante de Instituciones Penitenciarias (C1) tiene 50 temas distribuidos en 4 bloques. Es uno de los temarios mas extensos de las oposiciones C1.</p>
+
+<h3>Bloque I — Organizacion del Estado y Derecho Administrativo (17 temas)</h3>
+<p>Temas 1-17: Constitucion, Cortes Generales, Poder Judicial, Gobierno, Organizacion Territorial, UE, Ministerio del Interior, personal IIPP, TREBEP, empleo publico, PRL, fuentes del Derecho, acto administrativo, procedimiento administrativo, transparencia, presupuestos, politicas publicas e igualdad.</p>
+<p><strong>Peso en el examen: ~35%</strong>. Muchos temas compartidos con otras oposiciones C1.</p>
+
+<h3>Bloque II — Derecho Penal (10 temas)</h3>
+<p>Temas 18-27: Derecho Penal (concepto, fuentes), penas (clases, aplicacion), suspension y sustitucion, delitos principales (homicidio, lesiones, patrimonio, libertad, drogas, torturas, sexuales, funcionarios), responsabilidad civil, proceso penal.</p>
+<p><strong>Peso en el examen: ~20%</strong>. El Codigo Penal (LO 10/1995) es la ley central.</p>
+
+<h3>Bloque III — Derecho Penitenciario (20 temas)</h3>
+<p>Temas 28-47: regulacion supranacional, LOGP, relacion juridico-penitenciaria, prestaciones, regimen penitenciario, seguridad, establecimientos, regimen cerrado/abierto, tratamiento, trabajo, permisos, libertad condicional, regimen disciplinario, Juez de Vigilancia, organizacion de centros, regimen administrativo y economico.</p>
+<p><strong>Peso en el examen: ~36%</strong>. Es el bloque MAS preguntado. La LOGP (LO 1/1979) y el Reglamento Penitenciario (RD 190/1996) son las leyes centrales.</p>
+
+<h3>Bloque IV — Conducta Humana (3 temas)</h3>
+<p>Temas 48-50: elementos de la conducta humana (estimulos, respuestas, refuerzo), organizacion social de la prision (codigo del recluso, subculturas, prisionizacion), comportamiento social (asertividad, habilidades sociales, conducta adictiva).</p>
+<p><strong>Peso en el examen: ~9%</strong>. No se basa en legislacion BOE sino en bibliografia de psicologia. Es el bloque que menos plataformas cubren bien.</p>
+
+<h3>Estrategia de estudio recomendada</h3>
+<p>Prioriza por peso: <strong>Bloque III</strong> (Penitenciario, 36%) → <strong>Bloque I</strong> (Org. Estado, 35%) → <strong>Bloque II</strong> (Penal, 20%) → <strong>Bloque IV</strong> (Conducta, 9%).</p>
+
+<p><a href="/register?oposicion=penitenciarias">Practica los 50 temas con tests verificados →</a></p>`,
+    faqs: [
+      { question: '¿Cuantos temas tiene la oposicion de Instituciones Penitenciarias?', answer: '50 temas en 4 bloques: Bloque I (Org. Estado + Dcho. Admin, 17 temas), Bloque II (Derecho Penal, 10 temas), Bloque III (Derecho Penitenciario, 20 temas), Bloque IV (Conducta Humana, 3 temas).' },
+      { question: '¿Cual es el bloque mas preguntado en Penitenciarias?', answer: 'El Bloque III (Derecho Penitenciario) con ~36% de las preguntas. Le sigue el Bloque I (~35%), Bloque II (~20%) y Bloque IV (~9%).' },
+      { question: '¿Que leyes son mas importantes para Penitenciarias?', answer: 'La Ley Organica General Penitenciaria (LO 1/1979) y el Reglamento Penitenciario (RD 190/1996) son las mas importantes. Para Derecho Penal, el Codigo Penal (LO 10/1995). Para Bloque I, la Constitucion, TREBEP y LPAC.' },
+    ],
+  },
 ]
