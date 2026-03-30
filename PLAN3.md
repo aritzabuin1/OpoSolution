@@ -1,6 +1,7 @@
 # Plan3: Expansión OpoRuta — Hacienda (AEAT) + Instituciones Penitenciarias
 
 > Referencia: PLAN2.md (patrón idéntico: migration → legislación → free bank → exámenes → landing → activación)
+> Fuente datos: `oporuta-nuevas-oposiciones-hacienda-iipp.md` (verificado contra BOE)
 >
 > **Lecciones aplicadas de 7 oposiciones anteriores:**
 > - UUID format: `X0000000-0000-0000-0000-000000000001` (f=hacienda, g=penitenciarias)
@@ -25,9 +26,9 @@
 
 ## FASE 1 — Agentes de la Hacienda Pública (C1 — AEAT)
 
-> **Urgencia ALTA**: examen primer ejercicio YA celebrado (21 marzo 2026), segundo ejercicio 18-26 abril 2026.
-> Promoción interna: 23 mayo 2026. Próxima convocatoria OEP 2026 previsible ~diciembre 2026.
-> **1.400 plazas** (1.000 libre + 400 interna) — BOE-A-2025-27056.
+> **1.000 plazas libre** (OEP 2025, BOE 30/12/2025). Histórico: 2024=851, 2023=700, 2022=550.
+> Convocatoria anual, examen típicamente en marzo. Próxima previsible ~marzo 2027.
+> Sueldo: ~22.000-24.000€ bruto/año inicial. Ratio ~10-12 opositores/plaza.
 
 ### 1.0 Datos del examen
 
@@ -36,18 +37,23 @@
 | Cuerpo | Cuerpo General Administrativo AGE, especialidad Agentes Hacienda Pública |
 | Subgrupo | C1 |
 | Temas | 32 (7 org. estado + 5 dcho. admin. + 20 hacienda/tributario) |
-| Ejercicio 1 | 80 preguntas test, 4 opciones, 90 min. Penalización -1/4. Mín: 5/10 |
-| Ejercicio 2 | 10 supuestos prácticos × 3 preguntas desarrollo breve = 30 respuestas. 150 min. Mín: 15/30 |
-| Nota final | Suma ejercicios (máx 40 pts). Desempate: 2º ejercicio |
+| Ejercicio 1 | **80 preguntas test**, 4 opciones, **90 min**. Penalización **-1/4**. Escala 0-10, mín 5 |
+| Ejercicio 2 | **10 supuestos prácticos tipo TEST** (solo Bloque III). Escala 0-10, mín 5 |
+| Nota final | Suma ejercicios (máx 20 pts). Desempate: 2º ejercicio |
 | Conservación | Se conserva 1er ejercicio aprobado para la convocatoria siguiente |
+
+> **IMPORTANTE conv. 2025-2026**: El 2º ejercicio es **tipo test** (NO desarrollo escrito).
+> Cambio respecto a anterior: de 100 a 80 preguntas, tiempo 1h40→1h30. Se eliminó formato desarrollo.
+> Esto significa: `features.supuesto_practico = false`. Ambos ejercicios se implementan como simulacro multi-parte (patrón Auxilio Judicial).
 
 ### 1.1 Migration: oposición + temas
 - [ ] Crear `supabase/migrations/20260401_070_hacienda.sql`
 - [ ] INSERT oposiciones con UPSERT (ON CONFLICT (id) DO UPDATE):
   - id: `'f0000000-0000-0000-0000-000000000001'`
   - slug: `'hacienda-aeat'`, rama: `'hacienda'`, nivel: `'C1'`, activa: `false`
-  - plazas: 1400, fecha_examen_aprox: `'2027-03-01'` (próxima convocatoria estimada)
-  - features: `{"psicotecnicos": false, "cazatrampas": true, "supuesto_practico": true, "ofimatica": false}`
+  - plazas: 1000, fecha_examen_aprox: `'2027-03-01'`
+  - features: `{"psicotecnicos": false, "cazatrampas": true, "supuesto_practico": false, "ofimatica": false}`
+  - **NOTA**: `supuesto_practico: false` porque el 2º ejercicio es tipo TEST, no desarrollo escrito
 - [ ] scoring_config:
   ```json
   {
@@ -68,13 +74,13 @@
         "nombre": "Supuestos prácticos",
         "preguntas": 10,
         "reserva": 0,
-        "minutos": 150,
-        "acierto": 3.0,
-        "error": 0,
-        "max": 30,
-        "min_aprobado": 15,
-        "penaliza": false,
-        "tipo": "tribunal"
+        "minutos": 60,
+        "acierto": 1.0,
+        "error": 0.25,
+        "max": 10,
+        "min_aprobado": 5,
+        "penaliza": true,
+        "ratio_penalizacion": "1/4"
       }
     ]
   }
@@ -83,131 +89,132 @@
 
 #### 1.1.1 Temario completo (32 temas, 3 bloques)
 
+> Fuente: BOE nº 313, 30/12/2025 (conv. 2025-2026). Cambios vs anterior: eliminados antiguos temas 5 y 18 (IRNR), unificados temas 4+5 anterior en nuevo 4.
+
 **Bloque I — Organización del Estado y Funcionamiento AGE (7 temas)**
 
-| # | Título |
-|---|--------|
-| 1 | La Constitución Española de 1978: estructura y contenido. Derechos y deberes fundamentales. La Corona. El Tribunal Constitucional |
-| 2 | Las Cortes Generales. El Defensor del Pueblo. El Poder Judicial. Organización judicial |
-| 3 | El Gobierno. La Administración Pública. Entes públicos |
-| 4 | La organización territorial del Estado. Comunidades Autónomas. Entidades Locales. Instituciones de la UE |
-| 5 | Funcionamiento electrónico del sector público. Transparencia. Protección de datos personales |
-| 6 | Políticas de igualdad de género, no discriminación y contra la violencia de género. Discapacidad y dependencia |
-| 7 | Régimen jurídico del personal al servicio de las AAPP. TREBEP. Seguridad Social |
+| # | Título | Legislación principal |
+|---|--------|-----------------------|
+| 1 | La CE 1978: estructura y contenido. Derechos y deberes fundamentales. Su garantía y suspensión. La Corona. El Tribunal Constitucional | CE (Tít. Prelim, I, II, IX) |
+| 2 | Las Cortes Generales: composición, atribuciones y funcionamiento. El Defensor del Pueblo | CE Tít. III, V; LO 3/1981 |
+| 3 | El Gobierno: composición, nombramiento y cese. Las funciones del Gobierno | CE Tít. IV; Ley 50/1997 |
+| 4 | La Administración Pública: principios constitucionales. La AGE: organización y funcionamiento. Órganos superiores y directivos. Administración periférica. Organización territorial del Estado. Las CCAA | CE Tít. VIII; Ley 40/2015 |
+| 5 | La Unión Europea: instituciones. Libertades básicas. Principales políticas comunes | Tratados UE; TFUE |
+| 6 | La LO 3/2018 de Protección de Datos Personales y garantía de derechos digitales | LOPDGDD; RGPD UE 2016/679 |
+| 7 | Políticas de igualdad de género. LO 3/2007. Violencia de género: LO 1/2004 | LO 3/2007; LO 1/2004 |
 
 **Bloque II — Derecho Administrativo General (5 temas)**
 
-| # | Título |
-|---|--------|
-| 8 | Las fuentes del Derecho Administrativo. Jerarquía normativa |
-| 9 | Los actos administrativos. Motivación, forma, eficacia. Nulidad y anulabilidad. Revisión de oficio |
-| 10 | El procedimiento administrativo común. Capacidad de obrar, representación, derechos de los interesados |
-| 11 | Fases del procedimiento administrativo: iniciación, ordenación, instrucción, finalización. Ejecución |
-| 12 | Recursos administrativos: alzada, reposición, revisión extraordinaria. Jurisdicción contencioso-administrativa |
+| # | Título | Legislación principal |
+|---|--------|-----------------------|
+| 8 | Las fuentes del Derecho Administrativo. Jerarquía. La Ley. Disposiciones del ejecutivo con fuerza de ley. El Reglamento | CE; Ley 39/2015; Ley 40/2015 |
+| 9 | El acto administrativo: concepto, clases y elementos. Motivación y notificación. Eficacia y validez | Ley 39/2015 (LPAC) |
+| 10 | El procedimiento administrativo común. Fases. Los recursos administrativos | Ley 39/2015 (LPAC) |
+| 11 | Los contratos del sector público. Clases. Procedimiento de adjudicación | Ley 9/2017 (LCSP) |
+| 12 | La responsabilidad patrimonial de la Administración Pública | Ley 40/2015 (LRJSP) |
 
 **Bloque III — Organización Hacienda Pública y Derecho Tributario (20 temas)**
 
-| # | Título |
-|---|--------|
-| 13 | El sistema fiscal español. Principios impositivos en la Constitución. Impuestos estatales. HP Estatal, Autonómica y Local |
-| 14 | La AEAT: creación, naturaleza, objetivos, funciones y organización |
-| 15 | Derecho Tributario: concepto y contenido. Fuentes. Los tributos: concepto y clasificación. Obligación tributaria. Hecho imponible. Devengo. Base imponible y liquidable. Cuota y deuda tributaria |
-| 16 | Obligaciones tributarias formales. Derechos y garantías de los obligados. Capacidad de obrar. Representación y domicilio fiscal. Prescripción |
-| 17 | Información y asistencia a los obligados tributarios. Colaboración social. Confidencialidad. Procedimientos comunes |
-| 18 | Las declaraciones tributarias. Autoliquidaciones. Comunicaciones de datos. Pagos a cuenta |
-| 19 | Actuaciones y procedimientos de gestión tributaria: verificación de datos, comprobación de valores, comprobación limitada |
-| 20 | Actuaciones y procedimiento de inspección tributaria: funciones, facultades, procedimiento, medidas cautelares |
-| 21 | Extinción de la deuda tributaria (I): pago, aplazamiento, fraccionamiento |
-| 22 | Extinción de la deuda tributaria (II): compensación, condonación, insolvencia. Procedimiento de apremio |
-| 23 | Actuaciones y procedimiento de recaudación tributaria. Periodo ejecutivo. Apremio. Embargo. Garantías |
-| 24 | El embargo de bienes. Facultades de recaudación. Diligencias de embargo. Responsables y sucesores |
-| 25 | La potestad sancionadora en materia tributaria. Infracciones y sanciones. Procedimiento sancionador |
-| 26 | Revisión en vía administrativa: recurso de reposición, reclamaciones económico-administrativas, TEA |
-| 27 | IRPF (I): naturaleza, rendimientos, ganancias y pérdidas patrimoniales |
-| 28 | IRPF (II): integración de rentas, base liquidable, cuota, tributación familiar |
-| 29 | Impuesto sobre Sociedades: hecho imponible, base, deducciones, devoluciones |
-| 30 | IVA (I): naturaleza, entregas de bienes, prestaciones de servicios, exenciones |
-| 31 | IVA (II): sujetos pasivos, repercusión, devengo, deducciones, prorrata, devoluciones |
-| 32 | La Aduana: deuda aduanera de importación/exportación. Regímenes aduaneros |
+| # | Título | Legislación principal |
+|---|--------|-----------------------|
+| 13 | El sistema fiscal español. Principios impositivos en la CE | CE art. 31, 133, 134; LGT |
+| 14 | La AEAT: creación, naturaleza, objetivos, funciones y organización | Ley 31/1990 art. 103; Estatuto AEAT |
+| 15 | Derecho Tributario: concepto y contenido. Fuentes. Tributos: concepto y clases | LGT Títulos I-II |
+| 16 | Derechos y garantías de los obligados tributarios | LGT Título III; Ley 1/1998 |
+| 17 | Obligaciones formales: libros registros y facturas. Gestión censal. NIF | LGT; RD 1065/2007; RD 1619/2012 |
+| 18 | Información y asistencia: consulta tributaria. Colaboración social. Tecnologías informáticas | LGT arts. 85-91 |
+| 19 | Declaraciones tributarias: concepto y clases. Autoliquidaciones. Comunicaciones de datos. Retenciones. Pagos fraccionados | LGT arts. 119-122 |
+| 20 | La deuda tributaria. Extinción. Aplazamientos y fraccionamientos | LGT Título II Cap. IV |
+| 21 | Garantías de la deuda tributaria. Medidas cautelares. Recaudación en período voluntario y ejecutivo. Apremio | LGT; RGR (RD 939/2005) |
+| 22 | La gestión tributaria: procedimientos de gestión. Comprobación de valores | LGT Título III Cap. III |
+| 23 | Inspección de Tributos: funciones, facultades, actuaciones, procedimiento | LGT Título III Cap. IV |
+| 24 | Potestad sancionadora. Infracciones y sanciones. Procedimiento sancionador | LGT Título IV |
+| 25 | Revisión en vía administrativa. Recurso de reposición. Reclamaciones económico-administrativas | LGT Título V |
+| 26 | IRPF (I): naturaleza, objeto, ámbito. Hecho imponible. Contribuyente. Base imponible | Ley 35/2006 |
+| 27 | IRPF (II): base liquidable, cuota íntegra, deducciones, cuota diferencial, retenciones, obligación declarar | Ley 35/2006 |
+| 28 | Impuesto sobre Sociedades: naturaleza, ámbito, hecho imponible, sujeto pasivo, base, tipo, cuota, deducciones | Ley 27/2014 |
+| 29 | IVA (I): naturaleza, ámbito, hecho imponible, lugar realización, sujeto pasivo, base imponible | Ley 37/1992 |
+| 30 | IVA (II): tipo impositivo, deducciones, devoluciones, regímenes especiales | Ley 37/1992 |
+| 31 | Impuestos Especiales: concepto, naturaleza, principales figuras | Ley 38/1992 |
+| 32 | Aduanas: normativa aduanera. Introducción y salida de mercancías. Regímenes aduaneros | Rgto UE 952/2013 |
 
 ### 1.2 Legislación — Scraping e ingesta
 
-> Bloques I y II: la mayoría ya está ingestionada para AGE (CE, LPAC, LRJSP, TREBEP, LOPDGDD, LO 3/2007, Ley 19/2013).
-> Bloque III: legislación tributaria NUEVA — es el grueso del trabajo.
+> **LGT es la ley más preguntada con diferencia**, seguida de LIRPF, LIVA, LPAC, CE.
+> Bloques I-II: la mayoría ya está ingestionada para AGE.
+> Bloque III: legislación tributaria NUEVA — grueso del trabajo.
 
 **Leyes YA ingestionadas (reutilizar con re-tagging):**
-- [ ] Constitución Española 1978 (184 art.) — temas 1-4
-- [ ] Ley 39/2015 LPAC — temas 10-12
-- [ ] Ley 40/2015 LRJSP — temas 3, 5, 8
-- [ ] RDLeg 5/2015 TREBEP — tema 7
-- [ ] Ley 19/2013 Transparencia — tema 5
-- [ ] LO 3/2018 LOPDGDD + RGPD — tema 5
-- [ ] LO 3/2007 Igualdad — tema 6
-- [ ] LO 1/2004 Violencia de género — tema 6
-- [ ] Ley 4/2023 LGTBI — tema 6
+- [ ] Constitución Española 1978 — temas 1-5
+- [ ] Ley 39/2015 LPAC — temas 9-10
+- [ ] Ley 40/2015 LRJSP — temas 4, 8, 12
+- [ ] LO 3/2018 LOPDGDD + RGPD — tema 6
+- [ ] LO 3/2007 Igualdad — tema 7
+- [ ] LO 1/2004 Violencia de género — tema 7
+- [ ] Ley 9/2017 LCSP — tema 11
 
 **Leyes NUEVAS a scrapear:**
 - [ ] **Ley 58/2003 LGT** (Ley General Tributaria) — ~250 artículos — BOE-A-2003-23186
-  - CUBRE: temas 15-26 (obligaciones, gestión, inspección, recaudación, sanciones, revisión)
-  - Es la ley MÁS importante de la oposición
+  - CUBRE: temas 13-25 (>50% del examen). La ley más importante.
 - [ ] **Ley 35/2006 IRPF** — ~100 artículos relevantes — BOE-A-2006-20764
-  - CUBRE: temas 27-28
+  - CUBRE: temas 26-27
 - [ ] **Ley 27/2014 Impuesto sobre Sociedades** — ~130 artículos — BOE-A-2014-12328
-  - CUBRE: tema 29
+  - CUBRE: tema 28
 - [ ] **Ley 37/1992 IVA** — ~170 artículos — BOE-A-1992-28740
-  - CUBRE: temas 30-31
-- [ ] **Reglamento UE 952/2013 Código Aduanero de la Unión** — extracto relevante
+  - CUBRE: temas 29-30
+- [ ] **Ley 38/1992 Impuestos Especiales** — ~70 artículos — BOE-A-1992-28741
+  - CUBRE: tema 31
+- [ ] **Reglamento UE 952/2013 Código Aduanero** — extracto relevante (EUR-Lex, no BOE)
   - CUBRE: tema 32
-  - NOTA: no está en el BOE. Buscar en EUR-Lex. Ingestar secciones principales.
-- [ ] (Opcional) **RD 939/2005 Reglamento General de Recaudación** — temas 21-24
-- [ ] (Opcional) **RD 1065/2007 Reglamento Gestión e Inspección** — temas 17-20
+- [ ] **RD 939/2005 Reglamento General de Recaudación** — temas 20-21
+- [ ] **RD 1065/2007 Reglamento Gestión e Inspección** — temas 17-18, 22-23
+- [ ] **RD 1619/2012 Reglamento de facturación** — tema 17
 
 **Ingesta:**
 - [ ] Scrape cada ley nueva con `execution/scrape-boe.ts`
 - [ ] Ejecutar `pnpm ingest:legislacion` para upsert artículos
-- [ ] Crear script `execution/tag-legislacion-hacienda.ts` con reglas de tagging por tema
+- [ ] Añadir reglas de tagging en `execution/tag-legislacion-temas.ts` para rama `hacienda`
+- [ ] Ejecutar `pnpm tag:legislacion --rama hacienda --dry-run` → verificar 0 errores
 - [ ] Ejecutar `pnpm tag:legislacion --rama hacienda`
 - [ ] Verificar cobertura: ≥1 artículo taggeado por cada uno de los 32 temas
 
 ### 1.3 Free bank (preguntas deterministas sin IA)
-- [ ] Crear `execution/seed-hacienda-free-bank.ts` basado en patrón de Correos/Justicia
-- [ ] Generar 10 preguntas × 32 temas = **320 preguntas**
-- [ ] Insertar en `question_bank` con `oposicion_id` de Hacienda
-- [ ] Verificar: cada tema tiene exactamente 10 preguntas, opciones correctas verificadas
+- [ ] Ejecutar `pnpm generate:free-bank --oposicion hacienda-aeat --user-id <admin-uuid>`
+- [ ] 10 preguntas × 32 temas = **320 preguntas**
+- [ ] Verificar: 32/32 temas cubiertos, opciones correctas verificadas
+- [ ] Coste estimado: ~€0.50 (one-time OpenAI)
 
 ### 1.4 Exámenes oficiales
-- [ ] Investigar disponibilidad de exámenes AEAT anteriores (2024, 2023, 2022...)
+- [ ] Investigar disponibilidad exámenes AEAT anteriores
   - Fuente: Sede AEAT → Empleo público → Convocatorias → Ejercicios anteriores
-  - Fuente alternativa: webs de opositores (Adams, OpositaTest, CEF)
+  - Fuente alternativa: Adams, OpositaTest, CEF
 - [ ] Descargar cuadernillos + plantillas de respuestas
-- [ ] Parsear con `parse-exam-pdf.ts` (adaptar `--oposicion hacienda-aeat`)
+- [ ] Parsear con `pnpm parse:examenes --oposicion hacienda-aeat [año]`
 - [ ] Ingestar en `examenes_oficiales` + `preguntas_oficiales`
-- [ ] Crear simulacros disponibles
+- [ ] El ejercicio 2 (supuestos test) se ingesta como preguntas normales con flag `ejercicio=2`
 
-### 1.5 Rúbrica supuesto práctico AEAT
-- [ ] Investigar criterios de corrección del tribunal para Agentes Hacienda
-  - Formato: 10 supuestos × 3 preguntas desarrollo breve = 30 respuestas
-  - Máximo: 30 puntos, mínimo: 15
-  - Tiempo: 150 minutos
-  - Solo Bloque III (temas 13-32)
-- [ ] Crear `getSystemCorregirSupuestoAEAT()` en `lib/ai/supuesto-practico.ts`
-- [ ] Actualizar `getSystemCorregirSupuesto()` para despachar a AEAT cuando corresponda
-- [ ] Adaptar `generate-supuesto` prompt para formato AEAT (10 supuestos × 3 preguntas)
-  - NOTA: formato diferente al GACE (5 cuestiones) y MJU (5 preguntas)
+### 1.5 Simulacro 2 partes (test + supuestos test)
+- [ ] Ambos ejercicios son tipo test → patrón idéntico a Auxilio Judicial
+- [ ] `generate-simulacro` ya soporta 2 ejercicios tipo test
+- [ ] Timer: parte 1 = 90 min, parte 2 = 60 min (estimar, no especificado en conv.)
+- [ ] Verificar que supuestos solo sacan preguntas de Bloque III (temas 13-32)
+- [ ] **NO se necesita rúbrica supuesto AEAT** (todo es tipo test, no desarrollo)
 
 ### 1.6 Landing SEO
 - [ ] Crear `app/(marketing)/oposiciones/hacienda/page.tsx`
-- [ ] Metadata SEO: "Test Agentes Hacienda 2026 — Practica gratis con preguntas tipo examen | OpoRuta"
-- [ ] Schema markup FAQPage con preguntas frecuentes específicas
-- [ ] Datos: 1.400 plazas, 32 temas, 2 ejercicios, penalización -1/4
+- [ ] Metadata SEO con keywords: "oposiciones agente hacienda 2026", "temario agente hacienda", "test agente hacienda", "sueldo agente hacienda"
+- [ ] Schema markup FAQPage
+- [ ] Datos: 1.000 plazas, 32 temas, 2 ejercicios test, penalización -1/4
 - [ ] CTA registro con `?oposicion=hacienda-aeat`
 - [ ] openGraph.images con `/api/og?tipo=blog&tema=...`
 - [ ] Actualizar `app/sitemap.ts`
+- [ ] Competidores principales: OpositaTest (~25-40€/mes), Adams (~150-200€/mes), MAD, Supera Oposiciones
+- [ ] USP diferencial: preguntas verificadas contra BOE (LGT, IRPF, IVA)
 
 ### 1.7 Stripe
 - [ ] Añadir en `lib/stripe/client.ts`:
   - `STRIPE_PRICES.pack_hacienda` → env var `STRIPE_PRICE_PACK_HACIENDA`
-  - `CORRECTIONS_GRANTED.pack_hacienda = 25` (supuesto_practico=true → +5 extra como GACE/Gestión)
+  - `CORRECTIONS_GRANTED.pack_hacienda = 20` (sin supuesto_practico → estándar)
   - `TIER_TO_OPOSICION.pack_hacienda = 'f0000000-0000-0000-0000-000000000001'`
   - `TIER_TO_DB_TIPO.pack_hacienda = 'pack_oposicion'`
 - [ ] Añadir `'pack_hacienda'` al z.enum del checkout `BodySchema`
@@ -216,26 +223,29 @@
 
 ### 1.8 Activación
 - [ ] Verificar: free bank 32/32 temas completo
-- [ ] Verificar: legislación indexada (artículos taggeados para los 32 temas)
+- [ ] Verificar: legislación indexada (LGT + IRPF + IVA + IS + IIEE + reglamentos)
 - [ ] Verificar: registro dinámico muestra Hacienda
-- [ ] Verificar: scoring con penalización -1/4 funciona
-- [ ] Verificar: supuesto práctico genera formato AEAT (10 × 3)
+- [ ] Verificar: scoring con penalización -1/4 funciona en ambos ejercicios
+- [ ] Verificar: simulacro 2 partes tipo test funciona
+- [ ] Stripe checkout → webhook → créditos asignados
 - [ ] **MANUAL Aritz**: `UPDATE oposiciones SET activa = true WHERE slug = 'hacienda-aeat'`
-- [ ] Deploy y smoke test: registro → test tema 15 (LGT) → simulacro → supuesto
+- [ ] Deploy y smoke test: registro → test tema 15 (LGT) → simulacro
 
 ### 1.9 Blog SEO Hacienda
 - [ ] Post: "Test Agentes Hacienda Pública 2026 — preguntas tipo examen"
 - [ ] Post: "Temario Agentes Hacienda 2026 — 32 temas completos"
 - [ ] Post: "Notas de corte Agentes Hacienda — histórico y predicción"
-- [ ] Post: "Cómo aprobar Agentes Hacienda — estrategia Bloque III"
-- [ ] Calculadora nota: `/herramientas/calculadora-nota-hacienda`
+- [ ] Post: "Cómo aprobar Agentes Hacienda — estrategia Bloque III (LGT)"
+- [ ] Calculadora nota: `/herramientas/calculadora-nota-hacienda` (penalización -1/4, 2 ejercicios)
 
 ---
 
 ## FASE 2 — Ayudantes de Instituciones Penitenciarias (C1)
 
-> **Urgencia MEDIA**: OEP 2025 ya celebrada (enero 2026). Próxima convocatoria previsible ~octubre 2026, examen ~enero 2027.
-> **900 plazas** (OEP 2025) — BOE-A-2025-20101.
+> **900 plazas** (OEP 2025, BOE 09/10/2025). Previstas 2026: 800. Histórico: 2024=800, 2023=756, 2022=900.
+> Convocatoria anual, examen típicamente enero-febrero. Próxima previsible ~enero 2027.
+> Sueldo: ~25.000-30.000€ bruto/año. ~13.000 presentados por conv., ratio real ~5-6 preparados/plaza.
+> **Requisito especial**: no haber sido condenado por delito doloso >3 años; sin exclusiones médicas (Anexo III).
 
 ### 2.0 Datos del examen
 
@@ -243,12 +253,12 @@
 |-------|-------|
 | Cuerpo | Cuerpo de Ayudantes de Instituciones Penitenciarias |
 | Subgrupo | C1 |
-| Temas | 50 (17 org. estado + 10 penal + 20 penitenciario + 3 conducta humana) |
-| Ejercicio 1 - Parte 1 | 120 preguntas test, 4 opciones, 105 min. Penalización -1/3. Mín: 10/20 |
-| Ejercicio 1 - Parte 2 | 8 supuestos × 5 preguntas test = 40 preguntas. Penalización -1/3. Mín: 10/20 |
-| Ejercicio 2 | Aptitud médica (Apto/No apto) — NO requiere implementación |
-| Nota final | Parte 1 + Parte 2 = máx 40 puntos |
-| Plazas típicas | 750-900/año |
+| Temas | 50 (17 org. estado/admin + 10 penal + 20 penitenciario + 3 conducta humana) |
+| Ejercicio 1 | **150 preguntas test** + reserva, 4 opciones. Penalización **-1/3**. Escala 0-30, mín 15 |
+| Ejercicio 2 | **10 supuestos × 5 preguntas test = 50 preguntas**. Penalización -1/3. Escala 0-20, mín 10 |
+| Ejercicio 3 | Reconocimiento médico (Apto/No apto) — NO implementar en OpoRuta |
+| Nota final | Ej1 + Ej2 = máx 50 pts. Desempate: 2º ejercicio |
+| Post-aprobado | Período de prácticas: 12 meses (formación + centro penitenciario) |
 
 ### 2.1 Migration: oposición + temas
 - [ ] Crear `supabase/migrations/20260401_071_penitenciarias.sql`
@@ -257,30 +267,30 @@
   - slug: `'penitenciarias'`, rama: `'penitenciarias'`, nivel: `'C1'`, activa: `false`
   - plazas: 900, fecha_examen_aprox: `'2027-01-15'`
   - features: `{"psicotecnicos": false, "cazatrampas": true, "supuesto_practico": false, "ofimatica": false}`
-  - NOTA: los supuestos de penitenciarias son tipo TEST (40 preguntas), no desarrollo escrito. Se implementan como simulacro con 2 partes (patrón Auxilio Judicial), NO como supuesto_practico.
+  - NOTA: supuestos son tipo TEST (50 preguntas), no desarrollo → `supuesto_practico: false`. Patrón Auxilio Judicial.
 - [ ] scoring_config:
   ```json
   {
     "ejercicios": [
       {
         "nombre": "Cuestionario",
-        "preguntas": 120,
-        "reserva": 0,
-        "minutos": 105,
-        "acierto": 0.1667,
-        "error": 0.0556,
-        "max": 20,
-        "min_aprobado": 10,
+        "preguntas": 150,
+        "reserva": 10,
+        "minutos": 120,
+        "acierto": 0.20,
+        "error": 0.0667,
+        "max": 30,
+        "min_aprobado": 15,
         "penaliza": true,
         "ratio_penalizacion": "1/3"
       },
       {
         "nombre": "Supuestos prácticos",
-        "preguntas": 40,
+        "preguntas": 50,
         "reserva": 0,
-        "minutos": 60,
-        "acierto": 0.50,
-        "error": 0.1667,
+        "minutos": 75,
+        "acierto": 0.40,
+        "error": 0.1333,
         "max": 20,
         "min_aprobado": 10,
         "penaliza": true,
@@ -289,158 +299,182 @@
     ]
   }
   ```
+  - NOTA: duración no especificada en convocatoria → estimar 120+75 min (similar a proporcional)
 - [ ] INSERT 50 temas (ver §2.1.1)
 
 #### 2.1.1 Temario completo (50 temas, 4 bloques)
 
+> Fuente: BOE 09/10/2025 (conv. OEP 2025). Con legislación principal por tema.
+
 **Bloque I — Organización del Estado, Dcho. Admin., Gestión Personal y Financiera (17 temas)**
 
-| # | Título |
-|---|--------|
-| 1 | La CE 1978: principios generales, estructura y contenido. Derechos y deberes fundamentales. La Corona |
-| 2 | El Poder Judicial. La organización judicial. Actuaciones judiciales. CGPJ |
-| 3 | El Gobierno: Consejo de Ministros, Presidente, Ministros, otros miembros |
-| 4 | La Organización Territorial del Estado |
-| 5 | La UE: Tratados originarios y modificativos. Instituciones Comunitarias |
-| 6 | Estructura orgánica del Ministerio de Interior. La SGIP |
-| 7 | El personal de Instituciones Penitenciarias: los diferentes cuerpos |
-| 8 | Régimen jurídico del personal al servicio de las AAPP. TREBEP |
-| 9 | El acceso al empleo público: principios rectores, requisitos, sistemas selectivos |
-| 10 | Los contratos del Sector Público: conceptos, clases, procedimiento de adjudicación |
-| 11 | Ley 45/2015 de Voluntariado. Concepto, derechos y deberes |
-| 12 | Políticas Públicas. Políticas sociales de igualdad de género. Violencia de género |
-| 13 | Gobierno abierto. Transparencia y acceso a la información pública |
-| 14 | La actividad de las AAPP. Normas generales de actuación |
-| 15 | Las fuentes del Derecho Administrativo. Principio de legalidad |
-| 16 | El Régimen Jurídico de las AAPP. El Procedimiento Administrativo Común |
-| 17 | El Presupuesto: concepto, principios presupuestarios, presupuesto del Estado |
+| # | Título | Legislación principal |
+|---|--------|-----------------------|
+| 1 | La CE 1978: principios generales, estructura y contenido. Derechos y deberes fundamentales. La Corona | CE Tít. Prelim, I, II |
+| 2 | Las Cortes Generales. La elaboración de las leyes. El Defensor del Pueblo | CE Tít. III; LO 3/1981 |
+| 3 | El Poder Judicial. La organización judicial. El CGPJ. El Tribunal Constitucional. El Ministerio Fiscal | CE Tít. VI, IX; LOPJ |
+| 4 | El Gobierno: Consejo de Ministros, Presidente, Ministros. Admón. Periférica: Delegados, Subdelegados | CE Tít. IV; Ley 50/1997; Ley 40/2015 |
+| 5 | La Organización Territorial del Estado. CCAA. Competencias en materia penitenciaria | CE Tít. VIII |
+| 6 | La UE: Tratados. Instituciones Comunitarias. Efectos sobre organización del Estado | TUE; TFUE |
+| 7 | Estructura orgánica del Ministerio del Interior. La SGIP. EPPFETFE | RD 207/2024; RD 122/2015 |
+| 8 | El personal de IIPP: cuerpos de funcionarios. Ayudantes: funciones. Personal laboral | Ley 36/1977; RD 1201/1981 |
+| 9 | Régimen jurídico personal al servicio AAPP. TREBEP. Derechos/deberes. Incompatibilidades. Régimen disciplinario | TREBEP; Ley 53/1984 |
+| 10 | Acceso al empleo público. Sistemas selectivos. Adquisición/pérdida condición funcionario. Situaciones administrativas | TREBEP Tít. IV-VII |
+| 11 | Prevención de riesgos laborales: Ley 31/1995. Derechos/obligaciones. Servicios de prevención | Ley 31/1995 PRL |
+| 12 | Las fuentes del Derecho Administrativo. Jerarquía. La Ley, el Reglamento | CE; Ley 39/2015 |
+| 13 | El acto administrativo. Motivación y notificación. Eficacia y validez. Silencio administrativo. Revisión. Recursos | Ley 39/2015 (LPAC) |
+| 14 | Los procedimientos administrativos: el procedimiento administrativo común. Fases | Ley 39/2015 (LPAC) |
+| 15 | Gobierno abierto. Transparencia y acceso a información pública. Administración electrónica | Ley 19/2013; Ley 40/2015 |
+| 16 | El presupuesto del Estado: concepto, principios, estructura. El gasto público. Contratación administrativa. Estabilidad presupuestaria | Ley 47/2003 LGP; Ley 9/2017 LCSP; LO 2/2012 |
+| 17 | Políticas públicas. Igualdad de género: LO 3/2007. Violencia de género: LO 1/2004. Dependencia: Ley 39/2006. Voluntariado | LO 3/2007; LO 1/2004; Ley 39/2006; Ley 45/2015 |
 
 **Bloque II — Derecho Penal (10 temas)**
 
-| # | Título |
-|---|--------|
-| 18 | El Derecho Penal: concepto, contenido y fuentes. El poder punitivo del Estado |
-| 19 | Delitos: concepto y clases. Grados de ejecución. Formas de resolución manifestada |
-| 20 | De las personas criminalmente responsables. Las penas: concepto y fines |
-| 21 | Formas de suspensión de la ejecución de penas privativas de libertad |
-| 22 | Principales delitos (1): homicidio, lesiones, delitos contra el patrimonio |
-| 23 | Principales delitos (2): torturas, delitos contra libertad e indemnidad sexuales |
-| 24 | Delitos contra la Administración Pública. Prevaricación. Abandono de destino |
-| 25 | Delitos contra la Administración de Justicia. Quebrantamiento de condena |
-| 26 | La jurisdicción penal. El proceso penal: concepto, objeto y tipos |
-| 27 | Procedimiento ordinario. Procedimiento abreviado. Teoría general de recursos |
+| # | Título | Legislación principal |
+|---|--------|-----------------------|
+| 18 | El Derecho Penal: concepto, principios generales. Infracción penal. Personas criminalmente responsables | CP (LO 10/1995) Libro I |
+| 19 | Las penas: clases y efectos. Reglas generales para la aplicación | CP Libro I Tít. III |
+| 20 | Formas sustitutivas de ejecución de penas privativas de libertad | CP Libro I Tít. III |
+| 21 | Suspensión de ejecución. Penas privativas de derechos. TBC. Medidas de seguridad. Extinción resp. criminal | CP Libro I |
+| 22 | Principales delitos (1): homicidio, lesiones, violencia de género/doméstica, delitos contra patrimonio | CP Libro II |
+| 23 | Delitos contra libertad: detención ilegal, secuestros, amenazas, coacciones. Tráfico de drogas | CP Libro II |
+| 24 | Principales delitos (2): torturas, delitos contra integridad moral, libertad sexual, honor, falsedades | CP Libro II |
+| 25 | Delitos cometidos por funcionarios. Atentados contra autoridad. Quebrantamiento de condena | CP Libro II |
+| 26 | La responsabilidad civil derivada de delitos y faltas | CP Libro I Tít. V; CC |
+| 27 | Derecho Procesal Penal: concepto. El proceso penal. Procedimientos. Medidas cautelares | LECrim |
 
 **Bloque III — Derecho Penitenciario (20 temas)**
 
-| # | Título |
-|---|--------|
-| 28 | Regulación supranacional en materia penitenciaria: Convenios, Tratados, Pactos, Recomendaciones |
-| 29 | El Derecho Penitenciario: concepto, contenido y fuentes. Normativa penitenciaria vigente |
-| 30 | La relación jurídico-penitenciaria: naturaleza y fundamento. Derechos de los internos |
-| 31 | Prestaciones de la Administración Penitenciaria. Asistencia sanitaria. Higiene y alimentación |
-| 32 | El Régimen Penitenciario (1): concepto, principios inspiradores. Normas generales de organización |
-| 33 | El Régimen Penitenciario (2). La seguridad en los Establecimientos Penitenciarios |
-| 34 | Clasificación de los distintos tipos de establecimientos y sus características |
-| 35 | El régimen cerrado. El régimen abierto: objetivos, criterios de aplicación |
-| 36 | El Tratamiento Penitenciario (1): concepto, fines y principios inspiradores |
-| 37 | El Tratamiento Penitenciario (2): elementos y programas de tratamiento |
-| 38 | La relación laboral en el medio penitenciario: características. Tipos de trabajo |
-| 39 | Los permisos de salida: concepto y naturaleza. Clases, duración y requisitos |
-| 40 | Libertad y excarcelación. Suspensión de ejecución y libertad condicional |
-| 41 | Formas especiales de ejecución de la pena de prisión. Modos de internamiento |
-| 42 | El régimen disciplinario: principios generales y ámbito de aplicación |
-| 43 | El control de la actividad penitenciaria por el Juez de Vigilancia |
-| 44 | El modelo organizativo penitenciario: estructura y régimen jurídico. Órganos colegiados |
-| 45 | El régimen administrativo (1). Oficina de gestión penitenciaria. Expediente personal del interno |
-| 46 | El régimen administrativo (2). Funcionamiento administrativo del servicio interior |
-| 47 | El régimen económico de los Establecimientos Penitenciarios. Contabilidad general |
+| # | Título | Legislación principal |
+|---|--------|-----------------------|
+| 28 | Regulación supranacional: Convenios, Tratados, Pactos. ONU, Consejo de Europa. Ley 23/2014 | Reglas Mínimas ONU; Ley 23/2014 |
+| 29 | El Derecho Penitenciario: concepto, contenido, fuentes. Evolución histórica. Art. 25.2 CE | CE art. 25.2; LOGP; RP |
+| 30 | Relación jurídico-penitenciaria. Derechos de los internos: clases, límites, protección | LOGP; RP; CE |
+| 31 | Prestaciones: asistencia sanitaria, higiene, alimentación, asistencia religiosa, acción social | LOGP Tít. II; RP |
+| 32 | Régimen Penitenciario (1): concepto, principios. Organización del centro. Ingreso. Relaciones con exterior. Conducciones y traslados | LOGP Tít. III; RP Tít. III |
+| 33 | Régimen Penitenciario (2): seguridad en establecimientos. Seguridad exterior e interior. Medios coercitivos | LOGP; RP Tít. III Cap. VIII |
+| 34 | Clasificación de establecimientos. Régimen ordinario. Régimen abierto. Régimen cerrado | LOGP Tít. III; RP |
+| 35 | Formas especiales de ejecución: jóvenes, madres, extranjeros. CIS. Unidades dependientes | LOGP; RP |
+| 36 | Tratamiento penitenciario (1): concepto, fines, principios. Clasificación en grados. Programas. Permisos de salida | LOGP Tít. IV; RP Tít. V |
+| 37 | Tratamiento penitenciario (2): actividades educativas, culturales, deportivas. Formación, trabajo, empleo | LOGP; RP; EPPFETFE |
+| 38 | Libertad condicional. Beneficios penitenciarios. Jueces de Vigilancia Penitenciaria | LOGP arts. 72-78; CP arts. 90-93 |
+| 39 | Mujeres y personas trans en ámbito penitenciario. Igualdad y no discriminación. Programas específicos | LOGP; LO 3/2007; Instrucciones SGIP |
+| 40 | Extranjeros en el sistema penitenciario. Marco normativo. Expulsión. Traslado | LO 4/2000 (LOEX); Ley 23/2014 |
+| 41 | Internos con enfermedad mental. Drogodependientes. Programas de intervención | LOGP; RP; PNSD |
+| 42 | Penas y medidas alternativas a prisión. TBC. Localización permanente. Suspensión y sustitución | CP; RD 840/2011 |
+| 43 | Organización de centros penitenciarios: órganos colegiados y unipersonales | LOGP; RP Tít. IX; RD 1201/1981 |
+| 44 | Procedimiento disciplinario penitenciario: faltas, sanciones, ejecución, cancelación | LOGP Tít. IV Cap. IV; RP Tít. X |
+| 45 | Régimen económico de los establecimientos penitenciarios | RP Tít. XI; LGP |
+| 46 | Protección de datos en IIPP. Registro y gestión de información penitenciaria | LOPDGDD; RGPD; SIP-SP |
+| 47 | Prevención de suicidios en centros penitenciarios. Protocolos ante riesgo vital | Instrucciones SGIP; Protocolo PAS |
 
 **Bloque IV — Conducta Humana (3 temas)**
 
-| # | Título |
-|---|--------|
-| 48 | Elementos de la conducta humana. Estímulos y respuestas. Técnicas de evaluación |
-| 49 | Organización social de la prisión. Código del recluso, jerga y lenguaje. Subculturas carcelarias |
-| 50 | El comportamiento social. Asertividad. Habilidades sociales. La conducta adictiva en prisión |
+| # | Título | Fuente |
+|---|--------|--------|
+| 48 | Elementos de la conducta humana: estímulos/respuestas, refuerzo/castigo. Técnicas de evaluación. Observación, auto-registro, auto-informes | Bibliografía psicología (NO legislación BOE) |
+| 49 | Organización social de la prisión: control formal/informal. Código del recluso. Subculturas carcelarias. Hacinamiento. Prisionización | Bibliografía psicología penitenciaria |
+| 50 | Comportamiento social. Asertividad. Habilidades sociales. Programas de entrenamiento HHSS. Conducta adictiva en prisión | Bibliografía psicología |
+
+> **Distribución de preguntas en exámenes recientes:**
+> Derecho Penitenciario ~36% | Org. Estado/Admin ~35% | Derecho Penal ~20% | Conducta Humana ~9%
+> → Priorizar free bank del Bloque III (penitenciario), luego I, luego II, luego IV.
 
 ### 2.2 Legislación — Scraping e ingesta
 
 > Bloque I: mayoría ya ingestionada para AGE.
-> Bloques II-III: legislación penal y penitenciaria NUEVA — es el grueso.
-> Bloque IV: no tiene legislación (psicología/sociología) — solo necesita conocimiento_tecnico.
+> Bloques II-III: legislación penal y penitenciaria NUEVA.
+> Bloque IV: NO es legislación BOE — son conceptos de psicología. Requiere `conocimiento_tecnico`.
 
 **Leyes YA ingestionadas (reutilizar con re-tagging):**
-- [ ] Constitución Española 1978 — temas 1-5
-- [ ] Ley 39/2015 LPAC — temas 14-16
-- [ ] Ley 40/2015 LRJSP — temas 3, 15
-- [ ] RDLeg 5/2015 TREBEP — temas 8-9
-- [ ] Ley 19/2013 Transparencia — tema 13
-- [ ] LO 3/2007 Igualdad — tema 12
-- [ ] LO 1/2004 Violencia de género — tema 12
-- [ ] Ley 4/2023 LGTBI — tema 12
-- [ ] Ley 9/2017 Contratos del Sector Público — tema 10 (parcial, ya ingestionada para AGE A2)
-- [ ] LECrim 1882 — temas 26-27 (ya ingestionada para Justicia)
+- [ ] Constitución Española 1978 — temas 1-6
+- [ ] Ley 39/2015 LPAC — temas 13-14
+- [ ] Ley 40/2015 LRJSP — temas 4, 12, 15
+- [ ] RDLeg 5/2015 TREBEP — temas 9-10
+- [ ] Ley 19/2013 Transparencia — tema 15
+- [ ] LO 3/2007 Igualdad — tema 17
+- [ ] LO 1/2004 Violencia de género — tema 17
+- [ ] Ley 4/2023 LGTBI — tema 17
+- [ ] Ley 9/2017 LCSP — tema 16
+- [ ] LECrim 1882 — tema 27 (ya ingestionada para Justicia)
+- [ ] LO 3/2018 LOPDGDD — tema 46
+- [ ] Ley 31/1995 PRL — tema 11 (ya ingestionada para Correos)
 
 **Leyes NUEVAS a scrapear:**
-- [ ] **LO 10/1995 Código Penal** — ~600 artículos (solo Libro I + títulos relevantes del Libro II) — BOE-A-1995-25444
-  - CUBRE: temas 18-25 (parte general + delitos específicos)
-  - NOTA: ley muy extensa. Scrapear selectivamente: Título Preliminar, Libro I completo, y del Libro II: títulos I (homicidio), III (lesiones), XIII (patrimonio), VII (torturas), VIII (libertad sexual), XIX (Admón. Pública), XX (Admón. Justicia)
-- [ ] **LO 1/1979 Ley Orgánica General Penitenciaria (LOGP)** — 80 artículos — BOE-A-1979-23708
-  - CUBRE: temas 28-47 (toda la legislación penitenciaria base)
+- [ ] **LO 10/1995 Código Penal** — Libro I completo + títulos relevantes Libro II — BOE-A-1995-25444
+  - CUBRE: temas 18-27 (~20% del examen)
+  - NOTA: ley extensa. Scrapear selectivamente: Tít. Prelim, Libro I, Libro II títulos I (homicidio), III (lesiones), VI (libertad), VII (torturas), VIII (libertad sexual), X (honor), XIII (patrimonio), XVIII (falsedades), XIX (Admón. Pública), XX (Admón. Justicia)
+- [ ] **LO 1/1979 LOGP** (Ley Orgánica General Penitenciaria) — 80 artículos — BOE-A-1979-23708
+  - CUBRE: temas 28-47 (core del ~36% más preguntado)
 - [ ] **RD 190/1996 Reglamento Penitenciario** — 325 artículos — BOE-A-1996-3307
-  - CUBRE: temas 28-47 (desarrollo reglamentario de la LOGP)
-- [ ] **RD 840/2011** Medidas alternativas y libertad condicional — ~30 artículos — BOE-A-2011-10598
-  - CUBRE: temas 40-41
+  - CUBRE: temas 28-47 (complemento LOGP)
+- [ ] **RD 840/2011** Medidas alternativas y libertad condicional — BOE-A-2011-10598
+  - CUBRE: tema 42
 - [ ] **Ley 45/2015 Voluntariado** — ~30 artículos — BOE-A-2015-11072
-  - CUBRE: tema 11
-- [ ] **RD 207/2024** Estructura orgánica Ministerio del Interior — extracto SGIP
-  - CUBRE: tema 6
-- [ ] (Opcional) **Ley 50/1997 Ley del Gobierno** — tema 3
-- [ ] (Opcional) **RD 782/2001** Relación laboral especial penados — tema 38
+  - CUBRE: tema 17
+- [ ] **Ley 39/2006 Dependencia** — BOE-A-2006-21990
+  - CUBRE: tema 17
+- [ ] **RD 207/2024** Estructura orgánica Ministerio Interior — extracto SGIP
+  - CUBRE: tema 7
+- [ ] **RD 122/2015** Estatuto EPPFETFE (entidad trabajo penitenciario)
+  - CUBRE: temas 7, 37
+- [ ] **LO 4/2000 LOEX** (Extranjería) — extracto relevante
+  - CUBRE: tema 40
+- [ ] **Ley 23/2014** Reconocimiento mutuo resoluciones penales UE
+  - CUBRE: temas 28, 40
+- [ ] **Ley 53/1984 Incompatibilidades** — tema 9
+- [ ] **Ley 47/2003 LGP** (Ley General Presupuestaria) — tema 16
+- [ ] **LO 2/2012 Estabilidad Presupuestaria** — tema 16
+- [ ] (Opcional) **Ley 50/1997 Ley del Gobierno** — tema 4
+- [ ] (Opcional) **RD 1201/1981** Organización centros penitenciarios — temas 8, 43
 
 **Contenido no legislativo (Bloque IV — Conducta Humana):**
-- [ ] Crear contenido en `conocimiento_tecnico` para temas 48-50
-  - Fuentes: manuales de psicología penitenciaria, documentos SGIP, temarios públicos
-  - Temas: estímulos/respuestas, subculturas carcelarias, conducta adictiva, habilidades sociales
-  - Similar a como se hizo con contenido operativo Correos
+- [ ] Crear contenido en `conocimiento_tecnico` para temas 48-50 (bloque='penitenciarias')
+  - Fuentes: manuales psicología penitenciaria, documentos SGIP, temarios públicos
+  - Similar a como se hizo con contenido operativo Correos (93 secciones)
+  - **Oportunidad de diferenciación**: ningún competidor genera bien este bloque con IA
 
 **Ingesta:**
 - [ ] Scrape cada ley nueva con `execution/scrape-boe.ts`
 - [ ] Ejecutar `pnpm ingest:legislacion` para upsert
-- [ ] Crear script `execution/tag-legislacion-penitenciarias.ts`
+- [ ] Añadir reglas de tagging en `execution/tag-legislacion-temas.ts` para rama `penitenciarias`
+- [ ] Ejecutar `pnpm tag:legislacion --rama penitenciarias --dry-run` → verificar 0 errores
 - [ ] Ejecutar `pnpm tag:legislacion --rama penitenciarias`
-- [ ] Ingestar contenido_tecnico Bloque IV (temas 48-50)
+- [ ] Ingestar contenido_tecnico Bloque IV
 - [ ] Verificar cobertura: ≥1 artículo/sección por cada uno de los 50 temas
 
 ### 2.3 Free bank
-- [ ] Crear `execution/seed-penitenciarias-free-bank.ts`
-- [ ] Generar 10 preguntas × 50 temas = **500 preguntas**
-- [ ] Insertar en `question_bank` con `oposicion_id` de Penitenciarias
+- [ ] Ejecutar `pnpm generate:free-bank --oposicion penitenciarias --user-id <admin-uuid>`
+- [ ] 10 preguntas × 50 temas = **500 preguntas**
+- [ ] Priorizar por peso: Bloque III (36%) → Bloque I (35%) → Bloque II (20%) → Bloque IV (9%)
 - [ ] Verificar: 50/50 temas cubiertos
+- [ ] Coste estimado: ~€0.80 (one-time OpenAI)
 
 ### 2.4 Exámenes oficiales
 - [ ] Investigar disponibilidad exámenes IIPP anteriores
-  - Fuente: Ministerio Interior → Empleo público → IIPP → Ejercicios anteriores
+  - Fuente: Ministerio Interior → Empleo público → IIPP
   - Fuente alternativa: funcionarioprisiones.com, Adams, OpositaTest
 - [ ] Descargar cuadernillos + plantillas (2025, 2024, 2023...)
-- [ ] Parsear con `parse-exam-pdf.ts --oposicion penitenciarias`
+- [ ] Parsear con `pnpm parse:examenes --oposicion penitenciarias [año]`
 - [ ] Ingestar en `examenes_oficiales` + `preguntas_oficiales`
-- [ ] Los supuestos (parte 2) son tipo test → ingestar como preguntas normales con flag `ejercicio=2`
+- [ ] El ejercicio 2 (supuestos test) se ingesta como preguntas normales con flag `ejercicio=2`
 
 ### 2.5 Simulacro 2 partes (cuestionario + supuestos test)
-- [ ] `generate-simulacro` ya soporta 2 ejercicios (patrón Auxilio Judicial)
-- [ ] Verificar que scoring_config con 2 ejercicios tipo test funciona
-- [ ] Timer: parte 1 = 105 min, parte 2 = 60 min
-- [ ] Si no funciona: adaptar SimulacroMixtoCard para mostrar "Cuestionario" + "Supuestos prácticos"
+- [ ] Ambos ejercicios son tipo test → patrón Auxilio Judicial
+- [ ] `generate-simulacro` ya soporta 2 ejercicios tipo test
+- [ ] Timer: parte 1 = ~120 min (150 preguntas), parte 2 = ~75 min (50 preguntas)
+- [ ] maxPuntuable: 150 + 50 = 200
 
 ### 2.6 Landing SEO
 - [ ] Crear `app/(marketing)/oposiciones/penitenciarias/page.tsx`
-- [ ] Metadata SEO: "Test Instituciones Penitenciarias 2026 — Practica gratis | OpoRuta"
+- [ ] Metadata SEO con keywords: "oposiciones prisiones 2026", "temario funcionario prisiones", "test ayudante instituciones penitenciarias", "sueldo funcionario prisiones"
 - [ ] Schema markup FAQPage
-- [ ] Datos: 900 plazas, 50 temas, 160 preguntas, penalización -1/3
+- [ ] Datos: 900 plazas, 50 temas, 200 preguntas, penalización -1/3
 - [ ] CTA registro con `?oposicion=penitenciarias`
 - [ ] openGraph.images
 - [ ] Actualizar `app/sitemap.ts`
+- [ ] Competidores: OpositaTest (~25-40€/mes), Academia de Prisiones (~50-100€/mes), MasterD (~150-250€/mes)
+- [ ] USP diferencial: preguntas verificadas contra BOE (LOGP, RP, CP) + Conducta Humana curada
 
 ### 2.7 Stripe
 - [ ] Añadir en `lib/stripe/client.ts`:
@@ -455,7 +489,8 @@
 ### 2.8 Activación
 - [ ] Verificar: free bank 50/50 temas
 - [ ] Verificar: legislación indexada
-- [ ] Verificar: simulacro 2 partes funciona
+- [ ] Verificar: simulacro 2 partes funciona (150q + 50q)
+- [ ] Stripe checkout → webhook → créditos
 - [ ] **MANUAL Aritz**: `UPDATE oposiciones SET activa = true WHERE slug = 'penitenciarias'`
 - [ ] Deploy y smoke test
 
@@ -477,10 +512,10 @@
 ### 3.2 SEO transversal
 - [ ] Actualizar `llms.txt` y `/api/info` con nuevas oposiciones
 - [ ] Internal linking entre blogs de distintas ramas
-- [ ] Posts comparativos: "Mejores apps oposiciones Hacienda 2026"
+- [ ] Posts comparativos: "OpoRuta vs OpositaTest para Hacienda/IIPP"
 
 ### 3.3 Registro dinámico
-- [ ] Verificar que ambas aparecen correctamente en `/register` agrupadas por rama
+- [ ] Verificar que ambas aparecen en `/register` agrupadas por rama
 - [ ] Verificar orden: AGE → Justicia → Correos → Hacienda → Penitenciarias
 
 ---
@@ -500,25 +535,24 @@
 - [ ] Registro con `?oposicion=slug` → aparece en ProfileForm
 - [ ] Test tema X → genera preguntas → scoring correcto (penalización correcta)
 - [ ] Simulacro → timer proporcional → desglose por ejercicio
-- [ ] (Si supuesto_practico) Supuesto desarrollo → timer correcto → corrección IA funciona
 - [ ] Stripe checkout → webhook → créditos asignados
 - [ ] Dashboard muestra datos de la nueva oposición
 
 ### Post-activación
 - [ ] `UPDATE oposiciones SET activa = true WHERE slug = '...'`
 - [ ] Landing page muestra la nueva oposición
-- [ ] Landing exámenes muestra badges (si hay exámenes ingestados)
 - [ ] Blog posts publicados
 - [ ] sitemap.ts actualizado
 - [ ] llms.txt actualizado
 
 ### Gotchas conocidas (evitar repetir)
-1. **maxPuntuable**: se calcula desde scoring_config, nunca hardcodear. Si MAX_PUNTUABLE < preguntas del examen → descarta preguntas válidas
-2. **penalización -1/4 vs -1/3**: almacenar ratio_penalizacion en scoring_config, el frontend lee de ahí
-3. **Temas compartidos entre oposiciones**: insertar por separado (cada oposicion_id tiene sus propios temas). El tagging crea tema_ids para todas las oposiciones que compartan la ley
-4. **generate:free-bank requiere admin user_id**: FK constraint en tests_generados. Usar `--user-id` de Aritz admin
-5. **Slug único global**: verificar que no colisiona con slugs existentes antes de crear migration
-6. **Correos scoring_config**: tiene min_aprobado como objeto `{"reparto": 33, "atc": 36}` — NO usar este patrón para Hacienda/Penitenciarias (usar INT simple)
+1. **maxPuntuable**: se calcula desde scoring_config, nunca hardcodear
+2. **penalización -1/4 vs -1/3**: almacenar ratio_penalizacion en scoring_config
+3. **Temas compartidos**: insertar por separado (cada oposicion_id tiene sus temas). Tagging crea tema_ids para todas
+4. **generate:free-bank requiere admin user_id**: FK constraint en tests_generados
+5. **Slug único global**: verificar antes de crear migration
+6. **Bloque IV (Conducta Humana)**: NO funciona con pipeline BOE → usar conocimiento_tecnico
+7. **Ambos ejercicios son TEST**: ni Hacienda ni Penitenciarias tienen desarrollo escrito → `supuesto_practico: false`
 
 ---
 
@@ -527,11 +561,11 @@
 | Tarea | Hacienda | Penitenciarias |
 |-------|----------|----------------|
 | Migration + temas | 30 min | 30 min |
-| Scrape legislación nueva | 2-3h (4-5 leyes tributarias) | 2-3h (CP parcial + LOGP + RP) |
+| Scrape legislación nueva | 2-3h (LGT, IRPF, IVA, IS, IIEE, reglamentos) | 2-3h (CP parcial, LOGP, RP, LOEX) |
 | Re-tagging legislación existente | 30 min | 30 min |
-| Free bank (preguntas) | 1-2h | 2-3h (50 temas) |
+| Free bank (320 preguntas) | 1-2h | 2-3h (500 preguntas, 50 temas) |
 | Exámenes oficiales | 1-2h (si disponibles) | 1-2h (si disponibles) |
-| Rúbrica supuesto AEAT | 1h | N/A (supuestos son test) |
+| Conocimiento técnico Bloque IV | N/A | 1-2h (temas 48-50) |
 | Landing SEO | 30 min | 30 min |
 | Stripe + webhook | 15 min | 15 min |
 | Blog posts (4-5) | 1h | 1h |
@@ -550,9 +584,11 @@
 | Ley IRPF consolidada | https://www.boe.es/buscar/act.php?id=BOE-A-2006-20764 |
 | Ley IVA consolidada | https://www.boe.es/buscar/act.php?id=BOE-A-1992-28740 |
 | Ley IS consolidada | https://www.boe.es/buscar/act.php?id=BOE-A-2014-12328 |
+| Ley IIEE consolidada | https://www.boe.es/buscar/act.php?id=BOE-A-1992-28741 |
 | BOE Penitenciarias convocatoria | https://www.boe.es/boe/dias/2025/10/09/pdfs/BOE-A-2025-20101.pdf |
 | LOGP consolidada | https://www.boe.es/buscar/act.php?id=BOE-A-1979-23708 |
 | Reglamento Penitenciario | https://www.boe.es/buscar/act.php?id=BOE-A-1996-3307 |
 | Código Penal consolidado | https://www.boe.es/buscar/act.php?id=BOE-A-1995-25444 |
+| LOEX consolidada | https://www.boe.es/buscar/act.php?id=BOE-A-2000-544 |
 | Ministerio Interior IIPP | https://www.interior.gob.es/opencms/gl/servicios-al-ciudadano/empleo-publico/oposiciones/cuerpos-de-instituciones-penitenciarias/ |
 | FuncionarioPrisiones.com | https://funcionarioprisiones.com/temario/ |
