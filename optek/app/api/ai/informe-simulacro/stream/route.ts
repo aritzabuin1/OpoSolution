@@ -161,7 +161,11 @@ ${erroresDetalle || '  Ninguna'}`
   let aiStream: ReadableStream<string>
   try {
     const oposicionNombre = await getOposicionNombreFromProfile(serviceSupabase, user.id)
-    aiStream = await callAIStream(getSystemInformeSimulacro(oposicionNombre), userPrompt, {
+    const oposicionId = await getOposicionFromProfile(serviceSupabase, user.id)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: opoRow } = await (serviceSupabase as any).from('oposiciones').select('features').eq('id', oposicionId).single()
+    const opoFeatures = (opoRow as { features?: Record<string, boolean> } | null)?.features
+    aiStream = await callAIStream(getSystemInformeSimulacro(oposicionNombre, opoFeatures), userPrompt, {
       maxTokens: 2500,
       requestId,
       endpoint: 'informe-simulacro-stream',

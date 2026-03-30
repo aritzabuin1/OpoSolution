@@ -183,7 +183,10 @@ export async function POST(request: NextRequest) {
   )
 
   const oposicionNombre = await getOposicionNombreFromProfile(serviceSupabase, user.id)
-  const systemPrompt = getSystemExplainErrores(oposicionNombre)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: opoFeatRow } = await (serviceSupabase as any).from('oposiciones').select('features').eq('id', oposicionId).single()
+  const opoFeatures = (opoFeatRow as { features?: Record<string, boolean> } | null)?.features
+  const systemPrompt = getSystemExplainErrores(oposicionNombre, opoFeatures)
 
   // Resolve the REAL tema title from the DB
   let realTemaTitulo: string | null = null

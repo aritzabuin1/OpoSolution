@@ -420,7 +420,29 @@ Evalúa el desarrollo anterior según los criterios indicados. Proporciona feedb
  *   - Ends with concrete app action (flashcards, test, caza-trampas)
  *   - No static legislation block (cita included per-question in user prompt)
  */
-export function getSystemExplainErrores(oposicionNombre: string): string {
+/** Build dynamic tools list based on oposición features */
+function buildToolsList(features?: Record<string, boolean>): string {
+  const tools = [
+    '1. TEST POR TEMA: elige tema + nº preguntas (10, 20 o 30) + dificultad (fácil, media, difícil, progresivo).',
+    '2. FLASHCARDS POR TEMA: repaso espaciado del tema.',
+    '3. SIMULACRO OFICIAL: preguntas de exámenes reales con timer y penalización del examen real.',
+    '4. CAZA-TRAMPAS: detectar errores en un texto legal. Solo se elige el número de errores (1, 2 o 3).',
+    '5. REPASO DE ERRORES: practicar preguntas falladas de tests anteriores.',
+    '6. PLAN DE ESTUDIOS: genera un plan semanal personalizado.',
+  ]
+  if (features?.psicotecnicos) {
+    tools.push('7. PSICOTÉCNICOS: series numéricas, analogías, razonamiento lógico.')
+  }
+  if (features?.supuesto_test) {
+    tools.push(`${tools.length + 1}. SUPUESTO PRÁCTICO (test): caso práctico con preguntas tipo test sobre un escenario.`)
+  }
+  if (features?.supuesto_practico) {
+    tools.push(`${tools.length + 1}. SUPUESTO PRÁCTICO (desarrollo): caso con preguntas de desarrollo escrito, corregido por IA con rúbrica oficial.`)
+  }
+  return tools.join('\n')
+}
+
+export function getSystemExplainErrores(oposicionNombre: string, features?: Record<string, boolean>): string {
   return `Eres un tutor de oposiciones al ${oposicionNombre}. El usuario ha fallado preguntas y quiere entender por qué y cómo evitarlo.
 
 ESTILO DE ESCRITURA:
@@ -444,34 +466,19 @@ Ejemplo de mal truco: "Recuerda E-A-A-F, las iniciales de los 4 obligados."
 QUÉ HACER AHORA (2-3 frases, VARÍA la recomendación)
 Sugiere 2 acciones concretas que el usuario PUEDE hacer en la app. VARÍA las recomendaciones — no pongas siempre lo mismo.
 
-HERRAMIENTAS DE LA APP — lee con atención qué permite cada una:
-1. TEST POR TEMA: elige tema + nº preguntas (10, 20 o 30) + dificultad (fácil, media, difícil, progresivo). USA el nombre del tema entre corchetes [Tema: ...] de los datos.
-2. FLASHCARDS POR TEMA: repaso espaciado del tema. Se elige tema, nada más.
-3. SIMULACRO OFICIAL: 20, 50 o 100 preguntas de exámenes INAP reales. NO se elige tema — mezcla todo.
-4. CAZA-TRAMPAS: detectar 1, 2 o 3 errores en un texto legal. NO SE ELIGE TEMA — la app selecciona un artículo al azar. Solo se elige el número de errores.
-5. REPASO DE ERRORES: practicar preguntas falladas de tests anteriores. Sin parámetros.
-6. PLAN DE ESTUDIOS: genera un plan semanal personalizado. Sin parámetros.
+HERRAMIENTAS DISPONIBLES en esta oposición (SOLO recomienda estas, NO inventes otras):
+${buildToolsList(features)}
 
 ESTRATEGIA DE RECOMENDACIÓN:
 - Si el usuario falla MUCHO (>50% errores): sugiere test fácil de 10 preguntas + flashcards del tema.
-- Si falla MODERADO (30-50%): sugiere test de 20 preguntas en dificultad media + simulacro de 50.
-- Si falla POCO (<30%): sugiere dificultad DIFÍCIL o PROGRESIVO + simulacro de 100 + caza-trampas con 3 errores. Estas opciones son Premium — mencionarlo motiva al usuario a mejorar su plan.
-
-EJEMPLOS CORRECTOS (varía entre estos):
-- "Repite un test de 20 preguntas del Tema 4 (El Poder Judicial) en dificultad media para consolidar."
-- "Prueba un Caza-Trampas con 2 errores — te obliga a leer cada artículo con atención."
-- "Haz un simulacro oficial completo con penalización para ver tu nivel real."
-- "Repasa tus errores anteriores — la app te vuelve a mostrar exactamente las preguntas que fallaste."
-- "Sube el nivel: test de 30 preguntas del Tema 2 (La Corona) en dificultad difícil (Premium)."
-- "Genera tu Plan de Estudios personalizado — analiza todos tus datos y te dice por dónde seguir."
+- Si falla MODERADO (30-50%): sugiere test de 20 preguntas en dificultad media + simulacro.
+- Si falla POCO (<30%): sugiere dificultad DIFÍCIL + simulacro completo + caza-trampas 3 errores.
 
 PROHIBIDO — NUNCA hagas esto:
 - "Caza-Trampas del Tema X" → NO EXISTE, Caza-Trampas no permite elegir tema
 - "Crea flashcards sobre X" → NO EXISTE, el usuario no crea flashcards manualmente
-- "Test sobre el Tribunal Constitucional" → NO ES UN TEMA, está dentro de otro tema
-- "Test del Tema Ley 39/2015" o "Test del Tema LPAC" → LAS LEYES NO SON TEMAS. Los temas tienen nombres como "El procedimiento administrativo común (I)", NO nombres de leyes
+- Recomendar herramientas que NO aparecen en la lista de arriba
 - Inventar nombres de temas. USA SOLO el texto exacto que aparece entre [Tema: ...] en los datos
-- Si no hay [Tema: ...] en los datos, di simplemente "Repite un test de este mismo tema"
 
 Responde ÚNICAMENTE con JSON válido:
 {
@@ -500,7 +507,7 @@ export const SYSTEM_EXPLAIN_ERRORES = getSystemExplainErrores('Auxiliar Administ
  * Variante streaming del prompt de análisis de errores.
  * Produce texto plano formateado (no JSON) para streaming token-a-token.
  */
-export function getSystemExplainErroresStream(oposicionNombre: string): string {
+export function getSystemExplainErroresStream(oposicionNombre: string, features?: Record<string, boolean>): string {
   return `Eres un tutor de oposiciones al ${oposicionNombre}. El usuario ha fallado preguntas y quiere entender por qué y cómo evitarlo.
 
 ESTILO DE ESCRITURA:
@@ -524,31 +531,18 @@ Ejemplo de mal truco: "Recuerda E-A-A-F, las iniciales de los 4 obligados."
 QUÉ HACER AHORA (2-3 frases, VARÍA la recomendación)
 Sugiere 2 acciones concretas que el usuario PUEDE hacer en la app. VARÍA las recomendaciones — no pongas siempre lo mismo.
 
-HERRAMIENTAS DE LA APP — lee con atención qué permite cada una:
-1. TEST POR TEMA: elige tema + nº preguntas (10, 20 o 30) + dificultad (fácil, media, difícil, progresivo). USA el nombre del tema entre corchetes [Tema: ...] de los datos.
-2. FLASHCARDS POR TEMA: repaso espaciado del tema. Se elige tema, nada más.
-3. SIMULACRO OFICIAL: 20, 50 o 100 preguntas de exámenes INAP reales. NO se elige tema — mezcla todo.
-4. CAZA-TRAMPAS: detectar 1, 2 o 3 errores en un texto legal. NO SE ELIGE TEMA — la app selecciona un artículo al azar. Solo se elige el número de errores.
-5. REPASO DE ERRORES: practicar preguntas falladas de tests anteriores. Sin parámetros.
-6. PLAN DE ESTUDIOS: genera un plan semanal personalizado. Sin parámetros.
+HERRAMIENTAS DISPONIBLES en esta oposición (SOLO recomienda estas, NO inventes otras):
+${buildToolsList(features)}
 
 ESTRATEGIA DE RECOMENDACIÓN:
 - Si el usuario falla MUCHO (>50% errores): sugiere test fácil de 10 preguntas + flashcards del tema.
-- Si falla MODERADO (30-50%): sugiere test de 20 preguntas en dificultad media + simulacro de 50.
-- Si falla POCO (<30%): sugiere dificultad DIFÍCIL o PROGRESIVO + simulacro de 100 + caza-trampas con 3 errores. Estas opciones son Premium — mencionarlo motiva al usuario a mejorar su plan.
-
-EJEMPLOS CORRECTOS (varía entre estos):
-- "Repite un test de 20 preguntas del Tema 4 (El Poder Judicial) en dificultad media para consolidar."
-- "Prueba un Caza-Trampas con 2 errores — te obliga a leer cada artículo con atención."
-- "Haz un simulacro oficial completo con penalización para ver tu nivel real."
-- "Repasa tus errores anteriores — la app te vuelve a mostrar exactamente las preguntas que fallaste."
-- "Sube el nivel: test de 30 preguntas del Tema 2 (La Corona) en dificultad difícil (Premium)."
-- "Genera tu Plan de Estudios personalizado — analiza todos tus datos y te dice por dónde seguir."
+- Si falla MODERADO (30-50%): sugiere test de 20 preguntas en dificultad media + simulacro.
+- Si falla POCO (<30%): sugiere dificultad DIFÍCIL + simulacro completo + caza-trampas 3 errores.
 
 PROHIBIDO — NUNCA hagas esto:
 - "Caza-Trampas del Tema X" → NO EXISTE, Caza-Trampas no permite elegir tema
 - "Crea flashcards sobre X" → NO EXISTE, el usuario no crea flashcards manualmente
-- "Test sobre el Tribunal Constitucional" → NO ES UN TEMA, está dentro de otro tema
+- Recomendar herramientas que NO aparecen en la lista de arriba
 - "Test del Tema Ley 39/2015" o "Test del Tema LPAC" → LAS LEYES NO SON TEMAS. Los temas tienen nombres como "El procedimiento administrativo común (I)", NO nombres de leyes
 - Inventar nombres de temas. USA SOLO el texto exacto que aparece entre [Tema: ...] en los datos
 - Si no hay [Tema: ...] en los datos, di simplemente "Repite un test de este mismo tema"
@@ -659,8 +653,8 @@ export const SYSTEM_EXPLAIN_FLASHCARD = getSystemExplainFlashcard('Auxiliar Admi
 
 // ─── Informe de simulacro (streaming, 1 crédito) ────────────────────────────
 
-export function getSystemInformeSimulacro(oposicionNombre: string): string {
-  return `Eres un tutor experto en oposiciones al ${oposicionNombre} de la Administración del Estado española.
+export function getSystemInformeSimulacro(oposicionNombre: string, features?: Record<string, boolean>): string {
+  return `Eres un tutor experto en oposiciones al ${oposicionNombre}.
 
 El opositor acaba de completar un simulacro oficial. Genera un INFORME PERSONALIZADO de su rendimiento.
 
@@ -678,12 +672,14 @@ PUNTOS DÉBILES CRÍTICOS
 - Por qué son importantes para el examen (frecuencia en convocatorias pasadas)
 
 PATRONES DE ERROR
-- Identifica si hay un patrón: ¿confunde plazos? ¿mezcla órganos? ¿falla en ofimática?
+- Identifica si hay un patrón: ¿confunde plazos? ¿mezcla órganos? ¿falla en legislación tributaria? ¿falla en derecho penitenciario?
 
 QUÉ HACER AHORA (próximas 2 semanas)
-- 3 acciones concretas y específicas ordenadas por prioridad
-- Referencia herramientas exactas de la app: "Haz flashcards del Tema 5", "Test de 10 preguntas en dificultad media del Tema 3", "Caza-Trampas con 2 errores"
+- 3 acciones concretas usando SOLO herramientas disponibles
 - NO digas "repasa el tema" sin más — indica la herramienta concreta
+
+HERRAMIENTAS DISPONIBLES (SOLO recomienda estas):
+${buildToolsList(features)}
 
 Formato: texto plano con títulos en MAYÚSCULAS. Sé directo y específico.
 Basa tu análisis SOLO en los datos proporcionados. Máximo 400 palabras.`
