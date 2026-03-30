@@ -26,7 +26,7 @@
 
 ## FASE 1 — Agentes de la Hacienda Pública (C1 — AEAT)
 
-> **1.000 plazas libre** (OEP 2025, BOE 30/12/2025). Histórico: 2024=851, 2023=700, 2022=550.
+> **1.000 plazas libre** (OEP 2025, BOE nº 314, 30/12/2025). Histórico: 2024=851, 2023=823, 2022=787.
 > Convocatoria anual, examen típicamente en marzo. Próxima previsible ~marzo 2027.
 > Sueldo: ~22.000-24.000€ bruto/año inicial. Ratio ~10-12 opositores/plaza.
 
@@ -38,13 +38,13 @@
 | Subgrupo | C1 |
 | Temas | 32 (7 org. estado + 5 dcho. admin. + 20 hacienda/tributario) |
 | Ejercicio 1 | **80 preguntas test**, 4 opciones, **90 min**. Penalización **-1/4**. Escala 0-10, mín 5 |
-| Ejercicio 2 | **10 supuestos prácticos tipo TEST** (solo Bloque III). Escala 0-10, mín 5 |
-| Nota final | Suma ejercicios (máx 20 pts). Desempate: 2º ejercicio |
+| Ejercicio 2 | **10 supuestos prácticos DESARROLLO ESCRITO** (solo Bloque III). Respuestas breves y razonadas. **2h30 min**. Escala 0-30, mín 15 |
+| Nota final | Suma ejercicios (máx 40 pts). Desempate: 2º ejercicio |
 | Conservación | Se conserva 1er ejercicio aprobado para la convocatoria siguiente |
 
-> **IMPORTANTE conv. 2025-2026**: El 2º ejercicio es **tipo test** (NO desarrollo escrito).
-> Cambio respecto a anterior: de 100 a 80 preguntas, tiempo 1h40→1h30. Se eliminó formato desarrollo.
-> Esto significa: `features.supuesto_practico = false`. Ambos ejercicios se implementan como simulacro multi-parte (patrón Auxilio Judicial).
+> **VERIFICADO contra BOE-A-2025-27056**: El 2º ejercicio es **DESARROLLO ESCRITO** (respuestas breves y razonadas).
+> `features.supuesto_practico = true`. Requiere rúbrica AEAT en `supuesto-practico.ts`.
+> Migration 065 corrigió scoring_config: ej.2 = 0-30 pts, 150 min, tipo "tribunal".
 
 ### 1.1 Migration: oposición + temas ✅ (migration 064 aplicada 2026-03-30)
 - [x] Crear `supabase/migrations/20260330_064_hacienda_penitenciarias.sql`
@@ -52,9 +52,9 @@
   - id: `'f0000000-0000-0000-0000-000000000001'`
   - slug: `'hacienda-aeat'`, rama: `'hacienda'`, nivel: `'C1'`, activa: `false`
   - plazas: 1000, fecha_examen_aprox: `'2027-03-01'`
-  - features: `{"psicotecnicos": false, "cazatrampas": true, "supuesto_practico": false, "ofimatica": false}`
-  - **NOTA**: `supuesto_practico: false` porque el 2º ejercicio es tipo TEST, no desarrollo escrito
-- [ ] scoring_config:
+  - features: `{"psicotecnicos": false, "cazatrampas": true, "supuesto_practico": true, "ofimatica": false}`
+  - **NOTA**: `supuesto_practico: true` — ej.2 es DESARROLLO ESCRITO (corregido en migration 065)
+- [x] scoring_config (corregido por migration 065 — ej.2: 0-30, 150min, tipo tribunal):
   ```json
   {
     "ejercicios": [
@@ -89,7 +89,7 @@
 
 #### 1.1.1 Temario completo (32 temas, 3 bloques)
 
-> Fuente: BOE nº 313, 30/12/2025 (conv. 2025-2026). Cambios vs anterior: eliminados antiguos temas 5 y 18 (IRNR), unificados temas 4+5 anterior en nuevo 4.
+> Fuente: BOE nº 314, 30/12/2025, resolución 22/12/2025 (conv. 2025-2026). Cambios vs anterior: eliminados antiguos temas 5 y 18 (IRNR), unificados temas 4+5 anterior en nuevo 4.
 
 **Bloque I — Organización del Estado y Funcionamiento AGE (7 temas)**
 
@@ -165,10 +165,10 @@
 - [x] **Ley 38/1992 Impuestos Especiales** — 137 artículos — BOE-A-1992-28741
   - CUBRE: tema 31
 - [ ] **Reglamento UE 952/2013 Código Aduanero** — extracto relevante (EUR-Lex, no BOE)
-  - CUBRE: tema 32
-- [ ] **RD 939/2005 Reglamento General de Recaudación** — temas 20-21
-- [ ] **RD 1065/2007 Reglamento Gestión e Inspección** — temas 17-18, 22-23
-- [ ] **RD 1619/2012 Reglamento de facturación** — tema 17
+  - CUBRE: tema 32 — pendiente (no prioritario para lanzamiento)
+- [x] **RD 939/2005 Reglamento General de Recaudación** — 146 artículos — temas 20-21
+- [x] **RD 1065/2007 Reglamento Gestión e Inspección** — 262 artículos — temas 17-18, 22-23
+- [ ] **RD 1619/2012 Reglamento de facturación** — tema 17 — pendiente (no prioritario)
 
 **Ingesta:**
 - [x] Scrape 5 leyes tributarias core con `scrape-boe-ley-v2.ts`
@@ -177,27 +177,29 @@
 - [x] Ejecutar `pnpm tag:legislacion --rama hacienda` — 6.655+ artículos taggeados
 - [ ] Verificar cobertura: ≥1 artículo taggeado por cada uno de los 32 temas
 
-### 1.3 Free bank (preguntas deterministas sin IA)
-- [ ] Ejecutar `pnpm generate:free-bank --oposicion hacienda-aeat --user-id <admin-uuid>`
-- [ ] 10 preguntas × 32 temas = **320 preguntas**
-- [ ] Verificar: 32/32 temas cubiertos, opciones correctas verificadas
-- [ ] Coste estimado: ~€0.50 (one-time OpenAI)
+### 1.3 Free bank ✅ (2026-03-30)
+- [x] Ejecutar `pnpm generate:free-bank --oposicion hacienda-aeat --user-id b55c400e-...`
+- [x] 10 preguntas × 32 temas = **320 preguntas** — 32/32 temas completo
+- [x] Verificado: todas las preguntas pasan por pipeline RAG + verificación citas legales
 
 ### 1.4 Exámenes oficiales
-- [ ] Investigar disponibilidad exámenes AEAT anteriores
-  - Fuente: Sede AEAT → Empleo público → Convocatorias → Ejercicios anteriores
-  - Fuente alternativa: Adams, OpositaTest, CEF
-- [ ] Descargar cuadernillos + plantillas de respuestas
+- [x] Investigar disponibilidad: **5 años disponibles** en sede AEAT (2020-2024) + 2019 vía GoKoan
+  - OEP 2024: cuestionario A/B + plantilla definitiva + 2º ejercicio ✅
+  - OEP 2023: cuestionario A/B + plantilla definitiva + 2º ejercicio ✅
+  - OEP 2022: cuestionario A/B + extraordinario + supuesto práctico ✅
+  - OEP 2021: cuestionario A/B + plantilla definitiva ✅
+  - OEP 2020: cuestionario A/B + plantilla definitiva ✅
+  - OEP 2025: solo plantilla provisional (cuestionario aún no publicado)
+- [ ] Descargar cuadernillos + plantillas (sede AEAT links verificados)
 - [ ] Parsear con `pnpm parse:examenes --oposicion hacienda-aeat [año]`
 - [ ] Ingestar en `examenes_oficiales` + `preguntas_oficiales`
-- [ ] El ejercicio 2 (supuestos test) se ingesta como preguntas normales con flag `ejercicio=2`
+- [ ] NOTA: ej.2 es desarrollo escrito → no se ingesta como preguntas, se usa como referencia para rúbrica
 
-### 1.5 Simulacro 2 partes (test + supuestos test)
-- [ ] Ambos ejercicios son tipo test → patrón idéntico a Auxilio Judicial
-- [ ] `generate-simulacro` ya soporta 2 ejercicios tipo test
-- [ ] Timer: parte 1 = 90 min, parte 2 = 60 min (estimar, no especificado en conv.)
-- [ ] Verificar que supuestos solo sacan preguntas de Bloque III (temas 13-32)
-- [ ] **NO se necesita rúbrica supuesto AEAT** (todo es tipo test, no desarrollo)
+### 1.5 Supuesto práctico AEAT ✅ (2026-03-30)
+- [x] `getSystemCorregirSupuestoAEAT()` en `supuesto-practico.ts` — rúbrica 3 criterios: corrección jurídica (50%), adecuación (33%), expresión (17%). Total 0-30 pts
+- [x] `SYSTEM_GENERATE_SUPUESTO_AEAT` — genera 10 supuestos Bloque III (LGT/IRPF/IVA/IS/IIEE)
+- [x] Dispatch en `getSystemCorregirSupuesto()` para slug `hacienda-aeat`
+- [x] `generate-supuesto` endpoint: detecta AEAT, maxTokens 12000, bloque 'III' aceptado en schema
 
 ### 1.6 Landing SEO ✅ (2026-03-30)
 - [x] Crear `app/(marketing)/oposiciones/hacienda/page.tsx` — theme emerald
@@ -213,7 +215,7 @@
 ### 1.7 Stripe (código ✅, productos Stripe pendientes Aritz)
 - [x] Añadir en `lib/stripe/client.ts`:
   - `STRIPE_PRICES.pack_hacienda` → env var `STRIPE_PRICE_PACK_HACIENDA`
-  - `CORRECTIONS_GRANTED.pack_hacienda = 20` (sin supuesto_practico → estándar)
+  - `CORRECTIONS_GRANTED.pack_hacienda = 25` (con supuesto_practico → +5 extra)
   - `TIER_TO_OPOSICION.pack_hacienda = 'f0000000-0000-0000-0000-000000000001'`
   - `TIER_TO_DB_TIPO.pack_hacienda = 'pack_oposicion'`
 - [x] Añadir `'pack_hacienda'` al z.enum del checkout `BodySchema`
@@ -253,10 +255,10 @@
 | Cuerpo | Cuerpo de Ayudantes de Instituciones Penitenciarias |
 | Subgrupo | C1 |
 | Temas | 50 (17 org. estado/admin + 10 penal + 20 penitenciario + 3 conducta humana) |
-| Ejercicio 1 | **150 preguntas test** + reserva, 4 opciones. Penalización **-1/3**. Escala 0-30, mín 15 |
-| Ejercicio 2 | **10 supuestos × 5 preguntas test = 50 preguntas**. Penalización -1/3. Escala 0-20, mín 10 |
+| Ejercicio 1 | **120 preguntas test** + 3 reserva, 4 opciones, **1h45 min**. Penalización **-1/3**. Escala 0-20, mín 10 |
+| Ejercicio 2 | **8 supuestos × 5 preguntas test = 40 preguntas**, **1h20 min**. Penalización -1/3. Escala 0-20, mín 10 |
 | Ejercicio 3 | Reconocimiento médico (Apto/No apto) — NO implementar en OpoRuta |
-| Nota final | Ej1 + Ej2 = máx 50 pts. Desempate: 2º ejercicio |
+| Nota final | Ej1 + Ej2 = máx 40 pts. Desempate: 2º ejercicio |
 | Post-aprobado | Período de prácticas: 12 meses (formación + centro penitenciario) |
 
 ### 2.1 Migration: oposición + temas ✅ (migration 064 aplicada 2026-03-30)
@@ -266,39 +268,8 @@
   - slug: `'penitenciarias'`, rama: `'penitenciarias'`, nivel: `'C1'`, activa: `false`
   - plazas: 900, fecha_examen_aprox: `'2027-01-15'`
   - features: `{"psicotecnicos": false, "cazatrampas": true, "supuesto_practico": false, "ofimatica": false}`
-  - NOTA: supuestos son tipo TEST (50 preguntas), no desarrollo → `supuesto_practico: false`. Patrón Auxilio Judicial.
-- [ ] scoring_config:
-  ```json
-  {
-    "ejercicios": [
-      {
-        "nombre": "Cuestionario",
-        "preguntas": 150,
-        "reserva": 10,
-        "minutos": 120,
-        "acierto": 0.20,
-        "error": 0.0667,
-        "max": 30,
-        "min_aprobado": 15,
-        "penaliza": true,
-        "ratio_penalizacion": "1/3"
-      },
-      {
-        "nombre": "Supuestos prácticos",
-        "preguntas": 50,
-        "reserva": 0,
-        "minutos": 75,
-        "acierto": 0.40,
-        "error": 0.1333,
-        "max": 20,
-        "min_aprobado": 10,
-        "penaliza": true,
-        "ratio_penalizacion": "1/3"
-      }
-    ]
-  }
-  ```
-  - NOTA: duración no especificada en convocatoria → estimar 120+75 min (similar a proporcional)
+  - NOTA: supuestos son tipo TEST (40 preguntas), no desarrollo → `supuesto_practico: false`. Patrón Auxilio Judicial.
+- [x] scoring_config (corregido por migration 065 — 120+40 preguntas, 0-20+0-20):
 - [x] INSERT 50 temas (ver §2.1.1)
 
 #### 2.1.1 Temario completo (50 temas, 4 bloques)
@@ -385,19 +356,17 @@
 > Bloques II-III: legislación penal y penitenciaria NUEVA.
 > Bloque IV: NO es legislación BOE — son conceptos de psicología. Requiere `conocimiento_tecnico`.
 
-**Leyes YA ingestionadas (reutilizar con re-tagging):**
-- [ ] Constitución Española 1978 — temas 1-6
-- [ ] Ley 39/2015 LPAC — temas 13-14
-- [ ] Ley 40/2015 LRJSP — temas 4, 12, 15
-- [ ] RDLeg 5/2015 TREBEP — temas 9-10
-- [ ] Ley 19/2013 Transparencia — tema 15
-- [ ] LO 3/2007 Igualdad — tema 17
-- [ ] LO 1/2004 Violencia de género — tema 17
-- [ ] Ley 4/2023 LGTBI — tema 17
-- [ ] Ley 9/2017 LCSP — tema 16
-- [ ] LECrim 1882 — tema 27 (ya ingestionada para Justicia)
-- [ ] LO 3/2018 LOPDGDD — tema 46
-- [ ] Ley 31/1995 PRL — tema 11 (ya ingestionada para Correos)
+**Leyes YA ingestionadas (reutilizadas con re-tagging) ✅:**
+- [x] Constitución Española 1978 — temas 1-6
+- [x] Ley 39/2015 LPAC — temas 12-14
+- [x] Ley 40/2015 LRJSP — temas 4, 12, 15
+- [x] RDLeg 5/2015 TREBEP — temas 9-10
+- [x] Ley 19/2013 Transparencia — tema 15
+- [x] LO 3/2007 Igualdad — tema 17
+- [x] LO 1/2004 Violencia de género — tema 17
+- [x] Ley 9/2017 LCSP — tema 16
+- [x] LECrim 1882 — tema 27
+- [x] Ley 31/1995 PRL — tema 11
 
 **Leyes NUEVAS scrapeadas e ingestionadas ✅ (2026-03-30):**
 - [x] **LO 10/1995 Código Penal** — 746 artículos (completo) — BOE-A-1995-25444
@@ -407,61 +376,53 @@
   - NOTA: requirió fix en scraper v2 para soportar numeración ordinal ("Artículo primero")
 - [x] **RD 190/1996 Reglamento Penitenciario** — 317 artículos — BOE-A-1996-3307
   - CUBRE: temas 28-47 (complemento LOGP)
-- [ ] **RD 840/2011** Medidas alternativas y libertad condicional — BOE-A-2011-10598
-  - CUBRE: tema 42
-- [ ] **Ley 45/2015 Voluntariado** — ~30 artículos — BOE-A-2015-11072
-  - CUBRE: tema 17
-- [ ] **Ley 39/2006 Dependencia** — BOE-A-2006-21990
-  - CUBRE: tema 17
-- [ ] **RD 207/2024** Estructura orgánica Ministerio Interior — extracto SGIP
-  - CUBRE: tema 7
-- [ ] **RD 122/2015** Estatuto EPPFETFE (entidad trabajo penitenciario)
-  - CUBRE: temas 7, 37
-- [ ] **LO 4/2000 LOEX** (Extranjería) — extracto relevante
-  - CUBRE: tema 40
-- [ ] **Ley 23/2014** Reconocimiento mutuo resoluciones penales UE
-  - CUBRE: temas 28, 40
-- [ ] **Ley 53/1984 Incompatibilidades** — tema 9
-- [ ] **Ley 47/2003 LGP** (Ley General Presupuestaria) — tema 16
-- [ ] **LO 2/2012 Estabilidad Presupuestaria** — tema 16
-- [ ] (Opcional) **Ley 50/1997 Ley del Gobierno** — tema 4
-- [ ] (Opcional) **RD 1201/1981** Organización centros penitenciarios — temas 8, 43
+- [x] **RD 840/2011** Medidas alternativas — 31 artículos — temas 40, 42
+- [x] **Ley 45/2015 Voluntariado** — 36 artículos — tema 17
+- [x] **Ley 39/2006 Dependencia** — 76 artículos — tema 17
+- [x] **Ley 53/1984 Incompatibilidades** — ya ingestionada — tema 9
+- [ ] **RD 207/2024** Estructura orgánica Ministerio Interior — tema 7 (pendiente, no bloqueante)
+- [ ] **RD 122/2015** Estatuto EPPFETFE — temas 7, 37 (pendiente, no bloqueante)
+- [ ] **LO 4/2000 LOEX** Extranjería — tema 40 (pendiente, no bloqueante)
+- [ ] **Ley 23/2014** Reconocimiento mutuo UE — temas 28, 40 (pendiente, no bloqueante)
 
-**Contenido no legislativo (Bloque IV — Conducta Humana):**
-- [ ] Crear contenido en `conocimiento_tecnico` para temas 48-50 (bloque='penitenciarias')
-  - Fuentes: manuales psicología penitenciaria, documentos SGIP, temarios públicos
-  - Similar a como se hizo con contenido operativo Correos (93 secciones)
-  - **Oportunidad de diferenciación**: ningún competidor genera bien este bloque con IA
+**Contenido no legislativo (Bloque IV — Conducta Humana) ✅:**
+- [x] Crear contenido en `conocimiento_tecnico` para temas 48-50 — 18 secciones con embeddings
+  - T48: estímulos/respuestas, condicionamiento, refuerzo, técnicas evaluación (6 secciones)
+  - T49: control formal/informal, código recluso, subculturas, hacinamiento, prisionización (6 secciones)
+  - T50: asertividad, HHSS, programas EHS, conducta adictiva, intervención drogodependientes (6 secciones)
+- [x] Migration 066 aplicada: bloque CHECK expandido para 'penitenciarias'
+- [x] `pnpm ingest:penitenciarias` — 18/18 secciones insertadas con embeddings OpenAI
 
 **Ingesta:**
-- [x] Scrape 3 leyes core (CP + LOGP + RP) con `scrape-boe-ley-v2.ts`
-- [x] Ejecutar `pnpm ingest:legislacion` — 1.149 artículos nuevos upserted
+- [x] Scrape 6 leyes (CP + LOGP + RP + RD840 + Voluntariado + Dependencia)
+- [x] Ejecutar `pnpm ingest:legislacion` — todos los artículos upserted
 - [x] Reglas de tagging en `tag-legislacion-temas.ts` para rama `penitenciarias`
-- [x] Ejecutar `pnpm tag:legislacion --rama penitenciarias` — en curso
-- [ ] Ingestar contenido_tecnico Bloque IV (temas 48-50)
+- [x] Ejecutar `pnpm tag:legislacion --rama penitenciarias` — 10.092 artículos taggeados
+- [x] Ingestar contenido_tecnico Bloque IV (temas 48-50) — 18 secciones
 - [ ] Verificar cobertura: ≥1 artículo/sección por cada uno de los 50 temas
 
-### 2.3 Free bank
-- [ ] Ejecutar `pnpm generate:free-bank --oposicion penitenciarias --user-id <admin-uuid>`
-- [ ] 10 preguntas × 50 temas = **500 preguntas**
-- [ ] Priorizar por peso: Bloque III (36%) → Bloque I (35%) → Bloque II (20%) → Bloque IV (9%)
-- [ ] Verificar: 50/50 temas cubiertos
-- [ ] Coste estimado: ~€0.80 (one-time OpenAI)
+### 2.3 Free bank ✅ (2026-03-30)
+- [x] Ejecutar `pnpm generate:free-bank --oposicion penitenciarias --user-id b55c400e-...`
+- [x] 10 preguntas × 50 temas = **500 preguntas** — 50/50 temas completo
+- [x] Verificado: pipeline RAG + verificación citas legales
 
 ### 2.4 Exámenes oficiales
-- [ ] Investigar disponibilidad exámenes IIPP anteriores
-  - Fuente: Ministerio Interior → Empleo público → IIPP
-  - Fuente alternativa: funcionarioprisiones.com, Adams, OpositaTest
-- [ ] Descargar cuadernillos + plantillas (2025, 2024, 2023...)
+- [x] Investigar disponibilidad: **~8 años** disponibles (2016-2025) en ACAIP, GoKoan, LusalPrisiones
+  - OEP 2025 (18/01/2026): test + supuestos + plantilla definitiva ✅ — ACAIP
+  - OEP 2024 (02/02/2025): test + supuestos + plantilla ✅ — ACAIP
+  - OEP 2023 (04/02/2024): test + supuestos + plantilla ✅ — ACAIP
+  - OEP 2021-2022 (27/11/2022): test + supuestos ✅ — ACAIP
+  - OEP 2020, 2019, 2018, 2017, 2016: disponibles vía GoKoan/OpositaTest
+- [ ] Descargar cuadernillos + plantillas (ACAIP links verificados)
 - [ ] Parsear con `pnpm parse:examenes --oposicion penitenciarias [año]`
 - [ ] Ingestar en `examenes_oficiales` + `preguntas_oficiales`
-- [ ] El ejercicio 2 (supuestos test) se ingesta como preguntas normales con flag `ejercicio=2`
+- [ ] Supuestos (parte 2) son tipo test → ingestar con flag `ejercicio=2`
 
 ### 2.5 Simulacro 2 partes (cuestionario + supuestos test)
 - [ ] Ambos ejercicios son tipo test → patrón Auxilio Judicial
 - [ ] `generate-simulacro` ya soporta 2 ejercicios tipo test
-- [ ] Timer: parte 1 = ~120 min (150 preguntas), parte 2 = ~75 min (50 preguntas)
-- [ ] maxPuntuable: 150 + 50 = 200
+- [ ] Timer: parte 1 = 105 min (120 preguntas), parte 2 = 80 min (40 preguntas)
+- [ ] maxPuntuable: 120 + 40 = 160
 
 ### 2.6 Landing SEO ✅ (2026-03-30)
 - [x] Crear `app/(marketing)/oposiciones/penitenciarias/page.tsx` — theme rose
@@ -523,11 +484,11 @@
 > Copiar y rellenar antes de poner `activa=true`. Aprendido de Correos + Justicia.
 
 ### Pre-requisitos (sin esto NO activar)
-- [ ] Migration aplicada en Supabase remoto (oposición + temas)
-- [ ] Legislación taggeada: `pnpm tag:legislacion --rama X --dry-run` → 0 errores
-- [ ] Free bank completo: N/N temas × 10 preguntas cada uno
-- [ ] Stripe producto creado + env var en Vercel
-- [ ] `lib/stripe/client.ts` actualizado (STRIPE_PRICES, CORRECTIONS_GRANTED, TIER_TO_OPOSICION, z.enum)
+- [x] Migration aplicada en Supabase remoto (064 + 065 + 066)
+- [x] Legislación taggeada: hacienda ~10.000 art., penitenciarias ~10.000 art.
+- [x] Free bank completo: Hacienda 32/32, Penitenciarias 50/50
+- [ ] Stripe producto creado + env var en Vercel — **PENDIENTE ARITZ**
+- [x] `lib/stripe/client.ts` actualizado
 
 ### Smoke test (en local o preview)
 - [ ] Registro con `?oposicion=slug` → aparece en ProfileForm
