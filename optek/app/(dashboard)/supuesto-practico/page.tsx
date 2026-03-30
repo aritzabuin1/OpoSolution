@@ -202,12 +202,24 @@ export default async function SupuestoPracticoPage() {
         <Card className="border-amber-200">
           <CardContent className="pt-6 text-center space-y-4">
             <Lock className="h-8 w-8 text-amber-500 mx-auto" />
-            <p className="font-medium">No tienes supuestos disponibles</p>
-            <p className="text-sm text-muted-foreground">
-              El Pack incluye supuestos prácticos con corrección IA + rúbrica oficial {rubricaLabel}.
-            </p>
-            <BuyButton tier={isMJU ? 'pack_gestion_j' : 'pack_a2'} label="Desbloquear Pack" />
-            <p className="text-xs text-muted-foreground">Pago único · Sin suscripción</p>
+            <p className="font-medium">Sin créditos IA disponibles</p>
+            {paidBalance > 0 || supuestos.length > 0 ? (
+              <>
+                <p className="text-sm text-muted-foreground">
+                  Has agotado tus créditos IA. Recarga para seguir practicando supuestos con corrección {rubricaLabel}.
+                </p>
+                <BuyButton tier="recarga" label="Recargar créditos — 9,99€" />
+                <p className="text-xs text-muted-foreground">+10 créditos IA · 5 supuestos más</p>
+              </>
+            ) : (
+              <>
+                <p className="text-sm text-muted-foreground">
+                  El Pack incluye supuestos prácticos con corrección IA + rúbrica oficial {rubricaLabel}.
+                </p>
+                <BuyButton tier={isAEAT ? 'pack_hacienda' : isMJU ? 'pack_gestion_j' : 'pack_a2'} label="Desbloquear Pack" />
+                <p className="text-xs text-muted-foreground">Pago único · Sin suscripción</p>
+              </>
+            )}
           </CardContent>
         </Card>
       )}
