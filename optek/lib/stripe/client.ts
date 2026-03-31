@@ -19,9 +19,10 @@ import Stripe from 'stripe'
  * Tests: ilimitados para usuarios con compra. Límite silencioso 20/día vía Upstash.
  * Sin suscripciones. Sin caducidad. Pago único.
  */
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  typescript: true,
-})
+// Conditional init — avoid crashing at build time when STRIPE_SECRET_KEY is missing
+export const stripe = process.env.STRIPE_SECRET_KEY
+  ? new Stripe(process.env.STRIPE_SECRET_KEY, { typescript: true })
+  : (null as unknown as Stripe) // safe: API routes only run at request time, never at build time
 
 // ─── Constantes de productos ──────────────────────────────────────────────────
 
