@@ -361,8 +361,9 @@ Estructura real del examen GC (140 min compartidos):
 ## FASE 10 — Activacion (conocimientos)
 
 ### 10.1 — Checklist
-- [x] Migration 069-072 aplicadas (2026-03-31)
-- [ ] Migration 073 (fix tiempos scoring_config) — **Pendiente: Aritz aplica**
+- [x] Migration 069-072 aplicadas (2026-03-31), 073+075 aplicadas (2026-04-01)
+- [x] Migration 073 (fix tiempos scoring_config) — aplicada
+- [x] Migration 075 (GC 3 ejercicios + ortografía/inglés features) — aplicada 2026-04-01
 - [ ] 6 productos Stripe + env vars
 - [x] Legislacion ingestada + taggeada (11.396 arts, 3.935 taggeados)
 - [x] Conocimiento técnico generado + ingestado (33 temas, 196 secciones)
@@ -370,7 +371,8 @@ Estructura real del examen GC (140 min compartidos):
 - [ ] Examenes oficiales ingestados
 - [x] Landings publicadas (requisitos corregidos 2026-03-31: estaturas eliminadas, edades, euskera B2, plazas GC 3.118)
 - [x] Blog 7 posts
-- [x] `pnpm test` (756/756) + `pnpm build` OK
+- [x] Ortografía GC (210 items) + Inglés GC (160 items) — FASE 6.5-6.7 completadas
+- [x] `pnpm test` (792/792) + `tsc --noEmit` OK
 
 ### 10.2 — PAUSA: `UPDATE oposiciones SET activa = true WHERE rama = 'seguridad'`
 ### 10.3 — Smoke test: registro -> test -> simulacro -> checkout (3 oposiciones)
@@ -545,7 +547,7 @@ FASE 12 (Stripe) — Aritz crea productos + env vars  ⏳ PENDIENTE
 
 ---
 
-## Progreso global (actualizado 2026-03-31)
+## Progreso global (actualizado 2026-04-01)
 
 | FASE | Estado | Notas |
 |------|--------|-------|
@@ -562,7 +564,7 @@ FASE 12 (Stripe) — Aritz crea productos + env vars  ⏳ PENDIENTE
 | 7 — Free question bank | ⏳ PENDIENTE | Script listo. FASE 3+5 ya ingestadas. Requiere ~$7 + ADMIN_USER_ID |
 | 8 — Landing pages + SEO | ✅ COMPLETADA | 5 landings + main card + precios tab + sitemap + footer + llms.txt. Requisitos corregidos (estaturas, edades, euskera, plazas) |
 | 9 — Blog SEO | ✅ COMPLETADA | 7 posts. Blog GC corregido (estatura eliminada) |
-| 10 — Activacion | ⏳ PENDIENTE | Migration 073 (tiempos) + Stripe + free bank + activar |
+| 10 — Activacion | ⏳ PENDIENTE | Migrations 073+075 ✅ aplicadas. Falta: Stripe + free bank + activar |
 | 11 — Personalidad Policial | ✅ COMPLETADA | Migration 071 aplicada + 5 libs + 4 endpoints + UI + 63 tests |
 | 12 — Stripe | ⏳ PENDIENTE | Aritz crea 6 productos + env vars |
 | 13 — "Estudiar" | ⏳ PENDIENTE | Resúmenes IA on-demand por ley, premium, compartido cross-oposición, coste $0 inicial |
