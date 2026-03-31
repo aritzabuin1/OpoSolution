@@ -85,11 +85,11 @@ describe('calcularNotaSimulacro', () => {
     expect(r.habriaProbado).toBe(true)
   })
 
-  it('cero aciertos, todos errores → nota negativa redondeada', () => {
+  it('cero aciertos, todos errores → nota clamped a 0', () => {
     // 0 aciertos, 100 errores, 100 preguntas
-    // notaRaw = 0 - 100/3 = -33.33 → sobre10 = -3.33
+    // notaRaw = 0 - 100/3 = -33.33 → Math.max(0, -33.33) = 0 → sobre10 = 0
     const r = calcularNotaSimulacro(0, 100, 100, 2024)!
-    expect(r.tuNota).toBeLessThan(0)
+    expect(r.tuNota).toBe(0)
     expect(r.habriaProbado).toBe(false)
   })
 

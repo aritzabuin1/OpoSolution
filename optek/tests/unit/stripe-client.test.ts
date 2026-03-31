@@ -56,11 +56,16 @@ describe('Stripe pricing constants', () => {
     expect('fundador' in CORRECTIONS_GRANTED).toBe(false)
   })
 
-  it('existen 13 tiers (sin fundador)', () => {
-    expect(Object.keys(CORRECTIONS_GRANTED)).toHaveLength(12)
+  it('existen 20 tiers (sin fundador)', () => {
+    expect(Object.keys(CORRECTIONS_GRANTED)).toHaveLength(20)
     expect(Object.keys(CORRECTIONS_GRANTED).sort()).toEqual([
-      'pack', 'pack_a2', 'pack_auxilio', 'pack_c1', 'pack_correos',
-      'pack_doble', 'pack_doble_justicia', 'pack_gestion_j',
+      'pack', 'pack_a2', 'pack_auxilio', 'pack_c1',
+      'pack_completo_seguridad', 'pack_correos',
+      'pack_doble', 'pack_doble_gc_pn',
+      'pack_doble_justicia', 'pack_ertzaintza',
+      'pack_gestion_j', 'pack_guardia_civil',
+      'pack_hacienda', 'pack_penitenciarias', 'pack_personalidad',
+      'pack_policia_nacional',
       'pack_tramitacion', 'pack_triple', 'pack_triple_justicia',
       'recarga',
     ])

@@ -17,8 +17,12 @@ const mockRpc = vi.fn()
 /**
  * Mock flexible de Supabase que devuelve un proxy encadenable.
  * Todos los métodos de query builder retornan el mismo proxy,
- * excepto los métodos terminales (single, maybySingle, limit) que
+ * excepto los métodos terminales (single, maybeSingle) que
  * invocan mockSupabaseSelect.
+ *
+ * El proxy es también thenable (implementa .then) para que
+ * `await supabase.from(...).select(...).limit(N)` funcione
+ * como en Supabase real (query builder es PromiseLike).
  */
 function buildChainableMock(): ReturnType<typeof vi.fn> {
   const terminal = mockSupabaseSelect
@@ -27,8 +31,12 @@ function buildChainableMock(): ReturnType<typeof vi.fn> {
     get(_target, prop: string) {
       // Métodos terminales: llaman al mock
       if (prop === 'single' || prop === 'maybeSingle') return terminal
-      if (prop === 'limit') return terminal
-      // Métodos encadenables: retornan una función que retorna el proxy
+      // Thenable: permite `await` en cualquier punto de la cadena
+      if (prop === 'then') {
+        return (resolve: (v: unknown) => void, reject: (e: unknown) => void) =>
+          terminal().then(resolve, reject)
+      }
+      // Métodos encadenables (incluido limit, order, in, etc.)
       return () => new Proxy({}, handler)
     },
   }
@@ -143,7 +151,7 @@ describe('retrieveBySemantic', () => {
 describe('buildContext', () => {
   beforeEach(() => vi.clearAllMocks())
 
-  it('no excede MAX_CONTEXT_CHARS (~8000 tokens)', async () => {
+  it('no excede MAX_CONTEXT_CHARS (~4000 tokens)', async () => {
     // Simular muchos artículos
     const manyArticulos: ArticuloContext[] = Array.from({ length: 100 }, (_, i) => ({
       id: `uuid-${i}`,
@@ -156,20 +164,35 @@ describe('buildContext', () => {
       similarity: 0.9,
     }))
 
-    mockSupabaseSelect.mockResolvedValue({ data: manyArticulos, error: null })
+    // buildContext now calls:
+    // 1. temas.select('numero, bloque').eq.maybeSingle → tema lookup
+    // 2. detectConocimientoBloque → conocimiento_tecnico.select.eq.eq.limit.maybeSingle
+    // 3. retrieveByTema → legislacion.select.contains.eq.limit
+    // 4. retrieveBySemantic (query provided) → RPC match_legislacion
+    mockSupabaseSelect
+      .mockResolvedValueOnce({ data: { numero: 1, bloque: null }, error: null }) // 1. temas lookup
+      .mockResolvedValueOnce({ data: null, error: null })                         // 2. detectConocimientoBloque
+      .mockResolvedValue({ data: manyArticulos, error: null })                    // 3+4. legislacion + semantic
     mockRpc.mockResolvedValue({ data: manyArticulos, error: null })
 
     const { buildContext } = await import('@/lib/ai/retrieval')
     const ctx = await buildContext('tema-uuid-1', 'constitución')
 
-    // 32000 chars / 500 chars por artículo = máx 64 artículos
-    expect(ctx.articulos.length).toBeLessThanOrEqual(64)
-    expect(ctx.tokensEstimados).toBeLessThanOrEqual(8100) // pequeño margen
+    // 16000 chars / ~550 chars per formatted artículo ≈ max ~29 artículos
+    expect(ctx.articulos.length).toBeLessThanOrEqual(32)
+    expect(ctx.tokensEstimados).toBeLessThanOrEqual(4100) // pequeño margen
   })
 
   it('deduplica artículos que aparecen en byTema y bySemantic', async () => {
-    // Mismo artículo en ambas fuentes
-    mockSupabaseSelect.mockResolvedValue({ data: [articuloCE1], error: null })
+    // buildContext calls:
+    // 1. temas lookup (maybeSingle)
+    // 2. detectConocimientoBloque (maybeSingle)
+    // 3. retrieveByTema → legislacion.select...limit
+    mockSupabaseSelect
+      .mockResolvedValueOnce({ data: { numero: 1, bloque: null }, error: null }) // 1. temas lookup
+      .mockResolvedValueOnce({ data: null, error: null })                         // 2. detectConocimientoBloque
+      .mockResolvedValue({ data: [articuloCE1], error: null })                    // 3. retrieveByTema
+    // Mismo artículo en semantic
     mockRpc.mockResolvedValue({ data: [articuloCE1, articuloLPAC53], error: null })
 
     const { buildContext } = await import('@/lib/ai/retrieval')
@@ -212,19 +235,21 @@ describe('buildContext — §2.11 Weakness-Weighted RAG', () => {
 
   it('cuando userId se pasa y RPC retorna artículos débiles, aparecen primero en el contexto', async () => {
     // Flujo con weakness boost (query=undefined → no retrieveBySemantic):
-    //   1. temas.select (maybySingle) → tema número 1 (Bloque I)
-    //   2. rpc('get_user_weak_articles') → [{legislacion_id: 'uuid-lpac-21', fallos: 5}]
-    //   3. legislacion.select.in.eq.limit → [articuloDebil]
-    //   4. retrieveByTema: legislacion.select.contains.eq.limit → [articuloCE1]
+    //   1. temas.select('numero, bloque').eq.maybeSingle → tema número 1 (Bloque I)
+    //   2. detectConocimientoBloque → conocimiento_tecnico.select.eq.eq.limit.maybeSingle → null
+    //   3. rpc('get_user_weak_articles') → [{legislacion_id: 'uuid-lpac-21', fallos: 5}]
+    //   4. legislacion.select.in.eq.limit → [articuloDebil]
+    //   5. retrieveByTema: legislacion.select.contains.eq.limit → [articuloCE1]
     mockSupabaseSelect
-      .mockResolvedValueOnce({ data: { numero: 1 }, error: null })  // 1. temas lookup
-      .mockResolvedValueOnce({ data: [articuloDebil], error: null }) // 3. legislacion.in (débiles)
-      .mockResolvedValueOnce({ data: [articuloCE1], error: null })   // 4. retrieveByTema
+      .mockResolvedValueOnce({ data: { numero: 1, bloque: null }, error: null })  // 1. temas lookup
+      .mockResolvedValueOnce({ data: null, error: null })                          // 2. detectConocimientoBloque
+      .mockResolvedValueOnce({ data: [articuloDebil], error: null })               // 4. legislacion.in (débiles)
+      .mockResolvedValueOnce({ data: [articuloCE1], error: null })                 // 5. retrieveByTema
 
     mockRpc.mockResolvedValueOnce({
       data: [{ legislacion_id: 'uuid-lpac-21', fallos: 5 }],
       error: null,
-    }) // 2. get_user_weak_articles
+    }) // 3. get_user_weak_articles
 
     const { buildContext } = await import('@/lib/ai/retrieval')
     const ctx = await buildContext('tema-uuid-bloque1', undefined, 'user-uuid-123')
@@ -239,12 +264,13 @@ describe('buildContext — §2.11 Weakness-Weighted RAG', () => {
   it('cuando userId se pasa pero RPC retorna vacío, buildContext funciona igual que sin userId', async () => {
     // Usuario nuevo: sin preguntas incorrectas → RPC devuelve []
     mockSupabaseSelect
-      .mockResolvedValueOnce({ data: { numero: 5 }, error: null }) // temas lookup
-      .mockResolvedValueOnce({ data: [articuloCE1], error: null }) // retrieveByTema
+      .mockResolvedValueOnce({ data: { numero: 5, bloque: null }, error: null }) // 1. temas lookup
+      .mockResolvedValueOnce({ data: null, error: null })                         // 2. detectConocimientoBloque
+      .mockResolvedValueOnce({ data: [articuloCE1], error: null })                // 3. retrieveByTema
 
     mockRpc
       .mockResolvedValueOnce({ data: [], error: null })                          // get_user_weak_articles
-      .mockResolvedValueOnce({ data: [articuloLPAC53], error: null })            // match_legislacion
+      .mockResolvedValueOnce({ data: [articuloLPAC53], error: null })            // match_legislacion (unused but safe)
 
     const { buildContext } = await import('@/lib/ai/retrieval')
     const ctx = await buildContext('tema-uuid-5', undefined, 'user-nuevo-uuid')
@@ -256,8 +282,9 @@ describe('buildContext — §2.11 Weakness-Weighted RAG', () => {
 
   it('cuando RPC falla, buildContext degrada con gracia y retorna contexto normal', async () => {
     mockSupabaseSelect
-      .mockResolvedValueOnce({ data: { numero: 3 }, error: null }) // temas lookup
-      .mockResolvedValueOnce({ data: [articuloCE1], error: null }) // retrieveByTema
+      .mockResolvedValueOnce({ data: { numero: 3, bloque: null }, error: null }) // 1. temas lookup
+      .mockResolvedValueOnce({ data: null, error: null })                         // 2. detectConocimientoBloque
+      .mockResolvedValueOnce({ data: [articuloCE1], error: null })                // 3. retrieveByTema
 
     mockRpc
       .mockRejectedValueOnce(new Error('RPC not found')) // get_user_weak_articles → error
@@ -273,8 +300,9 @@ describe('buildContext — §2.11 Weakness-Weighted RAG', () => {
 
   it('cuando NO se pasa userId, no llama a get_user_weak_articles', async () => {
     mockSupabaseSelect
-      .mockResolvedValueOnce({ data: { numero: 2 }, error: null }) // temas lookup
-      .mockResolvedValueOnce({ data: [articuloCE1], error: null }) // retrieveByTema
+      .mockResolvedValueOnce({ data: { numero: 2, bloque: null }, error: null }) // 1. temas lookup
+      .mockResolvedValueOnce({ data: null, error: null })                         // 2. detectConocimientoBloque
+      .mockResolvedValueOnce({ data: [articuloCE1], error: null })                // 3. retrieveByTema
 
     mockRpc.mockResolvedValue({ data: [], error: null }) // solo llamadas semánticas
 

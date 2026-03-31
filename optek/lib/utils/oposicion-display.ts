@@ -77,15 +77,7 @@ export function getOposicionDisplay(opts: {
     }
   }
 
-  // Seguridad — Fuerzas y Cuerpos de Seguridad
-  if (rama === 'seguridad' || lower.includes('ertzaintza')) {
-    return {
-      organismo: 'Dept. Seguridad GV',
-      simulacroLabel: 'Simulacro Ertzaintza',
-      badgeLabel: 'Ertzaintza',
-      tribunalDe: 'de Seguridad del Gobierno Vasco',
-    }
-  }
+  // Seguridad — check specific cuerpo BEFORE generic rama
   if (lower.includes('guardia-civil') || lower.includes('guardia civil')) {
     return {
       organismo: 'Guardia Civil',
@@ -100,6 +92,16 @@ export function getOposicionDisplay(opts: {
       simulacroLabel: 'Simulacro Policía Nacional',
       badgeLabel: 'PN Oficial',
       tribunalDe: 'de la DGP',
+    }
+  }
+
+  // Ertzaintza (rama=seguridad fallback after GC/PN checks)
+  if (rama === 'seguridad' || lower.includes('ertzaintza')) {
+    return {
+      organismo: 'Dept. Seguridad GV',
+      simulacroLabel: 'Simulacro Ertzaintza',
+      badgeLabel: 'Ertzaintza',
+      tribunalDe: 'de Seguridad del Gobierno Vasco',
     }
   }
 

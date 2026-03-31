@@ -41,6 +41,8 @@ function mockTableQuery(data: unknown[], count?: number) {
     gte: vi.fn().mockReturnThis(),
     like: vi.fn().mockReturnThis(),
     eq: vi.fn().mockReturnThis(),
+    neq: vi.fn().mockReturnThis(),
+    not: vi.fn().mockReturnThis(),
     order: vi.fn().mockReturnThis(),
     single: vi.fn().mockResolvedValue({ data: data[0] ?? null, error: null }),
     then: undefined as unknown,
@@ -75,6 +77,8 @@ describe('getFuelTank', () => {
         { cost_estimated_cents: 50 },  // €0.50
         { cost_estimated_cents: 30 },  // €0.30
       ]))
+      .mockReturnValueOnce(mockTableQuery([], 5))   // free bank tests count
+      .mockReturnValueOnce(mockTableQuery([], 10))   // IA tests count
 
     const result = await getFuelTank()
 
@@ -88,6 +92,8 @@ describe('getFuelTank', () => {
     mockFrom
       .mockReturnValueOnce(mockTableQuery([]))
       .mockReturnValueOnce(mockTableQuery([{ cost_estimated_cents: 100 }]))
+      .mockReturnValueOnce(mockTableQuery([], 0))   // free bank tests count
+      .mockReturnValueOnce(mockTableQuery([], 0))   // IA tests count
 
     const result = await getFuelTank()
 
@@ -101,6 +107,8 @@ describe('getFuelTank', () => {
     mockFrom
       .mockReturnValueOnce(mockTableQuery([]))
       .mockReturnValueOnce(mockTableQuery([]))
+      .mockReturnValueOnce(mockTableQuery([], 0))   // free bank tests count
+      .mockReturnValueOnce(mockTableQuery([], 0))   // IA tests count
 
     const result = await getFuelTank()
 

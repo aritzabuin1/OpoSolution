@@ -23,6 +23,7 @@ const RAMA_LABELS: Record<string, string> = {
   correos: 'Correos',
   hacienda: 'Hacienda Pública',
   penitenciarias: 'Instituciones Penitenciarias',
+  seguridad: 'Fuerzas y Cuerpos de Seguridad',
 }
 
 interface Props {
