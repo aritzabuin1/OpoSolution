@@ -521,7 +521,7 @@ FASE 12 (Stripe) — Aritz crea productos + env vars  ⏳ PENDIENTE
 
 ## Scope MVP (TODO incluido en lanzamiento)
 
-**FASE 0-10 + 11 + 6.5-6.7:**
+**FASE 0-13 (todo incluido en lanzamiento):**
 - Soporte 3 opciones (PN)
 - 3 oposiciones activas con tests + simulacros + psicotécnicos
 - **Ortografía GC** (módulo determinista, ~200 items) — FASE 6.5
@@ -531,6 +531,7 @@ FASE 12 (Stripe) — Aritz crea productos + env vars  ⏳ PENDIENTE
 - Exámenes oficiales (los que se encuentren)
 - Landings + pricing + blog 7 posts
 - Módulo Personalidad Policial completo (Big Five + SJT + Entrevista IA + Coaching + CAT)
+- **"Estudiar"** (resúmenes IA por ley, on-demand, coste $0 inicial, compartido entre oposiciones) — FASE 13
 
 **FASE 12 — Stripe (Aritz manual, antes de activar):**
 - [ ] Crear 6 productos Stripe:
@@ -569,6 +570,7 @@ FASE 12 (Stripe) — Aritz crea productos + env vars  ⏳ PENDIENTE
 | 10 — Activacion | ⏳ PENDIENTE | Migration 073 (tiempos) + Stripe + free bank + activar |
 | 11 — Personalidad Policial | ✅ COMPLETADA | Migration 071 aplicada + 5 libs + 4 endpoints + UI + 63 tests |
 | 12 — Stripe | ⏳ PENDIENTE | Aritz crea 6 productos + env vars |
+| 13 — "Estudiar" | ⏳ PENDIENTE | Resúmenes IA on-demand por ley, premium, compartido cross-oposición, coste $0 inicial |
 
 ---
 
@@ -655,3 +657,126 @@ git push         # Vercel auto-deploy
 - [ ] Repetir para GC y PN
 
 ### Tiempo estimado: ~45-60 min (la mayor parte es esperar generacion IA)
+
+---
+
+## FASE 13 — "Estudiar" (feature premium transversal, coste inicial $0)
+
+**Origen**: Feedback de usuaria real: "No veo explicaciones de cada ley. Unos apuntes sobre la ley 39/2015 para ya luego hacer los tests sobre lo aprendido."
+
+**Principio clave**: Coste inicial $0. Los propios usuarios premium generan el contenido on-demand. Una vez generado, se cachea en BD y se sirve a TODOS los premium de TODAS las oposiciones que compartan esa ley.
+
+### Arquitectura
+
+**Unidad de contenido = artículo de ley (legislacion.id)**, NO tema.
+Motivo: la CE se estudia en Ertzaintza tema 1, en GC tema 1, en PN tema 1, en C1 tema 1... Si generamos el resumen por ley+artículo, se reutiliza en todas. Si generamos por tema, duplicamos.
+
+**Tabla nueva**: `resumen_legislacion`
+```sql
+CREATE TABLE resumen_legislacion (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  ley TEXT NOT NULL,              -- ej. 'CE', 'LPAC', 'CP'
+  articulos_rango TEXT NOT NULL,  -- ej. '1-29', '39-52', '1-10' (agrupacion logica)
+  titulo TEXT NOT NULL,           -- ej. 'Derechos Fundamentales (CE arts. 14-29)'
+  contenido TEXT NOT NULL,        -- ~2000 palabras, markdown
+  generated_by UUID REFERENCES auth.users(id),  -- quien lo genero (primer premium)
+  prompt_version TEXT NOT NULL,   -- para regenerar si mejoramos el prompt
+  created_at TIMESTAMPTZ DEFAULT now(),
+  updated_at TIMESTAMPTZ DEFAULT now(),
+  UNIQUE(ley, articulos_rango)
+);
+-- RLS: SELECT para premium, INSERT/UPDATE para sistema
+```
+
+**Mapping tema → resúmenes**: Ya existe via `tag-legislacion-temas.ts` (SEGURIDAD_RULES, AGE_RULES, etc.). Cada tema sabe qué leyes le corresponden. Al entrar en "Estudiar tema X", se buscan los resúmenes de las leyes taggeadas a ese tema.
+
+### 13.1 — Migration BD
+- Tabla `resumen_legislacion` con index en `(ley, articulos_rango)`
+- RLS: SELECT para usuarios autenticados con compra activa o is_admin
+- No RLS para INSERT (solo el endpoint del servidor inserta)
+
+### 13.2 — Agrupación de artículos por bloque lógico
+- No queremos un resumen por cada artículo individual (CE tiene 169)
+- Agrupar por bloques lógicos: "CE arts. 1-13 (Principios)", "CE arts. 14-29 (Derechos Fundamentales)", "LPAC arts. 53-67 (Acto Administrativo)"
+- **Archivo**: `lib/estudiar/agrupaciones.ts` — mapa estático `ley → [{ rango, titulo }]`
+- Se pueden derivar de las RULES existentes + temario oficial
+- ~5-10 bloques por ley, ~50-80 bloques totales para todas las oposiciones
+
+### 13.3 — Endpoint generación on-demand
+- **Endpoint**: `POST /api/estudiar/generate`
+- **Input**: `{ ley, articulosRango }` (ej. `{ ley: 'CE', articulosRango: '14-29' }`)
+- **Lógica**:
+  1. Check si ya existe en `resumen_legislacion` → si existe, retornar cacheado
+  2. Check usuario es premium (compra activa o is_admin)
+  3. Fetch artículos de `legislacion` WHERE ley = X AND numero BETWEEN rango
+  4. Llamar Claude/OpenAI: "Resume estos artículos en ~2000 palabras con estructura didáctica"
+  5. INSERT en `resumen_legislacion` (generated_by = user_id)
+  6. Retornar contenido
+- **Coste por generación**: ~$0.02-0.05 (una sola vez por bloque, luego $0 para siempre)
+- **NO consume crédito IA del usuario** (es contenido compartido, beneficia a todos)
+
+### 13.4 — Endpoint "Profundizar" (consume 1 crédito IA)
+- **Endpoint**: `POST /api/estudiar/profundizar/stream`
+- **Input**: `{ ley, articulo, pregunta? }` (ej. `{ ley: 'CE', articulo: '14', pregunta: '¿Qué diferencia hay entre igualdad formal y material?' }`)
+- **Lógica**:
+  1. Check crédito IA disponible (use_correction RPC)
+  2. Fetch artículo concreto de legislacion
+  3. Streaming response con explicación profunda, jurisprudencia relevante, ejemplos de examen
+  4. **NO se cachea** (es personalizado por pregunta del usuario)
+- **Coste**: ~$0.02 por consulta, 1 crédito IA del usuario
+- **Valor**: el usuario puede preguntar lo que no entiende, como tener un tutor
+
+### 13.5 — UI: Página /estudiar
+- **Page**: `app/(dashboard)/estudiar/page.tsx`
+- **Vista**: Lista de temas del usuario (como /tests pero sin hacer test)
+- Click en tema → expande con bloques de ley disponibles
+- Cada bloque: si ya generado → muestra contenido markdown (prose). Si no → botón "Generar resumen" (solo premium)
+- Badge "Nuevo" en bloques sin generar, "Listo" en los generados
+- Al final de cada bloque: botón "Hacer test de este tema" → `/tests` prefiltrado
+- **Profundizar**: En cada artículo del resumen, icono de lupa → modal/drawer con input de pregunta + streaming response
+- **Sidebar/Navbar**: BookOpen icon + "Estudiar" (premium badge)
+
+### 13.6 — Free tier
+- Free users ven la página /estudiar con todos los temas listados
+- Pueden ver resúmenes de los temas gratuitos (FREE_TEMA_NUMEROS: [1, 11, 17] para AGE, primeros 2-3 temas para cada oposición)
+- Resto: PremiumFeaturePreview con blurred content + CTA
+- "Profundizar" siempre premium (consume crédito)
+
+### 13.7 — Tests
+- Test unitario: agrupaciones cubren todos los temas de todas las oposiciones
+- Test unitario: endpoint retorna cacheado si existe
+- Test unitario: free user no puede generar
+- Test unitario: profundizar consume crédito
+
+### Flujo usuario completo
+```
+Usuario premium → /estudiar → elige "Tema 3: LPAC"
+→ Ve bloques: "Procedimiento común (arts. 53-67)" [No generado]
+→ Click "Generar resumen" → loading 5s → resumen aparece
+→ Lee el resumen → no entiende art. 58 (notificaciones)
+→ Click lupa → "¿Cuándo se considera notificación rechazada?"
+→ Streaming: explicación detallada + ejemplo de pregunta tipo examen
+→ Entiende → Click "Hacer test de este tema" → test
+→ Falla 2 preguntas sobre notificaciones → vuelve a /estudiar
+```
+
+### Coste total
+- **Generación inicial**: $0 (lo generan los usuarios on-demand)
+- **Coste por bloque**: ~$0.02-0.05 (una vez, luego $0 para siempre)
+- **Coste máximo si se generan todos**: ~80 bloques × $0.05 = $4 (pagado por los propios premium)
+- **Profundizar**: ~$0.02/consulta (pagado con créditos IA del usuario)
+- **Margen**: 100% (los usuarios pagan los créditos que consumen)
+
+### Orden de ejecución
+```
+13.1 (migration) ──────────+
+13.2 (agrupaciones) ───────+── paralelo
+                            |
+13.3 (endpoint generate) ──+
+13.4 (endpoint profundizar) +── paralelo
+                            |
+13.5 (UI /estudiar) ───────+
+13.6 (free tier gating) ───+── paralelo
+                            |
+13.7 (tests) ──────────────+
+```
