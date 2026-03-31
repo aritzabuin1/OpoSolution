@@ -335,14 +335,16 @@ pnpm ingest:examenes --dir examenes_ertzaintza --oposicion ertzaintza
 ## FASE 10 — Activacion (conocimientos)
 
 ### 10.1 — Checklist
-- [ ] Migration 069 aplicada
-- [ ] 8 productos Stripe + env vars
-- [ ] Legislacion ingestada + taggeada
-- [ ] Free bank 1240 preguntas
+- [x] Migration 069-072 aplicadas (2026-03-31)
+- [ ] Migration 073 (fix tiempos scoring_config) — **Pendiente: Aritz aplica**
+- [ ] 6 productos Stripe + env vars
+- [x] Legislacion ingestada + taggeada (11.396 arts, 3.935 taggeados)
+- [x] Conocimiento técnico generado + ingestado (33 temas, 196 secciones)
+- [ ] Free bank 1240 preguntas (~$7)
 - [ ] Examenes oficiales ingestados
-- [ ] Landings publicadas
-- [ ] Blog 7 posts
-- [ ] `pnpm test` + `pnpm build` OK
+- [x] Landings publicadas (requisitos corregidos 2026-03-31: estaturas eliminadas, edades, euskera B2, plazas GC 3.118)
+- [x] Blog 7 posts
+- [x] `pnpm test` (756/756) + `pnpm build` OK
 
 ### 10.2 — PAUSA: `UPDATE oposiciones SET activa = true WHERE rama = 'seguridad'`
 ### 10.3 — Smoke test: registro -> test -> simulacro -> checkout (3 oposiciones)
@@ -532,9 +534,9 @@ FASE 12 (Stripe) — Aritz crea productos + env vars
 | 5 — Conocimiento tecnico | ✅ COMPLETADA | 33 temas generados (Claude) + 196 secciones ingestadas con embeddings |
 | 6 — Psicotecnicos nuevos | ✅ COMPLETADA | 3 modulos (spatial/logic/perception), 11 subtipos, 42 tests |
 | 7 — Free question bank | ⏳ PENDIENTE | Script listo. FASE 3+5 ya ingestadas. Requiere ~$7 + ADMIN_USER_ID |
-| 8 — Landing pages + SEO | ✅ COMPLETADA | 5 landings + main card + precios tab + sitemap + footer + llms.txt |
-| 9 — Blog SEO | ✅ COMPLETADA | 7 posts |
-| 10 — Activacion | ⏳ PENDIENTE | Checklist pre-lanzamiento |
+| 8 — Landing pages + SEO | ✅ COMPLETADA | 5 landings + main card + precios tab + sitemap + footer + llms.txt. Requisitos corregidos (estaturas, edades, euskera, plazas) |
+| 9 — Blog SEO | ✅ COMPLETADA | 7 posts. Blog GC corregido (estatura eliminada) |
+| 10 — Activacion | ⏳ PENDIENTE | Migration 073 (tiempos) + Stripe + free bank + activar |
 | 11 — Personalidad Policial | ✅ COMPLETADA | Migration 071 aplicada + 5 libs + 4 endpoints + UI + 63 tests |
 | 12 — Stripe | ⏳ PENDIENTE | Aritz crea 6 productos + env vars |
 
