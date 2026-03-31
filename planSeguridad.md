@@ -660,123 +660,364 @@ git push         # Vercel auto-deploy
 
 ---
 
-## FASE 13 — "Estudiar" (feature premium transversal, coste inicial $0)
+## FASE 13 — "Estudiar" (feature premium transversal, coste inicial ~$0.10)
 
 **Origen**: Feedback de usuaria real: "No veo explicaciones de cada ley. Unos apuntes sobre la ley 39/2015 para ya luego hacer los tests sobre lo aprendido."
 
-**Principio clave**: Coste inicial $0. Los propios usuarios premium generan el contenido on-demand. Una vez generado, se cachea en BD y se sirve a TODOS los premium de TODAS las oposiciones que compartan esa ley.
+**Principio UX**: El usuario piensa en TEMAS, no en leyes. Quiere estudiar "Tema 2" antes de hacer el test del "Tema 2". Pero internamente almacenamos por ley para reutilizar entre oposiciones.
 
-### Arquitectura
+**Principio económico**: Coste inicial ~$0.10 (2 bloques pre-generados para free users). El resto lo generan los propios usuarios premium on-demand. Una vez generado un bloque, se cachea en BD para TODOS los premium de TODAS las oposiciones que compartan esa ley.
 
-**Unidad de contenido = artículo de ley (legislacion.id)**, NO tema.
-Motivo: la CE se estudia en Ertzaintza tema 1, en GC tema 1, en PN tema 1, en C1 tema 1... Si generamos el resumen por ley+artículo, se reutiliza en todas. Si generamos por tema, duplicamos.
+---
 
-**Tabla nueva**: `resumen_legislacion`
+### Arquitectura: presentar por tema, almacenar por ley
+
+**Lo que ve el usuario** (presentación por tema):
+```
+/estudiar → Tema 2: Derechos Fundamentales
+  ├── CE arts. 14-29 (Derechos Fundamentales)     ✅ Disponible
+  ├── CEDH arts. 1-18 (Convenio Europeo)           🔒 Generar resumen
+  └── [Hacer test del Tema 2]
+```
+
+**Lo que guarda la BD** (almacenamiento por ley):
+```
+resumen_legislacion:
+  ley='CE', rango='14-29', contenido='...' → se muestra en Ertzaintza T2, GC T1, PN T1, C2 T1...
+```
+
+**Cómo conecta**: La tabla `legislacion` ya tiene `tema_ids[]` (array de UUIDs de temas, poblado por `tag-legislacion-temas.ts`). Al abrir "Estudiar Tema X":
+1. Consultar `legislacion WHERE tema_ids @> ARRAY[tema_uuid]` → obtener las leyes del tema
+2. Agrupar artículos por ley + bloque lógico (usando `lib/estudiar/agrupaciones.ts`)
+3. Para cada bloque: buscar si existe resumen en `resumen_legislacion` → si sí, mostrar; si no, botón "Generar"
+
+**¿Es complejo?** No. Es un SELECT + un GROUP BY en la misma query. La tabla `legislacion` ya tiene los datos, las agrupaciones son un mapa estático. No hay JOINs complejos.
+
+---
+
+### Tabla nueva: `resumen_legislacion`
+
 ```sql
 CREATE TABLE resumen_legislacion (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  ley TEXT NOT NULL,              -- ej. 'CE', 'LPAC', 'CP'
-  articulos_rango TEXT NOT NULL,  -- ej. '1-29', '39-52', '1-10' (agrupacion logica)
-  titulo TEXT NOT NULL,           -- ej. 'Derechos Fundamentales (CE arts. 14-29)'
-  contenido TEXT NOT NULL,        -- ~2000 palabras, markdown
-  generated_by UUID REFERENCES auth.users(id),  -- quien lo genero (primer premium)
-  prompt_version TEXT NOT NULL,   -- para regenerar si mejoramos el prompt
+  ley_nombre TEXT NOT NULL,           -- 'CE', 'LPAC', 'CP' (mismo que legislacion.ley_nombre)
+  rango TEXT NOT NULL,                -- '14-29', '53-67', '1-10'
+  titulo TEXT NOT NULL,               -- 'Derechos Fundamentales (CE arts. 14-29)'
+  contenido TEXT NOT NULL,            -- ~2000 palabras, markdown
+  generated_by UUID REFERENCES auth.users(id),
+  prompt_version TEXT NOT NULL DEFAULT '1.0.0',
   created_at TIMESTAMPTZ DEFAULT now(),
   updated_at TIMESTAMPTZ DEFAULT now(),
-  UNIQUE(ley, articulos_rango)
+  UNIQUE(ley_nombre, rango)
 );
--- RLS: SELECT para premium, INSERT/UPDATE para sistema
+
+CREATE INDEX idx_resumen_ley ON resumen_legislacion(ley_nombre);
+
+-- RLS: cualquier autenticado puede leer (el gating es en la app, no en RLS)
+-- INSERT solo via service client (el endpoint del servidor inserta)
+ALTER TABLE resumen_legislacion ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "select_authenticated" ON resumen_legislacion FOR SELECT TO authenticated USING (true);
 ```
 
-**Mapping tema → resúmenes**: Ya existe via `tag-legislacion-temas.ts` (SEGURIDAD_RULES, AGE_RULES, etc.). Cada tema sabe qué leyes le corresponden. Al entrar en "Estudiar tema X", se buscan los resúmenes de las leyes taggeadas a ese tema.
+---
 
 ### 13.1 — Migration BD
-- Tabla `resumen_legislacion` con index en `(ley, articulos_rango)`
-- RLS: SELECT para usuarios autenticados con compra activa o is_admin
-- No RLS para INSERT (solo el endpoint del servidor inserta)
+- **Archivo**: `supabase/migrations/20260401_074_estudiar.sql`
+- Tabla `resumen_legislacion` como arriba
+- Index en `ley_nombre` para lookup rápido
+- RLS: SELECT para authenticated, INSERT/UPDATE solo service role
 
-### 13.2 — Agrupación de artículos por bloque lógico
-- No queremos un resumen por cada artículo individual (CE tiene 169)
-- Agrupar por bloques lógicos: "CE arts. 1-13 (Principios)", "CE arts. 14-29 (Derechos Fundamentales)", "LPAC arts. 53-67 (Acto Administrativo)"
-- **Archivo**: `lib/estudiar/agrupaciones.ts` — mapa estático `ley → [{ rango, titulo }]`
-- Se pueden derivar de las RULES existentes + temario oficial
-- ~5-10 bloques por ley, ~50-80 bloques totales para todas las oposiciones
+### 13.2 — Agrupaciones estáticas (`lib/estudiar/agrupaciones.ts`)
 
-### 13.3 — Endpoint generación on-demand
-- **Endpoint**: `POST /api/estudiar/generate`
-- **Input**: `{ ley, articulosRango }` (ej. `{ ley: 'CE', articulosRango: '14-29' }`)
-- **Lógica**:
-  1. Check si ya existe en `resumen_legislacion` → si existe, retornar cacheado
-  2. Check usuario es premium (compra activa o is_admin)
-  3. Fetch artículos de `legislacion` WHERE ley = X AND numero BETWEEN rango
-  4. Llamar Claude/OpenAI: "Resume estos artículos en ~2000 palabras con estructura didáctica"
-  5. INSERT en `resumen_legislacion` (generated_by = user_id)
-  6. Retornar contenido
-- **Coste por generación**: ~$0.02-0.05 (una sola vez por bloque, luego $0 para siempre)
-- **NO consume crédito IA del usuario** (es contenido compartido, beneficia a todos)
+Mapa estático que define cómo agrupar artículos de cada ley en bloques lógicos de estudio.
+Se deriva de los títulos/capítulos de la propia ley (ya disponible en `legislacion.titulo_capitulo`).
 
-### 13.4 — Endpoint "Profundizar" (consume 1 crédito IA)
-- **Endpoint**: `POST /api/estudiar/profundizar/stream`
-- **Input**: `{ ley, articulo, pregunta? }` (ej. `{ ley: 'CE', articulo: '14', pregunta: '¿Qué diferencia hay entre igualdad formal y material?' }`)
-- **Lógica**:
-  1. Check crédito IA disponible (use_correction RPC)
-  2. Fetch artículo concreto de legislacion
-  3. Streaming response con explicación profunda, jurisprudencia relevante, ejemplos de examen
-  4. **NO se cachea** (es personalizado por pregunta del usuario)
-- **Coste**: ~$0.02 por consulta, 1 crédito IA del usuario
-- **Valor**: el usuario puede preguntar lo que no entiende, como tener un tutor
+```typescript
+export interface BloqueEstudio {
+  ley: string              // 'CE', 'LPAC', 'CP'
+  rango: string            // '14-29'
+  titulo: string           // 'Derechos Fundamentales'
+  articulosAprox: number   // ~16 (para estimar coste/tiempo)
+}
 
-### 13.5 — UI: Página /estudiar
-- **Page**: `app/(dashboard)/estudiar/page.tsx`
-- **Vista**: Lista de temas del usuario (como /tests pero sin hacer test)
-- Click en tema → expande con bloques de ley disponibles
-- Cada bloque: si ya generado → muestra contenido markdown (prose). Si no → botón "Generar resumen" (solo premium)
-- Badge "Nuevo" en bloques sin generar, "Listo" en los generados
-- Al final de cada bloque: botón "Hacer test de este tema" → `/tests` prefiltrado
-- **Profundizar**: En cada artículo del resumen, icono de lupa → modal/drawer con input de pregunta + streaming response
-- **Sidebar/Navbar**: BookOpen icon + "Estudiar" (premium badge)
+// Mapa: ley → bloques
+export const AGRUPACIONES: Record<string, BloqueEstudio[]> = {
+  CE: [
+    { ley: 'CE', rango: 'Preliminar-9', titulo: 'Título Preliminar y valores superiores', articulosAprox: 9 },
+    { ley: 'CE', rango: '10-13', titulo: 'Derechos y Libertades — Principios generales', articulosAprox: 4 },
+    { ley: 'CE', rango: '14-29', titulo: 'Derechos Fundamentales y Libertades Públicas', articulosAprox: 16 },
+    { ley: 'CE', rango: '30-38', titulo: 'Derechos y deberes de los ciudadanos', articulosAprox: 9 },
+    { ley: 'CE', rango: '39-52', titulo: 'Principios rectores de la política social', articulosAprox: 14 },
+    { ley: 'CE', rango: '53-55', titulo: 'Garantías de las libertades y derechos', articulosAprox: 3 },
+    { ley: 'CE', rango: '56-65', titulo: 'La Corona', articulosAprox: 10 },
+    { ley: 'CE', rango: '66-96', titulo: 'Las Cortes Generales y el Gobierno', articulosAprox: 31 },
+    { ley: 'CE', rango: '97-107', titulo: 'Gobierno y Administración', articulosAprox: 11 },
+    { ley: 'CE', rango: '117-127', titulo: 'Poder Judicial', articulosAprox: 11 },
+    { ley: 'CE', rango: '137-158', titulo: 'Organización Territorial del Estado', articulosAprox: 22 },
+    { ley: 'CE', rango: '159-165', titulo: 'Tribunal Constitucional', articulosAprox: 7 },
+    { ley: 'CE', rango: '166-169', titulo: 'Reforma Constitucional', articulosAprox: 4 },
+  ],
+  LPAC: [
+    { ley: 'LPAC', rango: '1-12', titulo: 'Disposiciones generales y derechos', articulosAprox: 12 },
+    { ley: 'LPAC', rango: '13-28', titulo: 'Actividad de las Administraciones (capacidad, abstención, acceso)', articulosAprox: 16 },
+    { ley: 'LPAC', rango: '29-33', titulo: 'Obligación de resolver y silencio', articulosAprox: 5 },
+    { ley: 'LPAC', rango: '34-52', titulo: 'Acto administrativo (requisitos, eficacia, nulidad)', articulosAprox: 19 },
+    { ley: 'LPAC', rango: '53-67', titulo: 'Procedimiento administrativo común', articulosAprox: 15 },
+    { ley: 'LPAC', rango: '68-95', titulo: 'Iniciación, ordenación, instrucción, finalización', articulosAprox: 28 },
+    { ley: 'LPAC', rango: '96-105', titulo: 'Ejecución forzosa y sancionador', articulosAprox: 10 },
+    { ley: 'LPAC', rango: '106-126', titulo: 'Revisión de actos y recursos', articulosAprox: 21 },
+  ],
+  // ... resto de leyes: LRJSP, TREBEP, CP, FCSE, SEG_CIUDADANA, etc.
+  // Se completa durante implementación consultando legislacion.titulo_capitulo
+}
+```
 
-### 13.6 — Free tier
-- Free users ven la página /estudiar con todos los temas listados
-- Pueden ver resúmenes de los temas gratuitos (FREE_TEMA_NUMEROS: [1, 11, 17] para AGE, primeros 2-3 temas para cada oposición)
-- Resto: PremiumFeaturePreview con blurred content + CTA
-- "Profundizar" siempre premium (consume crédito)
+**Estimación total**: ~30-40 leyes × 5-10 bloques = ~200-300 bloques en toda la plataforma.
+**Generación**: on-demand. Solo se genera un bloque cuando un premium lo pide por primera vez.
 
-### 13.7 — Tests
-- Test unitario: agrupaciones cubren todos los temas de todas las oposiciones
-- Test unitario: endpoint retorna cacheado si existe
-- Test unitario: free user no puede generar
-- Test unitario: profundizar consume crédito
+### 13.3 — Resolver bloques por tema (`lib/estudiar/resolver.ts`)
+
+Función que dado un `temaId`, devuelve los bloques de estudio disponibles con su estado (generado o no).
+
+```typescript
+export interface BloqueConEstado {
+  ley: string
+  rango: string
+  titulo: string
+  tituloCompleto: string   // 'Constitución Española — Derechos Fundamentales (arts. 14-29)'
+  generado: boolean
+  contenido?: string       // solo si generado=true
+  articulosCount: number   // artículos reales en BD para este bloque
+}
+
+export async function resolverBloquesPorTema(
+  supabase: SupabaseClient,
+  temaId: string
+): Promise<BloqueConEstado[]>
+```
+
+**Lógica interna**:
+1. `SELECT DISTINCT ley_nombre FROM legislacion WHERE tema_ids @> ARRAY[temaId]` → leyes del tema
+2. Para cada ley, buscar en `AGRUPACIONES[ley]` los bloques que intersectan con los artículos taggeados
+3. `SELECT ley_nombre, rango, contenido FROM resumen_legislacion WHERE ley_nombre IN (...)` → qué ya está generado
+4. Merge y retornar array ordenado por ley + rango
+
+### 13.4 — Prompt de generación (`lib/estudiar/prompts.ts`)
+
+```typescript
+export const SYSTEM_ESTUDIAR = `Eres un profesor de oposiciones experto en legislación española.
+Tu tarea es crear un RESUMEN DIDÁCTICO de los artículos proporcionados.
+
+ESTRUCTURA OBLIGATORIA del resumen (~2000 palabras):
+1. **Contexto**: Para qué sirve esta sección de la ley (2-3 frases)
+2. **Conceptos clave**: Lista con definiciones claras
+3. **Esquema visual**: Estructura jerárquica del contenido (usar indentación markdown)
+4. **Artículos más preguntados**: Los 3-5 artículos que más caen en examen, con su contenido resumido
+5. **Trampas frecuentes**: Errores típicos en preguntas tipo test sobre estos artículos
+6. **Reglas mnemotécnicas**: Trucos para recordar plazos, cifras, excepciones
+7. **Conexiones**: Relación con otros artículos/leyes del temario
+
+REGLAS:
+- Usa lenguaje claro y directo, no académico
+- Resalta plazos y cifras en **negrita**
+- Cada concepto debe poder convertirse en una pregunta tipo test
+- NO copies el texto literal de los artículos — resume y explica
+- Incluye ejemplos prácticos cuando ayuden a entender`
+
+export function buildEstudiarPrompt(
+  leyNombre: string,
+  rango: string,
+  titulo: string,
+  articulos: { numero: string; texto_integro: string; titulo_capitulo: string }[]
+): string {
+  return `Resume los siguientes artículos de ${leyNombre} (${titulo}, arts. ${rango}):
+
+${articulos.map(a => `--- Artículo ${a.numero} [${a.titulo_capitulo}] ---\n${a.texto_integro}`).join('\n\n')}
+
+Genera el resumen didáctico siguiendo la estructura indicada.`
+}
+```
+
+### 13.5 — Endpoint generación on-demand (`POST /api/estudiar/generate`)
+
+- **Archivo**: `app/api/estudiar/generate/route.ts`
+- **Input**: `{ ley: string, rango: string }` (validado con Zod)
+- **Auth**: requiere usuario autenticado
+- **Gating**: requiere premium (`checkPaidAccess`) para generar nuevos. Free users solo ven los pre-generados.
+- **Flujo**:
+  1. Validar input con Zod schema
+  2. Check si ya existe en `resumen_legislacion` → **si existe, retornar contenido cacheado** (sin auth premium)
+  3. Check usuario es premium (`checkPaidAccess(serviceClient, userId, oposicionId)`)
+  4. Si no premium → 402 con `code: 'PAYWALL_ESTUDIAR'`
+  5. Fetch artículos: `SELECT * FROM legislacion WHERE ley_nombre = $ley AND articulo_numero::int BETWEEN $min AND $max`
+  6. Si 0 artículos → 404
+  7. Llamar `callAI(buildEstudiarPrompt(...), { systemPrompt: SYSTEM_ESTUDIAR, maxTokens: 4000 })`
+  8. INSERT en `resumen_legislacion` via `createServiceClient()`
+  9. Retornar `{ contenido, titulo, ley, rango, cached: false }`
+- **Coste por generación**: ~$0.02-0.05 (input: artículos, output: ~2000 palabras)
+- **NO consume crédito IA del usuario** — es contenido compartido, beneficia a toda la comunidad
+- **Concurrencia**: `INSERT ... ON CONFLICT DO NOTHING` + retry SELECT si conflict (evita generar 2x)
+- **Rate limit**: 5 generaciones/día por usuario (anti-abuse, no debería llegar nunca)
+
+### 13.6 — Endpoint "Profundizar" (`POST /api/estudiar/profundizar/stream`)
+
+- **Archivo**: `app/api/estudiar/profundizar/stream/route.ts`
+- **Input**: `{ ley: string, articuloNumero: string, pregunta: string }` (Zod)
+- **Auth**: premium + 1 crédito IA disponible
+- **Flujo**:
+  1. Validar input
+  2. Check premium
+  3. Consumir 1 crédito (`use_correction` RPC para pagados, `use_free_correction` para free con créditos restantes)
+  4. Fetch artículo: `SELECT * FROM legislacion WHERE ley_nombre = $ley AND articulo_numero = $num LIMIT 1`
+  5. Fetch contexto amplio: artículos adyacentes (±3) para dar contexto
+  6. `callAIStream(SYSTEM_PROFUNDIZAR, buildProfundizarPrompt(articulo, pregunta, contexto))`
+  7. Retornar streaming SSE
+- **NO se cachea** — respuesta personalizada por pregunta del usuario
+- **Coste**: ~$0.02/consulta, 1 crédito IA
+- **Log**: `api_usage_log` con endpoint='estudiar/profundizar'
+
+```typescript
+export const SYSTEM_PROFUNDIZAR = `Eres un tutor de oposiciones. El alumno tiene una duda sobre un artículo concreto.
+
+RESPONDE en este orden:
+1. **Respuesta directa** a la pregunta (2-3 frases)
+2. **Explicación detallada** con el texto legal relevante
+3. **Ejemplo práctico** o caso real
+4. **Pregunta tipo test** que podría caer sobre esto (con 4 opciones y respuesta correcta)
+5. **Conexión** con otros artículos relacionados del temario
+
+Sé claro, directo y orientado al examen.`
+```
+
+### 13.7 — UI: Página `/estudiar` (Server Component + Client islands)
+
+**Archivos**:
+- `app/(dashboard)/estudiar/page.tsx` — Server Component principal
+- `components/estudiar/BloqueEstudio.tsx` — Client Component por bloque (expandible)
+- `components/estudiar/ProfundizarDrawer.tsx` — Drawer con input + streaming
+- `components/estudiar/GenerarResumenButton.tsx` — Botón con loading state
+
+**Estructura de la página**:
+```
+/estudiar
+├── Header: "Estudiar [Oposición]" + descripción
+├── Barra progreso: "12 de 28 temas con material disponible"
+├── Lista de temas (agrupados por bloque si aplica):
+│   ├── Tema 1: Constitución Española
+│   │   ├── [▸] CE arts. 1-9: Título Preliminar           ✅ Disponible
+│   │   ├── [▸] CE arts. 14-29: Derechos Fundamentales    ✅ Disponible
+│   │   └── [▸] CE arts. 53-55: Garantías                 🔄 Generar resumen
+│   ├── Tema 2: Organización del Estado
+│   │   └── ...
+│   └── [Bloqueo premium para temas >2-3]
+└── CTA: "Desbloquea todos los temas" (si free)
+```
+
+**Comportamiento del bloque expandido**:
+- Click en bloque → expande/colapsa con animación
+- Si `generado=true`: muestra contenido markdown con `prose` (Tailwind typography)
+- Si `generado=false` y premium: botón "Generar resumen" → loading → aparece contenido
+- Si `generado=false` y free: blur + CTA paywall
+- Al final del contenido: botón "Hacer test de este tema" → link a `/tests?tema=UUID`
+- En cada sección del resumen: icono lupa "Profundizar" → abre drawer lateral
+
+**Sidebar/Navbar**: `BookOpen` icon + label "Estudiar" + badge `PRO`
+
+### 13.8 — Free tier gating
+
+- **Temas gratuitos**: Los mismos que ya tienen tests gratuitos (definidos por oposición)
+  - AGE: temas con `numero IN (1, 11, 17)` (FREE_TEMA_NUMEROS en `lib/freemium.ts`)
+  - Seguridad: primeros 2 temas de cada oposición
+  - Otras ramas: 2-3 primeros temas
+- **Bloques pre-generados** (coste ~$0.10, one-time):
+  - `CE arts. 14-29` (Derechos Fundamentales) — el bloque más universal
+  - `LPAC arts. 53-67` (Procedimiento administrativo) — otro clásico
+  - Ambos se generan al hacer deploy, script `execution/seed-estudiar.ts`
+- **Free users**: Ven todos los temas listados, pueden abrir los 2-3 gratuitos con contenido real.
+  Resto: blurred con `PremiumFeaturePreview` + CTA.
+- **Profundizar**: Siempre premium (consume 1 crédito IA). Free users ven el icono pero al click → paywall.
+
+### 13.9 — Seed script (`execution/seed-estudiar.ts`)
+
+Script one-time para pre-generar los 2 bloques gratuitos:
+```bash
+pnpm tsx execution/seed-estudiar.ts
+# Genera: CE 14-29, LPAC 53-67
+# Coste: ~$0.10
+```
+
+### 13.10 — Conocimiento técnico (temas sin legislación)
+
+Algunos temas no tienen artículos en `legislacion` sino en `conocimiento_tecnico` (ej: Bloque II ofimática, temas de geografía vasca, psicología, etc.).
+
+**Solución**: `resolverBloquesPorTema()` también consulta `conocimiento_tecnico`:
+- Si tema tiene artículos en `legislacion` → bloques de ley
+- Si tema tiene secciones en `conocimiento_tecnico` → mostrar directamente esas secciones (ya son resúmenes didácticos de ~2000 palabras cada una)
+- Si tiene ambos → mostrar todo
+- Si no tiene nada → badge "Material en preparación"
+
+Esto es gratis porque `conocimiento_tecnico` ya está generado e ingestado.
+
+### 13.11 — Tests unitarios
+
+| Test | Qué verifica |
+|------|-------------|
+| `agrupaciones-completitud` | Todas las leyes en AGRUPACIONES tienen bloques válidos |
+| `resolver-temas` | `resolverBloquesPorTema` retorna bloques correctos para temas con/sin legislación |
+| `resolver-conocimiento` | Temas de Bloque II retornan secciones de `conocimiento_tecnico` |
+| `generate-cached` | Si resumen existe, retorna cacheado sin llamar a IA |
+| `generate-premium-only` | Free user recibe 402 al intentar generar |
+| `generate-concurrent` | 2 requests simultáneos no generan duplicado (ON CONFLICT) |
+| `profundizar-credito` | Consume 1 crédito y genera streaming |
+| `profundizar-sin-credito` | Sin créditos → 402 |
+| `free-temas` | Free user puede ver bloques de temas gratuitos |
+| `free-bloqueado` | Free user ve paywall en temas no gratuitos |
 
 ### Flujo usuario completo
+
 ```
-Usuario premium → /estudiar → elige "Tema 3: LPAC"
-→ Ve bloques: "Procedimiento común (arts. 53-67)" [No generado]
-→ Click "Generar resumen" → loading 5s → resumen aparece
-→ Lee el resumen → no entiende art. 58 (notificaciones)
-→ Click lupa → "¿Cuándo se considera notificación rechazada?"
-→ Streaming: explicación detallada + ejemplo de pregunta tipo examen
-→ Entiende → Click "Hacer test de este tema" → test
-→ Falla 2 preguntas sobre notificaciones → vuelve a /estudiar
+PREMIUM:
+/estudiar → Lista temas de su oposición
+→ Tema 3: LPAC → expande
+→ "Procedimiento común (arts. 53-67)" [✅ ya generado por otro usuario]
+→ Lee resumen: conceptos, esquema, artículos clave, trampas, mnemotécnicas
+→ No entiende art. 58 (notificaciones) → click lupa "Profundizar"
+→ Drawer: "¿Cuándo se considera notificación rechazada?" → streaming IA
+→ Entiende → click "Hacer test del Tema 3" → /tests?tema=UUID
+→ Falla 2 preguntas sobre notificaciones → vuelve a /estudiar/tema-3
+
+FREE:
+/estudiar → Ve lista completa de temas
+→ Tema 1 (gratis) → puede leer resúmenes
+→ Tema 4 (bloqueado) → preview borroso + "Desbloquea con Pack [Oposición]"
 ```
 
 ### Coste total
-- **Generación inicial**: $0 (lo generan los usuarios on-demand)
-- **Coste por bloque**: ~$0.02-0.05 (una vez, luego $0 para siempre)
-- **Coste máximo si se generan todos**: ~80 bloques × $0.05 = $4 (pagado por los propios premium)
-- **Profundizar**: ~$0.02/consulta (pagado con créditos IA del usuario)
-- **Margen**: 100% (los usuarios pagan los créditos que consumen)
+
+| Concepto | Coste | Frecuencia |
+|----------|-------|-----------|
+| Pre-seed 2 bloques free | ~$0.10 | One-time |
+| Cada bloque nuevo (premium genera) | ~$0.02-0.05 | Una vez, luego $0 |
+| Si se generan TODOS los ~250 bloques | ~$8-12 | Pagado por los usuarios premium |
+| Profundizar | ~$0.02/consulta | Pagado con créditos IA del usuario |
+| **Coste para Aritz al lanzar** | **~$0.10** | |
 
 ### Orden de ejecución
+
 ```
-13.1 (migration) ──────────+
-13.2 (agrupaciones) ───────+── paralelo
-                            |
-13.3 (endpoint generate) ──+
-13.4 (endpoint profundizar) +── paralelo
-                            |
-13.5 (UI /estudiar) ───────+
-13.6 (free tier gating) ───+── paralelo
-                            |
-13.7 (tests) ──────────────+
+13.1  (migration) ─────────────+
+13.2  (agrupaciones.ts) ───────+── paralelo
+13.3  (resolver.ts) ───────────+
+                                |
+13.4  (prompts.ts) ────────────+
+13.5  (endpoint generate) ─────+── paralelo
+13.6  (endpoint profundizar) ──+
+                                |
+13.7  (UI /estudiar) ──────────+
+13.8  (free tier gating) ──────+── paralelo
+                                |
+13.9  (seed 2 bloques free) ───+── PAUSA: Aritz ejecuta con .env.local
+13.10 (conocimiento_tecnico) ──+── integrar en resolver
+                                |
+13.11 (tests) ─────────────────+
 ```
