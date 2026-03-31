@@ -619,11 +619,11 @@ export async function POST(request: NextRequest) {
             const hash = computeHash(p.enunciado)
             const legalKey = buildLegalKey(temaId, p.cita, correctText)
             const opciones = Array.isArray(p.opciones)
-              ? { a: p.opciones[0], b: p.opciones[1], c: p.opciones[2], d: p.opciones[3] }
+              ? Object.fromEntries(p.opciones.map((o, i) => [String.fromCharCode(97 + i), o]))
               : p.opciones
 
             // Convert numeric correcta (0-3) to char ('a'-'d') for question_bank schema
-            const correctaChar = ['a', 'b', 'c', 'd'][typeof p.correcta === 'number' ? p.correcta : 0] ?? 'a'
+            const correctaChar = String.fromCharCode(97 + (typeof p.correcta === 'number' ? p.correcta : 0))
 
             bankInsertBatch.push({
               oposicion_id: oposicionId,

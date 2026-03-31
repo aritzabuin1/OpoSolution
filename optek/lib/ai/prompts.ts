@@ -96,6 +96,33 @@ ${OPCION_RULE}`
 ${OPCION_RULE}`
   }
 
+  if (lower.includes('ertzaintza')) {
+    return `ESTILO ERTZAINTZA (Agente, BOPV):
+- Enunciados de ~20 palabras. Contenido: legislación vasca + estatal compartida.
+- Opciones de ~10 palabras cada una, frases completas. 4 opciones (A/B/C/D).
+- Penalización -1/3. Número de preguntas variable (decide tribunal, ~40).
+- Cita Estatuto de Gernika, LOFCS, Ley Policía PV, legislación estatal cuando aplique.
+${OPCION_RULE}`
+  }
+
+  if (lower.includes('guardia civil')) {
+    return `ESTILO GUARDIA CIVIL (Escala de Cabos y Guardias, BOE):
+- Enunciados de ~22 palabras. Estilo formal-militar.
+- Opciones de ~10 palabras cada una, frases completas. 4 opciones (A/B/C/D).
+- Penalización -1/3. 100 preguntas + 5 reserva.
+- Cita CE, LOFCS, Ley Seguridad Ciudadana, legislación penal y procesal.
+${OPCION_RULE}`
+  }
+
+  if (lower.includes('policía nacional') || lower.includes('policia nacional')) {
+    return `ESTILO POLICÍA NACIONAL (Escala Básica, BOE):
+- Enunciados de ~20 palabras. IMPORTANTE: Solo 3 opciones (A/B/C), NO 4.
+- Opciones de ~12 palabras cada una, frases completas.
+- Penalización -1/2 (más severa que otras oposiciones). 100 preguntas.
+- Cita CE, LOFCS, Ley Seguridad Ciudadana, CP, LECrim.
+${OPCION_RULE}`
+  }
+
   // AGE C1/C2 (default)
   return `ESTILO AGE (calibrado con ~591 preguntas oficiales INAP):
 - C2: opciones de ~7 palabras. C1: opciones de ~11 palabras.
@@ -103,13 +130,24 @@ ${OPCION_RULE}`
 ${OPCION_RULE}`
 }
 
-/** Parameterized system prompt for MCQ generation — accepts oposición name */
-export function getSystemGenerateTest(oposicionNombre: string): string {
+/** Parameterized system prompt for MCQ generation — accepts oposición name and option count */
+export function getSystemGenerateTest(oposicionNombre: string, numOpciones: 3 | 4 = 4): string {
   // §Q.1: Per-rama style hint (first line after role)
   const ramaHint = getRamaStyleHint(oposicionNombre)
+
+  const correctaRange = numOpciones === 3 ? '0, 1 o 2' : '0, 1, 2 o 3'
+  const letras = numOpciones === 3 ? 'A, B, C' : 'A, B, C, D'
+  const distribucion = numOpciones === 3
+    ? 'cada posición (A, B, C) debería aparecer como correcta ~33% de las veces'
+    : 'cada posición (A, B, C, D) debería aparecer como correcta 2-3 veces'
+  const opcionesEjemplo = numOpciones === 3
+    ? '["...", "...", "..."]'
+    : '["...", "...", "...", "..."]'
+
   return `Eres un experto en oposiciones españolas.
 Tu tarea es generar preguntas tipo test de opción múltiple (MCQ) para el examen de ${oposicionNombre}.
 ${ramaHint}
+Cada pregunta tiene exactamente ${numOpciones} opciones de respuesta (${letras}).
 
 REGLAS OBLIGATORIAS:
 1. SOLO usa información del CONTEXTO LEGISLATIVO proporcionado. Nunca inventes artículos ni datos.
@@ -120,19 +158,20 @@ REGLAS OBLIGATORIAS:
 6. Dificultad: sigue las instrucciones del usuario (fácil/media/difícil).
 7. Los plazos, números y porcentajes deben ser EXACTAMENTE los del texto legal.
 8. CRÍTICO: Genera EXACTAMENTE el número de preguntas indicado. Ni una más, ni una menos.
-9. El campo "correcta" DEBE ser un número entero: 0, 1, 2 o 3 (no una cadena de texto).
+9. El campo "correcta" DEBE ser un número entero: ${correctaRange} (no una cadena de texto).
 10. NUNCA hagas referencia a imágenes, esquemas ni gráficos. Si mencionas una tabla, asegúrate de que su contenido aparece en el contexto legislativo proporcionado.
 11. CALIDAD DE REDACCIÓN: Revisa cada enunciado y cada opción antes de incluirlos. No repitas palabras consecutivas ("se se", "el el", "de de"). Las frases deben ser gramaticalmente correctas en español.
+12. Cada pregunta DEBE tener exactamente ${numOpciones} opciones en el array "opciones".
 
 DISTRIBUCIÓN DE RESPUESTAS CORRECTAS:
-CRÍTICO: La respuesta correcta DEBE variar entre 0, 1, 2 y 3 de forma equilibrada. NO pongas siempre la misma posición. En un test de 10 preguntas, cada posición (A, B, C, D) debería aparecer como correcta 2-3 veces. NUNCA generes un test donde todas las correctas sean la misma opción.
+CRÍTICO: La respuesta correcta DEBE variar entre ${correctaRange} de forma equilibrada. NO pongas siempre la misma posición. En un test de 10 preguntas, ${distribucion}. NUNCA generes un test donde todas las correctas sean la misma opción.
 
 FORMATO DE RESPUESTA (JSON estricto):
 {
   "preguntas": [
     {
       "enunciado": "Primera pregunta...",
-      "opciones": ["...", "...", "...", "..."],
+      "opciones": ${opcionesEjemplo},
       "correcta": 2,
       "explicacion": "...",
       "dificultad": "media",
@@ -140,27 +179,11 @@ FORMATO DE RESPUESTA (JSON estricto):
     },
     {
       "enunciado": "Segunda pregunta...",
-      "opciones": ["...", "...", "...", "..."],
+      "opciones": ${opcionesEjemplo},
       "correcta": 0,
       "explicacion": "...",
       "dificultad": "media",
       "cita": { "ley": "CE", "articulo": "14", "textoExacto": "..." }
-    },
-    {
-      "enunciado": "Tercera pregunta...",
-      "opciones": ["...", "...", "...", "..."],
-      "correcta": 3,
-      "explicacion": "...",
-      "dificultad": "media",
-      "cita": { "ley": "TREBEP", "articulo": "52", "textoExacto": "..." }
-    },
-    {
-      "enunciado": "Cuarta pregunta...",
-      "opciones": ["...", "...", "...", "..."],
-      "correcta": 1,
-      "explicacion": "...",
-      "dificultad": "media",
-      "cita": { "ley": "LRJSP", "articulo": "3", "textoExacto": "..." }
     }
   ]
 }

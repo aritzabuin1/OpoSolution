@@ -14,7 +14,7 @@ export interface VerificationResult {
 
 export interface Pregunta {
   enunciado: string
-  opciones: [string, string, string, string]
+  opciones: [string, string, string] | [string, string, string, string]
   correcta: 0 | 1 | 2 | 3
   explicacion: string
   /** Cita legal verificada. Ausente en preguntas psicotécnicas. */

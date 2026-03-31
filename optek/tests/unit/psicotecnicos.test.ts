@@ -71,7 +71,7 @@ describe('§1.3B.8 — 100 preguntas numéricas: respuesta correcta matemáticam
       const a = parseInt(aStr), b = parseInt(bStr), c = parseInt(cStr)
 
       const expected = (a * b) / c
-      const actual = parseOpcionNumero(q.opciones[q.correcta])
+      const actual = parseOpcionNumero((q.opciones as string[])[q.correcta])
       expect(actual).toBeCloseTo(expected, 5)
     }
   })
@@ -88,7 +88,7 @@ describe('§1.3B.8 — 100 preguntas numéricas: respuesta correcta matemáticam
       const pct = parseInt(m[1]), base = parseInt(m[2])
 
       const expected = (pct * base) / 100
-      const actual = parseOpcionNumero(q.opciones[q.correcta])
+      const actual = parseOpcionNumero((q.opciones as string[])[q.correcta])
       expect(actual).toBeCloseTo(expected, 5)
     }
   })
@@ -105,7 +105,7 @@ describe('§1.3B.8 — 100 preguntas numéricas: respuesta correcta matemáticam
       const x = parseInt(m[1]), y = parseInt(m[2]), z = parseInt(m[3])
 
       const expected = (x * z) / y
-      const actual = parseOpcionNumero(q.opciones[q.correcta])
+      const actual = parseOpcionNumero((q.opciones as string[])[q.correcta])
       expect(actual).toBeCloseTo(expected, 5)
     }
   })
@@ -122,7 +122,7 @@ describe('§1.3B.8 — 100 preguntas numéricas: respuesta correcta matemáticam
       const precio = parseInt(m[1]), desc = parseInt(m[2])
 
       const expected = precio * (100 - desc) / 100
-      const actual = parseOpcionNumero(q.opciones[q.correcta])
+      const actual = parseOpcionNumero((q.opciones as string[])[q.correcta])
       expect(actual).toBeCloseTo(expected, 5)
     }
   })
@@ -153,7 +153,7 @@ describe('§1.3B.9 — 50 series: el siguiente número sigue el patrón declarad
         expect(terms[j] - terms[j - 1]).toBeCloseTo(diff, 5)
       }
       const expected = terms[4] + diff
-      const actual = parseOpcionNumero(q.opciones[q.correcta])
+      const actual = parseOpcionNumero((q.opciones as string[])[q.correcta])
       expect(actual).toBeCloseTo(expected, 5)
     }
   })
@@ -172,7 +172,7 @@ describe('§1.3B.9 — 50 series: el siguiente número sigue el patrón declarad
         expect(terms[j] / terms[j - 1]).toBeCloseTo(ratio, 3)
       }
       const expected = terms[4] * ratio
-      const actual = parseOpcionNumero(q.opciones[q.correcta])
+      const actual = parseOpcionNumero((q.opciones as string[])[q.correcta])
       expect(actual).toBeCloseTo(expected, 3)
     }
   })
@@ -190,7 +190,7 @@ describe('§1.3B.9 — 50 series: el siguiente número sigue el patrón declarad
         expect(terms[j]).toBeCloseTo(terms[j - 2] + terms[j - 1], 5)
       }
       const expected = terms[3] + terms[4]
-      const actual = parseOpcionNumero(q.opciones[q.correcta])
+      const actual = parseOpcionNumero((q.opciones as string[])[q.correcta])
       expect(actual).toBeCloseTo(expected, 5)
     }
   })

@@ -25,28 +25,42 @@ export const CitaLegalSchema = z.object({
 
 // ─── Pregunta MCQ ─────────────────────────────────────────────────────────────
 
-export const PreguntaSchema = z.object({
-  enunciado: z.string().min(10),
-  opciones: z.tuple([z.string(), z.string(), z.string(), z.string()]),
-  // z.preprocess: reasoning models devuelven "0"|"1"|"2"|"3" (string) → coerce a number primero
-  correcta: z.preprocess(
-    (val) => (typeof val === 'string' ? parseInt(val, 10) : val),
-    z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)])
-  ),
-  explicacion: z.string().min(10),
-  /** Cita legal verificada. Ausente en preguntas de Bloque II (ofimática) y psicotécnicas. */
-  cita: CitaLegalSchema.optional(),
-  /** Dificultad individual de la pregunta (disponible desde prompt v1.8.0) */
-  dificultad: z.preprocess(
-    (val) => {
-      if (typeof val !== 'string') return val
-      // Normalize accented variants from AI: "fácil"→"facil", "difícil"→"dificil"
-      return val.toLowerCase()
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // strip diacritics
-    },
-    z.enum(['facil', 'media', 'dificil']).optional()
-  ),
-})
+/** Factory: creates a Pregunta Zod schema for the given number of options. */
+export function getPreguntaSchema(numOpciones: 3 | 4 = 4) {
+  const opcionesTuple = numOpciones === 3
+    ? z.tuple([z.string(), z.string(), z.string()])
+    : z.tuple([z.string(), z.string(), z.string(), z.string()])
+
+  const correctaUnion = numOpciones === 3
+    ? z.union([z.literal(0), z.literal(1), z.literal(2)])
+    : z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)])
+
+  return z.object({
+    enunciado: z.string().min(10),
+    opciones: opcionesTuple,
+    correcta: z.preprocess(
+      (val) => (typeof val === 'string' ? parseInt(val, 10) : val),
+      correctaUnion
+    ),
+    explicacion: z.string().min(10),
+    cita: CitaLegalSchema.optional(),
+    dificultad: z.preprocess(
+      (val) => {
+        if (typeof val !== 'string') return val
+        return val.toLowerCase()
+          .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      },
+      z.enum(['facil', 'media', 'dificil']).optional()
+    ),
+  })
+}
+
+/** Default 4-option schema (backward compatible). */
+export const PreguntaSchema = getPreguntaSchema(4)
+
+// Keep backward-compatible alias used by z.infer
+export const PreguntaSchema4 = PreguntaSchema
+export const PreguntaSchema3 = getPreguntaSchema(3)
 
 // ─── Test generado (§1.6.6) ──────────────────────────────────────────────────
 
@@ -54,9 +68,13 @@ export const PreguntaSchema = z.object({
  * Schema para la respuesta completa de generate-test.
  * Claude devuelve un objeto con un array de preguntas.
  */
-export const TestGeneradoRawSchema = z.object({
-  preguntas: z.array(PreguntaSchema).min(1).max(30),
-})
+export function getTestGeneradoRawSchema(numOpciones: 3 | 4 = 4) {
+  return z.object({
+    preguntas: z.array(getPreguntaSchema(numOpciones)).min(1).max(30),
+  })
+}
+
+export const TestGeneradoRawSchema = getTestGeneradoRawSchema(4)
 
 // ─── Corrección de desarrollo (§1.6.6) ───────────────────────────────────────
 

@@ -127,6 +127,13 @@ async function handleStripeEvent(
         pack_triple_justicia: 'pack_oposicion',
         pack_hacienda: 'pack_oposicion',
         pack_penitenciarias: 'pack_oposicion',
+        pack_ertzaintza: 'pack_oposicion',
+        pack_guardia_civil: 'pack_oposicion',
+        pack_policia_nacional: 'pack_oposicion',
+        pack_doble_gc_pn: 'pack_oposicion',
+        pack_personalidad: 'pack_oposicion',
+        pack_completo_seguridad: 'pack_oposicion',
+        pack_doble_gc_pn_personalidad: 'pack_oposicion',
         recarga: 'pack_oposicion',
       }
       const dbTipo = TIER_TO_DB_TIPO[tier] ?? 'pack_oposicion'

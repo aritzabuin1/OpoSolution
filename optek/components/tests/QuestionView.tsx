@@ -57,7 +57,7 @@ function getOpcionClass(
   return `${base} border-border bg-background opacity-60`
 }
 
-const LETRAS = ['A', 'B', 'C', 'D'] as const
+const getLetter = (i: number) => String.fromCharCode(65 + i)
 
 // ─── Componente ──────────────────────────────────────────────────────────────
 
@@ -108,7 +108,7 @@ export function QuestionView({
                         : 'border-border bg-muted text-muted-foreground'
                 }`}
               >
-                {LETRAS[i]}
+                {getLetter(i)}
               </span>
               <span className="flex-1 leading-snug">{opcion}</span>
             </button>

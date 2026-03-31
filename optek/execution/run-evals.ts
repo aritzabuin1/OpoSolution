@@ -170,7 +170,7 @@ function scoreGenerateTest(
         (p) =>
           typeof p.enunciado === 'string' &&
           Array.isArray(p.opciones) &&
-          p.opciones.length === 4 &&
+          p.opciones.length >= 3 && p.opciones.length <= 4 &&
           typeof p.correcta === 'number'
       )
     isValid ? aprobados.push('formato_valido') : fallados.push('formato_valido')
@@ -234,9 +234,9 @@ function scoreGenerateTest(
     type PregOps = { opciones?: unknown[] }
     const preguntas = (output as { preguntas: PregOps[] }).preguntas
     const plausibles = preguntas.filter(p => {
-      if (!Array.isArray(p.opciones) || p.opciones.length !== 4) return false
+      if (!Array.isArray(p.opciones) || p.opciones.length < 3 || p.opciones.length > 4) return false
       const ops = p.opciones as string[]
-      const distinct = new Set(ops.map(o => String(o).toLowerCase().trim())).size === 4
+      const distinct = new Set(ops.map(o => String(o).toLowerCase().trim())).size === ops.length
       const longEnough = ops.every(o => typeof o === 'string' && o.trim().length >= 3)
       return distinct && longEnough
     })

@@ -1,5 +1,12 @@
 # PLAN: Rama "Seguridad" — Ertzaintza + Guardia Civil + Policia Nacional
 
+## Naming
+
+- **Slug interno / rama BD / rutas**: `seguridad`
+- **Nombre display (usuario)**: **"Fuerzas y Cuerpos de Seguridad"**
+- **NO usar "FCSE"** (Fuerzas y Cuerpos de Seguridad del Estado) — excluye a Ertzaintza (policia autonomica)
+- Base legal: LO 2/1986 distingue FCSE (GC+PN) vs Policias Autonomicas (Ertzaintza, Mossos...). El termino paraguas que engloba a todas es **FCS** (sin "del Estado")
+
 ## Context
 
 OpoRuta tiene 5 ramas y 9 oposiciones. Anadimos rama **"Seguridad"** con 3 oposiciones.
@@ -29,17 +36,18 @@ TAM combinado: ~70.000-80.000 aspirantes/ano. Legislacion compartida significati
 
 | Producto | Precio | Creditos IA | Tipo |
 |----------|--------|-------------|------|
-| Pack Ertzaintza (conocimientos) | 79,99EUR | 20 analisis | Pago unico |
-| Pack Guardia Civil (conocimientos) | 79,99EUR | 20 analisis | Pago unico |
-| Pack Policia Nacional (conocimientos) | 79,99EUR | 20 analisis | Pago unico |
-| Pack Doble GC+PN (conocimientos) | 129,99EUR | 30 analisis | Pago unico |
-| **Pack Personalidad Policial** | **49,99EUR** | **15 sesiones IA** | **Pago unico** |
-| **Pack Completo** (conocimientos + personalidad) | **119,99EUR** | 20 analisis + 15 sesiones | Pago unico |
-| **Pack Doble GC+PN + Personalidad** | **159,99EUR** | 30 analisis + 15 sesiones | Pago unico |
-| Recarga analisis | 9,99EUR | +10 analisis | **Recurrente** |
-| **Recarga personalidad** | **9,99EUR** | **+10 sesiones IA** | **Recurrente** |
+| Pack Ertzaintza (conocimientos) | 79,99EUR | 20 creditos IA | Pago unico |
+| Pack Guardia Civil (conocimientos) | 79,99EUR | 20 creditos IA | Pago unico |
+| Pack Policia Nacional (conocimientos) | 79,99EUR | 20 creditos IA | Pago unico |
+| Pack Doble GC+PN (conocimientos) | 129,99EUR | 30 creditos IA | Pago unico |
+| **Pack Personalidad Policial** | **49,99EUR** | **15 creditos IA** | **Pago unico** |
+| **Pack Completo** (conocimientos + personalidad) | **119,99EUR** | 35 creditos IA | Pago unico |
+| **Pack Doble GC+PN + Personalidad** | **159,99EUR** | 45 creditos IA | Pago unico |
+| Recarga creditos IA | 9,99EUR | +10 creditos IA | **Recurrente** |
 
-**Ingresos recurrentes**: Las recargas de personalidad son el motor. Un usuario que practica entrevistas simuladas intensivamente (15-20 sesiones antes del examen) comprara 1-2 recargas (9,99EUR cada una). El modulo de personalidad es transversal — sirve para Ertzaintza, GC y PN.
+**DECISION**: Pool de creditos IA UNIFICADO (`corrections_balance`). No hay recarga separada de personalidad. La recarga de 9,99EUR ya existente sirve para TODO: tutor IA, explicar errores, sesiones de personalidad, coaching, etc. Un solo producto de recarga = menos friccion para el usuario y menos productos que gestionar en Stripe.
+
+**Ingresos recurrentes**: La recarga unica de 9,99EUR sirve para todas las funcionalidades. Un usuario que practica entrevistas simuladas intensivamente comprara recargas del pool universal. El modulo de personalidad es transversal — sirve para Ertzaintza, GC y PN.
 
 ---
 
@@ -71,7 +79,7 @@ ad000000-0000-0000-0000-000000000001  -> Policia Nacional
 
 ---
 
-## FASE 0 — Soporte 3 opciones (cross-cutting, solo PN)
+## FASE 0 — Soporte 3 opciones (cross-cutting, solo PN) ✅ COMPLETADA
 
 Solo Policia Nacional usa 3 opciones. Todos los demas siguen con 4.
 Estrategia: `num_opciones` en `scoring_config` BD. Default = 4. Solo PN = 3.
@@ -132,7 +140,7 @@ Estrategia: `num_opciones` en `scoring_config` BD. Default = 4. Solo PN = 3.
 
 ---
 
-## FASE 1 — Migration SQL
+## FASE 1 — Migration SQL ✅ COMPLETADA
 
 ### 1.1 — Migration `20260331_069_seguridad.sql`
 - **Archivo**: `optek/supabase/migrations/20260331_069_seguridad.sql`
@@ -178,7 +186,7 @@ Estrategia: `num_opciones` en `scoring_config` BD. Default = 4. Solo PN = 3.
 
 ---
 
-## FASE 2 — Constantes y mapeos (10 archivos)
+## FASE 2 — Constantes y mapeos (10 archivos) ✅ COMPLETADA
 
 ### 2.1 — `lib/stripe/client.ts`
 - 3 UUID constants + STRIPE_PRICES (7 tiers: 3 individuales + doble + personalidad + completo + doble_completo) + CORRECTIONS_GRANTED + TIER_TO_OPOSICION

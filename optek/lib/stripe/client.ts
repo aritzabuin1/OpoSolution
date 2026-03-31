@@ -44,7 +44,15 @@ export const STRIPE_PRICES = {
   pack_hacienda:  process.env.STRIPE_PRICE_PACK_HACIENDA  ?? '', // 49.99€ → Agente Hacienda C1
   // Penitenciarias
   pack_penitenciarias: process.env.STRIPE_PRICE_PACK_PENITENCIARIAS ?? '', // 49.99€ → Ayudante IIPP C1
-  // Recarga única
+  // Seguridad (Fuerzas y Cuerpos de Seguridad)
+  pack_ertzaintza:     process.env.STRIPE_PRICE_PACK_ERTZAINTZA     ?? '', // 79.99€ → Ertzaintza
+  pack_guardia_civil:  process.env.STRIPE_PRICE_PACK_GUARDIA_CIVIL  ?? '', // 79.99€ → Guardia Civil
+  pack_policia_nacional: process.env.STRIPE_PRICE_PACK_POLICIA_NACIONAL ?? '', // 79.99€ → Policía Nacional
+  pack_doble_gc_pn:    process.env.STRIPE_PRICE_PACK_DOBLE_GC_PN    ?? '', // 129.99€ → GC + PN
+  pack_personalidad:   process.env.STRIPE_PRICE_PACK_PERSONALIDAD   ?? '', // 49.99€ → Personalidad Policial
+  pack_completo_seguridad: process.env.STRIPE_PRICE_PACK_COMPLETO_SEGURIDAD ?? '', // 119.99€ → oposición + personalidad
+  pack_doble_gc_pn_personalidad: process.env.STRIPE_PRICE_PACK_DOBLE_GC_PN_PERSONALIDAD ?? '', // 159.99€ → GC+PN + personalidad
+  // Recarga única (pool unificado — sirve para tutor IA, personalidad, etc.)
   recarga:        process.env.STRIPE_PRICE_RECARGA        ?? '', //   9.99€ → +10 créditos IA
 } as const
 
@@ -71,6 +79,14 @@ export const CORRECTIONS_GRANTED: Record<StripePriceTier, number> = {
   pack_hacienda:  20,
   // Penitenciarias
   pack_penitenciarias: 20,
+  // Seguridad
+  pack_ertzaintza:     20,
+  pack_guardia_civil:  20,
+  pack_policia_nacional: 20,
+  pack_doble_gc_pn:    30,
+  pack_personalidad:   15,  // 15 créditos IA (para sesiones personalidad)
+  pack_completo_seguridad: 35,  // 20 base + 15 personalidad
+  pack_doble_gc_pn_personalidad: 45,  // 30 base + 15 personalidad
   // Recarga
   recarga:        10,
 }
@@ -90,6 +106,10 @@ export const GESTION_J_OPOSICION_ID = 'e2000000-0000-0000-0000-000000000001'
 // Hacienda + Penitenciarias IDs (migration 064)
 export const HACIENDA_OPOSICION_ID = 'f0000000-0000-0000-0000-000000000001'
 export const PENITENCIARIAS_OPOSICION_ID = 'f1000000-0000-0000-0000-000000000001'
+// Seguridad IDs (migration 069)
+export const ERTZAINTZA_OPOSICION_ID = 'ab000000-0000-0000-0000-000000000001'
+export const GUARDIA_CIVIL_OPOSICION_ID = 'ac000000-0000-0000-0000-000000000001'
+export const POLICIA_NACIONAL_OPOSICION_ID = 'ad000000-0000-0000-0000-000000000001'
 
 // Mapeo tier → oposición(es) para checkout metadata
 export const TIER_TO_OPOSICION: Record<StripePriceTier, string | string[]> = {
@@ -111,7 +131,15 @@ export const TIER_TO_OPOSICION: Record<StripePriceTier, string | string[]> = {
   pack_hacienda:      HACIENDA_OPOSICION_ID,
   // Penitenciarias
   pack_penitenciarias: PENITENCIARIAS_OPOSICION_ID,
-  // Recarga (global — no vinculada a oposición específica)
+  // Seguridad
+  pack_ertzaintza:     ERTZAINTZA_OPOSICION_ID,
+  pack_guardia_civil:  GUARDIA_CIVIL_OPOSICION_ID,
+  pack_policia_nacional: POLICIA_NACIONAL_OPOSICION_ID,
+  pack_doble_gc_pn:    [GUARDIA_CIVIL_OPOSICION_ID, POLICIA_NACIONAL_OPOSICION_ID],
+  pack_personalidad:   '',  // transversal, no vinculada a oposición específica
+  pack_completo_seguridad: '',  // se resuelve dinámicamente según la oposición del usuario
+  pack_doble_gc_pn_personalidad: [GUARDIA_CIVIL_OPOSICION_ID, POLICIA_NACIONAL_OPOSICION_ID],
+  // Recarga
   recarga:            '',
 }
 

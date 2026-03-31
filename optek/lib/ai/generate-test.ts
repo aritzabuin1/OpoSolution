@@ -33,7 +33,7 @@ import {
   buildGenerateTestPrompt,
   buildGenerateTestBloque2Prompt,
 } from '@/lib/ai/prompts'
-import { TestGeneradoRawSchema } from '@/lib/ai/schemas'
+import { TestGeneradoRawSchema, getTestGeneradoRawSchema } from '@/lib/ai/schemas'
 import { extractCitations, batchVerifyCitations, verifyContentMatch } from '@/lib/ai/verification'
 import { resolveLeyNombre } from '@/lib/ai/citation-aliases'
 import { createServiceClient } from '@/lib/supabase/server'
@@ -101,7 +101,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   // Fetch oposición info first (needed for slug in retrieveExamples header)
   const opoInfo = oposicionId
     ? await fetchOposicionInfo(oposicionId)
-    : { nombre: 'oposición', slug: '' }
+    : { nombre: 'oposición', slug: '', numOpciones: 4 as const }
 
   const [ctx, temaTitulo, ejemplosExamenRaw] = await Promise.all([
     buildContext(temaId, undefined, userId), // §2.11: userId habilita weakness-weighted RAG
@@ -139,10 +139,11 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   // Vercel Hobby maxDuration=60s, SDK timeout=55s → margen seguro.
 
   const CHUNK_SIZE = 10
+  const validationSchema = getTestGeneradoRawSchema(opoInfo.numOpciones)
   // §Q.1: Use parameterized system prompt with oposición name (not hardcoded "Auxiliar")
   const systemPrompt = esBloqueII
     ? SYSTEM_GENERATE_TEST_BLOQUE2
-    : (opoInfo.nombre !== 'oposición' ? getSystemGenerateTest(opoInfo.nombre) : SYSTEM_GENERATE_TEST)
+    : (opoInfo.nombre !== 'oposición' ? getSystemGenerateTest(opoInfo.nombre, opoInfo.numOpciones) : SYSTEM_GENERATE_TEST)
 
   /** Compute maxTokens based on chunk size and difficulty */
   function computeMaxTokens(n: number): number {
@@ -161,7 +162,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
     const rawTest = await callAIJSON(
       systemPrompt,
       userPrompt,
-      TestGeneradoRawSchema,
+      validationSchema,
       {
         maxTokens: computeMaxTokens(needed),
         endpoint: 'generate-test',
@@ -312,12 +313,14 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   // correct answer lands in a different position each time.
   for (const p of preguntas) {
     // Pick a random target position for the correct answer
-    const target = Math.floor(Math.random() * 4)
+    const numOpc = p.opciones.length
+    const target = Math.floor(Math.random() * numOpc)
     if (target !== p.correcta) {
       // Swap the correct option with the option at the target position
-      const temp = p.opciones[target]
-      p.opciones[target] = p.opciones[p.correcta]
-      p.opciones[p.correcta] = temp
+      const opts = p.opciones as string[]
+      const temp = opts[target]
+      opts[target] = opts[p.correcta]
+      opts[p.correcta] = temp
       p.correcta = target as 0 | 1 | 2 | 3
     }
   }
@@ -539,7 +542,7 @@ function verificarPreguntaBloque2(
   }
 
   // 1. Verificar si la opción correcta aparece en el contexto
-  const opcionCorrecta = pregunta.opciones[pregunta.correcta].toLowerCase()
+  const opcionCorrecta = (pregunta.opciones as string[])[pregunta.correcta]?.toLowerCase() ?? ''
   if (opcionCorrecta.length >= 4 && contextoLower.includes(opcionCorrecta)) {
     return true
   }
@@ -733,11 +736,11 @@ function mapOfficialQuestions(
     if (excludeEnunciados.has(row.enunciado)) continue
 
     const opciones = Array.isArray(row.opciones) ? row.opciones : []
-    if (opciones.length !== 4) continue
+    if (opciones.length < 3 || opciones.length > 4) continue
 
     result.push({
       enunciado: row.enunciado,
-      opciones: opciones as [string, string, string, string],
+      opciones: opciones as Pregunta['opciones'],
       correcta: typeof row.correcta === 'number' ? row.correcta : 0,
       explicacion: 'Pregunta de examen oficial INAP.',
       dificultad: 'media',
@@ -765,17 +768,23 @@ async function fetchTemaTitulo(temaId: string): Promise<string> {
 }
 
 /** Fetch oposición nombre + slug for parameterized prompts */
-async function fetchOposicionInfo(oposicionId: string): Promise<{ nombre: string; slug: string }> {
+async function fetchOposicionInfo(oposicionId: string): Promise<{ nombre: string; slug: string; numOpciones: 3 | 4 }> {
   try {
     const supabase = await createServiceClient()
-    const { data } = await supabase
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data } = await (supabase as any)
       .from('oposiciones')
-      .select('nombre, slug')
+      .select('nombre, slug, scoring_config')
       .eq('id', oposicionId)
       .single()
-    return { nombre: data?.nombre ?? 'oposición', slug: data?.slug ?? '' }
+    const row = data as { nombre?: string; slug?: string; scoring_config?: { num_opciones?: number } } | null
+    return {
+      nombre: row?.nombre ?? 'oposición',
+      slug: row?.slug ?? '',
+      numOpciones: (row?.scoring_config?.num_opciones === 3 ? 3 : 4) as 3 | 4,
+    }
   } catch {
-    return { nombre: 'oposición', slug: '' }
+    return { nombre: 'oposición', slug: '', numOpciones: 4 }
   }
 }
 

@@ -51,7 +51,7 @@ export interface PsicotecnicoQuestion {
   categoria: CategoriaPsicotecnico
   subtipo: SubtipoPsicotecnico
   enunciado: string
-  opciones: [string, string, string, string]
+  opciones: [string, string, string] | [string, string, string, string]
   /** Índice (0-3) de la opción correcta en el array opciones. */
   correcta: 0 | 1 | 2 | 3
   explicacion: string

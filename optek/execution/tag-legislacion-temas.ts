@@ -81,6 +81,14 @@ const CODE_MAP: Record<string, string[]> = {
   INCOMPATIBILIDADES: ['BOE-A-1984-25031'], // Ley 53/1984 Incompatibilidades
   LOEX:           ['BOE-A-2000-544'],       // LO 4/2000 Extranjería
   LEY23_2014:     ['BOE-A-2014-12029'],     // Ley 23/2014 Reconocimiento mutuo UE
+  // Seguridad — Fuerzas y Cuerpos de Seguridad
+  FCSE:           ['BOE-A-1986-6123'],       // LO 2/1986 FCSE
+  SEG_CIUDADANA:  ['BOE-A-2015-3442'],       // LO 4/2015 Seguridad Ciudadana
+  SEG_PRIVADA:    ['BOE-A-2014-3649'],       // Ley 5/2014 Seguridad Privada
+  LSV:            ['BOE-A-2015-11722'],       // RDL 6/2015 Seguridad Vial
+  ESTATUTO_GERNIKA: ['BOE-A-1979-30177'],    // LO 3/1979 Estatuto Autonomía País Vasco
+  DERECHO_REUNION: ['BOE-A-1983-19946'],     // LO 9/1983 Derecho de Reunión
+  ESTATUTO_VICTIMA: ['BOE-A-2015-4606'],     // Ley 4/2015 Estatuto de la Víctima
 }
 
 // Resolve symbolic name to all matching ley_codigos
@@ -213,11 +221,41 @@ const PENITENCIARIAS_RULES: TaggingRule[] = [
   // Bloque IV — Conducta Humana (3 temas) — no tiene legislación BOE, usa conocimiento_tecnico
 ]
 
+// ── Seguridad (Ertzaintza + Guardia Civil + Policía Nacional) ─────────────────
+const SEGURIDAD_RULES: TaggingRule[] = [
+  // Legislación compartida (las 3 oposiciones)
+  { ley_codigo: 'CE', oposicion_slug: 'ertzaintza', temas: [1, 2, 3, 4, 5] },
+  { ley_codigo: 'CE', oposicion_slug: 'guardia-civil', temas: [1, 2, 3] },
+  { ley_codigo: 'CE', oposicion_slug: 'policia-nacional', temas: [1, 2, 3] },
+  { ley_codigo: 'FCSE', oposicion_slug: 'guardia-civil', temas: [4, 5, 6] },
+  { ley_codigo: 'FCSE', oposicion_slug: 'policia-nacional', temas: [4, 5, 6] },
+  { ley_codigo: 'FCSE', oposicion_slug: 'ertzaintza', temas: [6, 7] },
+  { ley_codigo: 'SEG_CIUDADANA', oposicion_slug: 'ertzaintza', temas: [8, 9] },
+  { ley_codigo: 'SEG_CIUDADANA', oposicion_slug: 'guardia-civil', temas: [7, 8] },
+  { ley_codigo: 'SEG_CIUDADANA', oposicion_slug: 'policia-nacional', temas: [7, 8] },
+  { ley_codigo: 'CP', oposicion_slug: 'guardia-civil', temas: [9, 10, 11] },
+  { ley_codigo: 'CP', oposicion_slug: 'policia-nacional', temas: [9, 10, 11, 12] },
+  { ley_codigo: 'LECRIM', oposicion_slug: 'policia-nacional', temas: [13, 14] },
+  { ley_codigo: 'PRL', oposicion_slug: 'ertzaintza', temas: [10] },
+  { ley_codigo: 'LSV', oposicion_slug: 'ertzaintza', temas: [11] },
+  { ley_codigo: 'LSV', oposicion_slug: 'guardia-civil', temas: [24] },
+  { ley_codigo: 'LOPDGDD', oposicion_slug: 'policia-nacional', temas: [15] },
+  { ley_codigo: 'ESTATUTO_GERNIKA', oposicion_slug: 'ertzaintza', temas: [12, 13, 14] },
+  { ley_codigo: 'DERECHO_REUNION', oposicion_slug: 'ertzaintza', temas: [15] },
+  { ley_codigo: 'ESTATUTO_VICTIMA', oposicion_slug: 'policia-nacional', temas: [16] },
+  { ley_codigo: 'SEG_PRIVADA', oposicion_slug: 'guardia-civil', temas: [12] },
+  { ley_codigo: 'SEG_PRIVADA', oposicion_slug: 'policia-nacional', temas: [17] },
+  { ley_codigo: 'LO_IGUALDAD', oposicion_slug: 'policia-nacional', temas: [18] },
+  { ley_codigo: 'LO_VG', oposicion_slug: 'policia-nacional', temas: [19] },
+  { ley_codigo: 'LOEX', oposicion_slug: 'policia-nacional', temas: [20] },
+]
+
 const ALL_RULES: Record<string, TaggingRule[]> = {
   justicia: JUSTICIA_RULES,
   correos: CORREOS_RULES,
   hacienda: HACIENDA_RULES,
   penitenciarias: PENITENCIARIAS_RULES,
+  seguridad: SEGURIDAD_RULES,
 }
 
 async function main() {

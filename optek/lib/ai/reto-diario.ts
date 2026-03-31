@@ -31,6 +31,10 @@ const RAMAS_CONFIG: Record<string, string[]> = {
     'CE', 'TREBEP', 'LEY_POSTAL', 'RD_POSTAL',
     'LOIGUALDAD', 'LGTBI', 'LOPDGDD',
   ],
+  seguridad: [
+    'CE', 'CP', 'LPAC', 'LRJSP', 'FCSE', 'SEG_CIUDADANA',
+    'PRL', 'LSV',
+  ],
 }
 
 /**

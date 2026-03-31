@@ -207,10 +207,9 @@ export async function POST(request: NextRequest) {
         const cita = (pregunta as Pregunta & { cita?: { ley: string; articulo: string } }).cita
         return `Pregunta ${index + 1}${realTemaTitulo ? ` [Tema: ${realTemaTitulo}]` : ''}: ${pregunta.enunciado}\n` +
           (cita ? `Referencia: ${cita.ley}, Art. ${cita.articulo}\n` : '') +
-          `Opciones: A) ${pregunta.opciones[0]}  B) ${pregunta.opciones[1]}  ` +
-          `C) ${pregunta.opciones[2]}  D) ${pregunta.opciones[3]}\n` +
-          `Respuesta correcta: ${['A', 'B', 'C', 'D'][pregunta.correcta]}\n` +
-          `Tu respuesta: ${respuesta !== null ? ['A', 'B', 'C', 'D'][respuesta] : 'Sin responder'}`
+          `Opciones: ${pregunta.opciones.map((o: string, i: number) => `${String.fromCharCode(65 + i)}) ${o}`).join('  ')}\n` +
+          `Respuesta correcta: ${String.fromCharCode(65 + pregunta.correcta)}\n` +
+          `Tu respuesta: ${respuesta !== null ? String.fromCharCode(65 + respuesta) : 'Sin responder'}`
       }
     )
     .join('\n\n')

@@ -46,6 +46,17 @@ const CORTES_POR_OPOSICION: Record<string, Record<string, { nota: number; plazas
     '2025': { nota: 5.50, plazas: 900, aspirantes: 13000 },
     '2024': { nota: 5.80, plazas: 800, aspirantes: 12000 },
   },
+  // Seguridad — Ertzaintza (no public cut-off data yet)
+  'ertzaintza': {},
+  // Seguridad — Guardia Civil
+  'guardia-civil': {
+    '2025': { nota: 50, plazas: 2091, aspirantes: 25000 },
+  },
+  // Seguridad — Policía Nacional
+  'policia-nacional': {
+    '2024': { nota: 7.72, plazas: 2218, aspirantes: 35000 },
+    '2023': { nota: 7.17, plazas: 2400, aspirantes: 30000 },
+  },
 }
 
 // Backward-compatible default: C2

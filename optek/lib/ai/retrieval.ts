@@ -394,6 +394,9 @@ function getTribunalLabel(oposicionSlug?: string): string {
     return 'MJU (Ministerio de Justicia)'
   if (oposicionSlug === 'hacienda-aeat') return 'AEAT (Agencia Tributaria)'
   if (oposicionSlug === 'penitenciarias') return 'SGIP (Instituciones Penitenciarias)'
+  if (oposicionSlug === 'ertzaintza') return 'Dept. Seguridad Gobierno Vasco'
+  if (oposicionSlug === 'guardia-civil') return 'Guardia Civil (Ministerio del Interior)'
+  if (oposicionSlug === 'policia-nacional') return 'DGP (Policía Nacional)'
   return 'INAP'
 }
 

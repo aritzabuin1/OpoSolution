@@ -77,6 +77,32 @@ export function getOposicionDisplay(opts: {
     }
   }
 
+  // Seguridad — Fuerzas y Cuerpos de Seguridad
+  if (rama === 'seguridad' || lower.includes('ertzaintza')) {
+    return {
+      organismo: 'Dept. Seguridad GV',
+      simulacroLabel: 'Simulacro Ertzaintza',
+      badgeLabel: 'Ertzaintza',
+      tribunalDe: 'de Seguridad del Gobierno Vasco',
+    }
+  }
+  if (lower.includes('guardia-civil') || lower.includes('guardia civil')) {
+    return {
+      organismo: 'Guardia Civil',
+      simulacroLabel: 'Simulacro Guardia Civil',
+      badgeLabel: 'GC Oficial',
+      tribunalDe: 'de la Guardia Civil',
+    }
+  }
+  if (lower.includes('policia-nacional') || lower.includes('policia nacional') || lower.includes('policía nacional')) {
+    return {
+      organismo: 'DGP',
+      simulacroLabel: 'Simulacro Policía Nacional',
+      badgeLabel: 'PN Oficial',
+      tribunalDe: 'de la DGP',
+    }
+  }
+
   // Default: AGE (INAP)
   return {
     organismo: 'INAP',

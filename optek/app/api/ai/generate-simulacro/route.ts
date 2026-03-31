@@ -148,7 +148,8 @@ export async function POST(request: NextRequest) {
     .select('scoring_config')
     .eq('id', oposicionId)
     .single()
-  const scoringConfig = (opoData as { scoring_config?: unknown } | null)?.scoring_config as { ejercicios?: { nombre?: string; preguntas?: number; reserva?: number }[]; minutos_total?: number } | null
+  const scoringConfig = (opoData as { scoring_config?: unknown } | null)?.scoring_config as { num_opciones?: 3 | 4; ejercicios?: { nombre?: string; preguntas?: number; reserva?: number }[]; minutos_total?: number } | null
+  const numOpciones = scoringConfig?.num_opciones ?? 4
   // Preguntas puntuables del primer ejercicio = preguntas - reserva
   const ej1 = scoringConfig?.ejercicios?.[0]
   const maxPreguntasPuntuables = (ej1?.preguntas ?? 60) - (ej1?.reserva ?? 0)
@@ -317,12 +318,7 @@ export async function POST(request: NextRequest) {
     const temaTitulo = temaId ? (temaMap.get(temaId) ?? null) : null
     return {
       enunciado: p.enunciado,
-      opciones: [
-        opciones[0] ?? '',
-        opciones[1] ?? '',
-        opciones[2] ?? '',
-        opciones[3] ?? '',
-      ] as [string, string, string, string],
+      opciones: Array.from({ length: numOpciones }, (_, i) => opciones[i] ?? '') as Pregunta['opciones'],
       correcta: (p.correcta as 0 | 1 | 2 | 3),
       explicacion: '',
       dificultad: (p.dificultad as 'facil' | 'media' | 'dificil') ?? undefined,
@@ -359,7 +355,7 @@ export async function POST(request: NextRequest) {
             if (!q?.enunciado || !q?.opciones) continue // skip malformed
             allBankQs.push({
               enunciado: q.enunciado,
-              opciones: (q.opciones ?? ['', '', '', '']).slice(0, 4) as [string, string, string, string],
+              opciones: (q.opciones ?? []).slice(0, numOpciones) as Pregunta['opciones'],
               correcta: typeof q.correcta === 'number' ? q.correcta as 0 | 1 | 2 | 3 : 0,
               explicacion: q.explicacion ?? '',
               dificultad: q.dificultad,
@@ -475,7 +471,7 @@ export async function POST(request: NextRequest) {
     for (const row of selectedSupuestos) {
       const rowPreguntas = (row.preguntas as unknown as Pregunta[]).filter(p => p?.enunciado).map((p) => ({
         enunciado: p.enunciado,
-        opciones: (p.opciones ?? ['', '', '', '']).slice(0, 4) as [string, string, string, string],
+        opciones: (p.opciones ?? []).slice(0, numOpciones) as Pregunta['opciones'],
         correcta: typeof p.correcta === 'number' ? p.correcta as 0 | 1 | 2 | 3 : 0,
         explicacion: p.explicacion ?? '',
       }))
@@ -561,10 +557,12 @@ export async function POST(request: NextRequest) {
           ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
         }
         // Convert question_bank rows to Pregunta format
-        const correctaMap: Record<string, number> = { a: 0, b: 1, c: 2, d: 3 }
+        const correctaMap: Record<string, number> = Object.fromEntries(
+          Array.from({ length: numOpciones }, (_, i) => [String.fromCharCode(97 + i), i])
+        )
         const ofiPreguntas: Pregunta[] = shuffled.slice(0, numOfimatica).map(r => ({
           enunciado: r.enunciado,
-          opciones: (r.opciones ?? ['', '', '', '']).slice(0, 4) as [string, string, string, string],
+          opciones: (r.opciones ?? []).slice(0, numOpciones) as Pregunta['opciones'],
           correcta: (correctaMap[r.correcta] ?? 0) as 0 | 1 | 2 | 3,
           explicacion: r.explicacion ?? '',
           ...(r.cita_ley ? { cita: { ley: r.cita_ley, articulo: r.cita_articulo ?? '', textoExacto: '' } } : {}),

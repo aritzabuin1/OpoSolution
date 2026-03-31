@@ -25,6 +25,8 @@ const BodySchema = z.object({
     'pack_auxilio', 'pack_tramitacion', 'pack_gestion_j', 'pack_doble_justicia', 'pack_triple_justicia',
     'pack_hacienda',
     'pack_penitenciarias',
+    'pack_ertzaintza', 'pack_guardia_civil', 'pack_policia_nacional',
+    'pack_doble_gc_pn', 'pack_personalidad', 'pack_completo_seguridad', 'pack_doble_gc_pn_personalidad',
     'recarga',
   ]),
   temaId: z.string().uuid().optional(),

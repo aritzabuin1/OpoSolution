@@ -27,7 +27,13 @@ export interface EjercicioData {
 }
 
 export interface ScoringConfig {
+  num_opciones?: 3 | 4
   ejercicios: EjercicioConfig[]
+}
+
+/** Returns the number of answer options for this oposición (3 for PN, 4 for all others). */
+export function getNumOpciones(scoringConfig?: ScoringConfig | null): 3 | 4 {
+  return scoringConfig?.num_opciones ?? 4
 }
 
 export interface EjercicioResult {
