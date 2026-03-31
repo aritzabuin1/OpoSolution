@@ -164,7 +164,7 @@ Estrategia: `num_opciones` en `scoring_config` BD. Default = 4. Solo PN = 3.
 
 ---
 
-## FASE 3 — Legislacion ✅ SCRAPING COMPLETADO (ingesta pendiente de .env.local)
+## FASE 3 — Legislacion ✅ COMPLETADA (ingesta + tag ejecutados 2026-03-31)
 
 ### 3.1 — Reutilizar ya ingestada ✅
 CE, LPAC, LRJSP, LOPDGDD, LO 3/2007, LO 1/2004, PRL, TREBEP, LECrim
@@ -195,14 +195,10 @@ CE, LPAC, LRJSP, LOPDGDD, LO 3/2007, LO 1/2004, PRL, TREBEP, LECrim
 
 SEGURIDAD_RULES expandidas: Ertzaintza ahora cubre 54 temas (Bloques I-XI)
 
-### 3.4 — PAUSA: Aritz ejecuta ingesta con .env.local ⏸️
-```bash
-cd optek
-pnpm ingest:legislacion
-pnpm generate:embeddings
-pnpm tag:legislacion --rama seguridad --dry-run
-pnpm tag:legislacion --rama seguridad
-```
+### 3.4 — Ingesta + embeddings + tag ✅ (2026-03-31)
+- `pnpm ingest:legislacion` → 11.396 artículos procesados
+- `pnpm generate:embeddings` → todos ya tenían embedding
+- `tag-legislacion-temas.ts --rama seguridad` → 3.935 artículos taggeados para 3 oposiciones
 
 ---
 
@@ -246,7 +242,7 @@ pnpm ingest:examenes --dir examenes_ertzaintza --oposicion ertzaintza
 
 ---
 
-## FASE 5 — Contenido no legislativo (conocimiento_tecnico) ✅ SCRIPTS CREADOS
+## FASE 5 — Contenido no legislativo (conocimiento_tecnico) ✅ COMPLETADA (2026-03-31)
 
 ### 5.1 — Ertzaintza temas 32-36 (Historia, Geografia, Demografia, Economia, Cultura PV)
 ### 5.2 — Guardia Civil temas 16-25 (Proteccion civil, Topografia, Sociologia, TIC, Telecoms, Automovilismo, Armamento, Primeros auxilios, Seguridad vial, Medio ambiente)
@@ -259,16 +255,10 @@ pnpm ingest:examenes --dir examenes_ertzaintza --oposicion ertzaintza
 - **Ingestor**: `execution/ingest-conocimiento-seguridad.ts` (sube a Supabase + embeddings)
 - Coste: ~$3-5
 
-### 5.5 — PAUSA: Aritz ejecuta generacion + ingesta ⏸️
-```bash
-cd optek
-# Paso 1: Generar JSONs con Claude (~$3-5)
-pnpm tsx execution/generate-conocimiento-seguridad.ts
-# Paso 2: Ingestar a Supabase + embeddings
-pnpm tsx execution/ingest-conocimiento-seguridad.ts
-# O dry-run primero:
-pnpm tsx execution/ingest-conocimiento-seguridad.ts --dry-run
-```
+### 5.5 — Generacion + ingesta ✅ (2026-03-31)
+- `generate-conocimiento-seguridad.ts` → 33/33 JSONs generados (max_tokens bumped 4096→8192 para temas extensos)
+- `ingest-conocimiento-seguridad.ts` → 196 secciones ingestadas con embeddings, 0 errores
+- Nota: migration 069 (bloque CHECK) era prerequisito — sin ella el INSERT falla
 
 ---
 
@@ -537,15 +527,15 @@ FASE 12 (Stripe) — Aritz crea productos + env vars
 | 0 — Soporte 3 opciones | ✅ COMPLETADA | 12 sub-tareas, 0 regresiones |
 | 1 — Migration SQL | ✅ COMPLETADA | 3 oposiciones + 124 temas insertados |
 | 2 — Constantes y mapeos | ✅ COMPLETADA | 10 archivos actualizados |
-| 3 — Legislacion | ✅ SCRAPING OK | 14 leyes (1.718 arts). **Pendiente**: Aritz ejecuta ingesta con .env.local |
+| 3 — Legislacion | ✅ COMPLETADA | 11.396 arts ingesta + 3.935 taggeados para seguridad |
 | 4 — Examenes oficiales | ✅ INVESTIGACION OK | URLs documentadas. **Pendiente**: Aritz descarga PDFs + parsea |
-| 5 — Conocimiento tecnico | ✅ SCRIPTS CREADOS | `generate-conocimiento-seguridad.ts` + `ingest-conocimiento-seguridad.ts`. **Pendiente**: Aritz ejecuta generacion (~$3-5) + ingesta |
+| 5 — Conocimiento tecnico | ✅ COMPLETADA | 33 temas generados (Claude) + 196 secciones ingestadas con embeddings |
 | 6 — Psicotecnicos nuevos | ✅ COMPLETADA | 3 modulos (spatial/logic/perception), 11 subtipos, 42 tests |
-| 7 — Free question bank | ⏳ PENDIENTE | Script listo, depende de FASE 3+5 ingestadas |
+| 7 — Free question bank | ⏳ PENDIENTE | Script listo. FASE 3+5 ya ingestadas. Requiere ~$7 + ADMIN_USER_ID |
 | 8 — Landing pages + SEO | ✅ COMPLETADA | 5 landings + main card + precios tab + sitemap + footer + llms.txt |
 | 9 — Blog SEO | ✅ COMPLETADA | 7 posts |
 | 10 — Activacion | ⏳ PENDIENTE | Checklist pre-lanzamiento |
-| 11 — Personalidad Policial | ✅ CODIGO COMPLETO | Migration + 5 libs + 4 endpoints + UI + 63 tests. Pendiente: aplicar migration |
+| 11 — Personalidad Policial | ✅ COMPLETADA | Migration 071 aplicada + 5 libs + 4 endpoints + UI + 63 tests |
 | 12 — Stripe | ⏳ PENDIENTE | Aritz crea 6 productos + env vars |
 
 ---
