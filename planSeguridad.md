@@ -40,10 +40,9 @@ TAM combinado: ~70.000-80.000 aspirantes/ano. Legislacion compartida significati
 | Pack Guardia Civil (conocimientos) | 79,99EUR | 20 creditos IA | Pago unico |
 | Pack Policia Nacional (conocimientos) | 79,99EUR | 20 creditos IA | Pago unico |
 | Pack Doble GC+PN (conocimientos) | 129,99EUR | 30 creditos IA | Pago unico |
-| **Pack Personalidad Policial** | **49,99EUR** | **15 creditos IA** | **Pago unico** |
-| **Pack Completo** (conocimientos + personalidad) | **119,99EUR** | 35 creditos IA | Pago unico |
-| **Pack Doble GC+PN + Personalidad** | **159,99EUR** | 45 creditos IA | Pago unico |
-| Recarga creditos IA | 9,99EUR | +10 creditos IA | **Recurrente** |
+| **Pack Personalidad Policial** (transversal 3 opos) | **49,99EUR** | **15 creditos IA** | **Pago unico** |
+| **Pack Completo** (1 oposicion + personalidad) | **119,99EUR** | 35 creditos IA | Pago unico |
+| Recarga creditos IA (universal) | 9,99EUR | +10 creditos IA | **Recurrente** |
 
 **DECISION**: Pool de creditos IA UNIFICADO (`corrections_balance`). No hay recarga separada de personalidad. La recarga de 9,99EUR ya existente sirve para TODO: tutor IA, explicar errores, sesiones de personalidad, coaching, etc. Un solo producto de recarga = menos friccion para el usuario y menos productos que gestionar en Stripe.
 
@@ -84,67 +83,25 @@ ad000000-0000-0000-0000-000000000001  -> Policia Nacional
 Solo Policia Nacional usa 3 opciones. Todos los demas siguen con 4.
 Estrategia: `num_opciones` en `scoring_config` BD. Default = 4. Solo PN = 3.
 
-### 0.1 — Helper getNumOpciones
-- **Archivo**: `optek/lib/utils/scoring.ts`
-- **Tarea**: Anadir `export function getNumOpciones(scoringConfig): 3 | 4` que lee `scoring_config.num_opciones ?? 4`
-- **Tests**: 2 tests (default 4, explicit 3)
-
-### 0.2 — Tipo Pregunta flexible
-- **Archivo**: `optek/types/ai.ts:17-18`
-- **Tarea**: Cambiar `opciones: [string, string, string, string]` a `opciones: [string, string, string] | [string, string, string, string]`
-- **Tarea**: Mantener `correcta: 0 | 1 | 2 | 3` (validacion en runtime/Zod)
-- **Blast radius**: 17 archivos importan Pregunta. Solo 4 acceden `[3]` directo
-
-### 0.3 — Tipo PsicotecnicoQuestion flexible
-- **Archivo**: `optek/lib/psicotecnicos/types.ts:54,56`
-- **Tarea**: Mismo cambio que 0.2
-
-### 0.4 — Schema Zod factory
-- **Archivo**: `optek/lib/ai/schemas.ts:30,34`
-- **Tarea**: Crear `getPreguntaSchema(numOpciones: 3 | 4 = 4)`. Mantener `PreguntaSchema` como `getPreguntaSchema(4)` para backward compat
-- **Tests**: 2 tests
-
-### 0.5 — Prompts parametrizados
-- **Archivo**: `optek/lib/ai/prompts.ts:123,128,135-164`
-- **Tarea**: `getSystemGenerateTest(nombre, numOpciones?)` — si 3: "0, 1, 2", "A/B/C ~33%", ejemplo JSON 3 opciones
-
-### 0.6 — generate-test.ts threading
-- **Archivo**: `optek/lib/ai/generate-test.ts`
-- **L315**: `Math.random() * 4` -> `* numOpciones`
-- **L736**: `opciones.length !== 4` -> `< 3 || > 4`
-
-### 0.7 — generate-test/route.ts fix
-- **Archivo**: `optek/app/api/ai/generate-test/route.ts:622`
-- **Tarea**: `{ a, b, c, d }` -> construir dinamicamente con `.reduce()`
-
-### 0.8 — generate-simulacro/route.ts fix
-- **Archivo**: `optek/app/api/ai/generate-simulacro/route.ts`
-- **L320-325, 362, 478**: `.slice(0,4)` -> `.slice(0, numOpciones)`
-- **L564**: `{ a:0, b:1, c:2, d:3 }` -> `Object.fromEntries`
-
-### 0.9 — explain-errores fix
-- **Archivos**: `app/api/ai/explain-errores/route.ts:210-212` + `stream/route.ts:159-161`
-- **Tarea**: `A) B) C) D)` hardcoded -> `.map((o,i) => String.fromCharCode(65+i)+')')`
-
-### 0.10 — QuestionView.tsx UI
-- **Archivo**: `optek/components/tests/QuestionView.tsx:60,111`
-- **Tarea**: `LETRAS = ['A','B','C','D']` -> `pregunta.opciones.map((_,i) => String.fromCharCode(65+i))`
-
-### 0.11 — run-evals.ts fix
-- **Archivo**: `optek/execution/run-evals.ts:173,237`
-- **Tarea**: `.length === 4` -> `>= 3 && <= 4`
-
-### 0.12 — Verificacion
-- `pnpm test` — 0 regressions
-- Test manual: test PN (3 opciones) vs cualquier otra (4 opciones)
+### 0.1 — Helper getNumOpciones ✅
+### 0.2 — Tipo Pregunta flexible ✅
+### 0.3 — Tipo PsicotecnicoQuestion flexible ✅
+### 0.4 — Schema Zod factory ✅ (`getPreguntaSchema` + `getTestGeneradoRawSchema`)
+### 0.5 — Prompts parametrizados ✅ (`getSystemGenerateTest(nombre, numOpciones)`)
+### 0.6 — generate-test.ts threading ✅ (`fetchOposicionInfo` incluye `numOpciones`)
+### 0.7 — generate-test/route.ts fix ✅ (`Object.fromEntries` + `String.fromCharCode`)
+### 0.8 — generate-simulacro/route.ts fix ✅ (5 hardcodes reemplazados)
+### 0.9 — explain-errores fix ✅ (ambos route.ts y stream/route.ts)
+### 0.10 — QuestionView.tsx UI ✅ (`getLetter(i)` dinamico)
+### 0.11 — run-evals.ts fix ✅ (`>= 3 && <= 4`)
+### 0.12 — Verificacion ✅ (0 regresiones, TypeScript limpio)
 
 ---
 
 ## FASE 1 — Migration SQL ✅ COMPLETADA
 
-### 1.1 — Migration `20260331_069_seguridad.sql`
-- **Archivo**: `optek/supabase/migrations/20260331_069_seguridad.sql`
-- **Patron**: Copiar `064_hacienda_penitenciarias.sql`
+### 1.1 — Migration oposiciones ✅
+- **Archivo**: `optek/supabase/migrations/20260331_070_seguridad_oposiciones.sql`
 - 3x INSERT INTO oposiciones (UPSERT), `activa = false`
 
 **Ertzaintza scoring_config**:
@@ -174,50 +131,32 @@ Estrategia: `num_opciones` en `scoring_config` BD. Default = 4. Solo PN = 3.
 }]}
 ```
 
-### 1.2 — Temas INSERT (124 total)
-- Ertzaintza: 54 temas, 11 bloques
+### 1.2 — Temas INSERT (124 total) ✅
+- Ertzaintza: 54 temas, 11 bloques (temas 45-52 aproximados, pendiente BOPV PDF oficial)
 - Guardia Civil: 25 temas, 3 bloques (A/B/C)
 - Policia Nacional: 45 temas, 3 bloques (I/II/III)
 
-### 1.3 — Expand conocimiento_tecnico bloque CHECK
-- Anadir `'seguridad'` (patron migration 066)
+### 1.3 — Expand conocimiento_tecnico bloque CHECK ✅
+- `20260331_069_seguridad_bloque_check.sql`
 
-### 1.4 — PAUSA: Aritz aplica migration en Supabase Dashboard
+### 1.4 — PAUSA: Aritz aplica migration en Supabase Dashboard ⏸️
 
 ---
 
 ## FASE 2 — Constantes y mapeos (10 archivos) ✅ COMPLETADA
 
-### 2.1 — `lib/stripe/client.ts`
-- 3 UUID constants + STRIPE_PRICES (7 tiers: 3 individuales + doble + personalidad + completo + doble_completo) + CORRECTIONS_GRANTED + TIER_TO_OPOSICION
-- Nuevo: `PERSONALITY_CREDITS_GRANTED` (15 para pack personalidad, incluido en completos)
+### 2.1 — `lib/stripe/client.ts` ✅
+- 3 UUID constants + 6 tiers (sin pack_doble_gc_pn_personalidad) + pool unificado corrections_balance
 
-### 2.2 — `app/api/stripe/checkout/route.ts`
-- z.enum += 7 nuevos tiers + `recarga_personalidad`
-
-### 2.3 — `app/api/stripe/webhook/route.ts`
-- TIER_TO_DB_TIPO: 7 nuevas entradas -> `'pack_oposicion'`
-- Nuevo: grant `personality_credits` para packs que incluyen personalidad
-
-### 2.4 — `app/(dashboard)/cuenta/page.tsx`
-- OPOSICION_TIER_MAP, TIER_PRICES, TIER_CREDITS para los 7 tiers
-
-### 2.5 — `lib/utils/oposicion-display.ts`
-- rama `'seguridad'`: per-slug organismo (Dept. Seguridad GV / Guardia Civil / DGP)
-
-### 2.6 — `lib/ai/retrieval.ts` (getTribunalLabel)
-- 3 nuevos slugs
-
-### 2.7 — `lib/ai/prompts.ts` (getRamaStyleHint)
-- 3 bloques estilo: Ertzaintza (BOPV), GC (militar), PN (3 opciones, 1/2)
-
-### 2.8 — `lib/utils/simulacro-ranking.ts` (CORTES_POR_OPOSICION)
-- ertzaintza: `{}`, guardia-civil: `{2025: 50}`, policia-nacional: `{2024: 7.72, 2023: 7.17}`
-
-### 2.9 — `lib/ai/reto-diario.ts` (RAMAS_CONFIG)
-- `seguridad: ['CE', 'CP', 'LPAC', 'LRJSP', 'FCSE', 'SEG_CIUDADANA', 'PRL', 'LSV']`
-
-### 2.10 — `execution/tag-legislacion-temas.ts`
+### 2.2 — `app/api/stripe/checkout/route.ts` ✅
+### 2.3 — `app/api/stripe/webhook/route.ts` ✅
+### 2.4 — `app/(dashboard)/cuenta/page.tsx` ✅
+### 2.5 — `lib/utils/oposicion-display.ts` ✅
+### 2.6 — `lib/ai/retrieval.ts` ✅
+### 2.7 — `lib/ai/prompts.ts` ✅
+### 2.8 — `lib/utils/simulacro-ranking.ts` ✅
+### 2.9 — `lib/ai/reto-diario.ts` ✅
+### 2.10 — `execution/tag-legislacion-temas.ts` ✅
 - CODE_MAP += FCSE, SEG_CIUDADANA, SEG_PRIVADA, ESTATUTO_GERNIKA, LSV
 - SEGURIDAD_RULES + ALL_RULES
 

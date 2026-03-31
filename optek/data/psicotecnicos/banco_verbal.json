@@ -1,0 +1,1995 @@
+{
+  "sinonimos": [
+    {
+      "pregunta": "Sinónimo de «ÁGIL»:",
+      "correcta": "veloz",
+      "distractores": [
+        "torpe",
+        "lento",
+        "rígido"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «ARDUO»:",
+      "correcta": "difícil",
+      "distractores": [
+        "sencillo",
+        "simple",
+        "trivial"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «AUSTERO»:",
+      "correcta": "sobrio",
+      "distractores": [
+        "lujoso",
+        "derrochador",
+        "ostentoso"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «BENIGNO»:",
+      "correcta": "bondadoso",
+      "distractores": [
+        "cruel",
+        "dañino",
+        "severo"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «BREVE»:",
+      "correcta": "conciso",
+      "distractores": [
+        "extenso",
+        "largo",
+        "prolijo"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «CANDOROSO»:",
+      "correcta": "ingenuo",
+      "distractores": [
+        "malicioso",
+        "astuto",
+        "sagaz"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «CAUTELOSO»:",
+      "correcta": "prudente",
+      "distractores": [
+        "temerario",
+        "imprudente",
+        "osado"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «COETÁNEO»:",
+      "correcta": "contemporáneo",
+      "distractores": [
+        "antiguo",
+        "precedente",
+        "posterior"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «CONTIGUO»:",
+      "correcta": "adyacente",
+      "distractores": [
+        "alejado",
+        "distante",
+        "remoto"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «CONTUMAZ»:",
+      "correcta": "obstinado",
+      "distractores": [
+        "dócil",
+        "flexible",
+        "obediente"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «COPIOSO»:",
+      "correcta": "abundante",
+      "distractores": [
+        "escaso",
+        "parco",
+        "exiguo"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «DENODADO»:",
+      "correcta": "valiente",
+      "distractores": [
+        "cobarde",
+        "temeroso",
+        "pusilánime"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «DILIGENTE»:",
+      "correcta": "laborioso",
+      "distractores": [
+        "perezoso",
+        "vago",
+        "holgazán"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «ECUÁNIME»:",
+      "correcta": "imparcial",
+      "distractores": [
+        "sesgado",
+        "parcial",
+        "injusto"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «EFÍMERO»:",
+      "correcta": "pasajero",
+      "distractores": [
+        "duradero",
+        "eterno",
+        "permanente"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «ELOCUENTE»:",
+      "correcta": "expresivo",
+      "distractores": [
+        "mudo",
+        "lacónico",
+        "callado"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «ESCUETO»:",
+      "correcta": "sucinto",
+      "distractores": [
+        "extenso",
+        "prolijo",
+        "largo"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «EXIMIO»:",
+      "correcta": "ilustre",
+      "distractores": [
+        "vulgar",
+        "mediocre",
+        "anónimo"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «FURTIVO»:",
+      "correcta": "sigiloso",
+      "distractores": [
+        "abierto",
+        "público",
+        "ostentoso"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «HÁBIL»:",
+      "correcta": "diestro",
+      "distractores": [
+        "torpe",
+        "inhábil",
+        "inepto"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «LABORIOSO»:",
+      "correcta": "trabajador",
+      "distractores": [
+        "vago",
+        "perezoso",
+        "holgazán"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «LÚCIDO»:",
+      "correcta": "claro",
+      "distractores": [
+        "confuso",
+        "turbio",
+        "oscuro"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «MAGNÁNIMO»:",
+      "correcta": "generoso",
+      "distractores": [
+        "mezquino",
+        "avaro",
+        "tacaño"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «MENDAZ»:",
+      "correcta": "mentiroso",
+      "distractores": [
+        "veraz",
+        "honesto",
+        "sincero"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «METICULOSO»:",
+      "correcta": "minucioso",
+      "distractores": [
+        "descuidado",
+        "chapucero",
+        "negligente"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «NÍTIDO»:",
+      "correcta": "claro",
+      "distractores": [
+        "turbio",
+        "borroso",
+        "oscuro"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «ONEROSO»:",
+      "correcta": "costoso",
+      "distractores": [
+        "barato",
+        "económico",
+        "gratuito"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «PARCO»:",
+      "correcta": "frugal",
+      "distractores": [
+        "derrochador",
+        "abundante",
+        "pródigo"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «PERTINAZ»:",
+      "correcta": "tenaz",
+      "distractores": [
+        "inconstante",
+        "variable",
+        "volátil"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «PERSPICAZ»:",
+      "correcta": "agudo",
+      "distractores": [
+        "obtuso",
+        "torpe",
+        "lento"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «PLÁCIDO»:",
+      "correcta": "tranquilo",
+      "distractores": [
+        "agitado",
+        "turbulento",
+        "convulso"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «PROLIJO»:",
+      "correcta": "extenso",
+      "distractores": [
+        "breve",
+        "conciso",
+        "sucinto"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «PULCRO»:",
+      "correcta": "aseado",
+      "distractores": [
+        "sucio",
+        "descuidado",
+        "desaliñado"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «REACIO»:",
+      "correcta": "renuente",
+      "distractores": [
+        "dispuesto",
+        "pronto",
+        "diligente"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «SAGAZ»:",
+      "correcta": "astuto",
+      "distractores": [
+        "ingenuo",
+        "simple",
+        "torpe"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «SOEZ»:",
+      "correcta": "grosero",
+      "distractores": [
+        "educado",
+        "refinado",
+        "cortés"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «TÁCITO»:",
+      "correcta": "implícito",
+      "distractores": [
+        "explícito",
+        "manifiesto",
+        "declarado"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «TENAZ»:",
+      "correcta": "persistente",
+      "distractores": [
+        "inconstante",
+        "volátil",
+        "variable"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «UFANO»:",
+      "correcta": "orgulloso",
+      "distractores": [
+        "humilde",
+        "modesto",
+        "sencillo"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «VEHEMENTE»:",
+      "correcta": "apasionado",
+      "distractores": [
+        "frío",
+        "indiferente",
+        "apático"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «VETUSTO»:",
+      "correcta": "antiguo",
+      "distractores": [
+        "nuevo",
+        "reciente",
+        "moderno"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «VIVAZ»:",
+      "correcta": "animado",
+      "distractores": [
+        "apagado",
+        "lánguido",
+        "inerte"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «VOLUBLE»:",
+      "correcta": "inconstante",
+      "distractores": [
+        "estable",
+        "constante",
+        "firme"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «ZALAMERO»:",
+      "correcta": "adulador",
+      "distractores": [
+        "sincero",
+        "honesto",
+        "directo"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «AFABLE»:",
+      "correcta": "amable",
+      "distractores": [
+        "huraño",
+        "hosco",
+        "antipático"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «ÁVIDO»:",
+      "correcta": "codicioso",
+      "distractores": [
+        "generoso",
+        "desprendido",
+        "dadivoso"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «FEROZ»:",
+      "correcta": "salvaje",
+      "distractores": [
+        "manso",
+        "dócil",
+        "apacible"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «GALANTE»:",
+      "correcta": "cortés",
+      "distractores": [
+        "grosero",
+        "rudo",
+        "descortés"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «IMPETUOSO»:",
+      "correcta": "arrebatado",
+      "distractores": [
+        "calmado",
+        "tranquilo",
+        "sereno"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «JOCOSO»:",
+      "correcta": "divertido",
+      "distractores": [
+        "serio",
+        "grave",
+        "solemne"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «LACÓNICO»:",
+      "correcta": "breve",
+      "distractores": [
+        "extenso",
+        "prolijo",
+        "largo"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «MALÉVOLO»:",
+      "correcta": "perverso",
+      "distractores": [
+        "bondadoso",
+        "benévolo",
+        "virtuoso"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «NÓMADA»:",
+      "correcta": "errante",
+      "distractores": [
+        "sedentario",
+        "fijo",
+        "estable"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «PÉRFIDO»:",
+      "correcta": "traidor",
+      "distractores": [
+        "fiel",
+        "leal",
+        "honrado"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «RECÓNDITO»:",
+      "correcta": "oculto",
+      "distractores": [
+        "visible",
+        "evidente",
+        "notorio"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «SUMISO»:",
+      "correcta": "obediente",
+      "distractores": [
+        "rebelde",
+        "desobediente",
+        "indómito"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «TÉTRICO»:",
+      "correcta": "lúgubre",
+      "distractores": [
+        "alegre",
+        "luminoso",
+        "festivo"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «ACÉRRIMO»:",
+      "correcta": "radical",
+      "distractores": [
+        "moderado",
+        "templado",
+        "ecuánime"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «BISOÑO»:",
+      "correcta": "inexperto",
+      "distractores": [
+        "veterano",
+        "experto",
+        "avezado"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «CÁNDIDO»:",
+      "correcta": "inocente",
+      "distractores": [
+        "malicioso",
+        "pícaro",
+        "taimado"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «DÓCIL»:",
+      "correcta": "sumiso",
+      "distractores": [
+        "rebelde",
+        "indómito",
+        "indisciplinado"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «ESCÉPTICO»:",
+      "correcta": "incrédulo",
+      "distractores": [
+        "crédulo",
+        "confiado",
+        "ingenuo"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «FECUNDO»:",
+      "correcta": "productivo",
+      "distractores": [
+        "estéril",
+        "improductivo",
+        "baldío"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «GENIAL»:",
+      "correcta": "brillante",
+      "distractores": [
+        "mediocre",
+        "vulgar",
+        "común"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «IMPÁVIDO»:",
+      "correcta": "impertérrito",
+      "distractores": [
+        "temeroso",
+        "medroso",
+        "cobarde"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «JOVIAL»:",
+      "correcta": "alegre",
+      "distractores": [
+        "serio",
+        "triste",
+        "melancólico"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «LÁNGUIDO»:",
+      "correcta": "débil",
+      "distractores": [
+        "vigoroso",
+        "fuerte",
+        "energético"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «NOCIVO»:",
+      "correcta": "dañino",
+      "distractores": [
+        "beneficioso",
+        "saludable",
+        "provechoso"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «OPORTUNO»:",
+      "correcta": "conveniente",
+      "distractores": [
+        "inoportuno",
+        "inadecuado",
+        "inconveniente"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «PUNTUAL»:",
+      "correcta": "exacto",
+      "distractores": [
+        "impreciso",
+        "inexacto",
+        "aproximado"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «QUIMÉRICO»:",
+      "correcta": "utópico",
+      "distractores": [
+        "real",
+        "factible",
+        "posible"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «RIGUROSO»:",
+      "correcta": "estricto",
+      "distractores": [
+        "laxo",
+        "flexible",
+        "permisivo"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «TACAÑO»:",
+      "correcta": "avaro",
+      "distractores": [
+        "generoso",
+        "pródigo",
+        "espéndido"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «ASIDUO»:",
+      "correcta": "frecuente",
+      "distractores": [
+        "esporádico",
+        "ocasional",
+        "raro"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «BELIGERANTE»:",
+      "correcta": "combativo",
+      "distractores": [
+        "pacífico",
+        "neutral",
+        "conciliador"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «CONTRITO»:",
+      "correcta": "arrepentido",
+      "distractores": [
+        "impenitente",
+        "obstinado",
+        "terco"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «EFICAZ»:",
+      "correcta": "efectivo",
+      "distractores": [
+        "ineficaz",
+        "inútil",
+        "fallido"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «FRUGAL»:",
+      "correcta": "sobrio",
+      "distractores": [
+        "derrochador",
+        "dispendioso",
+        "pródigo"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «HOLGADO»:",
+      "correcta": "amplio",
+      "distractores": [
+        "estrecho",
+        "ajustado",
+        "ceñido"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «ACERBO»:",
+      "correcta": "amargo",
+      "distractores": [
+        "dulce",
+        "suave",
+        "grato"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «CLAMOROSO»:",
+      "correcta": "estruendoso",
+      "distractores": [
+        "silencioso",
+        "callado",
+        "quieto"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «EMPEÑO»:",
+      "correcta": "tesón",
+      "distractores": [
+        "desidia",
+        "pereza",
+        "abandono"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «HERALDO»:",
+      "correcta": "mensajero",
+      "distractores": [
+        "receptor",
+        "destinatario",
+        "oyente"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «OMINOSO»:",
+      "correcta": "funesto",
+      "distractores": [
+        "venturoso",
+        "auspicioso",
+        "favorable"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «QUERULANTE»:",
+      "correcta": "litigante",
+      "distractores": [
+        "conciliador",
+        "pacífico",
+        "amistoso"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «UNÍSONO»:",
+      "correcta": "simultáneo",
+      "distractores": [
+        "separado",
+        "dispar",
+        "desincronizado"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «VAGO»:",
+      "correcta": "impreciso",
+      "distractores": [
+        "exacto",
+        "preciso",
+        "concreto"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «YERMO»:",
+      "correcta": "árido",
+      "distractores": [
+        "fértil",
+        "fecundo",
+        "productivo"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «ACUCIANTE»:",
+      "correcta": "urgente",
+      "distractores": [
+        "trivial",
+        "prescindible",
+        "aplazable"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «BALDÍO»:",
+      "correcta": "estéril",
+      "distractores": [
+        "fértil",
+        "productivo",
+        "cultivado"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «CAPCIOSO»:",
+      "correcta": "engañoso",
+      "distractores": [
+        "franco",
+        "directo",
+        "sincero"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «DENOSTAR»:",
+      "correcta": "injuriar",
+      "distractores": [
+        "elogiar",
+        "alabar",
+        "enaltecer"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «ENSAÑARSE»:",
+      "correcta": "cebarse",
+      "distractores": [
+        "perdonar",
+        "absolver",
+        "clemenciar"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «FATUO»:",
+      "correcta": "vanidoso",
+      "distractores": [
+        "humilde",
+        "sencillo",
+        "modesto"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «GRAVOSO»:",
+      "correcta": "oneroso",
+      "distractores": [
+        "gratuito",
+        "barato",
+        "económico"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «HOSCO»:",
+      "correcta": "huraño",
+      "distractores": [
+        "afable",
+        "amable",
+        "cordial"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «ÍNFIMO»:",
+      "correcta": "mínimo",
+      "distractores": [
+        "máximo",
+        "elevado",
+        "superior"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «JACTANCIOSO»:",
+      "correcta": "fanfarrón",
+      "distractores": [
+        "humilde",
+        "modesto",
+        "discreto"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «LACRA»:",
+      "correcta": "defecto",
+      "distractores": [
+        "virtud",
+        "cualidad",
+        "mérito"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «MÍSERO»:",
+      "correcta": "miserable",
+      "distractores": [
+        "opulento",
+        "rico",
+        "próspero"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «NEFASTO»:",
+      "correcta": "perjudicial",
+      "distractores": [
+        "beneficioso",
+        "favorable",
+        "positivo"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «OFUSCADO»:",
+      "correcta": "cegado",
+      "distractores": [
+        "lúcido",
+        "claro",
+        "sereno"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «PUERIL»:",
+      "correcta": "infantil",
+      "distractores": [
+        "maduro",
+        "adulto",
+        "serio"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «RANCIO»:",
+      "correcta": "antiguo",
+      "distractores": [
+        "moderno",
+        "nuevo",
+        "reciente"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «SOLIVIANTAR»:",
+      "correcta": "agitar",
+      "distractores": [
+        "calmar",
+        "apaciguar",
+        "sosegar"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «TAIMADO»:",
+      "correcta": "astuto",
+      "distractores": [
+        "ingenuo",
+        "cándido",
+        "inocente"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «UBICUO»:",
+      "correcta": "omnipresente",
+      "distractores": [
+        "ausente",
+        "raro",
+        "escaso"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «VENIAL»:",
+      "correcta": "leve",
+      "distractores": [
+        "grave",
+        "mortal",
+        "irreparable"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «ACORDE»:",
+      "correcta": "conforme",
+      "distractores": [
+        "disconforme",
+        "discrepante",
+        "contrario"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «BUROCRÁTICO»:",
+      "correcta": "administrativo",
+      "distractores": [
+        "ágil",
+        "informal",
+        "espontáneo"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «CABAL»:",
+      "correcta": "íntegro",
+      "distractores": [
+        "deshonesto",
+        "parcial",
+        "incompleto"
+      ]
+    },
+    {
+      "pregunta": "Sinónimo de «DILATAR»:",
+      "correcta": "prorrogar",
+      "distractores": [
+        "abreviar",
+        "acortar",
+        "anticipar"
+      ]
+    }
+  ],
+  "antonimos": [
+    {
+      "pregunta": "Antónimo de «ABYECTO»:",
+      "correcta": "noble",
+      "distractores": [
+        "déspota",
+        "vulgar",
+        "ruin"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «ARROGANTE»:",
+      "correcta": "humilde",
+      "distractores": [
+        "soberbio",
+        "altivo",
+        "presumido"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «AUSTERO»:",
+      "correcta": "lujoso",
+      "distractores": [
+        "sobrio",
+        "frugal",
+        "parco"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «BENÉVOLO»:",
+      "correcta": "cruel",
+      "distractores": [
+        "bondadoso",
+        "generoso",
+        "comprensivo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «CAUTELOSO»:",
+      "correcta": "temerario",
+      "distractores": [
+        "prudente",
+        "cauto",
+        "reflexivo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «CODICIOSO»:",
+      "correcta": "desinteresado",
+      "distractores": [
+        "generoso",
+        "desprendido",
+        "avaro"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «COMPLACIENTE»:",
+      "correcta": "intransigente",
+      "distractores": [
+        "flexible",
+        "tolerante",
+        "indulgente"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «DECRÉPITO»:",
+      "correcta": "vigoroso",
+      "distractores": [
+        "longevo",
+        "senil",
+        "acabado"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «DÍSCOLO»:",
+      "correcta": "obediente",
+      "distractores": [
+        "rebelde",
+        "indisciplinado",
+        "revoltoso"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «EFICAZ»:",
+      "correcta": "ineficaz",
+      "distractores": [
+        "efectivo",
+        "productivo",
+        "competente"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «EMPECINADO»:",
+      "correcta": "flexible",
+      "distractores": [
+        "obstinado",
+        "terco",
+        "tozudo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «FÉRTIL»:",
+      "correcta": "estéril",
+      "distractores": [
+        "productivo",
+        "fecundo",
+        "ubérrimo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «FRAGANTE»:",
+      "correcta": "fétido",
+      "distractores": [
+        "oloroso",
+        "perfumado",
+        "aromático"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «FUGAZ»:",
+      "correcta": "duradero",
+      "distractores": [
+        "pasajero",
+        "efímero",
+        "breve"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «GENEROSO»:",
+      "correcta": "tacaño",
+      "distractores": [
+        "pródigo",
+        "dadivoso",
+        "espéndido"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «GREGARIO»:",
+      "correcta": "solitario",
+      "distractores": [
+        "sociable",
+        "amigable",
+        "extrovertido"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «HÁBIL»:",
+      "correcta": "inepto",
+      "distractores": [
+        "capaz",
+        "diestro",
+        "competente"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «HONRADO»:",
+      "correcta": "deshonesto",
+      "distractores": [
+        "íntegro",
+        "recto",
+        "probo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «IMPÁVIDO»:",
+      "correcta": "temeroso",
+      "distractores": [
+        "valiente",
+        "intrépido",
+        "audaz"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «INDOLENTE»:",
+      "correcta": "diligente",
+      "distractores": [
+        "vago",
+        "perezoso",
+        "haragan"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «INGENUO»:",
+      "correcta": "astuto",
+      "distractores": [
+        "cándido",
+        "inocente",
+        "simple"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «INSIGNE»:",
+      "correcta": "vulgar",
+      "distractores": [
+        "ilustre",
+        "célebre",
+        "preclaro"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «LEAL»:",
+      "correcta": "traidor",
+      "distractores": [
+        "fiel",
+        "honrado",
+        "comprometido"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «LENTO»:",
+      "correcta": "veloz",
+      "distractores": [
+        "pausado",
+        "tardo",
+        "moroso"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «MAGNÁNIMO»:",
+      "correcta": "mezquino",
+      "distractores": [
+        "generoso",
+        "noble",
+        "grandioso"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «MENDAZ»:",
+      "correcta": "veraz",
+      "distractores": [
+        "falso",
+        "mentiroso",
+        "engañoso"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «METICULOSO»:",
+      "correcta": "descuidado",
+      "distractores": [
+        "cuidadoso",
+        "minucioso",
+        "riguroso"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «NÍTIDO»:",
+      "correcta": "borroso",
+      "distractores": [
+        "claro",
+        "diáfano",
+        "transparente"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «NÓMADA»:",
+      "correcta": "sedentario",
+      "distractores": [
+        "errante",
+        "viajero",
+        "trashumante"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «OBSTINADO»:",
+      "correcta": "flexible",
+      "distractores": [
+        "tozudo",
+        "terco",
+        "tenaz"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «OPULENTO»:",
+      "correcta": "miserable",
+      "distractores": [
+        "rico",
+        "acaudalado",
+        "próspero"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «OSTENTOSO»:",
+      "correcta": "modesto",
+      "distractores": [
+        "lujoso",
+        "llamativo",
+        "aparatoso"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «PARSIMONIOSO»:",
+      "correcta": "precipitado",
+      "distractores": [
+        "pausado",
+        "lento",
+        "reposado"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «PERSPICAZ»:",
+      "correcta": "obtuso",
+      "distractores": [
+        "agudo",
+        "sagaz",
+        "astuto"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «PLÁCIDO»:",
+      "correcta": "turbulento",
+      "distractores": [
+        "tranquilo",
+        "sereno",
+        "apacible"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «PROLÍFICO»:",
+      "correcta": "estéril",
+      "distractores": [
+        "productivo",
+        "fecundo",
+        "creativo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «PULCRO»:",
+      "correcta": "descuidado",
+      "distractores": [
+        "aseado",
+        "limpio",
+        "impecable"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «RÍGIDO»:",
+      "correcta": "flexible",
+      "distractores": [
+        "duro",
+        "inflexible",
+        "severo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «SAGAZ»:",
+      "correcta": "ingenuo",
+      "distractores": [
+        "astuto",
+        "perspicaz",
+        "listo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «SUMISO»:",
+      "correcta": "rebelde",
+      "distractores": [
+        "dócil",
+        "obediente",
+        "servil"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «TENAZ»:",
+      "correcta": "inconstante",
+      "distractores": [
+        "persistente",
+        "firme",
+        "constante"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «TÍMIDO»:",
+      "correcta": "audaz",
+      "distractores": [
+        "miedoso",
+        "apocado",
+        "vergonzoso"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «TRISTE»:",
+      "correcta": "alegre",
+      "distractores": [
+        "melancólico",
+        "abatido",
+        "apesadumbrado"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «VAGO»:",
+      "correcta": "preciso",
+      "distractores": [
+        "impreciso",
+        "indefinido",
+        "ambiguo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «VALIENTE»:",
+      "correcta": "cobarde",
+      "distractores": [
+        "valeroso",
+        "intrépido",
+        "bravo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «VERAZ»:",
+      "correcta": "mendaz",
+      "distractores": [
+        "honesto",
+        "sincero",
+        "fiable"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «VETUSTO»:",
+      "correcta": "moderno",
+      "distractores": [
+        "antiguo",
+        "viejo",
+        "arcaico"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «VOLUBLE»:",
+      "correcta": "constante",
+      "distractores": [
+        "inconstante",
+        "veleidoso",
+        "cambiante"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «ADVERSO»:",
+      "correcta": "favorable",
+      "distractores": [
+        "contrario",
+        "opuesto",
+        "perjudicial"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «AFABLE»:",
+      "correcta": "huraño",
+      "distractores": [
+        "amable",
+        "cordial",
+        "simpático"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «AMENO»:",
+      "correcta": "aburrido",
+      "distractores": [
+        "entretenido",
+        "divertido",
+        "agradable"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «ASEQUIBLE»:",
+      "correcta": "inalcanzable",
+      "distractores": [
+        "accesible",
+        "factible",
+        "posible"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «BELLO»:",
+      "correcta": "feo",
+      "distractores": [
+        "hermoso",
+        "apuesto",
+        "agraciado"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «CANDOROSO»:",
+      "correcta": "suspicaz",
+      "distractores": [
+        "ingenuo",
+        "inocente",
+        "simple"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «DIÁFANO»:",
+      "correcta": "opaco",
+      "distractores": [
+        "claro",
+        "transparente",
+        "cristalino"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «ESCUETO»:",
+      "correcta": "prolijo",
+      "distractores": [
+        "conciso",
+        "breve",
+        "sucinto"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «EXIGUO»:",
+      "correcta": "abundante",
+      "distractores": [
+        "escaso",
+        "parco",
+        "reducido"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «FÁCIL»:",
+      "correcta": "arduo",
+      "distractores": [
+        "sencillo",
+        "simple",
+        "elemental"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «FORTUITO»:",
+      "correcta": "premeditado",
+      "distractores": [
+        "casual",
+        "accidental",
+        "imprevisto"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «FRÍVOLO»:",
+      "correcta": "serio",
+      "distractores": [
+        "superficial",
+        "banal",
+        "vano"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «HONESTO»:",
+      "correcta": "deshonesto",
+      "distractores": [
+        "íntegro",
+        "recto",
+        "probo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «INOCENTE»:",
+      "correcta": "culpable",
+      "distractores": [
+        "ingenuo",
+        "cándido",
+        "puro"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «LETÁRGICO»:",
+      "correcta": "dinámico",
+      "distractores": [
+        "somnoliento",
+        "inactivo",
+        "perezoso"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «MANSO»:",
+      "correcta": "agresivo",
+      "distractores": [
+        "dócil",
+        "apacible",
+        "tranquilo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «OBTUSO»:",
+      "correcta": "perspicaz",
+      "distractores": [
+        "torpe",
+        "lento",
+        "limitado"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «PACÍFICO»:",
+      "correcta": "belicoso",
+      "distractores": [
+        "tranquilo",
+        "apacible",
+        "sereno"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «PRUDENTE»:",
+      "correcta": "imprudente",
+      "distractores": [
+        "cauto",
+        "sensato",
+        "reflexivo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «RUDO»:",
+      "correcta": "cortés",
+      "distractores": [
+        "basto",
+        "tosco",
+        "grosero"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «SINCERO»:",
+      "correcta": "hipócrita",
+      "distractores": [
+        "honesto",
+        "franco",
+        "veraz"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «SÓRDIDO»:",
+      "correcta": "elegante",
+      "distractores": [
+        "sucio",
+        "miserable",
+        "ruin"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «ACUCIANTE»:",
+      "correcta": "diferible",
+      "distractores": [
+        "urgente",
+        "apremiante",
+        "perentorio"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «BALDÍO»:",
+      "correcta": "fructífero",
+      "distractores": [
+        "estéril",
+        "árido",
+        "yermo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «CAPCIOSO»:",
+      "correcta": "transparente",
+      "distractores": [
+        "engañoso",
+        "artero",
+        "tramposo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «ELOCUENTE»:",
+      "correcta": "balbuciente",
+      "distractores": [
+        "expresivo",
+        "fluido",
+        "convincente"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «FATUO»:",
+      "correcta": "humilde",
+      "distractores": [
+        "vanidoso",
+        "presumido",
+        "jactancioso"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «GRAVOSO»:",
+      "correcta": "gratuito",
+      "distractores": [
+        "oneroso",
+        "costoso",
+        "caro"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «HOSCO»:",
+      "correcta": "afable",
+      "distractores": [
+        "huraño",
+        "antipático",
+        "adusto"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «ÍNFIMO»:",
+      "correcta": "supremo",
+      "distractores": [
+        "mínimo",
+        "reducido",
+        "exiguo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «JOVIAL»:",
+      "correcta": "taciturno",
+      "distractores": [
+        "alegre",
+        "animado",
+        "festivo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «LÚCIDO»:",
+      "correcta": "confuso",
+      "distractores": [
+        "claro",
+        "coherente",
+        "perspicaz"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «MUNDANO»:",
+      "correcta": "espiritual",
+      "distractores": [
+        "terrenal",
+        "material",
+        "secular"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «NEFASTO»:",
+      "correcta": "beneficioso",
+      "distractores": [
+        "funesto",
+        "nefario",
+        "perjudicial"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «OPORTUNO»:",
+      "correcta": "inoportuno",
+      "distractores": [
+        "conveniente",
+        "adecuado",
+        "pertinente"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «PATENTE»:",
+      "correcta": "oculto",
+      "distractores": [
+        "evidente",
+        "manifiesto",
+        "notorio"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «RECIO»:",
+      "correcta": "débil",
+      "distractores": [
+        "fuerte",
+        "robusto",
+        "fornido"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «SOMBRÍO»:",
+      "correcta": "luminoso",
+      "distractores": [
+        "oscuro",
+        "tétrico",
+        "lúgubre"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «TERCO»:",
+      "correcta": "condescendiente",
+      "distractores": [
+        "obstinado",
+        "tozudo",
+        "porfiado"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «UNÁNIME»:",
+      "correcta": "dispar",
+      "distractores": [
+        "acorde",
+        "conforme",
+        "concordante"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «VENAL»:",
+      "correcta": "incorruptible",
+      "distractores": [
+        "corrupto",
+        "sobornado",
+        "venido"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «ÁCIDO»:",
+      "correcta": "dulce",
+      "distractores": [
+        "agrio",
+        "amargo",
+        "picante"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «BLANDO»:",
+      "correcta": "duro",
+      "distractores": [
+        "suave",
+        "tierno",
+        "flexible"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «CÉLEBRE»:",
+      "correcta": "desconocido",
+      "distractores": [
+        "famoso",
+        "ilustre",
+        "renombrado"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «DESPRENDIDO»:",
+      "correcta": "avaro",
+      "distractores": [
+        "generoso",
+        "pródigo",
+        "dadivoso"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «EFÍMERO»:",
+      "correcta": "eterno",
+      "distractores": [
+        "pasajero",
+        "fugaz",
+        "breve"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «FRAGIL»:",
+      "correcta": "robusto",
+      "distractores": [
+        "delicado",
+        "endeble",
+        "quebradizo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «GRATO»:",
+      "correcta": "desagradable",
+      "distractores": [
+        "agradable",
+        "placentero",
+        "satisfactorio"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «ILÍCITO»:",
+      "correcta": "lícito",
+      "distractores": [
+        "prohibido",
+        "ilegal",
+        "ilegítimo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «JUSTO»:",
+      "correcta": "injusto",
+      "distractores": [
+        "equitativo",
+        "imparcial",
+        "recto"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «LEAL»:",
+      "correcta": "desleal",
+      "distractores": [
+        "fiel",
+        "honrado",
+        "comprometido"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «MORALISTA»:",
+      "correcta": "libertino",
+      "distractores": [
+        "ético",
+        "virtuoso",
+        "ejemplar"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «NATURAL»:",
+      "correcta": "artificial",
+      "distractores": [
+        "espontáneo",
+        "genuino",
+        "auténtico"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «ORIGINAL»:",
+      "correcta": "plagiado",
+      "distractores": [
+        "novedoso",
+        "creativo",
+        "único"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «PERTINENTE»:",
+      "correcta": "irrelevante",
+      "distractores": [
+        "adecuado",
+        "oportuno",
+        "conveniente"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «QUIETO»:",
+      "correcta": "inquieto",
+      "distractores": [
+        "sereno",
+        "tranquilo",
+        "inmóvil"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «ROTUNDO»:",
+      "correcta": "dubitativo",
+      "distractores": [
+        "categórico",
+        "tajante",
+        "definitivo"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «SUPERFICIAL»:",
+      "correcta": "profundo",
+      "distractores": [
+        "frívolo",
+        "banal",
+        "trivial"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «TRANSITORIO»:",
+      "correcta": "permanente",
+      "distractores": [
+        "pasajero",
+        "efímero",
+        "temporal"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «ÚTIL»:",
+      "correcta": "inútil",
+      "distractores": [
+        "práctico",
+        "funcional",
+        "provechoso"
+      ]
+    },
+    {
+      "pregunta": "Antónimo de «VIRTUOSO»:",
+      "correcta": "vicioso",
+      "distractores": [
+        "íntegro",
+        "moral",
+        "ejemplar"
+      ]
+    }
+  ]
+}

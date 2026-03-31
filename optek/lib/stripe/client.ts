@@ -49,9 +49,8 @@ export const STRIPE_PRICES = {
   pack_guardia_civil:  process.env.STRIPE_PRICE_PACK_GUARDIA_CIVIL  ?? '', // 79.99€ → Guardia Civil
   pack_policia_nacional: process.env.STRIPE_PRICE_PACK_POLICIA_NACIONAL ?? '', // 79.99€ → Policía Nacional
   pack_doble_gc_pn:    process.env.STRIPE_PRICE_PACK_DOBLE_GC_PN    ?? '', // 129.99€ → GC + PN
-  pack_personalidad:   process.env.STRIPE_PRICE_PACK_PERSONALIDAD   ?? '', // 49.99€ → Personalidad Policial
-  pack_completo_seguridad: process.env.STRIPE_PRICE_PACK_COMPLETO_SEGURIDAD ?? '', // 119.99€ → oposición + personalidad
-  pack_doble_gc_pn_personalidad: process.env.STRIPE_PRICE_PACK_DOBLE_GC_PN_PERSONALIDAD ?? '', // 159.99€ → GC+PN + personalidad
+  pack_personalidad:   process.env.STRIPE_PRICE_PACK_PERSONALIDAD   ?? '', // 49.99€ → Personalidad Policial (transversal)
+  pack_completo_seguridad: process.env.STRIPE_PRICE_PACK_COMPLETO_SEGURIDAD ?? '', // 119.99€ → 1 oposición + personalidad
   // Recarga única (pool unificado — sirve para tutor IA, personalidad, etc.)
   recarga:        process.env.STRIPE_PRICE_RECARGA        ?? '', //   9.99€ → +10 créditos IA
 } as const
@@ -86,7 +85,6 @@ export const CORRECTIONS_GRANTED: Record<StripePriceTier, number> = {
   pack_doble_gc_pn:    30,
   pack_personalidad:   15,  // 15 créditos IA (para sesiones personalidad)
   pack_completo_seguridad: 35,  // 20 base + 15 personalidad
-  pack_doble_gc_pn_personalidad: 45,  // 30 base + 15 personalidad
   // Recarga
   recarga:        10,
 }
@@ -138,7 +136,6 @@ export const TIER_TO_OPOSICION: Record<StripePriceTier, string | string[]> = {
   pack_doble_gc_pn:    [GUARDIA_CIVIL_OPOSICION_ID, POLICIA_NACIONAL_OPOSICION_ID],
   pack_personalidad:   '',  // transversal, no vinculada a oposición específica
   pack_completo_seguridad: '',  // se resuelve dinámicamente según la oposición del usuario
-  pack_doble_gc_pn_personalidad: [GUARDIA_CIVIL_OPOSICION_ID, POLICIA_NACIONAL_OPOSICION_ID],
   // Recarga
   recarga:            '',
 }

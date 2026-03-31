@@ -72,7 +72,7 @@ describe('Stripe pricing constants', () => {
     expect(Object.keys(STRIPE_PRICES).sort()).toEqual([
       'pack', 'pack_a2', 'pack_auxilio', 'pack_c1',
       'pack_completo_seguridad', 'pack_correos',
-      'pack_doble', 'pack_doble_gc_pn', 'pack_doble_gc_pn_personalidad',
+      'pack_doble', 'pack_doble_gc_pn',
       'pack_doble_justicia', 'pack_ertzaintza',
       'pack_gestion_j', 'pack_guardia_civil',
       'pack_hacienda', 'pack_penitenciarias', 'pack_personalidad',

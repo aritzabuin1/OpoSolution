@@ -19,7 +19,7 @@ import type { Dificultad, PsicotecnicoQuestion } from './types'
 
 // ─── Importar banco (Next.js resuelve JSON imports con resolveJsonModule) ──────
 // eslint-disable-next-line @typescript-eslint/no-require-imports
-const bancoVerbal = require('../../../data/psicotecnicos/banco_verbal.json') as {
+const bancoVerbal = require('../../data/psicotecnicos/banco_verbal.json') as {
   sinonimos: VerbalEntry[]
   antonimos: VerbalEntry[]
 }
