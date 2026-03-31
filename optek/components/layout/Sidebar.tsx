@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { BarChart3, BookOpen, Brain, CalendarCheck, ClipboardList, FileText, LayoutDashboard, Layers, Lock, LogOut, Target, TrendingUp, Trophy, User } from 'lucide-react'
+import { BarChart3, BookOpen, Brain, CalendarCheck, ClipboardList, FileText, LayoutDashboard, Layers, Lock, LogOut, Shield, Target, TrendingUp, Trophy, User } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { createClient } from '@/lib/supabase/client'
 import { NotificationBell } from '@/components/shared/NotificationBell'
@@ -52,6 +52,12 @@ const navItems: NavItem[] = [
     premiumDesc: 'Practica el ejercicio de desarrollo con corrección IA usando la rúbrica oficial.',
     featureKey: 'supuesto_practico',
   },
+  {
+    href: '/personalidad-policial', label: 'Personalidad', icon: Shield,
+    premium: true,
+    premiumDesc: 'Evalúa tu perfil de personalidad policial con IA. Assessment Big Five, entrevista simulada y coaching.',
+    featureKey: 'personalidad',
+  },
   { href: '/logros', label: 'Logros', icon: Trophy },
   { href: '/cuenta', label: 'Mi cuenta', icon: User },
 ]
@@ -62,6 +68,7 @@ interface OposicionFeatures {
   supuesto_practico?: boolean
   supuesto_test?: boolean
   ofimatica?: boolean
+  personalidad?: boolean
 }
 
 interface SidebarProps {

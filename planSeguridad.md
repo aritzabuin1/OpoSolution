@@ -365,11 +365,12 @@ pnpm tsx execution/ingest-conocimiento-seguridad.ts --dry-run
 
 **Marco etico**: "Autoconocimiento policial" — analogia fitness: no ensenamos a hacer trampas, ayudamos a PONERSE EN FORMA. Disclaimer: "herramienta de practica, no sustituye evaluacion profesional". Items originales IPIP (dominio publico), no copias de MMPI-2/16PF/NEO-PI-R.
 
-### 11.1 — Migration BD (`070_personalidad_policial.sql`)
-- Tabla `personalidad_sesiones`: id, user_id, tipo (perfil|sjt|entrevista|coaching), respuestas JSONB, scores JSONB, created_at
-- Tabla `personalidad_consistencia`: user_id, dimension, sesion_1_score, sesion_n_score, delta, created_at
-- Campo `personality_credits` en profiles (o reutilizar corrections_balance con tipo separado)
-- RPC `use_personality_credit` (similar a `use_correction`)
+### 11.1 — Migration BD (`071_personalidad_policial.sql`) ✅
+- **Archivo**: `supabase/migrations/20260331_071_personalidad_policial.sql`
+- Tabla `personalidad_sesiones` (id, user_id, tipo, oposicion_id, respuestas JSONB, scores JSONB, validity JSONB, completed, timestamps)
+- Tabla `personalidad_consistencia` (id, user_id, dimension, sesion_id FK, t_score, created_at)
+- RPC `use_personality_credit` (reutiliza corrections_balance — pool unificado)
+- RLS policies + indexes
 
 ### 11.2 — Banco de items IPIP (one-time) ✅
 - **Archivo**: `data/personalidad/ipip_items.json`
@@ -407,60 +408,38 @@ pnpm tsx execution/ingest-conocimiento-seguridad.ts --dry-run
 - analyzeConsistency: entry point, maneja 0/1/2+ sesiones
 - **Tests**: 13 tests unitarios (`personalidad-consistency.test.ts`)
 
-### 11.7 — SJT: Juicio Situacional (IA)
-- **Archivo**: `optek/lib/personalidad/sjt.ts`
-- **Endpoint**: `POST /api/personalidad/sjt`
-- Generacion: Claude/GPT genera escenario policial + 4-5 opciones rankeadas
-- Adaptado al cuerpo: Ertzaintza (contexto vasco, bilingue), GC (rural, militar), PN (urbano)
-- Scoring: concordancia con ranking ideal (partial credit)
-- Consume 1 credito de personalidad por escenario
-- **Coste IA**: ~$0.02/escenario
-- **Tests**: 3-4 tests
+### 11.7 — SJT: Juicio Situacional (IA) ✅
+- **Lib**: `lib/personalidad/sjt.ts` (prompts por cuerpo, Spearman footrule scoring)
+- **Endpoint**: `POST /api/personalidad/sjt` (generate + score modes)
+- Adaptado: Ertzaintza (vasco/bilingue), GC (rural/militar), PN (urbano)
+- 1 credito por escenario, ~$0.02
 
-### 11.8 — Entrevista simulada (IA streaming, FEATURE PREMIUM)
-- **Archivo**: `optek/lib/personalidad/interview.ts`
+### 11.8 — Entrevista simulada (IA streaming) ✅
+- **Lib**: `lib/personalidad/interview.ts` (system prompt + feedback prompt)
 - **Endpoint**: `POST /api/personalidad/interview/stream`
-- System prompt: psicologo del tribunal con acceso al perfil Big Five del usuario
-- Comportamiento:
-  - Preguntas abiertas sobre situaciones policiales
-  - Sondea inconsistencias entre perfil test y respuestas verbales
-  - Presiona en areas debiles (baja estabilidad emocional -> "cuente una situacion de estres...")
-  - 10-15 intercambios por sesion
-- Post-sesion: feedback IA (puntos fuertes, areas de mejora, red flags detectados)
-- Consume 1 credito por sesion
-- **Coste IA**: ~$0.20/sesion
-- **Tests**: 2-3 tests
+- Psicologo del tribunal con acceso al perfil Big Five
+- 1 credito por sesion (follow-up gratis), ~$0.20/sesion
 
-### 11.9 — Gap Analysis + Coaching (IA)
-- **Archivo**: `optek/lib/personalidad/coaching.ts`
+### 11.9 — Gap Analysis + Coaching (IA) ✅
+- **Lib**: `lib/personalidad/coaching.ts` (evidence-based, POLICE_PROFILE)
 - **Endpoint**: `POST /api/personalidad/coaching/stream`
-- Input: perfil Big Five del usuario + historial de sesiones
-- Output: informe personalizado
-  - Tu perfil vs perfil policial ideal (grafico radar)
-  - Areas de riesgo: "Neuroticism T=58 — el ideal es <50"
-  - Recomendaciones evidence-based (CBT, mindfulness, role-playing)
-  - NO dice "finge esto" — dice "desarrolla esto genuinamente"
-- Consume 1 credito
-- **Coste IA**: ~$0.03/informe
-- **Tests**: 2 tests
+- Informe personalizado + plan semanal, 1 credito, ~$0.03
 
-### 11.10 — UI: Pagina /personalidad-policial
-- **Archivo**: `optek/app/(dashboard)/personalidad-policial/page.tsx`
-- Componentes:
-  - `PersonalidadAssessment.tsx` — cuestionario interactivo (Likert 1-5)
-  - `PerfilRadar.tsx` — grafico radar Big Five (tu perfil vs ideal)
-  - `ConsistencyDashboard.tsx` — evolucion temporal + score consistencia
-  - `SJTCard.tsx` — escenarios situacionales
-  - `InterviewChat.tsx` — chat streaming con psicologo IA
-  - `CoachingReport.tsx` — informe de coaching
-- PaywallGate: requiere pack personalidad o pack completo
-- Sidebar: icono Brain + "Personalidad" (con Lock si no tiene pack)
+### 11.10 — UI: Pagina /personalidad-policial ✅
+- **Page**: `app/(dashboard)/personalidad-policial/page.tsx` (server component)
+- **Hub**: `PersonalidadHub.tsx` — 5 tabs (Assessment, Perfil, SJT, Entrevista, Coaching)
+- **Assessment**: `PersonalidadAssessment.tsx` — cuestionario CAT adaptativo con Likert 1-5
+- **Perfil**: `PerfilRadar.tsx` — dimension cards con T-score bars + ideal markers + fit labels
+- **SJT**: `SJTCard.tsx` — tap-to-rank escenarios policiales
+- **Entrevista/Coaching**: cards placeholder con CTA
+- **Endpoint assessment**: `POST /api/personalidad/assessment` (init + respond, CAT engine)
+- **Sidebar**: Shield icon + "Personalidad" (PRO badge, featureKey: personalidad)
+- **Navbar**: idem
 
-### 11.11 — Verificacion modulo personalidad
-- Todos los tests unitarios pasan
-- Smoke test: completar assessment -> ver perfil -> SJT -> entrevista -> coaching
-- Verificar creditos se descuentan correctamente
-- Verificar consistencia cross-sesion tras 2+ sesiones
+### 11.11 — Verificacion modulo personalidad ⏸️
+- 63 tests unitarios pasan (scoring, validity, CAT, consistency)
+- TypeScript compila limpio (0 errores)
+- Smoke test pendiente: requiere migration aplicada + .env.local
 
 ---
 
@@ -562,18 +541,95 @@ FASE 12 (Stripe) — Aritz crea productos + env vars
 | 4 — Examenes oficiales | ✅ INVESTIGACION OK | URLs documentadas. **Pendiente**: Aritz descarga PDFs + parsea |
 | 5 — Conocimiento tecnico | ✅ SCRIPTS CREADOS | `generate-conocimiento-seguridad.ts` + `ingest-conocimiento-seguridad.ts`. **Pendiente**: Aritz ejecuta generacion (~$3-5) + ingesta |
 | 6 — Psicotecnicos nuevos | ✅ COMPLETADA | 3 modulos (spatial/logic/perception), 11 subtipos, 42 tests |
-| 7 — Free question bank | ⏳ PENDIENTE | Depende de FASE 3+5 ingestadas |
+| 7 — Free question bank | ⏳ PENDIENTE | Script listo, depende de FASE 3+5 ingestadas |
 | 8 — Landing pages + SEO | ✅ COMPLETADA | 5 landings + main card + precios tab + sitemap + footer + llms.txt |
-| 9 — Blog SEO | ✅ COMPLETADA | 7 posts (ertzaintza, GC, PN 3-opciones, psicotecnicos, sueldos, comparativa, personalidad) |
+| 9 — Blog SEO | ✅ COMPLETADA | 7 posts |
 | 10 — Activacion | ⏳ PENDIENTE | Checklist pre-lanzamiento |
-| 11 — Personalidad Policial | ⏳ PENDIENTE | Modulo innovacion (post-MVP conocimientos) |
+| 11 — Personalidad Policial | ✅ CODIGO COMPLETO | Migration + 5 libs + 4 endpoints + UI + 63 tests. Pendiente: aplicar migration |
 | 12 — Stripe | ⏳ PENDIENTE | Aritz crea 6 productos + env vars |
 
-**Bloqueantes para Aritz (en casa con .env.local):**
-1. `cd optek && pnpm tsx execution/generate-conocimiento-seguridad.ts` (FASE 5 generacion)
-2. `cd optek && pnpm tsx execution/ingest-conocimiento-seguridad.ts` (FASE 5 ingesta)
-3. `cd optek && pnpm ingest:legislacion && pnpm generate:embeddings` (FASE 3.4)
-4. `cd optek && pnpm tag:legislacion --rama seguridad` (FASE 3.4)
-5. Descargar PDFs examenes GC+PN (FASE 4.4)
+---
 
-**Siguiente ejecutable sin .env.local:** FASE 11.2-11.6 (personalidad policial — partes deterministas).
+## GUIA DEPLOY ESTA NOCHE (con .env.local)
+
+### Paso 0 — Pull y verificar
+```bash
+cd /workspaces/OpoSolution/optek
+git pull
+pnpm install
+pnpm test        # 63 personalidad + rest OK
+npx tsc --noEmit # 0 errores
+```
+
+### Paso 1 — Aplicar migrations en Supabase Dashboard
+1. Ir a Supabase Dashboard → SQL Editor
+2. Copiar y ejecutar EN ORDEN:
+   - `supabase/migrations/20260331_069_seguridad_bloque_check.sql`
+   - `supabase/migrations/20260331_070_seguridad_oposiciones.sql`
+   - `supabase/migrations/20260331_071_personalidad_policial.sql`
+3. Verificar: `SELECT COUNT(*) FROM oposiciones WHERE rama = 'seguridad'` → 3
+
+### Paso 2 — Crear productos Stripe (6)
+En Stripe Dashboard → Products:
+1. Pack Ertzaintza — 79,99€ one-time → copiar price_id
+2. Pack Guardia Civil — 79,99€ one-time
+3. Pack Policía Nacional — 79,99€ one-time
+4. Pack Doble GC+PN — 129,99€ one-time
+5. Pack Personalidad Policial — 49,99€ one-time
+6. Pack Completo Seguridad — 119,99€ one-time
+
+Añadir en `.env.local` y en Vercel:
+```
+STRIPE_PRICE_PACK_ERTZAINTZA=price_xxx
+STRIPE_PRICE_PACK_GUARDIA_CIVIL=price_xxx
+STRIPE_PRICE_PACK_POLICIA_NACIONAL=price_xxx
+STRIPE_PRICE_PACK_DOBLE_GC_PN=price_xxx
+STRIPE_PRICE_PACK_PERSONALIDAD=price_xxx
+STRIPE_PRICE_PACK_COMPLETO_SEGURIDAD=price_xxx
+```
+
+### Paso 3 — Ingesta legislacion (~5 min)
+```bash
+pnpm ingest:legislacion
+pnpm generate:embeddings
+pnpm tag:legislacion --rama seguridad --dry-run
+pnpm tag:legislacion --rama seguridad
+```
+
+### Paso 4 — Generar conocimiento tecnico (~$3-5, ~10 min)
+```bash
+pnpm tsx execution/generate-conocimiento-seguridad.ts
+pnpm tsx execution/ingest-conocimiento-seguridad.ts
+```
+
+### Paso 5 — Free question bank (~$7, ~15 min)
+```bash
+pnpm tsx execution/generate-free-bank.ts --oposicion ertzaintza --user-id TU_UUID
+pnpm tsx execution/generate-free-bank.ts --oposicion guardia-civil --user-id TU_UUID
+pnpm tsx execution/generate-free-bank.ts --oposicion policia-nacional --user-id TU_UUID
+```
+Verificar: `SELECT oposicion_id, COUNT(*) FROM free_question_bank GROUP BY oposicion_id`
+
+### Paso 6 — Activar oposiciones
+```sql
+UPDATE oposiciones SET activa = true WHERE rama = 'seguridad';
+-- Añadir feature personalidad para las 3 oposiciones de seguridad:
+UPDATE oposiciones SET features = features || '{"personalidad": true}'::jsonb WHERE rama = 'seguridad';
+```
+
+### Paso 7 — Build y deploy
+```bash
+pnpm build       # verificar que compila
+git push         # Vercel auto-deploy
+```
+
+### Paso 8 — Smoke test
+- [ ] Registro nuevo usuario → seleccionar Ertzaintza
+- [ ] Test gratuito → completar → ver resultado
+- [ ] Simulacro (si hay examenes)
+- [ ] Checkout Ertzaintza → verificar Stripe
+- [ ] /personalidad-policial → completar assessment → ver perfil
+- [ ] SJT → generar escenario → rankear → ver score
+- [ ] Repetir para GC y PN
+
+### Tiempo estimado: ~45-60 min (la mayor parte es esperar generacion IA)
