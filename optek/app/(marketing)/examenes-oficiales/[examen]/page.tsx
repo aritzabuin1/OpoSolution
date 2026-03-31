@@ -20,6 +20,9 @@ import { ArrowRight, BookOpen, Timer, CheckCircle2, Lock } from 'lucide-react'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
+/** ISR: regenerar cada 24h — servido desde CDN entre regeneraciones */
+export const revalidate = 86400
+
 // ─── Catálogo de exámenes conocidos ──────────────────────────────────────────
 
 const EXAMEN_META: Record<string, {

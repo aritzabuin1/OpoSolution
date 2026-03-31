@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+/** ISR: regenerar cada 7 días — servido desde CDN entre regeneraciones */
+export const revalidate = 604800
+
 export const metadata: Metadata = {
   title: 'Términos y Condiciones — OpoRuta',
   description: 'Términos y condiciones de uso del servicio OpoRuta.',

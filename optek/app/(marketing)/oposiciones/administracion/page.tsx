@@ -12,6 +12,9 @@ import {
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
+/** ISR: regenerar cada 24h — servido desde CDN entre regeneraciones */
+export const revalidate = 86400
+
 export const metadata: Metadata = {
   title: 'Oposiciones Administración del Estado 2026 — C2, C1 y A2 GACE | OpoRuta',
   description:

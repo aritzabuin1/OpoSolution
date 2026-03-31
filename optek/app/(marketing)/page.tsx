@@ -30,6 +30,9 @@ import { SocialProofCounter } from '@/components/marketing/SocialProofCounter'
 
 const APP_URL_META = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
+/** ISR: regenerar cada 1h — servido desde CDN entre regeneraciones */
+export const revalidate = 3600
+
 export const metadata: Metadata = {
   title: 'OpoRuta — Oposiciones con IA: AGE, Justicia, Correos, Hacienda, Penitenciarias, Seguridad | OpoRuta',
   description:

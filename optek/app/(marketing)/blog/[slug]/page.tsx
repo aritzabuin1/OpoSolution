@@ -9,6 +9,9 @@ import { BlogCTA, injectMidArticleCTA } from '@/components/blog/BlogCTA'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
+/** ISR: regenerar cada 24h — servido desde CDN entre regeneraciones */
+export const revalidate = 86400
+
 interface Props {
   params: Promise<{ slug: string }>
 }

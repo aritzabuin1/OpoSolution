@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+/** ISR: regenerar cada 7 días — servido desde CDN entre regeneraciones */
+export const revalidate = 604800
+
 export const metadata: Metadata = {
   title: 'Política de Cookies — OpoRuta',
   description: 'Información sobre las cookies que utiliza OpoRuta.',

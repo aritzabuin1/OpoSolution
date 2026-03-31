@@ -4,6 +4,9 @@ import { CalculadoraNotaJusticia } from './CalculadoraNotaJusticia'
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 const PAGE_URL = `${APP_URL}/herramientas/calculadora-nota-justicia`
 
+/** ISR: regenerar cada 7 días — servido desde CDN entre regeneraciones */
+export const revalidate = 604800
+
 export const metadata: Metadata = {
   title: 'Calculadora Nota Justicia 2026 — Auxilio, Tramitación y Gestión Procesal',
   description:

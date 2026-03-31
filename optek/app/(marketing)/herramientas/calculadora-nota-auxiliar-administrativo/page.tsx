@@ -4,6 +4,9 @@ import { CalculadoraNota } from './CalculadoraNota'
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 const PAGE_URL = `${APP_URL}/herramientas/calculadora-nota-auxiliar-administrativo`
 
+/** ISR: regenerar cada 7 días — servido desde CDN entre regeneraciones */
+export const revalidate = 604800
+
 export const metadata: Metadata = {
   title: 'Calculadora de nota con penalización -1/3 — Auxiliar Administrativo del Estado',
   description:

@@ -15,6 +15,9 @@ import { ArrowRight, BookOpen, Trophy, Timer, CheckCircle2 } from 'lucide-react'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
+/** ISR: regenerar cada 24h — servido desde CDN entre regeneraciones */
+export const revalidate = 86400
+
 export const metadata: Metadata = {
   title: 'Simulacros Examen INAP — Auxiliar (C2) y Administrativo (C1) | OpoRuta',
   description:

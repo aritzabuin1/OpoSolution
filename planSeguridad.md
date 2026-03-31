@@ -367,7 +367,7 @@ Estructura real del examen GC (140 min compartidos):
 - [ ] 6 productos Stripe + env vars
 - [x] Legislacion ingestada + taggeada (11.396 arts, 3.935 taggeados)
 - [x] Conocimiento técnico generado + ingestado (33 temas, 196 secciones)
-- [ ] Free bank 1240 preguntas (~$7)
+- [x] Free bank 1.070 preguntas (107/124 temas, 86%) — generado 2026-04-01
 - [ ] Examenes oficiales ingestados
 - [x] Landings publicadas (requisitos corregidos 2026-03-31: estaturas eliminadas, edades, euskera B2, plazas GC 3.118)
 - [x] Blog 7 posts
@@ -561,10 +561,10 @@ FASE 12 (Stripe) — Aritz crea productos + env vars  ⏳ PENDIENTE
 | 6.5 — Ortografía GC | ✅ COMPLETADA | 210 items, 9 categorías, 17 tests |
 | 6.6 — Inglés GC | ✅ COMPLETADA | 160 items, 9 categorías A2-B1, 19 tests |
 | 6.7 — Simulacro GC 3 ejercicios | ✅ COMPLETADA | Migration 075 + endpoint + UI. 792/792 tests |
-| 7 — Free question bank | ⏳ PENDIENTE | Script listo. FASE 3+5 ya ingestadas. Requiere ~$7 + ADMIN_USER_ID |
+| 7 — Free question bank | ✅ COMPLETADA (86%) | 107/124 temas generados (1.070 preguntas). 17 fallan por citas BOPV. Cobertura suficiente para lanzar |
 | 8 — Landing pages + SEO | ✅ COMPLETADA | 5 landings + main card + precios tab + sitemap + footer + llms.txt. Requisitos corregidos (estaturas, edades, euskera, plazas) |
 | 9 — Blog SEO | ✅ COMPLETADA | 7 posts. Blog GC corregido (estatura eliminada) |
-| 10 — Activacion | ⏳ PENDIENTE | Migrations 073+075 ✅ aplicadas. Falta: Stripe + free bank + activar |
+| 10 — Activacion | ⏳ PENDIENTE | Migrations 073+075 ✅ aplicadas. Free bank ✅ (107/124). Falta: Stripe + activar |
 | 11 — Personalidad Policial | ✅ COMPLETADA | Migration 071 aplicada + 5 libs + 4 endpoints + UI + 63 tests |
 | 12 — Stripe | ⏳ PENDIENTE | Aritz crea 6 productos + env vars |
 | 13 — "Estudiar" | ⏳ PENDIENTE | Resúmenes IA on-demand por ley, premium, compartido cross-oposición, coste $0 inicial |

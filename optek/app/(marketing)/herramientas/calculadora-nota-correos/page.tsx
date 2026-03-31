@@ -4,6 +4,9 @@ import { CalculadoraNotaCorreos } from './CalculadoraNotaCorreos'
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 const PAGE_URL = `${APP_URL}/herramientas/calculadora-nota-correos`
 
+/** ISR: regenerar cada 7 días — servido desde CDN entre regeneraciones */
+export const revalidate = 604800
+
 export const metadata: Metadata = {
   title: 'Calculadora Nota Correos 2026 — Calcula tu puntuaci\u00f3n gratis',
   description:

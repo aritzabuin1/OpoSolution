@@ -11,6 +11,9 @@ import {
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
+/** ISR: regenerar cada 24h — servido desde CDN entre regeneraciones */
+export const revalidate = 86400
+
 export const metadata: Metadata = {
   title: 'Test Instituciones Penitenciarias 2026 — Practica gratis | OpoRuta',
   description:
