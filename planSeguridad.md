@@ -573,8 +573,8 @@ FASE 12 (Stripe) — Aritz crea productos + env vars
 | 5 — Conocimiento tecnico | ✅ SCRIPTS CREADOS | `generate-conocimiento-seguridad.ts` + `ingest-conocimiento-seguridad.ts`. **Pendiente**: Aritz ejecuta generacion (~$3-5) + ingesta |
 | 6 — Psicotecnicos nuevos | ✅ COMPLETADA | 3 modulos (spatial/logic/perception), 11 subtipos, 42 tests |
 | 7 — Free question bank | ⏳ PENDIENTE | Depende de FASE 3+5 ingestadas |
-| 8 — Landing pages + SEO | ⏳ PENDIENTE | Hub + 3 sub-landings + personalidad + pricing |
-| 9 — Blog SEO | ⏳ PENDIENTE | 7 posts |
+| 8 — Landing pages + SEO | ✅ COMPLETADA | 5 landings + main card + precios tab + sitemap + footer + llms.txt |
+| 9 — Blog SEO | ✅ COMPLETADA | 7 posts (ertzaintza, GC, PN 3-opciones, psicotecnicos, sueldos, comparativa, personalidad) |
 | 10 — Activacion | ⏳ PENDIENTE | Checklist pre-lanzamiento |
 | 11 — Personalidad Policial | ⏳ PENDIENTE | Modulo innovacion (post-MVP conocimientos) |
 | 12 — Stripe | ⏳ PENDIENTE | Aritz crea 6 productos + env vars |
@@ -586,4 +586,4 @@ FASE 12 (Stripe) — Aritz crea productos + env vars
 4. `cd optek && pnpm tag:legislacion --rama seguridad` (FASE 3.4)
 5. Descargar PDFs examenes GC+PN (FASE 4.4)
 
-**Siguiente ejecutable sin .env.local:** FASE 8 (landings) + FASE 9 (blog) en paralelo.
+**Siguiente ejecutable sin .env.local:** FASE 11.2-11.6 (personalidad policial — partes deterministas).
