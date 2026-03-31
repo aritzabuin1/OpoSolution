@@ -17,6 +17,9 @@ import { generateOrganization } from './organization'
 import { generateReading } from './reading'
 import { generateGraphs } from './graphs'
 import { generateFigures } from './figures'
+import { generateSpatial } from './spatial'
+import { generateLogic } from './logic'
+import { generatePerception } from './perception'
 import type { Dificultad, PsicotecnicoQuestion } from './types'
 
 // ─── Distribuciones por oposición ────────────────────────────────────────────
@@ -41,6 +44,21 @@ const CORREOS_DISTRIBUCION: Record<string, number> = {
   comprension_lectora: 0.35,
   graficos:            0.35,
   figuras:             0.30,
+}
+
+/**
+ * Seguridad (Ertzaintza, GC, PN): razonamiento espacial, lógica deductiva,
+ * percepción, más los clásicos numérico/series/verbal/organización.
+ * Fuente: exámenes psicotécnicos de oposiciones policiales.
+ */
+const SEGURIDAD_DISTRIBUCION: Record<string, number> = {
+  espacial:     0.20,
+  logica:       0.10,
+  percepcion:   0.15,
+  numerico:     0.15,
+  series:       0.15,
+  verbal:       0.15,
+  organizacion: 0.10,
 }
 
 // ─── generatePsicotecnicos ────────────────────────────────────────────────────
@@ -113,6 +131,10 @@ export function generatePsicotecnicos(
     () => generateReading(counts['comprension_lectora'] ?? 0, dificultad),
     () => generateGraphs(counts['graficos'] ?? 0, dificultad),
     () => generateFigures(counts['figuras'] ?? 0, dificultad),
+    // Seguridad types
+    () => generateSpatial(counts['espacial'] ?? 0, dificultad),
+    () => generateLogic(counts['logica'] ?? 0, dificultad),
+    () => generatePerception(counts['percepcion'] ?? 0, dificultad),
   ]
 
   for (const gen of generadores) {
@@ -133,6 +155,9 @@ export function generatePsicotecnicos(
     comprension_lectora: (d) => generateReading(1, d),
     graficos: (d) => generateGraphs(1, d),
     figuras: (d) => generateFigures(1, d),
+    espacial: (d) => generateSpatial(1, d),
+    logica: (d) => generateLogic(1, d),
+    percepcion: (d) => generatePerception(1, d),
   }
   // Solo categorías con cuota > 0 para respetar la distribución solicitada
   const catKeys = Object.keys(catGeneradores).filter((k) => (counts[k] ?? 0) > 0)
@@ -176,6 +201,11 @@ export function generatePsicotecnicos(
  */
 export function getDistribucionPsicotecnicos(oposicionSlug?: string): Record<string, number> {
   if (oposicionSlug?.includes('correos')) return CORREOS_DISTRIBUCION
+  if (
+    oposicionSlug?.includes('ertzaintza') ||
+    oposicionSlug?.includes('guardia-civil') ||
+    oposicionSlug?.includes('policia-nacional')
+  ) return SEGURIDAD_DISTRIBUCION
   return DEFAULT_DISTRIBUCION
 }
 
@@ -185,3 +215,6 @@ export { generateNumeric } from './numeric'
 export { generateSeries } from './series'
 export { generateVerbal } from './verbal'
 export { generateOrganization } from './organization'
+export { generateSpatial } from './spatial'
+export { generateLogic } from './logic'
+export { generatePerception } from './perception'

@@ -246,7 +246,7 @@ pnpm ingest:examenes --dir examenes_ertzaintza --oposicion ertzaintza
 
 ---
 
-## FASE 5 — Contenido no legislativo (conocimiento_tecnico)
+## FASE 5 — Contenido no legislativo (conocimiento_tecnico) ✅ SCRIPTS CREADOS
 
 ### 5.1 — Ertzaintza temas 32-36 (Historia, Geografia, Demografia, Economia, Cultura PV)
 ### 5.2 — Guardia Civil temas 16-25 (Proteccion civil, Topografia, Sociologia, TIC, Telecoms, Automovilismo, Armamento, Primeros auxilios, Seguridad vial, Medio ambiente)
@@ -255,28 +255,42 @@ pnpm ingest:examenes --dir examenes_ertzaintza --oposicion ertzaintza
 ### 5.4 — Generacion e ingesta
 - ~33 temas no legislativos, summaries ~2000 palabras/tema
 - `conocimiento_tecnico` con bloque = `'seguridad'`
-- Script: `execution/ingest-conocimiento-seguridad.ts`
+- **Generador**: `execution/generate-conocimiento-seguridad.ts` (usa Claude API, ~$3-5)
+- **Ingestor**: `execution/ingest-conocimiento-seguridad.ts` (sube a Supabase + embeddings)
 - Coste: ~$3-5
+
+### 5.5 — PAUSA: Aritz ejecuta generacion + ingesta ⏸️
+```bash
+cd optek
+# Paso 1: Generar JSONs con Claude (~$3-5)
+pnpm tsx execution/generate-conocimiento-seguridad.ts
+# Paso 2: Ingestar a Supabase + embeddings
+pnpm tsx execution/ingest-conocimiento-seguridad.ts
+# O dry-run primero:
+pnpm tsx execution/ingest-conocimiento-seguridad.ts --dry-run
+```
 
 ---
 
-## FASE 6 — Psicotecnicos nuevos (compartidos las 3)
+## FASE 6 — Psicotecnicos nuevos (compartidos las 3) ✅ COMPLETADA
 
-### 6.1 — Modulo espacial (`lib/psicotecnicos/spatial.ts`)
+### 6.1 — Modulo espacial (`lib/psicotecnicos/spatial.ts`) ✅
 - Subtipos: `rotacion_mental`, `espejo`, `coordenadas`, `secuencia_espacial`
-- 100% determinista. 8-10 tests
+- 100% determinista. 12 tests unitarios
 
-### 6.2 — Modulo logica deductiva (`lib/psicotecnicos/logic.ts`)
+### 6.2 — Modulo logica deductiva (`lib/psicotecnicos/logic.ts`) ✅
 - Subtipos: `silogismo`, `condicional`, `conjuntos`, `negacion`
-- 100% determinista. 8-10 tests
+- 100% determinista. 14 tests unitarios (incluye verificacion logica por dificultad)
 
-### 6.3 — Modulo percepcion (`lib/psicotecnicos/perception.ts`)
+### 6.3 — Modulo percepcion (`lib/psicotecnicos/perception.ts`) ✅
 - Subtipos: `conteo_simbolos`, `diferencias`, `patron_visual`
-- 100% determinista. 6-8 tests
+- 100% determinista. 9 tests unitarios (incluye verificacion conteo real)
 
-### 6.4 — Tipos y orquestador
-- `types.ts`: nuevas categorias + subtipos
+### 6.4 — Tipos y orquestador ✅
+- `types.ts`: 3 categorias + 11 subtipos nuevos
 - `index.ts`: SEGURIDAD_DISTRIBUCION (espacial 20%, logica 10%, percepcion 15%, numerico 15%, series 15%, verbal 15%, organizacion 10%)
+- `getDistribucionPsicotecnicos()` reconoce slugs ertzaintza/guardia-civil/policia-nacional
+- 42 tests nuevos + 14 existentes = 56 tests OK, 0 regresiones, TypeScript limpio
 
 ### 6.5 — GC Ortografia (POST-MVP)
 - Modulo determinista futuro. Landing: "Proximamente"
@@ -543,3 +557,32 @@ FASE 12 (Stripe) — Aritz crea productos + env vars
 - Ingles GC (banco curado)
 - BOPV watcher
 - Mas examenes oficiales
+
+---
+
+## Progreso global (actualizado 2026-03-31)
+
+| FASE | Estado | Notas |
+|------|--------|-------|
+| 0 — Soporte 3 opciones | ✅ COMPLETADA | 12 sub-tareas, 0 regresiones |
+| 1 — Migration SQL | ✅ COMPLETADA | 3 oposiciones + 124 temas insertados |
+| 2 — Constantes y mapeos | ✅ COMPLETADA | 10 archivos actualizados |
+| 3 — Legislacion | ✅ SCRAPING OK | 14 leyes (1.718 arts). **Pendiente**: Aritz ejecuta ingesta con .env.local |
+| 4 — Examenes oficiales | ✅ INVESTIGACION OK | URLs documentadas. **Pendiente**: Aritz descarga PDFs + parsea |
+| 5 — Conocimiento tecnico | ✅ SCRIPTS CREADOS | `generate-conocimiento-seguridad.ts` + `ingest-conocimiento-seguridad.ts`. **Pendiente**: Aritz ejecuta generacion (~$3-5) + ingesta |
+| 6 — Psicotecnicos nuevos | ✅ COMPLETADA | 3 modulos (spatial/logic/perception), 11 subtipos, 42 tests |
+| 7 — Free question bank | ⏳ PENDIENTE | Depende de FASE 3+5 ingestadas |
+| 8 — Landing pages + SEO | ⏳ PENDIENTE | Hub + 3 sub-landings + personalidad + pricing |
+| 9 — Blog SEO | ⏳ PENDIENTE | 7 posts |
+| 10 — Activacion | ⏳ PENDIENTE | Checklist pre-lanzamiento |
+| 11 — Personalidad Policial | ⏳ PENDIENTE | Modulo innovacion (post-MVP conocimientos) |
+| 12 — Stripe | ⏳ PENDIENTE | Aritz crea 6 productos + env vars |
+
+**Bloqueantes para Aritz (en casa con .env.local):**
+1. `cd optek && pnpm tsx execution/generate-conocimiento-seguridad.ts` (FASE 5 generacion)
+2. `cd optek && pnpm tsx execution/ingest-conocimiento-seguridad.ts` (FASE 5 ingesta)
+3. `cd optek && pnpm ingest:legislacion && pnpm generate:embeddings` (FASE 3.4)
+4. `cd optek && pnpm tag:legislacion --rama seguridad` (FASE 3.4)
+5. Descargar PDFs examenes GC+PN (FASE 4.4)
+
+**Siguiente ejecutable sin .env.local:** FASE 8 (landings) + FASE 9 (blog) en paralelo.

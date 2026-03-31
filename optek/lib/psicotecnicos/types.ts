@@ -16,6 +16,10 @@ export type CategoriaPsicotecnico =
   | 'comprension_lectora'
   | 'graficos'
   | 'figuras'
+  // Seguridad-specific (Ertzaintza, GC, PN)
+  | 'espacial'
+  | 'logica'
+  | 'percepcion'
 
 export type SubtipoPsicotecnico =
   // Numérico
@@ -41,6 +45,20 @@ export type SubtipoPsicotecnico =
   | 'calculo_grafico'
   | 'patron_simbolos'
   | 'patron_secuencia'
+  // Espacial (Seguridad)
+  | 'rotacion_mental'
+  | 'espejo'
+  | 'coordenadas'
+  | 'secuencia_espacial'
+  // Lógica deductiva (Seguridad)
+  | 'silogismo'
+  | 'condicional'
+  | 'conjuntos'
+  | 'negacion'
+  // Percepción (Seguridad)
+  | 'conteo_simbolos'
+  | 'diferencias'
+  | 'patron_visual'
 
 /**
  * Pregunta psicotécnica generada de forma determinista.
