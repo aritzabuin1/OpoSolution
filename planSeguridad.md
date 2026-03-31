@@ -282,42 +282,37 @@ pnpm ingest:examenes --dir examenes_ertzaintza --oposicion ertzaintza
 - `getDistribucionPsicotecnicos()` reconoce slugs ertzaintza/guardia-civil/policia-nacional
 - 42 tests nuevos + 14 existentes = 56 tests OK, 0 regresiones, TypeScript limpio
 
-### 6.5 — GC Ortografía ⏳ MVP (determinista, $0)
+### 6.5 — GC Ortografía ✅ COMPLETADA (determinista, $0)
 Motor determinista de preguntas de ortografía para Guardia Civil.
-El examen GC incluye ortografía y gramática dentro del bloque de 140 minutos.
 
-- **Archivo**: `lib/ortografia/index.ts`
-- **Categorías**: acentuación, b/v, h, g/j, ll/y, c/z/s, mayúsculas, signos de puntuación, homófonos
-- **Formato preguntas**: "Señale la palabra CORRECTAMENTE escrita" (4 opciones), "Identifique la frase CON error ortográfico" (4 opciones)
-- **Banco**: ~200 items mínimo (expandible), hardcoded en JSON
-- **Endpoint**: `POST /api/ortografia/generate` (devuelve N preguntas aleatorias por categoría)
-- **UI**: Accesible desde página de simulacros GC + sección propia `/ortografia`
-- **Tests**: unitarios para cada categoría + verificar que respuesta correcta es realmente correcta
-- **Integración simulacro**: Ejercicio 1 de 4 en simulacro GC completo (140 min)
+- **Archivos**: `lib/ortografia/types.ts`, `lib/ortografia/bank.ts`, `lib/ortografia/index.ts`
+- **Banco**: 210 items en 9 categorías (acentuación 33, b/v 25, h 24, g/j 25, ll/y 20, c/z/s 22, mayúsculas 22, puntuación 25, homófonos 25)
+- **Distribución**: acentuación 20%, b/v 12%, h 12%, g/j 10%, ll/y 8%, c/z/s 8%, mayúsculas 10%, puntuación 10%, homófonos 10%
+- **3 niveles dificultad**, 4 opciones por pregunta, explicación RAE
+- **Tests**: 17 tests unitarios en `tests/unit/ortografia.test.ts`
+- **Integración**: Ejercicio 1 de 3 en simulacro GC (25 preguntas)
 
-### 6.6 — GC Inglés ⏳ MVP (determinista, $0)
-Motor determinista de preguntas de inglés nivel A2-B1 para Guardia Civil.
-El examen GC incluye inglés dentro del bloque de 140 minutos.
+### 6.6 — GC Inglés ✅ COMPLETADA (determinista, $0)
+Motor determinista de preguntas de inglés A2-B1 para Guardia Civil.
 
-- **Archivo**: `lib/ingles/index.ts`
-- **Categorías**: gramática (tiempos verbales, preposiciones, artículos, comparativos), vocabulario (policial/seguridad, cotidiano), comprensión lectora (textos cortos + preguntas)
-- **Formato preguntas**: fill-the-gap (4 opciones), elegir traducción correcta, comprensión de texto
-- **Banco**: ~150 items mínimo, hardcoded en JSON
-- **Endpoint**: `POST /api/ingles/generate` (devuelve N preguntas aleatorias por categoría)
-- **UI**: Accesible desde simulacros GC + sección propia `/ingles`
-- **Tests**: unitarios para gramática + verificar opciones válidas
-- **Integración simulacro**: Ejercicio 4 de 4 en simulacro GC completo (140 min)
+- **Archivos**: `lib/ingles/types.ts`, `lib/ingles/bank.ts`, `lib/ingles/index.ts`
+- **Banco**: 160 items en 9 categorías (grammar_tenses 25, grammar_prepositions 20, grammar_articles 15, grammar_comparatives 15, grammar_modals 15, grammar_conditionals 15, vocabulary_police 20, vocabulary_general 15, reading_comprehension 20)
+- **Distribución**: tenses 15%, prepositions 10%, articles 8%, comparatives 7%, modals 10%, conditionals 10%, police vocab 15%, general vocab 10%, reading 15%
+- **3 niveles dificultad**, 4 opciones, explicaciones en español
+- **Vocabulario policial**: arrest, custody, forensics, warrant, surveillance, etc.
+- **Tests**: 19 tests unitarios en `tests/unit/ingles.test.ts`
+- **Integración**: Ejercicio 3 de 3 en simulacro GC (20 preguntas)
 
-### 6.7 — Actualizar scoring_config GC para 4 ejercicios ⏳
-El simulacro completo GC debe reflejar la estructura real del examen (140 min compartidos):
-1. **Ortografía** (~25 preguntas)
-2. **Gramática** (~25 preguntas) — puede fusionarse con ortografía como subcategorías
-3. **Conocimientos** (100 preguntas + 5 reserva)
-4. **Inglés** (~20 preguntas)
+### 6.7 — Simulacro GC 3 ejercicios ✅ COMPLETADA
+Estructura real del examen GC (140 min compartidos):
+1. **Ortografía y gramática** (25 preguntas) — `tipo_ejercicio: 'ortografia'`
+2. **Conocimientos** (100 preguntas + 5 reserva) — `tipo_ejercicio: 'conocimientos'`
+3. **Lengua extranjera (Inglés)** (20 preguntas) — `tipo_ejercicio: 'ingles'`
 
-Migration para actualizar `scoring_config` de GC con `ejercicios` array de 4 elementos.
-La página de simulacros ya soporta múltiples ejercicios (`ejercicios.map()` en simulacros/page.tsx).
-El endpoint `generate-simulacro` necesita adaptarse para generar preguntas de ortografía/inglés además de conocimientos.
+- **Migration**: `20260401_075_gc_4_ejercicios.sql` — scoring_config con 3 ejercicios + features `ortografia: true, ingles: true`
+- **Endpoint**: `generate-simulacro` acepta `incluirOrtografia` + `incluirIngles`, genera preguntas deterministas
+- **UI**: SimulacroCard + SimulacroMixtoCard pasan `hasOrtografia/hasIngles` props, muestran estructura completa
+- **Simulacros page**: detecta features `ortografia`/`ingles` y pasa props a cards
 
 ---
 
@@ -482,8 +477,8 @@ FASE 5 (conocimiento) ------+
 FASE 6 (psicotecnicos) -----+-- paralelo            ✅ DONE
                              |
 FASE 6.5 (ortografía GC) ---+
-FASE 6.6 (inglés GC) -------+-- paralelo            ⏳ NEXT
-FASE 6.7 (simulacro 4 ej) --+
+FASE 6.6 (inglés GC) -------+-- paralelo            ✅ DONE
+FASE 6.7 (simulacro 3 ej) --+
                              |
 FASE 7 (free bank) <--- depende de 3+5              ⏳ PENDIENTE (~$7)
                              |
@@ -561,9 +556,9 @@ FASE 12 (Stripe) — Aritz crea productos + env vars  ⏳ PENDIENTE
 | 4 — Examenes oficiales | ✅ INVESTIGACION OK | URLs documentadas. **Pendiente**: Aritz descarga PDFs + parsea |
 | 5 — Conocimiento tecnico | ✅ COMPLETADA | 33 temas generados (Claude) + 196 secciones ingestadas con embeddings |
 | 6 — Psicotecnicos nuevos | ✅ COMPLETADA | 3 modulos (spatial/logic/perception), 11 subtipos, 42 tests |
-| 6.5 — Ortografía GC | ⏳ PENDIENTE | Motor determinista, ~200 items, $0. Integrar en simulacro 140 min |
-| 6.6 — Inglés GC | ⏳ PENDIENTE | Motor determinista, ~150 items, $0. A2-B1, integrar en simulacro |
-| 6.7 — Simulacro GC 4 ejercicios | ⏳ PENDIENTE | scoring_config con 4 ejercicios + endpoint genera ortografía/inglés |
+| 6.5 — Ortografía GC | ✅ COMPLETADA | 210 items, 9 categorías, 17 tests |
+| 6.6 — Inglés GC | ✅ COMPLETADA | 160 items, 9 categorías A2-B1, 19 tests |
+| 6.7 — Simulacro GC 3 ejercicios | ✅ COMPLETADA | Migration 075 + endpoint + UI. 792/792 tests |
 | 7 — Free question bank | ⏳ PENDIENTE | Script listo. FASE 3+5 ya ingestadas. Requiere ~$7 + ADMIN_USER_ID |
 | 8 — Landing pages + SEO | ✅ COMPLETADA | 5 landings + main card + precios tab + sitemap + footer + llms.txt. Requisitos corregidos (estaturas, edades, euskera, plazas) |
 | 9 — Blog SEO | ✅ COMPLETADA | 7 posts. Blog GC corregido (estatura eliminada) |

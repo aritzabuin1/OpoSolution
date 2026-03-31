@@ -134,6 +134,15 @@ export default async function SimulacrosPage() {
   const preguntasOfimatica = features?.scoring_config?.ejercicios?.find(
     (e) => e.nombre?.toLowerCase().includes('ofimática') || e.nombre?.toLowerCase().includes('informatica') || e.nombre?.toLowerCase().includes('informática')
   )?.preguntas ?? 0
+  // Ortografía + Inglés (Guardia Civil)
+  const hasOrtografia = features?.features?.ortografia === true
+  const preguntasOrtografia = (features?.scoring_config?.ejercicios as Array<{ nombre?: string; preguntas?: number; tipo_ejercicio?: string }> | undefined)?.find(
+    (e) => e.tipo_ejercicio === 'ortografia' || e.nombre?.toLowerCase().includes('ortograf')
+  )?.preguntas ?? 0
+  const hasIngles = features?.features?.ingles === true
+  const preguntasIngles = (features?.scoring_config?.ejercicios as Array<{ nombre?: string; preguntas?: number; tipo_ejercicio?: string }> | undefined)?.find(
+    (e) => e.tipo_ejercicio === 'ingles' || e.nombre?.toLowerCase().includes('ingl')
+  )?.preguntas ?? 0
   // Penalización description
   const penaliza = features?.scoring_config?.ejercicios?.[0]?.preguntas !== undefined
   const penalizacionDesc = penaliza ? `Penalización real: incorrecta descuenta según la fórmula oficial del examen.` : undefined
@@ -250,6 +259,10 @@ export default async function SimulacrosPage() {
               preguntasSupuesto={preguntasSupuesto}
               hasOfimatica={hasOfimatica}
               preguntasOfimatica={preguntasOfimatica}
+              hasOrtografia={hasOrtografia}
+              preguntasOrtografia={preguntasOrtografia}
+              hasIngles={hasIngles}
+              preguntasIngles={preguntasIngles}
               penalizacionDesc={penalizacionDesc}
             />
           </div>
@@ -261,7 +274,7 @@ export default async function SimulacrosPage() {
             </h2>
             <div className="space-y-3">
               {examenesConCount.map((examen) => (
-                <SimulacroCard key={examen.id} examen={examen} hasPsicotecnicos={hasPsicotecnicos} preguntasExamenCompleto={preguntasEjercicio1} hasSupuestoTest={hasSupuestoTest} preguntasSupuesto={preguntasSupuesto} hasOfimatica={hasOfimatica} preguntasOfimatica={preguntasOfimatica} penalizacionDesc={penalizacionDesc} />
+                <SimulacroCard key={examen.id} examen={examen} hasPsicotecnicos={hasPsicotecnicos} preguntasExamenCompleto={preguntasEjercicio1} hasSupuestoTest={hasSupuestoTest} preguntasSupuesto={preguntasSupuesto} hasOfimatica={hasOfimatica} preguntasOfimatica={preguntasOfimatica} hasOrtografia={hasOrtografia} preguntasOrtografia={preguntasOrtografia} hasIngles={hasIngles} preguntasIngles={preguntasIngles} penalizacionDesc={penalizacionDesc} />
               ))}
             </div>
           </div>

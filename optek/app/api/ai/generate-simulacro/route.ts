@@ -3,6 +3,8 @@ import { z } from 'zod'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { generatePsicotecnicos } from '@/lib/psicotecnicos'
+import { generateOrtografia } from '@/lib/ortografia'
+import { generateIngles } from '@/lib/ingles'
 import { logger } from '@/lib/logger'
 import { FREE_LIMITS, PAID_LIMITS, checkPaidAccess, checkIsAdmin, getOposicionFromProfile } from '@/lib/freemium'
 import type { Json } from '@/types/database'
@@ -50,6 +52,10 @@ const GenerateSimulacroSchema = z
     incluirSupuesto: z.boolean().optional().default(false),
     /** Include ofimática questions as Part 3 (Tramitación C1) */
     incluirOfimatica: z.boolean().optional().default(false),
+    /** Include ortografía questions (Guardia Civil) */
+    incluirOrtografia: z.boolean().optional().default(false),
+    /** Include inglés questions (Guardia Civil) */
+    incluirIngles: z.boolean().optional().default(false),
   })
   .refine(
     (d) => d.modo === 'mixto' || d.examenId !== undefined || d.anno !== undefined,
@@ -92,7 +98,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: `Input inválido: ${errores}` }, { status: 400 })
   }
 
-  const { examenId, anno, numPreguntas, incluirPsicotecnicos, dificultadPsico, modo, incluirSupuesto, incluirOfimatica } = parsed.data
+  const { examenId, anno, numPreguntas, incluirPsicotecnicos, dificultadPsico, modo, incluirSupuesto, incluirOfimatica, incluirOrtografia, incluirIngles } = parsed.data
 
   // ── 3. Freemium gating — scoped por oposición ──────────────────────────
   const serviceSupabase = await createServiceClient()
@@ -405,6 +411,56 @@ export async function POST(request: NextRequest) {
     )
   } else {
     preguntas = preguntasOficiales
+  }
+
+  // ── §6.5 — Añadir ortografía al inicio (Guardia Civil) ─────────────────────
+  if (incluirOrtografia) {
+    const ejOrtografia = scoringConfig?.ejercicios?.find(
+      (e: { tipo_ejercicio?: string; nombre?: string }) =>
+        e.tipo_ejercicio === 'ortografia' || (e.nombre ?? '').toLowerCase().includes('ortograf')
+    ) as { preguntas?: number } | undefined
+    const numOrtografia = ejOrtografia?.preguntas ?? 25
+
+    const ortografiaQs = generateOrtografia(numOrtografia, 2) // dificultad media por defecto
+    const ortografiaMapped: Pregunta[] = ortografiaQs.map((q) => ({
+      enunciado: q.enunciado,
+      opciones: q.opciones,
+      correcta: q.correcta,
+      explicacion: q.explicacion,
+      dificultad: q.dificultad === 1 ? 'facil' : q.dificultad === 3 ? 'dificil' : 'media',
+    }))
+    // Ortografía va AL INICIO del simulacro (antes de conocimientos)
+    preguntas = [...ortografiaMapped, ...preguntas]
+    promptVersion = promptVersion.replace('1.0', 'orto-1.0')
+    log.info(
+      { ortografia: ortografiaQs.length, total: preguntas.length },
+      '[generate-simulacro] ortografía GC incluida'
+    )
+  }
+
+  // ── §6.6 — Añadir inglés al final (Guardia Civil) ──────────────────────────
+  if (incluirIngles) {
+    const ejIngles = scoringConfig?.ejercicios?.find(
+      (e: { tipo_ejercicio?: string; nombre?: string }) =>
+        e.tipo_ejercicio === 'ingles' || (e.nombre ?? '').toLowerCase().includes('ingl')
+    ) as { preguntas?: number } | undefined
+    const numIngles = ejIngles?.preguntas ?? 20
+
+    const inglesQs = generateIngles(numIngles, 2) // dificultad media por defecto
+    const inglesMapped: Pregunta[] = inglesQs.map((q) => ({
+      enunciado: q.enunciado,
+      opciones: q.opciones,
+      correcta: q.correcta,
+      explicacion: q.explicacion,
+      dificultad: q.dificultad === 1 ? 'facil' : q.dificultad === 3 ? 'dificil' : 'media',
+    }))
+    // Inglés va AL FINAL del simulacro (después de conocimientos)
+    preguntas = [...preguntas, ...inglesMapped]
+    promptVersion = promptVersion.replace('1.0', 'eng-1.0')
+    log.info(
+      { ingles: inglesQs.length, total: preguntas.length },
+      '[generate-simulacro] inglés GC incluido'
+    )
   }
 
   // ── 7b. Incluir supuesto práctico (Parte 2) si la oposición lo tiene ─────

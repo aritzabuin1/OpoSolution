@@ -46,11 +46,17 @@ export interface SimulacroCardProps {
   hasOfimatica?: boolean
   /** Number of ofimática questions */
   preguntasOfimatica?: number
+  /** Whether this oposición has ortografía exercise (Guardia Civil) */
+  hasOrtografia?: boolean
+  /** Number of ortografía questions */
+  preguntasOrtografia?: number
+  /** Whether this oposición has inglés exercise (Guardia Civil) */
+  hasIngles?: boolean
+  /** Number of inglés questions */
+  preguntasIngles?: number
   /** Penalización description */
   penalizacionDesc?: string
 }
-
-// ─── Helpers ─────────────────────────────────────────────────────────────────
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -65,7 +71,7 @@ function convocatoriaLabel(convocatoria: string): string {
 
 // ─── Componente ──────────────────────────────────────────────────────────────
 
-export function SimulacroCard({ examen, hasPsicotecnicos = false, preguntasExamenCompleto = 100, hasSupuestoTest = false, preguntasSupuesto = 0, hasOfimatica = false, preguntasOfimatica = 0, penalizacionDesc }: SimulacroCardProps) {
+export function SimulacroCard({ examen, hasPsicotecnicos = false, preguntasExamenCompleto = 100, hasSupuestoTest = false, preguntasSupuesto = 0, hasOfimatica = false, preguntasOfimatica = 0, hasOrtografia = false, preguntasOrtografia = 0, hasIngles = false, preguntasIngles = 0, penalizacionDesc }: SimulacroCardProps) {
   const router = useRouter()
   const isPremium = useIsPremium()
 
@@ -78,7 +84,7 @@ export function SimulacroCard({ examen, hasPsicotecnicos = false, preguntasExame
   const isStartingRef = useRef(false)
   const isFree = isPremium !== true
   const isLoaded = examen.numPreguntas > 0
-  const totalExamen = preguntasExamenCompleto + (hasSupuestoTest ? preguntasSupuesto : 0) + (hasOfimatica ? preguntasOfimatica : 0)
+  const totalExamen = preguntasExamenCompleto + (hasSupuestoTest ? preguntasSupuesto : 0) + (hasOfimatica ? preguntasOfimatica : 0) + (hasOrtografia ? preguntasOrtografia : 0) + (hasIngles ? preguntasIngles : 0)
 
   async function handleIniciar() {
     if (isStartingRef.current || !isLoaded) return
@@ -96,6 +102,8 @@ export function SimulacroCard({ examen, hasPsicotecnicos = false, preguntasExame
           dificultadPsico,
           incluirSupuesto: hasSupuestoTest,
           incluirOfimatica: hasOfimatica,
+          incluirOrtografia: hasOrtografia,
+          incluirIngles: hasIngles,
         }),
       })
 
@@ -199,9 +207,18 @@ export function SimulacroCard({ examen, hasPsicotecnicos = false, preguntasExame
               <div className="rounded-md border border-primary/20 bg-primary/5 px-3 py-2.5 space-y-1.5">
                 <p className="text-xs font-semibold text-primary uppercase tracking-wide">Examen completo</p>
                 <div className="text-xs text-foreground space-y-0.5">
+                  {hasOrtografia && (
+                    <p>{preguntasOrtografia} preguntas — Ortografía y gramática</p>
+                  )}
                   <p>{preguntasExamenCompleto} preguntas — Cuestionario</p>
                   {hasSupuestoTest && (
                     <p>{preguntasSupuesto} preguntas — Supuesto práctico (caso + preguntas vinculadas)</p>
+                  )}
+                  {hasOfimatica && (
+                    <p>{preguntasOfimatica} preguntas — Ofimática</p>
+                  )}
+                  {hasIngles && (
+                    <p>{preguntasIngles} preguntas — Lengua extranjera (Inglés)</p>
                   )}
                   <p className="text-muted-foreground font-medium">Total: {totalExamen} preguntas</p>
                 </div>
