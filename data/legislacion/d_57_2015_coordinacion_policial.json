@@ -1,0 +1,57 @@
+{
+  "ley_nombre": "D_COORDINACION",
+  "ley_codigo": "BOPV-2015-002023",
+  "ley_nombre_completo": "Decreto 57/2015, de 5 de mayo, de la composición y régimen de funcionamiento de las Comisiones de coordinación policial de ámbito local",
+  "fecha_scraping": "2026-03-31T12:00:00.000Z",
+  "total_articulos": 8,
+  "articulos": [
+    {
+      "numero": "1",
+      "titulo_articulo": "Artículo 1. Objeto",
+      "titulo_seccion": "Disposiciones generales",
+      "texto_integro": "El presente Decreto tiene por objeto regular la composición y régimen de funcionamiento de las Comisiones de coordinación policial de ámbito local, previstas en el artículo 43 de la Ley 15/2012, de 28 de junio, de Ordenación del Sistema de Seguridad Pública de Euskadi."
+    },
+    {
+      "numero": "2",
+      "titulo_articulo": "Artículo 2. Ámbito territorial",
+      "titulo_seccion": "Disposiciones generales",
+      "texto_integro": "Las Comisiones de coordinación policial de ámbito local se constituirán en dos ámbitos territoriales diferenciados:\na) Comisiones en las capitales de los Territorios Históricos (Bilbao, Donostia-San Sebastián y Vitoria-Gasteiz).\nb) Comisiones de ámbito comarcal, en las demarcaciones territoriales correspondientes a la estructura de la Ertzaintza."
+    },
+    {
+      "numero": "3",
+      "titulo_articulo": "Artículo 3. Composición en capitales de Territorios Históricos",
+      "titulo_seccion": "Composición",
+      "texto_integro": "Las Comisiones de coordinación policial de ámbito local de las capitales de los Territorios Históricos estarán integradas por:\na) El Alcalde o Alcaldesa, que ejercerá la presidencia.\nb) El Concejal o Concejala responsable de seguridad.\nc) El Jefe o Jefa de la Policía Local.\nd) El Jefe o Jefa de la Ertzaintza de la demarcación, que ejercerá la vicepresidencia.\ne) El Jefe o Jefa territorial de la Ertzaintza.\nf) El Jefe o Jefa de la Comisaría de la Ertzaintza.\n\nEjercerá funciones de secretaría, con voz pero sin voto, el personal de la Ertzaintza que se designe al efecto."
+    },
+    {
+      "numero": "4",
+      "titulo_articulo": "Artículo 4. Composición de las Comisiones de ámbito comarcal",
+      "titulo_seccion": "Composición",
+      "texto_integro": "Las Comisiones de coordinación policial de ámbito comarcal estarán integradas por:\na) Los Alcaldes o Alcaldesas de los municipios con policía local de la demarcación.\nb) Los Jefes o Jefas de las policías locales de dichos municipios.\nc) El Jefe o Jefa territorial de la Ertzaintza, que ejercerá la vicepresidencia.\nd) El Jefe o Jefa de la Comisaría de la Ertzaintza.\ne) El Jefe o Jefa de protección ciudadana de la Comisaría.\nf) El Jefe o Jefa de investigación de la Comisaría.\n\nLos Alcaldes o Alcaldesas de municipios sin policía local podrán participar en las sesiones cuando se traten asuntos que afecten específicamente a su municipio."
+    },
+    {
+      "numero": "5",
+      "titulo_articulo": "Artículo 5. Funcionamiento",
+      "titulo_seccion": "Funcionamiento",
+      "texto_integro": "Cada Comisión de coordinación policial de ámbito local aprobará sus propias normas de funcionamiento interno, que incluirán al menos:\na) El quórum necesario para la válida constitución, que no será inferior a la mitad más uno de los miembros de cada sector representado.\nb) El mecanismo de designación de suplentes.\nc) El régimen de adopción de acuerdos.\nd) La periodicidad de las reuniones, que como mínimo será anual.\ne) La posibilidad de constitución de grupos de trabajo especializados."
+    },
+    {
+      "numero": "DA-primera",
+      "titulo_articulo": "Disposición adicional primera",
+      "titulo_seccion": "Disposiciones adicionales",
+      "texto_integro": "En Vitoria-Gasteiz se constituirán dos Comisiones de coordinación policial de ámbito local."
+    },
+    {
+      "numero": "DA-segunda",
+      "titulo_articulo": "Disposición adicional segunda",
+      "titulo_seccion": "Disposiciones adicionales",
+      "texto_integro": "Los cambios en la demarcación territorial de las Comisarías de la Ertzaintza requerirán la correspondiente adaptación de la composición de las Comisiones de coordinación policial, que deberá realizarse en el plazo máximo de tres meses."
+    },
+    {
+      "numero": "DA-tercera",
+      "titulo_articulo": "Disposición adicional tercera",
+      "titulo_seccion": "Disposiciones adicionales",
+      "texto_integro": "En aquellas demarcaciones territoriales en las que existan múltiples centros de la Ertzaintza se podrán constituir varias Comisiones de coordinación policial diferenciadas."
+    }
+  ]
+}

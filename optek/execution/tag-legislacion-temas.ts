@@ -89,6 +89,12 @@ const CODE_MAP: Record<string, string[]> = {
   ESTATUTO_GERNIKA: ['BOE-A-1979-30177'],    // LO 3/1979 Estatuto Autonomía País Vasco
   DERECHO_REUNION: ['BOE-A-1983-19946'],     // LO 9/1983 Derecho de Reunión
   ESTATUTO_VICTIMA: ['BOE-A-2015-4606'],     // Ley 4/2015 Estatuto de la Víctima
+  // Seguridad — Leyes BOPV (Ertzaintza)
+  DL_IGUALDAD_CAV:  ['BOE-A-2023-9168'],     // DL 1/2023 Igualdad Mujeres y Hombres CAV
+  DL_POLICIA_PV:    ['BOE-A-2020-9740'],     // DL 1/2020 Ley Policía País Vasco
+  LEY_SEG_EUSKADI:  ['BOE-A-2012-9665'],     // Ley 15/2012 Seguridad Pública Euskadi
+  D_VIDEOCAMARAS:   ['BOPV-1998-003495'],    // D 168/1998 Videocámaras Policía PV
+  D_COORDINACION:   ['BOPV-2015-002023'],    // D 57/2015 Coordinación Policial Local
 }
 
 // Resolve symbolic name to all matching ley_codigos
@@ -223,27 +229,53 @@ const PENITENCIARIAS_RULES: TaggingRule[] = [
 
 // ── Seguridad (Ertzaintza + Guardia Civil + Policía Nacional) ─────────────────
 const SEGURIDAD_RULES: TaggingRule[] = [
-  // Legislación compartida (las 3 oposiciones)
-  { ley_codigo: 'CE', oposicion_slug: 'ertzaintza', temas: [1, 2, 3, 4, 5] },
+  // ── Ertzaintza (54 temas) ────────────────────────────────────────────────────
+  // Bloque I — Derechos Ciudadanía (1-5)
+  { ley_codigo: 'CE', oposicion_slug: 'ertzaintza', temas: [1, 2] },                    // DDHH + Derechos CE
+  { ley_codigo: 'DL_IGUALDAD_CAV', oposicion_slug: 'ertzaintza', temas: [3, 4, 5] },    // DL 1/2023 Igualdad CAV
+  // Bloque II — Organización Político-Administrativa (6-10)
+  { ley_codigo: 'CE', oposicion_slug: 'ertzaintza', temas: [6, 7, 8] },                  // CE: Corona, Cortes, Gobierno, PJ
+  { ley_codigo: 'ESTATUTO_GERNIKA', oposicion_slug: 'ertzaintza', temas: [9, 10] },      // Estatuto Gernika + org territorial
+  // Bloque III — Fuentes Derecho y Procedimiento (11-14)
+  { ley_codigo: 'LPAC', oposicion_slug: 'ertzaintza', temas: [12, 13] },                 // LPAC
+  { ley_codigo: 'LRJSP', oposicion_slug: 'ertzaintza', temas: [14] },                    // LRJSP
+  // Bloque IV — Derecho Penal (15-21)
+  { ley_codigo: 'CP', oposicion_slug: 'ertzaintza', temas: [15, 16, 17, 18, 19, 20, 21] }, // Código Penal
+  // Bloque V — Seguridad Vial (22-29)
+  { ley_codigo: 'LSV', oposicion_slug: 'ertzaintza', temas: [22, 23, 24, 25, 26, 27, 28, 29] }, // LSV completa
+  // Bloque VI — PRL (30-31)
+  { ley_codigo: 'PRL', oposicion_slug: 'ertzaintza', temas: [30] },                      // PRL
+  // Bloque VII — Historia/Geografía PV (32-36): no legislación, usa conocimiento_tecnico
+  // Bloque VIII — Policía Servicio Ciudadanía (37-43)
+  { ley_codigo: 'DL_POLICIA_PV', oposicion_slug: 'ertzaintza', temas: [37] },            // DL 1/2020 Policía PV
+  { ley_codigo: 'LEY_SEG_EUSKADI', oposicion_slug: 'ertzaintza', temas: [38] },          // Ley 15/2012 Seg Pública Euskadi
+  { ley_codigo: 'SEG_CIUDADANA', oposicion_slug: 'ertzaintza', temas: [41] },            // LO 4/2015 Seg Ciudadana
+  { ley_codigo: 'DERECHO_REUNION', oposicion_slug: 'ertzaintza', temas: [42] },          // LO 9/1983 Reunión
+  { ley_codigo: 'D_VIDEOCAMARAS', oposicion_slug: 'ertzaintza', temas: [43] },           // D 168/1998 Videocámaras
+  // Bloque IX — Coordinación Policial (44-48)
+  { ley_codigo: 'D_COORDINACION', oposicion_slug: 'ertzaintza', temas: [44] },           // D 57/2015 Coordinación
+  { ley_codigo: 'DL_POLICIA_PV', oposicion_slug: 'ertzaintza', temas: [45, 46, 47, 48] }, // Juntas, PL, disciplinario, personal
+  // Bloque X — Atención a víctimas (49-52)
+  { ley_codigo: 'ESTATUTO_VICTIMA', oposicion_slug: 'ertzaintza', temas: [49] },         // Ley 4/2015 Estatuto Víctima
+  // Bloque XI — Violencia de Género (53-54)
+  { ley_codigo: 'LO_VG', oposicion_slug: 'ertzaintza', temas: [53] },                    // LO 1/2004 VG
+
+  // ── Guardia Civil (25 temas) ─────────────────────────────────────────────────
   { ley_codigo: 'CE', oposicion_slug: 'guardia-civil', temas: [1, 2, 3] },
-  { ley_codigo: 'CE', oposicion_slug: 'policia-nacional', temas: [1, 2, 3] },
   { ley_codigo: 'FCSE', oposicion_slug: 'guardia-civil', temas: [4, 5, 6] },
-  { ley_codigo: 'FCSE', oposicion_slug: 'policia-nacional', temas: [4, 5, 6] },
-  { ley_codigo: 'FCSE', oposicion_slug: 'ertzaintza', temas: [6, 7] },
-  { ley_codigo: 'SEG_CIUDADANA', oposicion_slug: 'ertzaintza', temas: [8, 9] },
   { ley_codigo: 'SEG_CIUDADANA', oposicion_slug: 'guardia-civil', temas: [7, 8] },
-  { ley_codigo: 'SEG_CIUDADANA', oposicion_slug: 'policia-nacional', temas: [7, 8] },
   { ley_codigo: 'CP', oposicion_slug: 'guardia-civil', temas: [9, 10, 11] },
+  { ley_codigo: 'SEG_PRIVADA', oposicion_slug: 'guardia-civil', temas: [12] },
+  { ley_codigo: 'LSV', oposicion_slug: 'guardia-civil', temas: [24] },
+
+  // ── Policía Nacional (45 temas) ──────────────────────────────────────────────
+  { ley_codigo: 'CE', oposicion_slug: 'policia-nacional', temas: [1, 2, 3] },
+  { ley_codigo: 'FCSE', oposicion_slug: 'policia-nacional', temas: [4, 5, 6] },
+  { ley_codigo: 'SEG_CIUDADANA', oposicion_slug: 'policia-nacional', temas: [7, 8] },
   { ley_codigo: 'CP', oposicion_slug: 'policia-nacional', temas: [9, 10, 11, 12] },
   { ley_codigo: 'LECRIM', oposicion_slug: 'policia-nacional', temas: [13, 14] },
-  { ley_codigo: 'PRL', oposicion_slug: 'ertzaintza', temas: [10] },
-  { ley_codigo: 'LSV', oposicion_slug: 'ertzaintza', temas: [11] },
-  { ley_codigo: 'LSV', oposicion_slug: 'guardia-civil', temas: [24] },
   { ley_codigo: 'LOPDGDD', oposicion_slug: 'policia-nacional', temas: [15] },
-  { ley_codigo: 'ESTATUTO_GERNIKA', oposicion_slug: 'ertzaintza', temas: [12, 13, 14] },
-  { ley_codigo: 'DERECHO_REUNION', oposicion_slug: 'ertzaintza', temas: [15] },
   { ley_codigo: 'ESTATUTO_VICTIMA', oposicion_slug: 'policia-nacional', temas: [16] },
-  { ley_codigo: 'SEG_PRIVADA', oposicion_slug: 'guardia-civil', temas: [12] },
   { ley_codigo: 'SEG_PRIVADA', oposicion_slug: 'policia-nacional', temas: [17] },
   { ley_codigo: 'LO_IGUALDAD', oposicion_slug: 'policia-nacional', temas: [18] },
   { ley_codigo: 'LO_VG', oposicion_slug: 'policia-nacional', temas: [19] },
