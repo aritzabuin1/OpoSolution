@@ -15740,8 +15740,7 @@ export const blogPosts: BlogPost[] = [
 <h2>Requisitos para presentarse</h2>
 <ul>
 <li><strong>Titulación</strong>: ESO, Graduado Escolar o equivalente (Grupo C2)</li>
-<li><strong>Edad</strong>: Mínimo 18 años, máximo 40 años (en la fecha de la convocatoria)</li>
-<li><strong>Estatura mínima</strong>: 160 cm (hombres), 155 cm (mujeres)</li>
+<li><strong>Edad</strong>: 18-40 años (en el año de convocatoria)</li>
 <li><strong>Permiso de conducir</strong>: B (al finalizar el período de formación)</li>
 <li><strong>Nacionalidad</strong>: Española</li>
 <li><strong>No tener antecedentes penales</strong></li>

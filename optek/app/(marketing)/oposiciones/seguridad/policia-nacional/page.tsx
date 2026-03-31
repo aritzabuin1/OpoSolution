@@ -181,9 +181,9 @@ export default function PoliciaNacionalPage() {
             <ul className="space-y-2 text-sm">
               {[
                 'Bachillerato o titulación equivalente (nivel C1)',
-                '18 años cumplidos',
-                'Estatura mínima: 165 cm (hombres) / 160 cm (mujeres)',
+                '18 años cumplidos (sin límite superior de edad)',
                 'Nacionalidad española',
+                'Nivel A2 de inglés o francés obligatorio',
                 'Permiso de conducir B',
                 'No haber sido condenado/a por delito doloso',
                 'Compromiso de portar armas',

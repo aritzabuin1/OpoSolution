@@ -561,7 +561,7 @@ export default async function LandingPage() {
                     <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-rose-600 shrink-0" /> 120 + 40 preguntas tipo test</li>
                     <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-rose-600 shrink-0" /> LOGP, Reglamento Penitenciario, CP verificados</li>
                   </ul>
-                  <p className="text-xs text-muted-foreground">Bloque Conducta Humana incluido. ~25.000€/año sueldo.</p>
+                  <p className="text-xs text-muted-foreground">Bloque Conducta Humana incluido.</p>
                   <Button className="w-full bg-rose-600 hover:bg-rose-700 text-white gap-2 group-hover:translate-y-[-1px] transition-transform" size="sm">
                     Ver oposición IIPP <ArrowRight className="h-4 w-4" />
                   </Button>

@@ -83,8 +83,8 @@ export default function GuardiaCivilPage() {
             '@type': 'FAQPage',
             mainEntity: [
               { '@type': 'Question', name: '¿Cuántos temas tiene la oposición de Guardia Civil?', acceptedAnswer: { '@type': 'Answer', text: '25 temas organizados en 3 bloques: A (Ciencias Jurídicas, 16 temas), B (Materias Socioculturales, 5 temas) y C (Materias Técnico-Científicas, 4 temas). Convocatoria BOE-A-2025-10521.' } },
-              { '@type': 'Question', name: '¿Cuántas preguntas tiene el examen de Guardia Civil?', acceptedAnswer: { '@type': 'Answer', text: '100 preguntas tipo test (+5 de reserva) con 4 opciones. Cada acierto suma +1,0 punto, cada error resta -0,333 puntos (penalización -1/3). Escala 0-100, mínimo 50 para aprobar. 60 minutos.' } },
-              { '@type': 'Question', name: '¿Cuántas plazas de Guardia Civil hay en 2026?', acceptedAnswer: { '@type': 'Answer', text: 'Aproximadamente 2.800 plazas para la escala de Cabos y Guardias. Es la oposición de seguridad con más plazas convocadas.' } },
+              { '@type': 'Question', name: '¿Cuántas preguntas tiene el examen de Guardia Civil?', acceptedAnswer: { '@type': 'Answer', text: '100 preguntas tipo test (+5 de reserva) con 4 opciones. Cada acierto suma +1,0 punto, cada error resta -0,333 puntos (penalización -1/3). Escala 0-100, mínimo 50 para aprobar. 140 minutos compartidos (ortografía + gramática + conocimientos + inglés).' } },
+              { '@type': 'Question', name: '¿Cuántas plazas de Guardia Civil hay en 2026?', acceptedAnswer: { '@type': 'Answer', text: '3.118 plazas totales (1.630 turno libre) para la escala de Cabos y Guardias. Es la oposición de seguridad con más plazas convocadas.' } },
               { '@type': 'Question', name: '¿Cuánto cobra un Guardia Civil?', acceptedAnswer: { '@type': 'Answer', text: 'El sueldo de un Guardia Civil ronda los 24.000-28.000€/año, dependiendo del destino, complementos y antigüedad.' } },
             ],
           },
@@ -99,7 +99,7 @@ export default function GuardiaCivilPage() {
         <div className="text-center space-y-4">
           <Badge variant="secondary" className="text-sm px-4 py-1">
             <Siren className="w-4 h-4 mr-1.5 inline" />
-            C2 · 25 temas · ~2.800 plazas · BOE-A-2025-10521
+            C2 · 25 temas · 3.118 plazas · BOE-A-2025-10521
           </Badge>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
             Oposiciones <span className="text-green-600">Guardia Civil</span> 2026
@@ -119,7 +119,7 @@ export default function GuardiaCivilPage() {
             { label: 'Temas', value: '25 (3 bloques)', icon: BookOpen },
             { label: 'Preguntas', value: '100 (+5 reserva)', icon: FileText },
             { label: 'Opciones', value: '4 por pregunta', icon: Target },
-            { label: 'Tiempo', value: '60 minutos', icon: Clock },
+            { label: 'Tiempo', value: '140 min (compartidos)', icon: Clock },
             { label: 'Acierto', value: '+1,0 pt', icon: CheckCircle2 },
             { label: 'Error', value: '-0,333 pts (pen. -1/3)', icon: Siren },
             { label: 'Escala', value: '0-100 (mín. 50)', icon: GraduationCap },
@@ -226,8 +226,7 @@ export default function GuardiaCivilPage() {
             <ul className="space-y-2 text-sm">
               {[
                 'ESO o titulación equivalente (nivel C2)',
-                '18 años cumplidos',
-                'Estatura mínima: 160 cm (hombres) / 155 cm (mujeres)',
+                '18-40 años (en el año de convocatoria)',
                 'Nacionalidad española',
                 'Permiso de conducir B',
                 'No haber sido condenado/a por delito doloso',
@@ -249,9 +248,9 @@ export default function GuardiaCivilPage() {
         <div className="space-y-4">
           {[
             { q: '¿Cuántos temas tiene la oposición de Guardia Civil?', a: '25 temas en 3 bloques: A (Ciencias Jurídicas, 16 temas), B (Materias Socioculturales, 5 temas) y C (Materias Técnico-Científicas, 4 temas). Convocatoria BOE-A-2025-10521.' },
-            { q: '¿Cuántas preguntas tiene el examen?', a: '100 preguntas tipo test (+5 de reserva) con 4 opciones de respuesta. Cada acierto +1,0 punto, cada error -0,333 puntos (penalización -1/3). Escala 0-100, mínimo 50. Tiempo: 60 minutos.' },
+            { q: '¿Cuántas preguntas tiene el examen?', a: '100 preguntas tipo test (+5 de reserva) con 4 opciones de respuesta. Cada acierto +1,0 punto, cada error -0,333 puntos (penalización -1/3). Escala 0-100, mínimo 50. El ejercicio de conocimientos comparte 140 minutos con ortografía, gramática e inglés.' },
             { q: '¿Puedo preparar GC y Policía Nacional a la vez?', a: 'Sí. Comparten ~60% de legislación (Constitución, LO 2/1986 FCSE, Seguridad Ciudadana, Código Penal). Con el Pack Doble GC+PN accedes a ambas oposiciones por 129,99€.' },
-            { q: '¿Cuántas plazas hay en 2026?', a: 'Aproximadamente 2.800 plazas para la escala de Cabos y Guardias. Es la oposición de seguridad con más plazas convocadas.' },
+            { q: '¿Cuántas plazas hay en 2026?', a: '3.118 plazas totales (1.630 turno libre) para la escala de Cabos y Guardias. Es la oposición de seguridad con más plazas convocadas.' },
             { q: '¿Cuánto cobra un Guardia Civil?', a: 'El sueldo ronda los 24.000-28.000€/año, dependiendo del destino, complementos por antigüedad, nocturnidad y peligrosidad.' },
             { q: '¿Cuánto cuesta preparar GC con OpoRuta?', a: 'Pack Guardia Civil: 79,99€ (pago único). Pack Doble GC+PN: 129,99€. Pack Completo (GC + Personalidad Policial): 119,99€. Pack Personalidad Policial solo: 49,99€.' },
           ].map(({ q, a }) => (

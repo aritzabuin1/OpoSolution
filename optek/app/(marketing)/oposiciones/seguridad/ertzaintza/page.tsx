@@ -69,7 +69,7 @@ export default function ErtzaintzaPage() {
             '@type': 'FAQPage',
             mainEntity: [
               { '@type': 'Question', name: '¿Cuántos temas tiene la oposición de Ertzaintza?', acceptedAnswer: { '@type': 'Answer', text: '54 temas organizados en 11 bloques temáticos, desde Derecho Constitucional hasta Conocimiento del País Vasco. La convocatoria está regulada por BOPV 226 de 24/11/2025.' } },
-              { '@type': 'Question', name: '¿Qué nivel de euskera se necesita para Ertzaintza?', acceptedAnswer: { '@type': 'Answer', text: 'Se requiere nivel C1 de euskera (EGA o equivalente). Es un requisito imprescindible para acceder a la Ertzaintza.' } },
+              { '@type': 'Question', name: '¿Qué nivel de euskera se necesita para Ertzaintza?', acceptedAnswer: { '@type': 'Answer', text: 'Se requiere nivel B2/PL2 de euskera para aproximadamente el 80% de las plazas. No todas las plazas exigen el mismo perfil lingüístico.' } },
               { '@type': 'Question', name: '¿Cuántas preguntas tiene el examen de Ertzaintza?', acceptedAnswer: { '@type': 'Answer', text: 'Aproximadamente 40 preguntas tipo test con 4 opciones de respuesta. Cada acierto suma +3,75 puntos y cada error resta -1,25 puntos (penalización -1/3). La escala es 0-150 con un mínimo de 75 puntos para aprobar.' } },
               { '@type': 'Question', name: '¿Cuánto cobra un ertzaina?', acceptedAnswer: { '@type': 'Answer', text: 'El sueldo base de un agente de la Ertzaintza es de aproximadamente 32.000€/año, que puede aumentar con complementos por antigüedad, nocturnidad y destino.' } },
             ],
@@ -105,7 +105,7 @@ export default function ErtzaintzaPage() {
             { label: 'Temas', value: '54 (11 bloques)', icon: BookOpen },
             { label: 'Preguntas', value: '~40 (variable)', icon: FileText },
             { label: 'Opciones', value: '4 por pregunta', icon: Target },
-            { label: 'Tiempo', value: '50 minutos', icon: Clock },
+            { label: 'Tiempo', value: 'Según convocatoria', icon: Clock },
             { label: 'Acierto', value: '+3,75 pts', icon: CheckCircle2 },
             { label: 'Error', value: '-1,25 pts (pen. -1/3)', icon: Shield },
             { label: 'Escala', value: '0-150 (mín. 75)', icon: GraduationCap },
@@ -174,9 +174,9 @@ export default function ErtzaintzaPage() {
             <ul className="space-y-2 text-sm">
               {[
                 'Bachillerato o titulación equivalente (nivel C1)',
-                'Nivel C1 de euskera (EGA o equivalente)',
-                '18 años cumplidos',
-                'Nacionalidad española o de un Estado miembro de la UE',
+                'Nivel B2/PL2 de euskera (exigido en ~80% de plazas)',
+                '18-37 años (no haber cumplido 38)',
+                'Nacionalidad española',
                 'Permiso de conducir B',
                 'No haber sido condenado/a por delito doloso',
               ].map(r => (
@@ -196,7 +196,7 @@ export default function ErtzaintzaPage() {
         <div className="space-y-4">
           {[
             { q: '¿Cuántos temas tiene la oposición de Ertzaintza?', a: '54 temas organizados en 11 bloques temáticos, desde Derecho Constitucional hasta Conocimiento del País Vasco. La convocatoria está regulada por BOPV 226 de 24/11/2025.' },
-            { q: '¿Qué nivel de euskera se necesita?', a: 'Se requiere nivel C1 de euskera (EGA o equivalente). Es un requisito imprescindible. OpoRuta no prepara el euskera, pero sí todo el temario teórico y los psicotécnicos.' },
+            { q: '¿Qué nivel de euskera se necesita?', a: 'Se requiere nivel B2/PL2 de euskera para aproximadamente el 80% de las plazas. No todas las plazas exigen el mismo perfil lingüístico. OpoRuta no prepara el euskera, pero sí todo el temario teórico y los psicotécnicos.' },
             { q: '¿Cuántas preguntas tiene el examen?', a: 'Aproximadamente 40 preguntas tipo test con 4 opciones. El número exacto puede variar por convocatoria. Cada acierto suma +3,75 puntos y cada error resta -1,25 (penalización -1/3). Escala 0-150, mínimo 75.' },
             { q: '¿Cuánto cobra un ertzaina?', a: 'El sueldo base es de aproximadamente 32.000€/año, que puede aumentar con complementos por antigüedad, nocturnidad, peligrosidad y destino.' },
             { q: '¿Hay pruebas físicas?', a: 'Sí, la oposición incluye pruebas físicas eliminatorias. OpoRuta se centra en la preparación teórica (test de conocimientos) y psicotécnica (personalidad policial).' },
