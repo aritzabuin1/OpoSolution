@@ -160,65 +160,82 @@ Estrategia: `num_opciones` en `scoring_config` BD. Default = 4. Solo PN = 3.
 - CODE_MAP += FCSE, SEG_CIUDADANA, SEG_PRIVADA, ESTATUTO_GERNIKA, LSV
 - SEGURIDAD_RULES + ALL_RULES
 
-### 2.11 — PAUSA: Aritz crea productos Stripe (6 productos) + env vars en Vercel ⏸️
-
-**6 productos Stripe a crear:**
-1. Pack Ertzaintza — 79,99€ → `STRIPE_PRICE_PACK_ERTZAINTZA`
-2. Pack Guardia Civil — 79,99€ → `STRIPE_PRICE_PACK_GUARDIA_CIVIL`
-3. Pack Policía Nacional — 79,99€ → `STRIPE_PRICE_PACK_POLICIA_NACIONAL`
-4. Pack Doble GC+PN — 129,99€ → `STRIPE_PRICE_PACK_DOBLE_GC_PN`
-5. Pack Personalidad Policial — 49,99€ → `STRIPE_PRICE_PACK_PERSONALIDAD`
-6. Pack Completo Seguridad — 119,99€ → `STRIPE_PRICE_PACK_COMPLETO_SEGURIDAD`
+### 2.11 — MOVIDO A FASE FINAL (ver FASE 12)
 
 ---
 
-## FASE 3 — Legislacion
+## FASE 3 — Legislacion ✅ SCRAPING COMPLETADO (ingesta pendiente de .env.local)
 
-### 3.1 — Reutilizar ya ingestada
-CE, CP, LPAC, LRJSP, LOPDGDD, LO 3/2007, LO 1/2004, PRL, TREBEP, LECrim, LO 4/2000
+### 3.1 — Reutilizar ya ingestada ✅
+CE, LPAC, LRJSP, LOPDGDD, LO 3/2007, LO 1/2004, PRL, TREBEP, LECrim
 
-### 3.2 — Scraping BOE nueva
-| Ley | BOE ID | Oposiciones |
-|-----|--------|-------------|
-| LO 2/1986 FCSE | BOE-A-1986-6123 | GC, PN |
-| LO 4/2015 Seguridad Ciudadana | BOE-A-2015-3442 | Ertz, GC, PN |
-| Ley 5/2014 Seguridad Privada | BOE-A-2014-3649 | GC, PN |
-| RDL 6/2015 Ley Seguridad Vial | BOE-A-2015-11722 | Ertz, GC |
-| LO 9/1983 Derecho Reunion | BOE-A-1983-19946 | Ertz |
-| Ley 4/2015 Estatuto Victima | BOE-A-2015-4606 | PN |
+### 3.2 — Scraping BOE nueva ✅ (9 leyes, 1.348 articulos)
+| Ley | BOE ID | Articulos | Oposiciones |
+|-----|--------|-----------|-------------|
+| LO 2/1986 FCSE | BOE-A-1986-6859 | 72 | GC, PN, Ertz |
+| LO 4/2015 Seguridad Ciudadana | BOE-A-2015-3442 | 68 | Ertz, GC, PN |
+| Ley 5/2014 Seguridad Privada | BOE-A-2014-3649 | 85 | GC, PN |
+| RDL 6/2015 Ley Seguridad Vial | BOE-A-2015-11722 | 147 | Ertz, GC |
+| LO 9/1983 Derecho Reunion | BOE-A-1983-19946 | 11 | Ertz |
+| Ley 4/2015 Estatuto Victima | BOE-A-2015-4606 | 45 | PN |
+| LO 3/1979 Estatuto Gernika | BOE-A-1979-30177 | 57 | Ertz |
+| LO 10/1995 Codigo Penal | BOE-A-1995-25444 | 746 | GC, PN |
+| LO 4/2000 Extranjeria | BOE-A-2000-544 | 117 | PN |
 
-### 3.3 — Legislacion BOPV (Ertzaintza, manual)
-- Estatuto Gernika (LO 3/1979 — esta en BOE: BOE-A-1979-30177)
+**Script**: `execution/scrape-leyes-seguridad.sh`
+
+### 3.3 — Legislacion BOPV (Ertzaintza) ⏸️ POST-MVP
 - DL 1/2023 Igualdad CAV, DL 1/2020 Policia PV, Ley 15/2012 Seguridad Euskadi, D 168/1998, D 57/2015
+- Requiere scraper BOPV diferente (no BOE)
+- Afecta temas 16+ de Ertzaintza (no cubiertos en SEGURIDAD_RULES actuales)
 
-### 3.4 — Ingesta + tagging
+### 3.4 — PAUSA: Aritz ejecuta ingesta con .env.local ⏸️
 ```bash
-pnpm ingest:legislacion && pnpm tag:legislacion --rama seguridad --dry-run && pnpm tag:legislacion --rama seguridad
+cd optek
+pnpm ingest:legislacion
+pnpm generate:embeddings
+pnpm tag:legislacion --rama seguridad --dry-run
+pnpm tag:legislacion --rama seguridad
 ```
 
 ---
 
-## FASE 4 — Examenes oficiales (busqueda online)
+## FASE 4 — Examenes oficiales ✅ INVESTIGACION COMPLETADA (descarga manual pendiente)
 
-### 4.1 — Buscar examenes Guardia Civil
-- Fuentes: web.guardiacivil.es, Geopol, Aspirantes.es, OpositaTest
-- Convocatorias 2023, 2024, 2025 -> `data/examenes_guardia_civil/YYYY/`
+### 4.1 — Guardia Civil ✅ fuentes documentadas
+- **2024**: metodogc.com, serguardiacivil.es
+- **2023**: divisayhonor.es, aspirantes.es, gesinpol.academy
+- **Coleccion**: mad.es/blog/examenes-guardia-civil-pdf/
+- **Oficial**: web.guardiacivil.es
+- Directorios: `data/examenes_guardia_civil/2023/`, `data/examenes_guardia_civil/2024/`
 
-### 4.2 — Buscar examenes Policia Nacional
-- Fuentes: policia.es, ADAMS, El Rincon del Policia
-- Convocatorias recientes -> `data/examenes_policia_nacional/YYYY/`
+### 4.2 — Policia Nacional ✅ fuentes documentadas
+- **2025 (P41)**: jurispol.com, academiacentropolicianacional.es
+- **2024 (P40)**: oposicionespolicianacional.com, academiacentropol.com
+- **Coleccion 2021-2024**: elrincondelpolicia.es, academiaufpsevilla.com
+- Directorios: `data/examenes_policia_nacional/2024/`, `data/examenes_policia_nacional/2025/`
 
-### 4.3 — Buscar examenes Ertzaintza
-- Fuentes: euskadi.eus, Arkaute, Esparteroymaroto.com
-- Promociones 34/35 -> `data/examenes_ertzaintza/YYYY/`
+### 4.3 — Ertzaintza ⚠️ dificil conseguir
+- Examenes oficiales NO se publican sistematicamente online
+- P35 (feb 2026): no encontrado PDF publico
+- Alternativa MVP: fallback a free_question_bank
+- Directorio: `data/examenes_ertzaintza/`
 
-### 4.4 — Parsear e ingestar
+### 4.4 — PAUSA: Aritz descarga PDFs + parsea e ingesta ⏸️
 ```bash
+# Guardia Civil
+pnpm parse:examenes --dir examenes_guardia_civil 2023
 pnpm parse:examenes --dir examenes_guardia_civil 2024
-pnpm parse:examenes --dir examenes_policia_nacional 2024  # CUIDADO: 3 opciones, fix en FASE 0
-pnpm parse:examenes --dir examenes_ertzaintza 2024
-pnpm ingest:examenes --dir examenes_X --oposicion X  # para cada uno
-pnpm build:radar
+pnpm ingest:examenes --dir examenes_guardia_civil --oposicion guardia-civil
+
+# Policia Nacional (CUIDADO: 3 opciones)
+pnpm parse:examenes --dir examenes_policia_nacional 2024
+pnpm parse:examenes --dir examenes_policia_nacional 2025
+pnpm ingest:examenes --dir examenes_policia_nacional --oposicion policia-nacional
+
+# Ertzaintza (si se consiguen)
+pnpm parse:examenes --dir examenes_ertzaintza 2026
+pnpm ingest:examenes --dir examenes_ertzaintza --oposicion ertzaintza
 ```
 
 ---
@@ -448,8 +465,6 @@ FASE 2 (constantes) --------+
 FASE 3 (legislacion) -------+-- paralelo
 FASE 4 (examenes online) ---+
                              |
-                       PAUSA: Stripe (8 productos)
-                             |
 FASE 5 (conocimiento) ------+
 FASE 6 (psicotecnicos) -----+-- paralelo
                              |
@@ -466,7 +481,9 @@ FASE 11 (personalidad) -----+
   11.10 (UI) ----------------+
   11.11 (verificacion) ------+
                              |
-                       PAUSA: activar personalidad
+FASE 12 (Stripe) — Aritz crea productos + env vars
+                             |
+                       PAUSA: activar todo
 ```
 
 ---
@@ -503,6 +520,17 @@ FASE 11 (personalidad) -----+
 - Perfil Big Five + SJT + Entrevista IA + Coaching
 - Consistencia cross-sesion
 - Testing adaptativo CAT
+
+**FASE 12 — Stripe (Aritz manual, antes de activar):**
+- [ ] Crear 6 productos Stripe:
+  1. Pack Ertzaintza — 79,99€ → `STRIPE_PRICE_PACK_ERTZAINTZA`
+  2. Pack Guardia Civil — 79,99€ → `STRIPE_PRICE_PACK_GUARDIA_CIVIL`
+  3. Pack Policía Nacional — 79,99€ → `STRIPE_PRICE_PACK_POLICIA_NACIONAL`
+  4. Pack Doble GC+PN — 129,99€ → `STRIPE_PRICE_PACK_DOBLE_GC_PN`
+  5. Pack Personalidad Policial — 49,99€ → `STRIPE_PRICE_PACK_PERSONALIDAD`
+  6. Pack Completo Seguridad — 119,99€ → `STRIPE_PRICE_PACK_COMPLETO_SEGURIDAD`
+- [ ] Añadir env vars en Vercel con los price IDs
+- [ ] Verificar checkout flow para cada producto
 
 **Post-lanzamiento:**
 - Ortografia GC (modulo determinista)

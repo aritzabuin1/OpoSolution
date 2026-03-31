@@ -52,6 +52,9 @@ function resolveOposicionSlug(): string {
   if (dirName?.includes('gestion_procesal')) return 'gestion-procesal'
   if (dirName?.includes('a2') || dirName?.includes('gace')) return 'gestion-estado'
   if (dirName?.includes('c1')) return 'administrativo-estado'
+  if (dirName?.includes('guardia_civil') || dirName?.includes('guardia-civil')) return 'guardia-civil'
+  if (dirName?.includes('policia_nacional') || dirName?.includes('policia-nacional')) return 'policia-nacional'
+  if (dirName?.includes('ertzaintza')) return 'ertzaintza'
   return 'aux-admin-estado'
 }
 

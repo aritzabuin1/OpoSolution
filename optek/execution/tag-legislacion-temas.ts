@@ -82,7 +82,7 @@ const CODE_MAP: Record<string, string[]> = {
   LOEX:           ['BOE-A-2000-544'],       // LO 4/2000 Extranjería
   LEY23_2014:     ['BOE-A-2014-12029'],     // Ley 23/2014 Reconocimiento mutuo UE
   // Seguridad — Fuerzas y Cuerpos de Seguridad
-  FCSE:           ['BOE-A-1986-6123'],       // LO 2/1986 FCSE
+  FCSE:           ['BOE-A-1986-6859'],       // LO 2/1986 FCSE
   SEG_CIUDADANA:  ['BOE-A-2015-3442'],       // LO 4/2015 Seguridad Ciudadana
   SEG_PRIVADA:    ['BOE-A-2014-3649'],       // Ley 5/2014 Seguridad Privada
   LSV:            ['BOE-A-2015-11722'],       // RDL 6/2015 Seguridad Vial
