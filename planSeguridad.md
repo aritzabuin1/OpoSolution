@@ -139,7 +139,7 @@ Estrategia: `num_opciones` en `scoring_config` BD. Default = 4. Solo PN = 3.
 ### 1.3 — Expand conocimiento_tecnico bloque CHECK ✅
 - `20260331_069_seguridad_bloque_check.sql`
 
-### 1.4 — PAUSA: Aritz aplica migration en Supabase Dashboard ⏸️
+### 1.4 — PAUSA: Aritz aplica migration en Supabase Dashboard ✅
 
 ---
 
@@ -160,7 +160,15 @@ Estrategia: `num_opciones` en `scoring_config` BD. Default = 4. Solo PN = 3.
 - CODE_MAP += FCSE, SEG_CIUDADANA, SEG_PRIVADA, ESTATUTO_GERNIKA, LSV
 - SEGURIDAD_RULES + ALL_RULES
 
-### 2.11 — PAUSA: Aritz crea productos Stripe (8 productos) + env vars en Vercel
+### 2.11 — PAUSA: Aritz crea productos Stripe (6 productos) + env vars en Vercel ⏸️
+
+**6 productos Stripe a crear:**
+1. Pack Ertzaintza — 79,99€ → `STRIPE_PRICE_PACK_ERTZAINTZA`
+2. Pack Guardia Civil — 79,99€ → `STRIPE_PRICE_PACK_GUARDIA_CIVIL`
+3. Pack Policía Nacional — 79,99€ → `STRIPE_PRICE_PACK_POLICIA_NACIONAL`
+4. Pack Doble GC+PN — 129,99€ → `STRIPE_PRICE_PACK_DOBLE_GC_PN`
+5. Pack Personalidad Policial — 49,99€ → `STRIPE_PRICE_PACK_PERSONALIDAD`
+6. Pack Completo Seguridad — 119,99€ → `STRIPE_PRICE_PACK_COMPLETO_SEGURIDAD`
 
 ---
 

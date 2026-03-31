@@ -14,6 +14,13 @@
 -- =============================================================================
 
 -- ═══════════════════════════════════════════════════════════════════════════════
+-- Expand temas.bloque CHECK: add 'XI' (Ertzaintza) + 'A','B','C' (Guardia Civil)
+-- ═══════════════════════════════════════════════════════════════════════════════
+ALTER TABLE temas DROP CONSTRAINT IF EXISTS temas_bloque_check;
+ALTER TABLE temas ADD CONSTRAINT temas_bloque_check
+  CHECK (bloque IN ('I','II','III','IV','V','VI','VII','VIII','IX','X','XI','A','B','C'));
+
+-- ═══════════════════════════════════════════════════════════════════════════════
 -- ERTZAINTZA — Agente Escala Básica (C1) — 54 temas, 1 ejercicio test
 -- ═══════════════════════════════════════════════════════════════════════════════
 
