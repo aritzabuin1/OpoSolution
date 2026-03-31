@@ -282,11 +282,42 @@ pnpm ingest:examenes --dir examenes_ertzaintza --oposicion ertzaintza
 - `getDistribucionPsicotecnicos()` reconoce slugs ertzaintza/guardia-civil/policia-nacional
 - 42 tests nuevos + 14 existentes = 56 tests OK, 0 regresiones, TypeScript limpio
 
-### 6.5 — GC Ortografia (POST-MVP)
-- Modulo determinista futuro. Landing: "Proximamente"
+### 6.5 — GC Ortografía ⏳ MVP (determinista, $0)
+Motor determinista de preguntas de ortografía para Guardia Civil.
+El examen GC incluye ortografía y gramática dentro del bloque de 140 minutos.
 
-### 6.6 — GC Ingles (POST-MVP)
-- Banco curado futuro
+- **Archivo**: `lib/ortografia/index.ts`
+- **Categorías**: acentuación, b/v, h, g/j, ll/y, c/z/s, mayúsculas, signos de puntuación, homófonos
+- **Formato preguntas**: "Señale la palabra CORRECTAMENTE escrita" (4 opciones), "Identifique la frase CON error ortográfico" (4 opciones)
+- **Banco**: ~200 items mínimo (expandible), hardcoded en JSON
+- **Endpoint**: `POST /api/ortografia/generate` (devuelve N preguntas aleatorias por categoría)
+- **UI**: Accesible desde página de simulacros GC + sección propia `/ortografia`
+- **Tests**: unitarios para cada categoría + verificar que respuesta correcta es realmente correcta
+- **Integración simulacro**: Ejercicio 1 de 4 en simulacro GC completo (140 min)
+
+### 6.6 — GC Inglés ⏳ MVP (determinista, $0)
+Motor determinista de preguntas de inglés nivel A2-B1 para Guardia Civil.
+El examen GC incluye inglés dentro del bloque de 140 minutos.
+
+- **Archivo**: `lib/ingles/index.ts`
+- **Categorías**: gramática (tiempos verbales, preposiciones, artículos, comparativos), vocabulario (policial/seguridad, cotidiano), comprensión lectora (textos cortos + preguntas)
+- **Formato preguntas**: fill-the-gap (4 opciones), elegir traducción correcta, comprensión de texto
+- **Banco**: ~150 items mínimo, hardcoded en JSON
+- **Endpoint**: `POST /api/ingles/generate` (devuelve N preguntas aleatorias por categoría)
+- **UI**: Accesible desde simulacros GC + sección propia `/ingles`
+- **Tests**: unitarios para gramática + verificar opciones válidas
+- **Integración simulacro**: Ejercicio 4 de 4 en simulacro GC completo (140 min)
+
+### 6.7 — Actualizar scoring_config GC para 4 ejercicios ⏳
+El simulacro completo GC debe reflejar la estructura real del examen (140 min compartidos):
+1. **Ortografía** (~25 preguntas)
+2. **Gramática** (~25 preguntas) — puede fusionarse con ortografía como subcategorías
+3. **Conocimientos** (100 preguntas + 5 reserva)
+4. **Inglés** (~20 preguntas)
+
+Migration para actualizar `scoring_config` de GC con `ejercicios` array de 4 elementos.
+La página de simulacros ya soporta múltiples ejercicios (`ejercicios.map()` en simulacros/page.tsx).
+El endpoint `generate-simulacro` necesita adaptarse para generar preguntas de ortografía/inglés además de conocimientos.
 
 ---
 
@@ -439,31 +470,31 @@ pnpm ingest:examenes --dir examenes_ertzaintza --oposicion ertzaintza
 
 ```
 FASE 0 (3-opciones) --------+
-FASE 1 (migration) ---------+-- paralelo
+FASE 1 (migration) ---------+-- paralelo           ✅ DONE
                              |
-                       PAUSA: migration
+                       PAUSA: migration              ✅ DONE
                              |
 FASE 2 (constantes) --------+
-FASE 3 (legislacion) -------+-- paralelo
+FASE 3 (legislacion) -------+-- paralelo            ✅ DONE
 FASE 4 (examenes online) ---+
                              |
 FASE 5 (conocimiento) ------+
-FASE 6 (psicotecnicos) -----+-- paralelo
+FASE 6 (psicotecnicos) -----+-- paralelo            ✅ DONE
                              |
-FASE 7 (free bank) <--- depende de 3+5
+FASE 6.5 (ortografía GC) ---+
+FASE 6.6 (inglés GC) -------+-- paralelo            ⏳ NEXT
+FASE 6.7 (simulacro 4 ej) --+
+                             |
+FASE 7 (free bank) <--- depende de 3+5              ⏳ PENDIENTE (~$7)
                              |
 FASE 8 (landings) ----------+
-FASE 9 (blog) --------------+-- paralelo
+FASE 9 (blog) --------------+-- paralelo            ✅ DONE
                              |
-FASE 10 (activacion conocimientos) PAUSA
+FASE 10 (activacion) PAUSA                          ⏳ PENDIENTE
                              |
-FASE 11 (personalidad) -----+
-  11.1-11.6 (determinista) --+-- paralelo
-  11.7-11.9 (IA endpoints) --+
-  11.10 (UI) ----------------+
-  11.11 (verificacion) ------+
+FASE 11 (personalidad) -----+                       ✅ DONE
                              |
-FASE 12 (Stripe) — Aritz crea productos + env vars
+FASE 12 (Stripe) — Aritz crea productos + env vars  ⏳ PENDIENTE
                              |
                        PAUSA: activar todo
 ```
@@ -488,20 +519,18 @@ FASE 12 (Stripe) — Aritz crea productos + env vars
 
 ---
 
-## Scope MVP vs Post-lanzamiento
+## Scope MVP (TODO incluido en lanzamiento)
 
-**MVP (FASE 0-10):**
+**FASE 0-10 + 11 + 6.5-6.7:**
 - Soporte 3 opciones (PN)
-- 3 oposiciones activas con tests + simulacros + psicotecnicos
+- 3 oposiciones activas con tests + simulacros + psicotécnicos
+- **Ortografía GC** (módulo determinista, ~200 items) — FASE 6.5
+- **Inglés GC** (módulo determinista, ~150 items) — FASE 6.6
+- **Simulacro GC completo 140 min** (ortografía + gramática + conocimientos + inglés) — FASE 6.7
 - Free bank 1240 preguntas
-- Examenes oficiales (los que se encuentren)
+- Exámenes oficiales (los que se encuentren)
 - Landings + pricing + blog 7 posts
-
-**Fase 2 (FASE 11):**
-- Modulo Personalidad Policial completo
-- Perfil Big Five + SJT + Entrevista IA + Coaching
-- Consistencia cross-sesion
-- Testing adaptativo CAT
+- Módulo Personalidad Policial completo (Big Five + SJT + Entrevista IA + Coaching + CAT)
 
 **FASE 12 — Stripe (Aritz manual, antes de activar):**
 - [ ] Crear 6 productos Stripe:
@@ -515,10 +544,8 @@ FASE 12 (Stripe) — Aritz crea productos + env vars
 - [ ] Verificar checkout flow para cada producto
 
 **Post-lanzamiento:**
-- Ortografia GC (modulo determinista)
-- Ingles GC (banco curado)
 - BOPV watcher
-- Mas examenes oficiales
+- Más exámenes oficiales
 
 ---
 
@@ -533,6 +560,9 @@ FASE 12 (Stripe) — Aritz crea productos + env vars
 | 4 — Examenes oficiales | ✅ INVESTIGACION OK | URLs documentadas. **Pendiente**: Aritz descarga PDFs + parsea |
 | 5 — Conocimiento tecnico | ✅ COMPLETADA | 33 temas generados (Claude) + 196 secciones ingestadas con embeddings |
 | 6 — Psicotecnicos nuevos | ✅ COMPLETADA | 3 modulos (spatial/logic/perception), 11 subtipos, 42 tests |
+| 6.5 — Ortografía GC | ⏳ PENDIENTE | Motor determinista, ~200 items, $0. Integrar en simulacro 140 min |
+| 6.6 — Inglés GC | ⏳ PENDIENTE | Motor determinista, ~150 items, $0. A2-B1, integrar en simulacro |
+| 6.7 — Simulacro GC 4 ejercicios | ⏳ PENDIENTE | scoring_config con 4 ejercicios + endpoint genera ortografía/inglés |
 | 7 — Free question bank | ⏳ PENDIENTE | Script listo. FASE 3+5 ya ingestadas. Requiere ~$7 + ADMIN_USER_ID |
 | 8 — Landing pages + SEO | ✅ COMPLETADA | 5 landings + main card + precios tab + sitemap + footer + llms.txt. Requisitos corregidos (estaturas, edades, euskera, plazas) |
 | 9 — Blog SEO | ✅ COMPLETADA | 7 posts. Blog GC corregido (estatura eliminada) |
