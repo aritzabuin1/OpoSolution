@@ -371,51 +371,41 @@ pnpm tsx execution/ingest-conocimiento-seguridad.ts --dry-run
 - Campo `personality_credits` en profiles (o reutilizar corrections_balance con tipo separado)
 - RPC `use_personality_credit` (similar a `use_correction`)
 
-### 11.2 — Banco de items IPIP (one-time)
+### 11.2 — Banco de items IPIP (one-time) ✅
 - **Archivo**: `data/personalidad/ipip_items.json`
-- 240 items Big Five (5 dimensiones x 6 facetas x 8 items)
-- 15 items validez (social desirability + infrequency)
-- 20 pares consistencia (VRIN-like)
+- 240 items Big Five (5 dimensiones x 6 facetas x 8 items, 120 reversed)
+- 15 items validez (8 social desirability + 7 infrequency)
+- 20 pares consistencia (10 same + 10 opposite, 4 por dimension)
 - Fuente: International Personality Item Pool (dominio publico, ipip.ori.org)
-- Traduccion al espanol verificada
-- Cada item: `{ id, texto, dimension, faceta, reversed, validez_type? }`
+- Traduccion al espanol
+- Tipos: `optek/lib/personalidad/types.ts`
 
-### 11.3 — Motor de scoring determinista ($0 por sesion)
+### 11.3 — Motor de scoring determinista ($0 por sesion) ✅
 - **Archivo**: `optek/lib/personalidad/scoring.ts`
-- **Tarea**: Implementar scoring Big Five completo:
-  1. Reverse-score items negativos: `6 - raw_score`
-  2. Media por faceta (8 items -> 1 score)
-  3. Media por dimension (6 facetas -> 1 score)
-  4. T-score normativo (mean=50, SD=10) — normas propias de la plataforma
-  5. Comparacion vs perfil policial ideal (baremo publico)
-- **Tests**: 10+ tests unitarios (scoring correcto, reverse items, edge cases)
+- reverseScore, scoreFacet, scoreDimension, computePoliceFit, computeBigFiveProfile
+- NORMS (O/C/E/A/N), POLICE_PROFILE (ideal T-scores + tolerancias)
+- **Tests**: 17 tests unitarios (`personalidad-scoring.test.ts`)
 
-### 11.4 — Escalas de validez (determinista)
+### 11.4 — Escalas de validez (determinista) ✅
 - **Archivo**: `optek/lib/personalidad/validity.ts`
-- Social Desirability: items de "virtud imposible" — si >60% "True" = flag
-- Infrequency: items que el 90%+ responde igual — respuesta contraria = flag
-- Consistencia (VRIN-like): 20 pares semanticos — respuestas contradictorias = flag
-- Acquiescence: ratio de "De acuerdo" vs "En desacuerdo" — sesgo > 70% = flag
-- Output: `{ socialDesirability: number, infrequency: number, consistency: number, acquiescence: number, valid: boolean }`
+- scoreSocialDesirability (ratio 4+), scoreInfrequency (count <=2), scoreConsistency (VRIN pairs), scoreAcquiescence (ratio 4+)
+- computeValidity: agrega escalas, flags en espanol, THRESHOLDS configurables
+- **Tests**: 13 tests unitarios (`personalidad-validity.test.ts`)
 
-### 11.5 — Testing Adaptativo CAT (determinista)
+### 11.5 — Testing Adaptativo CAT (determinista) ✅
 - **Archivo**: `optek/lib/personalidad/adaptive.ts`
-- Graded Response Model simplificado:
-  - Sesion 1: 80 items (broad screening, ~15 items/dimension)
-  - Sesiones siguientes: 20 items (precision targeting)
-  - Seleccion por maxima informacion en la zona theta estimada
-- Reduce tiempo de 30 min a ~8-10 min en sesiones de seguimiento
-- **Tests**: 4-5 tests
+- GRM simplificado: sesion 1 = 80 items, seguimiento = 20 items
+- selectNextItem: prioriza dimension con menos items, maximiza informacion
+- processResponse: inmutable, theta = media de respuestas scored por dimension
+- **Tests**: 20 tests unitarios (`personalidad-adaptive.test.ts`)
 
-### 11.6 — Consistencia cross-sesion (determinista, KILLER FEATURE)
+### 11.6 — Consistencia cross-sesion (determinista, KILLER FEATURE) ✅
 - **Archivo**: `optek/lib/personalidad/consistency-tracker.ts`
-- Almacenar scores por dimension en cada sesion
-- Calcular:
-  - Delta por dimension (cambio > 1 SD = flag)
-  - Profile shape correlation (r < .70 entre sesiones = flag)
-  - Tendencia temporal (mejora gradual = coaching real, salto repentino = faking)
-- Dashboard: "Tu consistencia: 87%. Perfil estable."
-- **Tests**: 5 tests
+- computeDimensionDeltas (flag |delta| > 10), pearsonCorrelation, computeProfileCorrelation
+- detectTrend: stable/improving/volatile (3+ sesiones)
+- computeOverallConsistency: 0-100 con penalizaciones
+- analyzeConsistency: entry point, maneja 0/1/2+ sesiones
+- **Tests**: 13 tests unitarios (`personalidad-consistency.test.ts`)
 
 ### 11.7 — SJT: Juicio Situacional (IA)
 - **Archivo**: `optek/lib/personalidad/sjt.ts`
