@@ -184,10 +184,16 @@ CE, LPAC, LRJSP, LOPDGDD, LO 3/2007, LO 1/2004, PRL, TREBEP, LECrim
 
 **Script**: `execution/scrape-leyes-seguridad.sh`
 
-### 3.3 — Legislacion BOPV (Ertzaintza) ⏸️ POST-MVP
-- DL 1/2023 Igualdad CAV, DL 1/2020 Policia PV, Ley 15/2012 Seguridad Euskadi, D 168/1998, D 57/2015
-- Requiere scraper BOPV diferente (no BOE)
-- Afecta temas 16+ de Ertzaintza (no cubiertos en SEGURIDAD_RULES actuales)
+### 3.3 — Legislacion BOPV (Ertzaintza) ✅ COMPLETADA (5 leyes, 370 arts)
+| Ley | Fuente | Articulos |
+|-----|--------|-----------|
+| DL 1/2023 Igualdad CAV | BOE-A-2023-9168 | 94 |
+| DL 1/2020 Policía PV | BOE-A-2020-9740 | 172 |
+| Ley 15/2012 Seg Euskadi | BOE-A-2012-9665 | 74 |
+| D 168/1998 Videocámaras | BOPV (manual) | 22 |
+| D 57/2015 Coordinación | BOPV (manual) | 8 |
+
+SEGURIDAD_RULES expandidas: Ertzaintza ahora cubre 54 temas (Bloques I-XI)
 
 ### 3.4 — PAUSA: Aritz ejecuta ingesta con .env.local ⏸️
 ```bash
