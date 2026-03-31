@@ -114,6 +114,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${APP_URL}/oposiciones/seguridad`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${APP_URL}/oposiciones/seguridad/ertzaintza`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${APP_URL}/oposiciones/seguridad/guardia-civil`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${APP_URL}/oposiciones/seguridad/policia-nacional`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${APP_URL}/oposiciones/seguridad/personalidad-policial`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
       url: `${APP_URL}/preguntas-frecuentes`,
       lastModified: now,
       changeFrequency: 'monthly',

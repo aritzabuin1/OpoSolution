@@ -15623,4 +15623,576 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Puedo preparar Penitenciarias sin academia?', answer: 'Si. Muchos aprobados combinan temario en papel (Adams, MAD) con plataformas de tests verificados como OpoRuta. La clave es no descuidar el Bloque IV y practicar con penalizacion real -1/3 desde el principio.' },
     ],
   },
+  // ─── Post: Test Ertzaintza 2026 ───────────────────────────────────────────
+  {
+    slug: 'test-ertzaintza-2026-practica-online-gratis-ia',
+    title: 'Test Ertzaintza 2026: practica online gratis con IA',
+    description: 'Practica tests de Ertzaintza 2026 online con IA. 54 temas, ~40 preguntas tipo test, penalización -1/3, escala 0-150. Tests verificados contra BOPV y legislación vigente.',
+    date: '2026-03-31',
+    keywords: ['test ertzaintza 2026', 'oposiciones ertzaintza', 'test ertzaintza online', 'ertzaintza temario', 'policia vasca oposiciones'],
+    content: `
+<h2>¿Qué es la Ertzaintza y por qué opositar en 2026?</h2>
+<p>La <strong>Ertzaintza</strong> es la policía autonómica del País Vasco, creada en virtud del Estatuto de Autonomía de Gernika (1979) y regulada por la Ley 4/1992 de Policía del País Vasco. Con más de 8.000 agentes, es uno de los cuerpos policiales más importantes de España y ejerce competencias plenas en seguridad ciudadana, policía judicial, tráfico y orden público en Euskadi.</p>
+<p>Opositar a la Ertzaintza en 2026 es una oportunidad excepcional: las jubilaciones previstas para los próximos años garantizan convocatorias regulares, y el sueldo es de los más altos entre las policías españolas (<strong>~32.000-38.000€ brutos/año</strong>).</p>
+
+<h2>Estructura del examen de conocimientos</h2>
+<p>El examen teórico de la Ertzaintza tiene características propias que lo diferencian de Guardia Civil o Policía Nacional:</p>
+<table>
+<thead><tr><th>Aspecto</th><th>Detalle</th></tr></thead>
+<tbody>
+<tr><td><strong>Preguntas</strong></td><td>Variable (~40 preguntas por examen)</td></tr>
+<tr><td><strong>Opciones</strong></td><td>4 alternativas (A, B, C, D)</td></tr>
+<tr><td><strong>Penalización</strong></td><td>-1/3 por error</td></tr>
+<tr><td><strong>Tiempo</strong></td><td>50 minutos</td></tr>
+<tr><td><strong>Escala</strong></td><td>0 a 150 puntos</td></tr>
+<tr><td><strong>Mínimo para aprobar</strong></td><td>75 puntos</td></tr>
+</tbody>
+</table>
+<p>La escala 0-150 es particular de la Ertzaintza: se transforma la puntuación bruta a esta escala, lo que hace imprescindible practicar con simulacros que repliquen el sistema exacto de puntuación.</p>
+
+<h2>Temario: 54 temas en 11 bloques</h2>
+<p>El temario de la Ertzaintza es extenso y abarca <strong>54 temas organizados en 11 bloques temáticos</strong>. A diferencia de otras oposiciones policiales, incluye legislación autonómica vasca y normativa específica del BOPV:</p>
+<ul>
+<li><strong>Bloque I</strong>: Derecho Constitucional y organización del Estado</li>
+<li><strong>Bloque II</strong>: Estatuto de Autonomía del País Vasco</li>
+<li><strong>Bloque III</strong>: Instituciones vascas y administración pública</li>
+<li><strong>Bloque IV</strong>: Derecho Penal y procesal</li>
+<li><strong>Bloque V</strong>: Seguridad pública y policía</li>
+<li><strong>Bloque VI</strong>: Derechos humanos e igualdad</li>
+<li><strong>Bloque VII</strong>: Tráfico y seguridad vial</li>
+<li><strong>Bloque VIII</strong>: Protección civil y emergencias</li>
+<li><strong>Bloque IX</strong>: Sociedad y cultura vasca</li>
+<li><strong>Bloque X</strong>: Ciencias jurídicas complementarias</li>
+<li><strong>Bloque XI</strong>: Materias transversales</li>
+</ul>
+<p>La clave está en que muchas preguntas se basan en legislación publicada en el <strong>BOPV</strong> (Boletín Oficial del País Vasco), no en el BOE. Esto significa que plataformas generalistas pueden tener preguntas desactualizadas o incorrectas si no verifican contra la normativa autonómica.</p>
+
+<h2>Requisitos para opositar a la Ertzaintza</h2>
+<ul>
+<li><strong>Titulación</strong>: Bachillerato, Técnico o equivalente</li>
+<li><strong>Idioma</strong>: Acreditación de nivel <strong>C1 de euskera</strong> (perfil lingüístico 3 o equivalente). Este es el requisito que más candidatos elimina.</li>
+<li><strong>Edad</strong>: Mínimo 18 años, máximo según convocatoria</li>
+<li><strong>Nacionalidad</strong>: Española</li>
+<li><strong>Permiso de conducir</strong>: B</li>
+<li><strong>No tener antecedentes penales</strong></li>
+</ul>
+<p>El requisito de <strong>C1 de euskera</strong> es eliminatorio y obligatorio desde la primera fase. Si no tienes el nivel, debes obtenerlo antes de presentarte. Esto reduce significativamente la competencia frente a otras oposiciones policiales.</p>
+
+<h2>¿Cómo te ayuda OpoRuta a preparar la Ertzaintza?</h2>
+<p>OpoRuta es la primera plataforma que genera tests de Ertzaintza con <strong>verificación legislativa automática contra el BOPV y legislación vigente</strong>. Esto significa que cada pregunta y cada respuesta están contrastadas con la normativa real, no con temarios desactualizados.</p>
+<ul>
+<li><strong>Tests verificados</strong>: Cada cita legal se comprueba automáticamente contra BOPV y BOE</li>
+<li><strong>Penalización real</strong>: Simulacros con el sistema exacto -1/3 y escala 0-150</li>
+<li><strong>54 temas completos</strong>: Cobertura de los 11 bloques del temario oficial</li>
+<li><strong>Explicación socrática</strong>: Cuando fallas, la IA te explica el razonamiento, no solo la respuesta correcta</li>
+<li><strong>Psicotécnicos específicos</strong>: Rotación mental, series, lógica deductiva adaptados al formato Ertzaintza</li>
+</ul>
+
+<h2>¿Por qué la verificación con IA marca la diferencia?</h2>
+<p>En oposiciones policiales autonómicas como la Ertzaintza, la legislación cambia con frecuencia: reformas del Estatuto, modificaciones de la Ley de Policía del País Vasco, actualizaciones del Código Penal que afectan a competencias policiales. Estudiar con preguntas basadas en normativa derogada no solo es inútil, <strong>es contraproducente</strong> porque fija respuestas incorrectas en tu memoria.</p>
+<p>OpoRuta resuelve este problema verificando cada pregunta contra la legislación vigente de forma automática. Si una ley cambia, las preguntas se actualizan. Así de simple.</p>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con legislación verificada, psicotécnicos específicos y Personalidad Policial con IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuántas preguntas tiene el examen de Ertzaintza?', answer: 'El examen teórico de la Ertzaintza tiene un número variable de preguntas, aproximadamente 40 por convocatoria, con 4 opciones de respuesta, penalización -1/3 y 50 minutos de tiempo. La puntuación se transforma a una escala de 0 a 150, necesitando un mínimo de 75 para aprobar.' },
+      { question: '¿Es obligatorio el euskera para la Ertzaintza?', answer: 'Sí, es obligatorio acreditar un nivel C1 de euskera (perfil lingüístico 3) para presentarse a las oposiciones de la Ertzaintza. Es un requisito eliminatorio desde la primera fase y no hay exención posible. Esto diferencia significativamente la Ertzaintza de Guardia Civil o Policía Nacional, donde no se exige idioma cooficial.' },
+      { question: '¿En qué se diferencia el examen de Ertzaintza del de Guardia Civil o Policía Nacional?', answer: 'Las principales diferencias son: la Ertzaintza tiene ~40 preguntas (vs 100 en GC y PN), usa escala 0-150 (vs 0-100 o 0-10), incluye legislación autonómica vasca (BOPV) y exige C1 de euskera. La penalización -1/3 es similar a Guardia Civil, pero Policía Nacional usa -1/2 con solo 3 opciones.' },
+    ],
+  },
+  // ─── Post: Oposiciones Guardia Civil 2026 ─────────────────────────────────
+  {
+    slug: 'oposiciones-guardia-civil-2026-temario-plazas-examen',
+    title: 'Oposiciones Guardia Civil 2026: temario, plazas y examen',
+    description: 'Todo sobre las oposiciones de Guardia Civil 2026: ~2.800 plazas, 25 temas en 3 bloques, 100 preguntas tipo test con penalización -1/3. Guía completa con temario, requisitos y estrategia.',
+    date: '2026-03-31',
+    keywords: ['oposiciones guardia civil 2026', 'temario guardia civil', 'plazas guardia civil 2026', 'examen guardia civil', 'test guardia civil online'],
+    content: `
+<h2>Guardia Civil 2026: una de las oposiciones más demandadas</h2>
+<p>La <strong>Guardia Civil</strong> es el cuerpo de seguridad más antiguo de España (fundado en 1844) y uno de los que más plazas oferta cada año. En las últimas convocatorias se han ofrecido entre <strong>2.091 y 2.830 plazas</strong> para ingreso en la Escala de Cabos y Guardias, y las previsiones para 2026 apuntan a cifras similares o superiores dado el plan de renovación generacional.</p>
+<p>Es una oposición accesible: el temario es más corto que el de Policía Nacional (25 temas frente a 45), los requisitos de titulación son ESO o equivalente, y la nota de corte históricamente se sitúa entre 55-65 sobre 100.</p>
+
+<h2>Estructura del examen teórico</h2>
+<p>El examen de conocimientos de Guardia Civil consiste en una prueba tipo test con las siguientes características:</p>
+<table>
+<thead><tr><th>Aspecto</th><th>Detalle</th></tr></thead>
+<tbody>
+<tr><td><strong>Preguntas</strong></td><td>100 puntuables + 5 de reserva</td></tr>
+<tr><td><strong>Opciones</strong></td><td>4 alternativas (A, B, C, D)</td></tr>
+<tr><td><strong>Penalización</strong></td><td>-1/3 por error</td></tr>
+<tr><td><strong>Tiempo</strong></td><td>60 minutos</td></tr>
+<tr><td><strong>Escala</strong></td><td>0 a 100 puntos</td></tr>
+<tr><td><strong>Mínimo</strong></td><td>50 puntos</td></tr>
+</tbody>
+</table>
+
+<h2>Temario: 25 temas en 3 bloques</h2>
+<p>El temario de Guardia Civil se organiza en <strong>3 bloques con 25 temas</strong>:</p>
+<table>
+<thead><tr><th>Bloque</th><th>Materias</th><th>Temas</th></tr></thead>
+<tbody>
+<tr><td><strong>A — Ciencias Jurídicas</strong></td><td>Constitución, Derecho Penal, Derecho Procesal, organización del Estado, Unión Europea</td><td>12</td></tr>
+<tr><td><strong>B — Materias Socioculturales</strong></td><td>Derechos humanos, globalización, ecología, protección civil, desarrollo sostenible</td><td>6</td></tr>
+<tr><td><strong>C — Materias Técnico-Científicas</strong></td><td>Electricidad, transmisiones, automoción, informática, topografía</td><td>7</td></tr>
+</tbody>
+</table>
+<p>El <strong>Bloque A</strong> es el más importante por peso en el examen (~50% de las preguntas). El Bloque C suele ser el que más sorprende a los opositores porque incluye materias técnicas que no se estudian habitualmente.</p>
+
+<h2>Requisitos para presentarse</h2>
+<ul>
+<li><strong>Titulación</strong>: ESO, Graduado Escolar o equivalente (Grupo C2)</li>
+<li><strong>Edad</strong>: Mínimo 18 años, máximo 40 años (en la fecha de la convocatoria)</li>
+<li><strong>Estatura mínima</strong>: 160 cm (hombres), 155 cm (mujeres)</li>
+<li><strong>Permiso de conducir</strong>: B (al finalizar el período de formación)</li>
+<li><strong>Nacionalidad</strong>: Española</li>
+<li><strong>No tener antecedentes penales</strong></li>
+<li><strong>Compromiso de portar armas</strong>: Declaración jurada</li>
+</ul>
+<p>A diferencia de Policía Nacional (que exige Bachillerato), la Guardia Civil solo pide ESO. Esto la convierte en una opción accesible para muchos candidatos, aunque la competencia es alta: típicamente se presentan 30.000-40.000 aspirantes.</p>
+
+<h2>Sueldo de un Guardia Civil</h2>
+<p>El sueldo de un Guardia Civil de nuevo ingreso ronda los <strong>24.000-28.000€ brutos anuales</strong>, incluyendo sueldo base, complemento de destino, complemento específico y pagas extraordinarias. Con trienios y ascensos, puede llegar a 32.000-36.000€. Además, incluye beneficios como mutualidad (MUGEJU), casa cuartel en algunos destinos y estabilidad laboral de por vida.</p>
+
+<h2>Comparativa Guardia Civil vs Policía Nacional</h2>
+<table>
+<thead><tr><th>Aspecto</th><th>Guardia Civil</th><th>Policía Nacional</th></tr></thead>
+<tbody>
+<tr><td><strong>Plazas anuales</strong></td><td>~2.800</td><td>~2.600</td></tr>
+<tr><td><strong>Temas</strong></td><td>25</td><td>45</td></tr>
+<tr><td><strong>Preguntas examen</strong></td><td>100 (4 opciones)</td><td>100 (3 opciones)</td></tr>
+<tr><td><strong>Penalización</strong></td><td>-1/3</td><td>-1/2</td></tr>
+<tr><td><strong>Titulación</strong></td><td>ESO</td><td>Bachillerato</td></tr>
+<tr><td><strong>Sueldo inicial</strong></td><td>~24.000-28.000€</td><td>~28.000-34.000€</td></tr>
+<tr><td><strong>Carácter</strong></td><td>Militar</td><td>Civil</td></tr>
+</tbody>
+</table>
+
+<h2>Cómo preparar Guardia Civil con OpoRuta</h2>
+<p>OpoRuta cubre los <strong>25 temas completos</strong> de Guardia Civil con preguntas verificadas contra el BOE y legislación vigente. Cada simulacro replica el formato exacto del examen: 100 preguntas, 4 opciones, penalización -1/3, 60 minutos y escala 0-100.</p>
+<ul>
+<li><strong>Verificación BOE</strong>: Todas las citas legales se contrastan automáticamente</li>
+<li><strong>Bloque C completo</strong>: Preguntas técnico-científicas que otras plataformas descuidan</li>
+<li><strong>Psicotécnicos</strong>: Preparación específica para la prueba de aptitudes</li>
+<li><strong>Personalidad policial</strong>: Módulo exclusivo de preparación para la entrevista y test de personalidad</li>
+<li><strong>Estadísticas detalladas</strong>: Seguimiento por bloque y tema para identificar puntos débiles</li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con legislación verificada, psicotécnicos específicos y Personalidad Policial con IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuántas plazas de Guardia Civil hay en 2026?', answer: 'Las previsiones para 2026 apuntan a unas 2.800 plazas para ingreso en la Escala de Cabos y Guardias, en línea con convocatorias anteriores (2.091 en 2023, 2.830 en 2024). El número exacto se confirma con la publicación de la convocatoria en el BOE.' },
+      { question: '¿Cómo funciona la penalización en el examen de Guardia Civil?', answer: 'El examen tiene 100 preguntas con 4 opciones y penalización -1/3: cada respuesta correcta suma 1 punto, cada incorrecta resta 0,333 puntos y las respuestas en blanco no puntúan. La nota se calcula sobre 100 y necesitas un mínimo de 50 para aprobar. Matemáticamente, debes responder si puedes descartar al menos una opción.' },
+      { question: '¿Hay pruebas físicas en la oposición de Guardia Civil?', answer: 'Sí. Tras el examen teórico, los candidatos deben superar pruebas físicas que incluyen: carrera de velocidad (60m), carrera de resistencia (2.000m), natación (50m), press de banca y salto vertical. Los baremos son diferentes para hombres y mujeres. No superar las pruebas físicas es eliminatorio.' },
+    ],
+  },
+  // ─── Post: Examen Policía Nacional 3 opciones ────────────────────────────
+  {
+    slug: 'examen-policia-nacional-3-opciones-penalizacion',
+    title: 'Examen Policía Nacional: 3 opciones, penalización -1/2 y estrategia',
+    description: 'El examen de Policía Nacional 2026 es único: 100 preguntas con solo 3 opciones (A, B, C) y penalización -1/2. Analizamos la estrategia óptima, cuándo responder y cuándo dejar en blanco.',
+    date: '2026-03-31',
+    keywords: ['examen policia nacional 2026', 'policia nacional 3 opciones', 'penalizacion policia nacional', 'test policia nacional online', 'estrategia examen policia'],
+    content: `
+<h2>¿Por qué el examen de Policía Nacional es diferente?</h2>
+<p>Si vienes de preparar Guardia Civil, auxiliar administrativo o cualquier otra oposición, prepárate para un cambio radical: el examen de <strong>Policía Nacional</strong> no usa el formato estándar de 4 opciones con penalización -1/3. En su lugar, aplica un sistema único en las oposiciones españolas:</p>
+<ul>
+<li><strong>100 preguntas</strong> tipo test</li>
+<li><strong>Solo 3 opciones</strong> de respuesta (A, B, C)</li>
+<li><strong>Penalización -1/2</strong> por respuesta incorrecta</li>
+<li><strong>Escala 0-10</strong> (cada acierto vale 0,1 puntos)</li>
+<li><strong>Mínimo 3 puntos</strong> sobre 10 para superar la fase</li>
+</ul>
+<p>Este formato cambia completamente la estrategia. Entenderlo a fondo puede ser la diferencia entre aprobar y quedarte a décimas.</p>
+
+<h2>La fórmula de puntuación explicada</h2>
+<p>La puntuación del examen de Policía Nacional se calcula así:</p>
+<ul>
+<li><strong>Respuesta correcta</strong>: +0,1 puntos</li>
+<li><strong>Respuesta incorrecta</strong>: -0,05 puntos (la mitad de lo que suma un acierto)</li>
+<li><strong>Respuesta en blanco</strong>: 0 puntos</li>
+</ul>
+<p>Esto equivale a decir que por cada error, pierdes medio acierto. En una escala de 0 a 10, necesitas al menos <strong>30 aciertos netos</strong> (descontando penalizaciones) para alcanzar el mínimo de 3 puntos.</p>
+
+<h2>Análisis matemático: ¿cuándo responder?</h2>
+<p>Aquí está la clave estratégica del examen de Policía Nacional. Con 3 opciones y penalización -1/2, el valor esperado de responder al azar es:</p>
+<ul>
+<li>Probabilidad de acertar al azar: 1/3</li>
+<li>Probabilidad de fallar al azar: 2/3</li>
+<li>Valor esperado: (1/3 × 0,1) + (2/3 × -0,05) = 0,0333 - 0,0333 = <strong>0</strong></li>
+</ul>
+<p>Responder completamente al azar tiene valor esperado cero, igual que dejar en blanco. <strong>Pero la situación cambia drásticamente cuando puedes descartar una opción</strong>:</p>
+<ul>
+<li>Si descartas 1 opción (quedan 2): (1/2 × 0,1) + (1/2 × -0,05) = 0,05 - 0,025 = <strong>+0,025</strong></li>
+</ul>
+<p><strong>Conclusión</strong>: en el examen de Policía Nacional, debes responder siempre que puedas descartar al menos 1 de las 3 opciones. Si no tienes ninguna pista, el valor esperado es neutro, pero el riesgo de acumular penalizaciones hace recomendable dejar en blanco.</p>
+
+<h2>Comparativa: 3 opciones (-1/2) vs 4 opciones (-1/3)</h2>
+<table>
+<thead><tr><th>Aspecto</th><th>Policía Nacional</th><th>Guardia Civil / Ertzaintza</th></tr></thead>
+<tbody>
+<tr><td><strong>Opciones</strong></td><td>3 (A, B, C)</td><td>4 (A, B, C, D)</td></tr>
+<tr><td><strong>Penalización</strong></td><td>-1/2 (resta 0,05)</td><td>-1/3 (resta 0,333 sobre 1)</td></tr>
+<tr><td><strong>Prob. acierto al azar</strong></td><td>33,3%</td><td>25%</td></tr>
+<tr><td><strong>Valor esperado al azar</strong></td><td>0</td><td>0</td></tr>
+<tr><td><strong>Umbral para responder</strong></td><td>Descartar 1 de 3</td><td>Descartar 1 de 4</td></tr>
+<tr><td><strong>Impacto del error</strong></td><td>Pierdes medio acierto</td><td>Pierdes un tercio de acierto</td></tr>
+</tbody>
+</table>
+<p>El sistema de Policía Nacional es <strong>más punitivo</strong> por error: cada fallo cuesta más en proporción. Esto significa que la gestión del riesgo es más importante aquí que en Guardia Civil.</p>
+
+<h2>Temario: 45 temas en 3 bloques</h2>
+<p>El temario de Policía Nacional es considerablemente más extenso que el de Guardia Civil: <strong>45 temas</strong> organizados en tres grandes bloques de Ciencias Jurídicas, Ciencias Sociales y Ciencias Técnico-Científicas. Incluye Derecho Constitucional, Derecho Penal y Procesal, normativa de extranjería, ciberseguridad y materias socioculturales.</p>
+<p>La amplitud del temario, combinada con el formato de 3 opciones, obliga a un estudio más profundo: con menos opciones, las alternativas son más parecidas entre sí y requieren un conocimiento más preciso.</p>
+
+<h2>Cómo OpoRuta replica el formato exacto</h2>
+<p>OpoRuta es la primera plataforma que replica fielmente el formato de examen de Policía Nacional:</p>
+<ul>
+<li><strong>3 opciones reales</strong>: No 4 opciones adaptadas. Preguntas diseñadas con exactamente 3 alternativas</li>
+<li><strong>Penalización -1/2 exacta</strong>: El simulacro calcula tu nota con la fórmula oficial</li>
+<li><strong>Escala 0-10</strong>: Resultados en la misma escala que el examen real</li>
+<li><strong>Verificación BOE</strong>: Todas las preguntas verificadas contra legislación vigente</li>
+<li><strong>Análisis de estrategia</strong>: Te indica cuántas preguntas en blanco dejaste y si te habría compensado responder</li>
+</ul>
+<p>Practicar con el formato correcto desde el principio es fundamental. Si entrenas con tests de 4 opciones, tu cerebro se acostumbra a un nivel de discriminación diferente y el día del examen la adaptación puede costarte décimas cruciales.</p>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con legislación verificada, psicotécnicos específicos y Personalidad Policial con IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Por qué el examen de Policía Nacional tiene solo 3 opciones?', answer: 'El formato de 3 opciones (A, B, C) con penalización -1/2 es una decisión de la Dirección General de la Policía. Aunque parece más fácil por tener menos opciones, en realidad las alternativas son más parecidas entre sí y la penalización es proporcionalmente mayor. Esto exige un conocimiento más preciso del temario.' },
+      { question: '¿Cuál es la estrategia óptima en el examen de Policía Nacional?', answer: 'La regla matemática es clara: responde siempre que puedas descartar al menos 1 de las 3 opciones. Si no puedes descartar ninguna, deja en blanco. A diferencia de otras oposiciones, aquí cada error cuesta medio acierto (no un tercio), así que la gestión del riesgo es especialmente importante.' },
+      { question: '¿Cómo se calcula la nota del examen de Policía Nacional?', answer: 'Cada acierto suma 0,1 puntos y cada error resta 0,05 puntos (la mitad). Las respuestas en blanco no puntúan. La nota final se expresa en escala 0-10 y necesitas un mínimo de 3 puntos para superar esta fase. Ejemplo: 60 aciertos y 20 errores = (60 × 0,1) - (20 × 0,05) = 6,0 - 1,0 = 5,0 puntos.' },
+    ],
+  },
+  // ─── Post: Psicotécnicos oposiciones policía ─────────────────────────────
+  {
+    slug: 'psicotecnicos-oposiciones-policia-2026',
+    title: 'Psicotécnicos oposiciones policía 2026: tipos y práctica',
+    description: 'Guía de psicotécnicos para oposiciones de policía 2026 (Ertzaintza, Guardia Civil, Policía Nacional). Tipos de pruebas: espacial, lógica deductiva, percepción, series y verbal. Practica gratis con IA.',
+    date: '2026-03-31',
+    keywords: ['psicotecnicos policia 2026', 'psicotecnicos guardia civil', 'psicotecnicos policia nacional', 'test psicotecnico oposiciones', 'psicotecnicos ertzaintza'],
+    content: `
+<h2>¿Qué son los psicotécnicos en oposiciones de policía?</h2>
+<p>Los <strong>psicotécnicos</strong> son pruebas de aptitud que miden capacidades cognitivas específicas: razonamiento espacial, lógica deductiva, percepción, capacidad numérica y aptitud verbal. En las oposiciones de <a href="/oposiciones/seguridad">Fuerzas y Cuerpos de Seguridad</a> (Guardia Civil, Policía Nacional, Ertzaintza), son una parte obligatoria del proceso selectivo y, a menudo, la prueba donde más candidatos fallan por falta de preparación específica.</p>
+<p>A diferencia del examen de conocimientos (que se prepara estudiando temario), los psicotécnicos requieren <strong>entrenamiento repetitivo</strong>: cuantos más ejercicios hagas, más patrones reconoces y más rápido resuelves.</p>
+
+<h2>Tipos de psicotécnicos en oposiciones policiales</h2>
+
+<h3>1. Razonamiento espacial</h3>
+<p>Mide tu capacidad de manipular mentalmente figuras en el espacio. Es una de las pruebas más características de las oposiciones policiales.</p>
+<ul>
+<li><strong>Rotación mental</strong>: Identificar qué figura es la rotación de un modelo (no su espejo)</li>
+<li><strong>Figuras en espejo</strong>: Distinguir entre rotación y reflexión especular</li>
+<li><strong>Coordenadas espaciales</strong>: Ubicar puntos u objetos en un sistema de referencia</li>
+<li><strong>Desarrollo de cubos</strong>: Determinar qué cubo se forma al plegar una plantilla</li>
+</ul>
+<p><strong>Consejo</strong>: Entrena con un cronómetro. La velocidad es clave porque en el examen real tienes tiempo limitado.</p>
+
+<h3>2. Lógica deductiva</h3>
+<p>Evalúa tu capacidad de razonamiento lógico formal. Es especialmente relevante para la función policial (investigación, análisis de indicios).</p>
+<ul>
+<li><strong>Silogismos</strong>: "Todos los A son B. Algunos B son C. ¿Qué se puede concluir?"</li>
+<li><strong>Condicionales</strong>: "Si llueve, entonces la calle está mojada. La calle está mojada. ¿Ha llovido?"</li>
+<li><strong>Diagramas lógicos</strong>: Representación gráfica de relaciones entre conjuntos</li>
+<li><strong>Secuencias lógicas</strong>: Identificar la regla que sigue una secuencia de elementos</li>
+</ul>
+
+<h3>3. Percepción y atención</h3>
+<p>Mide tu capacidad de observación detallada, fundamental para el trabajo policial (vigilancia, identificación).</p>
+<ul>
+<li><strong>Conteo rápido</strong>: Contar elementos en imágenes complejas bajo presión de tiempo</li>
+<li><strong>Diferencias</strong>: Encontrar diferencias entre dos imágenes aparentemente idénticas</li>
+<li><strong>Patrones</strong>: Identificar elementos que rompen un patrón regular</li>
+<li><strong>Memoria visual</strong>: Recordar detalles de una imagen tras un tiempo breve</li>
+</ul>
+
+<h3>4. Series numéricas</h3>
+<p>Evalúa el razonamiento numérico mediante secuencias que siguen una regla oculta.</p>
+<ul>
+<li><strong>Series simples</strong>: Progresiones aritméticas o geométricas</li>
+<li><strong>Series compuestas</strong>: Dos series intercaladas o reglas que alternan</li>
+<li><strong>Series con operaciones mixtas</strong>: Combinaciones de suma, multiplicación, cuadrados, etc.</li>
+</ul>
+
+<h3>5. Aptitud verbal</h3>
+<p>Mide comprensión lingüística y riqueza de vocabulario.</p>
+<ul>
+<li><strong>Analogías</strong>: "Médico es a hospital como profesor es a..."</li>
+<li><strong>Vocabulario</strong>: Sinónimos, antónimos, definiciones</li>
+<li><strong>Comprensión lectora</strong>: Extraer conclusiones de textos breves</li>
+</ul>
+
+<h2>Distribución por oposición</h2>
+<table>
+<thead><tr><th>Tipo</th><th>Guardia Civil</th><th>Policía Nacional</th><th>Ertzaintza</th></tr></thead>
+<tbody>
+<tr><td>Espacial</td><td>Alta presencia</td><td>Alta presencia</td><td>Alta presencia</td></tr>
+<tr><td>Lógica deductiva</td><td>Media</td><td>Alta</td><td>Alta</td></tr>
+<tr><td>Percepción</td><td>Media-Alta</td><td>Media</td><td>Alta</td></tr>
+<tr><td>Series numéricas</td><td>Media</td><td>Media</td><td>Media</td></tr>
+<tr><td>Verbal</td><td>Baja</td><td>Media</td><td>Media</td></tr>
+</tbody>
+</table>
+
+<h2>Consejos para mejorar en psicotécnicos</h2>
+<ul>
+<li><strong>Practica a diario</strong>: 20-30 minutos de psicotécnicos cada día son más efectivos que 3 horas un día a la semana</li>
+<li><strong>Simula condiciones reales</strong>: Usa cronómetro y no consultes las respuestas hasta terminar</li>
+<li><strong>Identifica tu punto débil</strong>: Si siempre fallas en espacial, dedica más tiempo a ese tipo</li>
+<li><strong>No memorices ejercicios</strong>: Entiende la lógica detrás de cada tipo para resolver variaciones nuevas</li>
+<li><strong>Descansa la mente</strong>: Los psicotécnicos requieren frescura mental. No los hagas al final de una sesión de estudio larga</li>
+</ul>
+
+<h2>Psicotécnicos en OpoRuta: 100% deterministas, generados por IA</h2>
+<p>OpoRuta genera psicotécnicos de forma <strong>100% determinista</strong>: cada ejercicio tiene una única respuesta correcta verificable matemáticamente. No hay ambigüedad. A diferencia de bancos de preguntas fijos, la IA genera ejercicios nuevos cada vez, adaptados a tu nivel y al tipo de oposición que preparas.</p>
+<ul>
+<li><strong>Ejercicios ilimitados</strong>: No te quedes sin preguntas nuevas</li>
+<li><strong>Adaptados por oposición</strong>: Psicotécnicos específicos para GC, PN o Ertzaintza</li>
+<li><strong>Dificultad progresiva</strong>: El sistema ajusta la dificultad según tu rendimiento</li>
+<li><strong>Explicaciones paso a paso</strong>: Cuando fallas, te explica el razonamiento completo</li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con legislación verificada, psicotécnicos específicos y Personalidad Policial con IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Qué tipos de psicotécnicos entran en oposiciones de policía?', answer: 'Los principales tipos son: razonamiento espacial (rotación mental, cubos, espejos), lógica deductiva (silogismos, condicionales), percepción y atención (conteo, diferencias, patrones), series numéricas y aptitud verbal (analogías, vocabulario). La distribución varía según el cuerpo: Guardia Civil enfatiza el espacial, Policía Nacional la lógica, y Ertzaintza combina todos los tipos.' },
+      { question: '¿Son difíciles los psicotécnicos de policía?', answer: 'La dificultad depende del entrenamiento previo. Los psicotécnicos no miden conocimientos sino aptitudes cognitivas, y mejoran significativamente con la práctica diaria. La mayoría de candidatos que suspenden es porque no dedicaron suficiente tiempo de preparación específica. Con 2-3 meses de práctica diaria (20-30 min), la mayoría de personas alcanza un nivel competitivo.' },
+      { question: '¿Cuánto tiempo necesito para preparar psicotécnicos?', answer: 'Se recomienda empezar a practicar al menos 2-3 meses antes del examen, con sesiones de 20-30 minutos diarios. La mejora es rápida las primeras semanas y luego se estabiliza. La clave es la consistencia: es mejor practicar poco cada día que mucho una vez a la semana. OpoRuta genera ejercicios ilimitados adaptados a tu nivel.' },
+    ],
+  },
+  // ─── Post: Sueldo Guardia Civil y Policía Nacional ───────────────────────
+  {
+    slug: 'sueldo-guardia-civil-policia-nacional-2026',
+    title: 'Sueldo Guardia Civil y Policía Nacional 2026: nómina desglosada',
+    description: 'Comparativa de sueldos Guardia Civil y Policía Nacional 2026. Desglose de nómina: sueldo base, complemento destino, específico, trienios y pagas extra. GC ~24.000-28.000€/año, PN ~28.000-34.000€/año.',
+    date: '2026-03-31',
+    keywords: ['sueldo guardia civil 2026', 'sueldo policia nacional 2026', 'nomina guardia civil', 'cuanto cobra policia nacional', 'sueldo ertzaintza 2026'],
+    content: `
+<h2>¿Cuánto cobra un Guardia Civil en 2026?</h2>
+<p>El sueldo de un <strong>Guardia Civil</strong> de nuevo ingreso (Guardia en prácticas y después Guardia) se compone de varios conceptos retributivos. No es un sueldo único sino una nómina con múltiples complementos, lo que genera confusión. Aquí está el desglose real:</p>
+
+<h3>Desglose nómina mensual Guardia Civil</h3>
+<table>
+<thead><tr><th>Concepto</th><th>Importe mensual aprox.</th></tr></thead>
+<tbody>
+<tr><td><strong>Sueldo base</strong></td><td>~750€</td></tr>
+<tr><td><strong>Complemento de destino</strong></td><td>~350€</td></tr>
+<tr><td><strong>Complemento específico</strong></td><td>~400€</td></tr>
+<tr><td><strong>Complemento de productividad</strong></td><td>Variable (~100-200€)</td></tr>
+<tr><td><strong>Total bruto mensual</strong></td><td>~1.600-1.700€</td></tr>
+</tbody>
+</table>
+<p>Con <strong>14 pagas anuales</strong> (12 mensuales + 2 extraordinarias), el total bruto anual se sitúa entre <strong>24.000 y 28.000€</strong> dependiendo del destino, antigüedad y complementos variables.</p>
+
+<h2>¿Cuánto cobra un Policía Nacional en 2026?</h2>
+<p>El <strong>Policía Nacional</strong> de nuevo ingreso (escala básica, categoría de Policía) tiene una retribución superior a la de Guardia Civil, principalmente por el complemento específico más alto:</p>
+
+<h3>Desglose nómina mensual Policía Nacional</h3>
+<table>
+<thead><tr><th>Concepto</th><th>Importe mensual aprox.</th></tr></thead>
+<tbody>
+<tr><td><strong>Sueldo base</strong></td><td>~900€</td></tr>
+<tr><td><strong>Complemento de destino</strong></td><td>~420€</td></tr>
+<tr><td><strong>Complemento específico</strong></td><td>~500€</td></tr>
+<tr><td><strong>Complemento de productividad</strong></td><td>Variable (~150-300€)</td></tr>
+<tr><td><strong>Total bruto mensual</strong></td><td>~2.000-2.200€</td></tr>
+</tbody>
+</table>
+<p>Con 14 pagas, el total bruto anual es de <strong>28.000-34.000€</strong>. La diferencia con la Guardia Civil se debe principalmente al carácter civil del cuerpo y a los complementos específicos más altos.</p>
+
+<h2>¿Cuánto cobra un Ertzaintza en 2026?</h2>
+<p>La <strong>Ertzaintza</strong> es la policía autonómica mejor pagada de España. Los sueldos son significativamente superiores a los de GC y PN gracias a los complementos autonómicos del Gobierno Vasco:</p>
+<table>
+<thead><tr><th>Concepto</th><th>Importe mensual aprox.</th></tr></thead>
+<tbody>
+<tr><td><strong>Sueldo base + complementos</strong></td><td>~2.300-2.700€</td></tr>
+<tr><td><strong>Total bruto anual</strong></td><td><strong>~32.000-38.000€</strong></td></tr>
+</tbody>
+</table>
+<p>Un agente de la Ertzaintza con antigüedad puede superar los <strong>40.000€ brutos anuales</strong>. La contrapartida es el requisito de C1 de euskera y que los destinos están limitados al País Vasco.</p>
+
+<h2>Tabla comparativa de sueldos 2026</h2>
+<table>
+<thead><tr><th>Concepto</th><th>Guardia Civil</th><th>Policía Nacional</th><th>Ertzaintza</th></tr></thead>
+<tbody>
+<tr><td><strong>Sueldo bruto anual (inicio)</strong></td><td>24.000-28.000€</td><td>28.000-34.000€</td><td>32.000-38.000€</td></tr>
+<tr><td><strong>Sueldo neto mensual aprox.</strong></td><td>1.400-1.600€</td><td>1.700-2.000€</td><td>1.900-2.300€</td></tr>
+<tr><td><strong>Pagas anuales</strong></td><td>14</td><td>14</td><td>14</td></tr>
+<tr><td><strong>Trienios</strong></td><td>~35-45€/trienio</td><td>~40-50€/trienio</td><td>~50-65€/trienio</td></tr>
+<tr><td><strong>Con 15 años antigüedad</strong></td><td>28.000-32.000€</td><td>32.000-38.000€</td><td>38.000-44.000€</td></tr>
+</tbody>
+</table>
+
+<h2>¿Qué son los trienios?</h2>
+<p>Los <strong>trienios</strong> son complementos salariales que se acumulan por cada tres años de servicio. Cada trienio añade una cantidad fija a tu nómina mensual de por vida. Con 30 años de servicio (10 trienios), el incremento acumulado puede suponer <strong>400-650€ mensuales adicionales</strong> según el cuerpo.</p>
+
+<h2>Otros beneficios económicos</h2>
+<ul>
+<li><strong>Horas extraordinarias y nocturnidad</strong>: Los servicios nocturnos, festivos y horas extra se compensan con pluses adicionales</li>
+<li><strong>Mutualidad</strong>: MUGEJU (GC) o MUFACE (PN) — seguro médico con clínicas privadas sin coste adicional</li>
+<li><strong>Casa cuartel</strong>: Algunos destinos de GC incluyen vivienda (ahorro de alquiler significativo)</li>
+<li><strong>Estabilidad</strong>: Puesto fijo de por vida con jubilación anticipada a los 59-60 años</li>
+<li><strong>Carrera profesional</strong>: Posibilidad de ascenso por antigüedad o promoción interna</li>
+</ul>
+
+<h2>¿Merece la pena económicamente?</h2>
+<p>Comparado con el mercado laboral privado, un puesto en Fuerzas de Seguridad ofrece un sueldo competitivo con <strong>estabilidad absoluta</strong>: no hay ERE, no hay despidos, hay jubilación anticipada y la progresión salarial está garantizada por trienios. Un Guardia Civil o Policía Nacional con 20 años de servicio cobra entre 32.000-40.000€ anuales, cifra que supera la media salarial española.</p>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con legislación verificada, psicotécnicos específicos y Personalidad Policial con IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuánto cobra un Guardia Civil de nuevo ingreso?', answer: 'Un Guardia Civil de nuevo ingreso cobra aproximadamente 24.000-28.000€ brutos anuales (14 pagas), lo que equivale a unos 1.400-1.600€ netos mensuales. El sueldo se compone de sueldo base (~750€), complemento de destino (~350€), complemento específico (~400€) y productividad variable.' },
+      { question: '¿Por qué cobra más un Policía Nacional que un Guardia Civil?', answer: 'La diferencia principal se debe a que Policía Nacional pertenece al grupo C1 (exige Bachillerato) mientras que Guardia Civil es C2 (exige ESO), y al carácter civil vs militar. Los complementos específicos de PN son superiores. La diferencia es de aproximadamente 4.000-6.000€ brutos anuales a favor de PN.' },
+      { question: '¿Cuánto queda neto del sueldo de policía?', answer: 'Aproximadamente un 75-80% del bruto, dependiendo de la situación personal (estado civil, hijos). Un Guardia Civil cobra ~1.400-1.600€ netos/mes, un Policía Nacional ~1.700-2.000€ netos/mes y un Ertzaintza ~1.900-2.300€ netos/mes. Estos importes aumentan con trienios, nocturnidad y servicios especiales.' },
+    ],
+  },
+  // ─── Post: OpoRuta vs OpositaTest ─────────────────────────────────────────
+  {
+    slug: 'oporuta-vs-opositatest-oposiciones-policia',
+    title: 'OpoRuta vs OpositaTest para oposiciones de policía 2026',
+    description: 'Comparativa OpoRuta vs OpositaTest para preparar oposiciones de Guardia Civil, Policía Nacional y Ertzaintza. Precio, verificación legal, psicotécnicos, personalidad policial y más.',
+    date: '2026-03-31',
+    keywords: ['oporuta vs opositatest policia', 'alternativa opositatest guardia civil', 'test policia online', 'mejor plataforma oposiciones policia', 'preparar oposiciones policia online'],
+    content: `
+<h2>¿OpoRuta o OpositaTest para oposiciones de policía?</h2>
+<p>Si estás preparando oposiciones de <strong>Guardia Civil, Policía Nacional o Ertzaintza</strong>, probablemente hayas oído hablar de OpositaTest, la plataforma de tests más conocida en España. Pero desde 2026 existe una alternativa diseñada específicamente para oposiciones de seguridad: <strong>OpoRuta</strong>. ¿Cuál te conviene más? Vamos a comparar punto por punto.</p>
+
+<h2>Tabla comparativa completa</h2>
+<table>
+<thead><tr><th>Característica</th><th>OpoRuta</th><th>OpositaTest</th></tr></thead>
+<tbody>
+<tr><td><strong>Precio</strong></td><td>79,99€ pago único</td><td>~12€/mes (144€/año)</td></tr>
+<tr><td><strong>Verificación legislativa</strong></td><td>Automática (BOE/BOPV)</td><td>Manual (riesgo desactualización)</td></tr>
+<tr><td><strong>Generación de preguntas</strong></td><td>IA (ilimitadas)</td><td>Banco fijo</td></tr>
+<tr><td><strong>Formato PN (3 opciones)</strong></td><td>Nativo</td><td>Adaptado (originalmente 4)</td></tr>
+<tr><td><strong>Penalización real</strong></td><td>-1/3 (GC/Ertz) y -1/2 (PN)</td><td>Configurable</td></tr>
+<tr><td><strong>Psicotécnicos específicos</strong></td><td>Sí (espacial, lógica, percepción)</td><td>Genéricos</td></tr>
+<tr><td><strong>Personalidad policial</strong></td><td><strong>Sí (exclusivo)</strong></td><td>No</td></tr>
+<tr><td><strong>Explicación de errores</strong></td><td>Socrática con IA</td><td>Respuesta correcta</td></tr>
+<tr><td><strong>Oposiciones cubiertas</strong></td><td>Seguridad + Administración</td><td>Muchas categorías</td></tr>
+<tr><td><strong>Comunidad/foros</strong></td><td>No</td><td>Sí (activa)</td></tr>
+</tbody>
+</table>
+
+<h2>Precio: pago único vs suscripción</h2>
+<p>La diferencia más evidente es el modelo de precios. <strong>OpoRuta cuesta 79,99€ en un pago único</strong> que incluye acceso completo: tests de conocimiento, psicotécnicos y personalidad policial. OpositaTest funciona por suscripción mensual (~12€/mes), lo que supone <strong>~144€ al año</strong>.</p>
+<p>Si preparas la oposición durante 12-18 meses (lo habitual), OpoRuta sale significativamente más barato. Además, no tienes la presión psicológica de "estoy pagando cada mes y necesito aprobar ya".</p>
+
+<h2>Verificación legislativa: la gran diferencia</h2>
+<p>Este es el punto donde OpoRuta marca una diferencia fundamental. Cada pregunta se <strong>verifica automáticamente contra la legislación vigente</strong> (BOE para Guardia Civil y Policía Nacional, BOPV para Ertzaintza). Si una ley cambia, las preguntas se actualizan.</p>
+<p>OpositaTest utiliza un banco de preguntas creado manualmente que se actualiza periódicamente, pero no de forma automática. En oposiciones de seguridad, donde la legislación penal y procesal cambia con frecuencia, esto puede significar estudiar con preguntas basadas en normativa derogada.</p>
+
+<h2>Personalidad policial: exclusivo de OpoRuta</h2>
+<p>OpoRuta es la <strong>primera plataforma en España que incluye un módulo de preparación de personalidad policial</strong>. Este módulo cubre:</p>
+<ul>
+<li><strong>Test Big Five</strong>: Practica con el modelo de personalidad que usan los psicólogos policiales</li>
+<li><strong>Lie Scales</strong>: Aprende a identificar y manejar las escalas de sinceridad</li>
+<li><strong>SJT (Situational Judgment Test)</strong>: Escenarios de juicio situacional con retroalimentación</li>
+<li><strong>Perfil policial ideal</strong>: Entiende qué buscan los evaluadores</li>
+</ul>
+<p>OpositaTest no ofrece ninguna preparación de personalidad policial.</p>
+
+<h2>Formato de examen: fidelidad al original</h2>
+<p>OpoRuta replica nativamente el formato exacto de cada oposición: <strong>3 opciones con penalización -1/2 para Policía Nacional</strong>, 4 opciones con -1/3 para Guardia Civil, y el sistema de escala 0-150 para Ertzaintza. OpositaTest permite configurar opciones, pero sus preguntas están diseñadas originalmente para 4 opciones y la adaptación a 3 puede generar alternativas artificiales.</p>
+
+<h2>Fortalezas de OpositaTest</h2>
+<p>Es justo reconocer las fortalezas de OpositaTest:</p>
+<ul>
+<li><strong>Comunidad activa</strong>: Foros donde opositores comparten experiencias, dudas y estrategias</li>
+<li><strong>Trayectoria</strong>: Años de experiencia y miles de usuarios</li>
+<li><strong>Amplitud</strong>: Cubre decenas de oposiciones diferentes, no solo seguridad</li>
+<li><strong>Estadísticas comparativas</strong>: Puedes ver cómo rindes frente a otros opositores</li>
+</ul>
+
+<h2>¿Se pueden usar ambas?</h2>
+<p>Sí, y muchos opositores lo hacen. Una estrategia efectiva es usar <strong>OpoRuta como herramienta principal</strong> (por la verificación legislativa, psicotécnicos y personalidad) y <strong>OpositaTest como complemento</strong> puntual para el banco de preguntas de la comunidad. El pago único de OpoRuta facilita esta combinación sin duplicar costes de suscripción.</p>
+
+<h2>Veredicto</h2>
+<p>Para <strong>oposiciones de policía</strong> específicamente (GC, PN, Ertzaintza), OpoRuta ofrece mejor relación calidad-precio: verificación legislativa automática, formato nativo de cada examen, psicotécnicos policiales y el módulo exclusivo de personalidad policial, todo por 79,99€ en pago único. OpositaTest es una buena herramienta complementaria con comunidad activa, pero su falta de verificación legislativa automática y de preparación de personalidad la sitúan por detrás para este tipo específico de oposición.</p>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con legislación verificada, psicotécnicos específicos y Personalidad Policial con IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Qué es mejor para Guardia Civil, OpoRuta o OpositaTest?', answer: 'Para Guardia Civil específicamente, OpoRuta ofrece mejor relación calidad-precio: 79,99€ pago único vs ~144€/año de OpositaTest, verificación legislativa automática contra BOE, psicotécnicos específicos y preparación de personalidad policial (exclusiva). OpositaTest destaca por su comunidad y trayectoria. Muchos opositores combinan ambas.' },
+      { question: '¿OpoRuta tiene comunidad de opositores como OpositaTest?', answer: 'No, actualmente OpoRuta no incluye foros ni comunidad de opositores. Su enfoque es la calidad de los tests (verificación legislativa, IA, personalidad policial) más que las funciones sociales. Si necesitas comunidad, puedes usar OpositaTest como complemento: el pago único de OpoRuta facilita combinar ambas plataformas.' },
+    ],
+  },
+  // ─── Post: Test de personalidad policial ──────────────────────────────────
+  {
+    slug: 'test-personalidad-policial-prueba-psicotecnica',
+    title: 'Test de personalidad policial: cómo preparar la prueba psicotécnica',
+    description: 'Guía completa sobre la prueba de personalidad policial en oposiciones. Big Five, lie scales, test de juicio situacional (SJT) y entrevista. OpoRuta es la primera plataforma con preparación IA.',
+    date: '2026-03-31',
+    keywords: ['test personalidad policial', 'prueba psicotecnica policia', 'personalidad policial oposiciones', 'big five policia', 'sjt policia'],
+    content: `
+<h2>¿Qué es la prueba de personalidad policial?</h2>
+<p>La <strong>prueba de personalidad</strong> es una fase obligatoria en las oposiciones de Guardia Civil, Policía Nacional y Ertzaintza. A diferencia del examen de conocimientos o los psicotécnicos de aptitud, la prueba de personalidad evalúa rasgos psicológicos estables: tu forma de ser, tus reacciones ante situaciones de estrés y tu adecuación al perfil policial.</p>
+<p>Es una de las pruebas más temidas porque <strong>no se puede "estudiar" en el sentido tradicional</strong>. No hay un temario que memorizar. Sin embargo, sí se puede (y se debe) preparar: entender qué evalúan, cómo lo miden y qué perfil buscan es fundamental para no cometer errores evitables.</p>
+
+<h2>El modelo Big Five: la base de la evaluación</h2>
+<p>La mayoría de tests de personalidad policial se basan en el modelo <strong>Big Five</strong> (los "cinco grandes" rasgos de personalidad), el modelo más validado científicamente en psicología:</p>
+<table>
+<thead><tr><th>Rasgo</th><th>Qué mide</th><th>Perfil policial ideal</th></tr></thead>
+<tbody>
+<tr><td><strong>Extraversión</strong></td><td>Sociabilidad, asertividad, energía</td><td>Moderada-Alta (trato con ciudadanos, trabajo en equipo)</td></tr>
+<tr><td><strong>Amabilidad</strong></td><td>Cooperación, empatía, confianza</td><td>Moderada (empático pero firme)</td></tr>
+<tr><td><strong>Responsabilidad</strong></td><td>Organización, disciplina, fiabilidad</td><td><strong>Alta</strong> (el rasgo más valorado en policía)</td></tr>
+<tr><td><strong>Neuroticismo</strong></td><td>Ansiedad, inestabilidad emocional</td><td><strong>Bajo</strong> (estabilidad emocional bajo presión)</td></tr>
+<tr><td><strong>Apertura</strong></td><td>Curiosidad, creatividad, flexibilidad</td><td>Moderada (adaptable pero respeta protocolos)</td></tr>
+</tbody>
+</table>
+<p>El perfil policial ideal se resume en: <strong>alta responsabilidad, bajo neuroticismo y extraversión moderada</strong>. Una persona organizada, estable emocionalmente y capaz de relacionarse con ciudadanos sin perder el control.</p>
+
+<h2>Lie Scales: las escalas de sinceridad</h2>
+<p>Los tests de personalidad policial incluyen <strong>escalas de sinceridad</strong> (lie scales) diseñadas para detectar si el candidato está intentando dar una imagen artificialmente positiva. Funcionan mediante preguntas de control que miden la consistencia de tus respuestas.</p>
+<p>Ejemplos de trampas típicas:</p>
+<ul>
+<li>"Nunca he dicho una mentira en mi vida" → Si marcas "totalmente de acuerdo", activas la lie scale</li>
+<li>"Siempre cumplo absolutamente todas mis promesas" → Respuestas extremas en afirmaciones universales son señales de insinceridad</li>
+<li>Preguntas reformuladas que aparecen en distintas partes del test → Si respondes de forma contradictoria, se detecta</li>
+</ul>
+<p><strong>La clave</strong>: sé honesto pero consciente. No intentes parecer perfecto. Muestra un perfil policial positivo pero realista.</p>
+
+<h2>SJT: Test de Juicio Situacional</h2>
+<p>El <strong>Situational Judgment Test (SJT)</strong> es cada vez más frecuente en oposiciones policiales. Presenta escenarios realistas y te pide elegir la mejor respuesta (o la peor) entre varias opciones. A diferencia del Big Five, el SJT evalúa <strong>competencias en acción</strong>, no rasgos abstractos.</p>
+<p>Ejemplo de escenario SJT:</p>
+<p><em>"Estás de patrulla y un ciudadano se acerca muy alterado denunciando que le han robado. Mientras le atiendes, recibes una llamada de la central informando de un accidente de tráfico a dos calles. ¿Qué haces?"</em></p>
+<ul>
+<li>A) Dejas al ciudadano y vas al accidente inmediatamente</li>
+<li>B) Tomas datos básicos al ciudadano, solicitas apoyo por radio y acudes al accidente</li>
+<li>C) Atiendes completamente al ciudadano y luego acudes al accidente</li>
+<li>D) Pides al ciudadano que vaya a comisaría y acudes al accidente</li>
+</ul>
+<p>La respuesta óptima (B) demuestra <strong>capacidad de priorización, protocolo y gestión simultánea</strong>: rasgos valorados en el perfil policial.</p>
+
+<h2>La entrevista personal</h2>
+<p>En algunas oposiciones (especialmente Ertzaintza y en fases avanzadas de GC/PN), se realiza una <strong>entrevista personal</strong> con un psicólogo. Esta entrevista complementa los tests escritos y busca:</p>
+<ul>
+<li><strong>Motivación real</strong>: ¿Por qué quieres ser policía? (respuestas genéricas como "ayudar a la gente" son insuficientes)</li>
+<li><strong>Estabilidad emocional</strong>: Cómo reaccionas ante preguntas incómodas o presión</li>
+<li><strong>Coherencia</strong>: Que lo que dices coincida con tus resultados en los tests</li>
+<li><strong>Madurez</strong>: Capacidad de reflexión, autocrítica y visión realista del trabajo policial</li>
+</ul>
+
+<h2>¿Se puede preparar la prueba de personalidad?</h2>
+<p>Sí, pero no como se prepara un examen de conocimientos. La preparación consiste en:</p>
+<ul>
+<li><strong>Conocer el formato</strong>: Saber qué miden los Big Five, cómo funcionan las lie scales y qué son los SJT</li>
+<li><strong>Entender el perfil buscado</strong>: Alta responsabilidad, bajo neuroticismo, extraversión moderada</li>
+<li><strong>Practicar con escenarios reales</strong>: Resolver SJTs y analizar por qué ciertas respuestas son mejores</li>
+<li><strong>Ser honesto pero estratégico</strong>: No mentir (las lie scales lo detectan) pero sí destacar tus rasgos más policiales</li>
+<li><strong>Gestionar la ansiedad</strong>: Practicar para que el formato no te sorprenda el día del examen</li>
+</ul>
+
+<h2>OpoRuta: primera plataforma con preparación de personalidad policial con IA</h2>
+<p>OpoRuta es la <strong>primera plataforma en España que incluye un módulo completo de preparación de personalidad policial</strong> asistido por inteligencia artificial. El módulo incluye:</p>
+<ul>
+<li><strong>Tests Big Five adaptados</strong>: Practica con tests que simulan el formato real y recibe análisis de tu perfil</li>
+<li><strong>Entrenamiento en lie scales</strong>: Aprende a identificar las preguntas de control y a responder con honestidad estratégica</li>
+<li><strong>SJTs policiales</strong>: Escenarios de juicio situacional con retroalimentación detallada de la IA</li>
+<li><strong>Análisis de perfil</strong>: La IA te muestra tu perfil Big Five y cómo se compara con el perfil policial ideal</li>
+<li><strong>Preparación de entrevista</strong>: Preguntas frecuentes y guía para responder con coherencia</li>
+</ul>
+<p>El <strong>Pack Personalidad</strong> está disponible por <strong>49,99€</strong> (pago único) e incluye acceso ilimitado a todos estos módulos.</p>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con legislación verificada, psicotécnicos específicos y Personalidad Policial con IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Qué es el test de personalidad policial?', answer: 'Es una prueba psicológica obligatoria en oposiciones de Guardia Civil, Policía Nacional y Ertzaintza que evalúa rasgos de personalidad (modelo Big Five), sinceridad (lie scales) y competencias en acción (SJT). No es un examen de conocimientos sino una evaluación del perfil psicológico del candidato y su adecuación al trabajo policial.' },
+      { question: '¿Se puede suspender por personalidad en oposiciones de policía?', answer: 'Sí. La prueba de personalidad es eliminatoria. Un candidato puede ser descartado si muestra rasgos incompatibles con el perfil policial (neuroticismo muy alto, baja responsabilidad), si activa excesivamente las lie scales (intentar dar una imagen falsa) o si muestra incoherencias graves entre los tests escritos y la entrevista personal.' },
+      { question: '¿Cómo prepara OpoRuta la prueba de personalidad policial?', answer: 'OpoRuta incluye un módulo exclusivo de personalidad policial con IA que cubre: tests Big Five con análisis de perfil, entrenamiento en lie scales, escenarios SJT (Situational Judgment Test) con retroalimentación detallada y preparación de entrevista. Es la primera plataforma en España con esta funcionalidad. El Pack Personalidad cuesta 49,99€ en pago único.' },
+    ],
+  },
 ]

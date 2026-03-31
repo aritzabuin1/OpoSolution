@@ -9,7 +9,7 @@ import { CheckCircle, ArrowRight, Lock } from 'lucide-react'
 
 // ─── Pricing data by rama ──────────────────────────────────────────────────────
 
-type Rama = 'age' | 'justicia' | 'correos' | 'hacienda' | 'penitenciarias'
+type Rama = 'age' | 'justicia' | 'correos' | 'hacienda' | 'penitenciarias' | 'seguridad'
 
 const RAMAS: { id: Rama; label: string; activa: boolean }[] = [
   { id: 'age', label: 'Administración del Estado', activa: true },
@@ -17,6 +17,7 @@ const RAMAS: { id: Rama; label: string; activa: boolean }[] = [
   { id: 'correos', label: 'Correos', activa: true },
   { id: 'hacienda', label: 'Hacienda (AEAT)', activa: true },
   { id: 'penitenciarias', label: 'Penitenciarias', activa: true },
+  { id: 'seguridad', label: 'Seguridad', activa: true },
 ]
 
 interface Plan {
@@ -297,6 +298,113 @@ const PLANS: Record<Rama, Plan[]> = {
       cta: 'Comprar Pack Penitenciarias',
       href: '/register?oposicion=penitenciarias',
       highlight: true,
+    },
+  ],
+  seguridad: [
+    {
+      name: 'Gratis',
+      price: '0€',
+      period: 'para siempre',
+      badge: null,
+      features: [
+        '1 test gratuito en cada tema',
+        '3 simulacros (20 preguntas)',
+        '2 sesiones gratis con tu Tutor IA',
+        'Sin tarjeta de crédito',
+      ],
+      cta: 'Empezar gratis',
+      href: '/register',
+      highlight: false,
+    },
+    {
+      name: 'Pack Ertzaintza',
+      price: '79,99€',
+      period: 'pago único',
+      badge: null,
+      features: [
+        'Tests ilimitados — Ertzaintza (54 temas)',
+        'Psicotécnicos específicos ilimitados',
+        '+20 créditos IA',
+        'Legislación BOPV + BOE verificada',
+      ],
+      cta: 'Comprar Ertzaintza',
+      href: '/register?oposicion=ertzaintza',
+      highlight: false,
+    },
+    {
+      name: 'Pack Guardia Civil',
+      price: '79,99€',
+      period: 'pago único',
+      badge: 'Más popular',
+      features: [
+        'Tests ilimitados — Guardia Civil (25 temas)',
+        'Psicotécnicos específicos ilimitados',
+        '+20 créditos IA',
+        'Legislación BOE verificada',
+      ],
+      cta: 'Comprar GC',
+      href: '/register?oposicion=guardia-civil',
+      highlight: true,
+    },
+    {
+      name: 'Pack Policía Nacional',
+      price: '79,99€',
+      period: 'pago único',
+      badge: null,
+      features: [
+        'Tests ilimitados — Policía Nacional (45 temas)',
+        '3 opciones + penalización -1/2 real',
+        '+20 créditos IA',
+        'Legislación BOE verificada',
+      ],
+      cta: 'Comprar PN',
+      href: '/register?oposicion=policia-nacional',
+      highlight: false,
+    },
+    {
+      name: 'Pack Doble GC+PN',
+      price: '129,99€',
+      period: 'pago único',
+      badge: 'Ahorra 30€',
+      features: [
+        'Guardia Civil + Policía Nacional',
+        '~60% legislación compartida',
+        '+30 créditos IA',
+        'Cambia entre oposiciones',
+      ],
+      cta: 'GC + PN',
+      href: '/register',
+      highlight: false,
+    },
+    {
+      name: 'Pack Personalidad',
+      price: '49,99€',
+      period: 'pago único',
+      badge: 'Exclusivo',
+      features: [
+        'Módulo Personalidad Policial con IA',
+        'Perfil Big Five + SJT + Entrevista',
+        '+15 créditos IA',
+        'Transversal: sirve para las 3 opos',
+      ],
+      cta: 'Personalidad IA',
+      href: '/register',
+      highlight: false,
+    },
+    {
+      name: 'Pack Completo',
+      price: '119,99€',
+      period: 'pago único',
+      badge: 'Todo incluido',
+      features: [
+        '1 oposición completa + Personalidad',
+        'Psicotécnicos + Personalidad Policial',
+        '+35 créditos IA',
+        'Máximo ahorro',
+      ],
+      cta: 'Completo',
+      href: '/register',
+      highlight: false,
     },
   ],
 }

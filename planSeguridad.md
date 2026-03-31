@@ -309,34 +309,35 @@ pnpm tsx execution/ingest-conocimiento-seguridad.ts --dry-run
 
 ---
 
-## FASE 8 — Landing pages + SEO
+## FASE 8 — Landing pages + SEO ✅ COMPLETADA
 
-### 8.1 — Hub rama: `oposiciones/seguridad/page.tsx` (3 cards + seccion Personalidad Policial)
-### 8.2 — Sub-landing Ertzaintza: `oposiciones/seguridad/ertzaintza/page.tsx`
-### 8.3 — Sub-landing GC: `oposiciones/seguridad/guardia-civil/page.tsx`
-### 8.4 — Sub-landing PN: `oposiciones/seguridad/policia-nacional/page.tsx`
-### 8.5 — Landing personalidad: `oposiciones/seguridad/personalidad-policial/page.tsx`
-- Destacar: "Primera plataforma en Espana con preparacion IA de personalidad policial"
-- Explicar: perfil, SJT, entrevista, consistencia
-- CTA: Pack Personalidad 49,99EUR / Pack Completo 119,99EUR
-### 8.6 — Main landing: card Seguridad + badge plazas + FAQ
-### 8.7 — Precios: tab Seguridad con 8 plans (incluye personalidad)
-### 8.8 — Sitemap: 5 rutas nuevas (hub + 3 sub + personalidad)
-### 8.9 — Footer: link Seguridad
-### 8.10 — llms.txt: seccion Seguridad + personalidad
+### 8.1 — Hub rama: `oposiciones/seguridad/page.tsx` ✅ (3 cards + seccion Personalidad Policial)
+### 8.2 — Sub-landing Ertzaintza: `oposiciones/seguridad/ertzaintza/page.tsx` ✅
+### 8.3 — Sub-landing GC: `oposiciones/seguridad/guardia-civil/page.tsx` ✅
+### 8.4 — Sub-landing PN: `oposiciones/seguridad/policia-nacional/page.tsx` ✅
+### 8.5 — Landing personalidad: `oposiciones/seguridad/personalidad-policial/page.tsx` ✅
+- "Primera plataforma en Espana con preparacion IA de personalidad policial"
+- Badge "Proximamente" + early access CTA
+### 8.6 — Main landing: card Seguridad + badge plazas + FAQ ✅
+- Hub card sky-600, row 2 ahora 3 columnas (Hacienda + Penitenciarias + Seguridad)
+- Mini price card, simulacros badges, blog section, FAQ actualizado (12 opos, 6 ramas, 18.000+ plazas)
+### 8.7 — Precios: tab Seguridad con 7 plans ✅ (Gratis + 3 individuales + Doble GC+PN + Personalidad + Completo)
+### 8.8 — Sitemap: 5 rutas nuevas ✅ (hub + 3 sub + personalidad)
+### 8.9 — Footer: link Seguridad ✅
+### 8.10 — llms.txt: seccion Seguridad + personalidad ✅
 
 ---
 
-## FASE 9 — Blog SEO
+## FASE 9 — Blog SEO ✅ COMPLETADA (7 posts)
 
-### 9.1 — "Test Ertzaintza 2026: practica online gratis con IA"
-### 9.2 — "Oposiciones Guardia Civil 2026: temario, plazas y examen"
-### 9.3 — "Examen Policia Nacional: 3 opciones, penalizacion 1/2 y estrategia"
-### 9.4 — "Psicotecnicos oposiciones policia 2026: tipos y practica"
-### 9.5 — "Sueldo Guardia Civil y Policia Nacional 2026"
-### 9.6 — "OpoRuta vs OpositaTest para oposiciones policia"
-### 9.7 — "Test de personalidad policial: como preparar la prueba psicotecnica" (DIFERENCIADOR)
-- Explicar Big Five, perfil ideal, lie scales, SJT
+### 9.1 — `test-ertzaintza-2026-practica-online-gratis-ia` ✅
+### 9.2 — `oposiciones-guardia-civil-2026-temario-plazas-examen` ✅
+### 9.3 — `examen-policia-nacional-3-opciones-penalizacion` ✅
+### 9.4 — `psicotecnicos-oposiciones-policia-2026` ✅
+### 9.5 — `sueldo-guardia-civil-policia-nacional-2026` ✅
+### 9.6 — `oporuta-vs-opositatest-oposiciones-policia` ✅
+### 9.7 — `test-personalidad-policial-prueba-psicotecnica` ✅ (DIFERENCIADOR)
+- Big Five, perfil ideal, lie scales, SJT, entrevista IA
 - CTA directo al modulo de personalidad
 
 ---

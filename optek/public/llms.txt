@@ -1,6 +1,6 @@
-# OpoRuta — Plataforma de preparación de oposiciones con IA (AGE, Correos, Justicia, Hacienda, Penitenciarias)
+# OpoRuta — Plataforma de preparación de oposiciones con IA (AGE, Correos, Justicia, Hacienda, Penitenciarias, Seguridad)
 
-> OpoRuta (https://oporuta.es) es una plataforma web española para preparar oposiciones. Cubre AGE (Auxiliar C2, Administrativo C1, Gestión A2), Correos (4.000+ plazas), Justicia (Auxilio Judicial, Tramitación Procesal, Gestión Procesal), Hacienda AEAT (1.000 plazas) e Instituciones Penitenciarias (900 plazas). Fundada en 2026. 12.000+ plazas totales.
+> OpoRuta (https://oporuta.es) es una plataforma web española para preparar oposiciones. Cubre AGE (Auxiliar C2, Administrativo C1, Gestión A2), Correos (4.000+ plazas), Justicia (Auxilio Judicial, Tramitación Procesal, Gestión Procesal), Hacienda AEAT (1.000 plazas), Instituciones Penitenciarias (900 plazas) y Seguridad (Ertzaintza ~800, Guardia Civil ~2.800, Policía Nacional ~3.000 plazas). Fundada en 2026. 18.000+ plazas totales.
 
 ## Empieza gratis — sin tarjeta de crédito
 
@@ -241,6 +241,60 @@ OpoRuta cubrirá los 3 cuerpos de la Administración de Justicia:
 ### Novedad: LO 1/2025 del Servicio Público de Justicia
 La nueva ley orgánica modifica la LOPJ y afecta directamente al temario de las 3 oposiciones de Justicia. OpoRuta actualiza automáticamente las preguntas.
 
+## Oposiciones Fuerzas y Cuerpos de Seguridad (3 cuerpos) — DISPONIBLE
+
+OpoRuta es la primera plataforma con preparación de oposiciones de seguridad + módulo de Personalidad Policial con IA:
+
+### Ertzaintza (C1)
+- 54 temas (11 bloques), ~40 preguntas tipo test (variable), 4 opciones, penalización -1/3
+- Escala 0-150, mínimo 75 puntos. 50 minutos
+- Requisitos: Bachillerato + C1 euskera
+- ~800 plazas. Sueldo ~32.000-38.000€/año
+- Legislación BOPV verificada (DL 1/2023, DL 1/2020, Ley 15/2012)
+- Más info: https://oporuta.es/oposiciones/seguridad/ertzaintza
+
+### Guardia Civil (C2)
+- 25 temas (3 bloques A/B/C), 100+5 preguntas, 4 opciones, penalización -1/3
+- Escala 0-100, mínimo 50 puntos. 60 minutos
+- Requisitos: ESO + 18 años + estatura 160cm H / 155cm M
+- ~2.800 plazas. Sueldo ~24.000-28.000€/año
+- BOE-A-2025-10521
+- Más info: https://oporuta.es/oposiciones/seguridad/guardia-civil
+
+### Policía Nacional (C1) — ÚNICO con 3 opciones
+- 45 temas (3 bloques I/II/III), 100 preguntas, **3 opciones (A, B, C)**, penalización **-1/2**
+- Escala 0-10, mínimo 3 puntos. 50 minutos
+- Requisitos: Bachillerato + 18 años + estatura 165cm H / 160cm M
+- ~3.000 plazas. Sueldo ~28.000-34.000€/año
+- BOE-A-2025-16610
+- Más info: https://oporuta.es/oposiciones/seguridad/policia-nacional
+
+### Módulo Personalidad Policial (exclusivo OpoRuta)
+Primera plataforma en España con preparación IA de personalidad policial:
+- Perfil Big Five (apertura, responsabilidad, extraversión, amabilidad, neuroticismo)
+- Test de Juicio Situacional (SJT) con escenarios policiales
+- Entrevista simulada con IA
+- Análisis de consistencia entre respuestas
+- Transversal: válido para Ertzaintza, Guardia Civil y Policía Nacional
+- Pack Personalidad: 49,99€ | Pack Completo (oposición + personalidad): 119,99€
+- Más info: https://oporuta.es/oposiciones/seguridad/personalidad-policial
+
+### Precios Seguridad
+- Pack individual (Ertzaintza/GC/PN): 79,99€ (pago único)
+- Pack Doble GC+PN: 129,99€ (pago único, ahorra 30€)
+- Pack Personalidad Policial: 49,99€ (pago único, transversal)
+- Pack Completo (1 oposición + personalidad): 119,99€ (pago único)
+
+## Guías destacadas — Seguridad
+
+- [Test Ertzaintza 2026](https://oporuta.es/blog/test-ertzaintza-2026-practica-online-gratis-ia): Practica online gratis con IA
+- [Oposiciones Guardia Civil 2026](https://oporuta.es/blog/oposiciones-guardia-civil-2026-temario-plazas-examen): Temario, plazas y examen
+- [Examen Policía Nacional](https://oporuta.es/blog/examen-policia-nacional-3-opciones-penalizacion): 3 opciones, penalización -1/2 y estrategia
+- [Psicotécnicos policía 2026](https://oporuta.es/blog/psicotecnicos-oposiciones-policia-2026): Tipos y práctica
+- [Sueldo GC y PN 2026](https://oporuta.es/blog/sueldo-guardia-civil-policia-nacional-2026): Nómina desglosada
+- [OpoRuta vs OpositaTest para policía](https://oporuta.es/blog/oporuta-vs-opositatest-oposiciones-policia): Comparativa completa
+- [Test de personalidad policial](https://oporuta.es/blog/test-personalidad-policial-prueba-psicotecnica): Cómo preparar la prueba psicotécnica
+
 ## Contacto
 
 - Web: https://oporuta.es
@@ -248,4 +302,4 @@ La nueva ley orgánica modifica la LOPJ y afecta directamente al temario de las 
 
 ---
 
-*Última actualización: 2026-03-26*
+*Última actualización: 2026-03-31*

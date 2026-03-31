@@ -31,9 +31,9 @@ import { SocialProofCounter } from '@/components/marketing/SocialProofCounter'
 const APP_URL_META = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
 export const metadata: Metadata = {
-  title: 'OpoRuta — Oposiciones con IA: AGE, Justicia, Correos, Hacienda, Penitenciarias',
+  title: 'OpoRuta — Oposiciones con IA: AGE, Justicia, Correos, Hacienda, Penitenciarias, Seguridad | OpoRuta',
   description:
-    'Plataforma de preparación para oposiciones con IA: AGE (C2, C1, A2), Justicia (Auxilio, Tramitación, Gestión), Correos, Hacienda AEAT y Penitenciarias. Tests verificados contra BOE, simulacros oficiales y Tutor IA. 12.000+ plazas. Desde 0€.',
+    'Plataforma de preparación para oposiciones con IA: AGE (C2, C1, A2), Justicia (Auxilio, Tramitación, Gestión), Correos, Hacienda AEAT, Penitenciarias y Seguridad (Ertzaintza, GC, PN). Tests verificados contra BOE, simulacros oficiales y Tutor IA. 18.000+ plazas. Desde 0€.',
   keywords: [
     'oposiciones administracion general estado 2026',
     'oposiciones auxiliar administrativo 2026',
@@ -46,12 +46,14 @@ export const metadata: Metadata = {
     'oposiciones justicia 2026',
     'oposiciones auxilio judicial',
     'oposiciones tramitacion procesal',
+    'oposiciones guardia civil 2026',
+    'oposiciones policia nacional 2026',
     'IA oposiciones',
   ],
   openGraph: {
-    title: 'OpoRuta — Oposiciones con IA: AGE, Justicia, Correos, Hacienda, Penitenciarias',
+    title: 'OpoRuta — Oposiciones con IA: AGE, Justicia, Correos, Hacienda, Penitenciarias, Seguridad | OpoRuta',
     description:
-      'Tests verificados contra BOE, simulacros oficiales y Tutor IA. AGE + Justicia + Correos + Hacienda + Penitenciarias. 12.000+ plazas. Desde 0€.',
+      'Tests verificados contra BOE, simulacros oficiales y Tutor IA. AGE + Justicia + Correos + Hacienda + Penitenciarias + Seguridad. 18.000+ plazas. Desde 0€.',
     type: 'website',
     url: APP_URL_META,
     images: [{ url: `${APP_URL_META}/api/og?tipo=blog&tema=${encodeURIComponent('OpoRuta — El camino más corto hacia el aprobado')}`, width: 1200, height: 630 }],
@@ -61,8 +63,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'OpoRuta — Oposiciones con IA: AGE, Justicia, Correos, Hacienda, Penitenciarias',
-    description: 'Tests verificados, simulacros oficiales, Radar del Tribunal y supuesto práctico con IA. AGE + Correos + Justicia. Empieza gratis.',
+    title: 'OpoRuta — Oposiciones con IA: AGE, Justicia, Correos, Hacienda, Penitenciarias, Seguridad | OpoRuta',
+    description: 'Tests verificados, simulacros oficiales, Radar del Tribunal y supuesto práctico con IA. AGE + Correos + Justicia + Seguridad. Empieza gratis.',
   },
 }
 
@@ -141,7 +143,7 @@ const faqs = [
   },
   {
     q: '¿Para qué oposiciones funciona ahora mismo?',
-    a: 'OpoRuta cubre 9 oposiciones en 5 ramas: Administración del Estado (C2, C1, A2), Justicia (Auxilio, Tramitación, Gestión Procesal), Correos (12 temas, sin penalización), Hacienda AEAT (32 temas, LGT/IRPF/IVA) e Instituciones Penitenciarias (50 temas, LOGP/CP). Más de 12.000 plazas en total.',
+    a: 'OpoRuta cubre 12 oposiciones en 6 ramas: Administración del Estado (C2, C1, A2), Justicia (Auxilio, Tramitación, Gestión Procesal), Correos (12 temas, sin penalización), Hacienda AEAT (32 temas, LGT/IRPF/IVA), Instituciones Penitenciarias (50 temas, LOGP/CP) y Seguridad (Ertzaintza, Guardia Civil, Policía Nacional). Más de 18.000 plazas en total.',
   },
   {
     q: '¿Qué pasa cuando agoto mis créditos IA?',
@@ -379,7 +381,7 @@ export default async function LandingPage() {
       <section aria-labelledby="hero-heading" className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-background py-20 sm:py-32">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
           <Badge variant="secondary" className="mb-6 text-xs font-medium px-3 py-1">
-            AGE · Correos · Justicia · Hacienda · Penitenciarias — 12.000+ plazas en 9 oposiciones
+            AGE · Justicia · Correos · Hacienda · Penitenciarias · Seguridad — 18.000+ plazas en 12 oposiciones
           </Badge>
 
           <h1 id="hero-heading" className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl leading-tight">
@@ -388,7 +390,7 @@ export default async function LandingPage() {
             <span className="text-primary">Entrena con lo que pregunta el tribunal.</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Prepara AGE, Justicia, Correos, Hacienda o Penitenciarias
+            Prepara AGE, Justicia, Correos, Hacienda, Penitenciarias o Seguridad
             con tests verificados por IA y cada cita legal comprobada al artículo exacto.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
@@ -512,8 +514,8 @@ export default async function LandingPage() {
               </Card>
             </Link>
           </div>
-          {/* Row 2: Hacienda + Penitenciarias centered */}
-          <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
+          {/* Row 2: Hacienda + Penitenciarias + Seguridad centered */}
+          <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
             {/* Hacienda Hub Card */}
             <Link href="/oposiciones/hacienda" className="group">
               <Card className="h-full relative overflow-hidden border-emerald-300/50 shadow-lg hover:shadow-xl hover:border-emerald-400 transition-all duration-300 bg-gradient-to-br from-emerald-50 dark:from-emerald-950/20 to-background ring-1 ring-emerald-200/50 dark:ring-emerald-800/50">
@@ -562,6 +564,32 @@ export default async function LandingPage() {
                   <p className="text-xs text-muted-foreground">Bloque Conducta Humana incluido. ~25.000€/año sueldo.</p>
                   <Button className="w-full bg-rose-600 hover:bg-rose-700 text-white gap-2 group-hover:translate-y-[-1px] transition-transform" size="sm">
                     Ver oposición IIPP <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+            {/* Seguridad Hub Card */}
+            <Link href="/oposiciones/seguridad" className="group">
+              <Card className="h-full relative overflow-hidden border-sky-300/50 shadow-lg hover:shadow-xl hover:border-sky-400 transition-all duration-300 bg-gradient-to-br from-sky-50 dark:from-sky-950/20 to-background ring-1 ring-sky-200/50 dark:ring-sky-800/50">
+                <CardHeader className="pb-3">
+                  <div className="flex items-start justify-between mb-2">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-500/15 ring-1 ring-sky-400/30">
+                      <Shield className="h-6 w-6 text-sky-600 dark:text-sky-400" />
+                    </div>
+                    <Badge className="bg-sky-600 text-white text-[11px]">~6.600 plazas</Badge>
+                  </div>
+                  <CardTitle className="text-lg font-bold text-sky-900 dark:text-sky-100">Fuerzas y Cuerpos de Seguridad</CardTitle>
+                  <p className="text-xs text-sky-700 dark:text-sky-300 font-medium mt-0.5">Ertzaintza · Guardia Civil · Policía Nacional</p>
+                </CardHeader>
+                <CardContent className="space-y-3 pt-0">
+                  <ul className="space-y-1 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-sky-600 shrink-0" /> Ertzaintza (C1) — 54 temas</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-sky-600 shrink-0" /> Guardia Civil (C2) — 25 temas</li>
+                    <li className="flex items-center gap-2"><CheckCircle className="h-3.5 w-3.5 text-sky-600 shrink-0" /> Policía Nacional (C1) — 45 temas</li>
+                  </ul>
+                  <p className="text-xs text-muted-foreground">Personalidad Policial con IA. Psicotécnicos específicos.</p>
+                  <Button className="w-full bg-sky-600 hover:bg-sky-700 text-white gap-2 group-hover:translate-y-[-1px] transition-transform" size="sm">
+                    Ver oposiciones Seguridad <ArrowRight className="h-4 w-4" />
                   </Button>
                 </CardContent>
               </Card>
@@ -680,7 +708,7 @@ export default async function LandingPage() {
           <p className="text-sm font-medium text-muted-foreground mb-6">
             Practica con exámenes oficiales reales — preguntas de convocatorias anteriores
           </p>
-          <div className="grid gap-5 sm:grid-cols-5 mb-6">
+          <div className="grid gap-5 sm:grid-cols-6 mb-6">
             {/* AGE */}
             <div className="space-y-2 text-center">
               <Link href="/oposiciones/administracion" className="text-xs font-semibold text-muted-foreground uppercase tracking-wide hover:text-blue-600 transition-colors block">
@@ -771,6 +799,25 @@ export default async function LandingPage() {
                 </Link>
               </div>
             </div>
+            {/* Seguridad */}
+            <div className="space-y-2 text-center">
+              <Link href="/oposiciones/seguridad" className="text-xs font-semibold text-muted-foreground uppercase tracking-wide hover:text-sky-600 transition-colors block">
+                Seguridad
+              </Link>
+              <div className="flex flex-wrap justify-center gap-1.5">
+                {[
+                  { href: '/oposiciones/seguridad/ertzaintza', label: 'Ertzaintza' },
+                  { href: '/oposiciones/seguridad/guardia-civil', label: 'Guardia Civil' },
+                  { href: '/oposiciones/seguridad/policia-nacional', label: 'Policía Nacional' },
+                ].map(({ href, label }) => (
+                  <Link key={href} href={href}>
+                    <Badge variant="outline" className="text-xs px-2 py-0.5 hover:bg-accent transition-colors cursor-pointer">
+                      {label}
+                    </Badge>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
           <Link href="/examenes-oficiales" className="text-sm text-primary hover:underline">
             Ver todos los simulacros oficiales →
@@ -815,7 +862,7 @@ export default async function LandingPage() {
               <p className="text-xs text-muted-foreground">pago único · acceso ilimitado</p>
             </div>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 max-w-lg mx-auto mb-10">
+          <div className="grid gap-4 sm:grid-cols-3 max-w-3xl mx-auto mb-10">
             {/* Hacienda */}
             <div className="relative rounded-xl border-2 border-emerald-200 bg-gradient-to-br from-emerald-50 to-white dark:from-emerald-950/20 dark:to-background p-5 text-center space-y-1.5">
               <p className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Hacienda</p>
@@ -828,6 +875,13 @@ export default async function LandingPage() {
               <p className="text-xs font-semibold text-rose-600 uppercase tracking-wider">Penitenciarias</p>
               <p className="text-xs text-muted-foreground">Ayudantes IIPP · C1</p>
               <p className="text-2xl font-bold text-rose-700">49,99€</p>
+              <p className="text-xs text-muted-foreground">pago único · acceso ilimitado</p>
+            </div>
+            {/* Seguridad */}
+            <div className="relative rounded-xl border-2 border-sky-200 bg-gradient-to-br from-sky-50 to-white dark:from-sky-950/20 dark:to-background p-5 text-center space-y-1.5">
+              <p className="text-xs font-semibold text-sky-600 uppercase tracking-wider">Seguridad</p>
+              <p className="text-xs text-muted-foreground">Ertzaintza · GC · PN</p>
+              <p className="text-2xl font-bold text-sky-700">desde 79,99€</p>
               <p className="text-xs text-muted-foreground">pago único · acceso ilimitado</p>
             </div>
           </div>
@@ -1076,6 +1130,29 @@ export default async function LandingPage() {
                 <Card className="h-full hover:border-rose-400/40 transition-colors">
                   <CardContent className="pt-5 pb-5">
                     <p className="font-semibold text-sm group-hover:text-rose-600 transition-colors line-clamp-2">
+                      {post.title}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-2 line-clamp-2">
+                      {post.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+
+          {/* Seguridad */}
+          <p className="text-xs font-semibold text-sky-600 uppercase tracking-wide mt-8 mb-3">Fuerzas y Cuerpos de Seguridad</p>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              'test-ertzaintza-2026-practica-online-gratis-ia',
+              'oposiciones-guardia-civil-2026-temario-plazas-examen',
+              'examen-policia-nacional-3-opciones-penalizacion',
+            ].map((slug) => blogPosts.find((p) => p.slug === slug)).filter((p): p is typeof blogPosts[0] => !!p).map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
+                <Card className="h-full hover:border-sky-400/40 transition-colors">
+                  <CardContent className="pt-5 pb-5">
+                    <p className="font-semibold text-sm group-hover:text-sky-600 transition-colors line-clamp-2">
                       {post.title}
                     </p>
                     <p className="text-xs text-muted-foreground mt-2 line-clamp-2">

@@ -13,6 +13,7 @@ export function Footer() {
           <Link href="/oposiciones/correos" className="hover:text-foreground transition-colors">Correos</Link>
           <Link href="/oposiciones/hacienda" className="hover:text-foreground transition-colors">Hacienda (AEAT)</Link>
           <Link href="/oposiciones/penitenciarias" className="hover:text-foreground transition-colors">Instituciones Penitenciarias</Link>
+          <Link href="/oposiciones/seguridad" className="hover:text-foreground transition-colors">Fuerzas y Cuerpos de Seguridad</Link>
         </div>
         {/* Legal + copyright */}
         <div className="flex flex-col items-center gap-2 text-xs text-muted-foreground sm:flex-row sm:justify-between border-t pt-4">
