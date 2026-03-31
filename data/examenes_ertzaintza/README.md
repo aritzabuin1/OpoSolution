@@ -8,31 +8,36 @@
 
 ## Situacion (marzo 2026)
 
-Los examenes oficiales de Ertzaintza son MUCHO mas dificiles de conseguir
-que los de GC/PN. No se publican sistematicamente online.
+**Los examenes oficiales de Ertzaintza NO se publican online.**
 
-### Promocion 35 (7 febrero 2026)
-- Convocatoria: BOPV 226, 24/11/2025
-- Examen realizado en BEC Barakaldo
-- NO encontrado PDF publico del cuestionario
+A diferencia de GC y PN que publican cuestionarios y plantillas tras cada
+convocatoria, el Gobierno Vasco / Academia de Arkaut NO publica los examenes
+una vez realizados. Esto es un hecho conocido en la comunidad de opositores.
 
-### Promocion 34
-- Buscar en foros/academias vascas
-- Espartero y Maroto: https://esparteroymaroto.com/promocion-35/
+### Lo que NO existe online:
+- PDFs de cuestionarios de promociones 33, 34, 35
+- Plantillas de respuestas oficiales
+- Examenes historicos accesibles
 
-### Fuentes potenciales
-- Gobierno Vasco: https://www.euskadi.eus/ertzaintza
-- Espartero y Maroto: https://esparteroymaroto.com/oposiciones-ertzaintza/
-- MAD: https://mad.es/oposiciones/172323_agente-escala-basica-policia-vasca-ertzaintza-y-policia-local.html
-- OpositaTest: https://www.opositatest.com/oposiciones/cuerpos-de-policia-del-pais-vasco-ertzaintza-y-policia-local
+### Lo que SI existe:
+- Temario oficial (BOPV): https://www.euskadi.eus/bopv2/datos/2024/02/2400927a.pdf
+- Tests de practica de academias (NO son examenes oficiales):
+  - Espartero y Maroto: https://esparteroymaroto.com/oposiciones-ertzaintza/
+  - MAD (libro 1000+ preguntas): https://mad.es/oposiciones/172323_agente-escala-basica-policia-vasca-ertzaintza-y-policia-local.html
+  - Ediciones Rodio (libro test): ISBN 9788418331497
+  - OpositaTest: https://www.opositatest.com/oposiciones/cuerpos-de-policia-del-pais-vasco-ertzaintza-y-policia-local
+  - Flou (test gratis online): https://oposicionesflou.com/test/ertzaintza/
 
-## Alternativa MVP
-Si no se encuentran examenes oficiales, la plataforma usara el fallback
-a `free_question_bank` para simulacros de Ertzaintza. El mensaje en UI
-dira "Simulacro basado en preguntas generadas por IA (examenes oficiales
-no disponibles)".
+## Estrategia para OpoRuta
 
-## Instrucciones (si se consiguen PDFs)
+Sin examenes oficiales, la plataforma usara:
+1. **free_question_bank** (10 preguntas/tema generadas por IA) como base de simulacros
+2. Mensaje en UI: "Simulacro generado por IA (los examenes oficiales de Ertzaintza
+   no se publican). Basado en el temario oficial BOPV."
+3. Los tests generados con IA (`generate-test`) siguen siendo funcionales
+4. Si en el futuro se consiguen examenes, se pueden añadir sin cambios en el codigo
+
+## Si consigues examenes (contacto directo con opositores/academias)
 1. Guardar como `YYYY/examen.pdf` y `YYYY/plantilla.pdf`
 2. Ejecutar: `pnpm parse:examenes --dir examenes_ertzaintza YYYY`
-3. Ingestar: `pnpm ingest:examenes --oposicion ertzaintza`
+3. Ingestar: `pnpm ingest:examenes --dir examenes_ertzaintza --oposicion ertzaintza`

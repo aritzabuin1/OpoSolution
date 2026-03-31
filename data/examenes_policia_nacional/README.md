@@ -2,34 +2,66 @@
 
 ## Formato
 - 100 preguntas, SIN reserva
-- 3 opciones (A, B, C) — UNICO en la plataforma
+- **3 opciones (A, B, C)** — UNICO en la plataforma
 - Penalizacion: 1/2
 - Tiempo: 50 minutos
+- Modelos: A y B
 
-## Fuentes verificadas (marzo 2026)
+## PDFs A DESCARGAR
 
-### 2025 (Promocion 41)
-- Jurispol: https://blog.jurispol.com/examen-escala-basica-promocion-41/
-- Centro Pol (marzo 2025): https://academiacentropolicianacional.es/examen-policia-nacional-escala-basica-descarga-gratuita/
+### 2025 — Promocion 41 (1 marzo 2025)
 
-### 2024 (Promocion 40, 13 abril)
-- OPN: https://oposicionespolicianacional.com/recurso/examen-ingreso-escala-basica-xl-promocion-40-2024/
-- Centropol (modelo B + plantillas A y B): https://academiacentropol.com/descarga-el-examen-oficial-conocimientos-modelo-b-y-plantillas-modelo-a-y-modelo-b-examen-13-abril-policia-nacional-eb40/
-- DEPOL (PDF directo): https://de-pol.es/wp-content/uploads/2025/03/EXAMEN_TEORIA_INGRESO_POLICIA_P41_A_2025-03-01_DEPOL_Ingreso.pdf
+**Examen Modelo A:**
+- DEPOL: https://de-pol.es/wp-content/uploads/2025/03/EXAMEN_TEORIA_INGRESO_POLICIA_P41_A_2025-03-01_DEPOL_Ingreso.pdf
+- Jurispol: https://blog.jurispol.com/wp-content/uploads/2025/03/Examen_teoria_ingreso_policia_p41_A.pdf
 
-### Coleccion 2021-2024
-- El Rincon del Policia: https://www.elrincondelpolicia.es/recopilacion-examenes-oficiales-oposicion-policia-nacional/
-- Academia UFP Sevilla: https://academiaufpsevilla.com/descarga-gratis-los-examenes-oficiales-de-la-policia-nacional/
+**Examen Modelo B:**
+- Jurispol: https://blog.jurispol.com/wp-content/uploads/2025/03/EXAMEN_TEORIA_INGRESO_POLICIA_P41_B.pdf
 
-### Oficial
-- Policia.es: https://www.policia.es/_es/oposiciones.php
+**Plantilla respuestas:**
+- Modelo A: https://blog.jurispol.com/wp-content/uploads/2025/03/Plantilla-modelo-A.pdf
+- Modelo A (DEPOL): https://de-pol.es/wp-content/uploads/2025/03/HOJA_RESPUESTAS_EXAMEN_A_INGRESO_POLICIA_P41_2025-03-01_DEPOL_Ingreso.pdf
+- Modelo B (DEPOL): https://de-pol.es/wp-content/uploads/2025/03/HOJA_RESPUESTAS_EXAMEN_B_INGRESO_POLICIA_P41_2025-03-01_DEPOL_Ingreso.pdf
+
+**Analisis completo:**
+- DEPOL: https://de-pol.es/wp-content/uploads/2025/03/ANALISIS_EXAMEN_TEORIA_INGRESO_POLICIA_P41_2025-03-01_DEPOL_Ingreso.pdf
+- Jurispol: https://blog.jurispol.com/wp-content/uploads/2025/03/EXAMEN_INFORME_EB41-2.pdf
+
+### 2024 — Promocion 40 (13 abril 2024)
+
+**Examen Modelo A:**
+- DEPOL: https://de-pol.es/wp-content/uploads/2024/04/EXAMEN_TEORIA_INGRESO_POLICIA_P40_A_2024-04-13_DEPOL_Ingreso.pdf
+
+**Examen Modelo B:**
+- DEPOL: https://de-pol.es/wp-content/uploads/2024/04/EXAMEN_TEORIA_INGRESO_POLICIA_P40_B_2024-04-13_DEPOL_Ingreso.pdf
+
+**Plantilla respuestas:**
+- Modelo A: https://de-pol.es/wp-content/uploads/2024/04/HOJA_RESPUESTAS_EXAMEN_TEORIA_A_13ABR2024_DEPOL_Ingreso.pdf
+- Modelo B: https://de-pol.es/wp-content/uploads/2024/04/HOJA_RESPUESTAS_EXAMEN_TEORIA_B_13ABR2024_DEPOL_Ingreso.pdf
+
+**Analisis:**
+- DEPOL: https://de-pol.es/wp-content/uploads/2024/04/ANALISIS_EXAMEN_TEORIA_INGRESO_POLICIA_P40_2024-04-13_DEPOL_Ingreso.pdf
+
+### Coleccion historica
+- El Rincon del Policia (2021-2024): https://www.elrincondelpolicia.es/recopilacion-examenes-oficiales-oposicion-policia-nacional/
 
 ## IMPORTANTE: 3 opciones
-Al parsear estos examenes, verificar que el parser maneja correctamente
-3 opciones (A, B, C) en lugar de 4. El soporte ya esta implementado en FASE 0.
+Estos examenes tienen 3 opciones (A, B, C) no 4. El parser ya soporta esto
+gracias a FASE 0. Verificar que parsed.json tiene `opciones` de 3 elementos.
 
-## Instrucciones
-1. Descargar PDF del examen y plantilla de respuestas
-2. Guardar como `YYYY/examen.pdf` y `YYYY/plantilla.pdf` (o modelo_a/modelo_b)
-3. Ejecutar: `pnpm parse:examenes --dir examenes_policia_nacional YYYY`
-4. Ingestar: `pnpm ingest:examenes --oposicion policia-nacional`
+## Que descargar para OpoRuta
+
+1. Descarga examen P41 Modelo A → `2025/examen_modelo_a.pdf`
+2. Descarga plantilla P41 Modelo A → `2025/plantilla_a.pdf`
+3. Descarga examen P40 Modelo A → `2024/examen_modelo_a.pdf`
+4. Descarga examen P40 Modelo B → `2024/examen_modelo_b.pdf`
+5. Descarga plantillas P40 → `2024/plantilla_a.pdf`, `2024/plantilla_b.pdf`
+
+## Comandos despues de descargar
+```bash
+cd optek
+pnpm parse:examenes --dir examenes_policia_nacional 2025 A
+pnpm parse:examenes --dir examenes_policia_nacional 2024 A
+pnpm parse:examenes --dir examenes_policia_nacional 2024 B
+pnpm ingest:examenes --dir examenes_policia_nacional --oposicion policia-nacional
+```
