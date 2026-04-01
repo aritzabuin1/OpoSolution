@@ -96,7 +96,7 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
   }
 
   const preguntas = test.preguntas as unknown as Pregunta[]
-  const esSimulacro = test.tipo === 'simulacro' && !!test.examen_oficial_id
+  const esSimulacro = test.tipo === 'simulacro'
   const esRepaso = test.tipo === 'repaso_errores'
   const esSupuestoTest = test.tipo === 'supuesto_test'
   const supuestoCaso = test.supuesto_caso as { titulo?: string; escenario?: string; bloques_cubiertos?: string[]; ofimatica_start?: number } | null
