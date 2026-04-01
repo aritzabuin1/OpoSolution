@@ -28,26 +28,64 @@ interface Props {
 
 export function PersonalidadHub({ cuerpoSlug, credits, sessions, hasProfile, latestProfile }: Props) {
   const [activeTab, setActiveTab] = useState<Tab>(hasProfile ? 'perfil' : 'evaluacion')
+  const hasPaidCredits = credits > 0
 
-  const tabs: { id: Tab; label: string; icon: typeof Brain; locked: boolean; description: string }[] = [
-    { id: 'evaluacion', label: 'Evaluación', icon: Brain, locked: false, description: 'Cuestionario Big Five' },
-    { id: 'perfil', label: 'Mi Perfil', icon: TrendingUp, locked: !hasProfile, description: 'Radar de personalidad' },
-    { id: 'sjt', label: 'Juicio Situacional', icon: Target, locked: false, description: 'Escenarios policiales' },
-    { id: 'entrevista', label: 'Entrevista', icon: MessageCircle, locked: !hasProfile, description: 'Psicólogo IA' },
-    { id: 'coaching', label: 'Coaching', icon: Zap, locked: !hasProfile, description: 'Plan de mejora' },
+  const tabs: { id: Tab; label: string; icon: typeof Brain; locked: boolean; premium: boolean; description: string }[] = [
+    { id: 'evaluacion', label: 'Evaluación', icon: Brain, locked: false, premium: false, description: 'Cuestionario Big Five' },
+    { id: 'perfil', label: 'Mi Perfil', icon: TrendingUp, locked: !hasProfile, premium: false, description: 'Radar de personalidad' },
+    { id: 'sjt', label: 'Juicio Situacional', icon: Target, locked: false, premium: true, description: 'Escenarios policiales' },
+    { id: 'entrevista', label: 'Entrevista', icon: MessageCircle, locked: !hasProfile, premium: true, description: 'Psicólogo IA' },
+    { id: 'coaching', label: 'Coaching', icon: Zap, locked: !hasProfile, premium: true, description: 'Plan de mejora' },
   ]
+
+  // CTA component for free users
+  const PremiumCTA = ({ feature, creditCost }: { feature: string; creditCost: number }) => (
+    <div className="rounded-lg border-2 border-amber-200 bg-amber-50 dark:bg-amber-950/20 dark:border-amber-800 p-6 text-center space-y-3">
+      <Lock className="h-8 w-8 text-amber-500 mx-auto" />
+      <h3 className="font-semibold text-lg">{feature}</h3>
+      <p className="text-sm text-muted-foreground max-w-md mx-auto">
+        Esta función requiere <strong>{creditCost} crédito{creditCost > 1 ? 's' : ''} IA</strong>.
+        Consigue créditos con el Pack Personalidad Policial o una recarga.
+      </p>
+      <div className="flex items-center justify-center gap-3 pt-2">
+        <a
+          href="/precios"
+          className="rounded-lg bg-amber-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-amber-600 transition-colors"
+        >
+          Pack Personalidad — 49,99€
+        </a>
+        <a
+          href="/precios"
+          className="rounded-lg border border-amber-300 px-4 py-2 text-sm font-medium text-amber-700 hover:bg-amber-100 transition-colors"
+        >
+          Recarga 10 créditos — 9,99€
+        </a>
+      </div>
+    </div>
+  )
 
   return (
     <div className="space-y-6">
-      {/* Credits banner */}
-      <div className="flex items-center justify-between rounded-lg bg-sky-50 dark:bg-sky-950/30 px-4 py-3">
-        <span className="text-sm text-sky-700 dark:text-sky-300">
-          <strong>{credits >= 999 ? '∞' : credits}</strong> créditos IA disponibles
-        </span>
-        <a href="/cuenta" className="text-xs font-medium text-sky-600 hover:text-sky-800">
-          Recargar →
-        </a>
-      </div>
+      {/* Credits banner — different for paid vs free */}
+      {hasPaidCredits ? (
+        <div className="flex items-center justify-between rounded-lg bg-sky-50 dark:bg-sky-950/30 px-4 py-3">
+          <span className="text-sm text-sky-700 dark:text-sky-300">
+            <strong>{credits >= 999 ? '∞' : credits}</strong> créditos IA disponibles
+          </span>
+          <a href="/cuenta" className="text-xs font-medium text-sky-600 hover:text-sky-800">
+            Recargar →
+          </a>
+        </div>
+      ) : (
+        <div className="flex items-center justify-between rounded-lg bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 px-4 py-3">
+          <span className="text-sm text-amber-700 dark:text-amber-300">
+            <strong>0</strong> créditos IA — La evaluación es gratuita. Juicio situacional, entrevista y coaching requieren créditos.
+          </span>
+          <a href="/precios" className="text-xs font-medium text-amber-600 hover:text-amber-800 shrink-0 ml-2">
+            Comprar →
+          </a>
+        </div>
+      )}
 
       {/* Tab navigation */}
       <div className="flex gap-2 overflow-x-auto pb-2">
@@ -66,6 +104,9 @@ export function PersonalidadHub({ cuerpoSlug, credits, sessions, hasProfile, lat
           >
             {tab.locked ? <Lock className="h-4 w-4" /> : <tab.icon className="h-4 w-4" />}
             {tab.label}
+            {tab.premium && !hasPaidCredits && (
+              <span className="rounded bg-amber-500 px-1.5 py-0.5 text-[9px] font-bold text-white leading-none">PRO</span>
+            )}
           </button>
         ))}
       </div>
@@ -78,13 +119,19 @@ export function PersonalidadHub({ cuerpoSlug, credits, sessions, hasProfile, lat
         <PerfilRadar profile={latestProfile} sessions={sessions.filter(s => s.tipo === 'perfil' && s.completed)} />
       )}
       {activeTab === 'sjt' && (
-        <SJTCard cuerpoSlug={cuerpoSlug} credits={credits} />
+        hasPaidCredits
+          ? <SJTCard cuerpoSlug={cuerpoSlug} credits={credits} />
+          : <PremiumCTA feature="Juicio Situacional" creditCost={1} />
       )}
       {activeTab === 'entrevista' && (
-        <EntrevistaInline cuerpoSlug={cuerpoSlug} credits={credits} hasProfile={hasProfile} />
+        hasPaidCredits
+          ? <EntrevistaInline cuerpoSlug={cuerpoSlug} credits={credits} hasProfile={hasProfile} />
+          : <PremiumCTA feature="Entrevista con Psicólogo IA" creditCost={2} />
       )}
       {activeTab === 'coaching' && (
-        <CoachingInline cuerpoSlug={cuerpoSlug} credits={credits} />
+        hasPaidCredits
+          ? <CoachingInline cuerpoSlug={cuerpoSlug} credits={credits} />
+          : <PremiumCTA feature="Coaching Personalizado" creditCost={1} />
       )}
 
       {/* Disclaimer */}
