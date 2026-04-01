@@ -183,11 +183,20 @@ export default async function SimulacrosPage() {
         <Trophy className="h-7 w-7 text-primary/60 shrink-0 mt-1" />
       </div>
 
-      {/* §2.5d — Estructura del examen (múltiples ejercicios) — FIRST for context */}
+      {/* Estructura del examen — SIEMPRE visible (incluso con 1 ejercicio) */}
       {(() => {
-        const ejercicios = features?.scoring_config?.ejercicios
-        const minTotal = features?.scoring_config?.minutos_total
-        if (!ejercicios || ejercicios.length <= 1) return null
+        const ejercicios = features?.scoring_config?.ejercicios as Array<{
+          nombre?: string; preguntas?: number; reserva?: number; minutos?: number;
+          tipo_ejercicio?: string; penaliza?: boolean; ratio_penalizacion?: string;
+          preguntas_variable?: boolean
+        }> | undefined
+        const minTotal = (features?.scoring_config as { minutos_total?: number })?.minutos_total
+        const numOpciones = (features?.scoring_config as { num_opciones?: number })?.num_opciones ?? 4
+        if (!ejercicios || ejercicios.length === 0) return null
+
+        const totalPreguntas = ejercicios.reduce((sum, e) => sum + (e.preguntas ?? 0) + (e.reserva ?? 0), 0)
+        const tiempoLabel = minTotal ? `${minTotal} min` : ejercicios[0]?.minutos ? `${ejercicios[0].minutos} min` : null
+        const penalizacion = ejercicios[0]?.ratio_penalizacion ?? (numOpciones === 3 ? '1/2' : '1/3')
 
         return (
           <Card className="border-indigo-300/40 bg-gradient-to-r from-indigo-50 to-indigo-50/30 dark:from-indigo-950/20 dark:to-transparent">
@@ -197,11 +206,12 @@ export default async function SimulacrosPage() {
                   <Layers className="h-5 w-5 text-indigo-600" />
                 </div>
                 <div className="flex-1 space-y-3">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-semibold text-sm">Estructura del examen</h3>
-                    <Badge variant="outline" className="text-[10px] border-indigo-300 text-indigo-700">
-                      {ejercicios.length} ejercicios{minTotal ? ` · ${minTotal} min` : ''}
-                    </Badge>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h3 className="font-semibold text-sm">Estructura del examen real</h3>
+                    {tiempoLabel && <Badge variant="outline" className="text-[10px] border-indigo-300 text-indigo-700">{tiempoLabel}</Badge>}
+                    <Badge variant="outline" className="text-[10px] border-indigo-300 text-indigo-700">{totalPreguntas} preguntas</Badge>
+                    <Badge variant="outline" className="text-[10px] border-indigo-300 text-indigo-700">{numOpciones} opciones</Badge>
+                    <Badge variant="outline" className="text-[10px] border-indigo-300 text-indigo-700">Penaliza {penalizacion}</Badge>
                   </div>
                   <div className="space-y-1.5">
                     {ejercicios.map((ej, i) => (
@@ -209,37 +219,12 @@ export default async function SimulacrosPage() {
                         <span className="font-mono text-[10px] bg-indigo-100 dark:bg-indigo-900/40 rounded px-1.5 py-0.5 text-indigo-700">{i + 1}</span>
                         <span className="font-medium">{ej.nombre ?? `Ejercicio ${i + 1}`}</span>
                         <span className="text-muted-foreground">
-                          {ej.preguntas ? `${ej.preguntas}q` : ''}{ej.minutos ? ` · ${ej.minutos} min` : ''}
+                          {ej.preguntas_variable ? '~' : ''}{ej.preguntas ?? '?'}
+                          {ej.reserva ? ` (+${ej.reserva} reserva)` : ''} preg.
+                          {ej.minutos ? ` · ${ej.minutos} min` : ''}
                         </span>
                       </div>
                     ))}
-                  </div>
-                  <p className="text-[11px] text-muted-foreground pt-1">
-                    Para practicar cada parte por separado:
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Button asChild size="sm" variant="outline" className="gap-1.5 border-indigo-200 text-indigo-700 hover:bg-indigo-50">
-                      <Link href="/tests">
-                        <BookOpen className="h-3.5 w-3.5" />
-                        Practicar Cuestionario
-                      </Link>
-                    </Button>
-                    {hasSupuestoTest && (
-                      <Button asChild size="sm" variant="outline" className="gap-1.5 border-indigo-200 text-indigo-700 hover:bg-indigo-50">
-                        <Link href="/supuesto-test">
-                          <FileText className="h-3.5 w-3.5" />
-                          Practicar Supuesto
-                        </Link>
-                      </Button>
-                    )}
-                    {hasSupuestoPractico && (
-                      <Button asChild size="sm" className="gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white">
-                        <Link href="/supuesto-practico/nuevo">
-                          <Sparkles className="h-3.5 w-3.5" />
-                          Supuesto (desarrollo)
-                        </Link>
-                      </Button>
-                    )}
                   </div>
                 </div>
               </div>
@@ -262,69 +247,59 @@ export default async function SimulacrosPage() {
         </div>
       )}
 
-      {hayExamenes ? (
-        <div className="space-y-6">
-          {/* §2.6.1 — Simulacro Mixto (todas las convocatorias) */}
-          <div className="space-y-2">
-            <SimulacroMixtoCard
-              totalPreguntas={totalPreguntasCombinadas}
-              numConvocatorias={examenesConCount.length}
-              hasPsicotecnicos={hasPsicotecnicos}
-              preguntasExamenCompleto={preguntasEjercicio1}
-              hasSupuestoTest={hasSupuestoTest}
-              preguntasSupuesto={preguntasSupuesto}
-              hasOfimatica={hasOfimatica}
-              preguntasOfimatica={preguntasOfimatica}
-              hasOrtografia={hasOrtografia}
-              preguntasOrtografia={preguntasOrtografia}
-              hasIngles={hasIngles}
-              preguntasIngles={preguntasIngles}
-              penalizacionDesc={penalizacionDesc}
-            />
-          </div>
+      {/* Simulacro Mixto — siempre visible si hay preguntas (oficiales o banco) */}
+      {totalPreguntasCombinadas > 0 && (
+        <div className="space-y-2">
+          <SimulacroMixtoCard
+            totalPreguntas={totalPreguntasCombinadas}
+            numConvocatorias={hayExamenes ? examenesConCount.length : 0}
+            hasPsicotecnicos={hasPsicotecnicos}
+            preguntasExamenCompleto={preguntasEjercicio1}
+            hasSupuestoTest={hasSupuestoTest}
+            preguntasSupuesto={preguntasSupuesto}
+            hasOfimatica={hasOfimatica}
+            preguntasOfimatica={preguntasOfimatica}
+            hasOrtografia={hasOrtografia}
+            preguntasOrtografia={preguntasOrtografia}
+            hasIngles={hasIngles}
+            preguntasIngles={preguntasIngles}
+            penalizacionDesc={penalizacionDesc}
+          />
+          {!hayExamenes && bankFallbackCount > 0 && (
+            <p className="text-xs text-muted-foreground px-1">
+              No hay exámenes oficiales disponibles para esta oposición. El simulacro usa preguntas del banco de la plataforma.
+            </p>
+          )}
+        </div>
+      )}
 
-          {/* Convocatorias por año */}
-          <div className="space-y-2">
-            <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-0.5">
-              Por convocatoria
-            </h2>
-            <div className="space-y-3">
-              {examenesConCount.map((examen) => (
-                <SimulacroCard key={examen.id} examen={examen} hasPsicotecnicos={hasPsicotecnicos} preguntasExamenCompleto={preguntasEjercicio1} hasSupuestoTest={hasSupuestoTest} preguntasSupuesto={preguntasSupuesto} hasOfimatica={hasOfimatica} preguntasOfimatica={preguntasOfimatica} hasOrtografia={hasOrtografia} preguntasOrtografia={preguntasOrtografia} hasIngles={hasIngles} preguntasIngles={preguntasIngles} penalizacionDesc={penalizacionDesc} />
-              ))}
-            </div>
+      {/* Convocatorias por año — solo si hay exámenes oficiales */}
+      {hayExamenes && (
+        <div className="space-y-2">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-0.5">
+            Por convocatoria
+          </h2>
+          <div className="space-y-3">
+            {examenesConCount.map((examen) => (
+              <SimulacroCard key={examen.id} examen={examen} hasPsicotecnicos={hasPsicotecnicos} preguntasExamenCompleto={preguntasEjercicio1} hasSupuestoTest={hasSupuestoTest} preguntasSupuesto={preguntasSupuesto} hasOfimatica={hasOfimatica} preguntasOfimatica={preguntasOfimatica} hasOrtografia={hasOrtografia} preguntasOrtografia={preguntasOrtografia} hasIngles={hasIngles} preguntasIngles={preguntasIngles} penalizacionDesc={penalizacionDesc} />
+            ))}
           </div>
         </div>
-      ) : (
-        /* Empty state cuando no hay exámenes cargados en BD */
-        <div className="space-y-6">
-          <div className="rounded-xl border-2 border-dashed border-muted-foreground/20 p-8 text-center space-y-3">
-            <div className="flex justify-center">
-              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
-                <Trophy className="w-7 h-7 text-primary" />
-              </div>
-            </div>
-            <div>
-              <h2 className="font-semibold">Exámenes en preparación</h2>
-              <p className="text-sm text-muted-foreground mt-1 max-w-sm mx-auto">
-                Estamos cargando las preguntas de convocatorias anteriores {opoDisplay.tribunalDe}.
-                Estarán disponibles muy pronto.
-              </p>
+      )}
+
+      {/* Empty state: 0 preguntas disponibles */}
+      {totalPreguntasCombinadas === 0 && (
+        <div className="rounded-xl border-2 border-dashed border-muted-foreground/20 p-8 text-center space-y-3">
+          <div className="flex justify-center">
+            <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
+              <Trophy className="w-7 h-7 text-primary" />
             </div>
           </div>
-
-          {/* Features preview */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {[
-              { label: 'Convocatorias reales', desc: `Exámenes oficiales ${opoDisplay.tribunalDe}` },
-              { label: 'Penalización real', desc: 'Incorrecta descuenta 1/3' },
-              { label: '1 simulacro gratis', desc: 'Ilimitados con Premium' },
-            ].map((f) => (
-              <div key={f.label} className="rounded-lg border p-3 space-y-1 opacity-60">
-                <p className="font-medium text-sm">{f.label}</p>
-                <p className="text-xs text-muted-foreground">{f.desc}</p>
-              </div>
-            ))}
+          <div>
+            <h2 className="font-semibold">Simulacros en preparación</h2>
+            <p className="text-sm text-muted-foreground mt-1 max-w-sm mx-auto">
+              Estamos cargando preguntas para esta oposición. Mientras, puedes practicar con Tests por tema.
+            </p>
           </div>
         </div>
       )}
