@@ -813,3 +813,107 @@ async function _getOposicionBreakdown(): Promise<OposicionBreakdown[]> {
 }
 
 export const getOposicionBreakdown = _getOposicionBreakdown
+
+// ─── Personalidad Policial Metrics ──────────────────────────────────────────
+
+export interface PersonalidadMetrics {
+  totalUsers: number           // usuarios distintos que han hecho alguna sesión
+  sessionsByType: { tipo: string; total: number; completed: number }[]
+  totalSessions: number
+  completionRate: number       // % sesiones completadas
+  avgSessionsPerUser: number
+  creditsSpent: number         // créditos gastados en personalidad (api_usage_log)
+  costCents: number            // coste IA estimado
+  interviewAvgMessages: number // media de mensajes por entrevista
+  recentSessions: { user_id: string; tipo: string; created_at: string; completed: boolean }[]
+}
+
+async function _getPersonalidadMetrics(): Promise<PersonalidadMetrics> {
+  const supabase = await createServiceClient()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const sb = supabase as any
+
+  const adminIds = await getAdminUserIds()
+
+  // All personality sessions (excluding admin)
+  const { data: sessions } = await sb
+    .from('personalidad_sesiones')
+    .select('id, user_id, tipo, completed, respuestas, created_at')
+    .order('created_at', { ascending: false })
+    .limit(2000)
+
+  const filtered = (sessions ?? []).filter((s: { user_id: string }) => !adminIds.includes(s.user_id))
+
+  // Distinct users
+  const uniqueUsers = new Set(filtered.map((s: { user_id: string }) => s.user_id))
+
+  // Sessions by type
+  const byType = new Map<string, { total: number; completed: number }>()
+  for (const s of filtered) {
+    const entry = byType.get(s.tipo) ?? { total: 0, completed: 0 }
+    entry.total++
+    if (s.completed) entry.completed++
+    byType.set(s.tipo, entry)
+  }
+  const sessionsByType = [...byType.entries()].map(([tipo, v]) => ({ tipo, ...v }))
+
+  // Completion rate
+  const totalSessions = filtered.length
+  const completedSessions = filtered.filter((s: { completed: boolean }) => s.completed).length
+  const completionRate = totalSessions > 0 ? Math.round((completedSessions / totalSessions) * 100) : 0
+
+  // Average sessions per user
+  const avgSessionsPerUser = uniqueUsers.size > 0
+    ? Math.round((totalSessions / uniqueUsers.size) * 10) / 10
+    : 0
+
+  // Interview average messages
+  const interviews = filtered.filter((s: { tipo: string; respuestas?: { messages?: unknown[] } }) =>
+    s.tipo === 'entrevista' && s.respuestas?.messages
+  )
+  const totalMessages = interviews.reduce((sum: number, s: { respuestas: { messages: unknown[] } }) =>
+    sum + (s.respuestas.messages?.length ?? 0), 0
+  )
+  const interviewAvgMessages = interviews.length > 0
+    ? Math.round((totalMessages / interviews.length) * 10) / 10
+    : 0
+
+  // Cost from api_usage_log
+  const { data: usageRows } = await supabase
+    .from('api_usage_log')
+    .select('cost_estimated_cents')
+    .or('endpoint.like.%personalidad%,endpoint.like.%interview%,endpoint.like.%coaching%,endpoint.like.%sjt%')
+
+  const costCents = (usageRows ?? []).reduce((sum, r) => sum + (r.cost_estimated_cents ?? 0), 0)
+
+  // Credits spent = sessions × credits per type
+  // Assessment: 0, SJT: 1, Interview: 2, Coaching: 1
+  const CREDITS_PER_TYPE: Record<string, number> = {
+    perfil: 0, sjt: 1, entrevista: 2, coaching: 1,
+  }
+  const creditsSpent = filtered.reduce((sum: number, s: { tipo: string }) =>
+    sum + (CREDITS_PER_TYPE[s.tipo] ?? 0), 0
+  )
+
+  // Recent sessions (last 20)
+  const recentSessions = filtered.slice(0, 20).map((s: { user_id: string; tipo: string; created_at: string; completed: boolean }) => ({
+    user_id: s.user_id,
+    tipo: s.tipo,
+    created_at: s.created_at,
+    completed: s.completed,
+  }))
+
+  return {
+    totalUsers: uniqueUsers.size,
+    sessionsByType,
+    totalSessions,
+    completionRate,
+    avgSessionsPerUser,
+    creditsSpent,
+    costCents,
+    interviewAvgMessages,
+    recentSessions,
+  }
+}
+
+export const getPersonalidadMetrics = _getPersonalidadMetrics
