@@ -551,7 +551,7 @@ FASE 13 (estudiar) ---------+                       ✅ DONE
 
 ---
 
-## Progreso global (actualizado 2026-04-01, FASE 13 completada)
+## Progreso global (actualizado 2026-04-01, TODAS LAS FASES COMPLETADAS)
 
 | FASE | Estado | Notas |
 |------|--------|-------|
@@ -559,19 +559,38 @@ FASE 13 (estudiar) ---------+                       ✅ DONE
 | 1 — Migration SQL | ✅ COMPLETADA | 3 oposiciones + 124 temas insertados |
 | 2 — Constantes y mapeos | ✅ COMPLETADA | 10 archivos actualizados |
 | 3 — Legislacion | ✅ COMPLETADA | 11.396 arts ingesta + 3.935 taggeados para seguridad |
-| 4 — Examenes oficiales | ✅ INVESTIGACION OK | URLs documentadas. **Pendiente**: Aritz descarga PDFs + parsea |
-| 5 — Conocimiento tecnico | ✅ COMPLETADA | 33 temas generados (Claude) + 196 secciones ingestadas con embeddings |
-| 6 — Psicotecnicos nuevos | ✅ COMPLETADA | 3 modulos (spatial/logic/perception), 11 subtipos, 42 tests |
+| 4 — Examenes oficiales | ✅ COMPLETADA | GC: 400q (2023+2024+2025), PN: 220q (2024+2025). Ertzaintza: no disponibles públicamente |
+| 5 — Conocimiento tecnico | ✅ COMPLETADA | 33+50=83 temas generados. 124/124 temas con material (0 huecos) |
+| 6 — Psicotecnicos nuevos | ✅ COMPLETADA | 3 modulos (spatial/logic/perception), 11 subtipos, distribución SEGURIDAD_DISTRIBUCION |
 | 6.5 — Ortografía GC | ✅ COMPLETADA | 210 items, 9 categorías, 17 tests |
 | 6.6 — Inglés GC | ✅ COMPLETADA | 160 items, 9 categorías A2-B1, 19 tests |
-| 6.7 — Simulacro GC 3 ejercicios | ✅ COMPLETADA | Migration 075 + endpoint + UI. 792/792 tests |
-| 7 — Free question bank | ✅ COMPLETADA (86%) | 107/124 temas generados (1.070 preguntas). 17 fallan por citas BOPV. Cobertura suficiente para lanzar |
-| 8 — Landing pages + SEO | ✅ COMPLETADA | 5 landings + main card + precios tab + sitemap + footer + llms.txt. Requisitos corregidos (estaturas, edades, euskera, plazas) |
-| 9 — Blog SEO | ✅ COMPLETADA | 7 posts. Blog GC corregido (estatura eliminada) |
-| 10 — Activacion | ⏳ CASI LISTO | Migrations 073+075+076 ✅. Free bank ✅. Stripe ✅. Falta: `SET activa = true` + smoke test |
-| 11 — Personalidad Policial | ✅ COMPLETADA | Migration 071 aplicada + 5 libs + 4 endpoints + UI + 63 tests |
-| 12 — Stripe | ✅ COMPLETADA | 6 productos creados + env vars en Vercel (2026-04-01) |
-| 13 — "Estudiar" | ✅ COMPLETADA | Migration 076 + agrupaciones (30 leyes) + resolver + prompts + 2 endpoints (generate + profundizar/stream) + UI (/estudiar page + EstudiarTemaList + BloqueEstudioCard + ProfundizarDrawer) + Sidebar/Navbar + seed script + 13 tests → 805/805 total. Pendiente: Aritz aplica migration 076 + ejecuta seed-estudiar.ts |
+| 6.7 — Simulacro completo | ✅ REESCRITO | Endpoint data-driven por scoring_config. Genera TODAS las secciones simulables |
+| 7 — Free question bank | ✅ COMPLETADA (86%) | 107/124 temas generados (1.070 preguntas). Fallback en simulacros |
+| 8 — Landing pages + SEO | ✅ COMPLETADA | 5 landings + main card + precios tab + sitemap + footer + llms.txt |
+| 9 — Blog SEO | ✅ COMPLETADA | 7 posts |
+| 10 — Activacion | ✅ COMPLETADA | Migrations 069-078 aplicadas. Stripe ✅. `activa=true` ✅. Smoke test ✅ |
+| 11 — Personalidad Policial | ✅ COMPLETADA | Migration 071 + 5 libs + 4 endpoints + UI + Sonnet entrevista + coaching + CTAs premium |
+| 12 — Stripe | ✅ COMPLETADA | 6 productos creados + env vars en Vercel |
+| 13 — "Estudiar" | ✅ COMPLETADA | Migration 076 + agrupaciones + resolver (fix tema_id singular) + callAIMini + 15 bloques seed + modal paywall con CTA |
+
+### Bugs arreglados durante smoke test (2026-04-01)
+- Citation aliases: +70 aliases para seguridad/hacienda/penitenciarias (DL 1/2023, FCSE, CP, LGT, etc.)
+- Migration 077: features `psicotecnicos+cazatrampas+personalidad=true` para seguridad
+- Migration 078: scoring_config completo (TODOS los ejercicios reales, incluyendo fisicas/entrevista/personalidad)
+- Simulacro rewrite: data-driven por scoring_config, genera todas las secciones simulables automáticamente
+- Simulacro bank fallback: si 0 exámenes oficiales → usa free_question_bank (Ertzaintza funciona)
+- Simulacro `examen?.id ?? null`: null-safe para bank fallback
+- Timer: suma minutos de secciones, no requiere examen_oficial_id
+- `esSimulacro`: ya no requiere examen_oficial_id (bank fallback)
+- TestRunner: section headers automáticos desde pregunta.seccion
+- Psicotécnicos: CATEGORIAS_SEGURIDAD en UI + distribución por oposición en simulacro
+- Personalidad: admin 999 créditos, is_admin salta credit check en 3 endpoints
+- Personalidad: entrevista Sonnet 2 créditos, timer 30 min, history[], coaching maxTokens 12000
+- Personalidad: CTA premium centrado con "Pack Personalidad 49,99€" + "Recarga 9,99€"
+- Estudiar: callAIMini (timeout fix), paginated fetch, modal paywall con CTA
+- Precios: acepta `?rama=seguridad` → abre tab correcto
+- Resultados: null-safe opciones + tipo_ejercicio para scoring
+- 50 temas conocimiento_tecnico generados para cubrir 124/124 temas
 
 ---
 
