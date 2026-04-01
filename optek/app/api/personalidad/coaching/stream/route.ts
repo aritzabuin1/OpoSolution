@@ -98,7 +98,7 @@ export async function POST(req: NextRequest) {
 
     const aiStream = await callAIStream(systemPrompt, userPrompt, {
       temperature: 0.4,
-      maxTokens: 4000,
+      maxTokens: 8000,
       endpoint: 'personalidad-coaching',
       useHeavyModel: true,  // Sonnet — coaching needs depth and structure
       userId: user.id,
