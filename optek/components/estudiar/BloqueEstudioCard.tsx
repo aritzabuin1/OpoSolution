@@ -43,11 +43,16 @@ export function BloqueEstudioCard({ bloque, temaId, isPremium }: Props) {
     setGenerating(true)
 
     try {
+      const controller = new AbortController()
+      const timeout = setTimeout(() => controller.abort(), 90_000) // 90s timeout
+
       const res = await fetch('/api/estudiar/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ley: bloque.ley, rango: bloque.rango }),
+        signal: controller.signal,
       })
+      clearTimeout(timeout)
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
@@ -66,6 +71,10 @@ export function BloqueEstudioCard({ bloque, temaId, isPremium }: Props) {
       }
 
       const data = await res.json()
+      if (!data.contenido) {
+        toast.error('Error', { description: 'El resumen se generó vacío. Inténtalo de nuevo.' })
+        return
+      }
       setContenido(data.contenido)
       setGenerado(true)
       setExpanded(true)
@@ -121,7 +130,7 @@ export function BloqueEstudioCard({ bloque, temaId, isPremium }: Props) {
             'text-xs shrink-0',
             generado ? 'text-green-600' : 'text-muted-foreground'
           )}>
-            {generado ? '✓ Disponible' : generating ? 'Generando...' : 'Generar'}
+            {generado ? '✓ Disponible' : generating ? 'Generando (~30s)...' : 'Generar'}
           </span>
         </button>
 

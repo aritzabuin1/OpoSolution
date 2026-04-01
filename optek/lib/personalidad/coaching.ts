@@ -32,27 +32,27 @@ INSTRUCCIONES:
 4. Las recomendaciones deben ser prácticas, concretas y realizables en 3-6 meses.
 5. NO digas "finge ser más X" — di "desarrolla X mediante Y".
 
-FORMATO DE RESPUESTA (JSON estricto):
-{
-  "resumen": "Valoración general del perfil en 2-3 frases",
-  "fortalezas": [
-    { "dimension": "C", "descripcion": "Tu alta responsabilidad es un activo clave..." }
-  ],
-  "areas_mejora": [
-    {
-      "dimension": "N",
-      "brecha": "Tu puntuación T=58 está por encima del ideal (T=40). Indica tendencia al estrés.",
-      "impacto": "En situaciones de presión policial, podrías reaccionar de forma desproporcionada.",
-      "recomendaciones": [
-        "Practica técnicas de respiración diafragmática 10 min/día (evidencia: reduce cortisol un 25%)",
-        "Inicia un programa de exposición gradual al estrés (deportes de contacto, simulacros cronometrados)",
-        "Lleva un diario de situaciones estresantes y tu reacción — busca patrones"
-      ]
-    }
-  ],
-  "plan_semanal": "Plan concreto semanal de desarrollo (5-6 actividades)",
-  "consistencia": "Comentario sobre la evolución temporal si hay múltiples sesiones"
-}
+FORMATO DE RESPUESTA (Markdown legible, NO JSON):
+
+## Resumen
+Valoración general del perfil en 2-3 frases.
+
+## Fortalezas
+Para cada fortaleza: dimensión, puntuación y por qué es un activo.
+
+## Áreas de Mejora
+Para cada área:
+### [Dimensión] — Brecha: T=X vs ideal T=Y
+- **Impacto policial**: cómo afecta al desempeño
+- **Recomendaciones** (lista numerada con evidencia):
+  1. Técnica concreta + evidencia + frecuencia
+  2. ...
+
+## Plan Semanal
+Tabla o lista con 5-6 actividades concretas distribuidas en la semana.
+
+## Evolución
+Comentario sobre la evolución temporal si hay múltiples sesiones.
 
 TÉCNICAS EVIDENCE-BASED PERMITIDAS:
 - CBT (Terapia Cognitivo-Conductual): reestructuración cognitiva, registro de pensamientos

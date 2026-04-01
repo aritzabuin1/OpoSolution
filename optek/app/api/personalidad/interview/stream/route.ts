@@ -142,6 +142,7 @@ export async function POST(req: NextRequest) {
       aiStream,
       userId: user.id,
       endpoint: 'personalidad/interview/stream',
+      extraHeaders: { 'x-sesion-id': currentSesionId ?? '' },
       onComplete: async () => {
         // Update session with latest messages
         await serviceSupabase

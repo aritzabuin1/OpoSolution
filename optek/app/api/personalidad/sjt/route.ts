@@ -123,8 +123,28 @@ export async function POST(req: NextRequest) {
       userId: user.id,
     })
 
-    // Parse AI response
-    const scenario = JSON.parse(aiResponse)
+    // Parse AI response — extract JSON even if wrapped in markdown code blocks
+    let scenario
+    try {
+      // Try direct parse first
+      scenario = JSON.parse(aiResponse)
+    } catch {
+      // Try extracting from ```json ... ``` blocks
+      const jsonMatch = aiResponse.match(/```(?:json)?\s*([\s\S]*?)```/)
+      if (jsonMatch) {
+        scenario = JSON.parse(jsonMatch[1].trim())
+      } else {
+        // Try finding first { to last }
+        const start = aiResponse.indexOf('{')
+        const end = aiResponse.lastIndexOf('}')
+        if (start !== -1 && end > start) {
+          scenario = JSON.parse(aiResponse.slice(start, end + 1))
+        } else {
+          log.error({ aiResponse: aiResponse.slice(0, 500) }, 'SJT: AI returned non-JSON')
+          return NextResponse.json({ error: 'Error generando escenario. Inténtalo de nuevo.' }, { status: 500 })
+        }
+      }
+    }
 
     // Save session
     const { data: sesion, error: insertError } = await serviceSupabase

@@ -112,12 +112,15 @@ function EntrevistaInline({ cuerpoSlug, credits, hasProfile }: { cuerpoSlug: str
     setState('loading')
 
     try {
+      // Send full history so the AI has conversation context
+      const history = messages.map(m => ({ role: m.role, content: m.text }))
       const res = await fetch('/api/personalidad/interview/stream', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           cuerpo_slug: cuerpoSlug,
           message: userMsg,
+          history,
           ...(sesionId ? { sesion_id: sesionId } : {}),
         }),
       })

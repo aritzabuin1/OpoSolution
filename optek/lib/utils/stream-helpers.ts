@@ -20,6 +20,8 @@ interface StreamPipeOptions {
   context?: Record<string, unknown>
   /** Oposición ID for cost attribution */
   oposicionId?: string
+  /** Extra headers to include in the response */
+  extraHeaders?: Record<string, string>
 }
 
 /**
@@ -31,7 +33,7 @@ interface StreamPipeOptions {
  * - Properly cleans up reader on cancel
  */
 export function createSafeStreamResponse(opts: StreamPipeOptions): Response {
-  const { aiStream, userId, onComplete, endpoint, context, oposicionId } = opts
+  const { aiStream, userId, onComplete, endpoint, context, oposicionId, extraHeaders } = opts
   const log = logger.child({ endpoint, userId, ...context })
   const reader = aiStream.getReader()
   const encoder = new TextEncoder()
@@ -95,6 +97,7 @@ export function createSafeStreamResponse(opts: StreamPipeOptions): Response {
       'Content-Type': 'text/plain; charset=utf-8',
       'Cache-Control': 'no-cache, no-store',
       'X-Accel-Buffering': 'no',
+      ...extraHeaders,
     },
   })
 }
