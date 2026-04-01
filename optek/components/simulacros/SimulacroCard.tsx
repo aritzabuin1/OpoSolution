@@ -96,14 +96,8 @@ export function SimulacroCard({ examen, hasPsicotecnicos = false, preguntasExame
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          modo: 'anio',
           examenId: examen.id,
-          numPreguntas: preguntasExamenCompleto,
-          incluirPsicotecnicos,
-          dificultadPsico,
-          incluirSupuesto: hasSupuestoTest,
-          incluirOfimatica: hasOfimatica,
-          incluirOrtografia: hasOrtografia,
-          incluirIngles: hasIngles,
         }),
       })
 

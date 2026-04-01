@@ -287,18 +287,7 @@ export default async function SimulacrosPage() {
           <SimulacroMixtoCard
             totalPreguntas={totalPreguntasCombinadas}
             numConvocatorias={hayExamenes ? examenesConCount.length : 0}
-            hasPsicotecnicos={hasPsicotecnicos}
-            preguntasExamenCompleto={preguntasEjercicio1}
-            hasSupuestoTest={hasSupuestoTest}
-            preguntasSupuesto={preguntasSupuesto}
-            hasOfimatica={hasOfimatica}
-            preguntasOfimatica={preguntasOfimatica}
-            hasOrtografia={hasOrtografia}
-            preguntasOrtografia={preguntasOrtografia}
-            hasIngles={hasIngles}
-            preguntasIngles={preguntasIngles}
             penalizacionDesc={penalizacionDesc}
-            preguntasPsicotecnicos={preguntasPsicotecnicos}
           />
           {!hayExamenes && bankFallbackCount > 0 && (
             <p className="text-xs text-muted-foreground px-1">

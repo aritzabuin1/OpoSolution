@@ -339,7 +339,15 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
       <div className="flex flex-wrap gap-1.5 max-h-24 overflow-y-auto sm:max-h-none sm:overflow-visible">
         {preguntas.map((_, idx) => (
           <span key={idx} className="contents">
-            {partDivider !== undefined && idx === partDivider && (
+            {/* Section headers from pregunta.seccion (simulacro completo) */}
+            {idx > 0 && preguntas[idx]?.seccion && preguntas[idx]?.seccion !== preguntas[idx - 1]?.seccion && (
+              <span className="w-full text-[10px] font-semibold text-indigo-600 uppercase tracking-wider mt-1.5 mb-0.5">{preguntas[idx].seccion}</span>
+            )}
+            {idx === 0 && preguntas[0]?.seccion && (
+              <span className="w-full text-[10px] font-semibold text-indigo-600 uppercase tracking-wider mb-0.5">{preguntas[0].seccion}</span>
+            )}
+            {/* Legacy partDivider support */}
+            {partDivider !== undefined && idx === partDivider && !preguntas[idx]?.seccion && (
               <span className="w-full text-[10px] font-semibold text-indigo-600 uppercase tracking-wider mt-1 mb-0.5">Parte 2 — Supuesto</span>
             )}
             {extraDividers?.map(d => d.index === idx ? (
@@ -355,6 +363,13 @@ export function TestRunner({ testId, preguntas, temaTitulo, tiempoLimiteSegundos
           </span>
         ))}
       </div>
+
+      {/* Section header (simulacro completo) */}
+      {preguntaActual?.seccion && (current === 0 || preguntaActual.seccion !== preguntas[current - 1]?.seccion) && (
+        <div className="rounded-lg bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-800 px-4 py-2 text-sm font-semibold text-indigo-700 dark:text-indigo-300">
+          {preguntaActual.seccion}
+        </div>
+      )}
 
       {/* Pregunta actual */}
       <QuestionView

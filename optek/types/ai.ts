@@ -32,6 +32,12 @@ export interface Pregunta {
    * Solo presente en preguntas de simulacros con tema_id válido.
    */
   temaTitulo?: string | null
+  /**
+   * Sección del examen a la que pertenece esta pregunta en un simulacro completo.
+   * Ej: "Psicotécnicos de aptitudes", "Conocimientos generales", "Ortografía".
+   * Permite renderizar separadores entre secciones en la UI.
+   */
+  seccion?: string
 }
 
 export interface TestGenerado {
