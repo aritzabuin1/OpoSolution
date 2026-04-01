@@ -85,6 +85,30 @@ export async function POST(request: NextRequest) {
     }
   }
 
+  // Pack Completo Seguridad: verificar que el usuario tiene oposición de seguridad
+  const SEGURIDAD_OPOSICION_IDS = new Set([
+    'ab000000-0000-0000-0000-000000000001', // Ertzaintza
+    'ac000000-0000-0000-0000-000000000001', // Guardia Civil
+    'ad000000-0000-0000-0000-000000000001', // Policía Nacional
+  ])
+  if (tier === 'pack_completo_seguridad' || tier === 'pack_personalidad') {
+    const serviceClient = await createServiceClient()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: profile } = await (serviceClient as any)
+      .from('profiles')
+      .select('oposicion_id')
+      .eq('id', user.id)
+      .single()
+    const userOpoId = (profile as { oposicion_id?: string } | null)?.oposicion_id
+    if (!userOpoId || !SEGURIDAD_OPOSICION_IDS.has(userOpoId)) {
+      log.warn({ userId: user.id, oposicionId: userOpoId, tier }, 'User oposición not in seguridad rama')
+      return NextResponse.json({
+        error: 'Primero selecciona tu oposición de seguridad (Ertzaintza, Guardia Civil o Policía Nacional) en tu perfil antes de comprar este pack.',
+        code: 'WRONG_OPOSICION',
+      }, { status: 400 })
+    }
+  }
+
   // Verificar que el precio está configurado en env
   const priceId = STRIPE_PRICES[tier as StripePriceTier]
   if (!priceId) {

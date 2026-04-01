@@ -145,9 +145,23 @@ async function handleStripeEvent(
       } else {
         // Resolve oposicion IDs from TIER_TO_OPOSICION (supports combos)
         const mapping = TIER_TO_OPOSICION[tier as keyof typeof TIER_TO_OPOSICION]
-        const oposicionIds = Array.isArray(mapping)
+        let oposicionIds = Array.isArray(mapping)
           ? mapping
           : mapping ? [mapping] : [oposicionIdMeta]
+
+        // Pack Completo Seguridad / Personalidad: resolve from user's profile
+        // (these tiers have '' in TIER_TO_OPOSICION because they're user-dependent)
+        if ((tier === 'pack_completo_seguridad' || tier === 'pack_personalidad') && (!oposicionIds[0] || oposicionIds[0] === '')) {
+          const { data: userProfile } = await supabase
+            .from('profiles')
+            .select('oposicion_id')
+            .eq('id', userId)
+            .single()
+          const userOpoId = (userProfile as { oposicion_id?: string } | null)?.oposicion_id
+          if (userOpoId) {
+            oposicionIds = [userOpoId]
+          }
+        }
 
         // Insert one compra row per oposición (combos get multiple rows)
         const compraRows = oposicionIds
