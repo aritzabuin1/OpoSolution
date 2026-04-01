@@ -136,12 +136,19 @@ export default async function SimulacrosPage() {
     .select('features, scoring_config, rama, slug')
     .eq('id', userOposicionId)
     .single()
-  const features = (opoFeatures as { features?: Record<string, boolean>; scoring_config?: { ejercicios?: Array<{ nombre?: string; preguntas?: number; minutos?: number }>; minutos_total?: number }; rama?: string; slug?: string } | null)
+  const features = (opoFeatures as { features?: Record<string, boolean>; scoring_config?: { ejercicios?: Array<{ nombre?: string; preguntas?: number; minutos?: number; tipo_ejercicio?: string }>; minutos_total?: number; num_opciones?: number }; rama?: string; slug?: string } | null)
   const hasSupuestoPractico = features?.features?.supuesto_practico === true
   const hasSupuestoTest = features?.features?.supuesto_test === true
   const hasPsicotecnicos = features?.features?.psicotecnicos === true
-  // Number of questions per exercise from scoring_config
-  const preguntasEjercicio1 = features?.scoring_config?.ejercicios?.[0]?.preguntas ?? 100
+  // Number of questions for the KNOWLEDGE exercise (not necessarily first)
+  const conocimientosEj = features?.scoring_config?.ejercicios?.find(
+    (e) => e.tipo_ejercicio === 'conocimientos' || e.nombre?.toLowerCase().includes('conocimiento') || e.nombre?.toLowerCase().includes('cuestionario')
+  )
+  const preguntasEjercicio1 = conocimientosEj?.preguntas ?? features?.scoring_config?.ejercicios?.[0]?.preguntas ?? 100
+  // Psicotécnicos count from scoring_config
+  const preguntasPsicotecnicos = features?.scoring_config?.ejercicios?.find(
+    (e) => e.tipo_ejercicio === 'psicotecnicos'
+  )?.preguntas ?? 30
   const preguntasSupuesto = features?.scoring_config?.ejercicios?.find(
     (e) => e.nombre?.toLowerCase().includes('supuesto') || e.nombre?.toLowerCase().includes('práctico')
   )?.preguntas ?? 20
@@ -203,9 +210,9 @@ export default async function SimulacrosPage() {
           psicotecnicos: { href: '/psicotecnicos', label: 'Psicotécnicos' },
           personalidad: { href: '/personalidad-policial', label: 'Personalidad' },
           entrevista: { href: '/personalidad-policial', label: 'Entrevista IA' },
-          ortografia: { href: '/psicotecnicos', label: 'Ortografía' },
-          gramatica: { href: '/psicotecnicos', label: 'Gramática' },
-          ingles: { href: '/psicotecnicos', label: 'Inglés' },
+          ortografia: { href: '/simulacros', label: 'En simulacro' },
+          gramatica: { href: '/simulacros', label: 'En simulacro' },
+          ingles: { href: '/simulacros', label: 'En simulacro' },
         }
 
         return (
@@ -291,6 +298,7 @@ export default async function SimulacrosPage() {
             hasIngles={hasIngles}
             preguntasIngles={preguntasIngles}
             penalizacionDesc={penalizacionDesc}
+            preguntasPsicotecnicos={preguntasPsicotecnicos}
           />
           {!hayExamenes && bankFallbackCount > 0 && (
             <p className="text-xs text-muted-foreground px-1">

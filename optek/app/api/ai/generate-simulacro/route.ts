@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
-import { generatePsicotecnicos } from '@/lib/psicotecnicos'
+import { generatePsicotecnicos, getDistribucionPsicotecnicos } from '@/lib/psicotecnicos'
 import { generateOrtografia } from '@/lib/ortografia'
 import { generateIngles } from '@/lib/ingles'
 import { logger } from '@/lib/logger'
@@ -151,10 +151,11 @@ export async function POST(request: NextRequest) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: opoData } = await (serviceSupabase as any)
     .from('oposiciones')
-    .select('scoring_config')
+    .select('scoring_config, slug')
     .eq('id', oposicionId)
     .single()
-  const scoringConfig = (opoData as { scoring_config?: unknown } | null)?.scoring_config as { num_opciones?: 3 | 4; ejercicios?: { nombre?: string; preguntas?: number; reserva?: number }[]; minutos_total?: number } | null
+  const scoringConfig = (opoData as { scoring_config?: unknown; slug?: string } | null)?.scoring_config as { num_opciones?: 3 | 4; ejercicios?: { nombre?: string; preguntas?: number; reserva?: number; tipo_ejercicio?: string }[]; minutos_total?: number } | null
+  const opoSlug = (opoData as { slug?: string } | null)?.slug ?? ''
   const numOpciones = scoringConfig?.num_opciones ?? 4
   // Preguntas puntuables del primer ejercicio = preguntas - reserva
   const ej1 = scoringConfig?.ejercicios?.[0]
@@ -430,7 +431,12 @@ export async function POST(request: NextRequest) {
   let promptVersion = 'oficial-1.0'
 
   if (incluirPsicotecnicos) {
-    const psicotecnicos = generatePsicotecnicos(30, dificultadPsico)
+    // Get psicotécnicos count from scoring_config (fallback 30)
+    const psicoEjercicio = scoringConfig?.ejercicios?.find(e => e.tipo_ejercicio === 'psicotecnicos')
+    const numPsico = psicoEjercicio?.preguntas ?? 30
+    // Use oposición-specific distribution (seguridad has spatial/logic/perception)
+    const distribucion = getDistribucionPsicotecnicos(opoSlug)
+    const psicotecnicos = generatePsicotecnicos(numPsico, dificultadPsico, distribucion)
     // Psicotécnicas al inicio (Parte 1), oficiales después (Parte 2)
     const psicoPreguntasMapped: Pregunta[] = psicotecnicos.map((p) => ({
       enunciado: p.enunciado,

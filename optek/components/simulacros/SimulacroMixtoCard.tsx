@@ -52,11 +52,13 @@ export interface SimulacroMixtoCardProps {
   preguntasIngles?: number
   /** Penalización description for the exam */
   penalizacionDesc?: string
+  /** Number of psicotécnicos questions from scoring_config */
+  preguntasPsicotecnicos?: number
 }
 
 // ─── Componente ──────────────────────────────────────────────────────────────
 
-export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias, hasPsicotecnicos = false, preguntasExamenCompleto = 100, hasSupuestoTest = false, preguntasSupuesto = 0, hasOfimatica = false, preguntasOfimatica = 0, hasOrtografia = false, preguntasOrtografia = 0, hasIngles = false, preguntasIngles = 0, penalizacionDesc }: SimulacroMixtoCardProps) {
+export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias, hasPsicotecnicos = false, preguntasExamenCompleto = 100, hasSupuestoTest = false, preguntasSupuesto = 0, hasOfimatica = false, preguntasOfimatica = 0, hasOrtografia = false, preguntasOrtografia = 0, hasIngles = false, preguntasIngles = 0, penalizacionDesc, preguntasPsicotecnicos = 30 }: SimulacroMixtoCardProps) {
   const router = useRouter()
   const isPremium = useIsPremium()
 
@@ -214,9 +216,9 @@ export function SimulacroMixtoCard({ totalPreguntas, numConvocatorias, hasPsicot
                 Incluir psicotécnicos
               </span>
               {isFree ? (
-                <span className="ml-1 text-amber-600">— Opcional: añade 30 preguntas psicotécnicas</span>
+                <span className="ml-1 text-amber-600">— Opcional: añade {preguntasPsicotecnicos} preguntas psicotécnicas</span>
               ) : (
-                <span className="ml-1 text-muted-foreground">— Añade 30 psicotécnicas al inicio (como en el examen real)</span>
+                <span className="ml-1 text-muted-foreground">— Añade {preguntasPsicotecnicos} psicotécnicas al inicio (como en el examen real)</span>
               )}
               {incluirPsicotecnicos && !isFree && (
                 <span className="ml-1 font-semibold text-primary">
