@@ -8,7 +8,7 @@
  */
 
 import { useState, useCallback } from 'react'
-import { BookOpen, ChevronDown, ChevronRight, Loader2, Search, Sparkles } from 'lucide-react'
+import { BookOpen, ChevronDown, ChevronRight, Loader2, Lock, Search, Sparkles } from 'lucide-react'
 import { toast } from 'sonner'
 import { cn } from '@/lib/utils'
 import { ProfundizarDrawer } from './ProfundizarDrawer'
@@ -37,6 +37,7 @@ export function BloqueEstudioCard({ bloque, temaId, isPremium }: Props) {
   const [generating, setGenerating] = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [drawerArticulo, setDrawerArticulo] = useState('')
+  const [showPaywall, setShowPaywall] = useState(false)
 
   const handleGenerate = useCallback(async () => {
     if (generating) return
@@ -57,13 +58,7 @@ export function BloqueEstudioCard({ bloque, temaId, isPremium }: Props) {
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
         if (res.status === 402) {
-          toast('Función premium', {
-            description: 'Desbloquea el pack para generar resúmenes de estudio.',
-            action: {
-              label: 'Ver planes',
-              onClick: () => window.location.href = '/precios',
-            },
-          })
+          setShowPaywall(true)
         } else if (res.status === 429) {
           toast.error('Límite alcanzado', {
             description: data?.error ?? 'Has alcanzado el límite de generaciones por hoy.',
@@ -105,12 +100,7 @@ export function BloqueEstudioCard({ bloque, temaId, isPremium }: Props) {
             } else if (isPremium) {
               handleGenerate()
             } else {
-              toast('Desbloquea el pack para acceder a todo el material', {
-                action: {
-                  label: 'Ver planes',
-                  onClick: () => window.location.href = '/precios',
-                },
-              })
+              setShowPaywall(true)
             }
           }}
           className="w-full flex items-center gap-2 px-3 py-2 text-left hover:bg-muted/30 transition-colors"
@@ -174,6 +164,38 @@ export function BloqueEstudioCard({ bloque, temaId, isPremium }: Props) {
           defaultArticulo={drawerArticulo}
           onClose={() => setDrawerOpen(false)}
         />
+      )}
+
+      {/* Paywall modal — centrado, llamativo */}
+      {showPaywall && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" onClick={() => setShowPaywall(false)}>
+          <div className="bg-background rounded-2xl shadow-2xl p-8 max-w-md mx-4 text-center space-y-4" onClick={e => e.stopPropagation()}>
+            <div className="flex justify-center">
+              <div className="h-16 w-16 rounded-full bg-amber-100 flex items-center justify-center">
+                <Lock className="h-8 w-8 text-amber-600" />
+              </div>
+            </div>
+            <h3 className="text-xl font-bold">Material de estudio Premium</h3>
+            <p className="text-sm text-muted-foreground">
+              Los resúmenes didácticos te ayudan a preparar cada tema antes de hacer tests.
+              Generados por IA, con mnemotécnicas, trampas frecuentes y artículos clave.
+            </p>
+            <div className="space-y-2 pt-2">
+              <a
+                href="/precios"
+                className="block w-full rounded-lg bg-primary py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
+              >
+                Ver planes y precios
+              </a>
+              <button
+                onClick={() => setShowPaywall(false)}
+                className="block w-full text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
+              >
+                Ahora no
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </>
   )
