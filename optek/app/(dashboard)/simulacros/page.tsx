@@ -183,50 +183,77 @@ export default async function SimulacrosPage() {
         <Trophy className="h-7 w-7 text-primary/60 shrink-0 mt-1" />
       </div>
 
-      {/* Estructura del examen — SIEMPRE visible (incluso con 1 ejercicio) */}
+      {/* Estructura completa del examen — SIEMPRE visible */}
       {(() => {
         const ejercicios = features?.scoring_config?.ejercicios as Array<{
           nombre?: string; preguntas?: number; reserva?: number; minutos?: number;
           tipo_ejercicio?: string; penaliza?: boolean; ratio_penalizacion?: string;
-          preguntas_variable?: boolean
+          preguntas_variable?: boolean; descripcion?: string; simulable?: boolean;
+          ruta_practica?: string; apto_no_apto?: boolean; min_aprobado?: number;
+          max?: number; puntuacion_max?: number
         }> | undefined
         const minTotal = (features?.scoring_config as { minutos_total?: number })?.minutos_total
         const numOpciones = (features?.scoring_config as { num_opciones?: number })?.num_opciones ?? 4
+        const puntMax = (features?.scoring_config as { puntuacion_max_oposicion?: number })?.puntuacion_max_oposicion
+        const concursoMax = (features?.scoring_config as { fase_concurso_max?: number })?.fase_concurso_max
         if (!ejercicios || ejercicios.length === 0) return null
 
-        const totalPreguntas = ejercicios.reduce((sum, e) => sum + (e.preguntas ?? 0) + (e.reserva ?? 0), 0)
-        const tiempoLabel = minTotal ? `${minTotal} min` : ejercicios[0]?.minutos ? `${ejercicios[0].minutos} min` : null
-        const penalizacion = ejercicios[0]?.ratio_penalizacion ?? (numOpciones === 3 ? '1/2' : '1/3')
+        const TIPO_TO_ROUTE: Record<string, { href: string; label: string }> = {
+          conocimientos: { href: '/tests', label: 'Tests por tema' },
+          psicotecnicos: { href: '/psicotecnicos', label: 'Psicotécnicos' },
+          personalidad: { href: '/personalidad-policial', label: 'Personalidad' },
+          entrevista: { href: '/personalidad-policial', label: 'Entrevista IA' },
+          ortografia: { href: '/psicotecnicos', label: 'Ortografía' },
+          gramatica: { href: '/psicotecnicos', label: 'Gramática' },
+          ingles: { href: '/psicotecnicos', label: 'Inglés' },
+        }
 
         return (
           <Card className="border-indigo-300/40 bg-gradient-to-r from-indigo-50 to-indigo-50/30 dark:from-indigo-950/20 dark:to-transparent">
-            <CardContent className="pt-5 pb-5">
-              <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-100 dark:bg-indigo-900/40 shrink-0">
-                  <Layers className="h-5 w-5 text-indigo-600" />
-                </div>
-                <div className="flex-1 space-y-3">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="font-semibold text-sm">Estructura del examen real</h3>
-                    {tiempoLabel && <Badge variant="outline" className="text-[10px] border-indigo-300 text-indigo-700">{tiempoLabel}</Badge>}
-                    <Badge variant="outline" className="text-[10px] border-indigo-300 text-indigo-700">{totalPreguntas} preguntas</Badge>
-                    <Badge variant="outline" className="text-[10px] border-indigo-300 text-indigo-700">{numOpciones} opciones</Badge>
-                    <Badge variant="outline" className="text-[10px] border-indigo-300 text-indigo-700">Penaliza {penalizacion}</Badge>
-                  </div>
-                  <div className="space-y-1.5">
-                    {ejercicios.map((ej, i) => (
-                      <div key={i} className="flex items-center gap-2 text-xs">
-                        <span className="font-mono text-[10px] bg-indigo-100 dark:bg-indigo-900/40 rounded px-1.5 py-0.5 text-indigo-700">{i + 1}</span>
-                        <span className="font-medium">{ej.nombre ?? `Ejercicio ${i + 1}`}</span>
-                        <span className="text-muted-foreground">
-                          {ej.preguntas_variable ? '~' : ''}{ej.preguntas ?? '?'}
-                          {ej.reserva ? ` (+${ej.reserva} reserva)` : ''} preg.
-                          {ej.minutos ? ` · ${ej.minutos} min` : ''}
-                        </span>
+            <CardContent className="pt-5 pb-5 space-y-4">
+              <div className="flex items-center gap-2 flex-wrap">
+                <Layers className="h-5 w-5 text-indigo-600" />
+                <h3 className="font-semibold text-sm">Estructura del examen real</h3>
+                {numOpciones && <Badge variant="outline" className="text-[10px] border-indigo-300 text-indigo-700">{numOpciones} opciones</Badge>}
+                {puntMax && <Badge variant="outline" className="text-[10px] border-indigo-300 text-indigo-700">Máx. {puntMax} pts</Badge>}
+                {concursoMax ? <Badge variant="outline" className="text-[10px] border-indigo-300 text-indigo-700">Concurso: {concursoMax} pts</Badge> : null}
+              </div>
+
+              <div className="space-y-2">
+                {ejercicios.map((ej, i) => {
+                  const route = ej.ruta_practica
+                    ? { href: ej.ruta_practica, label: 'Practicar' }
+                    : TIPO_TO_ROUTE[ej.tipo_ejercicio ?? '']
+                  const isSimulable = ej.simulable !== false
+
+                  return (
+                    <div key={i} className="flex items-start gap-2 text-xs rounded-md border border-indigo-100 dark:border-indigo-900/30 p-2.5">
+                      <span className="font-mono text-[10px] bg-indigo-100 dark:bg-indigo-900/40 rounded px-1.5 py-0.5 text-indigo-700 shrink-0 mt-0.5">{i + 1}</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <span className="font-medium">{ej.nombre}</span>
+                          {ej.preguntas && (
+                            <span className="text-muted-foreground">
+                              {ej.preguntas_variable ? '~' : ''}{ej.preguntas}{ej.reserva ? `+${ej.reserva}` : ''} preg.
+                            </span>
+                          )}
+                          {ej.minutos ? <span className="text-muted-foreground">· {ej.minutos} min</span> : null}
+                          {minTotal && i === 0 && ejercicios.filter(e => !e.minutos).length > 1 ? <span className="text-muted-foreground">· {minTotal} min total</span> : null}
+                          {ej.apto_no_apto && <Badge className="bg-red-100 text-red-700 text-[9px]">Eliminatoria</Badge>}
+                          {ej.penaliza && <span className="text-muted-foreground">· −{ej.ratio_penalizacion}</span>}
+                          {ej.min_aprobado != null && !ej.apto_no_apto && <span className="text-muted-foreground">· mín. {ej.min_aprobado}/{ej.max ?? ej.puntuacion_max ?? '?'}</span>}
+                          {!isSimulable && <Badge variant="outline" className="text-[9px] text-muted-foreground">Presencial</Badge>}
+                        </div>
+                        {ej.descripcion && <p className="text-muted-foreground mt-0.5">{ej.descripcion}</p>}
                       </div>
-                    ))}
-                  </div>
-                </div>
+                      {isSimulable && route && (
+                        <Link href={route.href} className="text-[10px] text-indigo-600 hover:underline shrink-0 mt-0.5">
+                          {route.label} →
+                        </Link>
+                      )}
+                    </div>
+                  )
+                })}
               </div>
             </CardContent>
           </Card>
