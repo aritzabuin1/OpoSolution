@@ -57,18 +57,28 @@ export async function POST(req: NextRequest) {
 
     let currentSesionId = sesion_id
 
-    // If no session, create one (costs 1 credit; admin skips)
+    // If no session, create one (costs 2 credits — Sonnet model; admin skips)
+    const INTERVIEW_CREDITS = 2
     if (!currentSesionId) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { data: adminCheck } = await (serviceSupabase as any).from('profiles').select('is_admin').eq('id', user.id).single()
       const isAdmin = (adminCheck as { is_admin?: boolean } | null)?.is_admin === true
       if (!isAdmin) {
-        const { data: hasCredit } = await serviceSupabase.rpc('use_personality_credit', { p_user_id: user.id })
-        if (!hasCredit) {
+        // Check balance first
+        const { data: profileData } = await serviceSupabase
+          .from('profiles')
+          .select('corrections_balance')
+          .eq('id', user.id)
+          .single()
+        if ((profileData?.corrections_balance ?? 0) < INTERVIEW_CREDITS) {
           return NextResponse.json(
-            { error: 'Sin créditos disponibles.', code: 'NO_CREDITS' },
+            { error: `Necesitas ${INTERVIEW_CREDITS} créditos para iniciar una entrevista.`, code: 'NO_CREDITS' },
             { status: 402 },
           )
+        }
+        // Deduct 2 credits
+        for (let i = 0; i < INTERVIEW_CREDITS; i++) {
+          await serviceSupabase.rpc('use_personality_credit', { p_user_id: user.id })
         }
       }
 
@@ -130,6 +140,7 @@ export async function POST(req: NextRequest) {
       temperature: 0.6,
       endpoint: 'personalidad-interview',
       userId: user.id,
+      useHeavyModel: true,  // Sonnet — better conversational quality for interview
     })
 
     // Save updated conversation to session on completion

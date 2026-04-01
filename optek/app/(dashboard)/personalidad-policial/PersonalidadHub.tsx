@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { Brain, MessageCircle, Target, TrendingUp, Zap, Lock, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { PersonalidadAssessment } from './PersonalidadAssessment'
@@ -98,11 +98,33 @@ export function PersonalidadHub({ cuerpoSlug, credits, sessions, hasProfile, lat
 
 // ─── Entrevista inline ──────────────────────────────────────────────────────
 
+const INTERVIEW_DURATION_MS = 30 * 60 * 1000 // 30 minutes
+
 function EntrevistaInline({ cuerpoSlug, credits, hasProfile }: { cuerpoSlug: string; credits: number; hasProfile: boolean }) {
   const [state, setState] = useState<'idle' | 'loading' | 'streaming' | 'done'>('idle')
   const [messages, setMessages] = useState<{ role: 'user' | 'assistant'; text: string }[]>([])
   const [input, setInput] = useState('')
   const [sesionId, setSesionId] = useState<string | null>(null)
+  const [startTime, setStartTime] = useState<number | null>(null)
+  const [timeLeft, setTimeLeft] = useState<string>('')
+  const [sessionEnded, setSessionEnded] = useState(false)
+
+  // Timer
+  useEffect(() => {
+    if (!startTime) return
+    const interval = setInterval(() => {
+      const elapsed = Date.now() - startTime
+      const remaining = Math.max(0, INTERVIEW_DURATION_MS - elapsed)
+      if (remaining === 0) {
+        setSessionEnded(true)
+        clearInterval(interval)
+      }
+      const mins = Math.floor(remaining / 60000)
+      const secs = Math.floor((remaining % 60000) / 1000)
+      setTimeLeft(`${mins}:${secs.toString().padStart(2, '0')}`)
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [startTime])
 
   const sendMessage = useCallback(async () => {
     if (!input.trim() || state === 'loading' || state === 'streaming') return
@@ -170,13 +192,14 @@ function EntrevistaInline({ cuerpoSlug, credits, hasProfile }: { cuerpoSlug: str
           Practica la entrevista personal con un psicólogo simulado que conoce tu perfil.
           Recibirás feedback detallado.
         </p>
-        <p className="mt-1 text-xs text-muted-foreground">Consume 1 crédito por sesión (follow-ups gratis)</p>
+        <p className="mt-1 text-xs text-muted-foreground">Consume 2 créditos por sesión de 30 minutos</p>
         <button
           onClick={() => {
+            setStartTime(Date.now())
             setInput('Hola, estoy preparando la entrevista de personalidad.')
             setTimeout(() => sendMessage(), 100)
           }}
-          disabled={credits < 1}
+          disabled={credits < 2}
           className="mt-4 rounded-lg bg-sky-600 px-6 py-2.5 text-sm font-medium text-white hover:bg-sky-700 disabled:opacity-50"
         >
           Iniciar entrevista
@@ -187,6 +210,15 @@ function EntrevistaInline({ cuerpoSlug, credits, hasProfile }: { cuerpoSlug: str
 
   return (
     <div className="rounded-lg border bg-card flex flex-col" style={{ maxHeight: '600px' }}>
+      {/* Timer bar */}
+      {startTime && (
+        <div className="flex items-center justify-between px-4 py-2 border-b bg-muted/30 text-xs">
+          <span className="text-muted-foreground">Entrevista en curso</span>
+          <span className={`font-mono font-medium ${sessionEnded ? 'text-red-500' : timeLeft && parseInt(timeLeft) < 5 ? 'text-amber-500' : 'text-muted-foreground'}`}>
+            {sessionEnded ? 'Tiempo agotado' : `⏱ ${timeLeft}`}
+          </span>
+        </div>
+      )}
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
         {messages.map((msg, i) => (
@@ -215,22 +247,28 @@ function EntrevistaInline({ cuerpoSlug, credits, hasProfile }: { cuerpoSlug: str
       </div>
 
       {/* Input */}
-      <form onSubmit={(e) => { e.preventDefault(); sendMessage() }} className="border-t p-3 flex gap-2">
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Escribe tu respuesta..."
-          className="flex-1 rounded-md border px-3 py-1.5 text-sm bg-background"
-          disabled={state === 'loading' || state === 'streaming'}
-        />
-        <button
-          type="submit"
-          disabled={!input.trim() || state === 'loading' || state === 'streaming'}
-          className="rounded-md bg-sky-600 px-3 py-1.5 text-sm text-white hover:bg-sky-700 disabled:opacity-50"
-        >
-          Enviar
-        </button>
-      </form>
+      {sessionEnded ? (
+        <div className="border-t p-4 text-center text-sm text-muted-foreground">
+          Sesión finalizada. Puedes iniciar otra sesión (2 créditos).
+        </div>
+      ) : (
+        <form onSubmit={(e) => { e.preventDefault(); sendMessage() }} className="border-t p-3 flex gap-2">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Escribe tu respuesta..."
+            className="flex-1 rounded-md border px-3 py-1.5 text-sm bg-background"
+            disabled={state === 'loading' || state === 'streaming'}
+          />
+          <button
+            type="submit"
+            disabled={!input.trim() || state === 'loading' || state === 'streaming'}
+            className="rounded-md bg-sky-600 px-3 py-1.5 text-sm text-white hover:bg-sky-700 disabled:opacity-50"
+          >
+            Enviar
+          </button>
+        </form>
+      )}
     </div>
   )
 }
