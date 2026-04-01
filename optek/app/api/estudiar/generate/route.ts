@@ -3,7 +3,7 @@ import { z } from 'zod'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkPaidAccess, getOposicionFromProfile } from '@/lib/freemium'
 import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
-import { callAI } from '@/lib/ai/provider'
+import { callAIMini } from '@/lib/ai/provider'
 import { SYSTEM_ESTUDIAR, buildEstudiarPrompt } from '@/lib/estudiar/prompts'
 import { logger } from '@/lib/logger'
 
@@ -140,8 +140,8 @@ export async function POST(request: NextRequest) {
     titulo_capitulo: v.titulo,
   }))
 
-  // Truncate total content to ~40K chars (~10K tokens) to stay within Vercel 60s timeout
-  const MAX_CHARS = 40000
+  // Truncate total content to ~20K chars (~5K tokens) — mini model + Vercel 60s timeout
+  const MAX_CHARS = 20000
   let totalChars = articulosFiltrados.reduce((sum, a) => sum + a.texto_integro.length, 0)
   if (totalChars > MAX_CHARS) {
     const maxPerArticle = Math.floor(MAX_CHARS / articulosFiltrados.length)
@@ -165,7 +165,9 @@ export async function POST(request: NextRequest) {
 
   let contenido: string
   try {
-    contenido = await callAI(
+    // Use mini model (Haiku/gpt-4o-mini) — faster, stays within Vercel 60s timeout.
+    // Sonnet was timing out at 55s with 30+ articles of input.
+    contenido = await callAIMini(
       buildEstudiarPrompt(leyNombre, rango, titulo, articulosFiltrados.map(a => ({
         numero: a.articulo_numero,
         texto_integro: a.texto_integro,
