@@ -149,10 +149,15 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
     : ((test.temas as { titulo: string } | null)?.titulo ?? 'Test de práctica')
 
   const simulacroConSupuesto = esSimulacro && !!supuestoCaso
+
+  // Timer: for simulacros completos, sum minutos from secciones metadata
+  const seccionesMeta = (supuestoCaso as { secciones?: { minutos?: number }[] } | null)?.secciones
   const tiempoLimite = esSupuestoTest
     ? tiempoLimiteSupuesto
+    : esSimulacro && seccionesMeta && seccionesMeta.length > 0
+    ? seccionesMeta.reduce((sum, s) => sum + (s.minutos ?? 0), 0) * 60 || fullExamSeconds
     : simulacroConSupuesto
-    ? fullExamSeconds // Full exam time (e.g. 100 min for C1) — user distributes between parts
+    ? fullExamSeconds
     : esSimulacro
     ? Math.round((preguntas.length / fullExamQuestions) * fullExamSeconds)
     : undefined
