@@ -16,20 +16,28 @@ export function markdownToHtml(md: string): string {
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
+    // Code blocks (```...```) — before other transforms
+    .replace(/```[\w]*\n([\s\S]*?)```/g, '<pre class="bg-muted rounded-md p-3 text-xs my-3 overflow-x-auto"><code>$1</code></pre>')
+    // Horizontal rules (--- or ___)
+    .replace(/^-{3,}$/gm, '<hr class="my-4 border-border"/>')
+    .replace(/^_{3,}$/gm, '<hr class="my-4 border-border"/>')
     // Emoji section headers (lines like "📊 TITLE" or "⚠️ TITLE")
-    // Ranges: misc symbols (U+2600-27BF), dingbats (U+2700-27BF), supplemental symbols (U+1F300-1FAFF)
-    // \uFE0F = variation selector (emoji presentation), \u200D = ZWJ — both optional
     .replace(/^((?:[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2300}-\u{23FF}\u{FE00}-\u{FE0F}\u{200D}])+)\s+(.+)$/gmu,
       '<div class="flex items-center gap-2 mt-5 mb-2"><span class="text-lg">$1</span><span class="font-semibold text-sm">$2</span></div>')
-    // Headers (## and ###)
+    // Headers (# through ####)
+    .replace(/^#### (.+)$/gm, '<h5 class="font-semibold text-sm mt-3 mb-1">$1</h5>')
     .replace(/^### (.+)$/gm, '<h4 class="font-semibold text-sm mt-4 mb-1">$1</h4>')
     .replace(/^## (.+)$/gm, '<h3 class="font-semibold text-base mt-5 mb-2">$1</h3>')
+    .replace(/^# (.+)$/gm, '<h2 class="font-bold text-lg mt-6 mb-3">$1</h2>')
     // Bold **text**
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     // Italic *text*
     .replace(/(?<!\*)\*([^*]+?)\*(?!\*)/g, '<em>$1</em>')
     // Inline code `text`
     .replace(/`([^`]+?)`/g, '<code class="bg-muted px-1 py-0.5 rounded text-xs">$1</code>')
+    // Checkmarks (✓ and ✗)
+    .replace(/✓/g, '<span class="text-green-600">✓</span>')
+    .replace(/✗/g, '<span class="text-red-600">✗</span>')
     // Unordered list items (- item)
     .replace(/^- (.+)$/gm, '<li class="ml-4 list-disc">$1</li>')
     // Wrap consecutive <li> in <ul>
