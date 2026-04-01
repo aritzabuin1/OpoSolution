@@ -94,22 +94,18 @@ export async function POST(request: NextRequest) {
     maxArt = parseInt(rango.split('-')[1], 10) || 9
   }
 
-  // Fetch articles per number to avoid Supabase 1000-row default limit.
-  // Laws with many apartados (e.g. LPAC has 2015 rows) get silently truncated.
-  const allRows: { articulo_numero: string; texto_integro: string; titulo_capitulo: string | null }[] = []
-  for (let artNum = minArt; artNum <= maxArt; artNum++) {
-    const { data: rows } = await serviceSupabase
-      .from('legislacion')
-      .select('articulo_numero, texto_integro, titulo_capitulo')
-      .eq('ley_codigo', ley)
-      .eq('articulo_numero', String(artNum))
-      .limit(50)
-    if (rows) allRows.push(...rows)
-  }
+  // Fetch articles using IN filter (single query) to avoid N+1 and Supabase 1000-row limit.
+  const artNums = Array.from({ length: maxArt - minArt + 1 }, (_, i) => String(minArt + i))
+  const { data: allRows } = await serviceSupabase
+    .from('legislacion')
+    .select('articulo_numero, texto_integro, titulo_capitulo')
+    .eq('ley_codigo', ley)
+    .in('articulo_numero', artNums)
+    .limit(500) as { data: { articulo_numero: string; texto_integro: string; titulo_capitulo: string | null }[] | null }
 
   // Deduplicate: merge apartados per article into single text
   const byNum = new Map<string, { textos: string[]; titulo: string }>()
-  for (const a of allRows) {
+  for (const a of (allRows ?? [])) {
     const existing = byNum.get(a.articulo_numero)
     if (existing) {
       existing.textos.push(a.texto_integro)
@@ -123,8 +119,8 @@ export async function POST(request: NextRequest) {
     titulo_capitulo: v.titulo,
   }))
 
-  // Truncate total content to ~60K chars (~15K tokens) to stay within AI limits
-  const MAX_CHARS = 60000
+  // Truncate total content to ~40K chars (~10K tokens) to stay within Vercel 60s timeout
+  const MAX_CHARS = 40000
   let totalChars = articulosFiltrados.reduce((sum, a) => sum + a.texto_integro.length, 0)
   if (totalChars > MAX_CHARS) {
     const maxPerArticle = Math.floor(MAX_CHARS / articulosFiltrados.length)
