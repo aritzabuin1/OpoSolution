@@ -166,6 +166,166 @@ export const CITATION_ALIASES: Record<string, string> = {
   'rdl 8/2015': 'LGSS',
   'seguridad social': 'LGSS',
   'ley general de la seguridad social': 'LGSS',
+
+  // ─── Hacienda ─────────────────────────────────────────────────────────────
+  // LGT — Ley 58/2003, General Tributaria
+  'lgt': 'LGT',
+  'ley 58/2003': 'LGT',
+  'ley general tributaria': 'LGT',
+  'general tributaria': 'LGT',
+
+  // LIRPF — Ley 35/2006, IRPF
+  'lirpf': 'LIRPF',
+  'irpf': 'LIRPF',
+  'ley 35/2006': 'LIRPF',
+  'impuesto sobre la renta': 'LIRPF',
+
+  // LIS — Ley 27/2014, Impuesto de Sociedades
+  'lis': 'LIS',
+  'ley 27/2014': 'LIS',
+  'impuesto de sociedades': 'LIS',
+  'impuesto sobre sociedades': 'LIS',
+
+  // LIVA — Ley 37/1992, IVA
+  'liva': 'LIVA',
+  'ley 37/1992': 'LIVA',
+  'iva': 'LIVA',
+  'impuesto sobre el valor añadido': 'LIVA',
+  'impuesto sobre el valor anadido': 'LIVA',
+
+  // LIEE — Ley 38/1992, Impuestos Especiales
+  'liee': 'LIEE',
+  'ley 38/1992': 'LIEE',
+  'impuestos especiales': 'LIEE',
+
+  // RGR — RD 939/2005, Rgto. General de Recaudación
+  'rgr': 'RGR',
+  'rd 939/2005': 'RGR',
+  'reglamento general de recaudación': 'RGR',
+  'reglamento general de recaudacion': 'RGR',
+
+  // RGAGI — RD 1065/2007, Rgto. Gestión e Inspección
+  'rgagi': 'RGAGI',
+  'rd 1065/2007': 'RGAGI',
+  'reglamento de gestión e inspección': 'RGAGI',
+
+  // ─── Penitenciarias ───────────────────────────────────────────────────────
+  // CP — LO 10/1995, Código Penal
+  'cp': 'CP',
+  'código penal': 'CP',
+  'codigo penal': 'CP',
+  'lo 10/1995': 'CP',
+  'ley orgánica 10/1995': 'CP',
+
+  // LOGP — LO 1/1979, General Penitenciaria
+  'logp': 'LOGP',
+  'lo 1/1979': 'LOGP',
+  'ley general penitenciaria': 'LOGP',
+  'ley orgánica general penitenciaria': 'LOGP',
+
+  // RP — RD 190/1996, Reglamento Penitenciario
+  'rp': 'RP',
+  'rd 190/1996': 'RP',
+  'reglamento penitenciario': 'RP',
+
+  // RD 840/2011 — Medidas alternativas
+  'rd 840/2011': 'RD840',
+  'medidas alternativas': 'RD840',
+
+  // Voluntariado — Ley 45/2015
+  'ley 45/2015': 'VOLUNTARIADO',
+  'voluntariado': 'VOLUNTARIADO',
+  'ley del voluntariado': 'VOLUNTARIADO',
+
+  // Dependencia — Ley 39/2006
+  'ley 39/2006': 'DEPENDENCIA',
+  'dependencia': 'DEPENDENCIA',
+  'ley de dependencia': 'DEPENDENCIA',
+
+  // Incompatibilidades — Ley 53/1984
+  'ley 53/1984': 'INCOMPATIBILIDADES',
+  'incompatibilidades': 'INCOMPATIBILIDADES',
+
+  // LOEX — LO 4/2000 Extranjería
+  'loex': 'LOEX',
+  'lo 4/2000': 'LOEX',
+  'extranjería': 'LOEX',
+  'extranjeria': 'LOEX',
+  'ley de extranjería': 'LOEX',
+
+  // ─── Seguridad ────────────────────────────────────────────────────────────
+  // LO 2/1986 FCSE
+  'lo 2/1986': 'FCSE',
+  'fcse': 'FCSE',
+  'ley orgánica 2/1986': 'FCSE',
+  'fuerzas y cuerpos de seguridad': 'FCSE',
+  'fuerzas y cuerpos de seguridad del estado': 'FCSE',
+  'ley de fuerzas y cuerpos': 'FCSE',
+  'lofcse': 'FCSE',
+  'lo fcse': 'FCSE',
+
+  // LO 4/2015 Seguridad Ciudadana
+  'lo 4/2015': 'SEG_CIUDADANA',
+  'seguridad ciudadana': 'SEG_CIUDADANA',
+  'ley de seguridad ciudadana': 'SEG_CIUDADANA',
+  'ley orgánica 4/2015': 'SEG_CIUDADANA',
+  'lopsc': 'SEG_CIUDADANA',
+
+  // Ley 5/2014 Seguridad Privada
+  'ley 5/2014': 'SEG_PRIVADA',
+  'seguridad privada': 'SEG_PRIVADA',
+  'ley de seguridad privada': 'SEG_PRIVADA',
+
+  // RDL 6/2015 Seguridad Vial
+  'rdl 6/2015': 'LSV',
+  'lsv': 'LSV',
+  'seguridad vial': 'LSV',
+  'ley de seguridad vial': 'LSV',
+  'tráfico': 'LSV',
+  'trafico': 'LSV',
+
+  // LO 3/1979 Estatuto de Gernika
+  'lo 3/1979': 'ESTATUTO_GERNIKA',
+  'estatuto de gernika': 'ESTATUTO_GERNIKA',
+  'estatuto de autonomía del país vasco': 'ESTATUTO_GERNIKA',
+  'estatuto de autonomia del pais vasco': 'ESTATUTO_GERNIKA',
+  'estatuto vasco': 'ESTATUTO_GERNIKA',
+
+  // LO 9/1983 Derecho de Reunión
+  'lo 9/1983': 'DERECHO_REUNION',
+  'derecho de reunión': 'DERECHO_REUNION',
+  'derecho de reunion': 'DERECHO_REUNION',
+
+  // Ley 4/2015 Estatuto de la Víctima
+  'ley 4/2015': 'ESTATUTO_VICTIMA',
+  'estatuto de la víctima': 'ESTATUTO_VICTIMA',
+  'estatuto de la victima': 'ESTATUTO_VICTIMA',
+
+  // ─── Leyes vascas (Ertzaintza) ────────────────────────────────────────────
+  // DL 1/2023 Igualdad CAV
+  'dl 1/2023': 'DL_IGUALDAD_CAV',
+  'decreto legislativo 1/2023': 'DL_IGUALDAD_CAV',
+  'igualdad de mujeres y hombres cav': 'DL_IGUALDAD_CAV',
+  'ley de igualdad del país vasco': 'DL_IGUALDAD_CAV',
+  'ley de igualdad del pais vasco': 'DL_IGUALDAD_CAV',
+  'igualdad cav': 'DL_IGUALDAD_CAV',
+
+  // DL 1/2020 Ley Policía País Vasco
+  'dl 1/2020': 'DL_POLICIA_PV',
+  'decreto legislativo 1/2020': 'DL_POLICIA_PV',
+  'ley de policía del país vasco': 'DL_POLICIA_PV',
+  'ley de policia del pais vasco': 'DL_POLICIA_PV',
+  'policía del país vasco': 'DL_POLICIA_PV',
+
+  // Ley 15/2012 Seguridad Pública Euskadi
+  'ley 15/2012': 'LEY_SEG_EUSKADI',
+  'seguridad pública euskadi': 'LEY_SEG_EUSKADI',
+  'seguridad publica euskadi': 'LEY_SEG_EUSKADI',
+  'ley de seguridad pública de euskadi': 'LEY_SEG_EUSKADI',
+
+  // Ley 23/2014 Reconocimiento mutuo
+  'ley 23/2014': 'LEY23_2014',
+  'reconocimiento mutuo': 'LEY23_2014',
 }
 
 // Mapa compacto: "número/año" → ley_nombre en BD
@@ -191,6 +351,35 @@ const LEY_POR_NUMERO: Record<string, string> = {
   '1/2025': 'LO_SPJ',
   '38/2003': 'SUBVENCIONES',
   '8/2015': 'LGSS',
+  // Hacienda
+  '58/2003': 'LGT',
+  '35/2006': 'LIRPF',
+  '27/2014': 'LIS',
+  '37/1992': 'LIVA',
+  '38/1992': 'LIEE',
+  '939/2005': 'RGR',
+  '1065/2007': 'RGAGI',
+  // Penitenciarias
+  '10/1995': 'CP',
+  '1/1979': 'LOGP',
+  '190/1996': 'RP',
+  '840/2011': 'RD840',
+  '45/2015': 'VOLUNTARIADO',
+  '39/2006': 'DEPENDENCIA',
+  '53/1984': 'INCOMPATIBILIDADES',
+  '4/2000': 'LOEX',
+  '23/2014': 'LEY23_2014',
+  // Seguridad
+  '2/1986': 'FCSE',
+  '4/2015': 'SEG_CIUDADANA',
+  '5/2014': 'SEG_PRIVADA',
+  '6/2015': 'LSV',
+  '3/1979': 'ESTATUTO_GERNIKA',
+  '9/1983': 'DERECHO_REUNION',
+  // Leyes vascas
+  '1/2023': 'DL_IGUALDAD_CAV',
+  '1/2020': 'DL_POLICIA_PV',
+  '15/2012': 'LEY_SEG_EUSKADI',
 }
 
 // Regex para extraer patrón "X/YYYY" de cadenas como "Ley 39/2015", "LO 3/2018", "RDLeg 5/2015"
