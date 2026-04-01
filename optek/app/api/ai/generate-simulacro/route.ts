@@ -683,7 +683,7 @@ export async function POST(request: NextRequest) {
     .insert({
       user_id: user.id,
       tema_id: null,
-      examen_oficial_id: examen.id,
+      examen_oficial_id: examen?.id ?? null,
       tipo: 'simulacro',
       preguntas: preguntas as unknown as Json,
       supuesto_caso: supuestoCaso as unknown as Json,
@@ -711,8 +711,8 @@ export async function POST(request: NextRequest) {
     {
       userId: user.id,
       testId: testRow.id,
-      examenId: examen.id,
-      anio: examen.anio,
+      examenId: examen?.id ?? null,
+      anio: examen?.anio ?? null,
       preguntasCount: preguntas.length,
       incluirPsicotecnicos,
     },
@@ -724,7 +724,7 @@ export async function POST(request: NextRequest) {
       id: testRow.id,
       preguntas,
       temaId: null,
-      examenId: examen.id,
+      examenId: examen?.id ?? null,
       promptVersion,
       createdAt: testRow.created_at,
     },
