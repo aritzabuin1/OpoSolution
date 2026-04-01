@@ -94,18 +94,34 @@ export async function POST(request: NextRequest) {
     maxArt = parseInt(rango.split('-')[1], 10) || 9
   }
 
-  // Fetch articles using IN filter (single query) to avoid N+1 and Supabase 1000-row limit.
-  const artNums = Array.from({ length: maxArt - minArt + 1 }, (_, i) => String(minArt + i))
-  const { data: allRows } = await serviceSupabase
-    .from('legislacion')
-    .select('articulo_numero, texto_integro, titulo_capitulo')
-    .eq('ley_codigo', ley)
-    .in('articulo_numero', artNums)
-    .limit(500) as { data: { articulo_numero: string; texto_integro: string; titulo_capitulo: string | null }[] | null }
+  // Fetch ALL articles for this ley (paginated to bypass Supabase 1000-row default).
+  // Then filter by numeric range in JS. This is simpler and more reliable than IN queries.
+  const allRows: { articulo_numero: string; texto_integro: string; titulo_capitulo: string | null }[] = []
+  let offset = 0
+  const PAGE_SIZE = 1000
+  while (true) {
+    const { data: page } = await serviceSupabase
+      .from('legislacion')
+      .select('articulo_numero, texto_integro, titulo_capitulo')
+      .eq('ley_codigo', ley)
+      .range(offset, offset + PAGE_SIZE - 1)
+    if (!page || page.length === 0) break
+    allRows.push(...page)
+    if (page.length < PAGE_SIZE) break  // last page
+    offset += PAGE_SIZE
+  }
+
+  // Filter by numeric range
+  const inRange = allRows.filter(a => {
+    const num = parseInt(a.articulo_numero, 10)
+    return !isNaN(num) && num >= minArt && num <= maxArt
+  })
+
+  log.info({ ley, rango, totalFetched: allRows.length, inRange: inRange.length }, 'articles fetched')
 
   // Deduplicate: merge apartados per article into single text
   const byNum = new Map<string, { textos: string[]; titulo: string }>()
-  for (const a of (allRows ?? [])) {
+  for (const a of inRange) {
     const existing = byNum.get(a.articulo_numero)
     if (existing) {
       existing.textos.push(a.texto_integro)
