@@ -94,12 +94,9 @@ export default async function EstudiarPage() {
 
       {/* Progress bar */}
       <div className="rounded-lg border bg-card p-4">
-        <div className="flex items-center justify-between text-sm mb-2">
+        <div className="text-sm mb-2">
           <span className="text-muted-foreground">
-            {temasConMaterial} de {totalTemas} temas con material
-          </span>
-          <span className="text-muted-foreground">
-            {bloquesGenerados} de {totalBloques} resúmenes generados
+            {temasConMaterial} de {totalTemas} temas con material de estudio
           </span>
         </div>
         <div className="h-2 rounded-full bg-muted overflow-hidden">

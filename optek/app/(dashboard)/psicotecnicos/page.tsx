@@ -83,6 +83,15 @@ const CATEGORIAS_CORREOS = [
   { label: 'Interpretación de gráficos', pct: '35%' },
   { label: 'Series de figuras', pct: '30%' },
 ]
+const CATEGORIAS_SEGURIDAD = [
+  { label: 'Razonamiento espacial', pct: '20%' },
+  { label: 'Razonamiento numérico', pct: '15%' },
+  { label: 'Series numéricas', pct: '15%' },
+  { label: 'Comprensión verbal', pct: '15%' },
+  { label: 'Percepción y atención', pct: '15%' },
+  { label: 'Lógica deductiva', pct: '10%' },
+  { label: 'Organización', pct: '10%' },
+]
 
 export default function PsicotecnicosPage() {
   const router = useRouter()
@@ -93,9 +102,9 @@ export default function PsicotecnicosPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [showPaywall, setShowPaywall] = useState(false)
-  const [isCorreos, setIsCorreos] = useState(false)
+  const [opoType, setOpoType] = useState<'age' | 'correos' | 'seguridad'>('age')
 
-  // Detect if user is Correos to show correct categories
+  // Detect oposición type to show correct categories
   useEffect(() => {
     async function detectOpo() {
       const supabase = createClient()
@@ -103,13 +112,17 @@ export default function PsicotecnicosPage() {
       if (!user) return
       const { data: profile } = await supabase.from('profiles').select('oposicion_id').eq('id', user.id).single()
       if (!profile?.oposicion_id) return
-      const { data: opo } = await (supabase as ReturnType<typeof createClient>).from('oposiciones').select('slug').eq('id', profile.oposicion_id).single()
-      if ((opo as { slug?: string } | null)?.slug?.includes('correos')) setIsCorreos(true)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data: opo } = await (supabase as any).from('oposiciones').select('slug, rama').eq('id', profile.oposicion_id).single()
+      if (opo?.rama === 'seguridad') setOpoType('seguridad')
+      else if (opo?.slug?.includes('correos')) setOpoType('correos')
     }
     detectOpo().catch(() => {})
   }, [])
 
-  const categorias = isCorreos ? CATEGORIAS_CORREOS : CATEGORIAS_AGE
+  const categorias = opoType === 'seguridad' ? CATEGORIAS_SEGURIDAD
+    : opoType === 'correos' ? CATEGORIAS_CORREOS
+    : CATEGORIAS_AGE
 
   async function handleGenerar() {
     setLoading(true)

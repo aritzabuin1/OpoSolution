@@ -39,13 +39,18 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Check credit
-    const { data: hasCredit } = await serviceSupabase.rpc('use_personality_credit', { p_user_id: user.id })
-    if (!hasCredit) {
-      return NextResponse.json(
-        { error: 'Sin créditos disponibles.', code: 'NO_CREDITS' },
-        { status: 402 },
-      )
+    // Check credit (admin skips)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: adminCheck } = await (serviceSupabase as any).from('profiles').select('is_admin').eq('id', user.id).single()
+    const isAdmin = (adminCheck as { is_admin?: boolean } | null)?.is_admin === true
+    if (!isAdmin) {
+      const { data: hasCredit } = await serviceSupabase.rpc('use_personality_credit', { p_user_id: user.id })
+      if (!hasCredit) {
+        return NextResponse.json(
+          { error: 'Sin créditos disponibles.', code: 'NO_CREDITS' },
+          { status: 402 },
+        )
+      }
     }
 
     // Fetch latest completed profile session

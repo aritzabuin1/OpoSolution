@@ -10,6 +10,7 @@
 import { useState } from 'react'
 import { X, Send, Loader2 } from 'lucide-react'
 import { useAIAnalysis } from '@/lib/hooks/useAIAnalysis'
+import { markdownToHtml } from '@/lib/utils/simple-markdown'
 
 interface Props {
   ley: string
@@ -86,9 +87,12 @@ export function ProfundizarDrawer({ ley, defaultArticulo, onClose }: Props) {
         {/* Streaming response */}
         <div ref={textRef} className="flex-1 overflow-y-auto px-4 py-3">
           {text ? (
-            <div className="prose prose-sm dark:prose-invert max-w-none whitespace-pre-wrap">
-              {text}
-            </div>
+            <div
+              className="prose prose-sm dark:prose-invert max-w-none
+                prose-headings:text-base prose-headings:mt-4 prose-headings:mb-2
+                prose-p:my-1.5 prose-li:my-0.5 prose-ul:my-1"
+              dangerouslySetInnerHTML={{ __html: markdownToHtml(text) }}
+            />
           ) : state === 'idle' ? (
             <p className="text-sm text-muted-foreground text-center mt-8">
               Escribe tu pregunta y el número de artículo para obtener una explicación detallada.
