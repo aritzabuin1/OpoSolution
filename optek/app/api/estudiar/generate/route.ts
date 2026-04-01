@@ -94,22 +94,46 @@ export async function POST(request: NextRequest) {
     maxArt = parseInt(rango.split('-')[1], 10) || 9
   }
 
-  const { data: articulos, error: fetchErr } = await serviceSupabase
-    .from('legislacion')
-    .select('articulo_numero, texto_integro, titulo_capitulo')
-    .eq('ley_codigo', ley)
-    .order('articulo_numero')
-
-  if (fetchErr) {
-    log.error({ fetchErr, ley, rango }, 'Error fetching legislacion')
-    return NextResponse.json({ error: 'Error al buscar artículos.' }, { status: 500 })
+  // Fetch articles per number to avoid Supabase 1000-row default limit.
+  // Laws with many apartados (e.g. LPAC has 2015 rows) get silently truncated.
+  const allRows: { articulo_numero: string; texto_integro: string; titulo_capitulo: string | null }[] = []
+  for (let artNum = minArt; artNum <= maxArt; artNum++) {
+    const { data: rows } = await serviceSupabase
+      .from('legislacion')
+      .select('articulo_numero, texto_integro, titulo_capitulo')
+      .eq('ley_codigo', ley)
+      .eq('articulo_numero', String(artNum))
+      .limit(50)
+    if (rows) allRows.push(...rows)
   }
 
-  // Filter articles by numeric range
-  const articulosFiltrados = (articulos ?? []).filter(a => {
-    const num = parseInt(a.articulo_numero, 10)
-    return !isNaN(num) && num >= minArt && num <= maxArt
-  })
+  // Deduplicate: merge apartados per article into single text
+  const byNum = new Map<string, { textos: string[]; titulo: string }>()
+  for (const a of allRows) {
+    const existing = byNum.get(a.articulo_numero)
+    if (existing) {
+      existing.textos.push(a.texto_integro)
+    } else {
+      byNum.set(a.articulo_numero, { textos: [a.texto_integro], titulo: a.titulo_capitulo ?? '' })
+    }
+  }
+  const articulosFiltrados = [...byNum.entries()].map(([num, v]) => ({
+    articulo_numero: num,
+    texto_integro: v.textos.join('\n'),
+    titulo_capitulo: v.titulo,
+  }))
+
+  // Truncate total content to ~60K chars (~15K tokens) to stay within AI limits
+  const MAX_CHARS = 60000
+  let totalChars = articulosFiltrados.reduce((sum, a) => sum + a.texto_integro.length, 0)
+  if (totalChars > MAX_CHARS) {
+    const maxPerArticle = Math.floor(MAX_CHARS / articulosFiltrados.length)
+    for (const a of articulosFiltrados) {
+      a.texto_integro = a.texto_integro.slice(0, maxPerArticle)
+    }
+    totalChars = articulosFiltrados.reduce((sum, a) => sum + a.texto_integro.length, 0)
+    log.info({ ley, rango, originalChars: totalChars, truncatedTo: MAX_CHARS }, 'content truncated')
+  }
 
   if (articulosFiltrados.length === 0) {
     return NextResponse.json({ error: 'No se encontraron artículos para este bloque.' }, { status: 404 })

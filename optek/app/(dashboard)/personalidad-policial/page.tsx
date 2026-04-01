@@ -15,12 +15,21 @@ export default async function PersonalidadPage() {
 
   const serviceSupabase = await createServiceClient()
 
-  // Fetch user profile for oposición context
+  // Fetch user profile for oposición context (is_admin not in generated types — cast)
   const { data: profile } = await serviceSupabase
     .from('profiles')
     .select('oposicion_id, corrections_balance')
     .eq('id', user.id)
     .single()
+
+  // Check admin status separately (field added by migration, not in generated types)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: adminCheck } = await (serviceSupabase as any)
+    .from('profiles')
+    .select('is_admin')
+    .eq('id', user.id)
+    .single()
+  const isAdmin = (adminCheck as { is_admin?: boolean } | null)?.is_admin === true
 
   // Fetch oposición slug for cuerpo context
   let cuerpoSlug = 'policia-nacional'
@@ -61,7 +70,7 @@ export default async function PersonalidadPage() {
 
       <PersonalidadHub
         cuerpoSlug={cuerpoSlug}
-        credits={profile?.corrections_balance ?? 0}
+        credits={isAdmin ? 999 : (profile?.corrections_balance ?? 0)}
         sessions={sessions ?? []}
         hasProfile={!!latestProfile}
         latestProfile={latestProfile?.scores ?? null}
