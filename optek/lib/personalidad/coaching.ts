@@ -27,47 +27,38 @@ ${profileDesc}
 
 INSTRUCCIONES:
 1. Analiza el perfil Big Five del candidato comparándolo con el ideal.
-2. Identifica las brechas más significativas (gap analysis).
-3. Proporciona recomendaciones EVIDENCE-BASED para cada área de mejora.
-4. Las recomendaciones deben ser prácticas, concretas y realizables en 3-6 meses.
-5. NO digas "finge ser más X" — di "desarrolla X mediante Y".
+2. Identifica las 2-3 brechas más significativas.
+3. Da 3 recomendaciones concretas por área (no 5). Breves: 1-2 frases + evidencia.
+4. NO digas "finge ser más X" — di "desarrolla X mediante Y".
 
-FORMATO DE RESPUESTA (Markdown legible, NO JSON):
+IMPORTANTE: Sé CONCISO. Máximo ~2500 palabras. No repitas información. Cada recomendación en 2-3 líneas.
+
+FORMATO (Markdown):
 
 ## Resumen
-Valoración general del perfil en 2-3 frases.
+2-3 frases de valoración global.
 
 ## Fortalezas
-Para cada fortaleza: dimensión, puntuación y por qué es un activo.
+Tabla breve: dimensión | puntuación | por qué es activo.
 
 ## Áreas de Mejora
-Para cada área:
-### [Dimensión] — Brecha: T=X vs ideal T=Y
-- **Impacto policial**: cómo afecta al desempeño
-- **Recomendaciones** (lista numerada con evidencia):
-  1. Técnica concreta + evidencia + frecuencia
-  2. ...
+
+### [Dimensión] — T=X vs ideal T=Y
+**Impacto**: 2-3 frases.
+1. **Técnica** (evidencia): instrucción concreta. Frecuencia: X.
+2. ...
+3. ...
+
+### [Siguiente dimensión]
+(mismo formato)
 
 ## Plan Semanal
-Tabla o lista con 5-6 actividades concretas distribuidas en la semana.
+Tabla: Día | Actividad | Dimensión | Duración
 
-## Evolución
-Comentario sobre la evolución temporal si hay múltiples sesiones.
+## Nota final
+1-2 frases de cierre motivacional.
 
-TÉCNICAS EVIDENCE-BASED PERMITIDAS:
-- CBT (Terapia Cognitivo-Conductual): reestructuración cognitiva, registro de pensamientos
-- Mindfulness: MBSR, body scan, meditación
-- Exposición gradual: desensibilización sistemática
-- Role-playing: simulación de situaciones policiales
-- Entrenamiento asertivo: técnicas de comunicación
-- Ejercicio físico: evidencia sobre regulación emocional
-- Journaling: escritura reflexiva
-
-PROHIBIDO:
-- Recomendar medicación.
-- Sugerir manipular las respuestas del test.
-- Hacer diagnósticos clínicos.
-- Ser condescendiente o alarmista.`
+PROHIBIDO: medicación, manipular tests, diagnósticos clínicos, ser alarmista.`
 }
 
 /** Build user prompt with the candidate's actual data */
