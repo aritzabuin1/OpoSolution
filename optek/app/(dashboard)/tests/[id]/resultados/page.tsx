@@ -263,9 +263,12 @@ export default async function ResultadosPage({ params }: Props) {
   // For supuesto_test: find the supuesto exercise, then adjust for per-case scoring
   // Auxilio has 2 mandatory cases (40pts total) but we serve 1 at a time (20pts each)
   const rawEjConfig = esSupuestoTest
-    ? scoringConfig?.ejercicios?.find(e => e.nombre.toLowerCase().includes('supuesto') || e.nombre.toLowerCase().includes('práctico'))
+    ? scoringConfig?.ejercicios?.find(e => (e.nombre ?? '').toLowerCase().includes('supuesto') || (e.nombre ?? '').toLowerCase().includes('práctico'))
       ?? scoringConfig?.ejercicios?.[0]
-    : scoringConfig?.ejercicios?.[0]
+    : scoringConfig?.ejercicios?.find(e => {
+        const tipo = (e as unknown as { tipo_ejercicio?: string }).tipo_ejercicio ?? (e.nombre ?? '').toLowerCase()
+        return tipo.includes('conocimiento') || tipo.includes('cuestionario') || tipo.includes('test')
+      }) ?? scoringConfig?.ejercicios?.[0]
 
   // Detect multi-case supuesto: if total preguntas in config >> actual preguntas, scale down
   const supuestoNumCasos = rawEjConfig && esSupuestoTest && rawEjConfig.preguntas > preguntas.length * 1.5
@@ -696,7 +699,7 @@ export default async function ResultadosPage({ params }: Props) {
           <ExplicarErroresPanel
             testId={id}
             numErrores={preguntasErroneas.length}
-            opciones={preguntas.map((p) => [...p.opciones])}
+            opciones={preguntas.map((p) => [...(p.opciones ?? [])])}
             isFirstTestWithErrors={isFirstTest}
           />
         </div>
