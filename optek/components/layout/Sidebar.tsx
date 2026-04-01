@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { BarChart3, BookOpen, Brain, CalendarCheck, ClipboardList, FileText, LayoutDashboard, Layers, Lock, LogOut, Shield, Target, TrendingUp, Trophy, User } from 'lucide-react'
+import { BarChart3, BookOpen, Brain, CalendarCheck, ClipboardList, FileText, GraduationCap, LayoutDashboard, Layers, Lock, LogOut, Shield, Target, TrendingUp, Trophy, User } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { createClient } from '@/lib/supabase/client'
 import { NotificationBell } from '@/components/shared/NotificationBell'
@@ -27,6 +27,11 @@ interface NavItem {
 const navItems: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/tests', label: 'Tests', icon: ClipboardList, tourId: 'nav-tests' },
+  {
+    href: '/estudiar', label: 'Estudiar', icon: GraduationCap,
+    premium: true,
+    premiumDesc: 'Resúmenes didácticos de cada ley. Estudia antes de hacer tests, con mnemotécnicas y artículos clave.',
+  },
   { href: '/psicotecnicos', label: 'Psicotécnicos', icon: Brain, tourId: 'nav-psicotecnicos', featureKey: 'psicotecnicos' },
   { href: '/simulacros', label: 'Simulacros', icon: BookOpen, tourId: 'nav-simulacros' },
   {

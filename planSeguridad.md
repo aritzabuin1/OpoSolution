@@ -364,7 +364,7 @@ Estructura real del examen GC (140 min compartidos):
 - [x] Migration 069-072 aplicadas (2026-03-31), 073+075 aplicadas (2026-04-01)
 - [x] Migration 073 (fix tiempos scoring_config) — aplicada
 - [x] Migration 075 (GC 3 ejercicios + ortografía/inglés features) — aplicada 2026-04-01
-- [ ] 6 productos Stripe + env vars
+- [x] 6 productos Stripe + env vars en Vercel — aplicado 2026-04-01
 - [x] Legislacion ingestada + taggeada (11.396 arts, 3.935 taggeados)
 - [x] Conocimiento técnico generado + ingestado (33 temas, 196 secciones)
 - [x] Free bank 1.070 preguntas (107/124 temas, 86%) — generado 2026-04-01
@@ -372,7 +372,9 @@ Estructura real del examen GC (140 min compartidos):
 - [x] Landings publicadas (requisitos corregidos 2026-03-31: estaturas eliminadas, edades, euskera B2, plazas GC 3.118)
 - [x] Blog 7 posts
 - [x] Ortografía GC (210 items) + Inglés GC (160 items) — FASE 6.5-6.7 completadas
-- [x] `pnpm test` (792/792) + `tsc --noEmit` OK
+- [x] `pnpm test` (805/805) + `tsc --noEmit` OK
+- [x] Migration 076 (estudiar) aplicada — 2026-04-01
+- [x] Seed estudiar: 15 bloques pre-generados (CE×3, LPAC×2, TREBEP, LGT, CP, LOGP, FCSE×2, Seg.Ciudadana, Gernika, LECrim)
 
 ### 10.2 — PAUSA: `UPDATE oposiciones SET activa = true WHERE rama = 'seguridad'`
 ### 10.3 — Smoke test: registro -> test -> simulacro -> checkout (3 oposiciones)
@@ -482,7 +484,7 @@ FASE 6.5 (ortografía GC) ---+
 FASE 6.6 (inglés GC) -------+-- paralelo            ✅ DONE
 FASE 6.7 (simulacro 3 ej) --+
                              |
-FASE 7 (free bank) <--- depende de 3+5              ⏳ PENDIENTE (~$7)
+FASE 7 (free bank) <--- depende de 3+5              ✅ DONE (86%)
                              |
 FASE 8 (landings) ----------+
 FASE 9 (blog) --------------+-- paralelo            ✅ DONE
@@ -492,6 +494,8 @@ FASE 10 (activacion) PAUSA                          ⏳ PENDIENTE
 FASE 11 (personalidad) -----+                       ✅ DONE
                              |
 FASE 12 (Stripe) — Aritz crea productos + env vars  ⏳ PENDIENTE
+                             |
+FASE 13 (estudiar) ---------+                       ✅ DONE
                              |
                        PAUSA: activar todo
 ```
@@ -530,16 +534,16 @@ FASE 12 (Stripe) — Aritz crea productos + env vars  ⏳ PENDIENTE
 - Módulo Personalidad Policial completo (Big Five + SJT + Entrevista IA + Coaching + CAT)
 - **"Estudiar"** (resúmenes IA por ley, on-demand, coste $0 inicial, compartido entre oposiciones) — FASE 13
 
-**FASE 12 — Stripe (Aritz manual, antes de activar):**
-- [ ] Crear 6 productos Stripe:
-  1. Pack Ertzaintza — 79,99€ → `STRIPE_PRICE_PACK_ERTZAINTZA`
-  2. Pack Guardia Civil — 79,99€ → `STRIPE_PRICE_PACK_GUARDIA_CIVIL`
-  3. Pack Policía Nacional — 79,99€ → `STRIPE_PRICE_PACK_POLICIA_NACIONAL`
-  4. Pack Doble GC+PN — 129,99€ → `STRIPE_PRICE_PACK_DOBLE_GC_PN`
-  5. Pack Personalidad Policial — 49,99€ → `STRIPE_PRICE_PACK_PERSONALIDAD`
-  6. Pack Completo Seguridad — 119,99€ → `STRIPE_PRICE_PACK_COMPLETO_SEGURIDAD`
-- [ ] Añadir env vars en Vercel con los price IDs
-- [ ] Verificar checkout flow para cada producto
+**FASE 12 — Stripe ✅ COMPLETADA (2026-04-01):**
+- [x] 6 productos Stripe creados + env vars en Vercel:
+  1. Pack Ertzaintza — 79,99€ → `STRIPE_PRICE_PACK_ERTZAINTZA` ✅
+  2. Pack Guardia Civil — 79,99€ → `STRIPE_PRICE_PACK_GUARDIA_CIVIL` ✅
+  3. Pack Policía Nacional — 79,99€ → `STRIPE_PRICE_PACK_POLICIA_NACIONAL` ✅
+  4. Pack Doble GC+PN — 129,99€ → `STRIPE_PRICE_PACK_DOBLE_GC_PN` ✅
+  5. Pack Personalidad Policial — 49,99€ → `STRIPE_PRICE_PACK_PERSONALIDAD` ✅
+  6. Pack Completo Seguridad — 119,99€ → `STRIPE_PRICE_PACK_COMPLETO_SEGURIDAD` ✅
+- [x] Env vars en Vercel ✅
+- [ ] Verificar checkout flow para cada producto (smoke test)
 
 **Post-lanzamiento:**
 - BOPV watcher
@@ -547,7 +551,7 @@ FASE 12 (Stripe) — Aritz crea productos + env vars  ⏳ PENDIENTE
 
 ---
 
-## Progreso global (actualizado 2026-04-01)
+## Progreso global (actualizado 2026-04-01, FASE 13 completada)
 
 | FASE | Estado | Notas |
 |------|--------|-------|
@@ -564,10 +568,10 @@ FASE 12 (Stripe) — Aritz crea productos + env vars  ⏳ PENDIENTE
 | 7 — Free question bank | ✅ COMPLETADA (86%) | 107/124 temas generados (1.070 preguntas). 17 fallan por citas BOPV. Cobertura suficiente para lanzar |
 | 8 — Landing pages + SEO | ✅ COMPLETADA | 5 landings + main card + precios tab + sitemap + footer + llms.txt. Requisitos corregidos (estaturas, edades, euskera, plazas) |
 | 9 — Blog SEO | ✅ COMPLETADA | 7 posts. Blog GC corregido (estatura eliminada) |
-| 10 — Activacion | ⏳ PENDIENTE | Migrations 073+075 ✅ aplicadas. Free bank ✅ (107/124). Falta: Stripe + activar |
+| 10 — Activacion | ⏳ CASI LISTO | Migrations 073+075+076 ✅. Free bank ✅. Stripe ✅. Falta: `SET activa = true` + smoke test |
 | 11 — Personalidad Policial | ✅ COMPLETADA | Migration 071 aplicada + 5 libs + 4 endpoints + UI + 63 tests |
-| 12 — Stripe | ⏳ PENDIENTE | Aritz crea 6 productos + env vars |
-| 13 — "Estudiar" | ⏳ PENDIENTE | Resúmenes IA on-demand por ley, premium, compartido cross-oposición, coste $0 inicial |
+| 12 — Stripe | ✅ COMPLETADA | 6 productos creados + env vars en Vercel (2026-04-01) |
+| 13 — "Estudiar" | ✅ COMPLETADA | Migration 076 + agrupaciones (30 leyes) + resolver + prompts + 2 endpoints (generate + profundizar/stream) + UI (/estudiar page + EstudiarTemaList + BloqueEstudioCard + ProfundizarDrawer) + Sidebar/Navbar + seed script + 13 tests → 805/805 total. Pendiente: Aritz aplica migration 076 + ejecuta seed-estudiar.ts |
 
 ---
 
@@ -718,13 +722,13 @@ CREATE POLICY "select_authenticated" ON resumen_legislacion FOR SELECT TO authen
 
 ---
 
-### 13.1 — Migration BD
-- **Archivo**: `supabase/migrations/20260401_074_estudiar.sql`
+### 13.1 — Migration BD ✅
+- **Archivo**: `supabase/migrations/20260401_076_estudiar.sql`
 - Tabla `resumen_legislacion` como arriba
 - Index en `ley_nombre` para lookup rápido
 - RLS: SELECT para authenticated, INSERT/UPDATE solo service role
 
-### 13.2 — Agrupaciones estáticas (`lib/estudiar/agrupaciones.ts`)
+### 13.2 — Agrupaciones estáticas (`lib/estudiar/agrupaciones.ts`) ✅
 
 Mapa estático que define cómo agrupar artículos de cada ley en bloques lógicos de estudio.
 Se deriva de los títulos/capítulos de la propia ley (ya disponible en `legislacion.titulo_capitulo`).
@@ -772,7 +776,7 @@ export const AGRUPACIONES: Record<string, BloqueEstudio[]> = {
 **Estimación total**: ~30-40 leyes × 5-10 bloques = ~200-300 bloques en toda la plataforma.
 **Generación**: on-demand. Solo se genera un bloque cuando un premium lo pide por primera vez.
 
-### 13.3 — Resolver bloques por tema (`lib/estudiar/resolver.ts`)
+### 13.3 — Resolver bloques por tema (`lib/estudiar/resolver.ts`) ✅
 
 Función que dado un `temaId`, devuelve los bloques de estudio disponibles con su estado (generado o no).
 
@@ -799,7 +803,7 @@ export async function resolverBloquesPorTema(
 3. `SELECT ley_nombre, rango, contenido FROM resumen_legislacion WHERE ley_nombre IN (...)` → qué ya está generado
 4. Merge y retornar array ordenado por ley + rango
 
-### 13.4 — Prompt de generación (`lib/estudiar/prompts.ts`)
+### 13.4 — Prompt de generación (`lib/estudiar/prompts.ts`) ✅
 
 ```typescript
 export const SYSTEM_ESTUDIAR = `Eres un profesor de oposiciones experto en legislación española.
@@ -835,7 +839,7 @@ Genera el resumen didáctico siguiendo la estructura indicada.`
 }
 ```
 
-### 13.5 — Endpoint generación on-demand (`POST /api/estudiar/generate`)
+### 13.5 — Endpoint generación on-demand (`POST /api/estudiar/generate`) ✅
 
 - **Archivo**: `app/api/estudiar/generate/route.ts`
 - **Input**: `{ ley: string, rango: string }` (validado con Zod)
@@ -856,7 +860,7 @@ Genera el resumen didáctico siguiendo la estructura indicada.`
 - **Concurrencia**: `INSERT ... ON CONFLICT DO NOTHING` + retry SELECT si conflict (evita generar 2x)
 - **Rate limit**: 5 generaciones/día por usuario (anti-abuse, no debería llegar nunca)
 
-### 13.6 — Endpoint "Profundizar" (`POST /api/estudiar/profundizar/stream`)
+### 13.6 — Endpoint "Profundizar" (`POST /api/estudiar/profundizar/stream`) ✅
 
 - **Archivo**: `app/api/estudiar/profundizar/stream/route.ts`
 - **Input**: `{ ley: string, articuloNumero: string, pregunta: string }` (Zod)
@@ -886,7 +890,7 @@ RESPONDE en este orden:
 Sé claro, directo y orientado al examen.`
 ```
 
-### 13.7 — UI: Página `/estudiar` (Server Component + Client islands)
+### 13.7 — UI: Página `/estudiar` (Server Component + Client islands) ✅
 
 **Archivos**:
 - `app/(dashboard)/estudiar/page.tsx` — Server Component principal
@@ -920,7 +924,7 @@ Sé claro, directo y orientado al examen.`
 
 **Sidebar/Navbar**: `BookOpen` icon + label "Estudiar" + badge `PRO`
 
-### 13.8 — Free tier gating
+### 13.8 — Free tier gating ✅
 
 - **Temas gratuitos**: Los mismos que ya tienen tests gratuitos (definidos por oposición)
   - AGE: temas con `numero IN (1, 11, 17)` (FREE_TEMA_NUMEROS en `lib/freemium.ts`)
@@ -934,7 +938,7 @@ Sé claro, directo y orientado al examen.`
   Resto: blurred con `PremiumFeaturePreview` + CTA.
 - **Profundizar**: Siempre premium (consume 1 crédito IA). Free users ven el icono pero al click → paywall.
 
-### 13.9 — Seed script (`execution/seed-estudiar.ts`)
+### 13.9 — Seed script (`execution/seed-estudiar.ts`) ✅
 
 Script one-time para pre-generar los 2 bloques gratuitos:
 ```bash
@@ -943,7 +947,7 @@ pnpm tsx execution/seed-estudiar.ts
 # Coste: ~$0.10
 ```
 
-### 13.10 — Conocimiento técnico (temas sin legislación)
+### 13.10 — Conocimiento técnico (temas sin legislación) ✅
 
 Algunos temas no tienen artículos en `legislacion` sino en `conocimiento_tecnico` (ej: Bloque II ofimática, temas de geografía vasca, psicología, etc.).
 
@@ -955,7 +959,7 @@ Algunos temas no tienen artículos en `legislacion` sino en `conocimiento_tecnic
 
 Esto es gratis porque `conocimiento_tecnico` ya está generado e ingestado.
 
-### 13.11 — Tests unitarios
+### 13.11 — Tests unitarios ✅ (13 tests → 805/805 total)
 
 | Test | Qué verifica |
 |------|-------------|
