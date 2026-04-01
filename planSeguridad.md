@@ -577,20 +577,24 @@ FASE 13 (estudiar) ---------+                       ✅ DONE
 - Citation aliases: +70 aliases para seguridad/hacienda/penitenciarias (DL 1/2023, FCSE, CP, LGT, etc.)
 - Migration 077: features `psicotecnicos+cazatrampas+personalidad=true` para seguridad
 - Migration 078: scoring_config completo (TODOS los ejercicios reales, incluyendo fisicas/entrevista/personalidad)
-- Simulacro rewrite: data-driven por scoring_config, genera todas las secciones simulables automáticamente
+- Migration 079: PN psicotécnicos → 50 preguntas (era undefined)
+- Simulacro rewrite: data-driven por scoring_config, genera TODAS las secciones simulables (739→310 líneas)
 - Simulacro bank fallback: si 0 exámenes oficiales → usa free_question_bank (Ertzaintza funciona)
-- Simulacro `examen?.id ?? null`: null-safe para bank fallback
-- Timer: suma minutos de secciones, no requiere examen_oficial_id
-- `esSimulacro`: ya no requiere examen_oficial_id (bank fallback)
+- Simulacro null-safe: `examen?.id ?? null`, `esSimulacro` sin requerir examen_oficial_id
+- Timer: suma minutos de secciones desde supuesto_caso.secciones[]
 - TestRunner: section headers automáticos desde pregunta.seccion
 - Psicotécnicos: CATEGORIAS_SEGURIDAD en UI + distribución por oposición en simulacro
-- Personalidad: admin 999 créditos, is_admin salta credit check en 3 endpoints
-- Personalidad: entrevista Sonnet 2 créditos, timer 30 min, history[], coaching maxTokens 12000
+- Personalidad: admin 999 créditos, is_admin salta credit check en SJT/interview/coaching
+- Personalidad: entrevista Sonnet 2 créditos, timer 30 min, history[], sesion_id header
+- Personalidad: coaching Sonnet maxTokens 12000 + prompt conciso (~2500 palabras)
 - Personalidad: CTA premium centrado con "Pack Personalidad 49,99€" + "Recarga 9,99€"
-- Estudiar: callAIMini (timeout fix), paginated fetch, modal paywall con CTA
-- Precios: acepta `?rama=seguridad` → abre tab correcto
-- Resultados: null-safe opciones + tipo_ejercicio para scoring
+- Estudiar: callAIMini (timeout fix), paginated fetch, admin salta rate limit
+- Estudiar: modal paywall centrado (no toast) con CTA directo a /precios?rama=X
+- Precios: acepta `?rama=seguridad` via useSearchParams + Suspense boundary
+- Resultados: null-safe opciones + tipo_ejercicio para scoring ejConfig
 - 50 temas conocimiento_tecnico generados para cubrir 124/124 temas
+- Pack Completo Seguridad: checkout verifica oposición seguridad + webhook resuelve del perfil
+- /nueva-oposicion skill actualizado con 36 gotchas de 12 oposiciones
 
 ---
 
