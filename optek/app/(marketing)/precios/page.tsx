@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -431,7 +432,10 @@ const FAQS = [
 // ─── Page ──────────────────────────────────────────────────────────────────────
 
 export default function PreciosPage() {
-  const [selectedRama, setSelectedRama] = useState<Rama>('age')
+  const searchParams = useSearchParams()
+  const ramaParam = searchParams.get('rama') as Rama | null
+  const initialRama = ramaParam && RAMAS.some(r => r.id === ramaParam) ? ramaParam : 'age'
+  const [selectedRama, setSelectedRama] = useState<Rama>(initialRama)
   const plans = PLANS[selectedRama]
   const rama = RAMAS.find(r => r.id === selectedRama)!
 

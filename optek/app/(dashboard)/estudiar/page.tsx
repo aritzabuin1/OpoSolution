@@ -35,10 +35,11 @@ export default async function EstudiarPage() {
   // Fetch oposicion name
   const { data: opoData } = await serviceSupabase
     .from('oposiciones')
-    .select('nombre')
+    .select('nombre, rama')
     .eq('id', oposicionId)
     .single()
   const oposicionNombre = (opoData as { nombre?: string } | null)?.nombre ?? 'tu oposición'
+  const oposicionRama = (opoData as { rama?: string } | null)?.rama ?? 'age'
 
   // Fetch all temas for this oposicion
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -143,6 +144,7 @@ export default async function EstudiarPage() {
           locked: !isPaid && i >= FREE_TEMAS_COUNT,
         }))}
         isPremium={isPaid}
+        rama={oposicionRama}
       />
     </div>
   )

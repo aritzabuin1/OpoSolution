@@ -34,9 +34,10 @@ interface TemaData {
 interface Props {
   temas: TemaData[]
   isPremium: boolean
+  rama?: string
 }
 
-export function EstudiarTemaList({ temas, isPremium }: Props) {
+export function EstudiarTemaList({ temas, isPremium, rama = 'age' }: Props) {
   const [expandedTema, setExpandedTema] = useState<string | null>(null)
 
   // Group by bloque
@@ -112,6 +113,7 @@ export function EstudiarTemaList({ temas, isPremium }: Props) {
                           bloque={bloque}
                           temaId={tema.id}
                           isPremium={isPremium}
+                          rama={rama}
                         />
                       ))}
 

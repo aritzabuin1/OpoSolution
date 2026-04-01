@@ -28,9 +28,10 @@ interface Props {
   bloque: BloqueData
   temaId: string
   isPremium: boolean
+  rama?: string
 }
 
-export function BloqueEstudioCard({ bloque, temaId, isPremium }: Props) {
+export function BloqueEstudioCard({ bloque, temaId, isPremium, rama = 'age' }: Props) {
   const [expanded, setExpanded] = useState(false)
   const [contenido, setContenido] = useState(bloque.contenido ?? '')
   const [generado, setGenerado] = useState(bloque.generado)
@@ -182,7 +183,7 @@ export function BloqueEstudioCard({ bloque, temaId, isPremium }: Props) {
             </p>
             <div className="space-y-2 pt-2">
               <a
-                href="/precios"
+                href={`/precios?rama=${rama}`}
                 className="block w-full rounded-lg bg-primary py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
               >
                 Ver planes y precios

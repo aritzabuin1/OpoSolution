@@ -49,13 +49,13 @@ export function PersonalidadHub({ cuerpoSlug, credits, sessions, hasProfile, lat
       </p>
       <div className="flex items-center justify-center gap-3 pt-2">
         <a
-          href="/precios"
+          href="/precios?rama=seguridad"
           className="rounded-lg bg-amber-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-amber-600 transition-colors"
         >
           Pack Personalidad — 49,99€
         </a>
         <a
-          href="/precios"
+          href="/precios?rama=seguridad"
           className="rounded-lg border border-amber-300 px-4 py-2 text-sm font-medium text-amber-700 hover:bg-amber-100 transition-colors"
         >
           Recarga 10 créditos — 9,99€
@@ -81,7 +81,7 @@ export function PersonalidadHub({ cuerpoSlug, credits, sessions, hasProfile, lat
           <span className="text-sm text-amber-700 dark:text-amber-300">
             <strong>0</strong> créditos IA — La evaluación es gratuita. Juicio situacional, entrevista y coaching requieren créditos.
           </span>
-          <a href="/precios" className="text-xs font-medium text-amber-600 hover:text-amber-800 shrink-0 ml-2">
+          <a href="/precios?rama=seguridad" className="text-xs font-medium text-amber-600 hover:text-amber-800 shrink-0 ml-2">
             Comprar →
           </a>
         </div>
