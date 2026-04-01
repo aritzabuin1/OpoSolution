@@ -151,7 +151,16 @@ export async function POST(request: NextRequest) {
   const secciones: SeccionMeta[] = []
 
   for (const ej of simulables) {
-    const tipo = ej.tipo_ejercicio
+    // Resolve tipo_ejercicio — legacy oposiciones use nombre instead of tipo_ejercicio
+    let tipo = ej.tipo_ejercicio
+    if (!tipo) {
+      const nombre = (ej.nombre ?? '').toLowerCase()
+      if (nombre.includes('test') || nombre.includes('cuestionario') || nombre.includes('conocimiento')) tipo = 'conocimientos'
+      else if (nombre.includes('supuesto') || nombre.includes('caso') || nombre.includes('práctico') || nombre.includes('practico')) tipo = 'conocimientos' // supuestos use same question bank
+      else if (nombre.includes('ofimática') || nombre.includes('informática') || nombre.includes('ofimatica')) tipo = 'conocimientos'
+      else if (nombre.includes('desarrollo') || nombre.includes('escrito')) continue // skip essay-type exercises
+      else tipo = 'conocimientos' // default fallback
+    }
     let sectionQuestions: Pregunta[] = []
 
     switch (tipo) {
