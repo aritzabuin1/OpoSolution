@@ -186,11 +186,46 @@ export async function POST(request: NextRequest) {
       .order('anio', { ascending: false })
 
     if (!todosExamenes || todosExamenes.length === 0) {
-      return NextResponse.json(
-        { error: 'No hay convocatorias disponibles todavía.' },
-        { status: 404 }
-      )
-    }
+      // Fallback: use question_bank + free_question_bank when no official exams exist
+      log.info({ oposicionId, modo }, 'No official exams — falling back to question bank')
+      const { data: bankRows } = await (serviceSupabase as any)
+        .from('free_question_bank')
+        .select('preguntas, tema_id, tema_numero')
+        .eq('oposicion_id', oposicionId)
+
+      if (!bankRows || bankRows.length === 0) {
+        return NextResponse.json(
+          { error: 'No hay preguntas disponibles todavía para esta oposición.' },
+          { status: 404 }
+        )
+      }
+
+      // Flatten bank questions
+      const allBankQs: PreguntaRow[] = []
+      for (const row of bankRows) {
+        const preguntas = (typeof row.preguntas === 'string' ? JSON.parse(row.preguntas) : row.preguntas) as Array<{ enunciado: string; opciones: string[]; correcta: number }>
+        for (const [idx, p] of preguntas.entries()) {
+          allBankQs.push({
+            id: `bank-${row.tema_id}-${idx}`,
+            numero: idx + 1,
+            enunciado: p.enunciado,
+            opciones: p.opciones,
+            correcta: p.correcta,
+            dificultad: 'media',
+            tema_id: row.tema_id,
+          })
+        }
+      }
+
+      // Shuffle and take numPreguntas
+      for (let i = allBankQs.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[allBankQs[i], allBankQs[j]] = [allBankQs[j], allBankQs[i]]
+      }
+      preguntasData = allBankQs.slice(0, numPreguntas)
+
+      log.info({ bankTotal: allBankQs.length, selected: preguntasData.length }, 'Bank fallback simulacro')
+    } else {
 
     // Cargar preguntas de todos los exámenes en paralelo (con tema_id para §2.6.3)
     const pregResultados = await Promise.all(
@@ -220,6 +255,7 @@ export async function POST(request: NextRequest) {
       { examenes: todosExamenes.length, totalPreguntas: todasPreguntas.length },
       '[generate-simulacro] modo mixto — combinando todas las convocatorias'
     )
+    } // end else (has official exams)
   } else {
     // Modo por año — comportamiento original
     let examenRow: ExamenRow | null = null

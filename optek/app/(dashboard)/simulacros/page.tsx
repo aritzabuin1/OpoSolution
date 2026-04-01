@@ -8,7 +8,7 @@
  */
 
 import { redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createServiceClient } from '@/lib/supabase/server'
 
 import Link from 'next/link'
 import { DEFAULT_OPOSICION_ID } from '@/lib/freemium'
@@ -71,9 +71,10 @@ export default async function SimulacrosPage() {
   }
   const freeSimRemaining = Math.max(0, 3 - freeSimUsed)
 
-  // Cargar examenes SOLO de la oposición del usuario
+  // Cargar examenes SOLO de la oposición del usuario (service client para bypass RLS cache issues)
+  const serviceSupabase = await createServiceClient()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const examenesTable = (supabase as any).from('examenes_oficiales')
+  const examenesTable = (serviceSupabase as any).from('examenes_oficiales')
   const { data: examenes } = await examenesTable
     .select('id, anio, convocatoria, fuente_url, activo')
     .eq('activo', true)
@@ -93,7 +94,7 @@ export default async function SimulacrosPage() {
       examenesArr.map(async (ex) => {
         // Cast: preguntas_oficiales no está en types/database.ts hasta migration 011
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const pregTable = (supabase as any).from('preguntas_oficiales')
+        const pregTable = (serviceSupabase as any).from('preguntas_oficiales')
         const { count } = await pregTable
           .select('id', { count: 'exact', head: true })
           .eq('examen_id', ex.id)
@@ -111,7 +112,22 @@ export default async function SimulacrosPage() {
   }
 
   const hayExamenes = examenesConCount.length > 0
-  const totalPreguntasCombinadas = examenesConCount.reduce((sum, ex) => sum + ex.numPreguntas, 0)
+  let totalPreguntasCombinadas = examenesConCount.reduce((sum, ex) => sum + ex.numPreguntas, 0)
+
+  // If no official exams, count free_question_bank as fallback for simulacro mixto
+  let bankFallbackCount = 0
+  if (!hayExamenes) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: bankRows } = await (serviceSupabase as any)
+      .from('free_question_bank')
+      .select('preguntas')
+      .eq('oposicion_id', userOposicionId)
+    for (const row of bankRows ?? []) {
+      const pregs = typeof row.preguntas === 'string' ? JSON.parse(row.preguntas) : row.preguntas
+      bankFallbackCount += Array.isArray(pregs) ? pregs.length : 0
+    }
+    totalPreguntasCombinadas = bankFallbackCount
+  }
 
   // Check if user's oposición includes supuesto práctico
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
