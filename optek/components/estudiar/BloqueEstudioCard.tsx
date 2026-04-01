@@ -57,8 +57,12 @@ export function BloqueEstudioCard({ bloque, temaId, isPremium }: Props) {
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
         if (res.status === 402) {
-          toast.error('Función premium', {
+          toast('Función premium', {
             description: 'Desbloquea el pack para generar resúmenes de estudio.',
+            action: {
+              label: 'Ver planes',
+              onClick: () => window.location.href = '/precios',
+            },
           })
         } else if (res.status === 429) {
           toast.error('Límite alcanzado', {
@@ -101,8 +105,11 @@ export function BloqueEstudioCard({ bloque, temaId, isPremium }: Props) {
             } else if (isPremium) {
               handleGenerate()
             } else {
-              toast.error('Función premium', {
-                description: 'Desbloquea el pack para generar resúmenes de estudio.',
+              toast('Desbloquea el pack para acceder a todo el material', {
+                action: {
+                  label: 'Ver planes',
+                  onClick: () => window.location.href = '/precios',
+                },
               })
             }
           }}
