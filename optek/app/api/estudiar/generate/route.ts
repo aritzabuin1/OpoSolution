@@ -74,13 +74,18 @@ export async function POST(request: NextRequest) {
     }, { status: 402 })
   }
 
-  // Rate limit: 5 generations/day per user (anti-abuse)
-  const rl = await checkRateLimit(user.id, 'estudiar-generate', 5, '1 d')
-  if (!rl.success) {
-    return NextResponse.json(
-      { error: 'Has alcanzado el límite de generaciones por hoy. Vuelve mañana.' },
-      { status: 429, headers: { 'Retry-After': buildRetryAfterHeader(rl.resetAt) } }
-    )
+  // Rate limit: 20 generations/day per user (anti-abuse). Admin skips.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: adminData } = await (serviceSupabase as any).from('profiles').select('is_admin').eq('id', user.id).single()
+  const isAdmin = (adminData as { is_admin?: boolean } | null)?.is_admin === true
+  if (!isAdmin) {
+    const rl = await checkRateLimit(user.id, 'estudiar-generate', 20, '1 d')
+    if (!rl.success) {
+      return NextResponse.json(
+        { error: 'Has alcanzado el límite de generaciones por hoy. Vuelve mañana.' },
+        { status: 429, headers: { 'Retry-After': buildRetryAfterHeader(rl.resetAt) } }
+      )
+    }
   }
 
   // Fetch articles for this ley + rango
