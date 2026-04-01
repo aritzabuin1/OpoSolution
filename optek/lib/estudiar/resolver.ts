@@ -153,19 +153,20 @@ export async function resolverBloquesPorTema(
   }
 
   // 5. Also check conocimiento_tecnico for non-legislative content
+  // Column is tema_id (singular UUID), not tema_ids (array)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: ctRows } = await (supabase as any)
     .from('conocimiento_tecnico')
-    .select('id, titulo, contenido')
-    .contains('tema_ids', [temaId])
+    .select('id, titulo_seccion, contenido')
+    .eq('tema_id', temaId)
 
   if (ctRows && ctRows.length > 0) {
     for (const ct of ctRows) {
       resultado.push({
         ley: 'conocimiento_tecnico',
         rango: ct.id,
-        titulo: ct.titulo,
-        tituloCompleto: ct.titulo,
+        titulo: ct.titulo_seccion,
+        tituloCompleto: ct.titulo_seccion,
         generado: true,  // conocimiento_tecnico already has content
         contenido: ct.contenido,
         articulosCount: 1,
