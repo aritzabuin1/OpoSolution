@@ -16361,4 +16361,383 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Cómo prepara OpoRuta la prueba de personalidad policial?', answer: 'OpoRuta incluye un módulo exclusivo de personalidad policial con IA que cubre: tests Big Five con análisis de perfil, entrenamiento en lie scales, escenarios SJT (Situational Judgment Test) con retroalimentación detallada y preparación de entrevista. Es la primera plataforma en España con esta funcionalidad. El Pack Personalidad cuesta 49,99€ en pago único.' },
     ],
   },
+
+  // ─── Post 119 — Mejores destinos Auxiliar Administrativo: ranking real ───────
+  {
+    slug: 'mejores-destinos-auxiliar-administrativo-estado-ranking',
+    title: 'Mejores destinos Auxiliar Administrativo 2026: ranking por sueldo y ciudad',
+    description:
+      '¿Dónde pagan más como auxiliar administrativo? Ranking de los 10 mejores ministerios por complemento específico, ciudades con más vacantes, teletrabajo y calidad de vida. Datos de la última convocatoria.',
+    date: '2026-04-06',
+    keywords: [
+      'mejores destinos auxiliar administrativo estado',
+      'destinos auxiliar administrativo',
+      'destinos oposiciones AGE',
+      'donde trabajar auxiliar administrativo estado',
+      'ministerios auxiliar administrativo sueldo',
+      'elegir destino auxiliar administrativo',
+      'destinos auxiliar administrativo del estado',
+    ],
+    content: `
+<h2>¿Dónde pagan más como Auxiliar Administrativo del Estado?</h2>
+<p>
+  Cuando apruebas la oposición de Auxiliar Administrativo del Estado (C2), eliges destino <strong>por orden de nota</strong>.
+  Pero no todos los puestos pagan igual: el <strong>complemento específico</strong> varía hasta 400€/mes
+  entre ministerios. Elegir bien puede suponer miles de euros al año de diferencia.
+</p>
+<p>
+  Este ranking se basa en <strong>datos reales de la RPT</strong> (Relación de Puestos de Trabajo)
+  y la experiencia de opositores de convocatorias anteriores.
+</p>
+
+<h2>Ranking: Top 10 destinos por complemento específico (C2)</h2>
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Organismo / Ministerio</th>
+      <th>Complemento específico (€/mes aprox.)</th>
+      <th>Teletrabajo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>Agencia Tributaria (AEAT)</td><td>~750€</td><td>Sí (2 días/semana)</td></tr>
+    <tr><td>2</td><td>Seguridad Social (TGSS/INSS)</td><td>~700€</td><td>Parcial</td></tr>
+    <tr><td>3</td><td>Ministerio de Defensa</td><td>~680€</td><td>Limitado</td></tr>
+    <tr><td>4</td><td>Ministerio de Justicia</td><td>~650€</td><td>Parcial</td></tr>
+    <tr><td>5</td><td>Ministerio de Hacienda</td><td>~640€</td><td>Sí</td></tr>
+    <tr><td>6</td><td>Ministerio del Interior</td><td>~630€</td><td>Limitado</td></tr>
+    <tr><td>7</td><td>Ministerio de Transportes</td><td>~600€</td><td>Sí</td></tr>
+    <tr><td>8</td><td>Delegaciones del Gobierno</td><td>~580€</td><td>Parcial</td></tr>
+    <tr><td>9</td><td>Ministerio de Educación</td><td>~560€</td><td>Parcial</td></tr>
+    <tr><td>10</td><td>Ministerio de Trabajo</td><td>~550€</td><td>Sí</td></tr>
+  </tbody>
+</table>
+<p><strong>Nota:</strong> Los complementos específicos varían según puesto concreto dentro de cada ministerio. Los valores son orientativos basados en la RPT vigente.</p>
+
+<h2>Ciudades con más vacantes para auxiliar administrativo</h2>
+<p>
+  La mayoría de plazas se concentran en <strong>Madrid</strong> (más del 40% de puestos AGE).
+  Pero hay vida fuera de la capital:
+</p>
+<ul>
+  <li><strong>Madrid</strong>: mayor oferta con diferencia. Complementos altos pero coste de vida elevado.</li>
+  <li><strong>Barcelona</strong>: segunda ciudad con más puestos AGE. Buenos complementos.</li>
+  <li><strong>Sevilla, Valencia, Bilbao</strong>: Delegaciones del Gobierno y organismos descentralizados.</li>
+  <li><strong>Capitales de provincia</strong>: Subdelegaciones del Gobierno en todas las provincias. Menor oferta, pero mejor calidad de vida y menos competencia.</li>
+</ul>
+
+<h2>¿Cómo funciona la elección de destino?</h2>
+<p>
+  El proceso de elección sigue estos pasos:
+</p>
+<ol>
+  <li><strong>Se publica la lista de vacantes</strong> con ubicación, ministerio y complementos.</li>
+  <li><strong>Eliges por orden de nota</strong>: la persona con mayor puntuación elige primero.</li>
+  <li><strong>Puedes rechazar</strong>: si no te convence ninguna vacante, puedes no elegir (pero pierdes la plaza).</li>
+  <li><strong>Toma de posesión</strong>: normalmente 1 mes después de la adjudicación.</li>
+</ol>
+
+<h2>Factores clave al elegir destino</h2>
+<ul>
+  <li><strong>Complemento específico</strong>: la mayor diferencia salarial entre puestos. Puede variar 200-400€/mes.</li>
+  <li><strong>Teletrabajo</strong>: desde 2021, algunos ministerios permiten 2-3 días/semana desde casa.</li>
+  <li><strong>Conciliación</strong>: horario flexible (7:30-9:00 entrada) es estándar en AGE.</li>
+  <li><strong>Posibilidad de traslado</strong>: una vez dentro, puedes pedir traslado a otro destino en concursos de méritos.</li>
+  <li><strong>Promoción interna</strong>: desde C2 puedes preparar el C1 (Administrativo) por promoción interna con reserva de plazas.</li>
+</ul>
+
+<h2>Consejo: no te obsesiones solo con el sueldo</h2>
+<p>
+  Un destino con 100€ menos al mes pero con teletrabajo, cercanía a tu casa y buen ambiente
+  puede ser mejor opción que el puesto mejor pagado en una ciudad donde no conoces a nadie.
+  Piensa en tu situación personal antes de elegir.
+</p>
+
+<h3>Recursos relacionados</h3>
+<ul>
+  <li><a href="/blog/sueldo-auxiliar-administrativo-estado-2026-nomina-desglosada">Sueldo Auxiliar Administrativo 2026: nómina desglosada</a></li>
+  <li><a href="/blog/plazas-auxiliar-administrativo-2026">1.700 plazas Auxiliar 2026: récord histórico</a></li>
+  <li><a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">Diferencias C2 vs C1: ¿cuál elegir?</a></li>
+  <li><a href="/oposiciones/administracion">Todas las oposiciones de Administración del Estado</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con legislación verificada, simulacros INAP y tutor IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuánto tarda la elección de destino tras aprobar el auxiliar?', answer: 'Normalmente entre 2 y 4 meses después de publicarse las notas definitivas. El proceso incluye la publicación de vacantes, plazo de elección (unos 10 días hábiles) y resolución de adjudicación. La toma de posesión suele ser 1 mes después.' },
+      { question: '¿Puedo cambiar de destino después?', answer: 'Sí. Los funcionarios de carrera pueden participar en concursos de traslados que se convocan periódicamente. También existen comisiones de servicios (temporales) y permutas con otros funcionarios del mismo cuerpo y grupo.' },
+      { question: '¿Dónde hay más vacantes de auxiliar administrativo?', answer: 'Madrid concentra más del 40% de las plazas AGE. Le siguen Barcelona, Sevilla, Valencia y Bilbao. Todas las capitales de provincia tienen al menos Subdelegación del Gobierno con puestos de auxiliar.' },
+      { question: '¿Qué ministerio paga más a un auxiliar administrativo?', answer: 'La Agencia Tributaria (AEAT) y la Seguridad Social suelen tener los complementos específicos más altos para puestos C2, entre 700-750€/mes. Pero el sueldo base y complemento de destino son iguales en todos los ministerios.' },
+    ],
+  },
+
+  // ─── Post 120 — Oposiciones AGE 2026: guía completa todas las plazas ──────
+  {
+    slug: 'oposiciones-administracion-general-estado-2026-guia',
+    title: 'Oposiciones Administración General del Estado 2026: 18.000+ plazas — guía completa',
+    description:
+      'Guía definitiva AGE 2026: todas las oposiciones (C2, C1, A2), 18.000+ plazas totales, fechas de examen confirmadas, sueldos y cómo elegir la oposición que más te conviene según tu perfil.',
+    date: '2026-04-06',
+    keywords: [
+      'oposiciones administracion general estado 2026',
+      'oposiciones AGE 2026',
+      'oposiciones estado 2026',
+      'plazas funcionario 2026',
+      'oposiciones 2026',
+      'oposiciones c1 2026',
+      'oposiciones c2 2026',
+      'examen age 2026',
+      'oposiciones administrativo del estado 2026',
+      'oposiciones auxiliar administrativo del estado 2026',
+    ],
+    content: `
+<h2>Más de 18.000 plazas en la AGE en 2026</h2>
+<p>
+  La <strong>Administración General del Estado (AGE)</strong> ha convocado en 2026 la mayor oferta de empleo público de la historia.
+  Más de <strong>18.000 plazas</strong> en distintos cuerpos, desde el grupo C2 (título de ESO) hasta el A1 (grado universitario).
+</p>
+<p>
+  Esta guía te explica las principales oposiciones disponibles, <strong>cuál te conviene según tu perfil</strong>,
+  y los datos que necesitas para tomar la decisión: plazas, temario, sueldo y fechas.
+</p>
+
+<h2>Las 3 oposiciones AGE más populares</h2>
+
+<h3>1. Auxiliar Administrativo del Estado (C2)</h3>
+<table>
+  <tbody>
+    <tr><td><strong>Plazas 2026</strong></td><td>1.700 (récord histórico)</td></tr>
+    <tr><td><strong>Requisitos</strong></td><td>ESO o equivalente. Sin límite de edad</td></tr>
+    <tr><td><strong>Temario</strong></td><td>28 temas (16 teoría + 12 ofimática)</td></tr>
+    <tr><td><strong>Examen</strong></td><td>100 preguntas test + psicotécnicos</td></tr>
+    <tr><td><strong>Fecha examen</strong></td><td>23 mayo 2026</td></tr>
+    <tr><td><strong>Sueldo neto</strong></td><td>~1.500€/mes de inicio</td></tr>
+  </tbody>
+</table>
+<p>La opción más accesible. Ideal si buscas estabilidad sin titulación universitaria. <a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Ver temario completo</a>.</p>
+
+<h3>2. Administrativo del Estado (C1)</h3>
+<table>
+  <tbody>
+    <tr><td><strong>Plazas 2026</strong></td><td>2.512</td></tr>
+    <tr><td><strong>Requisitos</strong></td><td>Bachillerato o equivalente</td></tr>
+    <tr><td><strong>Temario</strong></td><td>45 temas</td></tr>
+    <tr><td><strong>Examen</strong></td><td>Test + supuesto práctico</td></tr>
+    <tr><td><strong>Fecha examen</strong></td><td>20 junio 2026</td></tr>
+    <tr><td><strong>Sueldo neto</strong></td><td>~1.800€/mes de inicio</td></tr>
+  </tbody>
+</table>
+<p>Más temario pero mejor sueldo y más plazas. <a href="/blog/administrativo-estado-c1-2026-plazas-temario-nota-corte">Ver guía C1</a>.</p>
+
+<h3>3. Gestión de la Administración Civil del Estado A2 (GACE)</h3>
+<table>
+  <tbody>
+    <tr><td><strong>Plazas 2026</strong></td><td>1.356</td></tr>
+    <tr><td><strong>Requisitos</strong></td><td>Grado universitario</td></tr>
+    <tr><td><strong>Temario</strong></td><td>58 temas en 6 bloques</td></tr>
+    <tr><td><strong>Examen</strong></td><td>Test + supuesto práctico desarrollo</td></tr>
+    <tr><td><strong>Sueldo neto</strong></td><td>~2.200€/mes de inicio</td></tr>
+  </tbody>
+</table>
+<p>El mayor salto salarial de las oposiciones AGE. <a href="/blog/oposiciones-gestion-estado-gace-a2-2026-plazas-temario-fechas">Ver guía GACE</a>.</p>
+
+<h2>¿Cuál te conviene? Criterios de decisión</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Factor</th>
+      <th>C2 Auxiliar</th>
+      <th>C1 Administrativo</th>
+      <th>A2 GACE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Titulación mínima</td><td>ESO</td><td>Bachillerato</td><td>Grado</td></tr>
+    <tr><td>Temas</td><td>28</td><td>45</td><td>58</td></tr>
+    <tr><td>Sueldo inicio</td><td>~1.500€</td><td>~1.800€</td><td>~2.200€</td></tr>
+    <tr><td>Dificultad relativa</td><td>Media</td><td>Media-Alta</td><td>Alta</td></tr>
+    <tr><td>Tiempo preparación</td><td>6-12 meses</td><td>10-18 meses</td><td>12-24 meses</td></tr>
+    <tr><td>Plazas 2026</td><td>1.700</td><td>2.512</td><td>1.356</td></tr>
+  </tbody>
+</table>
+
+<h2>Calendario de exámenes AGE 2026</h2>
+<ul>
+  <li><strong>Auxiliar C2</strong>: 23 de mayo de 2026</li>
+  <li><strong>Administrativo C1</strong>: 20 de junio de 2026</li>
+  <li><strong>GACE A2</strong>: pendiente de confirmación (estimado otoño 2026)</li>
+</ul>
+<p><a href="/blog/calendario-oposiciones-age-2026-fechas-auxiliar-administrativo">Ver calendario completo con todos los plazos</a>.</p>
+
+<h2>¿Se pueden preparar dos oposiciones a la vez?</h2>
+<p>
+  Sí, y es una estrategia muy habitual. El <strong>C2 y el C1 comparten parte del temario</strong>
+  (Constitución, LPAC, TREBEP). Muchos opositores preparan el C2 como primera opción
+  y añaden los temas extra del C1 si les da tiempo.
+</p>
+<p>
+  Los exámenes están separados por un mes (23 mayo vs 20 junio), así que puedes presentarte a ambos.
+</p>
+
+<h2>¿Cómo preparar con OpoRuta?</h2>
+<p>
+  OpoRuta cubre las 3 oposiciones AGE con:
+</p>
+<ul>
+  <li><strong>Tests con IA</strong> verificados contra legislación vigente (Constitución, LPAC, TREBEP, LGP)</li>
+  <li><strong>Simulacros tipo INAP</strong> con exámenes reales de convocatorias anteriores</li>
+  <li><strong>Radar del Tribunal</strong>: qué temas pregunta más el INAP según datos históricos</li>
+  <li><strong>Psicotécnicos</strong> adaptativos para la prueba del C2</li>
+  <li><strong>Tutor IA</strong> con análisis detallados y explicaciones socrática</li>
+</ul>
+
+<h3>Recursos para cada oposición</h3>
+<ul>
+  <li><a href="/oposiciones/administracion">Todas las oposiciones de Administración del Estado</a></li>
+  <li><a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">C2 vs C1: tabla comparativa completa</a></li>
+  <li><a href="/blog/nota-corte-auxiliar-administrativo-estado">Nota de corte Auxiliar Administrativo</a></li>
+  <li><a href="/blog/sueldo-administrativo-estado-c1-2026-nomina">Sueldo Administrativo C1 2026</a></li>
+  <li><a href="/herramientas/calculadora-nota-auxiliar-administrativo">Calculadora de nota</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis en OpoRuta</a></strong> — tests verificados, simulacros INAP y tutor IA para C2, C1 y A2. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Qué oposiciones de la AGE puedo hacer con la ESO?', answer: 'Con el título de ESO (o equivalente) puedes presentarte a las oposiciones del grupo C2: Auxiliar Administrativo del Estado (1.700 plazas en 2026). No hay límite de edad. Es la oposición más accesible de la AGE.' },
+      { question: '¿Cuántas plazas hay en las oposiciones AGE 2026?', answer: 'En 2026 la AGE ofrece más de 18.000 plazas en total. Las 3 principales: Auxiliar C2 (1.700), Administrativo C1 (2.512) y GACE A2 (1.356). El resto se reparte entre cuerpos especiales (Hacienda, Justicia, etc.).' },
+      { question: '¿Cuánto gana un funcionario del estado en 2026?', answer: 'Depende del grupo: Auxiliar C2 cobra ~1.500€ netos/mes de inicio, Administrativo C1 ~1.800€ y GACE A2 ~2.200€. El sueldo crece automáticamente con trienios (+42-65€/mes cada 3 años de antigüedad). Incluye 14 pagas, horario flexible y teletrabajo en muchos ministerios.' },
+      { question: '¿Se pueden preparar C2 y C1 a la vez?', answer: 'Sí, y es una estrategia muy habitual. Comparten buena parte del temario (Constitución, LPAC, TREBEP). Los exámenes están separados 1 mes (23 mayo C2, 20 junio C1), así que puedes presentarte a ambos. Muchos preparan el C2 como prioridad y añaden los temas extra del C1.' },
+      { question: '¿Cuándo son los exámenes AGE 2026?', answer: 'Auxiliar C2: 23 de mayo de 2026. Administrativo C1: 20 de junio de 2026. GACE A2: pendiente de confirmación, estimado otoño 2026.' },
+    ],
+  },
+
+  // ─── Post 121 — TREBEP oposiciones: guía definitiva artículos clave ────────
+  {
+    slug: 'trebep-guia-completa-oposiciones-2026',
+    title: 'TREBEP: guía definitiva para oposiciones 2026 — artículos que más caen',
+    description:
+      '¿Qué es el TREBEP y por qué cae en TODAS las oposiciones? Los 15 artículos más preguntados en exámenes reales, resumen por títulos y cómo estudiar el Estatuto Básico del Empleado Público sin perderte.',
+    date: '2026-04-06',
+    keywords: [
+      'TREBEP',
+      'que es el TREBEP',
+      'trebep oposiciones',
+      'trebep articulos clave',
+      'estatuto basico empleado publico',
+      'trebep resumen',
+      'trebep esquema',
+      'que es el trebep en españa',
+      'TREBEP 2026',
+      'art 52 trebep',
+      'articulo 55 trebep',
+    ],
+    content: `
+<h2>¿Qué es el TREBEP?</h2>
+<p>
+  El <strong>TREBEP</strong> (Texto Refundido del Estatuto Básico del Empleado Público) es el
+  <strong>Real Decreto Legislativo 5/2015, de 30 de octubre</strong>, que regula las bases del régimen jurídico
+  de los empleados públicos en España.
+</p>
+<p>
+  Es la norma fundamental que establece los <strong>derechos, deberes, situaciones administrativas,
+  acceso al empleo público, carrera profesional y régimen disciplinario</strong> de todos los funcionarios y personal laboral
+  de las Administraciones Públicas españolas.
+</p>
+<p>
+  Cae en <strong>prácticamente todas las oposiciones</strong>: AGE (C2, C1, A2), Justicia, Correos,
+  Comunidades Autónomas, Ayuntamientos... Si te presentas a cualquier oposición pública, necesitas
+  conocer el TREBEP.
+</p>
+
+<h2>Estructura del TREBEP: 8 títulos</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Contenido</th>
+      <th>Artículos</th>
+      <th>Importancia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Preliminar</td><td>Objeto y ámbito de aplicación</td><td>1-7</td><td>Alta</td></tr>
+    <tr><td>I</td><td>Personal al servicio de las AAPP</td><td>8-13</td><td>Media</td></tr>
+    <tr><td>II</td><td>Personal directivo</td><td>13</td><td>Baja</td></tr>
+    <tr><td>III</td><td>Derechos y deberes</td><td>14-54</td><td>Muy alta</td></tr>
+    <tr><td>IV</td><td>Acceso al empleo público</td><td>55-67</td><td>Muy alta</td></tr>
+    <tr><td>V</td><td>Ordenación de la actividad profesional</td><td>68-84</td><td>Alta</td></tr>
+    <tr><td>VI</td><td>Situaciones administrativas</td><td>85-92</td><td>Alta</td></tr>
+    <tr><td>VII</td><td>Régimen disciplinario</td><td>93-98</td><td>Media-Alta</td></tr>
+  </tbody>
+</table>
+
+<h2>Los 15 artículos del TREBEP que más caen en exámenes</h2>
+<p>Basado en el análisis de exámenes reales INAP (2018-2024), estos son los artículos que más se preguntan:</p>
+<ol>
+  <li><strong>Art. 14</strong> — Derechos individuales de los empleados públicos</li>
+  <li><strong>Art. 15</strong> — Derechos individuales ejercidos colectivamente</li>
+  <li><strong>Art. 48</strong> — Permisos de los funcionarios (maternidad, paternidad, etc.)</li>
+  <li><strong>Art. 49</strong> — Permisos por motivos de conciliación</li>
+  <li><strong>Art. 52</strong> — Deberes de los empleados públicos. Código de conducta</li>
+  <li><strong>Art. 53</strong> — Principios éticos</li>
+  <li><strong>Art. 54</strong> — Principios de conducta</li>
+  <li><strong>Art. 55</strong> — Principios rectores del acceso al empleo público</li>
+  <li><strong>Art. 56</strong> — Requisitos generales para el acceso</li>
+  <li><strong>Art. 57</strong> — Acceso de nacionales de otros Estados</li>
+  <li><strong>Art. 69</strong> — Objetivos e instrumentos de la planificación de RRHH</li>
+  <li><strong>Art. 85</strong> — Situaciones administrativas de los funcionarios</li>
+  <li><strong>Art. 86</strong> — Servicio activo</li>
+  <li><strong>Art. 89</strong> — Excedencia</li>
+  <li><strong>Art. 95</strong> — Faltas disciplinarias (clasificación)</li>
+</ol>
+
+<h2>Cómo estudiar el TREBEP de forma eficiente</h2>
+<h3>1. No lo leas entero de golpe</h3>
+<p>
+  El TREBEP tiene 100 artículos. No intentes memorizar todo de una vez.
+  Divide por títulos y estudia <strong>Título III (Derechos y deberes) y Título IV (Acceso)</strong> primero:
+  juntos representan más del 60% de las preguntas en exámenes.
+</p>
+
+<h3>2. Estudia los artículos con datos numéricos</h3>
+<p>
+  Los examinadores del INAP aman las preguntas con datos concretos: duraciones de permisos,
+  plazos, mayorías... Presta especial atención a:
+</p>
+<ul>
+  <li>Art. 48-49: días exactos de cada permiso</li>
+  <li>Art. 89: duración mínima/máxima de las excedencias</li>
+  <li>Art. 96: prescripción de las faltas</li>
+  <li>Art. 98: prescripción de las sanciones</li>
+</ul>
+
+<h3>3. Haz tests por artículos</h3>
+<p>
+  La mejor forma de fijar los conceptos es <strong>practicar con preguntas tipo test</strong>.
+  En OpoRuta puedes generar tests específicos del tema TREBEP con preguntas verificadas
+  contra la legislación vigente.
+</p>
+
+<h2>TREBEP vs EBEP: ¿es lo mismo?</h2>
+<p>
+  Casi. El <strong>EBEP</strong> (Ley 7/2007) fue la ley original. El <strong>TREBEP</strong> (RDLeg 5/2015)
+  es el texto refundido que integra las modificaciones posteriores. En las oposiciones actuales
+  siempre se cita el TREBEP (RDLeg 5/2015). Si tu temario dice "EBEP", está desactualizado.
+</p>
+
+<h3>Recursos relacionados</h3>
+<ul>
+  <li><a href="/blog/trebep-articulos-clave-examen-auxiliar-administrativo">TREBEP para Auxiliar Administrativo: artículos clave</a></li>
+  <li><a href="/blog/trebep-gestion-personal-administrativo-estado-c1">TREBEP para Administrativo C1: gestión de personal</a></li>
+  <li><a href="/blog/trebep-oposiciones-guia-estatuto-empleado-publico">TREBEP y oposiciones: guía del estatuto</a></li>
+  <li><a href="/oposiciones/administracion">Oposiciones AGE 2026</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica TREBEP gratis en OpoRuta</a></strong> — tests verificados contra la legislación vigente, artículo por artículo. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Qué es el TREBEP en España?', answer: 'El TREBEP (Texto Refundido del Estatuto Básico del Empleado Público) es el Real Decreto Legislativo 5/2015 que regula el régimen jurídico de los empleados públicos en España. Establece derechos, deberes, acceso al empleo público, situaciones administrativas y régimen disciplinario de funcionarios y personal laboral de todas las Administraciones Públicas.' },
+      { question: '¿En qué oposiciones entra el TREBEP?', answer: 'En prácticamente todas: Auxiliar Administrativo C2, Administrativo C1, GACE A2, Justicia (Auxilio, Tramitación, Gestión), oposiciones de Comunidades Autónomas y Ayuntamientos. Es la ley fundamental del empleo público y siempre tiene al menos 1-2 temas dedicados en cualquier temario de oposiciones.' },
+      { question: '¿Cuáles son los artículos del TREBEP que más caen en los exámenes?', answer: 'Los más preguntados según exámenes reales INAP son: Art. 14-15 (derechos), Art. 48-49 (permisos y conciliación), Art. 52-54 (deberes y código de conducta), Art. 55-57 (acceso al empleo público), Art. 85-89 (situaciones administrativas) y Art. 95-96 (faltas disciplinarias y prescripción).' },
+      { question: '¿TREBEP y EBEP es lo mismo?', answer: 'Son casi iguales. El EBEP fue la Ley 7/2007 original. El TREBEP (RDLeg 5/2015) es el texto refundido que integró las modificaciones posteriores. En oposiciones actuales siempre se cita el TREBEP. Si tu material dice "EBEP", necesitas actualizar.' },
+    ],
+  },
 ]
