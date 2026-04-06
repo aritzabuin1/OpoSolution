@@ -118,6 +118,16 @@ const PRIORITY_BLOG_SLUGS = [
   'mejores-destinos-auxiliar-administrativo-estado-ranking',
   'oposiciones-administracion-general-estado-2026-guia',
   'trebep-guia-completa-oposiciones-2026',
+  // === High-volume query posts (2026-04-06 sprint 2) ===
+  'test-oposiciones-online-gratis-2026',
+  'preparar-oposiciones-con-inteligencia-artificial-2026',
+  'test-administrativo-estado-c1-online-gratis-2026',
+  'test-gace-a2-online-gratis-2026',
+  'test-gestion-procesal-online-gratis-2026',
+  'test-guardia-civil-online-gratis-2026',
+  'test-policia-nacional-online-gratis-2026',
+  // Rewritten comparativa title
+  'mejores-plataformas-ia-oposiciones-2026-comparativa',
 ]
 
 async function submitToIndexNow(urls: string[]) {
