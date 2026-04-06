@@ -15,17 +15,18 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Test Correos 2026 — Practica gratis con preguntas del examen | OpoRuta',
+  title: 'Oposiciones Correos 2026: 4.000+ plazas, 12 temas — Tests gratis | OpoRuta',
   description:
-    'Prepara las oposiciones de Correos 2026 con tests online gratis. 12 temas, 100 preguntas sin penalización, +4.000 plazas. Practica con IA y aprueba a la primera.',
+    'Prepara las oposiciones de Correos 2026: +4.000 plazas, 12 temas, examen de 100 preguntas SIN penalización. Tests online gratis con IA, psicotécnicos y temario completo. Empieza hoy.',
   keywords: [
-    'test correos 2026', 'oposiciones correos', 'examen correos online',
+    'oposiciones correos 2026', 'test correos 2026', 'examen correos online',
     'preguntas examen correos', 'temario correos 2026', 'test correos gratis',
-    'preparar oposiciones correos', 'correos personal laboral fijo',
+    'preparar oposiciones correos', 'plazas correos 2026', 'oposiciones correos',
+    'correos personal laboral fijo', 'test correos online',
   ],
   openGraph: {
-    title: 'Test Correos 2026 — Practica gratis | OpoRuta',
-    description: 'Tests online gratis para oposiciones Correos. 12 temas, sin penalización, +4.000 plazas.',
+    title: 'Oposiciones Correos 2026: 4.000+ plazas — Tests gratis | OpoRuta',
+    description: 'Tests online gratis para oposiciones Correos 2026. 12 temas, 100 preguntas sin penalización, +4.000 plazas.',
     url: `${APP_URL}/oposiciones/correos`,
     type: 'website',
     images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Test Correos 2026')}`, width: 1200, height: 630 }],

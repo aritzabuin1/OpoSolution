@@ -15,17 +15,17 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Oposiciones Seguridad 2026 — Ertzaintza, Guardia Civil y Policía Nacional | OpoRuta',
+  title: 'Oposiciones Policía y Guardia Civil 2026: 6.900+ plazas — Tests gratis | OpoRuta',
   description:
-    'Prepara las oposiciones de seguridad 2026 con IA: Ertzaintza (54 temas, C1), Guardia Civil (25 temas, C2) y Policía Nacional (45 temas, C1). Tests verificados contra BOE/BOPV. Módulo exclusivo de Personalidad Policial con IA.',
+    'Prepara oposiciones de seguridad 2026: Guardia Civil (3.118 plazas), Policía Nacional (~3.000) y Ertzaintza (~800). Tests gratis con IA + psicotécnicos + Personalidad Policial. Scoring exacto BOE.',
   keywords: [
     'oposiciones policia 2026', 'oposiciones guardia civil 2026', 'oposiciones ertzaintza 2026',
     'oposiciones policia nacional 2026', 'test policia online', 'test guardia civil online',
     'personalidad policial', 'psicotecnicos policia',
   ],
   openGraph: {
-    title: 'Oposiciones Seguridad 2026 — Ertzaintza, Guardia Civil y Policía Nacional | OpoRuta',
-    description: 'Tests con IA para Ertzaintza, Guardia Civil y Policía Nacional. Módulo exclusivo de Personalidad Policial.',
+    title: 'Oposiciones Policía y Guardia Civil 2026: 6.900+ plazas | OpoRuta',
+    description: 'Tests gratis para Guardia Civil, Policía Nacional y Ertzaintza. 6.900+ plazas. Personalidad Policial con IA.',
     url: `${APP_URL}/oposiciones/seguridad`,
     type: 'website',
     images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Oposiciones Seguridad 2026')}`, width: 1200, height: 630 }],

@@ -288,9 +288,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 4 ────────────────────────────────────────────────────────────────
   {
     slug: 'psicotecnicas-examen-auxiliar-administrativo-estado',
-    title: 'Psicotécnicas en el examen del Auxiliar Administrativo del Estado: tipos, ejemplos y cómo practicarlas',
+    title: 'Psicotécnicas Auxiliar Administrativo: 30 preguntas que entran (tipos + ejemplos)',
     description:
-      'Guía completa sobre las pruebas psicotécnicas del examen de Auxiliar: ortografía, sinónimos, series numéricas, comprensión verbal y razonamiento. Con ejemplos reales y estrategias de resolución.',
+      'Las 6 categorías de psicotécnicas del examen INAP: ortografía, sinónimos, series numéricas, comprensión verbal, razonamiento y ordenación. Ejemplos resueltos paso a paso + practica gratis online.',
     date: '2026-03-01',
     keywords: [
       'psicotécnicas auxiliar administrativo estado',
@@ -430,9 +430,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 5 ────────────────────────────────────────────────────────────────
   {
     slug: 'temario-auxiliar-administrativo-estado-2025-2026',
-    title: 'Temario Auxiliar Administrativo del Estado 2025-2026: los 28 temas desglosados',
+    title: 'Temario Auxiliar Administrativo 2025-2026: 28 temas — cuáles caen más',
     description:
-      'Los 28 temas desglosados: Bloque I (Constitución, LPAC, TREBEP...) y Bloque II (Word, Excel, Access). Cuáles caen más según exámenes INAP reales, cuáles son más fáciles y plan de estudio por bloques.',
+      'Los 28 temas desglosados tema a tema. Bloque I: Constitución, LPAC, TREBEP. Bloque II: Word, Excel, Access. Frecuencia real en exámenes INAP (2018-2024) y plan de estudio de 6 meses.',
     date: '2026-03-03',
     keywords: [
       'temario auxiliar administrativo estado 2025',
@@ -1300,9 +1300,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 9 ────────────────────────────────────────────────────────────────
   {
     slug: 'como-preparar-oposicion-auxiliar-administrativo-estado-guia',
-    title: 'Cómo preparar la oposición al Cuerpo General Auxiliar del Estado: guía completa 2025-2026',
+    title: 'Cómo preparar Auxiliar Administrativo del Estado 2026: guía paso a paso',
     description:
-      'Guía paso a paso para preparar las oposiciones al Auxiliar Administrativo del Estado en 2025-2026: temario, estructura del examen, métodos de estudio y herramientas útiles.',
+      'De cero a funcionario: estructura del examen (100 preguntas tipo test + ofimática), métodos de estudio que funcionan, planificación semanal y herramientas gratuitas. Actualizado abril 2026.',
     date: '2026-02-23',
     keywords: [
       'cómo preparar oposición auxiliar administrativo estado',
@@ -1511,9 +1511,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 10 ───────────────────────────────────────────────────────────────
   {
     slug: 'plazas-auxiliar-administrativo-2026',
-    title: '1.700 Plazas Auxiliar Administrativo del Estado 2026 — récord histórico',
+    title: '1.700 Plazas Auxiliar Administrativo 2026: récord histórico (ratio real)',
     description:
-      '1.700 plazas de Auxiliar Administrativo del Estado en 2026 — la mayor convocatoria de la historia. Ratio aspirante/plaza real, histórico de plazas desde 2019, fechas y por qué conviene prepararse ahora.',
+      'Convocatoria récord: 1.700 plazas C2 en 2026. Ratio real aspirantes/plaza, evolución desde 2019, distribución por turno libre/promoción interna. Examen 23 mayo — todavía llegas.',
     date: '2026-03-12',
     keywords: [
       'plazas auxiliar administrativo 2026',
@@ -1614,11 +1614,11 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 11 ───────────────────────────────────────────────────────────────
   {
     slug: 'nota-corte-auxiliar-administrativo-estado',
-    title: 'Nota de Corte Auxiliar Administrativo del Estado 2026: histórico y cálculo',
+    title: 'Nota de Corte Auxiliar Administrativo 2024: 30 puntos — ¿llegas?',
     description:
-      'Nota de corte 2024: 30 puntos (parte 1) y 26,33 (parte 2) sobre 100. Histórico de cortes desde 2019, cómo se calcula con la penalización -1/3 y calculadora gratis para estimar tu nota.',
+      'Nota de corte real 2024: 30 puntos (parte 1) y 26,33 (parte 2). Histórico desde 2019, fórmula con penalización -1/3 y calculadora gratis para saber si apruebas con tu puntuación actual.',
     date: '2026-03-12',
-    dateModified: '2026-03-28',
+    dateModified: '2026-04-06',
     keywords: [
       'nota de corte auxiliar administrativo estado',
       'nota corte auxiliar administrativo 2024',
@@ -1856,9 +1856,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 13 ───────────────────────────────────────────────────────────────
   {
     slug: 'preparar-oposicion-auxiliar-administrativo-por-libre',
-    title: 'Preparar oposiciones Auxiliar Administrativo por libre en 2026: guía completa',
+    title: 'Preparar Auxiliar Administrativo por libre en 2026: plan realista sin academia',
     description:
-      'Sí, se puede aprobar sin academia. Guía paso a paso para preparar el Auxiliar Administrativo del Estado por libre: temario, planificación, herramientas gratuitas y errores a evitar.',
+      'Sí, se puede aprobar sin academia (y muchos lo hacen). Plan de estudio mes a mes, material gratuito, herramientas con IA y los 5 errores que más suspenden. De opositor a funcionario por tu cuenta.',
     date: '2026-03-14',
     dateModified: '2026-03-17',
     keywords: [
@@ -2187,9 +2187,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 16 ───────────────────────────────────────────────────────────────
   {
     slug: 'psicotecnicos-auxiliar-administrativo-tipos-trucos',
-    title: 'Psicotécnicos auxiliar administrativo: tipos, ejemplos y trucos',
+    title: 'Psicotécnicos Auxiliar Administrativo: 7 trucos para resolver más rápido',
     description:
-      'Guía completa de psicotécnicos para el examen de Auxiliar Administrativo del Estado: tipos de ejercicios, trucos para resolverlos rápido y errores comunes que evitar.',
+      'Los 6 tipos de psicotécnicos INAP + 7 trucos de resolución rápida probados. Series numéricas, analogías verbales, ordenación y razonamiento abstracto. Con ejemplos resueltos y test gratis.',
     date: '2026-03-17',
     keywords: [
       'psicotécnicos auxiliar administrativo',
@@ -2418,9 +2418,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 18 ───────────────────────────────────────────────────────────────
   {
     slug: 'diferencias-auxiliar-c2-administrativo-c1-estado',
-    title: 'Diferencias C1 vs C2 (2026): Auxiliar o Administrativo — sueldo, plazas y cuál elegir',
+    title: 'Auxiliar C2 vs Administrativo C1: ¿cuál elegir en 2026? (Tabla comparativa)',
     description:
-      'Auxiliar (C2): 1.700 plazas, 28 temas, ~23.000€/año. Administrativo (C1): 2.512 plazas, 45 temas, ~28.000€/año. Tabla comparativa completa + criterios para decidir cuál te conviene.',
+      'C2: 1.700 plazas, 28 temas, 23.000€/año. C1: 2.512 plazas, 45 temas, 28.000€/año. Comparamos sueldo, dificultad, ratio aspirantes/plaza y salidas. Con tabla resumen para decidir.',
     date: '2026-03-21',
     keywords: [
       'diferencias auxiliar administrativo estado',
@@ -4089,11 +4089,11 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 29: OpoRuta vs OpositaTest ──────────────────────────────────────
   {
     slug: 'oporuta-vs-opositatest-auxiliar-administrativo-2026',
-    title: 'OpoRuta vs OpositaTest (2026): 49,99€ único vs 12€/mes — comparativa completa',
+    title: 'OpoRuta vs OpositaTest 2026: IA verificada vs tests estáticos (Comparativa)',
     description:
-      'La mejor alternativa a OpositaTest para auxiliar administrativo y C1. Comparamos precio (12€/mes vs 49,99€ pago único), verificación de citas legales, Radar del Tribunal y simulacros INAP. Tabla punto por punto.',
+      '¿OpositaTest o OpoRuta? Comparamos precio (12€/mes vs 49,99€ pago único), verificación de citas legales, Radar del Tribunal y simulacros INAP reales. Tabla punto por punto con capturas.',
     date: '2026-03-17',
-    dateModified: '2026-03-23',
+    dateModified: '2026-04-06',
     keywords: [
       'alternativa a OpositaTest',
       'alternativas OpositaTest',
@@ -4768,11 +4768,11 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 32 ───────────────────────────────────────────────────────────────
   {
     slug: 'calendario-oposiciones-age-2026-fechas-auxiliar-administrativo',
-    title: '¿Cuándo es el examen Auxiliar Administrativo del Estado 2026? Calendario AGE',
+    title: 'Examen Auxiliar Administrativo: 23 mayo 2026 — Calendario AGE completo',
     description:
-      'Examen 23 de mayo de 2026. Todas las fechas: convocatoria BOE, inscripción, admitidos, examen, resultados y elección de destinos. Calendario completo AGE (C2, C1, A2).',
+      'Fechas confirmadas BOE: examen C2 el 23 mayo, C1 el 20 junio. Inscripción, admitidos, resultados y toma de posesión. Calendario actualizado abril 2026 con todos los plazos AGE.',
     date: '2026-03-19',
-    dateModified: '2026-03-19',
+    dateModified: '2026-04-06',
     keywords: [
       'calendario oposiciones 2026',
       'fechas examen auxiliar administrativo 2026',
@@ -4935,11 +4935,11 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 33 ───────────────────────────────────────────────────────────────
   {
     slug: 'elegir-destino-auxiliar-administrativo-estado',
-    title: 'Cómo elegir destino como auxiliar administrativo del estado: guía completa',
+    title: 'Destinos Auxiliar Administrativo: mejores ministerios, ciudades y sueldo',
     description:
-      'Guía para elegir destino tras aprobar las oposiciones de auxiliar administrativo: ministerios, ciudades, complementos salariales y teletrabajo.',
+      '¿Dónde pagan más? Ranking de destinos por complemento específico, ciudades con más vacantes, ministerios con teletrabajo y cómo funciona la elección por nota. Datos de la última convocatoria.',
     date: '2026-03-19',
-    dateModified: '2026-03-19',
+    dateModified: '2026-04-06',
     keywords: [
       'elegir destino auxiliar administrativo',
       'destinos auxiliar administrativo estado',
@@ -5254,11 +5254,11 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 35 ───────────────────────────────────────────────────────────────
   {
     slug: 'sueldo-auxiliar-administrativo-estado-2026-nomina-desglosada',
-    title: 'Sueldo auxiliar administrativo del estado 2026: nómina real desglosada',
+    title: 'Sueldo Auxiliar Administrativo 2026: 1.500€/mes netos (nómina desglosada)',
     description:
-      'Nómina desglosada del auxiliar administrativo del estado en 2026: sueldo base, complementos, pagas extra, neto mensual y progresión con trienios.',
+      '¿Cuánto cobra un Auxiliar Administrativo del Estado? Nómina real 2026: sueldo base 648€ + complementos + 14 pagas. Neto mensual ~1.500€ de inicio, hasta 1.900€ con trienios. Tabla completa.',
     date: '2026-03-19',
-    dateModified: '2026-03-19',
+    dateModified: '2026-04-06',
     keywords: [
       'sueldo auxiliar administrativo estado',
       'cuanto cobra auxiliar administrativo',
@@ -5477,11 +5477,11 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 36 ───────────────────────────────────────────────────────────────
   {
     slug: 'requisitos-oposiciones-auxiliar-administrativo-estado-2026',
-    title: 'Requisitos oposiciones auxiliar administrativo del estado 2026: edad, titulación y documentación',
+    title: 'Requisitos Auxiliar Administrativo 2026: ¿puedes presentarte? (Checklist)',
     description:
-      'Todos los requisitos para presentarse a auxiliar administrativo del estado en 2026: nacionalidad, edad, estudios, documentación y cómo inscribirse.',
+      'Sin límite de edad y basta con ESO. Los 5 requisitos oficiales para opositar a Auxiliar del Estado en 2026: nacionalidad, titulación, capacidad funcional. Incluye casos especiales (extranjeros UE, mayores de 50).',
     date: '2026-03-19',
-    dateModified: '2026-03-19',
+    dateModified: '2026-04-06',
     keywords: [
       'requisitos auxiliar administrativo estado',
       'quien puede presentarse auxiliar administrativo',
@@ -5951,11 +5951,11 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 38 ───────────────────────────────────────────────────────────────
   {
     slug: 'sueldo-administrativo-estado-c1-2026-nomina',
-    title: 'Sueldo Administrativo del Estado (C1) en 2026: 1.500–2.100€/mes — nómina desglosada',
+    title: 'Sueldo Administrativo del Estado C1 en 2026: 2.100€/mes netos (nómina real)',
     description:
-      'Desglose completo de la nómina de un Administrativo del Estado C1 en 2026: sueldo base, complementos, trienios, pagas extras y salario neto mensual.',
+      '¿Cuánto cobra un Administrativo C1 en 2026? Nómina real desglosada: sueldo base 858€ + complemento destino + específico + trienios. Hasta 2.100€ netos/mes según destino. Con tabla por ministerio.',
     date: '2026-03-20',
-    dateModified: '2026-03-20',
+    dateModified: '2026-04-06',
     keywords: [
       'sueldo administrativo estado c1',
       'nómina administrativo estado 2026',
@@ -6499,11 +6499,11 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 40 ───────────────────────────────────────────────────────────────
   {
     slug: 'calendario-oposiciones-administrativo-estado-c1-2026',
-    title: 'Calendario Oposiciones C1 Administrativo 2026: examen 20 junio — fechas confirmadas',
+    title: 'Examen Administrativo C1: 20 junio 2026 — Calendario y plazos',
     description:
-      'Calendario completo de la oposición a Administrativo del Estado C1 en 2026: fecha de examen, plazos de inscripción, listas provisionales, resultados y toma de posesión.',
+      'Fechas confirmadas C1: examen 20 junio 2026. Inscripción, admitidos provisionales, segundo ejercicio (supuesto práctico) y toma de posesión. Calendario actualizado abril 2026.',
     date: '2026-03-20',
-    dateModified: '2026-03-20',
+    dateModified: '2026-04-06',
     keywords: [
       'calendario administrativo estado c1 2026',
       'fecha examen administrativo estado 2026',
@@ -8941,10 +8941,11 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 40: Sueldo Gestión del Estado A2 ────────────────────────────────
   {
     slug: 'sueldo-gestion-estado-a2-gace-2026-nomina-desglosada',
-    title: 'Sueldo Gestión del Estado A2 (GACE) en 2026: nómina desglosada y mejores destinos',
+    title: 'Sueldo GACE A2 en 2026: hasta 2.500€ netos/mes (nómina real)',
     description:
-      'Nómina real de un funcionario A2 GACE en 2026: sueldo base 1.199,52€ + complemento de destino (526-811€) + específico. Entre 1.900 y 3.000€ brutos/mes según puesto. Desglose completo con trienios y 14 pagas.',
+      '¿Cuánto cobra un funcionario GACE A2? Nómina real: sueldo base 1.199€ + complementos hasta 3.000€ brutos. Mejores destinos por salario, progresión con trienios y comparativa con C1.',
     date: '2026-03-23',
+    dateModified: '2026-04-06',
     keywords: [
       'sueldo gestión estado A2 2026',
       'sueldo GACE A2',
@@ -9096,11 +9097,11 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 52 — Correos: Guía completa examen 2026 ─────────────────────────
   {
     slug: 'examen-correos-2026-guia-completa',
-    title: 'Examen Correos 2026: guía completa (temario, scoring, plazas)',
+    title: 'Oposiciones Correos 2026: 4.000+ plazas, sin penalización — guía completa',
     description:
-      'Todo sobre las oposiciones de Correos 2026: más de 4.000 plazas, 12 temas, examen de 100 preguntas sin penalización, proceso selectivo y consejos para aprobar.',
+      'Guía definitiva Correos 2026: 4.000+ plazas, 12 temas, 100 preguntas SIN penalización. Temario completo, scoring por méritos, fechas y cómo preparar en 3 meses.',
     date: '2026-03-25',
-    dateModified: '2026-03-25',
+    dateModified: '2026-04-06',
     keywords: [
       'examen correos 2026',
       'oposiciones correos',
@@ -14671,8 +14672,8 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 90 — Trienios funcionarios 2026 ────────────────────────────────────
   {
     slug: 'trienios-funcionarios-2026-cuanto-cobras-antiguedad',
-    title: 'Trienios Funcionarios 2026: cuanto cobras por cada 3 anos de antiguedad',
-    description: 'Importe de los trienios de funcionarios 2026 por grupo (C2: ~42€/mes, C1: ~53€/mes, A2: ~65€/mes). Como se acumulan y ejemplo de nomina con trienios.',
+    title: 'Trienios Funcionarios 2026: importe exacto por grupo (C2, C1, A2, A1)',
+    description: 'Tabla de trienios 2026: C2 = 42,24€/mes, C1 = 53,28€/mes, A2 = 65,10€/mes, A1 = 80,22€/mes. Cómo se acumulan, cuándo se cobran y ejemplo de nómina con 4 trienios.',
     date: '2026-03-30',
     keywords: ['trienios funcionarios 2026', 'trienio c1 2026', 'trienio c2 2026', 'trienio a2 2026', 'trienios funcionarios cuanto cobro', 'antiguedad funcionarios'],
     content: `
@@ -14777,6 +14778,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Test Agente de Hacienda 2026 — Practica gratis con preguntas tipo examen AEAT',
     description: 'Preguntas tipo test de Agente de Hacienda Pública 2026. LGT, IRPF, IVA verificados contra BOE. 80 preguntas, penalización -1/4. Practica online gratis.',
     date: '2026-03-30',
+    dateModified: '2026-04-01',
     keywords: ['test agente hacienda 2026', 'preguntas examen hacienda', 'oposiciones AEAT', 'test hacienda online gratis', 'agente hacienda publica', 'examen hacienda tipo test'],
     content: `<h2>El examen de Agente de Hacienda: lo que necesitas saber</h2>
 <p>La oposicion de Agente de Hacienda Publica (C1) es una de las mas demandadas de la AGE. Con <strong>1.000 plazas</strong> en la ultima convocatoria (OEP 2025, BOE 30/12/2025) y un ratio de ~10 opositores por plaza, la preparacion tiene que ser eficiente.</p>
@@ -14797,6 +14799,13 @@ export const blogPosts: BlogPost[] = [
 <h3>Practica con OpoRuta</h3>
 <p>En OpoRuta puedes practicar con <strong>preguntas verificadas contra la legislacion real</strong> del BOE: LGT, IRPF, IVA, IS, IIEE. Cada cita legal se comprueba antes de mostrarte la pregunta. Ademas, tenemos supuestos practicos con correccion IA siguiendo la rubrica oficial AEAT.</p>
 
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/temario-agente-hacienda-2026">Temario completo de Agente de Hacienda 2026</a> — los 32 temas desglosados</li>
+<li><a href="/blog/notas-corte-agente-hacienda">Notas de corte historicas</a> — cuanto necesitas para aprobar</li>
+<li><a href="/blog/como-aprobar-agente-hacienda-estrategia">Estrategia de estudio por bloques</a> — como priorizar tu preparacion</li>
+</ul>
+
 <p><a href="/register?oposicion=hacienda-aeat">Empieza gratis →</a></p>`,
     faqs: [
       { question: '¿Cuantas plazas hay de Agente de Hacienda 2026?', answer: '1.000 plazas de acceso libre (OEP 2025). Historico: 851 (2024), 823 (2023), 787 (2022). La tendencia es creciente.' },
@@ -14810,6 +14819,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Temario Agente de Hacienda 2026 — Los 32 temas completos (actualizado BOE)',
     description: 'Temario oficial de Agente de Hacienda Publica 2026 completo. 32 temas en 3 bloques: Organizacion del Estado, Derecho Administrativo y Hacienda Publica. Convocatoria BOE 30/12/2025.',
     date: '2026-03-30',
+    dateModified: '2026-04-01',
     keywords: ['temario agente hacienda 2026', 'temas oposicion hacienda', 'programa agente hacienda publica', 'temario AEAT 2026', '32 temas hacienda'],
     content: `<h2>Temario completo: 32 temas en 3 bloques</h2>
 <p>El temario de Agente de Hacienda Publica se divide en 3 bloques. La convocatoria 2025-2026 (BOE n° 314, 30/12/2025) redujo de 34 a 32 temas respecto a la anterior.</p>
@@ -14862,6 +14872,13 @@ export const blogPosts: BlogPost[] = [
 <h3>Cambios respecto a convocatorias anteriores</h3>
 <p>La convocatoria 2025-2026 elimino 2 temas (el antiguo tema 5 y el tema 18 de IRNR) y unifico los temas 4+5 anteriores en un nuevo tema 4. Se paso de 100 a 80 preguntas en el primer ejercicio.</p>
 
+<h3>Recursos para tu preparacion</h3>
+<ul>
+<li><a href="/blog/test-agente-hacienda-2026">Tests tipo examen de Agente de Hacienda</a> — practica con preguntas verificadas</li>
+<li><a href="/blog/como-aprobar-agente-hacienda-estrategia">Estrategia de estudio por bloques</a> — como priorizar los 3 bloques</li>
+<li><a href="/oposiciones/hacienda">Toda la informacion sobre la oposicion de Hacienda</a></li>
+</ul>
+
 <p><a href="/register?oposicion=hacienda-aeat">Practica los 32 temas con tests verificados →</a></p>`,
     faqs: [
       { question: '¿Cuantos temas tiene la oposicion de Agente de Hacienda?', answer: '32 temas en 3 bloques: Bloque I (Organizacion del Estado, 7 temas), Bloque II (Derecho Administrativo, 5 temas) y Bloque III (Hacienda Publica y Derecho Tributario, 20 temas).' },
@@ -14874,26 +14891,71 @@ export const blogPosts: BlogPost[] = [
     title: 'Notas de corte Agente de Hacienda — Historico 2020-2024 y prediccion 2025',
     description: 'Historico de notas de corte de Agente de Hacienda Publica. Cuanto necesitas para aprobar el primer ejercicio. Tendencia y prediccion para la proxima convocatoria.',
     date: '2026-03-30',
+    dateModified: '2026-04-01',
     keywords: ['nota corte agente hacienda', 'notas corte hacienda 2024', 'cuanto hay que sacar agente hacienda', 'aprobados agente hacienda'],
     content: `<h2>Historico de notas de corte — Primer ejercicio</h2>
-<p>La nota de corte del primer ejercicio (test de 80-100 preguntas) ha variado significativamente segun el numero de plazas y la dificultad del examen:</p>
+<p>La nota de corte del primer ejercicio de Agente de la Hacienda Publica ha variado significativamente en los ultimos anos. Conocer estos datos es fundamental para dimensionar tu preparacion y fijar un objetivo realista.</p>
 
 <table>
-<thead><tr><th>Convocatoria</th><th>Plazas</th><th>Nota de corte</th></tr></thead>
+<thead><tr><th>Convocatoria</th><th>Plazas</th><th>Nota de corte</th><th>Preguntas</th></tr></thead>
 <tbody>
-<tr><td>OEP 2024</td><td>851</td><td>53,25</td></tr>
-<tr><td>OEP 2023</td><td>823</td><td>59,50</td></tr>
-<tr><td>OEP 2022</td><td>787</td><td>64,27</td></tr>
-<tr><td>OEP 2021</td><td>500</td><td>60,00</td></tr>
-<tr><td>OEP 2020</td><td>400</td><td>72,50</td></tr>
+<tr><td>OEP 2024</td><td>851</td><td>53,25</td><td>100</td></tr>
+<tr><td>OEP 2023</td><td>823</td><td>59,50</td><td>100</td></tr>
+<tr><td>OEP 2022</td><td>787</td><td>64,27</td><td>100</td></tr>
+<tr><td>OEP 2021</td><td>500</td><td>60,00</td><td>100</td></tr>
+<tr><td>OEP 2020</td><td>400</td><td>72,50</td><td>100</td></tr>
 </tbody>
 </table>
 
-<h3>¿Que se puede esperar para la OEP 2025?</h3>
-<p>Con 1.000 plazas (la oferta mas alta de la historia), la nota de corte deberia bajar. La tendencia clara: <strong>mas plazas = nota mas baja</strong>. Es razonable esperar una nota en torno a 50-55 sobre 100 netas.</p>
+<h3>¿Que determina la nota de corte cada ano?</h3>
+<p>La nota de corte no es un numero fijo que establece el tribunal, sino el resultado de tres factores principales:</p>
+<ul>
+<li><strong>Numero de plazas</strong>: es el factor mas determinante. La correlacion es clara — con 400 plazas (2020) la nota fue 72,50; con 851 plazas (2024) bajo a 53,25. Mas plazas significa que se necesita menos nota para entrar.</li>
+<li><strong>Dificultad del examen</strong>: un examen mas dificil produce notas medias mas bajas y, por tanto, una nota de corte mas baja. El tribunal no ajusta la dificultad a posteriori.</li>
+<li><strong>Numero de presentados y su nivel de preparacion</strong>: no importa cuantos se inscriban, sino cuantos se presentan realmente y como de bien preparados estan.</li>
+</ul>
 
-<h3>¿Como se calcula la nota?</h3>
-<p>Nota neta = Aciertos - (Errores / 4). Con 80 preguntas y una nota de corte estimada de ~53, necesitarias unas <strong>55-60 netas</strong>, lo que equivale a ~65-70 aciertos con 10-15 errores.</p>
+<h3>El absentismo: tu aliado invisible</h3>
+<p>Un dato que muchos opositores ignoran: el <strong>absentismo en Agente de Hacienda ronda el 30-40%</strong>. De los ~10.000 inscritos para 1.000 plazas, solo se presentan unos 6.000-7.000. Y de esos, un porcentaje significativo va "a ver que cae" sin preparacion seria. La competencia real es con los 2.000-3.000 opositores bien preparados. Esto reduce el ratio efectivo de ~10:1 a un mucho mas manejable ~3:1.</p>
+
+<h3>El cambio a 80 preguntas: ¿como afecta a la nota de corte?</h3>
+<p>La convocatoria 2025-2026 paso de 100 a <strong>80 preguntas</strong> en el primer ejercicio. Esto tiene implicaciones directas:</p>
+<ul>
+<li><strong>Cada pregunta pesa mas</strong>: con 100 preguntas cada acierto valia 1 punto; con 80 cada acierto vale 1,25. Un solo error pesa proporcionalmente mas.</li>
+<li><strong>Menor margen de maniobra</strong>: con menos preguntas, la varianza aumenta. Un mal dia pesa proporcionalmente mas que con 100 preguntas.</li>
+<li><strong>Posible bajada de nota de corte</strong>: historicamente, reducir el numero de preguntas suele producir notas de corte ligeramente inferiores porque la mayor varianza perjudica al conjunto.</li>
+</ul>
+
+<h3>¿Que se puede esperar para la OEP 2025?</h3>
+<p>Con <strong>1.000 plazas</strong> (la oferta mas alta de la historia) y el nuevo formato de 80 preguntas, la nota de corte deberia situarse en la parte baja del rango historico. Es razonable esperar una nota en torno a <strong>48-54 netas sobre 80</strong>, equivalente al ~60-68% de aciertos netos.</p>
+
+<h3>¿Como se calcula tu nota neta?</h3>
+<p>La formula es: <strong>Nota neta = Aciertos - (Errores / 4)</strong>. Las preguntas en blanco no restan. Ejemplo practico con 80 preguntas:</p>
+<ul>
+<li>70 aciertos, 5 errores, 5 en blanco → 70 - (5/4) = <strong>68,75 netas</strong> (aprobado holgado)</li>
+<li>65 aciertos, 10 errores, 5 en blanco → 65 - (10/4) = <strong>62,50 netas</strong> (aprobado con margen)</li>
+<li>60 aciertos, 15 errores, 5 en blanco → 60 - (15/4) = <strong>56,25 netas</strong> (justo en el limite)</li>
+</ul>
+<p>Para una nota de corte estimada de ~52 netas, recomendamos apuntar a unas <strong>58-62 netas</strong> para ir con margen de seguridad.</p>
+
+<h3>Comparativa con otros cuerpos C1</h3>
+<p>¿Como se compara la nota de corte de Hacienda con otras oposiciones C1 de la AGE?</p>
+<table>
+<thead><tr><th>Cuerpo C1</th><th>Nota corte tipica</th><th>Plazas ult. conv.</th></tr></thead>
+<tbody>
+<tr><td>Agente de Hacienda (AEAT)</td><td>53-65 (tendencia bajista)</td><td>1.000</td></tr>
+<tr><td>Administrativo AGE</td><td>55-70</td><td>~500</td></tr>
+<tr><td>Tramitacion Procesal</td><td>50-60</td><td>~800</td></tr>
+</tbody>
+</table>
+<p>Hacienda esta en un momento historicamente favorable: mas plazas que nunca y una nota de corte que tiende a bajar. Si llevas meses preparando, esta es probablemente la mejor convocatoria para presentarte.</p>
+
+<h3>Recursos para prepararte</h3>
+<ul>
+<li><a href="/blog/test-agente-hacienda-2026">Tests tipo examen de Agente de Hacienda</a> — practica con penalizacion real -1/4</li>
+<li><a href="/oposiciones/hacienda">Toda la informacion de la oposicion de Hacienda</a></li>
+<li><a href="/herramientas/calculadora-nota-hacienda">Calculadora de nota de Hacienda</a> — estima tu puntuacion neta</li>
+</ul>
 
 <p><a href="/register?oposicion=hacienda-aeat">Practica con simulacros reales AEAT →</a></p>`,
     faqs: [
@@ -14907,6 +14969,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Test Instituciones Penitenciarias 2026 — Practica gratis con preguntas tipo examen',
     description: 'Preguntas tipo test de Ayudante de Instituciones Penitenciarias 2026. LOGP, Reglamento Penitenciario, Codigo Penal verificados contra BOE. 120 + 40 preguntas. Practica gratis.',
     date: '2026-03-30',
+    dateModified: '2026-04-01',
     keywords: ['test instituciones penitenciarias 2026', 'oposiciones prisiones', 'examen ayudante IIPP', 'test funcionario prisiones gratis', 'preguntas penitenciarias'],
     content: `<h2>Oposiciones de Instituciones Penitenciarias: guia rapida</h2>
 <p>Las oposiciones de <strong>Ayudante de Instituciones Penitenciarias (C1)</strong> son una de las opciones mas solidas del empleo publico. Con <strong>900 plazas</strong> en la ultima convocatoria y un sueldo de ~25.000-30.000€ brutos/ano, ofrecen estabilidad laboral real.</p>
@@ -14928,6 +14991,14 @@ export const blogPosts: BlogPost[] = [
 <h3>Practica con OpoRuta</h3>
 <p>En OpoRuta tenemos los <strong>50 temas completos</strong> con preguntas verificadas contra la LOGP, el Reglamento Penitenciario y el Codigo Penal. Incluimos el Bloque IV (Conducta Humana) que otras plataformas no cubren.</p>
 
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/temario-instituciones-penitenciarias-2026">Temario completo de Penitenciarias 2026</a> — los 50 temas por bloque</li>
+<li><a href="/blog/como-aprobar-penitenciarias-estrategia-bloques">Estrategia de estudio por bloques</a> — como priorizar tu preparacion</li>
+<li><a href="/blog/sueldo-funcionario-prisiones-2026">Sueldo de funcionario de prisiones</a> — cuanto cobraras</li>
+<li><a href="/oposiciones/penitenciarias">Toda la informacion sobre Penitenciarias</a></li>
+</ul>
+
 <p><a href="/register?oposicion=penitenciarias">Empieza gratis →</a></p>`,
     faqs: [
       { question: '¿Cuantas plazas hay de Ayudante de Instituciones Penitenciarias?', answer: '900 plazas en la ultima convocatoria (OEP 2025). Historico: 800 (2024), 756 (2023), 900 (2022). Se esperan unas 800 para la proxima.' },
@@ -14941,6 +15012,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Temario Instituciones Penitenciarias 2026 — Los 50 temas completos',
     description: 'Temario oficial de Ayudante de Instituciones Penitenciarias 2026. 50 temas en 4 bloques: Organizacion del Estado, Derecho Penal, Derecho Penitenciario y Conducta Humana.',
     date: '2026-03-30',
+    dateModified: '2026-04-01',
     keywords: ['temario instituciones penitenciarias 2026', 'temas oposiciones prisiones', 'programa funcionario prisiones', '50 temas penitenciarias', 'temario IIPP 2026'],
     content: `<h2>Temario completo: 50 temas en 4 bloques</h2>
 <p>El temario de Ayudante de Instituciones Penitenciarias (C1) tiene 50 temas distribuidos en 4 bloques. Es uno de los temarios mas extensos de las oposiciones C1.</p>
@@ -14964,6 +15036,13 @@ export const blogPosts: BlogPost[] = [
 <h3>Estrategia de estudio recomendada</h3>
 <p>Prioriza por peso: <strong>Bloque III</strong> (Penitenciario, 36%) → <strong>Bloque I</strong> (Org. Estado, 35%) → <strong>Bloque II</strong> (Penal, 20%) → <strong>Bloque IV</strong> (Conducta, 9%).</p>
 
+<h3>Recursos para tu preparacion</h3>
+<ul>
+<li><a href="/blog/test-instituciones-penitenciarias-2026">Tests tipo examen de Penitenciarias</a> — practica con preguntas verificadas</li>
+<li><a href="/blog/como-aprobar-penitenciarias-estrategia-bloques">Estrategia de estudio por bloques</a> — como priorizar los 4 bloques</li>
+<li><a href="/oposiciones/penitenciarias">Toda la informacion sobre Penitenciarias</a></li>
+</ul>
+
 <p><a href="/register?oposicion=penitenciarias">Practica los 50 temas con tests verificados →</a></p>`,
     faqs: [
       { question: '¿Cuantos temas tiene la oposicion de Instituciones Penitenciarias?', answer: '50 temas en 4 bloques: Bloque I (Org. Estado + Dcho. Admin, 17 temas), Bloque II (Derecho Penal, 10 temas), Bloque III (Derecho Penitenciario, 20 temas), Bloque IV (Conducta Humana, 3 temas).' },
@@ -14977,6 +15056,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Como aprobar Agente de Hacienda — Estrategia de estudio por bloques',
     description: 'Estrategia de estudio para aprobar Agente de la Hacienda Publica. El Bloque III (LGT y procedimientos tributarios) supone mas del 50% del examen. Te explicamos como priorizar.',
     date: '2026-03-30',
+    dateModified: '2026-04-01',
     keywords: ['como aprobar agente hacienda', 'estrategia estudio hacienda', 'preparar oposicion hacienda', 'bloques examen AEAT', 'LGT oposiciones'],
     content: `<h2>El examen de Agente de Hacienda: estructura y claves</h2>
 <p>La oposicion de Agente de la Hacienda Publica (C1) es una de las mas demandadas del Estado. Convoca la AEAT y el examen consta de dos ejercicios: un test de 100 preguntas (ejercicio 1) y un supuesto practico (ejercicio 2). Aprobar requiere una estrategia clara porque el temario es extenso y desigual en peso.</p>
@@ -15009,6 +15089,13 @@ export const blogPosts: BlogPost[] = [
 <li>Memorizar articulos sin entender la logica del procedimiento tributario.</li>
 </ul>
 
+<h3>Recursos para tu preparacion</h3>
+<ul>
+<li><a href="/blog/temario-agente-hacienda-2026">Temario completo de Agente de Hacienda 2026</a> — los 32 temas desglosados por bloque</li>
+<li><a href="/blog/sueldo-agente-hacienda-publica-2026">Sueldo de Agente de Hacienda</a> — cuanto cobraras cuando apruebes</li>
+<li><a href="/oposiciones/hacienda">Toda la informacion sobre la oposicion de Hacienda</a></li>
+</ul>
+
 <p><a href="/register?oposicion=hacienda">Practica tests de Agente de Hacienda con correccion automatica →</a></p>`,
     faqs: [
       { question: '¿Cual es el bloque mas importante del examen de Agente de Hacienda?', answer: 'El Bloque III (Derecho Tributario y procedimientos) supone mas del 55% del examen. La Ley General Tributaria (58/2003) es la ley mas preguntada con diferencia.' },
@@ -15022,6 +15109,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Sueldo de Agente de la Hacienda Publica en 2026 — Desglose completo',
     description: 'Cuanto cobra un Agente de Hacienda en 2026. Desglose: sueldo base + complemento de destino + especifico + productividad + trienios. Comparativa con otros cuerpos C1.',
     date: '2026-03-30',
+    dateModified: '2026-04-01',
     keywords: ['sueldo agente hacienda', 'cuanto cobra agente hacienda', 'retribuciones AEAT', 'sueldo funcionario hacienda 2026', 'nómina agente hacienda'],
     content: `<h2>¿Cuanto cobra un Agente de Hacienda en 2026?</h2>
 <p>El puesto de Agente de la Hacienda Publica (Grupo C1) en la AEAT es de los mejor retribuidos dentro de su grupo. La razon: el complemento especifico de la AEAT es significativamente superior al de otros cuerpos C1 generales.</p>
@@ -15061,6 +15149,12 @@ export const blogPosts: BlogPost[] = [
 <li><strong>Dias de asuntos propios</strong>: minimo 6 dias adicionales + moscosos + vacaciones.</li>
 </ul>
 
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/como-aprobar-agente-hacienda-estrategia">Como aprobar Agente de Hacienda</a> — estrategia de estudio por bloques</li>
+<li><a href="/oposiciones/hacienda">Toda la informacion sobre la oposicion de Hacienda</a></li>
+</ul>
+
 <p><a href="/register?oposicion=hacienda">Empieza a preparar Agente de Hacienda con OpoRuta →</a></p>`,
     faqs: [
       { question: '¿Cuanto cobra un Agente de Hacienda al mes?', answer: 'Entre 1.850 y 2.300 € netos mensuales (14 pagas) al inicio. Con trienios y productividad puede superar los 2.500 € netos. Depende de la delegacion y la productividad variable.' },
@@ -15074,6 +15168,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Como aprobar Instituciones Penitenciarias — Estrategia por bloques',
     description: 'Estrategia de estudio para aprobar Ayudante de Instituciones Penitenciarias. El Bloque III (Derecho Penitenciario) pesa un 36% del examen. Te explicamos como priorizar los 50 temas.',
     date: '2026-03-30',
+    dateModified: '2026-04-01',
     keywords: ['como aprobar penitenciarias', 'estrategia estudio prisiones', 'bloques penitenciarias', 'como estudiar oposiciones prisiones', 'preparar ayudante IIPP'],
     content: `<h2>Los 4 bloques de Penitenciarias: pesos reales</h2>
 <p>La oposicion de Ayudante de Instituciones Penitenciarias (C1) tiene 50 temas en 4 bloques. El examen es un test de 150 preguntas con penalizacion. Muchos opositores estudian los bloques a partes iguales — y es un error. Los pesos son muy desiguales.</p>
@@ -15110,6 +15205,13 @@ export const blogPosts: BlogPost[] = [
 <li>No hacer simulacros con penalizacion real desde el primer mes.</li>
 </ul>
 
+<h3>Recursos para tu preparacion</h3>
+<ul>
+<li><a href="/blog/temario-instituciones-penitenciarias-2026">Temario completo de Penitenciarias</a> — los 50 temas desglosados</li>
+<li><a href="/blog/sueldo-funcionario-prisiones-2026">Sueldo de funcionario de prisiones</a> — cuanto cobraras cuando apruebes</li>
+<li><a href="/oposiciones/penitenciarias">Toda la informacion sobre Penitenciarias</a></li>
+</ul>
+
 <p><a href="/register?oposicion=penitenciarias">Practica los 50 temas de Penitenciarias con tests verificados →</a></p>`,
     faqs: [
       { question: '¿Cual es el bloque mas importante de la oposicion de Penitenciarias?', answer: 'El Bloque III (Derecho Penitenciario) con un 36% del examen. La LOGP y el Reglamento Penitenciario son las leyes mas preguntadas. Le sigue de cerca el Bloque I (Org. Estado) con un 35%.' },
@@ -15123,6 +15225,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Sueldo de funcionario de prisiones en 2026 — Desglose y complementos',
     description: 'Cuanto cobra un Ayudante de Instituciones Penitenciarias en 2026. Sueldo base + peligrosidad + nocturnidad + trienios + turnicidad. Comparativa con otros cuerpos C1.',
     date: '2026-03-30',
+    dateModified: '2026-04-01',
     keywords: ['sueldo funcionario prisiones', 'cuanto cobra ayudante IIPP', 'retribuciones penitenciarias', 'sueldo prisiones 2026', 'complemento peligrosidad prisiones'],
     content: `<h2>¿Cuanto cobra un funcionario de prisiones en 2026?</h2>
 <p>El Ayudante de Instituciones Penitenciarias (Grupo C1) es uno de los cuerpos mejor pagados de su grupo. El motivo: los complementos de peligrosidad, nocturnidad y turnicidad son exclusivos de este cuerpo y elevan significativamente la nomina.</p>
@@ -15166,6 +15269,12 @@ export const blogPosts: BlogPost[] = [
 <li><strong>Turnos rotatorios</strong>: manana, tarde y noche. El sistema de turnos limita la conciliacion pero genera los complementos extra.</li>
 <li><strong>Ubicacion</strong>: los centros penitenciarios estan mayoritariamente fuera de las capitales. La eleccion de destino depende de la nota.</li>
 <li><strong>Promocion interna</strong>: acceso a cuerpos superiores (A2, A1) con reserva de plazas y parte del temario convalidado.</li>
+</ul>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/como-aprobar-penitenciarias-estrategia-bloques">Como aprobar Penitenciarias</a> — estrategia de estudio por bloques</li>
+<li><a href="/oposiciones/penitenciarias">Toda la informacion sobre Penitenciarias</a></li>
 </ul>
 
 <p><a href="/register?oposicion=penitenciarias">Empieza a preparar Penitenciarias con OpoRuta →</a></p>`,
@@ -15403,6 +15512,7 @@ export const blogPosts: BlogPost[] = [
     title: 'OpoRuta vs OpositaTest para Agente de Hacienda 2026: comparativa honesta',
     description: 'Comparamos OpoRuta y OpositaTest para preparar Agente de Hacienda Publica 2026. Verificacion BOE (LGT, IRPF, IVA), correccion IA de supuestos y precio unico vs suscripcion.',
     date: '2026-03-30',
+    dateModified: '2026-04-01',
     keywords: ['oporuta vs opositatest hacienda', 'comparativa plataformas agente hacienda', 'test agente hacienda online', 'oposiciones hacienda 2026 plataforma', 'opositatest hacienda alternativa'],
     content: `<h2>Dos plataformas, dos filosofias</h2>
 <p>Si estas preparando la oposicion de <strong>Agente de Hacienda Publica (C1)</strong>, seguramente has visto dos nombres: <strong>OpoRuta</strong> y <strong>OpositaTest</strong>. Ambas ofrecen tests online, pero su enfoque es muy diferente. Aqui tienes una comparativa objetiva para que decidas con datos.</p>
@@ -15442,7 +15552,7 @@ export const blogPosts: BlogPost[] = [
 <h3>¿Cual elegir?</h3>
 <p>Si solo necesitas un banco de preguntas basico para repasar, OpositaTest cumple. Pero si buscas <strong>verificacion legislativa real + practica de supuestos con correccion + precio justo</strong>, OpoRuta esta disenado especificamente para eso.</p>
 
-<p><a href="/oposiciones/hacienda">Descubre OpoRuta para Agente de Hacienda →</a></p>`,
+<p><a href="/oposiciones/hacienda">Descubre OpoRuta para Agente de Hacienda →</a> | <a href="/precios">Ver precios</a></p>`,
     faqs: [
       { question: '¿OpoRuta verifica la legislacion de Hacienda?', answer: 'Si. Cada pregunta incluye citas legales (LGT, IRPF, IVA, IS, IIEE) que se verifican contra la base legislativa vigente del BOE. Si un articulo ha cambiado, la pregunta se regenera automaticamente.' },
       { question: '¿Puedo practicar supuestos practicos de Hacienda en OpoRuta?', answer: 'Si. OpoRuta incluye supuestos practicos de desarrollo escrito con correccion IA siguiendo la rubrica oficial de la AEAT: precision juridica, fundamentacion legal, estructura y coherencia.' },
@@ -15456,6 +15566,7 @@ export const blogPosts: BlogPost[] = [
     title: 'OpoRuta vs OpositaTest para Instituciones Penitenciarias 2026: comparativa',
     description: 'Comparamos OpoRuta y OpositaTest para preparar Instituciones Penitenciarias 2026. LOGP, Reglamento Penitenciario y Codigo Penal verificados. Bloque IV Conducta Humana incluido.',
     date: '2026-03-30',
+    dateModified: '2026-04-01',
     keywords: ['oporuta vs opositatest penitenciarias', 'comparativa plataformas prisiones', 'test instituciones penitenciarias online', 'oposiciones penitenciarias 2026 plataforma', 'opositatest penitenciarias alternativa'],
     content: `<h2>La oposicion de Penitenciarias tiene un temario unico</h2>
 <p>Preparar <strong>Instituciones Penitenciarias</strong> no es como preparar cualquier otra oposicion de la AGE. El temario de 50 temas incluye legislacion muy especifica (LOGP, Reglamento Penitenciario, Codigo Penal) y un <strong>Bloque IV de Conducta Humana</strong> que muchas plataformas simplemente ignoran. ¿Como comparan OpoRuta y OpositaTest para esta oposicion?</p>
@@ -15496,7 +15607,7 @@ export const blogPosts: BlogPost[] = [
 <h3>Veredicto</h3>
 <p>Para Penitenciarias, la cobertura del <strong>Bloque IV</strong> y la <strong>verificacion de la legislacion penal y penitenciaria</strong> son criticas. Si buscas una plataforma que cubra los 50 temas completos con legislacion verificada, OpoRuta es la opcion mas solida.</p>
 
-<p><a href="/oposiciones/penitenciarias">Descubre OpoRuta para Penitenciarias →</a></p>`,
+<p><a href="/oposiciones/penitenciarias">Descubre OpoRuta para Penitenciarias →</a> | <a href="/precios">Ver precios</a></p>`,
     faqs: [
       { question: '¿OpoRuta cubre el Bloque IV de Conducta Humana de Penitenciarias?', answer: 'Si. Los 50 temas estan cubiertos, incluyendo el Bloque IV completo: psicologia (motivacion, aprendizaje, personalidad), sociologia (desviacion social, subculturas) y criminologia. Muchas plataformas no cubren estos temas.' },
       { question: '¿Se verifica la legislacion penitenciaria en OpoRuta?', answer: 'Si. Cada cita legal (LOGP, Reglamento Penitenciario, Codigo Penal, Constitucion) se verifica contra la legislacion vigente del BOE antes de mostrarte la pregunta.' },
@@ -15509,6 +15620,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Las 5 mejores plataformas para preparar Agente de Hacienda 2026',
     description: 'Comparativa de las 5 mejores plataformas y apps para preparar la oposicion de Agente de Hacienda Publica 2026: OpoRuta, OpositaTest, Adams, MAD y GoKoan. Precios, formatos y funcionalidades.',
     date: '2026-03-30',
+    dateModified: '2026-04-01',
     keywords: ['mejores apps oposiciones hacienda', 'plataformas agente hacienda 2026', 'test hacienda online comparativa', 'preparar hacienda online', 'apps oposiciones AEAT'],
     content: `<h2>¿Cual es la mejor plataforma para Agente de Hacienda?</h2>
 <p>Con <strong>1.000 plazas</strong> convocadas (OEP 2025), la oposicion de Agente de Hacienda Publica es una de las mas competidas de la AGE. Elegir bien tu material de estudio puede marcar la diferencia entre aprobar o repetir. Aqui analizamos las <strong>5 plataformas mas usadas</strong> en 2026.</p>
@@ -15555,7 +15667,7 @@ export const blogPosts: BlogPost[] = [
 <li><strong>Estudio en papel</strong>: MAD + OpoRuta para practicar online</li>
 </ul>
 
-<p><a href="/register?oposicion=hacienda-aeat">Prueba OpoRuta gratis para Agente de Hacienda →</a></p>`,
+<p><a href="/register?oposicion=hacienda-aeat">Prueba OpoRuta gratis para Agente de Hacienda →</a> | <a href="/oposiciones/hacienda">Info completa</a> | <a href="/precios">Ver precios</a></p>`,
     faqs: [
       { question: '¿Cual es la mejor app para preparar Agente de Hacienda 2026?', answer: 'Depende de tu presupuesto. Por relacion calidad-precio, OpoRuta (49,99€ unico) ofrece verificacion BOE + supuestos con IA. Si buscas academia completa, Adams es la referencia (~120€/mes). Para tests basicos, OpositaTest (25-40€/mes).' },
       { question: '¿Necesito academia para Agente de Hacienda?', answer: 'No es imprescindible. Muchos aprobados combinan temario (MAD o Adams) con plataformas de tests online como OpoRuta. La clave es practicar supuestos practicos del segundo ejercicio, que es donde mas gente suspende.' },
@@ -15568,6 +15680,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Las 5 mejores plataformas para preparar Penitenciarias 2026',
     description: 'Comparativa de las 5 mejores plataformas para preparar Instituciones Penitenciarias 2026: OpoRuta, OpositaTest, Academia de Prisiones, MasterD y FuncionarioPrisiones. Precios, cobertura y IA.',
     date: '2026-03-30',
+    dateModified: '2026-04-01',
     keywords: ['mejores apps oposiciones penitenciarias', 'plataformas instituciones penitenciarias 2026', 'test penitenciarias online comparativa', 'preparar prisiones online', 'apps oposiciones funcionario prisiones'],
     content: `<h2>¿Cual es la mejor plataforma para Penitenciarias?</h2>
 <p>La oposicion de <strong>Instituciones Penitenciarias</strong> tiene un temario de 50 temas con legislacion muy especifica (LOGP, Reglamento Penitenciario, Codigo Penal) y un Bloque IV de Conducta Humana que complica la preparacion. Elegir la plataforma correcta puede ahorrarte meses de estudio ineficiente.</p>
@@ -15616,7 +15729,7 @@ export const blogPosts: BlogPost[] = [
 <h3>Consejo final</h3>
 <p>Sea cual sea tu eleccion, asegurate de que la plataforma cubra el <strong>Bloque IV de Conducta Humana</strong>. Representa un 15-20% del examen y es donde mas opositores pierden puntos por falta de preparacion especifica.</p>
 
-<p><a href="/register?oposicion=penitenciarias">Prueba OpoRuta gratis para Penitenciarias →</a></p>`,
+<p><a href="/register?oposicion=penitenciarias">Prueba OpoRuta gratis para Penitenciarias →</a> | <a href="/oposiciones/penitenciarias">Info completa</a> | <a href="/precios">Ver precios</a></p>`,
     faqs: [
       { question: '¿Cual es la mejor app para preparar Penitenciarias 2026?', answer: 'Por relacion calidad-precio, OpoRuta (49,99€ unico) cubre los 50 temas con verificacion BOE y Bloque IV completo. Si buscas academia con preparador, las academias especializadas en prisiones son la referencia (~100-150€/mes).' },
       { question: '¿Que plataforma cubre el Bloque IV de Conducta Humana?', answer: 'OpoRuta cubre los 50 temas completos incluyendo Bloque IV (psicologia, sociologia, criminologia). Muchas plataformas como OpositaTest o FuncionarioPrisiones tienen cobertura parcial o limitada de estos temas.' },
@@ -15629,6 +15742,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Test Ertzaintza 2026: practica online gratis con IA',
     description: 'Practica tests de Ertzaintza 2026 online con IA. 54 temas, ~40 preguntas tipo test, penalización -1/3, escala 0-150. Tests verificados contra BOPV y legislación vigente.',
     date: '2026-03-31',
+    dateModified: '2026-04-01',
     keywords: ['test ertzaintza 2026', 'oposiciones ertzaintza', 'test ertzaintza online', 'ertzaintza temario', 'policia vasca oposiciones'],
     content: `
 <h2>¿Qué es la Ertzaintza y por qué opositar en 2026?</h2>
@@ -15692,6 +15806,13 @@ export const blogPosts: BlogPost[] = [
 <p>En oposiciones policiales autonómicas como la Ertzaintza, la legislación cambia con frecuencia: reformas del Estatuto, modificaciones de la Ley de Policía del País Vasco, actualizaciones del Código Penal que afectan a competencias policiales. Estudiar con preguntas basadas en normativa derogada no solo es inútil, <strong>es contraproducente</strong> porque fija respuestas incorrectas en tu memoria.</p>
 <p>OpoRuta resuelve este problema verificando cada pregunta contra la legislación vigente de forma automática. Si una ley cambia, las preguntas se actualizan. Así de simple.</p>
 
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/oposiciones/seguridad/ertzaintza">Oposiciones Ertzaintza 2026: temario, plazas y preparacion con IA</a></li>
+<li><a href="/oposiciones/seguridad">Todas las oposiciones de Seguridad en OpoRuta</a></li>
+<li><a href="/blog/psicotecnicos-oposiciones-policia-2026">Psicotecnicos oposiciones policia 2026: tipos y practica</a></li>
+</ul>
+
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con legislación verificada, psicotécnicos específicos y Personalidad Policial con IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
     faqs: [
       { question: '¿Cuántas preguntas tiene el examen de Ertzaintza?', answer: 'El examen teórico de la Ertzaintza tiene un número variable de preguntas, aproximadamente 40 por convocatoria, con 4 opciones de respuesta, penalización -1/3 y 50 minutos de tiempo. La puntuación se transforma a una escala de 0 a 150, necesitando un mínimo de 75 para aprobar.' },
@@ -15705,6 +15826,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Oposiciones Guardia Civil 2026: temario, plazas y examen',
     description: 'Todo sobre las oposiciones de Guardia Civil 2026: ~2.800 plazas, 25 temas en 3 bloques, 100 preguntas tipo test con penalización -1/3. Guía completa con temario, requisitos y estrategia.',
     date: '2026-03-31',
+    dateModified: '2026-04-01',
     keywords: ['oposiciones guardia civil 2026', 'temario guardia civil', 'plazas guardia civil 2026', 'examen guardia civil', 'test guardia civil online'],
     content: `
 <h2>Guardia Civil 2026: una de las oposiciones más demandadas</h2>
@@ -15775,7 +15897,14 @@ export const blogPosts: BlogPost[] = [
 <li><strong>Estadísticas detalladas</strong>: Seguimiento por bloque y tema para identificar puntos débiles</li>
 </ul>
 
-<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con legislación verificada, psicotécnicos específicos y Personalidad Policial con IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/oposiciones/seguridad/guardia-civil">Guardia Civil en OpoRuta: tests, simulacros y psicotecnicos</a></li>
+<li><a href="/blog/sueldo-guardia-civil-policia-nacional-2026">Sueldo Guardia Civil y Policia Nacional 2026: nomina desglosada</a></li>
+<li><a href="/blog/oporuta-vs-opositatest-oposiciones-policia">OpoRuta vs OpositaTest para oposiciones de policia</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register?oposicion=guardia-civil">Empieza gratis con Guardia Civil en OpoRuta</a></strong> — tests con legislación verificada, psicotécnicos específicos y Personalidad Policial con IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
     faqs: [
       { question: '¿Cuántas plazas de Guardia Civil hay en 2026?', answer: 'Las previsiones para 2026 apuntan a unas 2.800 plazas para ingreso en la Escala de Cabos y Guardias, en línea con convocatorias anteriores (2.091 en 2023, 2.830 en 2024). El número exacto se confirma con la publicación de la convocatoria en el BOE.' },
       { question: '¿Cómo funciona la penalización en el examen de Guardia Civil?', answer: 'El examen tiene 100 preguntas con 4 opciones y penalización -1/3: cada respuesta correcta suma 1 punto, cada incorrecta resta 0,333 puntos y las respuestas en blanco no puntúan. La nota se calcula sobre 100 y necesitas un mínimo de 50 para aprobar. Matemáticamente, debes responder si puedes descartar al menos una opción.' },
@@ -15788,6 +15917,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Examen Policía Nacional: 3 opciones, penalización -1/2 y estrategia',
     description: 'El examen de Policía Nacional 2026 es único: 100 preguntas con solo 3 opciones (A, B, C) y penalización -1/2. Analizamos la estrategia óptima, cuándo responder y cuándo dejar en blanco.',
     date: '2026-03-31',
+    dateModified: '2026-04-01',
     keywords: ['examen policia nacional 2026', 'policia nacional 3 opciones', 'penalizacion policia nacional', 'test policia nacional online', 'estrategia examen policia'],
     content: `
 <h2>¿Por qué el examen de Policía Nacional es diferente?</h2>
@@ -15852,6 +15982,13 @@ export const blogPosts: BlogPost[] = [
 </ul>
 <p>Practicar con el formato correcto desde el principio es fundamental. Si entrenas con tests de 4 opciones, tu cerebro se acostumbra a un nivel de discriminación diferente y el día del examen la adaptación puede costarte décimas cruciales.</p>
 
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/oposiciones/seguridad/policia-nacional">Policia Nacional en OpoRuta: tests con 3 opciones y penalizacion real</a></li>
+<li><a href="/blog/psicotecnicos-oposiciones-policia-2026">Psicotecnicos oposiciones policia 2026: tipos y practica</a></li>
+<li><a href="/blog/sueldo-guardia-civil-policia-nacional-2026">Sueldo Guardia Civil y Policia Nacional 2026: nomina desglosada</a></li>
+</ul>
+
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con legislación verificada, psicotécnicos específicos y Personalidad Policial con IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
     faqs: [
       { question: '¿Por qué el examen de Policía Nacional tiene solo 3 opciones?', answer: 'El formato de 3 opciones (A, B, C) con penalización -1/2 es una decisión de la Dirección General de la Policía. Aunque parece más fácil por tener menos opciones, en realidad las alternativas son más parecidas entre sí y la penalización es proporcionalmente mayor. Esto exige un conocimiento más preciso del temario.' },
@@ -15865,6 +16002,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Psicotécnicos oposiciones policía 2026: tipos y práctica',
     description: 'Guía de psicotécnicos para oposiciones de policía 2026 (Ertzaintza, Guardia Civil, Policía Nacional). Tipos de pruebas: espacial, lógica deductiva, percepción, series y verbal. Practica gratis con IA.',
     date: '2026-03-31',
+    dateModified: '2026-04-01',
     keywords: ['psicotecnicos policia 2026', 'psicotecnicos guardia civil', 'psicotecnicos policia nacional', 'test psicotecnico oposiciones', 'psicotecnicos ertzaintza'],
     content: `
 <h2>¿Qué son los psicotécnicos en oposiciones de policía?</h2>
@@ -15947,6 +16085,12 @@ export const blogPosts: BlogPost[] = [
 <li><strong>Explicaciones paso a paso</strong>: Cuando fallas, te explica el razonamiento completo</li>
 </ul>
 
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/oposiciones/seguridad/personalidad-policial">Preparacion de personalidad policial con IA</a></li>
+<li><a href="/blog/test-personalidad-policial-prueba-psicotecnica">Test de personalidad policial: como preparar la prueba</a></li>
+</ul>
+
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con legislación verificada, psicotécnicos específicos y Personalidad Policial con IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
     faqs: [
       { question: '¿Qué tipos de psicotécnicos entran en oposiciones de policía?', answer: 'Los principales tipos son: razonamiento espacial (rotación mental, cubos, espejos), lógica deductiva (silogismos, condicionales), percepción y atención (conteo, diferencias, patrones), series numéricas y aptitud verbal (analogías, vocabulario). La distribución varía según el cuerpo: Guardia Civil enfatiza el espacial, Policía Nacional la lógica, y Ertzaintza combina todos los tipos.' },
@@ -15960,6 +16104,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Sueldo Guardia Civil y Policía Nacional 2026: nómina desglosada',
     description: 'Comparativa de sueldos Guardia Civil y Policía Nacional 2026. Desglose de nómina: sueldo base, complemento destino, específico, trienios y pagas extra. GC ~24.000-28.000€/año, PN ~28.000-34.000€/año.',
     date: '2026-03-31',
+    dateModified: '2026-04-01',
     keywords: ['sueldo guardia civil 2026', 'sueldo policia nacional 2026', 'nomina guardia civil', 'cuanto cobra policia nacional', 'sueldo ertzaintza 2026'],
     content: `
 <h2>¿Cuánto cobra un Guardia Civil en 2026?</h2>
@@ -16032,6 +16177,13 @@ export const blogPosts: BlogPost[] = [
 <h2>¿Merece la pena económicamente?</h2>
 <p>Comparado con el mercado laboral privado, un puesto en Fuerzas de Seguridad ofrece un sueldo competitivo con <strong>estabilidad absoluta</strong>: no hay ERE, no hay despidos, hay jubilación anticipada y la progresión salarial está garantizada por trienios. Un Guardia Civil o Policía Nacional con 20 años de servicio cobra entre 32.000-40.000€ anuales, cifra que supera la media salarial española.</p>
 
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/oposiciones/seguridad/guardia-civil">Prepara Guardia Civil con OpoRuta: tests y simulacros</a></li>
+<li><a href="/oposiciones/seguridad/policia-nacional">Prepara Policia Nacional con OpoRuta: formato 3 opciones</a></li>
+<li><a href="/blog/oposiciones-guardia-civil-2026-temario-plazas-examen">Oposiciones Guardia Civil 2026: temario, plazas y examen</a></li>
+</ul>
+
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con legislación verificada, psicotécnicos específicos y Personalidad Policial con IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
     faqs: [
       { question: '¿Cuánto cobra un Guardia Civil de nuevo ingreso?', answer: 'Un Guardia Civil de nuevo ingreso cobra aproximadamente 24.000-28.000€ brutos anuales (14 pagas), lo que equivale a unos 1.400-1.600€ netos mensuales. El sueldo se compone de sueldo base (~750€), complemento de destino (~350€), complemento específico (~400€) y productividad variable.' },
@@ -16045,6 +16197,7 @@ export const blogPosts: BlogPost[] = [
     title: 'OpoRuta vs OpositaTest para oposiciones de policía 2026',
     description: 'Comparativa OpoRuta vs OpositaTest para preparar oposiciones de Guardia Civil, Policía Nacional y Ertzaintza. Precio, verificación legal, psicotécnicos, personalidad policial y más.',
     date: '2026-03-31',
+    dateModified: '2026-04-01',
     keywords: ['oporuta vs opositatest policia', 'alternativa opositatest guardia civil', 'test policia online', 'mejor plataforma oposiciones policia', 'preparar oposiciones policia online'],
     content: `
 <h2>¿OpoRuta o OpositaTest para oposiciones de policía?</h2>
@@ -16103,6 +16256,12 @@ export const blogPosts: BlogPost[] = [
 <h2>Veredicto</h2>
 <p>Para <strong>oposiciones de policía</strong> específicamente (GC, PN, Ertzaintza), OpoRuta ofrece mejor relación calidad-precio: verificación legislativa automática, formato nativo de cada examen, psicotécnicos policiales y el módulo exclusivo de personalidad policial, todo por 79,99€ en pago único. OpositaTest es una buena herramienta complementaria con comunidad activa, pero su falta de verificación legislativa automática y de preparación de personalidad la sitúan por detrás para este tipo específico de oposición.</p>
 
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/oposiciones/seguridad">Todas las oposiciones de Seguridad en OpoRuta</a></li>
+<li><a href="/precios">Ver precios y planes de OpoRuta</a></li>
+</ul>
+
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con legislación verificada, psicotécnicos específicos y Personalidad Policial con IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
     faqs: [
       { question: '¿Qué es mejor para Guardia Civil, OpoRuta o OpositaTest?', answer: 'Para Guardia Civil específicamente, OpoRuta ofrece mejor relación calidad-precio: 79,99€ pago único vs ~144€/año de OpositaTest, verificación legislativa automática contra BOE, psicotécnicos específicos y preparación de personalidad policial (exclusiva). OpositaTest destaca por su comunidad y trayectoria. Muchos opositores combinan ambas.' },
@@ -16115,6 +16274,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Test de personalidad policial: cómo preparar la prueba psicotécnica',
     description: 'Guía completa sobre la prueba de personalidad policial en oposiciones. Big Five, lie scales, test de juicio situacional (SJT) y entrevista. OpoRuta es la primera plataforma con preparación IA.',
     date: '2026-03-31',
+    dateModified: '2026-04-01',
     keywords: ['test personalidad policial', 'prueba psicotecnica policia', 'personalidad policial oposiciones', 'big five policia', 'sjt policia'],
     content: `
 <h2>¿Qué es la prueba de personalidad policial?</h2>
@@ -16186,6 +16346,13 @@ export const blogPosts: BlogPost[] = [
 <li><strong>Preparación de entrevista</strong>: Preguntas frecuentes y guía para responder con coherencia</li>
 </ul>
 <p>El <strong>Pack Personalidad</strong> está disponible por <strong>49,99€</strong> (pago único) e incluye acceso ilimitado a todos estos módulos.</p>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/oposiciones/seguridad/personalidad-policial">Modulo de personalidad policial en OpoRuta</a></li>
+<li><a href="/oposiciones/seguridad">Todas las oposiciones de Seguridad en OpoRuta</a></li>
+<li><a href="/blog/psicotecnicos-oposiciones-policia-2026">Psicotecnicos oposiciones policia 2026: tipos y practica</a></li>
+</ul>
 
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con legislación verificada, psicotécnicos específicos y Personalidad Policial con IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
     faqs: [

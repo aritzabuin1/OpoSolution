@@ -15,17 +15,18 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Oposiciones Guardia Civil 2026 — 25 temas, C2, Tests con IA | OpoRuta',
+  title: 'Oposiciones Guardia Civil 2026: 3.118 plazas, 25 temas — Tests gratis | OpoRuta',
   description:
-    'Prepara las oposiciones de Guardia Civil 2026: 25 temas en 3 bloques, 100 preguntas tipo test, nivel C2. Tests verificados contra BOE. Incluye psicotécnicos y Personalidad Policial con IA.',
+    'Prepara Guardia Civil 2026: 3.118 plazas, 25 temas en 3 bloques, examen de 100 preguntas tipo test. Tests online gratis verificados contra BOE + psicotécnicos + Personalidad Policial con IA.',
   keywords: [
     'oposiciones guardia civil 2026', 'test guardia civil online', 'temario guardia civil',
-    'guardia civil requisitos', 'oposiciones guardia civil temario',
-    'psicotecnicos guardia civil', 'guardia civil plazas 2026',
+    'guardia civil requisitos', 'oposiciones guardia civil temario', 'temas guardia civil',
+    'psicotecnicos guardia civil', 'guardia civil plazas 2026', 'temario guardia civil actualizado',
+    'test guardia civil gratis', 'examen guardia civil 2026',
   ],
   openGraph: {
-    title: 'Oposiciones Guardia Civil 2026 — 25 temas, C2, Tests con IA | OpoRuta',
-    description: 'Tests con IA para Guardia Civil. 25 temas, 100 preguntas, scoring verificado BOE.',
+    title: 'Oposiciones Guardia Civil 2026: 3.118 plazas — Tests gratis | OpoRuta',
+    description: 'Tests online gratis para Guardia Civil 2026. 25 temas, 100 preguntas, scoring verificado BOE.',
     url: `${APP_URL}/oposiciones/seguridad/guardia-civil`,
     type: 'website',
     images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Oposiciones Guardia Civil 2026')}`, width: 1200, height: 630 }],

@@ -15,17 +15,17 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Oposiciones Ertzaintza 2026 — 54 temas, C1, Tests con IA | OpoRuta',
+  title: 'Oposiciones Ertzaintza 2026: ~800 plazas, 54 temas — Tests gratis | OpoRuta',
   description:
-    'Prepara las oposiciones de Ertzaintza 2026: 54 temas en 11 bloques, ~40 preguntas tipo test, nivel C1. Tests verificados contra BOPV. Incluye psicotécnicos y Personalidad Policial con IA.',
+    'Prepara Ertzaintza 2026: ~800 plazas, 54 temas en 11 bloques, ~40 preguntas tipo test (C1). Tests gratis con IA verificados contra BOPV + psicotécnicos + Personalidad Policial.',
   keywords: [
     'oposiciones ertzaintza 2026', 'test ertzaintza online', 'temario ertzaintza',
     'policia autonomica pais vasco', 'oposiciones ertzaintza temario',
     'psicotecnicos ertzaintza', 'ertzaintza requisitos',
   ],
   openGraph: {
-    title: 'Oposiciones Ertzaintza 2026 — 54 temas, C1, Tests con IA | OpoRuta',
-    description: 'Tests con IA para Ertzaintza. 54 temas, 11 bloques, scoring verificado BOPV.',
+    title: 'Oposiciones Ertzaintza 2026: ~800 plazas | OpoRuta',
+    description: 'Tests gratis para Ertzaintza 2026. ~800 plazas, 54 temas en 11 bloques, scoring verificado BOPV.',
     url: `${APP_URL}/oposiciones/seguridad/ertzaintza`,
     type: 'website',
     images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Oposiciones Ertzaintza 2026')}`, width: 1200, height: 630 }],

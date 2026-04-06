@@ -16,9 +16,9 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Oposiciones Administración del Estado 2026 — C2, C1 y A2 GACE | OpoRuta',
+  title: 'Oposiciones Administración del Estado 2026: 4.200+ plazas (C2, C1, A2) | OpoRuta',
   description:
-    'Prepara las oposiciones de Administración del Estado 2026 con IA: Auxiliar Administrativo C2 (1.700 plazas), Administrativo C1 (750 plazas) y Gestión GACE A2 (200+ plazas). Tests verificados contra legislación vigente. Más de 4.200 plazas convocadas por el INAP.',
+    'Prepara AGE 2026: Auxiliar C2 (1.700 plazas, 28 temas), Administrativo C1 (2.512 plazas, 45 temas) y GACE A2 (1.356 plazas). Tests con IA verificados contra BOE. Simulacros INAP reales. Empieza gratis.',
   keywords: [
     'oposiciones administracion estado 2026', 'auxiliar administrativo estado',
     'administrativo estado c1', 'gace a2', 'gestion administracion estado',
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
     'examen auxiliar administrativo estado', 'inap oposiciones',
   ],
   openGraph: {
-    title: 'Oposiciones Administración del Estado 2026 — C2, C1 y A2 GACE | OpoRuta',
-    description: 'Tests con IA para Auxiliar C2, Administrativo C1 y Gestión GACE A2. Temario actualizado con Constitución, LPAC, TREBEP y LGP.',
+    title: 'Oposiciones Administración del Estado 2026: 4.200+ plazas | OpoRuta',
+    description: 'Tests con IA para Auxiliar C2 (1.700 plazas), Administrativo C1 (2.512) y GACE A2 (1.356). Temario actualizado, simulacros INAP reales.',
     url: `${APP_URL}/oposiciones/administracion`,
     type: 'website',
     images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Oposiciones Administración del Estado 2026')}`, width: 1200, height: 630 }],

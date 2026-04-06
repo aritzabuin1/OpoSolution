@@ -15,17 +15,17 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Test Agente de Hacienda 2026 — Practica gratis con preguntas tipo examen | OpoRuta',
+  title: 'Oposiciones Agente de Hacienda 2026: 1.000 plazas AEAT — Tests gratis | OpoRuta',
   description:
-    'Prepara las oposiciones de Agente de Hacienda Pública 2026 con tests online gratis. 32 temas, 80+10 preguntas test, penalización -1/4. 1.000 plazas AEAT.',
+    'Prepara Agente de Hacienda Pública 2026: 1.000 plazas AEAT, 32 temas, examen 80+10 preguntas con penalización -1/4. Tests online gratis con IA verificados contra LGT, IRPF, IVA.',
   keywords: [
     'test agente hacienda 2026', 'oposiciones agente hacienda', 'examen hacienda online',
     'temario agente hacienda', 'AEAT oposiciones', 'test hacienda gratis',
     'sueldo agente hacienda',
   ],
   openGraph: {
-    title: 'Test Agente de Hacienda 2026 — Practica gratis | OpoRuta',
-    description: 'Tests online gratis para oposiciones Agente de Hacienda. 32 temas, penalización -1/4, 1.000 plazas AEAT.',
+    title: 'Oposiciones Agente de Hacienda 2026: 1.000 plazas AEAT | OpoRuta',
+    description: 'Tests online gratis para Agente de Hacienda 2026. 32 temas, penalización -1/4, 1.000 plazas AEAT.',
     url: `${APP_URL}/oposiciones/hacienda`,
     type: 'website',
     images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Test Agente de Hacienda 2026')}`, width: 1200, height: 630 }],

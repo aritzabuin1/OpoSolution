@@ -15,16 +15,16 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Test Instituciones Penitenciarias 2026 — Practica gratis | OpoRuta',
+  title: 'Oposiciones Instituciones Penitenciarias 2026: 900 plazas — Tests gratis | OpoRuta',
   description:
-    'Prepara las oposiciones de Ayudante de Instituciones Penitenciarias 2026 con tests online gratis. 50 temas, 160 preguntas, penalización -1/3. 900 plazas.',
+    'Prepara Ayudante de Instituciones Penitenciarias 2026: 900 plazas, 50 temas, examen 160 preguntas con penalización -1/3. Tests online gratis con IA. Temario completo por bloques.',
   keywords: [
     'test instituciones penitenciarias 2026', 'oposiciones prisiones', 'examen penitenciarias online',
     'temario funcionario prisiones', 'ayudante IIPP', 'test prisiones gratis', 'sueldo funcionario prisiones',
   ],
   openGraph: {
-    title: 'Test Instituciones Penitenciarias 2026 — Practica gratis | OpoRuta',
-    description: 'Tests online gratis para oposiciones de Ayudante de Instituciones Penitenciarias. 50 temas, 160 preguntas, penalización -1/3.',
+    title: 'Oposiciones Instituciones Penitenciarias 2026: 900 plazas | OpoRuta',
+    description: 'Tests online gratis para Ayudante de Instituciones Penitenciarias 2026. 900 plazas, 50 temas, 160 preguntas.',
     url: `${APP_URL}/oposiciones/penitenciarias`,
     type: 'website',
     images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Test Instituciones Penitenciarias 2026')}`, width: 1200, height: 630 }],
