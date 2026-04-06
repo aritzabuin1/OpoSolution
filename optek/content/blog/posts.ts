@@ -3745,18 +3745,23 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 28: Comparativa plataformas IA oposiciones ──────────────────────
   {
     slug: 'mejores-plataformas-ia-oposiciones-2026-comparativa',
-    title: 'Mejores Plataformas con IA para Oposiciones en 2026 — Comparativa Real con Precios',
+    title: 'Alternativas a OpositaTest 2026: las 5 mejores plataformas IA para oposiciones',
     description:
-      'Analizamos las principales plataformas con IA para preparar oposiciones: OpositaTest, OpoRuta, Toposiciones, Testualia, Opositor.ai y más. Funciones, precios reales y para quién es cada una.',
+      '¿Buscas alternativa a OpositaTest? Comparamos las 5 mejores plataformas con IA: OpoRuta (49,99€ único), OpositaTest (12€/mes), Testualia, Typed AI y Opositor.ai. Precios reales, funciones y para quién es cada una.',
     date: '2026-03-17',
-    dateModified: '2026-03-19',
+    dateModified: '2026-04-06',
     keywords: [
+      'alternativa opositatest',
+      'alternativas opositatest',
+      'opositatest alternativas',
       'mejores plataformas IA oposiciones',
       'plataformas oposiciones inteligencia artificial',
       'estudiar oposiciones con IA',
-      'alternativas OpositaTest',
       'apps oposiciones 2026',
       'preparar oposiciones con inteligencia artificial',
+      'opositatest precio',
+      'opositatest opiniones',
+      'cuanto cuesta opositatest',
     ],
     faqs: [
       {
@@ -16738,6 +16743,571 @@ export const blogPosts: BlogPost[] = [
       { question: '¿En qué oposiciones entra el TREBEP?', answer: 'En prácticamente todas: Auxiliar Administrativo C2, Administrativo C1, GACE A2, Justicia (Auxilio, Tramitación, Gestión), oposiciones de Comunidades Autónomas y Ayuntamientos. Es la ley fundamental del empleo público y siempre tiene al menos 1-2 temas dedicados en cualquier temario de oposiciones.' },
       { question: '¿Cuáles son los artículos del TREBEP que más caen en los exámenes?', answer: 'Los más preguntados según exámenes reales INAP son: Art. 14-15 (derechos), Art. 48-49 (permisos y conciliación), Art. 52-54 (deberes y código de conducta), Art. 55-57 (acceso al empleo público), Art. 85-89 (situaciones administrativas) y Art. 95-96 (faltas disciplinarias y prescripción).' },
       { question: '¿TREBEP y EBEP es lo mismo?', answer: 'Son casi iguales. El EBEP fue la Ley 7/2007 original. El TREBEP (RDLeg 5/2015) es el texto refundido que integró las modificaciones posteriores. En oposiciones actuales siempre se cita el TREBEP. Si tu material dice "EBEP", necesitas actualizar.' },
+    ],
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // SEO SPRINT 2026-04-06 — HIGH-VOLUME QUERIES (12 oposiciones)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  // ─── HUB 1: Test oposiciones online gratis (captura query genérica) ─────────
+  {
+    slug: 'test-oposiciones-online-gratis-2026',
+    title: 'Test Oposiciones Online Gratis 2026: practica las 12 oposiciones con IA',
+    description:
+      'Tests gratuitos para 12 oposiciones: AGE (C2, C1, A2), Correos, Justicia, Hacienda, Penitenciarias, Guardia Civil, Policía Nacional y Ertzaintza. Preguntas con IA verificadas contra BOE. Sin registro con tarjeta.',
+    date: '2026-04-06',
+    keywords: [
+      'test oposiciones online gratis',
+      'test oposiciones gratis',
+      'test oposiciones online',
+      'test oposiciones 2026',
+      'test oposiciones con IA',
+      'test oposiciones online gratis IA',
+      'practicar oposiciones gratis',
+      'preguntas oposiciones online',
+      'examen oposiciones gratis',
+      'simulacro oposiciones online',
+    ],
+    content: `
+<h2>Tests gratuitos para 12 oposiciones con IA</h2>
+<p>
+  En OpoRuta puedes practicar <strong>gratis</strong> para cualquiera de las 12 oposiciones que cubrimos.
+  Sin tarjeta de crédito, sin suscripción. Cada test tiene preguntas generadas con IA y
+  <strong>verificadas contra la legislación oficial</strong> (BOE, BOPV).
+</p>
+<p>
+  No son preguntas genéricas: cada pregunta cita un artículo real de una ley real,
+  y el sistema comprueba que ese artículo existe y dice lo que la pregunta afirma.
+  Así estudias con confianza, no con alucinaciones.
+</p>
+
+<h2>Elige tu oposición y empieza ahora</h2>
+
+<h3>Administración General del Estado (AGE)</h3>
+<table>
+  <thead>
+    <tr><th>Oposición</th><th>Plazas 2026</th><th>Temas</th><th>Test gratis</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Auxiliar Administrativo (C2)</td><td>1.700</td><td>28</td><td><a href="/oposiciones/administracion">Practicar gratis</a></td></tr>
+    <tr><td>Administrativo del Estado (C1)</td><td>2.512</td><td>45</td><td><a href="/oposiciones/administracion">Practicar gratis</a></td></tr>
+    <tr><td>Gestión GACE (A2)</td><td>1.356</td><td>58</td><td><a href="/oposiciones/administracion">Practicar gratis</a></td></tr>
+  </tbody>
+</table>
+
+<h3>Correos</h3>
+<table>
+  <tbody>
+    <tr><td>Personal Laboral Fijo</td><td>4.000+</td><td>12</td><td><a href="/oposiciones/correos">Practicar gratis</a></td></tr>
+  </tbody>
+</table>
+
+<h3>Justicia</h3>
+<table>
+  <tbody>
+    <tr><td>Auxilio Judicial (C2)</td><td>425</td><td>26</td><td><a href="/oposiciones/justicia/auxilio-judicial">Practicar gratis</a></td></tr>
+    <tr><td>Tramitación Procesal (C1)</td><td>1.155</td><td>37</td><td><a href="/oposiciones/justicia/tramitacion-procesal">Practicar gratis</a></td></tr>
+    <tr><td>Gestión Procesal (A2)</td><td>725</td><td>68</td><td><a href="/oposiciones/justicia/gestion-procesal">Practicar gratis</a></td></tr>
+  </tbody>
+</table>
+
+<h3>Hacienda</h3>
+<table>
+  <tbody>
+    <tr><td>Agente de Hacienda (AEAT)</td><td>1.000</td><td>32</td><td><a href="/oposiciones/hacienda">Practicar gratis</a></td></tr>
+  </tbody>
+</table>
+
+<h3>Instituciones Penitenciarias</h3>
+<table>
+  <tbody>
+    <tr><td>Ayudante IIPP</td><td>900</td><td>50</td><td><a href="/oposiciones/penitenciarias">Practicar gratis</a></td></tr>
+  </tbody>
+</table>
+
+<h3>Seguridad (Fuerzas y Cuerpos)</h3>
+<table>
+  <tbody>
+    <tr><td>Guardia Civil</td><td>3.118</td><td>25</td><td><a href="/oposiciones/seguridad/guardia-civil">Practicar gratis</a></td></tr>
+    <tr><td>Policía Nacional</td><td>~3.000</td><td>45</td><td><a href="/oposiciones/seguridad/policia-nacional">Practicar gratis</a></td></tr>
+    <tr><td>Ertzaintza</td><td>~800</td><td>54</td><td><a href="/oposiciones/seguridad/ertzaintza">Practicar gratis</a></td></tr>
+  </tbody>
+</table>
+
+<h2>¿Qué incluye el plan gratuito?</h2>
+<ul>
+  <li><strong>1 test gratis por tema</strong> en todas las oposiciones (todos los temas abiertos)</li>
+  <li><strong>3 simulacros</strong> con exámenes reales INAP/MJU</li>
+  <li><strong>2 sesiones con Tutor IA</strong> (explicaciones detalladas de tus errores)</li>
+  <li><strong>Psicotécnicos</strong> adaptados al examen real de cada oposición</li>
+  <li><strong>Sin tarjeta de crédito</strong> — solo email y contraseña</li>
+</ul>
+
+<h2>¿En qué se diferencia OpoRuta de otros tests online?</h2>
+<p>La mayoría de plataformas de tests usan bancos de preguntas manuales (limitados) o IA sin verificación (inventan artículos). OpoRuta combina lo mejor de ambos:</p>
+<ul>
+  <li><strong>IA + verificación determinista</strong>: cada cita legal se comprueba contra la legislación real almacenada en base de datos</li>
+  <li><strong>Radar del Tribunal</strong>: muestra qué artículos pregunta más el INAP según exámenes reales</li>
+  <li><strong>Penalización real</strong>: el scoring replica exactamente el del examen oficial (-1/3, -1/4 o sin penalización según la oposición)</li>
+  <li><strong>12 oposiciones</strong>: no solo AGE — también Correos, Justicia, Hacienda, Penitenciarias y Seguridad</li>
+</ul>
+
+<h3>Comparativas por oposición</h3>
+<ul>
+  <li><a href="/blog/oporuta-vs-opositatest-auxiliar-administrativo-2026">OpoRuta vs OpositaTest: Auxiliar C2 y Administrativo C1</a></li>
+  <li><a href="/blog/oporuta-vs-opositatest-justicia-auxilio-tramitacion-2026">OpoRuta vs OpositaTest: Justicia</a></li>
+  <li><a href="/blog/oporuta-vs-opositatest-hacienda-2026">OpoRuta vs OpositaTest: Hacienda</a></li>
+  <li><a href="/blog/oporuta-vs-opositatest-oposiciones-policia">OpoRuta vs OpositaTest: Policía y Guardia Civil</a></li>
+  <li><a href="/blog/mejores-plataformas-ia-oposiciones-2026-comparativa">Comparativa completa de plataformas IA</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis en OpoRuta</a></strong> — tests con IA verificada para 12 oposiciones. Sin tarjeta. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Los tests de OpoRuta son realmente gratis?', answer: 'Sí. Puedes hacer 1 test gratis por cada tema en cualquiera de las 12 oposiciones, más 3 simulacros con exámenes reales y 2 sesiones con el Tutor IA. No necesitas tarjeta de crédito. El plan de pago (49,99€ único) desbloquea tests ilimitados y más funciones.' },
+      { question: '¿Para qué oposiciones hay tests gratis?', answer: 'OpoRuta cubre 12 oposiciones: Auxiliar C2, Administrativo C1, GACE A2, Correos, Auxilio Judicial, Tramitación Procesal, Gestión Procesal, Agente de Hacienda, Instituciones Penitenciarias, Guardia Civil, Policía Nacional y Ertzaintza. Todas tienen tests gratuitos.' },
+      { question: '¿Las preguntas son fiables o las inventa la IA?', answer: 'Cada pregunta se genera con IA y luego se verifica determinísticamente contra la legislación real (BOE, BOPV). Si un artículo citado no existe o no dice lo que afirma la pregunta, se descarta automáticamente. Es el único sistema en España que hace esta verificación.' },
+      { question: '¿Cuánto cuesta OpoRuta después del plan gratis?', answer: '49,99€ en pago único (sin suscripción mensual). Incluye tests ilimitados, simulacros completos, Radar del Tribunal, flashcards y 20 sesiones con Tutor IA. El acceso no caduca.' },
+    ],
+  },
+
+  // ─── HUB 2: Preparar oposiciones con IA (captura "IA oposiciones") ──────────
+  {
+    slug: 'preparar-oposiciones-con-inteligencia-artificial-2026',
+    title: 'Preparar oposiciones con Inteligencia Artificial en 2026: guía completa',
+    description:
+      'Cómo usar IA para preparar oposiciones sin riesgo de alucinaciones. Herramientas, estrategias y errores que evitar. Funciona para AGE, Correos, Justicia, Hacienda, Penitenciarias y Seguridad.',
+    date: '2026-04-06',
+    keywords: [
+      'preparar oposiciones con IA',
+      'inteligencia artificial oposiciones',
+      'IA oposiciones',
+      'estudiar oposiciones con IA',
+      'oposiciones inteligencia artificial',
+      'ChatGPT oposiciones',
+      'preparar auxiliar administrativo con inteligencia artificial',
+      'preparar oposiciones con ChatGPT',
+      'apps IA oposiciones',
+      'herramientas IA oposiciones 2026',
+    ],
+    content: `
+<h2>¿Se puede preparar una oposición con Inteligencia Artificial?</h2>
+<p>
+  Sí, pero con precauciones. La IA puede ser tu mejor aliado o tu peor enemigo
+  dependiendo de <strong>cómo la uses</strong>. El riesgo principal es la <strong>alucinación</strong>:
+  modelos como ChatGPT inventan artículos de leyes que no existen y los presentan
+  con total confianza. Estudiar con citas falsas es peor que no estudiar.
+</p>
+<p>
+  La clave es usar herramientas que <strong>verifican</strong> lo que la IA genera
+  antes de mostrártelo. Eso es exactamente lo que hace OpoRuta.
+</p>
+
+<h2>Qué puede hacer la IA por ti (y qué no)</h2>
+<h3>La IA SÍ sirve para:</h3>
+<ul>
+  <li><strong>Generar tests ilimitados</strong> por tema — no te quedas sin preguntas nuevas</li>
+  <li><strong>Explicar tus errores</strong> — un tutor que te dice por qué fallaste y te guía al artículo correcto</li>
+  <li><strong>Adaptar la dificultad</strong> — más difícil en temas que dominas, más fácil donde flojeas</li>
+  <li><strong>Crear flashcards</strong> automáticas de los artículos que más fallas</li>
+  <li><strong>Simular exámenes</strong> con condiciones reales (timer, penalización)</li>
+</ul>
+<h3>La IA NO sirve para:</h3>
+<ul>
+  <li><strong>Sustituir el estudio del temario</strong> — necesitas leer las leyes, no solo hacer tests</li>
+  <li><strong>Dar información 100% fiable sin verificación</strong> — ChatGPT inventa citas legales</li>
+  <li><strong>Predecir qué caerá en el examen</strong> — eso solo lo hacen los datos históricos reales</li>
+</ul>
+
+<h2>Herramientas de IA para oposiciones en 2026</h2>
+<table>
+  <thead>
+    <tr><th>Herramienta</th><th>Tipo</th><th>Verificación legal</th><th>Precio</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>OpoRuta</strong></td><td>Tests + Tutor IA</td><td>Sí (determinista vs BOE)</td><td>49,99€ único</td></tr>
+    <tr><td>ChatGPT / Claude</td><td>Chat general</td><td>No (alucina citas)</td><td>20€/mes</td></tr>
+    <tr><td>OpositaTest</td><td>Banco de preguntas</td><td>Manual (sin IA)</td><td>~12€/mes</td></tr>
+    <tr><td>Typed AI</td><td>Resúmenes IA</td><td>No</td><td>Variable</td></tr>
+    <tr><td>Testualia</td><td>Tests IA</td><td>No verificado</td><td>Freemium</td></tr>
+  </tbody>
+</table>
+
+<h2>Cómo usar IA para cada tipo de oposición</h2>
+
+<h3>AGE: Auxiliar C2, Administrativo C1 y GACE A2</h3>
+<p>
+  Las oposiciones AGE se basan en <strong>legislación concreta</strong> (Constitución, LPAC, TREBEP, LGP).
+  La IA es especialmente útil aquí porque puede generar preguntas sobre artículos específicos
+  y verificar cada cita. Además, el <a href="/blog/analisis-frecuencia-articulos-inap-auxiliar-administrativo">Radar del Tribunal</a>
+  te dice qué artículos pregunta más el INAP.
+</p>
+<ul>
+  <li><a href="/oposiciones/administracion">Tests con IA para AGE (C2, C1, A2)</a></li>
+</ul>
+
+<h3>Correos</h3>
+<p>
+  El examen de Correos tiene <strong>psicotécnicos específicos</strong> (comprensión lectora, gráficos)
+  que no aparecen en otras oposiciones. La IA puede generar estos tipos de preguntas adaptados
+  al formato real del examen. Además, <strong>no tiene penalización</strong> — la estrategia es distinta.
+</p>
+<ul>
+  <li><a href="/oposiciones/correos">Tests con IA para Correos</a></li>
+</ul>
+
+<h3>Justicia: Auxilio, Tramitación y Gestión Procesal</h3>
+<p>
+  Justicia se actualizó con la <strong>LO 1/2025</strong>. La IA con legislación actualizada
+  es crucial aquí: muchos bancos de preguntas manuales aún no reflejan los cambios.
+</p>
+<ul>
+  <li><a href="/oposiciones/justicia">Tests con IA para Justicia</a></li>
+</ul>
+
+<h3>Hacienda (AEAT)</h3>
+<p>
+  32 temas con legislación tributaria compleja (LGT, IRPF, IVA, IIEE). La IA puede
+  generar supuestos con cálculos reales verificados contra las leyes fiscales.
+</p>
+<ul>
+  <li><a href="/oposiciones/hacienda">Tests con IA para Agente de Hacienda</a></li>
+</ul>
+
+<h3>Instituciones Penitenciarias</h3>
+<p>
+  50 temas divididos en 4 bloques. La IA ayuda especialmente en el bloque de
+  Derecho Penitenciario (LOGP, Reglamento Penitenciario) donde las preguntas
+  son muy técnicas y específicas.
+</p>
+<ul>
+  <li><a href="/oposiciones/penitenciarias">Tests con IA para IIPP</a></li>
+</ul>
+
+<h3>Seguridad: Guardia Civil, Policía Nacional, Ertzaintza</h3>
+<p>
+  Además de los tests de conocimiento, estas oposiciones incluyen <strong>pruebas de personalidad</strong>.
+  OpoRuta es la única plataforma con un módulo de Personalidad Policial con IA
+  que simula Big Five, SJT y entrevista.
+</p>
+<ul>
+  <li><a href="/oposiciones/seguridad">Tests con IA para Seguridad</a></li>
+</ul>
+
+<h2>5 errores al usar IA para oposiciones</h2>
+<ol>
+  <li><strong>Fiarte de ChatGPT sin verificar</strong>: inventa artículos, plazos y cifras. Nunca estudies legislación directamente de un chat IA general.</li>
+  <li><strong>Solo hacer tests sin estudiar el temario</strong>: los tests son para consolidar, no para aprender de cero.</li>
+  <li><strong>No repasar los errores</strong>: la IA te explica por qué fallaste — leer esas explicaciones es más valioso que hacer 10 tests más.</li>
+  <li><strong>Usar herramientas genéricas</strong>: una app de IA para "estudiar" no es lo mismo que una diseñada para oposiciones con legislación española.</li>
+  <li><strong>Ignorar los datos del tribunal</strong>: la IA genera preguntas, pero solo los datos históricos te dicen qué pregunta realmente el INAP.</li>
+</ol>
+
+<h3>Recursos relacionados</h3>
+<ul>
+  <li><a href="/blog/mejores-plataformas-ia-oposiciones-2026-comparativa">Comparativa de plataformas IA para oposiciones 2026</a></li>
+  <li><a href="/blog/inteligencia-artificial-oposiciones-merece-la-pena">¿Merece la pena usar IA para oposiciones?</a></li>
+  <li><a href="/blog/test-oposiciones-online-gratis-2026">Tests gratis para las 12 oposiciones</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Prueba OpoRuta gratis</a></strong> — la única plataforma con IA verificada contra legislación real. 12 oposiciones, sin tarjeta. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Se puede preparar una oposición solo con IA?', answer: 'No solo con IA, pero sí con IA como herramienta principal de práctica. Necesitas estudiar el temario (leyes, manuales), pero la IA te permite generar tests ilimitados, repasar errores con explicaciones personalizadas y simular exámenes reales. La combinación de estudio + IA es más eficiente que estudiar solo con apuntes.' },
+      { question: '¿ChatGPT sirve para oposiciones?', answer: 'Con precauciones. ChatGPT puede explicar conceptos y ayudar a entender temas, pero inventa citas legales (artículos que no existen). Nunca uses ChatGPT para generar preguntas tipo test de legislación sin verificar cada cita. Plataformas como OpoRuta solucionan esto verificando cada artículo contra la legislación real.' },
+      { question: '¿Qué plataforma de IA es mejor para oposiciones?', answer: 'Depende de la oposición. OpoRuta cubre 12 oposiciones con verificación legal determinista (49,99€ pago único). OpositaTest tiene el mayor banco de preguntas curadas manualmente (~12€/mes). Testualia y Typed AI ofrecen funciones de estudio con IA pero sin verificación legal. Para oposiciones de legislación (AGE, Justicia, Hacienda), la verificación es crítica.' },
+      { question: '¿Para qué oposiciones funciona la IA?', answer: 'La IA es útil para todas las oposiciones que incluyan legislación: AGE (C2, C1, A2), Correos, Justicia (Auxilio, Tramitación, Gestión), Hacienda, Penitenciarias, Guardia Civil, Policía Nacional y Ertzaintza. Es especialmente potente en oposiciones de tipo test donde puedes practicar con preguntas ilimitadas.' },
+    ],
+  },
+
+  // ─── Test gratis: Administrativo C1 ─────────────────────────────────────────
+  {
+    slug: 'test-administrativo-estado-c1-online-gratis-2026',
+    title: 'Test Administrativo del Estado C1 online gratis 2026: practica con IA',
+    description:
+      'Tests gratuitos para oposiciones de Administrativo del Estado C1. 45 temas, preguntas verificadas contra LPAC, TREBEP, LCSP y LGP. Incluye supuesto práctico. Empieza sin tarjeta.',
+    date: '2026-04-06',
+    keywords: [
+      'test administrativo estado c1 gratis',
+      'test administrativo estado online',
+      'test oposiciones c1 gratis',
+      'preguntas administrativo estado c1',
+      'examen administrativo estado c1 online',
+      'test c1 2026',
+      'practicar administrativo estado',
+    ],
+    content: `
+<h2>Tests gratis para Administrativo del Estado C1</h2>
+<p>
+  Practica el examen de <strong>Administrativo del Estado (subgrupo C1)</strong> con tests generados por IA
+  y verificados contra la legislación vigente. 45 temas en 6 bloques: derecho administrativo,
+  organización pública, función pública, gestión financiera, contratación pública y ofimática.
+</p>
+
+<h2>¿Qué incluye el test gratis?</h2>
+<ul>
+  <li><strong>1 test gratis por cada uno de los 45 temas</strong></li>
+  <li><strong>3 simulacros</strong> con exámenes reales INAP (2019, 2022, 2024)</li>
+  <li><strong>Penalización real -1/3</strong> como en el examen oficial</li>
+  <li><strong>Verificación de citas legales</strong>: cada artículo citado existe y dice lo que afirma la pregunta</li>
+  <li><strong>2 sesiones con Tutor IA</strong> que explica tus errores con pedagogía socrática</li>
+</ul>
+
+<h2>Datos del examen C1 en 2026</h2>
+<table>
+  <tbody>
+    <tr><td><strong>Plazas</strong></td><td>2.512</td></tr>
+    <tr><td><strong>Fecha examen</strong></td><td>20 junio 2026</td></tr>
+    <tr><td><strong>Formato</strong></td><td>70 preguntas test + 20 supuesto práctico (100 min)</td></tr>
+    <tr><td><strong>Temario</strong></td><td>45 temas en 6 bloques</td></tr>
+    <tr><td><strong>Penalización</strong></td><td>-1/3 del valor de un acierto</td></tr>
+    <tr><td><strong>Sueldo</strong></td><td>~1.800€ netos/mes de inicio</td></tr>
+  </tbody>
+</table>
+
+<h3>Guías de estudio para C1</h3>
+<ul>
+  <li><a href="/blog/temario-administrativo-estado-c1-45-temas-como-priorizar">45 temas: cómo priorizar</a></li>
+  <li><a href="/blog/supuesto-practico-administrativo-estado-c1-estrategia">Supuesto práctico: estrategia y ejemplos</a></li>
+  <li><a href="/blog/nota-corte-administrativo-estado-c1-como-se-calcula">Nota de corte C1</a></li>
+  <li><a href="/blog/calendario-oposiciones-administrativo-estado-c1-2026">Calendario C1 2026</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis</a></strong> — tests verificados para los 45 temas del C1. Sin tarjeta. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Los tests de Administrativo C1 son gratis?', answer: 'Sí. Puedes hacer 1 test gratis por cada uno de los 45 temas + 3 simulacros con exámenes reales INAP. Sin tarjeta de crédito. El plan completo (49,99€ pago único) desbloquea tests ilimitados, supuesto práctico con corrección IA y Radar del Tribunal.' },
+      { question: '¿Incluye supuesto práctico?', answer: 'Sí. OpoRuta genera supuestos prácticos tipo INAP con 20 preguntas sobre expedientes administrativos reales. En el plan gratuito puedes practicar con 1 simulacro que incluye supuesto. El plan de pago incluye supuestos ilimitados con corrección IA detallada.' },
+    ],
+  },
+
+  // ─── Test gratis: GACE A2 ──────────────────────────────────────────────────
+  {
+    slug: 'test-gace-a2-online-gratis-2026',
+    title: 'Test GACE A2 online gratis 2026: practica Gestión del Estado con IA',
+    description:
+      'Tests gratuitos para GACE A2 (Gestión de la Administración Civil del Estado). 58 temas en 6 bloques. Preguntas verificadas + supuesto práctico con corrección IA. Empieza gratis.',
+    date: '2026-04-06',
+    keywords: [
+      'test gace a2 gratis',
+      'test gace online',
+      'test gestion estado a2',
+      'gace 2026 test',
+      'preguntas gace a2',
+      'examen gace online gratis',
+      'practicar gace',
+      'oposiciones gace test',
+    ],
+    content: `
+<h2>Tests gratis para GACE A2 — Gestión del Estado</h2>
+<p>
+  Practica el examen de <strong>Gestión de la Administración Civil del Estado (A2)</strong>
+  con tests generados por IA y verificados contra legislación vigente.
+  58 temas en 6 bloques: Organización del Estado, UE, Políticas Públicas,
+  Derecho Administrativo, RRHH y Gestión Financiera.
+</p>
+
+<h2>Datos del examen GACE 2026</h2>
+<table>
+  <tbody>
+    <tr><td><strong>Plazas</strong></td><td>1.356</td></tr>
+    <tr><td><strong>Requisitos</strong></td><td>Grado universitario</td></tr>
+    <tr><td><strong>1.er ejercicio</strong></td><td>100 preguntas test (90 min, -1/3)</td></tr>
+    <tr><td><strong>2.o ejercicio</strong></td><td>Supuesto práctico a desarrollar (150 min)</td></tr>
+    <tr><td><strong>Temario</strong></td><td>58 temas en 6 bloques</td></tr>
+    <tr><td><strong>Sueldo</strong></td><td>~2.200€ netos/mes de inicio</td></tr>
+  </tbody>
+</table>
+
+<h2>¿Qué incluye el test gratis?</h2>
+<ul>
+  <li><strong>1 test gratis por cada tema</strong> de los 58</li>
+  <li><strong>Verificación legal</strong> contra CE, LPAC, LRJSP, TREBEP, LGP, LCSP</li>
+  <li><strong>Supuesto práctico</strong> con corrección IA basada en rúbrica oficial INAP</li>
+  <li><strong>2 sesiones con Tutor IA</strong></li>
+</ul>
+
+<h3>Guías de estudio GACE</h3>
+<ul>
+  <li><a href="/blog/temario-gace-2026-58-temas-6-bloques-como-priorizar">58 temas: cómo priorizar</a></li>
+  <li><a href="/blog/supuesto-practico-gace-que-es-como-se-evalua-como-prepararlo">Supuesto práctico GACE</a></li>
+  <li><a href="/blog/sueldo-gestion-estado-a2-gace-2026-nomina-desglosada">Sueldo GACE A2 en 2026</a></li>
+  <li><a href="/blog/rubrica-oficial-inap-supuesto-practico-gace-4-criterios">Rúbrica INAP: 4 criterios</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis</a></strong> — tests verificados + supuesto práctico con corrección IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Hay tests gratis para GACE A2?', answer: 'Sí. En OpoRuta puedes hacer 1 test gratis por cada uno de los 58 temas del GACE, más 3 simulacros y 2 sesiones con Tutor IA. Sin tarjeta de crédito. El Pack Gestión A2 (69,99€) incluye tests ilimitados + 5 supuestos prácticos con corrección IA.' },
+      { question: '¿OpoRuta corrige supuestos prácticos del GACE?', answer: 'Sí. OpoRuta es la única plataforma online que corrige supuestos prácticos de oposiciones AGE con IA, siguiendo la rúbrica oficial INAP (4 criterios: conocimiento aplicado, análisis, sistemática, expresión). El resultado incluye puntuación, feedback por cuestión y respuesta modelo.' },
+    ],
+  },
+
+  // ─── Test gratis: Gestión Procesal ──────────────────────────────────────────
+  {
+    slug: 'test-gestion-procesal-online-gratis-2026',
+    title: 'Test Gestión Procesal A2 online gratis 2026: practica con IA',
+    description:
+      'Tests gratuitos para Gestión Procesal y Administrativa 2026. 68 temas, preguntas verificadas contra LOPJ, LEC, LECrim y LO 1/2025. 725 plazas. Empieza gratis.',
+    date: '2026-04-06',
+    keywords: [
+      'test gestion procesal gratis',
+      'test gestion procesal online',
+      'test oposiciones justicia a2',
+      'preguntas gestion procesal',
+      'examen gestion procesal online',
+      'temario gestion procesal 2026',
+      'gestion procesal test',
+    ],
+    content: `
+<h2>Tests gratis para Gestión Procesal y Administrativa (A2)</h2>
+<p>
+  Practica el examen de <strong>Gestión Procesal y Administrativa</strong> con tests verificados
+  contra la legislación vigente (LOPJ, LEC, LECrim, LO 1/2025). 68 temas en 4 bloques:
+  Derecho Constitucional, Organización Judicial, Derecho Civil y Penal, y Derecho Administrativo.
+</p>
+
+<h2>Datos del examen 2026</h2>
+<table>
+  <tbody>
+    <tr><td><strong>Plazas</strong></td><td>725</td></tr>
+    <tr><td><strong>Requisitos</strong></td><td>Grado universitario</td></tr>
+    <tr><td><strong>Temario</strong></td><td>68 temas en 4 bloques</td></tr>
+    <tr><td><strong>Examen</strong></td><td>Test + caso práctico (desarrollo escrito)</td></tr>
+    <tr><td><strong>Sueldo</strong></td><td>~2.000€ netos/mes de inicio</td></tr>
+  </tbody>
+</table>
+
+<h3>Guías relacionadas</h3>
+<ul>
+  <li><a href="/blog/gestion-procesal-a2-2026">Guía completa Gestión Procesal 2026</a></li>
+  <li><a href="/blog/temario-gestion-procesal-2026-68-temas-como-estudiar">68 temas: cómo estudiar</a></li>
+  <li><a href="/blog/gestion-procesal-caso-practico-desarrollo-escrito">Caso práctico: cómo prepararlo</a></li>
+  <li><a href="/oposiciones/justicia/gestion-procesal">Landing Gestión Procesal</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis</a></strong> — tests verificados para los 68 temas de Gestión Procesal. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Hay tests gratis de Gestión Procesal?', answer: 'Sí. 1 test gratis por cada uno de los 68 temas + 3 simulacros + 2 sesiones con Tutor IA. Preguntas verificadas contra LOPJ, LEC, LECrim y la nueva LO 1/2025. Sin tarjeta de crédito.' },
+      { question: '¿El temario está actualizado con la LO 1/2025?', answer: 'Sí. OpoRuta incluye la Ley Orgánica 1/2025 de medidas de eficiencia del Servicio Público de Justicia, que modifica artículos clave de LOPJ y LEC. Los tests reflejan la legislación vigente.' },
+    ],
+  },
+
+  // ─── Test gratis: Guardia Civil ─────────────────────────────────────────────
+  {
+    slug: 'test-guardia-civil-online-gratis-2026',
+    title: 'Test Guardia Civil online gratis 2026: 25 temas — practica con IA',
+    description:
+      'Tests gratuitos para oposiciones de Guardia Civil 2026. 3.118 plazas, 25 temas, 100 preguntas con penalización -1/3. Preguntas verificadas contra BOE + psicotécnicos + personalidad policial.',
+    date: '2026-04-06',
+    keywords: [
+      'test guardia civil gratis',
+      'test guardia civil online',
+      'test oposiciones guardia civil',
+      'preguntas guardia civil 2026',
+      'examen guardia civil online gratis',
+      'test guardia civil',
+      'practicar guardia civil',
+      'temas guardia civil test',
+      'oposiciones guardia civil test online',
+    ],
+    content: `
+<h2>Tests gratis para Guardia Civil 2026</h2>
+<p>
+  Practica el examen de <strong>Guardia Civil</strong> con tests generados por IA y verificados contra el BOE.
+  25 temas en 3 bloques: Ciencias Jurídicas (Constitución, Derecho Penal, Derechos Humanos),
+  Materias Socioculturales y Materias Técnico-Científicas.
+</p>
+
+<h2>Datos del examen 2026</h2>
+<table>
+  <tbody>
+    <tr><td><strong>Plazas</strong></td><td>3.118</td></tr>
+    <tr><td><strong>Requisitos</strong></td><td>ESO, 18-40 años, 1,65m (H) / 1,60m (M)</td></tr>
+    <tr><td><strong>Temario</strong></td><td>25 temas en 3 bloques</td></tr>
+    <tr><td><strong>Examen conocimientos</strong></td><td>100 preguntas, 60 min, penalización -1/3</td></tr>
+    <tr><td><strong>Otras pruebas</strong></td><td>Ortografía, idiomas, psicotécnicos, entrevista personal, físicas</td></tr>
+    <tr><td><strong>Sueldo</strong></td><td>~1.800€ netos/mes de inicio</td></tr>
+  </tbody>
+</table>
+
+<h2>¿Qué incluye el test gratis?</h2>
+<ul>
+  <li><strong>1 test gratis por cada uno de los 25 temas</strong></li>
+  <li><strong>Psicotécnicos específicos Guardia Civil</strong>: razonamiento verbal, numérico, abstracto y espacial</li>
+  <li><strong>Módulo de Personalidad Policial</strong>: Big Five, SJT y entrevista simulada con IA</li>
+  <li><strong>Penalización real -1/3</strong></li>
+</ul>
+
+<h3>Guías de Guardia Civil</h3>
+<ul>
+  <li><a href="/blog/oposiciones-guardia-civil-2026-temario-plazas-examen">Guía completa GC 2026</a></li>
+  <li><a href="/blog/sueldo-guardia-civil-policia-nacional-2026">Sueldo GC y PN 2026</a></li>
+  <li><a href="/blog/test-personalidad-policial-prueba-psicotecnica">Test de personalidad policial</a></li>
+  <li><a href="/oposiciones/seguridad/guardia-civil">Landing Guardia Civil</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis</a></strong> — tests + psicotécnicos + personalidad policial con IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Hay tests gratis de Guardia Civil?', answer: 'Sí. En OpoRuta puedes hacer 1 test gratis por cada uno de los 25 temas + psicotécnicos específicos + módulo de personalidad policial con IA. Sin tarjeta de crédito. El plan completo cuesta 49,99€ (pago único, sin suscripción).' },
+      { question: '¿OpoRuta prepara la prueba de personalidad de Guardia Civil?', answer: 'Sí. OpoRuta incluye un módulo exclusivo de Personalidad Policial con IA que cubre: tests Big Five, lie scales, escenarios SJT (Situational Judgment Test) y preparación de entrevista personal. Es la primera plataforma en España con esta funcionalidad.' },
+    ],
+  },
+
+  // ─── Test gratis: Policía Nacional ──────────────────────────────────────────
+  {
+    slug: 'test-policia-nacional-online-gratis-2026',
+    title: 'Test Policía Nacional online gratis 2026: 45 temas, 3 opciones — practica con IA',
+    description:
+      'Tests gratuitos para Policía Nacional 2026. ~3.000 plazas, 45 temas, 100 preguntas con 3 opciones y penalización -1/2. Verificados BOE + psicotécnicos + personalidad policial.',
+    date: '2026-04-06',
+    keywords: [
+      'test policia nacional gratis',
+      'test policia nacional online',
+      'test oposiciones policia nacional',
+      'preguntas policia nacional 2026',
+      'examen policia nacional online gratis',
+      'test policia nacional',
+      'practicar policia nacional',
+      'policia nacional 3 opciones test',
+    ],
+    content: `
+<h2>Tests gratis para Policía Nacional 2026</h2>
+<p>
+  Practica el examen de <strong>Policía Nacional</strong> con tests verificados contra el BOE.
+  45 temas en 3 bloques, con el formato real del examen: <strong>100 preguntas con 3 opciones</strong>
+  (no 4 como en otras oposiciones) y penalización -1/2.
+</p>
+
+<h2>Datos del examen 2026</h2>
+<table>
+  <tbody>
+    <tr><td><strong>Plazas</strong></td><td>~3.000</td></tr>
+    <tr><td><strong>Requisitos</strong></td><td>Bachillerato, 18-36 años, 1,65m (H) / 1,60m (M)</td></tr>
+    <tr><td><strong>Temario</strong></td><td>45 temas en 3 bloques</td></tr>
+    <tr><td><strong>Examen conocimientos</strong></td><td>100 preguntas, 3 opciones, 50 min, penalización -1/2</td></tr>
+    <tr><td><strong>Otras pruebas</strong></td><td>Ortografía, idiomas, psicotécnicos, entrevista, físicas, reconocimiento médico</td></tr>
+    <tr><td><strong>Sueldo</strong></td><td>~2.000€ netos/mes de inicio</td></tr>
+  </tbody>
+</table>
+
+<h2>¿Qué incluye el test gratis?</h2>
+<ul>
+  <li><strong>1 test gratis por cada uno de los 45 temas</strong></li>
+  <li><strong>Formato real: 3 opciones</strong> con penalización -1/2 (no -1/3)</li>
+  <li><strong>Psicotécnicos específicos Policía Nacional</strong></li>
+  <li><strong>Módulo de Personalidad Policial</strong>: Big Five, SJT y entrevista simulada</li>
+</ul>
+
+<h3>Guías de Policía Nacional</h3>
+<ul>
+  <li><a href="/blog/examen-policia-nacional-3-opciones-penalizacion">Examen PN: 3 opciones y penalización -1/2</a></li>
+  <li><a href="/blog/psicotecnicos-oposiciones-policia-2026">Psicotécnicos policía 2026</a></li>
+  <li><a href="/blog/sueldo-guardia-civil-policia-nacional-2026">Sueldo PN 2026</a></li>
+  <li><a href="/oposiciones/seguridad/policia-nacional">Landing Policía Nacional</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis</a></strong> — tests con 3 opciones + psicotécnicos + personalidad policial. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Hay tests gratis de Policía Nacional?', answer: 'Sí. 1 test gratis por cada uno de los 45 temas + psicotécnicos + módulo de personalidad policial con IA. El formato replica el examen real: 3 opciones (no 4) con penalización -1/2. Sin tarjeta de crédito.' },
+      { question: '¿Por qué el examen de Policía Nacional tiene 3 opciones en vez de 4?', answer: 'Es una particularidad de esta oposición. Con 3 opciones, la probabilidad de acertar al azar es 33% (vs 25% con 4 opciones), por eso la penalización es mayor: -1/2 en vez de -1/3. OpoRuta replica este formato exacto en sus tests.' },
     ],
   },
 ]
