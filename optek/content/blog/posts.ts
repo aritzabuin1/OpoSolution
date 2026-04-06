@@ -17310,4 +17310,304 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Por qué el examen de Policía Nacional tiene 3 opciones en vez de 4?', answer: 'Es una particularidad de esta oposición. Con 3 opciones, la probabilidad de acertar al azar es 33% (vs 25% con 4 opciones), por eso la penalización es mayor: -1/2 en vez de -1/3. OpoRuta replica este formato exacto en sus tests.' },
     ],
   },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // TRAFFIC MAGNETS — Posts informativos sobre oposiciones masivas
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  // ─── Oposiciones Educacion 2026 ─────────────────────────────────────────────
+  {
+    slug: 'oposiciones-educacion-maestros-2026-plazas-ccaa',
+    title: 'Oposiciones Educacion 2026: 40.000+ plazas maestros y profesores por CCAA',
+    description:
+      'Guia completa oposiciones educacion 2026: 40.000+ plazas maestros (Primaria) y 20.000+ profesores (Secundaria). Plazas por Comunidad Autonoma, fechas de examen, requisitos y como prepararse.',
+    date: '2026-04-06',
+    keywords: [
+      'oposiciones educacion 2026',
+      'oposiciones maestros 2026',
+      'oposiciones secundaria 2026',
+      'plazas maestros 2026',
+      'oposiciones profesores 2026',
+      'plazas educacion por comunidad autonoma',
+      'oposiciones docentes 2026',
+      'convocatoria maestros 2026',
+      'temario oposiciones educacion',
+    ],
+    content: `
+<h2>Oposiciones de Educacion 2026: la mayor convocatoria de la historia</h2>
+<p>
+  Las oposiciones de Educacion son, con diferencia, las que mas plazas ofrecen en Espana cada ano.
+  En 2026, las <strong>17 Comunidades Autonomas</strong> convocan de forma independiente mas de
+  <strong>60.000 plazas</strong> entre Maestros (Infantil y Primaria) y Profesores de Secundaria.
+</p>
+
+<h2>Plazas por Comunidad Autonoma (2026)</h2>
+<table>
+  <thead>
+    <tr><th>CCAA</th><th>Maestros</th><th>Secundaria</th><th>Estado</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Andalucia</td><td>~7.000</td><td>~5.167</td><td>Convocada</td></tr>
+    <tr><td>Madrid</td><td>~4.000</td><td>~3.000</td><td>Convocada</td></tr>
+    <tr><td>Cataluna</td><td>~3.500</td><td>~2.500</td><td>Convocada</td></tr>
+    <tr><td>Comunidad Valenciana</td><td>~3.000</td><td>~2.000</td><td>Convocada</td></tr>
+    <tr><td>Castilla y Leon</td><td>~1.500</td><td>~1.200</td><td>Convocada</td></tr>
+    <tr><td>Galicia</td><td>~1.200</td><td>~1.000</td><td>Convocada</td></tr>
+    <tr><td>Pais Vasco</td><td>~800</td><td>~600</td><td>Prevista</td></tr>
+    <tr><td>Otras CCAA</td><td>~19.000</td><td>~4.500</td><td>Varias</td></tr>
+  </tbody>
+</table>
+<p><em>Datos orientativos basados en convocatorias publicadas y OEP de cada CCAA. Consulta el BOJA/BOCM/DOGC de tu comunidad para cifras exactas.</em></p>
+
+<h2>Requisitos generales</h2>
+<ul>
+  <li><strong>Maestros (Infantil/Primaria)</strong>: Grado en Magisterio o equivalente</li>
+  <li><strong>Profesores Secundaria</strong>: Grado universitario + Master de Profesorado (o CAP anterior)</li>
+  <li><strong>Nacionalidad</strong>: Espanola o UE</li>
+  <li><strong>Sin limite de edad</strong> (salvo jubilacion forzosa)</li>
+</ul>
+
+<h2>Estructura del examen (sistema LOMLOE)</h2>
+<p>Desde 2022, el sistema de acceso cambio con la LOMLOE. Ahora consta de:</p>
+<ol>
+  <li><strong>Fase de oposicion (60% nota final)</strong>:
+    <ul>
+      <li>Prueba 1: Parte A (desarrollo de un tema) + Parte B (supuesto practico)</li>
+      <li>Prueba 2: Programacion didactica + Defensa oral ante tribunal</li>
+    </ul>
+  </li>
+  <li><strong>Fase de concurso (40% nota final)</strong>: Meritos (experiencia docente, formacion, titulaciones)</li>
+</ol>
+
+<h2>¿Como preparar oposiciones de educacion?</h2>
+<p>La preparacion tipica incluye:</p>
+<ul>
+  <li><strong>Temario</strong>: 25 temas (Maestros) o 72+ temas (Secundaria segun especialidad)</li>
+  <li><strong>Programacion didactica</strong>: documento de 60+ paginas que presentas al tribunal</li>
+  <li><strong>Supuestos practicos</strong>: casos sobre atencion a la diversidad, NEAE, situaciones de aprendizaje</li>
+  <li><strong>Defensa oral</strong>: 30 minutos ante tribunal</li>
+</ul>
+<p>
+  Muchos opositores combinan academia presencial + herramientas digitales.
+  Para la parte de temario y supuestos, la IA puede ser una herramienta complementaria
+  para generar preguntas de repaso y practicar.
+</p>
+
+<h3>Recursos utiles</h3>
+<ul>
+  <li><a href="/oep-2026">OEP 2026: todas las plazas de funcionario</a></li>
+  <li><a href="/blog/preparar-oposiciones-con-inteligencia-artificial-2026">Preparar oposiciones con IA en 2026</a></li>
+  <li><a href="/blog/test-oposiciones-online-gratis-2026">Tests gratis para 12 oposiciones</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong>¿Preparas oposiciones AGE, Justicia, Correos o Seguridad?</strong> <a href="/register">Practica gratis en OpoRuta</a> — tests con IA verificada para 12 oposiciones. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuantas plazas de maestros hay en 2026?', answer: 'Aproximadamente 40.000 plazas de maestros (Infantil y Primaria) repartidas entre las 17 Comunidades Autonomas. Andalucia lidera con ~7.000, seguida de Madrid (~4.000) y Cataluna (~3.500). Cada CCAA convoca de forma independiente.' },
+      { question: '¿Que necesito para opositar a maestro?', answer: 'Grado en Magisterio (Educacion Infantil o Educacion Primaria) o titulo equivalente anterior a Bolonia. Nacionalidad espanola o UE. No hay limite de edad. Para Secundaria se necesita ademas el Master de Profesorado.' },
+      { question: '¿OpoRuta prepara oposiciones de educacion?', answer: 'Actualmente OpoRuta se centra en oposiciones de tipo test (AGE, Correos, Justicia, Hacienda, Penitenciarias y Seguridad). Las oposiciones de educacion tienen un formato diferente (desarrollo de temas + programacion didactica) que requiere una preparacion especifica.' },
+    ],
+  },
+
+  // ─── Oposiciones Sanidad 2026 ───────────────────────────────────────────────
+  {
+    slug: 'oposiciones-sanidad-2026-enfermeria-tcae-celador-plazas',
+    title: 'Oposiciones Sanidad 2026: 20.000+ plazas enfermeria, TCAE y celador por CCAA',
+    description:
+      'Oposiciones sanitarias 2026: mas de 20.000 plazas en SAS, SERGAS, SESPA, SESCAM y otros servicios de salud. Enfermeria, TCAE, celador, medicos. Plazas por CCAA y fechas.',
+    date: '2026-04-06',
+    keywords: [
+      'oposiciones sanidad 2026',
+      'oposiciones enfermeria 2026',
+      'oposiciones TCAE 2026',
+      'oposiciones celador 2026',
+      'oposiciones SAS 2026',
+      'oposiciones SERGAS 2026',
+      'plazas enfermeria 2026',
+      'oposiciones sanitarias 2026',
+      'oposiciones salud 2026',
+    ],
+    content: `
+<h2>Oposiciones sanitarias 2026: mas de 20.000 plazas</h2>
+<p>
+  Las oposiciones de Sanidad se convocan por cada <strong>Servicio de Salud autonomico</strong>
+  (SAS en Andalucia, SERGAS en Galicia, SESPA en Asturias, etc.).
+  En 2026, el total supera las <strong>20.000 plazas</strong> en todas las categorias.
+</p>
+
+<h2>Principales convocatorias 2026</h2>
+<table>
+  <thead>
+    <tr><th>Servicio de Salud</th><th>Categoria</th><th>Plazas</th><th>Estado</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>SAS (Andalucia)</td><td>Enfermeria</td><td>1.988</td><td>Convocada</td></tr>
+    <tr><td>SAS (Andalucia)</td><td>TCAE</td><td>1.675</td><td>Convocada</td></tr>
+    <tr><td>SAS (Andalucia)</td><td>Celador</td><td>826</td><td>Convocada</td></tr>
+    <tr><td>SERGAS (Galicia)</td><td>Enfermeria</td><td>1.980</td><td>Convocada (28.000 admitidos)</td></tr>
+    <tr><td>SERMAS (Madrid)</td><td>Varias</td><td>~3.000</td><td>Prevista</td></tr>
+    <tr><td>SESCAM (C. La Mancha)</td><td>Varias</td><td>~1.500</td><td>Prevista</td></tr>
+    <tr><td>Otros CCAA</td><td>Varias</td><td>~10.000</td><td>Varias</td></tr>
+  </tbody>
+</table>
+
+<h2>Categorias principales</h2>
+<ul>
+  <li><strong>Enfermeria (DUE/Grado)</strong>: la mas demandada. Examen tipo test + bolsa de empleo. Grupo A2.</li>
+  <li><strong>TCAE (Tecnico Auxiliar Cuidados Enfermeria)</strong>: FP Grado Medio. Grupo C2. Alta demanda.</li>
+  <li><strong>Celador</strong>: ESO o equivalente. Grupo E/Agrupaciones Profesionales. Muy accesible.</li>
+  <li><strong>Medicos</strong>: MIR + especialidad. Grupo A1. Menos plazas pero muy estables.</li>
+</ul>
+
+<h2>Formato del examen sanitario</h2>
+<p>La mayoria de categorias sanitarias tienen examen tipo test:</p>
+<ul>
+  <li><strong>Enfermeria SAS</strong>: 100 preguntas + 10 reserva, 150 minutos, penalizacion -1/3</li>
+  <li><strong>TCAE</strong>: 100 preguntas, 120-150 minutos, penalizacion -1/3</li>
+  <li><strong>Celador</strong>: 100 preguntas, 120 minutos, penalizacion variable segun CCAA</li>
+</ul>
+<p>Ademas, hay <strong>fase de concurso</strong> (meritos: experiencia, formacion, investigacion).</p>
+
+<h2>¿Como preparar oposiciones sanitarias?</h2>
+<ul>
+  <li><strong>Temario especifico</strong> por CCAA (cada servicio de salud adapta el temario)</li>
+  <li><strong>Tests tipo test</strong> — la herramienta mas eficaz para estas oposiciones</li>
+  <li><strong>Legislacion sanitaria</strong>: Ley General de Sanidad, Ley de Cohesion, estatutos de cada servicio</li>
+</ul>
+
+<h3>Recursos relacionados</h3>
+<ul>
+  <li><a href="/oep-2026">OEP 2026: todas las plazas por cuerpo</a></li>
+  <li><a href="/blog/preparar-oposiciones-con-inteligencia-artificial-2026">Preparar oposiciones con IA</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong>¿Preparas oposiciones de AGE, Justicia, Correos o Seguridad?</strong> <a href="/register">Practica gratis en OpoRuta</a> — tests con IA verificada. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuantas plazas de enfermeria hay en 2026?', answer: 'Mas de 5.000 plazas de enfermeria solo en SAS (1.988) y SERGAS (1.980). Sumando todas las CCAA, se estiman mas de 10.000 plazas de enfermeria en 2026. Es la categoria sanitaria con mas oferta.' },
+      { question: '¿Que oposicion sanitaria es mas facil?', answer: 'Celador es la mas accesible: solo requiere ESO, el temario es mas corto (~20-30 temas) y hay muchas plazas. TCAE requiere FP Grado Medio pero tambien tiene alta tasa de aprobados. Enfermeria requiere Grado universitario y tiene mas competencia.' },
+      { question: '¿OpoRuta cubre oposiciones sanitarias?', answer: 'Actualmente no. OpoRuta se centra en oposiciones AGE, Correos, Justicia, Hacienda, Penitenciarias y Seguridad. Para oposiciones sanitarias, plataformas como TestDeSanidad.es o OpositaTest ofrecen bancos de preguntas especificos.' },
+    ],
+  },
+
+  // ─── Oposiciones mas faciles 2026 ───────────────────────────────────────────
+  {
+    slug: 'oposiciones-mas-faciles-aprobar-2026',
+    title: 'Las 10 oposiciones mas faciles de aprobar en 2026 (con ratio real)',
+    description:
+      'Ranking de las oposiciones mas faciles de aprobar en Espana en 2026. Ratio real aspirantes/plaza, requisitos minimos, temario corto y sueldo. Datos de las ultimas convocatorias.',
+    date: '2026-04-06',
+    keywords: [
+      'oposiciones faciles 2026',
+      'oposiciones mas faciles',
+      'oposiciones faciles de aprobar',
+      'oposiciones con mas plazas',
+      'mejores oposiciones 2026',
+      'oposiciones sin carrera',
+      'oposiciones con ESO',
+      'oposiciones grupo C2',
+      'que oposicion preparar',
+      'oposiciones cortas',
+      'a que opositar 2026',
+    ],
+    content: `
+<h2>¿Que oposiciones son mas faciles de aprobar?</h2>
+<p>
+  "Facil" es relativo, pero hay oposiciones con <strong>mas plazas, menos competencia
+  y temario mas corto</strong>. Este ranking usa datos reales de las ultimas convocatorias:
+  ratio aspirantes/plaza, porcentaje de absentismo y numero de temas.
+</p>
+
+<h2>Ranking: las 10 oposiciones mas accesibles en 2026</h2>
+
+<h3>1. Correos — Personal Laboral Fijo</h3>
+<table>
+  <tbody>
+    <tr><td>Plazas</td><td>4.055 (record)</td></tr>
+    <tr><td>Requisitos</td><td>ESO, 18 anos</td></tr>
+    <tr><td>Temas</td><td>12</td></tr>
+    <tr><td>Penalizacion</td><td>SIN penalizacion</td></tr>
+    <tr><td>Sueldo</td><td>~1.300€/mes</td></tr>
+    <tr><td>Ratio real</td><td>~5:1 (muy baja competencia)</td></tr>
+  </tbody>
+</table>
+<p>La oposicion mas accesible de Espana: pocas preguntas, sin penalizacion, muchas plazas. <a href="/oposiciones/correos">Preparar con OpoRuta</a>.</p>
+
+<h3>2. Auxiliar Administrativo del Estado (C2)</h3>
+<table>
+  <tbody>
+    <tr><td>Plazas</td><td>1.700</td></tr>
+    <tr><td>Requisitos</td><td>ESO, sin limite de edad</td></tr>
+    <tr><td>Temas</td><td>28</td></tr>
+    <tr><td>Penalizacion</td><td>-1/3</td></tr>
+    <tr><td>Sueldo</td><td>~1.500€/mes</td></tr>
+    <tr><td>Ratio real</td><td>~8:1 (con 30% absentismo)</td></tr>
+  </tbody>
+</table>
+<p>La oposicion AGE mas popular. Temario accesible y plazas record. <a href="/oposiciones/administracion">Preparar con OpoRuta</a>.</p>
+
+<h3>3. Celador (Sanidad — CCAA)</h3>
+<table>
+  <tbody>
+    <tr><td>Plazas</td><td>~2.000 (todas las CCAA)</td></tr>
+    <tr><td>Requisitos</td><td>ESO</td></tr>
+    <tr><td>Temas</td><td>20-30 (segun CCAA)</td></tr>
+    <tr><td>Sueldo</td><td>~1.200€/mes</td></tr>
+  </tbody>
+</table>
+<p>Temario corto y muchas plazas. Cada CCAA convoca por separado.</p>
+
+<h3>4. Auxilio Judicial (C2)</h3>
+<table>
+  <tbody>
+    <tr><td>Plazas</td><td>425</td></tr>
+    <tr><td>Requisitos</td><td>ESO</td></tr>
+    <tr><td>Temas</td><td>26</td></tr>
+    <tr><td>Sueldo</td><td>~1.600€/mes</td></tr>
+  </tbody>
+</table>
+<p>Buen sueldo para grupo C2. Temario similar a Auxiliar AGE. <a href="/oposiciones/justicia/auxilio-judicial">Preparar con OpoRuta</a>.</p>
+
+<h3>5. Guardia Civil</h3>
+<table>
+  <tbody>
+    <tr><td>Plazas</td><td>3.118</td></tr>
+    <tr><td>Requisitos</td><td>ESO, 18-40 anos, altura minima</td></tr>
+    <tr><td>Temas</td><td>25</td></tr>
+    <tr><td>Sueldo</td><td>~1.800€/mes</td></tr>
+  </tbody>
+</table>
+<p>Muchas plazas y temario corto, pero incluye pruebas fisicas y psicotecnicas. <a href="/oposiciones/seguridad/guardia-civil">Preparar con OpoRuta</a>.</p>
+
+<h3>6-10: Otras oposiciones accesibles</h3>
+<ul>
+  <li><strong>6. TCAE (Sanidad)</strong>: FP Grado Medio, ~1.675 plazas SAS + CCAA, sueldo ~1.300€</li>
+  <li><strong>7. Instituciones Penitenciarias</strong>: Bachillerato, 900 plazas, sueldo ~1.800€ (turnicidad). <a href="/oposiciones/penitenciarias">Preparar</a></li>
+  <li><strong>8. Tramitacion Procesal</strong>: Bachillerato, 1.155 plazas, sueldo ~1.700€. <a href="/oposiciones/justicia/tramitacion-procesal">Preparar</a></li>
+  <li><strong>9. Policia Nacional</strong>: Bachillerato, ~3.000 plazas, sueldo ~2.000€, pruebas fisicas. <a href="/oposiciones/seguridad/policia-nacional">Preparar</a></li>
+  <li><strong>10. Administrativo del Estado C1</strong>: Bachillerato, 2.512 plazas, sueldo ~1.800€. <a href="/oposiciones/administracion">Preparar</a></li>
+</ul>
+
+<h2>Criterios para elegir tu oposicion</h2>
+<ul>
+  <li><strong>Titulacion</strong>: ¿solo tienes ESO? Correos, Auxiliar AGE, Celador, Auxilio Judicial</li>
+  <li><strong>Tiempo disponible</strong>: Correos (3 meses) vs Administrativo C1 (12+ meses)</li>
+  <li><strong>Sueldo objetivo</strong>: Correos (~1.300€) vs Policia Nacional (~2.000€)</li>
+  <li><strong>Pruebas fisicas</strong>: ¿las quieres o no? Guardia Civil y PN las tienen</li>
+  <li><strong>Estabilidad</strong>: funcionario de carrera (AGE, Justicia) vs personal laboral (Correos)</li>
+</ul>
+
+<h3>Recursos relacionados</h3>
+<ul>
+  <li><a href="/oep-2026">OEP 2026: todas las plazas</a></li>
+  <li><a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">C2 vs C1: cual elegir</a></li>
+  <li><a href="/blog/requisitos-oposiciones-auxiliar-administrativo-estado-2026">Requisitos Auxiliar Administrativo</a></li>
+  <li><a href="/blog/test-oposiciones-online-gratis-2026">Tests gratis para 12 oposiciones</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis en OpoRuta</a></strong> — tests con IA verificada para las oposiciones mas accesibles. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cual es la oposicion mas facil de aprobar?', answer: 'Correos es la oposicion mas accesible de Espana: 4.055 plazas, solo 12 temas, examen SIN penalizacion y requisito minimo de ESO. La ratio real de aspirantes/plaza es de ~5:1, mucho menor que en otras oposiciones. Le siguen Celador (Sanidad) y Auxiliar Administrativo AGE.' },
+      { question: '¿Que oposiciones puedo hacer solo con la ESO?', answer: 'Con ESO o equivalente puedes presentarte a: Correos (4.055 plazas), Auxiliar Administrativo C2 (1.700), Auxilio Judicial (425), Celador (2.000+ en CCAA) y Guardia Civil (3.118, pero con requisitos fisicos). Todas son grupo C2 o inferior.' },
+      { question: '¿Cuanto tiempo se tarda en preparar una oposicion facil?', answer: 'Correos: 2-3 meses (12 temas). Auxiliar Administrativo: 6-9 meses (28 temas). Celador: 3-4 meses (20-30 temas). Guardia Civil: 4-6 meses (25 temas + fisicas). Estos tiempos asumen estudio a tiempo parcial (2-3 horas/dia).' },
+    ],
+  },
 ]
