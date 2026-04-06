@@ -42,10 +42,10 @@ export const metadata: Metadata = {
     title: 'Simulacros Oposiciones Online Gratis 2026 | OpoRuta',
     description: 'Simulacros de examen para 12 oposiciones. Examenes reales INAP + IA. Timer y penalizacion oficial.',
     type: 'website',
-    url: `${APP_URL}/simulacros`,
+    url: `${APP_URL}/simulacros-oposiciones`,
     images: [{ url: `${APP_URL}/api/og?tipo=test&tema=${encodeURIComponent('Simulacros Oposiciones 2026')}`, width: 1200, height: 630 }],
   },
-  alternates: { canonical: `${APP_URL}/simulacros` },
+  alternates: { canonical: `${APP_URL}/simulacros-oposiciones` },
 }
 
 const SIMULACROS = [
@@ -180,7 +180,7 @@ export default function SimulacrosPage() {
           '@type': 'CollectionPage',
           name: 'Simulacros Oposiciones Online Gratis 2026',
           description: 'Simulacros de examen para 12 oposiciones con IA verificada.',
-          url: `${APP_URL}/simulacros`,
+          url: `${APP_URL}/simulacros-oposiciones`,
           mainEntity: {
             '@type': 'ItemList',
             numberOfItems: SIMULACROS.length,
