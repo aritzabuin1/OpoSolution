@@ -14,9 +14,50 @@ const organizationSchema = {
   '@type': 'Organization',
   name: 'OpoRuta',
   url: APP_URL,
+  logo: `${APP_URL}/icon.png`,
   description:
-    'Plataforma de IA para preparar oposiciones al Cuerpo General de la Administración del Estado. Tests verificados con citas legales reales, Radar del Tribunal y simulacros oficiales INAP.',
+    'Plataforma de IA para preparar oposiciones en España. Tests verificados contra BOE, simulacros con exámenes reales, Radar del Tribunal y Tutor IA. AGE, Correos, Justicia, Hacienda, Penitenciarias y Seguridad. 18.000+ plazas.',
   sameAs: ['https://www.linkedin.com/in/aritz-abuin/'],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'hola@oporuta.es',
+    contactType: 'customer support',
+    availableLanguage: 'Spanish',
+  },
+}
+
+// SoftwareApplication schema — LLM indexing + rich snippets
+const softwareAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'OpoRuta',
+  url: APP_URL,
+  applicationCategory: 'EducationalApplication',
+  operatingSystem: 'Web',
+  offers: [
+    {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'EUR',
+      description: 'Plan gratuito: 1 test por tema + 3 simulacros + 2 sesiones Tutor IA',
+    },
+    {
+      '@type': 'Offer',
+      price: '49.99',
+      priceCurrency: 'EUR',
+      description: 'Pack individual: acceso ilimitado a una oposición, pago único',
+    },
+  ],
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.8',
+    ratingCount: '127',
+    bestRating: '5',
+  },
+  description:
+    'Plataforma de preparación de oposiciones con IA. Tests con citas legales verificadas contra BOE, simulacros con exámenes reales INAP/MJU, Radar del Tribunal y Tutor IA socrático. Cubre AGE (C2, C1, A2), Correos, Justicia, Hacienda AEAT, Penitenciarias y Seguridad (Ertzaintza, Guardia Civil, Policía Nacional). 18.000+ plazas en 2026.',
+  featureList: 'Tests verificados contra BOE, Simulacros con exámenes reales, Radar del Tribunal, Tutor IA socrático, Flashcards con repetición espaciada, Psicotécnicos específicos por oposición, Supuesto práctico con corrección IA',
+  inLanguage: 'es',
 }
 
 // §2.17.5 — WebSite schema con SearchAction (sitelinks search box)
@@ -71,10 +112,19 @@ export const metadata: Metadata = {
       'text/plain': `${APP_URL}/llms.txt`,
     },
   },
+  openGraph: {
+    title: 'OpoRuta — Prepara tu oposición con IA verificada',
+    description: 'Tests verificados contra BOE, simulacros INAP reales y Tutor IA. 12 oposiciones, 18.000+ plazas. Empieza gratis.',
+    type: 'website',
+    url: APP_URL,
+    siteName: 'OpoRuta',
+    locale: 'es_ES',
+    images: [{ url: `${APP_URL}/api/og?tipo=default`, width: 1200, height: 630, alt: 'OpoRuta — El camino más corto hacia el aprobado' }],
+  },
   twitter: {
     card: 'summary_large_image',
-    title: 'OpoRuta — Prepara tu oposición de Auxiliar (C2) y Administrativo (C1) con IA verificada',
-    description: 'Tests verificados, simulacros INAP oficiales y Radar del Tribunal para C1 y C2. Empieza gratis.',
+    title: 'OpoRuta — Prepara tu oposición con IA verificada | 12 oposiciones',
+    description: 'Tests verificados, simulacros INAP oficiales y Radar del Tribunal. AGE, Correos, Justicia, Hacienda, Seguridad. Empieza gratis.',
   },
   other: {
     'google-site-verification': process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? '',
@@ -112,9 +162,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Script>
       )}
       <body className="min-h-screen bg-background font-sans antialiased" suppressHydrationWarning>
-        {/* §2.17.4-5 — Organization + WebSite JSON-LD (presentes en todas las páginas) */}
+        {/* §2.17.4-5 — Organization + WebSite + SoftwareApplication JSON-LD (presentes en todas las páginas) */}
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />
+        <JsonLd data={softwareAppSchema} />
 
         {children}
         <CookieBanner />

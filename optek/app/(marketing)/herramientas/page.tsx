@@ -13,7 +13,7 @@ export const revalidate = 604800
 export const metadata: Metadata = {
   title: 'Herramientas gratuitas para opositores — OpoRuta',
   description:
-    'Calculadoras de nota con penalización -1/3 para Auxiliar Administrativo (C2) y Administrativo del Estado (C1). Herramientas gratuitas para preparar tu oposición.',
+    'Calculadoras de nota gratuitas para 5 oposiciones: Auxiliar C2, Administrativo C1, Hacienda, Correos y Justicia. Calcula tu puntuación con penalización oficial (-1/3, -1/4 o sin penalización).',
   keywords: [
     'herramientas oposiciones',
     'calculadora nota oposiciones',
@@ -58,6 +58,20 @@ const tools = [
     href: '/herramientas/calculadora-nota-hacienda',
     badge: 'Agente de Hacienda',
     parts: '80 preguntas test + 10 supuestos',
+  },
+  {
+    title: 'Calculadora de nota — Correos',
+    description: 'Calcula tu nota para oposiciones de Correos 2026. 100 preguntas SIN penalización (cada acierto +0,60 puntos). Incluye cálculo de méritos y nota final ponderada.',
+    href: '/herramientas/calculadora-nota-correos',
+    badge: 'Correos',
+    parts: '100 preguntas · Sin penalización',
+  },
+  {
+    title: 'Calculadora de nota — Justicia',
+    description: 'Calcula tu nota para Auxilio Judicial, Tramitación Procesal y Gestión Procesal. Penalización -1/3. Dos partes del examen con nota mínima eliminatoria.',
+    href: '/herramientas/calculadora-nota-justicia',
+    badge: 'Justicia',
+    parts: 'Auxilio · Tramitación · Gestión',
   },
 ]
 
