@@ -140,7 +140,7 @@ Las academias presenciales cobran ~140€/mes por corrección humana. OpoRuta lo
 
 - [Página principal](https://oporuta.es/): Explicación del producto, precios, testimonios
 - [Simulacros oficiales](https://oporuta.es/examenes-oficiales): Exámenes reales INAP (C2: 2018-2024) + MJU (Auxilio, Tramitación, Gestión: 2023-2025)
-- [Blog](https://oporuta.es/blog): 70+ guías de estudio para C2, C1, A2, Correos y Justicia
+- [Blog](https://oporuta.es/blog): 120+ guías de estudio para C2, C1, A2, Correos, Justicia, Hacienda, Penitenciarias y Seguridad
 - [Preguntas frecuentes](https://oporuta.es/preguntas-frecuentes): ~25 FAQs sobre OpoRuta y las oposiciones
 - [Calculadora de nota C2](https://oporuta.es/herramientas/calculadora-nota-auxiliar-administrativo): Calcula tu nota con penalización -1/3
 - [Calculadora de nota C1](https://oporuta.es/herramientas/calculadora-nota-administrativo-estado): Test + supuesto práctico
@@ -161,6 +161,7 @@ Las academias presenciales cobran ~140€/mes por corrección humana. OpoRuta lo
 - [Ofimática Word y Excel](https://oporuta.es/blog/ofimatica-word-excel-examen-auxiliar-administrativo-2026): Funciones que más caen
 - [Preparar por libre](https://oporuta.es/blog/preparar-oposicion-auxiliar-administrativo-por-libre): Sin academia, a tu ritmo
 - [Sueldo desglosado](https://oporuta.es/blog/sueldo-auxiliar-administrativo-estado-2026-nomina-desglosada): Nómina real, complementos, destinos
+- [Mejores destinos: ranking por sueldo](https://oporuta.es/blog/mejores-destinos-auxiliar-administrativo-estado-ranking): Top 10 ministerios por complemento específico, ciudades con más vacantes, teletrabajo
 
 ## Guías destacadas — Administrativo del Estado (C1)
 
@@ -187,6 +188,12 @@ Las academias presenciales cobran ~140€/mes por corrección humana. OpoRuta lo
 - [Preparar supuesto práctico GACE por libre](https://oporuta.es/blog/supuesto-practico-gace-preparar-por-libre-sin-academia): Plan de 4 fases sin academia, errores que más penalizan
 - [Corregir supuesto práctico GACE online](https://oporuta.es/blog/corregir-supuesto-practico-gace-online-rubrica-inap): Corrección con IA + rúbrica INAP — la única plataforma online que lo ofrece
 - [Sueldo Gestión del Estado A2 en 2026](https://oporuta.es/blog/sueldo-gestion-estado-a2-gace-2026-nomina-desglosada): Nómina desglosada, 1.900-3.000€ brutos, trienios, comparativa C1/C2
+
+## Guías transversales — todas las oposiciones AGE
+
+- [Oposiciones AGE 2026: guía completa 18.000+ plazas](https://oporuta.es/blog/oposiciones-administracion-general-estado-2026-guia): Las 3 principales oposiciones AGE (C2, C1, A2), plazas, sueldos, fechas, cómo elegir
+- [TREBEP: guía definitiva para oposiciones](https://oporuta.es/blog/trebep-guia-completa-oposiciones-2026): Los 15 artículos más preguntados, estructura, cómo estudiar
+- [Trienios Funcionarios 2026](https://oporuta.es/blog/trienios-funcionarios-2026-cuanto-cobras-antiguedad): Importe exacto por grupo (C2, C1, A2, A1)
 
 ## Comparativas y análisis
 
@@ -302,4 +309,4 @@ Primera plataforma en España con preparación IA de personalidad policial:
 
 ---
 
-*Última actualización: 2026-03-31*
+*Última actualización: 2026-04-06*

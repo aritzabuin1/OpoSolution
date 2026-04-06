@@ -34,13 +34,18 @@ const APP_URL_META = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'OpoRuta — Oposiciones con IA: AGE, Justicia, Correos, Hacienda, Penitenciarias, Seguridad | OpoRuta',
+  title: 'OpoRuta — Tests con IA para oposiciones 2026 | 18.000+ plazas',
   description:
-    'Plataforma de preparación para oposiciones con IA: AGE (C2, C1, A2), Justicia (Auxilio, Tramitación, Gestión), Correos, Hacienda AEAT, Penitenciarias y Seguridad (Ertzaintza, GC, PN). Tests verificados contra BOE, simulacros oficiales y Tutor IA. 18.000+ plazas. Desde 0€.',
+    'Prepara tu oposición con tests verificados contra BOE y simulacros INAP reales. Auxiliar C2, Administrativo C1, GACE A2, Correos, Justicia, Hacienda, Guardia Civil, Policía Nacional. 18.000+ plazas. Empieza gratis.',
   keywords: [
+    'oposiciones 2026',
+    'test oposiciones online',
+    'test oposiciones gratis',
     'oposiciones administracion general estado 2026',
     'oposiciones auxiliar administrativo 2026',
     'oposiciones administrativo estado C1',
+    'oposiciones AGE 2026',
+    'examen age 2026',
     'preparar auxiliar administrativo estado',
     'test oposiciones online IA',
     'simulacro INAP auxiliar administrativo',
@@ -52,11 +57,17 @@ export const metadata: Metadata = {
     'oposiciones guardia civil 2026',
     'oposiciones policia nacional 2026',
     'IA oposiciones',
+    'alternativa opositatest',
+    'oposiciones hacienda AEAT 2026',
+    'oposiciones instituciones penitenciarias',
+    'oposiciones c1 2026',
+    'oposiciones c2 2026',
+    'plazas funcionario 2026',
   ],
   openGraph: {
-    title: 'OpoRuta — Oposiciones con IA: AGE, Justicia, Correos, Hacienda, Penitenciarias, Seguridad | OpoRuta',
+    title: 'OpoRuta — Tests con IA para oposiciones 2026 | 18.000+ plazas',
     description:
-      'Tests verificados contra BOE, simulacros oficiales y Tutor IA. AGE + Justicia + Correos + Hacienda + Penitenciarias + Seguridad. 18.000+ plazas. Desde 0€.',
+      'Tests verificados contra BOE, simulacros INAP reales y Tutor IA. AGE + Correos + Justicia + Hacienda + Seguridad. 18.000+ plazas. Empieza gratis.',
     type: 'website',
     url: APP_URL_META,
     images: [{ url: `${APP_URL_META}/api/og?tipo=blog&tema=${encodeURIComponent('OpoRuta — El camino más corto hacia el aprobado')}`, width: 1200, height: 630 }],
@@ -66,8 +77,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'OpoRuta — Oposiciones con IA: AGE, Justicia, Correos, Hacienda, Penitenciarias, Seguridad | OpoRuta',
-    description: 'Tests verificados, simulacros oficiales, Radar del Tribunal y supuesto práctico con IA. AGE + Correos + Justicia + Seguridad. Empieza gratis.',
+    title: 'OpoRuta — Tests con IA para oposiciones 2026 | 18.000+ plazas',
+    description: 'Tests verificados contra BOE, simulacros INAP reales y Tutor IA. AGE + Correos + Justicia + Hacienda + Seguridad. 18.000+ plazas. Empieza gratis.',
   },
 }
 
