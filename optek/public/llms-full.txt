@@ -250,6 +250,19 @@ Con 1.700 plazas en la convocatoria 2026 (la mayor oferta histórica), es razona
 - Jornada: 37,5 horas semanales
 - Preparación media de aprobados: 6 a 18 meses, 3-5 horas diarias
 
+## Legislación completa — 53 leyes, 9.638 artículos
+
+OpoRuta publica el texto íntegro de 53 leyes españolas relevantes para oposiciones (9.638 artículos), navegable por ley y artículo. Cada artículo muestra en qué oposiciones se examina.
+
+- Índice: https://oporuta.es/ley
+- Constitución Española: https://oporuta.es/ley/constitucion-espanola (183 artículos)
+- LPAC: https://oporuta.es/ley/ley-39-2015-lpac (155 artículos)
+- TREBEP: https://oporuta.es/ley/estatuto-basico-empleado-publico (135 artículos)
+- Código Penal: https://oporuta.es/ley/codigo-penal (721 artículos)
+- LOPJ: https://oporuta.es/ley/ley-organica-poder-judicial (711 artículos)
+- LGT: https://oporuta.es/ley/ley-general-tributaria (324 artículos)
+- Ejemplo artículo: https://oporuta.es/ley/constitucion-espanola/articulo-14
+
 ## Contacto
 
 - Web: https://oporuta.es
@@ -257,4 +270,4 @@ Con 1.700 plazas en la convocatoria 2026 (la mayor oferta histórica), es razona
 
 ---
 
-*Última actualización: 2026-03-12*
+*Última actualización: 2026-04-07*

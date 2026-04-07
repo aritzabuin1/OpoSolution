@@ -195,6 +195,33 @@ Las academias presenciales cobran ~140€/mes por corrección humana. OpoRuta lo
 - [TREBEP: guía definitiva para oposiciones](https://oporuta.es/blog/trebep-guia-completa-oposiciones-2026): Los 15 artículos más preguntados, estructura, cómo estudiar
 - [Trienios Funcionarios 2026](https://oporuta.es/blog/trienios-funcionarios-2026-cuanto-cobras-antiguedad): Importe exacto por grupo (C2, C1, A2, A1)
 
+## Legislación completa — 53 leyes, 9.638 artículos navegables
+
+OpoRuta ofrece acceso al texto íntegro y actualizado de toda la legislación relevante para oposiciones, organizado por ley y artículo. Cada artículo indica en qué oposiciones se examina.
+
+- Índice completo: https://oporuta.es/ley
+- 53 leyes españolas cubiertas (11 categorías: constitucional, administrativo, penal, procesal, tributario, laboral, seguridad, postal, autonómico, social, derechos)
+- 9.638 artículos individuales con texto oficial
+- Artículos multi-provisión (mismo número, distintas secciones) mostrados completos
+- Sitemap: https://oporuta.es/ley/sitemap.xml
+
+Leyes principales con enlace directo:
+- [Constitución Española](https://oporuta.es/ley/constitucion-espanola) — 183 artículos
+- [Ley 39/2015 LPAC](https://oporuta.es/ley/ley-39-2015-lpac) — 155 artículos
+- [Ley 40/2015 LRJSP](https://oporuta.es/ley/ley-40-2015-lrjsp) — 217 artículos
+- [TREBEP](https://oporuta.es/ley/estatuto-basico-empleado-publico) — 135 artículos
+- [Código Penal](https://oporuta.es/ley/codigo-penal) — 721 artículos
+- [LOPJ](https://oporuta.es/ley/ley-organica-poder-judicial) — 711 artículos
+- [LECrim](https://oporuta.es/ley/ley-enjuiciamiento-criminal) — 1.052 artículos
+- [Ley General Tributaria](https://oporuta.es/ley/ley-general-tributaria) — 324 artículos
+- [LCSP](https://oporuta.es/ley/ley-contratos-sector-publico) — 347 artículos
+- [LOPDGDD](https://oporuta.es/ley/ley-proteccion-datos) — 143 artículos
+- [FCSE](https://oporuta.es/ley/ley-fuerzas-cuerpos-seguridad) — 55 artículos
+- [Ley de Igualdad](https://oporuta.es/ley/ley-igualdad-efectiva-mujeres-hombres) — 127 artículos
+- [LOGP](https://oporuta.es/ley/ley-organica-general-penitenciaria) — 86 artículos
+
+Ejemplo de artículo: https://oporuta.es/ley/constitucion-espanola/articulo-14
+
 ## Comparativas y análisis
 
 - [Mejores plataformas IA oposiciones 2026](https://oporuta.es/blog/mejores-plataformas-ia-oposiciones-2026-comparativa): OpositaTest, OpoRuta, Toposiciones, Testualia, Opositor.ai
@@ -309,4 +336,4 @@ Primera plataforma en España con preparación IA de personalidad policial:
 
 ---
 
-*Última actualización: 2026-04-06*
+*Última actualización: 2026-04-07*
