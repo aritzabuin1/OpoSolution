@@ -7,7 +7,11 @@
  *
  * Uso: npx tsx scripts/indexnow-submit.ts
  * Opcional: npx tsx scripts/indexnow-submit.ts --only-new  (solo URLs nuevas/modificadas)
+ *           npx tsx scripts/indexnow-submit.ts --ley       (solo /ley/ pSEO pages)
  */
+
+import { readFileSync } from 'fs'
+import { join } from 'path'
 
 const INDEXNOW_KEY = 'fe9c4816141564c97f07016fe17a7b96'
 const HOST = 'https://oporuta.es'
@@ -49,11 +53,82 @@ const STATIC_URLS = [
   '/examenes-oficiales/inap-c1-2024',
   '/examenes-oficiales/inap-c1-2022',
   '/examenes-oficiales/inap-c1-2019',
+  // Ley hub
+  '/ley',
   // LLM files
   '/llms.txt',
   '/llms-full.txt',
   '/api/info',
 ]
+
+// High-priority laws: top articles submitted for each
+const HIGH_PRIORITY_LAW_SLUGS = [
+  'constitucion-espanola',
+  'ley-39-2015-lpac',
+  'ley-40-2015-lrjsp',
+  'estatuto-basico-empleado-publico',
+  'codigo-penal',
+  'ley-organica-general-penitenciaria',
+  'ley-enjuiciamiento-criminal',
+  'ley-organica-poder-judicial',
+  'ley-general-tributaria',
+  'ley-contratos-sector-publico',
+  'ley-fuerzas-cuerpos-seguridad',
+  'ley-proteccion-datos',
+  'ley-igualdad-efectiva-mujeres-hombres',
+]
+
+const ARTICLES_PER_HIGH_PRIORITY_LAW = 40
+
+/** Slugify an article number: "14" → "articulo-14", "14 bis" → "articulo-14-bis", "DA-primera" → "da-primera" */
+function slugifyArticle(article: string): string {
+  let s = article
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // strip diacritics
+    .toLowerCase()
+    .replace(/\.$/, '')              // trim trailing dots
+    .replace(/\s+/g, '-')           // spaces → hyphens
+
+  // Disposiciones: starts with d followed by a/f/t (da_, df_, dt_, derogatoria, etc.)
+  const isDisposicion = /^d[aft][-_]/.test(s) || s.startsWith('derogatoria')
+  if (!isDisposicion) {
+    s = `articulo-${s}`
+  }
+  // Normalize underscores to hyphens
+  s = s.replace(/_/g, '-')
+  return s
+}
+
+/** Build all /ley/ URLs from article-index.json */
+function buildLeyUrls(): string[] {
+  const indexPath = join(__dirname, '..', 'data', 'seo', 'article-index.json')
+  const data = JSON.parse(readFileSync(indexPath, 'utf-8')) as {
+    laws: { leyNombre: string; slug: string; articles: string[]; totalArticles: number }[]
+    totalArticles: number
+  }
+
+  const urls: string[] = []
+
+  // 1. Hub page
+  urls.push('/ley')
+
+  // 2. All 53 law index pages
+  for (const law of data.laws) {
+    urls.push(`/ley/${law.slug}`)
+  }
+
+  // 3. Top articles from high-priority laws
+  const highPrioritySet = new Set(HIGH_PRIORITY_LAW_SLUGS)
+  for (const law of data.laws) {
+    if (!highPrioritySet.has(law.slug)) continue
+    const articlesToSubmit = law.articles.slice(0, ARTICLES_PER_HIGH_PRIORITY_LAW)
+    for (const art of articlesToSubmit) {
+      urls.push(`/ley/${law.slug}/${slugifyArticle(art)}`)
+    }
+  }
+
+  return urls
+}
 
 // URLs de blog que queremos priorizar (ramas nuevas + top performers)
 const PRIORITY_BLOG_SLUGS = [
@@ -163,10 +238,15 @@ async function submitToIndexNow(urls: string[]) {
 
 async function main() {
   const onlyNew = process.argv.includes('--only-new')
+  const leyMode = process.argv.includes('--ley')
 
   const blogUrls = PRIORITY_BLOG_SLUGS.map(s => `/blog/${s}`)
 
-  if (onlyNew) {
+  if (leyMode) {
+    const leyUrls = buildLeyUrls()
+    console.log(`📖 Modo --ley: ${leyUrls.length} URLs de /ley/ pSEO pages`)
+    await submitToIndexNow(leyUrls)
+  } else if (onlyNew) {
     console.log('🔍 Modo --only-new: solo URLs de ramas nuevas + blog actualizado')
     await submitToIndexNow([
       ...STATIC_URLS.filter(u =>
@@ -193,6 +273,7 @@ async function main() {
   console.log('   - https://oporuta.es/oposiciones/hacienda')
   console.log('   - https://oporuta.es/oposiciones/penitenciarias')
   console.log('   - https://oporuta.es/oposiciones/correos')
+  console.log('   - https://oporuta.es/ley/constitucion-espanola')
   console.log('\n💡 Google NO soporta IndexNow, pero Bing sí → y Perplexity usa el índice de Bing.')
 }
 

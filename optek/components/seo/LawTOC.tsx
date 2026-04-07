@@ -49,7 +49,7 @@ export function LawTOC({ articles, lawSlug }: LawTOCProps) {
           )}
           <ul className="space-y-1">
             {group.articles.map(art => {
-              const cleanTitle = extractCleanTitle(art.titulo_articulo ?? '')
+              const cleanTitle = extractCleanTitle(art.titulo_capitulo ?? '')
               const isDisposicion = art.articulo_numero.startsWith('D')
               const slug = slugifyArticulo(art.articulo_numero)
               const label = isDisposicion

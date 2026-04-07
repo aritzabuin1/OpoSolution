@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const provisions = await getArticleProvisions(ley.leyNombre, artNumero)
   if (provisions.length === 0) return {}
 
-  const cleanTitle = extractCleanTitle(provisions[0].titulo_articulo ?? '')
+  const cleanTitle = extractCleanTitle(provisions[0].titulo_capitulo ?? '')
   const textoSnippet = provisions[0].texto_integro?.slice(0, 155).replace(/\n/g, ' ') ?? ''
   const isDisposicion = artNumero.startsWith('D')
   const artLabel = isDisposicion ? artNumero : `Artículo ${artNumero}`
@@ -94,7 +94,7 @@ export default async function ArticlePage({ params }: Props) {
   const totalText = provisions.reduce((sum, p) => sum + (p.texto_integro?.length ?? 0), 0)
   if (totalText < 50) notFound()
 
-  const cleanTitle = extractCleanTitle(provisions[0].titulo_articulo ?? '')
+  const cleanTitle = extractCleanTitle(provisions[0].titulo_capitulo ?? '')
   const isDisposicion = artNumero.startsWith('D')
   const artLabel = isDisposicion ? artNumero : `Artículo ${artNumero}`
 

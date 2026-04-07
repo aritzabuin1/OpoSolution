@@ -23,7 +23,7 @@ export function RelatedArticles({ articles, lawSlug }: RelatedArticlesProps) {
       </h2>
       <ul className="space-y-2">
         {articles.map(art => {
-          const cleanTitle = extractCleanTitle(art.titulo_articulo ?? '')
+          const cleanTitle = extractCleanTitle(art.titulo_capitulo ?? '')
           const isDisposicion = art.articulo_numero.startsWith('D')
           const label = isDisposicion
             ? art.articulo_numero

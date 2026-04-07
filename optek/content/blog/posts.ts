@@ -156,8 +156,8 @@ export const blogPosts: BlogPost[] = [
     content: `
 <h2>¿Por qué la LPAC es fundamental en la oposición de Auxiliar?</h2>
 <p>
-  La Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones
-  Públicas (LPAC) es, junto con la CE, la ley que más preguntas genera en el examen del
+  La <a href="/ley/ley-39-2015-lpac">Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones
+  Públicas (LPAC)</a> es, junto con la <a href="/ley/constitucion-espanola">CE</a>, la ley que más preguntas genera en el examen del
   Cuerpo General Auxiliar del Estado. En exámenes recientes del INAP, entre 8 y 12 preguntas
   del Bloque I corresponden directamente a la LPAC.
 </p>
@@ -253,7 +253,7 @@ export const blogPosts: BlogPost[] = [
     Las preguntas del INAP suelen ser literales ("según el artículo X de la LPAC...").
   </li>
   <li>
-    <strong>Distingue LPAC (procedimiento) de LRJSP (organización)</strong>.
+    <strong>Distingue LPAC (procedimiento) de <a href="/ley/ley-40-2015-lrjsp">LRJSP</a> (organización)</strong>.
     La confusión entre ambas leyes es la trampa más habitual en el examen.
   </li>
 </ol>
@@ -274,6 +274,15 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/diferencias-lpac-lrjsp-auxiliar-administrativo">Diferencias entre LPAC y LRJSP</a> — las preguntas trampa más frecuentes del examen</li>
   <li><a href="/blog/constitucion-espanola-preguntas-examen-auxiliar-administrativo">La Constitución en el examen</a> — artículos clave que más se preguntan</li>
   <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Cómo funciona la penalización -1/3</a> — cuándo arriesgar y cuándo dejar en blanco</li>
+</ul>
+
+<h2>Legislación relacionada</h2>
+<p>Consulta el texto completo y actualizado de las leyes que se examinan en esta oposición:</p>
+<ul>
+  <li><a href="/ley/ley-39-2015-lpac">Ley 39/2015 — Procedimiento Administrativo Común (LPAC)</a> — 133 artículos</li>
+  <li><a href="/ley/ley-40-2015-lrjsp">Ley 40/2015 — Régimen Jurídico del Sector Público (LRJSP)</a> — 158 artículos</li>
+  <li><a href="/ley/constitucion-espanola">Constitución Española de 1978</a> — 169 artículos</li>
+  <li><a href="/ley/estatuto-basico-empleado-publico">TREBEP — Estatuto Básico del Empleado Público</a> — 100 artículos</li>
 </ul>
     `.trim(),
     dateModified: '2026-03-19',
@@ -466,11 +475,11 @@ export const blogPosts: BlogPost[] = [
   <li><strong>T4:</strong> El Poder Judicial. El Consejo General del Poder Judicial. El Tribunal Supremo. La organización judicial española.</li>
   <li><strong>T5:</strong> El Gobierno y la Administración. El Presidente del Gobierno. El Consejo de Ministros. Designación, causas de cese y responsabilidad del Gobierno.</li>
   <li><strong>T6:</strong> El Gobierno Abierto: concepto y principios informadores. La Agenda 2030 y los Objetivos de Desarrollo Sostenible.</li>
-  <li><strong>T7:</strong> La Ley 19/2013, de 9 de diciembre, de transparencia, acceso a la información pública y buen gobierno.</li>
+  <li><strong>T7:</strong> La <a href="/ley/ley-transparencia-acceso-informacion">Ley 19/2013, de 9 de diciembre, de transparencia, acceso a la información pública y buen gobierno</a>.</li>
   <li><strong>T8:</strong> La Administración General del Estado. Órganos centrales, superiores y directivos. Órganos territoriales. Otros órganos administrativos. La Administración del Estado en el exterior.</li>
   <li><strong>T9:</strong> La Organización territorial del Estado. Las Comunidades Autónomas. La Administración local: provincia, municipio e isla.</li>
   <li><strong>T10:</strong> La organización de la Unión Europea. El Consejo Europeo, el Consejo, el Parlamento Europeo, la Comisión Europea y el Tribunal de Justicia de la UE.</li>
-  <li><strong>T11:</strong> Las Leyes del Procedimiento Administrativo Común (LPAC) y del Régimen Jurídico del Sector Público (LRJSP). El procedimiento administrativo común y sus fases. Revisión de actos. Recursos administrativos. El recurso contencioso-administrativo.</li>
+  <li><strong>T11:</strong> Las Leyes del <a href="/ley/ley-39-2015-lpac">Procedimiento Administrativo Común (LPAC)</a> y del <a href="/ley/ley-40-2015-lrjsp">Régimen Jurídico del Sector Público (LRJSP)</a>. El procedimiento administrativo común y sus fases. Revisión de actos. Recursos administrativos. El recurso contencioso-administrativo.</li>
   <li><strong>T12:</strong> La protección de datos personales y su régimen jurídico: principios, derechos y obligaciones.</li>
   <li><strong>T13:</strong> El personal funcionario al servicio de las Administraciones públicas: concepto y clases. Régimen jurídico. Registro Central de Personal. OEP. Selección. Provisión de puestos. Situaciones administrativas.</li>
   <li><strong>T14:</strong> Derechos y deberes de los funcionarios. La carrera administrativa. Promoción interna. Retribuciones e indemnizaciones. Régimen disciplinario. Seguridad Social de los funcionarios.</li>
@@ -569,7 +578,7 @@ export const blogPosts: BlogPost[] = [
     content: `
 <h2>La confusión más frecuente en el examen de Auxiliar</h2>
 <p>
-  La distinción entre la Ley 39/2015 (LPAC) y la Ley 40/2015 (LRJSP) es una de las
+  La distinción entre la <a href="/ley/ley-39-2015-lpac">Ley 39/2015 (LPAC)</a> y la <a href="/ley/ley-40-2015-lrjsp">Ley 40/2015 (LRJSP)</a> es una de las
   trampas más frecuentes en el examen del Auxiliar Administrativo del Estado. Ambas
   leyes se aprobaron el mismo día, están íntimamente relacionadas, y regulan materias
   que el legislador separó deliberadamente.
@@ -648,7 +657,7 @@ export const blogPosts: BlogPost[] = [
 <p>
   "El principio de eficacia al que están sometidas las Administraciones Públicas
   está recogido en..."
-  <strong>Respuesta: CE art. 103 y LRJSP art. 3</strong>.
+  <strong>Respuesta: <a href="/ley/constitucion-espanola/articulo-103">CE art. 103</a> y LRJSP art. 3</strong>.
   Los principios de actuación de la Administración son materia de LRJSP.
 </p>
 
@@ -679,6 +688,14 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo: los 28 temas</a> — organización y prioridades</li>
   <li><a href="/blog/temario-administrativo-estado-c1-45-temas-como-priorizar">¿También preparas el C1?</a> — los 45 temas del Administrativo desglosados</li>
 </ul>
+
+<h2>Legislación relacionada</h2>
+<p>Consulta el texto completo y actualizado de las leyes que se examinan en esta oposición:</p>
+<ul>
+  <li><a href="/ley/ley-39-2015-lpac">Ley 39/2015 — Procedimiento Administrativo Común (LPAC)</a> — 133 artículos</li>
+  <li><a href="/ley/ley-40-2015-lrjsp">Ley 40/2015 — Régimen Jurídico del Sector Público (LRJSP)</a> — 158 artículos</li>
+  <li><a href="/ley/constitucion-espanola">Constitución Española de 1978</a> — 169 artículos</li>
+</ul>
     `.trim(),
     dateModified: '2026-03-19',
     faqs: [
@@ -706,7 +723,7 @@ export const blogPosts: BlogPost[] = [
     content: `
 <h2>La Constitución Española: el punto de partida del temario de Auxiliar</h2>
 <p>
-  La Constitución Española de 1978 es la norma suprema del ordenamiento jurídico español
+  La <a href="/ley/constitucion-espanola">Constitución Española de 1978</a> es la norma suprema del ordenamiento jurídico español
   y también el punto de partida del temario del Cuerpo General Auxiliar del Estado.
   Los Temas 1, 2 y 3 del temario oficial giran en torno a ella, y en exámenes recientes
   del INAP entre <strong>8 y 14 preguntas</strong> de las 100 totales provienen
@@ -807,7 +824,7 @@ export const blogPosts: BlogPost[] = [
   desconcentración y coordinación, con sometimiento pleno a la ley y al Derecho."
 </p>
 <p>
-  Este artículo es el fundamento constitucional de toda la LRJSP. Memoriza los
+  Este artículo es el fundamento constitucional de toda la <a href="/ley/ley-40-2015-lrjsp">LRJSP</a>. Memoriza los
   cinco principios en orden: eficacia, jerarquía, descentralización,
   desconcentración y coordinación.
 </p>
@@ -865,6 +882,15 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo: los 28 temas</a> — cómo organizarlos y priorizarlos</li>
   <li><a href="/blog/constitucion-espanola-oposiciones-age-articulos-clave">Constitución para C1 y C2</a> — los mismos artículos clave sirven para ambas oposiciones</li>
 </ul>
+
+<h2>Legislación relacionada</h2>
+<p>Consulta el texto completo y actualizado de las leyes que se examinan en esta oposición:</p>
+<ul>
+  <li><a href="/ley/constitucion-espanola">Constitución Española de 1978</a> — 169 artículos</li>
+  <li><a href="/ley/ley-39-2015-lpac">Ley 39/2015 — Procedimiento Administrativo Común (LPAC)</a> — 133 artículos</li>
+  <li><a href="/ley/ley-40-2015-lrjsp">Ley 40/2015 — Régimen Jurídico del Sector Público (LRJSP)</a> — 158 artículos</li>
+  <li><a href="/ley/estatuto-basico-empleado-publico">TREBEP — Estatuto Básico del Empleado Público</a> — 100 artículos</li>
+</ul>
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
     dateModified: '2026-03-19',
@@ -893,8 +919,8 @@ export const blogPosts: BlogPost[] = [
     content: `
 <h2>Por qué el TREBEP es imprescindible para el examen de Auxiliar</h2>
 <p>
-  El Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto
-  refundido de la Ley del Estatuto Básico del Empleado Público (TREBEP) es la norma marco
+  El <a href="/ley/estatuto-basico-empleado-publico">Real Decreto Legislativo 5/2015, de 30 de octubre, por el que se aprueba el texto
+  refundido de la Ley del Estatuto Básico del Empleado Público (TREBEP)</a> es la norma marco
   que regula la relación de empleo público en España. Para el Cuerpo General Auxiliar del
   Estado, los <strong>Temas 13 y 14</strong> del temario oficial desarrollan en profundidad
   el TREBEP: personal al servicio de las Administraciones Públicas, derechos, deberes,
@@ -1068,6 +1094,15 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/lopdgdd-proteccion-datos-examen-auxiliar-administrativo">LOPDGDD y RGPD</a> — protección de datos en el examen de Auxiliar</li>
   <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo: los 28 temas</a> — cómo priorizarlos</li>
 </ul>
+
+<h2>Legislación relacionada</h2>
+<p>Consulta el texto completo y actualizado de las leyes que se examinan en esta oposición:</p>
+<ul>
+  <li><a href="/ley/estatuto-basico-empleado-publico">TREBEP — Estatuto Básico del Empleado Público</a> — 100 artículos</li>
+  <li><a href="/ley/constitucion-espanola">Constitución Española de 1978</a> — 169 artículos</li>
+  <li><a href="/ley/ley-39-2015-lpac">Ley 39/2015 — Procedimiento Administrativo Común (LPAC)</a> — 133 artículos</li>
+  <li><a href="/ley/ley-proteccion-datos">LOPDGDD — Ley de Protección de Datos</a></li>
+</ul>
     `.trim(),
     dateModified: '2026-03-19',
     faqs: [
@@ -1097,7 +1132,7 @@ export const blogPosts: BlogPost[] = [
 <p>
   La protección de datos personales es el <strong>Tema 12</strong> del temario oficial del
   Cuerpo General Auxiliar del Estado. Lo regula principalmente la
-  <strong>Ley Orgánica 3/2018, de 5 de diciembre</strong>, de Protección de Datos Personales
+  <strong><a href="/ley/ley-proteccion-datos">Ley Orgánica 3/2018, de 5 de diciembre</a></strong>, de Protección de Datos Personales
   y garantía de los derechos digitales (LOPDGDD), que adapta al ordenamiento español el
   Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo (RGPD o GDPR en inglés).
 </p>
@@ -1286,6 +1321,15 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/trebep-articulos-clave-examen-auxiliar-administrativo">TREBEP: artículos clave</a> — derechos, deberes y código ético de los empleados públicos</li>
   <li><a href="/blog/constitucion-espanola-preguntas-examen-auxiliar-administrativo">Constitución Española</a> — los artículos que más se examinan</li>
   <li><a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">Guía completa de preparación</a> — planificación y estrategia de estudio</li>
+</ul>
+
+<h2>Legislación relacionada</h2>
+<p>Consulta el texto completo y actualizado de las leyes que se examinan en esta oposición:</p>
+<ul>
+  <li><a href="/ley/ley-proteccion-datos">LOPDGDD — Ley Orgánica de Protección de Datos</a></li>
+  <li><a href="/ley/constitucion-espanola">Constitución Española de 1978</a> — 169 artículos</li>
+  <li><a href="/ley/ley-39-2015-lpac">Ley 39/2015 — Procedimiento Administrativo Común (LPAC)</a> — 133 artículos</li>
+  <li><a href="/ley/estatuto-basico-empleado-publico">TREBEP — Estatuto Básico del Empleado Público</a> — 100 artículos</li>
 </ul>
     `.trim(),
     dateModified: '2026-03-19',
@@ -1744,21 +1788,21 @@ export const blogPosts: BlogPost[] = [
     <tr><th>Artículo</th><th>Ley</th><th>Apariciones (de 4)</th><th>Tema clave</th></tr>
   </thead>
   <tbody>
-    <tr><td>Art. 21</td><td>LPAC (Ley 39/2015)</td><td><strong>4 de 4</strong></td><td>Obligación de resolver y notificar</td></tr>
+    <tr><td>Art. 21</td><td><a href="/ley/ley-39-2015-lpac">LPAC (Ley 39/2015)</a></td><td><strong>4 de 4</strong></td><td>Obligación de resolver y notificar</td></tr>
     <tr><td>Art. 53</td><td>LPAC</td><td><strong>3 de 4</strong></td><td>Derechos del interesado</td></tr>
     <tr><td>Art. 58</td><td>LPAC</td><td><strong>3 de 4</strong></td><td>Práctica de notificaciones</td></tr>
-    <tr><td>Art. 14</td><td>CE 1978</td><td><strong>3 de 4</strong></td><td>Igualdad y no discriminación</td></tr>
-    <tr><td>Art. 103</td><td>CE 1978</td><td><strong>3 de 4</strong></td><td>Principios de la Administración</td></tr>
+    <tr><td><a href="/ley/constitucion-espanola/articulo-14">Art. 14</a></td><td><a href="/ley/constitucion-espanola">CE 1978</a></td><td><strong>3 de 4</strong></td><td>Igualdad y no discriminación</td></tr>
+    <tr><td><a href="/ley/constitucion-espanola/articulo-103">Art. 103</a></td><td>CE 1978</td><td><strong>3 de 4</strong></td><td>Principios de la Administración</td></tr>
     <tr><td>Art. 9.3</td><td>CE 1978</td><td>3 de 4</td><td>Principio de legalidad</td></tr>
-    <tr><td>Art. 54</td><td>TREBEP</td><td>3 de 4</td><td>Principios de conducta</td></tr>
+    <tr><td>Art. 54</td><td><a href="/ley/estatuto-basico-empleado-publico">TREBEP</a></td><td>3 de 4</td><td>Principios de conducta</td></tr>
     <tr><td>Art. 52</td><td>TREBEP</td><td>3 de 4</td><td>Código de conducta — deberes</td></tr>
     <tr><td>Art. 35</td><td>LPAC</td><td>2 de 4</td><td>Motivación de actos</td></tr>
     <tr><td>Art. 112</td><td>LPAC</td><td>2 de 4</td><td>Recurso de alzada</td></tr>
-    <tr><td>Art. 5</td><td>LOPDGDD</td><td>2 de 4</td><td>Delegado de protección de datos</td></tr>
+    <tr><td>Art. 5</td><td><a href="/ley/ley-proteccion-datos">LOPDGDD</a></td><td>2 de 4</td><td>Delegado de protección de datos</td></tr>
     <tr><td>Art. 13</td><td>LOPDGDD</td><td>2 de 4</td><td>Derechos de los interesados (ARCO)</td></tr>
     <tr><td>Art. 1.1</td><td>CE 1978</td><td>2 de 4</td><td>Estado social y democrático de derecho</td></tr>
     <tr><td>Art. 137</td><td>CE 1978</td><td>2 de 4</td><td>Organización territorial del Estado</td></tr>
-    <tr><td>Art. 3</td><td>LRJSP (Ley 40/2015)</td><td>2 de 4</td><td>Principios de actuación de las AAPP</td></tr>
+    <tr><td>Art. 3</td><td><a href="/ley/ley-40-2015-lrjsp">LRJSP (Ley 40/2015)</a></td><td>2 de 4</td><td>Principios de actuación de las AAPP</td></tr>
   </tbody>
 </table>
 
@@ -1841,6 +1885,16 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/temario-auxiliar-administrativo-estado-2025-2026">Temario completo: los 28 temas del Auxiliar</a> — estructura y priorización</li>
   <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Penalización -1/3 explicada</a> — cuándo arriesgar y cuándo dejar en blanco</li>
   <li><a href="/examenes-oficiales">Simulacros INAP oficiales</a> — practica con preguntas reales del tribunal</li>
+</ul>
+
+<h2>Legislación relacionada</h2>
+<p>Consulta el texto completo y actualizado de las leyes más preguntadas en el examen:</p>
+<ul>
+  <li><a href="/ley/constitucion-espanola">Constitución Española de 1978</a> — 169 artículos</li>
+  <li><a href="/ley/ley-39-2015-lpac">Ley 39/2015 — Procedimiento Administrativo Común (LPAC)</a> — 133 artículos</li>
+  <li><a href="/ley/ley-40-2015-lrjsp">Ley 40/2015 — Régimen Jurídico del Sector Público (LRJSP)</a> — 158 artículos</li>
+  <li><a href="/ley/estatuto-basico-empleado-publico">TREBEP — Estatuto Básico del Empleado Público</a> — 100 artículos</li>
+  <li><a href="/ley/ley-proteccion-datos">LOPDGDD — Ley de Protección de Datos</a></li>
 </ul>
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
@@ -2087,8 +2141,8 @@ export const blogPosts: BlogPost[] = [
     ],
     content: `
 <p>
-  La <strong>Ley 39/2015, de Procedimiento Administrativo Común</strong> (LPAC) es, junto con la
-  Constitución, la norma más preguntada en el examen de Auxiliar Administrativo del Estado. En cada
+  La <strong><a href="/ley/ley-39-2015-lpac">Ley 39/2015, de Procedimiento Administrativo Común</a></strong> (LPAC) es, junto con la
+  <a href="/ley/constitucion-espanola">Constitución</a>, la norma más preguntada en el examen de Auxiliar Administrativo del Estado. En cada
   convocatoria aparecen entre <strong>5 y 8 preguntas directas</strong> sobre esta ley, y muchas más
   que la mencionan de forma indirecta. Si no la dominas, estás regalando puntos.
 </p>
@@ -2134,7 +2188,7 @@ export const blogPosts: BlogPost[] = [
 </p>
 <ul>
   <li><strong>Plazos concretos:</strong> "¿Cuál es el plazo para interponer recurso de alzada?" → 1 mes (acto expreso) o 3 meses (silencio)</li>
-  <li><strong>Artículos trampa:</strong> mezclan plazos de leyes distintas (LPAC vs LRJSP) en las opciones</li>
+  <li><strong>Artículos trampa:</strong> mezclan plazos de leyes distintas (LPAC vs <a href="/ley/ley-40-2015-lrjsp">LRJSP</a>) en las opciones</li>
   <li><strong>Obligaciones electrónicas:</strong> quiénes están obligados a relacionarse electrónicamente (art. 14.2)</li>
   <li><strong>Diferencias sutil:</strong> actos nulos (art. 47) vs anulables (art. 48) — siempre hay una pregunta</li>
 </ul>
@@ -2173,6 +2227,14 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/articulos-lpac-mas-preguntados-auxiliar-administrativo">Artículos LPAC más preguntados</a> — análisis detallado artículo por artículo</li>
   <li><a href="/blog/constitucion-espanola-preguntas-oposicion-auxiliar">Constitución: preguntas que más caen</a> — la otra ley estrella del examen</li>
   <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Penalización -1/3</a> — cómo gestionar las preguntas dudosas</li>
+</ul>
+
+<h2>Legislación relacionada</h2>
+<p>Consulta el texto completo y actualizado de las leyes que se examinan en esta oposición:</p>
+<ul>
+  <li><a href="/ley/ley-39-2015-lpac">Ley 39/2015 — Procedimiento Administrativo Común (LPAC)</a> — 133 artículos</li>
+  <li><a href="/ley/ley-40-2015-lrjsp">Ley 40/2015 — Régimen Jurídico del Sector Público (LRJSP)</a> — 158 artículos</li>
+  <li><a href="/ley/constitucion-espanola">Constitución Española de 1978</a> — 169 artículos</li>
 </ul>
     `.trim(),
     dateModified: '2026-03-19',
@@ -2594,7 +2656,7 @@ export const blogPosts: BlogPost[] = [
     ],
     content: `
 <p>
-  La Constitución Española de 1978 es la <strong>norma más preguntada</strong> en las oposiciones
+  La <a href="/ley/constitucion-espanola">Constitución Española de 1978</a> es la <strong>norma más preguntada</strong> en las oposiciones
   a la Administración General del Estado, tanto en Auxiliar (C2) como en Administrativo (C1). En
   cada examen aparecen entre <strong>8 y 12 preguntas directas</strong> sobre la CE, más otras
   tantas que la mencionan indirectamente. Dominar los artículos clave es obligatorio para aprobar.
@@ -2603,7 +2665,7 @@ export const blogPosts: BlogPost[] = [
 <h2>¿Por qué la Constitución tiene tanto peso?</h2>
 <p>
   La CE es la norma suprema del ordenamiento jurídico español. Todas las leyes que estudias en
-  oposiciones (LPAC, LRJSP, TREBEP, LOPDGDD) derivan de ella. Para el INAP, comprobar que
+  oposiciones (<a href="/ley/ley-39-2015-lpac">LPAC</a>, <a href="/ley/ley-40-2015-lrjsp">LRJSP</a>, <a href="/ley/estatuto-basico-empleado-publico">TREBEP</a>, <a href="/ley/ley-proteccion-datos">LOPDGDD</a>) derivan de ella. Para el INAP, comprobar que
   conoces la CE es comprobar que entiendes los <strong>fundamentos del sistema</strong>.
 </p>
 <p>
@@ -2684,6 +2746,16 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/articulos-lpac-mas-preguntados-auxiliar-administrativo">Artículos LPAC más preguntados</a> — la otra ley imprescindible</li>
   <li><a href="/blog/trebep-articulos-clave-oposiciones">TREBEP: artículos clave</a> — el Estatuto del Empleado Público</li>
 </ul>
+
+<h2>Legislación relacionada</h2>
+<p>Consulta el texto completo y actualizado de las leyes que se examinan en oposiciones AGE:</p>
+<ul>
+  <li><a href="/ley/constitucion-espanola">Constitución Española de 1978</a> — 169 artículos</li>
+  <li><a href="/ley/ley-39-2015-lpac">Ley 39/2015 — Procedimiento Administrativo Común (LPAC)</a> — 133 artículos</li>
+  <li><a href="/ley/ley-40-2015-lrjsp">Ley 40/2015 — Régimen Jurídico del Sector Público (LRJSP)</a> — 158 artículos</li>
+  <li><a href="/ley/estatuto-basico-empleado-publico">TREBEP — Estatuto Básico del Empleado Público</a> — 100 artículos</li>
+  <li><a href="/ley/ley-proteccion-datos">LOPDGDD — Ley de Protección de Datos</a></li>
+</ul>
     `.trim(),
     dateModified: '2026-03-19',
     faqs: [
@@ -2709,7 +2781,7 @@ export const blogPosts: BlogPost[] = [
     ],
     content: `
 <p>
-  El <strong>TREBEP</strong> (Texto Refundido del Estatuto Básico del Empleado Público, aprobado
+  El <strong><a href="/ley/estatuto-basico-empleado-publico">TREBEP</a></strong> (Texto Refundido del Estatuto Básico del Empleado Público, aprobado
   por Real Decreto Legislativo 5/2015) es la norma que regula a todos los empleados públicos en
   España. En el examen de Auxiliar Administrativo (C2) aparecen entre <strong>3 y 5 preguntas
   directas</strong>, y en el de Administrativo (C1) puede haber hasta 8-10 por su bloque de personal.
@@ -2773,7 +2845,7 @@ export const blogPosts: BlogPost[] = [
 </ul>
 <p>
   <strong>Pregunta frecuente:</strong> "¿Cuáles son los principios constitucionales de acceso
-  al empleo público?" Respuesta: igualdad, mérito y capacidad (art. 55.1 TREBEP + art. 103.3 CE).
+  al empleo público?" Respuesta: igualdad, mérito y capacidad (art. 55.1 TREBEP + <a href="/ley/constitucion-espanola/articulo-103">art. 103.3 CE</a>).
   Los demás son principios "adicionales" del TREBEP, no constitucionales.
 </p>
 
@@ -2805,6 +2877,17 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/trebep-articulos-clave-oposiciones">Artículos TREBEP más importantes</a> — análisis artículo por artículo</li>
   <li><a href="/blog/lopdgdd-proteccion-datos-oposiciones">LOPDGDD para oposiciones</a> — protección de datos en el examen</li>
   <li><a href="/blog/diferencias-lpac-lrjsp-oposiciones">LPAC vs LRJSP</a> — cómo distinguir las dos leyes administrativas</li>
+</ul>
+
+<h2>Legislación relacionada</h2>
+<p>Consulta el texto completo y actualizado de las leyes que se examinan en oposiciones:</p>
+<ul>
+  <li><a href="/ley/estatuto-basico-empleado-publico">TREBEP — Estatuto Básico del Empleado Público</a> — 100 artículos</li>
+  <li><a href="/ley/constitucion-espanola">Constitución Española de 1978</a> — 169 artículos</li>
+  <li><a href="/ley/ley-39-2015-lpac">Ley 39/2015 — Procedimiento Administrativo Común (LPAC)</a> — 133 artículos</li>
+  <li><a href="/ley/ley-40-2015-lrjsp">Ley 40/2015 — Régimen Jurídico del Sector Público (LRJSP)</a> — 158 artículos</li>
+  <li><a href="/ley/ley-proteccion-datos">LOPDGDD — Ley de Protección de Datos</a></li>
+  <li><a href="/ley/ley-incompatibilidades-funcionarios">Ley 53/1984 — Incompatibilidades del personal al servicio de las Administraciones Públicas</a></li>
 </ul>
     `.trim(),
     dateModified: '2026-03-19',
@@ -3394,8 +3477,8 @@ export const blogPosts: BlogPost[] = [
 
 <h3>Bloque I — Organización del Estado y Administración Pública (11 temas)</h3>
 <p>
-  Constitución Española, la Corona, Cortes Generales, Poder Judicial, Gobierno y Administración,
-  Gobierno Abierto y Agenda 2030, Transparencia (Ley 19/2013), la AGE, organización territorial
+  <a href="/ley/constitucion-espanola">Constitución Española</a>, la Corona, Cortes Generales, Poder Judicial, Gobierno y Administración,
+  Gobierno Abierto y Agenda 2030, <a href="/ley/ley-transparencia-acceso-informacion">Transparencia (Ley 19/2013)</a>, la AGE, organización territorial
   (CC.AA.), Administración Local y Unión Europea.
 </p>
 <p>
@@ -3410,13 +3493,13 @@ export const blogPosts: BlogPost[] = [
 </p>
 <p>
   <strong>Peso:</strong> 3-5 preguntas en la primera parte + posible aparición en el supuesto
-  práctico. Bloque corto pero denso en legislación (LOPDGDD, ENS, ENI).
+  práctico. Bloque corto pero denso en legislación (<a href="/ley/ley-proteccion-datos">LOPDGDD</a>, ENS, ENI).
 </p>
 
 <h3>Bloque III — Derecho Administrativo General (7 temas)</h3>
 <p>
-  Fuentes del derecho, acto administrativo, procedimiento administrativo común (LPAC),
-  contratos del sector público (LCSP), actividad administrativa, responsabilidad patrimonial
+  Fuentes del derecho, acto administrativo, procedimiento administrativo común (<a href="/ley/ley-39-2015-lpac">LPAC</a>),
+  contratos del sector público (<a href="/ley/ley-contratos-sector-publico">LCSP</a>), actividad administrativa, responsabilidad patrimonial
   y políticas de igualdad.
 </p>
 <p>
@@ -3426,8 +3509,8 @@ export const blogPosts: BlogPost[] = [
 
 <h3>Bloque IV — Gestión de Personal (9 temas)</h3>
 <p>
-  Personal de las AA.PP. (TREBEP), selección y provisión, derechos y deberes, adquisición y
-  pérdida de condición, carrera y promoción, incompatibilidades y disciplina, Seguridad Social
+  Personal de las AA.PP. (<a href="/ley/estatuto-basico-empleado-publico">TREBEP</a>), selección y provisión, derechos y deberes, adquisición y
+  pérdida de condición, carrera y promoción, <a href="/ley/ley-incompatibilidades-funcionarios">incompatibilidades</a> y disciplina, Seguridad Social
   (MUFACE), personal laboral (IV Convenio Único) y SS del personal laboral.
 </p>
 <p>
@@ -3514,6 +3597,20 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">Diferencias C2 vs C1</a> — ¿cuál elegir?</li>
   <li><a href="/herramientas/calculadora-nota-administrativo-estado">Calculadora de nota C1</a> — calcula tu puntuación</li>
 </ul>
+
+<h2>Legislación relacionada</h2>
+<p>Consulta el texto completo y actualizado de las leyes clave del temario C1:</p>
+<ul>
+  <li><a href="/ley/constitucion-espanola">Constitución Española de 1978</a> — 169 artículos</li>
+  <li><a href="/ley/ley-39-2015-lpac">Ley 39/2015 — Procedimiento Administrativo Común (LPAC)</a> — 133 artículos</li>
+  <li><a href="/ley/ley-40-2015-lrjsp">Ley 40/2015 — Régimen Jurídico del Sector Público (LRJSP)</a> — 158 artículos</li>
+  <li><a href="/ley/estatuto-basico-empleado-publico">TREBEP — Estatuto Básico del Empleado Público</a> — 100 artículos</li>
+  <li><a href="/ley/ley-contratos-sector-publico">LCSP — Ley de Contratos del Sector Público</a></li>
+  <li><a href="/ley/ley-general-presupuestaria">LGP — Ley General Presupuestaria</a></li>
+  <li><a href="/ley/ley-transparencia-acceso-informacion">Ley 19/2013 — Transparencia y Buen Gobierno</a></li>
+  <li><a href="/ley/ley-proteccion-datos">LOPDGDD — Ley de Protección de Datos</a></li>
+  <li><a href="/ley/ley-incompatibilidades-funcionarios">Ley 53/1984 — Incompatibilidades</a></li>
+</ul>
     `.trim(),
     dateModified: '2026-03-20',
     faqs: [
@@ -3541,7 +3638,7 @@ export const blogPosts: BlogPost[] = [
     ],
     content: `
 <p>
-  La <strong>Ley 9/2017 de Contratos del Sector Público (LCSP)</strong> es una de las normas
+  La <strong><a href="/ley/ley-contratos-sector-publico">Ley 9/2017 de Contratos del Sector Público (LCSP)</a></strong> es una de las normas
   con más peso en el examen de Administrativo del Estado (C1). Aparece tanto en las preguntas
   del cuestionario (Bloque III, tema 19) como en los supuestos prácticos. Dominarla puede ser
   la diferencia entre obtener plaza o no.
@@ -3611,6 +3708,15 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/temario-administrativo-estado-c1-45-temas-como-priorizar">45 temas del C1</a> — cómo priorizar</li>
   <li><a href="/blog/articulos-lpac-que-mas-caen-examen-inap">LPAC: artículos que más caen</a> — la otra ley clave del Bloque III</li>
 </ul>
+
+<h2>Legislación relacionada</h2>
+<p>Consulta el texto completo y actualizado de las leyes clave del temario C1:</p>
+<ul>
+  <li><a href="/ley/ley-contratos-sector-publico">LCSP — Ley 9/2017 de Contratos del Sector Público</a></li>
+  <li><a href="/ley/ley-39-2015-lpac">Ley 39/2015 — Procedimiento Administrativo Común (LPAC)</a> — 133 artículos</li>
+  <li><a href="/ley/ley-general-presupuestaria">LGP — Ley General Presupuestaria</a></li>
+  <li><a href="/ley/ley-general-subvenciones">Ley 38/2003 — Ley General de Subvenciones</a></li>
+</ul>
     `.trim(),
     dateModified: '2026-03-19',
     faqs: [
@@ -3653,7 +3759,7 @@ export const blogPosts: BlogPost[] = [
 </p>
 <p>
   <strong>Pregunta frecuente:</strong> "¿Qué principio impide que los ingresos se asignen a gastos
-  concretos?" → No afectación (art. 27 LGP).
+  concretos?" → No afectación (art. 27 <a href="/ley/ley-general-presupuestaria">LGP</a>).
 </p>
 
 <h3>Tema 33: Estructura del Presupuesto del Estado</h3>
@@ -3707,8 +3813,8 @@ export const blogPosts: BlogPost[] = [
 
 <h3>Tema 37: Gestión económica de contratos y subvenciones</h3>
 <p>
-  Enlaza con la LCSP (Bloque III). Abarca garantías, revisión de precios, pagos a cuenta,
-  penalidades y el régimen de subvenciones (Ley 38/2003 General de Subvenciones).
+  Enlaza con la <a href="/ley/ley-contratos-sector-publico">LCSP</a> (Bloque III). Abarca garantías, revisión de precios, pagos a cuenta,
+  penalidades y el régimen de subvenciones (<a href="/ley/ley-general-subvenciones">Ley 38/2003 General de Subvenciones</a>).
 </p>
 
 <h2>Estrategia de estudio para el Bloque V</h2>
@@ -3732,6 +3838,14 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/contratacion-publica-lcsp-administrativo-estado-c1">LCSP para el C1</a> — artículos clave de contratación</li>
   <li><a href="/blog/supuesto-practico-administrativo-estado-c1-estrategia">Supuesto práctico</a> — estrategia y consejos</li>
   <li><a href="/herramientas/calculadora-nota-administrativo-estado">Calculadora de nota C1</a></li>
+</ul>
+
+<h2>Legislación relacionada</h2>
+<p>Consulta el texto completo y actualizado de las leyes del Bloque V:</p>
+<ul>
+  <li><a href="/ley/ley-general-presupuestaria">LGP — Ley 47/2003 General Presupuestaria</a></li>
+  <li><a href="/ley/ley-contratos-sector-publico">LCSP — Ley 9/2017 de Contratos del Sector Público</a></li>
+  <li><a href="/ley/ley-general-subvenciones">Ley 38/2003 — Ley General de Subvenciones</a></li>
 </ul>
     `.trim(),
     dateModified: '2026-03-19',
@@ -7051,11 +7165,11 @@ export const blogPosts: BlogPost[] = [
     content: `
 <h2>¿Por qué la Ley 19/2013 es clave en el examen C1?</h2>
 <p>
-  La <strong>Ley 19/2013, de 9 de diciembre, de transparencia, acceso a la información pública
-  y buen gobierno</strong> es una de las normas más preguntadas en el Bloque I del temario de
+  La <strong><a href="/ley/ley-transparencia-acceso-informacion">Ley 19/2013, de 9 de diciembre, de transparencia, acceso a la información pública
+  y buen gobierno</a></strong> es una de las normas más preguntadas en el Bloque I del temario de
   Administrativo del Estado (C1). A diferencia del C2, donde apenas aparece, en el C1 pueden
-  dedicarle <strong>2-4 preguntas directas</strong> y varias más cruzadas con la Ley 39/2015
-  (procedimiento administrativo) y la Ley 40/2015 (sector público).
+  dedicarle <strong>2-4 preguntas directas</strong> y varias más cruzadas con la <a href="/ley/ley-39-2015-lpac">Ley 39/2015</a>
+  (procedimiento administrativo) y la <a href="/ley/ley-40-2015-lrjsp">Ley 40/2015</a> (sector público).
 </p>
 <p>
   La ley se estructura en tres grandes pilares: <strong>publicidad activa</strong> (qué debe
@@ -7250,6 +7364,16 @@ export const blogPosts: BlogPost[] = [
   frecuencia de aparición.
 </p>
 
+<h2>Legislación relacionada</h2>
+<p>Consulta el texto completo y actualizado de las leyes clave del temario C1:</p>
+<ul>
+  <li><a href="/ley/ley-transparencia-acceso-informacion">Ley 19/2013 — Transparencia, Acceso a la Información y Buen Gobierno</a></li>
+  <li><a href="/ley/ley-39-2015-lpac">Ley 39/2015 — Procedimiento Administrativo Común (LPAC)</a> — 133 artículos</li>
+  <li><a href="/ley/ley-40-2015-lrjsp">Ley 40/2015 — Régimen Jurídico del Sector Público (LRJSP)</a> — 158 artículos</li>
+  <li><a href="/ley/estatuto-basico-empleado-publico">TREBEP — Estatuto Básico del Empleado Público</a> — 100 artículos</li>
+  <li><a href="/ley/constitucion-espanola">Constitución Española de 1978</a> — 169 artículos</li>
+</ul>
+
 <p>
   <strong><a href="/register">Empieza gratis en OpoRuta</a></strong> y practica con tests específicos
   de la Ley 19/2013, simulacros de convocatorias reales y tu Tutor IA para entender cada error.
@@ -7287,13 +7411,13 @@ export const blogPosts: BlogPost[] = [
   El <strong>Bloque IV (Gestión de personal)</strong> del temario de Administrativo del Estado (C1)
   comprende <strong>9 temas</strong>, lo que lo convierte en el bloque más largo del programa de
   45 temas. Representa aproximadamente un <strong>15% del examen</strong> (unas 15 preguntas de 100),
-  con el <strong>Real Decreto Legislativo 5/2015</strong> (TREBEP) como eje vertebrador.
+  con el <strong><a href="/ley/estatuto-basico-empleado-publico">Real Decreto Legislativo 5/2015</a></strong> (TREBEP) como eje vertebrador.
 </p>
 <p>
   A diferencia del temario C2 donde el TREBEP se estudia de forma resumida, en el C1 se exige un
   conocimiento <strong>detallado artículo por artículo</strong>: clases de personal, adquisición y
   pérdida de la condición de funcionario, situaciones administrativas, derechos retributivos, carrera
-  profesional, provisión de puestos, régimen disciplinario, incompatibilidades (Ley 53/1984) y MUFACE.
+  profesional, provisión de puestos, régimen disciplinario, incompatibilidades (<a href="/ley/ley-incompatibilidades-funcionarios">Ley 53/1984</a>) y MUFACE.
 </p>
 <p>
   Esta guía te ofrece un mapa completo del bloque con los artículos clave, las trampas más frecuentes
@@ -7537,6 +7661,16 @@ export const blogPosts: BlogPost[] = [
   <a href="/blog/trebep-oposiciones-guia-estatuto-empleado-publico">guía completa del TREBEP
   para oposiciones</a>.
 </p>
+
+<h2>Legislación relacionada</h2>
+<p>Consulta el texto completo y actualizado de las leyes del Bloque IV:</p>
+<ul>
+  <li><a href="/ley/estatuto-basico-empleado-publico">TREBEP — Estatuto Básico del Empleado Público</a> — 100 artículos</li>
+  <li><a href="/ley/ley-incompatibilidades-funcionarios">Ley 53/1984 — Incompatibilidades del personal al servicio de las AAPP</a></li>
+  <li><a href="/ley/constitucion-espanola">Constitución Española de 1978</a> — 169 artículos</li>
+  <li><a href="/ley/ley-39-2015-lpac">Ley 39/2015 — Procedimiento Administrativo Común (LPAC)</a> — 133 artículos</li>
+  <li><a href="/ley/ley-transparencia-acceso-informacion">Ley 19/2013 — Transparencia y Buen Gobierno</a></li>
+</ul>
 
 <p>
   <strong><a href="/register">Empieza gratis en OpoRuta</a></strong> y practica con tests específicos
@@ -9845,7 +9979,7 @@ export const blogPosts: BlogPost[] = [
   Para los opositores de Justicia (Auxilio Judicial, Tramitación Procesal y Gestión Procesal),
   esta ley supone un cambio radical en el temario: <strong>varios temas quedan obsoletos</strong>
   y nuevos conceptos como los Tribunales de Instancia, las Oficinas de Justicia o los MASC
-  (Medios Adecuados de Solución de Controversias) pasan a ser materia de examen.
+  (Medios Adecuados de Solución de Controversias) pasan a ser materia de examen. Modifica sustancialmente la <a href="/ley/ley-organica-poder-judicial">LOPJ</a>.
 </p>
 <p>
   Si estás estudiando con material anterior a 2025, <strong>necesitas actualizar urgentemente</strong>.
@@ -14831,13 +14965,13 @@ export const blogPosts: BlogPost[] = [
 
 <h3>Bloque I — Organizacion del Estado (7 temas)</h3>
 <ol>
-<li>La Constitucion Espanola de 1978</li>
+<li><a href="/ley/constitucion-espanola">La Constitucion Espanola de 1978</a></li>
 <li>Las Cortes Generales. El Defensor del Pueblo</li>
 <li>El Gobierno: composicion, nombramiento, cese, funciones</li>
 <li>La Administracion Publica. La AGE. Organizacion territorial. CCAA</li>
 <li>La Union Europea: instituciones, libertades, politicas comunes</li>
-<li>Proteccion de Datos Personales (LOPDGDD, RGPD)</li>
-<li>Politicas de igualdad de genero (LO 3/2007, LO 1/2004)</li>
+<li>Proteccion de Datos Personales (<a href="/ley/ley-proteccion-datos">LOPDGDD</a>, RGPD)</li>
+<li>Politicas de igualdad de genero (<a href="/ley/ley-igualdad-efectiva-mujeres-hombres">LO 3/2007</a>, LO 1/2004)</li>
 </ol>
 
 <h3>Bloque II — Derecho Administrativo (5 temas)</h3>
@@ -14845,7 +14979,7 @@ export const blogPosts: BlogPost[] = [
 <li>Fuentes del Derecho Administrativo</li>
 <li>El acto administrativo: concepto, validez, eficacia</li>
 <li>Procedimiento administrativo comun. Recursos administrativos</li>
-<li>Contratos del sector publico (LCSP)</li>
+<li>Contratos del sector publico (<a href="/ley/ley-contratos-sector-publico">LCSP</a>)</li>
 <li>Responsabilidad patrimonial de la Administracion</li>
 </ol>
 
@@ -14994,7 +15128,7 @@ export const blogPosts: BlogPost[] = [
 <p>Con penalizacion -1/3, <strong>solo responde si puedes descartar al menos 2 opciones</strong>. Con 2 opciones posibles, la esperanza es positiva (0.50 × 1 - 0.50 × 0.33 = +0.17). Con 3 opciones, es negativa: deja en blanco.</p>
 
 <h3>Practica con OpoRuta</h3>
-<p>En OpoRuta tenemos los <strong>50 temas completos</strong> con preguntas verificadas contra la LOGP, el Reglamento Penitenciario y el Codigo Penal. Incluimos el Bloque IV (Conducta Humana) que otras plataformas no cubren.</p>
+<p>En OpoRuta tenemos los <strong>50 temas completos</strong> con preguntas verificadas contra la <a href="/ley/ley-organica-general-penitenciaria">LOGP</a>, el <a href="/ley/reglamento-penitenciario">Reglamento Penitenciario</a> y el <a href="/ley/codigo-penal">Codigo Penal</a>. Incluimos el Bloque IV (Conducta Humana) que otras plataformas no cubren.</p>
 
 <h3>Recursos relacionados</h3>
 <ul>
@@ -15028,11 +15162,11 @@ export const blogPosts: BlogPost[] = [
 
 <h3>Bloque II — Derecho Penal (10 temas)</h3>
 <p>Temas 18-27: Derecho Penal (concepto, fuentes), penas (clases, aplicacion), suspension y sustitucion, delitos principales (homicidio, lesiones, patrimonio, libertad, drogas, torturas, sexuales, funcionarios), responsabilidad civil, proceso penal.</p>
-<p><strong>Peso en el examen: ~20%</strong>. El Codigo Penal (LO 10/1995) es la ley central.</p>
+<p><strong>Peso en el examen: ~20%</strong>. El <a href="/ley/codigo-penal">Codigo Penal (LO 10/1995)</a> es la ley central.</p>
 
 <h3>Bloque III — Derecho Penitenciario (20 temas)</h3>
 <p>Temas 28-47: regulacion supranacional, LOGP, relacion juridico-penitenciaria, prestaciones, regimen penitenciario, seguridad, establecimientos, regimen cerrado/abierto, tratamiento, trabajo, permisos, libertad condicional, regimen disciplinario, Juez de Vigilancia, organizacion de centros, regimen administrativo y economico.</p>
-<p><strong>Peso en el examen: ~36%</strong>. Es el bloque MAS preguntado. La LOGP (LO 1/1979) y el Reglamento Penitenciario (RD 190/1996) son las leyes centrales.</p>
+<p><strong>Peso en el examen: ~36%</strong>. Es el bloque MAS preguntado. La <a href="/ley/ley-organica-general-penitenciaria">LOGP (LO 1/1979)</a> y el <a href="/ley/reglamento-penitenciario">Reglamento Penitenciario (RD 190/1996)</a> son las leyes centrales.</p>
 
 <h3>Bloque IV — Conducta Humana (3 temas)</h3>
 <p>Temas 48-50: elementos de la conducta humana (estimulos, respuestas, refuerzo), organizacion social de la prision (codigo del recluso, subculturas, prisionizacion), comportamiento social (asertividad, habilidades sociales, conducta adictiva).</p>
@@ -15069,16 +15203,16 @@ export const blogPosts: BlogPost[] = [
 <h3>Distribucion por bloques y peso real en el examen</h3>
 <p>El temario se divide en tres bloques principales:</p>
 <ul>
-<li><strong>Bloque I — Organizacion del Estado y Derecho Administrativo (~20%)</strong>: Constitucion, organizacion territorial, procedimiento administrativo, TREBEP. Muchos temas compartidos con otras oposiciones C1.</li>
-<li><strong>Bloque II — Derecho de la Union Europea y Hacienda Publica (~25%)</strong>: Instituciones UE, presupuestos, contabilidad publica, Ley General Presupuestaria.</li>
-<li><strong>Bloque III — Derecho Tributario y procedimientos (~55%)</strong>: Ley General Tributaria (LGT), gestion, inspeccion, recaudacion, IRPF, IVA, Impuesto de Sociedades, aduanas.</li>
+<li><strong>Bloque I — Organizacion del Estado y Derecho Administrativo (~20%)</strong>: <a href="/ley/constitucion-espanola">Constitucion</a>, organizacion territorial, procedimiento administrativo, <a href="/ley/estatuto-basico-empleado-publico">TREBEP</a>. Muchos temas compartidos con otras oposiciones C1.</li>
+<li><strong>Bloque II — Derecho de la Union Europea y Hacienda Publica (~25%)</strong>: Instituciones UE, presupuestos, contabilidad publica, <a href="/ley/ley-general-presupuestaria">Ley General Presupuestaria</a>.</li>
+<li><strong>Bloque III — Derecho Tributario y procedimientos (~55%)</strong>: <a href="/ley/ley-general-tributaria">Ley General Tributaria (LGT)</a>, gestion, inspeccion, recaudacion, <a href="/ley/ley-irpf">IRPF</a>, <a href="/ley/ley-iva">IVA</a>, Impuesto de Sociedades, aduanas.</li>
 </ul>
 <p><strong>Conclusion</strong>: mas de la mitad del examen es Bloque III. Si no dominas la LGT, no apruebas.</p>
 
 <h3>Estrategia de estudio recomendada</h3>
 <p>La clave es priorizar por peso y dificultad:</p>
 <ol>
-<li><strong>Meses 1-4: Bloque III completo</strong>. Empieza por la LGT (58/2003): obligaciones tributarias, procedimiento de gestion, inspeccion y recaudacion. Luego IRPF, IVA y Sociedades.</li>
+<li><strong>Meses 1-4: Bloque III completo</strong>. Empieza por la <a href="/ley/ley-general-tributaria">LGT (58/2003)</a>: obligaciones tributarias, procedimiento de gestion, inspeccion y recaudacion. Luego <a href="/ley/ley-irpf">IRPF</a>, <a href="/ley/ley-iva">IVA</a> y Sociedades.</li>
 <li><strong>Meses 5-6: Bloque I</strong>. La Constitucion y el procedimiento administrativo se comparten con muchas oposiciones. Si vienes de otra oposicion C1, ya tendras ventaja.</li>
 <li><strong>Meses 7-8: Bloque II + repaso general</strong>. La parte de Hacienda Publica es mas teorica y memoristica.</li>
 <li><strong>Ultimos 2 meses: simulacros y ejercicio 2</strong>. El supuesto practico requiere soltura con la LGT. Practica casos de gestion, liquidaciones y sanciones.</li>
@@ -15190,9 +15324,9 @@ export const blogPosts: BlogPost[] = [
 <h3>Estrategia de estudio recomendada</h3>
 <p>El orden optimo NO es el del temario. Es el de peso + rentabilidad:</p>
 <ol>
-<li><strong>Empieza por Bloque III (Penitenciario)</strong>. Es el bloque mas preguntado (36%) y el mas especifico de esta oposicion. La LOGP (LO 1/1979) y el Reglamento Penitenciario (RD 190/1996) son las leyes centrales. Dedica al menos 3 meses.</li>
-<li><strong>Sigue con Bloque I (Org. Estado)</strong>. 35% del examen y muchos temas compartidos con otras oposiciones C1 (Constitucion, TREBEP, LPAC). Si vienes de preparar Administrativo o Hacienda, tendras gran parte hecha.</li>
-<li><strong>Bloque II (Penal)</strong>. 20% del examen. El Codigo Penal (LO 10/1995) es denso pero las preguntas suelen ser directas: tipos de penas, delitos especificos, circunstancias modificativas.</li>
+<li><strong>Empieza por Bloque III (Penitenciario)</strong>. Es el bloque mas preguntado (36%) y el mas especifico de esta oposicion. La <a href="/ley/ley-organica-general-penitenciaria">LOGP (LO 1/1979)</a> y el <a href="/ley/reglamento-penitenciario">Reglamento Penitenciario (RD 190/1996)</a> son las leyes centrales. Dedica al menos 3 meses.</li>
+<li><strong>Sigue con Bloque I (Org. Estado)</strong>. 35% del examen y muchos temas compartidos con otras oposiciones C1 (<a href="/ley/constitucion-espanola">Constitucion</a>, <a href="/ley/estatuto-basico-empleado-publico">TREBEP</a>, <a href="/ley/ley-39-2015-lpac">LPAC</a>). Si vienes de preparar Administrativo o Hacienda, tendras gran parte hecha.</li>
+<li><strong>Bloque II (Penal)</strong>. 20% del examen. El <a href="/ley/codigo-penal">Codigo Penal (LO 10/1995)</a> es denso pero las preguntas suelen ser directas: tipos de penas, delitos especificos, circunstancias modificativas.</li>
 <li><strong>Bloque IV (Conducta Humana) al final</strong>. Solo 3 temas y 9% del examen. Es el unico bloque que no se basa en legislacion BOE sino en bibliografia de psicologia. Estudialo las ultimas semanas.</li>
 </ol>
 
@@ -15857,7 +15991,7 @@ export const blogPosts: BlogPost[] = [
 <table>
 <thead><tr><th>Bloque</th><th>Materias</th><th>Temas</th></tr></thead>
 <tbody>
-<tr><td><strong>A — Ciencias Jurídicas</strong></td><td>Constitución, Derecho Penal, Derecho Procesal, organización del Estado, Unión Europea</td><td>12</td></tr>
+<tr><td><strong>A — Ciencias Jurídicas</strong></td><td><a href="/ley/constitucion-espanola">Constitución</a>, <a href="/ley/codigo-penal">Derecho Penal</a>, Derecho Procesal, organización del Estado, Unión Europea</td><td>12</td></tr>
 <tr><td><strong>B — Materias Socioculturales</strong></td><td>Derechos humanos, globalización, ecología, protección civil, desarrollo sostenible</td><td>6</td></tr>
 <tr><td><strong>C — Materias Técnico-Científicas</strong></td><td>Electricidad, transmisiones, automoción, informática, topografía</td><td>7</td></tr>
 </tbody>
@@ -16577,7 +16711,7 @@ export const blogPosts: BlogPost[] = [
 <h2>¿Se pueden preparar dos oposiciones a la vez?</h2>
 <p>
   Sí, y es una estrategia muy habitual. El <strong>C2 y el C1 comparten parte del temario</strong>
-  (Constitución, LPAC, TREBEP). Muchos opositores preparan el C2 como primera opción
+  (<a href="/ley/constitucion-espanola">Constitución</a>, <a href="/ley/ley-39-2015-lpac">LPAC</a>, <a href="/ley/estatuto-basico-empleado-publico">TREBEP</a>). Muchos opositores preparan el C2 como primera opción
   y añaden los temas extra del C1 si les da tiempo.
 </p>
 <p>
@@ -16638,7 +16772,7 @@ export const blogPosts: BlogPost[] = [
     content: `
 <h2>¿Qué es el TREBEP?</h2>
 <p>
-  El <strong>TREBEP</strong> (Texto Refundido del Estatuto Básico del Empleado Público) es el
+  El <strong><a href="/ley/estatuto-basico-empleado-publico">TREBEP</a></strong> (Texto Refundido del Estatuto Básico del Empleado Público) es el
   <strong>Real Decreto Legislativo 5/2015, de 30 de octubre</strong>, que regula las bases del régimen jurídico
   de los empleados públicos en España.
 </p>

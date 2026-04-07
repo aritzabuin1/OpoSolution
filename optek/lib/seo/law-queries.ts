@@ -11,7 +11,6 @@ import { createServiceClient } from '@/lib/supabase/server'
 
 export interface ArticuloRow {
   articulo_numero: string
-  titulo_articulo: string | null
   titulo_capitulo: string | null
   texto_integro: string
   apartado: string | null
@@ -19,7 +18,6 @@ export interface ArticuloRow {
 
 export interface ArticuloSummary {
   articulo_numero: string
-  titulo_articulo: string | null
   titulo_capitulo: string | null
 }
 
@@ -35,7 +33,7 @@ export async function getLawArticles(leyNombre: string): Promise<ArticuloSummary
 
   const { data, error } = await (supabase as any)
     .from('legislacion')
-    .select('articulo_numero, titulo_articulo, titulo_capitulo')
+    .select('articulo_numero, titulo_capitulo')
     .eq('ley_nombre', leyNombre)
     .eq('activo', true)
     .order('articulo_numero')
@@ -61,7 +59,7 @@ export async function getArticleProvisions(
   // Try exact match first
   let { data, error } = await (supabase as any)
     .from('legislacion')
-    .select('articulo_numero, titulo_articulo, titulo_capitulo, texto_integro, apartado')
+    .select('articulo_numero, titulo_capitulo, texto_integro, apartado')
     .eq('ley_nombre', leyNombre)
     .eq('articulo_numero', articuloNumero)
     .eq('activo', true)
@@ -89,7 +87,7 @@ export async function getArticleProvisions(
     if (match) {
       const result = await (supabase as any)
         .from('legislacion')
-        .select('articulo_numero, titulo_articulo, titulo_capitulo, texto_integro, apartado')
+        .select('articulo_numero, titulo_capitulo, texto_integro, apartado')
         .eq('ley_nombre', leyNombre)
         .eq('articulo_numero', match.articulo_numero)
         .eq('activo', true)
@@ -122,7 +120,7 @@ export async function getRelatedArticles(
 
   const { data, error } = await (supabase as any)
     .from('legislacion')
-    .select('articulo_numero, titulo_articulo, titulo_capitulo')
+    .select('articulo_numero, titulo_capitulo')
     .eq('ley_nombre', leyNombre)
     .eq('activo', true)
     .ilike('titulo_capitulo', `${sectionPrefix}%`)
