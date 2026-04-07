@@ -1,8 +1,8 @@
 /**
  * app/(marketing)/ley/sitemap.ts — Sitemap para /ley/ (pSEO legislación)
  *
- * Genera sitemaps con índice automático para ~9.600 artículos + 53 leyes.
- * Next.js sirve esto como /ley/sitemap.xml (o /ley/sitemap/0.xml, /1.xml, etc.)
+ * Genera un sitemap con ~9.600 artículos + 53 leyes.
+ * Next.js sirve esto como /ley/sitemap.xml
  */
 
 import type { MetadataRoute } from 'next'
@@ -11,19 +11,23 @@ import { slugifyArticulo } from '@/lib/seo/slugify'
 import articleIndex from '@/data/seo/article-index.json'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
-const URLS_PER_SITEMAP = 5000
 
-// Build flat list of all URLs (no module-level cache — serverless safe)
-function buildAllUrls(): Array<{ url: string; priority: number }> {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const now = new Date()
+  const entries: MetadataRoute.Sitemap = []
+
   try {
     const enabledLaws = getEnabledLaws()
     const enabledSlugs = new Set(enabledLaws.map(l => l.slug))
-    const urls: Array<{ url: string; priority: number }> = []
+    const laws = (articleIndex as any).laws ?? []
 
     // Hub page
-    urls.push({ url: `${APP_URL}/ley`, priority: 0.8 })
-
-    const laws = (articleIndex as any).laws ?? []
+    entries.push({
+      url: `${APP_URL}/ley`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    })
 
     // Law index pages + article pages
     for (const law of laws) {
@@ -31,46 +35,28 @@ function buildAllUrls(): Array<{ url: string; priority: number }> {
       if (!lawEntry || !enabledSlugs.has(lawEntry.slug)) continue
 
       // Law index
-      urls.push({ url: `${APP_URL}/ley/${lawEntry.slug}`, priority: 0.7 })
+      entries.push({
+        url: `${APP_URL}/ley/${lawEntry.slug}`,
+        lastModified: now,
+        changeFrequency: 'monthly',
+        priority: 0.7,
+      })
 
       // Article pages
       for (const artNumero of (law.articles ?? [])) {
-        const artSlug = slugifyArticulo(artNumero)
-        urls.push({
-          url: `${APP_URL}/ley/${lawEntry.slug}/${artSlug}`,
+        entries.push({
+          url: `${APP_URL}/ley/${lawEntry.slug}/${slugifyArticulo(artNumero)}`,
+          lastModified: now,
+          changeFrequency: 'monthly',
           priority: lawEntry.priority === 'high' ? 0.6 : 0.5,
         })
       }
     }
 
-    console.log(`[ley/sitemap] Built ${urls.length} URLs from ${laws.length} laws`)
-    return urls
+    console.log(`[ley/sitemap] Generated ${entries.length} URLs from ${laws.length} laws`)
   } catch (err) {
-    console.error('[ley/sitemap] buildAllUrls error:', err)
-    return []
+    console.error('[ley/sitemap] Error building sitemap:', err)
   }
-}
 
-function getAllUrls() {
-  return buildAllUrls()
-}
-
-export async function generateSitemaps() {
-  const total = getAllUrls().length
-  const count = Math.ceil(total / URLS_PER_SITEMAP)
-  return Array.from({ length: count }, (_, i) => ({ id: i }))
-}
-
-export default async function sitemap({ id }: { id: number }): Promise<MetadataRoute.Sitemap> {
-  const allUrls = getAllUrls()
-  const start = id * URLS_PER_SITEMAP
-  const batch = allUrls.slice(start, start + URLS_PER_SITEMAP)
-  const now = new Date()
-
-  return batch.map(entry => ({
-    url: entry.url,
-    lastModified: now,
-    changeFrequency: 'monthly' as const,
-    priority: entry.priority,
-  }))
+  return entries
 }
