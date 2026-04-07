@@ -98,6 +98,11 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
                   </Link>
                 </li>
                 <li>
+                  <Link href="/ley" className="hover:text-foreground transition-colors">
+                    Legislación
+                  </Link>
+                </li>
+                <li>
                   <Link href="/blog" className="hover:text-foreground transition-colors">
                     Blog y guías
                   </Link>

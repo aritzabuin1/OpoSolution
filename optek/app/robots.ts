@@ -30,6 +30,8 @@ export default function robots(): MetadataRoute.Robots {
     '/oep-2026',
     '/precios',
     '/preguntas-frecuentes',
+    '/ley',
+    '/ley/',
     '/api/info',
     '/api/og',
   ]

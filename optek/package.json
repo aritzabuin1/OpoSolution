@@ -42,7 +42,8 @@
     "ingest:ofimatica": "tsx --env-file=.env.local execution/ingest-conocimiento.ts",
     "seed:ofimatica": "tsx --env-file=.env.local execution/seed-ofimatica-bank.ts",
     "ingest:correos": "tsx --env-file=.env.local execution/ingest-conocimiento-correos.ts",
-    "ingest:penitenciarias": "tsx --env-file=.env.local execution/ingest-conocimiento-penitenciarias.ts"
+    "ingest:penitenciarias": "tsx --env-file=.env.local execution/ingest-conocimiento-penitenciarias.ts",
+    "generate:seo-index": "tsx execution/generate-seo-index.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
