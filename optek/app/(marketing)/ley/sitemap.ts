@@ -13,39 +13,46 @@ import articleIndex from '@/data/seo/article-index.json'
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 const URLS_PER_SITEMAP = 5000
 
-// Build flat list of all URLs once (module-level cache)
+// Build flat list of all URLs (no module-level cache — serverless safe)
 function buildAllUrls(): Array<{ url: string; priority: number }> {
-  const enabledSlugs = new Set(getEnabledLaws().map(l => l.slug))
-  const urls: Array<{ url: string; priority: number }> = []
+  try {
+    const enabledLaws = getEnabledLaws()
+    const enabledSlugs = new Set(enabledLaws.map(l => l.slug))
+    const urls: Array<{ url: string; priority: number }> = []
 
-  // Hub page
-  urls.push({ url: `${APP_URL}/ley`, priority: 0.8 })
+    // Hub page
+    urls.push({ url: `${APP_URL}/ley`, priority: 0.8 })
 
-  // Law index pages + article pages
-  for (const law of articleIndex.laws) {
-    const lawEntry = getEnabledLaws().find(l => l.leyNombre === law.leyNombre)
-    if (!lawEntry || !enabledSlugs.has(lawEntry.slug)) continue
+    const laws = (articleIndex as any).laws ?? []
 
-    // Law index
-    urls.push({ url: `${APP_URL}/ley/${lawEntry.slug}`, priority: 0.7 })
+    // Law index pages + article pages
+    for (const law of laws) {
+      const lawEntry = enabledLaws.find(l => l.leyNombre === law.leyNombre)
+      if (!lawEntry || !enabledSlugs.has(lawEntry.slug)) continue
 
-    // Article pages
-    for (const artNumero of law.articles) {
-      const artSlug = slugifyArticulo(artNumero)
-      urls.push({
-        url: `${APP_URL}/ley/${lawEntry.slug}/${artSlug}`,
-        priority: lawEntry.priority === 'high' ? 0.6 : 0.5,
-      })
+      // Law index
+      urls.push({ url: `${APP_URL}/ley/${lawEntry.slug}`, priority: 0.7 })
+
+      // Article pages
+      for (const artNumero of (law.articles ?? [])) {
+        const artSlug = slugifyArticulo(artNumero)
+        urls.push({
+          url: `${APP_URL}/ley/${lawEntry.slug}/${artSlug}`,
+          priority: lawEntry.priority === 'high' ? 0.6 : 0.5,
+        })
+      }
     }
-  }
 
-  return urls
+    console.log(`[ley/sitemap] Built ${urls.length} URLs from ${laws.length} laws`)
+    return urls
+  } catch (err) {
+    console.error('[ley/sitemap] buildAllUrls error:', err)
+    return []
+  }
 }
 
-let _cachedUrls: Array<{ url: string; priority: number }> | null = null
 function getAllUrls() {
-  if (!_cachedUrls) _cachedUrls = buildAllUrls()
-  return _cachedUrls
+  return buildAllUrls()
 }
 
 export async function generateSitemaps() {
