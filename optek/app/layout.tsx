@@ -145,35 +145,9 @@ const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={inter.variable}>
-      {/* Google Analytics 4 directo + Consent Mode v2 — RGPD compatible */}
-      {/* 1. Consent defaults (ANTES de gtag): denied por defecto → datos anonimizados */}
-      <Script id="ga4-consent-defaults" strategy="beforeInteractive">
-        {`
-          window.dataLayer=window.dataLayer||[];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('consent','default',{
-            'ad_storage':'denied',
-            'ad_user_data':'denied',
-            'ad_personalization':'denied',
-            'analytics_storage':'denied',
-            'wait_for_update':500
-          });
-          // Si el usuario ya aceptó en una visita anterior, actualizar inmediatamente
-          try{
-            if(localStorage.getItem('oporuta_cookie_consent')==='accepted'){
-              gtag('consent','update',{
-                'ad_storage':'granted',
-                'ad_user_data':'granted',
-                'ad_personalization':'granted',
-                'analytics_storage':'granted'
-              });
-            }
-          }catch(e){}
-        `}
-      </Script>
-      {/* 2. GA4 gtag.js — se carga SIEMPRE (con consent denied recoge datos anonimizados) */}
+      {/* Google Analytics 4 — instalación directa sin Consent Mode */}
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-ZV3SNG784G" strategy="afterInteractive" />
-      <Script id="ga4-config" strategy="afterInteractive">
+      <Script id="ga4-init" strategy="afterInteractive">
         {`
           window.dataLayer=window.dataLayer||[];
           function gtag(){dataLayer.push(arguments);}
@@ -181,18 +155,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           gtag('config','G-ZV3SNG784G');
         `}
       </Script>
-      {/* 3. GTM opcional (si NEXT_PUBLIC_GTM_ID está configurado en Vercel) */}
-      {GTM_ID && (
-        <Script id="gtm-script" strategy="afterInteractive">
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${GTM_ID}');
-          `}
-        </Script>
-      )}
       <body className="min-h-screen bg-background font-sans antialiased" suppressHydrationWarning>
         {/* §2.17.4-5 — Organization + WebSite + SoftwareApplication JSON-LD (presentes en todas las páginas) */}
         <JsonLd data={organizationSchema} />
