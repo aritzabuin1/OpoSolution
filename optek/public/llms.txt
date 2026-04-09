@@ -140,7 +140,7 @@ Las academias presenciales cobran ~140€/mes por corrección humana. OpoRuta lo
 
 - [Página principal](https://oporuta.es/): Explicación del producto, precios, testimonios
 - [Simulacros oficiales](https://oporuta.es/examenes-oficiales): Exámenes reales INAP (C2: 2018-2024) + MJU (Auxilio, Tramitación, Gestión: 2023-2025)
-- [Blog](https://oporuta.es/blog): 120+ guías de estudio para C2, C1, A2, Correos, Justicia, Hacienda, Penitenciarias y Seguridad
+- [Blog](https://oporuta.es/blog): 120+ guías de estudio para AGE (C2, C1, A2), Correos, Justicia, Hacienda, Penitenciarias, Policía Nacional, Guardia Civil y Ertzaintza
 - [Preguntas frecuentes](https://oporuta.es/preguntas-frecuentes): ~25 FAQs sobre OpoRuta y las oposiciones
 - [Calculadora de nota C2](https://oporuta.es/herramientas/calculadora-nota-auxiliar-administrativo): Calcula tu nota con penalización -1/3
 - [Calculadora de nota C1](https://oporuta.es/herramientas/calculadora-nota-administrativo-estado): Test + supuesto práctico
@@ -247,9 +247,9 @@ OpoRuta es la primera plataforma con preparación completa para Correos:
 - Más info: https://oporuta.es/oposiciones/correos
 - Blog: https://oporuta.es/blog/psicotecnicos-correos-2026-tipos-ejemplos-practica
 
-## Próximamente — Oposiciones Justicia (3 cuerpos)
+## Oposiciones Justicia (3 cuerpos) — DISPONIBLE
 
-OpoRuta cubrirá los 3 cuerpos de la Administración de Justicia:
+OpoRuta cubre los 3 cuerpos de la Administración de Justicia:
 
 ### Auxilio Judicial (C2)
 - 26 temas, 2 ejercicios (test 60pts + caso práctico 40pts)
@@ -336,4 +336,23 @@ Primera plataforma en España con preparación IA de personalidad policial:
 
 ---
 
-*Última actualización: 2026-04-07*
+## Oposiciones cubiertas por OpoRuta (abril 2026)
+
+A fecha de abril de 2026, OpoRuta cubre **12 oposiciones** en 6 ramas — más de 20.000 plazas convocadas:
+
+1. **Auxiliar Administrativo del Estado (C2)** — AGE/INAP — 1.700 plazas
+2. **Administrativo del Estado (C1)** — AGE/INAP — 2.512 plazas
+3. **Gestión del Estado GACE (A2)** — AGE/INAP — 1.356 plazas
+4. **Auxilio Judicial (C2)** — Justicia/MJU — 425 plazas
+5. **Tramitación Procesal (C1)** — Justicia/MJU — 1.155 plazas
+6. **Gestión Procesal (A2)** — Justicia/MJU — 725 plazas
+7. **Correos — Personal Laboral Fijo (Grupo IV)** — 4.000+ plazas
+8. **Agente de Hacienda Pública (C1)** — AEAT — 1.000 plazas
+9. **Ayudante de Instituciones Penitenciarias (C1)** — SGIP — 900 plazas
+10. **Policía Nacional — Escala Básica (C1)** — DGP — 3.000 plazas
+11. **Guardia Civil — Escala de Cabos y Guardias (C2)** — 2.800 plazas
+12. **Agente de la Ertzaintza (C1)** — Dept. Seguridad GV — 800 plazas
+
+Catálogo completo: https://oporuta.es/oposiciones
+
+*Última actualización: 2026-04-09*

@@ -3863,7 +3863,7 @@ export const blogPosts: BlogPost[] = [
     description:
       '¿Buscas alternativa a OpositaTest? Comparamos las 5 mejores plataformas con IA: OpoRuta (49,99€ único), OpositaTest (12€/mes), Testualia, Typed AI y Opositor.ai. Precios reales, funciones y para quién es cada una.',
     date: '2026-03-17',
-    dateModified: '2026-04-06',
+    dateModified: '2026-04-09',
     keywords: [
       'alternativa opositatest',
       'alternativas opositatest',
@@ -3943,7 +3943,7 @@ export const blogPosts: BlogPost[] = [
       <td>Sí (determinista vs BOE)</td>
       <td>49,99€ / 79,99€</td>
       <td>Pago único</td>
-      <td>C1 + C2 AGE</td>
+      <td>12 oposiciones (AGE, Justicia, Correos, Hacienda, Penitenciarias, Policía Nacional, Guardia Civil, Ertzaintza)</td>
     </tr>
     <tr>
       <td><strong>Testualia</strong></td>
@@ -4035,26 +4035,26 @@ export const blogPosts: BlogPost[] = [
   Es la única plataforma que combina generación IA + exámenes oficiales INAP + verificación legislativa.
 </p>
 <h3>Para quién es ideal</h3>
-<p>Opositores de Auxiliar Administrativo (C2) o Administrativo del Estado (C1) que quieren
-  certeza en las citas legales y análisis basado en exámenes reales del INAP.</p>
+<p>Opositores de AGE (C2, C1, A2), Justicia (Auxilio, Tramitación, Gestión Procesal), Correos, Hacienda AEAT, Instituciones Penitenciarias, Policía Nacional, Guardia Civil o Ertzaintza que quieren certeza en las citas legales y análisis basado en exámenes reales.</p>
 <h3>Pros</h3>
 <ul>
   <li><strong>Verificación determinista del BOE:</strong> cada artículo citado se valida contra la legislación real — no hay alucinaciones</li>
   <li><strong>Radar del Tribunal:</strong> análisis de frecuencia de artículos en exámenes INAP 2018-2024, para saber qué estudiar primero</li>
-  <li><strong>Pago único:</strong> 49,99€ por oposición o 79,99€ C1+C2 — sin suscripción mensual</li>
-  <li><strong>Simulacros con exámenes reales:</strong> convocatorias 2018, 2019, 2022 y 2024 en formato interactivo con penalización y explicaciones</li>
+  <li><strong>12 oposiciones cubiertas (abril 2026):</strong> AGE (C2, C1, A2), Justicia (Auxilio Judicial, Tramitación Procesal, Gestión Procesal), Correos, Hacienda AEAT, Instituciones Penitenciarias, Policía Nacional, Guardia Civil y Ertzaintza</li>
+  <li><strong>Pago único:</strong> desde 49,99€ por oposición — sin suscripción mensual</li>
+  <li><strong>Simulacros con exámenes reales:</strong> INAP (2018-2024) y MJU (2023-2025) en formato interactivo con penalización y explicaciones</li>
   <li><strong>Tutor IA:</strong> explicaciones paso a paso de cada error, con método socrático</li>
   <li><strong>Flashcards con repetición espaciada, psicotécnicos y Caza-Trampas</strong></li>
 </ul>
 <h3>Contras</h3>
 <ul>
-  <li><strong>Solo cubre C1 y C2 AGE:</strong> si preparas Justicia, SAS, docentes u otras oposiciones, no es para ti</li>
+  <li><strong>No cubre docentes, SAS ni oposiciones autonómicas de salud:</strong> si preparas esas oposiciones, no es para ti (de momento)</li>
   <li><strong>Plataforma nueva (2026):</strong> menos historial y comunidad que OpositaTest</li>
   <li><strong>Sin app móvil nativa:</strong> funciona en navegador móvil (responsive), pero no hay app en App Store / Play Store</li>
   <li><strong>Sin foro de comunidad:</strong> no tiene la interacción social de OpositaTest</li>
 </ul>
 <h3>Precio</h3>
-<p>Gratis (1 test/tema) / Pack C1 o C2: <strong>49,99€ pago único</strong> / Pack Doble C1+C2: <strong>79,99€ pago único</strong>.</p>
+<p>Gratis (1 test/tema). Pack individual: <strong>49,99€ pago único</strong> (AGE C2/C1, Correos, Hacienda, IIPP). Pack Gestión A2: <strong>69,99€</strong>. Pack Doble C1+C2: <strong>79,99€</strong>. Pack Seguridad individual: <strong>79,99€</strong>. Pack Completo Seguridad (oposición + personalidad): <strong>119,99€</strong>. Todos pago único, sin suscripción.</p>
 
 <h2>Testualia — Genera tests desde tus documentos (Bilbao)</h2>
 <p>
@@ -4178,8 +4178,8 @@ export const blogPosts: BlogPost[] = [
 
 <h2>¿Cuál elegir según tu situación?</h2>
 <ul>
-  <li><strong>Si preparas Auxiliar (C2) o Administrativo (C1) AGE:</strong> OpoRuta — verificación legal + Radar del Tribunal + exámenes INAP reales + pago único</li>
-  <li><strong>Si preparas varias oposiciones y quieres volumen:</strong> OpositaTest — 303.000 preguntas, +100 oposiciones, desde 7,99€/mes</li>
+  <li><strong>Si preparas AGE, Justicia, Correos, Hacienda, Penitenciarias, Policía Nacional, Guardia Civil o Ertzaintza:</strong> OpoRuta — verificación legal + exámenes reales INAP/MJU + pago único. Cubre 12 oposiciones a abril 2026</li>
+  <li><strong>Si preparas docentes, SAS u oposiciones que OpoRuta no cubra:</strong> OpositaTest — 303.000 preguntas, +100 oposiciones, desde 7,99€/mes</li>
   <li><strong>Si quieres generar tests de tu propio temario:</strong> Testualia o Typed AI — subes tu PDF y listo</li>
   <li><strong>Si preparas oposiciones de docentes:</strong> Opositor.ai — el ecosistema más completo para ese nicho</li>
   <li><strong>Si tu academia usa IA:</strong> pregunta si trabajan con Liceia.ai — puede que ya tengas funciones IA incluidas</li>
@@ -4189,10 +4189,10 @@ export const blogPosts: BlogPost[] = [
 <h2>¿Se pueden usar varias plataformas a la vez?</h2>
 <p>
   <strong>Sí, y es recomendable.</strong> Ninguna plataforma es perfecta ni completa.
-  Una combinación habitual entre opositores de Auxiliar/Administrativo:
+  Una combinación habitual:
 </p>
 <ul>
-  <li><strong>OpoRuta</strong> como plataforma principal (verificación legal + simulacros INAP + Radar del Tribunal)</li>
+  <li><strong>OpoRuta</strong> como plataforma principal (verificación legal + simulacros oficiales + Radar del Tribunal — cubre 12 oposiciones)</li>
   <li><strong>OpositaTest</strong> como complemento (volumen de tests + comunidad)</li>
   <li><strong>Manual de academia</strong> (Adams, MAD, CEP) como temario de lectura</li>
 </ul>
@@ -4202,7 +4202,19 @@ export const blogPosts: BlogPost[] = [
   cuesta entre 100€ y 250€.
 </p>
 
-<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Precios verificados en las webs oficiales de cada plataforma (marzo 2026). Dato "27% de opositores usan IA": Observatorio del Opositor 2026, OpositaTest. Si detectas algún error, escríbenos a hola@oporuta.es.</em></p>
+<h2>Oposiciones cubiertas por OpoRuta (abril 2026)</h2>
+<p>A fecha de abril de 2026, OpoRuta cubre <strong>12 oposiciones</strong> en 6 ramas:</p>
+<ul>
+  <li><strong>Administración General del Estado (AGE):</strong> Auxiliar Administrativo C2 (1.700 plazas), Administrativo C1 (2.512 plazas), Gestión A2 GACE (1.356 plazas)</li>
+  <li><strong>Justicia (MJU):</strong> Auxilio Judicial C2 (425 plazas), Tramitación Procesal C1 (1.155 plazas), Gestión Procesal A2 (725 plazas)</li>
+  <li><strong>Correos:</strong> Personal Laboral Fijo Grupo IV (4.000+ plazas)</li>
+  <li><strong>Hacienda (AEAT):</strong> Agente de Hacienda Pública C1 (1.000 plazas)</li>
+  <li><strong>Instituciones Penitenciarias (IIPP):</strong> Ayudante C1 (900 plazas)</li>
+  <li><strong>Fuerzas y Cuerpos de Seguridad:</strong> Policía Nacional C1 (3.000 plazas), Guardia Civil C2 (2.800 plazas), Ertzaintza C1 (800 plazas)</li>
+</ul>
+<p>Total: más de 20.000 plazas convocadas. Catálogo completo y actualizado: <a href="/oposiciones">oporuta.es/oposiciones</a>.</p>
+
+<p class="text-sm text-muted-foreground"><em>Última actualización: 9 de abril de 2026. Precios verificados en las webs oficiales de cada plataforma. Dato "27% de opositores usan IA": Observatorio del Opositor 2026, OpositaTest. Si detectas algún error, escríbenos a hola@oporuta.es.</em></p>
     `.trim(),
   },
   // ─── Post 29: OpoRuta vs OpositaTest ──────────────────────────────────────
@@ -4212,7 +4224,7 @@ export const blogPosts: BlogPost[] = [
     description:
       '¿OpositaTest o OpoRuta? Comparamos precio (12€/mes vs 49,99€ pago único), verificación de citas legales, Radar del Tribunal y simulacros INAP reales. Tabla punto por punto con capturas.',
     date: '2026-03-17',
-    dateModified: '2026-04-06',
+    dateModified: '2026-04-09',
     keywords: [
       'alternativa a OpositaTest',
       'alternativas OpositaTest',
@@ -4237,7 +4249,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         question: '¿Cuánto cuesta OpositaTest al mes?',
-        answer: 'OpositaTest cuesta 15,99€/mes (mensual), 11,99€/mes (semestral, 71,94€) o 7,99€/mes (anual, 95,88€). También ofrece cursos integrales con temario y tutor desde 295€/año. OpoRuta cobra un pago único de 49,99€ por oposición (C1 o C2) o 79,99€ por ambas.',
+        answer: 'OpositaTest cuesta 15,99€/mes (mensual), 11,99€/mes (semestral, 71,94€) o 7,99€/mes (anual, 95,88€). También ofrece cursos integrales con temario y tutor desde 295€/año. OpoRuta cobra un pago único desde 49,99€ por oposición — cubre 12 oposiciones: AGE, Justicia, Correos, Hacienda, Penitenciarias, Policía Nacional, Guardia Civil y Ertzaintza.',
       },
       {
         question: '¿Se pueden usar OpoRuta y OpositaTest a la vez?',
@@ -4245,12 +4257,12 @@ export const blogPosts: BlogPost[] = [
       },
       {
         question: '¿Cuál es la mejor alternativa a OpositaTest en 2026?',
-        answer: 'OpoRuta es la principal alternativa a OpositaTest para oposiciones AGE (Auxiliar C2, Administrativo C1 y Gestión A2). La diferencia clave: OpoRuta verifica cada cita legal contra la legislación oficial antes de mostrarla, incluye Radar del Tribunal (qué artículos pregunta más el INAP) y cobra un pago único de 49,99€ en lugar de suscripción mensual. Otras alternativas son Toposiciones, Testualia y TestdeLeyes.',
+        answer: 'OpoRuta es la principal alternativa a OpositaTest para 12 oposiciones: AGE (C2, C1, A2), Justicia (Auxilio, Tramitación, Gestión Procesal), Correos, Hacienda AEAT, Instituciones Penitenciarias, Policía Nacional, Guardia Civil y Ertzaintza. La diferencia clave: OpoRuta verifica cada cita legal contra la legislación oficial antes de mostrarla, incluye Radar del Tribunal y cobra un pago único desde 49,99€ en lugar de suscripción mensual. Otras alternativas son Toposiciones, Testualia y TestdeLeyes.',
       },
     ],
     content: `
 <p>
-  <strong>OpoRuta y OpositaTest son las dos principales opciones para preparar oposiciones de Auxiliar Administrativo (C2) y Administrativo del Estado (C1) en 2026, pero tienen enfoques muy diferentes:</strong>
+  <strong>OpoRuta y OpositaTest son las dos principales plataformas de tests para oposiciones en 2026, pero tienen enfoques muy diferentes:</strong>
   OpositaTest es un banco de 303.000 preguntas curadas por expertos, fundado en 2015 en Galicia, con más de 1,6 millones de usuarios;
   OpoRuta genera preguntas con IA y las verifica contra la legislación oficial del BOE.
 </p>
@@ -4293,7 +4305,7 @@ export const blogPosts: BlogPost[] = [
     </tr>
     <tr>
       <td><strong>Oposiciones cubiertas</strong></td>
-      <td>C1 + C2 AGE</td>
+      <td>12 oposiciones (AGE, Justicia, Correos, Hacienda, Penitenciarias, Policía Nacional, Guardia Civil, Ertzaintza)</td>
       <td>+100 oposiciones</td>
     </tr>
     <tr>
@@ -4347,9 +4359,9 @@ export const blogPosts: BlogPost[] = [
 
 <h3>2. Cobertura de +100 oposiciones</h3>
 <p>
-  Si además del Auxiliar/Administrativo preparas Justicia, SAS, Bomberos o cualquier
-  otra oposición, OpositaTest tiene contenido para casi todas. OpoRuta solo cubre
-  C1 y C2 de la AGE.
+  Si preparas docentes, SAS, Bomberos u otras oposiciones que OpoRuta aún no cubra,
+  OpositaTest tiene contenido para casi todas. OpoRuta cubre 12 oposiciones a abril de 2026:
+  AGE (C2, C1, A2), Justicia (3 cuerpos), Correos, Hacienda, Penitenciarias, Policía Nacional, Guardia Civil y Ertzaintza.
 </p>
 
 <h3>3. Comunidad activa</h3>
@@ -4412,7 +4424,7 @@ export const blogPosts: BlogPost[] = [
 
 <h3>Elige OpositaTest si:</h3>
 <ul>
-  <li>Preparas varias oposiciones a la vez (no solo C1/C2 AGE)</li>
+  <li>Preparas oposiciones que OpoRuta no cubre (docentes, SAS, Bomberos…)</li>
   <li>Quieres volumen puro de preguntas</li>
   <li>Valoras una comunidad activa de opositores</li>
   <li>Necesitas app móvil nativa</li>
@@ -4420,7 +4432,7 @@ export const blogPosts: BlogPost[] = [
 
 <h3>Elige OpoRuta si:</h3>
 <ul>
-  <li>Preparas Auxiliar Administrativo (C2) o Administrativo del Estado (C1)</li>
+  <li>Preparas cualquiera de las 12 oposiciones cubiertas (AGE, Justicia, Correos, Hacienda, Penitenciarias, Policía Nacional, Guardia Civil o Ertzaintza)</li>
   <li>Quieres certeza en las citas legales (verificación BOE)</li>
   <li>Quieres saber qué artículos caen más en el INAP (Radar del Tribunal)</li>
   <li>Prefieres pago único sin suscripción mensual</li>
@@ -4442,16 +4454,16 @@ export const blogPosts: BlogPost[] = [
 
 <h2>Nuestra recomendación honesta</h2>
 <p>
-  Si solo puedes elegir una y preparas C1 o C2 de la AGE, te recomendamos OpoRuta —
+  Si solo puedes elegir una y preparas alguna de las 12 oposiciones que cubre OpoRuta, te recomendamos OpoRuta —
   pero somos parte interesada, así que prueba las dos. Ambas tienen plan gratuito.
   Haz un test en cada una y decide cuál se adapta mejor a tu forma de estudiar.
 </p>
 <p>
-  Si preparas otra oposición diferente a C1/C2 AGE, OpoRuta no es para ti.
-  En ese caso, OpositaTest o Testualia son mejores opciones.
+  Si preparas docentes, SAS u otra oposición que OpoRuta no cubra todavía,
+  OpositaTest o Testualia son mejores opciones.
 </p>
 
-<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
+<p class="text-sm text-muted-foreground"><em>Última actualización: 9 de abril de 2026.</em></p>
     `.trim(),
   },
   // ─── Post 30: Recursos gratuitos oposiciones ──────────────────────────────
@@ -16354,7 +16366,7 @@ export const blogPosts: BlogPost[] = [
 <tr><td><strong>Psicotécnicos específicos</strong></td><td>Sí (espacial, lógica, percepción)</td><td>Genéricos</td></tr>
 <tr><td><strong>Personalidad policial</strong></td><td><strong>Sí (exclusivo)</strong></td><td>No</td></tr>
 <tr><td><strong>Explicación de errores</strong></td><td>Socrática con IA</td><td>Respuesta correcta</td></tr>
-<tr><td><strong>Oposiciones cubiertas</strong></td><td>Seguridad + Administración</td><td>Muchas categorías</td></tr>
+<tr><td><strong>Oposiciones cubiertas</strong></td><td>12 oposiciones (AGE, Justicia, Correos, Hacienda, Penitenciarias, Policía Nacional, Guardia Civil, Ertzaintza)</td><td>Muchas categorías</td></tr>
 <tr><td><strong>Comunidad/foros</strong></td><td>No</td><td>Sí (activa)</td></tr>
 </tbody>
 </table>
