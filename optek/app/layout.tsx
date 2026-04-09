@@ -145,20 +145,43 @@ const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={inter.variable}>
-      {/* Google Tag Manager — solo si el usuario aceptó cookies (RGPD Art. 7) */}
+      {/* Google Consent Mode v2 + GTM — RGPD compatible */}
+      {/* 1. Consent defaults (ANTES de GTM): denied por defecto, datos anonimizados */}
+      {GTM_ID && (
+        <Script id="gtm-consent-defaults" strategy="beforeInteractive">
+          {`
+            window.dataLayer=window.dataLayer||[];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent','default',{
+              'ad_storage':'denied',
+              'ad_user_data':'denied',
+              'ad_personalization':'denied',
+              'analytics_storage':'denied',
+              'wait_for_update':500
+            });
+            // Si el usuario ya aceptó en una visita anterior, actualizar inmediatamente
+            try{
+              if(localStorage.getItem('oporuta_cookie_consent')==='accepted'){
+                gtag('consent','update',{
+                  'ad_storage':'granted',
+                  'ad_user_data':'granted',
+                  'ad_personalization':'granted',
+                  'analytics_storage':'granted'
+                });
+              }
+            }catch(e){}
+          `}
+        </Script>
+      )}
+      {/* 2. GTM se carga SIEMPRE (con consent denied recoge datos anonimizados sin cookies) */}
       {GTM_ID && (
         <Script id="gtm-script" strategy="afterInteractive">
           {`
-            (function(){
-              if(typeof window==='undefined')return;
-              var consent=localStorage.getItem('oporuta_cookie_consent');
-              if(consent!=='accepted')return;
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','${GTM_ID}');
-            })();
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${GTM_ID}');
           `}
         </Script>
       )}

@@ -6,6 +6,19 @@ import { Button } from '@/components/ui/button'
 
 const CONSENT_KEY = 'oporuta_cookie_consent'
 
+/** Google Consent Mode v2: update consent state */
+function updateGoogleConsent(state: 'granted' | 'denied') {
+  const w = window as typeof window & { dataLayer?: unknown[] }
+  if (!w.dataLayer) return
+  function gtag(...args: unknown[]) { w.dataLayer!.push(args) }
+  gtag('consent', 'update', {
+    ad_storage: state,
+    ad_user_data: state,
+    ad_personalization: state,
+    analytics_storage: state,
+  })
+}
+
 /**
  * Banner de consentimiento de cookies (RGPD/LSSI).
  *
@@ -35,6 +48,8 @@ export function CookieBanner() {
     try {
       localStorage.setItem(CONSENT_KEY, 'accepted')
     } catch { /* no-op */ }
+    // Google Consent Mode v2: actualizar a granted
+    updateGoogleConsent('granted')
     setVisible(false)
   }
 
@@ -42,6 +57,8 @@ export function CookieBanner() {
     try {
       localStorage.setItem(CONSENT_KEY, 'rejected')
     } catch { /* no-op */ }
+    // Consent stays denied (default)
+    updateGoogleConsent('denied')
     setVisible(false)
   }
 
