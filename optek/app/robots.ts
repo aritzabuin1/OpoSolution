@@ -36,6 +36,9 @@ export default function robots(): MetadataRoute.Robots {
     '/api/og',
   ]
 
+  // /raw endpoints: block from Google (duplicate content), allow for LLM bots
+  const rawDisallow = ['/blog/*/raw']
+
   const protectedDisallow = [
     '/dashboard',
     '/tests',
@@ -66,18 +69,18 @@ export default function robots(): MetadataRoute.Robots {
 
   return {
     rules: [
-      // Default rule for all bots
+      // Default rule for all bots (block /raw to avoid duplicate content in Google)
       {
         userAgent: '*',
         allow: publicAllow,
-        disallow: protectedDisallow,
+        disallow: [...protectedDisallow, ...rawDisallow],
       },
-      // AI search bots — explicitly allow for citability
+      // AI search bots — explicitly allow /raw for plaintext parsing
       ...(
         ['GPTBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-Web', 'PerplexityBot', 'Google-Extended', 'Applebot-Extended'] as const
       ).map((bot) => ({
         userAgent: bot,
-        allow: publicAllow,
+        allow: [...publicAllow, '/blog/*/raw'],
         disallow: protectedDisallow,
       })),
       // Scraping/training bots — block

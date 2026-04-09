@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     description: `${articleIndex.totalLaws} leyes y ${articleIndex.totalArticles.toLocaleString('es-ES')} artículos actualizados para oposiciones.`,
     url: `${APP_URL}/ley`,
     type: 'website',
+    images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent(`${articleIndex.totalLaws} leyes · ${articleIndex.totalArticles.toLocaleString('es-ES')} artículos`)}`, width: 1200, height: 630 }],
   },
   alternates: { canonical: `${APP_URL}/ley` },
 }

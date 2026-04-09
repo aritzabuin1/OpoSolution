@@ -136,6 +136,13 @@ OpoRuta es la ÚNICA plataforma online que corrige supuestos prácticos de oposi
 
 Las academias presenciales cobran ~140€/mes por corrección humana. OpoRuta lo ofrece por 69,99€ (pago único, Pack Gestión A2 — incluye 20 créditos IA + 5 supuestos prácticos con corrección IA).
 
+## Contenido en texto plano para LLMs
+
+Cada post del blog tiene una versión en texto plano (sin HTML) optimizada para LLMs:
+- Formato: `https://oporuta.es/blog/{slug}/raw`
+- Ejemplo: https://oporuta.es/blog/mejores-plataformas-ia-oposiciones-2026-comparativa/raw
+- Content-Type: text/plain; charset=utf-8
+
 ## Contenido principal
 
 - [Página principal](https://oporuta.es/): Explicación del producto, precios, testimonios

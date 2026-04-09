@@ -5,6 +5,7 @@ import { LawBreadcrumb } from '@/components/seo/LawBreadcrumb'
 import { OposicionBadges } from '@/components/seo/OposicionBadges'
 import { LawTOC } from '@/components/seo/LawTOC'
 import { LawCTA } from '@/components/seo/LawCTA'
+import { RelatedBlogPosts } from '@/components/seo/RelatedBlogPosts'
 import { getEnabledLaws, getLeyBySlug } from '@/data/seo/ley-registry'
 import { getLawArticles } from '@/lib/seo/law-queries'
 import articleIndex from '@/data/seo/article-index.json'
@@ -43,6 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: `${count} artículos de la ${ley.fullName} para oposiciones.`,
       url: `${APP_URL}/ley/${slug}`,
       type: 'website',
+      images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent(`${ley.shortName} — ${count} artículos`)}`, width: 1200, height: 630 }],
     },
     alternates: { canonical: `${APP_URL}/ley/${slug}` },
   }
@@ -103,6 +105,8 @@ export default async function LawIndexPage({ params }: Props) {
       <OposicionBadges leyNombre={ley.leyNombre} className="mb-8" />
 
       <LawTOC articles={articles} lawSlug={slug} />
+
+      <RelatedBlogPosts lawSlug={slug} lawShortName={ley.shortName} className="mt-10" />
 
       <LawCTA lawShortName={ley.shortName} className="mt-12" />
     </div>

@@ -7,6 +7,7 @@ import { ArticleText } from '@/components/seo/ArticleText'
 import { ArticleNav } from '@/components/seo/ArticleNav'
 import { RelatedArticles } from '@/components/seo/RelatedArticles'
 import { LawCTA } from '@/components/seo/LawCTA'
+import { RelatedBlogPosts } from '@/components/seo/RelatedBlogPosts'
 import { getLeyBySlug } from '@/data/seo/ley-registry'
 import { getOposicionesForLey } from '@/data/seo/ley-oposicion-map'
 import { getArticleProvisions, getRelatedArticles } from '@/lib/seo/law-queries'
@@ -74,6 +75,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: textoSnippet,
       url: `${APP_URL}/ley/${lawSlug}/${artSlug}`,
       type: 'article',
+      images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent(`${artLabel} — ${ley.shortName}`)}`, width: 1200, height: 630 }],
     },
     alternates: { canonical: `${APP_URL}/ley/${lawSlug}/${artSlug}` },
   }
@@ -106,9 +108,9 @@ export default async function ArticlePage({ params }: Props) {
     5,
   )
 
-  // Build FAQ schema for high-priority laws
+  // Build FAQ schema for all laws (LLMs cite FAQ answers textually)
   const oposiciones = getOposicionesForLey(ley.leyNombre)
-  const faqJsonLd = ley.priority === 'high' ? {
+  const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: [
@@ -129,7 +131,7 @@ export default async function ArticlePage({ params }: Props) {
         },
       }] : []),
     ],
-  } : null
+  }
 
   const legislationJsonLd = {
     '@context': 'https://schema.org',
@@ -155,7 +157,7 @@ export default async function ArticlePage({ params }: Props) {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
       <JsonLd data={legislationJsonLd} />
-      {faqJsonLd && <JsonLd data={faqJsonLd} />}
+      <JsonLd data={faqJsonLd} />
 
       <LawBreadcrumb
         lawName={ley.shortName}
@@ -203,6 +205,9 @@ export default async function ArticlePage({ params }: Props) {
 
       {/* Prev/Next navigation */}
       <ArticleNav lawSlug={lawSlug} leyNombre={ley.leyNombre} currentArticulo={artNumero} />
+
+      {/* Related blog posts (bidirectional linking) */}
+      <RelatedBlogPosts lawSlug={lawSlug} lawShortName={ley.shortName} className="mt-10" />
 
       {/* CTA */}
       <LawCTA lawShortName={ley.shortName} className="mt-10" />
