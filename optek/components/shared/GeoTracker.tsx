@@ -32,14 +32,17 @@ export function GeoTracker() {
       const hostname = new URL(ref).hostname
       for (const [domain, source] of Object.entries(GEO_SOURCES)) {
         if (hostname === domain || hostname.endsWith(`.${domain}`)) {
-          // Push to dataLayer for GTM/GA4
-          const w = window as typeof window & { dataLayer?: Record<string, unknown>[] }
+          // Send event via gtag (GA4 direct) + dataLayer (GTM fallback)
+          const w = window as typeof window & { dataLayer?: unknown[]; gtag?: (...args: unknown[]) => void }
           w.dataLayer = w.dataLayer || []
-          w.dataLayer.push({
-            event: 'geo_referral',
-            geo_source: source,
-            geo_referrer: ref,
-          })
+          // gtag direct → GA4 recibe el evento sin necesidad de GTM
+          if (w.gtag) {
+            w.gtag('event', 'geo_referral', { geo_source: source, geo_referrer: ref })
+          } else {
+            // Fallback: push to dataLayer (funciona si GTM está configurado)
+            function gtag(...args: unknown[]) { w.dataLayer!.push(args) }
+            gtag('event', 'geo_referral', { geo_source: source, geo_referrer: ref })
+          }
 
           // Also store in sessionStorage for SPA navigation
           sessionStorage.setItem('geo_source', source)
