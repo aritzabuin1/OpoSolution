@@ -22,6 +22,16 @@ const nextConfig: NextConfig = {
     'pino',
   ],
 
+  // Rewrite /.well-known/llms.txt → /llms.txt (estándar GEO)
+  async rewrites() {
+    return [
+      {
+        source: '/.well-known/llms.txt',
+        destination: '/llms.txt',
+      },
+    ]
+  },
+
   // Redirect www → non-www (301 permanente) para consolidar SEO
   async redirects() {
     return [

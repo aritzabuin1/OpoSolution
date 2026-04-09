@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import { CookieBanner } from '@/components/shared/CookieBanner'
 import { Toaster } from '@/components/ui/sonner'
+import { GeoTracker } from '@/components/shared/GeoTracker'
 import { JsonLd } from '@/components/shared/JsonLd'
 import './globals.css'
 
@@ -168,6 +169,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <JsonLd data={softwareAppSchema} />
 
         {children}
+        <GeoTracker />
         <CookieBanner />
         <Toaster richColors position="top-right" />
 
