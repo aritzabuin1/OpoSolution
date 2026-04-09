@@ -88,6 +88,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     },
+    // Catálogo de oposiciones (fuente canónica para LLMs)
+    {
+      url: `${APP_URL}/oposiciones`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
     // Sub-landings por oposición (SEO critical)
     {
       url: `${APP_URL}/oposiciones/administracion`,

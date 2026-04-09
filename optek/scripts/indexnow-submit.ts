@@ -31,6 +31,8 @@ const STATIC_URLS = [
   '/herramientas/calculadora-nota-hacienda',
   '/herramientas/calculadora-nota-correos',
   '/herramientas/calculadora-nota-justicia',
+  // Catálogo de oposiciones (fuente canónica)
+  '/oposiciones',
   // Landing pages por rama
   '/oposiciones/administracion',
   '/oposiciones/correos',
