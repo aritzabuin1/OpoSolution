@@ -11,34 +11,34 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Blog OpoRuta — Guías para Oposiciones AGE (C1 y C2)',
+  title: 'Blog OpoRuta — Guías para 12 oposiciones (AGE, Justicia, Correos, Policía, Guardia Civil y más)',
   description:
-    'Guías prácticas para preparar las oposiciones de Auxiliar Administrativo (C2) y Administrativo del Estado (C1): LPAC, LRJSP, Constitución, TREBEP, penalización -1/3, simulacros INAP, psicotécnicos y supuesto práctico. Con verificación de citas legales.',
+    '120+ guías prácticas para preparar oposiciones: AGE (C2, C1, A2), Justicia, Correos, Hacienda AEAT, Penitenciarias, Policía Nacional, Guardia Civil y Ertzaintza. Legislación, psicotécnicos, simulacros y estrategias de examen. Todo verificado contra el BOE.',
   keywords: [
-    'blog oposiciones auxiliar administrativo',
-    'guías auxiliar administrativo estado',
-    'guías administrativo estado C1',
-    'preparar oposición auxiliar administrativo',
-    'preparar oposición administrativo estado',
-    'artículos LPAC examen INAP',
-    'temario auxiliar administrativo 2026',
-    'temario administrativo estado C1 2026',
+    'blog oposiciones 2026',
+    'guías oposiciones AGE',
+    'guías oposiciones justicia',
+    'guías oposiciones correos',
+    'guías oposiciones policía nacional',
+    'guías oposiciones guardia civil',
+    'preparar oposiciones con IA',
+    'temario oposiciones 2026',
   ],
   openGraph: {
-    title: 'Blog OpoRuta — Guías para Oposiciones AGE (C1 y C2)',
+    title: 'Blog OpoRuta — Guías para 12 oposiciones',
     description:
-      'Artículos y guías para preparar Auxiliar Administrativo (C2) y Administrativo del Estado (C1). LPAC, LRJSP, Constitución, TREBEP, psicotécnicos y más.',
+      '120+ guías para AGE, Justicia, Correos, Hacienda, Penitenciarias, Policía Nacional, Guardia Civil y Ertzaintza. Verificado contra el BOE.',
     type: 'website',
     url: `${APP_URL}/blog`,
-    images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('Guías para Opositores')}`, width: 1200, height: 630, alt: 'Blog OpoRuta — Guías para oposiciones AGE C1 y C2' }],
+    images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent('120+ Guías para Opositores')}`, width: 1200, height: 630, alt: 'Blog OpoRuta — Guías para 12 oposiciones' }],
   },
   alternates: {
     canonical: `${APP_URL}/blog`,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Blog OpoRuta — Guías para Oposiciones AGE (C1 y C2)',
-    description: 'Artículos verificados para preparar Auxiliar (C2) y Administrativo del Estado (C1).',
+    title: 'Blog OpoRuta — 120+ guías para 12 oposiciones',
+    description: 'AGE, Justicia, Correos, Hacienda, Penitenciarias, Policía Nacional, Guardia Civil y Ertzaintza. Verificado contra el BOE.',
   },
 }
 
@@ -52,8 +52,8 @@ export default function BlogIndexPage() {
     {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      name: 'Blog OpoRuta — Guías para Oposiciones AGE',
-      description: 'Guías prácticas para preparar las oposiciones de Auxiliar Administrativo (C2) y Administrativo del Estado (C1).',
+      name: 'Blog OpoRuta — Guías para 12 oposiciones',
+      description: '120+ guías para preparar oposiciones: AGE, Justicia, Correos, Hacienda, Penitenciarias, Policía Nacional, Guardia Civil y Ertzaintza.',
       url: `${APP_URL}/blog`,
       publisher: { '@type': 'Organization', name: 'OpoRuta', url: APP_URL },
       mainEntity: {
@@ -91,11 +91,12 @@ export default function BlogIndexPage() {
           Blog
         </Badge>
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Guías para preparar Auxiliar del Estado
+          Guías para preparar tu oposición
         </h1>
         <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-          Artículos prácticos sobre LPAC, LRJSP, psicotécnicos, ofimática y estrategias
-          de examen. Todo verificado contra la legislación oficial.
+          120+ artículos para AGE, Justicia, Correos, Hacienda, Penitenciarias, Policía Nacional,
+          Guardia Civil y Ertzaintza. Legislación, psicotécnicos, simulacros y estrategias de examen.
+          Todo verificado contra el BOE.
         </p>
       </div>
 
