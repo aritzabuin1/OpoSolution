@@ -196,7 +196,7 @@ export default async function SimulacrosPage() {
           nombre?: string; preguntas?: number; reserva?: number; minutos?: number;
           tipo_ejercicio?: string; penaliza?: boolean; ratio_penalizacion?: string;
           preguntas_variable?: boolean; descripcion?: string; simulable?: boolean;
-          ruta_practica?: string; apto_no_apto?: boolean; min_aprobado?: number;
+          ruta_practica?: string; apto_no_apto?: boolean; min_aprobado?: number | Record<string, number>;
           max?: number; puntuacion_max?: number
         }> | undefined
         const minTotal = (features?.scoring_config as { minutos_total?: number })?.minutos_total
@@ -248,7 +248,14 @@ export default async function SimulacrosPage() {
                           {minTotal && i === 0 && ejercicios.filter(e => !e.minutos).length > 1 ? <span className="text-muted-foreground">· {minTotal} min total</span> : null}
                           {ej.apto_no_apto && <Badge className="bg-red-100 text-red-700 text-[9px]">Eliminatoria</Badge>}
                           {ej.penaliza && <span className="text-muted-foreground">· −{ej.ratio_penalizacion}</span>}
-                          {ej.min_aprobado != null && !ej.apto_no_apto && <span className="text-muted-foreground">· mín. {ej.min_aprobado}/{ej.max ?? ej.puntuacion_max ?? '?'}</span>}
+                          {ej.min_aprobado != null && !ej.apto_no_apto && (
+                            <span className="text-muted-foreground">
+                              · mín. {typeof ej.min_aprobado === 'object'
+                                ? Object.entries(ej.min_aprobado as Record<string, number>).map(([k, v]) => `${v} (${k})`).join(' / ')
+                                : ej.min_aprobado
+                              }/{ej.max ?? ej.puntuacion_max ?? '?'}
+                            </span>
+                          )}
                           {!isSimulable && <Badge variant="outline" className="text-[9px] text-muted-foreground">Presencial</Badge>}
                         </div>
                         {ej.descripcion && <p className="text-muted-foreground mt-0.5">{ej.descripcion}</p>}
