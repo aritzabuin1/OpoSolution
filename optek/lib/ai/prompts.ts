@@ -446,15 +446,15 @@ Evalúa el desarrollo anterior según los criterios indicados. Proporciona feedb
 /** Build dynamic tools list based on oposición features */
 function buildToolsList(features?: Record<string, boolean>): string {
   const tools = [
-    '1. TEST POR TEMA: elige tema + nº preguntas (10, 20 o 30) + dificultad (fácil, media, difícil, progresivo).',
-    '2. FLASHCARDS POR TEMA: repaso espaciado del tema.',
-    '3. SIMULACRO OFICIAL: preguntas de exámenes reales con timer y penalización del examen real.',
-    '4. CAZA-TRAMPAS: detectar errores en un texto legal. Solo se elige el número de errores (1, 2 o 3).',
-    '5. REPASO DE ERRORES: practicar preguntas falladas de tests anteriores.',
-    '6. PLAN DE ESTUDIOS: genera un plan semanal personalizado.',
+    '1. ESTUDIAR (pestaña "Estudiar"): resúmenes didácticos de cada tema con mnemotécnicas, artículos clave y esquemas. SIEMPRE recomienda estudiar el tema ANTES de hacer tests — es la base.',
+    '2. TEST POR TEMA: elige tema + nº preguntas (10, 20 o 30) + dificultad (fácil, media, difícil, progresivo).',
+    '3. FLASHCARDS POR TEMA: repaso espaciado del tema.',
+    '4. SIMULACRO OFICIAL: preguntas de exámenes reales con timer y penalización del examen real.',
+    '5. CAZA-TRAMPAS: detectar errores en un texto legal. Solo se elige el número de errores (1, 2 o 3).',
+    '6. REPASO DE ERRORES: practicar preguntas falladas de tests anteriores.',
   ]
   if (features?.psicotecnicos) {
-    tools.push('7. PSICOTÉCNICOS: series numéricas, analogías, razonamiento lógico.')
+    tools.push(`${tools.length + 1}. PSICOTÉCNICOS: series numéricas, analogías, razonamiento lógico.`)
   }
   if (features?.supuesto_test) {
     tools.push(`${tools.length + 1}. SUPUESTO PRÁCTICO (test): caso práctico con preguntas tipo test sobre un escenario.`)
@@ -493,9 +493,10 @@ HERRAMIENTAS DISPONIBLES en esta oposición (SOLO recomienda estas, NO inventes 
 ${buildToolsList(features)}
 
 ESTRATEGIA DE RECOMENDACIÓN:
-- Si el usuario falla MUCHO (>50% errores): sugiere test fácil de 10 preguntas + flashcards del tema.
-- Si falla MODERADO (30-50%): sugiere test de 20 preguntas en dificultad media + simulacro.
-- Si falla POCO (<30%): sugiere dificultad DIFÍCIL + simulacro completo + caza-trampas 3 errores.
+- Si el usuario falla MUCHO (>50% errores): sugiere ir a "Estudiar" para repasar el tema con los resúmenes didácticos ANTES de repetir tests + después flashcards para asentar los conceptos.
+- Si falla MODERADO (30-50%): sugiere repasar en "Estudiar" las secciones donde falla + test de 20 preguntas en dificultad media.
+- Si falla POCO (<30%): sugiere flashcards para consolidar + dificultad DIFÍCIL + simulacro completo.
+- REGLA DE ORO: siempre que los errores muestren falta de conocimiento base (confundir conceptos, no saber datos), recomienda "Estudiar" como primera acción. La pestaña Estudiar tiene el temario completo con mnemotécnicas y artículos clave — es la forma más eficaz de corregir lagunas.
 
 PROHIBIDO — NUNCA hagas esto:
 - "Caza-Trampas del Tema X" → NO EXISTE, Caza-Trampas no permite elegir tema
@@ -558,9 +559,10 @@ HERRAMIENTAS DISPONIBLES en esta oposición (SOLO recomienda estas, NO inventes 
 ${buildToolsList(features)}
 
 ESTRATEGIA DE RECOMENDACIÓN:
-- Si el usuario falla MUCHO (>50% errores): sugiere test fácil de 10 preguntas + flashcards del tema.
-- Si falla MODERADO (30-50%): sugiere test de 20 preguntas en dificultad media + simulacro.
-- Si falla POCO (<30%): sugiere dificultad DIFÍCIL + simulacro completo + caza-trampas 3 errores.
+- Si el usuario falla MUCHO (>50% errores): sugiere ir a "Estudiar" para repasar el tema con los resúmenes didácticos ANTES de repetir tests + después flashcards para asentar los conceptos.
+- Si falla MODERADO (30-50%): sugiere repasar en "Estudiar" las secciones donde falla + test de 20 preguntas en dificultad media.
+- Si falla POCO (<30%): sugiere flashcards para consolidar + dificultad DIFÍCIL + simulacro completo.
+- REGLA DE ORO: siempre que los errores muestren falta de conocimiento base (confundir conceptos, no saber datos), recomienda "Estudiar" como primera acción. La pestaña Estudiar tiene el temario completo con mnemotécnicas y artículos clave — es la forma más eficaz de corregir lagunas.
 
 PROHIBIDO — NUNCA hagas esto:
 - "Caza-Trampas del Tema X" → NO EXISTE, Caza-Trampas no permite elegir tema
@@ -568,7 +570,8 @@ PROHIBIDO — NUNCA hagas esto:
 - Recomendar herramientas que NO aparecen en la lista de arriba
 - "Test del Tema Ley 39/2015" o "Test del Tema LPAC" → LAS LEYES NO SON TEMAS. Los temas tienen nombres como "El procedimiento administrativo común (I)", NO nombres de leyes
 - Inventar nombres de temas. USA SOLO el texto exacto que aparece entre [Tema: ...] en los datos
-- Si no hay [Tema: ...] en los datos, di simplemente "Repite un test de este mismo tema"
+- Si no hay [Tema: ...] en los datos, di simplemente "Repasa este tema en Estudiar y repite un test"
+- "Estudiar la Ley 39/2015" → INCORRECTO. Di "Ve a la pestaña Estudiar y repasa el tema" (sin nombre de ley)
 
 Formato: texto plano con títulos en MAYÚSCULAS y negrita. NO uses JSON. Escribe texto natural formateado con saltos de línea claros.`
 }
