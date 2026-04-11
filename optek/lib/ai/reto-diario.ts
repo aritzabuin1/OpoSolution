@@ -21,19 +21,28 @@ const RAMAS_CONFIG: Record<string, string[]> = {
   age: [
     'CE', 'LPAC', 'LRJSP', 'TREBEP', 'LGP',
     'LCSP', 'SUBVENCIONES', 'TRANSPARENCIA', 'LOIGUALDAD',
-    'LGOB', 'LOPDGDD', 'LOTC',
+    'GOBIERNO', 'LOPDGDD', 'LOTC',
   ],
   justicia: [
     'CE', 'LOPJ', 'LEC', 'LECrim', 'LECRIM', 'TREBEP',
     'LOTC', 'LOVIGEN', 'LGTBI',
   ],
   correos: [
-    'CE', 'TREBEP', 'LEY_POSTAL', 'RD_POSTAL',
+    'CE', 'TREBEP', 'LEY_POSTAL', 'REGLAMENTO_POSTAL',
     'LOIGUALDAD', 'LGTBI', 'LOPDGDD',
   ],
   seguridad: [
     'CE', 'CP', 'LPAC', 'LRJSP', 'FCSE', 'SEG_CIUDADANA',
     'PRL', 'LSV',
+  ],
+  hacienda: [
+    'CE', 'LPAC', 'LRJSP', 'TREBEP', 'LGP', 'LGT',
+    'LIRPF', 'LIVA', 'LIS', 'LIEE', 'RGAGI',
+  ],
+  penitenciarias: [
+    'CE', 'LPAC', 'LRJSP', 'TREBEP', 'CP',
+    'LOGP', 'RP',
+    'LOEX', 'LOIGUALDAD', 'LGTBI',
   ],
 }
 

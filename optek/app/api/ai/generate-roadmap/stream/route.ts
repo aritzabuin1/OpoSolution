@@ -305,7 +305,7 @@ export async function POST(request: NextRequest) {
         minutos: (e.minutos as number | null) ?? null,
         penaliza: (e.penaliza as boolean) ?? true,
         max: (e.max as number) ?? 100,
-        min_aprobado: (e.min_aprobado as number | null) ?? null,
+        min_aprobado: (e.min_aprobado as number | Record<string, number> | null) ?? null,
       })),
       minutos_total: opoScoringRaw?.minutos_total,
     }

@@ -57,6 +57,11 @@ const CORTES_POR_OPOSICION: Record<string, Record<string, { nota: number; plazas
     '2024': { nota: 7.72, plazas: 2218, aspirantes: 35000 },
     '2023': { nota: 7.17, plazas: 2400, aspirantes: 30000 },
   },
+  // Correos — Personal Laboral Fijo
+  'correos': {
+    '2024': { nota: 5.50, plazas: 3381, aspirantes: 150000 },
+    '2023': { nota: 5.00, plazas: 7757, aspirantes: 200000 },
+  },
 }
 
 // Backward-compatible default: C2

@@ -108,7 +108,8 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
   let preguntasCuestionarioConfig: number | undefined
   let opoRama: string | undefined
   let opoSlug: string | undefined
-  type ScoringEjercicio = { nombre?: string; preguntas?: number; minutos?: number | null; tipo?: string }
+  let simulacroPenaliza = true
+  type ScoringEjercicio = { nombre?: string; preguntas?: number; minutos?: number | null; tipo?: string; penaliza?: boolean }
   if (test.oposicion_id) {
     const serviceSupabase = await createServiceClient()
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -122,6 +123,7 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
     opoSlug = opoRow?.slug
     const sc = opoRow?.scoring_config as { ejercicios?: ScoringEjercicio[]; minutos_total?: number } | null
     if (sc?.ejercicios?.[0]) {
+      simulacroPenaliza = sc.ejercicios[0].penaliza !== false
       fullExamQuestions = sc.ejercicios[0].preguntas ?? 100
       // For "examen completo" simulacro: sum simulable ejercicios' minutos
       // Exclude tipo='tribunal' (desarrollo escrito — not part of MCQ simulacro)
@@ -183,7 +185,10 @@ export default async function TestDetailPage({ params }: TestDetailPageProps) {
           <Trophy className="h-4 w-4 text-primary shrink-0" />
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-sm font-medium">Simulacro Oficial{simulacroConSupuesto ? ' — Examen completo' : ''}</span>
-            <Badge variant="secondary" className="text-[10px]">Penalización activa</Badge>
+            {simulacroPenaliza
+              ? <Badge variant="secondary" className="text-[10px]">Penalización activa</Badge>
+              : <Badge variant="secondary" className="text-[10px] bg-green-100 text-green-700">Sin penalización</Badge>
+            }
             {tiempoLimite && <Badge variant="outline" className="text-[10px]">{Math.round(tiempoLimite / 60)} min</Badge>}
             {simulacroConSupuesto && <Badge variant="outline" className="text-[10px] border-indigo-300 text-indigo-700">Incluye supuesto</Badge>}
           </div>

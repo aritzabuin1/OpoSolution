@@ -29,7 +29,7 @@ import { StickyAnalysisCTA } from '@/components/shared/StickyAnalysisCTA'
 import { TutorIAModal } from '@/components/tests/TutorIAModal'
 import { PostTestConversionTrigger } from '@/components/tests/PostTestConversionTrigger'
 import { calcularNotaSimulacro } from '@/lib/utils/simulacro-ranking'
-import { parseScoringConfig, describePenalizacion, calcularEjercicio } from '@/lib/utils/scoring'
+import { parseScoringConfig, describePenalizacion, calcularEjercicio, resolveMinAprobado, formatMinAprobado } from '@/lib/utils/scoring'
 import { getAniosConvocatoriaBatch } from '@/lib/utils/cross-reference'
 import { checkPaidAccess, getOposicionFromProfile } from '@/lib/freemium'
 import { getOposicionDisplay } from '@/lib/utils/oposicion-display'
@@ -274,15 +274,18 @@ export default async function ResultadosPage({ params }: Props) {
   const supuestoNumCasos = rawEjConfig && esSupuestoTest && rawEjConfig.preguntas > preguntas.length * 1.5
     ? Math.round(rawEjConfig.preguntas / preguntas.length)
     : 1
+  const minAprobadoResolved = resolveMinAprobado(rawEjConfig?.min_aprobado)
   const ejConfig = rawEjConfig && supuestoNumCasos > 1
     ? {
         ...rawEjConfig,
         max: rawEjConfig.max / supuestoNumCasos,
-        min_aprobado: rawEjConfig.min_aprobado !== null ? rawEjConfig.min_aprobado / supuestoNumCasos : null,
+        min_aprobado: minAprobadoResolved !== null ? minAprobadoResolved / supuestoNumCasos : null,
         preguntas: Math.round(rawEjConfig.preguntas / supuestoNumCasos),
       }
     : rawEjConfig
-  const showScoringPanel = esSimulacroOficial || esSupuestoTest
+  // Show scoring panel for ALL simulacros (not just those with examen_oficial_id) and supuesto tests
+  const esSimulacro = test.tipo === 'simulacro'
+  const showScoringPanel = esSimulacro || esSupuestoTest
   const ejercicioResult = showScoringPanel && ejConfig
     ? calcularEjercicio(aciertos, errores, sinResponder, ejConfig)
     : null
@@ -356,7 +359,7 @@ export default async function ResultadosPage({ params }: Props) {
     examenAnio = (examenData as { anio: number } | null)?.anio ?? null
   }
   const rankingResult = esSimulacroOficial
-    ? calcularNotaSimulacro(aciertos, errores, preguntas.length, examenAnio)
+    ? calcularNotaSimulacro(aciertos, errores, preguntas.length, examenAnio, oposicionSlug, scoringConfig)
     : null
 
   // ── §2.25.3 — Referencia cruzada convocatorias ───────────────────────────
@@ -419,7 +422,7 @@ export default async function ResultadosPage({ params }: Props) {
           <p className={`text-xs font-semibold uppercase tracking-wide ${
             esSupuestoTest ? 'text-indigo-800' : 'text-amber-800'
           }`}>
-            {esSupuestoTest ? 'Puntuación del supuesto' : 'Puntuación oficial con penalización'}
+            {esSupuestoTest ? 'Puntuación del supuesto' : ejConfig?.penaliza === false ? 'Puntuación oficial' : 'Puntuación oficial con penalización'}
             {ejConfig && ejConfig.nombre ? ` — ${ejConfig.nombre}` : ''}
           </p>
           <div className="flex items-end justify-between">
@@ -436,16 +439,21 @@ export default async function ResultadosPage({ params }: Props) {
               <p className="text-xs text-muted-foreground">nota sobre 100</p>
             </div>
           </div>
-          {ejConfig!.min_aprobado !== null && (
-            <div className={`flex items-center gap-2 text-xs font-medium ${
-              ejercicioResult.aprobado ? 'text-green-700' : 'text-red-700'
-            }`}>
-              {ejercicioResult.aprobado ? <CheckCircle2 className="h-3.5 w-3.5" /> : <XCircle className="h-3.5 w-3.5" />}
-              {ejercicioResult.aprobado
-                ? `Superas el mínimo eliminatorio (${ejConfig!.min_aprobado})`
-                : `No alcanzas el mínimo eliminatorio (${ejConfig!.min_aprobado}). Necesitas ${(ejConfig!.min_aprobado - ejercicioResult.notaSobreMax).toFixed(2)} puntos más.`}
-            </div>
-          )}
+          {resolveMinAprobado(ejConfig!.min_aprobado) !== null && (() => {
+            const minNum = resolveMinAprobado(ejConfig!.min_aprobado)!
+            const minDisplay = formatMinAprobado(ejConfig!.min_aprobado)
+            const gap = (minNum - ejercicioResult.notaSobreMax)
+            return (
+              <div className={`flex items-center gap-2 text-xs font-medium ${
+                ejercicioResult.aprobado ? 'text-green-700' : 'text-red-700'
+              }`}>
+                {ejercicioResult.aprobado ? <CheckCircle2 className="h-3.5 w-3.5" /> : <XCircle className="h-3.5 w-3.5" />}
+                {ejercicioResult.aprobado
+                  ? `Superas el mínimo eliminatorio (${minDisplay})`
+                  : `No alcanzas el mínimo eliminatorio (${minDisplay}). Necesitas ${gap.toFixed(2)} puntos más.`}
+              </div>
+            )
+          })()}
           <p className={`text-[11px] border-t pt-2 ${
             esSupuestoTest ? 'text-indigo-700 border-indigo-200' : 'text-amber-700 border-amber-200'
           }`}>

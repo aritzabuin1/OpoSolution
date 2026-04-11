@@ -24,6 +24,8 @@ import {
   describePenalizacion,
   parseScoringConfig,
   getDuracionMinutos,
+  resolveMinAprobado,
+  formatMinAprobado,
   DEFAULT_SCORING_CONFIG,
   type ScoringConfig,
   type EjercicioData,
@@ -55,6 +57,20 @@ const CORREOS: ScoringConfig = {
     error: 0,
     max: 60,
     min_aprobado: null,
+    penaliza: false,
+  }],
+}
+
+/** Correos con min_aprobado como objeto (real DB config) */
+const CORREOS_OBJECT_MIN: ScoringConfig = {
+  ejercicios: [{
+    nombre: 'Test',
+    preguntas: 100,
+    minutos: 110,
+    acierto: 0.60,
+    error: 0,
+    max: 60,
+    min_aprobado: { reparto: 33, atc: 36 },
     penaliza: false,
   }],
 }
@@ -325,5 +341,75 @@ describe('getDuracionMinutos', () => {
 
   it('minimum 5 minutes', () => {
     expect(getDuracionMinutos(1)).toBeGreaterThanOrEqual(5)
+  })
+})
+
+// ─── resolveMinAprobado ─────────────────────────────────────────────────────
+
+describe('resolveMinAprobado', () => {
+  it('null → null', () => {
+    expect(resolveMinAprobado(null)).toBeNull()
+  })
+
+  it('undefined → null', () => {
+    expect(resolveMinAprobado(undefined)).toBeNull()
+  })
+
+  it('number → returns as-is', () => {
+    expect(resolveMinAprobado(30)).toBe(30)
+  })
+
+  it('object → returns highest value', () => {
+    expect(resolveMinAprobado({ reparto: 33, atc: 36 })).toBe(36)
+  })
+
+  it('object with single entry', () => {
+    expect(resolveMinAprobado({ unico: 25 })).toBe(25)
+  })
+})
+
+// ─── formatMinAprobado ──────────────────────────────────────────────────────
+
+describe('formatMinAprobado', () => {
+  it('null → empty string', () => {
+    expect(formatMinAprobado(null)).toBe('')
+  })
+
+  it('number → string number', () => {
+    expect(formatMinAprobado(30)).toBe('30')
+  })
+
+  it('object → formatted categories', () => {
+    const result = formatMinAprobado({ reparto: 33, atc: 36 })
+    expect(result).toContain('33 (reparto)')
+    expect(result).toContain('36 (atc)')
+    expect(result).toContain(' / ')
+  })
+})
+
+// ─── calcularEjercicio with object min_aprobado ─────────────────────────────
+
+describe('calcularEjercicio — object min_aprobado (Correos)', () => {
+  it('80 aciertos: aprobado true (exceeds highest threshold)', () => {
+    const r = calcularEjercicio(80, 20, 0, CORREOS_OBJECT_MIN.ejercicios[0])
+    // 80 * 0.60 = 48. notaSobreMax = (48/60)*60 = 48
+    expect(r.puntosDirectos).toBe(48)
+    expect(r.notaSobreMax).toBe(48)
+    expect(r.aprobado).toBe(true) // 48 >= 36 (highest threshold)
+  })
+
+  it('55 aciertos: aprobado false (below highest threshold)', () => {
+    const r = calcularEjercicio(55, 45, 0, CORREOS_OBJECT_MIN.ejercicios[0])
+    // 55 * 0.60 = 33. notaSobreMax = (33/60)*60 = 33
+    expect(r.puntosDirectos).toBe(33)
+    expect(r.notaSobreMax).toBe(33)
+    expect(r.aprobado).toBe(false) // 33 < 36
+  })
+
+  it('does not crash when min_aprobado is an object', () => {
+    // This was the Correos crash bug — min_aprobado as object
+    expect(() => {
+      calcularEjercicio(70, 30, 0, CORREOS_OBJECT_MIN.ejercicios[0])
+    }).not.toThrow()
   })
 })

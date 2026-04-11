@@ -31,17 +31,26 @@ export default async function PersonalidadPage() {
     .single()
   const isAdmin = (adminCheck as { is_admin?: boolean } | null)?.is_admin === true
 
-  // Fetch oposición slug for cuerpo context
+  // Fetch oposición slug + features for cuerpo context & access gating
   let cuerpoSlug = 'policia-nacional'
   if (profile?.oposicion_id) {
-    const { data: opo } = await serviceSupabase
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: opo } = await (serviceSupabase as any)
       .from('oposiciones')
-      .select('slug')
+      .select('slug, features')
       .eq('id', profile.oposicion_id)
       .single()
-    if (opo?.slug && ['ertzaintza', 'guardia-civil', 'policia-nacional'].includes(opo.slug)) {
-      cuerpoSlug = opo.slug
+    const opoRow = opo as { slug?: string; features?: { personalidad?: boolean } } | null
+    // Block access if oposición doesn't have personalidad feature
+    if (opoRow?.features?.personalidad !== true && !isAdmin) {
+      redirect('/dashboard')
     }
+    if (opoRow?.slug && ['ertzaintza', 'guardia-civil', 'policia-nacional'].includes(opoRow.slug)) {
+      cuerpoSlug = opoRow.slug
+    }
+  } else if (!isAdmin) {
+    // No oposición selected — can't access personalidad
+    redirect('/dashboard')
   }
 
   // Fetch personality sessions (table not yet in generated types — cast to any)

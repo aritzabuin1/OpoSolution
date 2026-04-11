@@ -15,7 +15,7 @@ export interface EjercicioConfig {
   acierto: number       // puntos por acierto (e.g. 1.0, 0.60)
   error: number         // puntos restados por error (e.g. 0.333, 0)
   max: number           // puntuación máxima del ejercicio
-  min_aprobado: number | null  // nota mínima para no ser eliminado (null = no hay mínimo)
+  min_aprobado: number | Record<string, number> | null  // nota mínima (object for multi-category: {reparto: 33, atc: 36})
   penaliza: boolean     // si los errores penalizan
 }
 
@@ -90,6 +90,9 @@ export function calcularEjercicio(
   const notaSobreMax = (puntosDirectos / (config.preguntas * config.acierto)) * config.max
   const notaSobre10 = (puntosDirectos / (config.preguntas * config.acierto)) * 10
 
+  // Resolve min_aprobado: if object (e.g. {reparto: 33, atc: 36}), use the HIGHEST threshold
+  const minAprobadoNumeric = resolveMinAprobado(config.min_aprobado)
+
   return {
     nombre: config.nombre,
     aciertos,
@@ -100,8 +103,8 @@ export function calcularEjercicio(
     notaSobre10: Math.round(notaSobre10 * 100) / 100,
     notaSobreMax: Math.round(notaSobreMax * 100) / 100,
     penaliza: config.penaliza,
-    aprobado: config.min_aprobado !== null
-      ? notaSobreMax >= config.min_aprobado
+    aprobado: minAprobadoNumeric !== null
+      ? notaSobreMax >= minAprobadoNumeric
       : null,
   }
 }
@@ -236,6 +239,38 @@ export function describePenalizacion(
   })
 
   return descriptions.join(' | ')
+}
+
+/**
+ * Resolves min_aprobado to a numeric value.
+ * If object (e.g. {reparto: 33, atc: 36}), returns the HIGHEST threshold.
+ * If number, returns as-is. If null/undefined, returns null.
+ */
+export function resolveMinAprobado(min: number | Record<string, number> | null | undefined): number | null {
+  if (min == null) return null
+  if (typeof min === 'number') return min
+  if (typeof min === 'object') {
+    const values = Object.values(min).filter(v => typeof v === 'number')
+    return values.length > 0 ? Math.max(...values) : null
+  }
+  return null
+}
+
+/**
+ * Formats min_aprobado for display.
+ * If object: "33 (reparto) / 36 (atc)"
+ * If number: "33"
+ */
+export function formatMinAprobado(min: number | Record<string, number> | null | undefined): string {
+  if (min == null) return ''
+  if (typeof min === 'number') return String(min)
+  if (typeof min === 'object') {
+    return Object.entries(min)
+      .filter(([, v]) => typeof v === 'number')
+      .map(([k, v]) => `${v} (${k})`)
+      .join(' / ')
+  }
+  return ''
 }
 
 /**

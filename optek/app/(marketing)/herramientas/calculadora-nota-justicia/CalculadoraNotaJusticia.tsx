@@ -19,6 +19,7 @@ import {
 } from 'lucide-react'
 import {
   calcularEjercicio,
+  resolveMinAprobado,
   type EjercicioConfig,
   type EjercicioResult,
 } from '@/lib/utils/scoring'
@@ -144,21 +145,21 @@ function EjercicioResultCard({ result, config }: { result: EjercicioResult; conf
           className={`absolute inset-y-0 left-0 rounded-full transition-all duration-500 ease-out ${color}`}
           style={{ width: `${porcentaje}%` }}
         />
-        {config.min_aprobado !== null && (
+        {resolveMinAprobado(config.min_aprobado) !== null && (
           <div
             className="absolute inset-y-0 w-0.5 bg-foreground/40"
-            style={{ left: `${(config.min_aprobado / config.max) * 100}%` }}
-            title={`Mínimo: ${config.min_aprobado} puntos`}
+            style={{ left: `${(resolveMinAprobado(config.min_aprobado)! / config.max) * 100}%` }}
+            title={`Mínimo: ${resolveMinAprobado(config.min_aprobado)} puntos`}
           />
         )}
       </div>
 
       <div className="flex items-center justify-between text-xs text-muted-foreground">
         <span>0</span>
-        {config.min_aprobado !== null && (
+        {resolveMinAprobado(config.min_aprobado) !== null && (
           <span className="flex items-center gap-1">
             <span className="inline-block w-2 h-2 bg-foreground/40 rounded-full" />
-            Mínimo: {config.min_aprobado}
+            Mínimo: {resolveMinAprobado(config.min_aprobado)}
           </span>
         )}
         <span>{config.max}</span>
@@ -166,8 +167,8 @@ function EjercicioResultCard({ result, config }: { result: EjercicioResult; conf
 
       <p className={`text-sm font-medium ${textColor}`}>
         {aprobado
-          ? `Apruebas este ejercicio (${config.min_aprobado !== null ? `>= ${config.min_aprobado} pts` : 'sin mínimo eliminatorio'})`
-          : `No alcanzas el mínimo de ${config.min_aprobado} puntos`}
+          ? `Apruebas este ejercicio (${resolveMinAprobado(config.min_aprobado) !== null ? `>= ${resolveMinAprobado(config.min_aprobado)} pts` : 'sin mínimo eliminatorio'})`
+          : `No alcanzas el mínimo de ${resolveMinAprobado(config.min_aprobado)} puntos`}
       </p>
     </div>
   )
@@ -243,7 +244,7 @@ function CuerpoCalculator({ cuerpo }: { cuerpo: CuerpoConfig }) {
                   </div>
                 </CardTitle>
                 <p className="text-xs text-muted-foreground">
-                  Acierto: +{ej.acierto} pts | Error: {ej.penaliza ? `-${ej.error}` : '0'} pts | Máx: {ej.max} pts | Mín: {ej.min_aprobado ?? 'N/A'} pts
+                  Acierto: +{ej.acierto} pts | Error: {ej.penaliza ? `-${ej.error}` : '0'} pts | Máx: {ej.max} pts | Mín: {resolveMinAprobado(ej.min_aprobado) ?? 'N/A'} pts
                 </p>
               </CardHeader>
               <CardContent className="space-y-5">
@@ -334,7 +335,7 @@ function CuerpoCalculator({ cuerpo }: { cuerpo: CuerpoConfig }) {
                 <div key={ej.nombre} className="flex items-center justify-between text-xs border-b pb-1 last:border-0">
                   <span className="font-medium text-foreground">{ej.nombre}</span>
                   <span>
-                    +{ej.acierto} / {ej.penaliza ? `−${ej.error}` : 'sin penalización'} · Máx {ej.max} · Mín {ej.min_aprobado ?? '—'}
+                    +{ej.acierto} / {ej.penaliza ? `−${ej.error}` : 'sin penalización'} · Máx {ej.max} · Mín {resolveMinAprobado(ej.min_aprobado) ?? '—'}
                   </span>
                 </div>
               ))}

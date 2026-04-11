@@ -738,7 +738,7 @@ export interface RoadmapOpoConfig {
       minutos: number | null
       penaliza: boolean
       max: number
-      min_aprobado: number | null
+      min_aprobado: number | Record<string, number> | null
     }>
     minutos_total?: number
   }
@@ -798,7 +798,10 @@ export function getSystemRoadmap(config: RoadmapOpoConfig): string {
     for (const ej of scoring.ejercicios) {
       const timer = ej.minutos ? `${ej.minutos} min` : 'tiempo compartido'
       const pen = ej.penaliza ? 'con penalización' : 'sin penalización'
-      const min = ej.min_aprobado ? `, mínimo ${ej.min_aprobado}/${ej.max}` : ''
+      const minVal = typeof ej.min_aprobado === 'object' && ej.min_aprobado
+        ? Object.entries(ej.min_aprobado).map(([k, v]) => `${v}(${k})`).join('/')
+        : ej.min_aprobado
+      const min = minVal ? `, mínimo ${minVal}/${ej.max}` : ''
       scoringLines.push(`  · ${ej.nombre}: ${ej.preguntas}q, ${timer}, ${pen}${min}`)
     }
   }

@@ -248,7 +248,7 @@ export async function POST(request: NextRequest) {
       examen_oficial_id: null,
       tipo: 'simulacro',
       preguntas: allPreguntas as unknown as Json,
-      supuesto_caso: { secciones } as unknown as Json,
+      supuesto_caso: secciones.length > 1 ? { secciones } as unknown as Json : null,
       completado: false,
       prompt_version: `simulacro-completo-${opoSlug}`,
       oposicion_id: oposicionId,
