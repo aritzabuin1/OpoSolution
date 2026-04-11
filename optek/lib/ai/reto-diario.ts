@@ -73,19 +73,40 @@ export async function generateRetoDiarioOnDemand(fecha: string, rama: string): P
 
   if (existing) return existing
 
-  // Get laws for this rama
+  // Get laws for this rama (with fallback to universal laws if specific ones not found)
   const leyes = RAMAS_CONFIG[rama]
   if (!leyes || leyes.length === 0) {
     throw new Error(`No hay leyes configuradas para rama: ${rama}`)
   }
 
-  const { data: candidatos, error: fetchErr } = await supabase
+  let candidatos: unknown[] | null = null
+  let fetchErr: unknown = null
+
+  // Try rama-specific laws first
+  const res1 = await supabase
     .from('legislacion')
     .select('id, ley_nombre, articulo_numero, titulo_capitulo, texto_integro')
     .eq('activo', true)
     .not('texto_integro', 'is', null)
     .in('ley_nombre', leyes)
     .limit(80)
+  candidatos = res1.data
+  fetchErr = res1.error
+
+  // Fallback: if no results, try universal laws (CE, LPAC, LRJSP, TREBEP)
+  if (!fetchErr && (!candidatos || candidatos.length === 0)) {
+    const UNIVERSAL_LAWS = ['CE', 'LPAC', 'LRJSP', 'TREBEP']
+    log.warn({ rama, leyes }, 'No articles for rama-specific laws, falling back to universal')
+    const res2 = await supabase
+      .from('legislacion')
+      .select('id, ley_nombre, articulo_numero, titulo_capitulo, texto_integro')
+      .eq('activo', true)
+      .not('texto_integro', 'is', null)
+      .in('ley_nombre', UNIVERSAL_LAWS)
+      .limit(80)
+    candidatos = res2.data
+    fetchErr = res2.error
+  }
 
   if (fetchErr || !candidatos || candidatos.length === 0) {
     throw new Error('No hay artículos disponibles')

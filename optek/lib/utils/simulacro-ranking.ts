@@ -48,9 +48,9 @@ const CORTES_POR_OPOSICION: Record<string, Record<string, { nota: number; plazas
   },
   // Seguridad — Ertzaintza (no public cut-off data yet)
   'ertzaintza': {},
-  // Seguridad — Guardia Civil
+  // Seguridad — Guardia Civil (nota normalizada 0-10, min_aprobado 75/150 = 5.0)
   'guardia-civil': {
-    '2025': { nota: 50, plazas: 2091, aspirantes: 25000 },
+    '2025': { nota: 5.0, plazas: 2091, aspirantes: 25000 },
   },
   // Seguridad — Policía Nacional
   'policia-nacional': {

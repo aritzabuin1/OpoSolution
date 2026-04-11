@@ -83,13 +83,33 @@ async function generateRetoForRama(rama: string, today: string, supabase: any, p
   }
 
   // Fetch candidate articles filtered by rama's laws
-  const { data: candidatos, error: fetchErr } = await supabase
+  let candidatos: LegislacionRow[] | null = null
+  let fetchErr: unknown = null
+
+  const res1 = await supabase
     .from('legislacion')
     .select('id, ley_nombre, articulo_numero, titulo_capitulo, texto_integro')
     .eq('activo', true)
     .not('texto_integro', 'is', null)
     .in('ley_nombre', leyes)
     .limit(80)
+  candidatos = res1.data as LegislacionRow[] | null
+  fetchErr = res1.error
+
+  // Fallback: if no results for rama-specific laws, try universal laws
+  if (!fetchErr && (!candidatos || candidatos.length === 0)) {
+    const UNIVERSAL_LAWS = ['CE', 'LPAC', 'LRJSP', 'TREBEP']
+    ramaLog.warn({ leyes }, '[reto-diario-cron] No articles for rama laws, falling back to universal')
+    const res2 = await supabase
+      .from('legislacion')
+      .select('id, ley_nombre, articulo_numero, titulo_capitulo, texto_integro')
+      .eq('activo', true)
+      .not('texto_integro', 'is', null)
+      .in('ley_nombre', UNIVERSAL_LAWS)
+      .limit(80)
+    candidatos = res2.data as LegislacionRow[] | null
+    fetchErr = res2.error
+  }
 
   if (fetchErr || !candidatos || candidatos.length === 0) {
     ramaLog.error({ err: fetchErr }, '[reto-diario-cron] No hay artículos disponibles')

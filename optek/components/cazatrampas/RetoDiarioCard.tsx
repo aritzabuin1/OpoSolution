@@ -77,12 +77,11 @@ export function RetoDiarioCard() {
       try {
         const res = await fetch('/api/reto-diario')
         if (!res.ok) {
-          const errData = await res.json().catch(() => ({}))
-          if (res.status === 503) {
-            toast.error('El reto de hoy no esta disponible aun. Vuelve mas tarde.')
-          } else if (res.status === 401) {
-            toast.error('Sesion expirada. Vuelve a iniciar sesion.')
-          } else {
+          // 503 = no articles available → card shows friendly empty state, no need for toast
+          if (res.status === 401) {
+            toast.error('Sesión expirada. Vuelve a iniciar sesión.')
+          } else if (res.status !== 503) {
+            const errData = await res.json().catch(() => ({}))
             toast.error(errData?.error ?? `Error cargando el reto (${res.status})`)
           }
           return
