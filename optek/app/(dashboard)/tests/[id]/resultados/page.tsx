@@ -147,6 +147,13 @@ export default async function ResultadosPage({ params }: Props) {
 
   const test = data as unknown as TestData
 
+  // Defensive: ensure preguntas is a valid array (corrupted JSONB guard)
+  if (!Array.isArray(test.preguntas) || test.preguntas.length === 0) {
+    console.error('[ResultadosPage] preguntas is not a valid array', { id, tipo: test.tipo, preguntas: typeof test.preguntas })
+    notFound()
+  }
+
+  try {
   // ── Check paid access for PostTestConversionTrigger ────────────────────────
   const serviceSupabase = await createServiceClient()
   const oposicionId = await getOposicionFromProfile(serviceSupabase, user.id)
@@ -236,15 +243,20 @@ export default async function ResultadosPage({ params }: Props) {
     }
   }
 
-  const preguntas = test.preguntas
+  // Defensive: filter out any null/invalid entries in preguntas
+  const preguntas = (test.preguntas ?? []).filter((p): p is Pregunta => p != null && typeof p === 'object' && 'enunciado' in p)
   const respuestas = test.respuestas_usuario ?? []
   const puntuacion = test.puntuacion ?? 0
   const esSimulacroOficial = test.tipo === 'simulacro' && !!test.examen_oficial_id
   const esRepaso = test.tipo === 'repaso_errores'
   const esSupuestoTest = test.tipo === 'supuesto_test'
+  // For non-official simulacros (e.g. Correos simulacro completo), show oposición label
+  const esSimulacro = test.tipo === 'simulacro'
   const temaTitulo = esSupuestoTest
     ? (test.supuesto_caso?.titulo ?? 'Supuesto Práctico')
     : esSimulacroOficial
+    ? opoDisplay.simulacroLabel
+    : esSimulacro
     ? opoDisplay.simulacroLabel
     : esRepaso
     ? 'Repaso de errores'
@@ -284,7 +296,6 @@ export default async function ResultadosPage({ params }: Props) {
       }
     : rawEjConfig
   // Show scoring panel for ALL simulacros (not just those with examen_oficial_id) and supuesto tests
-  const esSimulacro = test.tipo === 'simulacro'
   const showScoringPanel = esSimulacro || esSupuestoTest
   const ejercicioResult = showScoringPanel && ejConfig
     ? calcularEjercicio(aciertos, errores, sinResponder, ejConfig)
@@ -707,7 +718,7 @@ export default async function ResultadosPage({ params }: Props) {
           <ExplicarErroresPanel
             testId={id}
             numErrores={preguntasErroneas.length}
-            opciones={preguntas.map((p) => [...(p.opciones ?? [])])}
+            opciones={preguntas.map((p) => Array.isArray(p.opciones) ? [...p.opciones] : [])}
             isFirstTestWithErrors={isFirstTest}
           />
         </div>
@@ -745,7 +756,7 @@ export default async function ResultadosPage({ params }: Props) {
                       <XCircle className="h-4 w-4 shrink-0 text-red-500" />
                       <span className="text-red-700">
                         Tu respuesta:{' '}
-                        <span className="font-medium">{pregunta.opciones[respuesta]}</span>
+                        <span className="font-medium">{pregunta.opciones?.[respuesta] ?? '—'}</span>
                       </span>
                     </div>
                   )}
@@ -754,7 +765,7 @@ export default async function ResultadosPage({ params }: Props) {
                     <CheckCircle2 className="h-4 w-4 shrink-0 text-green-500" />
                     <span className="text-green-700">
                       Correcta:{' '}
-                      <span className="font-medium">{pregunta.opciones[pregunta.correcta]}</span>
+                      <span className="font-medium">{pregunta.opciones?.[pregunta.correcta] ?? '—'}</span>
                     </span>
                   </div>
                 </CardContent>
@@ -807,4 +818,10 @@ export default async function ResultadosPage({ params }: Props) {
       )}
     </div>
   )
+
+  } catch (err) {
+    // Log the actual error for debugging — the generic error boundary hides it
+    console.error('[ResultadosPage] Rendering error:', err instanceof Error ? err.message : err, { testId: id, stack: err instanceof Error ? err.stack : undefined })
+    throw err // Re-throw so the error boundary still catches it
+  }
 }
