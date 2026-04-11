@@ -72,6 +72,12 @@ export function ExplicarErroresPanel({ testId, numErrores, isFirstTestWithErrors
   const allText = batchResults.map(b => b.text).join('\n\n')
   const renderedHtml = useMemo(() => markdownToHtml(allText), [allText])
 
+  // These must be computed unconditionally (React Rules of Hooks — useMemo below)
+  const currentStreamingText = batchResults[batchResults.length - 1]?.text ?? ''
+  const isStreaming = activeBatchState === 'streaming'
+  const completedBatchesHtml = batchResults.slice(0, -1).map(b => b.text).join('\n\n')
+  const completedHtml = useMemo(() => markdownToHtml(completedBatchesHtml), [completedBatchesHtml])
+
   // Check if user has never seen analysis before
   useEffect(() => {
     try {
@@ -411,13 +417,6 @@ export function ExplicarErroresPanel({ testId, numErrores, isFirstTestWithErrors
   }
 
   // ── Streaming / Done state ────────────────────────────────────────────────
-  const currentStreamingText = batchResults[batchResults.length - 1]?.text ?? ''
-  const isStreaming = activeBatchState === 'streaming'
-
-  // Combine completed batches HTML + current streaming text
-  const completedBatchesHtml = batchResults.slice(0, -1).map(b => b.text).join('\n\n')
-  const completedHtml = useMemo(() => markdownToHtml(completedBatchesHtml), [completedBatchesHtml])
-
   return (
     <section className="space-y-3">
       <BatchHeader />

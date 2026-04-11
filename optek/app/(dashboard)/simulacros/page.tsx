@@ -241,7 +241,7 @@ export default async function SimulacrosPage() {
                           <span className="font-medium">{ej.nombre}</span>
                           {ej.preguntas && (
                             <span className="text-muted-foreground">
-                              {ej.preguntas_variable ? '~' : ''}{ej.preguntas}{ej.reserva ? `+${ej.reserva}` : ''} preg.
+                              {ej.preguntas_variable ? '~' : ''}{ej.preguntas} preg.{ej.reserva ? ` (+${ej.reserva} reserva)` : ''}
                             </span>
                           )}
                           {ej.minutos ? <span className="text-muted-foreground">· {ej.minutos} min</span> : null}
