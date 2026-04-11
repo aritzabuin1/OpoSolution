@@ -2,17 +2,14 @@ import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 
-export const metadata: Metadata = { title: 'Caza-Trampas' }
+export const metadata: Metadata = { title: 'Supuesto Práctico' }
 
 /**
  * Server-side gate: redirect to /dashboard if the user's oposición
- * does not have `cazatrampas: true` in its features JSONB.
+ * does not have `supuesto_practico: true` in its features JSONB.
  * Admins bypass the check (for testing).
- *
- * Currently all active oposiciones have cazatrampas=true, but this
- * gate prevents future oposiciones without it from showing a broken page.
  */
-export default async function CazaTrampasLayout({ children }: { children: React.ReactNode }) {
+export default async function SupuestoPracticoLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/auth/login')
@@ -37,9 +34,9 @@ export default async function CazaTrampasLayout({ children }: { children: React.
       .select('features')
       .eq('id', profile.oposicion_id)
       .single()
-    const features = (opo as { features?: { cazatrampas?: boolean } } | null)?.features
+    const features = (opo as { features?: { supuesto_practico?: boolean } } | null)?.features
 
-    if (features?.cazatrampas !== true && !isAdmin) {
+    if (features?.supuesto_practico !== true && !isAdmin) {
       redirect('/dashboard')
     }
   }

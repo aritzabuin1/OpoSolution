@@ -71,14 +71,23 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  // Resolve oposición slug to choose the right prompt
+  // Resolve oposición slug + validate feature
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: opoRow } = await (serviceSupabase as any)
     .from('oposiciones')
-    .select('slug')
+    .select('slug, features')
     .eq('id', oposicionId)
     .single()
   const opoSlug = (opoRow as { slug?: string } | null)?.slug ?? ''
+  const opoFeatures = (opoRow as { features?: { supuesto_practico?: boolean } } | null)?.features
+
+  // Feature gate: verify oposición has supuesto_practico enabled
+  if (!isAdmin && opoFeatures?.supuesto_practico !== true) {
+    return NextResponse.json(
+      { error: 'El supuesto práctico no está disponible para tu oposición.' },
+      { status: 403 }
+    )
+  }
   const isAEAT = opoSlug === 'hacienda-aeat'
 
   // Generate supuesto via AI

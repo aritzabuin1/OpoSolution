@@ -90,7 +90,7 @@ export function RetoDiarioCard() {
         const data = await res.json()
         setReto(data.reto)
         setResultadoPrevio(data.resultado)
-        setTotalJugadores(data.stats.total_jugadores)
+        setTotalJugadores(data.stats?.total_jugadores ?? 0)
       } catch {
         toast.error('Error cargando el reto del día.')
       } finally {
@@ -148,14 +148,14 @@ export function RetoDiarioCard() {
       }
 
       if (!res.ok) {
-        const err = await res.json()
-        toast.error(err.error ?? 'Error enviando respuesta.')
+        const err = await res.json().catch(() => ({}))
+        toast.error(err?.error ?? 'Error enviando respuesta.')
         return
       }
 
       const data: GradingResult = await res.json()
       setResultado(data)
-      setTotalJugadores(data.stats.total_jugadores)
+      setTotalJugadores(data.stats?.total_jugadores ?? 0)
     } catch {
       toast.error('Error de red. Inténtalo de nuevo.')
     } finally {
@@ -280,7 +280,7 @@ export function RetoDiarioCard() {
               <p className={`text-3xl font-semibold mt-2 ${scoreColor}`}>
                 {Math.round(resultado.puntuacion)}%
               </p>
-              {resultado.stats.total_jugadores > 1 && (
+              {(resultado.stats?.total_jugadores ?? 0) > 1 && (
                 <p className="text-xs text-muted-foreground mt-2">
                   {resultado.stats.total_jugadores} opositores han jugado hoy
                 </p>
