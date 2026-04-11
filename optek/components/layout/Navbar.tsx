@@ -74,7 +74,9 @@ export function Navbar({ isAdmin = false, features }: { isAdmin?: boolean; featu
         <nav className="mt-3 flex flex-col gap-1" aria-label="Menu principal">
           {navItems.filter(item => {
             if (!item.featureKey || !features) return true
-            return features[item.featureKey as keyof typeof features] !== false
+            const key = item.featureKey as keyof typeof features
+            if (!(key in features)) return false // not configured → hidden
+            return features[key] !== false
           }).map(({ href, label, icon: Icon, premium, tourId }) => {
             const isLocked = premium && isPremium === false
             const isActive = pathname === href || (pathname.startsWith(href + '/') && !isTestDetailPage(pathname, href))

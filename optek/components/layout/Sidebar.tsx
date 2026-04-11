@@ -94,9 +94,13 @@ export function Sidebar({ isAdmin = false, features }: SidebarProps) {
   }
 
   // Filter nav items by oposición features (e.g., hide Psicotécnicos for A2)
+  // Features present in the object use their value; features ABSENT default to hidden
+  // This ensures opt-in features (personalidad, ingles) don't show for unrelated oposiciones
   const visibleItems = navItems.filter(item => {
     if (!item.featureKey || !features) return true
-    return features[item.featureKey as keyof OposicionFeatures] !== false
+    const key = item.featureKey as keyof OposicionFeatures
+    if (!(key in features)) return false // not configured → hidden
+    return features[key] !== false
   })
 
   return (
