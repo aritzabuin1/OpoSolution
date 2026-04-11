@@ -285,6 +285,19 @@ export async function POST(request: NextRequest) {
 
   // ── 5A. Motor determinista de psicotécnicos (coste API €0) ────────────────
   if (tipo === 'psicotecnico') {
+    // Feature gate: verify oposición has psicotecnicos enabled (admin bypass)
+    if (!isAdmin) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data: opoFeats } = await (serviceSupabase as any)
+        .from('oposiciones').select('features').eq('id', oposicionId).single()
+      const feats = (opoFeats as { features?: { psicotecnicos?: boolean } } | null)?.features
+      if (feats?.psicotecnicos !== true) {
+        return NextResponse.json(
+          { error: 'Los psicotécnicos no están disponibles para tu oposición.' },
+          { status: 403 }
+        )
+      }
+    }
     // Fetch oposición slug to determine psicotécnico type (AGE vs Correos)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: opoSlugData } = oposicionId ? await (serviceSupabase as any)

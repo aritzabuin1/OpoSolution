@@ -49,7 +49,7 @@ interface Ejercicio {
   simulable?: boolean
   penaliza?: boolean
   ratio_penalizacion?: string
-  min_aprobado?: number
+  min_aprobado?: number | Record<string, number>
   max?: number
   apto_no_apto?: boolean
 }

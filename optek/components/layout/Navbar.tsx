@@ -34,12 +34,13 @@ const navItems: NavItem[] = [
   { href: '/reto-diario', label: 'Reto Diario', icon: CalendarCheck, tourId: 'nav-reto-diario' },
   { href: '/radar', label: 'Radar Tribunal', icon: TrendingUp, premium: true, tourId: 'nav-radar' },
   { href: '/supuesto-test', label: 'Supuesto Test', icon: FileText, featureKey: 'supuesto_test' },
+  { href: '/supuesto-practico', label: 'Supuesto Escrito', icon: FileText, premium: true, featureKey: 'supuesto_practico' },
   { href: '/personalidad-policial', label: 'Personalidad', icon: Shield, premium: true, featureKey: 'personalidad' },
   { href: '/logros', label: 'Logros', icon: Trophy },
   { href: '/cuenta', label: 'Mi cuenta', icon: User },
 ]
 
-export function Navbar({ isAdmin = false, features }: { isAdmin?: boolean; features?: { psicotecnicos?: boolean; cazatrampas?: boolean; supuesto_practico?: boolean; supuesto_test?: boolean; personalidad?: boolean } }) {
+export function Navbar({ isAdmin = false, features }: { isAdmin?: boolean; features?: { psicotecnicos?: boolean; cazatrampas?: boolean; supuesto_practico?: boolean; supuesto_test?: boolean; personalidad?: boolean; ofimatica?: boolean } }) {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
   const router = useRouter()

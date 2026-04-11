@@ -17,6 +17,7 @@ export interface EjercicioConfig {
   max: number           // puntuación máxima del ejercicio
   min_aprobado: number | Record<string, number> | null  // nota mínima (object for multi-category: {reparto: 33, atc: 36})
   penaliza: boolean     // si los errores penalizan
+  apto_no_apto?: boolean  // eliminatory pass/fail (e.g. GC ortografia/gramatica)
 }
 
 /** Per-exercise input data for multi-exercise scoring */
@@ -85,10 +86,14 @@ export function calcularEjercicio(
   config: EjercicioConfig
 ): EjercicioResult {
   const totalPreguntas = aciertos + errores + enBlanco
+
+  // apto_no_apto exercises (e.g. GC ortografia/gramatica): pass/fail only, no numeric score
+  // Guard against division by zero when acierto=0 or preguntas=0
+  const maxPuntos = config.preguntas * config.acierto
   const penalizacion = config.penaliza ? errores * config.error : 0
   const puntosDirectos = Math.max(0, aciertos * config.acierto - penalizacion)
-  const notaSobreMax = (puntosDirectos / (config.preguntas * config.acierto)) * config.max
-  const notaSobre10 = (puntosDirectos / (config.preguntas * config.acierto)) * 10
+  const notaSobreMax = maxPuntos > 0 ? (puntosDirectos / maxPuntos) * config.max : 0
+  const notaSobre10 = maxPuntos > 0 ? (puntosDirectos / maxPuntos) * 10 : 0
 
   // Resolve min_aprobado: if object (e.g. {reparto: 33, atc: 36}), use the HIGHEST threshold
   const minAprobadoNumeric = resolveMinAprobado(config.min_aprobado)
@@ -103,9 +108,9 @@ export function calcularEjercicio(
     notaSobre10: Math.round(notaSobre10 * 100) / 100,
     notaSobreMax: Math.round(notaSobreMax * 100) / 100,
     penaliza: config.penaliza,
-    aprobado: minAprobadoNumeric !== null
-      ? notaSobreMax >= minAprobadoNumeric
-      : null,
+    aprobado: config.apto_no_apto
+      ? (minAprobadoNumeric !== null ? notaSobreMax >= minAprobadoNumeric : puntosDirectos > 0)
+      : (minAprobadoNumeric !== null ? notaSobreMax >= minAprobadoNumeric : null),
   }
 }
 

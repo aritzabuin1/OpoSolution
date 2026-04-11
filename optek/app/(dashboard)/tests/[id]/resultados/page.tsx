@@ -113,7 +113,7 @@ interface TestData {
   tipo?: string
   examen_oficial_id?: string | null
   tema_id?: string | null
-  supuesto_caso?: { titulo?: string; escenario?: string; bloques_cubiertos?: string[] } | null
+  supuesto_caso?: { titulo?: string; escenario?: string; bloques_cubiertos?: string[]; secciones?: { nombre: string; tipo: string; count: number; minutos?: number; penaliza?: boolean; ratio_penalizacion?: string }[] } | null
   temas: { titulo: string } | null
 }
 
