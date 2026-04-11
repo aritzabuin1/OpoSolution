@@ -285,8 +285,8 @@ export async function POST(request: NextRequest) {
 
   // ── 5A. Motor determinista de psicotécnicos (coste API €0) ────────────────
   if (tipo === 'psicotecnico') {
-    // Feature gate: verify oposición has psicotecnicos enabled (admin bypass)
-    if (!isAdmin) {
+    // Feature gate: verify oposición has psicotecnicos enabled (no admin bypass)
+    {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { data: opoFeats } = await (serviceSupabase as any)
         .from('oposiciones').select('features').eq('id', oposicionId).single()

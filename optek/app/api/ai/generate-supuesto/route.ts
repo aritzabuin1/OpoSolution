@@ -81,8 +81,8 @@ export async function POST(request: NextRequest) {
   const opoSlug = (opoRow as { slug?: string } | null)?.slug ?? ''
   const opoFeatures = (opoRow as { features?: { supuesto_practico?: boolean } } | null)?.features
 
-  // Feature gate: verify oposición has supuesto_practico enabled
-  if (!isAdmin && opoFeatures?.supuesto_practico !== true) {
+  // Feature gate: verify oposición has supuesto_practico enabled (no admin bypass)
+  if (opoFeatures?.supuesto_practico !== true) {
     return NextResponse.json(
       { error: 'El supuesto práctico no está disponible para tu oposición.' },
       { status: 403 }

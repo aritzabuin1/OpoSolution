@@ -32,6 +32,7 @@ export default async function PersonalidadPage() {
   const isAdmin = (adminCheck as { is_admin?: boolean } | null)?.is_admin === true
 
   // Fetch oposición slug + features for cuerpo context & access gating
+  // No admin bypass on feature gates — features define what the oposición offers
   let cuerpoSlug = 'policia-nacional'
   if (profile?.oposicion_id) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -42,13 +43,13 @@ export default async function PersonalidadPage() {
       .single()
     const opoRow = opo as { slug?: string; features?: { personalidad?: boolean } } | null
     // Block access if oposición doesn't have personalidad feature
-    if (opoRow?.features?.personalidad !== true && !isAdmin) {
+    if (opoRow?.features?.personalidad !== true) {
       redirect('/dashboard')
     }
     if (opoRow?.slug && ['ertzaintza', 'guardia-civil', 'policia-nacional'].includes(opoRow.slug)) {
       cuerpoSlug = opoRow.slug
     }
-  } else if (!isAdmin) {
+  } else {
     // No oposición selected — can't access personalidad
     redirect('/dashboard')
   }

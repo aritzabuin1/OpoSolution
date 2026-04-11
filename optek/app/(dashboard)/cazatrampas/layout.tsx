@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: 'Caza-Trampas' }
 /**
  * Server-side gate: redirect to /dashboard if the user's oposición
  * does not have `cazatrampas: true` in its features JSONB.
- * Admins bypass the check (for testing).
+ * No admin bypass — features define what the oposición offers, not payment.
  *
  * Currently all active oposiciones have cazatrampas=true, but this
  * gate prevents future oposiciones without it from showing a broken page.
@@ -27,11 +27,6 @@ export default async function CazaTrampasLayout({ children }: { children: React.
 
   if (profile?.oposicion_id) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: adminCheck } = await (serviceSupabase as any)
-      .from('profiles').select('is_admin').eq('id', user.id).single()
-    const isAdmin = (adminCheck as { is_admin?: boolean } | null)?.is_admin === true
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: opo } = await (serviceSupabase as any)
       .from('oposiciones')
       .select('features')
@@ -39,7 +34,7 @@ export default async function CazaTrampasLayout({ children }: { children: React.
       .single()
     const features = (opo as { features?: { cazatrampas?: boolean } } | null)?.features
 
-    if (features?.cazatrampas !== true && !isAdmin) {
+    if (features?.cazatrampas !== true) {
       redirect('/dashboard')
     }
   }

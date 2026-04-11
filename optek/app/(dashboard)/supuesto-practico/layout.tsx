@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: 'Supuesto Práctico' }
 /**
  * Server-side gate: redirect to /dashboard if the user's oposición
  * does not have `supuesto_practico: true` in its features JSONB.
- * Admins bypass the check (for testing).
+ * No admin bypass — features define what the oposición offers, not payment.
  */
 export default async function SupuestoPracticoLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient()
@@ -24,11 +24,6 @@ export default async function SupuestoPracticoLayout({ children }: { children: R
 
   if (profile?.oposicion_id) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: adminCheck } = await (serviceSupabase as any)
-      .from('profiles').select('is_admin').eq('id', user.id).single()
-    const isAdmin = (adminCheck as { is_admin?: boolean } | null)?.is_admin === true
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: opo } = await (serviceSupabase as any)
       .from('oposiciones')
       .select('features')
@@ -36,7 +31,7 @@ export default async function SupuestoPracticoLayout({ children }: { children: R
       .single()
     const features = (opo as { features?: { supuesto_practico?: boolean } } | null)?.features
 
-    if (features?.supuesto_practico !== true && !isAdmin) {
+    if (features?.supuesto_practico !== true) {
       redirect('/dashboard')
     }
   }
