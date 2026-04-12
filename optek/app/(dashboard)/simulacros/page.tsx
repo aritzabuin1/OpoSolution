@@ -11,7 +11,7 @@ import { redirect } from 'next/navigation'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
 
 import Link from 'next/link'
-import { DEFAULT_OPOSICION_ID } from '@/lib/freemium'
+import { DEFAULT_OPOSICION_ID, FREE_LIMITS } from '@/lib/freemium'
 import { getOposicionDisplay } from '@/lib/utils/oposicion-display'
 import { SimulacroCard } from '@/components/simulacros/SimulacroCard'
 import { SimulacroMixtoCard } from '@/components/simulacros/SimulacroMixtoCard'
@@ -69,7 +69,7 @@ export default async function SimulacrosPage() {
       .single()
     freeSimUsed = (simProfile as { free_simulacro_used?: number } | null)?.free_simulacro_used ?? 0
   }
-  const freeSimRemaining = Math.max(0, 3 - freeSimUsed)
+  const freeSimRemaining = Math.max(0, FREE_LIMITS.simulacros - freeSimUsed)
 
   // Cargar examenes SOLO de la oposición del usuario (service client para bypass RLS cache issues)
   const serviceSupabase = await createServiceClient()

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createClient, createServiceClient } from '@/lib/supabase/server'
-import { checkRateLimit, buildRetryAfterHeader } from '@/lib/utils/rate-limit'
+import { buildRetryAfterHeader } from '@/lib/utils/rate-limit'
 import { generatePsicotecnicos, getDistribucionPsicotecnicos } from '@/lib/psicotecnicos'
 import { generateOrtografia } from '@/lib/ortografia'
 import { generateIngles } from '@/lib/ingles'
@@ -100,11 +100,20 @@ export async function POST(request: NextRequest) {
   ])
 
   if (hasPaidAccess && !isAdmin) {
-    const rl = await checkRateLimit(user.id, 'simulacro-daily', PAID_LIMITS.simulacrosDay, '24 h')
-    if (!rl.success) {
+    // Count ACTUAL simulacros created (not attempts) in last 24h — avoids burning quota on failed generations
+    const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+    const { count: simCount } = await serviceSupabase
+      .from('tests_generados')
+      .select('id', { count: 'exact', head: true })
+      .eq('user_id', user.id)
+      .eq('tipo', 'simulacro')
+      .gte('created_at', twentyFourHoursAgo)
+    const used = simCount ?? 0
+    if (used >= PAID_LIMITS.simulacrosDay) {
+      const resetAt = Math.floor(Date.now() / 1000) + 3600 // approx 1h
       return NextResponse.json(
-        { error: 'Límite de 10 simulacros diarios alcanzado.' },
-        { status: 429, headers: { 'Retry-After': buildRetryAfterHeader(rl.resetAt) } }
+        { error: `Límite de ${PAID_LIMITS.simulacrosDay} simulacros diarios alcanzado. Vuelve a intentarlo mañana.` },
+        { status: 429, headers: { 'Retry-After': buildRetryAfterHeader(resetAt) } }
       )
     }
   } else if (!hasPaidAccess) {

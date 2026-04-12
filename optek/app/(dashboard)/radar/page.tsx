@@ -11,8 +11,9 @@
 
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { checkPaidAccess, getOposicionFromProfile } from '@/lib/freemium'
+import { logger } from '@/lib/logger'
 import { TrendingUp, Info, BookOpen, Scale } from 'lucide-react'
 import { AIGenerationBanner } from '@/components/shared/AIGenerationBanner'
 import { Badge } from '@/components/ui/badge'
@@ -38,24 +39,35 @@ export default async function RadarPage() {
   const oposicionId = await getOposicionFromProfile(supabase, user.id)
   const isPaid = await checkPaidAccess(supabase, user.id, oposicionId)
 
+  // Use service client for radar views — bypasses any PostgREST view permission issues
+  const serviceSupabase = await createServiceClient()
+  const log = logger.child({ page: 'radar', userId: user.id, oposicionId })
+
   // Load radar views + oposicion name, filtered by user's oposición
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const radarQuery = (s: any, view: string) => oposicionId
     ? s.from(view).select('*').eq('oposicion_id', oposicionId)
     : s.from(view).select('*')
 
-  const [{ data: temasData }, { data: radarData }, { data: oposicionData }] = await Promise.all([
-    radarQuery(supabase as any, 'radar_temas_view'),
-    radarQuery(supabase as any, 'radar_tribunal_view').limit(100),
-    supabase.from('oposiciones').select('nombre').eq('id', oposicionId).single(),
+  const [temasResult, radarResult, { data: oposicionData }] = await Promise.all([
+    radarQuery(serviceSupabase as any, 'radar_temas_view'),
+    radarQuery(serviceSupabase as any, 'radar_tribunal_view').limit(100),
+    serviceSupabase.from('oposiciones').select('nombre').eq('id', oposicionId).single(),
   ])
+
+  // Log errors instead of swallowing them silently
+  if (temasResult.error) log.error({ err: temasResult.error }, 'radar_temas_view query failed')
+  if (radarResult.error) log.error({ err: radarResult.error }, 'radar_tribunal_view query failed')
+
+  const temasData = temasResult.data
+  const radarData = radarResult.data
 
   const oposicionNombre = oposicionData?.nombre ?? 'la Administración del Estado'
 
   // Fetch bloque info for each tema
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: temasBloque } = oposicionId
-    ? await (supabase as any).from('temas').select('id, bloque').eq('oposicion_id', oposicionId)
+    ? await (serviceSupabase as any).from('temas').select('id, bloque').eq('oposicion_id', oposicionId)
     : { data: null }
   const bloqueMap = new Map<string, string>()
   if (temasBloque) {

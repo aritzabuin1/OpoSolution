@@ -129,7 +129,7 @@ export const FREE_LIMITS = {
 /** Rate limits silenciosos para usuarios de pago (anti-abuso) */
 export const PAID_LIMITS = {
   testsDay: 20,
-  simulacrosDay: 10,
+  simulacrosDay: 15,
   cazatrampasDay: 20,
 } as const
 
