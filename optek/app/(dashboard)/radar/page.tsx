@@ -35,12 +35,13 @@ export default async function RadarPage() {
   } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
-  // Verificar si tiene compra activa — scoped por oposición
-  const oposicionId = await getOposicionFromProfile(supabase, user.id)
-  const isPaid = await checkPaidAccess(supabase, user.id, oposicionId)
-
-  // Use service client for radar views — bypasses any PostgREST view permission issues
+  // Use service client for ALL queries — bypasses PostgREST view permission issues
+  // (user client kept only for auth check above)
   const serviceSupabase = await createServiceClient()
+
+  // Verificar si tiene compra activa — scoped por oposición
+  const oposicionId = await getOposicionFromProfile(serviceSupabase, user.id)
+  const isPaid = await checkPaidAccess(serviceSupabase, user.id, oposicionId)
   const log = logger.child({ page: 'radar', userId: user.id, oposicionId })
 
   // Load radar views + oposicion name, filtered by user's oposición

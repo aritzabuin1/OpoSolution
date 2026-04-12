@@ -444,9 +444,9 @@ export async function POST(request: NextRequest) {
       const message = err instanceof Error ? err.message : 'Error desconocido'
       log.error({ err, userId: user.id }, 'Error al generar test radar')
 
-      if (message.includes('frecuencias_articulos está vacía')) {
+      if (message.includes('No hay datos de radar') || message.includes('frecuencias_articulos está vacía')) {
         return NextResponse.json(
-          { error: 'El Radar aún no tiene datos. Estamos procesando la información, inténtalo más tarde.' },
+          { error: 'El Radar aún no tiene datos para tu oposición. Estamos trabajando en ello.' },
           { status: 503 }
         )
       }
