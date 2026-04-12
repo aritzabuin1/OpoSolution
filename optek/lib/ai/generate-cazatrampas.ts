@@ -52,12 +52,14 @@ export async function generateCazaTrampas(
 
   // 1. Elegir artículo aleatorio con texto suficientemente largo
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let qb = (supabase as any)
+  const buildBaseQuery = () => (supabase as any)
     .from('legislacion')
     .select('id, ley_nombre, articulo_numero, titulo_capitulo, texto_integro')
     .eq('activo', true)
     .gte('texto_integro', '') // solo no-nulos
     .filter('texto_integro', 'not.is', null)
+
+  let qb = buildBaseQuery()
 
   if (temaId) {
     qb = qb.contains('tema_ids', [temaId])
@@ -75,7 +77,17 @@ export async function generateCazaTrampas(
   }
 
   // Traemos varios candidatos y elegimos uno con texto > 200 chars
-  const { data: candidatos, error: fetchErr } = await qb.limit(50)
+  let { data: candidatos, error: fetchErr } = await qb.limit(50)
+
+  // Fallback: oposiciones sin legislación propia (Correos, etc.) → leyes universales
+  if (!fetchErr && (!candidatos || (candidatos as unknown[]).length === 0) && oposicionId) {
+    logger.info({ oposicionId }, '[cazatrampas] no legislacion for oposicion — fallback to universal laws')
+    const UNIVERSAL_LAWS = ['CE', 'EBEP', 'LPAC']
+    const fallbackQb = buildBaseQuery().in('ley_codigo', UNIVERSAL_LAWS)
+    const fallbackResult = await fallbackQb.limit(50)
+    candidatos = fallbackResult.data
+    fetchErr = fallbackResult.error
+  }
 
   if (fetchErr || !candidatos || (candidatos as unknown[]).length === 0) {
     throw new Error('No hay artículos disponibles para Caza-Trampas')
