@@ -30,8 +30,8 @@ import { SocialProofCounter } from '@/components/marketing/SocialProofCounter'
 
 const APP_URL_META = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
-/** ISR: regenerar cada 1h — servido desde CDN entre regeneraciones */
-export const revalidate = 3600
+/** ISR: regenerar cada 24h — landing barely changes, save ISR writes */
+export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: 'OpoRuta — Tests con IA para oposiciones 2026 | 18.000+ plazas',

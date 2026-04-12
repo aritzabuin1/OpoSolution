@@ -20,8 +20,8 @@ import {
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
-/** ISR: regenerar cada 6h — datos pueden cambiar con BOE */
-export const revalidate = 21600
+/** ISR: regenerar cada 24h — BOE publishes once/day, 6h was wasteful */
+export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: 'OEP 2026: Oferta de Empleo Publico — todas las plazas por cuerpo | OpoRuta',

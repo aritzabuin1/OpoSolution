@@ -3,7 +3,8 @@ import { MarketingNavAuth } from '@/components/layout/MarketingNavAuth'
 import { ManageCookiesButton } from '@/components/shared/ManageCookiesButton'
 import { StickyCTA } from '@/components/marketing/StickyCTA'
 
-export const revalidate = 3600 // Cache marketing layout for 1 hour
+// No revalidate here — each page sets its own. Layout revalidate cascades
+// to ALL child pages (effective = min of layout, page), wasting ISR writes.
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
