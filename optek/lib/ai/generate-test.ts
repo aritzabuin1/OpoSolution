@@ -934,56 +934,109 @@ export async function generateTopFrecuentesTest(userId: string, oposicionId?: st
     throw new Error(`[generateTopFrecuentesTest] Error cargando radar: ${radarErr.message}`)
   }
 
-  if (!radarRows || radarRows.length === 0) {
-    throw new Error(
-      '[generateTopFrecuentesTest] La tabla frecuencias_articulos está vacía. ' +
-      'Ejecuta `pnpm build:radar` primero.'
+  // Fallback: if no articulos (e.g. Correos — operational, not legislation-based),
+  // use frecuencias_temas + conocimiento_tecnico to build context
+  let contextoLegislativo: string
+  let radarLabel: string
+
+  if (radarRows && radarRows.length > 0) {
+    // ── Path A: artículos de legislación (AGE, C1, etc.) ──
+    type RadarRow = {
+      legislacion_id: string
+      articulo_numero: string
+      ley_nombre: string
+      ley_codigo: string
+      titulo_capitulo: string | null
+      resumen: string
+      num_apariciones: number
+    }
+    const rows = radarRows as RadarRow[]
+
+    const legIds = rows.map((r) => r.legislacion_id)
+    const { data: articulos } = await supabase
+      .from('legislacion')
+      .select('id, texto_integro, ley_nombre, articulo_numero, ley_codigo')
+      .in('id', legIds)
+
+    const articuloMap = new Map(
+      (articulos ?? []).map((a) => [a.id, a])
+    )
+
+    const contextParts: string[] = []
+    let totalChars = 0
+    const MAX_CHARS = 32_000
+
+    for (const row of rows) {
+      const art = articuloMap.get(row.legislacion_id)
+      const texto = art?.texto_integro ?? row.resumen
+      const bloque = `[${row.ley_nombre} — Art. ${row.articulo_numero} (${row.num_apariciones}× en exámenes)]\n${texto}`
+      if (totalChars + bloque.length > MAX_CHARS) break
+      contextParts.push(bloque)
+      totalChars += bloque.length
+    }
+
+    contextoLegislativo = contextParts.join('\n\n---\n\n')
+    radarLabel = 'Top artículos más frecuentes en exámenes'
+
+    logger.info(
+      { articulos: contextParts.length, chars: totalChars, userId },
+      '[generateTopFrecuentesTest] contexto artículos construido'
+    )
+  } else {
+    // ── Path B: temas frecuentes + conocimiento_tecnico (Correos, etc.) ──
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let temasQuery = (supabase as any)
+      .from('radar_temas_view')
+      .select('tema_id, tema_numero, tema_titulo, num_apariciones')
+    if (oposicionId) temasQuery = temasQuery.eq('oposicion_id', oposicionId)
+    const { data: temasRows } = await temasQuery.order('num_apariciones', { ascending: false }).limit(5)
+
+    if (!temasRows || temasRows.length === 0) {
+      throw new Error(
+        '[generateTopFrecuentesTest] No hay datos de radar (ni artículos ni temas). ' +
+        'Ejecuta `pnpm build:radar` primero.'
+      )
+    }
+
+    type TemaRow = { tema_id: string; tema_numero: number; tema_titulo: string; num_apariciones: number }
+    const temas = temasRows as TemaRow[]
+    const temaIds = temas.map(t => t.tema_id)
+
+    // Load conocimiento_tecnico for these temas
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: conocimiento } = await (supabase as any)
+      .from('conocimiento_tecnico')
+      .select('tema_id, titulo, contenido')
+      .in('tema_id', temaIds)
+
+    type ConocimientoRow = { tema_id: string; titulo: string; contenido: string }
+    const conocimientoByTema = new Map<string, ConocimientoRow[]>()
+    for (const row of (conocimiento ?? []) as ConocimientoRow[]) {
+      if (!conocimientoByTema.has(row.tema_id)) conocimientoByTema.set(row.tema_id, [])
+      conocimientoByTema.get(row.tema_id)!.push(row)
+    }
+
+    const contextParts: string[] = []
+    let totalChars = 0
+    const MAX_CHARS = 32_000
+
+    for (const tema of temas) {
+      const docs = conocimientoByTema.get(tema.tema_id) ?? []
+      const textos = docs.map(d => d.contenido).join('\n')
+      const bloque = `[Tema ${tema.tema_numero}: ${tema.tema_titulo} (${tema.num_apariciones}× en exámenes)]\n${textos || tema.tema_titulo}`
+      if (totalChars + bloque.length > MAX_CHARS) break
+      contextParts.push(bloque)
+      totalChars += bloque.length
+    }
+
+    contextoLegislativo = contextParts.join('\n\n---\n\n')
+    radarLabel = 'Top temas más frecuentes en exámenes'
+
+    logger.info(
+      { temas: contextParts.length, chars: totalChars, userId },
+      '[generateTopFrecuentesTest] contexto temas construido (fallback)'
     )
   }
-
-  type RadarRow = {
-    legislacion_id: string
-    articulo_numero: string
-    ley_nombre: string
-    ley_codigo: string
-    titulo_capitulo: string | null
-    resumen: string
-    num_apariciones: number
-  }
-  const rows = radarRows as RadarRow[]
-
-  // 2. Cargar texto completo de esos artículos (el resumen es solo 200 chars)
-  const legIds = rows.map((r) => r.legislacion_id)
-  const { data: articulos } = await supabase
-    .from('legislacion')
-    .select('id, texto_integro, ley_nombre, articulo_numero, ley_codigo')
-    .in('id', legIds)
-
-  // Indexar por id para acceso rápido
-  const articuloMap = new Map(
-    (articulos ?? []).map((a) => [a.id, a])
-  )
-
-  // 3. Construir contexto forzado con los top artículos (máximo 32k chars)
-  const contextParts: string[] = []
-  let totalChars = 0
-  const MAX_CHARS = 32_000
-
-  for (const row of rows) {
-    const art = articuloMap.get(row.legislacion_id)
-    const texto = art?.texto_integro ?? row.resumen
-    const bloque = `[${row.ley_nombre} — Art. ${row.articulo_numero} (${row.num_apariciones}× en exámenes INAP)]\n${texto}`
-    if (totalChars + bloque.length > MAX_CHARS) break
-    contextParts.push(bloque)
-    totalChars += bloque.length
-  }
-
-  const contextoLegislativo = contextParts.join('\n\n---\n\n')
-
-  logger.info(
-    { articulos: contextParts.length, chars: totalChars, userId },
-    '[generateTopFrecuentesTest] contexto forzado construido'
-  )
 
   // 4. Generar 10 preguntas MCQ (dificultad media, mix de los artículos más frecuentes)
   const rawTest = await callAIJSON(
@@ -992,7 +1045,7 @@ export async function generateTopFrecuentesTest(userId: string, oposicionId?: st
       contextoLegislativo,
       numPreguntas: 10,
       dificultad: 'media',
-      temaTitulo: 'Top artículos más frecuentes en exámenes INAP',
+      temaTitulo: radarLabel,
     }),
     TestGeneradoRawSchema,
     {
@@ -1015,7 +1068,7 @@ export async function generateTopFrecuentesTest(userId: string, oposicionId?: st
   const testId = await saveTestToDB({ userId, temaId: null, preguntas, tipo: 'radar' })
 
   logger.info(
-    { testId, preguntas: preguntas.length, radarArticulos: rows.length, userId },
+    { testId, preguntas: preguntas.length, userId },
     '[generateTopFrecuentesTest] test radar generado y guardado'
   )
 
