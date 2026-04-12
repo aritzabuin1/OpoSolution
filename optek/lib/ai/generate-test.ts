@@ -922,6 +922,11 @@ export async function generateFlashTest(
 export async function generateTopFrecuentesTest(userId: string, oposicionId?: string): Promise<string> {
   const supabase = await createServiceClient()
 
+  // 0. Fetch oposición info for prompt parametrization
+  const opoInfo = oposicionId
+    ? await fetchOposicionInfo(oposicionId)
+    : { nombre: 'oposición', slug: '', numOpciones: 4 as const }
+
   // 1. Cargar top 20 artículos del radar con su texto completo, filtrado por oposición
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let radarQuery = (supabase as any)
@@ -936,8 +941,10 @@ export async function generateTopFrecuentesTest(userId: string, oposicionId?: st
 
   // Fallback: if no articulos (e.g. Correos — operational, not legislation-based),
   // use frecuencias_temas + conocimiento_tecnico to build context
-  let contextoLegislativo: string
+  let contexto: string
   let radarLabel: string
+  // Path B = non-legislation oposiciones (Correos, etc.) → different prompt, skip citation verification
+  let isPathB = false
 
   if (radarRows && radarRows.length > 0) {
     // ── Path A: artículos de legislación (AGE, C1, etc.) ──
@@ -975,7 +982,7 @@ export async function generateTopFrecuentesTest(userId: string, oposicionId?: st
       totalChars += bloque.length
     }
 
-    contextoLegislativo = contextParts.join('\n\n---\n\n')
+    contexto = contextParts.join('\n\n---\n\n')
     radarLabel = 'Top artículos más frecuentes en exámenes'
 
     logger.info(
@@ -984,6 +991,7 @@ export async function generateTopFrecuentesTest(userId: string, oposicionId?: st
     )
   } else {
     // ── Path B: temas frecuentes + conocimiento_tecnico (Correos, etc.) ──
+    isPathB = true
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let temasQuery = (supabase as any)
       .from('radar_temas_view')
@@ -1029,46 +1037,80 @@ export async function generateTopFrecuentesTest(userId: string, oposicionId?: st
       totalChars += bloque.length
     }
 
-    contextoLegislativo = contextParts.join('\n\n---\n\n')
+    contexto = contextParts.join('\n\n---\n\n')
     radarLabel = 'Top temas más frecuentes en exámenes'
 
     logger.info(
       { temas: contextParts.length, chars: totalChars, userId },
-      '[generateTopFrecuentesTest] contexto temas construido (fallback)'
+      '[generateTopFrecuentesTest] contexto temas construido (fallback Path B)'
     )
   }
 
   // 4. Generar 10 preguntas MCQ (dificultad media, mix de los artículos más frecuentes)
+  // Path A (legislation): use legal prompt with citations
+  // Path B (operational/Correos): use Bloque II prompt (no citations required)
+  const systemPrompt = isPathB
+    ? SYSTEM_GENERATE_TEST_BLOQUE2
+    : (opoInfo.nombre !== 'oposición' ? getSystemGenerateTest(opoInfo.nombre, opoInfo.numOpciones) : SYSTEM_GENERATE_TEST)
+
+  const userPrompt = isPathB
+    ? buildGenerateTestBloque2Prompt({
+        contextoTecnico: contexto,
+        numPreguntas: 10,
+        dificultad: 'media',
+        temaTitulo: radarLabel,
+      })
+    : buildGenerateTestPrompt({
+        contextoLegislativo: contexto,
+        numPreguntas: 10,
+        dificultad: 'media',
+        temaTitulo: radarLabel,
+      })
+
+  const validationSchema = getTestGeneradoRawSchema(opoInfo.numOpciones)
+
   const rawTest = await callAIJSON(
-    SYSTEM_GENERATE_TEST,
-    buildGenerateTestPrompt({
-      contextoLegislativo,
-      numPreguntas: 10,
-      dificultad: 'media',
-      temaTitulo: radarLabel,
-    }),
-    TestGeneradoRawSchema,
+    systemPrompt,
+    userPrompt,
+    validationSchema,
     {
-      maxTokens: 5000,
+      maxTokens: 6000,
       endpoint: 'generate-radar-test',
       userId,
+      oposicionId,
     }
   )
 
-  // 5. Verificar preguntas (mismo pipeline Bloque I)
-  const preguntasVerificadas = await verifyPreguntas(rawTest.preguntas, logger)
+  // 5. Verificar preguntas
+  // Path A: full citation verification (legal content)
+  // Path B: accept all (no legislation to verify against — same as Bloque II)
+  let preguntas: Pregunta[]
 
-  if (preguntasVerificadas.length === 0) {
-    throw new Error('[generateTopFrecuentesTest] No se pudieron verificar preguntas del radar')
+  if (isPathB) {
+    // Path B: no citation verification needed (operational content)
+    preguntas = rawTest.preguntas.map((p) => ({
+      enunciado: p.enunciado,
+      opciones: p.opciones,
+      correcta: p.correcta,
+      explicacion: p.explicacion,
+      cita: p.cita,
+      dificultad: p.dificultad ?? 'media',
+    })).slice(0, 10)
+  } else {
+    const preguntasVerificadas = await verifyPreguntas(rawTest.preguntas, logger)
+
+    if (preguntasVerificadas.length === 0) {
+      throw new Error('[generateTopFrecuentesTest] No se pudieron verificar preguntas del radar')
+    }
+
+    preguntas = preguntasVerificadas.slice(0, 10)
   }
 
-  const preguntas = preguntasVerificadas.slice(0, 10)
-
   // 6. Guardar con tipo='radar', sin tema_id (cross-tema por definición)
-  const testId = await saveTestToDB({ userId, temaId: null, preguntas, tipo: 'radar' })
+  const testId = await saveTestToDB({ userId, temaId: null, preguntas, tipo: 'radar', oposicionId })
 
   logger.info(
-    { testId, preguntas: preguntas.length, userId },
+    { testId, preguntas: preguntas.length, userId, isPathB },
     '[generateTopFrecuentesTest] test radar generado y guardado'
   )
 
