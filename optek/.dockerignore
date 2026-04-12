@@ -1,0 +1,46 @@
+# Dependencies (rebuilt in Docker)
+node_modules
+.pnpm-store
+
+# Build output (rebuilt in Docker)
+.next
+
+# Git
+.git
+.gitignore
+
+# Environment (injected at runtime, never baked into image)
+.env
+.env.*
+!.env.example
+
+# Dev/test tooling
+.vscode
+.idea
+*.swp
+*.swo
+coverage
+.vitest
+
+# Data files (large, not needed at runtime)
+../data
+
+# Docs & config not needed at runtime
+README.md
+PLAN.md
+ARITZ.md
+CLAUDE.md
+GEMINI.md
+MIGRATION_RUNBOOK.md
+docs/
+directives/
+agents/
+monitoring/
+
+# Supabase local dev
+supabase/.temp
+supabase/.branches
+
+# Temporary files
+.tmp/
+*.log

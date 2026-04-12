@@ -15,6 +15,15 @@ import { unstable_cache } from 'next/cache'
 import { createServiceClient } from '@/lib/supabase/server'
 import { METRICS_START_DATE, adminIdFilter, getAdminUserIds } from '@/lib/admin/metrics-filter'
 
+// ─── Platform detection ──────────────────────────────────────────────────────
+
+/** Detect hosting platform from environment variables (evaluated at call time, not import time) */
+function getPlatform(): 'vercel' | 'railway' | 'unknown' {
+  if (process.env.RAILWAY_ENVIRONMENT) return 'railway'
+  if (process.env.VERCEL) return 'vercel'
+  return 'unknown'
+}
+
 // ─── Umbrales ─────────────────────────────────────────────────────────────────
 
 const THRESHOLDS = {
@@ -38,6 +47,7 @@ const THRESHOLDS = {
     warningMonthEur: 50,
     errorMonthEur: 100,
   },
+  // Vercel-only: Railway has no invocation limits (persistent server)
   vercel: {
     limitInvocationsMonth: 100_000, // Vercel Hobby: 100k/mes
     warningInvocations: 70_000,
@@ -100,6 +110,7 @@ export interface InfraMetrics {
     totalErrors24h: number
     status: 'ok' | 'warning' | 'error'
   }
+  platform: 'vercel' | 'railway' | 'unknown'
   semaphore: 'ok' | 'warning' | 'error'
   cachedAt: string // ISO — para "Actualizado hace X min"
 }
@@ -305,13 +316,17 @@ async function fetchInfraMetrics(): Promise<InfraMetrics> {
     costsMonth >= THRESHOLDS.ai.warningMonthEur ? 'warning' : 'ok'
 
   // ── Vercel invocations (estimated: API calls * ~3x for pages/assets) ────────
+  // On Railway (persistent server), invocation limits don't exist — metric is informational only
   const apiCallsMonth = apiCallsMonthResult.count ?? 0
   // Each API call ≈ 1 invocation; pages/middleware add ~2x overhead estimate
   const estimatedInvocationsMonth = apiCallsMonth * 3
-  const vercelPct = (estimatedInvocationsMonth / THRESHOLDS.vercel.limitInvocationsMonth) * 100
-  const vercelStatus: 'ok' | 'warning' | 'error' =
-    estimatedInvocationsMonth >= THRESHOLDS.vercel.errorInvocations ? 'error' :
-    estimatedInvocationsMonth >= THRESHOLDS.vercel.warningInvocations ? 'warning' : 'ok'
+  const vercelPct = getPlatform() === 'vercel'
+    ? (estimatedInvocationsMonth / THRESHOLDS.vercel.limitInvocationsMonth) * 100
+    : 0 // No limit on Railway
+  const vercelStatus: 'ok' | 'warning' | 'error' = getPlatform() !== 'vercel'
+    ? 'ok' // Railway: no invocation limits
+    : estimatedInvocationsMonth >= THRESHOLDS.vercel.errorInvocations ? 'error'
+    : estimatedInvocationsMonth >= THRESHOLDS.vercel.warningInvocations ? 'warning' : 'ok'
 
   // ── User growth ──────────────────────────────────────────────────────────────
   const newUsersToday = newUsersTodayResult.count ?? 0
@@ -392,6 +407,7 @@ async function fetchInfraMetrics(): Promise<InfraMetrics> {
       totalErrors24h: 0,
       status: errorsStatus,
     },
+    platform: getPlatform(),
     semaphore: worstStatus(dbStatus, authStatus, upstashStatus, aiStatus, vercelStatus),
     cachedAt: new Date().toISOString(),
   }

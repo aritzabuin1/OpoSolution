@@ -1,0 +1,14 @@
+# ── OpoRuta — Railway configuration ──────────────────────────────────────────
+# Docs: https://docs.railway.com/reference/config-as-code
+
+[build]
+# Use the Dockerfile in the repo root (optek/)
+dockerfilePath = "Dockerfile"
+
+[deploy]
+# Health check — lightweight endpoint, no auth required
+healthcheckPath = "/api/health"
+healthcheckTimeout = 30
+# Restart on crash, but not on clean exit (cron services exit cleanly)
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3

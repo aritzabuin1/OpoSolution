@@ -5,9 +5,15 @@ import type { NextConfig } from 'next'
 // Re-activar si se migra a webpack o cuando Sentry/Serwist soporten Turbopack oficialmente.
 
 const nextConfig: NextConfig = {
+  // standalone output: produces a self-contained build in .next/standalone
+  // that can run with `node server.js` without node_modules.
+  // Compatible with both Vercel (ignores it) and Docker/Railway deploys.
+  output: 'standalone',
+
   // serverExternalPackages: evita que Next.js bundle-ee estas libs pesadas
   // en CADA serverless function. Vercel sigue incluyéndolas vía nft-tracing
   // pero de forma compartida → deployment mucho más pequeño.
+  // In standalone mode, these are copied to .next/standalone/node_modules.
   serverExternalPackages: [
     'pdf-parse',
     'pdfjs-dist',

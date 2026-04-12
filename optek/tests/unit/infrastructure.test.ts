@@ -315,16 +315,29 @@ describe('getInfraMetrics — Vercel invocations', () => {
     expect(m.vercel.estimatedInvocationsMonth).toBe(30_000)
   })
 
-  it('status warning cuando invocaciones estimadas >= 70k', async () => {
+  it('status warning cuando invocaciones estimadas >= 70k (Vercel)', async () => {
+    process.env.VERCEL = '1'
     setupHappyPath({ apiCallsMonth: 25_000 }) // 25k * 3 = 75k
     const m = await getInfraMetrics()
     expect(m.vercel.status).toBe('warning')
+    delete process.env.VERCEL
   })
 
-  it('status error cuando invocaciones estimadas >= 90k', async () => {
+  it('status error cuando invocaciones estimadas >= 90k (Vercel)', async () => {
+    process.env.VERCEL = '1'
     setupHappyPath({ apiCallsMonth: 31_000 }) // 31k * 3 = 93k
     const m = await getInfraMetrics()
     expect(m.vercel.status).toBe('error')
+    delete process.env.VERCEL
+  })
+
+  it('status always ok on Railway (no invocation limits)', async () => {
+    process.env.RAILWAY_ENVIRONMENT = 'production'
+    setupHappyPath({ apiCallsMonth: 50_000 }) // Would be error on Vercel
+    const m = await getInfraMetrics()
+    expect(m.vercel.status).toBe('ok')
+    expect(m.platform).toBe('railway')
+    delete process.env.RAILWAY_ENVIRONMENT
   })
 })
 
