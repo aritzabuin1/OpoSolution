@@ -361,41 +361,82 @@ async function generateConocimientosSection(
     }
   }
 
-  // Fallback to free_question_bank if not enough official questions
+  // Fallback: fill from question banks if not enough official questions
+  // Premium users → question_bank (progressive, fed by their study tests)
+  // Free users → free_question_bank (fixed 10 questions/tema)
   if (preguntasData.length < numPreguntas) {
     const faltantes = numPreguntas - preguntasData.length
-    log.info({ oficiales: preguntasData.length, faltantes }, 'filling from question bank')
+    const officialTexts = new Set(preguntasData.map(p => p.enunciado.slice(0, 80)))
+    log.info({ oficiales: preguntasData.length, faltantes, source: hasPaidAccess ? 'question_bank' : 'free_question_bank' }, 'filling from question bank')
 
-    const { data: bankRows } = await (serviceSupabase as any)
-      .from('free_question_bank')
-      .select('preguntas, tema_id')
-      .eq('oposicion_id', oposicionId)
+    const bankQs: PreguntaRow[] = []
 
-    if (bankRows) {
-      const officialTexts = new Set(preguntasData.map(p => p.enunciado.slice(0, 80)))
-      const bankQs: PreguntaRow[] = []
-      for (const row of bankRows as { preguntas: unknown; tema_id: string }[]) {
-        const pregs = (typeof row.preguntas === 'string' ? JSON.parse(row.preguntas) : row.preguntas) as { enunciado: string; opciones: string[]; correcta: number; explicacion?: string }[]
-        for (const [idx, p] of (pregs ?? []).entries()) {
-          if (!p?.enunciado || officialTexts.has(p.enunciado.slice(0, 80))) continue
+    if (hasPaidAccess) {
+      // Premium: use question_bank (individual rows, char correcta)
+      const charToIdx = (c: string): number => Math.max(0, Math.min(3, c.charCodeAt(0) - 97))
+      const { data: premiumRows } = await (serviceSupabase as any)
+        .from('question_bank')
+        .select('id, enunciado, opciones, correcta, dificultad, tema_id')
+        .eq('oposicion_id', oposicionId)
+        .limit(faltantes * 2) // fetch extra for dedup filtering
+
+      if (premiumRows) {
+        for (const q of premiumRows as { id: string; enunciado: string; opciones: Record<string, string>; correcta: string; dificultad: string; tema_id: string }[]) {
+          if (!q?.enunciado || officialTexts.has(q.enunciado.slice(0, 80))) continue
           bankQs.push({
-            id: `bank-${row.tema_id}-${idx}`,
-            numero: idx + 1,
-            enunciado: p.enunciado,
-            opciones: p.opciones,
-            correcta: p.correcta,
-            dificultad: 'media',
-            tema_id: row.tema_id,
+            id: q.id,
+            numero: bankQs.length + 1,
+            enunciado: q.enunciado,
+            opciones: Object.values(q.opciones) as unknown,
+            correcta: charToIdx(q.correcta),
+            dificultad: q.dificultad ?? 'media',
+            tema_id: q.tema_id,
           })
         }
       }
-      // Shuffle and take what we need
-      for (let i = bankQs.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-        ;[bankQs[i], bankQs[j]] = [bankQs[j], bankQs[i]]
-      }
-      preguntasData.push(...bankQs.slice(0, faltantes))
     }
+
+    // Free users OR premium with insufficient question_bank → fall back to free_question_bank
+    if (bankQs.length < faltantes) {
+      const stillNeeded = faltantes - bankQs.length
+      const alreadyAdded = new Set(bankQs.map(q => q.enunciado.slice(0, 80)))
+      const { data: freeRows } = await (serviceSupabase as any)
+        .from('free_question_bank')
+        .select('preguntas, tema_id')
+        .eq('oposicion_id', oposicionId)
+
+      if (freeRows) {
+        const freeQs: PreguntaRow[] = []
+        for (const row of freeRows as { preguntas: unknown; tema_id: string }[]) {
+          const pregs = (typeof row.preguntas === 'string' ? JSON.parse(row.preguntas) : row.preguntas) as { enunciado: string; opciones: string[]; correcta: number; explicacion?: string }[]
+          for (const [idx, p] of (pregs ?? []).entries()) {
+            if (!p?.enunciado || officialTexts.has(p.enunciado.slice(0, 80)) || alreadyAdded.has(p.enunciado.slice(0, 80))) continue
+            freeQs.push({
+              id: `bank-${row.tema_id}-${idx}`,
+              numero: idx + 1,
+              enunciado: p.enunciado,
+              opciones: p.opciones,
+              correcta: p.correcta,
+              dificultad: 'media',
+              tema_id: row.tema_id,
+            })
+          }
+        }
+        // Shuffle free bank questions
+        for (let i = freeQs.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1))
+          ;[freeQs[i], freeQs[j]] = [freeQs[j], freeQs[i]]
+        }
+        bankQs.push(...freeQs.slice(0, stillNeeded))
+      }
+    }
+
+    // Shuffle all bank questions and add
+    for (let i = bankQs.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[bankQs[i], bankQs[j]] = [bankQs[j], bankQs[i]]
+    }
+    preguntasData.push(...bankQs.slice(0, faltantes))
   }
 
   // Fetch tema titles for breakdown
