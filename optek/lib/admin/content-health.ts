@@ -144,6 +144,9 @@ export interface ActivityEvent {
   detail: string
   userId?: string
   email?: string
+  fullName?: string
+  oposicion?: string
+  isPremium?: boolean
 }
 
 export async function getRecentActivity(limit = 25): Promise<ActivityEvent[]> {
@@ -162,30 +165,53 @@ export async function getRecentActivity(limit = 25): Promise<ActivityEvent[]> {
       .gte('created_at', since).order('created_at', { ascending: false }).limit(limit),
   ])
 
-  // Get emails for users
+  // Get user profiles + oposicion names for enrichment
   const allUserIds = new Set<string>()
   for (const t of (testsRes.data ?? []) as Array<{ user_id: string }>) allUserIds.add(t.user_id)
   for (const c of (purchasesRes.data ?? []) as Array<{ user_id: string }>) allUserIds.add(c.user_id)
+  for (const r of (registersRes.data ?? []) as Array<{ id: string }>) allUserIds.add(r.id)
 
-  const { data: emailsData } = allUserIds.size > 0
-    ? await supabase.from('profiles').select('id, email').in('id', [...allUserIds])
-    : { data: [] }
-  const emailMap = new Map(((emailsData ?? []) as Array<{ id: string; email: string }>).map(e => [e.id, e.email]))
+  const [profilesData, oposicionesData, comprasData] = await Promise.all([
+    allUserIds.size > 0
+      ? supabase.from('profiles').select('id, email, full_name, oposicion_id').in('id', [...allUserIds])
+      : { data: [] },
+    supabase.from('oposiciones').select('id, nombre'),
+    allUserIds.size > 0
+      ? supabase.from('compras').select('user_id').in('user_id', [...allUserIds])
+      : { data: [] },
+  ])
+
+  const opoMap = new Map(((oposicionesData.data ?? []) as Array<{ id: string; nombre: string }>).map(o => [o.id, o.nombre]))
+  const paidUserIds = new Set(((comprasData.data ?? []) as Array<{ user_id: string }>).map(c => c.user_id))
+
+  interface UserInfo { email: string; fullName?: string; oposicion?: string; isPremium: boolean }
+  const userMap = new Map<string, UserInfo>()
+  for (const p of ((profilesData.data ?? []) as Array<{ id: string; email: string; full_name: string | null; oposicion_id: string | null }>)) {
+    userMap.set(p.id, {
+      email: p.email,
+      fullName: p.full_name ?? undefined,
+      oposicion: p.oposicion_id ? opoMap.get(p.oposicion_id) : undefined,
+      isPremium: paidUserIds.has(p.id),
+    })
+  }
 
   const events: ActivityEvent[] = []
 
   for (const r of (registersRes.data ?? []) as Array<{ id: string; email: string; created_at: string }>) {
-    events.push({ type: 'register', date: r.created_at, detail: `Nuevo registro: ${r.email}`, userId: r.id, email: r.email })
+    const u = userMap.get(r.id)
+    events.push({ type: 'register', date: r.created_at, detail: `Nuevo registro: ${r.email}`, userId: r.id, email: r.email, fullName: u?.fullName, oposicion: u?.oposicion, isPremium: false })
   }
 
   for (const t of (testsRes.data ?? []) as Array<{ user_id: string; created_at: string; tipo: string; prompt_version: string; temas: { titulo: string } | null }>) {
     const source = t.prompt_version === 'free-bank-1.0' ? 'free' : 'IA'
     const tema = (t.temas as { titulo: string } | null)?.titulo ?? t.tipo
-    events.push({ type: 'test', date: t.created_at, detail: `Test ${source}: ${tema}`, userId: t.user_id, email: emailMap.get(t.user_id) })
+    const u = userMap.get(t.user_id)
+    events.push({ type: 'test', date: t.created_at, detail: `Test ${source}: ${tema}`, userId: t.user_id, email: u?.email, fullName: u?.fullName, oposicion: u?.oposicion, isPremium: u?.isPremium })
   }
 
   for (const c of (purchasesRes.data ?? []) as Array<{ user_id: string; created_at: string; tipo: string; amount_paid: number }>) {
-    events.push({ type: 'purchase', date: c.created_at, detail: `Compra: ${c.tipo} — €${(c.amount_paid / 100).toFixed(2)}`, userId: c.user_id, email: emailMap.get(c.user_id) })
+    const u = userMap.get(c.user_id)
+    events.push({ type: 'purchase', date: c.created_at, detail: `Compra: ${c.tipo} — €${(c.amount_paid / 100).toFixed(2)}`, userId: c.user_id, email: u?.email, fullName: u?.fullName, oposicion: u?.oposicion, isPremium: true })
   }
 
   events.sort((a, b) => b.date.localeCompare(a.date))

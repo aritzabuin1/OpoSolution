@@ -28,7 +28,7 @@ export default async function ActivityPage() {
           <h1 className="text-2xl font-bold flex items-center gap-2">
             <Activity className="h-6 w-6" /> Actividad Reciente
           </h1>
-          <p className="text-sm text-muted-foreground mt-1">Últimas 24 horas. Recarga la página para actualizar.</p>
+          <p className="text-sm text-muted-foreground mt-1">Últimas 24 horas (hora Madrid). Recarga la página para actualizar.</p>
         </div>
       </div>
 
@@ -43,23 +43,37 @@ export default async function ActivityPage() {
             <div className="space-y-1">
               {events.map((event, i) => {
                 const badge = TYPE_BADGES[event.type] ?? TYPE_BADGES.error
+                const displayName = event.fullName || (event.email ? event.email.split('@')[0] : null)
                 return (
-                  <div key={i} className="flex items-center gap-3 py-2 border-b border-muted/50 last:border-0">
-                    <Badge className={`text-[9px] w-16 justify-center shrink-0 ${badge.className}`}>
+                  <div key={i} className="flex items-start gap-3 py-2.5 border-b border-muted/50 last:border-0">
+                    <Badge className={`text-[9px] w-16 justify-center shrink-0 mt-0.5 ${badge.className}`}>
                       {badge.label}
                     </Badge>
-                    <span className="text-xs text-muted-foreground shrink-0 w-14 tabular-nums">
-                      {new Date(event.date).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}
+                    <span className="text-xs text-muted-foreground shrink-0 w-14 tabular-nums mt-0.5">
+                      {new Date(event.date).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Madrid' })}
                     </span>
-                    <span className="text-sm flex-1 min-w-0 truncate">{event.detail}</span>
-                    {event.userId && (
-                      <Link
-                        href={`/admin/users/${event.userId}`}
-                        className="text-xs text-primary hover:underline shrink-0"
-                      >
-                        {event.email ? event.email.split('@')[0] : 'ver'}
-                      </Link>
-                    )}
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm truncate">{event.detail}</p>
+                      {event.userId && (
+                        <div className="flex items-center gap-2 mt-0.5 flex-wrap">
+                          <Link
+                            href={`/admin/users/${event.userId}`}
+                            className="text-xs text-primary hover:underline"
+                          >
+                            {displayName ?? 'ver usuario'}
+                          </Link>
+                          {event.email && displayName !== event.email && (
+                            <span className="text-[10px] text-muted-foreground">{event.email}</span>
+                          )}
+                          {event.oposicion && (
+                            <Badge variant="outline" className="text-[9px] py-0">{event.oposicion}</Badge>
+                          )}
+                          {event.isPremium && (
+                            <Badge className="text-[9px] py-0 bg-amber-100 text-amber-700">PRO</Badge>
+                          )}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 )
               })}
