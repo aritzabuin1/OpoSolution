@@ -140,6 +140,7 @@ const CONTEXT_FIXTURE = {
   tokensEstimados: 150,
   strategy: 'semantic' as const,
   esBloqueII: false,
+  bloqueType: null,
   temaNumero: 11,
 }
 
@@ -159,6 +160,7 @@ const CONTEXT_BLOQUE2_FIXTURE = {
   tokensEstimados: 80,
   strategy: 'hybrid' as const,
   esBloqueII: true,
+  bloqueType: 'ofimatica',
   temaNumero: 24,
 }
 
@@ -229,7 +231,7 @@ describe('§1.7.4 — generateTest: flujo completo', () => {
 
     expect(result.id).toBe('test-guardado-uuid')
     expect(result.temaId).toBe(TEMA_ID)
-    expect(result.promptVersion).toBe('2.5.0')
+    expect(result.promptVersion).toBe('2.6.0')
     expect(result.preguntas).toHaveLength(3)
     expect(result.createdAt).toMatch(/^\d{4}-\d{2}-\d{2}T/)
   })

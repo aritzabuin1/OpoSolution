@@ -264,6 +264,67 @@ CALIDAD DE LA EXPLICACIÓN (campo "explicacion"):
 /** Backward-compatible alias — defaults to Auxiliar Administrativo */
 export const SYSTEM_GENERATE_TEST_BLOQUE2 = getSystemGenerateTestBloque2('Auxiliar Administrativo') as string
 
+// ─── System prompt para oposiciones basadas en conocimiento técnico (NO ofimática) ─────
+/**
+ * For oposiciones like Correos that use conocimiento_tecnico but are NOT about
+ * office software. Uses getRamaStyleHint for exam-calibrated style.
+ */
+export function getSystemGenerateTestConocimiento(oposicionNombre: string, numOpciones: 3 | 4 = 4): string {
+  const ramaHint = getRamaStyleHint(oposicionNombre)
+  const correctaRange = numOpciones === 3 ? '0, 1 o 2' : '0, 1, 2 o 3'
+  const letras = numOpciones === 3 ? 'A, B, C' : 'A, B, C, D'
+  const distribucion = numOpciones === 3
+    ? 'cada posición (A, B, C) debería aparecer como correcta ~33% de las veces'
+    : 'cada posición (A, B, C, D) debería aparecer como correcta 2-3 veces'
+  const opcionesEjemplo = numOpciones === 3
+    ? '["...", "...", "..."]'
+    : '["...", "...", "...", "..."]'
+
+  return `Eres un experto en oposiciones españolas.
+Tu tarea es generar preguntas tipo test de opción múltiple (MCQ) para el examen de ${oposicionNombre}.
+${ramaHint}
+Cada pregunta tiene exactamente ${numOpciones} opciones de respuesta (${letras}).
+
+REGLAS OBLIGATORIAS:
+1. SOLO usa información del CONTEXTO proporcionado. Nunca inventes datos, nombres de productos, procesos ni normativa que no aparezcan en el contexto.
+2. Las opciones incorrectas (distractores) deben ser plausibles pero claramente erróneas según el contexto.
+3. Responde ÚNICAMENTE con JSON válido siguiendo el schema indicado.
+4. Dificultad: sigue las instrucciones del usuario (fácil/media/difícil).
+5. Los datos, cifras y nombres propios deben ser EXACTAMENTE los del contexto.
+6. CRÍTICO: Genera EXACTAMENTE el número de preguntas indicado. Ni una más, ni una menos.
+7. El campo "correcta" DEBE ser un número entero: ${correctaRange} (no una cadena de texto).
+8. NUNCA hagas referencia a imágenes, esquemas ni gráficos. El usuario solo ve texto plano.
+9. CALIDAD DE REDACCIÓN: Revisa cada enunciado y cada opción. No repitas palabras consecutivas. Las frases deben ser gramaticalmente correctas en español.
+10. Cada pregunta DEBE tener exactamente ${numOpciones} opciones en el array "opciones".
+11. NO incluyas el campo "cita" — este tipo de examen no requiere citas legislativas.
+12. Las preguntas deben ser del tipo que APARECEN EN EXÁMENES REALES: sobre el contenido del temario, NO sobre el examen en sí (nunca preguntes "¿qué tema es más frecuente?" ni "¿cuántas preguntas hay de X?").
+
+DISTRIBUCIÓN DE RESPUESTAS CORRECTAS:
+CRÍTICO: La respuesta correcta DEBE variar entre ${correctaRange} de forma equilibrada. NO pongas siempre la misma posición. En un test de 10 preguntas, ${distribucion}. NUNCA generes un test donde todas las correctas sean la misma opción.
+
+FORMATO DE RESPUESTA (JSON estricto, SIN campo "cita"):
+{
+  "preguntas": [
+    {
+      "enunciado": "Primera pregunta sobre el contenido del temario...",
+      "opciones": ${opcionesEjemplo},
+      "correcta": 2,
+      "explicacion": "Explicación pedagógica...",
+      "dificultad": "media"
+    }
+  ]
+}
+
+El campo "dificultad" debe ser "facil", "media" o "dificil". Si el nivel solicitado es PROGRESIVO, asigna a cada pregunta su dificultad real según la distribución indicada. Si es un nivel fijo, todas las preguntas deben tener ese nivel.
+
+CALIDAD DE LA EXPLICACIÓN (campo "explicacion"):
+- NUNCA escribas explicaciones genéricas de 1 frase.
+- La explicación DEBE ser pedagógica y completa (~3-4 frases):
+  1. Explica por qué la correcta es correcta, citando el dato del contexto.
+  2. Explica brevemente por qué cada distractor es incorrecto.
+- El opositor debe aprender algo al leer la explicación.`
+}
+
 /**
  * System prompt para corrección de desarrollos escritos.
  *
@@ -386,6 +447,44 @@ ${contextoTecnico}
 ---
 
 Genera exactamente ${numPreguntas} pregunta(s) basándote SOLO en el contexto técnico anterior.
+NO incluyas el campo "cita" en las respuestas.`
+}
+
+/**
+ * Construye el user prompt para generación de tests MCQ de conocimiento técnico (no ofimática).
+ * Para oposiciones como Correos que tienen contenido en conocimiento_tecnico pero no son de ofimática.
+ * Acepta ejemplosExamen para calibrar el estilo con preguntas de exámenes oficiales.
+ */
+export function buildGenerateTestConocimientoPrompt(params: {
+  contextoTecnico: string
+  numPreguntas: number
+  dificultad: 'facil' | 'media' | 'dificil' | 'progresivo'
+  temaTitulo: string
+  ejemplosExamen?: string
+}): string {
+  const { contextoTecnico, numPreguntas, dificultad, temaTitulo, ejemplosExamen } = params
+
+  const dificultadLabel: Record<typeof dificultad, string> = {
+    facil: 'FÁCIL — preguntas directas sobre definiciones y conceptos básicos',
+    media: 'MEDIA — preguntas que requieren comprensión de relaciones y procesos',
+    dificil: 'DIFÍCIL — preguntas sobre excepciones, datos específicos y casos complejos',
+    progresivo: `PROGRESIVO — mezcla de dificultades para simular un examen real. Distribuye las ${numPreguntas} preguntas así: ~30% fácil (conceptos básicos), ~50% media (relaciones y procesos), ~20% difícil (excepciones y casos complejos). IMPORTANTE: marca cada pregunta con su dificultad real ("facil", "media" o "dificil") en el campo "dificultad"`,
+  }
+
+  const ejemplosSection = ejemplosExamen
+    ? `\n${ejemplosExamen}\n`
+    : ''
+
+  return `TEMA: ${temaTitulo}
+NÚMERO DE PREGUNTAS: ${numPreguntas}
+DIFICULTAD: ${dificultadLabel[dificultad]}
+${ejemplosSection}
+CONTEXTO DEL TEMARIO (usa ÚNICAMENTE este texto para formular las preguntas):
+---
+${contextoTecnico}
+---
+
+Genera exactamente ${numPreguntas} pregunta(s) basándote SOLO en el contexto anterior.
 NO incluyas el campo "cita" en las respuestas.`
 }
 

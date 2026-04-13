@@ -35,10 +35,12 @@ export interface RetrievalContext {
   articulos: ArticuloContext[]
   tokensEstimados: number
   strategy: 'tema_ids' | 'semantic' | 'hybrid' | 'weakness-weighted'
-  /** true cuando el tema pertenece al Bloque II (temas 17-28: ofimática, informática, admin electrónica) */
+  /** true cuando el tema usa conocimiento_tecnico (Bloque II ofimática, Correos operativo, etc.) */
   esBloqueII: boolean
   /** Número del tema (17-28 para Bloque II, 1-16 para Bloque I) */
   temaNumero: number | null
+  /** Tipo de bloque de conocimiento: 'ofimatica' | 'correos' | null (legislación) */
+  bloqueType: string | null
   /** Número de artículos débiles del usuario incluidos al inicio del contexto (§2.11) */
   weakArticulosCount?: number
 }
@@ -689,6 +691,7 @@ export async function buildContext(
     tokensEstimados,
     strategy,
     esBloqueII: usesConocimientoTecnico,
+    bloqueType: conocimientoBloque,
     temaNumero,
     weakArticulosCount,
   }

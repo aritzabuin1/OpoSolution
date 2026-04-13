@@ -30,8 +30,10 @@ import {
   SYSTEM_GENERATE_TEST,
   SYSTEM_GENERATE_TEST_BLOQUE2,
   getSystemGenerateTest,
+  getSystemGenerateTestConocimiento,
   buildGenerateTestPrompt,
   buildGenerateTestBloque2Prompt,
+  buildGenerateTestConocimientoPrompt,
 } from '@/lib/ai/prompts'
 import { TestGeneradoRawSchema, getTestGeneradoRawSchema } from '@/lib/ai/schemas'
 import { extractCitations, batchVerifyCitations, verifyContentMatch } from '@/lib/ai/verification'
@@ -63,8 +65,12 @@ interface ChildLogger {
  *         preguntas oficiales (longitud enunciado/opciones, % negativas, prefijos, bias).
  * 2.5.0: §Q.4 — fix opciones cortas: OPCION_RULE "mínimo 6-8 palabras, frase completa".
  *         Hint para AGE C1/C2 (antes era default vacío). Eval 72→? post-fix.
+ * 2.6.0: Fix Correos/non-ofimática: getSystemGenerateTestConocimiento() replaces
+ *         SYSTEM_GENERATE_TEST_BLOQUE2 for non-ofimática conocimiento (Correos, etc.).
+ *         Radar: removed "(X× en exámenes)" from context to prevent meta-questions.
+ *         Exam examples now enabled for non-ofimática conocimiento.
  */
-export const PROMPT_VERSION = '2.5.0'
+export const PROMPT_VERSION = '2.6.0'
 
 // Single-pass: no retries. Generate once → verify → return what passes.
 // Retries were the #1 cause of timeouts (each retry = 15-20s extra OpenAI call).
@@ -110,13 +116,18 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   ])
 
   const contexto = formatContext(ctx)
-  const { esBloqueII, temaNumero } = ctx
+  const { esBloqueII, temaNumero, bloqueType } = ctx
 
-  // Solo usar ejemplos en Bloque I (legal), Bloque II no tiene preguntas oficiales
-  const ejemplosExamen = esBloqueII ? '' : ejemplosExamenRaw
+  // Distinguish ofimática (Word/Excel) from other conocimiento_tecnico (Correos, etc.)
+  const isOfimatica = bloqueType === 'ofimatica'
+  const isConocimientoNoOfimatica = esBloqueII && !isOfimatica
+
+  // Ejemplos de exámenes oficiales: habilitados para legislación Y para conocimiento no-ofimática (Correos)
+  // Solo ofimática los deshabilita (no tiene preguntas oficiales por tema)
+  const ejemplosExamen = isOfimatica ? '' : ejemplosExamenRaw
 
   log.info(
-    { temaId, tokensEstimados: ctx.tokensEstimados, strategy: ctx.strategy, temaTitulo, esBloqueII, temaNumero },
+    { temaId, tokensEstimados: ctx.tokensEstimados, strategy: ctx.strategy, temaTitulo, esBloqueII, bloqueType, temaNumero },
     '[generateTest] context built'
   )
 
@@ -125,7 +136,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
     throw new Error(
       esBloqueII
         ? `No hay contenido técnico disponible para "${temaTitulo}". ` +
-          'La base de conocimiento de ofimática aún no cubre este tema.'
+          'La base de conocimiento aún no cubre este tema.'
         : `No hay legislación indexada para "${temaTitulo}". ` +
           'Prueba con otro tema mientras completamos la base de datos.'
     )
@@ -140,10 +151,16 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
 
   const CHUNK_SIZE = 10
   const validationSchema = getTestGeneradoRawSchema(opoInfo.numOpciones)
-  // §Q.1: Use parameterized system prompt with oposición name (not hardcoded "Auxiliar")
-  const systemPrompt = esBloqueII
+
+  // §Q.1: Select system prompt based on content type:
+  // - Ofimática (Bloque II AGE): SYSTEM_GENERATE_TEST_BLOQUE2 (Word/Excel focused)
+  // - Conocimiento técnico no-ofimática (Correos, etc.): getSystemGenerateTestConocimiento (domain-specific)
+  // - Legislación (Bloque I): getSystemGenerateTest (legal citations)
+  const systemPrompt = isOfimatica
     ? SYSTEM_GENERATE_TEST_BLOQUE2
-    : (opoInfo.nombre !== 'oposición' ? getSystemGenerateTest(opoInfo.nombre, opoInfo.numOpciones) : SYSTEM_GENERATE_TEST)
+    : isConocimientoNoOfimatica
+      ? getSystemGenerateTestConocimiento(opoInfo.nombre, opoInfo.numOpciones)
+      : (opoInfo.nombre !== 'oposición' ? getSystemGenerateTest(opoInfo.nombre, opoInfo.numOpciones) : SYSTEM_GENERATE_TEST)
 
   /** Compute maxTokens based on chunk size and difficulty */
   function computeMaxTokens(n: number): number {
@@ -155,9 +172,11 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
 
   /** Generate a chunk of questions via AI */
   async function generateChunk(needed: number): Promise<PreguntaRaw[]> {
-    const userPrompt = esBloqueII
+    const userPrompt = isOfimatica
       ? buildGenerateTestBloque2Prompt({ contextoTecnico: contexto, numPreguntas: needed, dificultad, temaTitulo })
-      : buildGenerateTestPrompt({ contextoLegislativo: contexto, numPreguntas: needed, dificultad, temaTitulo, ejemplosExamen })
+      : isConocimientoNoOfimatica
+        ? buildGenerateTestConocimientoPrompt({ contextoTecnico: contexto, numPreguntas: needed, dificultad, temaTitulo, ejemplosExamen })
+        : buildGenerateTestPrompt({ contextoLegislativo: contexto, numPreguntas: needed, dificultad, temaTitulo, ejemplosExamen })
 
     const rawTest = await callAIJSON(
       systemPrompt,
@@ -252,9 +271,10 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
 
   let preguntas = preguntasVerificadas.slice(0, numPreguntas)
 
-  // ── Fill with official INAP questions if we have fewer than requested ──
-  // Only for Bloque I (Bloque II has no official questions)
-  if (!esBloqueII && preguntas.length < numPreguntas) {
+  // ── Fill with official questions if we have fewer than requested ──
+  // Ofimática (Bloque II AGE) has no official questions per tema, so skip.
+  // Legislation and non-ofimática conocimiento (Correos) can fill from preguntas_oficiales.
+  if (!isOfimatica && preguntas.length < numPreguntas) {
     const needed = numPreguntas - preguntas.length
     const existingEnunciados = new Set(preguntas.map((p) => p.enunciado))
     const fillQuestions = await fillWithOfficialQuestions(temaId, needed, existingEnunciados, temaNumero)
@@ -1031,14 +1051,17 @@ export async function generateTopFrecuentesTest(userId: string, oposicionId?: st
     for (const tema of temas) {
       const docs = conocimientoByTema.get(tema.tema_id) ?? []
       const textos = docs.map(d => d.contenido).join('\n')
-      const bloque = `[Tema ${tema.tema_numero}: ${tema.tema_titulo} (${tema.num_apariciones}× en exámenes)]\n${textos || tema.tema_titulo}`
+      // DO NOT include "(X× en exámenes)" — it makes the AI generate meta-questions
+      // about exam frequency instead of actual content questions
+      const bloque = `[Tema ${tema.tema_numero}: ${tema.tema_titulo}]\n${textos || tema.tema_titulo}`
       if (totalChars + bloque.length > MAX_CHARS) break
       contextParts.push(bloque)
       totalChars += bloque.length
     }
 
     contexto = contextParts.join('\n\n---\n\n')
-    radarLabel = 'Top temas más frecuentes en exámenes'
+    // Use the top tema titles as the label — NOT "frecuentes en exámenes" which causes meta-questions
+    radarLabel = temas.map(t => `Tema ${t.tema_numero}: ${t.tema_titulo}`).slice(0, 3).join(', ')
 
     logger.info(
       { temas: contextParts.length, chars: totalChars, userId },
@@ -1047,14 +1070,14 @@ export async function generateTopFrecuentesTest(userId: string, oposicionId?: st
   }
 
   // 4. Generar 10 preguntas MCQ (dificultad media, mix de los artículos más frecuentes)
-  // Path A (legislation): use legal prompt with citations
-  // Path B (operational/Correos): use Bloque II prompt (no citations required)
+  // Path A (legislation): legal prompt with citations
+  // Path B (operational/Correos): domain-specific prompt (no citations, uses getRamaStyleHint)
   const systemPrompt = isPathB
-    ? SYSTEM_GENERATE_TEST_BLOQUE2
+    ? getSystemGenerateTestConocimiento(opoInfo.nombre, opoInfo.numOpciones)
     : (opoInfo.nombre !== 'oposición' ? getSystemGenerateTest(opoInfo.nombre, opoInfo.numOpciones) : SYSTEM_GENERATE_TEST)
 
   const userPrompt = isPathB
-    ? buildGenerateTestBloque2Prompt({
+    ? buildGenerateTestConocimientoPrompt({
         contextoTecnico: contexto,
         numPreguntas: 10,
         dificultad: 'media',
