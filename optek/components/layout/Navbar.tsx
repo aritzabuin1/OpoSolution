@@ -26,7 +26,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/tests', label: 'Tests', icon: ClipboardList, tourId: 'nav-tests' },
-  { href: '/estudiar', label: 'Estudiar', icon: GraduationCap, premium: true },
+  { href: '/estudiar', label: 'Estudiar', icon: GraduationCap, premium: true, tourId: 'nav-estudiar' },
   { href: '/psicotecnicos', label: 'Psicotécnicos', icon: Brain, tourId: 'nav-psicotecnicos', featureKey: 'psicotecnicos' },
   { href: '/simulacros', label: 'Simulacros', icon: BookOpen, tourId: 'nav-simulacros' },
   { href: '/flashcards', label: 'Flashcards', icon: Layers, premium: true, tourId: 'nav-flashcards' },

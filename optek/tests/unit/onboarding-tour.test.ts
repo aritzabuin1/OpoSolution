@@ -2,40 +2,41 @@ import { describe, it, expect } from 'vitest'
 import { buildTourSteps } from '../../components/onboarding/tour-steps'
 
 describe('buildTourSteps', () => {
-  it('builds 12 steps for desktop with diasParaExamen (all features covered)', () => {
+  it('builds 13 steps for desktop with diasParaExamen (all features covered)', () => {
     const steps = buildTourSteps({ diasParaExamen: 65, isMobile: false })
-    expect(steps.length).toBe(12)
+    expect(steps.length).toBe(13)
     // Step 0 = welcome overlay (no element)
     expect(steps[0].element).toBeUndefined()
     // Step 1 = countdown
     expect(steps[1].element).toBe('[data-tour="countdown"]')
-    // Steps 2-8 = nav items (right side on desktop)
+    // Steps 2-9 = nav items (right side on desktop)
     expect(steps[2].element).toBe('[data-tour="nav-tests"]')
-    expect(steps[3].element).toBe('[data-tour="nav-psicotecnicos"]')
-    expect(steps[4].element).toBe('[data-tour="nav-simulacros"]')
-    expect(steps[5].element).toBe('[data-tour="nav-flashcards"]')
-    expect(steps[6].element).toBe('[data-tour="nav-cazatrampas"]')
-    expect(steps[7].element).toBe('[data-tour="nav-reto-diario"]')
-    expect(steps[8].element).toBe('[data-tour="nav-radar"]')
-    // Step 9 = stats
-    expect(steps[9].element).toBe('[data-tour="stats"]')
-    // Step 10 = AI analysis (same target as stats)
+    expect(steps[3].element).toBe('[data-tour="nav-estudiar"]')
+    expect(steps[4].element).toBe('[data-tour="nav-psicotecnicos"]')
+    expect(steps[5].element).toBe('[data-tour="nav-simulacros"]')
+    expect(steps[6].element).toBe('[data-tour="nav-flashcards"]')
+    expect(steps[7].element).toBe('[data-tour="nav-cazatrampas"]')
+    expect(steps[8].element).toBe('[data-tour="nav-reto-diario"]')
+    expect(steps[9].element).toBe('[data-tour="nav-radar"]')
+    // Step 10 = stats
     expect(steps[10].element).toBe('[data-tour="stats"]')
-    expect(steps[10].popover.title).toContain('Tutor IA')
-    // Step 11 = final CTA (no element)
-    expect(steps[11].element).toBeUndefined()
+    // Step 11 = AI analysis (same target as stats)
+    expect(steps[11].element).toBe('[data-tour="stats"]')
+    expect(steps[11].popover.title).toContain('Tutor IA')
+    // Step 12 = final CTA (no element)
+    expect(steps[12].element).toBeUndefined()
   })
 
-  it('builds 11 steps when diasParaExamen is null (no countdown step)', () => {
+  it('builds 12 steps when diasParaExamen is null (no countdown step)', () => {
     const steps = buildTourSteps({ diasParaExamen: null, isMobile: false })
-    expect(steps.length).toBe(11)
+    expect(steps.length).toBe(12)
     expect(steps.every(s => s.element !== '[data-tour="countdown"]')).toBe(true)
   })
 
   it('uses bottom position for nav items on mobile', () => {
     const steps = buildTourSteps({ diasParaExamen: 65, isMobile: true })
     const navSteps = steps.filter(s => s.element?.includes('nav-'))
-    expect(navSteps.length).toBe(7) // tests, psicotecnicos, simulacros, flashcards, cazatrampas, reto-diario, radar
+    expect(navSteps.length).toBe(8) // tests, estudiar, psicotecnicos, simulacros, flashcards, cazatrampas, reto-diario, radar
     navSteps.forEach(s => {
       expect(s.popover.side).toBe('bottom')
     })
@@ -62,6 +63,7 @@ describe('buildTourSteps', () => {
     const steps = buildTourSteps({ diasParaExamen: 65, isMobile: false })
     const allText = steps.map(s => s.popover.title + ' ' + s.popover.description).join(' ')
     expect(allText).toContain('BOE')
+    expect(allText).toContain('Estudiar')
     expect(allText).toContain('Psicotécnicos')
     expect(allText).toContain('INAP')
     expect(allText).toContain('Flashcards')

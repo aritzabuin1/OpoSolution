@@ -28,7 +28,7 @@ const navItems: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/tests', label: 'Tests', icon: ClipboardList, tourId: 'nav-tests' },
   {
-    href: '/estudiar', label: 'Estudiar', icon: GraduationCap,
+    href: '/estudiar', label: 'Estudiar', icon: GraduationCap, tourId: 'nav-estudiar',
     premium: true,
     premiumDesc: 'Resúmenes didácticos de cada ley. Estudia antes de hacer tests, con mnemotécnicas y artículos clave.',
   },

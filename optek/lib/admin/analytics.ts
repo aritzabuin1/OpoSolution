@@ -217,13 +217,15 @@ async function _getFeatureEngagement(): Promise<FeatureEngagement[]> {
   let testsQ = supabase.from('tests_generados').select('tipo, prompt_version').gte('created_at', thirtyDaysAgo)
   let cazaQ = supabase.from('cazatrampas_intentos').select('id').gte('created_at', thirtyDaysAgo)
   let flashQ = supabase.from('flashcard_reviews').select('id').gte('created_at', thirtyDaysAgo)
+  let estudiarQ = supabase.from('api_usage_log').select('endpoint').in('endpoint', ['estudiar-generate', 'estudiar-profundizar']).gte('timestamp', thirtyDaysAgo)
   if (excludeAdmins) {
     testsQ = testsQ.not('user_id', 'in', excludeAdmins)
     cazaQ = cazaQ.not('user_id', 'in', excludeAdmins)
     flashQ = flashQ.not('user_id', 'in', excludeAdmins)
+    estudiarQ = estudiarQ.not('user_id', 'in', excludeAdmins)
   }
 
-  const [testsRes, cazaRes, flashRes] = await Promise.all([testsQ, cazaQ, flashQ])
+  const [testsRes, cazaRes, flashRes, estudiarRes] = await Promise.all([testsQ, cazaQ, flashQ, estudiarQ])
 
   const tests = (testsRes.data ?? []) as { tipo: string; prompt_version: string }[]
 
@@ -243,9 +245,15 @@ async function _getFeatureEngagement(): Promise<FeatureEngagement[]> {
     }
   }
 
+  const estudiarLogs = (estudiarRes.data ?? []) as { endpoint: string }[]
+  const estudiarGenerate = estudiarLogs.filter(e => e.endpoint === 'estudiar-generate').length
+  const estudiarProfundizar = estudiarLogs.filter(e => e.endpoint === 'estudiar-profundizar').length
+
   const features: { feature: string; count: number }[] = [
     { feature: 'Tests free bank', count: freeBankCount },
     { feature: 'Tests IA premium', count: iaTestCount },
+    { feature: 'Estudiar', count: estudiarGenerate },
+    { feature: 'Profundizar', count: estudiarProfundizar },
     { feature: 'Psicotécnicos', count: testsByTipo.get('psicotecnico') ?? 0 },
     { feature: 'Simulacros', count: testsByTipo.get('simulacro') ?? 0 },
     { feature: 'Supuesto Test', count: testsByTipo.get('supuesto_test') ?? 0 },
@@ -539,6 +547,8 @@ const ANALYSIS_ENDPOINTS: Record<string, string> = {
   'analyze-cazatrampas-stream': 'Análisis caza-trampas',
   'explain-flashcard-stream': 'Explicación flashcard',
   'informe-simulacro-stream': 'Informe simulacro',
+  'estudiar-generate': 'Estudiar (resumen)',
+  'estudiar-profundizar': 'Estudiar (profundizar)',
 }
 
 async function _getAnalysisUsageByType(): Promise<AnalysisUsageByType[]> {

@@ -558,7 +558,7 @@ async function _getTutorIAMetrics(): Promise<TutorIAMetrics> {
     : 0
 
   // Credits usage by endpoint (Tutor IA endpoints)
-  const tutorEndpoints = ['explain-errores-stream', 'informe-simulacro-stream', 'explain-flashcard-stream', 'analyze-cazatrampas-stream', 'corregir-supuesto-stream', 'generate-roadmap']
+  const tutorEndpoints = ['explain-errores-stream', 'informe-simulacro-stream', 'explain-flashcard-stream', 'analyze-cazatrampas-stream', 'corregir-supuesto-stream', 'generate-roadmap', 'estudiar-profundizar']
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: usageLogs } = await (supabase as any)
     .from('api_usage_log')

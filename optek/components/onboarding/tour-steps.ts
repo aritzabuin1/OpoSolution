@@ -66,7 +66,17 @@ export function buildTourSteps(config: TourConfig): TourStep[] {
     },
   })
 
-  // ── Step 3: Psicotécnicos ─────────────────────────────────────────
+  // ── Step 3: Estudiar ───────────────────────────────────────────────
+  steps.push({
+    element: '[data-tour="nav-estudiar"]',
+    popover: {
+      title: 'Estudiar — Resúmenes inteligentes por ley',
+      description: 'Antes de hacer tests, estudia cada ley con resúmenes didácticos generados por IA: artículos clave, mnemotécnicas, errores frecuentes y esquemas visuales. También puedes profundizar en cualquier artículo con tu Tutor IA.',
+      side: navSide,
+    },
+  })
+
+  // ── Step 4: Psicotécnicos ─────────────────────────────────────────
   steps.push({
     element: '[data-tour="nav-psicotecnicos"]',
     popover: {
@@ -76,7 +86,7 @@ export function buildTourSteps(config: TourConfig): TourStep[] {
     },
   })
 
-  // ── Step 4: Simulacros ────────────────────────────────────────────
+  // ── Step 5: Simulacros ────────────────────────────────────────────
   steps.push({
     element: '[data-tour="nav-simulacros"]',
     popover: {
@@ -86,7 +96,7 @@ export function buildTourSteps(config: TourConfig): TourStep[] {
     },
   })
 
-  // ── Step 5: Flashcards ────────────────────────────────────────────
+  // ── Step 6: Flashcards ────────────────────────────────────────────
   steps.push({
     element: '[data-tour="nav-flashcards"]',
     popover: {
@@ -96,7 +106,7 @@ export function buildTourSteps(config: TourConfig): TourStep[] {
     },
   })
 
-  // ── Step 6: Caza-Trampas ─────────────────────────────────────────
+  // ── Step 7: Caza-Trampas ─────────────────────────────────────────
   steps.push({
     element: '[data-tour="nav-cazatrampas"]',
     popover: {
@@ -106,7 +116,7 @@ export function buildTourSteps(config: TourConfig): TourStep[] {
     },
   })
 
-  // ── Step 7: Reto Diario ──────────────────────────────────────────
+  // ── Step 8: Reto Diario ──────────────────────────────────────────
   steps.push({
     element: '[data-tour="nav-reto-diario"]',
     popover: {
@@ -116,7 +126,7 @@ export function buildTourSteps(config: TourConfig): TourStep[] {
     },
   })
 
-  // ── Step 8: Radar del Tribunal ────────────────────────────────────
+  // ── Step 9: Radar del Tribunal ────────────────────────────────────
   steps.push({
     element: '[data-tour="nav-radar"]',
     popover: {
@@ -126,7 +136,7 @@ export function buildTourSteps(config: TourConfig): TourStep[] {
     },
   })
 
-  // ── Step 9: Stats cards (dashboard) ───────────────────────────────
+  // ── Step 10: Stats cards (dashboard) ──────────────────────────────
   steps.push({
     element: '[data-tour="stats"]',
     popover: {
@@ -136,7 +146,7 @@ export function buildTourSteps(config: TourConfig): TourStep[] {
     },
   })
 
-  // ── Step 10: Análisis con IA ────────────────────────────────────────
+  // ── Step 11: Análisis con IA ────────────────────────────────────────
   steps.push({
     element: '[data-tour="stats"]',
     popover: {
@@ -149,7 +159,7 @@ export function buildTourSteps(config: TourConfig): TourStep[] {
     },
   })
 
-  // ── Step 11: Final CTA ────────────────────────────────────────────
+  // ── Step 12: Final CTA ────────────────────────────────────────────
   steps.push({
     popover: {
       title: '¡Estás listo para empezar!',
