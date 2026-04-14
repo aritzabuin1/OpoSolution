@@ -437,18 +437,24 @@ export async function retrieveExamples(
     ? data as { numero: number; enunciado: string; opciones: string[]; correcta: number }[]
     : null
 
-  // Fallback: if no tema-specific questions, try random from same oposición
-  // Use descending numero order to vary examples (not always the first 3 inserted)
+  // Fallback: if no tema-specific questions, try broader sample from same oposición
+  // Fetch a larger pool and shuffle to get variety across calls
   if (!preguntas && oposicionId) {
+    const poolSize = Math.max(limit * 4, 30) // Fetch 4x to have shuffle room
     const { data: fallbackData } = await supabase
       .from('preguntas_oficiales')
       .select('numero, enunciado, opciones, correcta, examenes_oficiales!inner(oposicion_id)')
       .eq('examenes_oficiales.oposicion_id', oposicionId)
-      .order('numero', { ascending: false })
-      .limit(limit)
+      .limit(poolSize)
 
     if (fallbackData && (fallbackData as unknown[]).length > 0) {
-      preguntas = fallbackData as unknown as { numero: number; enunciado: string; opciones: string[]; correcta: number }[]
+      // Fisher-Yates shuffle for variety
+      const pool = [...fallbackData]
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[pool[i], pool[j]] = [pool[j], pool[i]]
+      }
+      preguntas = pool.slice(0, limit) as unknown as { numero: number; enunciado: string; opciones: string[]; correcta: number }[]
     }
   }
 
@@ -468,7 +474,7 @@ export async function retrieveExamples(
     .join('\n\n')
 
   const label = getTribunalLabel(oposicionSlug)
-  return `EJEMPLOS REALES DEL ${label} (calibrar estilo y nivel — no copiar contenido):\n${formatted}`
+  return `EJEMPLOS REALES DEL ${label} (replica EXACTAMENTE este estilo — misma longitud, misma formulación, mismos tipos de pregunta):\n${formatted}`
 }
 
 // ─── 7. buildContext — contexto completo para Claude ─────────────────────────

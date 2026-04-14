@@ -44,11 +44,17 @@ function getRamaStyleHint(oposicionNombre: string): string {
   const OPCION_RULE = 'CRÍTICO: Cada opción debe ser una frase COMPLETA y autosuficiente (mínimo 6-8 palabras). NUNCA opciones de 1-3 palabras como "Sí", "No", "30 días". Ejemplo correcto: "El plazo máximo será de treinta días hábiles contados desde la notificación".'
 
   if (lower.includes('correos')) {
-    return `ESTILO CORREOS (calibrado con 413 preguntas oficiales):
-- Enunciados CORTOS y directos (~17 palabras). Sobre productos postales, procesos operativos y normativa.
-- NO penaliza errores — distractores claramente incorrectos, no engañosos.
+    return `ESTILO CORREOS (calibrado con 500 preguntas oficiales):
+- Enunciados CORTOS y directos (~17 palabras). Sobre productos postales, procesos operativos, sistemas (IRIS, SGIE, SEDI) y normativa.
+- Distractores PLAUSIBLES con diferencias SUTILES — el opositor debe conocer el dato exacto para acertar. Ejemplo: si la correcta es "7 días hábiles", un buen distractor es "7 días naturales" (no "30 días"). Los distractores deben parecer correctos a quien no ha estudiado bien.
 - Opciones de ~10 palabras cada una. NO añadas prefijo "A)" (OpoRuta lo añade).
 - Cita normativa postal (Ley 43/2010, RD 1829/1999) cuando aplique.
+- TIPOS DE PREGUNTA OBLIGATORIOS (distribución en cada test de 10 preguntas):
+  · ~15% preguntas NEGATIVAS ("¿Cuál NO es...?", "Señale la incorrecta:", "¿Cuál no permite...?")
+  · ~20% preguntas sobre PROCEDIMIENTOS concretos ("¿En qué aplicación se...?", "¿Cuál es la ruta para...?", "¿Qué sistema se utiliza para...?")
+  · ~20% preguntas sobre DATOS ESPECÍFICOS (plazos, pesos máximos, dimensiones, importes, porcentajes)
+  · ~45% preguntas conceptuales/normativas
+- NUNCA preguntes definiciones genéricas ("¿Qué es...?") — pregunta sobre casos de uso, diferencias entre productos, o excepciones.
 ${OPCION_RULE}`
   }
 
@@ -287,7 +293,7 @@ Cada pregunta tiene exactamente ${numOpciones} opciones de respuesta (${letras})
 
 REGLAS OBLIGATORIAS:
 1. SOLO usa información del CONTEXTO proporcionado. Nunca inventes datos, nombres de productos, procesos ni normativa que no aparezcan en el contexto.
-2. Las opciones incorrectas (distractores) deben ser plausibles pero claramente erróneas según el contexto.
+2. Los distractores deben ser PLAUSIBLES y engañosos — diferenciarse de la correcta por un DETALLE SUTIL (un dato, un plazo, un nombre). El opositor debe conocer el tema a fondo para distinguirlos. NO uses distractores absurdos ni inventados.
 3. Responde ÚNICAMENTE con JSON válido siguiendo el schema indicado.
 4. Dificultad: sigue las instrucciones del usuario (fácil/media/difícil).
 5. Los datos, cifras y nombres propios deben ser EXACTAMENTE los del contexto.
@@ -472,7 +478,12 @@ export function buildGenerateTestConocimientoPrompt(params: {
   }
 
   const ejemplosSection = ejemplosExamen
-    ? `\n${ejemplosExamen}\n`
+    ? `\n${ejemplosExamen}\n\nIMPORTANTE: Replica EXACTAMENTE el estilo de los ejemplos anteriores. Fíjate en:
+- La LONGITUD del enunciado (corto y directo)
+- El TIPO de pregunta (procedimental, sobre datos concretos, negativa)
+- Cómo los DISTRACTORES son plausibles y sutilmente incorrectos
+- El nivel de ESPECIFICIDAD (nombres de sistemas, productos, códigos concretos)
+Tus preguntas deben ser INDISTINGUIBLES de las anteriores en estilo.\n`
     : ''
 
   return `TEMA: ${temaTitulo}

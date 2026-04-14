@@ -69,8 +69,13 @@ interface ChildLogger {
  *         SYSTEM_GENERATE_TEST_BLOQUE2 for non-ofimática conocimiento (Correos, etc.).
  *         Radar: removed "(X× en exámenes)" from context to prevent meta-questions.
  *         Exam examples now enabled for non-ofimática conocimiento.
+ * 2.7.0: §Q.5 — Exam style fidelity overhaul:
+ *         - Distractors: "claramente incorrectos" → "plausibles con diferencias sutiles"
+ *         - Few-shot examples: 3→8, instruction "no copiar" → "replica EXACTAMENTE este estilo"
+ *         - Correos: forced question type distribution (15% negativas, 20% procedimentales, 20% datos)
+ *         - OPCION_RULE relaxed for Correos (official avg ~10 words, not forced 6-8 minimum)
  */
-export const PROMPT_VERSION = '2.6.0'
+export const PROMPT_VERSION = '2.7.0'
 
 // Single-pass: no retries. Generate once → verify → return what passes.
 // Retries were the #1 cause of timeouts (each retry = 15-20s extra OpenAI call).
@@ -112,7 +117,7 @@ export async function generateTest(params: GenerateTestParams): Promise<TestGene
   const [ctx, temaTitulo, ejemplosExamenRaw] = await Promise.all([
     buildContext(temaId, undefined, userId), // §2.11: userId habilita weakness-weighted RAG
     fetchTemaTitulo(temaId),
-    retrieveExamples(temaId, 3, oposicionId, opoInfo.slug), // §Q.1: preguntas oficiales (fallback por oposición)
+    retrieveExamples(temaId, 8, oposicionId, opoInfo.slug), // §Q.1: preguntas oficiales (8 examples for better style calibration)
   ])
 
   const contexto = formatContext(ctx)
