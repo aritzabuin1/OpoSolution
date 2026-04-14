@@ -58,6 +58,14 @@ const FILE_TO_TEMAS: Record<string, number[]> = {
   't09_atencion_cliente.json': [10],      // Atención cliente → Atención cliente
 }
 
+/** Auto-detect tema for operativa_*.json files (tema is stored in the JSON itself) */
+function getTemasForFile(file: string, data: CorreosJSON): number[] {
+  if (FILE_TO_TEMAS[file]) return FILE_TO_TEMAS[file]
+  // operativa_tNN_slug.json → read tema from JSON content
+  if (file.startsWith('operativa_') && data.tema) return [data.tema]
+  return []
+}
+
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 interface CorreosJSON {
@@ -133,13 +141,12 @@ async function main() {
   let totalErrors = 0
 
   for (const file of jsonFiles) {
-    const targetTemas = FILE_TO_TEMAS[file]
-    if (!targetTemas) {
+    const data: CorreosJSON = JSON.parse(fs.readFileSync(path.join(CORREOS_DIR, file), 'utf-8'))
+    const targetTemas = getTemasForFile(file, data)
+    if (targetTemas.length === 0) {
       console.log(`  ⏭️  ${file} — sin mapeo a temas BD, skip`)
       continue
     }
-
-    const data: CorreosJSON = JSON.parse(fs.readFileSync(path.join(CORREOS_DIR, file), 'utf-8'))
     console.log(`\n📥 ${file}: "${data.titulo}" (${data.contenido.length} secciones) → temas ${targetTemas.join(', ')}`)
 
     for (const temaNum of targetTemas) {

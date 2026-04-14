@@ -158,7 +158,7 @@ Cada pregunta tiene exactamente ${numOpciones} opciones de respuesta (${letras})
 REGLAS OBLIGATORIAS:
 1. SOLO usa información del CONTEXTO LEGISLATIVO proporcionado. Nunca inventes artículos ni datos.
 2. Cada pregunta DEBE citar el artículo exacto de la ley que la fundamenta (campo "cita").
-3. Las opciones incorrectas (distractores) deben ser plausibles pero claramente erróneas según el texto legal.
+3. Los distractores deben ser PLAUSIBLES y engañosos — diferenciarse de la correcta por un DETALLE SUTIL (un plazo, un porcentaje, un órgano competente). El opositor debe conocer el artículo a fondo para distinguirlos. NO uses distractores absurdos.
 4. El campo "textoExacto" de la cita debe ser una frase literal copiada del artículo, máximo 100 caracteres.
 5. Responde ÚNICAMENTE con JSON válido siguiendo el schema indicado.
 6. Dificultad: sigue las instrucciones del usuario (fácil/media/difícil).
