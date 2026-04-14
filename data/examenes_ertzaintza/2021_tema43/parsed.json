@@ -1,0 +1,214 @@
+{
+  "convocatoria": "preparacion_tema_43",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "tema43",
+  "fuente_url": null,
+  "total_preguntas": 17,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "TEMA 43- LEY ORGÁNICA 1/2004, DE 28 DE DICIEMBRE, DE MEDIDAS DE PROTECIÓN INTEGRAL CONTRA LA  VIOLENCIA DE GÉNERO. ELEMENTOS PRINCIPALES.",
+      "opciones": [
+        "Conforme al artículo 2 de la LO 1/2004, un principio rector de esta ley es consagrar los derechos de las mujeres víctimas de violencia de género exigibles ante las Administraciones Públicas, y así asegurar un acceso a los servicios establecidos al efecto, rápido , transparente y:",
+        "Eficaz.",
+        "Duradero.",
+        "Seguro."
+      ],
+      "correcta": 0,
+      "tema_numero": 43
+    },
+    {
+      "numero": 6,
+      "enunciado": "Según la Ley Orgánica de Medidas de Protección Integral contra la  Violencia de Género, contribuirá a desarrollar en el alumnado su capacidad para adquirir habilidades en la resolución pacífica de conflictos y para comprender y respetar la igualdad entre sexos:",
+      "opciones": [
+        "La Educación Infantil.",
+        "La Educación Primaria.",
+        "La Educación Secundaria Obligatoria.",
+        "El Bachillerato."
+      ],
+      "correcta": 1,
+      "tema_numero": 43
+    },
+    {
+      "numero": 7,
+      "enunciado": "Cuando las víctimas de violencia de género careciesen de rentas superiores, en cómputo mensual, al 75 por 100 del salario mínimo interprofesional, excluida la parte proporcional de dos pagas extraordinarias, recibirán una ayuda de pago único, siempre que se presuma que debido a su  edad, falta de preparación general o especializada y circunstancias sociales, la víctima tendrá especiales dificultades para obtener un empleo y por dicha circunstancia no participará en los programas de empleo establecidos para su inserción profesional. El importe de esta ayuda será equivalente:",
+      "opciones": [
+        "Al de 3 meses de subsidio por desempleo.",
+        "Al de 6 meses de subsidio por desempleo.",
+        "Al de 9 meses de subsidio por desempleo.",
+        "Al de 12 meses de subsidio por desempleo."
+      ],
+      "correcta": 1,
+      "tema_numero": 43
+    },
+    {
+      "numero": 8,
+      "enunciado": "¿A qué órgano corresponde proponer la política del Gobierno en relación  con la violencia sobre la mujer y coordinar e impulsar todas las actuaciones que se realicen en dicha materia?:",
+      "opciones": [
+        "Observatorio Estatal de Violencia sobre la Mujer.",
+        "Delegación del Gobierno contra la Violencia de  Género.",
+        "Consejo de Participación de la Mujer.",
+        "Comisión interministerial de Igualdad entre Mujeres y Hombres."
+      ],
+      "correcta": 1,
+      "tema_numero": 43
+    },
+    {
+      "numero": 9,
+      "enunciado": "La organización de los servicios sociales de atención, de emergencia, de apoyo y acogida y de recuperación integral por parte de las Comunidades Autónomas y las Corporaciones Locales, para las mujeres víctimas de violencia de género responderá a varios principios recogidos en el artículo 19 de la Ley Orgánica 1/2004. Señalar cuál de los siguientes no es correcto:",
+      "opciones": [
+        "Multidisciplinariedad profesional.",
+        "Actuación urgente.",
+        "Atención alterna.",
+        "Especialización de prestaciones."
+      ],
+      "correcta": 2,
+      "tema_numero": 43
+    },
+    {
+      "numero": 10,
+      "enunciado": "A las trabajadoras por cuenta propia víctimas de violencia de género que cesen en su actividad para hacer efectiva su protección o su derecho a la asistencia social integral, se les suspenderá la obligación de cotización durante un período que les será considerado como de cotización efectiva a efectos de las prestaciones de Seguridad Social, de:",
+      "opciones": [
+        "6 meses.",
+        "9 meses.",
+        "1 año.",
+        "18 meses."
+      ],
+      "correcta": 0,
+      "tema_numero": 43
+    },
+    {
+      "numero": 11,
+      "enunciado": "El importe de la ayuda de pago único a víctimas de violencia de género sin responsabilidades familiares que carezcan de rentas superiores, en cómputo mensual, al 75 por 100 del salario mínimo interprofesional, y que tengan reconocida oficialmente una minusvalía en grado igual o superior al 33%, será equivalente a:",
+      "opciones": [
+        "6 meses de subsidio de desempleo.",
+        "9 meses de subsidio de desempleo.",
+        "12 meses de subsidio de desempleo.",
+        "18 meses de subsidio de desempleo."
+      ],
+      "correcta": 2,
+      "tema_numero": 43
+    },
+    {
+      "numero": 12,
+      "enunciado": "Para garantizar un tratamiento adecuado y eficaz de la situación jurídica, familiar y social de las víctimas de violencia sobre la mujer en las relaciones intrafamiliares, la Ley Orgánica de Medidas de Protección Integral contra la  Violencia de Género:",
+      "opciones": [
+        "Creó el nuevo orden jurisdiccional de violencia de género.",
+        "Asignó competencias penales a los Jueces Civiles.",
+        "Creó los Juzgados de Violencia sobre la Mujer.",
+        "Asignó competencias civiles a los Jueces Penales."
+      ],
+      "correcta": 2,
+      "tema_numero": 43
+    },
+    {
+      "numero": 13,
+      "enunciado": "Según el artículo 12 de la Ley Orgánica 1/2004, de 28 de Diciembre, de Medidas de Protección Integral contra la  Violencia de Género, no es uno de los titulares de la acción de cesación y rectificación, en el ámbito de la publicidad ilícita por utilizar en forma vejatoria la imagen de la mujer:",
+      "opciones": [
+        "El Instituto de la Mujer.",
+        "El Ministerio Fiscal.",
+        "Las Asociaciones que tengan como uno de sus objetivos la defensa de los intereses de la mujer.",
+        "La Delegación del Gobierno contra la Violencia de Género."
+      ],
+      "correcta": 2,
+      "tema_numero": 43
+    },
+    {
+      "numero": 14,
+      "enunciado": "Señala la palabra que falta en la siguiente frase. Las Administraciones  educativas adoptarán las medidas necesarias para que en los planes de formación inicial y permanente del profesorado se incluya una formación específica en materia de igualdad, con el fin de asegurar que adquieren los conocimientos y las técnicas necesarias que le habiliten para el fomento de actitudes encaminadas al ejercicio de iguales derechos y obligaciones por parte de mujeres y hombres, tanto en el ámbito público como privado, y la ……………… entre los mismos en el ámbito doméstico:",
+      "opciones": [
+        "Transversalidad.",
+        "Alternancia.",
+        "Independencia.",
+        "Corresponsabilidad."
+      ],
+      "correcta": 3,
+      "tema_numero": 43
+    },
+    {
+      "numero": 15,
+      "enunciado": "En los instrumentos y procedimientos de cooperación entre la Administración General de Estado y la Administración de las Comunidades Autónomas en materia de asistencia social integral , se incluirán compromisos de aportación, por parte de la Administración General de Estado, de recursos financieros referidos específicamente a:",
+      "opciones": [
+        "La prestación de los servicios.",
+        "La formación de personal.",
+        "La publicidad de las acciones realizadas.",
+        "La elaboración de estadísticas fiables."
+      ],
+      "correcta": 0,
+      "tema_numero": 43
+    },
+    {
+      "numero": 16,
+      "enunciado": "Las ausencias  o faltas de puntualidad al trabajo motivadas por la situación física o psicológica derivada de la violencia de género se considerarán:",
+      "opciones": [
+        "Justificadas, cuando así lo determinen las autoridades judiciales.",
+        "Justificadas en todo caso.",
+        "Justificadas, cuando así lo determinen los servicios sociales de atención o servicios de salud, según proceda.",
+        "Faltas leves."
+      ],
+      "correcta": 2,
+      "tema_numero": 43
+    },
+    {
+      "numero": 17,
+      "enunciado": "La orden de protección a víctimas de violencia de género:",
+      "opciones": [
+        "Deberá solicitarse directamente  ante la autoridad judicial o el Ministerio Fiscal.",
+        "Deberá solicitarse ante las Fuerzas y Cuerpos de Seguridad.",
+        "Podrá solicitarse ante las instituciones asistenciales de titularidad privada.",
+        "Podrá solicitarse directamente ante la autoridad judicial o el Ministerio Fiscal, o bien ante las  Fuerzas y Cuerpos de Seguridad, las oficinas de atención a la víctima  o los servicios sociales o instituciones asistenciales dependientes de las Administraciones Públicas."
+      ],
+      "correcta": 3,
+      "tema_numero": 43
+    },
+    {
+      "numero": 18,
+      "enunciado": "Quien fuera condenado, por sentencia firme, por la comisión de un delito doloso de homicidio en cualquiera de sus formas o de lesiones:",
+      "opciones": [
+        "Mantendrá en todo caso la condición de beneficiario de la pensión de viudedad que le corresponda dentro del sistema público de pensiones aun cuando la víctima de dichos delitos fuera la causante de la pensión.",
+        "Perderá, en todo caso, la condición de beneficiario de la pensión de viudedad que le corresponda dentro del sistema público de pensiones cuando la víctima de dichos delitos fuera la causante de la pensión, salvo que, en su caso, medie reconciliación entre ellos.",
+        "Perderá la condición de beneficiario de la pensión de viudedad que le corresponda dentro del sistema público de pensiones cuando la víctima de dichos delitos fuera la causante de la pensión, salvo que, en su caso, medie reconciliación entre ellos.",
+        "Perderá la condición de beneficiario de la pensión de viudedad que le corresponda dentro del sistema público de pensiones cuando la víctima de dichos delitos fuera la causante de la pensión, salvo que el Juez constate  expresamente el arrepentimiento del condenado."
+      ],
+      "correcta": 2,
+      "tema_numero": 43
+    },
+    {
+      "numero": 19,
+      "enunciado": "¿Qué título de la Ley Orgánica de Medidas de Protección Integral contra la  Violencia de Género determina las medidas de sensibilización, prevención y detección e intervención en diferentes ámbitos?:",
+      "opciones": [
+        "Título I.",
+        "Título II.",
+        "Título III.",
+        "Título IV."
+      ],
+      "correcta": 0,
+      "tema_numero": 43
+    },
+    {
+      "numero": 20,
+      "enunciado": "Toda conducta, verbal o no verbal, que produzca en la mujer desvalorización o sufrimiento, a través de amenazas, humillaciones o vejaciones, exigencia de obediencia o sumisión, coerción, insultos, aislamiento, culpabilización o limitaciones de su ámbito de libertad, ejercida por quien sea o haya sido su cónyuge o por quién esté o haya estado ligado a ella por análoga relación de afectividad, aun sin convivencia:",
+      "opciones": [
+        "Es discriminación pero  no se considera violencia.",
+        "Es violencia psicológica.",
+        "Es acoso pero no se considera violencia.",
+        "Se considera violencia si se produce en el marco de la convivencia."
+      ],
+      "correcta": 1,
+      "tema_numero": 43
+    },
+    {
+      "numero": 21,
+      "enunciado": "En relación al derecho de las víctimas de violencia de género a recibir asesoramiento jurídico gratuito y a la defensa y representación gratuitas por abogado y procurador en todos los procesos y procedimientos administrativos que tengan causa directa o indirecta  en la violencia padecida, NO es cierto que:",
+      "opciones": [
+        "Este derecho asistirá también a los causahabientes en caso de fallecimiento de la víctima, siempre que no fueran partícipes en los hechos.",
+        "El abogado designado para la víctima tendrá también habilitación legal para la representación procesal de aquella  hasta la designación del procurador, en tanto la víctima no se haya personado como acusación.",
+        "Las víctimas de violencia de género podrán personarse como acusación particular en cualquier momento del procedimiento pudiéndose retrotraer y reiterar las actuaciones ya practicadas antes de su personación.",
+        "A los efectos de la concesión del beneficio de justicia gratuita, la condición de víctima se adquirirá cuando se formule denuncia o querella, o se inicie un procedimiento penal, y se mantendrá mientras permanezca en vigor el  procedimiento penal o cuando, tras su finalización, se hubiere dictado sentencia condenatoria."
+      ],
+      "correcta": 2,
+      "tema_numero": 43
+    }
+  ]
+}

@@ -1,0 +1,490 @@
+{
+  "convocatoria": "preparacion_noviembre",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "nov",
+  "fuente_url": null,
+  "total_preguntas": 40,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "Señale el artículo de la constitución donde se recoge el derecho de defensa",
+      "opciones": [
+        "Artículo 25.",
+        "Artículo 28.",
+        "Artículo 24.",
+        "Artículo 17."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 2,
+      "enunciado": "La duración máxima de la prisión provisional será de",
+      "opciones": [
+        "72 horas.",
+        "48 horas",
+        "lo necesario para esclarecer los hechos",
+        "el tiempo que establezca la ley."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 3,
+      "enunciado": "¿Cuándo se entiende que estoy notificado por medios electrónicos?",
+      "opciones": [
+        "Cuando se produce la comparecencia en la sede electrónica",
+        "Cuando accede al contenido debidamente identificado cualquier persona",
+        "Cuando accede al contenido de la notificación debidamente identificado el                        interesado o su representante",
+        "ninguna respuesta es correcta"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 4,
+      "enunciado": "Señale en que artículo viene recogido el derecho de libertad religiosa",
+      "opciones": [
+        "16.",
+        "19.",
+        "20.",
+        "21."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 7,
+      "enunciado": "El mando supremo de la Policía Autónoma Vasca corresponde a:",
+      "opciones": [
+        "Gobierno Vasco.",
+        "Lehendakari.",
+        "Parlamento vasco.",
+        "Consejera de seguridad."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 9,
+      "enunciado": "El Gobierno vasco responde políticamente de sus actos:",
+      "opciones": [
+        "De forma solidaria, ante el Parlamento Vasco.",
+        "De forma solidaria, ante las cortes generales.",
+        "Únicamente ante Juzgados y tribunales.",
+        "De forma solidaria ante el Tribunal Constitucional."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 10,
+      "enunciado": "Las Cortes Generales, en materia de competencia estatal:",
+      "opciones": [
+        "Podrán atribuir a todas o a alguna de las Comunidades Autónomas la facultad de dictar, para sí mismas, normas legislativas en el marco de los principios, bases y directrices fijados por una ley estatal.",
+        "Podrán atribuir a todas o a alguna de las Comunidades Autónomas la facultad de dictar, para sí mismas, decretos en el marco de los principios, bases y directrices fijados por una ley estatal.",
+        "Podrán atribuir a todas o a alguna de las Comunidades Autónomas la facultad de dictar, para sí mismas, reglamentos  en el marco de los principios, bases y directrices fijados por una ley estatal.",
+        "ninguna respuesta es correcta"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 11,
+      "enunciado": "¿Cómo se llama el derecho que puede invocar una persona en caso de persecución?",
+      "opciones": [
+        "derecho de asilo",
+        "derecho de gracia",
+        "derecho de indulto",
+        "no existe ningún derecho para esta protección"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 12,
+      "enunciado": "¿Qué tipo de derechos recoge la carta social europea?",
+      "opciones": [
+        "derechos civiles y políticos",
+        "derechos económicos y sociales",
+        "derechos culturales",
+        "todas las respuestas son correctas"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 15,
+      "enunciado": "Según el artículo 148.2 de la Constitución, ¿Qué plazo tendrá que dejar pasar una comunidad autónoma para asumir más competencias?:",
+      "opciones": [
+        "3 años.",
+        "1 año.",
+        "5 Años,",
+        "No tendrá que dejar pasar plazo alguno, asumiendo más competencias en cualquier momento."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 17,
+      "enunciado": "¿Qué lengua/s serán oficiales en el País Vasco?",
+      "opciones": [
+        "Euskera.",
+        "Castellano y Euskera.",
+        "Castellano o Euskera",
+        "Ninguna es correcta."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 18,
+      "enunciado": "¿Quién preside el pleno del ayuntamiento?:",
+      "opciones": [
+        "La junta de gobierno.",
+        "El alcalde.",
+        "Los concejales.",
+        "Ninguna respuesta es correcta."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 20,
+      "enunciado": "Quien resida en varios municipios debe inscribirse en el padrón municipal:",
+      "opciones": [
+        "Del municipio en el que tenga su residencia habitual.",
+        "Del municipio en el que resida mayor tiempo al año.",
+        "De cualquiera de ellos.",
+        "No existe obligación de inscribirse en ninguno de ellos."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 21,
+      "enunciado": "¿Cómo se denomina el procedimiento señalado en la constitución por el que se pretende la inmediata puesta a disposición del Juzgado de la persona detenida?:",
+      "opciones": [
+        "prisión provisional",
+        "Detención preventiva.",
+        "libertad condicional",
+        "Habeas Corpus."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 22,
+      "enunciado": "Señale la afirmación correcta según el artículo 6 del estatuto de autonomía del País Vasco:",
+      "opciones": [
+        "El euskera es la lengua propia del pueblo vasco, y será, además del castellano oficial.",
+        "El euskara y el castellano son lenguas propias del País Vasco, y ambas oficiales.",
+        "El castellano será la lengua propia del País Vasco y \tademás, su lengua oficial.",
+        "Ninguna afirmación es correcta."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 25,
+      "enunciado": "¿Ante quien se presenta el Recurso de Amparo?:",
+      "opciones": [
+        "Ante el Juzgado de lo contencioso administrativo.",
+        "Ante el Tribunal superior de Justicia.",
+        "Ante el Tribunal Supremo.",
+        "Ante el Tribunal Constitucional."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 26,
+      "enunciado": "Existe cuando el que ha resuelto cometer un delito invita a otra u otra persona participar en el:",
+      "opciones": [
+        "la proposición",
+        "la conspiración",
+        "la consumación",
+        "la provocación"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 27,
+      "enunciado": "No están exentos de responsabilidad criminal",
+      "opciones": [
+        "el que por sufrir alteraciones en la percepción desde el nacimiento o desde la infancia tenga alterada gravemente la conciencia de la realidad",
+        "el trastorno mental transitorio cuando hubiese sido provocado por el sujeto con la proposición de cometer el delito o hubiera previsto o debido prever su comisión",
+        "el que al tiempo de cometer la infracción penal a causa de cualquier anomalía o alteración psíquica no pueda comprender la ilicitud del hecho o actuar conforme a esa comprensión",
+        "el que obre en cumplimiento de un deber o en el ejercicio legítimo de un derecho oficio o cargo"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 28,
+      "enunciado": "Identifique la INCORRECTA. Son circunstancias atenuantes",
+      "opciones": [
+        "la de haber procedido el culpable, después de conocer que el procedimiento judicial se dirigía contra él, a confesar la infracción a las autoridades",
+        "la dilación extraordinaria e indebida en la tramitación del procedimiento siempre que no sea atribuible al propio inculpado y que no guarde proporción con la complejidad de la causa",
+        "la de haber procedido el culpable a reparar el daño ocasionado a la víctima o disminuir sus efectos en cualquier momento del procedimiento y con anterioridad a la celebración del acto del juicio oral",
+        "la de obrar por causa o estímulos tan poderosos que hayan producido arrebato obcecación u otro estado pasional de entidad semejante"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 29,
+      "enunciado": "Señale cuál de las siguientes actuaciones llevadas a cabo por el culpable atenúa la pena correspondiente:",
+      "opciones": [
+        "La reparación del daño ocasionado a la víctima o disminución de los efectos durante la celebración del juicio oral.",
+        "La dilación del procedimiento en aquellos casos que puedan atribuirse al propio inculpado.",
+        "La confesión de la infracción a las autoridades en el momento de conocer el procedimiento judicial al que se enfrenta.",
+        "Ninguna de las opciones anteriores son correctas."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 31,
+      "enunciado": "El titular de un permiso o licencia de conducción se le asignará un crédito inicial de",
+      "opciones": [
+        "15 puntos",
+        "12 puntos",
+        "10 puntos",
+        "18 puntos"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 32,
+      "enunciado": "Es una infracción grave:",
+      "opciones": [
+        "circular en posición paralela con vehículos que lo tienen prohibido",
+        "conducir un vehículo careciendo del permiso o licencia de conducción correspondiente",
+        "conducir vehículos que tengan instalados inhibidores de radares o cinemómetros o cualesquiera otros mecanismos encaminados a interferir con el correcto funcionamiento de los sistemas de vigilancia de tráfico",
+        "incumplir las normas que regulan las actividades industriales que afectan de manera directa a la seguridad vial"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 33,
+      "enunciado": "Excepcionalmente, el titular de un permiso o licencia de conducción con una antigüedad no superior a 3 años, salvo que ya fuera titular de otro permiso de conducción con aquella antigüedad, se le asignará un crédito inicial de",
+      "opciones": [
+        "12 puntos",
+        "10 puntos",
+        "6 puntos",
+        "8 puntos"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 34,
+      "enunciado": "Transcurridos dos años sin haber sido sancionados en firme en vía administrativa por la comisión de infracciones que lleve aparejada la pérdida de puntos, el titular de un permiso o licencia de conducción afectada por la pérdida parcial de puntos",
+      "opciones": [
+        "recuperar a un punto de crédito inicial",
+        "recuperar a la totalidad del crédito inicial de 12 puntos",
+        "recuperará 2 puntos de crédito inicial",
+        "recuperar 3 puntos de crédito inicial"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 35,
+      "enunciado": "Para que un delito sea punible ha de ser (art. 15)",
+      "opciones": [
+        "consumado frustrado o la tentativa",
+        "consumado o frustrado",
+        "consumado o la tentativa",
+        "sólo consumado."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 36,
+      "enunciado": "Haber procedido el culpable a reparar el daño ocasionado a la víctima o disminuir sus efectos en cualquier momento del procedimiento y con anterioridad a la celebración del acto del juicio oral (art. 21.5) supone una:",
+      "opciones": [
+        "circunstancia que sólo modifica la responsabilidad en caso de que fuera obligación del sujeto obrar de tal forma",
+        "circunstancia que modifica la responsabilidad criminal atenuándola",
+        "circunstancia que exime la responsabilidad criminal en el caso de que el sujeto no estuviera obligado a obrar de tal manera",
+        "circunstancia que agrava la responsabilidad criminal."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 37,
+      "enunciado": "Una de éstas no es circunstancia agravante de la responsabilidad:",
+      "opciones": [
+        "la de actuar el culpable por la adicción a las drogas",
+        "ser reincidente",
+        "obrar con abuso de confianza",
+        "prevalerse el culpable de su carácter público."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 38,
+      "enunciado": "Son circunstancias que excluyen la responsabilidad criminal (art. 14 y 20):",
+      "opciones": [
+        "El que obre en legítima defensa, el que al cometer la infracción no puede comprender la ilicitud del hecho por causa de cualquier anomalía psíquica y el error invencible.",
+        "el trastorno mental transitorio, el error vencible y el que actuó en estado de intoxicación plena por el consumo de drogas sin poder comprender la ilicitud del hecho.",
+        "el obrar en un estado de necesidad si se está obligado a sacrificarse y el obrar con miedo insuperable.",
+        "el obrar en cumplimiento de un deber y el obrar con un miedo que puede superarse."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 39,
+      "enunciado": "El menor de edad (menor de dieciocho años y mayor de 14 años) que cometa un hecho delictivo (art. 19):",
+      "opciones": [
+        "nunca será responsable por la comisión del delito.",
+        "será responsable en el caso de que se trate de un delito grave.",
+        "será responsable con arreglo a la ley sobre responsabilidad del menor.",
+        "será responsable criminal en todo caso conforme a la L.O. del Código Penal."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 40,
+      "enunciado": "existe tentativa cuando:",
+      "opciones": [
+        "el hecho no se produce cualquiera sea su causa.",
+        "el hecho no se produce por hechos ajenos al sujeto.",
+        "el hecho no se produce por causas dependientes de la voluntad del autor.",
+        "el hecho se produce pero los resultados no son los perseguidos por el sujeto."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 41,
+      "enunciado": "La provocación cuando lleva consigo la perpetración de un delito se considerara (art. 18):",
+      "opciones": [
+        "como la consumación a la hora de enjuiciar el tipo.",
+        "como la tentativa si carece de resultados.",
+        "como inducción a efectos de su castigo",
+        "en todo caso se castigara en la pena dos grados inferior a la prevista para el tipo"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 42,
+      "enunciado": "Será reincidente a los efectos del Código (art. 22):",
+      "opciones": [
+        "el que comete dos delitos sin estar cancelados y comete otro",
+        "han de ser dos o más delitos de la misma naturaleza y no cancelados",
+        "el culpable ha de estar cumpliendo condena por un delito anterior previsto en el mismo Título del Código",
+        "si al delinquir había sido condenado ejecutoriamente por un delito comprendido en el mismo Título y de la misma naturaleza."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 43,
+      "enunciado": "Si en un hecho intervienen varios sujetos y alguno se arrepiente antes de la ejecución (art. 16):",
+      "opciones": [
+        "estará exento si obra para mermar el daño causado o para disminuir sus efectos",
+        "será atenuada su responsabilidad si intentan impedir la consumación del delito de forma seria firme y decidida",
+        "estará exento si desiste de la ejecución ya iniciada e impiden la consumación del delito",
+        "se les equipara a la tentativa."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 44,
+      "enunciado": "El error sobre la ilicitud del hecho (art. 14):",
+      "opciones": [
+        "si es vencible se reducirá la pena en dos o tres grados",
+        "si es invencible no habrá responsabilidad criminal",
+        "a y b son correctas",
+        "en caso de ser vencible no cabe modificación de la responsabilidad y por ello se le aplicará la pena tal cual sea."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 45,
+      "enunciado": "A la luz del artículo 10 del Código Penal:",
+      "opciones": [
+        "Son delitos las acciones dolosas.",
+        "Son delitos las omisiones dolosas.",
+        "Son delitos las omisiones dolosas o imprudentes penadas por la ley",
+        "a y b son verdaderas."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 46,
+      "enunciado": "La Ley de Prevención de Riesgos Laborales establece los principios generales relativos a la prevención de los riesgos profesionales para:",
+      "opciones": [
+        "la protección de la seguridad y de la salud",
+        "la eliminación o disminución de los riesgos derivados del trabajo",
+        "la información, la consulta, la participación equilibrada y la formación de los trabajadores en materia preventiva",
+        "todas son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 47,
+      "enunciado": "Se entiende por riesgo laboral grave e inminente:",
+      "opciones": [
+        "aquel que resulte probable racionalmente que se materialice en un futuro inmediato y pueda suponer un daño grave para la salud de los trabajadores",
+        "aquel que resulte cierto racionalmente que se materialice en un futuro inmediato y pueda suponer un daño grave para la salud de los trabajadores",
+        "aquel que resulte probable racionalmente que se materialice en un futuro mediato y pueda suponer un daño grave para la salud de los trabajadores",
+        "aquel que resulte probable racionalmente que se materialice en un futuro inmediato o pueda suponer un daño grave la salud de los trabajadores"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 48,
+      "enunciado": "Se considerará riesgo grave e inminente cuando la exposición a agentes susceptibles de causar daños graves a la salud:",
+      "opciones": [
+        "sea probable racionalmente que se materialice en un futuro inmediato de la que puedan derivarse daños graves para la salud, siempre que éstos se manifiesten de forma inmediata",
+        "sea cierto racionalmente que se materialice en un futuro inmediato de la que puedan derivarse daños graves para la salud, siempre que éstos se manifiesten de forma inmediata",
+        "sea probable racionalmente que se materialice en un futuro inmediato de la que puedan derivarse daños graves para la salud, siempre que éstos no se manifiesten de forma inmediata",
+        "sea probable racionalmente que se materialice en un futuro inmediato de la que puedan derivarse daños graves para la salud, aun cuando éstos no se manifiesten de forma inmediata"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 49,
+      "enunciado": "Se entiende como riesgo laboral:",
+      "opciones": [
+        "cualquier máquina, aparato, instrumento o instalación utilizada en el trabajo y que provoque peligro para la vida del trabajador",
+        "las enfermedades, patologías o lesiones sufridas con motivo u ocasión del trabajo",
+        "la posibilidad de que un trabajador sufra un determinado daño derivado del trabajo",
+        "cualquier equipo destinado a ser llevado o sujetado por el trabajador para que le proteja de uno o varios riesgos que puedan amenazar su seguridad o su salud en el trabajo, así como cualquier complemento o accesorio destinado a tal fin"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 50,
+      "enunciado": "Se considerarán como daños derivados del trabajo:",
+      "opciones": [
+        "los accidentes y enfermedades que pueda sufrir un trabajador",
+        "enfermedades, patologías o lesiones sufridas con motivo u ocasión del trabajo",
+        "cualquier lesión que sufra el trabajador en su vida diaria",
+        "enfermedades profesionales y riesgos no laborales"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    }
+  ]
+}

@@ -1,0 +1,610 @@
+{
+  "convocatoria": "preparacion_temas_1_6",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "rep16",
+  "fuente_url": null,
+  "total_preguntas": 50,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "¿En qué año se creó la Declaración Universal de Derechos Humanos?",
+      "opciones": [
+        "1945",
+        "1949",
+        "1948",
+        "1951"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 2,
+      "enunciado": "¿En qué tratado se creó la CEE (¿Comunidad Económica Europea?",
+      "opciones": [
+        "Tratado de Roma",
+        "Tratado de Ámsterdam",
+        "Tratado de Lisboa",
+        "Tratado de Maastricht"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 3,
+      "enunciado": "¿En qué número de artículo de la Declaración universal de DDHH se encuentra el derecho de nacionalidad?",
+      "opciones": [
+        "25",
+        "15",
+        "16",
+        "14"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 4,
+      "enunciado": "¿Cuál es el antecedente al Tratado de Roma?",
+      "opciones": [
+        "La convención de Benelux",
+        "La conferencia de Messina",
+        "El Tratado de Maastricht",
+        "El Acta Única Europea"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 5,
+      "enunciado": "¿De qué año es la conferencia de Messina?",
+      "opciones": [
+        "1955",
+        "1951",
+        "1957",
+        "1958"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 6,
+      "enunciado": "¿En qué año se produjeron las primeras elecciones al Parlamento Europeo?",
+      "opciones": [
+        "1978",
+        "1974",
+        "1979",
+        "1981"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 7,
+      "enunciado": "¿Cuántos artículos tiene la Declaración Universal de DDHH?",
+      "opciones": [
+        "29",
+        "30",
+        "51",
+        "14"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 8,
+      "enunciado": "Señale la respuesta verdadera respecto a la DUDDHH",
+      "opciones": [
+        "Fue adoptada por el Consejo de Europa como respuesta a los actos de barbarie ultrajantes para la conciencia de la humanidad cometidos durante la Segunda Guerra Mundial",
+        "Fue adoptada por el Consejo Europeo como respuesta a los actos de barbarie ultrajantes para la conciencia de la humanidad cometidos durante la Segunda Guerra Mundial",
+        "Fue adoptada por las Naciones Unidas o respuesta a los actos de barbarie ultrajantes para la conciencia de la humanidad cometidos durante la Segunda Guerra Mundial",
+        "Fue adoptada por la ONU como respuesta a los actos de barbarie ultrajantes para la conciencia de la humanidad cometidos durante la Primera Guerra Mundial"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 9,
+      "enunciado": "¿Cuál de las siguientes es una característica de los DDHH?",
+      "opciones": [
+        "Innatos",
+        "Inalienables",
+        "Indivisibles",
+        "Todas las anteriores son características de los DDHH"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 10,
+      "enunciado": "Señale la respuesta correcta respecto al artículo 1 de la DUDDHH:",
+      "opciones": [
+        "Todos los seres humanos nacen libres e iguales en dignidad y derechos y, dotados como están de razón y conciencia, deben comportarse fraternalmente los unos con los otros",
+        "Todos los seres humanos nacen libres e iguales en dignidad y, dotados como están de razón y conciencia, deben comportarse fraternalmente los unos con los otros",
+        "Todos los seres humanos nacen libres e iguales en dignidad y derechos y, dotados como están de razón y conciencia, deben comportarse fraternalmente",
+        "Todos los seres humanos nacen iguales en dignidad y derechos y, dotados como están de razón y conciencia, deben comportarse fraternalmente los unos con los otros"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 11,
+      "enunciado": "¿En qué número de articulo de la DUDDHH viene recogido el derecho al trabajo?",
+      "opciones": [
+        "21",
+        "22",
+        "23",
+        "24"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 12,
+      "enunciado": "Respecto al derecho al trabajo es correcto señalar que:",
+      "opciones": [
+        "Toda persona tiene derecho al trabajo, a la libre elección de su trabajo, a condiciones igualitarias y satisfactorias de trabajo y a la protección contra el desempleo",
+        "Toda persona tiene derecho al trabajo, a la libre elección de su trabajo, a condiciones equitativas y satisfactorias de trabajo y a la protección contra el desempleo",
+        "Toda persona tiene derecho al trabajo, a la libre elección de su trabajo, a condiciones igualitarias y compensatorias de trabajo y a la protección contra el desempleo",
+        "Toda persona tiene derecho al trabajo, a la libre elección de su trabajo, a condiciones igualitarias y satisfactorias de trabajo y a la protección contra la precariedad laboral"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 13,
+      "enunciado": "¿Cuántos países forman el Consejo de Europa?",
+      "opciones": [
+        "27",
+        "28",
+        "47",
+        "41"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 14,
+      "enunciado": "¿Cuál fue la primera unión entre países europeos?",
+      "opciones": [
+        "Conferencia de Messina",
+        "Convención de Benelux",
+        "Tratado de Roma",
+        "AUE"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 15,
+      "enunciado": "¿Qué países forman la Europa de los 6?",
+      "opciones": [
+        "Bélgica, Países Bajos, Francia, Italia, Alemania y España",
+        "Bélgica, Luxemburgo, Francia, Italia, Alemania y Portugal",
+        "Bélgica, Luxemburgo, Países Bajos, Italia, Francia y Alemania",
+        "Gran Bretaña, Dinamarca, Irlanda, Italia, Francia y Alemania"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 16,
+      "enunciado": "¿Cómo se llama el derecho que puede invocar una persona en caso de persecución?",
+      "opciones": [
+        "Derecho de asilo",
+        "Derecho de indulto",
+        "Derecho de gracia",
+        "No existe ningún derecho en caso de persecución"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 17,
+      "enunciado": "¿a partir de que edad se tiene derecho a contraer matrimonio?",
+      "opciones": [
+        "A partir de 16 años",
+        "A partir de 18 años",
+        "A partir de la edad fértil",
+        "A partir de la edad núbil"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 18,
+      "enunciado": "Según el artículo 21 de la DUDDHH, señale la respuesta correcta:",
+      "opciones": [
+        "Toda persona tiene derecho al sufragio activo y pasivo en condiciones de igualdad",
+        "Toda persona tiene derecho a participar de la política de su país, directamente o por medio de representantes libremente escogidos",
+        "Toda persona tiene derecho a participar de la política de su país, directamente o por medio de representantes",
+        "Toda persona tiene derecho a participar de la política de su país, directamente o por medio de representantes libremente votados mediante sufragio universal, libre, directo y secreto"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 19,
+      "enunciado": "¿En qué año entro en vigor la Carta Social Europea?",
+      "opciones": [
+        "1959",
+        "1961",
+        "1965",
+        "1966"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 20,
+      "enunciado": "¿Qué tipo de derechos recoge la Carta Social Europea?",
+      "opciones": [
+        "Derechos civiles y políticos",
+        "Derechos sociales y económicos",
+        "Derechos culturales",
+        "Derechos fundamentales"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 21,
+      "enunciado": "¿En que tratado se creó la CECA (¿Comunidad Europea del Carbón y del Acero?",
+      "opciones": [
+        "Maastricht",
+        "Roma",
+        "Lisboa",
+        "París"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 22,
+      "enunciado": "Junto a la CEE, ¿que creó el Tratado de Roma?",
+      "opciones": [
+        "La CECA",
+        "Euratom",
+        "Eurozona",
+        "Eurosistema"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 23,
+      "enunciado": "¿Cuáles fueron los países que se unieron a los ya unidos en Benelux?",
+      "opciones": [
+        "Gran Bretaña, Alemania y Dinamarca",
+        "España y Portugal",
+        "Gran Bretaña, Dinamarca e Irlanda",
+        "Italia, Francia y Alemania"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 24,
+      "enunciado": "¿En que año se creó el Consejo Europeo?",
+      "opciones": [
+        "1974",
+        "1975",
+        "1976",
+        "1978"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 25,
+      "enunciado": "¿Qué países se unieron en 1986?",
+      "opciones": [
+        "España y Francia",
+        "Portugal y Francia",
+        "España y Portugal",
+        "Malta y España"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 26,
+      "enunciado": "¿En qué tratado se empieza hablar del término ÚNIÓN EUROPEA?",
+      "opciones": [
+        "Roma",
+        "Maastricht",
+        "Lisboa",
+        "Ámsterdam"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 27,
+      "enunciado": "Cual de las siguientes NO es una institución de la Unión Europea:",
+      "opciones": [
+        "Consejo europeo",
+        "Consejo de la Unión Europea",
+        "Consejo de Europa",
+        "Banco central europeo"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 28,
+      "enunciado": "¿Cada cuanto se elige al Parlamento Europeo?",
+      "opciones": [
+        "Cada 8 años",
+        "Cada 6 años",
+        "Cada 4 años",
+        "Cada 5 años"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 29,
+      "enunciado": "¿Qué poder es el Parlamento Europeo?",
+      "opciones": [
+        "Poder ejecutivo",
+        "Poder judicial",
+        "Poder legislativo",
+        "Es una institución, pero no un poder"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 30,
+      "enunciado": "¿Con quien realiza algunas de sus funciones el Parlamento Europeo?",
+      "opciones": [
+        "Junto a la comisión europea",
+        "Junto al consejo europeo",
+        "Junto al consejo de Europa",
+        "Junto al consejo de la Unión Europea"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 31,
+      "enunciado": "¿Qué institución es conocida como Consejo de ministros?",
+      "opciones": [
+        "La comisión europea",
+        "El consejo de la Unión Europea",
+        "El Consejo Europeo",
+        "El Parlamento Europeo"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 32,
+      "enunciado": "¿Qué poder ejerce el Consejo de la Unión Europea?",
+      "opciones": [
+        "Poder ejecutivo",
+        "Poder legislativo",
+        "Poder judicial",
+        "No supone ningún poder, solamente una institución"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 33,
+      "enunciado": "¿Cuánto dura la presidencia del Consejo de la Unión Europea?",
+      "opciones": [
+        "Dos años y medio",
+        "6 meses",
+        "6 meses renovables",
+        "Dos años y medio renovables"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 34,
+      "enunciado": "¿En qué instancias se organiza el Consejo? Señale la falsa",
+      "opciones": [
+        "Coreper",
+        "Presidencia del Consejo",
+        "Secretaria del Consejo",
+        "Comité ejecutivo"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 35,
+      "enunciado": "Dentro del Coreper y en la practica ¿quién es el jefe de cada representación?",
+      "opciones": [
+        "El jefe del estado",
+        "El presidente del gobierno",
+        "El embajador de su país en la UE",
+        "Ninguna respuesta es verdadera"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 36,
+      "enunciado": "¿Cómo se le conoce al Gobierno Europeo?",
+      "opciones": [
+        "Consejo europeo",
+        "Consejo de Europa",
+        "Consejo de la Unión Europea",
+        "Comisión Europea"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 37,
+      "enunciado": "¿Por quién esta formada la Comisión Europea?",
+      "opciones": [
+        "Presidente y vicepresidente",
+        "Presidente y comisarios",
+        "Presidente, ministros y comisarios",
+        "Presidente y secretaria general"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 38,
+      "enunciado": "¿Qué poder ostenta la Comisión Europea?",
+      "opciones": [
+        "Poder legislativo junto al Parlamento europeo",
+        "Poder legislativo",
+        "Poder ejecutivo",
+        "Solo es una institución europea"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 39,
+      "enunciado": "Diga cual NO es una función de la Comisión Europea:",
+      "opciones": [
+        "Propone legislación al Parlamento y al Consejo",
+        "Gestiona y aplica las políticas de la UE",
+        "Representa a la UE en foros internacionales",
+        "Aprueba los presupuestos de la UE"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 40,
+      "enunciado": "¿Cuál es la sede del TJUE?",
+      "opciones": [
+        "Bruselas",
+        "Estrasburgo",
+        "Luxemburgo",
+        "La Haya"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 41,
+      "enunciado": "¿Por quien está compuesto el TJUE?",
+      "opciones": [
+        "Un juez por estado miembro",
+        "Dos jueces por estado miembro",
+        "27",
+        "19"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 42,
+      "enunciado": "¿Cuál es la misión del TJUE?",
+      "opciones": [
+        "Sancionar en caso de incumplimiento de las leyes",
+        "Velar por el cumplimiento de la ley de la UE",
+        "Aprobar leyes",
+        "Todas son funciones del TJUE"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 43,
+      "enunciado": "¿Cuál es la sede del Tribunal de Cuentas?",
+      "opciones": [
+        "Luxemburgo",
+        "Bruselas",
+        "La Haya",
+        "Madrid"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 44,
+      "enunciado": "¿Quién elige a los miembros del Tribunal de Cuentas?",
+      "opciones": [
+        "La Comisión",
+        "El Parlamento",
+        "El Consejo de la UE",
+        "El gobierno de cada País"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 45,
+      "enunciado": "¿En qué tratado paso a ser el Consejo Europeo una Institución?",
+      "opciones": [
+        "Lisboa",
+        "Maastricht",
+        "Roma",
+        "París"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 46,
+      "enunciado": "¿Cuántas veces se reúne el Consejo Europeo por semestre?",
+      "opciones": [
+        "Una",
+        "Dos",
+        "Tres",
+        "Se reúne cada vez que el presidente desea"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 47,
+      "enunciado": "¿Cuánto dura el mandato del presidente?",
+      "opciones": [
+        "6 meses",
+        "Dos años y medio renovables una vez",
+        "5 años",
+        "6 meses renovables"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 48,
+      "enunciado": "¿Cuál es la sede del Banco Central Europeo?",
+      "opciones": [
+        "Bruselas",
+        "Luxemburgo",
+        "Fráncfort",
+        "Madrid"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 49,
+      "enunciado": "El BCE trabaja con:",
+      "opciones": [
+        "Los países de la eurozona",
+        "Con los 28 países de la UE",
+        "Con los 27 países de la UE",
+        "Con los países del Eurosistema, 47"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 50,
+      "enunciado": "¿Quién elige al Defensor del Pueblo?",
+      "opciones": [
+        "El presidente del Consejo",
+        "La Comisión",
+        "EL Parlamento",
+        "El Pueblo"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    }
+  ]
+}

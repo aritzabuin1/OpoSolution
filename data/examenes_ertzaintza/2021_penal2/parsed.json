@@ -1,0 +1,190 @@
+{
+  "convocatoria": "preparacion_penal_general",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "penal2",
+  "fuente_url": null,
+  "total_preguntas": 15,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "Los delitos de omisión se equipararán a los de acción cuando:",
+      "opciones": [
+        "No exista una obligación legal de actuar",
+        "cuando el omitente haya creado una ocasión de riesgo para el bien jurídicamente protegido mediante una acción u omisión precedente",
+        "cuando exista obligación legal o contractual de actuar",
+        "la b y la c son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 2,
+      "enunciado": "¿Cuándo se castigarán las acciones imprudentes?",
+      "opciones": [
+        "Cuando así lo establezca un tribunal",
+        "cuando así lo disponga la ley",
+        "cuando atendiendo a las circunstancias concretas se entienda que existía obligación de actuar",
+        "ninguna es correcta"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 3,
+      "enunciado": "¿Cuándo la pena por extensión pueda considerarse entre pena grave y pena menos grave, como se considerará el delito?",
+      "opciones": [
+        "Menos grave",
+        "leve",
+        "grave",
+        "muy grave"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 4,
+      "enunciado": "cuando la pena por extensión pueda considerarse entre pena leve y entre pena menos grave, ¿Cómo se considerará el delito?",
+      "opciones": [
+        "leve",
+        "muy grave",
+        "grave",
+        "menos grave"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 5,
+      "enunciado": "¿Qué ocurre cuando sobre un hecho constitutivo de infracción penal recae un error invencible?",
+      "opciones": [
+        "se atenúa la responsabilidad penal",
+        "se agrava la responsabilidad penal",
+        "se excluye la responsabilidad penal",
+        "ninguna es correcta"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 6,
+      "enunciado": "¿si el error fuera vencible, como será castigada la infracción penal?",
+      "opciones": [
+        "dolosa",
+        "imprudente",
+        "en grado de tentativa",
+        "ninguna es correcta"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 7,
+      "enunciado": "¿Qué implica la apreciación del error en un hecho que cualifique la infracción o sobre una agravante?",
+      "opciones": [
+        "impedirá su apreciación",
+        "agravará la pena",
+        "atenuará la pena",
+        "ninguna es correcta"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 8,
+      "enunciado": "¿Qué implicará el error invencible sobre la ilicitud del hecho constitutivo de la infracción penal?",
+      "opciones": [
+        "La agravante de la responsabilidad penal",
+        "la atenuante de la responsabilidad penal",
+        "la exclusión de la responsabilidad penal",
+        "ninguna es correcta"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 9,
+      "enunciado": "¿Cuándo hay tentativa?",
+      "opciones": [
+        "cuando se aumenta deliberadamente el sufrimiento de la victima",
+        "cuando no se produce el resultado por causas independientes a la voluntad del autor",
+        "la a y la b son correctas",
+        "ninguna es correcta"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 10,
+      "enunciado": "¿Cuándo quedará exento de responsabilidad criminal por el delito intentando?",
+      "opciones": [
+        "cuando no se produce el resultado por causas independientes a la voluntad del autor",
+        "cuando se desiste de la ejecución ya iniciada",
+        "la a y la b son correctas",
+        "ninguna es correcta"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 11,
+      "enunciado": "¿Cuándo existe conspiración?",
+      "opciones": [
+        "Cuando dos o más personas se conciertan para la ejecución de un delito y resuelven ejecutarlo",
+        "cuando dos o más personas se conciertan para la ejecución de un delito y no lo ejecuta uno de ellos",
+        "cuando existe cuando el que ha resuelto cometer un delito invita a otra u otras personas a participar en él.",
+        "todas son correctas"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 14,
+      "enunciado": "a y b son correctas",
+      "opciones": [
+        "ninguna es correcta",
+        "Si la provocación hubiese seguido a la perpetración del delito ¿Cómo se castigará ¿",
+        "como dolo",
+        "como tentativa"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 18,
+      "enunciado": "cuando, al delinquir, el culpable haya sido condenado ejecutoriamente por un delito comprendido en distinto título de este código, siempre que sea de distinta naturaleza",
+      "opciones": [
+        "ninguna es correcta",
+        "¿Quiénes son responsables criminalmente?",
+        "autores",
+        "autores, cómplices y encubridores"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 19,
+      "enunciado": "autores y cómplices",
+      "opciones": [
+        "cómplices",
+        "Los que inducen directamente a otro u otros a ejecutarlo.",
+        "Los que cooperan a su ejecución con un acto sin el cual no se habría efectuado.",
+        "la a y la b son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 20,
+      "enunciado": "ninguna respuesta es correcta",
+      "opciones": [
+        "La de obrar por causas tan poderosas como obcecación",
+        "La de haber procedido el culpable a reparar el daño ocasionado",
+        "La dilación extraordinaria e indebida del procedimiento",
+        "Ser reincidente"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    }
+  ]
+}

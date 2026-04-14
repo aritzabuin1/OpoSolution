@@ -1,0 +1,442 @@
+{
+  "convocatoria": "preparacion_policia_pv",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "pvasco",
+  "fuente_url": null,
+  "total_preguntas": 36,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "¿Qué funciones NO tiene encomendadas los cuerpos de policía local?",
+      "opciones": [
+        "Proteger a las autoridades de los municipios y vigilancia o custodia de sus edificios e instalaciones.",
+        "Instruir atestados por accidentes de circulación fuera del casco urbano.",
+        "Ordenar, señalizar y dirigir el tráfico en el casco urbano, de acuerdo con lo establecido en las normas de circulación.",
+        "Policía Administrativa en lo relativo a ordenanzas, bandos y demás disposiciones y actos municipales"
+      ],
+      "correcta": 1,
+      "tema_numero": 37
+    },
+    {
+      "numero": 2,
+      "enunciado": "¿Cuándo pueden actuar fuera del ámbito territorial los cuerpos de policía local?",
+      "opciones": [
+        "cuando se declare el estado de alarma, excepción o sitio",
+        "cuando se lo requiere el alcalde vecino",
+        "en situaciones de emergencia o necesidad",
+        "en todas las situaciones anteriores"
+      ],
+      "correcta": 2,
+      "tema_numero": 37
+    },
+    {
+      "numero": 3,
+      "enunciado": "¿Cuál de las siguientes afirmaciones es correcta respecto a los Cuerpos de Policía Local?",
+      "opciones": [
+        "El personal funcionario de los cuerpos de la Policía local portará el armamento y medios técnicos operativos y de defensa que reglamentariamente se determinen",
+        "Los Cuerpos de Policía Local actuarán en el ámbito territorial correspondiente a la entidad local de la que dependan, pudiendo hacerlo fuera del mismo en situaciones de emergencia o necesidad en que, requeridos para ello por la autoridad competente, estén autorizados por el Alcalde respectivo",
+        "Participar en las funciones de Policía Judicial colaborando con las Unidades de Policía Judicial.",
+        "todas son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 37
+    },
+    {
+      "numero": 4,
+      "enunciado": "El servicio público de policía se ejercerá con absoluta respeto a:",
+      "opciones": [
+        "la constitución española",
+        "el estatuto de autonomía",
+        "el ordenamiento jurídico",
+        "con el respeto a todas las anteriores"
+      ],
+      "correcta": 3,
+      "tema_numero": 37
+    },
+    {
+      "numero": 5,
+      "enunciado": "En el desempeño de su función como Policía Judicial, estarán al servicio y bajo la dependencia de:",
+      "opciones": [
+        "el gobierno vasco",
+        "del lehendakari",
+        "de la administración de justicia",
+        "del Consejo General del Poder Judicial"
+      ],
+      "correcta": 2,
+      "tema_numero": 37
+    },
+    {
+      "numero": 6,
+      "enunciado": "Los miembros de la Policía del País Vasco actuarán con absoluta neutralidad política e imparcialidad, y evitarán cualquier práctica abusiva o arbitraria respetando en todo momento los principios de igualdad y no discriminación, y los demás que se consignan en la:",
+      "opciones": [
+        "constitución española",
+        "en el estatuto de autonomía",
+        "en la declaración de derechos humanos",
+        "la respuesta a y c son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 37
+    },
+    {
+      "numero": 7,
+      "enunciado": "¿Cuál de las siguientes afirmaciones es falsa respecto a lo que se debe respetar en el trato que mantendrán los policías con la ciudadanía?",
+      "opciones": [
+        "Observará un trato correcto y esmerado, actuando con empatía, y auxiliándoles en aquellas situaciones que requieran una actuación inmediata para evitar riesgo o desamparo.",
+        "Ofrecerán a las personas a las que afecten sus intervenciones información suficiente y comprensible sobre las mismas, prestando singular atención a las víctimas de delitos y a otras personas que pertenezcan a colectivos especialmente vulnerables.",
+        "Se identificarán ante los ciudadanos posteriormente al inicio de cualquier actuación policial, asegurándose de que éstos han percibido su condición.",
+        "Acreditará su condición profesional siempre que sea necesario y cuando lo demanden las personas con las que se relacionen en sus actuaciones."
+      ],
+      "correcta": 2,
+      "tema_numero": 37
+    },
+    {
+      "numero": 8,
+      "enunciado": "¿Cuándo deberá actuar un policía que se encuentra fuera de servicio?",
+      "opciones": [
+        "en accidentes",
+        "ante calamidades públicas",
+        "ante desgracias particulares",
+        "en todas las situaciones anteriores"
+      ],
+      "correcta": 3,
+      "tema_numero": 37
+    },
+    {
+      "numero": 9,
+      "enunciado": "¿Cuándo NO usara el agente su arma?",
+      "opciones": [
+        "Cuando exista un riesgo racionalmente grave para su vida o integridad física o las de terceras personas",
+        "en aquellas circunstancias en que concurra un grave riesgo para la seguridad ciudadana",
+        "siempre que su superior le ordene su utilización",
+        "lo usará en todas las actuaciones anteriores"
+      ],
+      "correcta": 2,
+      "tema_numero": 37
+    },
+    {
+      "numero": 10,
+      "enunciado": "¿Cuándo será necesario usar arma de fuego?",
+      "opciones": [
+        "cuando se les ofrezca resistencia armada",
+        "cuando se ponga en peligro su vida o la de otras personas",
+        "cuando no se pueda detener o reducir al agresor mediante otro tipo de medidas.",
+        "en todos los supuestos anteriores"
+      ],
+      "correcta": 3,
+      "tema_numero": 37
+    },
+    {
+      "numero": 11,
+      "enunciado": "Respecto a la persona detenida, ¿cómo no debe actuar la policía?",
+      "opciones": [
+        "tendrá que utilizar los medios necesarios para que el detenido confiese el hecho en dependencias policiales",
+        "velarán por la vida e integridad física de las personas a quienes detengan",
+        "No podrán infligir, instigar o tolerar acto alguno de tortura u otros tratos crueles, inhumanos o degradantes",
+        "asegurarán la salud de la persona detenida"
+      ],
+      "correcta": 0,
+      "tema_numero": 37
+    },
+    {
+      "numero": 12,
+      "enunciado": "¿Qué tipo de responsabilidad podría tener la administración pública respecto a las acciones de los agentes de la autoridad?",
+      "opciones": [
+        "patrimonial",
+        "civil",
+        "administrativa",
+        "solidaria"
+      ],
+      "correcta": 0,
+      "tema_numero": 37
+    },
+    {
+      "numero": 13,
+      "enunciado": "La Ertzaintza se estructura jerárquicamente en escalas, ¿en cuántas?",
+      "opciones": [
+        "4",
+        "3",
+        "7",
+        "5"
+      ],
+      "correcta": 3,
+      "tema_numero": 37
+    },
+    {
+      "numero": 14,
+      "enunciado": "La Ertzaintza se estructura jerárquicamente en escalas y a estas a su vez en categorías ¿en cuántas?",
+      "opciones": [
+        "4",
+        "3",
+        "7",
+        "5"
+      ],
+      "correcta": 2,
+      "tema_numero": 37
+    },
+    {
+      "numero": 15,
+      "enunciado": "¿Cómo se prestaran los servicios de policía de seguridad en la vía pública?",
+      "opciones": [
+        "sin armas",
+        "con armas, excepto cuando se prevea riesgo para la vida o integridad física",
+        "con armas, salvo que el alcalde decida que se presten sin armas",
+        "con armas, salvo que la policía decida que se presten sin armas"
+      ],
+      "correcta": 2,
+      "tema_numero": 37
+    },
+    {
+      "numero": 16,
+      "enunciado": "¿Cómo podrá decidir la persona titular de la alcaldía, que los servicios de seguridad sean sin armas?",
+      "opciones": [
+        "de forma motivada",
+        "de forma arbitraria",
+        "de forma individual",
+        "ninguna es correcta"
+      ],
+      "correcta": 0,
+      "tema_numero": 37
+    },
+    {
+      "numero": 17,
+      "enunciado": "Los servicios de policía de seguridad en la vía pública y los de seguridad y custodia se prestarán con armas; no obstante, la persona titular de la alcaldía podrá decidir, de forma motivada, previo informe de:",
+      "opciones": [
+        "el alcalde",
+        "el pleno",
+        "la junta de gobierno local",
+        "de la jefatura de la policía local"
+      ],
+      "correcta": 3,
+      "tema_numero": 37
+    },
+    {
+      "numero": 18,
+      "enunciado": "Los servicios de policía de seguridad en la vía pública y los de seguridad y custodia se prestarán con armas; no obstante, la persona titular de la alcaldía podrá decidir, de forma motivada, previo informe de la jefatura de la Policía local, los servicios que se presten sin armas, siempre que:",
+      "opciones": [
+        "no vaya a haber gran concentración de personas en la vía pública",
+        "siempre que no comporten un riesgo racionalmente grave para la vida o integridad física del personal funcionario o de terceras personas.",
+        "siempre que no se salgan de su ámbito territorial correspondiente a la entidad local",
+        "en todas las situaciones anteriores"
+      ],
+      "correcta": 1,
+      "tema_numero": 37
+    },
+    {
+      "numero": 19,
+      "enunciado": "De conformidad con el artículo 27.4, Cuando ejerzan funciones de protección de autoridades de las corporaciones locales, podrán actuar fuera del término municipal respectivo, con autorización del:",
+      "opciones": [
+        "jefe de la policía local",
+        "del alcalde",
+        "del departamento competente en materia de Seguridad",
+        "del gobierno vasco"
+      ],
+      "correcta": 2,
+      "tema_numero": 37
+    },
+    {
+      "numero": 20,
+      "enunciado": "El personal funcionario de los cuerpos de la Policía local portará el armamento y medios técnicos operativos y de defensa que reglamentariamente se determinen de conformidad con lo dispuesto en",
+      "opciones": [
+        "la ley del policía del país vasco",
+        "el estatuto de autonomía del país vasco",
+        "la ley de ordenación de la seguridad pública de Euskadi",
+        "el código ético europeo de la policía"
+      ],
+      "correcta": 2,
+      "tema_numero": 37
+    },
+    {
+      "numero": 21,
+      "enunciado": "Las armas de fuego y otros medios técnicos operativos y defensa de los miembros de la policía local serán proporcionados por:",
+      "opciones": [
+        "el gobierno vasco",
+        "por Arkaute",
+        "por la entidad local respectiva",
+        "por la comunidad autónoma vasca"
+      ],
+      "correcta": 2,
+      "tema_numero": 37
+    },
+    {
+      "numero": 22,
+      "enunciado": ".El servicio público de policía se ejercerá con absoluto respeto a la Constitución, al Estatuto de Autonomía y al resto del ordenamiento jurídico, y al mismo incumbe cumplir los deberes que le impone la ley, sirviendo a la comunidad y protegiendo a todas las personas contra:",
+      "opciones": [
+        "los actos ilegales que impidan el libre ejercicio de sus derechos y libertades",
+        "los actos prohibidos que impidan el libre ejercicio de sus derechos y libertades",
+        "los actos ilegales que dificulten el libre ejercicio de sus derechos fundamentales",
+        "los actos prohibidos que limiten el libre ejercicio de sus derechos fundamentales"
+      ],
+      "correcta": 0,
+      "tema_numero": 37
+    },
+    {
+      "numero": 23,
+      "enunciado": ". Los miembros de la Policía del País Vasco actuarán con absoluta neutralidad política e imparcialidad, y evitarán cualquier práctica abusiva o arbitraria respetando en todo momento los principios de igualdad y no discriminación, y los demás que se consignan en:",
+      "opciones": [
+        "la constitución española y la declaración de derechos humanos",
+        "la declaración de derechos humanos y el estatuto de autonomía",
+        "la constitución española y el código ético de la policía",
+        "de la constitución española"
+      ],
+      "correcta": 0,
+      "tema_numero": 37
+    },
+    {
+      "numero": 24,
+      "enunciado": "Los miembros de la Policía del País Vasco Deberán actuar en todo momento con integridad y dignidad, evitando todo comportamiento que pueda significar:",
+      "opciones": [
+        "pérdida de la confianza",
+        "pérdida de prestigio del cuerpo policial",
+        "comprometer la eficacia del servicio",
+        "todas con correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 37
+    },
+    {
+      "numero": 25,
+      "enunciado": "En sus relaciones con la ciudadanía el personal de la Policía del País Vasco:",
+      "opciones": [
+        "Evitará toda discriminación por razón de raza, etnia, religión, creencias, sexo, orientación sexual, edad, ideología, discapacidad o cualquier otra de similar naturaleza.",
+        "Observará un trato correcto y esmerado, actuando con empatía, y auxiliándoles en aquellas situaciones que requieran una actuación inmediata para evitar riesgo o desamparo",
+        "Ofrecerán a las personas a las que afecten sus intervenciones información suficiente y comprensible sobre las mismas, prestando singular atención a las víctimas de delitos y a otras personas que pertenezcan a colectivos especialmente vulnerables.",
+        "todas las anteriores son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 37
+    },
+    {
+      "numero": 26,
+      "enunciado": "cuál de las siguientes afirmaciones es correcta respecto a la policía del País vasco y el uso del Euskera:",
+      "opciones": [
+        "procurarán la adecuada capacitación del personal a su servicio para prestar servicio en una sociedad bilingüe",
+        "atender al ciudadano o ciudadana en la lengua que él o ella elija.",
+        "promoviendo el uso del euskera en dichos cuerpos",
+        "todas son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 37
+    },
+    {
+      "numero": 27,
+      "enunciado": "Deberán guardar secreto respecto a todas las informaciones que conozcan por razón o con ocasión del desempeño de sus funciones, salvo que:",
+      "opciones": [
+        "un juez le ordene a declarar",
+        "su superior jerárquico le pida que declare",
+        "salvo que el ejercicio de las mismas o las disposiciones de la ley les impongan actuar de otra manera.",
+        "todas son correctas"
+      ],
+      "correcta": 2,
+      "tema_numero": 37
+    },
+    {
+      "numero": 28,
+      "enunciado": "Los miembros de la Policía del País Vasco están obligados, incluso fuera del servicio, a observar los deberes inherentes a su función, debiendo intervenir siempre en:",
+      "opciones": [
+        "defensa de la ley",
+        "en caso de desgracia particular",
+        "en caso de calamidad pública",
+        "en todas las situaciones anteriores"
+      ],
+      "correcta": 3,
+      "tema_numero": 37
+    },
+    {
+      "numero": 29,
+      "enunciado": "En el ejercicio de sus funciones, los miembros de la Policía del País Vasco actuarán con la decisión necesaria, sin recurrir a la fuerza más allá de lo razonable y rigiéndose por los principios de:",
+      "opciones": [
+        "decisión y motivación",
+        "proporcionalidad y necesidad de los medios empleados",
+        "adecuación, necesidad y proporcionalidad en la utilización de los medios",
+        "razonabilidad en la utilización de los medios"
+      ],
+      "correcta": 2,
+      "tema_numero": 37
+    },
+    {
+      "numero": 30,
+      "enunciado": "¿Cuándo deberán identificarse como policías de País Vasco?",
+      "opciones": [
+        "cuando detengan a una persona",
+        "siempre que sea necesario",
+        "cuando lo demanden las personas con las que se relacionen en sus actuaciones",
+        "en todas las situaciones anteriores"
+      ],
+      "correcta": 0,
+      "tema_numero": 37
+    },
+    {
+      "numero": 31,
+      "enunciado": "Se identificarán ante los ciudadanos:",
+      "opciones": [
+        "después de las actuaciones policiales",
+        "previamente al inicio de las actuaciones policiales",
+        "en dependencias policiales",
+        "en cualquier momento"
+      ],
+      "correcta": 1,
+      "tema_numero": 37
+    },
+    {
+      "numero": 32,
+      "enunciado": "de conformidad con el artículo 36 Los miembros de la Policía del País Vasco velarán por la vida e integridad física de las personas",
+      "opciones": [
+        "detenidas",
+        "que se encuentren bajo su custodia",
+        "que realicen cualquier trámite en dependencias policiales",
+        "la a y la b son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 37
+    },
+    {
+      "numero": 33,
+      "enunciado": "los miembros de la Policía del País Vasco tendrán derecho a ser representados y defendidos  en procedimientos judiciales por:",
+      "opciones": [
+        "profesionales designados por la Administración pública",
+        "profesionales elegidos por ellos mismos",
+        "profesionales elegidos por sus superiores jerárquicos",
+        "por cualquiera de ellos"
+      ],
+      "correcta": 0,
+      "tema_numero": 37
+    },
+    {
+      "numero": 34,
+      "enunciado": "Cuando tengan motivos fundados para creer que se ha producido o va a producirse una violación del presente código, informarán a:",
+      "opciones": [
+        "su compañero que ha violado el código",
+        "a su superior jerárquico",
+        "a cualquier autoridad que tenga atribuciones correctivas",
+        "la respuesta b y c son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 37
+    },
+    {
+      "numero": 35,
+      "enunciado": "¿la  Escala de inspección que categorías tiene?",
+      "opciones": [
+        "las categorías de oficial y suboficial.",
+        "agente primero y agente.",
+        "las categorías de comisario o comisaria y subcomisario o subcomisaria.",
+        "las categorías de oficial y agente primero"
+      ],
+      "correcta": 0,
+      "tema_numero": 37
+    },
+    {
+      "numero": 36,
+      "enunciado": "¿la escala ejecutiva que categorías tiene?",
+      "opciones": [
+        "Corresponden preferentemente al personal perteneciente a la escala Superior funciones de:",
+        "dirección",
+        "orientación",
+        "coordinación"
+      ],
+      "correcta": 0,
+      "tema_numero": 37
+    }
+  ]
+}

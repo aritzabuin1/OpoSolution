@@ -1,0 +1,250 @@
+{
+  "convocatoria": "preparacion_tema_14",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "tema14",
+  "fuente_url": null,
+  "total_preguntas": 20,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "Es un derecho de los interesados en el procedimiento administrativo:",
+      "opciones": [
+        "Conocer, en cualquier momento, el estado de tramitación de los procedimientos",
+        "Conocer, el sentido del silencio administrativo que corresponda",
+        "A no presentar datos y documentos no exigidos por las normas aplicables al procedimiento de que se trate",
+        "Todos son derechos que el administrado ostenta"
+      ],
+      "correcta": 3,
+      "tema_numero": 14
+    },
+    {
+      "numero": 2,
+      "enunciado": "Las medidas provisionales se adoptarán:",
+      "opciones": [
+        "Únicamente iniciado ya el procedimiento para garantizar los derechos de los interesados",
+        "Antes de su iniciación en los casos de urgencia inaplazable, cuando sea necesario proteger provisionalmente los intereses implicados",
+        "Las medidas provisionales son exclusivas de la jurisdicción penal",
+        "Las opciones a) y b) son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 14
+    },
+    {
+      "numero": 3,
+      "enunciado": "La iniciación del procedimiento administrativo de oficio por la administración:",
+      "opciones": [
+        "Requerirá acuerdo del órgano competente",
+        "La iniciativa podrá ser propia",
+        "La iniciativa podrá ser consecuencia de una orden superior, a petición razonada de otros órganos o por denuncia",
+        "Todas son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 14
+    },
+    {
+      "numero": 4,
+      "enunciado": "Cuando el denunciante (en los supuestos de iniciación del procedimiento administrativo de oficio) haya participado en la comisión de una infracción, el órgano competente para resolver el procedimiento deberá:",
+      "opciones": [
+        "Eximir del pago de la multa al denunciante cuando sea el primero en aportar elementos de prueba que permitan iniciar el procedimiento",
+        "Reducir el importe del pago de la multa cuando la información que aporte constituya un valor añadido respecto de un procedimiento ya iniciado",
+        "Si se ha cometido una infracción, se responde siempre, en virtud del principio de responsabilidad.",
+        "Las respuestas a) y b) son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 14
+    },
+    {
+      "numero": 5,
+      "enunciado": "La tramitación simplificada del procedimiento administrativo común, se acuerda cuando así lo aconsejen razones de interés público o la falta de complejidad del procedimiento. ¿Pueden los administrados solicitarla?",
+      "opciones": [
+        "No, puesto que la ley establece que se acuerda siempre por parte de la Administración competente",
+        "Sí, puede ser solicitada por los interesados, pudiendo ser esa solicitud estimada o desestimada por parte de la administración",
+        "No requiere acuerdo, la tramitación por esa vía es automática en los supuestos citados",
+        "No existe una tramitación simplificada en el procedimiento administrativo común"
+      ],
+      "correcta": 1,
+      "tema_numero": 14
+    },
+    {
+      "numero": 6,
+      "enunciado": "La declaración de lesividad de actos anulables:",
+      "opciones": [
+        "No puede adoptarse pasados 4 años desde que se dictó el acto administrativo",
+        "No puede adoptarse pasados 3 años desde que se dictó el acto administrativo",
+        "No está sujeta a plazo, puesto que lo que hace es proteger al interés público frente a posibles lesiones que sufra en beneficio de particulares",
+        "No cabe la declaración de lesividad de actos anulables, solo de actos nulos de pleno derecho"
+      ],
+      "correcta": 0,
+      "tema_numero": 14
+    },
+    {
+      "numero": 7,
+      "enunciado": "¿Qué derechos según la ley tendrán los interesados?",
+      "opciones": [
+        "A conocer en cualquier momento el estado de la tramitación de los procedimientos",
+        "A identificar a las autoridades y al personal al servicio de las administraciones",
+        "A formular alegaciones y a utilizar los medios de defensa admitidos por el ordenamiento jurídico",
+        "Todas las anteriores son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 14
+    },
+    {
+      "numero": 8,
+      "enunciado": "¿Como se entenderá cumplida la obligación de la administración de facilitar copias de los documentos contenidos en los procedimientos?",
+      "opciones": [
+        "Mediante la puesta a disposición de las mismas en el punto de acceso general electrónico de la administración competente",
+        "En las sedes electrónicas",
+        "Presencialmente requeridas por los interesados que se personen",
+        "La a y la b son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 14
+    },
+    {
+      "numero": 9,
+      "enunciado": "¿en los procedimientos sancionadores, que derechos tendrán los presuntamente responsables?",
+      "opciones": [
+        "A actuar asistidos del asesor cuando así lo consideren conveniente",
+        "A ser notificados de los hechos que se le imputan",
+        "A la presunción de no existencia de responsabilidad administrativa mientras no se demuestre lo contrario",
+        "Todas son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 14
+    },
+    {
+      "numero": 10,
+      "enunciado": "¿Cómo se puede iniciar el procedimiento?",
+      "opciones": [
+        "De oficio",
+        "A petición del interesado",
+        "La a y la b son correctas",
+        "Ninguna es correcta"
+      ],
+      "correcta": 2,
+      "tema_numero": 14
+    },
+    {
+      "numero": 11,
+      "enunciado": "¿en qué momento del procedimiento podrá abrirse un periodo de información?",
+      "opciones": [
+        "Una vez iniciado el procedimiento",
+        "Antes de finalizar el procedimiento",
+        "Con anterioridad al inicio del procedimiento",
+        "Una vez que el procedimiento ha finalizado"
+      ],
+      "correcta": 2,
+      "tema_numero": 14
+    },
+    {
+      "numero": 14,
+      "enunciado": "Se tendrán por no adoptadas",
+      "opciones": [
+        "Ninguna es correcta",
+        "¿Cuál de las siguientes es una medida provisional?",
+        "Prestación de fianzas",
+        "Suspensión temporal de actividades"
+      ],
+      "correcta": 1,
+      "tema_numero": 14
+    },
+    {
+      "numero": 17,
+      "enunciado": "Antes de la iniciación del procedimiento",
+      "opciones": [
+        "Ninguna es correcta",
+        "¿Qué recurso se puede interponer contra el acuerdo de acumulación?",
+        "Recurso de amparo",
+        "Recurso de queja"
+      ],
+      "correcta": 1,
+      "tema_numero": 14
+    },
+    {
+      "numero": 23,
+      "enunciado": "Deberá tramitarlo con urgencia",
+      "opciones": [
+        "Ninguna es correcta",
+        "Si presentas una denuncia:",
+        "Te conviertes en interesado del procedimiento",
+        "Eres parte del procedimiento"
+      ],
+      "correcta": 1,
+      "tema_numero": 14
+    },
+    {
+      "numero": 26,
+      "enunciado": "La a y la b son correctas",
+      "opciones": [
+        "Ninguna es correcta",
+        "¿Qué plazo tienen los particulares lesionados para presentar alegaciones tras el acuerdo de iniciación del procedimiento?",
+        "5 días",
+        "15 días"
+      ],
+      "correcta": 1,
+      "tema_numero": 14
+    },
+    {
+      "numero": 29,
+      "enunciado": "3 días",
+      "opciones": [
+        "2 días",
+        "¿de acuerdo a que principio se acordará unir en un solo acto todos los tramites?",
+        "Principio de celeridad administrativa",
+        "Principio de simplicidad administrativa"
+      ],
+      "correcta": 1,
+      "tema_numero": 14
+    },
+    {
+      "numero": 30,
+      "enunciado": "Principio de simplificación administrativa",
+      "opciones": [
+        "Principio de agilización administrativa",
+        "¿Cuál de las cuestiones incidentales SI suspenderá la tramitación del procedimiento?",
+        "Nulidad de actuaciones",
+        "Abstención"
+      ],
+      "correcta": 1,
+      "tema_numero": 14
+    },
+    {
+      "numero": 34,
+      "enunciado": "Cuando sean ilógicas",
+      "opciones": [
+        "¿como regla general los informes cómo serán?",
+        "Preceptivos y no vinculantes",
+        "Facultativos y vinculantes",
+        "Preceptivos y vinculantes"
+      ],
+      "correcta": 0,
+      "tema_numero": 14
+    },
+    {
+      "numero": 39,
+      "enunciado": "Cinco meses",
+      "opciones": [
+        "¿Cuándo no serán inmediatamente ejecutivos los actos de las administraciones públicas?",
+        "Cuando se produzca la suspensión de la ejecución del acto",
+        "Cuando se necesite aprobación o autorización superior",
+        "Cuando una disposición establezca lo contrario"
+      ],
+      "correcta": 0,
+      "tema_numero": 14
+    },
+    {
+      "numero": 42,
+      "enunciado": "Según el orden que le dé el instructor",
+      "opciones": [
+        "¿Quién es el responsable de la tramitación del procedimiento?",
+        "El órgano administrativo que lo promueve",
+        "El órgano administrativo sancionados",
+        "El órgano que resuelve"
+      ],
+      "correcta": 0,
+      "tema_numero": 14
+    }
+  ]
+}

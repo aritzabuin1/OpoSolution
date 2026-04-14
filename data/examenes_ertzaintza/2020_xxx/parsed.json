@@ -1,0 +1,514 @@
+{
+  "convocatoria": "promocion_xxx",
+  "anno": 2020,
+  "turno": "interna",
+  "modelo": "xxx",
+  "fuente_url": null,
+  "total_preguntas": 42,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "De conformidad con el artículo 1 del código penal señala la opción verdadera:",
+      "opciones": [
+        "no será castigada ninguna acción ni omisión que no esté prevista con pena por ley anterior a su perpetración",
+        "no será castigada ninguna acción ni omisión que no esté prevista como delito por ley anterior a su perpetración",
+        "será castigada la acción u omisión, aunque no esté prevista como delito por ley anterior a su perpetración",
+        "todas las respuestas son falsas"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 2,
+      "enunciado": "El ayuntamiento está formado por:",
+      "opciones": [
+        "alcalde y concejales",
+        "alcalde, pleno y concejales",
+        "alcalde, teniente alcalde, pleno y junta de gobierno local",
+        "alcalde, teniente alcalde y junta de gobierno local"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 3,
+      "enunciado": "¿Quiénes forma parte de la población de los municipios?",
+      "opciones": [
+        "aquellos vecinos inscritos en el padrón municipal",
+        "aquellos vecinos tanto inscritos como no en el padrón municipal",
+        "aquellos vecinos mayores de edad y que se han inscrito en el padrón municipal",
+        "ninguna respuesta es correcta"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 4,
+      "enunciado": "¿En momento cabe la entrada en un domicilio por delito flagrante?",
+      "opciones": [
+        "siempre que exista consentimiento del titular",
+        "en cualquier momento que se constata que existe un flagrante delito",
+        "cuando un juez otorga autorización",
+        "en ningún momento se puede acceder a un domicilio por dicho motivo"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 5,
+      "enunciado": "De conformidad con el artículo 5 del código penal, señale la respuesta verdadera:",
+      "opciones": [
+        "no hay pena sin culpa o dolo",
+        "no hay pena sin dolo o imprudencia",
+        "no hay pena sin negligencia o culpa",
+        "no hay pena sin dolo o negligencia"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 6,
+      "enunciado": "Según el artículo 13 del código penal, si la pena por su extensión pueda considerarse entre grave y menos grave, ¿Cómo se califica el delito?",
+      "opciones": [
+        "el delito se considera en todo caso como menos grave",
+        "el delito se considera en todo caso como grave",
+        "la pena se considera en todo caso como grave",
+        "ninguna respuesta es válida"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 7,
+      "enunciado": "¿Cuál de las siguientes es una circunstancia agravante?",
+      "opciones": [
+        "ejecutar el hecho con premeditación y alevosía",
+        "ejecutar el hecho mediante disfraz y prevaleciéndose de las circunstancias del lugar",
+        "ejecutar el hecho mediante premeditación enseñamiento y alevosía",
+        "ejecutar el hecho mediante precio, promesa o recompensa"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 8,
+      "enunciado": "Señale la respuesta verdadera en cuanto a los reglamentos:",
+      "opciones": [
+        "podrán imponer penas",
+        "podrán crear un tributo",
+        "podrán imponer una prestación personal",
+        "podrán desarrollar materias reservadas a una ley que previamente ha sido dictada"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 9,
+      "enunciado": "El Parlamento Vasco está integrado por un número de representantes que deberá ser:",
+      "opciones": [
+        "proporcional a la población de cada uno de los tres territorios históricos",
+        "será igual número de cada uno de los tres territorios históricos",
+        "será variable dependiendo cual sea el territorio histórico",
+        "será proporcional número de miembros según las ciudades más pobladas de cada territorio histórico"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 10,
+      "enunciado": "El atenuante de confesión se podrá aplicar cuando el culpable declara la infracción ante las autoridades necesarias ¿en qué momento debe confesar para que pueda ser éste atenuante aplicable?",
+      "opciones": [
+        "podrá confesar en cualquier momento del procedimiento judicial",
+        "podrá confesar siempre y cuando lo haga antes de la celebración del acto de la vista de juicio oral",
+        "antes de conocer que el procedimiento judicial se dirigía contra el",
+        "todas son falsas"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 11,
+      "enunciado": "de conformidad con el artículo 29, ¿Quiénes son considerados cómplices en un delito?",
+      "opciones": [
+        "los que cooperan en la ejecución con un acto sin el cual no se habría efectuado",
+        "los que cooperan con actos anteriores o simultáneos",
+        "los que cooperan con actos anteriores o posteriores",
+        "ninguna respuesta es verdadera"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 12,
+      "enunciado": "¿Qué vehículo no es automóvil?",
+      "opciones": [
+        "vehículo mixto adaptable",
+        "turismo",
+        "vehículo especial",
+        "motocicletas con o sin sidecar"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 13,
+      "enunciado": "Según el artículo 27 del Código Penal, ¿Quiénes son responsables criminalmente?",
+      "opciones": [
+        "autores y cómplices",
+        "autores, cómplices y encubridores",
+        "autores y los que utilizan a otro como instrumento",
+        "autores y los que inducen a otro a ejecutarlo"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 14,
+      "enunciado": "Diga cuál de las siguientes es una infracción leve:",
+      "opciones": [
+        "circular un vehículo sin el alumbrado reglamentario",
+        "circular con una bici sin hacer uso del alumbrado reglamentario",
+        "circular en una bici sin hacer uso de las prendas reflectantes",
+        "la b y c son verdaderas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 15,
+      "enunciado": "¿Cómo se sanciona las infracciones que derivan del incumplimiento de asegurar los vehículos a motor?",
+      "opciones": [
+        "no lleva aparejada la comisión de ninguna infracción",
+        "se considera una infracción muy grave sancionada con arreglo al reglamento de circulación",
+        "se sanciona conforme la ley de seguridad vial",
+        "se sanciona con arreglo a su legislación especifica"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 16,
+      "enunciado": "¿Quién será responsable por la no utilización de los sistemas de retención infantil?",
+      "opciones": [
+        "el titular del vehículo y arrendatario a largo plazo",
+        "el conductor habitual",
+        "el pasajero",
+        "el conductor, con la excepción de los conductores profesionales"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 17,
+      "enunciado": "¿Quién es responsable por no usar el casco por parte del pasajero de una motocicleta?",
+      "opciones": [
+        "siempre el conductor",
+        "el pasajero",
+        "el titular del vehículo",
+        "el pasajero, excepto en el caso de conductores profesionales del artículo 13.4"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 18,
+      "enunciado": "Si no se identifica por parte del titular o arrendatario al conductor que realizó la infracción, ¿Cuál es la sanción prevista en la ley?",
+      "opciones": [
+        "será una sanción de 1.000 euros",
+        "será una sanción de 6.000 euros",
+        "será una sanción de 3.000 y 20.000 euros",
+        "la multa es el doble si es leve, y el triple si es grave o muy grave"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 19,
+      "enunciado": "Sí se conduce un vehículo que tenga instalado inhibidor, ¿Cuál es el importe de la multa?",
+      "opciones": [
+        "de 3.000-20.000 euros",
+        "de 6.000 euros",
+        "de 500 euros",
+        "de 1.000 euros"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 20,
+      "enunciado": "¿Qué tipo de agravante se aplica, si al delinquir el culpable ya hubiera sido condenado ejecutoriamente por un delito comprendido en el mismo título del código penal, siempre que sea de la misma naturaleza?",
+      "opciones": [
+        "reiteración delictiva",
+        "persistencia en la incriminación",
+        "reincidencia",
+        "alevosía"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 21,
+      "enunciado": "Las instituciones de Euskadi tienen el regimen de la policía autonómica. Señale la respuesta verdadera:",
+      "opciones": [
+        "Los servicios policiales extracomunitarios",
+        "Los servicios policiales supracomunitarios",
+        "Los servicios policiales comunitarios",
+        "La protección de personas y bienes dentro de Euskadi"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 22,
+      "enunciado": "¿Cuál de las siguientes es una circunstancia atenuante?",
+      "opciones": [
+        "Obrar por causas u estímulos tan poderosos que hayan producido arrebato, obcecación u otro estado pasional de entidad semejante",
+        "Confesar a las autoridades antes del juicio oral la responsabilidad en un delito",
+        "Obrar por miedo insuperable",
+        "Todas son circunstancias atenuantes"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 23,
+      "enunciado": "¿Cuándo existe proposición?",
+      "opciones": [
+        "Cuando dos o más personas se conciertan para la ejecución de un delito y resuelven ejecutarlo",
+        "Cuando el que ha resuelto cometer un delito invita a otra persona a participar en él",
+        "Cuando se incita a una persona por cualquier medio de difusión a cometer un delito, ensalzan el crimen o enalteciendo al autor",
+        "Ninguna respuesta se corresponde con el concepto de proposición"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 24,
+      "enunciado": "¿Qué requisitos son necesarios para que se dé el ESTADO DE NECESIDAD?",
+      "opciones": [
+        "Agresión ilegitima, medio razonable para impedirla o repelerla y falta de provocación suficiente por parte del ofensor",
+        "Que el mal causado no sea mayor del que se trate de evitar, que la situación de necesidad no haya sido provocada intencionadamente y que el necesitado no tengo por su oficio o cargo obligación de sacrificarse",
+        "Agresión ilegitima, que el mal causado no sea mayor del que se trate de evitar y que la situación sea buscada por el mismo",
+        "Que el mal causado no sea menor del que se trate de evitar, que la situación de necesidad no haya sido provocada intencionadamente y que el necesitado no tengo por su oficio o cargo obligación de sacrificarse"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 25,
+      "enunciado": "¿Cuál NO es un requisito de la legitima defensa propia o ajena?",
+      "opciones": [
+        "Agresión ilegitima",
+        "Que la persona ofendida no tenga por razón de su oficio o cargo, obligación de sacrificarse",
+        "Necesidad racional del medio para impedirla o repelerla",
+        "Todos son requisitos de la legitima defensa"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 26,
+      "enunciado": "Si se quiere notificar una denuncia, y no la persona denunciada no se encuentra en el domicilio, pero hay otra persona en el mismo; ¿qué ocurre con la notificación?",
+      "opciones": [
+        "Se dejará constancia del intento, y se procederá a un nuevo intento, dentro de los tres días siguientes",
+        "Se podrá hacer cargo cualquier persona que se identifique",
+        "Se podrá hacer cargo la persona mayor de 14 años y que se identifique",
+        "Se le tendrá por notificado a todos los efectos"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 27,
+      "enunciado": "¿Cuál es válida respecto a la prueba de alcohol y de drogas?",
+      "opciones": [
+        "La prueba de contraste corre a cargo del interesado que la solicita",
+        "La prueba es un coste asumido por la Administración",
+        "A petición del personal sanitario, se podrá hacer prueba de contraste en el hospital como sustitución de los aparatos utilizados por los agentes de la autoridad",
+        "A petición del interesado, y como sustitución de los aparatos utilizados por los agentes actuantes, se podrá realizar las pruebas para la detección de alcohol y drogas en el hospital"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 28,
+      "enunciado": "De las siguientes prohibiciones, ¿de que están exentos los agentes de la autoridad en la conducción?",
+      "opciones": [
+        "Queda prohibido conducir utilizando cualquier tipo de casco de audio o auricular conectado a aparatos o reproductores de sonido",
+        "Se prohíbe la utilización durante la conducción de dispositivos de telefonía móvil, navegadores o cualquier otro medio o sistema de comunicación",
+        "Están exentos de todo, puesto que están por encima de las normas de trafico",
+        "Conducir utilizando dispositivos que disminuyan la atención permanente a la conducción"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 29,
+      "enunciado": "Es una competencia municipal… señale la opción verdadera",
+      "opciones": [
+        "Las infracciones relativas a las condiciones técnicas de los vehículos, así como sus inspecciones técnicas",
+        "Las infracciones relativas al no aseguramiento del vehículo",
+        "Las infracciones sobre los permisos de conducir, así como las autorizaciones para circular",
+        "Ninguna de las anteriores es verdadera"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 30,
+      "enunciado": "¿En qué año unificó EUSKALTZAINDIA la lengua vasca a nivel literario?",
+      "opciones": [
+        "1899",
+        "1995",
+        "1918",
+        "1968"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 31,
+      "enunciado": "¿Qué es la TASA DE MIGRACIÓN NETA?",
+      "opciones": [
+        "Los cambios de domicilio fuera de un municipio",
+        "La diferencia entre las tasas de inmigración y emigración",
+        "Los desplazamientos que implican un cambio de residencia habitual",
+        "Los cambios de domicilio dentro de un municipio"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 32,
+      "enunciado": "La mayor parte de EUSKADI, es de suelos:",
+      "opciones": [
+        "Volcánicos",
+        "Inestables",
+        "Fosfatos",
+        "Pardos y pardo-calizos"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 33,
+      "enunciado": "Según el artículo 2 de la Ley de Policía del País Vasco, ¿a que se aplica esta ley?",
+      "opciones": [
+        "A los cuerpos de policía que actúan en Euskadi",
+        "A los cuerpos de policía dependientes de la administración de la CAV",
+        "A los cuerpos de policía dependientes de la administración local",
+        "Las respuestas b y c son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 34,
+      "enunciado": "¿Que comprende el Tribunal de Justicia de la UE?",
+      "opciones": [
+        "El Tribunal de Justicia y los especializados",
+        "El Tribunal de Justicia, el Tribunal General, los especializados y el Tribunal de Primera Instancia",
+        "El Tribunal de Justicia y el General",
+        "El Tribunal de Justicia, el General y los especializados"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 35,
+      "enunciado": "De acuerdo con el Convenio Europeo de DDHH, ¿a que tiene derecho una persona acusada?",
+      "opciones": [
+        "A disponer del tiempo y las facilidades necesarias para preparar su defensa",
+        "A defenderse a sí mismo o escoger al que le defienda, sino tiene medios para pagarla, poder ser asistido gratuitamente por un abogado de oficio cuando los intereses de la justicia así lo exijan",
+        "A ser informado en el más breve plazo, en una lengua que comprenda y detalladamente, de la naturaleza y la causa de la acusación formulada contra ella",
+        "Todos son derechos de la persona acusada"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 36,
+      "enunciado": "El Parlamento Vasco, mediante la aprobación de la ley 2/1998 de 5 de febrero de creación del instituto vasco de la mujer, declaró prioritario:",
+      "opciones": [
+        "Asumir la tarea de impulsar una acción coordinada en materia de igualdad",
+        "Adoptar medidas necesarias para fomentar la participación en Euskadi",
+        "Eliminar de forma efectiva las formas discriminatorias hacia la mujer",
+        "Todas las respuestas son verdaderas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 37,
+      "enunciado": "Según la ley de igualdad de Euskadi, no se considerará discriminatorio… señale la respuesta verdadera:",
+      "opciones": [
+        "Las medidas que, aunque planteando un tratamiento diferente entre mujeres y hombres, están justificadas objetiva y razonadamente",
+        "Las medidas que, aunque planteando un tratamiento diferente entre hombres y mujeres, no están justificadas objetiva y razonadamente",
+        "Las medidas que, aunque planteen un tratamiento equidistante para las mujeres y hombres tienen justificación razonable y objetiva",
+        "Todas las respuestas son verdaderas"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 38,
+      "enunciado": "De las siguientes infracciones, ¿Cuál lleva aparejada una pérdida de 4 puntos del permiso?",
+      "opciones": [
+        "Conducir con presencia de drogas en el organismo",
+        "Conducir vehículos que tengan instalados inhibidores de radares o cinemómetros o cualesquiera encaminados a interferir en el correcto funcionamiento de los sistemas de vigilancia del trafico",
+        "Conducir un vehículo con un permiso o licencia que no le autorice para ello",
+        "Negarse a someterse a las pruebas de detención de alcohol o drogas"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 39,
+      "enunciado": "La actual regulación de la ley de prevención de riesgos …",
+      "opciones": [
+        "Tiene el carácter de derecho necesario mínimo indisponible, pudiendo ser desarrolladas, así como mejoradas en los convenios colectivos",
+        "Establece los principios generales de la prevención de los riesgos, la consulta, información, formación y participación de los trabajadores",
+        "Promueve la seguridad y salud de las personas trabajadoras aplicando las medidas necesarias para la prevención del riesgo del trabajo",
+        "Todas las respuestas anteriores son verdaderas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 40,
+      "enunciado": "¿Que factores se encuentran en la justificación de implantar planes de emergencia en edificios y espacios públicos?",
+      "opciones": [
+        "Existencia de personal foráneo",
+        "Características de los ocupantes",
+        "Densidad de ocupación",
+        "Todas las anteriores son factores"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 41,
+      "enunciado": "El ABRAZO DE VERGARA, SE FIRMÓ POR:",
+      "opciones": [
+        "Prim y Zumalacárregui",
+        "Maroto y Espartero",
+        "Castaños y Wellington",
+        "Serrano y Espartero"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 42,
+      "enunciado": "Según la ley de policía, no se recurrirá al uso de la fuerza más allá de lo razonable y rigiéndose por los principios de:",
+      "opciones": [
+        "Adecuación, necesidad y proporcionalidad",
+        "Necesidad, proporcionalidad y oportunidad",
+        "Necesidad, no discriminación y proporcionalidad",
+        "Ninguna respuesta es correcta"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    }
+  ]
+}

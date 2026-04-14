@@ -1,0 +1,418 @@
+{
+  "convocatoria": "preparacion_octubre",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "oct",
+  "fuente_url": null,
+  "total_preguntas": 34,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "¿Qué es un reglamento?",
+      "opciones": [
+        "Norma de rango inferior a la ley hecha por las cortes generales",
+        "Norma de rango legal hecha por las administraciones públicas",
+        "Norma de rango inferior a la ley hecha por las administraciones publicas",
+        "Norma de rango legal hecha por las cortes generales"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 2,
+      "enunciado": "¿Cuál es la norma fundamental del Estado?",
+      "opciones": [
+        "El código civil",
+        "El código penal",
+        "La constitución española de 1812",
+        "La constitución española de 1978"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 3,
+      "enunciado": "¿En qué articulo de la constitución española viene recogido el derecho a la educación?",
+      "opciones": [
+        "21",
+        "24",
+        "27",
+        "25"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 4,
+      "enunciado": "¿en que tipo de norma se podrán establecer materias que no sean susceptibles de ser delegadas?",
+      "opciones": [
+        "En un reglamento",
+        "En una norma de rango legal",
+        "En una norma inferior a la ley",
+        "En una ley orgánica"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 5,
+      "enunciado": "De acuerdo con el convenio europeo de DDHH, toda persona acusada tiene como mínimo, los siguientes derechos… Señale la opción verdadera",
+      "opciones": [
+        "A ser informada en el plazo más breve posible, en una lengua que le sea comprensible y detalladamente, de la naturaleza, y de la causa de la acusación formulada contra el",
+        "A disponer del tiempo y facilidades necesarias para la preparación de su defensa",
+        "A ser defendido por abogado particular o de oficio",
+        "Todas son derechos de la persona acusada, por tanto, todas las opciones son verdaderas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 6,
+      "enunciado": "¿Cuánto dura la prisión provisional? Señale la opción correcta",
+      "opciones": [
+        "72 horas",
+        "48 horas",
+        "Lo necesario para el esclarecimiento de los hechos, como máximo 72 horas",
+        "Lo que determine la ley"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 7,
+      "enunciado": "¿En qué articulo de la constitución española se recogen los derechos de defensa?",
+      "opciones": [
+        "Art. 24",
+        "Art. 23",
+        "Art. 25",
+        "Art. 15"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 8,
+      "enunciado": "Según lo dispuesto en el artículo 17 del código penal, la proposición existe:",
+      "opciones": [
+        "Cuando se incita a una persona a la perpetración del delito a través de difusión",
+        "Cuando el que ha resuelto cometer un delito invita a otro u otras personas a participar en el",
+        "Cuando dos o más personas se conciertan para ejecutar un delito y resuelven ejecutarlo",
+        "Cuando dos o más personas se conciertan para ejecutar un delito y resuelven no ejecutarlo"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 9,
+      "enunciado": "De conformidad con el artículo 30 del código penal, delitos cometidos a través de medios de difusión mecánicos, ¿Quiénes responden criminalmente de dichos delitos?",
+      "opciones": [
+        "Los autores y cómplices",
+        "Los autores, cómplices y los que lo hubieran favorecido real o personalmente",
+        "Los autores",
+        "Los que lo hubieran favorecido real o personalmente"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 10,
+      "enunciado": "En relación con la pregunta anterior, ¿de que manera responden los autores?",
+      "opciones": [
+        "De forma escalonada, subsidiaria y excluyente",
+        "De forma escalonada, supletoria y excluyente",
+        "De manera seria, firme y decida",
+        "Ninguna respuesta es correcta"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 11,
+      "enunciado": "El parlamento vasco está integrado por:",
+      "opciones": [
+        "Un número igual de cada TTHH",
+        "Un número proporcional de cada TTHH",
+        "Variable en función de la población de cada TTHH",
+        "Ninguna es correcta"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 12,
+      "enunciado": "Un reglamento puede:",
+      "opciones": [
+        "Imponer una pena",
+        "Modificar una ley",
+        "Desarrollar una ley previamente dictada",
+        "B y c son correctas"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 13,
+      "enunciado": "La entrada en un domicilio en caso de flagrante delito sin autorización de su titular:",
+      "opciones": [
+        "Es ilegal, necesitando orden judicial para entrar en la misma",
+        "No podrá realizarse en ningún momento",
+        "Se podrá hacer en todo momento",
+        "Ninguna respuesta es verdadera"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 14,
+      "enunciado": "¿Qué carácter tiene la actuación de los órganos administrativos?",
+      "opciones": [
+        "Obligatorio",
+        "Preceptivo",
+        "Voluntario",
+        "Facultativo"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 15,
+      "enunciado": "¿Cómo podrán dirigir los órganos las actividades de sus órganos jerárquicamente dependientes?",
+      "opciones": [
+        "A través de ordenes",
+        "A través de instrucciones de servicio",
+        "Mediante ordenes e instrucciones de servicio",
+        "Mediante instrucciones y ordenes de servicio"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 16,
+      "enunciado": "Señale la opción verdadera respecto al artículo 16 de la Ley 40/2015:",
+      "opciones": [
+        "La creación de un nuevo órgano solo tendrá lugar previa comprobación de que no existe otro órgano en la misma Administración Pública que desarrolle igual función en el mismo territorio",
+        "La creación de un nuevo órgano solo tendrá lugar previa comprobación de que no existe otro órgano en la misma Administración Pública que desarrolle igual función en el mismo territorio y población",
+        "La creación de un nuevo órgano solo tendrá lugar previa comprobación de que no existe otro órgano en distinta Administración Pública que desarrolle igual función en el mismo territorio",
+        "La creación de un nuevo órgano solo tendrá lugar previa comprobación de que no existe otro órgano en la distinta Administración Pública que desarrolle igual función en el mismo territorio y población"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 17,
+      "enunciado": "¿A quién le corresponde delimitar las unidades administrativas que configuran los órganos administrativos?",
+      "opciones": [
+        "A las administraciones públicas",
+        "A los órganos administrativos",
+        "A los órganos administrativos jerárquicamente dependientes",
+        "A los órganos delegantes"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 18,
+      "enunciado": "¿Cómo se podrá articular la administración consultiva?",
+      "opciones": [
+        "Mediante órganos específicos",
+        "Mediante órganos independientes",
+        "Mediante órganos autónomos orgánicamente",
+        "Ninguna respuesta es verdadera"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 19,
+      "enunciado": "¿Cómo es la competencia?",
+      "opciones": [
+        "Irrenunciable",
+        "Irrenunciable se ejerce por quien tiene la titularidad",
+        "Irrenunciable se ejerce por quien la tiene atribuida como propia, salvo los casos de avocación y delegación",
+        "Ninguna respuesta es verdadera"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 20,
+      "enunciado": "¿A quién se puede desconcentrar titularidad y ejercicio?",
+      "opciones": [
+        "A órganos no dependientes jerárquicamente",
+        "A órganos dependientes jerárquicamente",
+        "A cualquier órgano de la administración dependiente o no",
+        "Ninguna respuesta es verdadera"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 21,
+      "enunciado": "Señale la respuesta verdadera respecto a la delegación de competencias prevista en el artículo 9 de la Ley 40/2015",
+      "opciones": [
+        "Los órganos de las diferentes Administraciones Públicas podrán delegar el ejercicio de las competencias que tengan atribuidas en otros órganos de la misma administración cuando sean jerárquicamente dependientes",
+        "Los órganos de las diferentes Administraciones Públicas podrán delegar el ejercicio de las competencias que tengan atribuidas en otros órganos de la misma administración cuando no sean jerárquicamente dependientes",
+        "Los órganos de las diferentes Administraciones Públicas podrán delegar el ejercicio de las competencias que tengan atribuidas en otros órganos de la misma administración, aunque no sean jerárquicamente dependientes",
+        "os órganos de las diferentes Administraciones Públicas podrán delegar el ejercicio de las competencias que tengan atribuidas en otros órganos de distinta administración cuando sean jerárquicamente dependientes"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 22,
+      "enunciado": "¿Quién puede avocar?",
+      "opciones": [
+        "Los órganos superiores jerárquicamente",
+        "Los órganos delegantes",
+        "Los órganos superiores",
+        "Los órganos dependientes"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 23,
+      "enunciado": "¿A quién se puede avocar?",
+      "opciones": [
+        "A los órganos inferiores",
+        "A los órganos dependientes",
+        "A los órganos superiores",
+        "Ninguna respuesta es correcta"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 24,
+      "enunciado": "Señale la respuesta verdadera respecto a la encomienda de gestión:",
+      "opciones": [
+        "La relación de actividades de carácter material o técnico de la competencia de los órganos administrativos o de las entidades de derecho público podrá ser encomendada a otros órganos o entidades de derecho público de la misma administración",
+        "La relación de actividades de carácter material o técnico de la competencia de los órganos administrativos o de las entidades de derecho público podrá ser encomendada a otros órganos o entidades de derecho público de distinta administración",
+        "La relación de actividades de carácter material o técnico de la competencia de los órganos administrativos o de las entidades de derecho público podrá ser encomendada a otros órganos o entidades de derecho público de la misma o distinta administración",
+        "La relación de actividades de carácter material de la competencia de los órganos administrativos o de las entidades de derecho público podrá ser encomendada a otros órganos o entidades de derecho público de la misma o distinta administración"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 25,
+      "enunciado": "¿En que casos puede existir suplencia?",
+      "opciones": [
+        "Ausencia, vacante, enfermedad o causa justificante",
+        "Ausencia, enfermedad y vacante",
+        "Ausencia, vacante, enfermedad, abstención y causa justificada",
+        "Ausencia, vacante, enfermedad, abstención y recusación"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 26,
+      "enunciado": "¿Cuándo estamos ante un órgano colegiado?",
+      "opciones": [
+        "Cuando esta formado por dos o más personas",
+        "Cuando esta formado por tres o más personas",
+        "Cuando esta formado por tres personas",
+        "Cuando esta formado por cuatro personas o más"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 27,
+      "enunciado": "¿Quién levanta el acta?",
+      "opciones": [
+        "El presidente",
+        "El secretario",
+        "Cualquier miembro del órgano colegiado",
+        "El funcionario de la administración pública"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 28,
+      "enunciado": "¿Quién puede ser secretario?",
+      "opciones": [
+        "Un miembro del órgano colegiado",
+        "Una persona que trabaja para la administración pública",
+        "A y b son correctas",
+        "Solo será secretario el presidente"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 29,
+      "enunciado": "¿Cuáles son los medios electrónicos válidos para celebrar sesiones del órgano colegiado a distancia?",
+      "opciones": [
+        "Correo electrónico, audioconferencias y videoconferencias",
+        "Mensajería instantánea, videoconferencias y call",
+        "Mensajes telefónicos, audioconferencias y zoom",
+        "Ninguna respuesta esta verdadera"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 31,
+      "enunciado": "¿Diga cuál de las siguientes NO es una circunstancia eximente?",
+      "opciones": [
+        "Miedo insuperable",
+        "Legítima defensa",
+        "Actuar el culpable por su grave adicción a las drogas",
+        "Todas son circunstancias eximentes"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 32,
+      "enunciado": "¿Con cuantos días antes hay que enviar la convocatoria para una sesión de un órgano colegiado?",
+      "opciones": [
+        "Con dos días antes",
+        "Con un mínimo de dos días antes",
+        "Con un mínimo de un día",
+        "Un día antes"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 33,
+      "enunciado": "¿Cuándo se entiende válidamente constituido un órgano colegiado?",
+      "opciones": [
+        "Cuando está presidente, secretario, sus suplentes y la mitad de sus miembros",
+        "Cuando está presidente, secretario y al menos la mitad de sus miembros",
+        "Cuando está presidente, secretario, sus suplentes, y al menos la mitad de sus miembros",
+        "Ninguna respuesta es verdadera"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 34,
+      "enunciado": "No son responsables criminalmente los menores de:",
+      "opciones": [
+        "14 años",
+        "18 años",
+        "16 años",
+        "12 años"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 35,
+      "enunciado": "La constitución española garantiza la libertad ideológica, religiosa y de culto sin más limitaciones que:",
+      "opciones": [
+        "La necesaria para el mantenimiento del orden publico",
+        "La necesaria para el mantenimiento de la paz social",
+        "No se desarrolle en lugares de tránsito publico",
+        "Todas las respuestas son verdaderas"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    }
+  ]
+}

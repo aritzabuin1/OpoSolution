@@ -125,7 +125,8 @@ async function ingestExamen(
   supabase: SupabaseClient,
   examenParsed: ExamenParsed,
   oposicionId: string,
-  maxPuntuable: number = 200
+  maxPuntuable: number = 200,
+  temaMap: Map<number, string> = new Map()
 ): Promise<{ ok: boolean; examenId?: string; preguntasInsertadas: number }> {
   console.log(
     `\n📥 Ingesta: ${examenParsed.convocatoria}${examenParsed.modelo ? ` modelo ${examenParsed.modelo}` : ''}`
@@ -212,7 +213,7 @@ async function ingestExamen(
       enunciado: p.enunciado,
       opciones: p.opciones,
       correcta: p.correcta,
-      tema_id: null as string | null, // Se puede mapear manualmente después
+      tema_id: (p.tema_numero ? (temaMap.get(p.tema_numero) ?? null) : null) as string | null,
       dificultad: null as string | null,
     }))
 
@@ -272,12 +273,15 @@ function discoverParsedJsons(targetAnno?: string): JsonDescubierto[] {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
-  // Filter out --dir and --oposicion flags and their values from positional args
+  // Filter out flags and their values from positional args
+  const flagsWithValues = ['--dir', '--oposicion']
+  const flagsBoolean = ['--no-limit']
   const positionalArgs = process.argv.slice(2).filter((arg, i, arr) => {
-    if (arg === '--dir' || arg === '--oposicion') return false
-    if (i > 0 && (arr[i - 1] === '--dir' || arr[i - 1] === '--oposicion')) return false
+    if (flagsWithValues.includes(arg) || flagsBoolean.includes(arg)) return false
+    if (i > 0 && flagsWithValues.includes(arr[i - 1])) return false
     return true
   })
+  const noLimit = process.argv.includes('--no-limit')
   const [targetAnno] = positionalArgs
   const slug = resolveOposicionSlug()
 
@@ -313,7 +317,26 @@ async function main() {
       if (totalPuntuable > 0) maxPuntuable = totalPuntuable
     }
   } catch { /* use fallback */ }
-  console.log(`✅ Oposición ID: ${oposicionId} (max puntuable: ${maxPuntuable})\n`)
+
+  // --no-limit: skip maxPuntuable filter (for preparation material where ALL questions are valuable)
+  if (noLimit) {
+    maxPuntuable = 99999
+    console.log(`✅ Oposición ID: ${oposicionId} (--no-limit: sin filtro de reserva)\n`)
+  } else {
+    console.log(`✅ Oposición ID: ${oposicionId} (max puntuable: ${maxPuntuable})\n`)
+  }
+
+  // Load temas map for tema_numero → tema_id resolution
+  const { data: temasData } = await (supabase as ReturnType<typeof createClient>)
+    .from('temas')
+    .select('id, numero')
+    .eq('oposicion_id', oposicionId)
+  const temaMap = new Map<number, string>(
+    temasData?.map((t: { id: string; numero: number }) => [t.numero, t.id]) ?? []
+  )
+  if (temaMap.size > 0) {
+    console.log(`📚 Mapa de temas cargado: ${temaMap.size} temas`)
+  }
 
   const jsons = discoverParsedJsons(targetAnno)
 
@@ -330,7 +353,7 @@ async function main() {
 
   for (const { anno, filePath } of jsons) {
     const examenParsed = JSON.parse(fs.readFileSync(filePath, 'utf-8')) as ExamenParsed
-    const result = await ingestExamen(supabase, examenParsed, oposicionId, maxPuntuable)
+    const result = await ingestExamen(supabase, examenParsed, oposicionId, maxPuntuable, temaMap)
 
     if (result.ok) {
       totalPreguntas += result.preguntasInsertadas

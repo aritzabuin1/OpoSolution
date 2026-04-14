@@ -1,0 +1,130 @@
+{
+  "convocatoria": "preparacion_tema_11",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "tema11",
+  "fuente_url": null,
+  "total_preguntas": 10,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "El conjunto de bienes, derechos y acciones que pertenecen a las Entidades Locales es su:",
+      "opciones": [
+        "Patrimonio",
+        "Activo",
+        "Bienes",
+        "ninguna respuesta es correcta"
+      ],
+      "correcta": 0,
+      "tema_numero": 11
+    },
+    {
+      "numero": 2,
+      "enunciado": "Los pastos o las leñas es un bien de:",
+      "opciones": [
+        "Aprovechamiento de un uso común",
+        "Aprovechamiento de un servicio común",
+        "Aprovechamiento de un bien comunal",
+        "ninguna respuesta es correcta"
+      ],
+      "correcta": 2,
+      "tema_numero": 11
+    },
+    {
+      "numero": 3,
+      "enunciado": "Un cementerio sería un bien:",
+      "opciones": [
+        "de uso común",
+        "De uso público",
+        "De servicio público",
+        "ninguna respuesta es verdadera"
+      ],
+      "correcta": 2,
+      "tema_numero": 11
+    },
+    {
+      "numero": 4,
+      "enunciado": "Una calle sería un bien:",
+      "opciones": [
+        "de uso común",
+        "De uso público",
+        "De servicio público",
+        "ninguna respuesta es verdadera"
+      ],
+      "correcta": 1,
+      "tema_numero": 11
+    },
+    {
+      "numero": 5,
+      "enunciado": "Los bienes son:",
+      "opciones": [
+        "inalienables, inembargables e inmutables",
+        "inalienables, inembargables e imprescriptibles",
+        "inalienables e inmutables",
+        "ninguna respuesta es correcta"
+      ],
+      "correcta": 1,
+      "tema_numero": 11
+    },
+    {
+      "numero": 6,
+      "enunciado": "No es un bien patrimonial:",
+      "opciones": [
+        "Una plaza",
+        "Una parcela sobrante",
+        "Un efecto no utilizable",
+        "ninguna respuesta es correcta"
+      ],
+      "correcta": 0,
+      "tema_numero": 11
+    },
+    {
+      "numero": 7,
+      "enunciado": "Si los bienes se hubieren adquirido bajo condición o modalidad de su afectación permanente a determinados destinos, se entenderá cumplida y consumada cuando hubieren servido al mismo durante:",
+      "opciones": [
+        "Cincuenta años",
+        "Treinta años",
+        "Sesenta años",
+        "Cuarenta años"
+      ],
+      "correcta": 1,
+      "tema_numero": 11
+    },
+    {
+      "numero": 8,
+      "enunciado": "Las Corporaciones Locales pueden adquirir bienes y derechos por…",
+      "opciones": [
+        "Por atribución de ley",
+        "Por herencia, legado o donación",
+        "por prescripción",
+        "todas las respuestas son verdaderas"
+      ],
+      "correcta": 3,
+      "tema_numero": 11
+    },
+    {
+      "numero": 9,
+      "enunciado": "La adquisición de bienes a título oneroso exigirá el informe del órgano estatal o autonómico competente, siempre que su importe exceda del:",
+      "opciones": [
+        "1 por 100 de los recursos ordinarios del Presupuesto",
+        "5 por 100 de los recursos ordinarios del Presupuesto",
+        "10 por 100 de los recursos ordinarios del Presupuesto",
+        "33 por 100 de los recursos ordinarios del Presupuesto"
+      ],
+      "correcta": 0,
+      "tema_numero": 11
+    },
+    {
+      "numero": 10,
+      "enunciado": "Aquellos bienes que por su deterioro, depreciación o deficiente Estado de conservación resultaren inaplicables a los servicios municipales o al normal aprovechamiento, atendida su naturaleza y destino son:",
+      "opciones": [
+        "Bienes comunales",
+        "Efectos no utilizables",
+        "Bienes no utilizables",
+        "ninguna respuesta es correcta"
+      ],
+      "correcta": 1,
+      "tema_numero": 11
+    }
+  ]
+}

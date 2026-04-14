@@ -1,0 +1,286 @@
+{
+  "convocatoria": "preparacion_tema_10",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "tema10",
+  "fuente_url": null,
+  "total_preguntas": 23,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "¿Qué carácter tiene la actuación de los órganos administrativos?",
+      "opciones": [
+        "Carácter preceptivo",
+        "Carácter voluntario",
+        "Carácter facultativo",
+        "Ninguna es correcta"
+      ],
+      "correcta": 0,
+      "tema_numero": 10
+    },
+    {
+      "numero": 2,
+      "enunciado": "Cuál de los siguientes es un requisito para la creación de un órgano administrativo",
+      "opciones": [
+        "Determinacion de su forma de integración en la administración publica",
+        "Delimitación de sus funciones y competencia",
+        "Dotación de los créditos necesarios para su puesto en marcha y funcionamiento",
+        "Todas son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 10
+    },
+    {
+      "numero": 3,
+      "enunciado": "¿Cuándo NO se podrán crear órganos?",
+      "opciones": [
+        "Cuando supongan duplicidad de otros ya existentes",
+        "Cuando sean órganos similares a otros ya existentes",
+        "La a y la b son correctas",
+        "Todas son incorrectas"
+      ],
+      "correcta": 0,
+      "tema_numero": 10
+    },
+    {
+      "numero": 4,
+      "enunciado": "¿Cómo podrán dirigir los órganos administrativos las actividades de los órganos que dependen de ellos jerárquicamente?",
+      "opciones": [
+        "Mediante supervisión",
+        "Mediante instrucciones",
+        "Mediante ordenes de servicio",
+        "La b y la c son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 10
+    },
+    {
+      "numero": 5,
+      "enunciado": "¿Cómo puede articularse la administración consultiva ¿",
+      "opciones": [
+        "mediante órganos genéricos",
+        "mediante órganos específicos",
+        "mediante órganos independientes",
+        "todas son correctas"
+      ],
+      "correcta": 1,
+      "tema_numero": 10
+    },
+    {
+      "numero": 6,
+      "enunciado": "¿Cómo es la competencia?",
+      "opciones": [
+        "Renunciable",
+        "Irrenunciable",
+        "Es irrenunciable y se ejercerá por los órganos que la tengan atribuida como propia",
+        "La b y la c son correctas"
+      ],
+      "correcta": 2,
+      "tema_numero": 10
+    },
+    {
+      "numero": 7,
+      "enunciado": "¿en qué caso NO podrán ser objeto de delegación de competencias?",
+      "opciones": [
+        "Cuando se refieran a asuntos con la Jefatura del Estado",
+        "Con la presidencia del gobierno",
+        "Presidencias de los consejos de gobierno de las comunidades",
+        "Todas con correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 10
+    },
+    {
+      "numero": 8,
+      "enunciado": "¿por quien se consideran dictadas las resoluciones administrativas que se adopten por delegación ¿",
+      "opciones": [
+        "por el órgano delegante",
+        "por el órgano delegado",
+        "por ambos dependiendo del asunto o materia",
+        "ninguna es correcta"
+      ],
+      "correcta": 0,
+      "tema_numero": 10
+    },
+    {
+      "numero": 9,
+      "enunciado": "¿Cuál es la afirmación correcta?",
+      "opciones": [
+        "La delegación no podrá ser revocada en ningún momento",
+        "La delegación sera revocable en el plazo de un mes",
+        "La delegación sera revocable en cualquier momento",
+        "Ninguna es correcta"
+      ],
+      "correcta": 2,
+      "tema_numero": 10
+    },
+    {
+      "numero": 10,
+      "enunciado": "¿Qué circunstancias son necesarias para que se produzca la avocación?",
+      "opciones": [
+        "Circunstancias de índole económica",
+        "Circunstancias de índole tecnico",
+        "Circunstancias de índole jurídica",
+        "Todas son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 10
+    },
+    {
+      "numero": 11,
+      "enunciado": "¿Quién podrá avocar el conocimiento del asunto en los supuestos de delegación de competencias en órganos no dependientes jerárquicamente?",
+      "opciones": [
+        "Por el órgano delegado",
+        "Por el órgano delegante",
+        "Por ambos dependiendo del asunto o materia",
+        "Ninguna es correcta"
+      ],
+      "correcta": 1,
+      "tema_numero": 10
+    },
+    {
+      "numero": 12,
+      "enunciado": "¿Qué recurso cabe contra el acuerdo de avocación?",
+      "opciones": [
+        "Recurso de suplicación",
+        "Recurso de reforma",
+        "Recurso de amparo",
+        "No cabe recurso"
+      ],
+      "correcta": 3,
+      "tema_numero": 10
+    },
+    {
+      "numero": 13,
+      "enunciado": "¿Cuál es la circunstancia por la que se da una encomienda de gestión?",
+      "opciones": [
+        "Por razones de eficacia",
+        "Cuando no se posean medios técnicos",
+        "Cuando no se posean medios económicos",
+        "La a y la b son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 10
+    },
+    {
+      "numero": 14,
+      "enunciado": "¿Qué supone la encomienda de gestión?",
+      "opciones": [
+        "La cesión de la titularidad de la competencia",
+        "La cesión del ejercicio de la competencia",
+        "La a y la b son correctas",
+        "Ninguna es correcta"
+      ],
+      "correcta": 3,
+      "tema_numero": 10
+    },
+    {
+      "numero": 15,
+      "enunciado": "Cuál de las siguientes afirmaciones es correcta:",
+      "opciones": [
+        "La delegación de la firma alterará la competencia del órgano delegante",
+        "Para su validez no es necesaria la publicación",
+        "La delegación de firma supondrá la cesión del ejercicio",
+        "Todas son correctas"
+      ],
+      "correcta": 1,
+      "tema_numero": 10
+    },
+    {
+      "numero": 16,
+      "enunciado": "¿Cuáles son los motivos de abstención para no intervenir en un procedimiento?",
+      "opciones": [
+        "Tener interés personal en el asunto",
+        "Tener un vínculo matrimonial",
+        "Haber intervenido como testigo o perito",
+        "Todas son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 10
+    },
+    {
+      "numero": 17,
+      "enunciado": "¿Quiénes podrán promover la recusación?",
+      "opciones": [
+        "Los interesados en el momento inicial del procedimiento",
+        "Los interesados en cualquier momento de la tramitación del procedimiento",
+        "Los interesados y familiares en cualquier momento del procedimiento",
+        "Ninguna es correcta"
+      ],
+      "correcta": 1,
+      "tema_numero": 10
+    },
+    {
+      "numero": 18,
+      "enunciado": "¿en qué plazo puede resolver el superior si el recusado niega la recusación?",
+      "opciones": [
+        "15 días",
+        "3 días",
+        "5 días",
+        "10 días"
+      ],
+      "correcta": 1,
+      "tema_numero": 10
+    },
+    {
+      "numero": 19,
+      "enunciado": "¿Qué recurso cabe ante las resoluciones adoptadas en el supuesto de una recusación?",
+      "opciones": [
+        "Recurso de suplica",
+        "Recurso de reforma",
+        "Recurso de amparo",
+        "No cabe recurso"
+      ],
+      "correcta": 3,
+      "tema_numero": 10
+    },
+    {
+      "numero": 20,
+      "enunciado": "En cuanto a la delegación de competencias y su revocación:",
+      "opciones": [
+        "Aunque no deben publicarse en ninguna parte, sí que ha de constar tal circunstancia en la resolución que se emita a los interesados",
+        "La delegación de competencias deberá ser publicada en el BOE, pero este requisito no rige para su revocación",
+        "Las delegaciones de competencias y su revocación deberán publicarse en el BOE, haciendo constar además esa circunstancia expresamente en las resoluciones que se adopten",
+        "Las competencias delegadas no pueden ser revocadas en virtud de descentralización."
+      ],
+      "correcta": 2,
+      "tema_numero": 10
+    },
+    {
+      "numero": 21,
+      "enunciado": "Cuando los órganos superiores avocan para sí el conocimiento de uno o varios asuntos cuya resolución corresponde por delegación a sus órganos administrativos dependientes:",
+      "opciones": [
+        "Deberán realizar la avocación mediante acuerdo motivado frente al que no cabrá recurso",
+        "Deberán realizar la avocación mediante acuerdo motivado frente al que cabra recurso en el plazo de 10 días",
+        "Como la delegación ya se ha producido, no se puede avocar",
+        "La avocación no requiere motivar el acuerdo, puesto que es un órgano superior el que la realiza y no tiene que dar cuenta de su actuación a los órganos dependientes"
+      ],
+      "correcta": 0,
+      "tema_numero": 10
+    },
+    {
+      "numero": 22,
+      "enunciado": "Que los titulares de los órganos administrativos deleguen la firma en materias de su competencia:",
+      "opciones": [
+        "No altera su competencia",
+        "Altera la competencia porque es otro órgano el que firma, y asume el ejercicio de la misma",
+        "Cuando deleguen la firma lo tienen que hacer constar en la resolución y actos que dicten, así como tiene que constar también el órgano de procedencia",
+        "Las respuestas a) y c) son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 10
+    },
+    {
+      "numero": 23,
+      "enunciado": "Cuando un órgano administrativo se estime, de oficio incompetente para resolver un asunto:",
+      "opciones": [
+        "Tiene que remitir directamente las actuaciones al órgano que estime competente, debiendo notificar esta circunstancia a los interesados",
+        "Se abstiene de resolver y deja que sean los interesados quienes por su iniciativa se dirijan a otro órgano",
+        "Como la administración actúa de forma coordinada, es indiferente qué órgano resuelva",
+        "Los órganos no pueden estimarse de oficio incompetentes"
+      ],
+      "correcta": 0,
+      "tema_numero": 10
+    }
+  ]
+}

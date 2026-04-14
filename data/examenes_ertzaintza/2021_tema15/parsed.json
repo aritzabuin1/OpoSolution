@@ -1,0 +1,142 @@
+{
+  "convocatoria": "preparacion_tema_15",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "tema15",
+  "fuente_url": null,
+  "total_preguntas": 11,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "¿Cuál es un objeto de la ley 40/2015?",
+      "opciones": [
+        "Regular las bases del régimen jurídico del sector público",
+        "Regular los principios de la responsabilidad de los funcionarios",
+        "La organización y funcionamiento de la Administración General del Estado y de su sector público institucional para el desarrollo de sus actividades",
+        "Todas las respuestas son objeto de la ley"
+      ],
+      "correcta": 2,
+      "tema_numero": 15
+    },
+    {
+      "numero": 2,
+      "enunciado": "¿Qué comprende el Sector Público?",
+      "opciones": [
+        "La Administración General del Estado, las administraciones de las CCAA y las entidades que integran la Administración Local",
+        "La Administración General del Estado, las administraciones de las CCAA, las entidades que integran la Administración Local y los organismos públicos y entidades de derecho público vinculados o dependientes de las Administraciones Públicas",
+        "La Administración General del Estado, la administración provincial, la administración de las CCAA y el sector público institucional",
+        "La Administración General del Estado, las administraciones de las CCAA, las entidades que integran la Administración Local y el sector público institucional"
+      ],
+      "correcta": 3,
+      "tema_numero": 15
+    },
+    {
+      "numero": 3,
+      "enunciado": "¿Por qué está integrado el Sector Público Institucional?",
+      "opciones": [
+        "Cualesquiera organismos público y entidades de derecho público vinculados o dependientes de las Administraciones Públicas, Las entidades de derecho privado vinculados o dependientes de las Administraciones Públicas  y las Universidades Públicas",
+        "Cualesquiera organismos público y entidades de derecho público dependientes de las Administraciones Públicas, Las entidades de derecho privado vinculados de las Administraciones Públicas y las Universidades Públicas",
+        "Cualesquiera organismos público y entidades de derecho público vinculados o dependientes de las Administraciones Públicas, Las entidades de derecho privado vinculados o dependientes de las Administraciones",
+        "Ninguna respuesta es verdadera"
+      ],
+      "correcta": 0,
+      "tema_numero": 15
+    },
+    {
+      "numero": 4,
+      "enunciado": "¿Quiénes tienen la consideración de Administración Pública?",
+      "opciones": [
+        "La Administración General del Estado, las Administraciones de las CCAA, las Entidades que integran la Administración Local y el Sector Público Institucional",
+        "La Administración General del Estado, las Administraciones de las CCAA, las Entidades que integran la Administración Local, así como los organismos públicos y entidades de derecho público vinculadas o dependientes de las Administraciones Públicas",
+        "La Administración General del Estado, las Administraciones de las CCAA, las Entidades que integran la Administración local así como las entidades de derecho privado vinculadas o dependientes con las Administraciones Públicas",
+        "Ninguna respuesta es verdadera"
+      ],
+      "correcta": 1,
+      "tema_numero": 15
+    },
+    {
+      "numero": 5,
+      "enunciado": "Señale la opción verdadera respecto al artículo 5 de la ley 40/2015:",
+      "opciones": [
+        "Las administraciones públicas sirven con objetividad los intereses generales y actúan de acuerdo con los principios de eficacia, jerarquía, descentralización, desconcentración, coordinación, con sometimiento pleno a la Constitución, a la ley y al derecho",
+        "Las administraciones públicas sirven con objetividad los intereses generales y actúan de acuerdo con los principios de eficacia, jerarquía, descentralización, desconcentración, coordinación, con sometimiento pleno a la Constitución",
+        "Las administraciones públicas sirven con objetividad los intereses generales y actúan de acuerdo con los principios de eficacia, jerarquía, desconcentración, coordinación, con sometimiento pleno a la Constitución, a la ley y al derecho",
+        "Las administraciones públicas sirven con objetividad los intereses generales y actúan de acuerdo con los principios de jerarquía, descentralización, desconcentración, coordinación, con sometimiento pleno a la Constitución, a la ley y al derecho"
+      ],
+      "correcta": 0,
+      "tema_numero": 15
+    },
+    {
+      "numero": 6,
+      "enunciado": "¿Cómo se relacionan entre sí las Administraciones Públicas, y éstas con sus organismos públicos y entidades vinculados o dependientes?",
+      "opciones": [
+        "A través de medios electrónicos que aseguren la interoperabilidad de los sistemas y las soluciones adoptadas por cada una de ellas",
+        "A través de medios electrónicos que aseguren la interoperabilidad y seguridad de los sistemas y soluciones adoptadas por cada una de ellas, garantizarán la protección de datos de carácter personal y facilitarán preferentemente la prestación conjunta de servicios a los interesados",
+        "A través de medios electrónicos que aseguren la seguridad de los sistemas y soluciones adoptadas por cada una de ellas, garantizarán la protección de datos de carácter personal y facilitarán preferentemente la prestación conjunta de servicios a los interesados",
+        "Las administraciones no se relaciona unas con otras, solamente con sus organismos públicos y entidades"
+      ],
+      "correcta": 1,
+      "tema_numero": 15
+    },
+    {
+      "numero": 7,
+      "enunciado": "Señale la opción verdadera:",
+      "opciones": [
+        "Bajo la dirección del gobierno de la nación, de los órganos de gobierno de las CCAA y de las entidades locales, la actuación de la administración pública respectiva se coordina conjuntamente para alcanzar los objetivos que establecen las leyes",
+        "Bajo la dirección del gobierno del Estado, de los órganos de gobierno de las CCAA y de las entidades locales, la actuación de la administración pública respectiva se coordina conjuntamente para alcanzar los objetivos que establecen las leyes y el resto del ordenamiento jurídico",
+        "Bajo la dirección del gobierno de la nación, de los órganos de gobierno de las CCAA y de las entidades locales, la actuación de la administración pública respectiva se desarrolla para alcanzar los objetivos que establecen las leyes y el resto del ordenamiento jurídico",
+        "Ninguna respuesta es verdadera"
+      ],
+      "correcta": 2,
+      "tema_numero": 15
+    },
+    {
+      "numero": 8,
+      "enunciado": "¿Qué limites tiene la Administración a la hora de comprobar, verificar, investigar e inspeccionar los hechos?",
+      "opciones": [
+        "Los establecidos en la constitución",
+        "Los establecidos en el ordenamiento jurídico",
+        "Los establecidos en la legislación de protección de datos de carácter personal",
+        "No hay limites a la hora de comprobar los hechos por parte de la administración"
+      ],
+      "correcta": 2,
+      "tema_numero": 15
+    },
+    {
+      "numero": 9,
+      "enunciado": "¿Cuáles son los principios de la potestad sancionadora?",
+      "opciones": [
+        "Principio de legalidad, tipicidad, irretroactividad y transparencia",
+        "Principio de coordinación, tipicidad y proporcionalidad",
+        "Principio de buena fe, tipicidad y legalidad",
+        "Principio de legalidad, irretroactividad, tipicidad y proporcionalidad"
+      ],
+      "correcta": 3,
+      "tema_numero": 15
+    },
+    {
+      "numero": 10,
+      "enunciado": "Respecto al principio de legalidad señale la verdadera:",
+      "opciones": [
+        "La potestad sancionadora se ejercerá cuando haya sido expresamente reconocida por una norma con rango de ley",
+        "Serán de aplicación las disposiciones sancionadoras vigentes en el momento de producirse los hechos que constituyan la infracción administrativa",
+        "Solo constituyen infracciones administrativas las vulneraciones del ordenamiento jurídico previstas como tales infracciones por una ley",
+        "Solo constituyen sanciones administrativas las vulneraciones del ordenamiento jurídico previstas como tales infracciones por una ley"
+      ],
+      "correcta": 0,
+      "tema_numero": 15
+    },
+    {
+      "numero": 12,
+      "enunciado": "Siempre se aplican retroactivamente las disposiciones sancionadoras, aun incluso cuando no favorezcan al infractor",
+      "opciones": [
+        "Respecto a la pregunta anterior, diga cual es verdadera",
+        "Serán de aplicación las disposiciones sancionadoras vigentes en el momento de producirse los hechos que constituyan la infracción administrativa",
+        "Las disposiciones administrativa producirán efecto retroactivo en cuanto favorezcan al presunto infractor o infractor, tanto en lo referido a la tipificación de la infracción como a la sanción y sus plazos",
+        "Le es aplicado incluso respecto a las sanciones pendientes de cumplimiento al entrar en vigor la nueva disposición"
+      ],
+      "correcta": 0,
+      "tema_numero": 15
+    }
+  ]
+}

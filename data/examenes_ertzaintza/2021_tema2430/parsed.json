@@ -1,0 +1,310 @@
+{
+  "convocatoria": "preparacion_temas_24_30",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "tema2430",
+  "fuente_url": null,
+  "total_preguntas": 25,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "Es una infracción leve:",
+      "opciones": [
+        "Circular sin hacer uso del alumbrado reglamentario.",
+        "Realizar obras en la vía sin comunicarlas con anterioridad a su inicio a la autoridad responsable de la regulación, ordenación y gestión del tráfico, así como no seguir las instrucciones de dicha autoridad referentes a las obras.",
+        "Conducir con tasas de alcohol superiores a las que reglamentariamente se establezcan, o con presencia en el organismo de drogas.",
+        "No hacer uso de los elementos y prendas reflectantes por parte de los usuarios de bicicletas."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 2,
+      "enunciado": "Es una infracción muy grave:",
+      "opciones": [
+        "No respetar la señal de stop o la sef'1 al de ceda el paso.",
+        "Circular en sentido contrario al establecido.",
+        "No hacer uso del cinturón de seguridad, sistemas de retención infantil, casco y demás elementos de protección.",
+        "Incumplir la obligación de impedir que el vehículo sea conducido por quien nunca haya obtenido el permiso o la licencia de conducción correspondiente."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 3,
+      "enunciado": "Es una infracción grave:",
+      "opciones": [
+        "Circular en posición paralela con vehículos que lo tienen prohibido.",
+        "Conducir un vehículo careciendo del permiso o licencia de conducción correspondiente.",
+        "Conducir vehículos que tengan instalados inhibidores de radares o cinemómetros o cualesquiera otros mecanismos encaminados a interferir en el correcto funcionamiento de los sistemas de vigilancia del tráfico.",
+        "Incumplir las normas que regulan las actividades industriales que afectan de manera directa a la seguridad vial."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 4,
+      "enunciado": "Las infracciones graves serán sancionadas con multa de hasta:",
+      "opciones": [
+        "100 euros.",
+        "300 euros.",
+        "200 euros.",
+        "500 euros."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 5,
+      "enunciado": "La infracción consistente en conducir vehículos que tengan instalados inhibidores de radares o cinemómetros o cualesquiera otros mecanismos encaminados a interferir en el correcto funcionamiento de los sistemas de vigilancia del tráfico se sancionará con multa de",
+      "opciones": [
+        "5.000 euros..",
+        "6.000 euros.",
+        "3.000 euros",
+        "9.000 euros"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 6,
+      "enunciado": "Con carácter previo y facultativo, las notificaciones que no puedan efectuarse en la Dirección Electrónica Vial (DEV) podrán practicarse también en el TESTRA, que es:",
+      "opciones": [
+        "El Testimonio Edictal de Sanciones de Tráfico.",
+        "El Tablón Específico de Sanciones de Tráfico.",
+        "El Tablón Editorial de Situaciones de Tráfico.",
+        "El Tablón Edictal de Sanciones de Tráfico."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 7,
+      "enunciado": "El conducir con una tasa de alcohol superior a la reglamentariamente establecida, acarreará la pérdida de:",
+      "opciones": [
+        "4 a 6 puntos..",
+        "3 a 5 puntos.",
+        "4 puntos",
+        "3 a 6 puntos."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 8,
+      "enunciado": "El conducir un vehículo con un permiso o licencia de conducción que no le habilite para ello, acarreará la pérdida de:",
+      "opciones": [
+        "6 puntos.",
+        "5 puntos. .",
+        "4 puntos",
+        "3 puntos."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 9,
+      "enunciado": "Excepcionalmente, al titular de un permiso o licencia de conducción con una antigüedad no superior a tres años, salvo que ya fuera titular de otro permiso de conducción con aquella antigüedad, se asignará un crédito inicial de:",
+      "opciones": [
+        "5 puntos..",
+        "9 puntos",
+        "6 puntos.",
+        "8 puntos."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 10,
+      "enunciado": "Transcurridos dos años sin haber sido sancionados en firme en vía administrativa por la comisión de infracciones que lleven aparejada la pérdida de puntos, el titular de un permiso o licencia de conducción afectado por la pérdida parcial de puntos:",
+      "opciones": [
+        "Recuperará un punto del crédito inicial.",
+        "Recuperará la totalidad del crédito inicial de doce puntos.",
+        "Recuperará dos puntos del crédito inicial.",
+        "Recuperará tres puntos del crédito inicial."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 11,
+      "enunciado": "Sobre el Real Decreto 6/2015, ¿cuál de las siguientes afirmaciones no es correcta?",
+      "opciones": [
+        "Regula las normas de circulación para los vehículos, peatones y animales por las vías de utilización general, estableciéndose derechos y obligaciones de los usuarios de dichas vías.",
+        "Se aplicará a todo el territorio autonómico.",
+        "Regula los criterios de señalización de las vías de utilización general.",
+        "Regula infracciones derivadas del incumplimiento de las normas establecidas."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 12,
+      "enunciado": "La coordinación de la prestación de la asistencia sanitaria en las vías públicas o de uso público es competencia de ...",
+      "opciones": [
+        "La Administración General del Estado.",
+        "El Ministerio del Interior.",
+        "La Jefatura Central de Tráfico.",
+        "La Administración Local."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 13,
+      "enunciado": "La presidencia del Consejo Superior de Tráfico corresponde a ..",
+      "opciones": [
+        "La Administración General del Estado.",
+        "La Jefatura Central de Tráfico.",
+        "La Guardia Civil.",
+        "Ministerio del Interior."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 14,
+      "enunciado": "¿Cuántos representantes de las entidades locales elegidos por la federación o asociación de municipios y provincias de ámbito estatal con mayor implantación existen en el pleno del Consejo Superior de Tráfico?",
+      "opciones": [
+        "15.",
+        "10.",
+        "19.",
+        "25."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 15,
+      "enunciado": "¿Cuál de las siguientes no es una función del pleno del Consejo Superior de Tráfico?",
+      "opciones": [
+        "Informar sobre criterios generales en materia de publicidad de vehículos a motor.",
+        "Decidir sobre la integración de nuevos miembros en el Consejo previo informe de la Comisión Permanente.",
+        "Asesorar sobre planes autonómicos de tráfico y seguridad vial.",
+        "Asesorar en materia de tráfico y seguridad vial a los correspondientes órganos de decisión."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 16,
+      "enunciado": "¿Quién ostenta la presidencia de la Comisión Permanente del Consejo Superior de Tráfico?",
+      "opciones": [
+        "El Ministro del Interior.",
+        "El Subsecretario del Interior.",
+        "El Secretario del Interior.",
+        "El Director General de Tráfico."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 17,
+      "enunciado": "¿pueden ser convocados a la Comisión Permanente adicionalmente otros vocales del pleno?",
+      "opciones": [
+        "Sí. Cuando lo aconsejen los asuntos a tratar, podrán ser convocados, con voz pero sin voto.",
+        "Sí. Cuando lo aconsejen los asuntos a tratar, podrán ser convocados, con voz y con voto.",
+        "Sí. Cuando lo aconsejen los asuntos a tratar, podrán ser convocados, con voto pero sin voz.",
+        "No. En ningún caso. Para eso está el pleno."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 18,
+      "enunciado": "¿Quién ostenta la presidencia de la Comisiones de Tráfico y Seguridad de la Circulación Vial en las comunidades autónomas?",
+      "opciones": [
+        "El Ministro del Interior",
+        "El Secretario del Interior.",
+        "El Director General de Tráfico.",
+        "El Delegado del Gobierno en la comunidad correspondiente."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 19,
+      "enunciado": "¿Qué ministerio no tiene representante en la Comisión para el Estudio del Tráfico y la Seguridad Vial en las Vías Urbanas?",
+      "opciones": [
+        "Defensa.",
+        "Interior.",
+        "Administraciones públicas",
+        "Ciencia y tecnología."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 20,
+      "enunciado": "Respecto a los grupos de trabajo del Consejo Superior de Tráfico, ¿cuál de las siguientes afirmaciones no es correcta?",
+      "opciones": [
+        "Entre los temas normales por los que se crean se encuentra la comunicación y divulgación.",
+        "Forman parte de estos, personal especializado de las Administraciones públicas.",
+        "Se crean para ocuparse de asuntos generales y funcionan de forma independiente.",
+        "La educación vial es un asunto sobre el que suelen trabajar."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 21,
+      "enunciado": "¿cuál de las siguientes competencias no corresponde al Ministerio del Interior?",
+      "opciones": [
+        "Regulación del transporte de personas y, especialmente, el transporte escolar y de menores, a los efectos relacionados con la seguridad vial.",
+        "Autorizaciones de apertura de centros de formación de conductores",
+        "Matriculación y expedición de los permisos de circulación",
+        "Autorizaciones o permisos temporales y provisionales de circulación."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 22,
+      "enunciado": "¿Cómo funciona el Consejo Superior de Tráfico?",
+      "opciones": [
+        "Funciona exclusivamente en pleno, en comisiones y en grupos de trabajo.",
+        "Funciona exclusivamente en pleno, en comisión permanente y en grupos de trabajo.",
+        "Funciona exclusivamente en pleno, en comisión permanente y en comisiones.",
+        "Funciona exclusivamente en pleno, en comisión permanente, en comisiones y en grupos de trabajo."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 23,
+      "enunciado": "Indique cual de las siguientes afirmaciones no es correcta. El objeto de la Ley de Seguridad Vial (R.D. 6/2015) es regular ...",
+      "opciones": [
+        "Criterios de señalización de las vías de utilización general.",
+        "Normas de circulación para los vehículos, peatones y animales por las vías de utilización general",
+        "La coordinación entre todos los actores encargados de hacer cumplir la legislación vigente.",
+        "Elementos de seguridad activa y pasiva y su régimen de utilización."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 24,
+      "enunciado": "¿Cuál de las siguientes competencias es propia del Ministerio del Interior?",
+      "opciones": [
+        "Regulación de aquellas actividades industriales que tengan una incidencia directa sobre la seguridad vial.",
+        "Autorizaciones o permisos temporales y provisionales de circulación.",
+        "Regulación, ordenación, gestión, vigilancia y disciplina.",
+        "El cierre de vías urbanas cuando sea necesario."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 25,
+      "enunciado": "Informar sobre criterios generales en materia de publicidad de vehículos a motor es una de las funciones de ...",
+      "opciones": [
+        "El pleno.",
+        "Las Comisiones de Tráfico.",
+        "La Comisión Permanente.",
+        "Los grupos de trabajo."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    }
+  ]
+}

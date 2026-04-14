@@ -1,0 +1,1174 @@
+{
+  "convocatoria": "preparacion_julio",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "jul",
+  "fuente_url": null,
+  "total_preguntas": 97,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "Son tipos de entidades locales territoriales…",
+      "opciones": [
+        "las áreas metropolitanas",
+        "las comarcas",
+        "las provincias",
+        "las respuestas a y b son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 2,
+      "enunciado": "La formación, mantenimiento, revisión y custodia del Padrón Municipal es competencia de:",
+      "opciones": [
+        "Del Ayuntamiento.",
+        "Del Consejo de Empadronamiento.",
+        "Del Gobierno Vasco",
+        "De la Diputación Provincial."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 3,
+      "enunciado": "Los municipios de población superior a 5.000 habitantes deberán prestar, entre otros, el servicio de:",
+      "opciones": [
+        "Protección civil.",
+        "biblioteca publica",
+        "Protección del medio ambiente.",
+        "Instalaciones deportivas de uso público."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 4,
+      "enunciado": "Es una de las atribuciones del alcalde:",
+      "opciones": [
+        "Dictar bandos.",
+        "La declaración de lesividad de los actos del Ayuntamiento.",
+        "La aprobación del Reglamento Orgánico",
+        "la aprobación de las ordenanzas municipales"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 5,
+      "enunciado": "¿Cuáles son los elementos del municipio?",
+      "opciones": [
+        "territorio, población",
+        "territorio, población y padrón municipal",
+        "territorio, organización y ayuntamiento",
+        "territorio, población y organización"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 6,
+      "enunciado": "¿Qué municipios podrán tener JUNTA DE GOBIERNO LOCAL?",
+      "opciones": [
+        "municipios de 1.000 habitantes",
+        "municipios de más de 2.000 habitantes",
+        "municipios de más de 5.000 habitantes",
+        "municipios de 3.000 habitantes"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 7,
+      "enunciado": "¿Quiénes tienen la consideración de vecinos de un municipio?",
+      "opciones": [
+        "quienes han nacido en ese municipio",
+        "quienes residen durante una parte del año en ese municipio",
+        "quienes están inscritos en el padrón municipal",
+        "quienes vivieron allí los últimos 5 años"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 8,
+      "enunciado": "¿Qué derechos y deberes tiene los vecinos de un municipio?",
+      "opciones": [
+        "Ser elector y elegible de acuerdo con lo dispuesto en la legislación electoral.",
+        "Contribuir mediante las prestaciones económicas y personales legalmente previstas a la realización de las competencias municipales.",
+        "Pedir la consulta popular en los términos previstos en la ley.",
+        "todos los anteriores"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 9,
+      "enunciado": "El Gobierno y la administración municipal, corresponde al:",
+      "opciones": [
+        "junta de gobierno local",
+        "pleno",
+        "ayuntamiento",
+        "asamblea vecinal"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 10,
+      "enunciado": "En otros municipios en vez de ayuntamiento puede existir:",
+      "opciones": [
+        "concejo abierto",
+        "pleno",
+        "junta de gobierno local",
+        "consejo abierto"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 11,
+      "enunciado": "¿En qué municipios podrán existir comisiones informativas?",
+      "opciones": [
+        "en los municipios de gran población",
+        "en los municipios de menos de 100 habitantes",
+        "En los municipios de más de 5.000 habitantes",
+        "en todos los municipios existen comisiones informativas"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 12,
+      "enunciado": "¿Cuál NO es una función del alcalde?",
+      "opciones": [
+        "Representar al ayuntamiento",
+        "Dictar bandos.",
+        "Ser el jefe de la policía local",
+        "aprobar las ordenanzas municipales"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 13,
+      "enunciado": "¿Cuál NO es una competencia del Pleno?",
+      "opciones": [
+        "Dirigir, inspeccionar e impulsar los servicios y obras municipales",
+        "La aprobación del reglamento orgánico y de las ordenanzas.",
+        "La declaración de lesividad de los actos del Ayuntamiento",
+        "todas las competencias son del pleno"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 14,
+      "enunciado": "¿Por quién está integrada la Junta de Gobierno Local?",
+      "opciones": [
+        "se integra por el Alcalde y un número de Concejales no superior a la mitad del número legal de los mismos",
+        "se integra por el Alcalde y un número de Concejales no superior al tercio del número legal de los mismos",
+        "se integra por el Alcalde y todos los concejales",
+        "ninguna respuesta es correcta"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 15,
+      "enunciado": "¿Quién elige a los concejales que formarán parte de la Junta de Gobierno Local?",
+      "opciones": [
+        "el pleno",
+        "los vecinos mediante sufragio universal, libre, directo y secreto",
+        "el alcalde",
+        "los concejales"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 16,
+      "enunciado": "Señale la falsa:",
+      "opciones": [
+        "Los Tenientes de Alcalde sustituyen, por el orden de su nombramiento",
+        "Para facilitar la participación ciudadana en la gestión de los asuntos locales y mejorar ésta, los municipios podrán establecer órganos territoriales de gestión descentralizada",
+        "El Alcalde puede delegar el ejercicio de determinadas atribuciones en los miembros de la Junta de Gobierno Local y, donde ésta no exista, en los Tenientes de Alcalde",
+        "ninguna respuesta es falsa"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 17,
+      "enunciado": "¿Qué competencias son propias del municipio?",
+      "opciones": [
+        "Abastecimiento de agua potable a domicilio y evacuación y tratamiento de aguas residuales.",
+        "Cementerios",
+        "Información de la actividad turística",
+        "todas con correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 18,
+      "enunciado": "En los Municipios con población superior a 20.000 habitantes, tendrá que prestarse:",
+      "opciones": [
+        "protección civil",
+        "prevención y extinción de incendios",
+        "Cementerios y actividades funerarias.",
+        "todos los anteriores"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 19,
+      "enunciado": "El conjunto de bienes, derechos y acciones que pertenecen a las Entidades Locales constituye su:",
+      "opciones": [
+        "Inventario",
+        "Hacienda",
+        "Patrimonio",
+        "ninguna respuesta es verdadera"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 20,
+      "enunciado": "El derecho de los vecinos de un municipio a aprovechar los pastos y las leñas del término municipal sería un ejemplo de:",
+      "opciones": [
+        "Aprovechamiento de un bien de uso publico",
+        "Aprovechamiento de un servicio común",
+        "Aprovechamiento de un servicio público",
+        "Aprovechamiento de un bien comunal"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 21,
+      "enunciado": "Un cementerio sería un bien:",
+      "opciones": [
+        "Comunal",
+        "De uso público",
+        "De servicio público",
+        "De uso comunal"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 22,
+      "enunciado": "Una calle sería un bien:",
+      "opciones": [
+        "Comunal",
+        "De uso público",
+        "De servicio público",
+        "ninguna respuesta es correcta"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 23,
+      "enunciado": "Los bienes de las entidades locales son:",
+      "opciones": [
+        "inalienables, inembargables",
+        "inembargables",
+        "inalienables, inembargables e Imprescriptibles",
+        "ninguna respuesta es verdadera"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 24,
+      "enunciado": "No es un bien patrimonial:",
+      "opciones": [
+        "Una calle",
+        "Una parcela sobrante",
+        "Un efecto no utilizable",
+        "Todos las respuestas son correctas"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 25,
+      "enunciado": "Si los bienes se hubieren adquirido bajo condición o modalidad de su afectación permanente a determinados destinos, se entenderá cumplida y consumada cuando hubieren servido al mismo durante:",
+      "opciones": [
+        "Veinte años",
+        "Treinta años",
+        "Cincuenta años",
+        "Diez años"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 26,
+      "enunciado": "Los Ayuntamientos pueden adquirir bienes por… señale la repuesta falsa",
+      "opciones": [
+        "atribución de la ley",
+        "Por herencia, legado o donación",
+        "A título oneroso ejerciendo en todo caso y previamente la facultad de expropiación",
+        "Por prescripción adquisitiva"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 27,
+      "enunciado": "La adquisición de bienes a título oneroso exigirá, además, siendo bienes de valor histórico o artístico el informe del órgano estatal o autonómico competente, siempre que su importe exceda del:",
+      "opciones": [
+        "1 por 100 de los recursos ordinarios del Presupuesto de la Corporación",
+        "3 por 100 de los recursos ordinarios del Presupuesto de la Corporación",
+        "10 por 100 de los recursos ordinarios del Presupuesto de la Corporación",
+        "Ninguna respuesta es correcta"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 28,
+      "enunciado": "Aquellos bienes que por su deterioro, depreciación o deficiente Estado de conservación resultaren inaplicables a los servicios municipales o al normal aprovechamiento, atendida su naturaleza y destino son:",
+      "opciones": [
+        "Bienes utilizables",
+        "Efectos no utilizables",
+        "Efectos patrimoniales",
+        "ninguna respuesta es correcta"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 29,
+      "enunciado": "Las Haciendas Locales se nutrirán fundamentalmente de:",
+      "opciones": [
+        "tributos propios y de participación en los de las Comunidades Autónomas",
+        "la participación en los tributos del Estado y de las Comunidades Autónomas",
+        "tributos propios y de participación en los del Estado",
+        "tributos propios y de participación en los del Estado y de las Comunidades Autónomas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 30,
+      "enunciado": "Señala la respuesta falsa:",
+      "opciones": [
+        "las materias no atribuidas expresamente al Estado por esta Constitución podrán corresponder a las Comunidades Autónomas, en virtud de sus respectivos Estatutos",
+        "la competencia sobre las materias que no se hayan asumido por los Estatutos de Autonomía corresponderá al Estado",
+        "las normas del Estado prevalecerán, en caso de conflicto, sobre las de las Comunidades Autónomas en todo lo que no esté atribuido a la exclusiva competencia de éstas",
+        "el derecho de las Comunidades Autónomas será, en todo caso, supletorio del derecho del Estado"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 31,
+      "enunciado": "Las entidades básicas de la organización territorial del Estado, con personalidad jurídica plena para gestionar sus respectivos intereses son:",
+      "opciones": [
+        "los ayuntamientos",
+        "los municipios",
+        "las provincias",
+        "ninguna respuesta es verdadera"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 32,
+      "enunciado": "¿en qué artículo de la Constitución Española se recoge que el derecho del estado será en todo caso supletorio del de las comunidades autónomas?",
+      "opciones": [
+        "149.3",
+        "148.1",
+        "2",
+        "137"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 33,
+      "enunciado": "¿Cómo se clasifican los bienes de las Entidades Locales?",
+      "opciones": [
+        "Bienes de dominio publico y comunales",
+        "Bienes patrimoniales y comunales",
+        "Bienes de dominio público y bienes patrimoniales",
+        "Bienes de uso público local y de servicio publico"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 34,
+      "enunciado": "¿Cómo serán los bienes de dominio público?",
+      "opciones": [
+        "De uso comunal",
+        "De uso público y uso comunal",
+        "De uso o servicio público",
+        "ninguna respuesta es correcta"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 35,
+      "enunciado": "¿Quiénes tienen la consideración de bienes comunales?",
+      "opciones": [
+        "aquellos bienes que siendo de dominio público, su aprovechamiento corresponde al común de los vecinos.",
+        "aquellos bienes que siendo de servicio público, su aprovechamiento corresponde a algunos e de los vecinos.",
+        "aquellos bienes que siendo de uso público, su aprovechamiento corresponde a los vecinos electores",
+        "todas las respuestas son incorrectas"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 36,
+      "enunciado": "¿Quién puede usar los bienes comunales?",
+      "opciones": [
+        "solo podrán pertenecer a los municipios y a las Entidades locales menores.",
+        "solo podrán pertenecer a los municipios",
+        "solo podrán pertenecer a los vecinos de entidades locales menores",
+        "ninguna respuesta es verdadera"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 38,
+      "enunciado": "Señala la verdadera respecto a bienes patrimoniales…",
+      "opciones": [
+        "Tienen la consideración aquellos bienes que siendo de dominio público, su aprovechamiento corresponde al común de los vecinos.",
+        "los que siendo propiedad de la entidad local no estén destinados a uso público ni afectados a algún servicio público y puedan constituir fuentes de ingresos para el erario de la entidad.",
+        "aquellos bienes que por su deterioro, depreciación o deficiente estado de conservación resultaren inaplicables a los servicios municipales o al normal aprovechamiento, atendida su naturaleza y destino, aunque los mismos no hubieren sido dados de baja en el inventario.",
+        "ninguna respuesta es verdadera"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 39,
+      "enunciado": "¿Qué son las parcelas sobrantes y los efectos no utilizables?",
+      "opciones": [
+        "como bien comunal",
+        "como bien patrimonial",
+        "como bien de uso publico",
+        "como bien de servicio publico"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 40,
+      "enunciado": "¿Qué se considera como efectos no utilizables? Señale la verdadera",
+      "opciones": [
+        "aquellos bienes que por su deterioro, depreciación o deficiente estado de conservación resultaren inaplicables a los servicios municipales o al normal aprovechamiento, atendida su naturaleza y destino, aunque los mismos no hubieren sido dados de baja en el inventario",
+        "aquellos bienes que por su deterioro, depreciación o deficiente estado de conservación resultaren inaplicables a los servicios municipales o al normal aprovechamiento, atendida su naturaleza y destino, aunque los mismos se hubieren sido dados de baja en el inventario",
+        "aquellos bienes que siendo de dominio público, su aprovechamiento corresponde al común de los vecinos.",
+        "ninguna opción se corresponde con la definición de efectos no utilizables"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 41,
+      "enunciado": "¿Cómo pueden adquirir bienes y derechos las corporaciones locales?",
+      "opciones": [
+        "Por prescripción adquisitiva",
+        "Por herencia, donación o legado",
+        "Por atribución de la Ley.",
+        "Por todas las anteriores se pueden adquirir bienes"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 42,
+      "enunciado": "La para la Igualdad de Hombres y Mujeres tiene por objeto:",
+      "opciones": [
+        "Regular los principios que han de regir y orientar en materia de igualdad la actuación de las Administraciones Públicas vascas.",
+        "Regular los principios que han de regir y orientar en materia de igualdad la actuación de las instituciones legislativas y ejecutivas de la Comunidad Autónoma del País Vasco.",
+        "Regular los principios que han de regir y orientar en materia de igualad la actuación de los poderes públicos vascos",
+        "ninguna respuesta se corresponde con el objeto de la ley de igualdad"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 43,
+      "enunciado": "La Ley para la Igualdad de Hombres y Mujeres tiene por objeto regular medidas dirigidas a promover y garantizar la igualdad de oportunidades y trato de mujeres y hombres en todos los ámbitos de la vida y en particular en:",
+      "opciones": [
+        "la posición social, económica y política de las mujeres.",
+        "Promover la autonomía y fortalecer la posición social, económica y política de los hombres.",
+        "Ambas respuestas son correctas.",
+        "la vida social, política, económica y laboral de las mujeres"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 44,
+      "enunciado": "La Ley para la Igualdad de Hombres y Mujeres recoge que:",
+      "opciones": [
+        "Los hombres y las mujeres tienen las mismas conductas, aspiraciones y necesidades, las cuales se tienen que tener en cuenta, respetar y potenciar.",
+        "Los hombres y las mujeres tienen distintas conductas, aspiraciones y necesidades, y en ambos casos hay que tenerlas en cuenta, respetar y potenciar.",
+        "Las mujeres y los hombres son diferentes en todas las facetas de la vida",
+        "Ninguna respuesta es recogida por la ley de igualdad"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 45,
+      "enunciado": "La para la Igualdad de Hombres y Mujeres se aplica en toda en su extensión a:",
+      "opciones": [
+        "A todas las Administraciones Públicas vascas.",
+        "A todos los poderes públicos del País Vasco.",
+        "A las Universidades y sector privado.",
+        "A todos los poderes públicos vascos, así como a las entidades privadas que suscriban contratos o convenios de colaboración con cualquiera de ellos o sean beneficiarias de ayudas o subvenciones concedidas por ellos."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 46,
+      "enunciado": "A los organismos autónomos, entes públicos dependientes o vinculados a las Administraciones Públicas vascas se les aplica:",
+      "opciones": [
+        "Esta Ley, con la salvedad es que señala la propia ley.",
+        "Los principios que señala esta ley, en su artículo 3",
+        "no se les aplica esta ley",
+        "ninguna repuesta es verdadera"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 47,
+      "enunciado": "No entran dentro del ámbito de aplicación de esta ley de igualdad:",
+      "opciones": [
+        "La Administración Autonómica.",
+        "La Administración Foral y Local.",
+        "La Administración Estatal ubicada en la comunidad autónoma vasca",
+        "los poderes públicos estatales, autonómicos y locales"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 48,
+      "enunciado": "¿cuál es el principio que implica no discriminación?",
+      "opciones": [
+        "Principio de igualdad de trato.",
+        "Principio de igualdad de oportunidades",
+        "Principio de acción positiva",
+        "Principio de la integración de la perspectiva de género."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 49,
+      "enunciado": "Cuando un acto jurídico, criterio o práctica aparentemente neutra perjudique a una proporción sustancialmente mayor de miembros de mismo sexo sin justificación estamos ante:",
+      "opciones": [
+        "Discriminación directa.",
+        "Discriminación indirecta",
+        "acción positiva",
+        "integración de la perspectiva de género"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 50,
+      "enunciado": "El principio por el cual los poderes públicos vascos deben adoptar las medidas oportunas para garantizar el ejercicio efectivo por parte de mujeres y hombres, en condiciones de igualdad, de los derechos políticos, civiles, económicos, sociales y culturales y del resto de los derechos fundamentales que puedan ser reconocidos en las normas, es:",
+      "opciones": [
+        "Principio de igualdad de trato.",
+        "Principio de igualdad de oportunidades.",
+        "Principio de respeto a la diversidad y a la diferencia.",
+        "Principio de la Integración de la perspectiva de género."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 51,
+      "enunciado": "Las medidas específicas y temporales destinadas a eliminar o reducir las desigualdades de hecho por razón de sexo se denominan:",
+      "opciones": [
+        "Principio de respecto a la diversidad y a la diferencia",
+        "Acción positiva.",
+        "Integración de la perspectiva de género.",
+        "Igualdad de Trato"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 52,
+      "enunciado": "La ley 4/2005, de 18 de febrero, para la Igualdad de Hombres y Mujeres es:",
+      "opciones": [
+        "Es una ley autonómica aprobada por el Gobierno Vasco.",
+        "Es una ley autonómica, aprobada por el Parlamento Vasco.",
+        "Es una ley estatal, aprobada por las Cortes Generales.",
+        "Ninguna respuesta es verdadera respecto a la ley de igualdad"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 53,
+      "enunciado": "Antes de acometer la elaboración de una norma o acto administrativo ¿quién evalúa el impacto potencial de la propuesta en la situación de las mujeres y en los hombres como colectivo?",
+      "opciones": [
+        "el órgano administrativo que la promueva",
+        "el gobierno vasco",
+        "Emakunde",
+        "todos deben evaluar como impactará la norma en el colectivo de las mujeres"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 54,
+      "enunciado": "¿Quién aprueba las normas o directrices en las que se indiquen las pautas que se deberán seguir para la realización de la evaluación previa del impacto en función del género?",
+      "opciones": [
+        "Emakunde",
+        "El órgano administrativo que lo promueva",
+        "el gobierno vasco",
+        "el parlamento vasco"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 55,
+      "enunciado": "Los proyectos de normas que se elaboren en el ámbito de la Administración de la Comunidad Autónoma han de ser informados por:",
+      "opciones": [
+        "Emakunde",
+        "Gobierno Vasco",
+        "Órgano administrativo que lo promueva",
+        "Parlamento Vasco"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 56,
+      "enunciado": "Señale la opción incorrecta. Los documentos que los interesados dirijan a los órganos de las Administraciones Públicas podrán presentarse:",
+      "opciones": [
+        "En las oficinas de Correos",
+        "En las representaciones diplomáticas u oficinas consulares del Extranjero en España",
+        "En las oficinas de asistencia en materia de registros",
+        "No hay ninguna respuesta incorrecta"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 57,
+      "enunciado": "La costumbre sólo regirá:",
+      "opciones": [
+        "En defecto de principios generales del derecho",
+        "Cuando resulte probada",
+        "Si es contraria al orden público",
+        "nunca se aplica la costumbre"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 58,
+      "enunciado": "Los Decretos Legislativos son:",
+      "opciones": [
+        "Normas con rango de ley dictadas por el Gobierno",
+        "Normas con rango de ley provisionales",
+        "Normas con rango de ley  para supuestos de extraordinaria y urgente necesidad",
+        "Normas con rango de ley dictadas por las Cortes Generales"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 59,
+      "enunciado": "La aprobación de las Leyes Orgánicas requiere:",
+      "opciones": [
+        "Mayoría simple del Congreso",
+        "Mayoría absoluta de las Cortes Generales",
+        "Mayoría absoluta del Congreso",
+        "Mayoría absoluta del senado"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 60,
+      "enunciado": "Los Decretos-leyes son normas legislativas provisionales que dicta:",
+      "opciones": [
+        "El Parlamento Vasco",
+        "El Gobierno",
+        "Las cortes Generales",
+        "El Senado"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 61,
+      "enunciado": "La detención preventiva no durará más de:",
+      "opciones": [
+        "3 días.",
+        "48 horas.",
+        "72 horas.",
+        "lo necesario para el esclarecimiento de los hechos"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 62,
+      "enunciado": "El Defensor del Pueblo es un alto comisionado de:",
+      "opciones": [
+        "Senado.",
+        "Parlamento Vasco",
+        "Gobierno Central",
+        "Cortes generales."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 63,
+      "enunciado": "La sede del parlamento se hará mediante:",
+      "opciones": [
+        "ley",
+        "reglamento",
+        "decreto legislativo",
+        "decreto ley"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 64,
+      "enunciado": "El fondo de la bandera del País Vasco es de color:",
+      "opciones": [
+        "blanco",
+        "verde",
+        "rojo",
+        "amarillo."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 65,
+      "enunciado": "los habitantes de Euskadi:",
+      "opciones": [
+        "tendrán el deber de conocer el euskera y el derecho a conocer el castellano",
+        "tendrán el deber de conocer el euskera y el castellano",
+        "tendrán el derecho a conocer y usar el euskera y el castellano",
+        "tendrán el deber de conocer el castellano y el derecho a conocer el euskera."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 67,
+      "enunciado": "¿En qué casos puede una persona ser sometida a torturas o a penas o tratos inhumanos o degradantes, según la Constitución Española?",
+      "opciones": [
+        "En caso de resolución judicial motivada.",
+        "En delitos de terrorismo.",
+        "En ninguno.",
+        "Ninguna de las otras respuestas es correcta."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 68,
+      "enunciado": "Según el artículo 15 de la Constitución, la pena de muerte queda abolida:",
+      "opciones": [
+        "Salvo lo que puedan disponer las leyes generales en tiempo de guerra o en vigencia de alguna de los estados de excepción.",
+        "En todo caso.",
+        "Salvo lo que puedan disponer las leyes penales militares para tiempos de guerra.",
+        "Salvo lo que puedan disponer las leyes penales militares para tiempos de guerra o en vigencia del estado de sitio."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 69,
+      "enunciado": "En España, la pena de muerte actualmente:",
+      "opciones": [
+        "Se encuentra abolida.",
+        "Se encuentra abolida, salvo en tiempos de guerra.",
+        "Está vigente conforme a las leyes penales militares y exclusivamente para tiempos de guerra",
+        "Está prevista cuando se declare un estado de alarma, excepción o sitio en España"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 70,
+      "enunciado": "Toda persona detenida debe ser:",
+      "opciones": [
+        "Informada de forma inmediata, y de modo que le sea comprensible a su abogado, de sus derechos y de las causas de su detención.",
+        "Informada en el plazo de 72 horas, y de modo que le sea comprensible para él o su defensa, de las razones de su detención.",
+        "Puesta en libertad en el plazo máximo de 72 horas.",
+        "Informada de forma inmediata, y de modo que le sea comprensible, de sus derechos y de las razones de su detención."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 71,
+      "enunciado": "Una persona detenida:",
+      "opciones": [
+        "No puede ser obligada a declarar.",
+        "Puede ser obligada a declarar por la autoridad judicial.",
+        "No puede ser obligada a declarar sin la presencia de su abogado.",
+        "Ninguna respuesta es verdadera"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 72,
+      "enunciado": "Según el artículo 17 de la Constitución, se garantiza la asistencia de abogado al detenido:",
+      "opciones": [
+        "las diligencias judiciales exclusivamente.",
+        "En las diligencias policiales y judiciales, en los términos que la el juez establezca.",
+        "En las diligencias policiales y judiciales, en los términos que la ley establezca.",
+        "ninguna respuesta es correcta, el abogado solo asiste en comisaria"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 73,
+      "enunciado": "¿Cuál de las siguientes entidades gozan de autonomía para la gestión de sus respectivos intereses?",
+      "opciones": [
+        "Las provincias.",
+        "Los municipios.",
+        "Las Comunidades Autónomas.",
+        "Todas gozan de autonomía para gestionar sus intereses"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 74,
+      "enunciado": "¿Quién garantiza la realización efectiva del principio de solidaridad, según el artículo 138 de la CE?",
+      "opciones": [
+        "El Gobierno.",
+        "El Estado.",
+        "Las Cortes Generales.",
+        "El Senado."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 75,
+      "enunciado": "¿A quién corresponde el gobierno y administración de los municipios?",
+      "opciones": [
+        "A sus respectivos Ayuntamientos.",
+        "Al Alcalde",
+        "Al pleno",
+        "ninguna respuesta es verdadera"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 76,
+      "enunciado": "¿Quiénes integrarán los Ayuntamientos?",
+      "opciones": [
+        "Los Alcaldes, Teniente Alcalde y Pleno",
+        "Los Alcaldes y los Concejales.",
+        "Los Alcaldes, los Concejales y el Pleno",
+        "Los Alcaldes, Teniente Alcalde y la Junta de Gobierno Local."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 77,
+      "enunciado": "La provincia es una entidad local determinada por la agrupación de:",
+      "opciones": [
+        "Entidades locales.",
+        "Municipios.",
+        "comarcas",
+        "áreas metropolitanas"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 78,
+      "enunciado": "¿En qué articulo de la Constitución Española se recoge el derecho a la protección de datos?",
+      "opciones": [
+        "18.3",
+        "18.4",
+        "28.4",
+        "17.3"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 79,
+      "enunciado": "Ley 3/2018 de protección de datos personales y garantía de los derechos digitales. Señale la opción correcta. Los datos serán:",
+      "opciones": [
+        "Exactos y, si fuere necesario, actualizados",
+        "Exactos y, siempre actualizados",
+        "completos y, si fuere necesario, actualizados",
+        "completos y, siempre actualizados"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 80,
+      "enunciado": "Señale la opción correcta. El tratamiento de los datos personales de un menor de edad únicamente podrá fundarse en su consentimiento cuando sea:",
+      "opciones": [
+        "Menor de 14 años",
+        "Mayor de 14 años",
+        "Mayor de 16 años",
+        "Mayor de 18 años"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 81,
+      "enunciado": "¿Cómo ha de ser el registro electrónico del que debe disponer la administración?",
+      "opciones": [
+        "Interconectado",
+        "Interoperable",
+        "Intercambiable",
+        "La a y la b son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 82,
+      "enunciado": "En las disposiciones de creación de registros electrónicos se indicará:",
+      "opciones": [
+        "los días y horas hábiles",
+        "los días y horas inhábiles",
+        "los días y horas naturales",
+        "las tres son correctas"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 83,
+      "enunciado": "¿Cuánto dura la prisión provisional?",
+      "opciones": [
+        "un máximo de 72 horas",
+        "lo necesario para esclarecer los hechos",
+        "lo que determine el juez",
+        "lo previsto en la ley"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 84,
+      "enunciado": "¿En qué articulo se recoge la tutela judicial efectiva?",
+      "opciones": [
+        "18",
+        "24",
+        "23",
+        "27"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 85,
+      "enunciado": "¿Cuáles son las fuentes del derecho administrativo?",
+      "opciones": [
+        "ley, costumbre y tratados internacionales",
+        "doctrina, jurisprudencia, ley",
+        "ley, costumbre y principios generales del derecho,",
+        "ley, tratado internacional, decretos leyes y jurisprudencia"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 86,
+      "enunciado": "¿En qué texto viene recogida la jerarquía normativa?",
+      "opciones": [
+        "en el código civil",
+        "en la constitución española",
+        "en el código penal",
+        "en todos los anteriores viene recogida la jerarquía normativa"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 87,
+      "enunciado": "¿en qué texto viene recogida la jerarquía de fuentes?",
+      "opciones": [
+        "en la constitución española de 1812",
+        "en la constitución española de 1978",
+        "en el código civil",
+        "ninguna de las respuestas es correcta"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 88,
+      "enunciado": "¿Cómo se organiza territorialmente el Estado?",
+      "opciones": [
+        "en municipios, provincias y comunidades autónomas",
+        "en municipios, comarcas, áreas metropolitanas y provincias",
+        "en municipios, provincias y comunidades autónomas que se constituyan",
+        "ninguna respuesta es verdadera"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 89,
+      "enunciado": "¿En qué articulo se recoge el derecho a acceder en condiciones de igualdad al cargo o función pública?",
+      "opciones": [
+        "24.2",
+        "21.1",
+        "23.2",
+        "23.1"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 90,
+      "enunciado": "La ley de Igualdad en Euskadi es del año….",
+      "opciones": [
+        "2007",
+        "2015",
+        "2008",
+        "2005"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 91,
+      "enunciado": "La sede del Parlamento y Gobierno Vasco es:",
+      "opciones": [
+        "Donostia- San Sebastián",
+        "Bilbao",
+        "Getxo",
+        "Gasteiz-Vitoria"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 93,
+      "enunciado": "¿Qué existe en todos los Ayuntamientos?",
+      "opciones": [
+        "alcalde y concejales",
+        "alcalde, teniente alcalde y pleno",
+        "alcalde y junta de gobierno local",
+        "pleno, junta de gobierno de local y consejo de empadronamiento"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 94,
+      "enunciado": "¿De quién depende EMAKUNDE?",
+      "opciones": [
+        "del estado",
+        "del parlamento vasco",
+        "del gobierno vasco",
+        "de las cortes generales"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 95,
+      "enunciado": "En tribunales de selección o jurados, ¿Cuándo existe representación equilibrada?",
+      "opciones": [
+        "cuando los dos sexos estén representados",
+        "cuando estemos representadas las mujeres al menos al 40%",
+        "cuando los dos sexos estén representados al menos al 40%",
+        "cuando los hombres estén representados"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 96,
+      "enunciado": "¿Quién elige al alcalde?",
+      "opciones": [
+        "los concejales",
+        "los vecinos",
+        "la junta de gobierno local",
+        "pueden ser elegidos o bien por los vecinos o bien por los concejales"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 97,
+      "enunciado": "¿De quien es un alto comisionado el ARARTEKO?",
+      "opciones": [
+        "de las cortes generales",
+        "del gobierno vasco",
+        "del parlamento vasco",
+        "del tribunal superior de justicia de Euskadi"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 98,
+      "enunciado": "¿Cuáles son las asociaciones prohibidas?",
+      "opciones": [
+        "las secretas",
+        "las de carácter paramilitar",
+        "las que persiguen fines o utilizan medios tipificados como delito",
+        "la a y b son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 99,
+      "enunciado": "¿Quién elige al Lehendakari?",
+      "opciones": [
+        "los vasc@s mediante sufragio universal",
+        "los consejeros",
+        "el parlamento vasco",
+        "el gobierno vasco lo elige y lo nombra el rey"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 100,
+      "enunciado": "¿En que caso no se está obligado a declarar?",
+      "opciones": [
+        "amistad y parentesco",
+        "amistad y secreto profesional",
+        "parentesco y secreto profesional",
+        "afinidad y parentescto"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    }
+  ]
+}

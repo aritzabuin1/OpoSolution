@@ -1,0 +1,130 @@
+{
+  "convocatoria": "preparacion_tema_4",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "tema04",
+  "fuente_url": null,
+  "total_preguntas": 10,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "¿Cuál es la actual ley de protección de datos?",
+      "opciones": [
+        "La ley 5/2018 de 3 de diciembre",
+        "La ley 3/2018 de 5 de diciembre",
+        "La ley 3/2016 de 5 de diciembre",
+        "La ley 5/2016 de 3 de diciembre"
+      ],
+      "correcta": 1,
+      "tema_numero": 4
+    },
+    {
+      "numero": 2,
+      "enunciado": "¿Por qué la ley de protección de datos es una Ley Orgánica?",
+      "opciones": [
+        "Porque está hecha por las cortes generales",
+        "Porque lo establece así la constitución española",
+        "Porque está desarrollando un derecho fundamental como es la protección de datos",
+        "Todas las respuestas anteriores son verdaderas"
+      ],
+      "correcta": 2,
+      "tema_numero": 4
+    },
+    {
+      "numero": 3,
+      "enunciado": "¿Qué artículo de la Constitución Española recoge la protección de datos?",
+      "opciones": [
+        "Articulo 18.1",
+        "Articulo 17.4",
+        "Articulo 18.4",
+        "Articulo 18.3"
+      ],
+      "correcta": 2,
+      "tema_numero": 4
+    },
+    {
+      "numero": 4,
+      "enunciado": "¿Quién puede solicitar el acceso a los datos personales de una persona fallecida?",
+      "opciones": [
+        "Sus familiares",
+        "Sus herederos",
+        "La persona que el causante haya podido escoger",
+        "Todas las respuestas son verdaderas"
+      ],
+      "correcta": 3,
+      "tema_numero": 4
+    },
+    {
+      "numero": 5,
+      "enunciado": "¿Quién puede acceder en caso de que el fallecido sea un menor de edad?",
+      "opciones": [
+        "Sus familiares y herederos",
+        "Sus representantes legales y el ministerio fiscal",
+        "Sus padres o tutores",
+        "Ninguna respuesta es correcta"
+      ],
+      "correcta": 1,
+      "tema_numero": 4
+    },
+    {
+      "numero": 6,
+      "enunciado": "¿Cómo regla general como deben ser los datos?",
+      "opciones": [
+        "Exactos y siempre actualizados",
+        "Exactos y actualizados",
+        "Exactos y si fuere necesario actualizados",
+        "Ninguna respuesta es verdadera"
+      ],
+      "correcta": 2,
+      "tema_numero": 4
+    },
+    {
+      "numero": 7,
+      "enunciado": "¿A qué edad se puede prestar el consentimiento para el tratamiento de los datos?",
+      "opciones": [
+        "Cuando eres mayor de 14 años",
+        "Cuando eres menor de 14 años",
+        "Cuando eres mayor de 16 años",
+        "Cuando eres mayor de edad"
+      ],
+      "correcta": 0,
+      "tema_numero": 4
+    },
+    {
+      "numero": 8,
+      "enunciado": "¿En que supuestos no es imputable al responsable la inexactitud de los datos?",
+      "opciones": [
+        "En el caso de que hayan sido obtenidos directamente del afectado",
+        "En el caso de que hayan sido obtenidos de un registro público",
+        "En el caso de que hayan sido obtenidos por un mediador o intermediario",
+        "Todas las respuestas son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 4
+    },
+    {
+      "numero": 9,
+      "enunciado": "En el caso de datos personales como los antecedentes penales, ¿Qué profesionales pueden obtenerlos en las tareas habituales de su trabajo?",
+      "opciones": [
+        "Jueces y fiscales",
+        "Jueces y policías",
+        "Abogados y procuradores",
+        "Todos pueden"
+      ],
+      "correcta": 2,
+      "tema_numero": 4
+    },
+    {
+      "numero": 10,
+      "enunciado": "¿Qué derechos se pueden ejercer respecto a la protección de datos?",
+      "opciones": [
+        "Acceso, rectificación, supresión, oposición y portabilidad",
+        "Acceso, supresión y derecho al olvido",
+        "Acceso, portabilidad, rectificación",
+        "Derecho al olvido y oposición"
+      ],
+      "correcta": 0,
+      "tema_numero": 4
+    }
+  ]
+}

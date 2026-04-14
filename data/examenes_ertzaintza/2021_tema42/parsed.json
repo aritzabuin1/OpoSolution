@@ -1,0 +1,274 @@
+{
+  "convocatoria": "preparacion_tema_42",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "tema42",
+  "fuente_url": null,
+  "total_preguntas": 22,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "TEMA 42- II ACUERDO INTERINSTITUCIONAL PARA LA MEJORA EN LA ATENCIÓN  A LAS MUJERES VÍCTIMAS DE MALTRATO EN EL ÁMBITO DOMÉSTICO Y DE VIOLENCIA SEXUAL.",
+      "opciones": [
+        "El II Acuerdo Interinstitucional para la mejora en la atención a las mujeres víctimas de maltrato en el ámbito doméstico y de violencia sexual fue suscrito el:",
+        "18 de octubre de 2001.",
+        "6 de febrero de 2005.",
+        "3 de febrero de 2009."
+      ],
+      "correcta": 2,
+      "tema_numero": 42
+    },
+    {
+      "numero": 5,
+      "enunciado": "Con la mínima victimización se tratará de:",
+      "opciones": [
+        "Garantizar una articulación eficaz y  ágil con el fin de actuar con la inmediatez requerida por la urgencia propia de las situaciones.",
+        "Aplicar el Protocolo y las medidas necesarias para atender a las personas menores.",
+        "Evitar que se reproduzcan situaciones de violencia contra las víctimas.",
+        "Evitar al máximo la victimización secundaria de las mujeres que han sufrido la violencia."
+      ],
+      "correcta": 3,
+      "tema_numero": 42
+    },
+    {
+      "numero": 6,
+      "enunciado": "Señala la respuesta incorrecta. Para facilitar la atención integral, tanto en lo sanitario como en lo jurídico y social, se presenta al personal sanitario un árbol de decisiones/procedimientos que permitan:",
+      "opciones": [
+        "Recuperar la salud a la víctima.",
+        "Beneficiar a la víctima de los recursos sociales disponibles.",
+        "Implantar las actuaciones forenses y legales pertinentes.",
+        "Asegurar si la persona reúne las condiciones para considerarla como una víctima de maltrato doméstico, agresión o abuso sexual."
+      ],
+      "correcta": 3,
+      "tema_numero": 42
+    },
+    {
+      "numero": 7,
+      "enunciado": "En la actuación ante el maltrato con lesiones físicas o psíquicas agudas evidenciables, el parte de lesiones no debe incluir:",
+      "opciones": [
+        "La exposición de los hechos.",
+        "Datos de filiación del agresor",
+        "Antecedentes personales de interés en relación con las lesiones.",
+        "Plan de actuación."
+      ],
+      "correcta": 1,
+      "tema_numero": 42
+    },
+    {
+      "numero": 8,
+      "enunciado": "La primera actuación ante agresión o abuso sexual reciente (menos de 72 horas) es:",
+      "opciones": [
+        "Remitir a la víctima al hospital más cercano.",
+        "Cumplimentar el parte de lesiones.",
+        "Asesorar a la víctima sobre las medidas sociales y de protección.",
+        "Llamar al médico/a forense."
+      ],
+      "correcta": 0,
+      "tema_numero": 42
+    },
+    {
+      "numero": 9,
+      "enunciado": "Señala la respuesta incorrecta. En la recepción de la denuncia se informará a la víctima sobre:",
+      "opciones": [
+        "Las consecuencias de la interposición de la denuncia.",
+        "Los datos personales del denunciado.",
+        "El derecho a ser asesorada gratuitamente.",
+        "La necesidad de interponer la denuncia en casos de delitos contra la libertad sexual."
+      ],
+      "correcta": 1,
+      "tema_numero": 42
+    },
+    {
+      "numero": 10,
+      "enunciado": "Entre las medidas específicas de protección a la víctima, en caso de agresión sexual o cuando las circunstancias o elementos justifiquen su necesidad y urgencia:",
+      "opciones": [
+        "Vigilar y seguir a la persona agresora.",
+        "Comprobar teléfonos y realizar visitas aleatorias.",
+        "Ofertar a la víctima formación sobre autoprotección.",
+        "Entrega a la víctima de un teléfono de enlace directo con las unidades policiales."
+      ],
+      "correcta": 3,
+      "tema_numero": 42
+    },
+    {
+      "numero": 11,
+      "enunciado": "Los órganos judiciales entregarán a la víctima una nota informativa en la que conste los siguientes datos excepto uno. Indica cuál:",
+      "opciones": [
+        "El ofrecimiento de los órganos judiciales para emprender acciones y en la que incluya la dirección y teléfono de los Servicios de Asistencia a la víctima.",
+        "Justicia gratuita a través de los Servicios de Orientación Jurídica de los Colegios de Abogadas y Abogados.",
+        "El expediente con la dirección del recurso en el que va a ser atendida.",
+        "Los recursos sociales gratuitos existentes en la comunidad."
+      ],
+      "correcta": 2,
+      "tema_numero": 42
+    },
+    {
+      "numero": 12,
+      "enunciado": "Cuando una víctima de maltrato doméstico presenta lesiones que requieran asistencia sanitaria y  acuda a cualquier Servicio Social de Base ubicado en la Comunidad Autónoma de Euskadi, es prioritario que:",
+      "opciones": [
+        "Se le tome declaración.",
+        "Se le indique que solicite en el servicio médico un parte de lesiones lo más descriptivo posible.",
+        "Se le muestren los recursos existentes.",
+        "Se le informe de la importancia de que esté debidamente asesorada."
+      ],
+      "correcta": 1,
+      "tema_numero": 42
+    },
+    {
+      "numero": 13,
+      "enunciado": "Si se determina un caso como maltrato entre iguales, si se produce denuncia policial, judicial o queja al Ararteko (defensor del pueblo del País Vasco) o, incluso, en aquellos casos que no se trata de maltrato entre iguales en el ámbito educativo, es aconsejable poner los hechos en conocimiento de:",
+      "opciones": [
+        "El/la directora/a del centro.",
+        "Berritzegune.",
+        "Las familias implicadas.",
+        "La Inspección Educativa."
+      ],
+      "correcta": 3,
+      "tema_numero": 42
+    },
+    {
+      "numero": 14,
+      "enunciado": "Señala la respuesta incorrecta. En caso de que algún miembro de la comunidad educativa conozca, o tenga sospecha fundad, de que alguna alumna sea objeto de maltrato o d violencia sexual por parte de algún familiar o persona ajena al personal perteneciente a un centro educativo de la Comunidad Autónoma de Euskadi, lo pondrá inmediatamente en conocimiento de la Dirección del centro, el cual, tras  el correspondiente análisis de la situación y si considera que existen indicios de delito, lo pondrá en conocimiento de:",
+      "opciones": [
+        "La familia implicada.",
+        "Los Servicios Sociales.",
+        "La Inspección Educativa.",
+        "La Fiscalía."
+      ],
+      "correcta": 0,
+      "tema_numero": 42
+    },
+    {
+      "numero": 15,
+      "enunciado": "La Comisión de Seguimiento estará presidida por:",
+      "opciones": [
+        "El EUDEL.",
+        "La persona que ocupe la Dirección de Emakunde.",
+        "Un representante de departamento del Gobierno Vasco competente en servicios  sociales.",
+        "La persona titular de la Secretaría General de Emakunde."
+      ],
+      "correcta": 1,
+      "tema_numero": 42
+    },
+    {
+      "numero": 16,
+      "enunciado": "Según el II Acuerdo Interinstitucional, la Comisión celebrará:",
+      "opciones": [
+        "Al menos dos sesiones extraordinarias al año.",
+        "Una reunión extraordinaria dentro de los 15 días siguientes al de la solicitud a petición de un tercio de sus integrantes.",
+        "Una reunión anual.",
+        "Al menos dos sesiones ordinarias al año."
+      ],
+      "correcta": 3,
+      "tema_numero": 42
+    },
+    {
+      "numero": 17,
+      "enunciado": "Con el fin de prestar el apoyo técnico necesario a las y los miembros de la Comisión de Seguimiento para el correcto desempeño de sus funciones, se crea:",
+      "opciones": [
+        "Emakunde-Instituto Vasco de la mujer.",
+        "EUDEL.",
+        "Un Grupo Técnico Interinstitucional.",
+        "Una Delegación de Apoyo Técnico Interinstitucional."
+      ],
+      "correcta": 2,
+      "tema_numero": 42
+    },
+    {
+      "numero": 18,
+      "enunciado": "El Informe de seguimiento y evaluación del II Acuerdo Interinstitucional para la mejora en la atención a las mujeres víctimas de maltrato en el ámbito doméstico y de violencia sexual, realizado en 2010, fue elaborado por:",
+      "opciones": [
+        "La Dirección de Atención a las Víctimas de la Violencia de Género.",
+        "Emakunde-Instituto Vasco de la mujer.",
+        "EUDEL.",
+        "Un Grupo Técnico Interinstitucional."
+      ],
+      "correcta": 0,
+      "tema_numero": 42
+    },
+    {
+      "numero": 19,
+      "enunciado": "Uno de los procedimientos que se llevó a cabo, a la luz de los compromisos y pautas establecidas por el  II Acuerdo, fue ante:",
+      "opciones": [
+        "Mujeres mayores víctimas de violencia machista.",
+        "Muertes por maltrato doméstico y agresiones sexuales.",
+        "Jóvenes y adolescentes en el ámbito educativo.",
+        "Mujeres maltratadas en entornos adictivos."
+      ],
+      "correcta": 1,
+      "tema_numero": 42
+    },
+    {
+      "numero": 20,
+      "enunciado": "En 2021 se ha rediseñado el cuestionario de datos que se utiliza para recabar información, para incluir y ajustar algunos de los contenidos. Indica cuál de las siguientes se ha incluido como nueva variable:",
+      "opciones": [
+        "Personal.",
+        "Formación.",
+        "Tipo de violencia que sufren las mujeres.",
+        "Número de plazas de los recursos residenciales."
+      ],
+      "correcta": 2,
+      "tema_numero": 42
+    },
+    {
+      "numero": 21,
+      "enunciado": "El III Acuerdo Interinstitucional para la coordinación de la atención a las víctimas de violencia machista contra las mujeres de la CAE se firmó el:",
+      "opciones": [
+        "18 de octubre de 2001.",
+        "6 de febrero de 2005.",
+        "3 de febrero de 2009.",
+        "19 de enero de 2023."
+      ],
+      "correcta": 3,
+      "tema_numero": 42
+    },
+    {
+      "numero": 22,
+      "enunciado": "En relación a anteriores Acuerdos, el III Acuerdo va a suponer un paso importante hacia:",
+      "opciones": [
+        "La mejora del grado de cumplimiento de las acciones propuestas.",
+        "La intensificación de la formación en materias de violencia de género y agresiones sexuales.",
+        "Una atención más integral y más personalizada de las víctimas y evitar su revictimización.",
+        "Una mejor coordinación de los recursos contra la violencia machista hacia las mujeres."
+      ],
+      "correcta": 2,
+      "tema_numero": 42
+    },
+    {
+      "numero": 23,
+      "enunciado": "El Convenio sobre prevención y lucha contra la violencia hacia las mujeres y la violencia doméstica, de 2011 se conoce también como:",
+      "opciones": [
+        "CEDAW.",
+        "Convenio de Estambul.",
+        "Estatuto de la víctima del delito.",
+        "La Ley del “solo sí es sí”."
+      ],
+      "correcta": 1,
+      "tema_numero": 42
+    },
+    {
+      "numero": 24,
+      "enunciado": "En el ámbito de la Comunidad Autónoma de Euskadi, la ley para la Igualdad de Mujeres y Hombres y vidas libres de violencia machista contra las mujeres es la:",
+      "opciones": [
+        "Ley 4/2005, de 18 de febrero.",
+        "Ley 5/2018, de 28 de diciembre.",
+        "Ley 5/2004, de 18 de febrero.",
+        "Ley 4/2005, de 13 de enero."
+      ],
+      "correcta": 0,
+      "tema_numero": 42
+    },
+    {
+      "numero": 25,
+      "enunciado": "El objeto del III Acuerdo es:",
+      "opciones": [
+        "Erradicar el término “violencia contra las mujeres”.",
+        "Lograr la máxima  y mejor coordinación y colaboración entre las instituciones implicadas en la CAE en la atención integral a las víctimas.",
+        "Desplegar todos los recursos disponibles tanto en el ámbito comunitario como estatal.",
+        "Examinar los protocolos de actuación y definir el ámbito de las competencias de cada institución comprometida."
+      ],
+      "correcta": 1,
+      "tema_numero": 42
+    }
+  ]
+}

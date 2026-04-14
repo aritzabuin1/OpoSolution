@@ -1,0 +1,130 @@
+{
+  "convocatoria": "preparacion_temas_22_23",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "tema2223",
+  "fuente_url": null,
+  "total_preguntas": 10,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "Los preceptos de la Ley sobre tráfico, circulación de vehículos a motor y seguridad vial, los de los reglamentos aplicables y los de las demás disposiciones que la desarrollen no serán aplicables:",
+      "opciones": [
+        "A las autopistas, autovías, carreteras convencionales, a las áreas v zonas de descanso y de servicio, sitas y afectas a dichas vías, calzadas de servicio y a las zonas de parada o estacionamiento de cualquier clase de vehículos.",
+        "A los titulares de las vías públicas reglamentarias y a sus usuarios, ya lo sean en concepto de titulares, propietarios, conductores u ocupantes de vehículos o en concepto de peatones, y tanto si circulan individualmente como en grupo.",
+        "A los animales sueltos o en rebaño y a los vehículos de cualquier clase que, estáticos o en movimiento, se encuentren incorporados al tráfico en las vías reglamentarias.",
+        "A los caminos, terrenos, garajes, cocheras u otros locales de similar naturaleza, construidos dentro de fincas privadas, sustraídos al uso público y destinados al uso exclusivo de los propietarios y sus dependientes."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 2,
+      "enunciado": "El Real Decreto Legislativo por el que se aprueba el texto refundido de la Ley sobre Tráfico, Circulación de Vehículos a Motor y Seguridad Vial, es el:",
+      "opciones": [
+        "5/2015, de 30 de octubre.",
+        "6/2016, de 30 de octubre.",
+        "6/2015, de 30 de octubre.",
+        "5/2016, de 30 de octubre."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 3,
+      "enunciado": "Corresponde a la Administración General del Estado:",
+      "opciones": [
+        "La vigilancia y disciplina del tráfico en toda clase de vías interurbanas y en travesías cuando no exista policía local, así como la denuncia y sanción de las infracciones a las normas de circulación y de seguridad en dichas vías.",
+        "Las autorizaciones o permisos temporales v provisionales para la circulación de vehículos.",
+        "La inmovilización de los vehículos en vías urbanas cuando no dispongan de título que habilite el estacionamiento en zonas limitadas en tiempo o excedan de la autorización concedida, hasta que se logre la identificación de su conductor.",
+        "La aprobación de la normativa técnica básica que afecte de manera directa a la seguridad vial."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 4,
+      "enunciado": "Corresponde al Ministerio del Interior:",
+      "opciones": [
+        "La retirada de los vehículos de la vía fuera de poblado y la baja temporal o definitiva de la circulación de dichos vehículos.",
+        "La determinación de las drogas que puedan afectar a la conducción, así como de las pruebas para su detección y, en su caso, sus niveles máximos.",
+        "La regulación del transporte de personas y, especialmente, el transporte escolar y de menores, a los efectos relacionados con la seguridad vial.",
+        "La autorización de pruebas deportivas cuando discurran íntegra y exclusivamente por el casco urbano, exceptuadas las travesías."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 5,
+      "enunciado": "El órgano de consulta y participación para el impulso y mejora del tráfico, la seguridad vial y la movilidad sostenible y para promover la concertación de las distintas Administraciones Públicas y entidades que desarrollan actividades en esos ámbitos, sin perjuicio de las competencias de las comunidades autónomas que hayan recibido el traspaso de funciones y servicios en materia de tráfico y circulación de vehículos a motor, es:",
+      "opciones": [
+        "El Observatorio de Tráfico, Seguridad Vial y Movilidad.",
+        "El Consejo Superior de Tráfico, Seguridad Vial y Movilidad Sostenible.",
+        "El Consejo Superior de Seguridad Vial, Tráfico y Movilidad Sostenible.",
+        "La Conferencia Sectorial de Tráfico Vial, Seguridad y Movilidad Sostenible."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 6,
+      "enunciado": "La separación que debe guardar el conductor de un vehículo que circule detrás de otro sin señalar su propósito de adelantamiento debe ser tal que permita al que a su vez le siga adelantarlo con seguridad, excepto si se trata de ciclistas que circulan en grupo. Los vehículos con masa máxima superior a la que reglamentariamente se determine y los vehículos o conjuntos de vehículos de más de l0 metros de longitud total deben guardar, a estos efectos, una separación mínima de:",
+      "opciones": [
+        "50 metros..",
+        "30 metros.",
+        "20 metros",
+        "40 metros."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 7,
+      "enunciado": "Al titular de un permiso o licencia de conducción se le asignará un crédito inicial de:",
+      "opciones": [
+        "Quince puntos.",
+        "Doce puntos.",
+        "Diez puntos.",
+        "Dieciocho puntos."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 8,
+      "enunciado": "Complete las líneas punteadas. El titular de un permiso o licencia de conducción que haya perdido una parte del crédito inicial de puntos asignado, podrá optar a su recuperación parcial, hasta un máximo de ... , por una sola vez cada ... , realizando y superando con aprovechamiento un curso de sensibilización y reeducación vial, con la excepción de los conductores profesionales que podrán realizar el citado curso con frecuencia anual.",
+      "opciones": [
+        "Seis puntos; dos años.",
+        "Ocho puntos; tres años.",
+        "Cinco puntos; año.",
+        "Diez puntos; cinco años."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 9,
+      "enunciado": "Si durante los tres años siguientes a la obtención del nuevo permiso o licencia de conducción fuera acordada su pérdida de vigencia por haber perdido nuevamente la totalidad de los puntos asignados, no se podrá obtener un nuevo permiso o licencia de conducción hasta transcurridos:",
+      "opciones": [
+        "Veinticuatro meses desde la notificación del acuerdo.",
+        "Dieciocho meses desde la notificación del acuerdo.",
+        "Doce meses desde la notificación del acuerdo.",
+        "Seis meses desde la notificación del acuerdo."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 10,
+      "enunciado": "El permiso que se obtenga, con posterioridad a la sentencia penal de privación del derecho a conducir vehículos a motor, dispondrá de un saldo de:",
+      "opciones": [
+        "10 puntos..",
+        "8 puntos.",
+        "12 puntos",
+        "15 puntos."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    }
+  ]
+}

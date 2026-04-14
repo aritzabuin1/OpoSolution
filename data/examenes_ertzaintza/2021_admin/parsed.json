@@ -1,0 +1,442 @@
+{
+  "convocatoria": "preparacion_administrativo",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "admin",
+  "fuente_url": null,
+  "total_preguntas": 36,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "El ámbito subjetivo de la Ley de Régimen Jurídico del Sector Público comprende:",
+      "opciones": [
+        "La Administración General del Estado y las Administraciones de las Comunidades Autónomas",
+        "La Administración General del Estado, las Administraciones de las Comunidades Autónomas, las Entidades que integran la Administración local, así como las entidades de derecho privado vinculadas o dependientes de las Administraciones Públicas",
+        "La Administración General del Estado, las Administraciones de las Comunidades Autónomas, las Entidades que integran la Administración local y el Sector público institucional",
+        "los Organismos públicos y Entidades de derecho público vinculadas o dependientes de las Administraciones Públicas"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 2,
+      "enunciado": "Cuando el cumplimiento de una obligación establecida por una norma con rango de Ley corresponda a varias personas, responderán por las infracciones cometidas:",
+      "opciones": [
+        "Todas las personas responderán de manera solidaria, salvo que uno de ellos, haya aportado la prueba que permita identificar al resto lo cual le eximirá del pago de la sanción pecuniaria",
+        "Los responsables pueden ponerse de acuerdo para decidir conjuntamente quien responde por los demás.",
+        "Responderán de manera solidaria, salvo que la sanción sea pecuniaria y sea posible individualizarla atendiendo al grado de participación de cada responsable",
+        "Responderá cada uno según el grado de participación"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 3,
+      "enunciado": "La declaración de lesividad de actos anulables:",
+      "opciones": [
+        "No puede adoptarse pasados 4 años desde que se dictó el acto administrativo",
+        "No puede adoptarse pasados 4 años desde que se notificó el acto administrativo",
+        "No pueden adoptarse pasados 6 meses desde que se dictó el acto administrativo",
+        "No cabe la declaración de lesividad de actos anulables, solo de actos nulos de pleno derecho"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 4,
+      "enunciado": "La falta de resolución expresa en los procedimientos iniciados de oficio:",
+      "opciones": [
+        "El vencimiento del plazo máximo establecido sin que se haya dictado y notificado resolución expresa no exime a la Administración del cumplimiento de la obligación legal de resolver",
+        "El vencimiento del plazo máximo establecido sin que se haya dictado y notificado resolución expresa exime a la Administración del cumplimiento de la obligación legal de resolver, puesto que existe la figura del silencio, que despliega sus efectos en los supuestos en los que no existe resolución",
+        "Producirá la caducidad a los 6 meses",
+        "Producirá el silencio desestimatorio"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 5,
+      "enunciado": "Que los titulares de los órganos administrativos deleguen la firma en materias de su competencia:",
+      "opciones": [
+        "No altera la competencia",
+        "Altera la competencia porque es otro órgano el que firma, y asume el ejercicio de la misma",
+        "Cuando deleguen la firma lo tienen que hacer constar en la resolución y actos que dicten, así como tiene que constar también el órgano de procedencia",
+        "Las respuestas a) y c) son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 6,
+      "enunciado": "Las Administraciones Públicas sirven con objetividad los intereses generales y actúan de acuerdo:",
+      "opciones": [
+        "los principios de jerarquía eficacia, desconcentración y trasparencia",
+        "descentralización, concentración, coordinación y objetividad",
+        "eficacia, jerarquía, descentralización, desconcentración, coordinación y objetividad",
+        "eficacia, independencia, descentralización e imparcialidad"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 7,
+      "enunciado": "¿En qué momento podrán los interesados hacer alegaciones y presentar pruebas en el procedimiento administrativo?",
+      "opciones": [
+        "en cualquier fase del procedimiento",
+        "en cualquier momento del procedimiento posterior al trámite de audiencia",
+        "únicamente podrán en el trámite de audiencia",
+        "en cualquier momento anterior al trámite de audiencia"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 8,
+      "enunciado": "Las sanciones prescriben en el plazo de:",
+      "opciones": [
+        "leves 6 meses, graves 2 años y muy graves 3 años",
+        "leves 1 año, graves 2 años y muy graves 3 años",
+        "las sanciones no prescriben, solo las infracciones",
+        "leves 1 año, graves 2 años y muy graves 4 años"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 10,
+      "enunciado": "¿En qué plazo debe el recusado manifestar si es cierta o no la causa de recusación?",
+      "opciones": [
+        "a los tres días",
+        "dentro de los tres días siguientes",
+        "al día siguiente",
+        "deberá ser su superior jerárquico el que diga si es cierta o no la causa de recusación"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 11,
+      "enunciado": "Establece la ley 39/2015 que las propuestas de resolución en los procedimientos de carácter sancionador",
+      "opciones": [
+        "no serán motivadas",
+        "solo cuando finalice con la imposición de la sanción, y ésta sea pecuniaria",
+        "solo cuando suponga perjuicio para el interesado",
+        "serán motivadas en todo caso"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 12,
+      "enunciado": "¿En que plazo debe emitir dictamen los órganos consultivos, en casos de responsabilidad patrimonial?",
+      "opciones": [
+        "10 días",
+        "15 días",
+        "6 meses",
+        "2 meses"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 13,
+      "enunciado": "Las administraciones Públicas emitirán los documentos administrativos:",
+      "opciones": [
+        "oralmente cuando proceda",
+        "por escrito u oralmente según proceda",
+        "por escrito",
+        "a través de medios electrónicos en todo caso"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 14,
+      "enunciado": "A los efectos de la Ley 39/2015 se entenderá por declaración responsable",
+      "opciones": [
+        "el documento suscrito por un interesado en el que esté manifiesta bajo su responsabilidad que cumple con los requisitos establecidos en la normativa vigente para obtener el reconocimiento de un derecho facultad o para su ejercicio que dispone de la documentación que así lo acredita",
+        "cualquier documento suscrito por un interesado en los procedimientos administrativos en los que pone en conocimiento de la administración unos datos identificativos que le permitan tener derecho al ejercicio de una actividad",
+        "el documento suscrito por un interesado en el que esté manifiesta bajo su responsabilidad que se compromete a aportar la documentación que acredite lo que jura cuando se lo requiera la administración",
+        "el documento suscrito por un interesado en el que esté manifiesta bajo su responsabilidad que cumple con los requisitos establecidos en la normativa vigente para obtener el reconocimiento de un derecho o facultad o para su ejercicio, aunque no disponga de la documentación que así lo acredita"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 15,
+      "enunciado": "¿Cuál es la norma fundamental del Estado?",
+      "opciones": [
+        "el código civil",
+        "la ley de seguridad ciudadana",
+        "la constitución española",
+        "el código penal"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 18,
+      "enunciado": "Indique la opción correcta en la relación con los decretos leyes",
+      "opciones": [
+        "en caso de extraordinaria y urgente necesidad, el Gobierno podrá dictar disposiciones legislativas provisionales que tomarán la forma de decretos-leyes y que no podrán afectan al ordenamiento de las instituciones básicas del estado, a los derechos, deberes y libertades de los ciudadanos regulados en el Título 1, al régimen de las comunidades autónomas ni al Derecho Electoral General",
+        "los decretos-leyes deberán ser inmediatamente sometidos a debate y votación de la totalidad a las Cortes generales, convocadas al efecto si no estuviere reunido, en el plazo de los 30 días siguientes a la promulgación",
+        "los hacen el gobierno por delegación de las cortes mediante ley de bases",
+        "las respuestas b y c son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 19,
+      "enunciado": "¿Cómo se relacionan las administraciones públicas entre sí, y con sus organismos públicas y entidades de derecho público?",
+      "opciones": [
+        "por medios electrónicos interoperables e interconectados",
+        "por medios electrónicos interoperables y seguros",
+        "por medios electrónicos",
+        "no se relacionan entre sí"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 20,
+      "enunciado": "Es un principio que debe respetar la administración en su actuación y relaciones",
+      "opciones": [
+        "servicio efectivo a los ciudadanos",
+        "responsabilidad por la gestión pública",
+        "racionalización y agilidad del procedimiento administrativo",
+        "todas las respuestas anteriores son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 21,
+      "enunciado": "Los interesados solo podrán solicitar el inicio de un procedimiento de responsabilidad patrimonial",
+      "opciones": [
+        "cuando no haya prescrito su derecho a reclamar",
+        "en cualquier momento pues es un derecho que no prescribe",
+        "cuando no haya caducado su derecho a reclamar",
+        "en el plazo de 1 año"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 22,
+      "enunciado": "Si la solicitud de iniciación del procedimiento administrativo no reúne los requisitos exigidos se requerirá al interesado para que subsane en un plazo",
+      "opciones": [
+        "15 días",
+        "10 días",
+        "20 días",
+        "3 meses"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 23,
+      "enunciado": "El procedimiento administrativo se impulsará",
+      "opciones": [
+        "de oficio y a través de medios electrónicos en todos sus trámites",
+        "de oficio o a solicitud del interesado",
+        "a instancia de parte en todos sus trámites",
+        "ninguna de las respuestas anteriores es correcta"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 24,
+      "enunciado": "Los interesados en el procedimiento administrativo",
+      "opciones": [
+        "podrán desistir de su solicitud, siempre y cuando la renuncia a sus derechos esté permitida por el ordenamiento jurídico",
+        "podrán renunciar a sus derechos y desistir de las solicitudes",
+        "podrán desistir de su solicitud, pero no renunciar a sus derechos",
+        "podrán renunciar a sus derechos, pero no desistir de su solicitud"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 25,
+      "enunciado": "Cuando el procedimiento se hubiera iniciado de oficio se producirá la caducidad del mismo si no se dicta resolución en el plazo de",
+      "opciones": [
+        "3 meses",
+        "un año",
+        "6 meses",
+        "2 meses"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 26,
+      "enunciado": "Los Presupuestos Generales del País Vasco serán aprobados por",
+      "opciones": [
+        "el gobierno",
+        "el lehendakari",
+        "el Parlamento vasco",
+        "ninguna respuesta es correcta"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 27,
+      "enunciado": "Las Administraciones Públicas requerirán a los interesados el uso obligatorio de firma para",
+      "opciones": [
+        "recurrir actos administrativos",
+        "realizar solicitudes",
+        "desistir de las solicitudes",
+        "todas las respuestas anteriores son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 28,
+      "enunciado": "El derecho de los vecinos de un municipio a aprovechar los pastos y las leñas del término municipal sería un ejemplo de...",
+      "opciones": [
+        "Aprovechamiento de un bien local",
+        "Aprovechamiento de un bien común",
+        "Aprovechamiento de un servicio público",
+        "Aprovechamiento de un bien comunal"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 29,
+      "enunciado": "Un cementerio sería un bien...",
+      "opciones": [
+        "Comunal",
+        "De uso público",
+        "De servicio público",
+        "ninguna es correcta"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 30,
+      "enunciado": "Una calle sería un bien...",
+      "opciones": [
+        "Comunal",
+        "De uso público",
+        "De servicio público",
+        "ninguna es correcta"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 31,
+      "enunciado": "¿Cuándo se aplica la costumbre como fuente del derecho?:",
+      "opciones": [
+        "En defecto de la ley aplicable",
+        "En defecto de ley o principios generales del derecho",
+        "se aplica siempre que la ley así lo prevé",
+        "Cuando no existan principios generales del derecho aplicables"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 32,
+      "enunciado": "Los Reglamentos son:",
+      "opciones": [
+        "Normas de rango inferior a la Ley",
+        "Normas de rango legal",
+        "Normas que modifican la ley",
+        "Ninguna es correcta"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 33,
+      "enunciado": "Según el Código Civil, los principios generales del Derecho se aplicarán:",
+      "opciones": [
+        "Sólo en defecto de ley",
+        "En defecto de ley y jurisprudencia",
+        "En defecto de ley o de costumbre, sin perjuicio de su carácter informador del ordenamiento jurídico",
+        "Todas son correctas"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 34,
+      "enunciado": "Según el Código Civil, la costumbre sólo regirá en defecto de la ley aplicable:",
+      "opciones": [
+        "Exclusivamente siempre que resulte probada",
+        "Siempre que no sea contraria a la moral o al orden público y que resulte probada",
+        "Siempre que no sea contraria al orden público y, en su aplicación, resulte más beneficiosa",
+        "Todas son correctas"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 35,
+      "enunciado": "¿Qué plazo requiere el Decreto Ley para ser sometido a debate y votación en el Congreso?:",
+      "opciones": [
+        "no debe pasar por el congreso, sino sólo por el senado",
+        "20 días siguientes a su aprobación",
+        "30 días siguientes a su aprobación",
+        "al mes siguientes a su aprobación"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 36,
+      "enunciado": "Que significa inderogabilidad singular de un reglamento:",
+      "opciones": [
+        "Que la misma autoridad que aprobó un reglamento u otra superior no puede dictar un acto para un caso concreto, contraviniendo lo establecido en dicho reglamento",
+        "Que la misma autoridad que aprobó un reglamento no puede dictar un acto para un caso concreto, contraviniendo lo establecido en dicho reglamento, aunque sí una autoridad superior",
+        "Que sólo una resolución administrativa de carácter particular de rango superior podrá vulnerar lo establecido en el reglamento",
+        "Que la misma autoridad que dictó el acto puede derogarlo en cualquier momento"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 37,
+      "enunciado": "Como regla general, ¿desde cuando se presumen válidos los actos administrativos?",
+      "opciones": [
+        "desde el momento en que se dictan",
+        "desde el momento que son notificados",
+        "desde el momento en que se publican",
+        "todas son verdaderas"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 38,
+      "enunciado": "Diga cuales son las fases del procedimiento administrativo:",
+      "opciones": [
+        "iniciación, instrucción, ordenación y finalización",
+        "iniciación, ordenación, instrucción y finalización",
+        "iniciación, ordenación, instrucción, finalización y ejecución",
+        "iniciación, ordenación, instrucción, ejecución y finalización"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 40,
+      "enunciado": "Si el interesado solicita la revisión de oficio, y la administración no le da resolución expresa…",
+      "opciones": [
+        "se produce la caducidad a los 6 meses",
+        "se produce la caducidad a los 3 meses",
+        "tiene que entender que ha sido desestimada por silencio administrativo",
+        "tiene que entender que ha sido estimada por silencio administrativo"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    }
+  ]
+}

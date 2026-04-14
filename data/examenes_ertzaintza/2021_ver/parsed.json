@@ -1,0 +1,358 @@
+{
+  "convocatoria": "preparacion_verano",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "ver",
+  "fuente_url": null,
+  "total_preguntas": 29,
+  "preguntas": [
+    {
+      "numero": 14,
+      "enunciado": "La duración máxima de la prisión provisional se determinará mediante:",
+      "opciones": [
+        "Ordenanza",
+        "Ley orgánica",
+        "Reglamento.",
+        "Ley."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 15,
+      "enunciado": "El derecho a entrar y salir libremente de España:",
+      "opciones": [
+        "No podrá limitarse en ningún caso.",
+        "Podrá limitarse siempre.",
+        "Sólo podrá limitarse por motivos políticos o ideológicos.",
+        "Se podrá limitar en casos distintos a los señalados en la respuesta C"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 17,
+      "enunciado": "En los artículos 17 y 36 del estatuto de autonomía se recogen:",
+      "opciones": [
+        "Deberes de la ertzaintza.",
+        "Deber de ayuda fuera de servicio.",
+        "Utilización de Armas.",
+        "Policía judicial."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 18,
+      "enunciado": "La policía judicial de quien depende funcionalmente:",
+      "opciones": [
+        "Del departamento de seguridad del Gobierno vasco.",
+        "Del Gobierno vasco.",
+        "De la administración de justicia.",
+        "Ninguna respuesta es correcta."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 19,
+      "enunciado": "El mando supremo de la Policía Autónoma Vasca corresponde a:",
+      "opciones": [
+        "Gobierno Vasco.",
+        "Lehendakari.",
+        "Parlamento vasco.",
+        "Consejera de seguridad."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 21,
+      "enunciado": "El Gobierno vasco responde políticamente de sus actos:",
+      "opciones": [
+        "De forma solidaria, ante el Parlamento Vasco.",
+        "De forma solidaria, ante las cortes generales.",
+        "Únicamente ante Juzgados y tribunales.",
+        "De forma solidaria ante el Tribunal Constitucional."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 22,
+      "enunciado": "Las Cortes Generales, en materia de competencia estatal:",
+      "opciones": [
+        "Podrán atribuir a todas o a alguna de las Comunidades Autónomas la facultad de dictar, para sí mismas, normas legislativas en el marco de los principios, bases y directrices fijados por una ley estatal.",
+        "Podrán atribuir a todas o a alguna de las Comunidades Autónomas la facultad de dictar, para sí mismas, decretos en el marco de los principios, bases y directrices fijados por una ley estatal.",
+        "Podrán atribuir a todas o a alguna de las Comunidades Autónomas la facultad de dictar, para sí mismas, reglamentos  en el marco de los principios, bases y directrices fijados por una ley estatal.",
+        "ninguna respuesta es correcta."
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 23,
+      "enunciado": "Las Haciendas Locales:",
+      "opciones": [
+        "Deberán disponer de los medios suficientes para el desempeño de las funciones que la ley atribuye a las Corporaciones respectivas y se nutrirán fundamentalmente de tributos propios.",
+        "Deberán disponer de los medios suficientes para el desempeño de las funciones que la ley atribuye a las Corporaciones respectivas y se nutrirán fundamentalmente de tributos propios, del Estado y de las Comunidades Autónomas.",
+        "Deberán disponer de los medios suficientes para el desempeño de las funciones que la ley atribuye a las Corporaciones respectivas y se nutrirán fundamentalmente de tributos propios, del Estado y de los municipios",
+        "ninguna respuesta es correcta"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 26,
+      "enunciado": "Según el artículo 148.2 de la Constitución, ¿Qué plazo tendrá que dejar pasar una comunidad autónoma para asumir más competencias?:",
+      "opciones": [
+        "3 años.",
+        "1 año.",
+        "5 Años,",
+        "No tendrá que dejar pasar plazo alguno, asumiendo más competencias en cualquier momento."
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 28,
+      "enunciado": "¿Qué lengua/s serán oficiales en el País Vasco?",
+      "opciones": [
+        "Euskera.",
+        "Castellano y Euskera.",
+        "Castellano o Euskera",
+        "Ninguna es correcta."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 29,
+      "enunciado": "¿Quién preside el pleno del ayuntamiento?:",
+      "opciones": [
+        "La junta de gobierno.",
+        "El alcalde.",
+        "Los concejales.",
+        "Ninguna respuesta es correcta."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 31,
+      "enunciado": "Quien resida en varios municipios debe inscribirse en el padrón municipal:",
+      "opciones": [
+        "Del municipio en el que tenga su residencia habitual.",
+        "Del municipio en el que resida mayor tiempo al año.",
+        "De cualquiera de ellos.",
+        "No existe obligación de inscribirse en ninguno de ellos."
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 32,
+      "enunciado": "¿Cómo se denomina el procedimiento señalado en la constitución por el que se pretende la inmediata puesta a disposición del Juzgado de la persona detenida?:",
+      "opciones": [
+        "Iustitia humanum est.",
+        "Detención preventiva.",
+        "Extra corpus carceris.",
+        "Habeas Corpus. ."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 35,
+      "enunciado": "¿Ante quien se presenta el Recurso de Amparo?:",
+      "opciones": [
+        "Ante el Juzgado de lo contencioso administrativo.",
+        "Ante el Tribunal superior de Justicia.",
+        "Ante el Tribunal Supremo.",
+        "Ante el Tribunal Constitucional."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 36,
+      "enunciado": "¿En que articulo viene recogido cuales son las fuentes del derecho?",
+      "opciones": [
+        "art. 1 de la constitución española",
+        "art.1 del código civil",
+        "art. 2 de la constitución española",
+        "art.2 del código civil"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 37,
+      "enunciado": "¿Cuáles son las fuentes del derecho administrativo?",
+      "opciones": [
+        "la constitución, la ley, las normas con rango de ley y los reglamentos",
+        "la ley, la costumbre y los principios generales del derecho",
+        "la constitución, la costumbre, la ley, las normas con rango de ley",
+        "la doctrina científica y la jurisprudencia"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 38,
+      "enunciado": "Las fuentes del derecho pueden ser:",
+      "opciones": [
+        "directas o indirectas",
+        "principales o secundarias",
+        "directas",
+        "indirectas"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 39,
+      "enunciado": "¿Qué tipo de fuente es la doctrina científica?",
+      "opciones": [
+        "directa",
+        "indirecta",
+        "principal",
+        "no es fuente del derecho"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 40,
+      "enunciado": "Los reglamentos se pueden clasificar en:",
+      "opciones": [
+        "ejecutivos e independientes",
+        "ejecutivos y de necesidad",
+        "ejecutivos, independientes y de necesidad",
+        "no hay tipos de reglamentos"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 41,
+      "enunciado": "Un reglamento puede:",
+      "opciones": [
+        "crear tributos",
+        "imponer una pena",
+        "desarrollar una ley previamente dictada",
+        "puede hacer todas las cuestiones anteriores"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 42,
+      "enunciado": "¿Quién elige y separa a los consejeros?",
+      "opciones": [
+        "Los miembros del parlamento vasco",
+        "El rey",
+        "El lehendakari",
+        "El gobierno vasco"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 43,
+      "enunciado": "¿Qué tipo de Decreto Legislativo se hace, si las Cortes autorización al Gobierno a hacerlo a través de una Ley de Bases?",
+      "opciones": [
+        "Texto refundido",
+        "Texto articulado",
+        "Un Real Decreto Legislativo",
+        "Un Decreto-Ley articulado"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 44,
+      "enunciado": "¿Cuál es la fuente suprema del Ordenamiento Jurídico?",
+      "opciones": [
+        "La ley",
+        "La constitución española",
+        "Los tratados internacionales",
+        "El código civil"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 45,
+      "enunciado": "¿En que supuestos no es imputable al responsable la inexactitud de los datos?",
+      "opciones": [
+        "En el caso de que hayan sido obtenidos directamente del afectado",
+        "En el caso de que hayan sido obtenidos de un registro público",
+        "En el caso de que hayan sido obtenidos por un mediador o",
+        "Todas las respuestas son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 46,
+      "enunciado": "Son principios de la protección de datos:",
+      "opciones": [
+        "La exactitud de los datos, la transmisibilidad y el tratamiento basado en el consentimiento tácito del afectado.",
+        "La veracidad de los datos, su intrasmisibilidad y el tratamiento basado en el fehaciente consentimiento del afectado.",
+        "La exactitud de los datos, la confidencialidad y el tratamiento basado en el consentimiento del afectado.",
+        "La variabilidad de los datos, su intransmisibilidad internacional y el tratamiento basado en la aprobación expresa del afectado"
+      ],
+      "correcta": 2,
+      "tema_numero": null
+    },
+    {
+      "numero": 47,
+      "enunciado": "Según establece el artículo 1 de la Ley Orgánica 3/1979, de 18 de Diciembre, del Estatuto de Autonomía para el País Vasco…:",
+      "opciones": [
+        "El País Vasco o Euskadi, como expresión de su nacionalidad, y para acceder a su autogobierno, se constituye en Comunidad Autónoma dentro del Estado Español, bajo la denominación de Euskal-Herria o Pueblo Vasco, de acuerdo con la Constitución y con el presente Estatuto que es una norma institucional básica.",
+        "El País Vasco o Euskal-Herria, como expresión de su nacionalidad, y para acceder a autogobierno, se constituye en Comunidad Autónoma dentro del Estado Español, bajo la denominación de Euskadi o Pueblo Vasco, de acuerdo con la Constitución y con el presente Estatuto que es una norma institucional básica.",
+        "El Pueblo Vasco o Euskadi, como expresión de su nacionalidad, y para acceder a su autogobierno, se constituye en Comunidad Autónoma dentro del Estado Español, bajo la denominación de Euskal-Herria o País Vasco, de acuerdo con la Constitución y con el presente Estatuto que es una norma institucional básica.",
+        "El Pueblo Vasco o Euskal-Herria, como expresión de su nacionalidad, y para acceder a su autogobierno, se constituye en Comunidad Autónoma dentro del Estado Español, bajo la denominación de Euskadi o País Vasco, de acuerdo con la Constitución y con el presente Estatuto que es una norma institucional básica."
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 48,
+      "enunciado": "Quiénes forma parte de la población de los municipios?",
+      "opciones": [
+        "aquellos vecinos inscritos en el padrón municipal",
+        "aquellos vecinos tanto inscritos como no en el padrón municipal",
+        "aquellos vecinos mayores de edad y que se han inscrito en el padrón municipal",
+        "ninguna respuesta es correcta"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 49,
+      "enunciado": "¿En momento cabe la entrada en un domicilio por delito flagrante?",
+      "opciones": [
+        "siempre que exista consentimiento del titular",
+        "en cualquier momento que se constata que existe un flagrante delito",
+        "cuando un juez otorga autorización",
+        "en ningún momento se puede acceder a un domicilio por dicho motivo"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 50,
+      "enunciado": "El Parlamento Vasco está integrado por un número de representantes que deberá ser:",
+      "opciones": [
+        "proporcional a la población de cada uno de los tres territorios históricos",
+        "será igual número de cada uno de los tres territorios históricos",
+        "será variable dependiendo cual sea el territorio histórico",
+        "será proporcional número de miembros según las ciudades más pobladas de cada territorio histórico"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    }
+  ]
+}

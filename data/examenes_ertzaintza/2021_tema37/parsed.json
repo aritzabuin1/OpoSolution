@@ -1,0 +1,214 @@
+{
+  "convocatoria": "preparacion_tema_37",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "tema37",
+  "fuente_url": null,
+  "total_preguntas": 17,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "En el desempeño de su función como Policía Judicial, estarán al servicio y bajo la dependencia de:",
+      "opciones": [
+        "el Gobierno Vasco",
+        "autoridades judiciales y Ministerio Fiscal",
+        "de la administración de justicia",
+        "del Consejo General del Poder Judicial"
+      ],
+      "correcta": 2,
+      "tema_numero": 37
+    },
+    {
+      "numero": 2,
+      "enunciado": "La formación específica de los funcionarios y funcionarias adscritos a las unidades y servicios de investigación criminal y Policía judicial se realizará a través de:",
+      "opciones": [
+        "Academia Vasca de Policía y Emergencias",
+        "Arkaute",
+        "Academias privadas de formación",
+        "de todos los anteriores"
+      ],
+      "correcta": 0,
+      "tema_numero": 37
+    },
+    {
+      "numero": 3,
+      "enunciado": "Los funcionarios y funcionarias adscritos a las unidades de investigación criminal y policía judicial desempeñarán esa función con carácter:",
+      "opciones": [
+        "combinado",
+        "especifico",
+        "exclusivo",
+        "compartido"
+      ],
+      "correcta": 2,
+      "tema_numero": 37
+    },
+    {
+      "numero": 4,
+      "enunciado": "Los funcionarios o funcionarias a quienes esté encomendada, por el juez o fiscal competente, una concreta investigación, en el ejercicio de las funciones a que se refiere el artículo 50, no podrán ser removidos o apartados de la investigación concreta que se les hubiera encomendado, sino en los términos previstos en:",
+      "opciones": [
+        "en el estatuto de autonomía",
+        "en la Ley de Parlamento",
+        "en la Ley Orgánica del Poder Judicial",
+        "en la Constitución Española"
+      ],
+      "correcta": 2,
+      "tema_numero": 37
+    },
+    {
+      "numero": 5,
+      "enunciado": "Cuando se inicie un expediente disciplinario a funcionarios y funcionarias de las unidades de investigación criminal y Policía judicial y los hechos objeto del mismo guarden relación directa con la investigación que tuvieran encomendada, se recabará informe del:",
+      "opciones": [
+        "departamento de seguridad del que dependan",
+        "del órgano judicial del que dependan",
+        "del órgano fiscal del que dependan",
+        "la b y la c son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 37
+    },
+    {
+      "numero": 7,
+      "enunciado": "Con carácter excepcional podrán crear Cuerpos de Policía Local aquellos municipios que cuenten con población inferior a cinco mil habitantes, cuando existan indudables motivos de:",
+      "opciones": [
+        "inseguridad ciudadana",
+        "necesidad",
+        "conveniencia",
+        "la b y la c son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 37
+    },
+    {
+      "numero": 8,
+      "enunciado": "los acuerdos de creación de Cuerpos de Policía Local requerirán el voto favorable de:",
+      "opciones": [
+        "la mayoría simple del número legal de miembros de la Corporación.",
+        "la mayoría absoluta del número legal de miembros de la Corporación",
+        "la mayoría simple del tercio de los miembros de la Corporación",
+        "por unanimidad de todos los miembros de la corporación"
+      ],
+      "correcta": 1,
+      "tema_numero": 37
+    },
+    {
+      "numero": 9,
+      "enunciado": "Las Policías Locales no tendrán en ningún caso dependencia orgánica ni funcional del:",
+      "opciones": [
+        "parlamento vasco",
+        "gobierno vasco",
+        "de la administración de la comunidad autónoma",
+        "la b y la c son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 37
+    },
+    {
+      "numero": 10,
+      "enunciado": "En los ayuntamientos que no dispongan de Cuerpo de Policía local podrán crear un servicio de Policía local con hasta un máximo de",
+      "opciones": [
+        "5 plazas de agentes",
+        "4 plazas de agentes",
+        "3 plazas de agentes",
+        "6 plazas de agentes"
+      ],
+      "correcta": 0,
+      "tema_numero": 37
+    },
+    {
+      "numero": 11,
+      "enunciado": "El personal integrante de los servicios de Policía local será personal funcionario perteneciente al subgrupo de clasificación",
+      "opciones": [
+        "a1",
+        "b1",
+        "c1",
+        "a2"
+      ],
+      "correcta": 2,
+      "tema_numero": 37
+    },
+    {
+      "numero": 12,
+      "enunciado": "El personal integrante de los servicios de Policía local será personal funcionario perteneciente al subgrupo de clasificación C1 y se equipara a todos los efectos a la categoría de:",
+      "opciones": [
+        "agente escala básica de los cuerpos de la eirtzaintza",
+        "agente escala básica de los cuerpos de la policía local",
+        "agente primero de la eirtzaintza",
+        "agente primero de la policía local"
+      ],
+      "correcta": 1,
+      "tema_numero": 37
+    },
+    {
+      "numero": 13,
+      "enunciado": "Los ayuntamientos que cuenten con Cuerpo de Policía local podrán, cuando existan necesidades eventuales que así lo requieran, nombrar funcionarios interinos con funciones de:",
+      "opciones": [
+        "ordenación del tráfico",
+        "de agente escala básica de los cuerpos de la policía local",
+        "auxiliar de policía",
+        "de todos ellos"
+      ],
+      "correcta": 2,
+      "tema_numero": 37
+    },
+    {
+      "numero": 14,
+      "enunciado": "Para el desempeño de sus funciones, los auxiliares de Policía local deberán vestir el uniforme correspondiente al Cuerpo de Policía local",
+      "opciones": [
+        "sin placa-emblema, ni distintivo alguno en las hombreras, y haciendo constar su condición de auxiliar de policía visiblemente tanto en la uniformidad como en el documento de acreditación profesional",
+        "con placa-emblema, con distintivo en las hombreras y haciendo constar su condición de auxiliar de policía visiblemente tanto en la uniformidad como en el documento de acreditación profesional",
+        "con uniforme de policía local sin identificarse como auxiliar",
+        "con placa y sin uniforme"
+      ],
+      "correcta": 0,
+      "tema_numero": 37
+    },
+    {
+      "numero": 15,
+      "enunciado": "Los cuerpos de Policía local se estructuran en jerárquicamente en escalas y, dentro de estas, en las siguientes categorías:",
+      "opciones": [
+        "3",
+        "7",
+        "4",
+        "5"
+      ],
+      "correcta": 1,
+      "tema_numero": 37
+    },
+    {
+      "numero": 16,
+      "enunciado": "La categoría de intendente existirá en municipios con población superior a:",
+      "opciones": [
+        "120.000 habitantes",
+        "150.000 habitantes",
+        "50.000 habitantes",
+        "25.000 habitantes"
+      ],
+      "correcta": 1,
+      "tema_numero": 37
+    },
+    {
+      "numero": 25,
+      "enunciado": "000 habitantes",
+      "opciones": [
+        "35.000 habitantes",
+        "¿de quién podrán solicitar las entidades locales  la asistencia de la Ertzaintza en aquellas funciones de naturaleza estrictamente policial que correspondan a los cuerpos de Policía local?",
+        "de los ayuntamientos",
+        "de la eirtzaintza"
+      ],
+      "correcta": 1,
+      "tema_numero": 37
+    },
+    {
+      "numero": 19,
+      "enunciado": "del departamento de seguridad",
+      "opciones": [
+        "de cualquiera de ellos",
+        "En los municipios de gran población podrá asignarse, a parte del personal funcionario perteneciente a la misma para el ejercicio exclusivo de las funciones de ordenación, señalización y regulación del tráfico en el casco urbano de acuerdo con lo establecido en las normas de tráfico y seguridad vial, con la denominación de agentes de movilidad, de manera que ello no comporte un incremento en el número de efectivos ni en los costes de personal, ¿por quién serán asignados?",
+        "por la junta del gobierno local",
+        "por las comisiones informativas"
+      ],
+      "correcta": 1,
+      "tema_numero": 37
+    }
+  ]
+}

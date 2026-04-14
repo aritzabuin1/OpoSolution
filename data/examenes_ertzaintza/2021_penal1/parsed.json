@@ -1,0 +1,130 @@
+{
+  "convocatoria": "preparacion_penal_xxxi",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "penal1",
+  "fuente_url": null,
+  "total_preguntas": 10,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "¿Cuáles con los elementos básicos del delito?",
+      "opciones": [
+        "Acción, típica, antijuridica, culpable y punible",
+        "Acción, atípica, jurídica, culpable y punible",
+        "Acción, típica, jurídica, culposa y punible",
+        "Acción, típica, dolosa, culposa y punible"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 2,
+      "enunciado": "¿Qué se entiende por TÍPICA?",
+      "opciones": [
+        "Que una acción es contraria a derecho",
+        "Que una acción u omisión se encuentra recogida en la ley",
+        "Que una acción es delictiva",
+        "Todas las respuestas son verdaderas"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 3,
+      "enunciado": "Señale la respuesta verdadera de conformidad con el artículo 1 del código penal:",
+      "opciones": [
+        "No será castigada ninguna acción con pena que no esté prevista como delito por ley anterior a su perpetración",
+        "No será castigada ninguna acción ni omisión que no esté prevista como delito por ley anterior a su perpetración",
+        "No será castigada ninguna acción ni omisión que no esté prevista con pena por ley anterior a su perpetración",
+        "No será castigada ninguna acción que no esté prevista como delito por ley anterior a su perpetración"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 4,
+      "enunciado": "En relación con la pregunta anterior, ¿Qué principio es el aplicable?",
+      "opciones": [
+        "Principio de legalidad",
+        "Principio de irretroactividad penal",
+        "Principio de no bis in idem",
+        "Principio de retroactividad favorable"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    },
+    {
+      "numero": 5,
+      "enunciado": "Señale la respuesta verdadera respecto al artículo 1.2 del código penal:",
+      "opciones": [
+        "Las medidas de seguridad solo podrán aplicarse cuando concurran los requisitos establecidos en una ley",
+        "Las medidas de seguridad solo podrán aplicarse cuando concurran los presupuestos establecidos previamente por la ley",
+        "Las medidas de seguridad solo podrán aplicarse cuando concurran los presupuestos del código penal",
+        "Ninguna respuesta es verdadera"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 6,
+      "enunciado": "Señale la respuesta verdadera respecto al artículo 2 del código penal:",
+      "opciones": [
+        "No será castigado ningún delito con pena que no se halle prevista por ley anterior a su perpetración",
+        "No será castigada ninguna acción ni omisión con pena que no se halle prevista por ley anterior a su perpetración",
+        "Carecerán igualmente, de efecto retroactivo las leyes que establezcan medidas de seguridad",
+        "Las respuestas a y c son correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": null
+    },
+    {
+      "numero": 7,
+      "enunciado": "En caso de duda sobre la determinación de la ley más favorable… Señale la correcta",
+      "opciones": [
+        "Se aplicará la más favorable aunque al entrar en vigor hubiera recaído sentencia firme y el sujeto estuviese cumpliendo condena",
+        "Será oído al reo",
+        "Se aplicará la más conveniente al reo",
+        "Ninguna respuesta es correcta respecto a la determinación de la ley más favorable"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 8,
+      "enunciado": "De conformidad con el artículo 3 del código penal, señale la verdadera:",
+      "opciones": [
+        "No podrá ejecutarse pena ni medida de seguridad sino en virtud de sentencia dictada por el Juez o Tribunal competente, de acuerdo con las leyes procesales",
+        "No podrá ejecutarse pena ni medida de seguridad sino en virtud de sentencia firme dictada por el Juez o Tribunal competente, de acuerdo con las leyes procesales",
+        "No podrá ejecutarse pena sino en virtud de sentencia firme dictada por el Juez, de acuerdo con las leyes procesales",
+        "No podrá ejecutarse medida de seguridad sino en virtud de sentencia firme dictada por el Juez o Tribunal Competente, de acuerdo con las leyes procesales"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 9,
+      "enunciado": "Señale la opción válida respecto al artículo 4 del Código Penal:",
+      "opciones": [
+        "En el caso de que un Juez en el ejercicio de su jurisdicción, tenga conocimiento de alguna acción u omisión que, sin estar penada por la Ley, estime digna de represión, se abstendrá de todo procedimiento sobre ella y expondrá al Gobierno las razones que le asistan para creer que debiera ser objeto de sanción",
+        "En el caso de que un Juez o Tribunal, en el ejercicio de su jurisdicción, tenga conocimiento de alguna acción u omisión que, sin estar penada por la Ley, estime digna de represión, se abstendrá de todo procedimiento sobre ella y expondrá al Gobierno las razones que le asistan para creer que debiera ser objeto de sanción penal",
+        "En el caso de que un Juez o Tribunal, en el ejercicio de su jurisdicción, tenga conocimiento de alguna acción que, sin estar penada por la Ley, estime digna de represión, se abstendrá de todo procedimiento sobre ella y expondrá al Gobierno las razones que le asistan para creer que debiera ser objeto de sanción penal",
+        "En el caso de que un Juez en el ejercicio de su jurisdicción, tenga conocimiento de alguna acción que, sin estar penada por la Ley, estime digna de represión, se abstendrá de todo procedimiento sobre ella y expondrá al Gobierno las razones que le asistan para creer que debiera ser objeto de sanción"
+      ],
+      "correcta": 1,
+      "tema_numero": null
+    },
+    {
+      "numero": 10,
+      "enunciado": "De conformidad con el artículo 5 del Código Penal… Diga la opción verdadera",
+      "opciones": [
+        "No hay pena sin dolo o imprudencia",
+        "No hay pena sin dolo o culpa",
+        "No hay pena sin culpa o negligencia",
+        "No hay pena sin dolo, culpa o imprudencia"
+      ],
+      "correcta": 0,
+      "tema_numero": null
+    }
+  ]
+}

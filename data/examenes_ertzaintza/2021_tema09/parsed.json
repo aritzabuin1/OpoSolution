@@ -1,0 +1,166 @@
+{
+  "convocatoria": "preparacion_tema_9",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "tema09",
+  "fuente_url": null,
+  "total_preguntas": 13,
+  "preguntas": [
+    {
+      "numero": 5,
+      "enunciado": "¿Cuáles son los elementos del municipio?",
+      "opciones": [
+        "territorio, vecindad, ayuntamiento y catastro",
+        "territorio, población y padrón municipal",
+        "territorio, organización y ayuntamiento",
+        "territorio, población y organización"
+      ],
+      "correcta": 3,
+      "tema_numero": 9
+    },
+    {
+      "numero": 6,
+      "enunciado": "¿Qué municipios podrán tener JUNTA DE GOBIERNO LOCAL?",
+      "opciones": [
+        "municipios de 4.000 habitantes",
+        "municipios de más de 3.000 habitantes",
+        "municipios de más de 5.000 habitantes",
+        "municipios de 1.000 habitantes"
+      ],
+      "correcta": 2,
+      "tema_numero": 9
+    },
+    {
+      "numero": 7,
+      "enunciado": "¿Quiénes tienen la consideración de vecinos de un municipio?",
+      "opciones": [
+        "quienes han nacido en ese municipio",
+        "quienes residen durante mayor parte al año",
+        "quienes están inscritos en el padrón municipal",
+        "quienes vivieron allí los últimos 10 años, su ultima vecindad administrativa fue Euskadi y conservan la nacionalidad española"
+      ],
+      "correcta": 2,
+      "tema_numero": 9
+    },
+    {
+      "numero": 8,
+      "enunciado": "¿Qué derechos y deberes tiene los vecinos de un municipio?",
+      "opciones": [
+        "Ser elector y elegible de acuerdo con lo dispuesto en la legislación electoral.",
+        "Contribuir mediante las prestaciones económicas y personales legalmente previstas a la realización de las competencias municipales.",
+        "Pedir la consulta popular en los términos previstos en la ley.",
+        "todos los anteriores son derechos de los vecinos del municipio"
+      ],
+      "correcta": 3,
+      "tema_numero": 9
+    },
+    {
+      "numero": 9,
+      "enunciado": "¿Quién es el Gobierno municipal?",
+      "opciones": [
+        "el pleno del ayuntamiento",
+        "el alcalde",
+        "el ayuntamiento",
+        "la asamblea vecinal"
+      ],
+      "correcta": 2,
+      "tema_numero": 9
+    },
+    {
+      "numero": 10,
+      "enunciado": "¿Tienen todos los municipios, ayuntamiento?",
+      "opciones": [
+        "Sí, todos tienen que tener un gobierno",
+        "No; existen algunos municipios que optan por el concejo abierto",
+        "No; porque los que no lo tienen es porque gobierna la junta",
+        "Sí; y además todos están formados por alcalde y pleno"
+      ],
+      "correcta": 1,
+      "tema_numero": 9
+    },
+    {
+      "numero": 11,
+      "enunciado": "¿En qué municipios podrán existir comisiones informativas?",
+      "opciones": [
+        "municipios de gran población",
+        "entidades locales menores",
+        "En los municipios de más de 5.000 habitantes",
+        "en todos los municipios"
+      ],
+      "correcta": 0,
+      "tema_numero": 9
+    },
+    {
+      "numero": 13,
+      "enunciado": "¿Cuál NO es una función del alcalde?",
+      "opciones": [
+        "Representar al ayuntamiento",
+        "Dictar bandos.",
+        "Ejercer la jefatura de la Policía Municipal.",
+        "La aprobación de las ordenanzas municipales"
+      ],
+      "correcta": 3,
+      "tema_numero": 9
+    },
+    {
+      "numero": 14,
+      "enunciado": "¿Cuál NO es una competencia del Pleno?",
+      "opciones": [
+        "Dictar bandos",
+        "La aprobación del reglamento orgánico y de las ordenanzas.",
+        "La declaración de lesividad de los actos del Ayuntamiento.",
+        "Ninguna respuesta es correcta"
+      ],
+      "correcta": 0,
+      "tema_numero": 9
+    },
+    {
+      "numero": 15,
+      "enunciado": "¿por quién está formada la Junta de Gobierno Local?",
+      "opciones": [
+        "se integra por el Alcalde y un número de Concejales no superior a la mitad del número legal de los mismos",
+        "se integra por el Alcalde y un número de Concejales no superior al tercio del número legal de los mismos",
+        "se integra por el Alcalde y todos los concejales",
+        "se integra por el Alcalde y un numero de concejales no superior a la cuarta parte del número de concejales"
+      ],
+      "correcta": 1,
+      "tema_numero": 9
+    },
+    {
+      "numero": 16,
+      "enunciado": "¿Quién elige a los concejales que formarán parte de la Junta de Gobierno Local?",
+      "opciones": [
+        "el pleno",
+        "los concejales",
+        "el alcalde",
+        "la junta de gobierno local"
+      ],
+      "correcta": 2,
+      "tema_numero": 9
+    },
+    {
+      "numero": 17,
+      "enunciado": "Diga cuál de las siguientes afirmaciones NO es verdadera:",
+      "opciones": [
+        "Los Tenientes de Alcalde sustituyen, por el orden de su nombramiento",
+        "Para facilitar la participación ciudadana en la gestión de los asuntos locales y mejorar ésta, los municipios podrán establecer órganos territoriales de gestión descentralizada",
+        "El Alcalde puede delegar el ejercicio de determinadas atribuciones en los miembros de la Junta de Gobierno Local y, donde ésta no exista, en los Tenientes de Alcalde",
+        "Corresponde a la Junta de Gobierno Local La asistencia al Alcalde en el ejercicio de sus atribuciones."
+      ],
+      "correcta": 1,
+      "tema_numero": 9
+    },
+    {
+      "numero": 18,
+      "enunciado": "¿Qué competencias son propias del municipio?",
+      "opciones": [
+        "Abastecimiento de agua potable a domicilio y evacuación y tratamiento de aguas  residuales.",
+        "Cementerios y actividades funerarias.",
+        "Información y promoción de la actividad turística de interés y ámbito local.",
+        "todas con correctas"
+      ],
+      "correcta": 3,
+      "tema_numero": 9
+    }
+  ]
+}

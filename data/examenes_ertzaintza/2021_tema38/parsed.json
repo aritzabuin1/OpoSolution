@@ -1,0 +1,154 @@
+{
+  "convocatoria": "preparacion_tema_38",
+  "anno": 2021,
+  "turno": "interna",
+  "modelo": "tema38",
+  "fuente_url": null,
+  "total_preguntas": 12,
+  "preguntas": [
+    {
+      "numero": 1,
+      "enunciado": "Indique de entre las siguientes opciones, la correcta:",
+      "opciones": [
+        "la ordenación de las competencias de la Comunidad Autónoma de Euskadi en materia de seguridad pública, especialmente las de policía y seguridad ciudadana",
+        "la ordenación del sistema público de policía autonómica y local",
+        "la seguridad privada y pública, respecto al orden público protegido por la ley",
+        "todas las opciones son verdaderas"
+      ],
+      "correcta": 0,
+      "tema_numero": 38
+    },
+    {
+      "numero": 2,
+      "enunciado": "Señale la opción verdadera:",
+      "opciones": [
+        "El departamento de seguridad del Gobierno Vasco",
+        "El Ministerio del Interior",
+        "La Junta de Seguridad",
+        "La Dirección de la Ertzaintza"
+      ],
+      "correcta": 2,
+      "tema_numero": 38
+    },
+    {
+      "numero": 3,
+      "enunciado": "Señale la opción verdadera:",
+      "opciones": [
+        "El sistema de seguridad pública de Euskadi comprende la policía y seguridad ciudadana, la seguridad vial y la gestión de emergencias y protección civil, regulados en sus normativas específicas, así como otras políticas públicas sectoriales destinadas a garantizar la seguridad de personas y bienes y el libre ejercicio de los derechos y libertades",
+        "Constituye el sistema de seguridad pública de Euskadi el conjunto integrado de disposiciones, procedimientos, medios y recursos destinados por las administraciones públicas vascas a garantizar la seguridad de personas y bienes y el libre ejercicio de los derechos y libertades de la ciudadanía, y a combatir los actos que los perturben, mediante políticas públicas destinadas a su prevención y protección.",
+        "Dichas políticas públicas estarán orientadas a promover condiciones y remover obstáculos para que las personas puedan disfrutar del pleno ejercicio de sus derechos y libertades y desarrollar su vida y actividad en espacios de convivencia en paz, bienestar y cohesión social, reduciendo en la medida de lo posible los riesgos y peligros intencionados o que pudieran perturbar los derechos y libertades de las personas y la seguridad de las mismas, sus bienes y el patrimonio colectivo.",
+        "Todas las respuestas son verdaderas"
+      ],
+      "correcta": 3,
+      "tema_numero": 38
+    },
+    {
+      "numero": 4,
+      "enunciado": "¿Quiénes son autoridades públicas en materia de seguridad? Señale la respuesta falsa:",
+      "opciones": [
+        "Participan en el sistema de seguridad pública como autoridades en el ámbito de sus respectivas competencias: Señale la respuesta correcta",
+        "los alcaldes",
+        "otros titulares de órganos municipales en el marco de sus competencias.",
+        "Los Diputados generales de los territorios históricos en el marco de sus competencias."
+      ],
+      "correcta": 0,
+      "tema_numero": 38
+    },
+    {
+      "numero": 7,
+      "enunciado": "Las respuestas b y c son correctas",
+      "opciones": [
+        "¿Cuáles son los objetivos de la ACADEMIA VASCA DE POLÍCIA Y EMERGENCIAS?",
+        "Crear las condiciones y medios para lograr que las personas que desarrollan su actividad o participan en la prestación de los servicios públicos dedicados a procurar la seguridad de la ciudadanía adquieran la formación profesional precisa",
+        "así como extender tal capacitación a otras personas que, sin pertenecer a los servicios de seguridad pública, tengan interés profesional o cuya actividad incida en el desarrollo de los mismos.",
+        "ejecutar la política formativa, de selección y de investigación e innovación del Gobierno en la materia de seguridad pública, tanto en las áreas correspondientes a la Policía del País Vasco como en las de protección civil y emergencias."
+      ],
+      "correcta": 0,
+      "tema_numero": 38
+    },
+    {
+      "numero": 10,
+      "enunciado": "A y b son correctas",
+      "opciones": [
+        "Ninguna respuesta es correcta respecto al Consejo Rector",
+        "Entre las funciones del Consejo Rector, se encuentran las siguientes. Señale la Falsa:",
+        "Aprobar el anteproyecto de presupuestos de la academia y su memoria anual",
+        "Aprobar a propuesta de la Dirección General, los planes generales de selección y formación"
+      ],
+      "correcta": 1,
+      "tema_numero": 38
+    },
+    {
+      "numero": 12,
+      "enunciado": "A la Dirección Económica de la Academia",
+      "opciones": [
+        "Al Departamento de Recursos Humanos",
+        "¿Quién sustituye al director de la Academia en caso de vacante, ausencia o enfermedad?",
+        "El consejero de Seguridad",
+        "El Viceconsejero de Seguridad"
+      ],
+      "correcta": 1,
+      "tema_numero": 38
+    },
+    {
+      "numero": 14,
+      "enunciado": "Las asignaciones que anualmente se establezcan a cargo de los presupuestos de la CAV",
+      "opciones": [
+        "La Academia cuenta para su funcionamiento con todos los recursos contenidos en las respuestas anteriores",
+        "Señale la opción falsa respecto al régimen disciplinario de los alumnos:",
+        "La tipificación de las faltas debe considerarse los actos que comporten incumplimiento de las obligaciones académicas de asistencia, estudio y evaluación",
+        "Debe incluir las conductas contrarias a las normas de convivencia, seguridad, uniformidad, conservación de recursos y actuación de los alumnos de la Academia Vasca de Policía y Emergencias"
+      ],
+      "correcta": 1,
+      "tema_numero": 38
+    },
+    {
+      "numero": 15,
+      "enunciado": "Las sanciones disciplinarias deben consistir en amonestaciones y nunca en privaciones de derechos inherentes a la condición de alumno o alumna",
+      "opciones": [
+        "No hay ninguna opción falsa",
+        "¿Cuál es el régimen disciplinario que se aplicará a los alumnos de la Academia?",
+        "El propio de los alumnos",
+        "El del cuerpo o estructura profesional que desea acceder o que se pertenezca a los supuestos en que los hechos puedan considerarse faltas de carácter muy grave no constitutivas de falta de disciplina académica"
+      ],
+      "correcta": 1,
+      "tema_numero": 38
+    },
+    {
+      "numero": 17,
+      "enunciado": "Los órganos del departamento competente en seguridad pública que se establezcan en su decreto de estructura",
+      "opciones": [
+        "No hay ninguna opción falsa, todos son órganos de coordinación",
+        "¿Quién es el órgano consultivo de Coordinación de las Policías Locales del País Vasco?",
+        "El departamento de Seguridad",
+        "La comisión de control y transparencia"
+      ],
+      "correcta": 1,
+      "tema_numero": 38
+    },
+    {
+      "numero": 21,
+      "enunciado": "En las comisiones de coordinación policial del ámbito local no estarán presentes responsables del Cuerpo de la Ertzaintza",
+      "opciones": [
+        "Las comisiones de la Ertzaintza tendrán como finalidad coordinar y colaborar con los servicios policiales locales",
+        "Todas son verdaderas",
+        "Diga cual de las siguientes afirmaciones es la correcta:",
+        "El régimen patrimonial y de contratación de la academia se regirán con arreglo a lo establecido en la legislación vigente sobre el patrimonio de la comunidad autónoma de Euskadi y por las normas generales de contratación del sector público"
+      ],
+      "correcta": 2,
+      "tema_numero": 38
+    },
+    {
+      "numero": 22,
+      "enunciado": "El régimen patrimonial y de contratación de la academia se regirán con arreglo a lo establecido en la legislación vigente sobre el patrimonio de la comunidad autónoma de Euskadi y por las normas generales de contratación de las administraciones públicas",
+      "opciones": [
+        "El régimen patrimonial y de contratación de la academia no se regirán con arreglo a lo establecido en la legislación vigente sobre el patrimonio de la comunidad autónoma de Euskadi sino sólo por las normas generales de contratación del sector público",
+        "Ninguna respuesta es correcta",
+        "¿Cómo se clasifican los puestos de trabajo de la Academia Vasca de Policía y Emergencias?",
+        "Como reservados a funcionarios de carrera"
+      ],
+      "correcta": 2,
+      "tema_numero": 38
+    }
+  ]
+}
