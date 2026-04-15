@@ -408,7 +408,9 @@ function getTribunalLabel(oposicionSlug?: string): string {
  * modelo entienda cómo pregunta realmente el tribunal (nivel, redacción, trampas).
  *
  * Filtra por oposición para no mezclar estilos entre ramas (INAP vs MJU vs Correos).
- * Si no hay preguntas por tema, intenta fallback por oposición (preguntas aleatorias).
+ * Si no hay preguntas por tema, intenta fallback por oposición ranked by text similarity
+ * to the tema title (TF-IDF-lite scoring) — gives topic-relevant style examples without
+ * needing tema_id assigned on every question.
  *
  * @param temaId       UUID del tema del temario
  * @param limit        Máximo de ejemplos (default: 3)
@@ -416,6 +418,88 @@ function getTribunalLabel(oposicionSlug?: string): string {
  * @param oposicionSlug Slug de la oposición (para el header del prompt)
  * @returns            Texto formateado listo para insertar en el prompt, o '' si no hay datos
  */
+
+// ─── TF-IDF-lite: rank questions by word overlap with tema title ─────────────
+
+const STOPWORDS = new Set([
+  'el', 'la', 'los', 'las', 'de', 'del', 'en', 'un', 'una', 'y', 'o', 'a', 'al',
+  'por', 'para', 'con', 'que', 'se', 'es', 'lo', 'su', 'como', 'no', 'más', 'mas',
+  'son', 'sobre', 'entre', 'este', 'esta', 'estos', 'estas', 'fue', 'ser', 'ha',
+  'han', 'según', 'segun', 'todo', 'toda', 'todos', 'todas', 'otro', 'otra', 'otros',
+  'cual', 'cuál', 'cuando', 'donde', 'sino', 'también', 'si', 'sin', 'cada', 'muy',
+  'respuesta', 'correcta', 'incorrecta', 'señale', 'indique', 'siguiente', 'siguientes',
+  'artículo', 'articulo', 'ley', 'real', 'decreto',
+])
+
+function tokenize(text: string): string[] {
+  return text
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // strip accents for matching
+    .replace(/[^a-z0-9áéíóúüñ\s]/g, ' ')
+    .split(/\s+/)
+    .filter(w => w.length > 2 && !STOPWORDS.has(w))
+}
+
+function rankByTextSimilarity(
+  pool: { numero: number; enunciado: string; opciones: string[]; correcta: number }[],
+  temaTitulo: string,
+  limit: number,
+): { numero: number; enunciado: string; opciones: string[]; correcta: number }[] {
+  const titleTokens = tokenize(temaTitulo)
+  if (titleTokens.length === 0) {
+    // Can't rank — shuffle instead
+    const shuffled = [...pool]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    }
+    return shuffled.slice(0, limit)
+  }
+
+  // Build IDF: words that appear in fewer questions are more discriminative
+  const docFreq = new Map<string, number>()
+  const questionTexts = pool.map(p => {
+    const opcArr = Array.isArray(p.opciones) ? p.opciones : Object.values(p.opciones as Record<string, unknown>)
+    return `${p.enunciado} ${opcArr.map(String).join(' ')}`
+  })
+  for (const text of questionTexts) {
+    const unique = new Set(tokenize(text))
+    for (const w of unique) docFreq.set(w, (docFreq.get(w) ?? 0) + 1)
+  }
+  const N = pool.length
+
+  // Score each question: sum of TF-IDF for matching title tokens
+  const scored = pool.map((p, idx) => {
+    const qTokens = tokenize(questionTexts[idx])
+    const qFreq = new Map<string, number>()
+    for (const w of qTokens) qFreq.set(w, (qFreq.get(w) ?? 0) + 1)
+
+    let score = 0
+    for (const titleWord of titleTokens) {
+      const tf = qFreq.get(titleWord) ?? 0
+      if (tf > 0) {
+        const df = docFreq.get(titleWord) ?? 1
+        const idf = Math.log(N / df)
+        score += tf * idf
+      }
+    }
+    // Add small random jitter to break ties and add variety across calls
+    score += Math.random() * 0.1
+    return { question: p, score }
+  })
+
+  scored.sort((a, b) => b.score - a.score)
+
+  // Take top results but add light diversity: from top 2*limit, pick limit with some shuffle
+  const topCandidates = scored.slice(0, Math.min(limit * 2, scored.length))
+  // Shuffle top candidates lightly then take limit
+  for (let i = topCandidates.length - 1; i > 0; i--) {
+    // Only swap within nearby positions (preserves rough ranking)
+    const j = Math.max(0, i - Math.floor(Math.random() * 3))
+    ;[topCandidates[i], topCandidates[j]] = [topCandidates[j], topCandidates[i]]
+  }
+  return topCandidates.slice(0, limit).map(s => s.question)
+}
 export async function retrieveExamples(
   temaId: string,
   limit = 3,
@@ -438,9 +522,17 @@ export async function retrieveExamples(
     : null
 
   // Fallback: if no tema-specific questions, try broader sample from same oposición
-  // Fetch a larger pool and shuffle to get variety across calls
+  // Ranked by text similarity to tema title (TF-IDF-like scoring) for topic relevance
   if (!preguntas && oposicionId) {
-    const poolSize = Math.max(limit * 4, 30) // Fetch 4x to have shuffle room
+    // Fetch tema title for similarity ranking
+    const { data: temaData } = await supabase
+      .from('temas')
+      .select('titulo')
+      .eq('id', temaId)
+      .single()
+    const temaTitulo = (temaData as { titulo?: string } | null)?.titulo ?? ''
+
+    const poolSize = Math.max(limit * 8, 60) // Fetch larger pool for better ranking
     const { data: fallbackData } = await supabase
       .from('preguntas_oficiales')
       .select('numero, enunciado, opciones, correcta, examenes_oficiales!inner(oposicion_id)')
@@ -448,13 +540,21 @@ export async function retrieveExamples(
       .limit(poolSize)
 
     if (fallbackData && (fallbackData as unknown[]).length > 0) {
-      // Fisher-Yates shuffle for variety
-      const pool = [...fallbackData]
-      for (let i = pool.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-        ;[pool[i], pool[j]] = [pool[j], pool[i]]
+      const pool = fallbackData as unknown as { numero: number; enunciado: string; opciones: string[]; correcta: number }[]
+
+      if (temaTitulo) {
+        // Rank by word overlap with tema title (TF-IDF-lite)
+        const scored = rankByTextSimilarity(pool, temaTitulo, limit)
+        preguntas = scored
+      } else {
+        // No title available — Fisher-Yates shuffle as before
+        const shuffled = [...pool]
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1))
+          ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+        }
+        preguntas = shuffled.slice(0, limit)
       }
-      preguntas = pool.slice(0, limit) as unknown as { numero: number; enunciado: string; opciones: string[]; correcta: number }[]
     }
   }
 
