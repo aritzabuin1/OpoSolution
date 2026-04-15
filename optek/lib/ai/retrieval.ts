@@ -431,7 +431,8 @@ const STOPWORDS = new Set([
   'artículo', 'articulo', 'ley', 'real', 'decreto',
 ])
 
-function tokenize(text: string): string[] {
+function tokenize(text: string | null | undefined): string[] {
+  if (!text) return []
   return text
     .toLowerCase()
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // strip accents for matching
@@ -459,8 +460,8 @@ function rankByTextSimilarity(
   // Build IDF: words that appear in fewer questions are more discriminative
   const docFreq = new Map<string, number>()
   const questionTexts = pool.map(p => {
-    const opcArr = Array.isArray(p.opciones) ? p.opciones : Object.values(p.opciones as Record<string, unknown>)
-    return `${p.enunciado} ${opcArr.map(String).join(' ')}`
+    const opcArr = Array.isArray(p.opciones) ? p.opciones : (p.opciones ? Object.values(p.opciones as Record<string, unknown>) : [])
+    return `${p.enunciado ?? ''} ${opcArr.map(String).join(' ')}`
   })
   for (const text of questionTexts) {
     const unique = new Set(tokenize(text))
@@ -524,37 +525,40 @@ export async function retrieveExamples(
   // Fallback: if no tema-specific questions, try broader sample from same oposición
   // Ranked by text similarity to tema title (TF-IDF-like scoring) for topic relevance
   if (!preguntas && oposicionId) {
-    // Fetch tema title for similarity ranking
-    const { data: temaData } = await supabase
-      .from('temas')
-      .select('titulo')
-      .eq('id', temaId)
-      .single()
-    const temaTitulo = (temaData as { titulo?: string } | null)?.titulo ?? ''
+    try {
+      // Fetch tema title for similarity ranking
+      const { data: temaData } = await supabase
+        .from('temas')
+        .select('titulo')
+        .eq('id', temaId)
+        .single()
+      const temaTitulo = (temaData as { titulo?: string } | null)?.titulo ?? ''
 
-    const poolSize = Math.max(limit * 8, 60) // Fetch larger pool for better ranking
-    const { data: fallbackData } = await supabase
-      .from('preguntas_oficiales')
-      .select('numero, enunciado, opciones, correcta, examenes_oficiales!inner(oposicion_id)')
-      .eq('examenes_oficiales.oposicion_id', oposicionId)
-      .limit(poolSize)
+      const poolSize = Math.max(limit * 8, 60) // Fetch larger pool for better ranking
+      const { data: fallbackData } = await supabase
+        .from('preguntas_oficiales')
+        .select('numero, enunciado, opciones, correcta, examenes_oficiales!inner(oposicion_id)')
+        .eq('examenes_oficiales.oposicion_id', oposicionId)
+        .limit(poolSize)
 
-    if (fallbackData && (fallbackData as unknown[]).length > 0) {
-      const pool = fallbackData as unknown as { numero: number; enunciado: string; opciones: string[]; correcta: number }[]
+      if (fallbackData && (fallbackData as unknown[]).length > 0) {
+        const pool = fallbackData as unknown as { numero: number; enunciado: string; opciones: string[]; correcta: number }[]
 
-      if (temaTitulo) {
-        // Rank by word overlap with tema title (TF-IDF-lite)
-        const scored = rankByTextSimilarity(pool, temaTitulo, limit)
-        preguntas = scored
-      } else {
-        // No title available — Fisher-Yates shuffle as before
-        const shuffled = [...pool]
-        for (let i = shuffled.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1))
-          ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+        if (temaTitulo) {
+          // Rank by word overlap with tema title (TF-IDF-lite)
+          preguntas = rankByTextSimilarity(pool, temaTitulo, limit)
+        } else {
+          // No title available — Fisher-Yates shuffle as before
+          const shuffled = [...pool]
+          for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1))
+            ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+          }
+          preguntas = shuffled.slice(0, limit)
         }
-        preguntas = shuffled.slice(0, limit)
       }
+    } catch {
+      // If ranking fails for any reason, don't break the generation — just skip examples
     }
   }
 
