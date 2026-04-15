@@ -196,6 +196,10 @@ async function ingestExamen(
   // 2. Excluir preguntas de reserva (sin respuesta verificada)
   //    El límite se calcula desde scoring_config de la oposición (suma de preguntas de todos los ejercicios)
   //    Ej: AGE C2 = 60, AGE C1 = 90 (70+20), Auxilio = 140 (100+40), Correos = 100, etc.
+  if (!examenParsed.preguntas || examenParsed.preguntas.length === 0) {
+    console.log('  ⚠️  Sin preguntas — saltando')
+    return { ok: true, examenId, preguntasInsertadas: 0 }
+  }
   const preguntasPuntuables = examenParsed.preguntas.filter((p) => p.numero <= maxPuntuable)
   const reservasDescartadas = examenParsed.preguntas.length - preguntasPuntuables.length
   if (reservasDescartadas > 0) {
@@ -266,6 +270,23 @@ function discoverParsedJsons(targetAnno?: string): JsonDescubierto[] {
 
     for (const jsonFile of jsonFiles) {
       results.push({ anno, filePath: path.join(annoDir, jsonFile) })
+    }
+
+    // Also scan one level deeper (e.g. 2024_ej2/2024/parsed_a.json)
+    if (jsonFiles.length === 0) {
+      const subDirs = fs.readdirSync(annoDir).filter((f) => {
+        const full = path.join(annoDir, f)
+        return fs.statSync(full).isDirectory()
+      })
+      for (const sub of subDirs) {
+        const subDir = path.join(annoDir, sub)
+        const subJsonFiles = fs
+          .readdirSync(subDir)
+          .filter((f) => f.startsWith('parsed') && f.endsWith('.json') && !f.includes('supuestos'))
+        for (const jsonFile of subJsonFiles) {
+          results.push({ anno, filePath: path.join(subDir, jsonFile) })
+        }
+      }
     }
   }
 
