@@ -55,6 +55,8 @@ function resolveOposicionSlug(): string {
   if (dirName?.includes('guardia_civil') || dirName?.includes('guardia-civil')) return 'guardia-civil'
   if (dirName?.includes('policia_nacional') || dirName?.includes('policia-nacional')) return 'policia-nacional'
   if (dirName?.includes('ertzaintza')) return 'ertzaintza'
+  if (dirName?.includes('hacienda')) return 'hacienda-aeat'
+  if (dirName?.includes('iipp') || dirName?.includes('penitenciar')) return 'penitenciarias'
   return 'aux-admin-estado'
 }
 
