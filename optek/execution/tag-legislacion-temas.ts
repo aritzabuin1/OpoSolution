@@ -95,6 +95,7 @@ const CODE_MAP: Record<string, string[]> = {
   LEY_SEG_EUSKADI:  ['BOE-A-2012-9665'],     // Ley 15/2012 Seguridad Pública Euskadi
   D_VIDEOCAMARAS:   ['BOPV-1998-003495'],    // D 168/1998 Videocámaras Policía PV
   D_COORDINACION:   ['BOPV-2015-002023'],    // D 57/2015 Coordinación Policial Local
+  BLANQUEO:         ['BOE-A-2010-6737'],     // Ley 10/2010 Prevención Blanqueo de Capitales
 }
 
 // Resolve symbolic name to all matching ley_codigos
@@ -164,16 +165,18 @@ const JUSTICIA_RULES: TaggingRule[] = [
 
 const CORREOS_RULES: TaggingRule[] = [
   // Ley Postal + Reglamento Postal → temas 1-9
-  { ley_codigo: 'LEY_POSTAL', oposicion_slug: 'correos', temas: [1, 2, 3, 4, 5, 6, 7, 8, 9] },
+  { ley_codigo: 'LEY_POSTAL', oposicion_slug: 'correos', temas: [1] },
   { ley_codigo: 'RD_POSTAL', oposicion_slug: 'correos', temas: [1, 6, 7, 8, 9] },
   // LOPDGDD + RGPD → T12
   { ley_codigo: 'LOPDGDD', oposicion_slug: 'correos', temas: [12] },
   // Igualdad → T10
-  { ley_codigo: 'LO_IGUALDAD', oposicion_slug: 'correos', temas: [10] },
-  { ley_codigo: 'LGTBI', oposicion_slug: 'correos', temas: [10] },
+  { ley_codigo: 'LO_IGUALDAD', oposicion_slug: 'correos', temas: [2] },
+  { ley_codigo: 'LGTBI', oposicion_slug: 'correos', temas: [2] },
   { ley_codigo: 'LEY_IGUALDAD_TRATO', oposicion_slug: 'correos', temas: [10] },
   // PRL → T10
-  { ley_codigo: 'PRL', oposicion_slug: 'correos', temas: [10] },
+  { ley_codigo: 'PRL', oposicion_slug: 'correos', temas: [2] },
+  // Blanqueo de capitales → T12
+  { ley_codigo: 'BLANQUEO', oposicion_slug: 'correos', temas: [12] },
   // Certificado digital → T11
   // (no hay ley específica ingestionada, se genera con IA)
 ]

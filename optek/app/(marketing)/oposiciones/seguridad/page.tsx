@@ -154,6 +154,33 @@ export default function SeguridadHub() {
         </div>
       </section>
 
+      {/* ── ¿Para quién es OpoRuta? ── */}
+      <section className="py-12 bg-muted/30 rounded-2xl">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-2xl font-bold text-center mb-8">¿Para quién es OpoRuta para Seguridad?</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-3">
+              <h3 className="font-semibold text-green-700">✓ OpoRuta es para ti si...</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>• Quieres practicar con preguntas tipo examen verificadas contra BOE</li>
+                <li>• Preparas por libre o complementas academia</li>
+                <li>• Prefieres pago único (49,99 €) sin suscripción mensual</li>
+                <li>• Preparas Guardia Civil, Policía Nacional o Ertzaintza</li>
+                <li>• Quieres psicotécnicos + personalidad policial con IA</li>
+              </ul>
+            </div>
+            <div className="space-y-3">
+              <h3 className="font-semibold text-amber-700">△ Quizás no es para ti si...</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>• Necesitas temario completo (OpoRuta es para practicar, no para estudiar desde cero)</li>
+                <li>• Buscas tutorías presenciales con profesor</li>
+                <li>• Buscas preparación física o simulacros de entrevista presencial</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Personalidad Policial highlight */}
       <section className="bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800 rounded-xl p-6 space-y-3">
         <h2 className="text-lg font-bold flex items-center gap-2">

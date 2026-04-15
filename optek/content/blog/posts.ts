@@ -129,6 +129,12 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">Guía completa de preparación 2025-2026</a> — temario, planificación y métodos de estudio</li>
   <li><a href="/examenes-oficiales">Simulacros oficiales INAP</a> — practica con las preguntas reales del tribunal</li>
 </ul>
+<h2>Otras oposiciones que pueden interesarte</h2>
+<ul>
+  <li><a href="/blog/penalizacion-examen-auxilio-judicial">Penalización en Auxilio Judicial</a> — mismo concepto, distinta fórmula: compara cómo penaliza Justicia</li>
+  <li><a href="/blog/examen-correos-sin-penalizacion-como-aprobar">Examen de Correos: sin penalización</a> — en Correos no restan los errores; descubre la estrategia opuesta</li>
+</ul>
+
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
     dateModified: '2026-03-19',
@@ -425,6 +431,12 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">Guía completa de preparación</a> — planificación, métodos de estudio y herramientas</li>
   <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Cómo funciona la penalización -1/3</a> — estrategia de respuesta para el examen</li>
 </ul>
+<h2>Otras oposiciones que pueden interesarte</h2>
+<ul>
+  <li><a href="/blog/psicotecnicos-correos-2026-tipos-ejemplos-practica">Psicotécnicos Correos 2026</a> — comprensión lectora, gráficos y figuras: otro estilo de psicotécnicos</li>
+  <li><a href="/blog/examen-policia-nacional-3-opciones-penalizacion">Examen Policía Nacional: 3 opciones</a> — solo 3 alternativas y penalización -1/2; una mecánica muy distinta</li>
+</ul>
+
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
     dateModified: '2026-03-19',
@@ -551,6 +563,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/constitucion-espanola-preguntas-examen-auxiliar-administrativo">Constitución Española en el examen</a> — los artículos clave</li>
   <li><a href="/blog/psicotecnicas-examen-auxiliar-administrativo-estado">Psicotécnicas del examen</a> — tipos, ejemplos y cómo practicarlas</li>
 </ul>
+<h2>Otras oposiciones que pueden interesarte</h2>
+<ul>
+  <li><a href="/blog/temario-correos-2026-temas">Temario Correos 2026: los 12 temas</a> — solo 12 temas y sin penalización; ideal si buscas una oposición más corta</li>
+  <li><a href="/blog/temario-instituciones-penitenciarias-2026">Temario Penitenciarias 2026: 50 temas</a> — 4 bloques incluyendo Derecho Penal y Conducta Humana</li>
+  <li><a href="/blog/oposiciones-justicia-2026-que-cuerpo-elegir">Oposiciones Justicia 2026</a> — compara Auxilio, Tramitación y Gestión para decidir qué cuerpo preparar</li>
+</ul>
+
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
     dateModified: '2026-03-19',
@@ -891,6 +910,12 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/ley/ley-40-2015-lrjsp">Ley 40/2015 — Régimen Jurídico del Sector Público (LRJSP)</a> — 158 artículos</li>
   <li><a href="/ley/estatuto-basico-empleado-publico">TREBEP — Estatuto Básico del Empleado Público</a> — 100 artículos</li>
 </ul>
+<h2>Otras oposiciones que pueden interesarte</h2>
+<ul>
+  <li><a href="/blog/cambios-temario-justicia-2026-lo-1-2025">Cambios temario Justicia 2026 (LO 1/2025)</a> — la CE también se examina en Justicia; estos cambios afectan al temario</li>
+  <li><a href="/blog/lo-1-2025-cambios-temario-justicia-oposiciones">LO 1/2025: qué cambia en Justicia</a> — nueva ley orgánica que modifica la organización judicial y su temario</li>
+</ul>
+
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
     dateModified: '2026-03-19',
@@ -1540,6 +1565,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Cómo funciona la penalización -1/3</a> — estrategia de respuesta para el día del examen</li>
   <li><a href="/blog/articulos-lpac-que-mas-caen-examen-inap">Artículos de la LPAC que más caen</a> — empieza por lo que más pregunta el tribunal</li>
 </ul>
+<h2>Otras oposiciones que pueden interesarte</h2>
+<ul>
+  <li><a href="/blog/preparar-correos-sin-academia-3-meses">Preparar Correos sin academia en 3 meses</a> — plan de estudio express para las 4.055 plazas de Correos</li>
+  <li><a href="/blog/preparar-auxilio-judicial-sin-academia-10-meses">Preparar Auxilio Judicial sin academia</a> — plan de 10 meses para opositar a Justicia por libre</li>
+  <li><a href="/blog/oposiciones-guardia-civil-2026-temario-plazas-examen">Oposiciones Guardia Civil 2026</a> — ~2.800 plazas, temario de 25 temas y pruebas físicas</li>
+</ul>
+
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
     dateModified: '2026-03-19',
@@ -1644,6 +1676,13 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/nota-corte-auxiliar-administrativo-estado">Nota de corte de la última convocatoria</a> — qué puntuación necesitas para aprobar</li>
   <li><a href="/blog/diferencias-auxiliar-c2-administrativo-c1-estado">¿C2 o C1?</a> — compara plazas, sueldo y temario antes de decidir</li>
 </ul>
+<h2>Otras oposiciones que pueden interesarte</h2>
+<ul>
+  <li><a href="/blog/plazas-correos-2026-por-provincia-distribucion">Plazas Correos 2026 por provincia</a> — 4.055 plazas repartidas por toda España; mira dónde hay más oportunidades</li>
+  <li><a href="/blog/plazas-auxilio-judicial-2026-cuantas-comunidades">Plazas Auxilio Judicial 2026</a> — 425 plazas por comunidad autónoma y ratio aspirantes/plaza</li>
+  <li><a href="/blog/oposiciones-guardia-civil-2026-temario-plazas-examen">Oposiciones Guardia Civil 2026</a> — ~2.800 plazas con temario, requisitos y examen</li>
+</ul>
+
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
     dateModified: '2026-03-19',
@@ -1744,6 +1783,12 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/como-preparar-oposicion-auxiliar-administrativo-estado-guia">Guía completa de preparación</a> — temario, planificación y métodos de estudio</li>
   <li><a href="/blog/nota-corte-administrativo-estado-c1-como-se-calcula">Nota de corte del C1</a> — si te planteas subir al Administrativo del Estado</li>
 </ul>
+<h2>Otras oposiciones que pueden interesarte</h2>
+<ul>
+  <li><a href="/blog/nota-corte-correos-2023-cuanto-necesitas">Nota de corte Correos 2023</a> — cuánto necesitas para aprobar en Correos y comparativa con AGE</li>
+  <li><a href="/blog/nota-corte-auxilio-judicial-2025">Nota de corte Auxilio Judicial 2025</a> — el corte en Justicia y cómo se calcula la puntuación</li>
+</ul>
+
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
     faqs: [
@@ -8264,6 +8309,18 @@ export const blogPosts: BlogPost[] = [
   supuesto práctico con IA. Sin compromiso, sin tarjeta de crédito.
 </p>
 
+<h2>TL;DR — Resumen rápido</h2>
+<table>
+<thead><tr><th></th><th>OpositaTest</th><th>Academias (SKR, LOGRA)</th><th>OpoRuta</th></tr></thead>
+<tbody>
+<tr><td><strong>Tests tipo test</strong></td><td>Si</td><td>No (solo presencial)</td><td>Si (58 temas)</td></tr>
+<tr><td><strong>Supuesto práctico</strong></td><td>No</td><td>Si (corrección humana)</td><td>Si (corrección IA, rúbrica INAP)</td></tr>
+<tr><td><strong>Tiempo corrección</strong></td><td>—</td><td>1-2 semanas</td><td>Instantáneo</td></tr>
+<tr><td><strong>Precio</strong></td><td>~15-30€/mes</td><td>140-200€/mes</td><td>69,99€ pago único</td></tr>
+<tr><td><strong>Mejor para</strong></td><td>Solo primer ejercicio (test)</td><td>Corrección humana premium</td><td>Preparación completa test + supuesto</td></tr>
+</tbody>
+</table>
+
 <p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
     `.trim(),
     faqs: [
@@ -8413,6 +8470,20 @@ export const blogPosts: BlogPost[] = [
   <strong><a href="/register">Empieza gratis en OpoRuta</a></strong> — tests para los 58 temas GACE,
   simulacros oficiales y corrección de supuesto práctico con IA por 69,99€.
 </p>
+
+<h2>TL;DR — Resumen rápido</h2>
+<table>
+<thead><tr><th></th><th>GACE (A2)</th><th>Administrativo (C1)</th></tr></thead>
+<tbody>
+<tr><td><strong>Plazas 2026</strong></td><td>1.356</td><td>~1.200</td></tr>
+<tr><td><strong>Titulación</strong></td><td>Grado universitario</td><td>Bachillerato / FP Superior</td></tr>
+<tr><td><strong>Temas</strong></td><td>58 (6 bloques)</td><td>45 (5 bloques)</td></tr>
+<tr><td><strong>Tipo de examen</strong></td><td>Test (50 pts) + Supuesto práctico (50 pts)</td><td>100% test (100 preguntas + 10 reserva)</td></tr>
+<tr><td><strong>Sueldo neto/mes</strong></td><td>1.900-3.000€</td><td>1.400-2.300€</td></tr>
+<tr><td><strong>Opositores/plaza</strong></td><td>~8-12</td><td>~15-20</td></tr>
+<tr><td><strong>Mejor para</strong></td><td>Universitarios con buena redacción, mejor sueldo</td><td>Sin título universitario, examen 100% test</td></tr>
+</tbody>
+</table>
 
 <p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026.</em></p>
     `.trim(),
@@ -9953,6 +10024,21 @@ export const blogPosts: BlogPost[] = [
   <strong><a href="/register">Regístrate gratis y empieza a practicar</a></strong>.
 </p>
 
+<h2>TL;DR — Resumen rápido</h2>
+<table>
+<thead><tr><th></th><th>Auxilio Judicial</th><th>Tramitación Procesal</th></tr></thead>
+<tbody>
+<tr><td><strong>Grupo</strong></td><td>C1</td><td>B</td></tr>
+<tr><td><strong>Titulación</strong></td><td>ESO / Graduado Escolar</td><td>Bachillerato o equivalente</td></tr>
+<tr><td><strong>Plazas OEP 2025</strong></td><td>425</td><td>1.251</td></tr>
+<tr><td><strong>Temas</strong></td><td>26</td><td>37 (31 derecho + 6 ofimática)</td></tr>
+<tr><td><strong>Ejercicios</strong></td><td>2 (test + caso práctico)</td><td>3 (test + caso práctico + ofimática)</td></tr>
+<tr><td><strong>Sueldo bruto/mes</strong></td><td>1.600-2.000€</td><td>1.700-2.400€</td></tr>
+<tr><td><strong>Con guardias</strong></td><td>Hasta 2.500-3.000€</td><td>Hasta 2.800-3.200€</td></tr>
+<tr><td><strong>Mejor para</strong></td><td>Trabajo de campo, temario corto, opositar rápido</td><td>Oficina, más plazas, sueldo superior a largo plazo</td></tr>
+</tbody>
+</table>
+
 <p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Fuente: BOE 30/12/2025 (convocatoria OEP 2025).</em></p>
     `.trim(),
     faqs: [
@@ -11046,6 +11132,20 @@ export const blogPosts: BlogPost[] = [
 <p>
   <strong><a href="/register?oposicion=correos">Regístrate gratis y empieza a practicar</a></strong>.
 </p>
+
+<h2>TL;DR — Resumen rápido</h2>
+<table>
+<thead><tr><th></th><th>REP (Reparto)</th><th>ATC (Atención al Cliente)</th></tr></thead>
+<tbody>
+<tr><td><strong>Trabajo</strong></td><td>Calle / centro logístico</td><td>Oficina de Correos</td></tr>
+<tr><td><strong>Horario</strong></td><td>6:00-14:00 aprox.</td><td>8:30-14:30 (tardes en algunas oficinas)</td></tr>
+<tr><td><strong>Carnet de conducir</strong></td><td>Sí (B obligatorio)</td><td>No (puntúa como mérito)</td></tr>
+<tr><td><strong>Nota de corte 2023</strong></td><td>~55 correctas (33 pts)</td><td>~60 correctas (36 pts)</td></tr>
+<tr><td><strong>Sueldo neto/mes</strong></td><td>1.300-1.600€</td><td>1.300-1.600€</td></tr>
+<tr><td><strong>Examen</strong></td><td>100 preguntas, sin penalización</td><td>100 preguntas, sin penalización</td></tr>
+<tr><td><strong>Mejor para</strong></td><td>Aire libre, autonomía, actividad física</td><td>Oficina, trato con público, horario estándar</td></tr>
+</tbody>
+</table>
 
 <p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Fuente: convocatoria de Correos 2023 y datos sindicales CCOO.</em></p>
     `.trim(),
@@ -13037,6 +13137,20 @@ export const blogPosts: BlogPost[] = [
   <strong><a href="/register">Regístrate gratis y empieza a preparar tu oposición de Justicia</a></strong>.
 </p>
 
+<h2>TL;DR — Resumen rápido</h2>
+<table>
+<thead><tr><th></th><th>Auxilio Judicial (C2)</th><th>Tramitación Procesal (C1)</th><th>Gestión Procesal (A2)</th></tr></thead>
+<tbody>
+<tr><td><strong>Titulación</strong></td><td>ESO</td><td>Bachillerato</td><td>Grado universitario</td></tr>
+<tr><td><strong>Temas</strong></td><td>26</td><td>37</td><td>68</td></tr>
+<tr><td><strong>Plazas OEP 2025</strong></td><td>425</td><td>1.155</td><td>725</td></tr>
+<tr><td><strong>Sueldo bruto anual</strong></td><td>~18.000€</td><td>~22.000€</td><td>~28.000€</td></tr>
+<tr><td><strong>Penalización</strong></td><td>1/4</td><td>1/4</td><td>1/4 (Ej.1), 1/5 (Ej.2)</td></tr>
+<tr><td><strong>Tiempo preparación</strong></td><td>6-10 meses</td><td>10-14 meses</td><td>14-20 meses</td></tr>
+<tr><td><strong>Mejor para</strong></td><td>Opositar rápido con ESO</td><td>Mejor ratio plazas/esfuerzo</td><td>Mejor sueldo, funciones de responsabilidad</td></tr>
+</tbody>
+</table>
+
 <p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Plazas y datos de la OEP 2025 (BOE-A-2025-27053). Los sueldos son estimaciones basadas en retribuciones oficiales. El temario es común para Ministerio y Comunidades Autónomas. Las CCAA convocan plazas adicionales.</em></p>
     `.trim(),
     faqs: [
@@ -14130,6 +14244,19 @@ export const blogPosts: BlogPost[] = [
 <h2>Prueba OpoRuta gratis</h2>
 <p>No necesitas elegir a ciegas. <strong><a href="/register">Crea tu cuenta gratis</a></strong> y haz varios tests de Auxilio Judicial o Tramitacion Procesal. Si te convence, el Pack Justicia cuesta 49,99€. Si no, no has perdido nada.</p>
 <p><a href="/oposiciones/justicia/auxilio-judicial">Auxilio Judicial</a> · <a href="/oposiciones/justicia/tramitacion-procesal">Tramitacion Procesal</a> · <a href="/precios">Ver precios</a></p>
+
+<h2>TL;DR — Resumen rápido</h2>
+<table>
+<thead><tr><th></th><th>OpoRuta</th><th>OpositaTest</th></tr></thead>
+<tbody>
+<tr><td><strong>Precio</strong></td><td>49,99€ pago unico</td><td>8-15€/mes (~100-180€/año)</td></tr>
+<tr><td><strong>Verificacion BOE</strong></td><td>Automatica (LO 1/2025 integrada)</td><td>Manual (posible desfase)</td></tr>
+<tr><td><strong>IA educativa</strong></td><td>Tutor socratico, Caza-Trampas, flashcards</td><td>No</td></tr>
+<tr><td><strong>Simulacros oficiales MJU</strong></td><td>Si (preguntas reales)</td><td>Si (banco propio)</td></tr>
+<tr><td><strong>Comunidad / foros</strong></td><td>No</td><td>Si (activa)</td></tr>
+<tr><td><strong>Mejor para</strong></td><td>Legislacion actualizada + IA + precio fijo</td><td>Volumen de preguntas + comunidad</td></tr>
+</tbody>
+</table>
     `.trim(),
     faqs: [
       { question: '¿Que diferencia a OpoRuta de OpositaTest para Justicia?', answer: 'OpoRuta verifica cada cita legal automaticamente contra el BOE, incluye tutor IA socratico, Caza-Trampas y flashcards adaptativas. OpositaTest tiene mas trayectoria, un banco de preguntas mas amplio y una comunidad de usuarios consolidada.' },
@@ -15703,6 +15830,19 @@ export const blogPosts: BlogPost[] = [
 <h3>¿Cual elegir?</h3>
 <p>Si solo necesitas un banco de preguntas basico para repasar, OpositaTest cumple. Pero si buscas <strong>verificacion legislativa real + practica de supuestos con correccion + precio justo</strong>, OpoRuta esta disenado especificamente para eso.</p>
 
+<h2>TL;DR — Resumen rápido</h2>
+<table>
+<thead><tr><th></th><th>OpoRuta</th><th>OpositaTest</th></tr></thead>
+<tbody>
+<tr><td><strong>Precio</strong></td><td>49,99€ pago unico</td><td>25-40€/mes (300-480€/año)</td></tr>
+<tr><td><strong>Verificacion BOE</strong></td><td>Si (LGT, IRPF, IVA, IS)</td><td>No (banco estatico)</td></tr>
+<tr><td><strong>Supuestos practicos</strong></td><td>Si (correccion IA, rubrica AEAT)</td><td>No</td></tr>
+<tr><td><strong>Cobertura</strong></td><td>32 temas completos</td><td>Variable segun plan</td></tr>
+<tr><td><strong>Explicacion de errores</strong></td><td>Analisis IA socratico</td><td>Justificacion breve</td></tr>
+<tr><td><strong>Mejor para</strong></td><td>Verificacion legal + supuestos + precio justo</td><td>Banco de preguntas basico para repasar</td></tr>
+</tbody>
+</table>
+
 <p><a href="/oposiciones/hacienda">Descubre OpoRuta para Agente de Hacienda →</a> | <a href="/precios">Ver precios</a></p>`,
     faqs: [
       { question: '¿OpoRuta verifica la legislacion de Hacienda?', answer: 'Si. Cada pregunta incluye citas legales (LGT, IRPF, IVA, IS, IIEE) que se verifican contra la base legislativa vigente del BOE. Si un articulo ha cambiado, la pregunta se regenera automaticamente.' },
@@ -15757,6 +15897,19 @@ export const blogPosts: BlogPost[] = [
 
 <h3>Veredicto</h3>
 <p>Para Penitenciarias, la cobertura del <strong>Bloque IV</strong> y la <strong>verificacion de la legislacion penal y penitenciaria</strong> son criticas. Si buscas una plataforma que cubra los 50 temas completos con legislacion verificada, OpoRuta es la opcion mas solida.</p>
+
+<h2>TL;DR — Resumen rápido</h2>
+<table>
+<thead><tr><th></th><th>OpoRuta</th><th>OpositaTest</th></tr></thead>
+<tbody>
+<tr><td><strong>Precio</strong></td><td>49,99€ pago unico</td><td>25-40€/mes (270-420€ en 9-14 meses)</td></tr>
+<tr><td><strong>Temas cubiertos</strong></td><td>50 completos (incl. Bloque IV Conducta Humana)</td><td>Parcial (Bloque IV limitado)</td></tr>
+<tr><td><strong>Verificacion legislativa</strong></td><td>Si (LOGP, RP, CP, CE)</td><td>No (banco estatico)</td></tr>
+<tr><td><strong>Penalizacion</strong></td><td>Simula -1/3 real</td><td>Si</td></tr>
+<tr><td><strong>Explicacion de errores</strong></td><td>Analisis IA socratico</td><td>Justificacion breve</td></tr>
+<tr><td><strong>Mejor para</strong></td><td>50 temas verificados + Bloque IV + precio fijo</td><td>Banco de preguntas basico</td></tr>
+</tbody>
+</table>
 
 <p><a href="/oposiciones/penitenciarias">Descubre OpoRuta para Penitenciarias →</a> | <a href="/precios">Ver precios</a></p>`,
     faqs: [
@@ -16412,6 +16565,20 @@ export const blogPosts: BlogPost[] = [
 <li><a href="/oposiciones/seguridad">Todas las oposiciones de Seguridad en OpoRuta</a></li>
 <li><a href="/precios">Ver precios y planes de OpoRuta</a></li>
 </ul>
+
+<h2>TL;DR — Resumen rápido</h2>
+<table>
+<thead><tr><th></th><th>OpoRuta</th><th>OpositaTest</th></tr></thead>
+<tbody>
+<tr><td><strong>Precio</strong></td><td>79,99€ pago único</td><td>~12€/mes (~144€/año)</td></tr>
+<tr><td><strong>Verificación legislativa</strong></td><td>Automática (BOE/BOPV)</td><td>Manual</td></tr>
+<tr><td><strong>Personalidad policial</strong></td><td>Sí (Big Five, SJT, lie scales)</td><td>No</td></tr>
+<tr><td><strong>Psicotécnicos específicos</strong></td><td>Sí (espacial, lógica, percepción)</td><td>Genéricos</td></tr>
+<tr><td><strong>Formato nativo (PN 3 opciones)</strong></td><td>Sí</td><td>Adaptado (originalmente 4)</td></tr>
+<tr><td><strong>Comunidad / foros</strong></td><td>No</td><td>Sí (activa)</td></tr>
+<tr><td><strong>Mejor para</strong></td><td>Verificación legal + personalidad + precio fijo</td><td>Comunidad + banco de preguntas amplio</td></tr>
+</tbody>
+</table>
 
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con legislación verificada, psicotécnicos específicos y Personalidad Policial con IA. <a href="/precios">Ver precios</a>.</p>`.trim(),
     faqs: [

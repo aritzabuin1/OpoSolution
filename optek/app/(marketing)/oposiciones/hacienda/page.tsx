@@ -176,6 +176,33 @@ export default function HaciendaLanding() {
         </div>
       </section>
 
+      {/* ── ¿Para quién es OpoRuta? ── */}
+      <section className="py-12 bg-muted/30 rounded-2xl">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-2xl font-bold text-center mb-8">¿Para quién es OpoRuta para Hacienda?</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-3">
+              <h3 className="font-semibold text-green-700">✓ OpoRuta es para ti si...</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>• Quieres practicar con preguntas tipo examen verificadas contra BOE</li>
+                <li>• Preparas por libre o complementas academia</li>
+                <li>• Prefieres pago único (49,99 €) sin suscripción mensual</li>
+                <li>• Preparas Agente de Hacienda Pública (C1) con temario tributario</li>
+                <li>• Quieres practicar LGT, IRPF, IVA con citas verificadas</li>
+              </ul>
+            </div>
+            <div className="space-y-3">
+              <h3 className="font-semibold text-amber-700">△ Quizás no es para ti si...</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>• Necesitas temario completo (OpoRuta es para practicar, no para estudiar desde cero)</li>
+                <li>• Buscas tutorías presenciales con profesor</li>
+                <li>• Buscas preparación para el supuesto práctico exclusivamente</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Cómo te ayuda OpoRuta */}
       <section className="space-y-6">
         <h2 className="text-2xl font-bold">¿Cómo te ayuda OpoRuta?</h2>

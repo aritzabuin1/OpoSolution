@@ -157,6 +157,33 @@ export default function CorreosLanding() {
         </div>
       </section>
 
+      {/* ── ¿Para quién es OpoRuta? ── */}
+      <section className="py-12 bg-muted/30 rounded-2xl">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-2xl font-bold text-center mb-8">¿Para quién es OpoRuta para Correos?</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-3">
+              <h3 className="font-semibold text-green-700">✓ OpoRuta es para ti si...</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>• Quieres practicar con preguntas tipo examen verificadas contra BOE</li>
+                <li>• Preparas por libre o complementas academia</li>
+                <li>• Prefieres pago único (49,99 €) sin suscripción mensual</li>
+                <li>• Preparas Correos Personal Laboral Fijo (12 temas operativos)</li>
+                <li>• Quieres tests sobre IRIS, SGIE, PDA y herramientas reales</li>
+              </ul>
+            </div>
+            <div className="space-y-3">
+              <h3 className="font-semibold text-amber-700">△ Quizás no es para ti si...</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>• Necesitas temario completo (OpoRuta es para practicar, no para estudiar desde cero)</li>
+                <li>• Buscas tutorías presenciales con profesor</li>
+                <li>• Buscas solo psicotécnicos (OpoRuta los incluye pero el fuerte es conocimiento operativo)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Cómo te ayuda OpoRuta */}
       <section className="space-y-6">
         <h2 className="text-2xl font-bold">¿Cómo te ayuda OpoRuta?</h2>
