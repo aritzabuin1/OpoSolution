@@ -122,6 +122,18 @@ export default function OposicionesPage() {
           { '@type': 'ListItem', position: 2, name: 'Oposiciones', item: `${APP_URL}/oposiciones` },
         ],
       }} />
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: 'OpoRuta',
+        applicationCategory: 'EducationalApplication',
+        operatingSystem: 'Web',
+        url: 'https://oporuta.es',
+        offers: [
+          { '@type': 'Offer', price: '0', priceCurrency: 'EUR', description: 'Gratis — 1 test por tema + 3 simulacros' },
+          { '@type': 'Offer', price: '79.99', priceCurrency: 'EUR', description: 'Pack Doble — dos oposiciones, tests ilimitados, análisis IA, Radar del Tribunal' },
+        ],
+      }} />
 
       {/* Breadcrumb */}
       <nav className="text-sm text-muted-foreground">

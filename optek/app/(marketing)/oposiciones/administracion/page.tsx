@@ -144,6 +144,18 @@ export default function AdministracionHub() {
           acceptedAnswer: { '@type': 'Answer', text: a },
         })),
       }} />
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: 'OpoRuta',
+        applicationCategory: 'EducationalApplication',
+        operatingSystem: 'Web',
+        url: 'https://oporuta.es',
+        offers: [
+          { '@type': 'Offer', price: '0', priceCurrency: 'EUR', description: 'Gratis — 1 test por tema + 3 simulacros' },
+          { '@type': 'Offer', price: '49.99', priceCurrency: 'EUR', description: 'Pack completo — tests ilimitados, análisis IA, Radar del Tribunal' },
+        ],
+      }} />
 
       {/* Hero */}
       <section className="text-center space-y-6">
@@ -154,6 +166,9 @@ export default function AdministracionHub() {
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
           Oposiciones <span className="text-blue-600">Administración General del Estado</span> 2026
         </h1>
+        <p className="text-sm text-muted-foreground">
+          Actualizado: abril 2026
+        </p>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Auxiliar Administrativo (C2), Administrativo del Estado (C1) y Gestión GACE (A2).
           Tests con IA verificados contra la legislación vigente del BOE: Constitución, LPAC, TREBEP y LGP.

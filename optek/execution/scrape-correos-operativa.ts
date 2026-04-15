@@ -246,6 +246,29 @@ const GROUPS: ScrapeGroup[] = [
       { url: `${BASE_URL}/GLOSARIO/GLOSARIO.html`, subtema: 'Glosario completo de siglas y términos Correos' },
     ],
   },
+
+  // ── Tema 11: Internacionalización ──
+  {
+    slug: 'internacionalizacion',
+    titulo: 'Internacionalización: UPU, aduanas y envíos internacionales',
+    temaCorreos: 11,
+    pages: [
+      { url: `${BASE_URL}/OTRO5/Admision_Aduana.html`, subtema: 'Aduanas: procesos de admisión internacional' },
+      { url: `${BASE_URL}/OTRO5/Admision%20de%20envios%20prerregistrados%20en%20Mi%20Oficina.html`, subtema: 'Envíos internacionales prerregistrados' },
+    ],
+  },
+
+  // ── Tema 12: Normas de cumplimiento ──
+  {
+    slug: 'cumplimiento',
+    titulo: 'Normas de cumplimiento: RGPD, blanqueo, ética y ciberseguridad',
+    temaCorreos: 12,
+    pages: [
+      // cristinaiglesias no tiene sección específica de cumplimiento/RGPD
+      // El contenido se ha creado manualmente en operativa_t12_cumplimiento.json
+      // Si se descubren URLs futuras, añadirlas aquí
+    ],
+  },
 ]
 
 // ─── Scraping ────────────────────────────────────────────────────────────────

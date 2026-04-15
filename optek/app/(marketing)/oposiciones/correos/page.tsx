@@ -71,6 +71,18 @@ export default function CorreosLanding() {
           { '@type': 'Question', name: '¿Cuándo es el examen de Correos 2026?', acceptedAnswer: { '@type': 'Answer', text: 'Las convocatorias de Correos suelen publicarse entre marzo y mayo, con examen unas semanas después. Pendiente de publicación oficial para 2026.' } },
         ],
       }} />
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: 'OpoRuta',
+        applicationCategory: 'EducationalApplication',
+        operatingSystem: 'Web',
+        url: 'https://oporuta.es',
+        offers: [
+          { '@type': 'Offer', price: '0', priceCurrency: 'EUR', description: 'Gratis — 1 test por tema + 3 simulacros' },
+          { '@type': 'Offer', price: '49.99', priceCurrency: 'EUR', description: 'Pack completo — tests ilimitados, análisis IA, Radar del Tribunal' },
+        ],
+      }} />
 
       {/* Hero */}
       <section className="text-center space-y-6">
@@ -81,6 +93,7 @@ export default function CorreosLanding() {
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
           Oposiciones <span className="text-yellow-600">Correos</span> 2026
         </h1>
+        <p className="text-sm text-muted-foreground">Actualizado: abril 2026</p>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Practica con tests online gratis. 12 temas, 100 preguntas tipo test sin penalización.
           La oposición con más plazas y menos requisitos de España.

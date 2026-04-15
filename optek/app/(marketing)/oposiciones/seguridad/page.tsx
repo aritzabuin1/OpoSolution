@@ -85,6 +85,18 @@ export default function SeguridadHub() {
           { '@type': 'Question', name: '¿Cuántas plazas hay de policía en 2026?', acceptedAnswer: { '@type': 'Answer', text: 'Aproximadamente 6.600 plazas entre las tres oposiciones: ~800 Ertzaintza, ~2.800 Guardia Civil y ~3.000 Policía Nacional. Las convocatorias exactas dependen de cada organismo.' } },
         ],
       }} />
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: 'OpoRuta',
+        applicationCategory: 'EducationalApplication',
+        operatingSystem: 'Web',
+        url: 'https://oporuta.es',
+        offers: [
+          { '@type': 'Offer', price: '0', priceCurrency: 'EUR', description: 'Gratis — 1 test por tema + 3 simulacros' },
+          { '@type': 'Offer', price: '49.99', priceCurrency: 'EUR', description: 'Pack completo — tests ilimitados, análisis IA, Radar del Tribunal' },
+        ],
+      }} />
 
       {/* Hero */}
       <section className="text-center space-y-6">
@@ -95,6 +107,7 @@ export default function SeguridadHub() {
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
           Oposiciones <span className="text-sky-600">Fuerzas y Cuerpos de Seguridad</span> 2026
         </h1>
+        <p className="text-sm text-muted-foreground">Actualizado: abril 2026</p>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Ertzaintza, Guardia Civil y Policía Nacional.
           Tests con IA verificados contra legislación BOE/BOPV. Módulo exclusivo de Personalidad Policial.

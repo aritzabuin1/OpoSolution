@@ -85,6 +85,18 @@ export default function JusticiaHub() {
           { '@type': 'Question', name: '¿Cuándo son los exámenes de Justicia 2026?', acceptedAnswer: { '@type': 'Answer', text: 'Los exámenes de la OEP 2024 se celebrarán previsiblemente entre septiembre y noviembre de 2025. La OEP 2025 se espera para 2026.' } },
         ],
       }} />
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: 'OpoRuta',
+        applicationCategory: 'EducationalApplication',
+        operatingSystem: 'Web',
+        url: 'https://oporuta.es',
+        offers: [
+          { '@type': 'Offer', price: '0', priceCurrency: 'EUR', description: 'Gratis — 1 test por tema + 3 simulacros' },
+          { '@type': 'Offer', price: '49.99', priceCurrency: 'EUR', description: 'Pack completo — tests ilimitados, análisis IA, Radar del Tribunal' },
+        ],
+      }} />
 
       {/* Hero */}
       <section className="text-center space-y-6">
@@ -95,6 +107,7 @@ export default function JusticiaHub() {
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
           Oposiciones <span className="text-indigo-600">Justicia</span> 2026
         </h1>
+        <p className="text-sm text-muted-foreground">Actualizado: abril 2026</p>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Auxilio Judicial, Tramitación Procesal y Gestión Procesal.
           Tests con IA verificados contra la legislación vigente, incluida la nueva LO 1/2025.

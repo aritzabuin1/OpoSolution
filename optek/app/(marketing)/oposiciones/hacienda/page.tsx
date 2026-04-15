@@ -90,6 +90,18 @@ export default function HaciendaLanding() {
           { '@type': 'Question', name: '¿Cuál es la ley más importante para Agente de Hacienda?', acceptedAnswer: { '@type': 'Answer', text: 'La Ley General Tributaria (Ley 58/2003) es con diferencia la más preguntada, cubriendo temas 13-25.' } },
         ],
       }} />
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: 'OpoRuta',
+        applicationCategory: 'EducationalApplication',
+        operatingSystem: 'Web',
+        url: 'https://oporuta.es',
+        offers: [
+          { '@type': 'Offer', price: '0', priceCurrency: 'EUR', description: 'Gratis — 1 test por tema + 3 simulacros' },
+          { '@type': 'Offer', price: '49.99', priceCurrency: 'EUR', description: 'Pack completo — tests ilimitados, análisis IA, Radar del Tribunal' },
+        ],
+      }} />
 
       {/* Hero */}
       <section className="text-center space-y-6">
@@ -100,6 +112,7 @@ export default function HaciendaLanding() {
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
           Oposiciones Agente de <span className="text-emerald-600">Hacienda</span> 2026
         </h1>
+        <p className="text-sm text-muted-foreground">Actualizado: abril 2026</p>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Practica con tests online gratis. 32 temas en 3 bloques: test de 80 preguntas + 10 supuestos de desarrollo escrito.
           La LGT es la ley más preguntada — nuestras preguntas se verifican contra ella.

@@ -1658,9 +1658,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 11 ───────────────────────────────────────────────────────────────
   {
     slug: 'nota-corte-auxiliar-administrativo-estado',
-    title: 'Nota de Corte Auxiliar Administrativo 2024: 30 puntos — ¿llegas?',
+    title: 'Nota de corte Auxiliar 2024: 30 puntos (histórico 2019-2024)',
     description:
-      'Nota de corte real 2024: 30 puntos (parte 1) y 26,33 (parte 2). Histórico desde 2019, fórmula con penalización -1/3 y calculadora gratis para saber si apruebas con tu puntuación actual.',
+      'Corte real 2024: 30 puntos (parte 1) y 26,33 (parte 2). Histórico completo desde 2019 con tendencia al alza. Fórmula penalización -1/3 y calculadora gratis para saber si llegas.',
     date: '2026-03-12',
     dateModified: '2026-04-06',
     keywords: [
@@ -2480,9 +2480,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 18 ───────────────────────────────────────────────────────────────
   {
     slug: 'diferencias-auxiliar-c2-administrativo-c1-estado',
-    title: 'Auxiliar C2 vs Administrativo C1: ¿cuál elegir en 2026? (Tabla comparativa)',
+    title: 'C2 vs C1: 1.700 vs 2.512 plazas 2026 (tabla + sueldo)',
     description:
-      'C2: 1.700 plazas, 28 temas, 23.000€/año. C1: 2.512 plazas, 45 temas, 28.000€/año. Comparamos sueldo, dificultad, ratio aspirantes/plaza y salidas. Con tabla resumen para decidir.',
+      'C2: 28 temas, 23.000€/año. C1: 45 temas, 28.000€/año. Comparativa real con ratio aspirantes/plaza, dificultad y sueldo neto. Tabla resumen para decidir qué oposición preparar.',
     date: '2026-03-21',
     keywords: [
       'diferencias auxiliar administrativo estado',
@@ -4220,9 +4220,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 29: OpoRuta vs OpositaTest ──────────────────────────────────────
   {
     slug: 'oporuta-vs-opositatest-auxiliar-administrativo-2026',
-    title: 'OpoRuta vs OpositaTest 2026: IA verificada vs tests estáticos (Comparativa)',
+    title: 'OpoRuta vs OpositaTest: 49,99€ único vs 12€/mes (2026)',
     description:
-      '¿OpositaTest o OpoRuta? Comparamos precio (12€/mes vs 49,99€ pago único), verificación de citas legales, Radar del Tribunal y simulacros INAP reales. Tabla punto por punto con capturas.',
+      'Comparativa real: verificación de citas legales, Radar del Tribunal y simulacros INAP. OpoRuta 49,99€ pago único vs OpositaTest 12€/mes (144€/año). Tabla punto por punto.',
     date: '2026-03-17',
     dateModified: '2026-04-09',
     keywords: [
@@ -4899,9 +4899,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 32 ───────────────────────────────────────────────────────────────
   {
     slug: 'calendario-oposiciones-age-2026-fechas-auxiliar-administrativo',
-    title: 'Examen Auxiliar Administrativo: 23 mayo 2026 — Calendario AGE completo',
+    title: 'Examen Auxiliar C2: 23 mayo 2026 — Calendario BOE oficial',
     description:
-      'Fechas confirmadas BOE: examen C2 el 23 mayo, C1 el 20 junio. Inscripción, admitidos, resultados y toma de posesión. Calendario actualizado abril 2026 con todos los plazos AGE.',
+      'Fecha confirmada BOE: examen Auxiliar Administrativo el 23 mayo 2026. Calendario completo: inscripción, admitidos, C1 el 20 junio. Todos los plazos AGE actualizados.',
     date: '2026-03-19',
     dateModified: '2026-04-06',
     keywords: [
@@ -6082,9 +6082,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 38 ───────────────────────────────────────────────────────────────
   {
     slug: 'sueldo-administrativo-estado-c1-2026-nomina',
-    title: 'Sueldo Administrativo del Estado C1 en 2026: 2.100€/mes netos (nómina real)',
+    title: 'Sueldo C1 en 2026: 2.100€ netos/mes (nómina real)',
     description:
-      '¿Cuánto cobra un Administrativo C1 en 2026? Nómina real desglosada: sueldo base 858€ + complemento destino + específico + trienios. Hasta 2.100€ netos/mes según destino. Con tabla por ministerio.',
+      'Nómina real desglosada: base 858€ + destino + específico = hasta 2.100€ netos. Tabla por ministerio, trienios y progresión salarial del Administrativo del Estado C1 en 2026.',
     date: '2026-03-20',
     dateModified: '2026-04-06',
     keywords: [

@@ -44,6 +44,7 @@
     "scrape:correos-operativa": "tsx execution/scrape-correos-operativa.ts",
     "ingest:ofimatica": "tsx --env-file=.env.local execution/ingest-conocimiento.ts",
     "seed:ofimatica": "tsx --env-file=.env.local execution/seed-ofimatica-bank.ts",
+    "classify:correos": "tsx --env-file=.env.local execution/classify-correos-preguntas.ts",
     "ingest:correos": "tsx --env-file=.env.local execution/ingest-conocimiento-correos.ts",
     "ingest:penitenciarias": "tsx --env-file=.env.local execution/ingest-conocimiento-penitenciarias.ts",
     "generate:seo-index": "tsx execution/generate-seo-index.ts"

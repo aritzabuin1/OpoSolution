@@ -127,6 +127,18 @@ export default function PenitenciariasLanding() {
           { '@type': 'Question', name: '¿Qué bloque pesa más en el examen?', acceptedAnswer: { '@type': 'Answer', text: 'Derecho Penitenciario (temas 28-47) representa ~36% de las preguntas, seguido de Organización del Estado (~35%), Derecho Penal (~20%) y Conducta Humana (~9%).' } },
         ],
       }} />
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: 'OpoRuta',
+        applicationCategory: 'EducationalApplication',
+        operatingSystem: 'Web',
+        url: 'https://oporuta.es',
+        offers: [
+          { '@type': 'Offer', price: '0', priceCurrency: 'EUR', description: 'Gratis — 1 test por tema + 3 simulacros' },
+          { '@type': 'Offer', price: '49.99', priceCurrency: 'EUR', description: 'Pack completo — tests ilimitados, análisis IA, Radar del Tribunal' },
+        ],
+      }} />
 
       {/* Hero */}
       <section className="text-center space-y-6">
@@ -137,6 +149,7 @@ export default function PenitenciariasLanding() {
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
           Oposiciones <span className="text-rose-600">Instituciones Penitenciarias</span> 2026
         </h1>
+        <p className="text-sm text-muted-foreground">Actualizado: abril 2026</p>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Practica con tests online gratis. 50 temas en 4 bloques, 120 + 40 preguntas tipo test en 2 ejercicios.
           El Derecho Penitenciario es el bloque más preguntado (~36%).
