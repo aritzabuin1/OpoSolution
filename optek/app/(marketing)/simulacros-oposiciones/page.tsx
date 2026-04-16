@@ -250,17 +250,17 @@ export default function SimulacrosPage() {
         ))}
       </div>
 
-      {/* INAP section */}
+      {/* Examenes oficiales section */}
       <div className="mt-12 rounded-lg border bg-muted/50 p-6 text-center">
         <GraduationCap className="mx-auto mb-3 h-10 w-10 text-primary" />
-        <h2 className="text-xl font-bold">Examenes reales INAP</h2>
+        <h2 className="text-xl font-bold">Basados en examenes oficiales</h2>
         <p className="mx-auto mt-2 max-w-xl text-muted-foreground">
-          Practica con las preguntas exactas que puso el tribunal en convocatorias anteriores.
-          C2: 2018, 2019, 2022, 2024. C1: 2019, 2022, 2024.
+          Nuestros simulacros reproducen el formato real del examen: preguntas de convocatorias anteriores,
+          timer oficial y penalizacion del tribunal. Disponible para las 12 oposiciones.
         </p>
         <Button asChild size="lg" className="mt-4">
           <Link href="/examenes-oficiales">
-            Ver examenes oficiales <ArrowRight className="ml-2 h-4 w-4" />
+            Saber mas <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>
       </div>
