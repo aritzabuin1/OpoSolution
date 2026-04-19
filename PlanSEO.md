@@ -334,7 +334,8 @@ Imposible humano puro en 3 semanas (42 piezas × 5h ≈ 210h).
 - ✅ Plazas GC (37), Sueldo GC (38), Físicas GC (39), Calendario GC (40)
 - ✅ Plazas PN (41), Sueldo PN (42), Físicas PN (43), Calendario PN (44)
 - ✅ Comparativa GC vs PN (45) — cubre ambas
-- ⏳ Pendiente próxima sesión: enrichment de /oposiciones/seguridad/guardia-civil y /oposiciones/seguridad/policia-nacional pillar pages (2 piezas restantes)
+- ✅ Enrichment de /oposiciones/seguridad/guardia-civil y /oposiciones/seguridad/policia-nacional pillar pages con "Guías complementarias" (6 internal links c/u)
+- **Sprint 1 COMPLETO: 14/14 piezas** 2026-04-19
 **Sprint 2 (semana 4): Justicia A2 + Instituciones Penitenciarias** (14 piezas) 🟡 PARCIAL 2026-04-19
 - ✅ Plazas IIPP (46), Sueldo IIPP (47)
 - ✅ Plazas Gestión Procesal (48), Sueldo Gestión Procesal (49)
