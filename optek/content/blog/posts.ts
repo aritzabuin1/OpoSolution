@@ -18465,4 +18465,717 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Qué oposición tiene mejor conciliación familiar?', answer: 'Auxilio Judicial, Auxiliar AGE, Gestión Procesal: horario de mañana, sin guardias ni desplazamientos. Justicia tiene agosto inhábil.' },
     ],
   },
+
+  // ─── F4 Sprint 1 · Post 37 — Plazas Guardia Civil 2026 ────
+  {
+    slug: 'plazas-guardia-civil-2026-convocatoria',
+    title: 'Plazas Guardia Civil 2026: 3.100 cabos y guardias (convocatoria + BOE)',
+    description:
+      'Convocatoria Guardia Civil 2026: 3.100 plazas estimadas para Escala de Cabos y Guardias. Fecha de publicación BOE, reserva militar, histórico 2019-2025 y requisitos.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: ['plazas guardia civil 2026', 'convocatoria guardia civil 2026', 'oposicion guardia civil plazas', 'guardia civil BOE 2026'],
+    content: `
+<h2>TL;DR — Guardia Civil 2026</h2>
+<ul>
+<li><strong>~3.100 plazas</strong> estimadas para la Escala de Cabos y Guardias.</li>
+<li>Incluye reserva para militares profesionales (~20 %).</li>
+<li>Convocatoria BOE prevista: <strong>primavera 2026</strong>.</li>
+<li>Examen: test teórico (100 preg.) + ortografía + psicotécnico + físicas + reconocimiento médico.</li>
+<li>Penalización: <strong>−1/4</strong>.</li>
+</ul>
+
+<h2>Histórico plazas Guardia Civil 2019-2026</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Año</th><th>Plazas</th><th>Presentados (est.)</th><th>Ratio</th></tr></thead>
+<tbody>
+<tr><td>2019</td><td>2.030</td><td>~24.000</td><td>1:12</td></tr>
+<tr><td>2021</td><td>2.075</td><td>~26.000</td><td>1:13</td></tr>
+<tr><td>2022</td><td>2.557</td><td>~31.000</td><td>1:12</td></tr>
+<tr><td>2023</td><td>2.900</td><td>~34.000</td><td>1:12</td></tr>
+<tr><td>2024</td><td>3.118</td><td>~36.500</td><td>1:12</td></tr>
+<tr><td>2026 (est.)</td><td>~3.100</td><td>~36.000</td><td>1:12</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Requisitos 2026</h2>
+<ul>
+<li>Nacionalidad española.</li>
+<li>18-40 años (plazo cierre de convocatoria).</li>
+<li>ESO o equivalente.</li>
+<li>Sin antecedentes penales.</li>
+<li>No padecer exclusiones médicas del cuadro.</li>
+<li>Carnet B (no siempre; depende de la convocatoria).</li>
+<li>Altura mínima: ≥160 cm (H) / ≥155 cm (M) — requisito flexibilizado en últimas convocatorias.</li>
+</ul>
+
+<h2>Proceso selectivo (fases)</h2>
+<ol>
+<li>Inscripción online en web del Ministerio de Defensa.</li>
+<li>Examen teórico: 100 preguntas + ortografía + psicotécnico.</li>
+<li>Pruebas físicas.</li>
+<li>Reconocimiento médico.</li>
+<li>Entrevista personal (opcional en algunas convocatorias).</li>
+<li>Academia Baeza: 9 meses de formación.</li>
+<li>Destino provisional + antigüedad efectiva.</li>
+</ol>
+
+<h2>Reserva militar profesional</h2>
+<p>Aproximadamente el 20-25 % de las plazas están reservadas a militares profesionales del Ejército. El resto son acceso libre.</p>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/temario-guardia-civil-2026-escala-cabos-guardias">Temario Guardia Civil 25 temas</a></li>
+<li><a href="/blog/pruebas-fisicas-guardia-civil-2026">Pruebas físicas Guardia Civil</a></li>
+<li><a href="/blog/sueldo-guardia-civil-2026-nomina-desglosada">Sueldo Guardia Civil 2026</a></li>
+<li><a href="/oep-2026">OEP 2026 completa</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis en OpoRuta</a></strong> — simulacros Guardia Civil con penalización −1/4. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuándo sale la convocatoria de Guardia Civil 2026?', answer: 'Se espera la publicación en BOE durante la primavera de 2026 (marzo-mayo), con examen teórico entre septiembre y noviembre.' },
+      { question: '¿Cuántas plazas habrá en Guardia Civil 2026?', answer: 'Se estiman ~3.100 plazas para la Escala de Cabos y Guardias, siguiendo la tendencia de la OEP 2024 (3.118) y 2025 (~3.000).' },
+      { question: '¿Qué es la reserva militar profesional?', answer: 'Un 20-25 % de las plazas se reservan a militares profesionales del Ejército con al menos 3 años de servicio. El resto es acceso libre para civiles.' },
+      { question: '¿Se puede opositar a Guardia Civil con tatuajes?', answer: 'Depende del tamaño y ubicación. El cuadro médico excluye tatuajes visibles con uniforme en determinadas zonas (cara, cuello, manos). Se revisa en el reconocimiento médico.' },
+    ],
+  },
+
+  // ─── Post 38 — Sueldo Guardia Civil 2026 ────
+  {
+    slug: 'sueldo-guardia-civil-2026-nomina-desglosada',
+    title: 'Sueldo Guardia Civil 2026: nómina desglosada (1.900€ netos inicial)',
+    description:
+      'Sueldo Guardia Civil 2026: nómina desglosada por conceptos (base, trienios, complemento específico, guardias). Progresión salarial y comparativa con Policía Nacional.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: ['sueldo guardia civil 2026', 'nomina guardia civil', 'cuanto cobra guardia civil', 'salario guardia civil'],
+    content: `
+<h2>TL;DR — Cuánto cobra un guardia civil en 2026</h2>
+<ul>
+<li><strong>En formación (Academia Baeza):</strong> ~1.400-1.500 € netos/mes.</li>
+<li><strong>Recién destinado:</strong> 1.900-2.100 € netos/mes.</li>
+<li><strong>Con 15 años + servicios especiales:</strong> 2.400-2.700 € netos/mes.</li>
+<li><strong>Mando intermedio (Sargento):</strong> 2.800-3.200 € netos/mes.</li>
+</ul>
+
+<h2>Nómina desglosada (guardia civil destinado, año 2026)</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Concepto</th><th>Importe mensual bruto</th></tr></thead>
+<tbody>
+<tr><td>Sueldo base (C2)</td><td>866,55 €</td></tr>
+<tr><td>Complemento de empleo (guardia)</td><td>478,80 €</td></tr>
+<tr><td>Complemento específico singular</td><td>680,40 €</td></tr>
+<tr><td>Complemento de disponibilidad</td><td>215,90 €</td></tr>
+<tr><td>Complemento de dedicación especial</td><td>185,30 €</td></tr>
+<tr><td>Trienio (por cada uno a partir de 3 años)</td><td>~31,50 €</td></tr>
+<tr><td><strong>Total bruto</strong></td><td><strong>~2.430 €</strong></td></tr>
+<tr><td>Retención IRPF (~18 %)</td><td>−437 €</td></tr>
+<tr><td>Seguridad Social</td><td>Exenta (MUGEJU/ISFAS)</td></tr>
+<tr><td><strong>Neto mensual</strong></td><td><strong>~1.993 €</strong></td></tr>
+</tbody>
+</table>
+</div>
+<p><small>Aproximación destinado en territorio peninsular sin complemento de residencia. Cálculos 2026 con tablas actualizadas por LPGE.</small></p>
+
+<h2>Pagas extra y extras</h2>
+<ul>
+<li>Dos pagas extraordinarias (junio y diciembre).</li>
+<li>Servicios extraordinarios (guardias de 24 h): +60-90 €/servicio.</li>
+<li>Plus de productividad variable.</li>
+</ul>
+
+<h2>Progresión salarial por antigüedad</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Años servicio</th><th>Sueldo neto/mes aprox.</th></tr></thead>
+<tbody>
+<tr><td>0-3 (formación + destino)</td><td>1.500-2.000 €</td></tr>
+<tr><td>3-6</td><td>2.000-2.200 €</td></tr>
+<tr><td>6-10</td><td>2.200-2.400 €</td></tr>
+<tr><td>10-15</td><td>2.400-2.600 €</td></tr>
+<tr><td>15+ con empleo Cabo/Sargento</td><td>2.700-3.200 €</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Comparativa con Policía Nacional</h2>
+<p>El guardia civil destinado cobra aproximadamente <strong>100-150 € menos netos/mes</strong> que un policía nacional al mismo rango, pero tiene mayor complemento en destinos rurales e insulares. En Ceuta/Melilla la indemnización por residencia puede subir el neto 250 €/mes.</p>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/plazas-guardia-civil-2026-convocatoria">Plazas Guardia Civil 2026</a></li>
+<li><a href="/blog/temario-guardia-civil-2026-escala-cabos-guardias">Temario Guardia Civil</a></li>
+<li><a href="/blog/sueldo-policia-nacional-2026-nomina-desglosada">Sueldo Policía Nacional (comparar)</a></li>
+<li><a href="/herramientas/calculadora-nota-guardia-civil">Calculadora de nota</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Prepárate con OpoRuta</a></strong> — simulacros Guardia Civil y preparación psicotécnico incluidos. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuánto cobra un guardia civil recién ingresado?', answer: 'Durante la formación en Baeza: ~1.400-1.500 € netos. Al destinarse: 1.900-2.100 € netos/mes, que suben progresivamente con trienios y especialidades.' },
+      { question: '¿Los guardias civiles cotizan a la Seguridad Social?', answer: 'No. Pertenecen al régimen especial ISFAS, con cobertura sanitaria y pensiones diferenciadas. Esto hace que su retención en nómina sea menor que la de un empleado del régimen general.' },
+      { question: '¿Cuánto gana un guardia civil con 10 años de antigüedad?', answer: 'Aproximadamente 2.200-2.500 € netos/mes en destino estándar, más si realiza servicios de guardia 24 h o está en destino con indemnización especial (ej. Ceuta, Melilla, islas).' },
+      { question: '¿Se cobra en la academia?', answer: 'Sí. Durante los 9 meses en la Academia de Baeza se percibe una remuneración de aprox. 1.400-1.500 € netos más alojamiento y manutención.' },
+    ],
+  },
+
+  // ─── Post 39 — Pruebas físicas Guardia Civil 2026 ────
+  {
+    slug: 'pruebas-fisicas-guardia-civil-2026',
+    title: 'Pruebas físicas Guardia Civil 2026: marcas mínimas (hombres y mujeres)',
+    description:
+      'Pruebas físicas Guardia Civil 2026: flexiones, 50 m velocidad, 1.000 m resistencia, salto vertical. Marcas mínimas hombres y mujeres + plan de entrenamiento 16 semanas.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: ['pruebas fisicas guardia civil', 'marcas guardia civil', 'examen fisico guardia civil 2026'],
+    content: `
+<h2>TL;DR — Pruebas físicas Guardia Civil 2026</h2>
+<ul>
+<li>4 pruebas: flexiones, 50 m velocidad, 1.000 m resistencia, salto vertical (a veces 50 m natación).</li>
+<li>Calificación: APTO / NO APTO. No puntúa para el ranking.</li>
+<li>Marcas más exigentes en flexiones (hombres) y velocidad.</li>
+<li>Plan recomendado: <strong>16 semanas</strong> con 3-4 sesiones/semana.</li>
+</ul>
+
+<h2>Marcas mínimas (convocatoria 2024, previsiblemente iguales en 2026)</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Prueba</th><th>Hombres</th><th>Mujeres</th></tr></thead>
+<tbody>
+<tr><td>Flexiones de brazos (en 1 min)</td><td>≥ 20</td><td>≥ 12</td></tr>
+<tr><td>Velocidad 50 m</td><td>≤ 7,8 s</td><td>≤ 8,8 s</td></tr>
+<tr><td>Resistencia 1.000 m</td><td>≤ 3 min 45 s</td><td>≤ 4 min 30 s</td></tr>
+<tr><td>Salto vertical (sin carrera)</td><td>≥ 48 cm</td><td>≥ 40 cm</td></tr>
+<tr><td>Natación 50 m (si aplica)</td><td>≤ 1 min</td><td>≤ 1 min 15 s</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Plan de entrenamiento 16 semanas</h2>
+<h3>Semanas 1-4 (base)</h3>
+<ul>
+<li>3 sesiones/semana: fuerza general (sentadillas, flexiones, dominadas).</li>
+<li>2 sesiones/semana: carrera continua 20-30 min a ritmo moderado.</li>
+</ul>
+<h3>Semanas 5-8 (volumen)</h3>
+<ul>
+<li>Series de flexiones: 4×12-15 al 75 %.</li>
+<li>Carrera interválica: 6×400 m a 85 %.</li>
+<li>Pliometría 2×/semana (saltos verticales, burpees).</li>
+</ul>
+<h3>Semanas 9-12 (intensidad)</h3>
+<ul>
+<li>Tests diagnósticos cada 2 semanas con marcas reales.</li>
+<li>Series cortas de velocidad: 8×50 m a 95 %.</li>
+<li>Ajuste técnico (salida baja, pendulación del salto).</li>
+</ul>
+<h3>Semanas 13-16 (peaking)</h3>
+<ul>
+<li>Bajada de volumen (−30 %), mantener intensidad.</li>
+<li>2 simulacros completos con todas las pruebas seguidas.</li>
+<li>Última semana: descarga total + noche de 8-9 h antes del examen.</li>
+</ul>
+
+<h2>Errores comunes</h2>
+<ul>
+<li><strong>No practicar el encadenado</strong>: todas las pruebas se hacen el mismo día, con poco descanso.</li>
+<li><strong>Sobrevalorar fuerza y olvidar velocidad</strong>: el 50 m elimina a muchos opositores.</li>
+<li><strong>Empezar tarde el entrenamiento físico</strong>: con menos de 10 semanas es arriesgado.</li>
+<li><strong>Lesionarse las últimas 2 semanas</strong> por querer "afinar" demasiado.</li>
+</ul>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/plazas-guardia-civil-2026-convocatoria">Plazas Guardia Civil 2026</a></li>
+<li><a href="/blog/temario-guardia-civil-2026-escala-cabos-guardias">Temario Guardia Civil</a></li>
+<li><a href="/blog/pruebas-fisicas-policia-nacional-2026">Pruebas físicas Policía Nacional</a></li>
+<li><a href="/blog/sueldo-guardia-civil-2026-nomina-desglosada">Sueldo Guardia Civil</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza teoría ahora en OpoRuta</a></strong> — mientras entrenas, ya estudias con simulacros. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Las pruebas físicas de Guardia Civil puntúan?', answer: 'No. Son APTO/NO APTO. La nota del ranking se calcula solo con el examen teórico + ortografía + psicotécnico.' },
+      { question: '¿Cuántas pruebas físicas tiene Guardia Civil?', answer: '4 pruebas principales (flexiones, 50 m, 1.000 m, salto vertical) más natación 50 m en algunas convocatorias específicas.' },
+      { question: '¿Cuánto tiempo hay que entrenar para Guardia Civil?', answer: 'Mínimo 12-16 semanas con 3-4 sesiones/semana para alguien con condición física previa. Desde cero: 24-30 semanas recomendadas.' },
+      { question: '¿Se puede suspender el examen teórico y aprobar físicas?', answer: 'No sirve. Hay que aprobar TODAS las fases (teórica + físicas + médico). El suspenso en cualquiera elimina del proceso.' },
+    ],
+  },
+
+  // ─── Post 40 — Calendario Guardia Civil 2026 ────
+  {
+    slug: 'calendario-guardia-civil-2026-fechas-examen',
+    title: 'Calendario Guardia Civil 2026: fechas de convocatoria y examen',
+    description:
+      'Calendario completo Guardia Civil 2026: fechas estimadas de publicación BOE, examen teórico, físicas, incorporación a Baeza. Planning mes a mes.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: ['calendario guardia civil 2026', 'fechas examen guardia civil', 'cuando es el examen guardia civil'],
+    content: `
+<h2>TL;DR — Fechas clave Guardia Civil 2026</h2>
+<ul>
+<li><strong>Marzo-Abril 2026:</strong> publicación convocatoria en BOE.</li>
+<li><strong>Mayo 2026:</strong> plazo de inscripción (20 días hábiles).</li>
+<li><strong>Septiembre-Octubre 2026:</strong> examen teórico + ortografía.</li>
+<li><strong>Noviembre-Diciembre 2026:</strong> pruebas físicas + reconocimiento médico.</li>
+<li><strong>Enero-Febrero 2027:</strong> listas de aprobados e incorporación a Academia Baeza.</li>
+</ul>
+
+<h2>Calendario estimado completo 2026-2027</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Fase</th><th>Fechas estimadas</th></tr></thead>
+<tbody>
+<tr><td>Publicación convocatoria BOE</td><td>Marzo-Abril 2026</td></tr>
+<tr><td>Inscripción online (plazo 20 días hábiles)</td><td>Mayo 2026</td></tr>
+<tr><td>Publicación listas provisionales admitidos</td><td>Junio 2026</td></tr>
+<tr><td>Listas definitivas + asignación de tribunal</td><td>Julio 2026</td></tr>
+<tr><td>Examen teórico + ortografía + psicotécnico</td><td>Septiembre-Octubre 2026</td></tr>
+<tr><td>Publicación notas teórico</td><td>Noviembre 2026</td></tr>
+<tr><td>Pruebas físicas</td><td>Noviembre-Diciembre 2026</td></tr>
+<tr><td>Reconocimiento médico</td><td>Diciembre 2026</td></tr>
+<tr><td>Lista definitiva de aprobados</td><td>Enero 2027</td></tr>
+<tr><td>Incorporación Academia Baeza</td><td>Febrero-Marzo 2027</td></tr>
+<tr><td>Finalización del curso (9 meses)</td><td>Noviembre-Diciembre 2027</td></tr>
+<tr><td>Destino provisional</td><td>Enero 2028</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Retroplanning para preparación</h2>
+<p>Si el examen teórico es en <strong>octubre 2026</strong>, el retroplanning ideal es:</p>
+<ul>
+<li><strong>Desde ahora (abril 2026):</strong> empezar temario si no lo has hecho (6 meses).</li>
+<li><strong>Junio 2026:</strong> inicio de preparación física paralela.</li>
+<li><strong>Agosto 2026:</strong> simulacros semanales con penalización.</li>
+<li><strong>Septiembre 2026:</strong> repaso final + último simulacro completo 1 semana antes.</li>
+</ul>
+
+<h2>Nota importante sobre fechas</h2>
+<p>Las fechas anteriores son estimaciones basadas en las últimas 4 convocatorias (2021, 2022, 2023, 2024). La convocatoria oficial 2026 puede sufrir retrasos de 1-2 meses. Consulta BOE regularmente.</p>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/plazas-guardia-civil-2026-convocatoria">Plazas Guardia Civil 2026</a></li>
+<li><a href="/blog/temario-guardia-civil-2026-escala-cabos-guardias">Temario completo</a></li>
+<li><a href="/blog/pruebas-fisicas-guardia-civil-2026">Pruebas físicas + plan 16 semanas</a></li>
+<li><a href="/oep-2026">OEP 2026 completa</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza ahora en OpoRuta</a></strong> — 6 meses sobrados para preparar Guardia Civil. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuándo es el examen de Guardia Civil 2026?', answer: 'El examen teórico se espera en septiembre-octubre 2026, con pruebas físicas en noviembre-diciembre. Fechas exactas se publican en BOE al publicar la convocatoria.' },
+      { question: '¿Cuánto tiempo pasa desde la convocatoria hasta el examen?', answer: 'Aproximadamente 5-6 meses desde la publicación en BOE hasta el examen teórico. Suficiente para prepararse si tienes base previa.' },
+      { question: '¿Cuándo se incorpora a Baeza?', answer: 'Entre 2 y 3 meses después de aprobar todas las fases (teórico + físicas + médico). Para la convocatoria 2026 la incorporación sería a principios de 2027.' },
+      { question: '¿Hay convocatoria cada año?', answer: 'Sí, desde 2019 ha habido convocatoria anual (exceptuando algunos años de COVID). La OEP consolida plazas de varios ejercicios.' },
+    ],
+  },
+
+  // ─── Post 41 — Plazas Policía Nacional 2026 ────
+  {
+    slug: 'plazas-policia-nacional-2026-convocatoria',
+    title: 'Plazas Policía Nacional 2026: 3.000 Escala Básica (convocatoria BOE)',
+    description:
+      'Convocatoria Policía Nacional 2026: 3.000 plazas estimadas para Escala Básica. Fecha BOE, histórico 2019-2025, requisitos y proceso selectivo completo.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: ['plazas policia nacional 2026', 'convocatoria policia nacional 2026', 'oposicion policia nacional', 'CNP 2026'],
+    content: `
+<h2>TL;DR — Policía Nacional 2026</h2>
+<ul>
+<li><strong>~3.000 plazas</strong> estimadas para la Escala Básica.</li>
+<li>Convocatoria BOE prevista: <strong>primavera 2026</strong>.</li>
+<li>Examen: 100 preguntas test + ortografía + idioma + psicotécnico + físicas + médico + entrevista.</li>
+<li>Penalización: <strong>−1/3</strong>.</li>
+<li>Curso 9 meses en Ávila + 12 meses de prácticas.</li>
+</ul>
+
+<h2>Histórico plazas Policía Nacional 2019-2026</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Año</th><th>Plazas</th><th>Presentados (est.)</th><th>Ratio</th></tr></thead>
+<tbody>
+<tr><td>2019</td><td>2.506</td><td>~42.000</td><td>1:17</td></tr>
+<tr><td>2021</td><td>2.641</td><td>~45.000</td><td>1:17</td></tr>
+<tr><td>2022</td><td>2.830</td><td>~48.000</td><td>1:17</td></tr>
+<tr><td>2023</td><td>2.978</td><td>~51.000</td><td>1:17</td></tr>
+<tr><td>2024</td><td>2.981</td><td>~53.000</td><td>1:18</td></tr>
+<tr><td>2026 (est.)</td><td>~3.000</td><td>~54.000</td><td>1:18</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Requisitos Escala Básica 2026</h2>
+<ul>
+<li>Nacionalidad española.</li>
+<li>18-40 años (referidos al último día del plazo).</li>
+<li><strong>Bachillerato</strong> o equivalente (FP Grado Superior sirve).</li>
+<li>Altura mínima: ≥160 cm (H) / ≥155 cm (M) — con excepciones.</li>
+<li>Carnet B de conducir obligatorio.</li>
+<li>Compromiso de portar armas.</li>
+<li>Sin antecedentes penales.</li>
+<li>No padecer enfermedades del cuadro de exclusiones.</li>
+</ul>
+
+<h2>Proceso selectivo completo</h2>
+<ol>
+<li>Inscripción (plazo 20 días hábiles).</li>
+<li>Ejercicio de conocimientos (100 preguntas + ortografía).</li>
+<li>Ejercicio de idioma (inglés/francés/alemán) — optativo con puntuación.</li>
+<li>Psicotécnico.</li>
+<li>Pruebas físicas (circuito, dominadas/isométrico, 1.000 m, natación 50 m).</li>
+<li>Reconocimiento médico.</li>
+<li>Entrevista personal.</li>
+<li>Curso 9 meses en Escuela Nacional de Policía (Ávila).</li>
+<li>Prácticas 12 meses en Comisaría de destino.</li>
+</ol>
+
+<h2>Diferencias con Guardia Civil</h2>
+<p>Policía Nacional es C1 (requiere Bachillerato) y Guardia Civil es C2 (ESO). PN opera en ámbito urbano, GC rural + urbano. PN tiene sueldo ligeramente superior y no hay acuartelamiento obligatorio. Más comparativa en <a href="/blog/temario-policia-nacional-escala-basica-2026">el temario PN</a>.</p>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/temario-policia-nacional-escala-basica-2026">Temario 44 temas</a></li>
+<li><a href="/blog/sueldo-policia-nacional-2026-nomina-desglosada">Sueldo Policía Nacional</a></li>
+<li><a href="/blog/pruebas-fisicas-policia-nacional-2026">Pruebas físicas</a></li>
+<li><a href="/blog/guardia-civil-vs-policia-nacional-2026">GC vs PN: comparativa</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis en OpoRuta</a></strong> — simulacros Policía Nacional con penalización −1/3. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuándo sale la convocatoria Policía Nacional 2026?', answer: 'Se espera publicación en BOE durante la primavera de 2026 (marzo-mayo), con examen teórico en septiembre-noviembre.' },
+      { question: '¿Cuántas plazas habrá Policía Nacional 2026?', answer: 'Se estiman ~3.000 plazas para Escala Básica, continuando la línea de 2023 (2.978) y 2024 (2.981).' },
+      { question: '¿Qué titulación se necesita para Policía Nacional?', answer: 'Bachillerato o equivalente (FP de Grado Superior también vale). No se admiten titulaciones inferiores.' },
+      { question: '¿Policía Nacional exige permiso de armas?', answer: 'No hay que tenerlo al inscribirse. Durante el curso en Ávila se forma y se obtiene la habilitación. Pero sí se exige compromiso firmado de portar armas.' },
+    ],
+  },
+
+  // ─── Post 42 — Sueldo Policía Nacional 2026 ────
+  {
+    slug: 'sueldo-policia-nacional-2026-nomina-desglosada',
+    title: 'Sueldo Policía Nacional 2026: nómina desglosada (2.000€ netos inicial)',
+    description:
+      'Sueldo Policía Nacional 2026: nómina desglosada por conceptos (base, específico, peligrosidad, antigüedad). Progresión por escalas y comparativa con Guardia Civil.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: ['sueldo policia nacional 2026', 'nomina policia nacional', 'cuanto cobra policia nacional', 'salario CNP'],
+    content: `
+<h2>TL;DR — Cuánto cobra un policía nacional en 2026</h2>
+<ul>
+<li><strong>Alumno (curso Ávila):</strong> ~1.300-1.400 € netos/mes.</li>
+<li><strong>En prácticas:</strong> ~1.800 € netos/mes.</li>
+<li><strong>Policía de carrera (Escala Básica):</strong> 1.950-2.100 € netos/mes.</li>
+<li><strong>Policía con 15+ años y grupos especiales:</strong> 2.800-3.200 € netos/mes.</li>
+<li><strong>Oficial:</strong> 2.500-3.000 € netos/mes.</li>
+</ul>
+
+<h2>Nómina desglosada (policía básica destinado, 2026)</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Concepto</th><th>Importe mensual bruto</th></tr></thead>
+<tbody>
+<tr><td>Sueldo base (C1)</td><td>1.004,47 €</td></tr>
+<tr><td>Complemento de destino (nivel 17)</td><td>545,32 €</td></tr>
+<tr><td>Complemento específico singular</td><td>785,40 €</td></tr>
+<tr><td>Complemento de peligrosidad</td><td>240,00 €</td></tr>
+<tr><td>Disponibilidad horaria</td><td>198,00 €</td></tr>
+<tr><td>Trienio (por cada uno a partir de 3 años)</td><td>~38,65 €</td></tr>
+<tr><td><strong>Total bruto</strong></td><td><strong>~2.773 €</strong></td></tr>
+<tr><td>Retención IRPF (~18-20 %)</td><td>−525 €</td></tr>
+<tr><td>Cotizaciones MUFACE</td><td>Exenta Seg. Social general</td></tr>
+<tr><td><strong>Neto mensual</strong></td><td><strong>~2.050 €</strong></td></tr>
+</tbody>
+</table>
+</div>
+<p><small>Destino peninsular estándar sin complemento de residencia. Tablas 2026 actualizadas por LPGE.</small></p>
+
+<h2>Extras y complementos variables</h2>
+<ul>
+<li>2 pagas extras (junio y diciembre).</li>
+<li>Servicios extraordinarios (guardias, operativos): 50-120 €/servicio.</li>
+<li>Productividad variable (anual).</li>
+<li>Indemnización por residencia: Ceuta/Melilla +240 €, Canarias/Baleares +150-200 €.</li>
+</ul>
+
+<h2>Progresión salarial</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Escala / antigüedad</th><th>Neto/mes</th></tr></thead>
+<tbody>
+<tr><td>Alumno Ávila</td><td>1.300-1.400 €</td></tr>
+<tr><td>Prácticas (comisaría)</td><td>1.800 €</td></tr>
+<tr><td>Básica 0-5 años</td><td>2.000-2.150 €</td></tr>
+<tr><td>Básica 5-15 años</td><td>2.150-2.400 €</td></tr>
+<tr><td>Básica 15+ años</td><td>2.400-2.700 €</td></tr>
+<tr><td>Oficial (tras curso ascenso)</td><td>2.500-3.000 €</td></tr>
+<tr><td>Subinspector</td><td>2.900-3.300 €</td></tr>
+<tr><td>Inspector</td><td>3.300-3.900 €</td></tr>
+<tr><td>Comisario</td><td>4.500-5.500 €</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Comparativa con Guardia Civil</h2>
+<p>PN cobra <strong>~100-150 € netos/mes MÁS</strong> que GC a igual antigüedad, gracias a estar en C1 vs C2. En contra, GC tiene más complemento en destinos rurales aislados y la reserva militar aporta estabilidad adicional. Ver <a href="/blog/sueldo-guardia-civil-2026-nomina-desglosada">sueldo Guardia Civil</a> para comparar.</p>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/plazas-policia-nacional-2026-convocatoria">Plazas Policía Nacional 2026</a></li>
+<li><a href="/blog/temario-policia-nacional-escala-basica-2026">Temario 44 temas</a></li>
+<li><a href="/blog/sueldo-guardia-civil-2026-nomina-desglosada">Sueldo Guardia Civil</a></li>
+<li><a href="/blog/guardia-civil-vs-policia-nacional-2026">Comparativa GC vs PN</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Prepárate con OpoRuta</a></strong> — simulacros Policía Nacional + psicotécnico. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuánto cobra un policía nacional recién ingresado?', answer: 'Durante el curso en Ávila: ~1.300-1.400 € netos. En prácticas: ~1.800 €. Ya como policía de carrera: 1.950-2.100 € netos/mes.' },
+      { question: '¿Los policías nacionales cotizan a la Seguridad Social?', answer: 'No. Pertenecen a MUFACE (funcionarios del Estado), con cobertura sanitaria y pensiones diferenciadas. La retención mensual es menor que en régimen general.' },
+      { question: '¿Cuánto gana un policía con 10 años de antigüedad?', answer: 'Aproximadamente 2.300-2.500 € netos/mes en destino estándar, más si hace servicios nocturnos, fines de semana o está en grupos especiales (UIP, UDYCO, GOES).' },
+      { question: '¿Se cobra en el curso de Ávila?', answer: 'Sí, aproximadamente 1.300-1.400 € netos/mes con alojamiento y manutención incluidos.' },
+    ],
+  },
+
+  // ─── Post 43 — Pruebas físicas Policía Nacional 2026 ────
+  {
+    slug: 'pruebas-fisicas-policia-nacional-2026',
+    title: 'Pruebas físicas Policía Nacional 2026: marcas mínimas y plan (H/M)',
+    description:
+      'Pruebas físicas Policía Nacional Escala Básica 2026: circuito agilidad, dominadas (H) / isométrico (M), 1.000 m, natación 50 m. Marcas y plan 16 semanas.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: ['pruebas fisicas policia nacional', 'marcas policia nacional', 'examen fisico CNP'],
+    content: `
+<h2>TL;DR — Pruebas físicas Policía Nacional 2026</h2>
+<ul>
+<li>4 pruebas: circuito de agilidad, dominadas (H) / isométrico en barra (M), 1.000 m, natación 50 m.</li>
+<li>Calificación: APTO / NO APTO (no puntúa al ranking).</li>
+<li>La más selectiva: <strong>circuito de agilidad</strong> por su técnica específica.</li>
+<li>Plan recomendado: <strong>16-20 semanas</strong>.</li>
+</ul>
+
+<h2>Marcas mínimas Escala Básica (convocatoria 2024)</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Prueba</th><th>Hombres</th><th>Mujeres</th></tr></thead>
+<tbody>
+<tr><td>Circuito de agilidad</td><td>≤ 11,5 s</td><td>≤ 13,5 s</td></tr>
+<tr><td>Dominadas (H) — máx. en 30 s</td><td>≥ 5</td><td>—</td></tr>
+<tr><td>Isométrico en barra (M)</td><td>—</td><td>≥ 42 s</td></tr>
+<tr><td>Carrera 1.000 m</td><td>≤ 3 min 55 s</td><td>≤ 4 min 25 s</td></tr>
+<tr><td>Natación 50 m libres</td><td>≤ 55 s</td><td>≤ 1 min 05 s</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Circuito de agilidad (detalle)</h2>
+<p>Recorrido cronometrado con obstáculos: saltos de valla, slalom entre conos, giros, volteretas técnicas. Es la prueba más técnica: practicar sin supervisión puede ser contraproducente. Recomendado acudir a preparadores especializados o videoanálisis.</p>
+
+<h2>Plan 16 semanas</h2>
+<h3>Semanas 1-4 (base)</h3>
+<ul>
+<li>Fuerza general 3/semana.</li>
+<li>Carrera continua 30 min, 2/semana.</li>
+<li>Natación técnica 1/semana.</li>
+</ul>
+<h3>Semanas 5-10 (específico)</h3>
+<ul>
+<li>Dominadas progresivas (hombres): negativas → asistidas → completas.</li>
+<li>Isométrico (mujeres): ir aumentando 5 s/semana hasta estabilizar ≥45 s.</li>
+<li>Carrera interválica: 6×400 m para 1.000 m objetivo.</li>
+<li>Práctica del circuito 1-2/semana con preparador.</li>
+</ul>
+<h3>Semanas 11-14 (picos)</h3>
+<ul>
+<li>Simulacros completos quincenales.</li>
+<li>Ajuste técnico del circuito.</li>
+<li>Natación: series cortas 4×50 m a 95 %.</li>
+</ul>
+<h3>Semanas 15-16 (descarga)</h3>
+<ul>
+<li>Volumen bajo, intensidad alta pero corta.</li>
+<li>Descanso amplio la última semana.</li>
+</ul>
+
+<h2>Comparativa con Guardia Civil</h2>
+<p>El circuito de PN es más técnico. GC no tiene dominadas específicas. PN tiene natación obligatoria (GC solo en algunas convocatorias). Si dudas entre ambas, piensa qué prueba se te da mejor/peor: si eres malo nadando, GC es más segura; si tienes agilidad pero poca resistencia, PN puede convenir.</p>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/plazas-policia-nacional-2026-convocatoria">Plazas PN 2026</a></li>
+<li><a href="/blog/temario-policia-nacional-escala-basica-2026">Temario 44 temas</a></li>
+<li><a href="/blog/pruebas-fisicas-guardia-civil-2026">Físicas Guardia Civil (comparar)</a></li>
+<li><a href="/blog/sueldo-policia-nacional-2026-nomina-desglosada">Sueldo PN</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Estudia teoría con OpoRuta</a></strong> — mientras entrenas físicas, avanza con el temario de las 44 temas. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿El circuito de agilidad se puede entrenar sin preparador?', answer: 'Técnicamente sí, pero es altamente desaconsejable. Tiene una coreografía específica con mucha técnica de giros y obstáculos. Un preparador especializado acorta meses de entrenamiento.' },
+      { question: '¿Cuántas dominadas hay que hacer para Policía Nacional?', answer: 'Mínimo 5 dominadas en 30 segundos para hombres (es la marca para APTO). Con menos se está fuera. Las mujeres hacen isométrico en barra ≥42 s.' },
+      { question: '¿Las físicas de PN son más duras que las de Guardia Civil?', answer: 'Son diferentes. PN tiene circuito técnico y natación obligatoria; GC tiene flexiones y salto vertical. Cada perfil físico se adapta mejor a una u otra.' },
+      { question: '¿Hay que saber nadar para Policía Nacional?', answer: 'Sí, obligatoriamente. 50 m libres en ≤55 s (H) / ≤1 min 05 s (M). Si no sabes nadar, empieza YA — aprender a nadar bien lleva 3-6 meses.' },
+    ],
+  },
+
+  // ─── Post 44 — Calendario Policía Nacional 2026 ────
+  {
+    slug: 'calendario-policia-nacional-2026-fechas-examen',
+    title: 'Calendario Policía Nacional 2026: fechas convocatoria, examen y Ávila',
+    description:
+      'Calendario completo Policía Nacional 2026: BOE, examen teórico, psicotécnico, físicas, médico, entrevista y curso Escuela Nacional de Ávila. Planning mes a mes.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: ['calendario policia nacional 2026', 'fechas examen policia nacional', 'cuando es examen CNP'],
+    content: `
+<h2>TL;DR — Fechas clave Policía Nacional 2026</h2>
+<ul>
+<li><strong>Marzo-Abril 2026:</strong> publicación convocatoria BOE.</li>
+<li><strong>Mayo 2026:</strong> plazo inscripción (20 días hábiles).</li>
+<li><strong>Septiembre-Noviembre 2026:</strong> ejercicios teóricos + ortografía + idioma.</li>
+<li><strong>Diciembre 2026 - Enero 2027:</strong> psicotécnico + físicas + médico + entrevista.</li>
+<li><strong>Febrero-Marzo 2027:</strong> incorporación a Escuela Nacional de Ávila.</li>
+</ul>
+
+<h2>Calendario estimado 2026-2028</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Fase</th><th>Fechas estimadas</th></tr></thead>
+<tbody>
+<tr><td>Publicación BOE</td><td>Marzo-Abril 2026</td></tr>
+<tr><td>Inscripción</td><td>Mayo 2026</td></tr>
+<tr><td>Listas provisionales</td><td>Junio-Julio 2026</td></tr>
+<tr><td>Listas definitivas</td><td>Agosto 2026</td></tr>
+<tr><td>Ejercicio 1: conocimientos + ortografía</td><td>Septiembre-Octubre 2026</td></tr>
+<tr><td>Ejercicio 2: idioma (opcional)</td><td>Octubre 2026</td></tr>
+<tr><td>Psicotécnico</td><td>Noviembre 2026</td></tr>
+<tr><td>Pruebas físicas</td><td>Noviembre-Diciembre 2026</td></tr>
+<tr><td>Reconocimiento médico</td><td>Diciembre 2026</td></tr>
+<tr><td>Entrevista personal</td><td>Enero 2027</td></tr>
+<tr><td>Lista definitiva aprobados</td><td>Enero-Febrero 2027</td></tr>
+<tr><td>Incorporación Ávila (9 meses)</td><td>Febrero-Marzo 2027</td></tr>
+<tr><td>Fin curso + prácticas (12 meses)</td><td>Nov-Dic 2027 → 2028</td></tr>
+<tr><td>Policía de carrera</td><td>Diciembre 2028</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Retroplanning de preparación</h2>
+<p>Si el examen es en <strong>octubre 2026</strong> y partes desde abril 2026 (6 meses), el retroplanning sensato:</p>
+<ul>
+<li><strong>Abr-Jun 2026:</strong> temario completo (Parte I y II).</li>
+<li><strong>Jul 2026:</strong> Parte III + inicio físico.</li>
+<li><strong>Ago 2026:</strong> repaso + simulacros semanales + físico en volumen.</li>
+<li><strong>Sep 2026:</strong> simulacros diarios, psicotécnico intensivo.</li>
+<li><strong>Oct 2026:</strong> examen.</li>
+</ul>
+
+<h2>Nota: fechas sujetas a BOE oficial</h2>
+<p>Estas fechas son estimadas basándonos en las 4 últimas convocatorias (2021-2024). La convocatoria oficial 2026 puede tener variaciones de ±1 mes en cualquier fase. Consulta regularmente el <a href="/oep-2026">tracker OEP 2026</a>.</p>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/plazas-policia-nacional-2026-convocatoria">Plazas PN 2026</a></li>
+<li><a href="/blog/temario-policia-nacional-escala-basica-2026">Temario 44 temas</a></li>
+<li><a href="/blog/pruebas-fisicas-policia-nacional-2026">Pruebas físicas</a></li>
+<li><a href="/blog/calendario-guardia-civil-2026-fechas-examen">Calendario Guardia Civil</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza en OpoRuta</a></strong> — 6 meses hasta el examen, tiempo suficiente para las 44 temas. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuándo es el examen de Policía Nacional 2026?', answer: 'El ejercicio de conocimientos se espera en septiembre-octubre 2026, con físicas y psicotécnico posteriormente. Fechas exactas se publican al BOE de convocatoria.' },
+      { question: '¿Cuánto dura todo el proceso Policía Nacional?', answer: 'Aproximadamente 24-27 meses desde el primer examen hasta ser policía de carrera (oposición + curso Ávila + 12 meses prácticas).' },
+      { question: '¿Cuándo se incorpora a Ávila?', answer: '1-2 meses después de aprobar todas las fases. Para la convocatoria 2026, la incorporación sería en febrero-marzo 2027.' },
+      { question: '¿Hay convocatoria anual?', answer: 'Sí, desde 2018 ha habido convocatoria anual de Escala Básica. 2026 se espera siguiendo el patrón reciente.' },
+    ],
+  },
+
+  // ─── Post 45 — Guardia Civil vs Policía Nacional 2026 ────
+  {
+    slug: 'guardia-civil-vs-policia-nacional-2026',
+    title: 'Guardia Civil vs Policía Nacional 2026: cuál elegir (comparativa completa)',
+    description:
+      'Comparativa Guardia Civil vs Policía Nacional 2026: requisitos, temario, pruebas físicas, sueldo, destino, conciliación. Cuál te conviene según tu perfil.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: ['guardia civil vs policia nacional', 'diferencias GC y PN', 'que es mejor guardia civil o policia', 'CNP vs GC'],
+    content: `
+<h2>TL;DR — ¿Cuál elegir en 2026?</h2>
+<ul>
+<li><strong>Solo tienes ESO:</strong> Guardia Civil (PN exige Bachillerato).</li>
+<li><strong>Prefieres urbano / sin acuartelamiento:</strong> Policía Nacional.</li>
+<li><strong>Prefieres rural / pueblos:</strong> Guardia Civil.</li>
+<li><strong>Temario más corto (25 vs 44 temas):</strong> Guardia Civil.</li>
+<li><strong>Penalización más "amable" (−1/4 vs −1/3):</strong> Guardia Civil.</li>
+<li><strong>Sueldo inicial más alto (~100 €/mes):</strong> Policía Nacional.</li>
+<li><strong>Más destinos grandes urbanos:</strong> Policía Nacional.</li>
+</ul>
+
+<h2>Tabla comparativa completa</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Aspecto</th><th>Guardia Civil</th><th>Policía Nacional</th></tr></thead>
+<tbody>
+<tr><td>Naturaleza</td><td>Militar / civil</td><td>Civil</td></tr>
+<tr><td>Ámbito</td><td>Rural + urbano (&lt;30k hab.)</td><td>Urbano (&gt;30k hab.)</td></tr>
+<tr><td>Titulación mínima</td><td>ESO</td><td>Bachillerato</td></tr>
+<tr><td>Grupo funcionarial</td><td>C2</td><td>C1</td></tr>
+<tr><td>Temario</td><td>25 temas</td><td>44 temas</td></tr>
+<tr><td>Penalización</td><td>−1/4</td><td>−1/3</td></tr>
+<tr><td>Pruebas físicas</td><td>Flexiones, velocidad, 1.000 m, salto</td><td>Circuito, dominadas/iso, 1.000 m, natación</td></tr>
+<tr><td>Idioma</td><td>No</td><td>Optativo (puntúa)</td></tr>
+<tr><td>Academia</td><td>Baeza (9 meses)</td><td>Ávila (9 meses)</td></tr>
+<tr><td>Prácticas</td><td>Destino directo tras curso</td><td>12 meses prácticas</td></tr>
+<tr><td>Plazas 2026 (est.)</td><td>~3.100</td><td>~3.000</td></tr>
+<tr><td>Sueldo neto destinado</td><td>1.900-2.100 €</td><td>2.000-2.200 €</td></tr>
+<tr><td>Acuartelamiento</td><td>Posible (obligatorio hasta casarse en algunos casos)</td><td>No</td></tr>
+<tr><td>Armas</td><td>Sí (HK USP compact)</td><td>Sí</td></tr>
+<tr><td>Edad máxima</td><td>40 años</td><td>40 años</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>¿Qué destino tendré?</h2>
+<h3>Guardia Civil</h3>
+<p>Dependerá del orden de nota. Los mejores puestos suelen ir a Madrid, Barcelona, Valencia. Los peores: destinos rurales en provincias con alta demanda (Cáceres, Soria). Muchos puestos implican vivir en casa-cuartel los primeros años.</p>
+<h3>Policía Nacional</h3>
+<p>Siempre ciudades de más de 30.000 habitantes. Los mejores puestos: Madrid, Barcelona, Bilbao, Sevilla, Valencia. No hay acuartelamiento. Eliges vivienda libre.</p>
+
+<h2>¿Cuál es más dura de aprobar?</h2>
+<p>En ratio plazas/opositores, PN es ligeramente más competitiva (1:18 vs 1:12 de GC). Pero GC tiene temario más corto, lo que equilibra. La dificultad relativa de cada una depende de tu perfil: si se te da bien memorizar, PN. Si prefieres menos volumen con más físico, GC.</p>
+
+<h2>Perfiles recomendados</h2>
+<h3>Elige Guardia Civil si...</h3>
+<ul>
+<li>Tienes ESO y quieres entrar cuanto antes.</li>
+<li>No te importa vivir en pueblos o provincias pequeñas.</li>
+<li>Te atrae el componente militar y la disciplina.</li>
+<li>Prefieres temario reducido aunque lleve físico duro.</li>
+</ul>
+
+<h3>Elige Policía Nacional si...</h3>
+<ul>
+<li>Tienes Bachillerato o FP Superior.</li>
+<li>Quieres vivir en ciudad grande sí o sí.</li>
+<li>Te atrae la policía judicial, grupos especiales (UDYCO, GOES).</li>
+<li>Prefieres no tener acuartelamiento.</li>
+<li>Tienes facilidad para idiomas (puntúa).</li>
+</ul>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/temario-guardia-civil-2026-escala-cabos-guardias">Temario Guardia Civil</a></li>
+<li><a href="/blog/temario-policia-nacional-escala-basica-2026">Temario Policía Nacional</a></li>
+<li><a href="/blog/mejor-oposicion-segun-perfil-2026-test-rapido">Mejor oposición según tu perfil</a></li>
+<li><a href="/oep-2026">OEP 2026 completa</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Decide con OpoRuta</a></strong> — prueba gratis simulacros de ambas y compara tu nota. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Qué es mejor, Guardia Civil o Policía Nacional en 2026?', answer: 'No hay "mejor" absoluto. GC es más accesible (solo ESO), menos temario y menos competencia. PN tiene mejor sueldo inicial, ámbito urbano y sin acuartelamiento. Depende del perfil.' },
+      { question: '¿Se puede opositar a ambas a la vez?', answer: 'Teóricamente sí, pero las fechas suelen solaparse y el temario es radicalmente diferente (25 vs 44 temas). En la práctica hay que elegir una y centrarse.' },
+      { question: '¿Cuál tiene más destinos en Madrid?', answer: 'Policía Nacional tiene muchos más puestos en Madrid capital (grupos especiales, comisarías distrito). GC también tiene presencia pero más repartida por la Comunidad.' },
+      { question: '¿Cuál paga mejor con 15 años de antigüedad?', answer: 'Se igualan: ambos en torno a 2.500-2.700 € netos. En rangos superiores (Sargento GC / Oficial PN) PN sigue ligeramente por encima por estar en C1.' },
+      { question: '¿Cuál tiene mejor conciliación familiar?', answer: 'Policía Nacional suele tener mejor conciliación al no haber acuartelamiento y los turnos ser más predecibles. GC depende del destino y puesto; en tráfico y comandancias urbanas es similar.' },
+    ],
+  },
 ]
