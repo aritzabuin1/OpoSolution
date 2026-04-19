@@ -55,7 +55,8 @@ export async function proxy(request: NextRequest) {
     pathname.startsWith('/dashboard') ||
     pathname.startsWith('/tests') ||
     pathname.startsWith('/corrector') ||
-    pathname.startsWith('/simulacros') ||
+    pathname === '/simulacros' ||
+    pathname.startsWith('/simulacros/') ||
     pathname.startsWith('/cuenta') ||
     pathname.startsWith('/primer-test') ||
     pathname.startsWith('/psicotecnicos') ||
