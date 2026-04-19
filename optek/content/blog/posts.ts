@@ -18011,7 +18011,7 @@ const corePosts: BlogPost[] = [
 <table>
   <tbody>
     <tr><td>Plazas</td><td>3.118</td></tr>
-    <tr><td>Requisitos</td><td>ESO, 18-40 anos, altura minima</td></tr>
+    <tr><td>Requisitos</td><td>ESO, 18-40 anos, IMC 17-30 (altura ya no se exige)</td></tr>
     <tr><td>Temas</td><td>25</td></tr>
     <tr><td>Sueldo</td><td>~1.800€/mes</td></tr>
   </tbody>
@@ -18230,7 +18230,7 @@ const corePosts: BlogPost[] = [
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis en OpoRuta</a></strong> — simulacros Guardia Civil con penalización −1/4. <a href="/precios">Ver precios</a>.</p>`.trim(),
     faqs: [
       { question: '¿Cuántos temas tiene la oposición de Guardia Civil?', answer: '25 temas oficiales: 10 jurídicos, 5 socioculturales, 5 técnico-científicos y 5 de ortografía.' },
-      { question: '¿Qué requisitos piden para Guardia Civil en 2026?', answer: 'Nacionalidad española, 18-40 años, ESO, altura ≥155 cm (M) / 160 cm (H) —requisito flexibilizado—, sin antecedentes penales y no padecer exclusiones médicas.' },
+      { question: '¿Qué requisitos piden para Guardia Civil en 2026?', answer: 'Nacionalidad española, 18-40 años, ESO, IMC entre 17 y 30 (la altura fue eliminada como requisito en octubre de 2023 vía modificación de la Orden PCI/155/2019), sin antecedentes penales y no padecer exclusiones médicas.' },
       { question: '¿Cuánto cobra un guardia civil recién ingresado?', answer: 'En formación: 1.400-1.500 €. Destinado: 1.900-2.100 € netos, hasta 2.400-2.700 € con antigüedad, guardias y especialidades.' },
       { question: '¿Cuál es la penalización del examen de Guardia Civil?', answer: '−1/4 por fallo (menos dura que −1/3 de AGE o Policía Nacional). Descartar una opción ya hace rentable arriesgar.' },
       { question: '¿Cuántas plazas habrá en Guardia Civil 2026?', answer: 'Estimación ~3.000-3.200 plazas para Escala de Cabos y Guardias (OEP 2025-2026), similar a la convocatoria anterior.' },
@@ -18364,7 +18364,7 @@ const corePosts: BlogPost[] = [
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis en OpoRuta</a></strong> — tests Policía Nacional con penalización −1/3. <a href="/precios">Ver precios</a>.</p>`.trim(),
     faqs: [
       { question: '¿Cuántos temas tiene la oposición de Policía Nacional?', answer: '44 temas: 26 jurídicos (Parte I), 10 sociales (Parte II) y 8 técnico-científicos (Parte III). Aproximadamente el doble que Guardia Civil.' },
-      { question: '¿Qué requisitos piden para Policía Nacional 2026?', answer: 'Nacionalidad española, 18-40 años, Bachillerato, carnet B, compromiso de portar armas, sin antecedentes, altura ≥160 cm (H)/155 cm (M) con excepciones.' },
+      { question: '¿Qué requisitos piden para Policía Nacional 2026?', answer: 'Nacionalidad española, 18-40 años, Bachillerato, carnet B, compromiso de portar armas, sin antecedentes. La altura ya no se exige en la escala básica desde 2023 (solo se mantiene en unidades especiales como UIP/UPR/GEO).' },
       { question: '¿Cuánto cobra un policía nacional?', answer: 'En el curso: ~1.300 € netos. Al destinarse: 1.900-2.100 € netos. Con antigüedad, nocturnidad y grupos especiales: 2.800 €+.' },
       { question: '¿Policía Nacional penaliza?', answer: 'Sí, −1/3 por respuesta incorrecta. Solo responde si puedes descartar al menos una opción.' },
       { question: '¿Cuánto dura el proceso completo?', answer: 'Oposición (3-5 m) + físicas y médica (1 m) + curso Ávila (9 m) + prácticas (12 m) = ~24-27 meses hasta policía de carrera.' },
