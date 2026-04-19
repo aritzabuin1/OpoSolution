@@ -51,7 +51,8 @@
     "tag:legislacion": "tsx --env-file=.env.local execution/tag-legislacion-temas.ts",
     "ingest:correos": "tsx --env-file=.env.local execution/ingest-conocimiento-correos.ts",
     "ingest:penitenciarias": "tsx --env-file=.env.local execution/ingest-conocimiento-penitenciarias.ts",
-    "generate:seo-index": "tsx execution/generate-seo-index.ts"
+    "generate:seo-index": "tsx execution/generate-seo-index.ts",
+    "generate:article-summaries": "tsx --env-file=.env.local execution/generate-article-summaries.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",

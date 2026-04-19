@@ -5,6 +5,8 @@ import { LawBreadcrumb } from '@/components/seo/LawBreadcrumb'
 import { OposicionBadges } from '@/components/seo/OposicionBadges'
 import { ArticleExamQuestions } from '@/components/seo/ArticleExamQuestions'
 import { ArticleFrequencyBadge } from '@/components/seo/ArticleFrequencyBadge'
+import { ArticleSummaryCard } from '@/components/seo/ArticleSummaryCard'
+import { getArticleSummary } from '@/lib/seo/article-summary'
 import { ArticleText } from '@/components/seo/ArticleText'
 import { ArticleNav } from '@/components/seo/ArticleNav'
 import { RelatedArticles } from '@/components/seo/RelatedArticles'
@@ -24,12 +26,12 @@ const NOINDEX_META: Metadata = { robots: { index: false, follow: true } }
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
-export const revalidate = 604800 // 7 days
-
-// Pure ISR — no SSG at build time (9K+ articles would blow Vercel limits)
-export function generateStaticParams() {
-  return []
-}
+// force-dynamic: ISR con generateStaticParams=[] en Next.js 16 produce 404s
+// consistentes en Vercel (incluso con X-Vercel-Cache: MISS). El debug endpoint
+// prueba que la pipeline completa funciona a runtime. SSR on-demand es la única
+// configuración estable para estas 9K+ páginas. CDN sigue cacheando el 200 por
+// X-Nextjs-Stale-Time durante 5 min, que es suficiente para tráfico SEO.
+export const dynamic = 'force-dynamic'
 
 type Props = { params: Promise<{ 'ley-slug': string; 'articulo-slug': string }> }
 
@@ -109,6 +111,9 @@ export default async function ArticlePage({ params }: Props) {
   const cleanTitle = extractCleanTitle(provisions[0].titulo_capitulo ?? '')
   const isDisposicion = artNumero.startsWith('D')
   const artLabel = isDisposicion ? artNumero : `Artículo ${artNumero}`
+
+  // F1.T5: TL;DR cacheado (null si aún no generado — no degrada UX)
+  const summary = await getArticleSummary(ley.leyNombre, artNumero)
 
   // Fetch related articles from same chapter
   const related = await getRelatedArticles(
@@ -276,6 +281,9 @@ export default async function ArticlePage({ params }: Props) {
           <ArticleFrequencyBadge leyNombre={ley.leyNombre} articuloNumero={artNumero} />
         </div>
       </header>
+
+      {/* F1.T5 TL;DR IA (se oculta si aún no generado) */}
+      <ArticleSummaryCard tldr={summary?.tldr ?? null} />
 
       {/* Article text (handles multi-provision) */}
       <ArticleText provisions={provisions} />
