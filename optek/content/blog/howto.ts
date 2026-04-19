@@ -97,4 +97,78 @@ export const HOWTO_BY_SLUG: Record<string, HowTo> = {
       { name: 'Simulacros completos', text: '1 simulacro completo cada 2 semanas + tests diarios por bloque.' },
     ],
   },
+  'preparar-oposiciones-administrativo-estado-c1-por-libre': {
+    name: 'Cómo preparar Administrativo del Estado C1 por libre',
+    totalTime: 'PT6M',
+    steps: [
+      { name: 'Conoce el examen INAP C1', text: '100 preguntas puntuables + 10 de reserva, penalización -1/3, supuesto práctico y ofimática.' },
+      { name: 'Orden de estudio', text: 'Empieza por CE, LPAC, LRJSP y TREBEP (70% del examen) antes de pasar a derecho financiero y presupuestario.' },
+      { name: 'Supuesto práctico', text: 'Practica 1 supuesto por semana sin mirar la solución durante 90 minutos cronometrados.' },
+      { name: 'Ofimática avanzada', text: 'Excel avanzado (tablas dinámicas, fórmulas lógicas) + Word con estilos, índices y combinar correspondencia.' },
+      { name: 'Simulacros cronometrados', text: 'Simulacros INAP 2019, 2022 y 2024 con penalización y tiempo real.' },
+    ],
+  },
+  'guia-auxilio-judicial-2026': {
+    name: 'Guía para preparar Auxilio Judicial 2026',
+    totalTime: 'PT5M',
+    steps: [
+      { name: 'Temario oficial', text: 'Estudia los 25 temas del programa oficial MJU ordenando primero CE, LOPJ y LEC.' },
+      { name: 'Derecho procesal', text: 'LEC y LECrim: muy preguntadas notificaciones, ejecución y embargos.' },
+      { name: 'Tests diarios', text: '30-50 preguntas diarias con explicación IA de errores.' },
+      { name: 'Simulacros MJU', text: 'Simulacros oficiales 2023-2025 cada 10 días con tiempo real.' },
+    ],
+  },
+  'guia-tramitacion-procesal-2026': {
+    name: 'Guía para preparar Tramitación Procesal 2026',
+    totalTime: 'PT5M',
+    steps: [
+      { name: 'Domina el temario C1', text: '47 temas: CE, LOPJ, LEC y Estatuto LAJ son el núcleo.' },
+      { name: 'Supuesto práctico', text: 'Redacción de diligencias, providencias y notificaciones sobre un caso simulado.' },
+      { name: 'Tests + simulacros', text: 'Tests por bloque diarios + simulacros MJU completos quincenales.' },
+      { name: 'Ofimática Word', text: 'Word con estilos, índices, tablas y combinar correspondencia. Es eliminatoria.' },
+    ],
+  },
+  'preparar-oposiciones-con-inteligencia-artificial-2026': {
+    name: 'Cómo preparar oposiciones con inteligencia artificial en 2026',
+    totalTime: 'PT4M',
+    steps: [
+      { name: 'Define tu línea base', text: 'Haz un simulacro oficial real (sin IA) y registra tu nota como baseline.' },
+      { name: 'Identifica debilidades con IA', text: 'Usa Radar del Tribunal y Mapa de Debilidades para ver qué leyes/temas fallas más.' },
+      { name: 'Sesiones con tutor socrático', text: 'En cada error, deja que el tutor te guíe con preguntas en vez de darte la respuesta.' },
+      { name: 'Repetición espaciada con flashcards', text: 'Las flashcards auto-generadas reaparecen según tu curva del olvido personal.' },
+      { name: 'Simulacro periódico con penalización', text: 'Cada 10 días: simulacro oficial con IA desactivada para medir progreso real.' },
+    ],
+  },
+  'estudiar-oposiciones-con-ia-2026-guia-practica': {
+    name: 'Estudiar oposiciones con IA: guía práctica 2026',
+    totalTime: 'PT5M',
+    steps: [
+      { name: 'Genera tests adaptativos', text: 'Pide tests por tema + dificultad. Revisa que cada pregunta tenga cita legal verificada (BOE).' },
+      { name: 'Explica errores socráticamente', text: 'Cuando falles, usa el tutor socrático para descubrir el error en vez de memorizar la solución.' },
+      { name: 'Usa radar de tendencias', text: 'Radar del Tribunal muestra qué artículos están cayendo más en exámenes reales recientes.' },
+      { name: 'Evita academias que solo resumen', text: 'Prioriza sistemas que citen BOE verificado y permitan simulacros INAP/MJU reales.' },
+    ],
+  },
+  'estudiar-oposicion-trabajando-8-horas-plan-2026': {
+    name: 'Plan para estudiar oposición trabajando 8 horas',
+    totalTime: 'PT4M',
+    steps: [
+      { name: 'Lunes-jueves: 90 min/noche', text: '45 min lectura activa + 45 min tests adaptativos. Nada de leer pasivamente.' },
+      { name: 'Viernes: descanso', text: 'Sin estudio. El sueño consolida lo aprendido en la semana.' },
+      { name: 'Sábado: bloque largo', text: '3-4 h con 1 simulacro parcial + repaso errores con IA.' },
+      { name: 'Domingo: planificación', text: '45 min. Revisa métricas IPR y planifica la semana siguiente.' },
+      { name: 'Vacaciones: sprint', text: 'Días libres = 5-6 h/día con simulacros oficiales cronometrados.' },
+    ],
+  },
+  'plan-estudio-oposiciones-3-meses-vs-12-meses-2026': {
+    name: 'Plan de estudio oposiciones: 3 vs 6 vs 12 meses',
+    totalTime: 'PT4M',
+    steps: [
+      { name: 'Diagnóstico inicial', text: 'Haz un simulacro oficial para medir tu baseline antes de elegir un plan.' },
+      { name: 'Plan 3 meses (intensivo)', text: '3-4 h/día. Sólo viable en oposiciones asequibles (Correos, Celador). Riesgo alto en C1/A2.' },
+      { name: 'Plan 6 meses (estándar)', text: '2-3 h/día + fines de semana. Balance realista entre vida personal y progresión.' },
+      { name: 'Plan 12 meses (robusto)', text: '2 h/día + fines moderados. El más sólido para C1/A2 con repetición espaciada.' },
+      { name: 'Ajuste mensual', text: 'Cada 4 semanas revisa progreso (IPR, nota simulacros) y ajusta intensidad.' },
+    ],
+  },
 }

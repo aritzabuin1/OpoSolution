@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { watchAllLeyes } from '@/lib/ai/boe-watcher'
 import { runCostCheck, type CostCheckResult } from '@/lib/admin/cost-check'
 import { runNurtureEmails, type NurtureResult } from '@/lib/email/nurture'
+import { runAlgoWatch, type AlgoWatchResult } from '@/lib/seo/algo-watch'
 import { logger } from '@/lib/logger'
 import { verifyCronSecret } from '@/lib/auth/cron-auth'
 
@@ -48,7 +49,7 @@ export async function GET(request: NextRequest) {
       boeResult = { error: 'Fallo en comprobación BOE' }
     }
 
-    if (ac.signal.aborted) return { boe: boeResult, costs: { skipped: 'timeout' }, nurture: { skipped: 'timeout' } }
+    if (ac.signal.aborted) return { boe: boeResult, costs: { skipped: 'timeout' }, nurture: { skipped: 'timeout' }, seo: { skipped: 'timeout' } }
 
     // ── 2. §2.23 Piggyback: cost + infra check del día anterior ─────────────
     // Analiza costes de ayer (completo) desde el cron de 07:00 UTC.
@@ -62,7 +63,7 @@ export async function GET(request: NextRequest) {
       costResult = { error: 'Fallo en comprobación de costes' }
     }
 
-    if (ac.signal.aborted) return { boe: boeResult, costs: costResult, nurture: { skipped: 'timeout' } }
+    if (ac.signal.aborted) return { boe: boeResult, costs: costResult, nurture: { skipped: 'timeout' }, seo: { skipped: 'timeout' } }
 
     // ── 3. Piggyback: nurture email sequence ────────────────────────────────
     // Sends personalized emails to free users based on registration age + behavior.
@@ -76,14 +77,28 @@ export async function GET(request: NextRequest) {
       nurtureResult = { error: 'Fallo en envío de nurture emails' }
     }
 
-    return { boe: boeResult, costs: costResult, nurture: nurtureResult }
+    if (ac.signal.aborted) return { boe: boeResult, costs: costResult, nurture: nurtureResult, seo: { skipped: 'timeout' } }
+
+    // ── 4. PlanSEO F6.T4: monitor de algorithm updates vía RSS ────────────────
+    // Fetch seroundtable.com/feed.xml. Si detecta keywords críticas → alerta email.
+    // Si falla, no crítico — no afecta BOE/costes/nurture.
+    let seoResult: AlgoWatchResult | { error: string }
+    try {
+      seoResult = await runAlgoWatch()
+      log.info(seoResult, '[boe-watch] SEO algo watch completado')
+    } catch (err) {
+      log.error({ err }, '[boe-watch] SEO algo watch error — no crítico')
+      seoResult = { error: 'Fallo en SEO algo watch' }
+    }
+
+    return { boe: boeResult, costs: costResult, nurture: nurtureResult, seo: seoResult }
   }
 
   const timeoutPromise = new Promise<never>((_, reject) => {
     ac.signal.addEventListener('abort', () => reject(new Error('GLOBAL_TIMEOUT')), { once: true })
   })
 
-  let results: { boe: object; costs: object; nurture: object }
+  let results: { boe: object; costs: object; nurture: object; seo: object }
   let timedOut = false
 
   try {
@@ -92,7 +107,7 @@ export async function GET(request: NextRequest) {
     if (err instanceof Error && err.message === 'GLOBAL_TIMEOUT') {
       log.warn('[boe-watch] Global timeout reached (55s) — returning partial results')
       timedOut = true
-      results = { boe: { skipped: 'timeout' }, costs: { skipped: 'timeout' }, nurture: { skipped: 'timeout' } }
+      results = { boe: { skipped: 'timeout' }, costs: { skipped: 'timeout' }, nurture: { skipped: 'timeout' }, seo: { skipped: 'timeout' } }
     } else {
       throw err
     }
@@ -101,7 +116,7 @@ export async function GET(request: NextRequest) {
   }
 
   return NextResponse.json(
-    { ok: !timedOut, partial: timedOut, boe: results.boe, costs: results.costs, nurture: results.nurture },
+    { ok: !timedOut, partial: timedOut, boe: results.boe, costs: results.costs, nurture: results.nurture, seo: results.seo },
     { status: timedOut ? 206 : 200 },
   )
 }
