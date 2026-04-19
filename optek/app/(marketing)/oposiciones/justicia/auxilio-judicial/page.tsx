@@ -17,7 +17,7 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Test Auxilio Judicial 2026 — Practica gratis con preguntas del examen | OpoRuta',
+  title: 'Oposiciones Auxilio Judicial 2026: 425 plazas C2, 26 temas — Tests gratis | OpoRuta',
   description:
     'Prepara las oposiciones de Auxilio Judicial 2026 con tests online gratis. 26 temas, 104 preguntas tipo test con penalización, ~425 plazas. Practica con IA y aprueba a la primera.',
   keywords: [

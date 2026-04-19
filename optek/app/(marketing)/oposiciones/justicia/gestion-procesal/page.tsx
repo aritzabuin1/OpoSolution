@@ -17,7 +17,7 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Test Gestión Procesal 2026 — Practica gratis con preguntas del examen | OpoRuta',
+  title: 'Oposiciones Gestión Procesal 2026: 725 plazas, 68 temas A2 — Tests gratis | OpoRuta',
   description:
     'Prepara las oposiciones de Gestión Procesal y Administrativa (A2) 2026. 68 temas, 3 ejercicios, 725 plazas. Tests con IA, caso práctico y desarrollo. El examen más completo de Justicia.',
   keywords: [

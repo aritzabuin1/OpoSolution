@@ -16,7 +16,7 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Test Tramitación Procesal 2026 — Practica gratis con preguntas tipo examen | OpoRuta',
+  title: 'Oposiciones Tramitación Procesal 2026: 1.155 plazas, 37 temas — Tests gratis | OpoRuta',
   description:
     'Prepara las oposiciones de Tramitación Procesal y Administrativa 2026 con tests online gratis. 37 temas, 100 preguntas con penalización, 1.155 plazas. Entrena con IA y aprueba a la primera.',
   keywords: [
