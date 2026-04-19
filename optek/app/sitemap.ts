@@ -82,6 +82,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
+    // Data journalism (F5.T2) — datasets propios GEO-citables
+    {
+      url: `${APP_URL}/datos`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${APP_URL}/datos/analisis-inap`,
+      lastModified: new Date('2026-04-19'),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${APP_URL}/datos/mapa-destinos`,
+      lastModified: new Date('2026-04-19'),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${APP_URL}/datos/plazas-age-historico`,
+      lastModified: new Date('2026-04-19'),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
     {
       url: `${APP_URL}/precios`,
       lastModified: now,
