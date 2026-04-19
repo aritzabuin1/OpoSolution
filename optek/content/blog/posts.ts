@@ -18609,7 +18609,7 @@ export const blogPosts: BlogPost[] = [
 <li><a href="/blog/plazas-guardia-civil-2026-convocatoria">Plazas Guardia Civil 2026</a></li>
 <li><a href="/blog/temario-guardia-civil-2026-escala-cabos-guardias">Temario Guardia Civil</a></li>
 <li><a href="/blog/sueldo-policia-nacional-2026-nomina-desglosada">Sueldo Policía Nacional (comparar)</a></li>
-<li><a href="/herramientas/calculadora-nota-guardia-civil">Calculadora de nota</a></li>
+<li><a href="/herramientas">Calculadoras de nota</a></li>
 </ul>
 
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Prepárate con OpoRuta</a></strong> — simulacros Guardia Civil y preparación psicotécnico incluidos. <a href="/precios">Ver precios</a>.</p>`.trim(),
@@ -19176,6 +19176,1070 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Cuál tiene más destinos en Madrid?', answer: 'Policía Nacional tiene muchos más puestos en Madrid capital (grupos especiales, comisarías distrito). GC también tiene presencia pero más repartida por la Comunidad.' },
       { question: '¿Cuál paga mejor con 15 años de antigüedad?', answer: 'Se igualan: ambos en torno a 2.500-2.700 € netos. En rangos superiores (Sargento GC / Oficial PN) PN sigue ligeramente por encima por estar en C1.' },
       { question: '¿Cuál tiene mejor conciliación familiar?', answer: 'Policía Nacional suele tener mejor conciliación al no haber acuartelamiento y los turnos ser más predecibles. GC depende del destino y puesto; en tráfico y comandancias urbanas es similar.' },
+    ],
+  },
+
+  // ─── F4 Sprint 2 · Post 46 — Plazas Instituciones Penitenciarias 2026 ────
+  {
+    slug: 'plazas-instituciones-penitenciarias-2026',
+    title: 'Plazas Instituciones Penitenciarias 2026: ~900 Ayudante (convocatoria)',
+    description: 'Convocatoria Ayudante de Instituciones Penitenciarias 2026: ~900 plazas estimadas, fechas BOE, requisitos y proceso selectivo completo.',
+    date: '2026-04-19', dateModified: '2026-04-19',
+    keywords: ['plazas instituciones penitenciarias 2026', 'convocatoria iipp 2026', 'ayudante penitenciarias plazas', 'oposicion funcionario prisiones'],
+    content: `
+<h2>TL;DR — IIPP 2026</h2>
+<ul>
+<li><strong>~900 plazas</strong> estimadas para Ayudante (C1).</li>
+<li>Convocatoria BOE: <strong>primavera 2026</strong>.</li>
+<li>Examen: 100 preguntas test + supuesto práctico + psicotécnico + entrevista.</li>
+<li>Penalización: <strong>−1/3</strong>.</li>
+<li>Sin pruebas físicas, sí reconocimiento médico.</li>
+</ul>
+
+<h2>Histórico plazas IIPP 2019-2026</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Año</th><th>Plazas</th><th>Ratio</th></tr></thead>
+<tbody>
+<tr><td>2019</td><td>605</td><td>1:20</td></tr>
+<tr><td>2021</td><td>665</td><td>1:22</td></tr>
+<tr><td>2022</td><td>750</td><td>1:21</td></tr>
+<tr><td>2024</td><td>879</td><td>1:22</td></tr>
+<tr><td>2026 (est.)</td><td>~900</td><td>1:22</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Requisitos</h2>
+<ul>
+<li>Nacionalidad española o UE.</li>
+<li>18 años - sin límite superior.</li>
+<li>Bachillerato o equivalente.</li>
+<li>Sin antecedentes penales.</li>
+<li>No padecer enfermedades del cuadro médico.</li>
+</ul>
+
+<h2>Proceso selectivo</h2>
+<ol>
+<li>Inscripción online (20 días hábiles).</li>
+<li>Ejercicio test: 100 preguntas + 10 de reserva.</li>
+<li>Supuesto práctico (caso real de centro penitenciario).</li>
+<li>Psicotécnico.</li>
+<li>Entrevista personal.</li>
+<li>Reconocimiento médico.</li>
+<li>Curso CEJFP (Centro Estudios Jurídicos): 4-6 meses.</li>
+<li>Destino provisional en centro penitenciario.</li>
+</ol>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/temario-instituciones-penitenciarias-2026">Temario IIPP</a></li>
+<li><a href="/blog/sueldo-instituciones-penitenciarias-2026">Sueldo IIPP</a></li>
+<li><a href="/blog/como-aprobar-penitenciarias-estrategia-bloques">Estrategia de estudio IIPP</a></li>
+<li><a href="/oep-2026">OEP 2026 completa</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis en OpoRuta</a></strong> — tests IIPP con penalización −1/3. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuántas plazas habrá en IIPP 2026?', answer: '~900 plazas estimadas para Ayudante de Instituciones Penitenciarias, continuando la línea de 2024 (879).' },
+      { question: '¿IIPP tiene pruebas físicas?', answer: 'No. Solo reconocimiento médico para descartar enfermedades incompatibles. Es una oposición sin físicas, a diferencia de GC y PN.' },
+      { question: '¿Qué titulación necesito para IIPP?', answer: 'Bachillerato o equivalente (FP Grado Superior vale). Es oposición de C1.' },
+      { question: '¿Cuánto tarda el proceso completo?', answer: 'Aproximadamente 18-24 meses desde el BOE hasta destino efectivo, incluyendo 4-6 meses de curso en CEJFP.' },
+    ],
+  },
+
+  // ─── Post 47 — Sueldo IIPP 2026 ────
+  {
+    slug: 'sueldo-instituciones-penitenciarias-2026',
+    title: 'Sueldo Ayudante Prisiones 2026: nómina desglosada (2.100€ netos)',
+    description: 'Sueldo Ayudante de Instituciones Penitenciarias 2026: nómina por conceptos (base, específico, turnicidad, nocturnidad) + progresión.',
+    date: '2026-04-19', dateModified: '2026-04-19',
+    keywords: ['sueldo funcionario prisiones 2026', 'sueldo ayudante penitenciarias', 'cuanto cobra funcionario de prisiones', 'nomina iipp'],
+    content: `
+<h2>TL;DR — Cuánto cobra un funcionario de prisiones</h2>
+<ul>
+<li><strong>Recién ingresado:</strong> 2.000-2.100 € netos/mes.</li>
+<li><strong>Con turnicidad y nocturnidad completa:</strong> 2.400-2.600 € netos/mes.</li>
+<li><strong>15+ años de antigüedad:</strong> 2.700-3.000 € netos/mes.</li>
+<li>Régimen: MUFACE (cotización especial).</li>
+</ul>
+
+<h2>Nómina desglosada (Ayudante C1 destinado)</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Concepto</th><th>Bruto mensual</th></tr></thead>
+<tbody>
+<tr><td>Sueldo base (C1)</td><td>1.004,47 €</td></tr>
+<tr><td>Complemento destino (nivel 18)</td><td>598,45 €</td></tr>
+<tr><td>Complemento específico</td><td>720,80 €</td></tr>
+<tr><td>Complemento penitenciario singular</td><td>320,00 €</td></tr>
+<tr><td>Turnicidad</td><td>180-280 €</td></tr>
+<tr><td>Nocturnidad (variable)</td><td>50-150 €</td></tr>
+<tr><td><strong>Bruto total</strong></td><td><strong>~2.900 €</strong></td></tr>
+<tr><td>Retenciones (IRPF)</td><td>−520 €</td></tr>
+<tr><td><strong>Neto</strong></td><td><strong>~2.380 €</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Extras y particularidades</h2>
+<ul>
+<li>Servicios extraordinarios guardias 24 h: +90-130 €/servicio.</li>
+<li>Peligrosidad: incluida en específico.</li>
+<li>Dos pagas extra (junio, diciembre).</li>
+<li>Destino Ceuta/Melilla: +240 €/mes indemnización residencia.</li>
+</ul>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/plazas-instituciones-penitenciarias-2026">Plazas IIPP 2026</a></li>
+<li><a href="/blog/temario-instituciones-penitenciarias-2026">Temario IIPP</a></li>
+<li><a href="/blog/como-aprobar-penitenciarias-estrategia-bloques">Estrategia IIPP</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Prepárate con OpoRuta</a></strong> — tests + supuestos IIPP. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuánto cobra un funcionario de prisiones en 2026?', answer: 'Recién destinado: 2.000-2.100 € netos. Con turnicidad completa: 2.400-2.600 €. Con 15+ años y guardias: 2.700-3.000 €.' },
+      { question: '¿Los funcionarios de prisiones cobran peligrosidad?', answer: 'Sí, está incluida en el complemento específico penitenciario (~320 €/mes). No se percibe como línea separada.' },
+      { question: '¿Cuánto se cobra en el curso CEJFP?', answer: 'Aproximadamente 1.600-1.800 € netos/mes durante los 4-6 meses de curso en el Centro de Estudios Jurídicos.' },
+    ],
+  },
+
+  // ─── Post 48 — Plazas Gestión Procesal 2026 ────
+  {
+    slug: 'plazas-gestion-procesal-2026-convocatoria',
+    title: 'Plazas Gestión Procesal 2026: 725 A2 Justicia (convocatoria BOE)',
+    description: 'Convocatoria Gestión Procesal 2026: 725 plazas del cuerpo A2 de Justicia. Fechas BOE, acceso libre y promoción interna, requisitos.',
+    date: '2026-04-19', dateModified: '2026-04-19',
+    keywords: ['plazas gestion procesal 2026', 'convocatoria gestion procesal justicia', 'oposicion A2 justicia plazas'],
+    content: `
+<h2>TL;DR — Gestión Procesal 2026</h2>
+<ul>
+<li><strong>725 plazas</strong> (OEP 2024-2025).</li>
+<li>Grupo <strong>A2</strong>: requiere diplomatura / grado universitario.</li>
+<li>Acceso libre + promoción interna (desde Tramitación C1).</li>
+<li>Examen: 3 ejercicios (test teórico, supuesto práctico, teórico-práctico).</li>
+</ul>
+
+<h2>Sistema de acceso</h2>
+<ul>
+<li><strong>Libre (70 %):</strong> ~508 plazas.</li>
+<li><strong>Promoción interna (30 %):</strong> ~217 plazas (desde Tramitación).</li>
+</ul>
+
+<h2>Histórico plazas</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Año</th><th>Plazas totales</th></tr></thead>
+<tbody>
+<tr><td>2019</td><td>424</td></tr>
+<tr><td>2021</td><td>502</td></tr>
+<tr><td>2022</td><td>564</td></tr>
+<tr><td>2024</td><td>690</td></tr>
+<tr><td>2026</td><td>725</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Requisitos</h2>
+<ul>
+<li>Diplomatura, grado universitario, ingeniería técnica o equivalente.</li>
+<li>18 años - sin límite superior.</li>
+<li>Sin antecedentes penales.</li>
+</ul>
+
+<h2>Fases del proceso</h2>
+<ol>
+<li>Ejercicio 1: 100 preguntas test con −1/3 penalización.</li>
+<li>Ejercicio 2: supuesto práctico (resolución por escrito).</li>
+<li>Ejercicio 3: test teórico-práctico sobre legislación procesal.</li>
+<li>Centro de Estudios Jurídicos (curso).</li>
+<li>Destino definitivo.</li>
+</ol>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/temario-gestion-procesal-2026-68-temas-como-estudiar">Temario 68 temas</a></li>
+<li><a href="/blog/sueldo-gestion-procesal-2026-nomina-desglosada">Sueldo Gestión Procesal</a></li>
+<li><a href="/blog/auxilio-vs-tramitacion-vs-gestion-procesal-comparativa">Comparativa Justicia C2 vs C1 vs A2</a></li>
+<li><a href="/oposiciones/justicia/gestion-procesal">Página oposición</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Prepárate con OpoRuta</a></strong> — simulacros Gestión Procesal + supuestos prácticos. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuántas plazas de Gestión Procesal hay en 2026?', answer: '725 plazas totales: ~508 acceso libre + ~217 promoción interna desde Tramitación.' },
+      { question: '¿Qué titulación necesito?', answer: 'Diplomatura, Grado, Ingeniería Técnica o equivalente. Al ser A2 no vale Bachillerato.' },
+      { question: '¿Cuántos ejercicios tiene?', answer: '3 ejercicios: test (100 preguntas), supuesto práctico por escrito y test teórico-práctico.' },
+    ],
+  },
+
+  // ─── Post 49 — Sueldo Gestión Procesal 2026 ────
+  {
+    slug: 'sueldo-gestion-procesal-2026-nomina-desglosada',
+    title: 'Sueldo Gestión Procesal 2026: nómina A2 Justicia (2.200€ netos)',
+    description: 'Sueldo Gestión Procesal A2 Justicia 2026: desglose nómina por conceptos, complemento específico singular y progresión salarial.',
+    date: '2026-04-19', dateModified: '2026-04-19',
+    keywords: ['sueldo gestion procesal 2026', 'nomina A2 justicia', 'cuanto cobra gestion procesal'],
+    content: `
+<h2>TL;DR — Sueldo Gestión Procesal 2026</h2>
+<ul>
+<li><strong>Recién destinado:</strong> 2.100-2.250 € netos/mes.</li>
+<li><strong>Con 10 años de antigüedad:</strong> 2.400-2.600 € netos/mes.</li>
+<li><strong>Con productividad + complementos:</strong> hasta 2.800 €.</li>
+<li>Régimen MUGEJU (cotización especial Justicia).</li>
+</ul>
+
+<h2>Nómina desglosada Gestión Procesal A2</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Concepto</th><th>Bruto mensual</th></tr></thead>
+<tbody>
+<tr><td>Sueldo base (A2)</td><td>1.157,14 €</td></tr>
+<tr><td>Complemento general</td><td>625,20 €</td></tr>
+<tr><td>Complemento específico singular</td><td>845,00 €</td></tr>
+<tr><td>Productividad fija</td><td>280,00 €</td></tr>
+<tr><td><strong>Bruto total</strong></td><td><strong>~2.907 €</strong></td></tr>
+<tr><td>Retenciones (IRPF + MUGEJU)</td><td>−650 €</td></tr>
+<tr><td><strong>Neto</strong></td><td><strong>~2.257 €</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Particularidades sueldo Justicia</h2>
+<ul>
+<li>Agosto inhábil en muchos órganos: no se cobra plus específico pero se descansa.</li>
+<li>Productividad variable por objetivos según CC.AA. (Andalucía, Catalunya pagan más).</li>
+<li>Guardias de juzgado: +70-110 €/día.</li>
+</ul>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/plazas-gestion-procesal-2026-convocatoria">Plazas Gestión Procesal</a></li>
+<li><a href="/blog/temario-gestion-procesal-2026-68-temas-como-estudiar">Temario 68 temas</a></li>
+<li><a href="/blog/auxilio-vs-tramitacion-vs-gestion-procesal-comparativa">Comparativa Justicia</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Prepárate en OpoRuta</a></strong> — simulacros A2 Justicia. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuánto cobra Gestión Procesal recién destinado?', answer: '2.100-2.250 € netos/mes, dependiendo de CC.AA. y complemento específico del órgano.' },
+      { question: '¿Cuánto cobra con 10 años?', answer: '2.400-2.600 € netos/mes. Con guardias de juzgado puede llegar a 2.800 €.' },
+      { question: '¿Cobra lo mismo en todas las CC.AA.?', answer: 'No. Las CC.AA. con Justicia transferida (Andalucía, Catalunya, Madrid, Valencia, etc.) tienen productividad autonómica añadida que puede variar entre 100-400 €/mes.' },
+    ],
+  },
+
+  // ─── F4 Sprint 3 · Post 50 — Plazas Ertzaintza 2026 ────
+  {
+    slug: 'plazas-ertzaintza-2026-convocatoria',
+    title: 'Plazas Ertzaintza 2026: 1.000 Escala Básica (convocatoria BOPV)',
+    description: 'Convocatoria Ertzaintza 2026: 1.000 plazas Escala Básica. Fechas, requisitos (euskera perfil 2), pruebas y proceso completo.',
+    date: '2026-04-19', dateModified: '2026-04-19',
+    keywords: ['plazas ertzaintza 2026', 'convocatoria ertzaintza', 'ertzaintza euskera perfil', 'oposicion ertzaintza bilbao'],
+    content: `
+<h2>TL;DR — Ertzaintza 2026</h2>
+<ul>
+<li><strong>~1.000 plazas</strong> Escala Básica (OEP Gobierno Vasco 2024-2026).</li>
+<li>Convocatoria BOPV: <strong>primavera 2026</strong>.</li>
+<li>Euskera: <strong>perfil 2 acreditado obliga en algunas plazas</strong>. Para el resto, plazo de 4 años para acreditarlo.</li>
+<li>Examen: test + psicotécnico + físicas + médico + entrevista.</li>
+<li>Destinos: País Vasco exclusivamente (Álava, Bizkaia, Gipuzkoa).</li>
+</ul>
+
+<h2>Requisitos 2026</h2>
+<ul>
+<li>Nacionalidad española o UE.</li>
+<li>18-36 años.</li>
+<li>Bachillerato o equivalente.</li>
+<li>Estatura mínima 1,63 m (H) / 1,58 m (M).</li>
+<li>Carnet B.</li>
+<li>Compromiso de portar armas.</li>
+<li>Euskera: deseable (se puntúa como mérito) o necesario según plaza.</li>
+</ul>
+
+<h2>Proceso selectivo</h2>
+<ol>
+<li>Ejercicio cultural (100 preguntas test + caso práctico).</li>
+<li>Psicotécnico + test personalidad.</li>
+<li>Pruebas físicas.</li>
+<li>Reconocimiento médico.</li>
+<li>Entrevista personal.</li>
+<li>Acreditación del euskera (si tienes perfil) o compromiso.</li>
+<li>Academia de Arkaute: 9 meses.</li>
+<li>Prácticas 12 meses en destino.</li>
+</ol>
+
+<h2>Ventaja diferencial vs otras policías</h2>
+<ul>
+<li>Sueldo más alto del Estado (~2.400-2.600 € inicial netos).</li>
+<li>Trienios generosos.</li>
+<li>Régimen laboral del País Vasco (mejor conciliación).</li>
+</ul>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/temario-ertzaintza-2026">Temario Ertzaintza</a></li>
+<li><a href="/blog/sueldo-ertzaintza-2026">Sueldo Ertzaintza</a></li>
+<li><a href="/blog/test-ertzaintza-2026-practica-online-gratis-ia">Tests Ertzaintza gratis</a></li>
+<li><a href="/oposiciones/seguridad/ertzaintza">Página oficial</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis en OpoRuta</a></strong> — tests Ertzaintza con verificación legal. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuántas plazas Ertzaintza 2026?', answer: '~1.000 plazas Escala Básica (OEP Gobierno Vasco 2024-2026 acumulada).' },
+      { question: '¿Necesito euskera para Ertzaintza?', answer: 'No obligatoriamente al inscribirte, pero perfil 2 suma muchos puntos (decisivo para ranking). Hay 4 años de plazo post-incorporación para acreditarlo.' },
+      { question: '¿Se puede ser ertzaina sin vivir en País Vasco?', answer: 'Los destinos son exclusivamente en Álava, Bizkaia y Gipuzkoa. Residencia fuera no excluye pero implica mudanza.' },
+      { question: '¿Cuánto dura el proceso?', answer: 'Oposición (4-6 meses) + 9 meses academia Arkaute + 12 meses prácticas = ~27 meses.' },
+    ],
+  },
+
+  // ─── Post 51 — Sueldo Ertzaintza 2026 ────
+  {
+    slug: 'sueldo-ertzaintza-2026',
+    title: 'Sueldo Ertzaintza 2026: nómina desglosada (2.500€ netos inicial)',
+    description: 'Sueldo Ertzaintza Escala Básica 2026: nómina por conceptos, progresión salarial y por qué es la policía mejor pagada del Estado.',
+    date: '2026-04-19', dateModified: '2026-04-19',
+    keywords: ['sueldo ertzaintza 2026', 'cuanto cobra ertzaintza', 'nomina ertzaintza bilbao'],
+    content: `
+<h2>TL;DR — Sueldo Ertzaintza 2026</h2>
+<ul>
+<li><strong>Recién destinado:</strong> 2.400-2.600 € netos/mes.</li>
+<li><strong>Con turnicidad + nocturnidad + fines de semana:</strong> 3.000-3.400 € netos/mes.</li>
+<li><strong>15+ años antigüedad:</strong> 3.200-3.800 € netos/mes.</li>
+<li>La policía mejor pagada del Estado español.</li>
+</ul>
+
+<h2>Nómina desglosada Ertzaintza Escala Básica</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Concepto</th><th>Bruto mensual</th></tr></thead>
+<tbody>
+<tr><td>Sueldo base</td><td>1.180,00 €</td></tr>
+<tr><td>Complemento destino</td><td>820,00 €</td></tr>
+<tr><td>Complemento específico</td><td>1.050,00 €</td></tr>
+<tr><td>Nocturnidad / turnicidad (media)</td><td>350,00 €</td></tr>
+<tr><td>Euskera (perfil 2 acreditado)</td><td>180,00 €</td></tr>
+<tr><td><strong>Bruto total</strong></td><td><strong>~3.580 €</strong></td></tr>
+<tr><td>Retención IRPF</td><td>−790 €</td></tr>
+<tr><td><strong>Neto</strong></td><td><strong>~2.790 €</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Ventaja perfil 2 de euskera</h2>
+<p>Acreditar perfil 2 (B2) suma <strong>+150-200 €/mes</strong> en complemento. A lo largo de la carrera son miles de euros. Merece la pena sacar el perfil antes de la oposición si es posible.</p>
+
+<h2>Comparativa con otras policías</h2>
+<p>Ertzaintza inicial (2.500 €) vs Policía Nacional (2.050 €) vs Guardia Civil (1.990 €) vs Mossos (2.300 €). La diferencia estructural proviene del régimen autonómico vasco y su complemento específico.</p>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/plazas-ertzaintza-2026-convocatoria">Plazas Ertzaintza 2026</a></li>
+<li><a href="/blog/temario-ertzaintza-2026">Temario Ertzaintza</a></li>
+<li><a href="/blog/guardia-civil-vs-policia-nacional-2026">Comparar con GC/PN</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Prepárate con OpoRuta</a></strong> — tests Ertzaintza con IA + RAG. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuánto cobra un ertzaina recién ingresado?', answer: '2.400-2.600 € netos/mes destinado, más si realiza turnos nocturnos o tiene perfil 2 de euskera acreditado.' },
+      { question: '¿Por qué cobran más que Policía Nacional?', answer: 'Régimen autonómico vasco con complemento específico significativamente superior. También la productividad variable es mayor.' },
+      { question: '¿El euskera da dinero?', answer: 'Sí. Perfil 2 acreditado suma 150-200 €/mes en complemento. A 40 años de carrera son más de 80.000 €.' },
+    ],
+  },
+
+  // ─── Post 52 — Temario Ertzaintza 2026 ────
+  {
+    slug: 'temario-ertzaintza-2026',
+    title: 'Temario Ertzaintza 2026 Escala Básica: temas oficiales y orden de estudio',
+    description: 'Temario oficial Ertzaintza 2026 Escala Básica: bloques de derecho, organización, País Vasco y sociales. Cómo estudiarlo y peso en el examen.',
+    date: '2026-04-19', dateModified: '2026-04-19',
+    keywords: ['temario ertzaintza 2026', 'temario escala basica ertzaintza', 'oposicion ertzaintza temas'],
+    content: `
+<h2>TL;DR — Temario Ertzaintza</h2>
+<ul>
+<li>Dividido en 4 grandes bloques.</li>
+<li><strong>Bloque 1 — Organización:</strong> Estatuto Gernika, instituciones vascas.</li>
+<li><strong>Bloque 2 — Derecho:</strong> Constitución, derecho penal, procesal.</li>
+<li><strong>Bloque 3 — Sociales:</strong> migración, violencia de género, drogodependencias.</li>
+<li><strong>Bloque 4 — Policía:</strong> Ley 4/1992 Policía País Vasco, seguridad ciudadana.</li>
+<li>Examen: 100 preguntas + caso práctico.</li>
+</ul>
+
+<h2>Bloques temáticos</h2>
+<h3>Bloque 1 — Organización institucional vasca</h3>
+<ul>
+<li>Estatuto de Gernika.</li>
+<li>Instituciones Comunes: Lehendakaritza, Parlamento Vasco, Gobierno Vasco.</li>
+<li>Territorios Históricos: Álava, Bizkaia, Gipuzkoa.</li>
+<li>Régimen foral y Concierto Económico.</li>
+</ul>
+
+<h3>Bloque 2 — Derecho</h3>
+<ul>
+<li>Constitución Española (Título Preliminar + Título I).</li>
+<li>Derecho penal: parte general.</li>
+<li>Delitos contra patrimonio, seguridad vial, violencia de género.</li>
+<li>Derecho procesal penal: detención, habeas corpus, diligencias policiales.</li>
+</ul>
+
+<h3>Bloque 3 — Ciencias sociales</h3>
+<ul>
+<li>Sociedad vasca: demografía, cultura, lenguas oficiales.</li>
+<li>Fenómeno migratorio en Euskadi.</li>
+<li>Violencia de género (LO 1/2004) + Ley vasca.</li>
+<li>Drogodependencias: prevención y actuación.</li>
+</ul>
+
+<h3>Bloque 4 — Policía y seguridad</h3>
+<ul>
+<li>Ley 4/1992 Policía del País Vasco.</li>
+<li>Ertzaintza: estructura, funciones, ámbitos operativos.</li>
+<li>Coordinación con otras FFCC.</li>
+<li>LO 4/2015 Seguridad Ciudadana.</li>
+<li>Protección civil en Euskadi.</li>
+</ul>
+
+<h2>Plan de estudio (6 meses)</h2>
+<ol>
+<li>Mes 1-2: Bloques 1 y 4 (específicos vascos — diferencial frente a otras policías).</li>
+<li>Mes 3-4: Bloque 2 (derecho).</li>
+<li>Mes 5: Bloque 3 + casos prácticos.</li>
+<li>Mes 6: Simulacros + físicas + psicotécnico.</li>
+</ol>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/plazas-ertzaintza-2026-convocatoria">Plazas Ertzaintza 2026</a></li>
+<li><a href="/blog/sueldo-ertzaintza-2026">Sueldo Ertzaintza</a></li>
+<li><a href="/blog/test-ertzaintza-2026-practica-online-gratis-ia">Tests online</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis en OpoRuta</a></strong> — tests Ertzaintza con temario actualizado. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuántos temas tiene Ertzaintza?', answer: 'Aproximadamente 28 temas agrupados en 4 bloques: organización institucional vasca, derecho, ciencias sociales y policía/seguridad.' },
+      { question: '¿El examen es en euskera?', answer: 'Se ofrecen las pruebas en castellano y euskera. Puedes elegir el idioma. Si vas a hacerlo en euskera, el nivel B2 es lo mínimo recomendable.' },
+      { question: '¿Hay supuesto práctico?', answer: 'Sí. Además del test de 100 preguntas, hay un caso práctico policial que se puntúa en el ranking.' },
+    ],
+  },
+
+  // ─── Post 53 — Plazas Gestión AGE 2026 (GACE) ────
+  {
+    slug: 'plazas-gestion-age-2026-gace',
+    title: 'Plazas Gestión AGE 2026 (GACE): 1.356 A2 Administración General',
+    description: 'Convocatoria Cuerpo de Gestión de la Administración Civil del Estado (GACE) 2026: 1.356 plazas A2. Requisitos, temario y proceso.',
+    date: '2026-04-19', dateModified: '2026-04-19',
+    keywords: ['plazas gace 2026', 'gestion age 2026', 'cuerpo gestion administracion civil estado', 'A2 AGE plazas'],
+    content: `
+<h2>TL;DR — GACE 2026</h2>
+<ul>
+<li><strong>1.356 plazas</strong> (OEP 2024-2025 acumulada).</li>
+<li>Grupo <strong>A2</strong>: requiere diplomatura/grado.</li>
+<li>Acceso libre + promoción interna.</li>
+<li>Examen: 2 ejercicios (teórico test + supuesto práctico).</li>
+<li>Convocante: INAP (Instituto Nacional de Administración Pública).</li>
+</ul>
+
+<h2>Distribución aproximada de plazas</h2>
+<ul>
+<li>Acceso libre: ~80 % = ~1.085 plazas.</li>
+<li>Promoción interna (desde Administrativo C1): ~20 % = ~271 plazas.</li>
+</ul>
+
+<h2>Requisitos</h2>
+<ul>
+<li>Diplomatura, grado o equivalente.</li>
+<li>Nacionalidad española o UE (restricciones en ciertos puestos).</li>
+<li>18 años - sin tope superior.</li>
+<li>Sin antecedentes penales.</li>
+</ul>
+
+<h2>Proceso selectivo</h2>
+<ol>
+<li>Inscripción online (20 días).</li>
+<li>Ejercicio 1: test 100 preguntas + 10 reserva, penalización −1/3.</li>
+<li>Ejercicio 2: supuesto práctico por escrito.</li>
+<li>Curso selectivo INAP.</li>
+<li>Destino definitivo (libre elección por orden de nota).</li>
+</ol>
+
+<h2>Diferencia con Administrativo C1</h2>
+<p>GACE (A2) es el nivel superior dentro de la rama administrativa no técnica: gestiona, no solo tramita. Requiere titulación universitaria y aporta 300-400 € netos/mes más que C1. Para <a href="/blog/gace-a2-vs-administrativo-c1-cual-preparar-2026">comparativa detallada, ver este post</a>.</p>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/gace-a2-vs-administrativo-c1-cual-preparar-2026">GACE vs Administrativo C1</a></li>
+<li><a href="/blog/sueldo-gestion-age-2026-gace">Sueldo GACE 2026</a></li>
+<li><a href="/oep-2026">OEP 2026 completa</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Prepárate con OpoRuta</a></strong> — simulacros GACE + supuestos prácticos. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Qué es GACE?', answer: 'Cuerpo General Administrativo Civil del Estado, grupo A2. Es el escalón superior dentro de la rama administrativa AGE, por encima del Cuerpo Administrativo C1.' },
+      { question: '¿Cuántas plazas GACE en 2026?', answer: '1.356 plazas en la OEP 2024-2025 acumulada. Con libre + promoción interna.' },
+      { question: '¿Cuánto cobra un funcionario GACE?', answer: 'Aproximadamente 2.100-2.350 € netos/mes recién destinado, frente a 1.800 € del Administrativo C1.' },
+    ],
+  },
+
+  // ─── Post 54 — Sueldo Gestión AGE 2026 ────
+  {
+    slug: 'sueldo-gestion-age-2026-gace',
+    title: 'Sueldo Gestión AGE 2026 (GACE): 2.200€ netos iniciales (nómina desglosada)',
+    description: 'Sueldo Cuerpo Gestión AGE (GACE) A2 2026: nómina desglosada por conceptos, trienios y progresión salarial. Comparación con Administrativo C1.',
+    date: '2026-04-19', dateModified: '2026-04-19',
+    keywords: ['sueldo gace 2026', 'sueldo gestion age', 'sueldo A2 administracion estado', 'cuanto cobra funcionario A2 AGE'],
+    content: `
+<h2>TL;DR — Sueldo GACE 2026</h2>
+<ul>
+<li><strong>Recién destinado:</strong> 2.100-2.350 € netos/mes.</li>
+<li><strong>Con 10 años de antigüedad:</strong> 2.400-2.600 €.</li>
+<li><strong>En puestos con complemento específico alto:</strong> 2.800-3.200 €.</li>
+<li>Régimen: MUFACE.</li>
+</ul>
+
+<h2>Nómina desglosada GACE A2</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Concepto</th><th>Bruto mensual</th></tr></thead>
+<tbody>
+<tr><td>Sueldo base (A2)</td><td>1.157,14 €</td></tr>
+<tr><td>Complemento destino (nivel 22)</td><td>674,20 €</td></tr>
+<tr><td>Complemento específico (estándar)</td><td>610,00 €</td></tr>
+<tr><td>Productividad fija</td><td>180,00 €</td></tr>
+<tr><td><strong>Bruto total</strong></td><td><strong>~2.621 €</strong></td></tr>
+<tr><td>Retenciones (IRPF)</td><td>−470 €</td></tr>
+<tr><td><strong>Neto</strong></td><td><strong>~2.151 €</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Ventajas sueldo GACE vs Administrativo C1</h2>
+<ul>
+<li><strong>+300-400 € netos/mes</strong> de media sobre C1.</li>
+<li>Puestos de nivel 24-26 accesibles (C1 se queda en 18-22).</li>
+<li>Acceso directo a jefaturas de sección sin curso adicional.</li>
+</ul>
+
+<h2>Progresión salarial</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Años / puesto</th><th>Neto aprox.</th></tr></thead>
+<tbody>
+<tr><td>0-3 (destino inicial)</td><td>2.100-2.250 €</td></tr>
+<tr><td>3-10 (trienios + puesto nivel 22-24)</td><td>2.300-2.500 €</td></tr>
+<tr><td>10-20 (jefe sección nivel 24-26)</td><td>2.600-3.100 €</td></tr>
+<tr><td>20+ (puestos altos con CE singular)</td><td>3.100-3.800 €</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/plazas-gestion-age-2026-gace">Plazas GACE 2026</a></li>
+<li><a href="/blog/sueldo-administrativo-estado-c1-2026-nomina">Sueldo Administrativo C1 (comparar)</a></li>
+<li><a href="/blog/gace-a2-vs-administrativo-c1-cual-preparar-2026">GACE vs C1</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Estudia GACE con OpoRuta</a></strong> — simulacros A2 AGE + supuestos prácticos. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuánto cobra un funcionario GACE recién ingresado?', answer: '2.100-2.350 € netos/mes en un puesto estándar de nivel 22 con complemento específico básico.' },
+      { question: '¿Cuánto más cobra GACE que Administrativo C1?', answer: 'De media, 300-400 € netos/mes más. Con años, la brecha puede ampliarse hasta 600-800 € por acceso a puestos superiores.' },
+      { question: '¿Vale la pena opositar a GACE teniendo C1?', answer: 'Si tienes grado universitario, sí. Por promoción interna (30 % de plazas) es más accesible y el retorno salarial compensa el esfuerzo en 3-5 años.' },
+    ],
+  },
+
+  // ─── F5.T5 · Post 55 — Calendario OEP AGE 2026 (consolidado) ────
+  {
+    slug: 'calendario-oposiciones-age-2026-consolidado',
+    title: 'Calendario oposiciones AGE 2026: todas las fechas (INAP, Justicia, Seguridad)',
+    description: 'Calendario consolidado de oposiciones AGE 2026: Auxiliar, Administrativo, GACE, Justicia, Guardia Civil, Policía Nacional, IIPP, Hacienda. Todas las fechas en un sitio.',
+    date: '2026-04-19', dateModified: '2026-04-19',
+    keywords: ['calendario oposiciones 2026', 'fechas examenes oposicion 2026', 'calendario oep 2026', 'cuando son los examenes oposicion'],
+    content: `
+<h2>TL;DR — Calendario AGE 2026</h2>
+<ul>
+<li><strong>23 mayo 2026:</strong> Auxiliar Administrativo (1.700 plazas).</li>
+<li><strong>20 junio 2026:</strong> Administrativo Estado C1 (2.512).</li>
+<li><strong>Otoño 2026:</strong> GACE, Agente Hacienda, Guardia Civil, Policía Nacional.</li>
+<li><strong>Fin 2026 - inicio 2027:</strong> IIPP, Ertzaintza, Mossos.</li>
+</ul>
+
+<h2>Calendario completo (fechas confirmadas + estimadas)</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Fecha</th><th>Oposición</th><th>Plazas</th><th>Estado</th></tr></thead>
+<tbody>
+<tr><td>23 mayo 2026</td><td>Auxiliar Administrativo AGE</td><td>1.700</td><td>Confirmada</td></tr>
+<tr><td>20 junio 2026</td><td>Administrativo Estado C1</td><td>2.512</td><td>Confirmada</td></tr>
+<tr><td>Sept-Oct 2026</td><td>Guardia Civil</td><td>~3.100</td><td>Estimada</td></tr>
+<tr><td>Sept-Oct 2026</td><td>Policía Nacional</td><td>~3.000</td><td>Estimada</td></tr>
+<tr><td>Oct-Nov 2026</td><td>Agente Hacienda</td><td>~900</td><td>Estimada</td></tr>
+<tr><td>Oct-Nov 2026</td><td>GACE (A2 AGE)</td><td>1.356</td><td>Estimada</td></tr>
+<tr><td>Nov-Dic 2026</td><td>Gestión Procesal (A2)</td><td>725</td><td>Estimada</td></tr>
+<tr><td>Nov-Dic 2026</td><td>Tramitación Procesal (C1)</td><td>1.155</td><td>Estimada</td></tr>
+<tr><td>Nov-Dic 2026</td><td>Auxilio Judicial (C2)</td><td>425</td><td>Estimada</td></tr>
+<tr><td>Dic 2026 - Ene 2027</td><td>IIPP (Ayudante)</td><td>~900</td><td>Estimada</td></tr>
+<tr><td>Ene-Feb 2027</td><td>Ertzaintza</td><td>~1.000</td><td>Estimada</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Recomendación de planning por perfil</h2>
+<ul>
+<li><strong>Empiezo con ESO ahora:</strong> Auxiliar AGE (23 mayo) — 1 mes de margen, es muy apretado. Mejor apuntarse a GC (otoño).</li>
+<li><strong>Empiezo con Bachillerato ahora:</strong> Administrativo C1 (20 junio) o Agente Hacienda (octubre).</li>
+<li><strong>Empiezo con grado ahora:</strong> GACE o Gestión Procesal (finales de año).</li>
+</ul>
+
+<h2>Fechas importantes para todas</h2>
+<ul>
+<li><strong>BOE convocatoria:</strong> 2-4 meses antes del examen.</li>
+<li><strong>Plazo inscripción:</strong> 20 días hábiles desde BOE.</li>
+<li><strong>Listas provisionales admitidos:</strong> 6-8 semanas tras cierre inscripción.</li>
+<li><strong>Listas definitivas:</strong> 2-3 semanas tras provisionales.</li>
+<li><strong>Asignación de sede examen:</strong> 1-2 semanas antes del examen.</li>
+</ul>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/oep-2026">OEP 2026 completa (tracker)</a></li>
+<li><a href="/blog/calendario-oposiciones-age-2026-fechas-auxiliar-administrativo">Calendario Auxiliar (detalle)</a></li>
+<li><a href="/blog/calendario-guardia-civil-2026-fechas-examen">Calendario Guardia Civil</a></li>
+<li><a href="/blog/calendario-policia-nacional-2026-fechas-examen">Calendario Policía Nacional</a></li>
+<li><a href="/datos/plazas-age-historico">Histórico de plazas</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Organízate con OpoRuta</a></strong> — simulacros para cualquier oposición AGE. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuándo son los exámenes de las oposiciones del Estado 2026?', answer: 'Auxiliar AGE: 23 mayo 2026 (confirmada). Administrativo C1: 20 junio 2026. Otras oposiciones (GC, PN, Justicia, IIPP, Hacienda) se concentran entre septiembre 2026 y enero 2027.' },
+      { question: '¿Se pueden presentar a varias oposiciones el mismo año?', answer: 'Sí, siempre que las fechas no coincidan. Con este calendario es viable combinar Auxiliar (mayo) + alguna oposición de otoño.' },
+      { question: '¿Dónde consulto las fechas oficiales?', answer: 'En el BOE (Boletín Oficial del Estado) cuando se publique la convocatoria. También en el INAP y en la página oficial de cada cuerpo.' },
+      { question: '¿Cuánto antes se sabe la fecha exacta del examen?', answer: '2-4 meses antes cuando se publica la convocatoria. La sede definitiva se conoce 1-2 semanas antes.' },
+    ],
+  },
+
+  // ─── Post 56 — ¿Cuánto tarda en salir convocatoria? ────
+  {
+    slug: 'cuanto-tarda-en-salir-convocatoria-oposicion-2026',
+    title: '¿Cuánto tarda en salir una convocatoria de oposición? (tiempos reales 2026)',
+    description: 'Tiempos reales desde la publicación de la OEP hasta la convocatoria, examen y toma de posesión. Datos de las 12 oposiciones más frecuentes en 2026.',
+    date: '2026-04-19', dateModified: '2026-04-19',
+    keywords: ['cuando sale convocatoria oposicion', 'tiempo convocatoria oposicion', 'desde oep hasta examen', 'cuanto tarda oposicion'],
+    content: `
+<h2>TL;DR — Cuánto tarda cada fase</h2>
+<ul>
+<li><strong>Aprobar OEP → publicar convocatoria:</strong> 6-12 meses.</li>
+<li><strong>Convocatoria BOE → examen:</strong> 3-6 meses.</li>
+<li><strong>Examen → aprobado final:</strong> 3-6 meses.</li>
+<li><strong>Aprobado → toma posesión:</strong> 6-18 meses (curso + prácticas).</li>
+<li><strong>OEP → funcionario de carrera:</strong> 2-4 años en total.</li>
+</ul>
+
+<h2>Tabla: tiempos reales por oposición (2026)</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Oposición</th><th>BOE → examen</th><th>Examen → destino</th><th>Total proceso</th></tr></thead>
+<tbody>
+<tr><td>Correos</td><td>4 m</td><td>3 m</td><td>~10 m</td></tr>
+<tr><td>Auxiliar AGE</td><td>5-6 m</td><td>6-9 m</td><td>~18 m</td></tr>
+<tr><td>Administrativo C1</td><td>5-6 m</td><td>8-12 m</td><td>~20 m</td></tr>
+<tr><td>Auxilio Judicial</td><td>5 m</td><td>9 m</td><td>~18 m</td></tr>
+<tr><td>Tramitación Procesal</td><td>5-6 m</td><td>10 m</td><td>~22 m</td></tr>
+<tr><td>Gestión Procesal</td><td>6 m</td><td>12 m</td><td>~26 m</td></tr>
+<tr><td>Guardia Civil</td><td>5-6 m</td><td>18 m (curso)</td><td>~30 m</td></tr>
+<tr><td>Policía Nacional</td><td>5-6 m</td><td>21 m (curso+prácticas)</td><td>~32 m</td></tr>
+<tr><td>IIPP</td><td>5 m</td><td>14 m</td><td>~24 m</td></tr>
+<tr><td>Agente Hacienda</td><td>6 m</td><td>14 m</td><td>~26 m</td></tr>
+<tr><td>GACE</td><td>6 m</td><td>12 m</td><td>~24 m</td></tr>
+<tr><td>Ertzaintza</td><td>5 m</td><td>21 m (Arkaute + prácticas)</td><td>~32 m</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Por qué tanto tiempo</h2>
+<ol>
+<li><strong>Tribunal:</strong> constituir tribunales y calificar exámenes manualmente.</li>
+<li><strong>Alegaciones:</strong> revisión de preguntas impugnadas (1-2 meses de cola).</li>
+<li><strong>Pruebas secuenciales:</strong> físicas + médico + entrevista no pueden solaparse.</li>
+<li><strong>Curso formativo:</strong> muchas oposiciones incluyen 4-12 meses de formación reglada.</li>
+<li><strong>Prácticas:</strong> hasta 12 meses con tutor antes de pasar a funcionario de carrera.</li>
+</ol>
+
+<h2>Cómo optimizar tiempo</h2>
+<ul>
+<li>Empieza a preparar <strong>antes</strong> de que salga la convocatoria (cuando se publica la OEP).</li>
+<li>Ten el CV al día: antecedentes penales, títulos, carnet de conducir, informe médico.</li>
+<li>Monitoriza BOE con alertas automatizadas.</li>
+<li>Presenta inscripción el primer día (no esperes al último).</li>
+</ul>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/oep-2026">OEP 2026 completa</a></li>
+<li><a href="/blog/calendario-oposiciones-age-2026-consolidado">Calendario AGE 2026 consolidado</a></li>
+<li><a href="/blog/mejor-oposicion-segun-perfil-2026-test-rapido">Elige oposición según perfil</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza ya con OpoRuta</a></strong> — no esperes a que salga la convocatoria. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuánto tiempo pasa desde que apruebo hasta que soy funcionario?', answer: 'Entre 6 y 18 meses dependiendo de si hay curso formativo + prácticas. Correos es el más rápido (3 meses); Policía Nacional y Ertzaintza, los más lentos (21 meses).' },
+      { question: '¿Desde la OEP hasta ser funcionario cuánto se tarda?', answer: 'De media 2-4 años. Desde aprobar la OEP hasta publicar la convocatoria pasan 6-12 meses. Luego el proceso completo añade otros 1,5-3 años.' },
+      { question: '¿Se puede acelerar el proceso?', answer: 'No, las fases son obligatorias. Lo que sí puedes acelerar es tu preparación: empezar antes de la convocatoria y tener toda la documentación al día.' },
+    ],
+  },
+
+  // ─── Post 57 — Estudiar oposiciones trabajando 8h ────
+  {
+    slug: 'estudiar-oposicion-trabajando-8-horas-plan-2026',
+    title: 'Estudiar una oposición trabajando 8 horas al día: plan realista 2026',
+    description: 'Plan real para preparar una oposición trabajando 8 horas. Horarios sugeridos, recomendaciones y cuánto tardarás según la oposición elegida.',
+    date: '2026-04-19', dateModified: '2026-04-19',
+    keywords: ['estudiar oposicion trabajando', 'como preparar oposicion sin tiempo', 'oposicion trabajando 8 horas', 'plan estudio oposicion part time'],
+    content: `
+<h2>TL;DR — ¿Es posible? Sí, pero...</h2>
+<ul>
+<li>Necesitas <strong>2-3 horas diarias</strong> de estudio de calidad.</li>
+<li>Más fines de semana: 4-6 horas adicionales.</li>
+<li>Con esto, Auxiliar AGE se prepara en <strong>9-12 meses</strong>, Administrativo C1 en <strong>15-18</strong>, Gestión Procesal en <strong>24</strong>.</li>
+<li>Clave: <strong>constancia</strong> &gt; intensidad.</li>
+</ul>
+
+<h2>Horario real de un opositor trabajador</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Horario</th><th>Actividad</th></tr></thead>
+<tbody>
+<tr><td>06:30 - 07:30</td><td>Estudio 1 h (concentración máxima)</td></tr>
+<tr><td>07:30 - 08:30</td><td>Desayuno + ida al trabajo</td></tr>
+<tr><td>08:30 - 14:00</td><td>Trabajo</td></tr>
+<tr><td>14:00 - 15:30</td><td>Comida + descanso</td></tr>
+<tr><td>15:30 - 17:30</td><td>Trabajo</td></tr>
+<tr><td>17:30 - 19:00</td><td>Deporte / familia / descanso</td></tr>
+<tr><td>19:00 - 21:00</td><td>Estudio 2 h (20 preguntas + repaso)</td></tr>
+<tr><td>21:00 - 23:00</td><td>Cena + familia + descanso</td></tr>
+<tr><td>23:00 -</td><td>Dormir (8 h mínimo)</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Reglas de oro del opositor que trabaja</h2>
+<ol>
+<li><strong>Mismo horario todos los días</strong>: tu cerebro necesita rutina.</li>
+<li><strong>No hagas maratones</strong>: 3 h diarias sostenidas baten a 10 h esporádicas.</li>
+<li><strong>Viernes tarde = descanso obligatorio</strong>. Recuperas el fin de semana.</li>
+<li><strong>Sábado y domingo: 4-6 h + ejercicio</strong>.</li>
+<li><strong>Micro-sesiones en el móvil</strong>: 10 preguntas mientras desayunas, 5 en el baño, 15 en el bus.</li>
+<li><strong>Domingo noche = repaso de la semana + planning próxima</strong>.</li>
+</ol>
+
+<h2>Herramientas para micro-estudio</h2>
+<ul>
+<li><a href="/">OpoRuta app</a>: tests cortos desde el móvil (2-5 min).</li>
+<li><a href="/flashcards">Flashcards</a>: revisar 20 tarjetas en el metro.</li>
+<li>Podcasts con resumen de leyes (escuchar mientras conduces/corres).</li>
+<li>Escribir artículos a mano los fines de semana (memoriza mejor).</li>
+</ul>
+
+<h2>Cuánto tardarás según la oposición</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Oposición</th><th>Tiempo con 2-3 h/día + findes</th></tr></thead>
+<tbody>
+<tr><td>Correos</td><td>4-5 meses</td></tr>
+<tr><td>Auxiliar AGE</td><td>9-12 meses</td></tr>
+<tr><td>Guardia Civil</td><td>10-12 meses (+físicas)</td></tr>
+<tr><td>Administrativo C1</td><td>15-18 meses</td></tr>
+<tr><td>Policía Nacional</td><td>15-18 meses</td></tr>
+<tr><td>Gestión Procesal A2</td><td>20-24 meses</td></tr>
+<tr><td>Hacienda A2 (Agente)</td><td>18-24 meses</td></tr>
+<tr><td>TAC A1 / Inspector</td><td>36+ meses (requerirá excedencia)</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Lo que NO debes hacer</h2>
+<ul>
+<li>Estudiar hasta las 2 de la mañana (al día siguiente rindes mal en el trabajo Y estudio).</li>
+<li>Saltarte ejercicio 3 meses seguidos.</li>
+<li>Prescindir del fin de semana familiar completo.</li>
+<li>Apuntarse a academia presencial lejana (tiempo muerto de desplazamiento).</li>
+<li>Estudiar viendo TV o en modo pasivo.</li>
+</ul>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/estudiar-oposiciones-con-ia-2026-guia-practica">Estudiar con IA</a></li>
+<li><a href="/blog/mejor-oposicion-segun-perfil-2026-test-rapido">Elige tu oposición</a></li>
+<li><a href="/blog/test-oposiciones-online-gratis-2026">Tests online gratis</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza con micro-sesiones en OpoRuta</a></strong> — tests de 5 minutos desde el móvil. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Es posible aprobar una oposición trabajando 8 horas?', answer: 'Sí, miles lo hacen cada año. Requiere 2-3 h diarias + fines de semana. La clave es constancia durante 9-24 meses según la oposición.' },
+      { question: '¿Cuántas horas al día hay que estudiar trabajando?', answer: 'Mínimo 2 h entre semana + 4-6 h sábado/domingo. Más solo si tu trabajo es de menor carga mental.' },
+      { question: '¿Qué oposición es mejor si trabajo a jornada completa?', answer: 'Correos (4-5 meses) y Auxiliar AGE (9-12 meses) son las más compatibles. Policía Nacional y oposiciones A1 son difíciles sin reducción de jornada o excedencia.' },
+      { question: '¿Se puede aprobar sin ir a academia?', answer: 'Sí, especialmente con plataformas como OpoRuta (IA + tests + flashcards + simulacros). La academia aporta grupo y ritmo, pero no es imprescindible.' },
+    ],
+  },
+
+  // ─── Post 58 — Errores comunes primeros simulacros ────
+  {
+    slug: 'errores-comunes-primeros-simulacros-oposiciones',
+    title: '7 errores comunes en tus primeros simulacros de oposiciones (y cómo evitarlos)',
+    description: 'Los 7 fallos típicos que cometen los opositores en sus primeros simulacros (gestión del tiempo, penalización, nervios, errores de lectura) y cómo corregirlos.',
+    date: '2026-04-19', dateModified: '2026-04-19',
+    keywords: ['errores simulacros oposicion', 'como hacer simulacros oposicion', 'fallos primer examen oposicion', 'tips examen oposicion'],
+    content: `
+<h2>TL;DR — Los 7 errores</h2>
+<ol>
+<li>Gestionar mal el tiempo.</li>
+<li>Responder al azar con penalización alta.</li>
+<li>No leer bien el enunciado (NO, EXCEPTO, FALSO).</li>
+<li>Cambiar respuestas en la 3ª revisión.</li>
+<li>Dejar preguntas en blanco sin descartar.</li>
+<li>No revisar hoja de respuestas.</li>
+<li>Estudiar sin hacer simulacros cronometrados.</li>
+</ol>
+
+<h2>1. Gestión del tiempo</h2>
+<p><strong>Síntoma:</strong> llegas a la pregunta 80 con 10 minutos restantes. Corres y fallas más.</p>
+<p><strong>Solución:</strong> 90 minutos para 100 preguntas = 54 seg/pregunta. Lleva reloj. A los 45 minutos debes ir por la pregunta 50+.</p>
+
+<h2>2. Responder al azar con penalización −1/3</h2>
+<p><strong>Síntoma:</strong> respondes las 100 preguntas aunque muchas las desconozcas. Nota bruta 60, nota con penalización 48.</p>
+<p><strong>Solución:</strong> el valor esperado de responder al azar con −1/3 es 0. Solo responde si descartas al menos 1 opción. Ver <a href="/blog/penalizacion-examen-auxiliar-administrativo">estrategia de penalización</a>.</p>
+
+<h2>3. No leer NO, EXCEPTO, FALSO</h2>
+<p><strong>Síntoma:</strong> fallas 5-8 preguntas "fáciles" porque el enunciado pedía "indica la FALSA" y tú marcaste la verdadera.</p>
+<p><strong>Solución:</strong> subraya esas palabras al leer. En simulacro, haz una pasada rápida marcando "negativas" antes de responder.</p>
+
+<h2>4. Cambiar respuestas en la 3ª revisión</h2>
+<p><strong>Síntoma:</strong> al revisar por segunda o tercera vez, cambias una respuesta "por si acaso" y resulta que la correcta era la original.</p>
+<p><strong>Solución:</strong> regla de oro — solo cambias si tienes <strong>certeza clara</strong> del error. La intuición es, estadísticamente, más fiable que la duda.</p>
+
+<h2>5. Dejar blancos sin intentar descartar</h2>
+<p><strong>Síntoma:</strong> en mitad del examen te encuentras con una pregunta que "no sabes", la dejas en blanco y pasas. Al final tienes 20 blancos.</p>
+<p><strong>Solución:</strong> aplica descarte siempre: ¿cuántas opciones puedes eliminar? Con 2 descartadas, responder es claramente rentable (valor esperado +0,33).</p>
+
+<h2>6. No revisar hoja de respuestas</h2>
+<p><strong>Síntoma:</strong> marcaste C en la hoja cuando la correcta era B. Errores mecánicos.</p>
+<p><strong>Solución:</strong> reserva 5 minutos al final para verificar correspondencia número pregunta ↔ número hoja. Un desalineamiento = desastre.</p>
+
+<h2>7. Estudiar sin simulacros cronometrados</h2>
+<p><strong>Síntoma:</strong> sabes el temario pero en el examen real te bloqueas con el estrés del tiempo.</p>
+<p><strong>Solución:</strong> <strong>1 simulacro cronometrado por semana</strong> desde los 3 meses antes. No solo para nota: para simular el estrés.</p>
+
+<h2>Cómo hacer un simulacro bien</h2>
+<ol>
+<li>Escoge hora similar a la del examen real (mañana).</li>
+<li>Ambiente silencioso, sin interrupciones.</li>
+<li>Cronómetro activo (usa web/app).</li>
+<li>NO revisar dudas durante el simulacro, marcar y seguir.</li>
+<li>Al terminar, ir al resultado + explicación de cada fallo.</li>
+<li>Anotar patrones: "fallo Ley 40/2015 art 7-10", "fallo lecturas rápidas".</li>
+</ol>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/penalizacion-examen-auxiliar-administrativo">Estrategia de penalización</a></li>
+<li><a href="/examenes-oficiales">Simulacros INAP reales</a></li>
+<li><a href="/blog/estudiar-oposicion-trabajando-8-horas-plan-2026">Estudiar trabajando</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica simulacros reales en OpoRuta</a></strong> — con análisis detallado de cada fallo. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuántos simulacros hay que hacer antes del examen?', answer: 'Mínimo 8-10 simulacros completos cronometrados en los últimos 3 meses. Idealmente 2-3 por semana en el último mes.' },
+      { question: '¿Cuándo empezar a hacer simulacros?', answer: 'Cuando llevas 60-70 % del temario estudiado. Antes desanima porque sacas notas muy bajas. Después, pierdes perspectiva del tiempo real.' },
+      { question: '¿Qué hacer si saco mala nota en el simulacro?', answer: 'Analizar patrones de error por tema/ley, no llorar la nota. Si fallas siempre Ley 39/2015, intensifica ese bloque durante 2 semanas.' },
+    ],
+  },
+
+  // ─── Post 59 — Academia vs autoformación 2026 ────
+  {
+    slug: 'academia-vs-autoformacion-oposiciones-2026',
+    title: 'Academia vs autoformación oposiciones 2026: qué elegir (análisis honesto)',
+    description: 'Comparativa 2026: academia presencial/online vs autoformación con plataformas IA. Coste real, tasas de aprobado y en qué casos conviene cada una.',
+    date: '2026-04-19', dateModified: '2026-04-19',
+    keywords: ['academia oposiciones', 'autoformacion oposiciones', 'academia o por mi cuenta oposicion', 'merece la pena academia'],
+    content: `
+<h2>TL;DR — ¿Academia o por tu cuenta?</h2>
+<ul>
+<li><strong>Academia presencial:</strong> si necesitas ritmo externo, grupo y tutor.</li>
+<li><strong>Academia online:</strong> si quieres estructura pero flexibilidad.</li>
+<li><strong>Autoformación + plataforma IA:</strong> si eres disciplinado y quieres optimizar coste.</li>
+<li>Coste anual: academia 1.200-3.600 €; plataforma IA 50-300 €.</li>
+<li>Tasa aprobado: sin diferencias significativas si la plataforma IA tiene verificación legal.</li>
+</ul>
+
+<h2>Comparativa de coste (2026)</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Opción</th><th>Coste anual</th><th>Incluye</th></tr></thead>
+<tbody>
+<tr><td>Academia presencial</td><td>2.400-3.600 €</td><td>Clases + simulacros + tutor</td></tr>
+<tr><td>Academia online</td><td>1.200-2.400 €</td><td>Vídeos + tests + foro</td></tr>
+<tr><td>Plataforma IA (OpoRuta)</td><td>49,99 € (pack) / 14 €/mes</td><td>Tests + simulacros + análisis IA</td></tr>
+<tr><td>Autoformación pura</td><td>60-200 € (manuales)</td><td>Solo libros</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Ventajas y desventajas</h2>
+<h3>Academia presencial</h3>
+<p><strong>Ventajas:</strong> disciplina, grupo, tutor accesible, simulacros presenciales realistas, feedback humano en supuestos prácticos.</p>
+<p><strong>Desventajas:</strong> coste alto (~3.000 €/año), horario rígido, desplazamiento, nivel del grupo no adaptado a ti.</p>
+
+<h3>Academia online</h3>
+<p><strong>Ventajas:</strong> más barata (~1.500 €/año), flexible, puedes revisar vídeos, foro de dudas.</p>
+<p><strong>Desventajas:</strong> menos disciplina, respuesta del tutor tarda (horas/días), videos desactualizados rápido con reformas legales.</p>
+
+<h3>Plataforma IA (OpoRuta y similares)</h3>
+<p><strong>Ventajas:</strong> coste drásticamente inferior, tests ilimitados con verificación RAG sobre BOE, análisis IA de fallos en tiempo real, actualización continua del temario.</p>
+<p><strong>Desventajas:</strong> no sustituye grupo humano, requiere disciplina personal, menos útil para supuestos prácticos escritos.</p>
+
+<h3>Autoformación pura (solo libros)</h3>
+<p><strong>Ventajas:</strong> baratísima.</p>
+<p><strong>Desventajas:</strong> sin tests, sin feedback, altamente ineficiente. No recomendada.</p>
+
+<h2>¿Cómo elegir?</h2>
+<h3>Te conviene academia presencial si...</h3>
+<ul>
+<li>Eres procrastinador y necesitas horario externo.</li>
+<li>Tienes presupuesto holgado (3.000 €/año no es problema).</li>
+<li>Prefieres estudiar en grupo.</li>
+<li>Tu oposición tiene supuestos prácticos complejos (Gestión Procesal, IIPP).</li>
+</ul>
+
+<h3>Te conviene academia online si...</h3>
+<ul>
+<li>Vives en zona sin academias presenciales de calidad.</li>
+<li>Tu horario laboral es cambiante.</li>
+<li>Quieres presupuesto intermedio.</li>
+</ul>
+
+<h3>Te conviene plataforma IA si...</h3>
+<ul>
+<li>Eres disciplinado y organizado.</li>
+<li>Ya tienes base del temario (no partes de cero).</li>
+<li>Quieres optimizar coste.</li>
+<li>Prefieres tests interactivos y análisis detallado.</li>
+</ul>
+
+<h2>Modelo híbrido: lo mejor de ambos</h2>
+<p>La combinación ganadora en 2026 es: <strong>plataforma IA (49,99 €) + tutoría online puntual (30 €/h por dudas) + libros actualizados (60 €) = ~300 €/año</strong>. Retorno muy superior al de solo academia.</p>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/estudiar-oposiciones-con-ia-2026-guia-practica">Estudiar con IA</a></li>
+<li><a href="/blog/mejores-plataformas-ia-oposiciones-2026">Top plataformas IA</a></li>
+<li><a href="/precios">Precios OpoRuta</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Prueba gratis OpoRuta</a></strong> — compara sin compromiso frente a academias tradicionales. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Merece la pena pagar una academia de oposiciones en 2026?', answer: 'Depende. Si eres procrastinador y la disciplina externa compensa los 3.000 €/año, sí. Si eres disciplinado, una plataforma IA por 50-300 € al año es más eficiente.' },
+      { question: '¿Las academias tienen más aprobados que la autoformación?', answer: 'No hay diferencia estadística significativa cuando la autoformación se hace con plataforma IA verificada. Lo que más correlaciona con aprobar es: horas de simulacros cronometrados, no el canal de aprendizaje.' },
+      { question: '¿Puedo combinar academia y plataforma IA?', answer: 'Sí, es el modelo ideal si el presupuesto permite. La academia aporta estructura humana y la plataforma IA aporta tests ilimitados + análisis de fallos.' },
+      { question: '¿Para qué oposiciones sigue siendo clave la academia?', answer: 'Para oposiciones con supuestos prácticos escritos complejos (Gestión Procesal, Abogacía del Estado, Inspección Hacienda) donde la corrección humana experta es imprescindible.' },
+    ],
+  },
+
+  // ─── Post 60 — Plan estudio 3 meses vs 12 meses ────
+  {
+    slug: 'plan-estudio-oposiciones-3-meses-vs-12-meses-2026',
+    title: 'Plan estudio oposiciones: 3 meses vs 12 meses (qué se puede y qué no)',
+    description: 'Comparativa realista: qué oposiciones se pueden preparar en 3 meses y cuáles necesitan 12+. Planes detallados y cuándo es temerario presentarse.',
+    date: '2026-04-19', dateModified: '2026-04-19',
+    keywords: ['plan estudio oposicion 3 meses', 'preparar oposicion en 3 meses', 'cuanto tiempo preparar oposicion', 'plan 12 meses oposicion'],
+    content: `
+<h2>TL;DR — Cuánto tiempo necesitas realmente</h2>
+<ul>
+<li><strong>3 meses es viable en:</strong> Correos, Celador en algunas CC.AA.</li>
+<li><strong>6 meses:</strong> Auxiliar AGE, Auxilio Judicial, Guardia Civil (con físicas).</li>
+<li><strong>9-12 meses:</strong> Administrativo C1, Tramitación, Policía Nacional.</li>
+<li><strong>18+ meses:</strong> Gestión A2, IIPP, Agente Hacienda.</li>
+<li><strong>24-36 meses:</strong> Grupos A1 (TAC, Inspección).</li>
+</ul>
+
+<h2>Plan 3 meses (Correos)</h2>
+<h3>Mes 1 — Base (todos los días 3-4 h)</h3>
+<ul>
+<li>Semana 1-2: Temas 1-4 (organización Correos, Constitución básica).</li>
+<li>Semana 3-4: Temas 5-8 (operativa postal, productos).</li>
+</ul>
+<h3>Mes 2 — Profundización</h3>
+<ul>
+<li>Semana 5-6: Temas 9-12 (normativa, logística).</li>
+<li>Semana 7-8: Primer repaso + tests por tema.</li>
+</ul>
+<h3>Mes 3 — Simulacros</h3>
+<ul>
+<li>Semana 9-10: Simulacros diarios.</li>
+<li>Semana 11: Repaso final + errores frecuentes.</li>
+<li>Semana 12: Descanso + 2 simulacros + examen.</li>
+</ul>
+
+<h2>Plan 12 meses (Administrativo C1)</h2>
+<h3>Meses 1-3 — Primera pasada</h3>
+<ul>
+<li>Lectura completa de las 3 partes del temario (organización, derecho, ofimática).</li>
+<li>Esquemas propios por tema.</li>
+<li>Tests introductorios para familiarizarse.</li>
+</ul>
+<h3>Meses 4-6 — Consolidación</h3>
+<ul>
+<li>Segunda pasada profunda + flashcards diarias.</li>
+<li>Tests por tema con 70 % acierto.</li>
+<li>Supuestos prácticos 1/semana.</li>
+</ul>
+<h3>Meses 7-9 — Repaso y ofimática</h3>
+<ul>
+<li>Tercera pasada del temario.</li>
+<li>Práctica intensiva de ofimática (Word, Excel, LibreOffice).</li>
+<li>Simulacros completos 1/semana.</li>
+</ul>
+<h3>Meses 10-12 — Peaking</h3>
+<ul>
+<li>Simulacros 2-3/semana.</li>
+<li>Ataque a debilidades concretas (tu radar).</li>
+<li>Última semana: repaso, descanso, confianza.</li>
+</ul>
+
+<h2>Cuándo es temerario presentarse</h2>
+<ul>
+<li>Preparar Auxiliar AGE en &lt; 4 meses partiendo de cero.</li>
+<li>Preparar Administrativo C1 en &lt; 6 meses sin base previa.</li>
+<li>Preparar Policía Nacional en &lt; 6 meses (temario 44 + físicas).</li>
+<li>Preparar A1 en &lt; 18 meses.</li>
+</ul>
+
+<h2>Factores que aceleran/retrasan</h2>
+<p><strong>Aceleran:</strong></p>
+<ul>
+<li>Formación previa en Derecho o Administración.</li>
+<li>Excedencia laboral temporal.</li>
+<li>Plataforma IA con análisis de errores.</li>
+<li>Memoria visual fuerte y capacidad de retención alta.</li>
+</ul>
+<p><strong>Retrasan:</strong></p>
+<ul>
+<li>Horario laboral exigente (turnos, desplazamientos).</li>
+<li>Cargas familiares (hijos pequeños).</li>
+<li>Partir sin ninguna formación jurídica.</li>
+<li>No hacer simulacros cronometrados desde mes 3.</li>
+</ul>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/estudiar-oposicion-trabajando-8-horas-plan-2026">Estudiar trabajando 8 h</a></li>
+<li><a href="/blog/mejor-oposicion-segun-perfil-2026-test-rapido">Elige tu oposición</a></li>
+<li><a href="/blog/errores-comunes-primeros-simulacros-oposiciones">Errores en primeros simulacros</a></li>
+<li><a href="/blog/cuanto-tarda-en-salir-convocatoria-oposicion-2026">Cuánto tarda el proceso</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza con OpoRuta hoy</a></strong> — adapta el plan 3/6/12 meses a tu oposición. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Se puede preparar una oposición en 3 meses?', answer: 'Solo las más asequibles (Correos, Celador en algunas CC.AA.). Para Auxiliar AGE necesitas al menos 6 meses; para cualquier C1 o A2, 9-18.' },
+      { question: '¿Qué pasa si me presento sin estar preparado?', answer: 'Pierdes la convocatoria (no hay castigo pero sí coste de inscripción) y ganas experiencia del examen real. Útil si es tu primera vez, inútil si ya conoces el formato.' },
+      { question: '¿Cuánto tiempo debo dedicar al día?', answer: 'Para plan 3 meses: 3-4 h/día. Plan 6 meses: 2-3 h/día + fines de semana. Plan 12 meses: 2 h/día + fines de semana moderados.' },
+      { question: '¿Se puede acortar con academia intensiva?', answer: 'Marginalmente. Los contenidos tardan tiempo en asentarse biológicamente (curva del olvido). La repetición espaciada es insustituible: 3 meses intensivos rinden menos que 6 meses constantes.' },
     ],
   },
 ]
