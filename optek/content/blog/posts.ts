@@ -17,6 +17,12 @@ export interface BlogPost {
   keywords: string[]
   content: string      // HTML
   faqs?: { question: string; answer: string }[]  // renders FAQPage JSON-LD for rich snippets
+  howTo?: {
+    name: string
+    description?: string
+    totalTime?: string // ISO 8601 duration, e.g. 'PT15M'
+    steps: { name: string; text: string; url?: string }[]
+  }
 }
 
 export const blogPosts: BlogPost[] = [

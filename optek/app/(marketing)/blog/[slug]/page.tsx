@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { blogPosts } from '@/content/blog/posts'
+import { HOWTO_BY_SLUG } from '@/content/blog/howto'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
@@ -103,6 +104,25 @@ export default async function BlogPostPage({ params }: Props) {
       ],
     },
   ]
+
+  // HowTo schema — rich result for tutorial-shaped posts
+  const howTo = post.howTo ?? HOWTO_BY_SLUG[post.slug]
+  if (howTo && howTo.steps.length > 0) {
+    jsonLd.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: howTo.name,
+      description: howTo.description ?? post.description,
+      ...(howTo.totalTime && { totalTime: howTo.totalTime }),
+      step: howTo.steps.map((step, idx) => ({
+        '@type': 'HowToStep',
+        position: idx + 1,
+        name: step.name,
+        text: step.text,
+        ...(step.url && { url: step.url }),
+      })),
+    })
+  }
 
   // FAQPage schema for posts with FAQs — enables rich snippets in Google
   if (post.faqs && post.faqs.length > 0) {
