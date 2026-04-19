@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { JsonLd } from '@/components/shared/JsonLd'
+import { TopLawsWidget } from '@/components/seo/TopLawsWidget'
 import {
   BookOpen, ArrowRight, Users, Clock,
   GraduationCap, FileText, Sparkles, Building2,
@@ -269,6 +270,15 @@ export default function AdministracionHub() {
           })}
         </div>
       </section>
+
+      <TopLawsWidget
+        oposicionIds={[
+          'a0000000-0000-0000-0000-000000000001',
+          'b0000000-0000-0000-0000-000000000001',
+          'c2000000-0000-0000-0000-000000000001',
+        ]}
+        oposicionName="Administración del Estado"
+      />
 
       {/* FAQ */}
       <section className="space-y-6">

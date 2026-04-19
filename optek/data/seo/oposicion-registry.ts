@@ -35,9 +35,14 @@ const ENTRIES: OposicionRegistryEntry[] = [
 ]
 
 const BY_ID = new Map<string, OposicionRegistryEntry>(ENTRIES.map(e => [e.id, e]))
+const BY_SLUG = new Map<string, OposicionRegistryEntry>(ENTRIES.map(e => [e.slug, e]))
 
 export function getOposicionById(id: string): OposicionRegistryEntry | undefined {
   return BY_ID.get(id)
+}
+
+export function getOposicionBySlug(slug: string): OposicionRegistryEntry | undefined {
+  return BY_SLUG.get(slug)
 }
 
 export const ALL_OPOSICIONES: readonly OposicionRegistryEntry[] = ENTRIES

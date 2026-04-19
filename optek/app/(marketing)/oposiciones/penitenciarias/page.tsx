@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { JsonLd } from '@/components/shared/JsonLd'
+import { TopLawsWidget } from '@/components/seo/TopLawsWidget'
 import {
   BookOpen, CheckCircle, Clock, Shield,
   ArrowRight, Users, Sparkles, Calculator, AlertTriangle, Brain,
@@ -283,6 +284,12 @@ export default function PenitenciariasLanding() {
           ))}
         </ul>
       </section>
+
+      {/* F2.T1 Top leyes examinadas */}
+      <TopLawsWidget
+        oposicionIds="f1000000-0000-0000-0000-000000000001"
+        oposicionName="Ayudante Penitenciarias"
+      />
 
       {/* FAQ visual */}
       <section className="space-y-6">

@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { JsonLd } from '@/components/shared/JsonLd'
+import { TopLawsWidget } from '@/components/seo/TopLawsWidget'
 import {
   BookOpen, CheckCircle, Clock, Landmark, Building2, Shield,
   ArrowRight, Users, Sparkles, Calculator,
@@ -240,6 +241,12 @@ export default function HaciendaLanding() {
           ))}
         </ul>
       </section>
+
+      {/* F2.T1 Top leyes examinadas */}
+      <TopLawsWidget
+        oposicionIds="f0000000-0000-0000-0000-000000000001"
+        oposicionName="Agente de Hacienda"
+      />
 
       {/* FAQ visual */}
       <section className="space-y-6">

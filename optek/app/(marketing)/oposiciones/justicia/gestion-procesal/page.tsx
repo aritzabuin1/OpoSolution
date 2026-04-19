@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { JsonLd } from '@/components/shared/JsonLd'
+import { TopLawsWidget } from '@/components/seo/TopLawsWidget'
 import {
   BookOpen, CheckCircle, Clock, Scale, Shield,
   ArrowRight, Users, Sparkles, GraduationCap, FileText,
@@ -334,6 +335,8 @@ export default function GestionProcesalLanding() {
           </p>
         </div>
       </section>
+
+      <TopLawsWidget oposicionIds="e2000000-0000-0000-0000-000000000001" oposicionName="Gestión Procesal" />
 
       {/* FAQ visual */}
       <section className="space-y-6">

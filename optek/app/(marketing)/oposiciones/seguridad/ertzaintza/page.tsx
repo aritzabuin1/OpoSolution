@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { JsonLd } from '@/components/shared/JsonLd'
+import { TopLawsWidget } from '@/components/seo/TopLawsWidget'
 import {
   Shield, BookOpen, ArrowRight, ArrowLeft, Users, Clock,
   GraduationCap, CheckCircle2, Brain, FileText, Target,
@@ -192,6 +193,8 @@ export default function ErtzaintzaPage() {
           </CardContent>
         </Card>
       </section>
+
+      <TopLawsWidget oposicionIds="ab000000-0000-0000-0000-000000000001" oposicionName="Ertzaintza" />
 
       {/* FAQ */}
       <section className="space-y-6">

@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { JsonLd } from '@/components/shared/JsonLd'
+import { TopLawsWidget } from '@/components/seo/TopLawsWidget'
 import {
   Shield, BookOpen, ArrowRight, Users, Clock,
   GraduationCap, Siren, Brain,
@@ -196,6 +197,15 @@ export default function SeguridadHub() {
           Descubre el módulo de Personalidad Policial →
         </Link>
       </section>
+
+      <TopLawsWidget
+        oposicionIds={[
+          'ac000000-0000-0000-0000-000000000001',
+          'ad000000-0000-0000-0000-000000000001',
+          'ab000000-0000-0000-0000-000000000001',
+        ]}
+        oposicionName="Fuerzas y Cuerpos de Seguridad"
+      />
 
       {/* FAQ */}
       <section className="space-y-6">

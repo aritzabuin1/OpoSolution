@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { JsonLd } from '@/components/shared/JsonLd'
+import { TopLawsWidget } from '@/components/seo/TopLawsWidget'
 import {
   Scale, BookOpen, ArrowRight, Users, Clock,
   GraduationCap, Briefcase, FileText,
@@ -197,6 +198,15 @@ export default function JusticiaHub() {
           Leer análisis completo de los cambios →
         </Link>
       </section>
+
+      <TopLawsWidget
+        oposicionIds={[
+          'e0000000-0000-0000-0000-000000000001',
+          'e1000000-0000-0000-0000-000000000001',
+          'e2000000-0000-0000-0000-000000000001',
+        ]}
+        oposicionName="Justicia"
+      />
 
       {/* FAQ */}
       <section className="space-y-6">

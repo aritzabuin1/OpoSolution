@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { JsonLd } from '@/components/shared/JsonLd'
+import { TopLawsWidget } from '@/components/seo/TopLawsWidget'
 import {
   Siren, BookOpen, ArrowRight, ArrowLeft, Users, Clock,
   GraduationCap, CheckCircle2, Brain, FileText, Target,
@@ -245,6 +246,8 @@ export default function GuardiaCivilPage() {
           </CardContent>
         </Card>
       </section>
+
+      <TopLawsWidget oposicionIds="ac000000-0000-0000-0000-000000000001" oposicionName="Guardia Civil" />
 
       {/* FAQ */}
       <section className="space-y-6">
