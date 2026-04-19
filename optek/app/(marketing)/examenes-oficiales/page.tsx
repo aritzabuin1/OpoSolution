@@ -27,26 +27,27 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Examenes Oficiales de Oposiciones: Simulacros con Preguntas Reales | OpoRuta',
+  title: 'Simulacros Examen INAP — Auxiliar (C2) y Administrativo (C1) 2026 | OpoRuta',
   description:
-    'Practica con simulacros basados en examenes oficiales de 12 oposiciones: AGE (C2, C1, A2), Correos, Justicia, Hacienda, Penitenciarias, Guardia Civil, Policia Nacional y Ertzaintza. Penalizacion real, timer oficial y explicaciones IA de cada error.',
+    'Practica con exámenes reales del INAP para Auxiliar Administrativo (C2) y Administrativo del Estado (C1). Convocatorias 2024, 2022, 2019 y 2018 con preguntas oficiales, timer, penalización y explicaciones IA. También simulacros para Correos, Justicia, Hacienda, Penitenciarias y Seguridad (12 oposiciones en total).',
   keywords: [
+    'simulacro examen INAP auxiliar administrativo',
+    'simulacro examen INAP administrativo estado C1',
+    'examen oficial INAP preguntas reales',
+    'test oposiciones auxiliar administrativo con respuestas',
+    'test oposiciones administrativo estado C1',
+    'simulacro auxiliar estado gratis',
+    'examen cuerpo general auxiliar administración',
     'examenes oficiales oposiciones',
-    'simulacro examen oficial oposiciones',
-    'preguntas reales oposiciones',
-    'simulacro INAP',
-    'examen oposiciones con respuestas',
-    'simulacro auxiliar administrativo',
     'simulacro correos',
     'simulacro justicia',
     'simulacro guardia civil',
     'simulacro policia nacional',
-    'practica examen oposiciones online',
   ],
   openGraph: {
-    title: 'Examenes Oficiales de Oposiciones | OpoRuta',
+    title: 'Simulacros INAP Oficiales — C1 y C2 | OpoRuta',
     description:
-      'Simulacros basados en examenes oficiales de 12 oposiciones. Preguntas reales, timer y penalizacion oficial. Explicaciones IA de cada error.',
+      'Exámenes reales del INAP 2018-2024 para Auxiliar (C2) y Administrativo (C1). Timer, penalización y explicaciones IA.',
     type: 'website',
     url: `${APP_URL}/examenes-oficiales`,
     images: [
@@ -217,12 +218,12 @@ export default function ExamenesOficialesPage() {
         <div className="mb-14 text-center">
           <Badge variant="secondary" className="mb-4">12 oposiciones disponibles</Badge>
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Simulacros basados en examenes oficiales
+            Simulacros exámenes INAP — Auxiliar (C2) y Administrativo (C1)
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Practica con simulacros que reproducen el formato exacto del examen real:
-            preguntas de convocatorias anteriores, timer oficial y penalizacion del tribunal.
-            Cuando fallas, la IA te explica por que.
+            Practica con exámenes reales del INAP de 2018, 2019, 2022 y 2024.
+            Timer oficial, penalización -1/3 y explicaciones IA de cada error.
+            También simulacros para Correos, Justicia, Hacienda, Penitenciarias y cuerpos de Seguridad.
           </p>
           <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
             <Button asChild size="lg">
