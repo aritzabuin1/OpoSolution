@@ -115,6 +115,15 @@ export function GET() {
       ],
       note: 'Cada artículo muestra texto íntegro oficial + en qué oposiciones se examina. Multi-provisión incluida.',
       example_article: 'https://oporuta.es/ley/constitucion-espanola/articulo-14',
+      article_level_seo: {
+        pattern: 'https://oporuta.es/ley/{ley-slug}/articulo-{numero}',
+        features: [
+          'TL;DR de 2-3 frases generado con IA (Claude Haiku) validado contra texto oficial',
+          'BreadcrumbList + Article + LegislationObject schemas',
+          'Ranking histórico: en qué exámenes oficiales ha caído ese artículo',
+          'Internal linking bidireccional: hubs de oposición → artículos top, simulacros → artículos, blog auto-linker',
+        ],
+      },
     },
     tools: {
       calculadoras: [
@@ -135,6 +144,6 @@ export function GET() {
     country: 'Spain',
     llms_txt: 'https://oporuta.es/llms.txt',
     llms_full_txt: 'https://oporuta.es/llms-full.txt',
-    updated_at: '2026-04-07',
+    updated_at: '2026-04-19',
   })
 }

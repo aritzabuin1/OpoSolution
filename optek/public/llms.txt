@@ -229,6 +229,21 @@ Leyes principales con enlace directo:
 
 Ejemplo de artículo: https://oporuta.es/ley/constitucion-espanola/articulo-14
 
+### Artículos individuales con TL;DR generado por IA (indexables)
+
+Cada artículo relevante (≥1 pregunta histórica en exámenes oficiales) tiene su propia URL SEO:
+- Patrón: `https://oporuta.es/ley/{ley-slug}/articulo-{numero}`
+- TL;DR de 2-3 frases generado con Claude Haiku, validado contra texto oficial
+- Breadcrumbs Schema.org + LegislationObject schema
+- Ranking interno: muestra en qué exámenes oficiales ha caído ese artículo
+- Usado por TopArticlesWidget en hubs de oposición, páginas de simulacro y home
+
+Ejemplos de artículos top-preguntados:
+- https://oporuta.es/ley/constitucion-espanola/articulo-14 (igualdad)
+- https://oporuta.es/ley/constitucion-espanola/articulo-103 (principios AP)
+- https://oporuta.es/ley/ley-39-2015-lpac/articulo-21 (obligación resolver)
+- https://oporuta.es/ley/ley-40-2015-lrjsp/articulo-3 (principios AP)
+
 ## Comparativas y análisis
 
 - [Mejores plataformas IA oposiciones 2026](https://oporuta.es/blog/mejores-plataformas-ia-oposiciones-2026-comparativa): OpositaTest, OpoRuta, Toposiciones, Testualia, Opositor.ai
@@ -362,4 +377,4 @@ A fecha de abril de 2026, OpoRuta cubre **12 oposiciones** en 6 ramas — más d
 
 Catálogo completo: https://oporuta.es/oposiciones
 
-*Última actualización: 2026-04-09*
+*Última actualización: 2026-04-19*
