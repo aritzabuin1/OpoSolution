@@ -16,6 +16,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { createServiceClient } from '@/lib/supabase/server'
+import { TopArticlesInExamWidget } from '@/components/seo/TopArticlesInExamWidget'
 import { ArrowRight, BookOpen, Timer, CheckCircle2, Lock } from 'lucide-react'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
@@ -342,6 +343,11 @@ export default async function SimulacroExamenPage({ params }: Props) {
               <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
+        </div>
+
+        {/* Top artículos preguntados en este examen */}
+        <div className="mb-10">
+          <TopArticlesInExamWidget examenId={examenData?.id ?? null} />
         </div>
 
         {/* Vista previa de preguntas */}
