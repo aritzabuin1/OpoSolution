@@ -43,6 +43,7 @@
     "diagnose:seo": "tsx --env-file=.env.local execution/diagnose-seo-coverage.ts",
     "seo:low-ctr": "tsx --env-file=.env.local execution/gsc-low-ctr.ts",
     "seo:llm-citations": "tsx --env-file=.env.local execution/check-llm-citations.ts",
+    "seo:indexnow": "tsx --env-file=.env.local execution/submit-indexnow.ts",
     "generate:free-bank": "tsx --env-file=.env.local execution/generate-free-bank.ts",
     "seed:supuestos": "tsx --env-file=.env.local execution/generate-supuesto-bank.ts",
     "scrape:ofimatica": "tsx execution/scrape-microsoft-learn.ts",

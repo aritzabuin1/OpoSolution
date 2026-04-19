@@ -3,6 +3,7 @@ import { watchAllLeyes } from '@/lib/ai/boe-watcher'
 import { runCostCheck, type CostCheckResult } from '@/lib/admin/cost-check'
 import { runNurtureEmails, type NurtureResult } from '@/lib/email/nurture'
 import { runAlgoWatch, type AlgoWatchResult } from '@/lib/seo/algo-watch'
+import { runIndexNowDaily, type IndexNowDailyResult } from '@/lib/seo/indexnow-daily'
 import { logger } from '@/lib/logger'
 import { verifyCronSecret } from '@/lib/auth/cron-auth'
 
@@ -49,7 +50,7 @@ export async function GET(request: NextRequest) {
       boeResult = { error: 'Fallo en comprobación BOE' }
     }
 
-    if (ac.signal.aborted) return { boe: boeResult, costs: { skipped: 'timeout' }, nurture: { skipped: 'timeout' }, seo: { skipped: 'timeout' } }
+    if (ac.signal.aborted) return { boe: boeResult, costs: { skipped: 'timeout' }, nurture: { skipped: 'timeout' }, seo: { skipped: 'timeout' }, indexnow: { skipped: 'timeout' } }
 
     // ── 2. §2.23 Piggyback: cost + infra check del día anterior ─────────────
     // Analiza costes de ayer (completo) desde el cron de 07:00 UTC.
@@ -63,7 +64,7 @@ export async function GET(request: NextRequest) {
       costResult = { error: 'Fallo en comprobación de costes' }
     }
 
-    if (ac.signal.aborted) return { boe: boeResult, costs: costResult, nurture: { skipped: 'timeout' }, seo: { skipped: 'timeout' } }
+    if (ac.signal.aborted) return { boe: boeResult, costs: costResult, nurture: { skipped: 'timeout' }, seo: { skipped: 'timeout' }, indexnow: { skipped: 'timeout' } }
 
     // ── 3. Piggyback: nurture email sequence ────────────────────────────────
     // Sends personalized emails to free users based on registration age + behavior.
@@ -77,7 +78,7 @@ export async function GET(request: NextRequest) {
       nurtureResult = { error: 'Fallo en envío de nurture emails' }
     }
 
-    if (ac.signal.aborted) return { boe: boeResult, costs: costResult, nurture: nurtureResult, seo: { skipped: 'timeout' } }
+    if (ac.signal.aborted) return { boe: boeResult, costs: costResult, nurture: nurtureResult, seo: { skipped: 'timeout' }, indexnow: { skipped: 'timeout' } }
 
     // ── 4. PlanSEO F6.T4: monitor de algorithm updates vía RSS ────────────────
     // Fetch seroundtable.com/feed.xml. Si detecta keywords críticas → alerta email.
@@ -91,14 +92,26 @@ export async function GET(request: NextRequest) {
       seoResult = { error: 'Fallo en SEO algo watch' }
     }
 
-    return { boe: boeResult, costs: costResult, nurture: nurtureResult, seo: seoResult }
+    if (ac.signal.aborted) return { boe: boeResult, costs: costResult, nurture: nurtureResult, seo: seoResult, indexnow: { skipped: 'timeout' } }
+
+    // ── 5. IndexNow: notifica Bing/Yandex de URLs modificadas recientes ─────
+    let indexnowResult: IndexNowDailyResult | { error: string }
+    try {
+      indexnowResult = await runIndexNowDaily()
+      log.info(indexnowResult, '[boe-watch] IndexNow submission completado')
+    } catch (err) {
+      log.error({ err }, '[boe-watch] IndexNow error — no crítico')
+      indexnowResult = { error: 'Fallo en IndexNow submission' }
+    }
+
+    return { boe: boeResult, costs: costResult, nurture: nurtureResult, seo: seoResult, indexnow: indexnowResult }
   }
 
   const timeoutPromise = new Promise<never>((_, reject) => {
     ac.signal.addEventListener('abort', () => reject(new Error('GLOBAL_TIMEOUT')), { once: true })
   })
 
-  let results: { boe: object; costs: object; nurture: object; seo: object }
+  let results: { boe: object; costs: object; nurture: object; seo: object; indexnow: object }
   let timedOut = false
 
   try {
@@ -107,7 +120,7 @@ export async function GET(request: NextRequest) {
     if (err instanceof Error && err.message === 'GLOBAL_TIMEOUT') {
       log.warn('[boe-watch] Global timeout reached (55s) — returning partial results')
       timedOut = true
-      results = { boe: { skipped: 'timeout' }, costs: { skipped: 'timeout' }, nurture: { skipped: 'timeout' }, seo: { skipped: 'timeout' } }
+      results = { boe: { skipped: 'timeout' }, costs: { skipped: 'timeout' }, nurture: { skipped: 'timeout' }, seo: { skipped: 'timeout' }, indexnow: { skipped: 'timeout' } }
     } else {
       throw err
     }
@@ -116,7 +129,7 @@ export async function GET(request: NextRequest) {
   }
 
   return NextResponse.json(
-    { ok: !timedOut, partial: timedOut, boe: results.boe, costs: results.costs, nurture: results.nurture, seo: results.seo },
+    { ok: !timedOut, partial: timedOut, boe: results.boe, costs: results.costs, nurture: results.nurture, seo: results.seo, indexnow: results.indexnow },
     { status: timedOut ? 206 : 200 },
   )
 }
