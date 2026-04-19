@@ -90,22 +90,22 @@ export const ertzaintzaPosts: BlogPost[] = [
   // ─── 2 ─────────────────────────────────────────────────────────────────────
   {
     slug: 'requisitos-ertzaintza-2026-edad-altura-euskera',
-    title: 'Requisitos Ertzaintza 2026: edad, altura, euskera y más',
+    title: 'Requisitos Ertzaintza 2026: edad, euskera, sin altura',
     description:
-      'Requisitos para opositar a Ertzaintza 2026: edad 18-38, estatura 1,65 H / 1,60 M, permiso B, euskera PL2 y nacionalidad española.',
+      'Requisitos Ertzaintza 2026: 18-38 años, Bachiller, carnet B, euskera PL2. La altura fue eliminada como requisito en la convocatoria 2022. Guía completa.',
     date: '2026-04-19',
     dateModified: '2026-04-19',
     keywords: [
       'requisitos ertzaintza 2026',
       'edad maxima ertzaintza',
-      'altura minima ertzaintza',
+      'altura ertzaintza eliminada',
       'euskera ertzaintza pl2',
     ],
     content: `
 <h2>TL;DR</h2>
 <ul>
   <li><strong>Edad:</strong> entre 18 y 38 años el día del examen teórico.</li>
-  <li><strong>Estatura:</strong> 1,65 m hombres / 1,60 m mujeres (criterio flexibilizado en últimas convocatorias).</li>
+  <li><strong>Estatura:</strong> <strong>eliminada como requisito</strong> a partir de la convocatoria 2022 (medida contra la brecha de género).</li>
   <li><strong>Euskera:</strong> perfil lingüístico PL2 en la mayoría de plazas (PL1 en algunas convocatorias).</li>
 </ul>
 
@@ -116,7 +116,7 @@ export const ertzaintzaPosts: BlogPost[] = [
     <tr><td>Nacionalidad</td><td>Española</td></tr>
     <tr><td>Edad</td><td>18-38 años</td></tr>
     <tr><td>Titulación</td><td>Bachillerato, técnico FP grado medio o equivalente (nivel C1 administrativo)</td></tr>
-    <tr><td>Estatura</td><td>1,65 m hombres / 1,60 m mujeres</td></tr>
+    <tr><td>Estatura</td><td><strong>Sin requisito mínimo</strong> desde la convocatoria 2022</td></tr>
     <tr><td>Permiso de conducir</td><td>B en vigor</td></tr>
     <tr><td>Euskera</td><td>PL2 obligatorio en la mayoría de plazas</td></tr>
     <tr><td>Antecedentes penales</td><td>No tener antecedentes incompatibles</td></tr>
@@ -134,10 +134,14 @@ export const ertzaintzaPosts: BlogPost[] = [
   <li><strong>PL3:</strong> equivalente a C1. Exigido para puestos especializados.</li>
 </ul>
 
-<h2>Flexibilización de estatura</h2>
+<h2>Cambio clave 2022: adiós al requisito de altura</h2>
 <p>
-  Las últimas convocatorias han flexibilizado la medición de estatura, pero el requisito oficial sigue siendo
-  1,65 m para hombres y 1,60 m para mujeres. Se miden descalzos el día del reconocimiento médico.
+  Hasta 2022 se exigía <strong>1,65 m hombres y 1,60 m mujeres</strong>. El Gobierno Vasco y la
+  Academia Vasca de Policía y Emergencias (Arkaute) <strong>eliminaron el requisito de estatura
+  mínima</strong> a partir de la convocatoria siguiente, dentro del <em>Plan para el Fomento del
+  Acceso de las Mujeres a la categoría de Agente</em>. Actualmente puedes presentarte al proceso
+  selectivo sin importar cuánto mides, siempre que superes las pruebas físicas y el reconocimiento
+  médico.
 </p>
 
 <h2>Causas frecuentes de exclusión inicial</h2>
@@ -158,7 +162,7 @@ export const ertzaintzaPosts: BlogPost[] = [
 `.trim(),
     faqs: [
       { question: '¿Cuál es la edad máxima para Ertzaintza?', answer: 'La edad máxima es 38 años el día del examen teórico. No se descuenta el tiempo de servicio militar ni otras situaciones.' },
-      { question: '¿La Ertzaintza pide altura mínima?', answer: 'Sí: 1,65 m para hombres y 1,60 m para mujeres. Últimas convocatorias han aplicado criterios más flexibles en la medición.' },
+      { question: '¿La Ertzaintza pide altura mínima?', answer: 'No. El Gobierno Vasco eliminó el requisito de altura mínima (antes 1,65 m hombres / 1,60 m mujeres) a partir de la convocatoria 2022, como parte del Plan para el Fomento del Acceso de las Mujeres. Ya no se excluye por talla.' },
       { question: '¿Puedo opositar sin el perfil PL2 de euskera?', answer: 'Puedes presentarte a plazas con PL1 si la convocatoria ofrece esa modalidad, pero la inmensa mayoría de plazas exigen PL2.' },
       { question: '¿Es obligatorio el carné de conducir B?', answer: 'Sí. Debes tenerlo en vigor el día de finalización del plazo de inscripción.' },
       { question: '¿Puedo ser Ertzaintza si tengo antecedentes penales?', answer: 'Depende. Antecedentes cancelados no impiden participar, pero cualquier antecedente activo incompatible con el servicio supone exclusión.' },

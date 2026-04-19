@@ -356,15 +356,16 @@ export const guardiaCivilPosts: BlogPost[] = [
   // ─── 5 ─────────────────────────────────────────────────────────────────────
   {
     slug: 'requisitos-guardia-civil-2026-edad-altura-estudios',
-    title: 'Requisitos Guardia Civil 2026: edad 18-40, altura, ESO',
+    title: 'Requisitos Guardia Civil 2026: edad, estudios, IMC',
     description:
-      'Requisitos Guardia Civil 2026: edad 18-40 años, ESO mínimo, altura flexibilizada, nacionalidad, sin antecedentes. Checklist completo.',
+      'Requisitos Guardia Civil 2026: 18-40 años, ESO, IMC 17-30, sin antecedentes. Altura eliminada como requisito desde 2023. Checklist completo.',
     date: '2026-04-19',
     dateModified: '2026-04-19',
     keywords: [
       'requisitos guardia civil 2026',
       'edad guardia civil',
-      'altura guardia civil',
+      'altura guardia civil eliminada',
+      'imc guardia civil',
       'estudios guardia civil',
     ],
     content: `
@@ -372,9 +373,9 @@ export const guardiaCivilPosts: BlogPost[] = [
 <ul>
   <li><strong>Edad:</strong> 18-40 años cumplidos antes del cierre de inscripción.</li>
   <li><strong>Estudios:</strong> ESO o equivalente (FP básica sirve).</li>
-  <li><strong>Altura:</strong> ≥160 cm hombres, ≥155 cm mujeres (flexibilizado en 2023).</li>
-  <li><strong>Nacionalidad:</strong> española.</li>
-  <li><strong>Antecedentes:</strong> sin antecedentes penales ni sanciones graves.</li>
+  <li><strong>Altura:</strong> <strong>eliminada como requisito desde octubre de 2023</strong> (Orden PCI/155/2019 modificada).</li>
+  <li><strong>IMC:</strong> entre 17 y 30 — sustituye al filtro clásico de talla.</li>
+  <li><strong>Nacionalidad:</strong> española. Sin antecedentes penales ni sanciones graves.</li>
 </ul>
 
 <h2>Checklist de requisitos 2026</h2>
@@ -384,7 +385,8 @@ export const guardiaCivilPosts: BlogPost[] = [
     <tr><td>Nacionalidad</td><td>Española únicamente</td><td>DNI en vigor</td></tr>
     <tr><td>Edad</td><td>18-40 años cumplidos al cierre de inscripción</td><td>DNI</td></tr>
     <tr><td>Estudios</td><td>ESO o equivalente (FP básica, título extranjero homologado)</td><td>Título o certificado</td></tr>
-    <tr><td>Altura</td><td>≥160 cm hombres, ≥155 cm mujeres</td><td>Se mide en reconocimiento médico</td></tr>
+    <tr><td>Altura</td><td><strong>Sin límite mínimo ni máximo</strong> desde 2023 (sí se evalúa el IMC)</td><td>Reconocimiento médico</td></tr>
+    <tr><td>IMC</td><td>Entre 17 y 30 (peso kg ÷ talla en metros²)</td><td>Reconocimiento médico</td></tr>
     <tr><td>Antecedentes penales</td><td>Sin antecedentes sin cancelar</td><td>Certificado Registro Central</td></tr>
     <tr><td>Antecedentes militares</td><td>No expulsado FFAA ni FFCCSE</td><td>Declaración jurada</td></tr>
     <tr><td>Compromiso de armas</td><td>Jurar fidelidad a la Constitución</td><td>Declaración en inscripción</td></tr>
@@ -392,11 +394,18 @@ export const guardiaCivilPosts: BlogPost[] = [
   </tbody>
 </table>
 
-<h2>Cambio importante: altura flexibilizada</h2>
+<h2>Cambio clave 2023: adiós al requisito de altura</h2>
 <p>
-  Hasta 2022, la altura mínima era 165 cm para hombres y 160 cm para mujeres. En 2023 se modificó el cuadro físico
-  bajándolo a <strong>160 cm y 155 cm</strong> respectivamente. Esto ha permitido el acceso a miles de opositores que
-  antes quedaban fuera por centímetros.
+  Hasta 2022 la Guardia Civil exigía una altura mínima de 160 cm para hombres y 155 cm para mujeres
+  (antes de 2020, 165/160). A partir de la <strong>modificación de la Orden PCI/155/2019 publicada el
+  19 de octubre de 2023</strong>, la talla deja de figurar en el cuadro de exclusiones médicas:
+  <strong>ya no existe altura mínima ni máxima</strong> para opositar al cuerpo.
+</p>
+<p>
+  En su lugar el filtro físico pasa por el <strong>IMC (Índice de Masa Corporal) entre 17 y 30</strong>
+  y el resto de pruebas físicas (carrera, natación, dominadas, flexiones, circuito). Si tu estatura te
+  permite pasar las pruebas físicas y no tienes patologías excluyentes, puedes presentarte sin importar
+  cuánto mides.
 </p>
 
 <h2>¿Qué pasa si cumplo 40 años durante la oposición?</h2>
@@ -434,7 +443,7 @@ export const guardiaCivilPosts: BlogPost[] = [
       { question: '¿Qué edad mínima hay que tener para Guardia Civil?', answer: '18 años cumplidos en el momento de cerrar el plazo de inscripción publicado en el BOE.' },
       { question: '¿Hay edad máxima para opositar a Guardia Civil?', answer: 'Sí, 40 años cumplidos. Si los cumples el mismo día del cierre de inscripción estás dentro; después quedas fuera.' },
       { question: '¿Sirve el título de Bachillerato?', answer: 'Sí. Bachillerato, FP de grado medio o superior, y cualquier titulación superior también cumplen el requisito mínimo de ESO.' },
-      { question: '¿Cuánto mide como mínimo un guardia civil en 2026?', answer: 'Desde 2023 la altura mínima es 160 cm para hombres y 155 cm para mujeres. Antes era 165 cm y 160 cm respectivamente.' },
+      { question: '¿Cuánto mide como mínimo un guardia civil en 2026?', answer: 'Ya no existe altura mínima. La modificación de la Orden PCI/155/2019 publicada el 19 de octubre de 2023 eliminó la talla del cuadro de exclusiones médicas. Ahora se evalúa IMC (17-30) y pruebas físicas.' },
       { question: '¿Necesito carnet B para inscribirme?', answer: 'No para inscribirte, pero sí antes de jurar la plaza al finalizar la Academia de Baeza. Mejor sacarlo antes.' },
     ],
   },

@@ -304,22 +304,22 @@ export const policiaNacionalPosts: BlogPost[] = [
   // ─── Post 4 ──────────────────────────────────────────────────────────────
   {
     slug: 'requisitos-policia-nacional-2026-edad-altura-estudios',
-    title: 'Requisitos Policía Nacional 2026: edad, altura y estudios',
+    title: 'Requisitos Policía Nacional 2026: edad, estudios, físicos',
     description:
-      'Requisitos oficiales para opositar a la Escala Básica del CNP: edad 18-40, altura mínima 1,65 m (hombres) / 1,60 m (mujeres), Bachiller o equivalente.',
+      'Requisitos oficiales Escala Básica CNP 2026: 18-40 años, Bachiller, carnet B. La altura fue eliminada como requisito en 2023. Checklist completo.',
     date: '2026-03-23',
     dateModified: '2026-04-19',
     keywords: [
       'requisitos policía nacional 2026',
       'edad policía nacional',
-      'altura policía nacional',
+      'altura policía nacional eliminada',
       'estudios mínimos policía nacional',
     ],
     content: `
 <h2>TL;DR</h2>
 <ul>
   <li><strong>Edad:</strong> 18–40 años (según convocatoria vigente, consulta BOE).</li>
-  <li><strong>Altura:</strong> 1,65 m hombres / 1,60 m mujeres (referencia histórica).</li>
+  <li><strong>Altura:</strong> <strong>eliminada como requisito general desde 2023</strong> (solo se mantiene en unidades especiales UIP/UPR/GEO).</li>
   <li><strong>Estudios:</strong> título de Bachiller o equivalente (Técnico de FP).</li>
   <li><strong>Permiso de conducir:</strong> B en vigor.</li>
 </ul>
@@ -336,12 +336,27 @@ export const policiaNacionalPosts: BlogPost[] = [
 
 <h2>Requisitos físicos</h2>
 <table>
-  <thead><tr><th>Requisito</th><th>Hombres</th><th>Mujeres</th></tr></thead>
+  <thead><tr><th>Requisito</th><th>Detalle</th></tr></thead>
   <tbody>
-    <tr><td>Altura mínima</td><td>1,65 m</td><td>1,60 m</td></tr>
-    <tr><td>IMC (referencia médica)</td><td>18,5 – 29,9</td><td>18,5 – 29,9</td></tr>
+    <tr><td>Altura mínima</td><td><strong>No existe</strong> desde 2023 en el acceso a Escala Básica</td></tr>
+    <tr><td>IMC (referencia médica)</td><td>18,5 – 29,9</td></tr>
+    <tr><td>Pruebas físicas</td><td>Dominadas, circuito, carrera 1000 m, natación 50 m (eliminatorias)</td></tr>
+    <tr><td>Unidades especiales</td><td>UIP, UPR y GEO sí mantienen altura mínima — se evalúa al destinar</td></tr>
   </tbody>
 </table>
+
+<h2>Cambio clave 2023: fin del requisito de altura</h2>
+<p>
+  Tras décadas exigiendo 1,65 m hombres y 1,60 m mujeres, la <strong>convocatoria 2023 eliminó
+  definitivamente el requisito general de estatura mínima</strong> para acceder a la Escala Básica
+  del CNP. El objetivo: abrir el acceso a más candidatos (especialmente mujeres) y modernizar el
+  proceso. La medida se consolidó en la Orden INT/1184/2018 y modificaciones posteriores.
+</p>
+<p>
+  Importante: las <strong>unidades especiales</strong> (UIP — Intervención Policial, UPR —
+  Prevención y Reacción, GEO — Operaciones Especiales) sí siguen pidiendo alturas mínimas
+  específicas por razones operativas. Pero eso se evalúa en la fase de destino, no en el acceso.
+</p>
 
 <h2>Estudios</h2>
 <p>
@@ -378,7 +393,7 @@ export const policiaNacionalPosts: BlogPost[] = [
       {
         question: '¿Se sigue exigiendo altura mínima?',
         answer:
-          'Las últimas convocatorias han mantenido 1,65 m hombres y 1,60 m mujeres. Verifica en el BOE vigente porque pueden existir modificaciones.',
+          'No. El requisito de altura mínima (1,65 m hombres / 1,60 m mujeres) fue eliminado definitivamente a partir de la convocatoria de 2023 para la Escala Básica. Solo se mantiene en unidades especiales como UIP, UPR y GEO, donde la talla afecta a la operativa.',
       },
       {
         question: '¿Necesito el carnet B sí o sí?',
