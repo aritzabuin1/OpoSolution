@@ -580,7 +580,7 @@ export const blogPosts: BlogPost[] = [
     `.trim(),
     dateModified: '2026-03-19',
     faqs: [
-      { question: '¿Cuántos temas tiene el temario de Auxiliar Administrativo del Estado?', answer: 'El temario consta de 28 temas divididos en 2 bloques: Bloque I (Organización Pública, 16 temas) que abarca Constitución, administración y empleo público; y Bloque II (Actividad Administrativa y Ofimática, 12 temas) que cubre gestión documental, Word, Excel y administración electrónica.' },
+      { question: '¿Cuántos temas tiene el temario de Auxiliar Administrativo del Estado 2026?', answer: 'El temario consta de 28 temas divididos en 2 bloques: Bloque I (Organización Pública, 16 temas) que abarca Constitución, administración y empleo público; y Bloque II (Actividad Administrativa y Ofimática, 12 temas) que cubre gestión documental, Word, Excel y administración electrónica.' },
       { question: '¿Ha cambiado el temario de Auxiliar Administrativo para 2025-2026?', answer: 'El temario se actualizó con la OEP 2024 e incorpora cambios legislativos recientes: actualización del TREBEP, la Ley 4/2022 de consumidores y las modificaciones de la LPAC. Para la convocatoria de mayo 2026 se mantiene este temario vigente.' },
       { question: '¿Qué bloque del temario es más importante para el examen?', answer: 'El Bloque I (Organización Pública) tiene más peso en el cuestionario teórico, con especial énfasis en Constitución, LPAC y TREBEP. El Bloque II (Ofimática) es crucial para la prueba práctica de Word y Excel. Ambos son necesarios para aprobar.' },
       { question: '¿Por qué temas debo empezar a estudiar?', answer: 'Se recomienda empezar por los temas más preguntados en exámenes INAP: T1 (Constitución), T8 (AGE), T13 (Empleo público) y T5 (LPAC). Según el análisis de frecuencia de OpoRuta, estos 4 temas concentran más del 30% de las preguntas históricas.' },
@@ -1707,7 +1707,7 @@ export const blogPosts: BlogPost[] = [
     description:
       'Corte real 2024: 30 puntos (parte 1) y 26,33 (parte 2). Histórico completo desde 2019 con tendencia al alza. Fórmula penalización -1/3 y calculadora gratis para saber si llegas.',
     date: '2026-03-12',
-    dateModified: '2026-04-06',
+    dateModified: '2026-04-19',
     keywords: [
       'nota de corte auxiliar administrativo estado',
       'nota corte auxiliar administrativo 2024',
@@ -3914,7 +3914,7 @@ export const blogPosts: BlogPost[] = [
     description:
       '¿Buscas alternativa a OpositaTest? Comparamos las 5 mejores plataformas con IA: OpoRuta (49,99€ único), OpositaTest (12€/mes), Testualia, Typed AI y Opositor.ai. Precios reales, funciones y para quién es cada una.',
     date: '2026-03-17',
-    dateModified: '2026-04-09',
+    dateModified: '2026-04-19',
     keywords: [
       'alternativa opositatest',
       'alternativas opositatest',
@@ -4275,7 +4275,7 @@ export const blogPosts: BlogPost[] = [
     description:
       'Comparativa real: verificación de citas legales, Radar del Tribunal y simulacros INAP. OpoRuta 49,99€ pago único vs OpositaTest 12€/mes (144€/año). Tabla punto por punto.',
     date: '2026-03-17',
-    dateModified: '2026-04-09',
+    dateModified: '2026-04-19',
     keywords: [
       'alternativa a OpositaTest',
       'alternativas OpositaTest',
@@ -4954,7 +4954,7 @@ export const blogPosts: BlogPost[] = [
     description:
       'Fecha confirmada BOE: examen Auxiliar Administrativo el 23 mayo 2026. Calendario completo: inscripción, admitidos, C1 el 20 junio. Todos los plazos AGE actualizados.',
     date: '2026-03-19',
-    dateModified: '2026-04-06',
+    dateModified: '2026-04-19',
     keywords: [
       'calendario oposiciones 2026',
       'fechas examen auxiliar administrativo 2026',
@@ -5121,7 +5121,7 @@ export const blogPosts: BlogPost[] = [
     description:
       '¿Dónde pagan más? Ranking de destinos por complemento específico, ciudades con más vacantes, ministerios con teletrabajo y cómo funciona la elección por nota. Datos de la última convocatoria.',
     date: '2026-03-19',
-    dateModified: '2026-04-06',
+    dateModified: '2026-04-19',
     keywords: [
       'elegir destino auxiliar administrativo',
       'destinos auxiliar administrativo estado',
@@ -5440,7 +5440,7 @@ export const blogPosts: BlogPost[] = [
     description:
       '¿Cuánto cobra un Auxiliar Administrativo del Estado? Nómina real 2026: sueldo base 648€ + complementos + 14 pagas. Neto mensual ~1.500€ de inicio, hasta 1.900€ con trienios. Tabla completa.',
     date: '2026-03-19',
-    dateModified: '2026-04-06',
+    dateModified: '2026-04-19',
     keywords: [
       'sueldo auxiliar administrativo estado',
       'cuanto cobra auxiliar administrativo',
@@ -5663,7 +5663,7 @@ export const blogPosts: BlogPost[] = [
     description:
       'Sin límite de edad y basta con ESO. Los 5 requisitos oficiales para opositar a Auxiliar del Estado en 2026: nacionalidad, titulación, capacidad funcional. Incluye casos especiales (extranjeros UE, mayores de 50).',
     date: '2026-03-19',
-    dateModified: '2026-04-06',
+    dateModified: '2026-04-19',
     keywords: [
       'requisitos auxiliar administrativo estado',
       'quien puede presentarse auxiliar administrativo',
@@ -6137,7 +6137,7 @@ export const blogPosts: BlogPost[] = [
     description:
       'Nómina real desglosada: base 858€ + destino + específico = hasta 2.100€ netos. Tabla por ministerio, trienios y progresión salarial del Administrativo del Estado C1 en 2026.',
     date: '2026-03-20',
-    dateModified: '2026-04-06',
+    dateModified: '2026-04-19',
     keywords: [
       'sueldo administrativo estado c1',
       'nómina administrativo estado 2026',
@@ -6685,7 +6685,7 @@ export const blogPosts: BlogPost[] = [
     description:
       'Fechas confirmadas C1: examen 20 junio 2026. Inscripción, admitidos provisionales, segundo ejercicio (supuesto práctico) y toma de posesión. Calendario actualizado abril 2026.',
     date: '2026-03-20',
-    dateModified: '2026-04-06',
+    dateModified: '2026-04-19',
     keywords: [
       'calendario administrativo estado c1 2026',
       'fecha examen administrativo estado 2026',
@@ -9173,7 +9173,7 @@ export const blogPosts: BlogPost[] = [
     description:
       '¿Cuánto cobra un funcionario GACE A2? Nómina real: sueldo base 1.199€ + complementos hasta 3.000€ brutos. Mejores destinos por salario, progresión con trienios y comparativa con C1.',
     date: '2026-03-23',
-    dateModified: '2026-04-06',
+    dateModified: '2026-04-19',
     keywords: [
       'sueldo gestión estado A2 2026',
       'sueldo GACE A2',
@@ -9329,7 +9329,7 @@ export const blogPosts: BlogPost[] = [
     description:
       'Guía definitiva Correos 2026: 4.000+ plazas, 12 temas, 100 preguntas SIN penalización. Temario completo, scoring por méritos, fechas y cómo preparar en 3 meses.',
     date: '2026-03-25',
-    dateModified: '2026-04-06',
+    dateModified: '2026-04-19',
     keywords: [
       'examen correos 2026',
       'oposiciones correos',
@@ -13835,6 +13835,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'sueldo-correos-2026-reparto-atencion-cliente',
     title: 'Sueldo Correos 2026: cuánto cobra un cartero (nómina REP, ATC y clasificación)',
+    dateModified: '2026-04-19',
     description: 'Sueldo de Correos en 2026 por puesto: REP, ATC y Agente de Clasificacion. Desglose de salario base, complementos, nocturnidad y comparativa.',
     date: '2026-03-30',
     keywords: ['sueldo correos 2026', 'cuanto cobra un cartero', 'sueldo reparto correos', 'sueldo ATC correos', 'sueldo cartero 2026', 'nómina correos'],
@@ -15175,7 +15176,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Nota de corte Agente de Hacienda 2024: histórico y predicción 2026',
     description: 'Historico de notas de corte de Agente de Hacienda Publica. Cuanto necesitas para aprobar el primer ejercicio. Tendencia y prediccion para la proxima convocatoria.',
     date: '2026-03-30',
-    dateModified: '2026-04-01',
+    dateModified: '2026-04-19',
     keywords: ['nota corte agente hacienda', 'notas corte hacienda 2024', 'cuanto hay que sacar agente hacienda', 'aprobados agente hacienda'],
     content: `<h2>Historico de notas de corte — Primer ejercicio</h2>
 <p>La nota de corte del primer ejercicio de Agente de la Hacienda Publica ha variado significativamente en los ultimos anos. Conocer estos datos es fundamental para dimensionar tu preparacion y fijar un objetivo realista.</p>
