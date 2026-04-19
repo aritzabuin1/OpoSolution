@@ -18,7 +18,22 @@ const organizationSchema = {
   logo: `${APP_URL}/icon.png`,
   description:
     'Plataforma de IA para preparar oposiciones en España. Tests verificados contra BOE, simulacros con exámenes reales, Radar del Tribunal y Tutor IA. AGE, Correos, Justicia, Hacienda, Penitenciarias y Seguridad. 18.000+ plazas.',
-  sameAs: ['https://www.linkedin.com/in/aritz-abuin/'],
+  sameAs: [
+    'https://www.linkedin.com/in/aritz-abuin/',
+    'https://www.linkedin.com/company/oporuta/',
+    'https://github.com/aritzabuin1',
+  ],
+  founder: {
+    '@type': 'Person',
+    name: 'Aritz Abuin',
+    url: 'https://aritz-abuin-ia.vercel.app',
+    sameAs: ['https://www.linkedin.com/in/aritz-abuin/'],
+    jobTitle: 'AI Solutions Architect',
+  },
+  foundingDate: '2025-11-01',
+  areaServed: { '@type': 'Country', name: 'Spain' },
+  knowsLanguage: ['es-ES'],
+  slogan: 'El camino más corto hacia el aprobado',
   contactPoint: {
     '@type': 'ContactPoint',
     email: 'hola@oporuta.es',

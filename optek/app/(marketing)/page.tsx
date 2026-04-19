@@ -26,6 +26,7 @@ import { ExamCountdown } from '@/components/marketing/ExamCountdown'
 import { blogPosts } from '@/content/blog/posts'
 import { AIAnalysisDemo } from '@/components/marketing/AIAnalysisDemo'
 import { SocialProofCounter } from '@/components/marketing/SocialProofCounter'
+import { TopArticlesGlobalWidget } from '@/components/seo/TopArticlesGlobalWidget'
 // WaitlistForm removed — all ramas are now active
 
 const APP_URL_META = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
@@ -921,6 +922,9 @@ export default async function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* ─── Top artículos globales (F2.T4) ──────────────────────────── */}
+      <TopArticlesGlobalWidget />
 
       {/* ─── FAQ ──────────────────────────────────────────────────────── */}
       <section id="faq" aria-labelledby="faq-heading" className="py-20">
