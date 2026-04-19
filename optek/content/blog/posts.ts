@@ -25,7 +25,12 @@ export interface BlogPost {
   }
 }
 
-export const blogPosts: BlogPost[] = [
+import { guardiaCivilPosts } from './posts-guardia-civil'
+import { policiaNacionalPosts } from './posts-policia-nacional'
+import { penitenciariasPosts } from './posts-penitenciarias'
+import { haciendaPosts } from './posts-hacienda'
+
+const corePosts: BlogPost[] = [
   // ─── Post 1 ────────────────────────────────────────────────────────────────
   {
     slug: 'penalizacion-examen-auxiliar-administrativo',
@@ -20645,4 +20650,12 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Se pueden preparar las tres a la vez?', answer: 'Sí. Comparten ~70% de temario. Es estrategia habitual opositar a las tres y quedarse con la que se apruebe antes.' },
     ],
   },
+]
+
+export const blogPosts: BlogPost[] = [
+  ...corePosts,
+  ...guardiaCivilPosts,
+  ...policiaNacionalPosts,
+  ...penitenciariasPosts,
+  ...haciendaPosts,
 ]
