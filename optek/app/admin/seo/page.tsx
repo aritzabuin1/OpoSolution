@@ -19,6 +19,7 @@ import { isArticleIndexable } from '@/lib/seo/indexability'
 import { BarChart3, Scale, Sparkles, AlertCircle } from 'lucide-react'
 import { GscSection } from '@/components/admin/GscSection'
 import { LlmCitationsSection } from '@/components/admin/LlmCitationsSection'
+import { WeeklyReportSection } from '@/components/admin/WeeklyReportSection'
 
 export const dynamic = 'force-dynamic'
 
@@ -189,6 +190,12 @@ export default async function AdminSEOPage() {
       <section className="space-y-3">
         <h2 className="text-lg font-semibold">Citas en LLMs</h2>
         <LlmCitationsSection />
+      </section>
+
+      {/* Weekly WoW report (F6.T5) */}
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold">Reporte semanal (WoW)</h2>
+        <WeeklyReportSection />
       </section>
 
       {/* Top leyes */}

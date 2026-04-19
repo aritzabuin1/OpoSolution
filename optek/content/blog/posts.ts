@@ -29,10 +29,11 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 1 ────────────────────────────────────────────────────────────────
   {
     slug: 'penalizacion-examen-auxiliar-administrativo',
-    title: 'Penalización -1/3 en el examen Auxiliar Administrativo: ¿cuándo dejar en blanco?',
+    title: 'Penalización -1/3 Auxiliar AGE 2026: cuándo dejar blanco',
     description:
-      'La regla clave: solo responde si puedes descartar al menos 2 opciones. Fórmula de la penalización -1/3 con ejemplos numéricos, cuándo arriesgar y simulacros con corrección automática.',
+      'Fórmula -1/3 con ejemplos: cada 3 errores pierdes 1 acierto. Regla de oro: responde solo si puedes descartar 1 opción. Calcula tu nota en 90 minutos.',
     date: '2026-02-25',
+    dateModified: '2026-04-19',
     keywords: [
       'penalización examen auxiliar administrativo',
       'auxiliar administrativo penalización -1/3',
@@ -40,6 +41,13 @@ export const blogPosts: BlogPost[] = [
       'cómo calcular nota oposición',
     ],
     content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Fórmula oficial:</strong> acierto +1, fallo −1/3, blanco 0 (cada 3 errores = 1 acierto menos).</li>
+  <li><strong>Regla de oro:</strong> responde si puedes descartar al menos 1 opción; si no sabes nada, en blanco.</li>
+  <li><strong>Examen:</strong> 100 preguntas puntuables + 10 reserva en 90 min; nota de corte histórica 30/50 puntos por parte.</li>
+</ul>
+
 <h2>¿Qué es la penalización en el examen del Auxiliar Administrativo del Estado?</h2>
 <p>
   El examen del Cuerpo General Auxiliar de la Administración del Estado (C2) aplica un
@@ -143,7 +151,6 @@ export const blogPosts: BlogPost[] = [
 
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
-    dateModified: '2026-03-19',
     faqs: [
       { question: '¿Cuánto descuenta cada error en el examen de Auxiliar Administrativo?', answer: 'Cada respuesta incorrecta descuenta 1/3 del valor de un acierto (−0,333 puntos). Es decir, por cada 3 errores pierdes el equivalente a 1 acierto. Las preguntas en blanco no descuentan nada.' },
       { question: '¿Merece la pena responder si dudo entre dos opciones?', answer: 'Sí. Si puedes descartar al menos 1 de las 4 opciones, la probabilidad de acertar sube al 33% y el valor esperado es positivo. La regla de oro: responde si puedes eliminar alguna opción, deja en blanco si no sabes nada del tema.' },
@@ -457,10 +464,11 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 5 ────────────────────────────────────────────────────────────────
   {
     slug: 'temario-auxiliar-administrativo-estado-2025-2026',
-    title: 'Temario Auxiliar Administrativo del Estado 2026: 28 temas oficiales (qué estudiar)',
+    title: 'Temario Auxiliar Administrativo 2026: 28 temas (INAP)',
     description:
-      'Los 28 temas desglosados tema a tema. Bloque I: Constitución, LPAC, TREBEP. Bloque II: Word, Excel, Access. Frecuencia real en exámenes INAP (2018-2024) y plan de estudio de 6 meses.',
+      '28 temas tema a tema: Bloque I (Constitución, LPAC, TREBEP) + Bloque II (Word, Excel, Access). Frecuencia real en exámenes INAP 2018-2024 y plan de 6 meses.',
     date: '2026-03-03',
+    dateModified: '2026-04-19',
     keywords: [
       'temario auxiliar administrativo estado 2025',
       'temas oposición auxiliar administrativo estado',
@@ -469,6 +477,13 @@ export const blogPosts: BlogPost[] = [
       'oposiciones auxiliar administrativo estado 2026',
     ],
     content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>28 temas oficiales</strong> divididos en Bloque I (16 temas teóricos) y Bloque II (12 de ofimática).</li>
+  <li><strong>Examen:</strong> 100 preguntas puntuables (30 teoría + 30 psicotécnicos + 40 ofimática) en 90 min, penalización −1/3.</li>
+  <li><strong>Temario estable:</strong> el mismo para convocatorias 2025 y 2026; prioriza Constitución, LPAC y TREBEP (mayor peso histórico).</li>
+</ul>
+
 <h2>El temario oficial del Auxiliar Administrativo del Estado</h2>
 <p>
   El temario del Cuerpo General Auxiliar de la Administración del Estado (C2) se divide
@@ -578,7 +593,6 @@ export const blogPosts: BlogPost[] = [
 
 <p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica gratis en OpoRuta</a></strong> — tests con preguntas reales del INAP, penalización oficial y corrección con IA. <a href="/precios">Ver precios</a>.</p>
     `.trim(),
-    dateModified: '2026-03-19',
     faqs: [
       { question: '¿Cuántos temas tiene el temario de Auxiliar Administrativo del Estado 2026?', answer: 'El temario consta de 28 temas divididos en 2 bloques: Bloque I (Organización Pública, 16 temas) que abarca Constitución, administración y empleo público; y Bloque II (Actividad Administrativa y Ofimática, 12 temas) que cubre gestión documental, Word, Excel y administración electrónica.' },
       { question: '¿Ha cambiado el temario de Auxiliar Administrativo para 2025-2026?', answer: 'El temario se actualizó con la OEP 2024 e incorpora cambios legislativos recientes: actualización del TREBEP, la Ley 4/2022 de consumidores y las modificaciones de la LPAC. Para la convocatoria de mayo 2026 se mantiene este temario vigente.' },
@@ -1703,9 +1717,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 11 ───────────────────────────────────────────────────────────────
   {
     slug: 'nota-corte-auxiliar-administrativo-estado',
-    title: 'Nota de corte Auxiliar Administrativo del Estado 2024: 30 puntos (histórico)',
+    title: 'Nota corte Auxiliar Administrativo 2026: 30 puntos | OpoRuta',
     description:
-      'Corte real 2024: 30 puntos (parte 1) y 26,33 (parte 2). Histórico completo desde 2019 con tendencia al alza. Fórmula penalización -1/3 y calculadora gratis para saber si llegas.',
+      'Corte 2024: 30/50 parte 1 y 26,33/50 parte 2 (ambas eliminatorias). Histórico 2019-2024 y calculadora con penalización −1/3 para saber si llegas.',
     date: '2026-03-12',
     dateModified: '2026-04-19',
     keywords: [
@@ -1718,6 +1732,13 @@ export const blogPosts: BlogPost[] = [
       'nota de corte auxiliar administrativo del estado 2024',
     ],
     content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Nota de corte 2024:</strong> 30 puntos (parte 1, teoría + psicotécnicos) y 26,33 (parte 2, ofimática) — sobre 50.</li>
+  <li><strong>Ambas partes son eliminatorias:</strong> quedarte por debajo del mínimo en una descarta aunque la otra sea excelente.</li>
+  <li><strong>Penalización −1/3:</strong> puntuación = aciertos − (errores / 3). Tendencia al alza en los últimos años.</li>
+</ul>
+
 <h2>Nota de corte de la última convocatoria: 30 y 26,33 puntos</h2>
 <p>
   En la última convocatoria del Cuerpo General Auxiliar de la Administración del Estado, las
@@ -2531,10 +2552,11 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 18 ───────────────────────────────────────────────────────────────
   {
     slug: 'diferencias-auxiliar-c2-administrativo-c1-estado',
-    title: 'Auxiliar Administrativo ¿C1 o C2? Diferencias 2026 (tabla + sueldo)',
+    title: 'C1 vs C2 Estado 2026: 45 vs 28 temas, 28k vs 23k€',
     description:
-      'C2: 28 temas, 23.000€/año. C1: 45 temas, 28.000€/año. Comparativa real con ratio aspirantes/plaza, dificultad y sueldo neto. Tabla resumen para decidir qué oposición preparar.',
+      'C2: 28 temas, ~23.000€/año, solo test. C1: 45 temas, ~28.000€/año, test + supuesto práctico. Compara temario, plazas, ratio y sueldo neto.',
     date: '2026-03-21',
+    dateModified: '2026-04-19',
     keywords: [
       'diferencias auxiliar administrativo estado',
       'C1 vs C2 oposiciones AGE',
@@ -2542,6 +2564,13 @@ export const blogPosts: BlogPost[] = [
       'sueldo auxiliar administrativo estado',
     ],
     content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Auxiliar (C2):</strong> 28 temas, Bachillerato/ESO, solo test, ~23.000€ brutos anuales.</li>
+  <li><strong>Administrativo (C1):</strong> 45 temas, Bachillerato, test + supuesto práctico, ~28.000€ brutos anuales.</li>
+  <li><strong>Decisión:</strong> C2 si buscas entrar antes con menos temario; C1 si aceptas más estudio a cambio de ~5.000€/año más.</li>
+</ul>
+
 <p>
   Si estás pensando en opositar a la Administración General del Estado (AGE), probablemente te
   hayas preguntado: <strong>¿Auxiliar (C2) o Administrativo (C1)?</strong> Son los dos cuerpos más
@@ -2683,7 +2712,6 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/nota-corte-auxiliar-administrativo-estado">Nota de corte Auxiliar</a> — qué nota necesitas para aprobar</li>
 </ul>
     `.trim(),
-    dateModified: '2026-03-19',
     faqs: [
       { question: '¿Qué diferencia hay entre Auxiliar Administrativo (C2) y Administrativo del Estado (C1)?', answer: 'Las principales diferencias: C2 requiere ESO y tiene 28 temas, C1 requiere bachillerato y tiene 45 temas. C1 incluye supuesto práctico (C2 no). El sueldo de C1 es mayor (~1.500-2.100€ vs ~1.300-1.700€). Ambos exámenes se celebran el mismo día (23 mayo 2026), así que debes elegir uno.' },
       { question: '¿Es mejor presentarse al C1 o al C2?', answer: 'Depende de tu formación y disponibilidad. Si tienes bachillerato y puedes dedicar 6-10 meses de estudio, C1 ofrece mejor sueldo y proyección. Si prefieres un temario más corto y una primera oportunidad más accesible, C2 es una excelente puerta de entrada con posibilidad de promoción interna posterior a C1.' },
@@ -2953,10 +2981,11 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 21 ───────────────────────────────────────────────────────────────
   {
     slug: 'administrativo-estado-c1-2026-plazas-temario-nota-corte',
-    title: 'Administrativo del Estado (C1) 2026: 2.512 plazas, temario y nota de corte',
+    title: 'Administrativo C1 2026: 2.512 plazas, 45 temas | OpoRuta',
     description:
-      '2.512 plazas convocadas, 45 temas en 3 bloques, test + supuesto práctico. Nota de corte histórica, sueldo ~28.000€/año y cómo prepararlo. Datos actualizados 2026.',
+      '2.512 plazas (máximo histórico BOE-A-2025-26262), 45 temas, test + supuesto práctico. Sueldo ~28.000€/año. Consulta temario y nota de corte.',
     date: '2026-03-27',
+    dateModified: '2026-04-19',
     keywords: [
       'administrativo del estado 2026',
       'oposiciones C1 AGE 2026',
@@ -2964,6 +2993,13 @@ export const blogPosts: BlogPost[] = [
       'temario administrativo estado',
     ],
     content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>2.512 plazas</strong> (BOE-A-2025-26262): máximo histórico en acceso libre + promoción interna.</li>
+  <li><strong>Examen:</strong> test de 100 preguntas + supuesto práctico; 45 temas en 3 bloques; titulación Bachillerato.</li>
+  <li><strong>Sueldo:</strong> ~2.100€ netos/mes (~28.000€ brutos anuales, 14 pagas) + trienios de 53,28€/mes.</li>
+</ul>
+
 <p>
   La convocatoria de <strong>Administrativo del Estado (C1) 2026</strong> ofrece
   <strong>2.512 plazas</strong> (BOE-A-2025-26262), la cifra más alta de los últimos años. Es una
@@ -3083,7 +3119,6 @@ export const blogPosts: BlogPost[] = [
   <li><a href="/blog/nota-corte-auxiliar-administrativo-estado">Nota de corte del C2</a> — si también preparas el Auxiliar Administrativo</li>
 </ul>
     `.trim(),
-    dateModified: '2026-03-19',
     faqs: [
       { question: '¿Cuántas plazas de Administrativo del Estado (C1) hay en 2026?', answer: 'Se han convocado más de 2.500 plazas de Administrativo del Estado (subgrupo C1) en la OEP 2025. El examen se celebra el 23 de mayo de 2026, el mismo día que el de Auxiliar (C2), por lo que solo puedes presentarte a uno.' },
       { question: '¿Cuántos temas tiene el temario de Administrativo del Estado C1?', answer: 'El temario consta de 45 temas repartidos en 4 bloques: Organización del Estado y UE, Administración General del Estado, Gestión de personal y empleo público, y Gestión financiera y contratación pública. Es un 60% más extenso que el de Auxiliar (28 temas).' },
@@ -3910,9 +3945,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 28: Comparativa plataformas IA oposiciones ──────────────────────
   {
     slug: 'mejores-plataformas-ia-oposiciones-2026-comparativa',
-    title: 'Alternativas a OpositaTest 2026: las 5 mejores plataformas IA para oposiciones',
+    title: '5 plataformas IA oposiciones 2026: precios reales | OpoRuta',
     description:
-      '¿Buscas alternativa a OpositaTest? Comparamos las 5 mejores plataformas con IA: OpoRuta (49,99€ único), OpositaTest (12€/mes), Testualia, Typed AI y Opositor.ai. Precios reales, funciones y para quién es cada una.',
+      'Compara 5 plataformas: OpoRuta (49,99€ pago único), OpositaTest (7,99-15,99€/mes), Testualia, Typed AI y Opositor.ai. Precios reales y verificación legal.',
     date: '2026-03-17',
     dateModified: '2026-04-19',
     keywords: [
@@ -3951,6 +3986,13 @@ export const blogPosts: BlogPost[] = [
       },
     ],
     content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>OpositaTest:</strong> 303.000 preguntas curadas, 7,99-15,99€/mes, sin IA generativa.</li>
+  <li><strong>OpoRuta:</strong> IA con verificación determinista contra el BOE, 49,99€ pago único, 12 oposiciones.</li>
+  <li><strong>Upload-your-docs:</strong> Testualia (~90€/60 días), Typed AI (8,99-11,99€/mes), Elaia (8,99-16,99€/mes) generan tests desde tus PDFs.</li>
+</ul>
+
 <p>
   <strong>Las mejores plataformas con IA para preparar oposiciones en 2026 son OpositaTest (banco de 303.000 preguntas curadas), OpoRuta (verificación legal contra el BOE + análisis de exámenes INAP), Testualia (generación de tests desde tus documentos), Typed AI (flashcards + tests desde PDFs) y Opositor.ai (ecosistema completo con OCR y planificador).</strong>
   Cada una tiene un enfoque diferente y conviene según tu forma de estudiar.
@@ -4271,9 +4313,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 29: OpoRuta vs OpositaTest ──────────────────────────────────────
   {
     slug: 'oporuta-vs-opositatest-auxiliar-administrativo-2026',
-    title: '¿OpositaTest u OpoRuta? Comparativa Auxiliar Administrativo 2026',
+    title: 'OpoRuta vs OpositaTest 2026: 49,99€ vs 144€/año',
     description:
-      'Comparativa real: verificación de citas legales, Radar del Tribunal y simulacros INAP. OpoRuta 49,99€ pago único vs OpositaTest 12€/mes (144€/año). Tabla punto por punto.',
+      'OpoRuta 49,99€ pago único vs OpositaTest 12€/mes (144€/año). Verificación legal BOE, Radar del Tribunal y simulacros INAP. Tabla punto por punto.',
     date: '2026-03-17',
     dateModified: '2026-04-19',
     keywords: [
@@ -4312,6 +4354,13 @@ export const blogPosts: BlogPost[] = [
       },
     ],
     content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Precio:</strong> OpoRuta 49,99€ pago único vs OpositaTest ~144€/año (12€/mes semestral) o 95,88€/año anual.</li>
+  <li><strong>Enfoque:</strong> OpositaTest = banco de 303.000 preguntas curadas; OpoRuta = IA generativa verificada contra el BOE.</li>
+  <li><strong>Diferencial OpoRuta:</strong> Radar del Tribunal, simulacros con exámenes INAP reales y explicación socrática de errores.</li>
+</ul>
+
 <p>
   <strong>OpoRuta y OpositaTest son las dos principales plataformas de tests para oposiciones en 2026, pero tienen enfoques muy diferentes:</strong>
   OpositaTest es un banco de 303.000 preguntas curadas por expertos, fundado en 2015 en Galicia, con más de 1,6 millones de usuarios;
@@ -4950,9 +4999,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 32 ───────────────────────────────────────────────────────────────
   {
     slug: 'calendario-oposiciones-age-2026-fechas-auxiliar-administrativo',
-    title: 'Calendario Oposiciones AGE 2026: examen Auxiliar 23 mayo (fechas BOE)',
+    title: 'Calendario AGE 2026: Auxiliar 23 mayo, C1 20 junio',
     description:
-      'Fecha confirmada BOE: examen Auxiliar Administrativo el 23 mayo 2026. Calendario completo: inscripción, admitidos, C1 el 20 junio. Todos los plazos AGE actualizados.',
+      'Fechas BOE confirmadas: Auxiliar (C2) el 23 mayo 2026, Administrativo (C1) el 20 junio. Inscripción, admitidos y toma de posesión. Tasa 11,32€.',
     date: '2026-03-19',
     dateModified: '2026-04-19',
     keywords: [
@@ -4964,6 +5013,13 @@ export const blogPosts: BlogPost[] = [
       'plazos inscripcion oposiciones AGE',
     ],
     content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Auxiliar (C2):</strong> examen 23 mayo 2026 (BOE confirmado).</li>
+  <li><strong>Administrativo (C1):</strong> examen 20 junio 2026.</li>
+  <li><strong>Tasa examen:</strong> 11,32€ (o exenta según supuestos) — inscripción diciembre 2025-enero 2026.</li>
+</ul>
+
 <h2>Calendario completo de las oposiciones AGE 2026</h2>
 <p>
   El examen de Auxiliar Administrativo del Estado (C2) está convocado para el <strong>23 de mayo de 2026</strong>.
@@ -5436,9 +5492,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 35 ───────────────────────────────────────────────────────────────
   {
     slug: 'sueldo-auxiliar-administrativo-estado-2026-nomina-desglosada',
-    title: 'Sueldo Auxiliar Administrativo del Estado 2026: 1.500€ netos/mes (nómina)',
+    title: 'Sueldo Auxiliar Administrativo 2026: 1.500€ netos | OpoRuta',
     description:
-      '¿Cuánto cobra un Auxiliar Administrativo del Estado? Nómina real 2026: sueldo base 648€ + complementos + 14 pagas. Neto mensual ~1.500€ de inicio, hasta 1.900€ con trienios. Tabla completa.',
+      'Nómina real 2026: base 648€ + destino + específico = 1.400-1.650€ netos/mes (14 pagas). Bruto 22.000-26.000€/año; hasta 1.900€ netos con trienios.',
     date: '2026-03-19',
     dateModified: '2026-04-19',
     keywords: [
@@ -5450,6 +5506,13 @@ export const blogPosts: BlogPost[] = [
       'sueldo oposiciones auxiliar administrativo',
     ],
     content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Neto:</strong> 1.400-1.650€/mes (14 pagas) de inicio; hasta ~1.900€ con trienios acumulados.</li>
+  <li><strong>Bruto anual:</strong> 22.000-26.000€ según destino (sueldo base 648€/mes + destino + específico).</li>
+  <li><strong>Trienios C2:</strong> 42,24€/mes cada uno, acumulativos e irreversibles.</li>
+</ul>
+
 <h2>¿Cuánto cobra un auxiliar administrativo del estado en 2026?</h2>
 <p>
   Un auxiliar administrativo del estado (grupo C2) cobra entre <strong>1.400€ y 1.650€ netos al mes</strong>
@@ -6133,9 +6196,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 38 ───────────────────────────────────────────────────────────────
   {
     slug: 'sueldo-administrativo-estado-c1-2026-nomina',
-    title: 'Sueldo Administrativo del Estado C1 2026: 2.100€ netos/mes (tabla)',
+    title: 'Sueldo Administrativo C1 2026: 2.100€ netos/mes | OpoRuta',
     description:
-      'Nómina real desglosada: base 858€ + destino + específico = hasta 2.100€ netos. Tabla por ministerio, trienios y progresión salarial del Administrativo del Estado C1 en 2026.',
+      'Nómina real desglosada: base 858€ + destino + específico = ~2.100€ netos/mes (14 pagas). Trienios 53,28€ y progresión por ministerio. Bruto ~28.000€/año.',
     date: '2026-03-20',
     dateModified: '2026-04-19',
     keywords: [
@@ -6148,6 +6211,13 @@ export const blogPosts: BlogPost[] = [
       'sueldo neto administrativo estado',
     ],
     content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Neto:</strong> ~2.100€/mes (14 pagas) de inicio para un Administrativo C1 en la AGE.</li>
+  <li><strong>Composición:</strong> sueldo base 858€ + complemento de destino + complemento específico (varía por ministerio).</li>
+  <li><strong>Trienios C1:</strong> 53,28€/mes cada uno; con 5 trienios (15 años) sumas ~266€/mes extra.</li>
+</ul>
+
 <h2>¿Cuánto cobra un Administrativo del Estado (C1) en 2026?</h2>
 <p>
   El sueldo de un funcionario del Cuerpo General Administrativo de la Administración del Estado (subgrupo C1)
@@ -6681,9 +6751,9 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 40 ───────────────────────────────────────────────────────────────
   {
     slug: 'calendario-oposiciones-administrativo-estado-c1-2026',
-    title: 'Examen Administrativo C1: 20 junio 2026 — Calendario y plazos',
+    title: 'Examen Administrativo C1: 23 mayo 2026 (calendario BOE)',
     description:
-      'Fechas confirmadas C1: examen 20 junio 2026. Inscripción, admitidos provisionales, segundo ejercicio (supuesto práctico) y toma de posesión. Calendario actualizado abril 2026.',
+      'Examen C1 fijado el 23 mayo 2026 (coincide con C2: debes elegir). Cronograma completo: admitidos, supuesto práctico septiembre-octubre y toma de posesión 2027.',
     date: '2026-03-20',
     dateModified: '2026-04-19',
     keywords: [
@@ -6694,6 +6764,13 @@ export const blogPosts: BlogPost[] = [
       'plazos administrativo estado 2026',
     ],
     content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Examen C1:</strong> sábado 23 mayo 2026, misma fecha que Auxiliar C2 (no puedes presentarte a ambos).</li>
+  <li><strong>2.512 plazas</strong> en juego; convocatoria publicada en BOE y lista definitiva de admitidos ya disponible.</li>
+  <li><strong>Siguientes hitos:</strong> segundo ejercicio (supuesto práctico) septiembre-octubre 2026; toma de posesión mayo-junio 2027.</li>
+</ul>
+
 <h2>Examen el 23 de mayo de 2026: quedan 64 días</h2>
 <p>
   El examen del Cuerpo General Administrativo de la Administración del Estado (C1) está fijado para
@@ -14090,11 +14167,20 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 81 — Justicia: sueldo comparativa 3 cuerpos ─────────────────────────
   {
     slug: 'sueldo-funcionario-justicia-2026-auxilio-tramitacion-gestion',
-    title: 'Sueldo Funcionarios Justicia 2026: Auxilio, Tramitacion y Gestion Procesal',
-    description: 'Comparativa de sueldos de funcionarios de Justicia 2026: Auxilio Judicial (~24.000€), Tramitacion (~28.000€) y Gestion Procesal (~34.000€). Desglose completo.',
+    title: 'Sueldo Justicia 2026: 24k/28k/34k€ (3 cuerpos) | OpoRuta',
+    description:
+      'Comparativa 2026: Auxilio Judicial ~24.000€, Tramitación Procesal ~28.000€, Gestión Procesal ~34.000€ brutos/año. Desglose completo con complementos.',
     date: '2026-03-30',
+    dateModified: '2026-04-19',
     keywords: ['sueldo auxilio judicial 2026', 'sueldo tramitacion procesal', 'sueldo gestion procesal', 'sueldo funcionario justicia', 'cuanto cobra auxilio judicial', 'sueldo cuerpos justicia'],
     content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Auxilio Judicial (C2):</strong> ~23.000-25.000€ brutos/año (~1.350-1.500€ netos/mes).</li>
+  <li><strong>Tramitación Procesal (C1):</strong> ~27.000-29.000€ brutos/año (~1.550-1.700€ netos/mes).</li>
+  <li><strong>Gestión Procesal (A2):</strong> ~34.000€ brutos/año — el cuerpo mejor pagado de los tres.</li>
+</ul>
+
 <h2>¿Cuanto cobra un funcionario de Justicia en 2026?</h2>
 <p>Los tres cuerpos principales de la <strong>Administracion de Justicia</strong> — Auxilio Judicial, Tramitacion Procesal y Gestion Procesal — tienen sueldos diferentes segun su grupo y nivel de responsabilidad. En esta guia comparamos los tres con datos actualizados segun los <strong>Presupuestos Generales del Estado (PGE) 2025</strong> y el convenio aplicable.</p>
 <p>Si estas decidiendo cual oposicion preparar, el sueldo es un factor importante. Pero no es el unico: tambien debes considerar el numero de plazas, la dificultad del temario y el tiempo de preparacion.</p>
@@ -14624,11 +14710,20 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 87 — Justicia: plazas Tramitacion Procesal 2026 ────────────────────
   {
     slug: 'plazas-tramitacion-procesal-2026-distribucion',
-    title: 'Plazas Tramitacion Procesal 2026: 1.155 plazas — la mayor oferta de Justicia',
-    description: '1.155 plazas de Tramitacion Procesal en la OEP 2024. Es el cuerpo con mas plazas de Justicia. Distribucion, ratio y comparativa con Auxilio y Gestion.',
+    title: 'Tramitación Procesal 2026: 1.155 plazas | OpoRuta',
+    description:
+      '1.155 plazas Tramitación Procesal (OEP 2024), máximo histórico. Distribución por CCAA: Andalucía ~180, Madrid ~140, Cataluña ~110. Ratio real y comparativa.',
     date: '2026-03-30',
+    dateModified: '2026-04-19',
     keywords: ['plazas tramitacion procesal 2026', 'oposiciones tramitacion procesal plazas', 'tramitacion procesal 2026 plazas', 'cuantas plazas tramitacion procesal', 'plazas justicia 2026'],
     content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>1.155 plazas</strong> en OEP 2024 (turno libre), máximo histórico de la Administración de Justicia.</li>
+  <li><strong>Reparto:</strong> Andalucía ~170-190, Madrid ~130-150, Cataluña ~100-120, Valencia ~90-110 plazas.</li>
+  <li><strong>Requisito:</strong> Bachillerato o equivalente; grupo C1; tendencia ascendente desde 700 plazas (OEP 2021).</li>
+</ul>
+
 <h2>1.155 plazas: la mayor oferta de la Administracion de Justicia</h2>
 <p><strong>Tramitacion Procesal y Administrativa</strong> es el cuerpo con mas plazas de la Administracion de Justicia en 2026. La <strong>OEP 2024</strong> oferta <strong>1.155 plazas de turno libre</strong>, una cifra historica que refleja la necesidad urgente de renovar la plantilla judicial en Espana.</p>
 <p>Si tienes <strong>titulo de Bachillerato</strong> (o equivalente) y buscas estabilidad laboral con buen sueldo, Tramitacion Procesal es una de las mejores opciones del empleo publico. Veamos los numeros.</p>
@@ -14957,11 +15052,20 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 90 — Trienios funcionarios 2026 ────────────────────────────────────
   {
     slug: 'trienios-funcionarios-2026-cuanto-cobras-antiguedad',
-    title: 'Trienios Funcionarios 2026: importe exacto por grupo (C2, C1, A2, A1)',
-    description: 'Tabla de trienios 2026: C2 = 42,24€/mes, C1 = 53,28€/mes, A2 = 65,10€/mes, A1 = 80,22€/mes. Cómo se acumulan, cuándo se cobran y ejemplo de nómina con 4 trienios.',
+    title: 'Trienios funcionarios 2026: 42€ C2, 53€ C1, 80€ A1',
+    description:
+      'Importe mensual por trienio (PGE 2025): C2 42,24€, C1 53,28€, A2 65,10€, A1 80,22€. Acumulativos e irreversibles cada 3 años. Ejemplo nómina con 5 trienios.',
     date: '2026-03-30',
+    dateModified: '2026-04-19',
     keywords: ['trienios funcionarios 2026', 'trienio c1 2026', 'trienio c2 2026', 'trienio a2 2026', 'trienios funcionarios cuanto cobro', 'antiguedad funcionarios'],
     content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Un trienio = 3 años de servicio</strong>, acumulativo e irreversible (se incorpora a la nómina para siempre).</li>
+  <li><strong>Importes PGE 2025:</strong> C2 42,24€/mes, C1 53,28€/mes, A2 65,10€/mes, A1 80,22€/mes.</li>
+  <li><strong>Ejemplo C1 con 5 trienios (15 años):</strong> ~266€/mes extra, sin límite máximo de acumulación.</li>
+</ul>
+
 <h2>¿Que es un trienio?</h2>
 <p>Un <strong>trienio</strong> es un complemento salarial que los funcionarios publicos cobran por cada <strong>3 anos de antiguedad</strong> (servicios prestados). Es un derecho reconocido en el <strong>Estatuto Basico del Empleado Publico (TREBEP)</strong> y en los Presupuestos Generales del Estado.</p>
 <p>Los trienios son <strong>acumulativos e irreversibles</strong>: una vez que completas 3 anos de servicio, cobras ese trienio para siempre (se incorpora a tu nomina mensual). Cada 3 anos adicionales, se suma otro trienio. No hay limite maximo.</p>
@@ -15173,12 +15277,20 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'notas-corte-agente-hacienda',
-    title: 'Nota de corte Agente de Hacienda 2024: histórico y predicción 2026',
-    description: 'Historico de notas de corte de Agente de Hacienda Publica. Cuanto necesitas para aprobar el primer ejercicio. Tendencia y prediccion para la proxima convocatoria.',
+    title: 'Nota corte Agente Hacienda 2026: 53,25 (2024) | OpoRuta',
+    description:
+      'Histórico oficial: 2024 = 53,25 (851 plazas), 2023 = 59,50, 2020 = 72,50. Predicción 2026, absentismo real (30-40%) y ratio efectivo 3:1 para aprobar.',
     date: '2026-03-30',
     dateModified: '2026-04-19',
     keywords: ['nota corte agente hacienda', 'notas corte hacienda 2024', 'cuanto hay que sacar agente hacienda', 'aprobados agente hacienda'],
-    content: `<h2>Historico de notas de corte — Primer ejercicio</h2>
+    content: `<h2>TL;DR</h2>
+<ul>
+  <li><strong>Nota de corte 2024:</strong> 53,25 con 851 plazas (la más baja reciente, por oferta histórica alta).</li>
+  <li><strong>Histórico:</strong> 2020 = 72,50 (400 plazas), 2022 = 64,27, 2023 = 59,50, 2024 = 53,25.</li>
+  <li><strong>Absentismo 30-40%:</strong> ratio efectivo ~3:1 frente al 10:1 nominal — compites con 2.000-3.000 preparados reales.</li>
+</ul>
+
+<h2>Historico de notas de corte — Primer ejercicio</h2>
 <p>La nota de corte del primer ejercicio de Agente de la Hacienda Publica ha variado significativamente en los ultimos anos. Conocer estos datos es fundamental para dimensionar tu preparacion y fijar un objetivo realista.</p>
 
 <table>
