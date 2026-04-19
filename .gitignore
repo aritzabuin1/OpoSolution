@@ -51,6 +51,8 @@ ENV/
 credentials.json
 token.json
 service-account.json
+gscClave.json
+gsc-*.json
 
 # Logs
 *.log

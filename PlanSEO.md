@@ -582,14 +582,16 @@ Aritz no paga por ninguna herramienta nueva. Todo se hace con tooling propio (Cl
 | | F0.T1-T14 | Fase 0 completa | ✅ | Verificado 2026-04-19: `data/seo/article-exam-map.json`, `data/seo/indexable-cross-ref.json`, `lib/seo/indexability.ts`, `public/sitemap-index.xml`, `noindex` aplicado en `/ley/[ley-slug]/[articulo-slug]` vía `isArticleIndexable` |
 | | F1.T1-T12 | Fase 1 completa | ✅ | `ArticleExamQuestions`, `ArticleFrequencyBadge`, `ArticleSummaryCard` (TL;DR IA cached), FAQPage + Article + BreadcrumbList schema en páginas de artículo, `dateModified`/`datePublished` |
 | | F2.T1-T5 | Fase 2 completa | ✅ | `TopLawsWidget` en `/oposiciones/*`, `TopArticlesInExamWidget` en `/examenes-oficiales/*`, `blog-autolinker.ts`, `TopArticlesGlobalWidget` en home, `Organization`+`WebSite` en layout |
-| | F2.T6 | HowTo schema en blog | ⏳ | Pendiente — aplicar a guías tipo "cómo preparar X" |
+| | F2.T6 | HowTo schema en blog | ✅ | `content/blog/howto.ts` expandido 5→13 posts. Render vía `HOWTO_BY_SLUG` en `app/(marketing)/blog/[slug]/page.tsx` |
 | | F3.T1-T3 | Quick wins CTR | ⏳ | Requiere GSC API token para identificar top 15 CTR-bajas |
 | | F4 Sprint 1/2/3 | Balance 12 oposiciones | ✅ | 39/39 piezas + pillars enriquecidos |
 | | F5.T2 | Data journalism `/datos/*` | ✅ | 3 datasets CC BY 4.0 |
 | | F5.T4 | llms.txt + /api/info | ✅ | Ambos con data journalism |
 | | F5.T5 | 10 posts GEO | ✅ | 12/10 superado |
 | | F5.T1/T3/T6 | YouTube + Wikidata + Discover | ⏸️ | Pospuestos por decisión del usuario (YouTube, Wikidata) o bloqueados (Discover = diseñador) |
-| | F6.T1-T6 | Observabilidad SEO | ⏳ | Pendiente. T1/T3/T5 requieren GSC API token; T4 (monitor Google algo RSS) es autónomo |
+| | F6.T2 | Ritual manual citas LLM | ✅ | Migration 084 (`llm_citations` + `seo_algo_events`) + `execution/check-llm-citations.ts` (10 branded + 20 non-branded). **Pendiente Aritz: aplicar migration 084 en Supabase Dashboard** |
+| | F6.T4 | Monitor Google algo updates | ✅ | `lib/seo/algo-watch.ts` (RSS seroundtable) piggyback en cron `boe-watch`. Alerta admin vía `sendAlert` en critical/warning |
+| | F6.T1/T3/T5/T6 | GSC dashboards | ⏳ | Requieren GSC API token |
 
 ---
 

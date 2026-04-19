@@ -17,6 +17,8 @@ import articleIndex from '@/data/seo/article-index.json'
 import { LEY_REGISTRY } from '@/data/seo/ley-registry'
 import { isArticleIndexable } from '@/lib/seo/indexability'
 import { BarChart3, Scale, Sparkles, AlertCircle } from 'lucide-react'
+import { GscSection } from '@/components/admin/GscSection'
+import { LlmCitationsSection } from '@/components/admin/LlmCitationsSection'
 
 export const dynamic = 'force-dynamic'
 
@@ -176,6 +178,18 @@ export default async function AdminSEOPage() {
           </CardContent>
         </Card>
       )}
+
+      {/* GSC metrics (F6.T3) */}
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold">Google Search Console (últimos 28 días)</h2>
+        <GscSection />
+      </section>
+
+      {/* LLM citations (F6.T2/T3) */}
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold">Citas en LLMs</h2>
+        <LlmCitationsSection />
+      </section>
 
       {/* Top leyes */}
       <Card>
