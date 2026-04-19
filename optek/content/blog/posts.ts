@@ -17930,4 +17930,539 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Cuanto tiempo se tarda en preparar una oposicion facil?', answer: 'Correos: 2-3 meses (12 temas). Auxiliar Administrativo: 6-9 meses (28 temas). Celador: 3-4 meses (20-30 temas). Guardia Civil: 4-6 meses (25 temas + fisicas). Estos tiempos asumen estudio a tiempo parcial (2-3 horas/dia).' },
     ],
   },
+
+  // ─── Post 32 — Oposiciones sin penalización 2026 ────
+  {
+    slug: 'oposiciones-sin-penalizacion-2026',
+    title: 'Oposiciones sin penalización 2026: lista completa (y por qué importa)',
+    description:
+      'Lista de oposiciones que NO penalizan respuestas incorrectas en 2026: Correos, varias locales y algunas autonómicas. Comparativa con las que sí penalizan (AGE, Justicia, GC, PN).',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: [
+      'oposiciones sin penalizacion',
+      'oposiciones no penalizan',
+      'oposiciones sin penalizacion 2026',
+      'correos penalizacion',
+      'examen sin penalizacion',
+    ],
+    content: `
+<h2>TL;DR — qué oposiciones NO penalizan en 2026</h2>
+<ul>
+  <li><strong>Correos</strong> (4.055 plazas): sin penalización. 100 preguntas, todas suman o no restan.</li>
+  <li><strong>Varias oposiciones locales</strong>: depende de las bases de cada convocatoria.</li>
+  <li><strong>Algunas autonómicas</strong> (Junta de Andalucía, Xunta Galicia): parcialmente, según cuerpo.</li>
+  <li><strong>Sanitarias</strong> (SAS, SERMAS, Osakidetza): la mayoría SIN penalización.</li>
+  <li><strong>Magisterio</strong>: sin penalización en la prueba objetiva.</li>
+</ul>
+<p>Las estatales más competitivas SÍ penalizan: Auxiliar/Administrativo AGE (-1/3), Justicia (-1/3), Guardia Civil (-1/4), Policía Nacional (-1/3), Hacienda (-1/3).</p>
+
+<h2>Tabla comparativa: penaliza vs no penaliza</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Oposición</th><th>Grupo</th><th>¿Penaliza?</th><th>Fórmula</th></tr></thead>
+<tbody>
+<tr><td>Correos</td><td>C2 laboral</td><td>❌ NO</td><td>+1 / 0 / 0</td></tr>
+<tr><td>Auxiliar AGE</td><td>C2</td><td>✅ SÍ</td><td>+1 / −1/3 / 0</td></tr>
+<tr><td>Administrativo AGE</td><td>C1</td><td>✅ SÍ</td><td>+1 / −1/3 / 0</td></tr>
+<tr><td>Auxilio Judicial</td><td>C2</td><td>✅ SÍ</td><td>+1 / −1/3 / 0</td></tr>
+<tr><td>Tramitación Procesal</td><td>C1</td><td>✅ SÍ</td><td>+1 / −1/3 / 0</td></tr>
+<tr><td>Guardia Civil</td><td>C2</td><td>✅ SÍ</td><td>+1 / −1/4 / 0</td></tr>
+<tr><td>Policía Nacional</td><td>C1</td><td>✅ SÍ</td><td>+1 / −1/3 / 0</td></tr>
+<tr><td>Agente Hacienda</td><td>C1</td><td>✅ SÍ</td><td>+1 / −1/3 / 0</td></tr>
+<tr><td>SAS (Sanidad Andalucía)</td><td>Varios</td><td>❌ NO</td><td>+1 / 0 / 0</td></tr>
+<tr><td>Maestros (Magisterio)</td><td>A2</td><td>❌ NO</td><td>+1 / 0 / 0</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>¿Por qué importa saber si penaliza o no?</h2>
+<p>Cambia completamente la estrategia del examen. En una SIN penalización, debes responder TODAS las preguntas, incluso al azar — el valor esperado siempre es ≥ 0. En una con penalización −1/3, responder al azar da valor esperado 0, igual que dejar en blanco. Solo merece la pena responder si descartas al menos una opción. Más detalle en <a href="/blog/penalizacion-examen-auxiliar-administrativo">nuestro post sobre la penalización del Auxiliar Administrativo</a>.</p>
+
+<h2>Estrategia de examen según penalización</h2>
+<h3>SIN penalización (ej. Correos)</h3>
+<ol><li>Seguridad alta: marca y sigue.</li><li>No la sabes: responde al azar (25 % de acierto).</li><li>Nunca dejes blancos.</li></ol>
+<h3>CON penalización −1/3 (AGE, Justicia)</h3>
+<ol><li>Segura: marca.</li><li>Descartas 1: valor esperado ≈ 0,11. Responde.</li><li>Descartas 2: ≈ 0,33. Responde.</li><li>No puedes descartar nada: blanco.</li></ol>
+<h3>CON penalización −1/4 (Guardia Civil)</h3>
+<p>Más "generosa": descartar 1 opción ya da esperanza ≈ 0,17. Más rentable arriesgar.</p>
+
+<h2>Cómo entrenar según tu oposición</h2>
+<p>En <a href="/">OpoRuta</a> aplicamos la penalización exacta de cada oposición en los simulacros. Verás tu nota bruta, tu nota real con penalización y cuántos puntos pierdes por respuestas incorrectas.</p>
+<ul>
+<li>Simulacros Auxiliar AGE con −1/3: <a href="/examenes-oficiales">simulacros INAP</a></li>
+<li>Qué artículos caen más: <a href="/datos/analisis-inap">análisis INAP 2018-2024</a></li>
+<li>Nota de corte histórica: <a href="/blog/nota-corte-auxiliar-administrativo-estado">nota de corte Auxiliar 2024</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis en OpoRuta</a></strong> — tests con la penalización exacta de tu oposición. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Correos tiene penalización en 2026?', answer: 'No. Correos mantiene +1 por acierto, 0 por fallo, 0 por blanco. Debes responder las 100 preguntas aunque no las sepas.' },
+      { question: '¿Todas las oposiciones de Estado penalizan?', answer: 'Las competitivas (AGE, Justicia, Hacienda, GC, PN) sí penalizan -1/3 (o -1/4 en GC). Las sanitarias estatales y Correos, no.' },
+      { question: '¿Qué es peor, -1/3 o -1/4?', answer: 'Peor -1/3. Necesitas descartar 2 opciones para arriesgar con buen margen. Con -1/4 basta descartar 1.' },
+      { question: '¿Cómo sé si mi oposición penaliza?', answer: 'Lee las bases en BOE. El punto "calificación" o "valoración" especifica la fórmula exacta.' },
+      { question: '¿Se puede impugnar una pregunta mal formulada?', answer: 'Sí. Con penalización, impugnar una dudosa puede ganarte 1,33 puntos si la anulan (1 ganancia + 0,33 ahorro de penalización).' },
+    ],
+  },
+
+  // ─── Post 33 — Temario Guardia Civil 2026 ────
+  {
+    slug: 'temario-guardia-civil-2026-escala-cabos-guardias',
+    title: 'Temario Guardia Civil 2026 Escala Cabos y Guardias: 25 temas (listado BOE)',
+    description:
+      'Temario oficial Guardia Civil 2026 (Escala de Cabos y Guardias): 25 temas desglosados. Ciencias Jurídicas, Socioculturales, Técnico-científico y Ortografía. Orden de preparación.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: [
+      'temario guardia civil 2026',
+      'temario guardia civil escala cabos guardias',
+      'temario guardia civil BOE',
+      'cuantos temas tiene guardia civil',
+    ],
+    content: `
+<h2>TL;DR — Temario Guardia Civil 2026</h2>
+<ul>
+<li><strong>25 temas oficiales</strong> en 4 bloques.</li>
+<li>Bloque 1 — Ciencias Jurídicas: 10 temas (40 %).</li>
+<li>Bloque 2 — Socioculturales: 5 temas.</li>
+<li>Bloque 3 — Técnico-Científicas: 5 temas.</li>
+<li>Bloque 4 — Ortografía: 5 temas.</li>
+<li>Examen: <strong>100 preguntas test</strong> + ortografía + psicotécnico.</li>
+<li>Penalización: <strong>−1/4</strong> por fallo.</li>
+</ul>
+
+<h2>Temario oficial completo</h2>
+<h3>Bloque 1 — Ciencias Jurídicas (10 temas)</h3>
+<ol>
+<li>La Constitución Española de 1978: Título Preliminar, Título I.</li>
+<li>Organización territorial del Estado: CC.AA., Administración Local.</li>
+<li>La Corona, Cortes Generales, Gobierno y Poder Judicial.</li>
+<li>Organización de la AGE.</li>
+<li>Unión Europea: instituciones, derecho comunitario.</li>
+<li>Derecho Penal: concepto, principios, delito.</li>
+<li>Derecho Procesal: LECrim, denuncia, detención, habeas corpus.</li>
+<li>Derechos Humanos: Declaración Universal, Convenio de Roma.</li>
+<li>Igualdad efectiva (LO 3/2007). Violencia de género (LO 1/2004).</li>
+<li>Protección civil y protección de datos (LOPDGDD).</li>
+</ol>
+
+<h3>Bloque 2 — Materias Socioculturales (5 temas)</h3>
+<ol start="11">
+<li>Instituciones internacionales: ONU, OTAN, OSCE, Consejo de Europa.</li>
+<li>La Guardia Civil: historia, misión, organización.</li>
+<li>Geografía e historia de España.</li>
+<li>Ética y deontología del servicio público.</li>
+<li>Ecología y medio ambiente.</li>
+</ol>
+
+<h3>Bloque 3 — Técnico-Científicas (5 temas)</h3>
+<ol start="16">
+<li>Topografía básica, orientación, planos.</li>
+<li>TIC: informática básica, redes, ciberseguridad.</li>
+<li>Armamento: HK USP compact.</li>
+<li>Automoción: normas y señales.</li>
+<li>Primeros auxilios: RCP, hemorragias, trauma.</li>
+</ol>
+
+<h3>Bloque 4 — Lengua (Ortografía) (5 temas)</h3>
+<ol start="21">
+<li>Acentuación.</li>
+<li>Mayúsculas y puntuación.</li>
+<li>Homófonos y parónimos.</li>
+<li>Léxico: sinónimos, antónimos, polisemia.</li>
+<li>Redacción de atestados simplificado.</li>
+</ol>
+
+<h2>¿Cuánto tiempo se tarda en preparar?</h2>
+<p>Con 3 h/día, el temario se cubre en <strong>4-6 meses</strong>. Lo crítico no es el volumen (25 temas son abarcables) sino simultanear con preparación física (3-4 sesiones semanales) y psicotécnico + ortografía.</p>
+
+<h2>Comparativa con otras oposiciones C2</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Oposición</th><th>Temas</th><th>Penalización</th><th>Físicas</th><th>Plazas 2026</th></tr></thead>
+<tbody>
+<tr><td>Guardia Civil</td><td>25</td><td>−1/4</td><td>Sí</td><td>~3.100</td></tr>
+<tr><td>Auxiliar AGE</td><td>28</td><td>−1/3</td><td>No</td><td>1.700</td></tr>
+<tr><td>Auxilio Judicial</td><td>20</td><td>−1/3</td><td>No</td><td>425</td></tr>
+<tr><td>Correos</td><td>12</td><td>Sin</td><td>No</td><td>4.055</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Plan de estudio recomendado</h2>
+<ol>
+<li>Semanas 1-6: Bloque 1 (jurídicas) — lo más denso y lo que más cae.</li>
+<li>Semanas 7-10: Bloque 3 (técnico) + inicio físico.</li>
+<li>Semanas 11-14: Bloque 2 (sociocultural) + ortografía diaria.</li>
+<li>Semanas 15-18: Simulacros + repaso + físico intenso.</li>
+<li>Semanas 19-20: Psicotécnico + repaso final.</li>
+</ol>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/oposiciones/seguridad/guardia-civil">Oposición Guardia Civil</a></li>
+<li><a href="/blog/oposiciones-sin-penalizacion-2026">Oposiciones sin penalización</a></li>
+<li><a href="/datos/plazas-age-historico">Plazas históricas AGE</a></li>
+<li><a href="/oep-2026">OEP 2026 completa</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis en OpoRuta</a></strong> — simulacros Guardia Civil con penalización −1/4. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuántos temas tiene la oposición de Guardia Civil?', answer: '25 temas oficiales: 10 jurídicos, 5 socioculturales, 5 técnico-científicos y 5 de ortografía.' },
+      { question: '¿Qué requisitos piden para Guardia Civil en 2026?', answer: 'Nacionalidad española, 18-40 años, ESO, altura ≥155 cm (M) / 160 cm (H) —requisito flexibilizado—, sin antecedentes penales y no padecer exclusiones médicas.' },
+      { question: '¿Cuánto cobra un guardia civil recién ingresado?', answer: 'En formación: 1.400-1.500 €. Destinado: 1.900-2.100 € netos, hasta 2.400-2.700 € con antigüedad, guardias y especialidades.' },
+      { question: '¿Cuál es la penalización del examen de Guardia Civil?', answer: '−1/4 por fallo (menos dura que −1/3 de AGE o Policía Nacional). Descartar una opción ya hace rentable arriesgar.' },
+      { question: '¿Cuántas plazas habrá en Guardia Civil 2026?', answer: 'Estimación ~3.000-3.200 plazas para Escala de Cabos y Guardias (OEP 2025-2026), similar a la convocatoria anterior.' },
+    ],
+  },
+
+  // ─── Post 34 — Temario Policía Nacional 2026 ────
+  {
+    slug: 'temario-policia-nacional-escala-basica-2026',
+    title: 'Temario Policía Nacional Escala Básica 2026: 44 temas (lista oficial BOE)',
+    description:
+      'Temario oficial Policía Nacional 2026 Escala Básica: 44 temas en 3 partes (Jurídicas, Sociales, Técnico-Científicas). Orden de preparación, pruebas y plan 6 meses.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: [
+      'temario policia nacional 2026',
+      'temario escala basica policia',
+      'cuantos temas tiene policia nacional',
+      'oposicion policia nacional temario',
+    ],
+    content: `
+<h2>TL;DR — Temario Policía Nacional 2026</h2>
+<ul>
+<li><strong>44 temas oficiales</strong> en 3 partes.</li>
+<li>Parte I — Ciencias Jurídicas: 26 temas (&gt;50 %).</li>
+<li>Parte II — Ciencias Sociales: 10 temas.</li>
+<li>Parte III — Técnico-Científicas: 8 temas.</li>
+<li>Examen teórico: <strong>100 preguntas test</strong> + penalización <strong>−1/3</strong>.</li>
+<li>Pruebas adicionales: ortografía, inglés, psicotécnico, físicas, reconocimiento médico, entrevista.</li>
+</ul>
+
+<h2>Temario completo (44 temas)</h2>
+
+<h3>Parte I — Ciencias Jurídicas (1-26)</h3>
+<ol>
+<li>La Constitución Española: estructura y contenido.</li>
+<li>Derechos fundamentales, garantías y suspensión.</li>
+<li>La Corona, las Cortes Generales.</li>
+<li>El Gobierno, el Poder Judicial.</li>
+<li>Organización territorial del Estado.</li>
+<li>UE: instituciones, ordenamiento.</li>
+<li>Derecho Penal I: principios, delito.</li>
+<li>Derecho Penal II: delitos contra vida, integridad, libertad.</li>
+<li>Derecho Penal III: patrimonio, orden socioeconómico.</li>
+<li>Derecho Penal IV: Administración Pública, orden público.</li>
+<li>Derecho Procesal Penal: denuncia, querella, detención.</li>
+<li>LO 4/2015 Seguridad Ciudadana.</li>
+<li>LO 2/1986 Fuerzas y Cuerpos de Seguridad.</li>
+<li>LO 9/2015 Régimen Personal Policía Nacional.</li>
+<li>Policía Judicial.</li>
+<li>Cooperación policial internacional.</li>
+<li>Extranjería: LOEX, asilo, refugio.</li>
+<li>Derechos Humanos.</li>
+<li>Igualdad. Violencia de género (LO 1/2004).</li>
+<li>Protección civil.</li>
+<li>Protección de datos (RGPD + LOPDGDD).</li>
+<li>Transparencia (Ley 19/2013).</li>
+<li>Tráfico y seguridad vial.</li>
+<li>Ley de Armas.</li>
+<li>Reglamento de explosivos.</li>
+<li>Espectáculos Públicos.</li>
+</ol>
+
+<h3>Parte II — Ciencias Sociales (27-36)</h3>
+<ol start="27">
+<li>Globalización y antiglobalización.</li>
+<li>Desigualdad social. Minorías. Xenofobia.</li>
+<li>Movimientos migratorios. Integración.</li>
+<li>Drogodependencias.</li>
+<li>Delincuencia juvenil.</li>
+<li>Nuevas formas: trata, crimen organizado.</li>
+<li>Terrorismo internacional y nacional.</li>
+<li>Ciberdelincuencia.</li>
+<li>Victimología.</li>
+<li>Ética policial.</li>
+</ol>
+
+<h3>Parte III — Técnico-Científicas (37-44)</h3>
+<ol start="37">
+<li>Criminología.</li>
+<li>Policía científica.</li>
+<li>Grafística y documentoscopia.</li>
+<li>Balística forense.</li>
+<li>Biología forense: ADN.</li>
+<li>Informática forense.</li>
+<li>TIC: redes, seguridad.</li>
+<li>Primeros auxilios.</li>
+</ol>
+
+<h2>Estructura del proceso selectivo</h2>
+<ol>
+<li>Fase oposición: 100 preguntas test + ortografía + idioma + psicotécnico.</li>
+<li>Pruebas físicas: agilidad, dominadas/isométrico, 1.000 m, natación 50 m.</li>
+<li>Reconocimiento médico + entrevista personal.</li>
+<li>Curso 9 meses en Escuela Nacional (Ávila).</li>
+<li>Prácticas 12 meses en Comisaría.</li>
+</ol>
+
+<h2>Comparativa Policía Nacional vs Guardia Civil</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Aspecto</th><th>Policía Nacional</th><th>Guardia Civil</th></tr></thead>
+<tbody>
+<tr><td>Ámbito</td><td>Urbano</td><td>Rural + urbano</td></tr>
+<tr><td>Temario</td><td>44 temas</td><td>25 temas</td></tr>
+<tr><td>Grupo</td><td>C1</td><td>C2</td></tr>
+<tr><td>Penalización</td><td>−1/3</td><td>−1/4</td></tr>
+<tr><td>Plazas 2026 (est.)</td><td>~3.000</td><td>~3.100</td></tr>
+<tr><td>Sueldo inicial</td><td>~2.000 €</td><td>~1.900 €</td></tr>
+<tr><td>Acuartelamiento</td><td>No</td><td>Posible</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Plan 6 meses (tiempo parcial)</h2>
+<ol>
+<li>Meses 1-3: Parte I (26 jurídicos).</li>
+<li>Mes 4: Parte II (10 sociales) + inicio físico.</li>
+<li>Mes 5: Parte III (8 técnicos) + ortografía + inglés.</li>
+<li>Mes 6: Simulacros + psicotécnicos + físico intensivo.</li>
+</ol>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/oposiciones/seguridad/policia-nacional">Oposición Policía Nacional</a></li>
+<li><a href="/blog/temario-guardia-civil-2026-escala-cabos-guardias">Temario Guardia Civil 2026</a></li>
+<li><a href="/blog/oposiciones-sin-penalizacion-2026">Oposiciones sin penalización</a></li>
+<li><a href="/oep-2026">OEP 2026</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis en OpoRuta</a></strong> — tests Policía Nacional con penalización −1/3. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuántos temas tiene la oposición de Policía Nacional?', answer: '44 temas: 26 jurídicos (Parte I), 10 sociales (Parte II) y 8 técnico-científicos (Parte III). Aproximadamente el doble que Guardia Civil.' },
+      { question: '¿Qué requisitos piden para Policía Nacional 2026?', answer: 'Nacionalidad española, 18-40 años, Bachillerato, carnet B, compromiso de portar armas, sin antecedentes, altura ≥160 cm (H)/155 cm (M) con excepciones.' },
+      { question: '¿Cuánto cobra un policía nacional?', answer: 'En el curso: ~1.300 € netos. Al destinarse: 1.900-2.100 € netos. Con antigüedad, nocturnidad y grupos especiales: 2.800 €+.' },
+      { question: '¿Policía Nacional penaliza?', answer: 'Sí, −1/3 por respuesta incorrecta. Solo responde si puedes descartar al menos una opción.' },
+      { question: '¿Cuánto dura el proceso completo?', answer: 'Oposición (3-5 m) + físicas y médica (1 m) + curso Ávila (9 m) + prácticas (12 m) = ~24-27 meses hasta policía de carrera.' },
+    ],
+  },
+
+  // ─── Post 35 — Estudiar oposiciones con IA 2026 ────
+  {
+    slug: 'estudiar-oposiciones-con-ia-2026-guia-practica',
+    title: 'Estudiar oposiciones con IA en 2026: guía práctica (qué sí y qué no)',
+    description:
+      'Cómo la IA generativa (ChatGPT, Claude, OpoRuta) ha cambiado la preparación de oposiciones en 2026. Qué hace bien, qué aún no, y plan de estudio híbrido.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: [
+      'estudiar oposiciones con IA',
+      'IA para oposiciones',
+      'ChatGPT oposiciones',
+      'Claude oposiciones',
+      'estudiar con inteligencia artificial 2026',
+      'como usar IA para oposiciones',
+    ],
+    content: `
+<h2>TL;DR — IA en oposiciones: qué sirve hoy</h2>
+<ul>
+<li>✅ Generar tests personalizados con RAG sobre BOE.</li>
+<li>✅ Explicar respuestas con cita legal literal.</li>
+<li>✅ Detectar fallos recurrentes y adaptar repaso.</li>
+<li>❌ ChatGPT puro <strong>inventa artículos</strong>: no confíes ciegamente.</li>
+<li>❌ No sustituye leer la ley consolidada al menos una vez.</li>
+<li>💡 Mejor: plataforma verificada (tipo OpoRuta) + BOE + estudio tradicional.</li>
+</ul>
+
+<h2>¿Qué cambió en 2026?</h2>
+<p>El salto de GPT-4 a GPT-5 y Claude Opus 4 en 2025-2026 ha hecho fiable la generación de preguntas tipo test — pero solo cuando el modelo trabaja con RAG sobre ley consolidada, no con memoria interna. El problema histórico (alucinación: citar "Art. 43 CE" cuando era el 45) sigue ocurriendo si no hay verificación legal posterior.</p>
+
+<h2>¿Qué hace bien la IA hoy?</h2>
+<h3>1. Tests infinitos sobre un tema</h3>
+<p>50 preguntas sobre Título III CE en 30 segundos, con citas correctas si hay verificación RAG.</p>
+<h3>2. Explicar la respuesta correcta</h3>
+<p>Cita el artículo, compara con las opciones incorrectas. Profesor 24/7 que antes solo tenían las academias caras.</p>
+<h3>3. Detectar patrones de error</h3>
+<p>Si fallas 7/10 preguntas del Art. 21 Ley 39/2015, la plataforma detecta el patrón y refuerza. Lo hacemos con <a href="/flashcards">flashcards con spaced-repetition</a>.</p>
+<h3>4. Simular exámenes oficiales</h3>
+<p>Con los INAP 2018-2024 ingestados se generan tests con el mismo estilo y peso por ley. Alimenta nuestro <a href="/datos/analisis-inap">análisis de 220 preguntas INAP</a>.</p>
+
+<h2>¿Qué NO hace bien la IA todavía?</h2>
+<ul>
+<li><strong>ChatGPT puro (sin RAG):</strong> alucina citas. Nunca uses sin verificar.</li>
+<li><strong>Jurisprudencia reciente:</strong> fecha de corte del modelo. Cruza con BOE.</li>
+<li><strong>Preguntas ambiguas:</strong> el INAP redacta con ambigüedad buscada; la IA resuelve con criterio general, no del tribunal.</li>
+<li><strong>Memoria profunda:</strong> mejor lectura + flashcards + escritura a mano que chat conversacional.</li>
+</ul>
+
+<h2>Plan de estudio híbrido (IA + tradicional)</h2>
+<ol>
+<li>Fase 1 (2-4 sem.): lectura BOE completo.</li>
+<li>Fase 2 (8-12 sem.): esquemas a mano + 30 preguntas IA/día.</li>
+<li>Fase 3 (4 sem.): flashcards spaced-repetition + simulacros.</li>
+<li>Fase 4 (2 sem.): 2 simulacros/sem + análisis IA de errores.</li>
+<li>Fase 5 (última sem.): repaso total sin IA + 48 h descanso.</li>
+</ol>
+
+<h2>Comparativa herramientas IA</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Herramienta</th><th>Tipo</th><th>¿Cita verificada?</th><th>Precio 2026</th></tr></thead>
+<tbody>
+<tr><td>ChatGPT Plus</td><td>Chat genérico</td><td>❌ Alucina</td><td>20 €/mes</td></tr>
+<tr><td>Claude Pro</td><td>Chat genérico</td><td>❌ Alucina</td><td>20 €/mes</td></tr>
+<tr><td>Perplexity</td><td>Búsqueda + IA</td><td>🟡 Parcial</td><td>20 €/mes</td></tr>
+<tr><td>OpoRuta</td><td>Plataforma oposiciones</td><td>✅ RAG sobre BOE</td><td>49,99 € pack único</td></tr>
+<tr><td>OpositaTest</td><td>Banco de tests</td><td>✅ Humano</td><td>~15 €/mes</td></tr>
+</tbody>
+</table>
+</div>
+<p>Comparativa completa: <a href="/blog/mejores-plataformas-ia-oposiciones-2026">top plataformas IA oposiciones 2026</a>.</p>
+
+<h2>Checklist para no cometer errores con IA</h2>
+<ul>
+<li>Nunca memorices una cita sin verificar BOE.</li>
+<li>Si la IA se contradice en 2 intentos, desconfía (pregunta mal formulada).</li>
+<li>Temas nuevos (reformas 2025-2026): fuente oficial primero.</li>
+<li>No sustituye simulacros con penalización real.</li>
+<li>Compara explicación IA con manual actualizado.</li>
+</ul>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/blog/mejores-plataformas-ia-oposiciones-2026">Top plataformas IA 2026</a></li>
+<li><a href="/blog/oporuta-vs-opositatest-auxiliar-administrativo-2026">OpoRuta vs OpositaTest</a></li>
+<li><a href="/datos/analisis-inap">Análisis INAP 2018-2024</a></li>
+<li><a href="/examenes-oficiales">Simulacros oficiales INAP</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Prueba gratis OpoRuta</a></strong> — IA con verificación legal sobre BOE. Sin alucinaciones. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Puedo preparar una oposición solo con ChatGPT?', answer: 'No es recomendable. ChatGPT alucina citas legales. Puede servir como apoyo pero verifica siempre contra BOE o usa plataformas con RAG.' },
+      { question: '¿Qué es RAG y por qué importa?', answer: 'Retrieval Augmented Generation: la IA consulta la base documental (BOE consolidado) antes de responder. Reduce alucinaciones drásticamente. Diferencia entre ChatGPT genérico y OpoRuta.' },
+      { question: '¿La IA sustituye a las academias?', answer: 'Para autoestudio disciplinado, en gran parte sí. Para quien necesita guía externa y ritmo impuesto, no. Es profesor 24/7 pero no sustituye grupo de estudio ni tutor.' },
+      { question: '¿Qué IA es mejor para oposiciones en 2026?', answer: 'Si es IA genérica (ChatGPT/Claude/Gemini), indiferente — todas alucinan sin RAG. Si es plataforma especializada, OpoRuta tiene RAG sobre BOE + exámenes INAP reales ingestados.' },
+      { question: '¿Puedo usar IA durante el examen?', answer: 'No. Los exámenes oficiales prohíben dispositivos electrónicos. La IA se usa solo en preparación. Con móvil oculto te eliminan.' },
+    ],
+  },
+
+  // ─── Post 36 — Mejor oposición según perfil 2026 ────
+  {
+    slug: 'mejor-oposicion-segun-perfil-2026-test-rapido',
+    title: 'Mejor oposición según tu perfil 2026: test rápido (ESO, Bachillerato, grado)',
+    description:
+      'Guía para elegir la oposición que mejor se adapta a ti en 2026 según titulación, tiempo, físicas, sueldo y ubicación. Tabla comparativa de 12 oposiciones.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: [
+      'que oposicion es mejor para mi',
+      'oposiciones segun perfil',
+      'mejor oposicion 2026',
+      'que oposicion elegir',
+      'oposicion segun estudios',
+    ],
+    content: `
+<h2>TL;DR — Elige según tu perfil</h2>
+<ul>
+<li><strong>ESO + aprobar rápido:</strong> Correos (2-3 meses, 4.055 plazas).</li>
+<li><strong>ESO + estabilidad funcionaria:</strong> Auxiliar AGE (6-9 meses, 1.700 plazas).</li>
+<li><strong>Bachillerato + Administración:</strong> Administrativo Estado C1 (2.512).</li>
+<li><strong>Bachillerato + Seguridad:</strong> Guardia Civil (3.100) o Policía Nacional (3.000).</li>
+<li><strong>Bachillerato + Justicia:</strong> Tramitación Procesal (1.155).</li>
+<li><strong>Bachillerato + Hacienda:</strong> Agente Hacienda (~900).</li>
+<li><strong>Grado + A2:</strong> Gestión Procesal (725) o Gestión AGE (1.356).</li>
+<li><strong>Grado + A1:</strong> TAC, Inspección Hacienda.</li>
+</ul>
+
+<h2>Paso 1 — Descarta por titulación</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Titulación</th><th>Grupos</th><th>Oposiciones típicas</th></tr></thead>
+<tbody>
+<tr><td>Sin estudios</td><td>AP, C2</td><td>Correos (laboral), Celador, Ordenanza</td></tr>
+<tr><td>ESO</td><td>C2</td><td>Auxiliar AGE, Auxilio Judicial, GC, Celador</td></tr>
+<tr><td>Bachillerato / FP Superior</td><td>C1, C2</td><td>Administrativo AGE, Tramitación Procesal, PN, Agente Hacienda</td></tr>
+<tr><td>Grado</td><td>A1, A2, C1, C2</td><td>Anteriores + Gestión Procesal, Gestión AGE, TAC, Inspección</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Paso 2 — Filtra por tiempo</h2>
+<ul>
+<li>&lt; 6 meses: Correos (12 temas, sin penalización).</li>
+<li>6-12 meses: Auxiliar AGE, Auxilio Judicial, Celador, GC.</li>
+<li>12-18 meses: Administrativo C1, Tramitación, Policía Nacional.</li>
+<li>18-36 meses: Gestión A2 (AGE/Justicia), Agente Hacienda.</li>
+<li>36+ meses: A1 (TAC, Inspección, Abogacía del Estado).</li>
+</ul>
+
+<h2>Paso 3 — ¿Pruebas físicas?</h2>
+<p>Si NO quieres físicas, descarta: Guardia Civil, Policía Nacional, Bomberos, Ertzaintza, Mossos. Resto: sin físicas.</p>
+
+<h2>Paso 4 — Sueldo objetivo</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Sueldo neto/mes</th><th>Oposiciones</th></tr></thead>
+<tbody>
+<tr><td>1.300-1.400 €</td><td>Correos, Celador</td></tr>
+<tr><td>1.500-1.700 €</td><td>Auxiliar AGE, Auxilio Judicial</td></tr>
+<tr><td>1.800-2.000 €</td><td>Administrativo AGE, Tramitación, GC</td></tr>
+<tr><td>2.000-2.300 €</td><td>Policía Nacional, Gestión A2, Agente Hacienda</td></tr>
+<tr><td>2.300-2.800 €</td><td>Gestión Procesal Superior, Mossos, Ertzaintza</td></tr>
+<tr><td>3.000+ €</td><td>TAC, Inspector Hacienda/Trabajo, Abogacía del Estado</td></tr>
+</tbody>
+</table>
+</div>
+<p><small>Sueldo base + trienios iniciales, sin destinos especiales.</small></p>
+
+<h2>Paso 5 — Ubicación</h2>
+<ul>
+<li>Madrid/gran ciudad: AGE central, Hacienda, PN, Justicia, autonómicas.</li>
+<li>Provincia/pueblos: GC, Correos, locales, Ertzaintza, Mossos.</li>
+<li>Indiferente: Auxiliar AGE, Tramitación, Gestión AGE, Agente Hacienda.</li>
+</ul>
+<p>Si tienes favorita por ubicación, consulta el <a href="/datos/mapa-destinos">mapa de destinos por CC.AA.</a></p>
+
+<h2>Tabla rápida 12 oposiciones</h2>
+<div class="overflow-x-auto">
+<table>
+<thead><tr><th>Oposición</th><th>Titulación</th><th>Plazas 2026</th><th>Tiempo</th><th>Sueldo</th></tr></thead>
+<tbody>
+<tr><td>Correos</td><td>ESO</td><td>4.055</td><td>3 m</td><td>1.300 €</td></tr>
+<tr><td>Auxiliar AGE</td><td>ESO</td><td>1.700</td><td>6-9 m</td><td>1.500 €</td></tr>
+<tr><td>Auxilio Judicial</td><td>ESO</td><td>425</td><td>6-9 m</td><td>1.600 €</td></tr>
+<tr><td>Celador</td><td>ESO</td><td>2.000+</td><td>3-4 m</td><td>1.400 €</td></tr>
+<tr><td>Guardia Civil</td><td>ESO</td><td>3.100</td><td>6-9 m</td><td>1.900 €</td></tr>
+<tr><td>Administrativo AGE</td><td>Bach.</td><td>2.512</td><td>12 m</td><td>1.800 €</td></tr>
+<tr><td>Tramitación Procesal</td><td>Bach.</td><td>1.155</td><td>9-12 m</td><td>1.700 €</td></tr>
+<tr><td>Policía Nacional</td><td>Bach.</td><td>3.000</td><td>12 m</td><td>2.000 €</td></tr>
+<tr><td>Agente Hacienda</td><td>Bach.</td><td>900</td><td>18 m</td><td>2.100 €</td></tr>
+<tr><td>Gestión AGE</td><td>Grado</td><td>1.356</td><td>18 m</td><td>2.200 €</td></tr>
+<tr><td>Gestión Procesal</td><td>Grado</td><td>725</td><td>18 m</td><td>2.100 €</td></tr>
+<tr><td>Inspector Hacienda</td><td>Grado</td><td>~150</td><td>36 m</td><td>3.200 €</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Recursos relacionados</h3>
+<ul>
+<li><a href="/oposiciones">Catálogo completo</a></li>
+<li><a href="/datos/plazas-age-historico">Plazas históricas AGE</a></li>
+<li><a href="/datos/mapa-destinos">Mapa destinos CC.AA.</a></li>
+<li><a href="/oep-2026">OEP 2026</a></li>
+<li><a href="/blog/oposiciones-sin-penalizacion-2026">Sin penalización</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Prueba gratis OpoRuta</a></strong> — elige tu oposición y empieza con tests verificados. <a href="/precios">Ver precios</a>.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuál es la oposición con mejor ratio plazas/opositores en 2026?', answer: 'Correos (4.055 plazas), ratio histórico ~5:1. Le siguen Auxiliar AGE (~1:10) y Celador en CC.AA. con menos demanda.' },
+      { question: '¿Se puede opositar sin el graduado en ESO?', answer: 'Solo a plazas AP: Celador, Ordenanza, Personal laboral subalterno. Para cualquier C2 oficial se exige ESO o equivalente.' },
+      { question: '¿Qué oposición es mejor sin mucho tiempo?', answer: 'Correos (12 temas, sin penalización) o Celador (temario local corto). Ambas permiten presentarse tras 3-4 meses a tiempo parcial.' },
+      { question: '¿Merece la pena opositar a A1 con 30+ años?', answer: 'Depende del coste de oportunidad: 24-36 meses de preparación a tiempo completo. Con hipoteca/familia puede ser inviable. A2 (2.100-2.400 €) suele ser mejor equilibrio.' },
+      { question: '¿Qué oposición tiene mejor conciliación familiar?', answer: 'Auxilio Judicial, Auxiliar AGE, Gestión Procesal: horario de mañana, sin guardias ni desplazamientos. Justicia tiene agosto inhábil.' },
+    ],
+  },
 ]
