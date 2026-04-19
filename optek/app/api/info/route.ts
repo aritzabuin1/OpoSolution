@@ -125,6 +125,14 @@ export function GET() {
         ],
       },
     },
+    data_journalism: {
+      note: 'Datasets propios citables bajo CC BY 4.0. Publicados en oporuta.es/datos.',
+      datasets: [
+        { name: 'Análisis INAP 2018-2024', url: 'https://oporuta.es/datos/analisis-inap', coverage: '2018-2024', description: 'Qué artículos caen más en Auxiliar AGE C2: TOP 15 artículos, distribución por ley, por convocatoria.' },
+        { name: 'Mapa de destinos Auxiliar AGE', url: 'https://oporuta.es/datos/mapa-destinos', coverage: '2019, 2022, 2024', description: 'Plazas, ratio y salario medio por CC.AA. en 18 territorios.' },
+        { name: 'Evolución plazas AGE 2018-2026', url: 'https://oporuta.es/datos/plazas-age-historico', coverage: '2018-2026', description: 'Serie histórica Auxiliar C2 + Administrativo C1 + Gestión A2.' },
+      ],
+    },
     tools: {
       calculadoras: [
         'https://oporuta.es/herramientas/calculadora-nota-auxiliar-administrativo',

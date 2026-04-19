@@ -20242,4 +20242,295 @@ export const blogPosts: BlogPost[] = [
       { question: '¿Se puede acortar con academia intensiva?', answer: 'Marginalmente. Los contenidos tardan tiempo en asentarse biológicamente (curva del olvido). La repetición espaciada es insustituible: 3 meses intensivos rinden menos que 6 meses constantes.' },
     ],
   },
+  {
+    slug: 'calendario-ertzaintza-2026-fechas-examen',
+    title: 'Calendario Ertzaintza 2026: fechas clave convocatoria → toma de posesión',
+    description: 'Todas las fechas de la oposición Ertzaintza 2026: publicación BOPV, plazo inscripción, examen teórico, pruebas físicas, psicotécnico, reconocimiento médico y academia.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: ['calendario ertzaintza 2026', 'fechas examen ertzaintza', 'cuándo es el examen ertzaintza', 'convocatoria ertzaintza 2026'],
+    content: `
+<p class="bg-primary/10 border-l-4 border-primary p-4 rounded"><strong>TL;DR:</strong></p>
+<ul class="bg-primary/5 p-4 rounded">
+<li>Convocatoria Ertzaintza 2026: publicación prevista BOPV <strong>mayo-junio 2026</strong>.</li>
+<li>Examen teórico estimado: <strong>octubre-noviembre 2026</strong> (150 preguntas, 3 h).</li>
+<li>Pruebas físicas + psicotécnico + entrevista: <strong>Q1 2027</strong>. Academia Arkaute: <strong>Q2-Q4 2027</strong>.</li>
+</ul>
+
+<h2>Calendario completo orientativo</h2>
+<table>
+<thead><tr><th>Hito</th><th>Fecha estimada 2026-2027</th></tr></thead>
+<tbody>
+<tr><td>Publicación convocatoria BOPV</td><td>Mayo-junio 2026</td></tr>
+<tr><td>Plazo inscripción (20 días hábiles)</td><td>Junio-julio 2026</td></tr>
+<tr><td>Lista admitidos provisional</td><td>Agosto 2026</td></tr>
+<tr><td>Examen teórico (150 preguntas)</td><td>Octubre-noviembre 2026</td></tr>
+<tr><td>Pruebas físicas</td><td>Enero-febrero 2027</td></tr>
+<tr><td>Psicotécnico + entrevista</td><td>Marzo 2027</td></tr>
+<tr><td>Reconocimiento médico</td><td>Abril 2027</td></tr>
+<tr><td>Academia Arkaute (9 meses)</td><td>Junio 2027 - marzo 2028</td></tr>
+<tr><td>Toma de posesión</td><td>Abril 2028</td></tr>
+</tbody>
+</table>
+
+<p>Fuente: <a href="https://www.euskadi.eus" target="_blank" rel="noopener">euskadi.eus</a> y últimas convocatorias (2022, 2024). Las fechas definitivas se publican en el BOPV.</p>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+<li><a href="/blog/plazas-ertzaintza-2026-convocatoria">Plazas Ertzaintza 2026</a></li>
+<li><a href="/blog/sueldo-ertzaintza-2026">Sueldo Ertzaintza 2026</a></li>
+<li><a href="/blog/temario-ertzaintza-2026">Temario Ertzaintza 2026</a></li>
+<li><a href="/oposiciones/seguridad/ertzaintza">Oposición Ertzaintza</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza a prepararte gratis</a></strong> con OpoRuta.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuándo sale la convocatoria Ertzaintza 2026?', answer: 'Previsiblemente entre mayo y junio de 2026 en el BOPV. Las últimas dos convocatorias (2022 y 2024) siguieron ese patrón.' },
+      { question: '¿Cuánto tiempo pasa desde el examen hasta la toma de posesión?', answer: 'Aproximadamente 18 meses. El examen teórico es a finales de 2026, las pruebas físicas y psicotécnico en Q1 2027, y la academia Arkaute dura 9 meses.' },
+      { question: '¿Cuánto dura la academia Arkaute?', answer: '9 meses en régimen semi-residencial con sueldo en prácticas. Se entra tras superar todas las fases selectivas.' },
+      { question: '¿Puedo presentarme sin saber euskera?', answer: 'Sí, el euskera puntúa como mérito pero no es requisito mínimo. Sin embargo, para ascensos y destinos concretos sí es clave.' },
+      { question: '¿Se convoca Ertzaintza todos los años?', answer: 'No. El patrón histórico es cada 2-3 años (2019, 2022, 2024, previsiblemente 2026).' },
+    ],
+  },
+  {
+    slug: 'pruebas-fisicas-ertzaintza-2026-marcas-minimas',
+    title: 'Pruebas físicas Ertzaintza 2026: marcas mínimas oficiales',
+    description: 'Todas las pruebas físicas de la Ertzaintza 2026: velocidad 60 m, salto vertical, dominadas (hombres) / flexión-mantenida (mujeres), 1000 m, natación 50 m. Baremos por edad y sexo.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: ['pruebas físicas ertzaintza', 'marcas mínimas ertzaintza', 'test físico ertzaintza 2026', 'natación ertzaintza'],
+    content: `
+<p class="bg-primary/10 border-l-4 border-primary p-4 rounded"><strong>TL;DR:</strong></p>
+<ul class="bg-primary/5 p-4 rounded">
+<li>Ertzaintza tiene <strong>5 pruebas físicas</strong>, incluida natación 50 m (caso único entre oposiciones de seguridad españolas).</li>
+<li>Son eliminatorias: fallar una suspende toda la oposición.</li>
+<li>Marcas mínimas ajustadas por sexo pero no por edad (diferencia vs GC/PN).</li>
+</ul>
+
+<h2>Pruebas oficiales y marcas mínimas</h2>
+<table>
+<thead><tr><th>Prueba</th><th>Hombres</th><th>Mujeres</th></tr></thead>
+<tbody>
+<tr><td>Velocidad 60 m</td><td>≤ 9,4 s</td><td>≤ 10,8 s</td></tr>
+<tr><td>Salto vertical</td><td>≥ 44 cm</td><td>≥ 33 cm</td></tr>
+<tr><td>Dominadas / flexión mantenida</td><td>≥ 6 dominadas</td><td>≥ 20 s flexión mantenida</td></tr>
+<tr><td>1.000 m</td><td>≤ 3 min 30 s</td><td>≤ 4 min 15 s</td></tr>
+<tr><td>Natación 50 m</td><td>≤ 55 s</td><td>≤ 1 min 5 s</td></tr>
+</tbody>
+</table>
+
+<p>Fuente: última convocatoria publicada en BOPV (2024). Las marcas pueden actualizarse en la convocatoria 2026.</p>
+
+<h2>Diferencias vs Guardia Civil y Policía Nacional</h2>
+<ul>
+<li><strong>Natación:</strong> Ertzaintza sí (50 m), GC no, PN no.</li>
+<li><strong>Circuito de agilidad:</strong> GC/PN sí, Ertzaintza no.</li>
+<li><strong>Baremo por edad:</strong> GC/PN sí (tramos), Ertzaintza no (único baremo).</li>
+</ul>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+<li><a href="/blog/plazas-ertzaintza-2026-convocatoria">Plazas Ertzaintza 2026</a></li>
+<li><a href="/blog/calendario-ertzaintza-2026-fechas-examen">Calendario Ertzaintza 2026</a></li>
+<li><a href="/blog/pruebas-fisicas-guardia-civil-2026">Pruebas físicas GC (comparar)</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza gratis</a></strong> con OpoRuta.</p>`.trim(),
+    faqs: [
+      { question: '¿Se puede ir a la Ertzaintza sin saber nadar?', answer: 'No. La natación 50 m es eliminatoria. Es la única oposición de seguridad en España con prueba de natación.' },
+      { question: '¿Hay tramos por edad en Ertzaintza?', answer: 'No. Al contrario que GC y PN, Ertzaintza aplica el mismo baremo a todos los aspirantes dentro del mismo sexo.' },
+      { question: '¿Cuántas pruebas físicas hay?', answer: '5: velocidad, salto vertical, dominadas/flexión, 1000 m y natación 50 m.' },
+      { question: '¿Son eliminatorias?', answer: 'Sí. Fallar una sola prueba física suspende toda la oposición.' },
+      { question: '¿Se parecen a las de GC o PN?', answer: 'Parcialmente. Coinciden en velocidad, salto y dominadas. Ertzaintza añade natación. GC/PN añaden circuito de agilidad.' },
+    ],
+  },
+  {
+    slug: 'calendario-agente-hacienda-2026-fechas-examen',
+    title: 'Calendario Agente Hacienda 2026: fechas clave de la convocatoria',
+    description: 'Calendario completo de la oposición de Agente de Hacienda 2026: publicación BOE, plazo de inscripción, primer examen, segundo examen, prueba de ofimática y toma de posesión.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: ['calendario agente hacienda 2026', 'fechas examen agente hacienda', 'convocatoria hacienda 2026'],
+    content: `
+<p class="bg-primary/10 border-l-4 border-primary p-4 rounded"><strong>TL;DR:</strong></p>
+<ul class="bg-primary/5 p-4 rounded">
+<li>Convocatoria Agente Hacienda 2026: BOE previsto <strong>Q2 2026</strong>.</li>
+<li>Primer examen (teórico, 100 preguntas): <strong>finales 2026</strong>.</li>
+<li>Proceso completo: ~18 meses desde convocatoria a toma de posesión.</li>
+</ul>
+
+<h2>Calendario orientativo</h2>
+<table>
+<thead><tr><th>Hito</th><th>Fecha estimada</th></tr></thead>
+<tbody>
+<tr><td>Publicación convocatoria BOE</td><td>Q2 2026</td></tr>
+<tr><td>Plazo inscripción (20 días hábiles)</td><td>Q2-Q3 2026</td></tr>
+<tr><td>Lista admitidos</td><td>Q3 2026</td></tr>
+<tr><td>Primer ejercicio (100 preguntas tipo test)</td><td>Finales 2026 / Q1 2027</td></tr>
+<tr><td>Segundo ejercicio (supuestos prácticos)</td><td>Q2 2027</td></tr>
+<tr><td>Prueba ofimática (Word + Excel)</td><td>Q2 2027</td></tr>
+<tr><td>Lista aprobados + destinos</td><td>Q3 2027</td></tr>
+<tr><td>Toma de posesión</td><td>Q4 2027</td></tr>
+</tbody>
+</table>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+<li><a href="/oposiciones/hacienda">Oposición Agente Hacienda</a></li>
+<li><a href="/herramientas/calculadora-nota-hacienda">Calculadora nota Hacienda</a></li>
+<li><a href="/blog/calendario-oposiciones-age-2026-consolidado">Calendario AGE consolidado</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Prepara Hacienda gratis</a></strong> con OpoRuta.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuándo sale la convocatoria Agente Hacienda 2026?', answer: 'Previsiblemente en Q2 2026 (mayo-junio), siguiendo el patrón de convocatorias anteriores de la AEAT.' },
+      { question: '¿Cuántos exámenes tiene Agente Hacienda?', answer: 'Tres: primer ejercicio de 100 preguntas tipo test (teórico), segundo ejercicio de supuestos prácticos, y prueba de ofimática.' },
+      { question: '¿Cuánto tiempo pasa entre convocatoria y toma de posesión?', answer: 'Aproximadamente 18 meses, dependiendo de la velocidad de cada fase.' },
+      { question: '¿Se publica en el BOE?', answer: 'Sí. La convocatoria oficial aparece en el BOE. Las listas intermedias en la web de la AEAT.' },
+      { question: '¿Hay convocatoria todos los años?', answer: 'Sí, con regularidad anual o bianual, ajustada a la OEP de cada ejercicio.' },
+    ],
+  },
+  {
+    slug: 'calendario-gestion-age-2026-fechas-examen',
+    title: 'Calendario Gestión AGE 2026 (GACE): fechas clave de la convocatoria',
+    description: 'Calendario de la oposición Cuerpo General Administrativo del Estado (GACE) 2026: BOE, plazo inscripción, examen teórico, supuesto práctico, ofimática y toma de posesión.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: ['calendario gace 2026', 'fechas examen administrativo estado', 'convocatoria gestión age 2026'],
+    content: `
+<p class="bg-primary/10 border-l-4 border-primary p-4 rounded"><strong>TL;DR:</strong></p>
+<ul class="bg-primary/5 p-4 rounded">
+<li>Convocatoria GACE 2026: BOE previsto <strong>abril-junio 2026</strong>.</li>
+<li>Examen teórico (100 preguntas + 10 reserva): <strong>Q4 2026 / Q1 2027</strong>.</li>
+<li>Proceso completo: ~15-18 meses hasta toma de posesión.</li>
+</ul>
+
+<h2>Calendario orientativo</h2>
+<table>
+<thead><tr><th>Hito</th><th>Fecha estimada</th></tr></thead>
+<tbody>
+<tr><td>Publicación convocatoria BOE</td><td>Abril-junio 2026</td></tr>
+<tr><td>Plazo inscripción (20 días hábiles)</td><td>Mayo-julio 2026</td></tr>
+<tr><td>Lista admitidos</td><td>Septiembre 2026</td></tr>
+<tr><td>Primer ejercicio (test teórico)</td><td>Q4 2026 / Q1 2027</td></tr>
+<tr><td>Segundo ejercicio (supuesto práctico)</td><td>Q2 2027</td></tr>
+<tr><td>Prueba ofimática Word/Excel</td><td>Q2 2027</td></tr>
+<tr><td>Lista definitiva + destinos</td><td>Q3 2027</td></tr>
+<tr><td>Toma de posesión</td><td>Q4 2027</td></tr>
+</tbody>
+</table>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+<li><a href="/blog/plazas-gestion-age-2026-gace">Plazas GACE 2026</a></li>
+<li><a href="/blog/sueldo-gestion-age-2026-gace">Sueldo GACE 2026</a></li>
+<li><a href="/herramientas/calculadora-nota-administrativo-estado">Calculadora nota Administrativo Estado</a></li>
+<li><a href="/blog/calendario-oposiciones-age-2026-consolidado">Calendario AGE consolidado</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Prepara GACE gratis</a></strong> con OpoRuta.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuándo es el examen del Administrativo del Estado (C1) 2026?', answer: 'Previsiblemente Q4 2026 o Q1 2027 (noviembre 2026 - febrero 2027), tras la publicación de la convocatoria y el plazo de inscripción.' },
+      { question: '¿Cuántos ejercicios tiene GACE?', answer: 'Tres: test teórico (100+10 preguntas), supuesto práctico y prueba de ofimática (Word y Excel).' },
+      { question: '¿La ofimática de GACE es eliminatoria?', answer: 'Sí. Es el tercer ejercicio y hay que superarla para aprobar la oposición.' },
+      { question: '¿Se solapa con Auxiliar Administrativo?', answer: 'Parcialmente. Ambos procesos suelen caer en ventanas cercanas. Muchos aspirantes se presentan a los dos con ~60% de temario común.' },
+      { question: '¿Cuánto tarda en salir destino tras aprobar?', answer: 'Entre 3 y 6 meses desde la última fase hasta la toma de posesión real.' },
+    ],
+  },
+  {
+    slug: 'calendario-instituciones-penitenciarias-2026-fechas-examen',
+    title: 'Calendario Instituciones Penitenciarias 2026: fechas clave de la convocatoria',
+    description: 'Calendario de la oposición Ayudantes de Instituciones Penitenciarias 2026: BOE, plazo inscripción, primer examen, psicotécnico, reconocimiento médico y toma de posesión.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: ['calendario iipp 2026', 'fechas examen penitenciarias 2026', 'convocatoria iipp 2026'],
+    content: `
+<p class="bg-primary/10 border-l-4 border-primary p-4 rounded"><strong>TL;DR:</strong></p>
+<ul class="bg-primary/5 p-4 rounded">
+<li>Convocatoria Ayudantes IIPP 2026: BOE previsto <strong>Q2-Q3 2026</strong>.</li>
+<li>Primer ejercicio: <strong>Q1 2027</strong>. Psicotécnico y reconocimiento médico: <strong>Q2 2027</strong>.</li>
+<li>Toma de posesión estimada: <strong>Q4 2027</strong> tras curso selectivo.</li>
+</ul>
+
+<h2>Calendario orientativo</h2>
+<table>
+<thead><tr><th>Hito</th><th>Fecha estimada</th></tr></thead>
+<tbody>
+<tr><td>Publicación convocatoria BOE</td><td>Q2-Q3 2026</td></tr>
+<tr><td>Plazo inscripción (20 días hábiles)</td><td>Q3 2026</td></tr>
+<tr><td>Lista admitidos</td><td>Q4 2026</td></tr>
+<tr><td>Primer ejercicio (teórico)</td><td>Q1 2027</td></tr>
+<tr><td>Segundo ejercicio (psicotécnico)</td><td>Q2 2027</td></tr>
+<tr><td>Reconocimiento médico</td><td>Q2 2027</td></tr>
+<tr><td>Curso selectivo (CEJFE/SG IIPP)</td><td>Q3 2027</td></tr>
+<tr><td>Toma de posesión</td><td>Q4 2027</td></tr>
+</tbody>
+</table>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+<li><a href="/blog/plazas-instituciones-penitenciarias-2026">Plazas IIPP 2026</a></li>
+<li><a href="/blog/sueldo-instituciones-penitenciarias-2026">Sueldo IIPP 2026</a></li>
+<li><a href="/oposiciones/penitenciarias">Oposición IIPP</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Prepara IIPP gratis</a></strong> con OpoRuta.</p>`.trim(),
+    faqs: [
+      { question: '¿Cuándo sale la convocatoria IIPP 2026?', answer: 'Previsiblemente entre mayo y septiembre de 2026, siguiendo el patrón de convocatorias previas.' },
+      { question: '¿Cuántos ejercicios tiene Ayudantes IIPP?', answer: 'Dos principales (teórico + psicotécnico) más reconocimiento médico y un curso selectivo posterior.' },
+      { question: '¿Es obligatorio el curso selectivo?', answer: 'Sí. Tras aprobar las fases selectivas, el curso es eliminatorio y se imparte en centros de la SG de IIPP.' },
+      { question: '¿Hay pruebas físicas?', answer: 'No como en GC/PN/Ertzaintza. Solo reconocimiento médico que verifica aptitud general.' },
+      { question: '¿Cuándo se toma posesión?', answer: 'Aproximadamente 15-18 meses después de la convocatoria, dependiendo de la duración del curso selectivo.' },
+    ],
+  },
+  {
+    slug: 'pruebas-justicia-a2-supuestos-practicos-2026',
+    title: 'Pruebas Justicia A2 2026: supuestos prácticos Gestión y Tramitación',
+    description: 'Estructura del examen Justicia A2 (Gestión Procesal, Tramitación Procesal, Auxilio Judicial): ejercicios teóricos, supuesto práctico y ofimática. Ejemplos reales y criterios de corrección.',
+    date: '2026-04-19',
+    dateModified: '2026-04-19',
+    keywords: ['supuestos prácticos justicia', 'pruebas gestión procesal', 'tramitación procesal ejercicio', 'justicia a2 examen'],
+    content: `
+<p class="bg-primary/10 border-l-4 border-primary p-4 rounded"><strong>TL;DR:</strong></p>
+<ul class="bg-primary/5 p-4 rounded">
+<li>Las tres oposiciones de Justicia A2 (Gestión, Tramitación, Auxilio) comparten estructura: teórico + supuesto práctico + ofimática (excepto Auxilio).</li>
+<li>El <strong>supuesto práctico</strong> es el filtro real: se redacta sobre un caso judicial simulado.</li>
+<li>Ofimática Word/Excel eliminatoria en Gestión y Tramitación.</li>
+</ul>
+
+<h2>Estructura por oposición</h2>
+<table>
+<thead><tr><th>Cuerpo</th><th>Test teórico</th><th>Supuesto práctico</th><th>Ofimática</th></tr></thead>
+<tbody>
+<tr><td>Gestión Procesal</td><td>100 preguntas</td><td>Sí (eliminatorio)</td><td>Word + Excel</td></tr>
+<tr><td>Tramitación Procesal</td><td>100 preguntas</td><td>Sí (eliminatorio)</td><td>Word</td></tr>
+<tr><td>Auxilio Judicial</td><td>50-100 preguntas</td><td>No</td><td>No</td></tr>
+</tbody>
+</table>
+
+<h2>Qué entra en el supuesto práctico</h2>
+<ul>
+<li>Caso simulado basado en legislación procesal (LEC, LECrim).</li>
+<li>Redacción tipo: providencia, diligencia de ordenación, cédula de notificación.</li>
+<li>Uso correcto del lenguaje jurídico y plazos procesales.</li>
+</ul>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+<li><a href="/blog/plazas-gestion-procesal-2026-convocatoria">Plazas Gestión Procesal 2026</a></li>
+<li><a href="/blog/sueldo-gestion-procesal-2026-nomina-desglosada">Sueldo Gestión Procesal 2026</a></li>
+<li><a href="/oposiciones/justicia/gestion-procesal">Oposición Gestión Procesal</a></li>
+<li><a href="/oposiciones/justicia/tramitacion-procesal">Oposición Tramitación</a></li>
+<li><a href="/oposiciones/justicia/auxilio-judicial">Oposición Auxilio Judicial</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica supuestos gratis</a></strong> con OpoRuta.</p>`.trim(),
+    faqs: [
+      { question: '¿El supuesto práctico de Justicia es eliminatorio?', answer: 'Sí en Gestión y Tramitación. Auxilio Judicial no tiene supuesto práctico.' },
+      { question: '¿Qué hay que saber para el supuesto?', answer: 'LEC, LECrim, LOPJ y lenguaje procesal. Hay que redactar diligencias, providencias o notificaciones a partir de un caso simulado.' },
+      { question: '¿Cuánto dura el supuesto práctico?', answer: 'Entre 2 y 3 horas según convocatoria. Se permite consulta de legislación sin anotar.' },
+      { question: '¿La ofimática es eliminatoria?', answer: 'Sí en Gestión (Word + Excel) y en Tramitación (Word). Auxilio Judicial no tiene ofimática.' },
+      { question: '¿Se pueden preparar las tres a la vez?', answer: 'Sí. Comparten ~70% de temario. Es estrategia habitual opositar a las tres y quedarse con la que se apruebe antes.' },
+    ],
+  },
 ]

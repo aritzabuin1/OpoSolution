@@ -336,15 +336,17 @@ Imposible humano puro en 3 semanas (42 piezas × 5h ≈ 210h).
 - ✅ Comparativa GC vs PN (45) — cubre ambas
 - ✅ Enrichment de /oposiciones/seguridad/guardia-civil y /oposiciones/seguridad/policia-nacional pillar pages con "Guías complementarias" (6 internal links c/u)
 - **Sprint 1 COMPLETO: 14/14 piezas** 2026-04-19
-**Sprint 2 (semana 4): Justicia A2 + Instituciones Penitenciarias** (14 piezas) 🟡 PARCIAL 2026-04-19
-- ✅ Plazas IIPP (46), Sueldo IIPP (47)
-- ✅ Plazas Gestión Procesal (48), Sueldo Gestión Procesal (49)
-- ⏳ Pendiente: pruebas específicas Justicia A2, calendario IIPP detallado, pillars enrichment
+**Sprint 2 (semana 4): Justicia A2 + Instituciones Penitenciarias** (14 piezas) ✅ COMPLETADO 2026-04-19
+- ✅ Plazas IIPP (46), Sueldo IIPP (47), Calendario IIPP (65)
+- ✅ Plazas Gestión Procesal (48), Sueldo Gestión Procesal (49), Supuestos A2 (66)
+- ✅ Pillar enrichment: /oposiciones/penitenciarias + /oposiciones/justicia/gestion-procesal con "Guías complementarias"
 
-**Sprint 3 (semana 5): Ertzaintza + refuerzo AGE A2 + Hacienda** (11 piezas) 🟡 PARCIAL 2026-04-19
+**Sprint 3 (semana 5): Ertzaintza + refuerzo AGE A2 + Hacienda** (11 piezas) ✅ COMPLETADO 2026-04-19
 - ✅ Plazas Ertzaintza (50), Sueldo Ertzaintza (51), Temario Ertzaintza (52)
-- ✅ Plazas GACE (53), Sueldo GACE (54)
-- ⏳ Pendiente: calendario/pruebas físicas Ertzaintza, calendario Hacienda/GACE
+- ✅ Calendario Ertzaintza (61), Pruebas físicas Ertzaintza (62)
+- ✅ Plazas GACE (53), Sueldo GACE (54), Calendario GACE (64)
+- ✅ Calendario Agente Hacienda (63)
+- ✅ Pillar enrichment: /oposiciones/seguridad/ertzaintza + /oposiciones/hacienda
 
 **Detalle Ertzaintza (ángulo único):**
 - Pieza bilingüe (ES + EU) como diferenciador. Añadir `hreflang="es-ES"` y `hreflang="eu-ES"`.

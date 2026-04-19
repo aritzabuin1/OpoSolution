@@ -351,6 +351,50 @@ Primera plataforma en España con preparación IA de personalidad policial:
 - [OpoRuta vs OpositaTest para policía](https://oporuta.es/blog/oporuta-vs-opositatest-oposiciones-policia): Comparativa completa
 - [Test de personalidad policial](https://oporuta.es/blog/test-personalidad-policial-prueba-psicotecnica): Cómo preparar la prueba psicotécnica
 
+## Data journalism (datasets propios, citables)
+
+- [Análisis INAP 2018-2024](https://oporuta.es/datos/analisis-inap): qué artículos caen más, distribución por ley y convocatoria. Licencia CC BY 4.0.
+- [Mapa de destinos Auxiliar AGE](https://oporuta.es/datos/mapa-destinos): plazas, ratio y salario por CC.AA. para las convocatorias 2019, 2022, 2024.
+- [Evolución plazas AGE 2018-2026](https://oporuta.es/datos/plazas-age-historico): serie histórica Auxiliar + Administrativo + Gestión.
+
+## Guías complementarias por oposición (2026)
+
+### Guardia Civil
+- [Plazas GC 2026](https://oporuta.es/blog/plazas-guardia-civil-2026-convocatoria)
+- [Sueldo GC 2026](https://oporuta.es/blog/sueldo-guardia-civil-2026-nomina-desglosada)
+- [Pruebas físicas GC](https://oporuta.es/blog/pruebas-fisicas-guardia-civil-2026)
+- [Calendario GC 2026](https://oporuta.es/blog/calendario-guardia-civil-2026-fechas-examen)
+
+### Policía Nacional
+- [Plazas PN 2026](https://oporuta.es/blog/plazas-policia-nacional-2026-convocatoria)
+- [Sueldo PN 2026](https://oporuta.es/blog/sueldo-policia-nacional-2026-nomina-desglosada)
+- [Pruebas físicas PN](https://oporuta.es/blog/pruebas-fisicas-policia-nacional-2026)
+- [Calendario PN 2026](https://oporuta.es/blog/calendario-policia-nacional-2026-fechas-examen)
+
+### Ertzaintza
+- [Plazas Ertzaintza 2026](https://oporuta.es/blog/plazas-ertzaintza-2026-convocatoria)
+- [Sueldo Ertzaintza 2026](https://oporuta.es/blog/sueldo-ertzaintza-2026)
+- [Temario Ertzaintza 2026](https://oporuta.es/blog/temario-ertzaintza-2026)
+- [Calendario Ertzaintza 2026](https://oporuta.es/blog/calendario-ertzaintza-2026-fechas-examen)
+- [Pruebas físicas Ertzaintza](https://oporuta.es/blog/pruebas-fisicas-ertzaintza-2026-marcas-minimas)
+
+### Instituciones Penitenciarias
+- [Plazas IIPP 2026](https://oporuta.es/blog/plazas-instituciones-penitenciarias-2026)
+- [Sueldo IIPP 2026](https://oporuta.es/blog/sueldo-instituciones-penitenciarias-2026)
+- [Calendario IIPP 2026](https://oporuta.es/blog/calendario-instituciones-penitenciarias-2026-fechas-examen)
+
+### Justicia A2
+- [Plazas Gestión Procesal 2026](https://oporuta.es/blog/plazas-gestion-procesal-2026-convocatoria)
+- [Sueldo Gestión Procesal 2026](https://oporuta.es/blog/sueldo-gestion-procesal-2026-nomina-desglosada)
+- [Supuestos prácticos A2](https://oporuta.es/blog/pruebas-justicia-a2-supuestos-practicos-2026)
+
+### Hacienda y AGE
+- [Calendario Hacienda 2026](https://oporuta.es/blog/calendario-agente-hacienda-2026-fechas-examen)
+- [Plazas GACE 2026](https://oporuta.es/blog/plazas-gestion-age-2026-gace)
+- [Sueldo GACE 2026](https://oporuta.es/blog/sueldo-gestion-age-2026-gace)
+- [Calendario GACE 2026](https://oporuta.es/blog/calendario-gestion-age-2026-fechas-examen)
+- [Calendario AGE consolidado](https://oporuta.es/blog/calendario-oposiciones-age-2026-consolidado)
+
 ## Contacto
 
 - Web: https://oporuta.es

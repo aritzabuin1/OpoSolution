@@ -196,6 +196,30 @@ export default function ErtzaintzaPage() {
 
       <TopLawsWidget oposicionIds="ab000000-0000-0000-0000-000000000001" oposicionName="Ertzaintza" />
 
+      {/* Recursos complementarios */}
+      <section className="space-y-4">
+        <h2 className="text-2xl font-bold">Guías complementarias Ertzaintza 2026</h2>
+        <div className="grid sm:grid-cols-2 gap-3">
+          {[
+            { slug: 'plazas-ertzaintza-2026-convocatoria', t: 'Plazas Ertzaintza 2026', d: 'Desglose convocatoria y turnos' },
+            { slug: 'sueldo-ertzaintza-2026', t: 'Sueldo Ertzaintza 2026', d: 'Nómina desglosada + complementos' },
+            { slug: 'temario-ertzaintza-2026', t: 'Temario Ertzaintza 2026', d: 'Temas y orden de estudio' },
+            { slug: 'calendario-ertzaintza-2026-fechas-examen', t: 'Calendario Ertzaintza 2026', d: 'Fechas clave convocatoria → academia' },
+            { slug: 'pruebas-fisicas-ertzaintza-2026-marcas-minimas', t: 'Pruebas físicas Ertzaintza', d: 'Marcas mínimas (natación incluida)' },
+            { slug: 'oposiciones-sin-penalizacion-2026', t: 'Penalización por errores', d: 'Cómo afecta en tu estrategia' },
+          ].map(({ slug, t, d }) => (
+            <Link key={slug} href={`/blog/${slug}`} className="block">
+              <Card className="hover:border-red-500 transition-colors">
+                <CardContent className="pt-4 pb-4">
+                  <p className="font-semibold text-sm">{t}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{d}</p>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="space-y-6">
         <h2 className="text-2xl font-bold">Preguntas frecuentes</h2>

@@ -338,6 +338,27 @@ export default function GestionProcesalLanding() {
 
       <TopLawsWidget oposicionIds="e2000000-0000-0000-0000-000000000001" oposicionName="Gestión Procesal" />
 
+      {/* Recursos complementarios */}
+      <section className="space-y-4">
+        <h2 className="text-2xl font-bold">Guías complementarias Gestión Procesal 2026</h2>
+        <div className="grid sm:grid-cols-2 gap-3">
+          {[
+            { slug: 'plazas-gestion-procesal-2026-convocatoria', t: 'Plazas Gestión Procesal', d: 'Convocatoria y turnos' },
+            { slug: 'sueldo-gestion-procesal-2026-nomina-desglosada', t: 'Sueldo Gestión Procesal', d: 'Nómina + complementos' },
+            { slug: 'pruebas-justicia-a2-supuestos-practicos-2026', t: 'Supuestos prácticos A2', d: 'Cómo afrontarlos (Gestión + Tramitación)' },
+          ].map(({ slug, t, d }) => (
+            <Link key={slug} href={`/blog/${slug}`} className="block">
+              <Card className="hover:border-primary transition-colors">
+                <CardContent className="pt-4 pb-4">
+                  <p className="font-semibold text-sm">{t}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{d}</p>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* FAQ visual */}
       <section className="space-y-6">
         <h2 className="text-2xl font-bold">Preguntas frecuentes</h2>

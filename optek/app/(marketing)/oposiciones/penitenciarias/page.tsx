@@ -291,6 +291,28 @@ export default function PenitenciariasLanding() {
         oposicionName="Ayudante Penitenciarias"
       />
 
+      {/* Recursos complementarios */}
+      <section className="space-y-4">
+        <h2 className="text-2xl font-bold">Guías complementarias IIPP 2026</h2>
+        <div className="grid sm:grid-cols-2 gap-3">
+          {[
+            { slug: 'plazas-instituciones-penitenciarias-2026', t: 'Plazas IIPP 2026', d: 'Desglose convocatoria y turnos' },
+            { slug: 'sueldo-instituciones-penitenciarias-2026', t: 'Sueldo IIPP 2026', d: 'Nómina + complementos' },
+            { slug: 'calendario-instituciones-penitenciarias-2026-fechas-examen', t: 'Calendario IIPP 2026', d: 'Fechas clave + curso selectivo' },
+            { slug: 'errores-comunes-primeros-simulacros-oposiciones', t: 'Errores en simulacros', d: 'Cómo afrontar los primeros tests' },
+          ].map(({ slug, t, d }) => (
+            <Link key={slug} href={`/blog/${slug}`} className="block">
+              <Card className="hover:border-primary transition-colors">
+                <CardContent className="pt-4 pb-4">
+                  <p className="font-semibold text-sm">{t}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{d}</p>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* FAQ visual */}
       <section className="space-y-6">
         <h2 className="text-2xl font-bold">Preguntas frecuentes</h2>
