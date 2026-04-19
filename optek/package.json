@@ -39,6 +39,7 @@
     "ingest:supuestos-tramitacion": "tsx --env-file=.env.local execution/ingest-supuestos-tramitacion.ts",
     "build:radar": "tsx --env-file=.env.local execution/build-radar-tribunal.ts",
     "build:indexable": "tsx --env-file=.env.local execution/build-indexable-set.ts",
+    "build:article-exam-map": "tsx --env-file=.env.local execution/build-article-exam-map.ts",
     "diagnose:seo": "tsx --env-file=.env.local execution/diagnose-seo-coverage.ts",
     "generate:free-bank": "tsx --env-file=.env.local execution/generate-free-bank.ts",
     "seed:supuestos": "tsx --env-file=.env.local execution/generate-supuesto-bank.ts",

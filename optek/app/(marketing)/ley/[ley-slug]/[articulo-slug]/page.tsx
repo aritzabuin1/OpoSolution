@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import { JsonLd } from '@/components/shared/JsonLd'
 import { LawBreadcrumb } from '@/components/seo/LawBreadcrumb'
 import { OposicionBadges } from '@/components/seo/OposicionBadges'
+import { ArticleExamQuestions } from '@/components/seo/ArticleExamQuestions'
+import { ArticleFrequencyBadge } from '@/components/seo/ArticleFrequencyBadge'
 import { ArticleText } from '@/components/seo/ArticleText'
 import { ArticleNav } from '@/components/seo/ArticleNav'
 import { RelatedArticles } from '@/components/seo/RelatedArticles'
@@ -13,7 +15,9 @@ import { getOposicionesForLey } from '@/data/seo/ley-oposicion-map'
 import { getArticleProvisions, getRelatedArticles } from '@/lib/seo/law-queries'
 import { extractCleanTitle, slugifyArticulo } from '@/lib/seo/slugify'
 import articleIndex from '@/data/seo/article-index.json'
+import articleExamMap from '@/data/seo/article-exam-map.json'
 import { isArticleIndexable } from '@/lib/seo/indexability'
+import { getOposicionById } from '@/data/seo/oposicion-registry'
 import { Scale } from 'lucide-react'
 
 const NOINDEX_META: Metadata = { robots: { index: false, follow: true } }
@@ -114,29 +118,83 @@ export default async function ArticlePage({ params }: Props) {
     5,
   )
 
+  // Examen data (PlanSEO F1.T6): si hay preguntas oficiales cruzadas, enriquece FAQ
+  // con información específica — esto es lo que Google post-HCU premia como
+  // "information gain" y diferencia contenido único de réplicas del BOE.
+  const examMap = (articleExamMap as { map: Record<string, { anio: number; oposicionId: string }[]> }).map ?? {}
+  const examEntries = examMap[`${ley.leyNombre}:${artNumero}`] ?? []
+  const examYears = [...new Set(examEntries.map(e => e.anio))].sort((a, b) => b - a)
+  const examOposiciones = [
+    ...new Set(
+      examEntries
+        .map(e => getOposicionById(e.oposicionId)?.shortName)
+        .filter((n): n is string => !!n),
+    ),
+  ]
+
   // Build FAQ schema for all laws (LLMs cite FAQ answers textually)
   const oposiciones = getOposicionesForLey(ley.leyNombre)
+  const faqEntries: Array<{ '@type': 'Question'; name: string; acceptedAnswer: { '@type': 'Answer'; text: string } }> = [
+    {
+      '@type': 'Question',
+      name: `¿Qué dice el ${artLabel.toLowerCase()} de la ${ley.fullName}?`,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: provisions[0].texto_integro?.slice(0, 300).replace(/\n/g, ' ') ?? '',
+      },
+    },
+  ]
+
+  if (oposiciones.length > 0) {
+    faqEntries.push({
+      '@type': 'Question',
+      name: `¿En qué oposiciones se pregunta el ${artLabel.toLowerCase()} ${ley.shortName}?`,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: `El ${artLabel} de la ${ley.fullName} se examina en: ${oposiciones.map(o => o.name).join(', ')}.`,
+      },
+    })
+  }
+
+  // FAQ específica con datos reales de examen (anti-template): sólo si hay
+  // histórico suficiente. Google penaliza FAQs que se repiten literales entre
+  // URLs; esta varía con datos reales por artículo.
+  if (examEntries.length > 0 && examYears.length > 0) {
+    const yearList = examYears.slice(0, 6).join(', ')
+    const opoList = examOposiciones.slice(0, 5).join(', ')
+    faqEntries.push({
+      '@type': 'Question',
+      name: `¿En qué años cayó el ${artLabel.toLowerCase()} ${ley.shortName} en exámenes oficiales?`,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: `Según el histórico de preguntas oficiales, el ${artLabel} de la ${ley.fullName} ha aparecido en convocatorias de ${yearList}${opoList ? ` (oposiciones: ${opoList})` : ''}. En total se han registrado ${examEntries.length} ${examEntries.length === 1 ? 'pregunta' : 'preguntas'} oficiales que lo citan explícitamente.`,
+      },
+    })
+  }
+
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: `¿Qué dice el ${artLabel.toLowerCase()} de la ${ley.fullName}?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: provisions[0].texto_integro?.slice(0, 300).replace(/\n/g, ' ') ?? '',
-        },
-      },
-      ...(oposiciones.length > 0 ? [{
-        '@type': 'Question',
-        name: `¿En qué oposiciones se pregunta el ${artLabel.toLowerCase()} ${ley.shortName}?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: `El ${artLabel} de la ${ley.fullName} se examina en: ${oposiciones.map(o => o.name).join(', ')}.`,
-        },
-      }] : []),
-    ],
+    mainEntity: faqEntries,
+  }
+
+  // Article schema (PlanSEO F1.T10) — additional signal for Google/LLMs
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: `${artLabel} de la ${ley.fullName}${cleanTitle ? ` — ${cleanTitle}` : ''}`,
+    description: provisions[0].texto_integro?.slice(0, 155).replace(/\n/g, ' ') ?? '',
+    author: { '@type': 'Organization', name: 'OpoRuta', url: APP_URL },
+    publisher: {
+      '@type': 'Organization',
+      name: 'OpoRuta',
+      url: APP_URL,
+      logo: { '@type': 'ImageObject', url: `${APP_URL}/icon.svg` },
+    },
+    inLanguage: 'es',
+    mainEntityOfPage: `${APP_URL}/ley/${lawSlug}/${artSlug}`,
+    datePublished: '2026-01-01',
+    dateModified: new Date().toISOString().slice(0, 10),
   }
 
   const legislationJsonLd = {
@@ -164,6 +222,7 @@ export default async function ArticlePage({ params }: Props) {
     <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
       <JsonLd data={legislationJsonLd} />
       <JsonLd data={faqJsonLd} />
+      <JsonLd data={articleJsonLd} />
 
       <LawBreadcrumb
         lawName={ley.shortName}
@@ -198,6 +257,10 @@ export default async function ArticlePage({ params }: Props) {
             ))}
           </div>
         )}
+
+        <div className="mt-4">
+          <ArticleFrequencyBadge leyNombre={ley.leyNombre} articuloNumero={artNumero} />
+        </div>
       </header>
 
       {/* Article text (handles multi-provision) */}
@@ -205,6 +268,14 @@ export default async function ArticlePage({ params }: Props) {
 
       {/* Oposiciones badges */}
       <OposicionBadges leyNombre={ley.leyNombre} className="mt-8" />
+
+      {/* Preguntas oficiales donde cayó el artículo */}
+      <ArticleExamQuestions
+        leyNombre={ley.leyNombre}
+        articuloNumero={artNumero}
+        articuloLabel={artLabel}
+        leyShortName={ley.shortName}
+      />
 
       {/* Related articles */}
       <RelatedArticles articles={related} lawSlug={lawSlug} />
