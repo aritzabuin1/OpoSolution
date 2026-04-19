@@ -457,7 +457,7 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 5 ────────────────────────────────────────────────────────────────
   {
     slug: 'temario-auxiliar-administrativo-estado-2025-2026',
-    title: 'Temario Auxiliar Administrativo 2025-2026: 28 temas — cuáles caen más',
+    title: 'Temario Auxiliar Administrativo del Estado 2026: 28 temas oficiales (qué estudiar)',
     description:
       'Los 28 temas desglosados tema a tema. Bloque I: Constitución, LPAC, TREBEP. Bloque II: Word, Excel, Access. Frecuencia real en exámenes INAP (2018-2024) y plan de estudio de 6 meses.',
     date: '2026-03-03',
@@ -1703,7 +1703,7 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 11 ───────────────────────────────────────────────────────────────
   {
     slug: 'nota-corte-auxiliar-administrativo-estado',
-    title: 'Nota de corte Auxiliar 2024: 30 puntos (histórico 2019-2024)',
+    title: 'Nota de corte Auxiliar Administrativo del Estado 2024: 30 puntos (histórico)',
     description:
       'Corte real 2024: 30 puntos (parte 1) y 26,33 (parte 2). Histórico completo desde 2019 con tendencia al alza. Fórmula penalización -1/3 y calculadora gratis para saber si llegas.',
     date: '2026-03-12',
@@ -2070,7 +2070,7 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 14 ───────────────────────────────────────────────────────────────
   {
     slug: 'cuantos-temas-examen-auxiliar-administrativo-estado',
-    title: '¿Cuántos temas tiene el Auxiliar Administrativo? 28, pero no todos pesan igual',
+    title: '¿Cuántos temas tiene el Auxiliar Administrativo del Estado? 28 temas (2026)',
     description:
       '28 temas en 2 bloques: 16 de organización pública y 12 de ofimática. Pero no todos caen igual en el examen — te mostramos cuáles pregunta más el INAP según datos reales y por cuáles empezar.',
     date: '2026-03-16',
@@ -2531,7 +2531,7 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 18 ───────────────────────────────────────────────────────────────
   {
     slug: 'diferencias-auxiliar-c2-administrativo-c1-estado',
-    title: 'C2 vs C1: 1.700 vs 2.512 plazas 2026 (tabla + sueldo)',
+    title: 'Auxiliar Administrativo ¿C1 o C2? Diferencias 2026 (tabla + sueldo)',
     description:
       'C2: 28 temas, 23.000€/año. C1: 45 temas, 28.000€/año. Comparativa real con ratio aspirantes/plaza, dificultad y sueldo neto. Tabla resumen para decidir qué oposición preparar.',
     date: '2026-03-21',
@@ -4271,7 +4271,7 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 29: OpoRuta vs OpositaTest ──────────────────────────────────────
   {
     slug: 'oporuta-vs-opositatest-auxiliar-administrativo-2026',
-    title: 'OpoRuta vs OpositaTest: 49,99€ único vs 12€/mes (2026)',
+    title: '¿OpositaTest u OpoRuta? Comparativa Auxiliar Administrativo 2026',
     description:
       'Comparativa real: verificación de citas legales, Radar del Tribunal y simulacros INAP. OpoRuta 49,99€ pago único vs OpositaTest 12€/mes (144€/año). Tabla punto por punto.',
     date: '2026-03-17',
@@ -4950,7 +4950,7 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 32 ───────────────────────────────────────────────────────────────
   {
     slug: 'calendario-oposiciones-age-2026-fechas-auxiliar-administrativo',
-    title: 'Examen Auxiliar C2: 23 mayo 2026 — Calendario BOE oficial',
+    title: 'Calendario Oposiciones AGE 2026: examen Auxiliar 23 mayo (fechas BOE)',
     description:
       'Fecha confirmada BOE: examen Auxiliar Administrativo el 23 mayo 2026. Calendario completo: inscripción, admitidos, C1 el 20 junio. Todos los plazos AGE actualizados.',
     date: '2026-03-19',
@@ -5436,7 +5436,7 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 35 ───────────────────────────────────────────────────────────────
   {
     slug: 'sueldo-auxiliar-administrativo-estado-2026-nomina-desglosada',
-    title: 'Sueldo Auxiliar Administrativo 2026: 1.500€/mes netos (nómina desglosada)',
+    title: 'Sueldo Auxiliar Administrativo del Estado 2026: 1.500€ netos/mes (nómina)',
     description:
       '¿Cuánto cobra un Auxiliar Administrativo del Estado? Nómina real 2026: sueldo base 648€ + complementos + 14 pagas. Neto mensual ~1.500€ de inicio, hasta 1.900€ con trienios. Tabla completa.',
     date: '2026-03-19',
@@ -6133,7 +6133,7 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 38 ───────────────────────────────────────────────────────────────
   {
     slug: 'sueldo-administrativo-estado-c1-2026-nomina',
-    title: 'Sueldo C1 en 2026: 2.100€ netos/mes (nómina real)',
+    title: 'Sueldo Administrativo del Estado C1 2026: 2.100€ netos/mes (tabla)',
     description:
       'Nómina real desglosada: base 858€ + destino + específico = hasta 2.100€ netos. Tabla por ministerio, trienios y progresión salarial del Administrativo del Estado C1 en 2026.',
     date: '2026-03-20',
@@ -13834,7 +13834,7 @@ export const blogPosts: BlogPost[] = [
   // ─── Post 78 — Correos: sueldo 2026 ───────────────────────────────────────────
   {
     slug: 'sueldo-correos-2026-reparto-atencion-cliente',
-    title: 'Sueldo Correos 2026: cuanto cobra un cartero y agente de clasificacion',
+    title: 'Sueldo Correos 2026: cuánto cobra un cartero (nómina REP, ATC y clasificación)',
     description: 'Sueldo de Correos en 2026 por puesto: REP, ATC y Agente de Clasificacion. Desglose de salario base, complementos, nocturnidad y comparativa.',
     date: '2026-03-30',
     keywords: ['sueldo correos 2026', 'cuanto cobra un cartero', 'sueldo reparto correos', 'sueldo ATC correos', 'sueldo cartero 2026', 'nómina correos'],
@@ -15172,7 +15172,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'notas-corte-agente-hacienda',
-    title: 'Notas de corte Agente de Hacienda — Historico 2020-2024 y prediccion 2025',
+    title: 'Nota de corte Agente de Hacienda 2024: histórico y predicción 2026',
     description: 'Historico de notas de corte de Agente de Hacienda Publica. Cuanto necesitas para aprobar el primer ejercicio. Tendencia y prediccion para la proxima convocatoria.',
     date: '2026-03-30',
     dateModified: '2026-04-01',
