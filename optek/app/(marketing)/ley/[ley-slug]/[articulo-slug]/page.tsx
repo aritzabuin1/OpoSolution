@@ -24,10 +24,12 @@ const NOINDEX_META: Metadata = { robots: { index: false, follow: true } }
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
-// TEMP force-dynamic to bust stale 404s in Vercel CDN cached during prior
-// broken builds. Revert to ISR (`revalidate = 604800`) once cache is drained
-// (ideally via sitemap re-crawl or manual purge).
-export const dynamic = 'force-dynamic'
+export const revalidate = 604800 // 7 days
+
+// Pure ISR — no SSG at build time (9K+ articles would blow Vercel limits)
+export function generateStaticParams() {
+  return []
+}
 
 type Props = { params: Promise<{ 'ley-slug': string; 'articulo-slug': string }> }
 
