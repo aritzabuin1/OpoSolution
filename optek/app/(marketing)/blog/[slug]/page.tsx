@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { BlogCTA, injectMidArticleCTA } from '@/components/blog/BlogCTA'
+import { autolinkLegalReferences } from '@/lib/seo/blog-autolinker'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
@@ -64,7 +65,7 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound()
 
   const readingTime = estimateReadingTime(post.content)
-  const contentWithCTA = injectMidArticleCTA(post.content)
+  const contentWithCTA = injectMidArticleCTA(autolinkLegalReferences(post.content))
 
   // Days to exam for bottom CTA — dynamic per oposición
   const isCorreosPost = post.slug.includes('correos') || post.keywords.some(k => k.toLowerCase().includes('correos'))
