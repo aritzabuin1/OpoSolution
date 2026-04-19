@@ -212,6 +212,19 @@ export default async function ArticlePage({ params }: Props) {
     url: `${APP_URL}/ley/${lawSlug}/${artSlug}`,
   }
 
+  // BreadcrumbList (PlanSEO F1.T9) — Google uses this to render rich breadcrumbs
+  // under the search result title instead of the bare URL.
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: APP_URL },
+      { '@type': 'ListItem', position: 2, name: 'Legislación', item: `${APP_URL}/ley` },
+      { '@type': 'ListItem', position: 3, name: ley.shortName, item: `${APP_URL}/ley/${lawSlug}` },
+      { '@type': 'ListItem', position: 4, name: artLabel, item: `${APP_URL}/ley/${lawSlug}/${artSlug}` },
+    ],
+  }
+
   // Section hierarchy
   const sectionParts = (provisions[0].titulo_capitulo ?? '')
     .split(/[|]/)
@@ -223,6 +236,7 @@ export default async function ArticlePage({ params }: Props) {
       <JsonLd data={legislationJsonLd} />
       <JsonLd data={faqJsonLd} />
       <JsonLd data={articleJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
 
       <LawBreadcrumb
         lawName={ley.shortName}
@@ -286,8 +300,14 @@ export default async function ArticlePage({ params }: Props) {
       {/* Related blog posts (bidirectional linking) */}
       <RelatedBlogPosts lawSlug={lawSlug} lawShortName={ley.shortName} className="mt-10" />
 
-      {/* CTA */}
-      <LawCTA lawShortName={ley.shortName} className="mt-10" />
+      {/* CTA — F1.T7 article-scoped */}
+      <LawCTA
+        lawShortName={ley.shortName}
+        articleLabel={artLabel}
+        leyNombre={ley.leyNombre}
+        articuloNumero={artNumero}
+        className="mt-10"
+      />
     </div>
   )
 }
