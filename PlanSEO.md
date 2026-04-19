@@ -579,20 +579,17 @@ Aritz no paga por ninguna herramienta nueva. Todo se hace con tooling propio (Cl
 | Fecha | Fase | Tarea | Status | Notas |
 |---|---|---|---|---|
 | 2026-04-19 | - | PlanSEO v2 creado | ✅ | Este documento |
-| | F0.T1 | Diagnóstico cruzabilidad SQL | ⏳ | |
-| | F0.T2 | Diagnóstico demanda GSC | ⏳ | |
-| | F0.T3 | Auditoría Core Web Vitals | ⏳ | |
-| | F0.T4 | Política indexación | ⏳ | |
-| | F0.T5 | Helper `isArticleIndexable` | ⏳ | |
-| | F0.T6 | Aplicar noindex quirúrgico | ⏳ | |
-| | F0.T7 | Sitemap index (opción A→B) | ⏳ | |
-| | F0.T8 | Filtrar sitemap /ley | ⏳ | |
-| | F0.T9 | Fix `generateMetadata {}` | ⏳ | |
-| | F0.T10 | Limpiar 404s sitemap | ⏳ | |
-| | F0.T11 | Limpiar internal links a noindex | ⏳ | |
-| | F0.T12 | Commit + deploy | ⏳ | |
-| | F0.T13 | Submit GSC/Bing/IndexNow + Request Indexing top 12 | ⏳ | |
-| | F0.T14 | Smoke test final | ⏳ | |
+| | F0.T1-T14 | Fase 0 completa | ✅ | Verificado 2026-04-19: `data/seo/article-exam-map.json`, `data/seo/indexable-cross-ref.json`, `lib/seo/indexability.ts`, `public/sitemap-index.xml`, `noindex` aplicado en `/ley/[ley-slug]/[articulo-slug]` vía `isArticleIndexable` |
+| | F1.T1-T12 | Fase 1 completa | ✅ | `ArticleExamQuestions`, `ArticleFrequencyBadge`, `ArticleSummaryCard` (TL;DR IA cached), FAQPage + Article + BreadcrumbList schema en páginas de artículo, `dateModified`/`datePublished` |
+| | F2.T1-T5 | Fase 2 completa | ✅ | `TopLawsWidget` en `/oposiciones/*`, `TopArticlesInExamWidget` en `/examenes-oficiales/*`, `blog-autolinker.ts`, `TopArticlesGlobalWidget` en home, `Organization`+`WebSite` en layout |
+| | F2.T6 | HowTo schema en blog | ⏳ | Pendiente — aplicar a guías tipo "cómo preparar X" |
+| | F3.T1-T3 | Quick wins CTR | ⏳ | Requiere GSC API token para identificar top 15 CTR-bajas |
+| | F4 Sprint 1/2/3 | Balance 12 oposiciones | ✅ | 39/39 piezas + pillars enriquecidos |
+| | F5.T2 | Data journalism `/datos/*` | ✅ | 3 datasets CC BY 4.0 |
+| | F5.T4 | llms.txt + /api/info | ✅ | Ambos con data journalism |
+| | F5.T5 | 10 posts GEO | ✅ | 12/10 superado |
+| | F5.T1/T3/T6 | YouTube + Wikidata + Discover | ⏸️ | Pospuestos por decisión del usuario (YouTube, Wikidata) o bloqueados (Discover = diseñador) |
+| | F6.T1-T6 | Observabilidad SEO | ⏳ | Pendiente. T1/T3/T5 requieren GSC API token; T4 (monitor Google algo RSS) es autónomo |
 
 ---
 
