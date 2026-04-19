@@ -249,6 +249,30 @@ export default function GuardiaCivilPage() {
 
       <TopLawsWidget oposicionIds="ac000000-0000-0000-0000-000000000001" oposicionName="Guardia Civil" />
 
+      {/* Recursos complementarios (SEO internal linking) */}
+      <section className="space-y-4">
+        <h2 className="text-2xl font-bold">Guías complementarias Guardia Civil 2026</h2>
+        <div className="grid sm:grid-cols-2 gap-3">
+          {[
+            { slug: 'plazas-guardia-civil-2026-convocatoria', t: 'Plazas Guardia Civil 2026', d: '3.118 plazas — desglose turno libre vs promoción' },
+            { slug: 'sueldo-guardia-civil-2026-nomina-desglosada', t: 'Sueldo Guardia Civil 2026', d: 'Nómina desglosada: base + complementos + destino' },
+            { slug: 'pruebas-fisicas-guardia-civil-2026', t: 'Pruebas físicas GC', d: 'Marcas mínimas oficiales por edad y sexo' },
+            { slug: 'calendario-guardia-civil-2026-fechas-examen', t: 'Calendario GC 2026', d: 'Fechas clave convocatoria → toma de posesión' },
+            { slug: 'guardia-civil-vs-policia-nacional-2026', t: 'GC vs Policía Nacional', d: 'Comparativa: requisitos, sueldo, destinos' },
+            { slug: 'oposiciones-sin-penalizacion-2026', t: 'Penalización por errores', d: 'Cómo afecta el -1/3 en tu estrategia' },
+          ].map(({ slug, t, d }) => (
+            <Link key={slug} href={`/blog/${slug}`} className="block">
+              <Card className="hover:border-green-500 transition-colors">
+                <CardContent className="pt-4 pb-4">
+                  <p className="font-semibold text-sm">{t}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{d}</p>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="space-y-6">
         <h2 className="text-2xl font-bold">Preguntas frecuentes</h2>

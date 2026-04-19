@@ -335,8 +335,15 @@ Imposible humano puro en 3 semanas (42 piezas × 5h ≈ 210h).
 - ✅ Plazas PN (41), Sueldo PN (42), Físicas PN (43), Calendario PN (44)
 - ✅ Comparativa GC vs PN (45) — cubre ambas
 - ⏳ Pendiente próxima sesión: enrichment de /oposiciones/seguridad/guardia-civil y /oposiciones/seguridad/policia-nacional pillar pages (2 piezas restantes)
-**Sprint 2 (semana 4): Justicia A2 + Instituciones Penitenciarias** (14 piezas)
-**Sprint 3 (semana 5): Ertzaintza + refuerzo AGE A2 + Hacienda** (11 piezas)
+**Sprint 2 (semana 4): Justicia A2 + Instituciones Penitenciarias** (14 piezas) 🟡 PARCIAL 2026-04-19
+- ✅ Plazas IIPP (46), Sueldo IIPP (47)
+- ✅ Plazas Gestión Procesal (48), Sueldo Gestión Procesal (49)
+- ⏳ Pendiente: pruebas específicas Justicia A2, calendario IIPP detallado, pillars enrichment
+
+**Sprint 3 (semana 5): Ertzaintza + refuerzo AGE A2 + Hacienda** (11 piezas) 🟡 PARCIAL 2026-04-19
+- ✅ Plazas Ertzaintza (50), Sueldo Ertzaintza (51), Temario Ertzaintza (52)
+- ✅ Plazas GACE (53), Sueldo GACE (54)
+- ⏳ Pendiente: calendario/pruebas físicas Ertzaintza, calendario Hacienda/GACE
 
 **Detalle Ertzaintza (ángulo único):**
 - Pieza bilingüe (ES + EU) como diferenciador. Añadir `hreflang="es-ES"` y `hreflang="eu-ES"`.
@@ -407,7 +414,7 @@ Aunque los LLMs no consumen `llms.txt` en producción hoy, el coste de mantenerl
 **DoD:** ambos endpoints devuelven datos frescos. Tests pasan.
 **ETA:** 1h 30min.
 
-### F5.T5 — Expansión blog (10 nuevos posts GEO-friendly) 🟡 5/10 COMPLETADOS 2026-04-19
+### F5.T5 — Expansión blog (10 nuevos posts GEO-friendly) ✅ 11/10 COMPLETADOS 2026-04-19 (objetivo superado)
 Priorizar queries GSC con ≥100 impresiones y posición 11-25 (próximas a top-10). Estructura canónica:
 - H1 optimizado
 - TL;DR 3-5 bullets arriba

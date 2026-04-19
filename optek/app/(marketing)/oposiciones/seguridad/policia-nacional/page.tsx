@@ -204,6 +204,30 @@ export default function PoliciaNacionalPage() {
 
       <TopLawsWidget oposicionIds="ad000000-0000-0000-0000-000000000001" oposicionName="Policía Nacional" />
 
+      {/* Recursos complementarios (SEO internal linking) */}
+      <section className="space-y-4">
+        <h2 className="text-2xl font-bold">Guías complementarias Policía Nacional 2026</h2>
+        <div className="grid sm:grid-cols-2 gap-3">
+          {[
+            { slug: 'plazas-policia-nacional-2026-convocatoria', t: 'Plazas PN 2026', d: 'Desglose escala básica turno libre' },
+            { slug: 'sueldo-policia-nacional-2026-nomina-desglosada', t: 'Sueldo Policía Nacional 2026', d: 'Nómina: base + complementos + destino' },
+            { slug: 'pruebas-fisicas-policia-nacional-2026', t: 'Pruebas físicas PN', d: 'Marcas mínimas oficiales por edad y sexo' },
+            { slug: 'calendario-policia-nacional-2026-fechas-examen', t: 'Calendario PN 2026', d: 'Fechas clave: convocatoria → toma de posesión' },
+            { slug: 'guardia-civil-vs-policia-nacional-2026', t: 'PN vs Guardia Civil', d: 'Comparativa: requisitos, sueldo, destinos' },
+            { slug: 'oposiciones-sin-penalizacion-2026', t: 'Penalización -1/2', d: 'PN es la más dura: cómo afecta a tu estrategia' },
+          ].map(({ slug, t, d }) => (
+            <Link key={slug} href={`/blog/${slug}`} className="block">
+              <Card className="hover:border-blue-500 transition-colors">
+                <CardContent className="pt-4 pb-4">
+                  <p className="font-semibold text-sm">{t}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{d}</p>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="space-y-6">
         <h2 className="text-2xl font-bold">Preguntas frecuentes</h2>
