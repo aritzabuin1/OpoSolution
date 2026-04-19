@@ -30,6 +30,9 @@ import { policiaNacionalPosts } from './posts-policia-nacional'
 import { penitenciariasPosts } from './posts-penitenciarias'
 import { haciendaPosts } from './posts-hacienda'
 import { ertzaintzaPosts } from './posts-ertzaintza'
+import { auxilioJudicialPosts } from './posts-auxilio-judicial'
+import { tramitacionProcesalPosts } from './posts-tramitacion-procesal'
+import { gestionProcesalPosts } from './posts-gestion-procesal'
 
 const corePosts: BlogPost[] = [
   // ─── Post 1 ────────────────────────────────────────────────────────────────
@@ -20660,4 +20663,7 @@ export const blogPosts: BlogPost[] = [
   ...penitenciariasPosts,
   ...haciendaPosts,
   ...ertzaintzaPosts,
+  ...auxilioJudicialPosts,
+  ...tramitacionProcesalPosts,
+  ...gestionProcesalPosts,
 ]
