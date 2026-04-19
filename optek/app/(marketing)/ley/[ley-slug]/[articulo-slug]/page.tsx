@@ -13,7 +13,10 @@ import { getOposicionesForLey } from '@/data/seo/ley-oposicion-map'
 import { getArticleProvisions, getRelatedArticles } from '@/lib/seo/law-queries'
 import { extractCleanTitle, slugifyArticulo } from '@/lib/seo/slugify'
 import articleIndex from '@/data/seo/article-index.json'
+import { isArticleIndexable } from '@/lib/seo/indexability'
 import { Scale } from 'lucide-react'
+
+const NOINDEX_META: Metadata = { robots: { index: false, follow: true } }
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
@@ -45,13 +48,15 @@ function resolveArticuloNumero(slug: string, leyNombre: string): string | null {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { 'ley-slug': lawSlug, 'articulo-slug': artSlug } = await params
   const ley = getLeyBySlug(lawSlug)
-  if (!ley) return {}
+  if (!ley) return NOINDEX_META
 
   const artNumero = resolveArticuloNumero(artSlug, ley.leyNombre)
-  if (!artNumero) return {}
+  if (!artNumero) return NOINDEX_META
 
   const provisions = await getArticleProvisions(ley.leyNombre, artNumero)
-  if (provisions.length === 0) return {}
+  if (provisions.length === 0) return NOINDEX_META
+
+  const indexable = isArticleIndexable(ley.leyNombre, artNumero)
 
   const cleanTitle = extractCleanTitle(provisions[0].titulo_capitulo ?? '')
   const textoSnippet = provisions[0].texto_integro?.slice(0, 155).replace(/\n/g, ' ') ?? ''
@@ -78,6 +83,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [{ url: `${APP_URL}/api/og?tipo=blog&tema=${encodeURIComponent(`${artLabel} — ${ley.shortName}`)}`, width: 1200, height: 630 }],
     },
     alternates: { canonical: `${APP_URL}/ley/${lawSlug}/${artSlug}` },
+    robots: indexable ? undefined : { index: false, follow: true },
   }
 }
 

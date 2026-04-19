@@ -324,34 +324,42 @@ async function main() {
 
   const supabase = buildSupabaseClient()
 
-  // 1. Cargar todas las preguntas de preguntas_oficiales + año del examen
-  console.log('📥 Cargando preguntas oficiales...')
-  const { data: preguntas, error: pregErr } = await supabase
-    .from('preguntas_oficiales')
-    .select('id, enunciado, correcta, opciones, examenes_oficiales!inner(anio, oposicion_id)')
-    .order('id')
-
-  if (pregErr || !preguntas) {
-    console.error('❌ Error cargando preguntas:', pregErr?.message)
-    process.exit(1)
+  // Pagination helper — Supabase defaults to 1000 rows max per query
+  const PAGE = 1000
+  async function fetchAllPages<T>(buildQuery: (from: number, to: number) => PromiseLike<{ data: T[] | null; error: { message: string } | null }>): Promise<T[]> {
+    const all: T[] = []
+    let from = 0
+    while (true) {
+      const { data, error } = await buildQuery(from, from + PAGE - 1)
+      if (error) throw new Error(error.message)
+      if (!data || data.length === 0) break
+      all.push(...data)
+      if (data.length < PAGE) break
+      from += PAGE
+    }
+    return all
   }
 
-  const preguntasRows = preguntas as unknown as PreguntaRow[]
+  // 1. Cargar todas las preguntas de preguntas_oficiales + año del examen
+  console.log('📥 Cargando preguntas oficiales...')
+  const preguntasRows = await fetchAllPages<PreguntaRow>((f, t) =>
+    supabase
+      .from('preguntas_oficiales')
+      .select('id, enunciado, correcta, opciones, examenes_oficiales!inner(anio, oposicion_id)')
+      .order('id')
+      .range(f, t) as unknown as PromiseLike<{ data: PreguntaRow[] | null; error: { message: string } | null }>,
+  )
   console.log(`   ${preguntasRows.length} preguntas encontradas\n`)
 
   // 2. Cargar toda la tabla legislacion en memoria
   console.log('📚 Cargando legislación en memoria...')
-  const { data: legislacion, error: legErr } = await supabase
-    .from('legislacion')
-    .select('id, ley_nombre, ley_codigo, articulo_numero')
-    .eq('activo', true)
-
-  if (legErr || !legislacion) {
-    console.error('❌ Error cargando legislación:', legErr?.message)
-    process.exit(1)
-  }
-
-  const legRows = legislacion as LegislacionRow[]
+  const legRows = await fetchAllPages<LegislacionRow>((f, t) =>
+    supabase
+      .from('legislacion')
+      .select('id, ley_nombre, ley_codigo, articulo_numero')
+      .eq('activo', true)
+      .range(f, t) as unknown as PromiseLike<{ data: LegislacionRow[] | null; error: { message: string } | null }>,
+  )
 
   // Índice A: "LPAC:21" → legislacion_id (para citas explícitas)
   const legIndex = new Map<string, string>()
@@ -535,19 +543,19 @@ async function main() {
   console.log('\n🎯 Path C: Clasificando preguntas por tema (multi-oposición)...')
 
   // Load temas table with oposicion_id + titulo for dynamic keyword generation
-  const { data: temasData, error: temasErr } = await supabase
-    .from('temas')
-    .select('id, numero, oposicion_id, titulo')
-    .order('oposicion_id')
-    .order('numero')
+  const temas = await fetchAllPages<TemaRow>((f, t) =>
+    supabase
+      .from('temas')
+      .select('id, numero, oposicion_id, titulo')
+      .order('oposicion_id')
+      .order('numero')
+      .range(f, t) as unknown as PromiseLike<{ data: TemaRow[] | null; error: { message: string } | null }>,
+  )
 
-  if (temasErr || !temasData) {
-    console.error('❌ Error cargando temas:', temasErr?.message)
-    console.log('   Saltando clasificación por temas. Ejecutar después de insertar temas.')
+  if (temas.length === 0) {
+    console.log('   Saltando clasificación por temas (no hay temas cargados).')
     return
   }
-
-  const temas = temasData as TemaRow[]
 
   // Build per-oposición keyword maps (C2 AGE uses handcrafted TEMA_KEYWORDS, rest auto-generated)
   const keywordMaps = buildOpoKeywordMaps(temas)

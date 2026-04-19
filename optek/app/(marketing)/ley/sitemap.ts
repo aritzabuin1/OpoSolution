@@ -9,6 +9,7 @@ import type { MetadataRoute } from 'next'
 import { getEnabledLaws } from '@/data/seo/ley-registry'
 import { slugifyArticulo } from '@/lib/seo/slugify'
 import articleIndex from '@/data/seo/article-index.json'
+import { isArticleIndexable } from '@/lib/seo/indexability'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
@@ -42,8 +43,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.7,
       })
 
-      // Article pages
+      // Article pages — only emit indexable ones (noindex URLs must NOT be in sitemap)
       for (const artNumero of (law.articles ?? [])) {
+        if (!isArticleIndexable(law.leyNombre, artNumero)) continue
         entries.push({
           url: `${APP_URL}/ley/${lawEntry.slug}/${slugifyArticulo(artNumero)}`,
           lastModified: now,
