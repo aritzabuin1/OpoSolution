@@ -29,6 +29,7 @@ import { guardiaCivilPosts } from './posts-guardia-civil'
 import { policiaNacionalPosts } from './posts-policia-nacional'
 import { penitenciariasPosts } from './posts-penitenciarias'
 import { haciendaPosts } from './posts-hacienda'
+import { ertzaintzaPosts } from './posts-ertzaintza'
 
 const corePosts: BlogPost[] = [
   // ─── Post 1 ────────────────────────────────────────────────────────────────
@@ -20658,4 +20659,5 @@ export const blogPosts: BlogPost[] = [
   ...policiaNacionalPosts,
   ...penitenciariasPosts,
   ...haciendaPosts,
+  ...ertzaintzaPosts,
 ]
