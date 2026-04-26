@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { JsonLd } from '@/components/shared/JsonLd'
 import { TopLawsWidget } from '@/components/seo/TopLawsWidget'
+import { ClusterBlogTOC } from '@/components/seo/ClusterBlogTOC'
 import {
   Scale, BookOpen, ArrowRight, Users, Clock,
   GraduationCap, Briefcase, FileText,
@@ -237,6 +238,14 @@ export default function JusticiaHub() {
           </Button>
         </Link>
       </section>
+      {/* Blog cluster TOC — autoridad temática + internal linking */}
+      <ClusterBlogTOC
+        clusters={['auxilio-judicial', 'tramitacion-procesal', 'gestion-procesal']}
+        title="Guías y artículos del blog — Cuerpos de Justicia"
+        description="Todo el contenido publicado para esta oposición. Actualizado en cada convocatoria."
+      />
+
+
     </main>
   )
 }

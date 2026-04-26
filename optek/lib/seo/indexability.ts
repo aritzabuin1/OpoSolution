@@ -1,69 +1,79 @@
 /**
- * lib/seo/indexability.ts — PlanSEO F0.T5
+ * lib/seo/indexability.ts
  *
- * Decides which /ley/[slug]/[articulo-slug] URLs are indexable for Google.
+ * Decide qué URLs /ley/[slug]/[articulo-slug] entran en el índice de Google.
  *
- * Policy: an article is indexable if ANY of the following holds
- *   1. The ley belongs to CORE_LAWS (high-priority curricular laws every opositor studies).
- *   2. The article has ≥1 cross-reference with preguntas_oficiales (pre-computed in
- *      data/seo/indexable-cross-ref.json by execution/build-indexable-set.ts).
+ * Política (2026-04-26 — corrección post Search Console):
+ *   - Indexable SÓLO si el artículo tiene cross-reference con una pregunta oficial
+ *     (data/seo/indexable-cross-ref.json, generado por execution/build-indexable-set.ts)
+ *     o está en MANUAL_INDEXABLE (artículos icónicos de la CE/TREBEP que se preguntan
+ *     en cualquier oposición pero pueden no tener cross-ref aún).
+ *   - Todo lo demás devuelve noindex,follow. Google sigue crawlando los enlaces
+ *     internos (PageRank fluye), pero la URL no entra en el índice.
  *
- * Everything else is noindex,follow — Google keeps crawling links but drops the page
- * from the index. This concentrates crawl budget on content with information gain.
+ * Por qué este cambio:
+ *   La política previa (CORE_LAWS = 21 leyes enteras indexables) generó ~9.500
+ *   URLs marcadas por Google como "Descubierta: actualmente sin indexar". Google
+ *   las trataba como thin content (réplica del BOE) y arrastraba la calidad
+ *   percibida del dominio entero. Concentramos crawl budget y autoridad en las
+ *   URLs con verdadero information gain (cita en exámenes oficiales).
  */
 
 import crossRefData from '@/data/seo/indexable-cross-ref.json'
 
 /**
- * Laws that are ALWAYS indexable (every article). These are core oposiciones law
- * everyone studies — even if a specific article has no cross-reference yet, Google
- * should index it because organic demand exists for every article.
+ * Whitelist manual: artículos icónicos preguntados en TODAS las oposiciones AGE
+ * aunque aún no tengan cross-reference en nuestro dataset. Mantener corta —
+ * cada entrada nueva debe ser un artículo claramente reclamado por demanda
+ * orgánica (ej. CE art. 14 igualdad, art. 103 administración pública).
  */
-const CORE_LAWS: ReadonlySet<string> = new Set([
-  'CE',               // Constitución Española
-  'LPAC',             // Ley 39/2015 procedimiento administrativo
-  'LRJSP',            // Ley 40/2015 régimen jurídico sector público
-  'TREBEP',           // Estatuto básico empleado público
-  'LOPDGDD',          // Protección de datos
-  'LOTC',             // Tribunal Constitucional
-  'GOBIERNO',         // Ley 50/1997 del Gobierno
-  'TRANSPARENCIA',    // Ley 19/2013 LTAIBG
-  'LOIGUALDAD',       // Igualdad efectiva mujeres y hombres
-  'LGP',              // Ley General Presupuestaria
-  'LOPJ',             // Ley Orgánica del Poder Judicial
-  // Cuerpos de seguridad (policía, guardia civil, ertzaintza)
-  'FCSE',             // Fuerzas y Cuerpos Seguridad del Estado
-  'LOEX',             // Ley Extranjería
-  'SEG_CIUDADANA',    // Ley seguridad ciudadana
-  'LSV',              // Ley tráfico y seguridad vial
-  // Penitenciarias
-  'LOGP',             // Ley Orgánica General Penitenciaria
-  'RP',               // Reglamento Penitenciario
-  // Hacienda
-  'LGT',              // Ley General Tributaria
-  'LIRPF',            // IRPF
-  'LIVA',             // IVA
-  'LIS',              // Impuesto Sociedades
+const MANUAL_INDEXABLE: ReadonlySet<string> = new Set([
+  // Constitución Española — bloque organizativo nuclear
+  'CE:14',   // Igualdad ante la ley
+  'CE:16',   // Libertad religiosa
+  'CE:23',   // Acceso a la función pública
+  'CE:53',   // Garantías derechos fundamentales
+  'CE:97',   // Funciones del Gobierno
+  'CE:103',  // Principios de la Administración Pública
+  'CE:105',  // Audiencia ciudadanos / acceso archivos
+  'CE:137',  // Organización territorial
+  'CE:149',  // Competencias exclusivas Estado
+  'CE:150',  // Transferencia/delegación competencias
+  // TREBEP — núcleo
+  'TREBEP:14',  // Derechos individuales
+  'TREBEP:17',  // Provisión puestos de trabajo
+  'TREBEP:50',  // Vacaciones
+  'TREBEP:52',  // Deberes empleados
+  // LPAC — los más preguntados
+  'LPAC:21',    // Obligación de resolver
+  'LPAC:35',    // Motivación
 ])
 
 const crossRefKeys: Set<string> = new Set((crossRefData as { keys?: string[] }).keys ?? [])
 
 /**
- * Returns true if /ley/{ley}/{articulo-slug} should be indexed.
+ * Returns true si /ley/{ley}/{articulo-slug} debe indexarse en Google.
  *
  * @param leyNombre - DB leyNombre value (e.g. "CE", "LPAC", "LEC")
  * @param articuloNumero - DB articulo_numero (e.g. "14", "DA primera", "2.1")
  */
 export function isArticleIndexable(leyNombre: string, articuloNumero: string): boolean {
-  if (CORE_LAWS.has(leyNombre)) return true
   const key = `${leyNombre}:${articuloNumero}`
-  return crossRefKeys.has(key)
+  if (crossRefKeys.has(key)) return true
+  if (MANUAL_INDEXABLE.has(key)) return true
+  return false
 }
 
-/** Count of cross-referenced articles (for diagnostics). */
+/** Count de artículos cross-referenciados (diagnóstico). */
 export function crossReferencedCount(): number {
   return crossRefKeys.size
 }
 
-/** Exposed for tests / sitemap debug. */
-export const INDEXABLE_CORE_LAWS = CORE_LAWS
+/** Total indexable (cross-ref ∪ manual) — usado por debug endpoint y sitemap stats. */
+export function totalIndexableCount(): number {
+  const all = new Set<string>([...crossRefKeys, ...MANUAL_INDEXABLE])
+  return all.size
+}
+
+/** Exposed para tests / sitemap debug. */
+export const INDEXABLE_MANUAL_KEYS = MANUAL_INDEXABLE

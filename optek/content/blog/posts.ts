@@ -13483,210 +13483,6 @@ const corePosts: BlogPost[] = [
     ],
   },
 
-  // ─── Post 75 — Correos: Psicotécnicos 2026 — comprensión, gráficos, figuras ──
-  {
-    slug: 'psicotecnicos-correos-2026-tipos-ejemplos-practica',
-    title: 'Psicotécnicos Correos 2026: comprensión lectora, gráficos y figuras (con ejemplos)',
-    description:
-      'Los 3 tipos de psicotécnicos del examen de Correos: comprensión lectora (35%), interpretación de gráficos (35%) y series de figuras (30%). Ejemplos, diferencias con AGE y práctica online gratis.',
-    date: '2026-03-28',
-    keywords: [
-      'psicotecnicos correos 2026',
-      'psicotecnicos correos tipos',
-      'test psicotecnicos correos online gratis',
-      'comprension lectora correos examen',
-      'interpretacion graficos correos',
-      'series figuras correos',
-      'psicotecnicos correos vs age',
-    ],
-    content: `
-<p>
-  Si preparas las <a href="/oposiciones/correos">oposiciones de Correos 2026</a>, ya sabes que el examen incluye
-  <strong>10 preguntas psicotécnicas mezcladas entre las 100 del test</strong>. Lo que quizá no sabes es que los
-  psicotécnicos de Correos son <strong>radicalmente distintos</strong> a los de otras oposiciones. Prepararte con tests
-  genéricos es tirar el tiempo. Aquí te explicamos exactamente qué entra, con ejemplos, y dónde practicar gratis.
-</p>
-
-<h2>Los 3 tipos de psicotécnicos en el examen de Correos</h2>
-<p>
-  Basándonos en las convocatorias de 2021 y 2023, los psicotécnicos de Correos se agrupan en <strong>3 categorías
-  muy concretas</strong> con un peso aproximado:
-</p>
-<ul>
-  <li><strong>Comprensión lectora:</strong> ~35% (3-4 preguntas)</li>
-  <li><strong>Interpretación de gráficos y tablas:</strong> ~35% (3-4 preguntas)</li>
-  <li><strong>Series de figuras y razonamiento abstracto:</strong> ~30% (2-3 preguntas)</li>
-</ul>
-<p>
-  <strong>Dato clave:</strong> no hay penalización por errores en el examen de Correos. Cada psicotécnico
-  vale 0,60 puntos. Dejar uno en blanco es regalar medio punto. Siempre responde.
-</p>
-
-<h2>1. Comprensión lectora (~35%)</h2>
-<p>
-  Te presentan un texto de 150-250 palabras sobre un tema relacionado con Correos (normativa postal, un comunicado
-  interno, una noticia del sector) y te hacen 2-3 preguntas sobre él. No evalúan memoria: evalúan si entiendes
-  lo que lees bajo presión de tiempo.
-</p>
-
-<h3>Ejemplo</h3>
-<blockquote>
-  <p><em>«La Sociedad Estatal Correos y Telégrafos ha ampliado su red de puntos de recogida a 4.500 establecimientos
-  colaboradores en toda España. El objetivo es reducir los intentos fallidos de entrega a domicilio, que suponen
-  un coste estimado de 1,20 euros por intento. Según datos internos, el 38% de los envíos requiere al menos un
-  segundo intento de entrega.»</em></p>
-</blockquote>
-<p><strong>Pregunta:</strong> Según el texto, ¿cuál es el objetivo principal de ampliar los puntos de recogida?</p>
-<ul>
-  <li>a) Aumentar el número de oficinas de Correos</li>
-  <li>b) Reducir los costes de los intentos fallidos de entrega</li>
-  <li>c) Ampliar la plantilla de repartidores</li>
-  <li>d) Mejorar el servicio en zonas rurales</li>
-</ul>
-<p><strong>Respuesta:</strong> b) — el texto dice explícitamente «reducir los intentos fallidos de entrega a domicilio».</p>
-
-<p>
-  La trampa habitual: las opciones incorrectas suenan razonables, pero no están en el texto. Hay que ceñirse
-  a lo que dice el párrafo, no a lo que «tiene sentido».
-</p>
-
-<h2>2. Interpretación de gráficos y tablas (~35%)</h2>
-<p>
-  Te muestran un gráfico de barras, un gráfico circular o una tabla con datos numéricos (volumen de envíos,
-  porcentajes de entregas, facturación por trimestre) y te preguntan por valores concretos, comparaciones o
-  tendencias. Requiere <strong>lectura rápida de datos + cálculo mental básico</strong>.
-</p>
-
-<h3>Ejemplo</h3>
-<p>Imagina una tabla como esta:</p>
-<table>
-  <thead><tr><th>Trimestre</th><th>Paquetería (millones)</th><th>Cartas (millones)</th></tr></thead>
-  <tbody>
-    <tr><td>T1 2025</td><td>18,2</td><td>42,1</td></tr>
-    <tr><td>T2 2025</td><td>21,5</td><td>39,8</td></tr>
-    <tr><td>T3 2025</td><td>19,7</td><td>37,4</td></tr>
-    <tr><td>T4 2025</td><td>28,3</td><td>35,6</td></tr>
-  </tbody>
-</table>
-<p><strong>Pregunta:</strong> ¿En qué trimestre fue mayor la diferencia entre paquetería y cartas?</p>
-<ul>
-  <li>a) T1 2025</li>
-  <li>b) T2 2025</li>
-  <li>c) T3 2025</li>
-  <li>d) T4 2025</li>
-</ul>
-<p>
-  <strong>Respuesta:</strong> a) T1 2025 — diferencia de 23,9 millones (42,1 - 18,2). En T4 la diferencia es solo 7,3.
-</p>
-<p>
-  La clave: no te compliques con cálculos exactos. Muchas veces basta con estimar mentalmente para descartar
-  opciones. El tiempo es tu recurso más escaso.
-</p>
-
-<h2>3. Series de figuras y razonamiento abstracto (~30%)</h2>
-<p>
-  Secuencias de figuras geométricas que siguen un patrón (rotación, adición de elementos, simetría,
-  cambio de color). Debes identificar la figura que continúa la serie o la que no encaja.
-</p>
-
-<h3>Ejemplo</h3>
-<p>
-  <strong>Serie:</strong> Un triángulo con 1 punto interior → un cuadrado con 2 puntos → un pentágono con 3 puntos → ¿?
-</p>
-<ul>
-  <li>a) Un hexágono con 3 puntos</li>
-  <li>b) Un hexágono con 4 puntos</li>
-  <li>c) Un pentágono con 4 puntos</li>
-  <li>d) Un círculo con 4 puntos</li>
-</ul>
-<p>
-  <strong>Respuesta:</strong> b) — la figura gana un lado (+1) y un punto interior (+1) en cada paso.
-</p>
-<p>
-  <strong>Consejo:</strong> busca primero el patrón más obvio (forma, número de elementos, orientación).
-  Si no lo ves en 30 segundos, marca tu mejor opción y sigue. No vale la pena perder 3 minutos en una
-  pregunta de 0,60 puntos.
-</p>
-
-<h2>¿Por qué los psicotécnicos de Correos son diferentes a los de la AGE?</h2>
-<p>
-  Este es el error más frecuente: preparar psicotécnicos de Correos con tests de Auxiliar Administrativo
-  del Estado (C2) o de otras oposiciones generales. <strong>No funcionan.</strong>
-</p>
-
-<table>
-  <thead><tr><th>Característica</th><th>Psicotécnicos Correos</th><th>Psicotécnicos AGE (C2)</th></tr></thead>
-  <tbody>
-    <tr><td><strong>Tipos principales</strong></td><td>Comprensión lectora, gráficos, figuras</td><td>Series numéricas, razonamiento verbal, lógica formal</td></tr>
-    <tr><td><strong>Comprensión lectora</strong></td><td>35% del peso — textos sobre el sector postal</td><td>No suele aparecer como psicotécnico</td></tr>
-    <tr><td><strong>Gráficos y tablas</strong></td><td>35% — datos de Correos (envíos, facturación)</td><td>Raro o inexistente</td></tr>
-    <tr><td><strong>Series numéricas</strong></td><td>Poco frecuentes</td><td>Muy frecuentes (30-40%)</td></tr>
-    <tr><td><strong>Penalización</strong></td><td>No penaliza</td><td>Penaliza -1/3</td></tr>
-    <tr><td><strong>Integración</strong></td><td>Mezclados con temario (100 preguntas)</td><td>Sección separada (30 preguntas)</td></tr>
-    <tr><td><strong>Tiempo</strong></td><td>110 minutos para todo</td><td>90 minutos para todo</td></tr>
-  </tbody>
-</table>
-
-<p>
-  Como ves, <strong>la comprensión lectora y la interpretación de gráficos suponen el 70% de los
-  psicotécnicos de Correos</strong>, pero apenas aparecen en los exámenes de la AGE. Si entrenas con tests
-  genéricos, estás practicando series numéricas y razonamiento verbal que casi no caen en Correos, y no
-  estás practicando lo que realmente te van a preguntar.
-</p>
-
-<h2>Cuánto valen los psicotécnicos en la nota final</h2>
-<p>
-  Las 10 preguntas psicotécnicas valen <strong>6 puntos sobre 60</strong> (un 10% de la nota del examen).
-  Parece poco, pero en Correos la diferencia entre entrar y quedarse fuera suele estar en 2-3 puntos.
-  Con práctica específica, acertar 8 de 10 (4,8 puntos) es perfectamente realista. Esos 4,8 puntos pueden
-  ser tu plaza.
-</p>
-
-<h2>Estrategia de tiempo para los psicotécnicos</h2>
-<ol>
-  <li><strong>Comprensión lectora (1,5 min/pregunta):</strong> lee el texto una vez con atención. Las preguntas se responden rápido si has entendido el texto</li>
-  <li><strong>Gráficos (1 min/pregunta):</strong> identifica qué te piden (valor absoluto, comparación, tendencia) y ve directo al dato. No recalcules todo</li>
-  <li><strong>Figuras (1 min/pregunta):</strong> busca el patrón más simple primero. Si no lo ves en 30 segundos, descarta opciones imposibles y elige</li>
-</ol>
-<p>
-  Total: ~12 minutos para 10 psicotécnicos. Te quedan 98 minutos para las 90 preguntas de temario (1,09 min/pregunta).
-  Sobra tiempo si no te bloqueas.
-</p>
-
-<h2>Practica psicotécnicos de Correos gratis en OpoRuta</h2>
-<p>
-  <a href="/register?oposicion=correos">OpoRuta</a> es la <strong>única plataforma que ofrece psicotécnicos
-  específicos de Correos</strong> con los 3 tipos reales del examen: comprensión lectora con textos del sector
-  postal, interpretación de gráficos con datos de envíos, y series de figuras con el formato oficial.
-</p>
-<p>
-  No encontrarás esto en OpositaTest, Toposiciones ni en ninguna academia generalista. Ellos ofrecen
-  psicotécnicos genéricos (series numéricas, sinónimos, analogías) que no reflejan lo que te vas a encontrar
-  el día del examen.
-</p>
-<ul>
-  <li><strong>Practica gratis</strong> — 3 sesiones de psicotécnicos sin pagar nada</li>
-  <li><strong>Corrección inmediata</strong> con explicación detallada de cada respuesta</li>
-  <li><strong>Formato real:</strong> psicotécnicos mezclados con preguntas de temario, como en el examen</li>
-  <li><strong>Sin penalización:</strong> igual que en el examen oficial de Correos</li>
-</ul>
-<p>
-  <strong><a href="/register?oposicion=correos">Regístrate gratis y practica los psicotécnicos que realmente caen en Correos</a></strong>.
-  Los 6 puntos de psicotécnicos pueden ser la diferencia entre conseguir tu plaza o quedarte en lista de espera.
-</p>
-
-<p class="text-sm text-muted-foreground"><em>Última actualización: marzo 2026. Datos basados en exámenes oficiales de Correos 2021 y 2023. Los porcentajes por tipo son aproximados y pueden variar entre convocatorias.</em></p>
-    `.trim(),
-    faqs: [
-      { question: '¿Qué tipos de psicotécnicos caen en el examen de Correos 2026?', answer: 'Los psicotécnicos de Correos se dividen en 3 tipos: comprensión lectora (~35%), interpretación de gráficos y tablas (~35%) y series de figuras/razonamiento abstracto (~30%). Son 10 preguntas psicotécnicas mezcladas dentro del examen de 100 preguntas, con 110 minutos en total.' },
-      { question: '¿Los psicotécnicos de Correos son iguales que los de Auxiliar Administrativo del Estado?', answer: 'No. Los psicotécnicos de Correos se centran en comprensión lectora y gráficos (70% del peso), mientras que los de la AGE (C2) priorizan series numéricas y razonamiento verbal. Además, Correos no penaliza errores y la AGE sí (-1/3). Prepararte con tests genéricos de otras oposiciones no es efectivo para Correos.' },
-      { question: '¿Penalizan los psicotécnicos en el examen de Correos?', answer: 'No. El examen de Correos no penaliza ninguna respuesta incorrecta, ni de temario ni psicotécnica. Siempre debes responder: al azar tienes un 25% de probabilidad de acertar y sumar 0,60 puntos.' },
-      { question: '¿Cuántos puntos valen los psicotécnicos en Correos?', answer: 'Las 10 preguntas psicotécnicas valen 0,60 puntos cada una, sumando 6 puntos sobre 60 (10% de la nota). En una oposición donde la diferencia entre entrar y no suele ser de 2-3 puntos, los psicotécnicos pueden decidir tu plaza.' },
-      { question: '¿Dónde puedo practicar psicotécnicos de Correos online gratis?', answer: 'OpoRuta es la única plataforma con psicotécnicos específicos de Correos: comprensión lectora con textos del sector postal, interpretación de gráficos con datos de envíos y series de figuras en formato oficial. Puedes practicar gratis con 3 sesiones de psicotécnicos sin registro de pago.' },
-      { question: '¿Cuánto tiempo debo dedicar a los psicotécnicos en el examen de Correos?', answer: 'Aproximadamente 12 minutos para las 10 preguntas: 1,5 minutos para comprensión lectora, 1 minuto para gráficos y 1 minuto para figuras. Si llevas más de 1,5 minutos en un psicotécnico, marca tu mejor opción y avanza. Te quedarán 98 minutos para las 90 preguntas de temario.' },
-    ],
-  },
-
   // ─── Post: Test Auxiliar Administrativo Online Gratis ────────────────────────
   {
     slug: 'test-auxiliar-administrativo-online-gratis',
@@ -15688,228 +15484,6 @@ const corePosts: BlogPost[] = [
       { question: '¿Cuanto cobra un funcionario de prisiones neto al mes?', answer: 'Entre 2.000 y 2.500 € netos mensuales (14 pagas) al inicio, dependiendo del centro y la frecuencia de turnos nocturnos. Con trienios puede superar los 2.800 € netos.' },
       { question: '¿Por que cobran mas los funcionarios de prisiones que otros C1?', answer: 'Por tres complementos exclusivos: peligrosidad (contacto con internos), nocturnidad (turnos de noche) y turnicidad (turnos rotatorios). Estos complementos suman entre 4.400 y 7.000 € anuales extra.' },
       { question: '¿Cuanto sube el sueldo con los trienios en prisiones?', answer: 'Cada trienio C1 supone unos 530 € brutos anuales. Con 6 trienios (18 anos) son 3.180 € mas al ano. Se suman a los complementos de peligrosidad y turnicidad.' },
-    ],
-  },
-  // ─── Post 105 ────────────────────────────────────────────────────────────────
-  {
-    slug: 'lo-1-2025-cambios-temario-justicia-oposiciones',
-    title: 'LO 1/2025 — Que cambia en el temario de oposiciones de Justicia',
-    description: 'La Ley Organica 1/2025 modifica la organizacion judicial y afecta al temario de Auxilio, Tramitacion y Gestion. Te explicamos los cambios clave y como adaptarte.',
-    date: '2026-03-30',
-    keywords: ['LO 1/2025 oposiciones justicia', 'cambios temario justicia', 'nueva ley justicia', 'reforma judicial 2025 oposiciones', 'LOPJ cambios temario'],
-    content: `<h2>La LO 1/2025: la mayor reforma judicial en decadas</h2>
-<p>La Ley Organica 1/2025, de 2 de enero, de medidas en materia de eficiencia del Servicio Publico de Justicia, es la reforma mas importante de la organizacion judicial desde la LOPJ de 1985. Afecta directamente al temario de las tres oposiciones del cuerpo de Justicia: Auxilio Judicial (C2), Tramitacion Procesal (C1) y Gestion Procesal (A2).</p>
-
-<h3>Cambios principales que afectan al temario</h3>
-<ul>
-<li><strong>Tribunales de Instancia</strong>: sustituyen a los actuales Juzgados unipersonales. Los Juzgados de Primera Instancia, Instruccion, Social, Contencioso, Mercantil, etc. se integran en Tribunales de Instancia provinciales con secciones especializadas.</li>
-<li><strong>Oficina Judicial reorganizada</strong>: la estructura de la Oficina Judicial se adapta a los nuevos Tribunales. Los Letrados de la Administracion de Justicia (LAJ) asumen mas competencias.</li>
-<li><strong>Digitalizacion obligatoria</strong>: expediente judicial electronico, notificaciones telematicas, comparecencias por videoconferencia. Nuevos procedimientos digitales.</li>
-<li><strong>Mediacion y MASC</strong>: los Metodos Adecuados de Solucion de Controversias (MASC) se potencian. La mediacion pasa de voluntaria a requisito previo en determinados supuestos.</li>
-<li><strong>Nuevas competencias del LAJ</strong>: los Letrados de la Administracion de Justicia asumen mas funciones (jurisdiccion voluntaria, conciliacion, ejecucion). Esto afecta especialmente a Tramitacion y Gestion.</li>
-</ul>
-
-<h3>¿A que cuerpo afecta mas?</h3>
-<table>
-<tr><th>Cuerpo</th><th>Impacto</th></tr>
-<tr><td>Auxilio Judicial (C2)</td><td>Medio: cambia la estructura organizativa pero las funciones basicas se mantienen.</td></tr>
-<tr><td>Tramitacion Procesal (C1)</td><td>Alto: nuevos procedimientos digitales, Tribunales de Instancia, mediacion obligatoria.</td></tr>
-<tr><td>Gestion Procesal (A2)</td><td>Muy alto: competencias ampliadas del LAJ, nuevos procedimientos, MASC.</td></tr>
-</table>
-
-<h3>Como adaptarte si ya estabas estudiando</h3>
-<ol>
-<li><strong>No tires tu temario antiguo</strong>. El 70-80% del contenido sigue vigente: Constitucion, procedimiento civil/penal basico, Registro Civil.</li>
-<li><strong>Actualiza los temas de organizacion judicial</strong>. Todo lo referente a "Juzgados de..." debe actualizarse a "Tribunales de Instancia". Es el cambio mas visible.</li>
-<li><strong>Anade los temas nuevos de digitalizacion</strong>. Expediente electronico, Lexnet, firma digital, notificaciones telematicas.</li>
-<li><strong>Estudia los MASC</strong>. Mediacion, conciliacion y arbitraje son temas nuevos con alta probabilidad de pregunta.</li>
-</ol>
-
-<h3>¿Cuando se aplica en los examenes?</h3>
-<p>La entrada en vigor de los Tribunales de Instancia es progresiva (2025-2026). Las convocatorias publicadas a partir de 2025 ya incluyen la LO 1/2025 en sus temarios. Si tu convocatoria se publico antes, consulta las bases por si hay anexo de actualizacion.</p>
-
-<p><a href="/register?oposicion=justicia">Prepara oposiciones de Justicia con temario actualizado →</a></p>`,
-    faqs: [
-      { question: '¿La LO 1/2025 cambia mucho el temario de oposiciones de Justicia?', answer: 'Si, especialmente en organizacion judicial (Tribunales de Instancia sustituyen a Juzgados), digitalizacion (expediente electronico obligatorio) y MASC (mediacion como requisito previo). El 70-80% del temario anterior sigue vigente.' },
-      { question: '¿A que cuerpo de Justicia afecta mas la LO 1/2025?', answer: 'A Gestion Procesal (A2) por las nuevas competencias del Letrado de la Administracion de Justicia. Tramitacion (C1) tambien se ve muy afectada. Auxilio (C2) tiene impacto medio.' },
-      { question: '¿Que son los Tribunales de Instancia de la LO 1/2025?', answer: 'Son la nueva estructura judicial que sustituye a los Juzgados unipersonales (Primera Instancia, Instruccion, Social, etc.). Se organizan como tribunales provinciales con secciones especializadas.' },
-      { question: '¿Debo comprar un temario nuevo por la LO 1/2025?', answer: 'No necesariamente. El 70-80% del contenido no cambia. Lo critico es actualizar los temas de organizacion judicial (Tribunales de Instancia) y anadir MASC y digitalizacion.' },
-    ],
-  },
-  // ─── Post 106 ────────────────────────────────────────────────────────────────
-  {
-    slug: 'sueldo-funcionario-justicia-2026',
-    title: 'Sueldo de funcionario de Justicia en 2026 — Auxilio, Tramitacion y Gestion',
-    description: 'Cuanto cobra un funcionario de Justicia en 2026. Comparativa: Auxilio Judicial (C2) vs Tramitacion Procesal (C1) vs Gestion Procesal (A2). Desglose de retribuciones.',
-    date: '2026-03-30',
-    keywords: ['sueldo funcionario justicia', 'cuanto cobra auxilio judicial', 'retribuciones tramitacion procesal', 'sueldo gestion procesal 2026', 'nomina funcionario justicia'],
-    content: `<h2>Retribuciones de los 3 cuerpos de Justicia en 2026</h2>
-<p>Los cuerpos de la Administracion de Justicia son tres: Auxilio Judicial (C2), Tramitacion Procesal (C1) y Gestion Procesal (A2). Cada uno tiene un grupo distinto y, por tanto, retribuciones diferentes. Te desglosamos cuanto cobra cada uno.</p>
-
-<h3>Auxilio Judicial (Grupo C2)</h3>
-<table>
-<tr><th>Concepto</th><th>Importe anual (aprox.)</th></tr>
-<tr><td>Sueldo base (C2)</td><td>7.300 €</td></tr>
-<tr><td>Complemento de destino (nivel 15-17)</td><td>5.000 - 5.800 €</td></tr>
-<tr><td>Complemento especifico Justicia</td><td>6.800 - 8.500 €</td></tr>
-<tr><td>Pagas extra (2)</td><td>Incluidas</td></tr>
-<tr><td><strong>Total bruto anual</strong></td><td><strong>19.500 - 22.000 €</strong></td></tr>
-</table>
-<p>Neto mensual aproximado: <strong>1.400 - 1.600 €</strong> (14 pagas).</p>
-
-<h3>Tramitacion Procesal (Grupo C1)</h3>
-<table>
-<tr><th>Concepto</th><th>Importe anual (aprox.)</th></tr>
-<tr><td>Sueldo base (C1)</td><td>8.600 €</td></tr>
-<tr><td>Complemento de destino (nivel 18-20)</td><td>6.200 - 7.400 €</td></tr>
-<tr><td>Complemento especifico Justicia</td><td>8.000 - 10.000 €</td></tr>
-<tr><td>Pagas extra (2)</td><td>Incluidas</td></tr>
-<tr><td><strong>Total bruto anual</strong></td><td><strong>23.000 - 28.000 €</strong></td></tr>
-</table>
-<p>Neto mensual aproximado: <strong>1.650 - 2.000 €</strong> (14 pagas).</p>
-
-<h3>Gestion Procesal (Grupo A2)</h3>
-<table>
-<tr><th>Concepto</th><th>Importe anual (aprox.)</th></tr>
-<tr><td>Sueldo base (A2)</td><td>10.300 €</td></tr>
-<tr><td>Complemento de destino (nivel 22-24)</td><td>8.200 - 9.400 €</td></tr>
-<tr><td>Complemento especifico Justicia</td><td>10.500 - 13.000 €</td></tr>
-<tr><td>Pagas extra (2)</td><td>Incluidas</td></tr>
-<tr><td><strong>Total bruto anual</strong></td><td><strong>29.000 - 33.000 €</strong></td></tr>
-</table>
-<p>Neto mensual aproximado: <strong>2.050 - 2.350 €</strong> (14 pagas).</p>
-
-<h3>Trienios por grupo</h3>
-<p>Los trienios varian segun el grupo:</p>
-<ul>
-<li><strong>C2 (Auxilio)</strong>: ~420 € brutos/ano por trienio</li>
-<li><strong>C1 (Tramitacion)</strong>: ~530 € brutos/ano por trienio</li>
-<li><strong>A2 (Gestion)</strong>: ~680 € brutos/ano por trienio</li>
-</ul>
-
-<h3>¿Merece la pena subir de cuerpo?</h3>
-<p>Absolutamente. La diferencia entre Auxilio (C2) y Gestion (A2) puede ser de <strong>10.000 € brutos anuales</strong>. Ademas, los funcionarios de Justicia tienen <strong>promocion interna</strong> con reserva de plazas: puedes entrar como Auxilio y promocionar a Tramitacion y luego a Gestion con parte del temario convalidado.</p>
-
-<h3>Otros beneficios comunes</h3>
-<ul>
-<li><strong>Horario</strong>: jornada de manana en la mayoria de organos judiciales.</li>
-<li><strong>Destinos</strong>: amplia oferta geografica (hay juzgados en toda Espana).</li>
-<li><strong>Estabilidad</strong>: empleo publico de por vida.</li>
-</ul>
-
-<p><a href="/register?oposicion=justicia">Empieza a preparar tu oposicion de Justicia →</a></p>`,
-    faqs: [
-      { question: '¿Cuanto cobra un Auxilio Judicial al mes?', answer: 'Entre 1.400 y 1.600 € netos mensuales (14 pagas) al inicio. Es el cuerpo C2 de Justicia. Con trienios y antiguedad puede llegar a 1.800 € netos.' },
-      { question: '¿Cual es la diferencia de sueldo entre Tramitacion y Gestion?', answer: 'Unos 5.000-6.000 € brutos anuales. Tramitacion (C1) cobra entre 23.000 y 28.000 € brutos y Gestion (A2) entre 29.000 y 33.000 €. La diferencia aumenta con los trienios.' },
-      { question: '¿Se puede promocionar dentro de los cuerpos de Justicia?', answer: 'Si. Existe promocion interna con reserva de plazas: de Auxilio (C2) a Tramitacion (C1) y de Tramitacion a Gestion (A2). Parte del temario se convalida.' },
-    ],
-  },
-  // ─── Post 107 ────────────────────────────────────────────────────────────────
-  {
-    slug: 'examen-correos-sin-penalizacion-como-aprobar',
-    title: 'Examen de Correos sin penalizacion — Como aprobar con estrategia',
-    description: 'El examen de Correos no penaliza errores. Estrategia: responde TODAS las preguntas, gestiona el tiempo (110 min, 100 preguntas) y prioriza los bloques que mas se preguntan.',
-    date: '2026-03-30',
-    keywords: ['examen correos sin penalizacion', 'como aprobar correos', 'estrategia examen correos', 'examen correos 2026', 'test correos consejos'],
-    content: `<h2>La ventaja clave: no hay penalizacion</h2>
-<p>A diferencia de casi todas las oposiciones del Estado, el examen de Correos <strong>no penaliza las respuestas incorrectas</strong>. Esto cambia completamente la estrategia: en Correos, dejar una pregunta en blanco es SIEMPRE peor que responder al azar. Tienes un 25% de probabilidad de acertar sin saber nada.</p>
-
-<h3>Formato del examen</h3>
-<ul>
-<li><strong>100 preguntas tipo test</strong> con 4 opciones de respuesta.</li>
-<li><strong>110 minutos</strong> de tiempo (1 minuto y 6 segundos por pregunta).</li>
-<li><strong>Sin penalizacion</strong>: acierto = 1 punto, error = 0 puntos, blanco = 0 puntos.</li>
-<li><strong>Nota de corte variable</strong>: depende de la convocatoria, pero suele estar entre 55 y 65 aciertos.</li>
-</ul>
-
-<h3>Estrategia en 4 pasos</h3>
-<ol>
-<li><strong>Primera pasada rapida (70 minutos)</strong>. Responde todas las preguntas que sepas con seguridad. No pierdas tiempo en las que dudes. Marca las dudosas y sigue. Objetivo: resolver 60-70 preguntas.</li>
-<li><strong>Segunda pasada para dudosas (25 minutos)</strong>. Vuelve a las preguntas marcadas. Ahora con mas calma, descarta opciones y elige la mejor. Objetivo: resolver 20-25 preguntas mas.</li>
-<li><strong>Responde TODO lo que quede (10 minutos)</strong>. Las preguntas que no has podido resolver, respondelas igualmente. No hay penalizacion: un 25% de acierto por azar suma puntos gratis.</li>
-<li><strong>Revisa si sobra tiempo (5 minutos)</strong>. Solo cambia respuestas si estas MUY seguro del error. La primera intuicion suele ser correcta.</li>
-</ol>
-
-<h3>Gestion del tiempo: la clave real</h3>
-<p>110 minutos para 100 preguntas parece holgado, pero muchos opositores se atascan en preguntas dificiles y no les da tiempo a responder todo. La regla de oro:</p>
-<ul>
-<li><strong>Si llevas mas de 90 segundos en una pregunta, marcala y sigue.</strong></li>
-<li>Es mejor responder 100 preguntas con alguna al azar que responder 80 con mucha seguridad y dejar 20 en blanco.</li>
-<li>Matematicamente: 80 aciertos seguros + 20 en blanco = 80 puntos. 75 aciertos + 25 al azar (6 aciertos esperados) = 81 puntos.</li>
-</ul>
-
-<h3>¿Que temas se preguntan mas?</h3>
-<p>El temario de Correos tiene dos bloques principales:</p>
-<ul>
-<li><strong>Bloque I — Producto y servicio postal</strong>: tipos de envios, paqueteria, Correos Express, servicios financieros, atencion al cliente. Suele ser el 50-60% del examen.</li>
-<li><strong>Bloque II — Normativa y organizacion</strong>: Ley Postal, normativa de paqueteria, prevencion de riesgos, igualdad, Constitucion. Suele ser el 40-50%.</li>
-</ul>
-<p>El Bloque I es mas practico y directo. El Bloque II requiere mas memorizacion de legislacion.</p>
-
-<p><a href="/register?oposicion=correos">Practica tests de Correos con correccion automatica →</a></p>`,
-    faqs: [
-      { question: '¿El examen de Correos penaliza las respuestas incorrectas?', answer: 'No. El examen de Correos no tiene penalizacion por errores. Cada acierto suma 1 punto y cada error suma 0 puntos (igual que dejar en blanco). Por tanto, siempre debes responder todas las preguntas.' },
-      { question: '¿Cuantas preguntas tiene el examen de Correos?', answer: '100 preguntas tipo test con 4 opciones en 110 minutos. La nota de corte suele estar entre 55 y 65 aciertos, dependiendo de la convocatoria.' },
-      { question: '¿Cual es la mejor estrategia para el examen de Correos?', answer: 'Dos pasadas: primero las que sabes (70 min), luego las dudosas (25 min), y al final responde todo lo que quede al azar (10 min). Sin penalizacion, dejar en blanco es siempre peor que responder.' },
-    ],
-  },
-  // ─── Post 108 ────────────────────────────────────────────────────────────────
-  {
-    slug: 'plazas-correos-2026-por-provincia',
-    title: 'Plazas de Correos 2026 por provincia — Donde hay mas vacantes',
-    description: 'Distribucion geografica de plazas de Correos 2026. Madrid, Barcelona y Valencia concentran mas vacantes. Te explicamos como funciona la eleccion de destino.',
-    date: '2026-03-30',
-    keywords: ['plazas correos 2026', 'plazas correos por provincia', 'destinos correos', 'vacantes correos 2026', 'donde hay plazas correos'],
-    content: `<h2>La distribucion de plazas de Correos 2026</h2>
-<p>Correos es el mayor empleador publico de Espana, con mas de 50.000 trabajadores. Cada convocatoria ofrece miles de plazas repartidas por todo el territorio nacional. La distribucion no es uniforme: las provincias con mas poblacion y mas oficinas concentran la mayor oferta.</p>
-
-<h3>Provincias con mas plazas (historicamente)</h3>
-<p>Basandonos en las ultimas convocatorias, las provincias con mas vacantes son:</p>
-<table>
-<tr><th>Provincia</th><th>% aprox. de plazas</th><th>Motivo</th></tr>
-<tr><td>Madrid</td><td>12-15%</td><td>Sede central + mayor volumen de envios</td></tr>
-<tr><td>Barcelona</td><td>8-10%</td><td>Segunda zona logistica del pais</td></tr>
-<tr><td>Valencia</td><td>5-7%</td><td>Gran zona de distribucion</td></tr>
-<tr><td>Sevilla</td><td>4-5%</td><td>Principal hub del sur</td></tr>
-<tr><td>Malaga</td><td>3-4%</td><td>Costa del Sol, turismo + residentes</td></tr>
-<tr><td>Vizcaya / Bilbao</td><td>3-4%</td><td>Hub del norte</td></tr>
-<tr><td>Alicante</td><td>3-4%</td><td>Zona residencial y turistica</td></tr>
-<tr><td>Zaragoza</td><td>2-3%</td><td>Hub logistico central</td></tr>
-</table>
-<p><strong>En total, las 8 provincias principales concentran el 40-50% de todas las plazas.</strong></p>
-
-<h3>Como funciona la eleccion de destino</h3>
-<p>El proceso de eleccion de destino en Correos funciona asi:</p>
-<ol>
-<li><strong>Apruebas el examen</strong> y entras en la bolsa de empleo.</li>
-<li><strong>Se publica la lista de vacantes</strong> por provincia y oficina.</li>
-<li><strong>Eliges destino por orden de nota</strong>: la persona con mejor nota elige primero. Por eso la nota importa mas alla de aprobar.</li>
-<li><strong>Puedes elegir varias provincias</strong> de preferencia, pero no hay garantia de obtener la primera opcion.</li>
-</ol>
-
-<h3>Estrategia para elegir destino</h3>
-<ul>
-<li><strong>Si quieres una provincia concreta</strong> (ej: Madrid), necesitas una nota alta. Las plazas mas demandadas se agotan rapido.</li>
-<li><strong>Si eres flexible geograficamente</strong>, tienes muchas mas opciones. Provincias menos demandadas (Espana interior, islas) suelen tener plazas sin cubrir.</li>
-<li><strong>Traslados posteriores</strong>: una vez dentro, puedes solicitar traslado a otra provincia en convocatorias internas. Es habitual entrar en una provincia "facil" y trasladarse despues.</li>
-</ul>
-
-<h3>Tipos de contrato</h3>
-<p>Correos ofrece distintos tipos de vinculacion:</p>
-<ul>
-<li><strong>Personal laboral fijo</strong>: contrato indefinido. Es lo que se consigue al aprobar la oposicion y ser seleccionado.</li>
-<li><strong>Personal laboral temporal</strong>: contratos de refuerzo (Navidad, verano, campanas). Se accede por bolsa de empleo.</li>
-<li><strong>Funcionario</strong>: los puestos directivos y de gestion son de carrera funcionarial, pero la mayoria de plazas de reparto y atencion son laborales.</li>
-</ul>
-
-<h3>Provincias "faciles" vs "dificiles"</h3>
-<p>Las provincias mas <strong>faciles de conseguir</strong> (menos demanda relativa a plazas): Teruel, Soria, Cuenca, Zamora, Lugo, Huesca. Las mas <strong>dificiles</strong>: Madrid, Barcelona, San Sebastian, Palma de Mallorca.</p>
-
-<p><a href="/register?oposicion=correos">Prepara el examen de Correos con tests actualizados →</a></p>`,
-    faqs: [
-      { question: '¿Donde hay mas plazas de Correos?', answer: 'Madrid (12-15% de plazas), Barcelona (8-10%), Valencia (5-7%) y Sevilla (4-5%) son las provincias con mas vacantes. Las 8 provincias principales concentran el 40-50% del total.' },
-      { question: '¿Como se elige destino en Correos?', answer: 'Por orden de nota del examen: quien mejor nota saca, elige primero entre las vacantes disponibles. Puedes indicar varias provincias de preferencia, pero la asignacion depende de la nota y las plazas restantes.' },
-      { question: '¿Se puede cambiar de provincia una vez dentro de Correos?', answer: 'Si. Una vez dentro como personal fijo, puedes solicitar traslado a otra provincia en convocatorias internas. Es una estrategia habitual: entrar en una provincia menos demandada y trasladarse despues.' },
     ],
   },
   // ─── Post: OpoRuta vs OpositaTest Hacienda ─────────────────────────────────
@@ -20652,6 +20226,403 @@ const corePosts: BlogPost[] = [
       { question: '¿Cuánto dura el supuesto práctico?', answer: 'Entre 2 y 3 horas según convocatoria. Se permite consulta de legislación sin anotar.' },
       { question: '¿La ofimática es eliminatoria?', answer: 'Sí en Gestión (Word + Excel) y en Tramitación (Word). Auxilio Judicial no tiene ofimática.' },
       { question: '¿Se pueden preparar las tres a la vez?', answer: 'Sí. Comparten ~70% de temario. Es estrategia habitual opositar a las tres y quedarse con la que se apruebe antes.' },
+    ],
+  },
+  {
+    slug: 'tribunal-gace-a2-2026-criterios-correccion',
+    title: 'Tribunal GACE 2026: cómo se nombra, criterios de corrección y plazos',
+    description:
+      'Quién compone el tribunal de la oposición GACE A2 2026, cómo se publican los criterios de corrección del supuesto práctico, plazos de revisión y reclamación.',
+    date: '2026-04-26',
+    dateModified: '2026-04-26',
+    keywords: [
+      'tribunal GACE 2026',
+      'criterios corrección GACE',
+      'reclamación examen GACE',
+      'revisión examen oposición A2',
+      'tribunal oposición Gestión del Estado',
+    ],
+    content: `
+<h2>Quién forma el tribunal de la GACE</h2>
+<p>
+  El tribunal calificador de la oposición de Gestión del Estado (A2) lo nombra el INAP por
+  resolución publicada en el BOE. La composición es paritaria y siempre incluye:
+</p>
+<ul>
+  <li><strong>Presidente/a</strong>: funcionario A1 con al menos 5 años de experiencia.</li>
+  <li><strong>Cuatro vocales</strong>: funcionarios A1 o A2 de cuerpos generales del Estado.</li>
+  <li><strong>Secretario/a</strong>: funcionario con voz pero sin voto.</li>
+  <li><strong>Suplentes</strong>: número equivalente al titular para cubrir bajas.</li>
+</ul>
+<p>
+  Los miembros se publican junto con la convocatoria y se pueden recusar en los <strong>10 días
+  hábiles</strong> siguientes a la publicación si el opositor identifica causa de abstención del
+  art. 23 Ley 40/2015 (parentesco con un opositor, amistad íntima, enemistad manifiesta, etc.).
+</p>
+
+<h2>Cómo se publican los criterios de corrección</h2>
+<p>
+  Para el primer ejercicio (test) los criterios son automáticos: 1 punto por acierto, -0,33 por
+  error, 0 por blanco. La nota mínima de aprobado la fija el tribunal tras la celebración del
+  examen y se publica en la web del INAP en un plazo de <strong>5 días naturales</strong>.
+</p>
+<p>
+  Para el segundo ejercicio (supuesto práctico) el tribunal publica un documento con la
+  <strong>plantilla de corrección</strong> donde detalla:
+</p>
+<ul>
+  <li>Distribución de puntos por pregunta (las 5 preguntas no valen lo mismo).</li>
+  <li>Aspectos valorables (corrección jurídica, claridad expositiva, citas legales, propuesta de resolución).</li>
+  <li>Penalizaciones por errores graves (citar normativa derogada, contradicción legal).</li>
+</ul>
+
+<h2>Plazos de revisión y reclamación</h2>
+<table>
+  <thead>
+    <tr><th>Trámite</th><th>Plazo</th><th>Dónde</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Solicitar revisión nota test</td><td>5 días hábiles</td><td>Sede electrónica INAP</td></tr>
+    <tr><td>Reclamación supuesto práctico</td><td>5 días hábiles</td><td>Sede electrónica INAP</td></tr>
+    <tr><td>Recurso alzada Ministerio Hacienda</td><td>1 mes</td><td>Sede electrónica MINHAC</td></tr>
+    <tr><td>Recurso contencioso-administrativo</td><td>2 meses</td><td>TSJ Madrid</td></tr>
+  </tbody>
+</table>
+
+<h2>Errores típicos al reclamar</h2>
+<ul>
+  <li><strong>Reclamar sin nueva prueba</strong>: el tribunal no rebaja a otros opositores. Sólo cabe revisar SI hay error material o vicio formal.</li>
+  <li><strong>Pasar el plazo</strong>: una reclamación tardía es inadmisible — el cómputo arranca el día siguiente a la publicación de la nota.</li>
+  <li><strong>No fundamentar</strong>: alegar "creo que merezco más nota" no funciona. Hay que citar la pregunta concreta, la fuente legal y por qué la respuesta marcada es válida.</li>
+</ul>
+
+<h2>Tribunales históricos GACE (referencia)</h2>
+<p>
+  En convocatorias previas el tribunal lo presidieron funcionarios del Cuerpo Superior de
+  Administradores Civiles del Estado (CSACE). Los vocales suelen pertenecer a Gestión del Estado y
+  Técnicos de Auditoría (IGAE). Esta composición se mantiene estable convocatoria tras
+  convocatoria.
+</p>
+
+<h2>Enlaces útiles</h2>
+<ul>
+  <li><a href="/blog/gace-a2-vs-administrativo-c1-cual-preparar-2026">GACE A2 vs Administrativo C1</a></li>
+  <li><a href="/oposiciones/administracion">Oposiciones AGE</a></li>
+  <li><a href="/historico">Histórico de exámenes INAP</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica con preguntas reales del tribunal INAP</a></strong> — gratis los temas 1, 11 y 17.</p>`.trim(),
+    faqs: [
+      { question: '¿Se puede recusar a un miembro del tribunal?', answer: 'Sí, en los 10 días hábiles tras publicarse la convocatoria, alegando causa concreta del art. 23 Ley 40/2015 (parentesco, amistad íntima, enemistad).' },
+      { question: '¿Cuándo publican los criterios de corrección del supuesto?', answer: 'Junto con la nota del segundo ejercicio. La plantilla detalla puntos por pregunta y aspectos valorables.' },
+      { question: '¿Qué plazo tengo para reclamar?', answer: '5 días hábiles desde la publicación de la nota. Después solo cabe recurso de alzada (1 mes) o contencioso-administrativo (2 meses).' },
+      { question: '¿La reclamación me puede bajar la nota?', answer: 'En la práctica el tribunal no revisa a la baja salvo error material grosero. Lo habitual es confirmar la nota o subirla.' },
+    ],
+  },
+  {
+    slug: 'promocion-interna-gace-a2-desde-c1',
+    title: 'Promoción interna GACE A2: cómo pasar de C1 a A2 sin oposición libre',
+    description:
+      'Guía completa de la promoción interna a GACE (A2) desde Administrativo del Estado (C1): requisitos, temario reducido, cupo de plazas y sueldo del salto.',
+    date: '2026-04-26',
+    dateModified: '2026-04-26',
+    keywords: [
+      'promoción interna GACE',
+      'pasar de C1 a A2',
+      'promoción interna Gestión del Estado',
+      'oposición restringida A2',
+      'subir grupo funcionario',
+    ],
+    content: `
+<h2>Qué es la promoción interna a GACE</h2>
+<p>
+  La promoción interna permite a funcionarios de carrera del Cuerpo General Administrativo del
+  Estado (C1) acceder al Cuerpo de Gestión del Estado (A2) sin pasar por la oposición libre. Está
+  regulada por el art. 18 EBEP (TREBEP) y por el Real Decreto 364/1995.
+</p>
+<p>
+  La convocatoria se publica en paralelo a la libre, con <strong>turno y cupo de plazas
+  separado</strong>. En 2026 el INAP reservó <strong>50% de plazas</strong> a promoción interna
+  (entorno a 670 plazas de 1.356 totales).
+</p>
+
+<h2>Requisitos para concurrir</h2>
+<ul>
+  <li>Ser funcionario de carrera C1 (Administrativo del Estado, Tramitación Procesal C1, etc.).</li>
+  <li>Tener <strong>2 años</strong> de servicios efectivos en el cuerpo de origen.</li>
+  <li>Estar en servicio activo o situación que conserve derechos (excedencia con reserva, servicios especiales, etc.).</li>
+  <li>Disponer de <strong>título universitario</strong> (Grado, Diplomatura, Ingeniería Técnica) — es el filtro decisivo.</li>
+</ul>
+
+<h2>Temario reducido vs libre</h2>
+<table>
+  <thead>
+    <tr><th>Bloque</th><th>Libre (58 temas)</th><th>Promoción interna</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Organización del Estado</td><td>14 temas</td><td>14 temas (igual)</td></tr>
+    <tr><td>Derecho administrativo</td><td>11 temas</td><td>11 temas (igual)</td></tr>
+    <tr><td>Gestión de personal</td><td>10 temas</td><td>10 temas (igual)</td></tr>
+    <tr><td>Gestión financiera</td><td>10 temas</td><td>10 temas (igual)</td></tr>
+    <tr><td>Política social y empleo</td><td>9 temas</td><td>9 temas (igual)</td></tr>
+    <tr><td>Ofimática</td><td>4 temas</td><td><strong>EXENTO</strong></td></tr>
+  </tbody>
+</table>
+<p>
+  La principal ventaja del turno interno es la <strong>exención del bloque de ofimática</strong>:
+  se da por superado por la condición de funcionario en activo.
+</p>
+
+<h2>Estructura del examen interno</h2>
+<ul>
+  <li><strong>Primer ejercicio</strong>: test 80 preguntas (vs 100 en libre) en 90 minutos.</li>
+  <li><strong>Segundo ejercicio</strong>: supuesto práctico igual al de libre (5 preguntas, 150 min).</li>
+  <li><strong>Tercer ejercicio</strong>: defensa oral sólo si la convocatoria lo prevé (no en 2026).</li>
+</ul>
+
+<h2>Sueldo: cuánto se gana al subir de C1 a A2</h2>
+<table>
+  <thead>
+    <tr><th>Concepto</th><th>C1 (Administrativo)</th><th>A2 (GACE)</th><th>Diferencia</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Sueldo base bruto/mes</td><td>~1.100€</td><td>~1.350€</td><td>+250€</td></tr>
+    <tr><td>Complemento destino (nivel medio)</td><td>~510€ (nivel 18)</td><td>~720€ (nivel 22)</td><td>+210€</td></tr>
+    <tr><td>Específico medio</td><td>~600€</td><td>~900€</td><td>+300€</td></tr>
+    <tr><td><strong>Neto medio mensual</strong></td><td>~1.700€</td><td>~2.300€</td><td><strong>+600€</strong></td></tr>
+  </tbody>
+</table>
+
+<h2>Cómo planificar la promoción</h2>
+<ol>
+  <li><strong>Año 1-2 como C1</strong>: cumple los 2 años de antigüedad mínima en activo.</li>
+  <li><strong>Mientras</strong>: titúlate (Grado UNED de cualquier rama es suficiente).</li>
+  <li><strong>Convocatoria</strong>: marca turno interno en la solicitud — el cupo es independiente.</li>
+  <li><strong>Preparación</strong>: 6-9 meses son suficientes, ya conoces el ecosistema AGE.</li>
+</ol>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+  <li><a href="/blog/gace-a2-vs-administrativo-c1-cual-preparar-2026">GACE A2 vs Administrativo C1</a></li>
+  <li><a href="/blog/sueldo-administrativo-estado-2026-nomina-desglosada">Sueldo Administrativo del Estado</a></li>
+  <li><a href="/oposiciones/administracion">Oposiciones AGE</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza a practicar test GACE</a></strong> — temas 1, 11 y 17 gratis. El resto, 49,99€ pago único.</p>`.trim(),
+    faqs: [
+      { question: '¿Necesito tener 2 años exactos para optar a promoción interna?', answer: 'Sí, 2 años de servicios efectivos como funcionario de carrera C1 en activo o situación que conserve derechos. Las situaciones administrativas que no computan: excedencia voluntaria por interés particular.' },
+      { question: '¿Sirve cualquier titulación universitaria?', answer: 'Sí. Grado, Diplomatura, Ingeniería Técnica o equivalente. El Grado UNED es el más rápido si no la tienes.' },
+      { question: '¿Las plazas internas no cubiertas se pasan al turno libre?', answer: 'Sí. Si el turno interno no cubre su cupo, el sobrante se acumula al turno libre — y viceversa.' },
+      { question: '¿Hay supuesto práctico en promoción interna?', answer: 'Sí, idéntico al turno libre (5 preguntas, 150 minutos). Sólo se exime el bloque de ofimática del test.' },
+    ],
+  },
+  {
+    slug: 'correos-turnos-horarios-reparto-primer-dia',
+    title: 'Correos: turnos, horarios de reparto y qué esperar el primer día',
+    description:
+      'Cómo funcionan los turnos de mañana y tarde en Correos, horarios reales de reparto, descansos, jornada partida y qué pasa el primer día como cartero o ATC.',
+    date: '2026-04-26',
+    dateModified: '2026-04-26',
+    keywords: [
+      'turnos Correos cartero',
+      'horarios reparto Correos',
+      'jornada laboral Correos',
+      'primer día Correos',
+      'horario cartero rural',
+    ],
+    content: `
+<h2>Tipos de turno en Correos</h2>
+<p>
+  Correos opera con tres tipos de turno principales que dependen del puesto, oficina y centro de
+  tratamiento. La jornada es de <strong>37,5 h/semana</strong> con descanso de 30 min computables
+  como tiempo de trabajo (Convenio Colectivo III).
+</p>
+<table>
+  <thead>
+    <tr><th>Turno</th><th>Horario tipo</th><th>Puestos</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Mañana</td><td>07:00 - 14:30</td><td>Cartero urbano y rural, ATC oficina pequeña</td></tr>
+    <tr><td>Tarde</td><td>14:30 - 22:00</td><td>ATC oficina grande, agente clasificación CTA</td></tr>
+    <tr><td>Noche</td><td>22:00 - 05:30</td><td>Centro de Tratamiento Automatizado (CTA)</td></tr>
+    <tr><td>Partido</td><td>09:00 - 14:00 / 17:00 - 19:30</td><td>Oficinas céntricas con apertura tarde</td></tr>
+  </tbody>
+</table>
+
+<h2>Horarios reales de reparto urbano</h2>
+<p>
+  El reparto en ciudad sigue una rutina muy estable. Esta es la jornada típica de un cartero
+  urbano:
+</p>
+<ul>
+  <li><strong>07:00 - 07:30</strong>: entrada en oficina, fichaje y sección de correo del día.</li>
+  <li><strong>07:30 - 09:00</strong>: clasificación interna por sectores y carga del coche/carro.</li>
+  <li><strong>09:00 - 13:00</strong>: reparto en calle (sector asignado fijo).</li>
+  <li><strong>13:00 - 13:30</strong>: descanso (no se ficha — computa como trabajo).</li>
+  <li><strong>13:30 - 14:30</strong>: liquidación de notificaciones, devoluciones y entregas certificadas.</li>
+</ul>
+
+<h2>Reparto rural: la diferencia</h2>
+<p>
+  Los carteros rurales tienen jornada más comprimida pero mucho más kilometraje. Reparten
+  típicamente 80-150 km diarios con vehículo propio (Correos abona kilometraje según convenio).
+  El horario es <strong>07:00 - 14:30</strong> de lunes a sábado en buena parte de España.
+</p>
+
+<h2>Qué esperar el primer día como cartero</h2>
+<ol>
+  <li><strong>Presentación oficina</strong>: 07:00 con DNI, contrato y datos bancarios. El jefe de
+  unidad asigna sector.</li>
+  <li><strong>Acompañamiento</strong>: los primeros 3-5 días sales con un cartero veterano que te
+  enseña la sección.</li>
+  <li><strong>Equipamiento</strong>: uniforme (entrega en 1ª semana), PDA, llaves de buzón
+  comunitario.</li>
+  <li><strong>Sección propia</strong>: a partir de la 2ª semana repartes solo. Las primeras
+  semanas se tarda 30-40% más por desconocimiento del callejero.</li>
+</ol>
+
+<h2>Qué esperar el primer día como ATC oficina</h2>
+<ol>
+  <li><strong>Apertura</strong>: 30 min antes de abrir al público para arqueo de caja, conexión
+  TPV e impresoras.</li>
+  <li><strong>Atención</strong>: ventanilla durante 6-7 h con descansos rotatorios entre
+  compañeros.</li>
+  <li><strong>Cierre</strong>: cuadre de caja y conciliación (máx. ±5€ permitido sin
+  justificación).</li>
+  <li><strong>Productos</strong>: las dos primeras semanas el responsable de oficina te tutela en
+  giros internacionales, Western Union, paquetería internacional y Burofax.</li>
+</ol>
+
+<h2>Festivos, vacaciones y permisos</h2>
+<ul>
+  <li><strong>Vacaciones</strong>: 22 días hábiles + 4 personales (Convenio).</li>
+  <li><strong>Festivos</strong>: 14 al año + 1 patrón (San Gabriel, 27 febrero).</li>
+  <li><strong>Trabajos en sábado</strong>: los carteros urbanos libran 1 sábado de cada 4. Los
+  rurales todos los sábados son laborables (a cambio compensan días).</li>
+</ul>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+  <li><a href="/blog/correos-rep-vs-atc-que-puesto-elegir">Cartero (REP) vs Atención al Cliente (ATC)</a></li>
+  <li><a href="/oposiciones/correos">Oposición Correos</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Prepara la oposición Correos en OpoRuta</a></strong> — test gratis del temario oficial.</p>`.trim(),
+    faqs: [
+      { question: '¿La jornada de Correos es de 37,5 o 40 horas?', answer: '37,5 horas semanales según Convenio Colectivo III, con 30 min de descanso diarios computables como tiempo efectivo.' },
+      { question: '¿Cuánto se tarda en repartir una sección urbana?', answer: 'Una sección consolidada de 600-800 envíos se reparte en 4-5 horas. Las primeras semanas se tarda 30-40% más por desconocer el callejero.' },
+      { question: '¿Trabajan los carteros rurales en sábado?', answer: 'Sí, todos los sábados en la mayoría de zonas rurales. Los carteros urbanos libran 1 de cada 4 sábados.' },
+      { question: '¿Hay turno de noche en Correos?', answer: 'Sí, en los Centros de Tratamiento Automatizado (CTA) — clasificación de envíos para reparto al día siguiente. Plus de nocturnidad incluido en nómina.' },
+    ],
+  },
+  {
+    slug: 'bolsa-empleo-correos-interino-2026',
+    title: 'Bolsa de empleo Correos 2026: cómo entrar como interino sin oposición',
+    description:
+      'Cómo inscribirse en la bolsa de empleo de Correos para trabajar como cartero o ATC interino sin oposición: requisitos, baremo, llamamientos y cómo subir en el ranking.',
+    date: '2026-04-26',
+    dateModified: '2026-04-26',
+    keywords: [
+      'bolsa empleo Correos 2026',
+      'cartero interino sin oposición',
+      'baremo bolsa Correos',
+      'llamamientos bolsa Correos',
+      'trabajar Correos sin examen',
+    ],
+    content: `
+<h2>Qué es la bolsa de empleo de Correos</h2>
+<p>
+  La bolsa de empleo de Correos es el mecanismo que utiliza la Sociedad Estatal Correos y
+  Telégrafos S.A. para cubrir vacantes <strong>temporales</strong> sin pasar por la oposición. De
+  ella se nutren los contratos de cartero (REP), atención al cliente (ATC), agente y conductor
+  durante refuerzos por campañas (Navidad, elecciones, vacaciones).
+</p>
+<p>
+  Se gestiona por <strong>provincia</strong>: te inscribes donde quieras trabajar y te pueden
+  llamar para destinos dentro de esa zona geográfica.
+</p>
+
+<h2>Requisitos para inscribirse</h2>
+<ul>
+  <li>Ser mayor de edad y nacional UE.</li>
+  <li><strong>ESO o equivalente</strong> (acreditable con título o certificado de estudios).</li>
+  <li>Carné de conducir B en vigor (obligatorio para cartero — no para ATC).</li>
+  <li>No haber sido separado del servicio en otra Administración.</li>
+  <li>Tener cuenta en el portal de empleo de Correos (correos.com/empleo).</li>
+</ul>
+
+<h2>Cómo se baremaria la bolsa</h2>
+<p>
+  Cada candidato recibe una puntuación según un baremo público. Esta nota determina el orden de
+  llamamiento. El baremo de la bolsa 2026 (referencia, no oficial hasta publicación):
+</p>
+<table>
+  <thead>
+    <tr><th>Concepto</th><th>Puntos máx.</th><th>Cómo se justifica</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Experiencia previa en Correos</td><td>40</td><td>0,40 pts/mes (vida laboral)</td></tr>
+    <tr><td>Experiencia en otras empresas similares</td><td>15</td><td>0,15 pts/mes (vida laboral)</td></tr>
+    <tr><td>Examen psicotécnico bolsa</td><td>30</td><td>Test online en el portal</td></tr>
+    <tr><td>Titulación superior a la exigida</td><td>10</td><td>Bachiller, FP, Grado</td></tr>
+    <tr><td>Certificado discapacidad ≥33%</td><td>5</td><td>Certificado IMSERSO</td></tr>
+  </tbody>
+</table>
+
+<h2>Cómo se hacen los llamamientos</h2>
+<ol>
+  <li>Correos detecta una vacante temporal en una unidad concreta.</li>
+  <li>El sistema llama por orden de puntuación a los candidatos de esa provincia.</li>
+  <li>Tienes <strong>24 h para responder</strong> al llamamiento. Si no respondes, queda
+  registrado y bajas en el ranking.</li>
+  <li>Si rechazas <strong>3 llamamientos sin justificar</strong>, sales temporalmente de la bolsa
+  (6 meses).</li>
+</ol>
+
+<h2>Cómo subir puntos en la bolsa</h2>
+<ul>
+  <li><strong>Trabaja contratos cortos</strong>: cada mes en Correos suma 0,40 pts. Una campaña
+  Navidad de 2 meses ya te sitúa en posición competitiva.</li>
+  <li><strong>Aprueba bien el psicotécnico</strong>: 30 puntos están en juego. Equivale a 6 años
+  de experiencia. Practica antes con tests específicos.</li>
+  <li><strong>Acredita estudios superiores</strong>: aporta título de Bachiller/FP en la
+  inscripción — son 10 puntos automáticos.</li>
+  <li><strong>Solicita varias provincias</strong>: en Correos puedes inscribirte en bolsas
+  limítrofes (Madrid + Toledo + Guadalajara). Multiplicas oportunidades.</li>
+</ul>
+
+<h2>Bolsa interino vs oposición libre</h2>
+<table>
+  <thead>
+    <tr><th>Aspecto</th><th>Bolsa interino</th><th>Oposición libre</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Tiempo hasta empezar</td><td>1-3 meses</td><td>9-12 meses</td></tr>
+    <tr><td>Tipo de contrato</td><td>Temporal (renovable)</td><td>Indefinido (laboral fijo)</td></tr>
+    <tr><td>Sueldo neto/mes</td><td>~1.350€</td><td>~1.500€ (igual al fijo)</td></tr>
+    <tr><td>Estabilidad</td><td>Baja (depende de vacantes)</td><td>Alta</td></tr>
+    <tr><td>Vacaciones / permisos</td><td>Proporcionales al contrato</td><td>Plenos (22 días)</td></tr>
+  </tbody>
+</table>
+<p>
+  La estrategia más común: entrar por bolsa para coger experiencia (suma puntos en bolsa Y nota
+  en futuras oposiciones), y presentarse a la oposición libre cuando la convoquen.
+</p>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+  <li><a href="/blog/correos-rep-vs-atc-que-puesto-elegir">Cartero (REP) vs ATC: qué puesto elegir</a></li>
+  <li><a href="/blog/correos-turnos-horarios-reparto-primer-dia">Turnos y horarios de reparto Correos</a></li>
+  <li><a href="/oposiciones/correos">Oposición Correos</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica el psicotécnico de la bolsa Correos</a></strong> — gratis en OpoRuta.</p>`.trim(),
+    faqs: [
+      { question: '¿Necesito el carné de conducir para inscribirme?', answer: 'Sí para puestos de cartero (REP) y conductor. Para Atención al Cliente (ATC) no es obligatorio.' },
+      { question: '¿Puedo inscribirme en varias provincias?', answer: 'Sí. Correos permite inscripción en provincias limítrofes a tu domicilio. Cada bolsa tiene ranking propio.' },
+      { question: '¿Cuántos puntos da el psicotécnico de bolsa?', answer: 'Hasta 30 puntos sobre 100. Es la palanca más rápida para subir en el ranking. Equivale a 6 años de experiencia previa.' },
+      { question: '¿Si rechazo un llamamiento me echan de la bolsa?', answer: 'Un rechazo justificado (enfermedad, maternidad, otro contrato vigente) no penaliza. Tres rechazos injustificados suspenden 6 meses.' },
+      { question: '¿La experiencia en bolsa cuenta para futuras oposiciones?', answer: 'Sí. Los meses trabajados en Correos como interino se valoran como mérito en la fase de concurso de las oposiciones por turno libre.' },
     ],
   },
 ]

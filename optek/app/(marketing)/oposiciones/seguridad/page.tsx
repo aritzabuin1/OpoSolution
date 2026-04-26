@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { JsonLd } from '@/components/shared/JsonLd'
 import { TopLawsWidget } from '@/components/seo/TopLawsWidget'
+import { ClusterBlogTOC } from '@/components/seo/ClusterBlogTOC'
 import {
   Shield, BookOpen, ArrowRight, Users, Clock,
   GraduationCap, Siren, Brain,
@@ -236,6 +237,14 @@ export default function SeguridadHub() {
           </Button>
         </Link>
       </section>
+      {/* Blog cluster TOC — autoridad temática + internal linking */}
+      <ClusterBlogTOC
+        clusters={['ertzaintza', 'guardia-civil', 'policia-nacional']}
+        title="Guías y artículos del blog — Seguridad y Defensa"
+        description="Todo el contenido publicado para esta oposición. Actualizado en cada convocatoria."
+      />
+
+
     </main>
   )
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
 import { JsonLd } from '@/components/shared/JsonLd'
 import { LawBreadcrumb } from '@/components/seo/LawBreadcrumb'
 import { OposicionBadges } from '@/components/seo/OposicionBadges'
@@ -59,10 +59,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const artNumero = resolveArticuloNumero(artSlug, ley.leyNombre)
   if (!artNumero) return NOINDEX_META
 
+  // Si el artículo no es indexable, la page hace 301. Evitamos hacer queries
+  // DB para metadata que nunca se renderiza.
+  if (!isArticleIndexable(ley.leyNombre, artNumero)) return NOINDEX_META
+
   const provisions = await getArticleProvisions(ley.leyNombre, artNumero)
   if (provisions.length === 0) return NOINDEX_META
 
-  const indexable = isArticleIndexable(ley.leyNombre, artNumero)
+  const indexable = true
 
   const cleanTitle = extractCleanTitle(provisions[0].titulo_capitulo ?? '')
   const textoSnippet = provisions[0].texto_integro?.slice(0, 155).replace(/\n/g, ' ') ?? ''
@@ -100,6 +104,15 @@ export default async function ArticlePage({ params }: Props) {
 
   const artNumero = resolveArticuloNumero(artSlug, ley.leyNombre)
   if (!artNumero) notFound()
+
+  // SEO: artículos sin information gain (no cross-ref con exámenes oficiales y
+  // fuera del whitelist manual) hacen 301 → página índice de la ley. Esto:
+  //   - Concentra señal de relevancia en /ley/{ley} (PageRank consolidation)
+  //   - Saca las URLs del índice de Google en 7-14 días (vs 2-4 semanas con noindex)
+  //   - Limpia las 9.400+ "Descubierta sin indexar" reportadas por Search Console
+  if (!isArticleIndexable(ley.leyNombre, artNumero)) {
+    permanentRedirect(`/ley/${lawSlug}`)
+  }
 
   const provisions = await getArticleProvisions(ley.leyNombre, artNumero)
   if (provisions.length === 0) notFound()

@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { JsonLd } from '@/components/shared/JsonLd'
 import { TopLawsWidget } from '@/components/seo/TopLawsWidget'
+import { ClusterBlogTOC } from '@/components/seo/ClusterBlogTOC'
 import {
   BookOpen, CheckCircle, Clock, Scale, Shield,
   ArrowRight, Users, Sparkles, Calculator, FileText,
@@ -299,6 +300,14 @@ export default function AuxilioJudicialLanding() {
           </Button>
         </Link>
       </section>
+      {/* Blog cluster TOC — autoridad temática + internal linking */}
+      <ClusterBlogTOC
+        clusters={'auxilio-judicial'}
+        title="Guías y artículos del blog — Auxilio Judicial"
+        description="Todo el contenido publicado para esta oposición. Actualizado en cada convocatoria."
+      />
+
+
     </main>
   )
 }

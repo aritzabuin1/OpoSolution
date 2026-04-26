@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { JsonLd } from '@/components/shared/JsonLd'
 import { TopLawsWidget } from '@/components/seo/TopLawsWidget'
+import { ClusterBlogTOC } from '@/components/seo/ClusterBlogTOC'
 import {
   GraduationCap, BookOpen, ArrowRight, ArrowLeft, Users, Clock,
   CheckCircle2, Brain, FileText, Target, AlertTriangle,
@@ -258,6 +259,14 @@ export default function PoliciaNacionalPage() {
           </Button>
         </Link>
       </section>
+      {/* Blog cluster TOC — autoridad temática + internal linking */}
+      <ClusterBlogTOC
+        clusters={'policia-nacional'}
+        title="Guías y artículos del blog — Policía Nacional"
+        description="Todo el contenido publicado para esta oposición. Actualizado en cada convocatoria."
+      />
+
+
     </main>
   )
 }

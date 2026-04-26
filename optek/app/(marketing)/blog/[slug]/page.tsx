@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { BlogCTA, injectMidArticleCTA } from '@/components/blog/BlogCTA'
+import { RelatedClusterPosts } from '@/components/blog/RelatedClusterPosts'
 import { autolinkLegalReferences } from '@/lib/seo/blog-autolinker'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
@@ -224,6 +225,9 @@ export default async function BlogPostPage({ params }: Props) {
             </dl>
           </section>
         )}
+
+        {/* Related cluster posts — internal linking automático para autoridad temática */}
+        <RelatedClusterPosts slug={post.slug} limit={5} />
 
         {/* CTA bottom */}
         <BlogCTA variant="bottom" diasParaExamen={diasParaExamen} examLabel={examLabel} />

@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { JsonLd } from '@/components/shared/JsonLd'
 import { TopLawsWidget } from '@/components/seo/TopLawsWidget'
+import { ClusterBlogTOC } from '@/components/seo/ClusterBlogTOC'
 import {
   Shield, BookOpen, ArrowRight, ArrowLeft, Users, Clock,
   GraduationCap, CheckCircle2, Brain, FileText, Target,
@@ -250,6 +251,14 @@ export default function ErtzaintzaPage() {
           </Button>
         </Link>
       </section>
+      {/* Blog cluster TOC — autoridad temática + internal linking */}
+      <ClusterBlogTOC
+        clusters={'ertzaintza'}
+        title="Guías y artículos del blog — Ertzaintza"
+        description="Todo el contenido publicado para esta oposición. Actualizado en cada convocatoria."
+      />
+
+
     </main>
   )
 }

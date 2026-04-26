@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { JsonLd } from '@/components/shared/JsonLd'
 import { TopLawsWidget } from '@/components/seo/TopLawsWidget'
+import { ClusterBlogTOC } from '@/components/seo/ClusterBlogTOC'
 import {
   BookOpen, CheckCircle, Clock, Shield,
   ArrowRight, Users, Sparkles, Calculator, AlertTriangle, Brain,
@@ -341,6 +342,14 @@ export default function PenitenciariasLanding() {
           </Button>
         </Link>
       </section>
+      {/* Blog cluster TOC — autoridad temática + internal linking */}
+      <ClusterBlogTOC
+        clusters={'penitenciarias'}
+        title="Guías y artículos del blog — Instituciones Penitenciarias"
+        description="Todo el contenido publicado para esta oposición. Actualizado en cada convocatoria."
+      />
+
+
     </main>
   )
 }

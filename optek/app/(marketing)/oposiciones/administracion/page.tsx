@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { JsonLd } from '@/components/shared/JsonLd'
 import { TopLawsWidget } from '@/components/seo/TopLawsWidget'
+import { ClusterBlogTOC } from '@/components/seo/ClusterBlogTOC'
 import {
   BookOpen, ArrowRight, Users, Clock,
   GraduationCap, FileText, Sparkles, Building2,
@@ -305,6 +306,14 @@ export default function AdministracionHub() {
           </Button>
         </Link>
       </section>
+      {/* Blog cluster TOC — autoridad temática + internal linking */}
+      <ClusterBlogTOC
+        clusters={['auxiliar-c2', 'administrativo-c1', 'gace-a2']}
+        title="Guías y artículos del blog — Administración del Estado"
+        description="Todo el contenido publicado para esta oposición. Actualizado en cada convocatoria."
+      />
+
+
     </main>
   )
 }

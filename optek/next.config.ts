@@ -41,6 +41,34 @@ const nextConfig: NextConfig = {
         destination: 'https://oporuta.es/:path*',
         permanent: true,
       },
+      // Consolidación de posts duplicados (canibalización SEO).
+      // El destino conserva el clic histórico de Search Console — los slugs
+      // de origen se eliminaron de content/blog/posts.ts en la misma tanda.
+      {
+        source: '/blog/plazas-correos-2026-por-provincia',
+        destination: '/blog/plazas-correos-2026-por-provincia-distribucion',
+        permanent: true,
+      },
+      {
+        source: '/blog/examen-correos-sin-penalizacion-como-aprobar',
+        destination: '/blog/examen-correos-sin-penalizacion-estrategia-aprobar',
+        permanent: true,
+      },
+      {
+        source: '/blog/sueldo-funcionario-justicia-2026',
+        destination: '/blog/sueldo-funcionario-justicia-2026-auxilio-tramitacion-gestion',
+        permanent: true,
+      },
+      {
+        source: '/blog/lo-1-2025-cambios-temario-justicia-oposiciones',
+        destination: '/blog/cambios-temario-justicia-2026-lo-1-2025',
+        permanent: true,
+      },
+      {
+        source: '/blog/psicotecnicos-correos-2026-tipos-ejemplos-practica',
+        destination: '/blog/psicotecnicos-correos-tipos-ejemplos',
+        permanent: true,
+      },
     ]
   },
 }
