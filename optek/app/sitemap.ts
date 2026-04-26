@@ -9,6 +9,11 @@ import { createServiceClient } from '@/lib/supabase/server'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
+// Sitemap dinámico: regenera cada 24h en runtime (no build-time) para que el
+// service-role-key esté disponible y los queries a Supabase devuelvan datos.
+export const revalidate = 86400
+export const dynamic = 'force-dynamic'
+
 // Exámenes oficiales INAP disponibles (§1.21.6 PRIORIDAD 1) — ruta: /examenes-oficiales/[slug]
 const EXAMEN_SLUGS = ['inap-2024', 'inap-2022', 'inap-2019', 'inap-2018', 'inap-c1-2024', 'inap-c1-2022', 'inap-c1-2019']
 
@@ -28,31 +33,45 @@ async function getPreguntaRoutes(now: Date): Promise<MetadataRoute.Sitemap> {
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const supabase = await createServiceClient() as any
-    const { data } = await supabase
-      .from('preguntas_oficiales')
-      .select('numero, examen_id, tema_id, examenes_oficiales!inner(anio, oposicion_id, oposiciones!inner(slug))')
-      .not('tema_id', 'is', null)
 
-    const rows = (data ?? []) as Array<{
-      numero: number
-      examen_id: string
-      tema_id: string | null
-      examenes_oficiales: {
-        anio: number
-        oposicion_id: string
-        oposiciones: { slug: string } | { slug: string }[]
-      } | { anio: number; oposicion_id: string; oposiciones: { slug: string } | { slug: string }[] }[]
-    }>
+    // Nota: NO usamos nested joins. Supabase tiene timeouts y row limits que
+    // hacen que `examenes_oficiales!inner(...oposiciones!inner(slug))` falle
+    // silenciosamente en build. Hacemos 3 queries planas y resolvemos en JS.
+
+    const { data: oposiciones, error: errOpos } = await supabase
+      .from('oposiciones')
+      .select('id, slug')
+    if (errOpos) console.error('[sitemap] oposiciones error', errOpos)
+    const oposById = new Map<string, string>(
+      (oposiciones ?? []).map((o: { id: string; slug: string }) => [o.id, o.slug]),
+    )
+
+    const { data: examenes, error: errEx } = await supabase
+      .from('examenes_oficiales')
+      .select('id, anio, oposicion_id')
+    if (errEx) console.error('[sitemap] examenes error', errEx)
+
+    type ExamMeta = { anio: number; oposSlug: string }
+    const examById = new Map<string, ExamMeta>()
+    for (const e of (examenes ?? []) as Array<{ id: string; anio: number; oposicion_id: string }>) {
+      const oposSlug = oposById.get(e.oposicion_id)
+      if (oposSlug) examById.set(e.id, { anio: e.anio, oposSlug })
+    }
+
+    const { data: preguntas, error: errP } = await supabase
+      .from('preguntas_oficiales')
+      .select('numero, examen_id, tema_id')
+      .not('tema_id', 'is', null)
+      .range(0, 9999)
+    if (errP) console.error('[sitemap] preguntas error', errP)
 
     const routes: MetadataRoute.Sitemap = []
-    for (const r of rows) {
-      const exam = Array.isArray(r.examenes_oficiales) ? r.examenes_oficiales[0] : r.examenes_oficiales
-      const oposObj = Array.isArray(exam.oposiciones) ? exam.oposiciones[0] : exam.oposiciones
-      const oposSlug = oposObj.slug
-      const cuerpoLetter = oposSlug === 'administrativo-estado' ? 'C1' : oposSlug === 'aux-admin-estado' ? 'C2' : null
+    for (const r of (preguntas ?? []) as Array<{ numero: number; examen_id: string }>) {
+      const exam = examById.get(r.examen_id)
+      if (!exam) continue
+      const cuerpoLetter = exam.oposSlug === 'administrativo-estado' ? 'C1' : exam.oposSlug === 'aux-admin-estado' ? 'C2' : null
       if (!cuerpoLetter) continue
-      const key = `${cuerpoLetter}-${exam.anio}`
-      const examenSlug = EXAMEN_SLUG_BY_KEY[key]
+      const examenSlug = EXAMEN_SLUG_BY_KEY[`${cuerpoLetter}-${exam.anio}`]
       if (!examenSlug) continue
       routes.push({
         url: `${APP_URL}/examenes-oficiales/${examenSlug}/preguntas/${r.numero}`,
@@ -62,7 +81,59 @@ async function getPreguntaRoutes(now: Date): Promise<MetadataRoute.Sitemap> {
       })
     }
     return routes
-  } catch {
+  } catch (e) {
+    console.error('[sitemap] getPreguntaRoutes failed', e)
+    return []
+  }
+}
+
+async function getFrecuenciaRoutes(now: Date): Promise<MetadataRoute.Sitemap> {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const supabase = await createServiceClient() as any
+
+    const { data: frecuencias, error: errF } = await supabase
+      .from('frecuencias_temas')
+      .select('tema_id')
+      .gt('num_apariciones', 0)
+      .range(0, 9999)
+    if (errF) console.error('[sitemap] frecuencias error', errF)
+
+    const temaIds = (frecuencias ?? []).map((f: { tema_id: string }) => f.tema_id)
+    if (temaIds.length === 0) return []
+
+    const { data: temas, error: errT } = await supabase
+      .from('temas')
+      .select('id, numero, oposicion_id')
+      .in('id', temaIds)
+    if (errT) console.error('[sitemap] temas error', errT)
+
+    const oposIds = Array.from(
+      new Set((temas ?? []).map((t: { oposicion_id: string }) => t.oposicion_id)),
+    )
+    const { data: oposiciones, error: errO } = await supabase
+      .from('oposiciones')
+      .select('id, slug')
+      .in('id', oposIds)
+    if (errO) console.error('[sitemap] oposiciones error', errO)
+    const oposById = new Map<string, string>(
+      (oposiciones ?? []).map((o: { id: string; slug: string }) => [o.id, o.slug]),
+    )
+
+    const routes: MetadataRoute.Sitemap = []
+    for (const t of (temas ?? []) as Array<{ numero: number; oposicion_id: string }>) {
+      const slug = oposById.get(t.oposicion_id)
+      if (!slug) continue
+      routes.push({
+        url: `${APP_URL}/frecuencia/${slug}/tema/${t.numero}`,
+        lastModified: now,
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+      })
+    }
+    return routes
+  } catch (e) {
+    console.error('[sitemap] getFrecuenciaRoutes failed', e)
     return []
   }
 }
@@ -318,31 +389,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   // pSEO v3 Tipo 3 — frecuencia por tema (solo temas con apariciones > 0)
-  const frecuenciaRoutes: MetadataRoute.Sitemap = []
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const supabase = await createServiceClient() as any
-    const { data } = await supabase
-      .from('frecuencias_temas')
-      .select('temas!inner(numero, oposiciones!inner(slug))')
-      .gt('num_apariciones', 0)
-    const rows = (data ?? []) as Array<{
-      temas: {
-        numero: number
-        oposiciones: { slug: string } | { slug: string }[]
-      } | { numero: number; oposiciones: { slug: string } | { slug: string }[] }[]
-    }>
-    for (const r of rows) {
-      const tema = Array.isArray(r.temas) ? r.temas[0] : r.temas
-      const opos = Array.isArray(tema.oposiciones) ? tema.oposiciones[0] : tema.oposiciones
-      frecuenciaRoutes.push({
-        url: `${APP_URL}/frecuencia/${opos.slug}/tema/${tema.numero}`,
-        lastModified: now,
-        changeFrequency: 'monthly' as const,
-        priority: 0.7,
-      })
-    }
-  } catch { /* sitemap es resiliente */ }
+  const frecuenciaRoutes = await getFrecuenciaRoutes(now)
 
   return [
     ...staticRoutes,
