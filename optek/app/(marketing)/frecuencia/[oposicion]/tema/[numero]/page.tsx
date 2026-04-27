@@ -203,6 +203,7 @@ export default async function FrecuenciaTemaPage({ params }: Props) {
       description: `Histórico de apariciones del Tema ${data.numero} en exámenes oficiales.`,
       url: `${APP_URL}/frecuencia/${oposicion}/tema/${numInt}`,
       creator: { '@type': 'Organization', name: 'OpoRuta', url: APP_URL },
+      license: 'https://creativecommons.org/licenses/by/4.0/',
     },
     {
       '@context': 'https://schema.org',

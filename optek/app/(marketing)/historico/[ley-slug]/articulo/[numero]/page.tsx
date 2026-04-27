@@ -130,6 +130,7 @@ export default async function HistoricoArticuloPage({ params }: Props) {
       description: `Histórico de apariciones del artículo ${numero} de ${ley.fullName} en exámenes oficiales INAP.`,
       url: `${APP_URL}/historico/${leySlug}/articulo/${numero}`,
       creator: { '@type': 'Organization', name: 'OpoRuta', url: APP_URL },
+      license: 'https://creativecommons.org/licenses/by/4.0/',
       keywords: [ley.shortName, `artículo ${numero}`, 'INAP', 'exámenes oficiales'],
     },
     {
