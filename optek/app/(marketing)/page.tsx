@@ -1190,6 +1190,40 @@ export default async function LandingPage() {
         </div>
       </section>
 
+      {/* ─── Lo último del blog (auto-discoverability para Google) ───── */}
+      <section className="py-12 bg-muted/10 border-y">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="flex items-end justify-between mb-6">
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Lo último del blog</h2>
+              <p className="text-sm text-muted-foreground mt-1">Análisis de exámenes, convocatorias y guías recientes.</p>
+            </div>
+            <Link href="/blog" className="hidden sm:inline text-sm text-primary hover:underline">Ver todas →</Link>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {[...blogPosts]
+              .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+              .slice(0, 8)
+              .map((post) => (
+                <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
+                  <Card className="h-full hover:border-primary transition-colors">
+                    <CardContent className="pt-4 pb-4">
+                      <p className="font-semibold text-sm group-hover:text-primary line-clamp-2">{post.title}</p>
+                      <p className="text-xs text-muted-foreground mt-1.5 line-clamp-2">{post.description}</p>
+                      <p className="text-xs text-muted-foreground mt-2">
+                        {new Date(post.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+          </div>
+          <div className="mt-4 text-center sm:hidden">
+            <Link href="/blog" className="text-sm text-primary hover:underline">Ver todas las guías →</Link>
+          </div>
+        </div>
+      </section>
+
       {/* ─── Testimonio real ─────────────────────────────────────────── */}
       <section className="py-16">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 text-center">

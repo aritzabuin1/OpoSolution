@@ -7,8 +7,8 @@ import { ArrowRight, BookOpen } from 'lucide-react'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 
-/** ISR: regenerar cada 24h — servido desde CDN entre regeneraciones */
-export const revalidate = 86400
+/** ISR: regenerar cada hora — feed de blog activo, surface posts nuevos a Google rápido */
+export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: 'Blog OpoRuta — Guías para 12 oposiciones (AGE, Justicia, Correos, Policía, Guardia Civil y más)',
