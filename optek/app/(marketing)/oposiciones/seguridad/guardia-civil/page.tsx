@@ -17,14 +17,15 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Oposiciones Guardia Civil 2026: 3.118 plazas, 25 temas — Tests gratis | OpoRuta',
+  title: 'Temario Guardia Civil 2026: 25 temas + tests gratis (BOE actualizado)',
   description:
-    'Prepara Guardia Civil 2026: 3.118 plazas, 25 temas en 3 bloques, examen de 100 preguntas tipo test. Tests online gratis verificados contra BOE + psicotécnicos + Personalidad Policial con IA.',
+    'Temario Guardia Civil 2026 actualizado: 25 temas en 3 bloques (A/B/C) y test online gratis con penalización -1/3. 3.118 plazas. Exámenes oficiales 2018-2024 + psicotécnicos + Personalidad Policial con IA.',
   keywords: [
-    'oposiciones guardia civil 2026', 'test guardia civil online', 'temario guardia civil',
-    'guardia civil requisitos', 'oposiciones guardia civil temario', 'temas guardia civil',
-    'psicotecnicos guardia civil', 'guardia civil plazas 2026', 'temario guardia civil actualizado',
-    'test guardia civil gratis', 'examen guardia civil 2026',
+    'temario guardia civil', 'temario guardia civil 2026', 'temario guardia civil actualizado',
+    'test guardia civil', 'test guardia civil gratis', 'test guardia civil online',
+    'oposiciones guardia civil 2026', 'temas guardia civil', 'examen guardia civil 2026',
+    'examen guardia civil 2022', 'psicotecnicos guardia civil', 'guardia civil plazas 2026',
+    'temario ingreso guardia civil', 'temario acceso guardia civil',
   ],
   openGraph: {
     title: 'Oposiciones Guardia Civil 2026: 3.118 plazas — Tests gratis | OpoRuta',

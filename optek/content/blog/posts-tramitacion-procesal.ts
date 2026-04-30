@@ -1145,4 +1145,584 @@ sobre quién las dirige.</p>
       },
     ],
   },
+  // ─── Post 13 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'plazas-tramitacion-procesal-2026-distribucion-comunidades',
+    title: 'Plazas Tramitación Procesal 2026 por comunidades autónomas',
+    description:
+      'Plazas Tramitación Procesal 2026 por CCAA: Madrid, Cataluña, Andalucía, Valencia, País Vasco. Turno libre, promoción interna y reserva discapacidad.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'plazas tramitación procesal 2026',
+      'plazas tramitación procesal por comunidades',
+      'oferta empleo tramitación procesal',
+      'tramitación procesal CCAA',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>~3.500 plazas</strong> totales para Tramitación Procesal 2026 (turno libre + promoción interna).</li>
+  <li>Madrid, Cataluña y Andalucía concentran cerca del <strong>50%</strong> de la oferta.</li>
+  <li>El 7% se reserva a personas con discapacidad ≥33%.</li>
+</ul>
+
+<h2>¿De dónde sale el reparto?</h2>
+<p>
+  El Ministerio de Justicia distribuye plazas según necesidades reales de cada
+  Tribunal Superior de Justicia, ponderando vacantes, jubilaciones previstas y nuevos
+  juzgados. Las CCAA con personal transferido (Cataluña, Galicia, País Vasco, Navarra,
+  Valencia, Madrid, Canarias, Andalucía, Aragón, Asturias, Cantabria, La Rioja)
+  gestionan su cupo; el resto depende del Ministerio.
+</p>
+
+<h2>Plazas estimadas por CCAA</h2>
+<table>
+  <thead>
+    <tr><th>CCAA</th><th>Turno libre</th><th>Promoción interna</th><th>Total</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Madrid</td><td>540</td><td>140</td><td>680</td></tr>
+    <tr><td>Cataluña</td><td>410</td><td>105</td><td>515</td></tr>
+    <tr><td>Andalucía</td><td>355</td><td>90</td><td>445</td></tr>
+    <tr><td>Comunidad Valenciana</td><td>275</td><td>70</td><td>345</td></tr>
+    <tr><td>Galicia</td><td>180</td><td>45</td><td>225</td></tr>
+    <tr><td>País Vasco</td><td>135</td><td>35</td><td>170</td></tr>
+    <tr><td>Castilla y León</td><td>165</td><td>40</td><td>205</td></tr>
+    <tr><td>Castilla-La Mancha</td><td>130</td><td>30</td><td>160</td></tr>
+    <tr><td>Canarias</td><td>120</td><td>30</td><td>150</td></tr>
+    <tr><td>Resto CCAA + Ceuta/Melilla</td><td>490</td><td>115</td><td>605</td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>~2.800</strong></td><td><strong>~700</strong></td><td><strong>~3.500</strong></td></tr>
+  </tbody>
+</table>
+
+<h2>¿Qué CCAA conviene elegir?</h2>
+<p>
+  Si optas por entrar rápido, mira ratio opositores/plaza, no número de plazas. Aragón,
+  La Rioja, Extremadura y Cantabria suelen tener menos competencia (10-13 opositores
+  por plaza) que Madrid o Barcelona (16-20). Una vez funcionario, puedes pedir traslado
+  a tu CCAA preferida tras 2 años de servicio.
+</p>
+
+<h2>Cupo de discapacidad</h2>
+<p>
+  El 7% de las plazas se reserva a personas con discapacidad ≥33% (RD 2271/2004).
+  Aproximadamente <strong>245 plazas</strong> en 2026. Si no se cubren, pasan al cupo
+  general.
+</p>
+
+<h2>Comparativa con otros cuerpos</h2>
+<p>
+  Tramitación Procesal es el cuerpo más numeroso de Justicia: aproximadamente 3.500
+  plazas frente a 1.500-2.000 de Gestión y 425 de Auxilio. Si te encaja el subgrupo
+  C1, es la oposición con más oportunidades de entrada en toda la Administración de
+  Justicia. Más detalle en
+  <a href="/blog/temario-tramitacion-procesal-vs-gestion-procesal-comparativa">comparativa
+  Tramitación vs Gestión</a>.
+</p>
+
+<p>
+  Para preparar el examen con plan estructurado, consulta el pilar
+  <a href="/oposiciones/justicia/tramitacion-procesal">Tramitación Procesal</a> y los
+  <a href="/simulacros-oposiciones">simulacros oficiales 2018-2024</a>. Crea cuenta
+  gratis en <a href="/register">/register</a>.
+</p>
+    `,
+    faqs: [
+      {
+        question: '¿Cuántas plazas hay para Tramitación Procesal 2026?',
+        answer:
+          'Aproximadamente 3.500 plazas: 2.800 turno libre + 700 promoción interna. Es el cuerpo de Justicia con mayor número de plazas convocadas.',
+      },
+      {
+        question: '¿Qué CCAA tiene más plazas?',
+        answer:
+          'Madrid (~680), Cataluña (~515) y Andalucía (~445). Entre las tres concentran cerca del 50% de la oferta.',
+      },
+      {
+        question: '¿Hay plazas reservadas a discapacidad?',
+        answer:
+          'Sí. El 7% según RD 2271/2004, unas 245 plazas. Requiere acreditar discapacidad ≥33% y compatibilidad funcional con el puesto.',
+      },
+      {
+        question: '¿Qué CCAA tiene mejor relación opositor/plaza?',
+        answer:
+          'Aragón, La Rioja, Extremadura y Cantabria suelen tener entre 10 y 13 opositores por plaza, frente a 16-20 de Madrid y Cataluña.',
+      },
+      {
+        question: '¿Puedo cambiar de CCAA tras aprobar?',
+        answer:
+          'Sí, mediante concursos de traslado a partir de 2 años de servicio activo en el destino inicial. Es la vía habitual de movilidad geográfica.',
+      },
+    ],
+  },
+  // ─── Post 14 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'examen-tramitacion-procesal-turno-libre-vs-promocion-interna',
+    title: 'Tramitación Procesal: turno libre vs promoción interna',
+    description:
+      'Diferencias clave entre turno libre y promoción interna en Tramitación Procesal 2026: temario, ratio aprobados, requisitos y cuál te conviene.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'examen tramitación procesal turno libre',
+      'tramitación procesal promoción interna',
+      'turno libre vs promoción interna justicia',
+      'tramitación procesal 2026',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Turno libre</strong>: 80% de las plazas, temario completo, ratio 12-15 opositores/plaza.</li>
+  <li><strong>Promoción interna</strong>: 20% de las plazas, temario reducido, ratio 4-6 opositores/plaza.</li>
+  <li>Para promoción interna necesitas ser <strong>funcionario de Auxilio Judicial</strong> con 2 años de servicio.</li>
+</ul>
+
+<h2>Diferencias clave</h2>
+<table>
+  <thead>
+    <tr><th>Aspecto</th><th>Turno libre</th><th>Promoción interna</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>% plazas</td><td>~80%</td><td>~20%</td></tr>
+    <tr><td>Requisitos</td><td>Bachillerato + nacionalidad UE</td><td>Funcionario AJ con 2 años servicio</td></tr>
+    <tr><td>Tasa</td><td>30,49 €</td><td>15,24 €</td></tr>
+    <tr><td>Temario</td><td>Completo (37 temas)</td><td>Reducido (~25 temas)</td></tr>
+    <tr><td>Tipo test</td><td>100 preguntas + 10 reserva</td><td>50 preguntas + 5 reserva</td></tr>
+    <tr><td>Práctico</td><td>Supuesto + ofimática</td><td>Solo ofimática</td></tr>
+    <tr><td>Ratio</td><td>12-15:1</td><td>4-6:1</td></tr>
+    <tr><td>Antigüedad ganada</td><td>Cero al ingresar</td><td>Conserva la previa de Auxilio</td></tr>
+  </tbody>
+</table>
+
+<h2>¿Cuándo conviene cada turno?</h2>
+<h3>Turno libre</h3>
+<p>
+  Si vienes de fuera de Justicia, es tu única vía. Más temario, más competencia, pero
+  3.500 plazas anuales hacen que el volumen compense. Plan habitual: 10 meses, 4 horas
+  diarias, simulacros desde el mes 7.
+</p>
+
+<h3>Promoción interna</h3>
+<p>
+  Si ya eres Auxilio Judicial, es la vía claramente más eficiente. La ratio cae a la
+  cuarta parte y el temario se reduce porque ya conoces la oficina judicial por
+  dentro. Plan típico: 6 meses con 2-3 h/día compatible con el trabajo.
+</p>
+
+<h2>Diferencias en el examen práctico</h2>
+<p>
+  En turno libre tienes dos pruebas prácticas: un supuesto procesal (calificar escritos,
+  redactar diligencia, computar plazos) y una prueba de ofimática (Word + Excel
+  básico, formato judicial). En promoción interna desaparece el supuesto procesal: el
+  tribunal asume que ya lo dominas como funcionario, y solo te examina en ofimática.
+</p>
+
+<h2>Estrategia si vienes de Auxilio Judicial</h2>
+<ol>
+  <li><strong>Aprueba primero Auxilio Judicial</strong> y cumple el bienio mínimo.</li>
+  <li><strong>Mientras trabajas, prepara los temas adicionales</strong> de Tramitación
+    no presentes en Auxilio (procesal civil avanzada, supuestos prácticos).</li>
+  <li><strong>Refuerza Word a nivel formato judicial</strong>: tablas, secciones,
+    estilos, plantillas. Cae en el examen.</li>
+  <li><strong>Aprovecha la antigüedad</strong>: tras aprobar Tramitación, mantienes
+    los años cotizados de Auxilio para trienios y baremo de traslados.</li>
+</ol>
+
+<h2>¿Y si no tengo titulación de Bachillerato?</h2>
+<p>
+  En turno libre no entras. Alternativa: aprueba primero Auxilio Judicial (solo exige
+  ESO) y promociona después. Es un camino más lento pero perfectamente viable.
+  Comparativa detallada en
+  <a href="/blog/auxilio-judicial-vs-tramitacion-procesal-cual-elegir">Auxilio vs
+  Tramitación</a>.
+</p>
+
+<p>
+  Plan completo de preparación en
+  <a href="/oposiciones/justicia/tramitacion-procesal">pilar Tramitación Procesal</a>.
+  Para entrenar el examen práctico, supuestos resueltos en
+  <a href="/blog/supuesto-practico-tramitacion-procesal-ejemplos-resueltos">esta guía</a>
+  y simulacros oficiales en <a href="/simulacros-oposiciones">OpoRuta</a>.
+</p>
+    `,
+    faqs: [
+      {
+        question: '¿Cuál es la principal diferencia entre turno libre y promoción interna?',
+        answer:
+          'El acceso. Turno libre exige Bachillerato y compite contra todos. Promoción interna requiere ser funcionario de Auxilio Judicial con 2 años de servicio y compite solo entre funcionarios.',
+      },
+      {
+        question: '¿Es más fácil aprobar por promoción interna?',
+        answer:
+          'Sí. La ratio baja de 12-15:1 a 4-6:1 y el temario se reduce. Pero solo es opción si ya eres funcionario de Auxilio Judicial.',
+      },
+      {
+        question: '¿Pierdo antigüedad si paso de Auxilio a Tramitación?',
+        answer:
+          'No. La antigüedad como Auxilio se conserva para trienios y baremo de traslados. Es uno de los mayores incentivos de la promoción interna.',
+      },
+      {
+        question: '¿La promoción interna tiene supuesto práctico?',
+        answer:
+          'No. Solo se examina la prueba de ofimática (Word + Excel a nivel formato judicial). El supuesto procesal se elimina porque se asume dominio funcional.',
+      },
+      {
+        question: '¿Puedo presentarme a turno libre y promoción interna simultáneamente?',
+        answer:
+          'En la misma convocatoria, no: tienes que elegir. La administración entiende que la promoción es una vía reservada y no permite duplicar inscripción.',
+      },
+    ],
+  },
+  // ─── Post 15 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'temario-tramitacion-procesal-vs-gestion-procesal-comparativa',
+    title: 'Temario Tramitación vs Gestión Procesal: comparativa real',
+    description:
+      'Comparativa temarios Tramitación Procesal (37 temas) vs Gestión Procesal (43 temas): solapamiento, novedades y plan de doble preparación.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'temario tramitación procesal',
+      'temario gestión procesal',
+      'tramitación vs gestión temario',
+      'oposiciones justicia temarios',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li>Tramitación: <strong>37 temas</strong> distribuidos en 3 bloques. Gestión: <strong>43 temas</strong> en 4 bloques.</li>
+  <li>Solapamiento real: <strong>~70%</strong> del articulado básico (LOPJ, LEC y LECrim).</li>
+  <li>Gestión añade: <strong>derecho mercantil, laboral y temas avanzados de procesal</strong>.</li>
+</ul>
+
+<h2>Bloques de cada cuerpo</h2>
+<table>
+  <thead>
+    <tr><th>Bloque</th><th>Tramitación (37)</th><th>Gestión (43)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>I — Organización del Estado</td><td>10 temas</td><td>11 temas</td></tr>
+    <tr><td>II — Derecho procesal civil</td><td>14 temas</td><td>15 temas</td></tr>
+    <tr><td>III — Derecho procesal penal y laboral</td><td>9 temas</td><td>11 temas</td></tr>
+    <tr><td>IV — Derecho mercantil y otros</td><td>4 temas</td><td>6 temas</td></tr>
+  </tbody>
+</table>
+
+<h2>Lo que comparten</h2>
+<p>
+  Constitución 1978, organización del Poder Judicial, LOPJ libros I-V, oficina
+  judicial, LEC actos de comunicación, plazos, ejecución, jurisdicción voluntaria,
+  LECrim auxilio judicial y violencia de género. Si dominas la base de Tramitación, ya
+  tienes el 70% de Gestión cubierto.
+</p>
+
+<h2>Lo que añade Gestión Procesal</h2>
+<ol>
+  <li><strong>Derecho mercantil</strong>: sociedades, registro mercantil, concurso de
+    acreedores. No aparece en Tramitación.</li>
+  <li><strong>Derecho laboral procesal</strong>: jurisdicción social, modalidades
+    procesales especiales.</li>
+  <li><strong>Procesal civil avanzado</strong>: ejecución hipotecaria, jurisdicción
+    voluntaria detallada, medidas cautelares en profundidad.</li>
+  <li><strong>Personal AJ ampliado</strong>: régimen disciplinario en mayor detalle,
+    funciones del Letrado AJ.</li>
+  <li><strong>Tema de UE y derecho comunitario</strong> con más profundidad.</li>
+</ol>
+
+<h2>¿Conviene preparar las dos a la vez?</h2>
+<p>
+  Solo en dos casos. Primero, si ya tienes Diplomatura/Grado y dudas entre subgrupos:
+  prepara el temario completo de Gestión y, en paralelo, presenta también Tramitación
+  con un esfuerzo marginal de 60-80 horas para dominar el supuesto práctico. Segundo,
+  si tu plan inicial es Tramitación pero puedes obtener un grado en 1-2 años: amplía
+  temario hacia Gestión cuando tengas el título.
+</p>
+
+<h2>Diferencia en el examen</h2>
+<table>
+  <thead>
+    <tr><th>Examen</th><th>Tramitación</th><th>Gestión</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Test</td><td>100 preguntas</td><td>104 preguntas</td></tr>
+    <tr><td>Tiempo test</td><td>90 min</td><td>100 min</td></tr>
+    <tr><td>Práctico</td><td>1 supuesto + ofimática</td><td>2 supuestos + ofimática</td></tr>
+    <tr><td>Nota corte test</td><td>~60 aciertos netos</td><td>~70 aciertos netos</td></tr>
+  </tbody>
+</table>
+
+<h2>Plan combinado realista</h2>
+<p>
+  Si tu objetivo es presentarte a las dos en convocatorias cercanas: 12 meses para
+  Tramitación primero (con simulacros desde mes 9), aprobar, ingresar como funcionario
+  y entonces preparar Gestión por promoción interna. Eficiencia muy superior al doble
+  estudio simultáneo desde cero. Plan en
+  <a href="/blog/como-aprobar-tramitacion-procesal-primera-vuelta-2026">esta guía</a>.
+</p>
+
+<p>
+  Para ver pilares completos:
+  <a href="/oposiciones/justicia/tramitacion-procesal">Tramitación Procesal</a> y
+  <a href="/oposiciones/justicia/gestion-procesal">Gestión Procesal</a>. Banco de
+  simulacros oficiales en <a href="/simulacros-oposiciones">OpoRuta</a>.
+</p>
+    `,
+    faqs: [
+      {
+        question: '¿Cuánto temario solapan Tramitación y Gestión?',
+        answer:
+          'Aproximadamente el 70% del articulado básico (LOPJ, LEC, LECrim, organización judicial, oficina judicial). Gestión añade mercantil, laboral y procesal avanzado.',
+      },
+      {
+        question: '¿Cuántos temas tiene cada cuerpo?',
+        answer:
+          'Tramitación: 37 temas. Gestión: 43 temas. La diferencia se concentra en derecho mercantil y procesal civil avanzado.',
+      },
+      {
+        question: '¿Es viable preparar ambos a la vez?',
+        answer:
+          'Sí, pero solo si ya tienes titulación universitaria. Lo eficiente es preparar Gestión y añadir 60-80 horas para el supuesto práctico extra de Tramitación.',
+      },
+      {
+        question: '¿Qué examen es más exigente?',
+        answer:
+          'Gestión: 104 preguntas, dos supuestos prácticos y nota de corte ~70 aciertos netos. Tramitación: 100 preguntas, un supuesto y nota ~60 aciertos netos.',
+      },
+      {
+        question: '¿Qué cuerpo elegir si tengo Bachillerato pero no grado?',
+        answer:
+          'Tramitación es tu opción. Gestión exige Diplomatura/Grado o equivalente. Puedes pasar a Gestión más adelante por promoción interna o tras obtener título universitario.',
+      },
+    ],
+  },
+  // ─── Post 16 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'simulacro-tramitacion-procesal-2026-mejores-recursos',
+    title: 'Simulacro Tramitación Procesal 2026: los mejores recursos',
+    description:
+      'Recursos reales para entrenar el simulacro Tramitación Procesal 2026: exámenes oficiales, plataformas, PDF y simulacros con corrección automática.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'simulacro tramitación procesal 2026',
+      'simulacro tramitación procesal',
+      'tramitación procesal recursos',
+      'examenes oficiales tramitación procesal',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li>Necesitas <strong>al menos 8-10 simulacros completos</strong> antes del examen real.</li>
+  <li>El recurso más valioso son los <strong>exámenes oficiales 2018-2024</strong>.</li>
+  <li>Mejor mezcla: oficiales (3) + simulacros mixtos (5) + simulacros generados por IA (2-3 semanales en recta final).</li>
+</ul>
+
+<h2>Tipos de simulacro y para qué sirve cada uno</h2>
+<table>
+  <thead>
+    <tr><th>Tipo</th><th>Cuándo usarlo</th><th>Valor</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Examen oficial real</td><td>Diagnóstico + última semana</td><td>Máximo: te dice exactamente qué pregunta el tribunal</td></tr>
+    <tr><td>Simulacro mixto (preguntas reales mezcladas)</td><td>Mes 6-9 del plan</td><td>Alto: mantiene formato oficial sin ver mismas preguntas</td></tr>
+    <tr><td>Simulacro generado IA</td><td>Mes 3-9, semanal</td><td>Medio: amplia variedad, pero verifica fuentes</td></tr>
+    <tr><td>Tests por bloque</td><td>Mes 1-6</td><td>Bajo como simulacro, alto como aprendizaje</td></tr>
+  </tbody>
+</table>
+
+<h2>Recursos gratis</h2>
+<ol>
+  <li><strong>Web del Ministerio de Justicia</strong>: PDF de exámenes 2018, 2019, 2022,
+    2024 con plantilla de corrección. Sin explicaciones.</li>
+  <li><strong>OpoRuta</strong>: simulacros oficiales digitalizados con corrección
+    automática y explicaciones; un test diagnóstico gratis al registrarte.</li>
+  <li><strong>Foros oposiciones</strong>: PDF de academias, suelen tener errores y
+    artículos derogados. Úsalos solo para complementar.</li>
+</ol>
+
+<h2>Cómo montar un simulacro casero</h2>
+<ol>
+  <li><strong>Imprime o abre</strong> un examen oficial completo.</li>
+  <li><strong>Cronómetro a 90 minutos</strong>, sin pausas, sin móvil, sin material.</li>
+  <li><strong>Corrige al final</strong> con la plantilla oficial. Anota aciertos, errores
+    y blancos por bloque.</li>
+  <li><strong>Cuaderno de errores</strong>: cada fallo va a una ficha. Lo repasarás a los
+    3, 7 y 21 días.</li>
+  <li><strong>Repite el simulacro 3 semanas después</strong>. Tu nota debe subir 8-12
+    aciertos netos si has hecho bien el cuaderno.</li>
+</ol>
+
+<h2>Errores típicos al hacer simulacros</h2>
+<ul>
+  <li><strong>No cronometrar</strong>: el examen real son 90 minutos. Sin presión, no
+    estás simulando.</li>
+  <li><strong>Mirar respuestas a mitad</strong>: rompe la utilidad. Espera al final.</li>
+  <li><strong>No corregir en frío</strong>: revisa al día siguiente, no al instante,
+    para detectar errores conceptuales reales.</li>
+  <li><strong>Repetir el mismo simulacro a las 24 h</strong>: estás memorizando
+    respuestas, no aprendiendo. Mínimo 3 semanas entre repeticiones.</li>
+</ul>
+
+<h2>Cuándo añadir el supuesto práctico</h2>
+<p>
+  En la fase de simulacros (mes 6+) intercala un supuesto práctico cada dos
+  simulacros de test. La práctica del práctico es lo que más diferencia entre
+  aprobados y suspensos en la fase final. Casos resueltos en
+  <a href="/blog/supuesto-practico-tramitacion-procesal-ejemplos-resueltos">esta
+  guía</a> y formato Word para ofimática en
+  <a href="/blog/ofimatica-tramitacion-procesal-word-examen-2026">guía Word</a>.
+</p>
+
+<p>
+  El banco completo de simulacros oficiales con corrección automática está en
+  <a href="/simulacros-oposiciones">OpoRuta</a>. Pilar oficial de
+  <a href="/oposiciones/justicia/tramitacion-procesal">Tramitación Procesal</a>.
+  Crea cuenta gratis: <a href="/register">/register</a>.
+</p>
+    `,
+    faqs: [
+      {
+        question: '¿Cuántos simulacros completos hay que hacer antes del examen?',
+        answer:
+          'Mínimo 8-10 cronometrados. Lo ideal son 12-15: 3 oficiales antiguos, 5-7 mixtos y 3-4 generados con IA en la recta final.',
+      },
+      {
+        question: '¿Qué simulacros son más valiosos: oficiales o generados por IA?',
+        answer:
+          'Los oficiales reales son insustituibles porque reflejan exactamente qué pregunta el tribunal. Los generados por IA cubren variedad cuando agotas oficiales.',
+      },
+      {
+        question: '¿Cuándo empezar con simulacros completos?',
+        answer:
+          'A partir del mes 7 del plan (asumiendo plan de 10-12 meses). Antes haces tests por bloque. Si los empiezas antes, frustración garantizada.',
+      },
+      {
+        question: '¿Qué nota objetivo en simulacros para llegar al examen con margen?',
+        answer:
+          '70+ aciertos netos sobre 100 en simulacros oficiales las 3-4 semanas previas al examen. La nota de corte real ronda 60, así que es un colchón razonable.',
+      },
+      {
+        question: '¿Puedo repetir el mismo examen oficial varias veces?',
+        answer:
+          'Sí, pero deja al menos 3 semanas entre repeticiones para no memorizar respuestas. La repetición espaciada solo funciona si el cerebro tiene tiempo de olvidar la respuesta concreta.',
+      },
+    ],
+  },
+  // ─── Post 17 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'oposiciones-tramitacion-procesal-2026-fechas-convocatoria',
+    title: 'Tramitación Procesal 2026: fechas y calendario convocatoria',
+    description:
+      'Calendario oposiciones Tramitación Procesal 2026: BOE, inscripción, examen, listas provisionales, supuesto práctico y toma de posesión.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'oposiciones tramitación procesal 2026',
+      'fechas convocatoria tramitación procesal',
+      'calendario tramitación procesal 2026',
+      'tramitación procesal 2026',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li>Convocatoria publicada en <strong>BOE</strong> en el primer trimestre.</li>
+  <li>Examen tipo test estimado <strong>finales 2026 o primer trimestre 2027</strong>.</li>
+  <li>Toma de posesión típica: <strong>10-14 meses</strong> tras el examen tipo test.</li>
+</ul>
+
+<h2>Calendario tipo de un proceso selectivo</h2>
+<table>
+  <thead>
+    <tr><th>Fase</th><th>Duración estimada</th><th>Hito</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Publicación BOE</td><td>Día 0</td><td>Convocatoria oficial</td></tr>
+    <tr><td>Plazo inscripción</td><td>20 días hábiles</td><td>Modelo 791 + tasa 30,49 €</td></tr>
+    <tr><td>Lista provisional admitidos</td><td>+1-2 meses</td><td>Subsanación 10 días hábiles</td></tr>
+    <tr><td>Lista definitiva + fecha examen</td><td>+3-4 meses</td><td>Convocatoria de examen</td></tr>
+    <tr><td>Examen tipo test</td><td>+6-9 meses</td><td>100 preguntas, 90 min</td></tr>
+    <tr><td>Resultados test + plantilla</td><td>+1 mes</td><td>Reclamaciones</td></tr>
+    <tr><td>Examen práctico (supuesto + ofimática)</td><td>+3-4 meses</td><td>Solo aprobados del test</td></tr>
+    <tr><td>Lista aprobados</td><td>+2 meses</td><td>Por orden de puntuación</td></tr>
+    <tr><td>Curso selectivo</td><td>+2-3 meses</td><td>Centro Estudios Jurídicos</td></tr>
+    <tr><td>Elección de destino</td><td>+1 mes</td><td>Por orden de puntuación</td></tr>
+    <tr><td>Toma de posesión</td><td>+1 mes</td><td>Funcionario de carrera</td></tr>
+  </tbody>
+</table>
+
+<h2>Fechas estimadas Tramitación Procesal 2026</h2>
+<p>
+  Basado en cómo se han ejecutado convocatorias anteriores (2018, 2019, 2022, 2024) y
+  los plazos del Ministerio:
+</p>
+<ul>
+  <li><strong>BOE convocatoria</strong>: primer trimestre 2026.</li>
+  <li><strong>Cierre inscripción</strong>: abril 2026.</li>
+  <li><strong>Examen tipo test</strong>: finales 2026 o primer trimestre 2027.</li>
+  <li><strong>Práctico</strong>: segundo o tercer trimestre 2027.</li>
+  <li><strong>Toma de posesión</strong>: finales 2027 o principios 2028.</li>
+</ul>
+
+<p>
+  Estos plazos pueden variar por motivos administrativos, sentencias o disponibilidad
+  de tribunales. La fecha BOE es la única que tienes que confirmar tú; el resto se
+  ajusta.
+</p>
+
+<h2>Cómo planificar tu estudio sobre el calendario</h2>
+<ol>
+  <li><strong>Mes 0 (BOE convocatoria)</strong>: empieza temario base si no lo tienes.</li>
+  <li><strong>Meses 1-5</strong>: temario por bloques + tests diarios.</li>
+  <li><strong>Meses 6-9</strong>: tests intensivos + 2-3 simulacros completos al mes.</li>
+  <li><strong>Mes del examen</strong>: solo simulacros + cuaderno de errores. Sin material
+    nuevo.</li>
+  <li><strong>Tras el test</strong>: 3-4 meses para preparar supuesto práctico y ofimática
+    si has aprobado.</li>
+</ol>
+
+<h2>Avisos para el día del examen</h2>
+<ul>
+  <li>Lleva DNI y la convocatoria impresa con tu número.</li>
+  <li>Llega 60 minutos antes. Las puertas se cierran puntuales.</li>
+  <li>No se permite entrar con móvil ni reloj inteligente. Lápiz, bolígrafo azul/negro y
+    agua sin etiqueta.</li>
+  <li>Lee las instrucciones completas antes de marcar nada en la hoja de respuestas.</li>
+</ul>
+
+<p>
+  Para benchmarkearte antes del examen, simulacros oficiales en
+  <a href="/simulacros-oposiciones">OpoRuta</a>. Plan completo y temario en
+  <a href="/oposiciones/justicia/tramitacion-procesal">pilar Tramitación Procesal</a>.
+  Crea tu cuenta gratis en <a href="/register">/register</a>.
+</p>
+    `,
+    faqs: [
+      {
+        question: '¿Cuándo es el examen de Tramitación Procesal 2026?',
+        answer:
+          'Estimación: finales de 2026 o primer trimestre de 2027. La fecha exacta se publica con la convocatoria del BOE y se confirma con la lista definitiva de admitidos.',
+      },
+      {
+        question: '¿Cuánto tiempo pasa entre la convocatoria y la toma de posesión?',
+        answer:
+          'Aproximadamente 18-24 meses: 6-9 meses hasta el test, 3-4 hasta el práctico, 2 hasta la lista de aprobados, 2-3 de curso selectivo y 1-2 de destino y posesión.',
+      },
+      {
+        question: '¿Cuánto dura el plazo de inscripción?',
+        answer:
+          '20 días hábiles desde la publicación en BOE. No se admiten solicitudes fuera de plazo bajo ninguna circunstancia.',
+      },
+      {
+        question: '¿Hay curso selectivo entre aprobar y tomar posesión?',
+        answer:
+          'Sí. Tras la lista de aprobados se hace un curso selectivo de 2-3 meses en el Centro de Estudios Jurídicos del Ministerio. Se cobra como funcionario en prácticas.',
+      },
+      {
+        question: '¿Cuándo eligen destino los aprobados?',
+        answer:
+          'Tras el curso selectivo, por orden de puntuación final. Quien tiene más nota elige primero entre las plazas vacantes. Por eso conviene sobreaprobar la nota de corte.',
+      },
+    ],
+  },
 ]

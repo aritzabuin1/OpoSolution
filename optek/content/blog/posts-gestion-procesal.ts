@@ -998,4 +998,651 @@ export const gestionProcesalPosts: BlogPost[] = [
       { question: '¿Existe promoción desde Gestión Procesal?', answer: 'Sí. Puedes promocionar a Letrado de la Administración de Justicia (antes Secretario Judicial), que exige Grado en Derecho y oposición específica. Es el salto natural de carrera.' },
     ],
   },
+  // ─── Post 13 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'supuestos-practicos-gestion-procesal-2026-resueltos-paso-a-paso',
+    title: 'Supuestos prácticos Gestión Procesal 2026: resueltos paso a paso',
+    description:
+      'Supuestos prácticos Gestión Procesal 2026 resueltos: monitorio, ejecución, plazos, jurisdicción voluntaria. Metodología 6 pasos y errores típicos.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'supuestos prácticos gestión procesal 2026',
+      'supuesto práctico gestión procesal resuelto',
+      'examen práctico gestión procesal',
+      'gestión procesal ejercicios',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li>El examen práctico son <strong>2 supuestos</strong> en 90 minutos sobre LEC, LECrim o jurisdicción voluntaria.</li>
+  <li>Pesa <strong>40% de la nota final</strong>: equivalente al examen test.</li>
+  <li>Metodología 6 pasos: leer enunciado, identificar norma, plazos, escritos a redactar, dictar diligencia, comprobar.</li>
+</ul>
+
+<h2>Estructura típica del práctico</h2>
+<p>
+  Te dan un escrito de demanda, querella, escrito de parte o un recurso. Tienes que
+  contestar 8-12 preguntas concretas: qué tipo de procedimiento, plazo de admisión,
+  diligencia que dicta el LAJ, escrito a redactar, traslado a la otra parte, recurso
+  cabe contra la resolución. No es un texto libre: son respuestas precisas con
+  artículo invocado.
+</p>
+
+<h2>Supuesto resuelto 1 — Monitorio</h2>
+<p>
+  <strong>Enunciado</strong>: Empresa A presenta petición monitoria contra B por
+  factura impagada de 18.000 €. Hay 3 facturas adjuntas firmadas. ¿Qué pasos sigue el
+  juzgado?
+</p>
+<ol>
+  <li><strong>Norma aplicable</strong>: artículos 812-818 LEC (proceso monitorio).</li>
+  <li><strong>Cuantía y competencia</strong>: 18.000 € entran en monitorio (sin límite
+    desde reforma 2011).</li>
+  <li><strong>Diligencia LAJ</strong>: requerimiento de pago al deudor (art. 815 LEC).</li>
+  <li><strong>Plazo deudor</strong>: 20 días para pagar, oponerse o no comparecer.</li>
+  <li><strong>Si no comparece</strong>: el LAJ dicta decreto despachando ejecución
+    (art. 816 LEC).</li>
+  <li><strong>Si se opone</strong>: cuantía hasta 6.000 € va a juicio verbal; superior,
+    a juicio ordinario.</li>
+</ol>
+
+<h2>Supuesto resuelto 2 — Ejecución dineraria</h2>
+<p>
+  <strong>Enunciado</strong>: Sentencia firme condena a C a pagar 25.000 €. Acreedor
+  pide ejecución. ¿Qué pasos hace el juzgado?
+</p>
+<ol>
+  <li><strong>Demanda ejecutiva</strong>: art. 549 LEC. Examen judicial del título.</li>
+  <li><strong>Auto despachando ejecución</strong>: dictado por el juez (art. 551 LEC).</li>
+  <li><strong>Decreto del LAJ</strong>: medidas ejecutivas concretas, embargo de bienes
+    (art. 551.3 LEC).</li>
+  <li><strong>Plazo oposición</strong>: 10 días desde notificación al ejecutado (art. 556
+    LEC).</li>
+  <li><strong>Embargo</strong>: orden de prelación arts. 592-597 LEC (dinero, cuentas,
+    sueldos, créditos, valores, joyas, inmuebles).</li>
+  <li><strong>Diligencia de ordenación</strong>: cita al ejecutado para manifestación de
+    bienes si no se conoce patrimonio.</li>
+</ol>
+
+<h2>Metodología en 6 pasos</h2>
+<table>
+  <thead>
+    <tr><th>Paso</th><th>Acción</th><th>Tiempo</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>Lectura completa del enunciado, marcar fechas y cantidades</td><td>5 min</td></tr>
+    <tr><td>2</td><td>Identificar tipo de procedimiento y norma aplicable</td><td>5 min</td></tr>
+    <tr><td>3</td><td>Localizar artículos clave en el código autorizado</td><td>5 min</td></tr>
+    <tr><td>4</td><td>Esquema de respuestas en sucio</td><td>10 min</td></tr>
+    <tr><td>5</td><td>Redactar limpio con cita de artículos</td><td>20 min/supuesto</td></tr>
+    <tr><td>6</td><td>Repaso final: plazos, recursos, ortografía</td><td>5 min</td></tr>
+  </tbody>
+</table>
+
+<h2>Errores típicos del práctico</h2>
+<ol>
+  <li><strong>No citar artículo</strong>: respuestas sin fundamento jurídico pierden el
+    50% de la nota aunque el contenido sea correcto.</li>
+  <li><strong>Confundir resolución</strong>: providencia, decreto, auto, sentencia
+    tienen tribunal y forma distintos. Decreto = LAJ; auto = juez.</li>
+  <li><strong>Plazos en días naturales vs hábiles</strong>: civiles son días hábiles;
+    penales urgentes pueden contar naturales.</li>
+  <li><strong>Olvidar el recurso</strong>: ante cada resolución hay un recurso típico.
+    Si te preguntan por recurribilidad y no contestas, son puntos perdidos.</li>
+</ol>
+
+<h2>Cómo entrenar</h2>
+<p>
+  Plan: 1 supuesto resuelto por semana en mes 4-6, 2 por semana en mes 7-9. En recta
+  final, simulacros completos de 90 minutos con 2 supuestos cronometrados. Más casos
+  resueltos en
+  <a href="/blog/supuesto-practico-gestion-procesal-ejemplos-resueltos-2026">guía de
+  supuestos prácticos</a>.
+</p>
+
+<p>
+  Pilar oficial:
+  <a href="/oposiciones/justicia/gestion-procesal">Gestión Procesal</a>. Banco de
+  simulacros oficiales con corrección automática:
+  <a href="/simulacros-oposiciones">OpoRuta</a>. Crea cuenta gratis en
+  <a href="/register">/register</a>.
+</p>
+    `,
+    faqs: [
+      {
+        question: '¿Cuántos supuestos prácticos tiene el examen Gestión Procesal?',
+        answer:
+          'Dos supuestos en 90 minutos. Pueden versar sobre LEC (civil), LECrim (penal) o jurisdicción voluntaria. Pesan el 40% de la nota final.',
+      },
+      {
+        question: '¿Puedo llevar códigos al examen práctico?',
+        answer:
+          'Sí. La convocatoria autoriza códigos legales en formato papel sin anotaciones manuscritas, sin separadores ni subrayados que constituyan resumen. Solo subrayado normal admitido.',
+      },
+      {
+        question: '¿Hay que redactar escritos enteros o responder preguntas?',
+        answer:
+          'Responder preguntas concretas, no redactar escritos completos. Cada supuesto trae 8-12 preguntas y debes contestar con artículo invocado y razonamiento breve.',
+      },
+      {
+        question: '¿Qué temas caen más en el supuesto práctico?',
+        answer:
+          'Procedimiento monitorio, ejecución dineraria, juicio verbal, jurisdicción voluntaria, plazos y recursos. Las reformas LEC reciente también caen.',
+      },
+      {
+        question: '¿Cuál es el error más penalizado?',
+        answer:
+          'No citar el artículo aplicable. Una respuesta correcta sin cita pierde aproximadamente el 50% de la nota. La cita exacta vale tanto como el contenido.',
+      },
+    ],
+  },
+  // ─── Post 14 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'examen-gestion-procesal-fase-oposicion-fase-concurso',
+    title: 'Examen Gestión Procesal: fase oposición y fase concurso',
+    description:
+      'Fases del examen Gestión Procesal 2026: test, supuesto práctico, baremo de méritos en concurso-oposición y curso selectivo. Pesos y nota final.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'examen gestión procesal',
+      'fase oposición gestión procesal',
+      'fase concurso gestión procesal',
+      'gestión procesal concurso oposición',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li>Sistema: <strong>concurso-oposición</strong>. Oposición = 60-65%, concurso (méritos) = 35-40%.</li>
+  <li>Oposición: <strong>2 ejercicios</strong> (test + 2 supuestos prácticos), eliminatorios.</li>
+  <li>Concurso solo aplica en <strong>promoción interna</strong>; en turno libre solo cuenta la oposición.</li>
+</ul>
+
+<h2>Visión general del proceso</h2>
+<p>
+  El acceso a Gestión Procesal y Administrativa se hace por concurso-oposición. La
+  fase de oposición es eliminatoria (si suspendes el test, no llegas al práctico). La
+  fase de concurso solo se aplica realmente en promoción interna, donde se bareman
+  méritos del funcionario. En turno libre, el «concurso» se limita a las titulaciones
+  superiores a la mínima exigida, que apenas ponderan.
+</p>
+
+<h2>Fase de oposición</h2>
+<table>
+  <thead>
+    <tr><th>Ejercicio</th><th>Formato</th><th>Tiempo</th><th>Peso</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1.º Test</td><td>104 preguntas + 6 reserva</td><td>100 min</td><td>50% oposición</td></tr>
+    <tr><td>2.º Supuesto práctico</td><td>2 supuestos + ofimática</td><td>180 min</td><td>50% oposición</td></tr>
+  </tbody>
+</table>
+
+<h3>Sobre el test</h3>
+<p>
+  Cada acierto suma 1 punto. Cada error resta 0,33 (modelo penalización). Las
+  preguntas en blanco no penalizan. Nota mínima: 5 sobre 10 (≈ 65 aciertos netos sobre
+  104 según convocatorias recientes).
+</p>
+
+<h3>Sobre el práctico</h3>
+<p>
+  Se compone de dos supuestos sobre LEC, LECrim o jurisdicción voluntaria, más una
+  prueba de ofimática (Word + Excel). Nota mínima: 5 sobre 10. Los códigos legales
+  están autorizados; la ofimática se realiza en ordenador del Ministerio.
+</p>
+
+<h2>Fase de concurso (solo promoción interna)</h2>
+<p>
+  Se valoran méritos hasta un tope del 35-40% de la nota total. Baremo típico:
+</p>
+<ul>
+  <li><strong>Antigüedad como funcionario AJ</strong>: hasta 30 puntos (1 punto/año
+    completo).</li>
+  <li><strong>Cursos de formación oficiales</strong>: hasta 10 puntos.</li>
+  <li><strong>Titulación universitaria superior a la exigida</strong>: hasta 5
+    puntos.</li>
+  <li><strong>Conocimiento de lengua cooficial</strong>: hasta 8 puntos en CCAA con
+    competencias.</li>
+</ul>
+
+<h2>Cálculo de la nota final</h2>
+<table>
+  <thead>
+    <tr><th>Vía</th><th>Composición de la nota</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Turno libre</td><td>50% test + 50% práctico</td></tr>
+    <tr><td>Promoción interna</td><td>30% test + 30% práctico + 40% concurso</td></tr>
+  </tbody>
+</table>
+
+<h2>Curso selectivo final</h2>
+<p>
+  Tras superar oposición y concurso, hay un curso selectivo de 2-3 meses en el Centro
+  de Estudios Jurídicos del Ministerio. Es práctico (estancias en juzgados) y se cobra
+  como funcionario en prácticas. Su superación es requisito para nombramiento como
+  funcionario de carrera.
+</p>
+
+<h2>Estrategia según vía</h2>
+<ol>
+  <li><strong>Turno libre</strong>: maximiza nota en oposición. Apunta a 7,5-8 sobre 10
+    en cada ejercicio para asegurar destino preferido.</li>
+  <li><strong>Promoción interna</strong>: el concurso te da colchón. Aprueba con
+    holgura los dos ejercicios y aprovecha tu antigüedad.</li>
+</ol>
+
+<p>
+  Plan completo de oposición en
+  <a href="/oposiciones/justicia/gestion-procesal">pilar Gestión Procesal</a>. Guía de
+  prácticos resueltos:
+  <a href="/blog/supuesto-practico-gestion-procesal-ejemplos-resueltos-2026">supuestos
+  prácticos</a>. Simulacros oficiales:
+  <a href="/simulacros-oposiciones">OpoRuta</a>.
+</p>
+    `,
+    faqs: [
+      {
+        question: '¿Cuántos ejercicios tiene el examen de Gestión Procesal?',
+        answer:
+          'Dos ejercicios eliminatorios: el test (104 preguntas en 100 min) y el práctico (2 supuestos + ofimática en 180 min). Hay que aprobar ambos por separado.',
+      },
+      {
+        question: '¿Cómo se calcula la nota final en turno libre?',
+        answer:
+          '50% test + 50% práctico. La fase de concurso prácticamente no pondera en turno libre, salvo titulaciones superiores con peso marginal.',
+      },
+      {
+        question: '¿Cuánto pondera el concurso en promoción interna?',
+        answer:
+          '35-40% de la nota final. La antigüedad como funcionario AJ es el factor de mayor peso, hasta 30 puntos por años de servicio.',
+      },
+      {
+        question: '¿Qué nota mínima necesito para superar cada ejercicio?',
+        answer:
+          '5 sobre 10 en cada uno. Aproximadamente 65 aciertos netos sobre 104 en el test y aprobado en cada uno de los dos supuestos prácticos y en ofimática.',
+      },
+      {
+        question: '¿El curso selectivo cuenta para la nota?',
+        answer:
+          'No suma a la nota de la oposición, pero su superación es requisito para nombramiento. Se valora apto/no apto y se cobra como funcionario en prácticas.',
+      },
+    ],
+  },
+  // ─── Post 15 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'cuerpo-gestion-procesal-administrativa-funciones-categoria-a2',
+    title: 'Cuerpo Gestión Procesal Administrativa: funciones reales A2',
+    description:
+      'Qué hace un Gestor Procesal A2: funciones reales, sustitución del LAJ, dación de cuenta, diligencias, día a día y diferencia con Tramitación.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'cuerpo gestion procesal y administrativa',
+      'funciones gestión procesal',
+      'gestor procesal A2',
+      'que hace gestión procesal',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li>Subgrupo <strong>A2</strong>: requiere Diplomatura, Grado o equivalente.</li>
+  <li>Funciones clave: <strong>sustituir al Letrado AJ</strong>, dación de cuenta, dictar diligencias.</li>
+  <li>Salario base aproximado: <strong>2.300-2.600 € brutos/mes</strong> con complementos.</li>
+</ul>
+
+<h2>Marco normativo</h2>
+<p>
+  Las funciones del Cuerpo de Gestión Procesal y Administrativa están reguladas en el
+  <strong>artículo 476 LOPJ</strong>. Es un cuerpo general de la Administración de
+  Justicia, distinto de los técnicos y de los Letrados. Tiene capacidad de impulso
+  procesal autónomo bajo dirección del LAJ.
+</p>
+
+<h2>Funciones tipificadas (art. 476 LOPJ)</h2>
+<ol>
+  <li><strong>Sustituir al Letrado AJ</strong> en su ausencia (vacaciones, baja,
+    licencias) en todas las funciones excepto las de fe pública y dación de cuenta
+    relevante.</li>
+  <li><strong>Realizar las funciones de impulso del procedimiento</strong>: dictar
+    diligencias de ordenación y proponer al LAJ las decisiones que excedan su
+    competencia.</li>
+  <li><strong>Documentar embargos, lanzamientos y demás actos</strong> ordenados por el
+    juez o LAJ.</li>
+  <li><strong>Tramitar en general el procedimiento</strong>: control de plazos,
+    notificaciones, requerimientos.</li>
+  <li><strong>Practicar la dación de cuenta diaria</strong>: presentar al LAJ los
+    escritos recibidos y el estado de los procedimientos.</li>
+  <li><strong>Colaborar con el LAJ en las funciones de catalogación</strong>,
+    archivo y mantenimiento de los expedientes.</li>
+</ol>
+
+<h2>Diferencia respecto a Tramitación Procesal</h2>
+<table>
+  <thead>
+    <tr><th>Aspecto</th><th>Gestión Procesal (A2)</th><th>Tramitación Procesal (C1)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Titulación</td><td>Diplomado/Grado</td><td>Bachillerato</td></tr>
+    <tr><td>Sustituye al LAJ</td><td>Sí, salvo fe pública</td><td>No</td></tr>
+    <tr><td>Diligencias</td><td>Dicta diligencias de ordenación</td><td>Tramita y notifica</td></tr>
+    <tr><td>Dación de cuenta</td><td>Función principal</td><td>Auxiliar</td></tr>
+    <tr><td>Salario base</td><td>2.300-2.600 €</td><td>1.900-2.100 €</td></tr>
+    <tr><td>Promoción natural</td><td>LAJ (si grado Derecho)</td><td>Gestión</td></tr>
+  </tbody>
+</table>
+
+<h2>Día a día real en un juzgado</h2>
+<ul>
+  <li><strong>8:00-9:30</strong>: dación de cuenta. Revisión de la mesa con escritos
+    recibidos y propuesta al LAJ.</li>
+  <li><strong>9:30-11:30</strong>: tramitación. Dictar diligencias, controlar plazos
+    procesales, redactar oficios.</li>
+  <li><strong>11:30-13:00</strong>: atención a profesionales (procuradores, letrados).
+    Compulsa de documentos, certificaciones.</li>
+  <li><strong>13:00-15:00</strong>: vistas si las hubiere (asistencia al LAJ),
+    notificaciones complejas, sustitución del LAJ si procede.</li>
+</ul>
+
+<h2>¿Es un buen puesto?</h2>
+<p>
+  Es la pieza intermedia clave del juzgado. Tienes responsabilidad real (impulso
+  procesal autónomo) sin la presión institucional del LAJ ni la rutina de Tramitación.
+  El sueldo es razonable y la promoción a LAJ está abierta si consigues Grado en
+  Derecho. Si tu objetivo es trabajar en Justicia con margen de iniciativa, es la
+  mejor relación esfuerzo/resultado.
+</p>
+
+<p>
+  Diferencias detalladas con Tramitación en
+  <a href="/blog/gestion-procesal-vs-tramitacion-diferencias">esta comparativa</a>.
+  Pilar oficial:
+  <a href="/oposiciones/justicia/gestion-procesal">Gestión Procesal</a>. Crea cuenta
+  gratis: <a href="/register">/register</a>.
+</p>
+    `,
+    faqs: [
+      {
+        question: '¿Qué hace exactamente un Gestor Procesal en su día a día?',
+        answer:
+          'Dación de cuenta diaria, dictar diligencias de ordenación, controlar plazos procesales, sustituir al LAJ en ausencias y atender a procuradores y letrados.',
+      },
+      {
+        question: '¿Puede el Gestor Procesal sustituir al Letrado de la AJ?',
+        answer:
+          'Sí, conforme al artículo 476 LOPJ, salvo en funciones de fe pública (que son exclusivas del LAJ) y en daciones de cuenta especialmente relevantes.',
+      },
+      {
+        question: '¿Qué titulación se necesita para Gestión Procesal?',
+        answer:
+          'Diplomado, Grado o equivalente (subgrupo A2). Cualquier grado universitario es válido, no es necesario que sea Derecho ni similar.',
+      },
+      {
+        question: '¿Tiene poder de decisión propio o solo ejecuta?',
+        answer:
+          'Tiene impulso procesal autónomo: dicta diligencias de ordenación con su propia firma. Solo eleva al LAJ las decisiones que exceden su competencia.',
+      },
+      {
+        question: '¿Es mejor cuerpo que Tramitación Procesal?',
+        answer:
+          'En responsabilidad y salario, sí. En esfuerzo de oposición también es más exigente. La elección depende de tu titulación y de cuánto valores la responsabilidad operativa.',
+      },
+    ],
+  },
+  // ─── Post 16 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'salario-gestion-procesal-2026-nomina-desglosada',
+    title: 'Salario Gestión Procesal 2026: nómina desglosada A2',
+    description:
+      'Salario Gestión Procesal 2026: sueldo base, complemento destino, específico, productividad y trienios. Nómina mensual real desglosada A2.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'salario gestión procesal 2026',
+      'sueldo gestor procesal',
+      'nómina gestión procesal A2',
+      'cuanto cobra gestión procesal',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li>Sueldo base A2: <strong>1.116,49 €/mes</strong> (14 pagas, datos LPGE 2025 prorrogados).</li>
+  <li>Total bruto mensual con complementos: <strong>2.300-2.600 €</strong>.</li>
+  <li>Total bruto anual aproximado: <strong>32.000-36.000 €</strong> según destino y antigüedad.</li>
+</ul>
+
+<h2>Componentes de la nómina</h2>
+<table>
+  <thead>
+    <tr><th>Concepto</th><th>Importe mensual</th><th>Notas</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Sueldo base A2</td><td>1.116 €</td><td>14 pagas/año</td></tr>
+    <tr><td>Complemento destino (nivel 22-24)</td><td>520-680 €</td><td>Según puesto</td></tr>
+    <tr><td>Complemento específico</td><td>650-820 €</td><td>Variable por destino</td></tr>
+    <tr><td>Trienios (3 años cada uno)</td><td>40 € por trienio</td><td>Acumulables</td></tr>
+    <tr><td>Productividad (variable)</td><td>0-200 €</td><td>Sujeta a evaluación</td></tr>
+    <tr><td>Guardias (si procede)</td><td>250-450 €/guardia</td><td>Solo en juzgados con servicio</td></tr>
+    <tr><td><strong>Total bruto/mes (sin trienios ni guardias)</strong></td><td><strong>2.300-2.600 €</strong></td><td>—</td></tr>
+  </tbody>
+</table>
+
+<h2>Cálculo bruto anual</h2>
+<p>
+  La administración paga 14 mensualidades (12 ordinarias + extra junio + extra
+  diciembre). Las extras incluyen sueldo base y complementos íntegros. El cálculo
+  típico para un Gestor recién ingresado en destino estándar:
+</p>
+<ul>
+  <li>12 mensualidades × 2.400 € = 28.800 €.</li>
+  <li>2 pagas extra × 2.400 € = 4.800 €.</li>
+  <li><strong>Total bruto anual</strong>: aproximadamente 33.600 €.</li>
+</ul>
+
+<h2>Diferencias por destino</h2>
+<ol>
+  <li><strong>Juzgados de instrucción y violencia</strong>: complemento específico
+    superior por servicio de guardia. Suben el bruto un 5-10%.</li>
+  <li><strong>Audiencias provinciales y TSJ</strong>: nivel de destino algo superior
+    (24 vs 22 de juzgados de primera instancia).</li>
+  <li><strong>CCAA con plus de carestía</strong>: País Vasco, Madrid, Cataluña pagan
+    complementos autonómicos adicionales.</li>
+  <li><strong>Conocimiento de lengua cooficial</strong>: complemento mensual en
+    Cataluña, Galicia, Valencia, País Vasco y Baleares.</li>
+</ol>
+
+<h2>Estimación neta</h2>
+<p>
+  Sobre 2.400 € brutos mensuales sin hijos ni mínimos especiales, IRPF y SS retienen
+  aproximadamente 22-26%. Neto típico: <strong>1.800-1.900 €/mes</strong>. Con
+  trienios consolidados (3-4 trienios = 12-16 años de servicio), neto sube a 2.000-2.150 €.
+</p>
+
+<h2>Cómo crece el salario en el tiempo</h2>
+<table>
+  <thead>
+    <tr><th>Año de servicio</th><th>Trienios</th><th>Bruto mensual estimado</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>0-3</td><td>0</td><td>2.400 €</td></tr>
+    <tr><td>3-6</td><td>1</td><td>2.440 €</td></tr>
+    <tr><td>6-9</td><td>2</td><td>2.480 €</td></tr>
+    <tr><td>15-18</td><td>5</td><td>2.600 €</td></tr>
+    <tr><td>30+</td><td>10</td><td>2.800 €</td></tr>
+  </tbody>
+</table>
+
+<h2>Comparativa rápida</h2>
+<ul>
+  <li><strong>Gestión Procesal (A2)</strong>: 2.300-2.600 € brutos/mes.</li>
+  <li><strong>Tramitación Procesal (C1)</strong>: 1.900-2.100 € brutos/mes.</li>
+  <li><strong>Auxilio Judicial (C2)</strong>: 1.700-1.900 € brutos/mes.</li>
+  <li><strong>Letrado AJ (A1)</strong>: 3.500-4.200 € brutos/mes.</li>
+</ul>
+
+<p>
+  Diferencias funcionales detalladas en
+  <a href="/blog/gestion-procesal-vs-tramitacion-diferencias">comparativa Gestión vs
+  Tramitación</a>. Plan completo en pilar
+  <a href="/oposiciones/justicia/gestion-procesal">Gestión Procesal</a>.
+</p>
+    `,
+    faqs: [
+      {
+        question: '¿Cuánto cobra un Gestor Procesal recién ingresado?',
+        answer:
+          'Aproximadamente 2.300-2.500 € brutos al mes (sin trienios ni guardias). Neto en torno a 1.800-1.900 € según retenciones personales.',
+      },
+      {
+        question: '¿Cuánto suma cada trienio?',
+        answer:
+          'Aproximadamente 40 €/mes por trienio (3 años de servicio activo). Son acumulables y se cobran de por vida, también en jubilación.',
+      },
+      {
+        question: '¿Hay diferencias salariales entre CCAA?',
+        answer:
+          'Sí. País Vasco, Madrid, Cataluña, Galicia, Valencia y Baleares tienen complementos autonómicos. País Vasco es la mejor pagada, con diferencias de 200-350 €/mes.',
+      },
+      {
+        question: '¿Las guardias se cobran aparte?',
+        answer:
+          'Sí. Cada guardia se paga entre 250 y 450 € según tipo (24 horas, 12 horas, fin de semana, festivo). Solo aplican en juzgados con servicio de guardia.',
+      },
+      {
+        question: '¿Cuánto bruto anual sale en total el primer año?',
+        answer:
+          'Aproximadamente 33.000-35.000 € brutos contando 14 pagas y complementos estándar. Con guardias y antigüedad, sube fácilmente a 38.000-42.000 €.',
+      },
+    ],
+  },
+  // ─── Post 17 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'gestion-procesal-promocion-interna-vs-libre-estrategia',
+    title: 'Gestión Procesal: promoción interna vs libre, estrategia',
+    description:
+      'Promoción interna vs turno libre Gestión Procesal 2026: ratio, temario, baremo de méritos y qué vía conviene según tu situación.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'gestión procesal promoción interna',
+      'gestión procesal turno libre',
+      'promoción interna vs libre justicia',
+      'gestión procesal estrategia 2026',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Turno libre</strong>: 70-75% plazas, ratio 20-25:1, temario completo.</li>
+  <li><strong>Promoción interna</strong>: 25-30% plazas, ratio 5-8:1, temario reducido.</li>
+  <li>Para promoción: 2 años de servicio en Tramitación Procesal y titulación A2 (Diplomatura/Grado).</li>
+</ul>
+
+<h2>Diferencias clave</h2>
+<table>
+  <thead>
+    <tr><th>Aspecto</th><th>Turno libre</th><th>Promoción interna</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>% plazas</td><td>70-75%</td><td>25-30%</td></tr>
+    <tr><td>Requisitos</td><td>Diplomatura/Grado</td><td>Funcionario Tramitación + 2 años + Diplomatura/Grado</td></tr>
+    <tr><td>Temario</td><td>43 temas completos</td><td>~30 temas (reducido)</td></tr>
+    <tr><td>Test</td><td>104 preguntas</td><td>60 preguntas</td></tr>
+    <tr><td>Práctico</td><td>2 supuestos + ofimática</td><td>1 supuesto + ofimática</td></tr>
+    <tr><td>Concurso (méritos)</td><td>Marginal</td><td>Pondera 35-40%</td></tr>
+    <tr><td>Tasa</td><td>30,49 €</td><td>15,24 €</td></tr>
+    <tr><td>Ratio</td><td>20-25:1</td><td>5-8:1</td></tr>
+  </tbody>
+</table>
+
+<h2>Cuándo conviene promoción interna</h2>
+<p>
+  Si ya eres Tramitación Procesal con 2 años de servicio y tienes Diplomatura o Grado,
+  la promoción es claramente la mejor opción. Tres razones objetivas: ratio 4 veces
+  mejor, temario reducido, y los méritos te suman 35-40% de la nota final. La
+  antigüedad acumulada en Tramitación se conserva para trienios y traslados.
+</p>
+
+<h2>Cuándo turno libre</h2>
+<p>
+  Si vienes de fuera de Justicia, es tu única vía. Plan típico: 12 meses con 4 h/día,
+  simulacros desde el mes 8. La competencia es alta (20-25:1) pero el volumen de
+  plazas (1.500-2.000 anuales) compensa.
+</p>
+
+<h2>Plan de transición Tramitación → Gestión</h2>
+<ol>
+  <li><strong>Aprueba Tramitación</strong> primero (turno libre, requiere
+    Bachillerato).</li>
+  <li><strong>Cumple los 2 años</strong> de servicio activo. Cuenta el tiempo en
+    propiedad, no las prácticas.</li>
+  <li><strong>Asegúrate de tener Grado o Diplomatura</strong>. Si no, obtén una
+    universitaria mientras trabajas (UNED es la opción habitual).</li>
+  <li><strong>Prepara los temas adicionales de Gestión</strong>: derecho mercantil,
+    laboral, procesal civil avanzado.</li>
+  <li><strong>Presentate</strong> en la siguiente convocatoria de promoción interna y
+    aprovecha la antigüedad acumulada en el baremo.</li>
+</ol>
+
+<h2>Baremo de méritos en promoción interna</h2>
+<table>
+  <thead>
+    <tr><th>Mérito</th><th>Puntos máximos</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Antigüedad como Tramitación (1 punto/año completo)</td><td>30</td></tr>
+    <tr><td>Cursos formación oficiales (10 horas mínimo)</td><td>10</td></tr>
+    <tr><td>Titulación universitaria superior a la mínima</td><td>5</td></tr>
+    <tr><td>Lengua cooficial (en CCAA con competencias)</td><td>8</td></tr>
+    <tr><td>Otros méritos profesionales</td><td>2</td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>55 puntos</strong></td></tr>
+  </tbody>
+</table>
+
+<h2>¿Es viable presentarse a las dos en convocatorias paralelas?</h2>
+<p>
+  Solo si la convocatoria está abierta a doble inscripción (no es lo habitual). Lo
+  común es elegir una vía. Si tienes los méritos, promoción interna es la elección
+  obvia: misma plaza, menos competencia, menos temario, más nota gracias al baremo.
+</p>
+
+<p>
+  Diferencias detalladas Tramitación vs Gestión en
+  <a href="/blog/gestion-procesal-vs-tramitacion-diferencias">esta comparativa</a>.
+  Plan de oposición en pilar
+  <a href="/oposiciones/justicia/gestion-procesal">Gestión Procesal</a>. Para
+  benchmarkear tu nivel, simulacros oficiales en
+  <a href="/simulacros-oposiciones">OpoRuta</a>. Crea cuenta gratis en
+  <a href="/register">/register</a>.
+</p>
+    `,
+    faqs: [
+      {
+        question: '¿Cuántas plazas se reservan a promoción interna en Gestión Procesal?',
+        answer:
+          'Entre el 25% y el 30% de la convocatoria. En 2026, sobre un total estimado de 1.500-2.000 plazas, la promoción interna ronda 400-600.',
+      },
+      {
+        question: '¿Qué requisitos exige la promoción interna?',
+        answer:
+          'Ser funcionario de Tramitación Procesal con al menos 2 años de servicio activo, tener Diplomatura o Grado y haber superado el periodo de prácticas en Tramitación.',
+      },
+      {
+        question: '¿Cuánto pondera el concurso en promoción interna?',
+        answer:
+          '35-40% de la nota final según convocatoria. La antigüedad como Tramitación es el componente principal: hasta 30 puntos por años de servicio.',
+      },
+      {
+        question: '¿Pierdo antigüedad si paso de Tramitación a Gestión?',
+        answer:
+          'No. La antigüedad como Tramitación se conserva para trienios y baremo de traslados. Es uno de los grandes incentivos de la promoción interna.',
+      },
+      {
+        question: '¿Es realmente más fácil aprobar por promoción interna?',
+        answer:
+          'Sí. La ratio cae de 20-25:1 a 5-8:1, el temario se reduce y los méritos suman puntos extra. Si cumples requisitos, es la vía objetivamente mejor.',
+      },
+    ],
+  },
 ]

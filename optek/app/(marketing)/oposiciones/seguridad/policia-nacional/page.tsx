@@ -17,13 +17,15 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Oposiciones Policía Nacional 2026: 3.000 plazas, 45 temas — Tests gratis | OpoRuta',
+  title: 'Temario Policía Nacional 2026: 45 temas + test gratis (3 opciones BOE)',
   description:
-    'Prepara Policía Nacional 2026: ~3.000 plazas, 45 temas, 100 preguntas con 3 opciones (penalización -1/2). Tests gratis con IA verificados contra BOE + psicotécnicos + Personalidad Policial.',
+    'Temario Policía Nacional escala básica 2026: 45 temas en 3 bloques (Ciencias Jurídicas 26, Sociales 12, Técnico-Científicas 7). Test online gratis con 3 opciones y penalización -1/2. ~3.000 plazas + psicotécnicos + Personalidad Policial.',
   keywords: [
-    'oposiciones policia nacional 2026', 'test policia nacional online', 'temario policia nacional',
-    'policia nacional requisitos', 'oposiciones policia nacional temario',
-    'psicotecnicos policia nacional', 'policia nacional plazas 2026', 'policia nacional 3 opciones',
+    'temario policia nacional', 'temario policia nacional 2026', 'temario policia nacional escala basica',
+    'test policia nacional', 'test policia nacional gratis', 'test policia nacional online',
+    'oposiciones policia nacional 2026', 'policia nacional 45 temas', 'policia nacional 3 opciones',
+    'examen policia nacional', 'psicotecnicos policia nacional', 'policia nacional plazas 2026',
+    'boe temario policía nacional escala básica',
   ],
   openGraph: {
     title: 'Oposiciones Policía Nacional 2026: 3.000 plazas | OpoRuta',

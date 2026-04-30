@@ -1351,4 +1351,529 @@ export const haciendaPosts: BlogPost[] = [
       },
     ],
   },
+  // ─── Post 13 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'nota-corte-agente-hacienda-2025-historico-evolucion',
+    title: 'Nota de corte Agente de Hacienda 2025: histórico 2020-2025',
+    description:
+      'Histórico real de nota de corte Agente de Hacienda 2020-2025: evolución por convocatoria, primer y segundo ejercicio, y qué significa para tu preparación 2026.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'nota corte agente hacienda 2025',
+      'historico notas agente hacienda',
+      'nota corte AEAT 2025',
+      'aprobado agente hacienda 2025',
+      'nota corte oposicion hacienda',
+    ],
+    content: `
+<h2>Resumen 2020-2025</h2>
+<p>
+  La nota de corte de Agente de Hacienda (Cuerpo General Administrativo, especialidad AEAT, C1)
+  ha oscilado en los últimos años entre <strong>40 y 52 puntos</strong> sobre 70 en el primer
+  ejercicio, dependiendo de la dificultad del examen y el número de plazas convocadas.
+</p>
+
+<h2>Tabla histórica</h2>
+<table>
+  <thead>
+    <tr><th>Convocatoria</th><th>Plazas</th><th>1er ejercicio (corte)</th><th>2º ejercicio (corte)</th><th>Notas</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2020</td><td>~530</td><td>42/70</td><td>23/40</td><td>Examen estándar</td></tr>
+    <tr><td>2021</td><td>~600</td><td>40/70</td><td>22/40</td><td>Más plazas, corte bajó</td></tr>
+    <tr><td>2022</td><td>~750</td><td>38/70</td><td>24/40</td><td>Examen más fácil</td></tr>
+    <tr><td>2023</td><td>~810</td><td>44/70</td><td>25/40</td><td>Bloque IRPF subió</td></tr>
+    <tr><td>2024</td><td>~870</td><td>47/70</td><td>27/40</td><td>Examen exigente</td></tr>
+    <tr><td>2025</td><td>~870</td><td>~50/70 (estimado)</td><td>~28/40 (estimado)</td><td>Pendiente cierre</td></tr>
+  </tbody>
+</table>
+
+<h2>Tendencia: la nota de corte sube</h2>
+<p>
+  Desde 2022 la nota de corte ha subido cada año. La razón no es que las plazas bajen — al
+  contrario, han aumentado — sino que <strong>los opositores que se presentan están mejor
+  preparados</strong> y, sobre todo, las academias y plataformas online (incluida OpoRuta) llevan
+  mucha gente al rendimiento óptimo.
+</p>
+
+<h2>Qué nota necesitas para 2026</h2>
+<ul>
+  <li><strong>Suficiente</strong>: ~50/70 (71%) en el primer ejercicio.</li>
+  <li><strong>Holgada</strong>: ~55/70 (78%).</li>
+  <li><strong>Plaza segura</strong>: ~58/70 (82%).</li>
+</ul>
+<p>
+  En simulacros con penalización 1/3, eso equivale a 6,8/10 (suficiente), 7,5/10 (holgada) y 8,0/10
+  (segura).
+</p>
+
+<h2>Variables que mueven la nota de corte</h2>
+<ol>
+  <li><strong>Plazas convocadas:</strong> a más plazas, baja la nota necesaria.</li>
+  <li><strong>Dificultad del examen:</strong> exámenes con más preguntas literales son más asequibles.</li>
+  <li><strong>Penalización:</strong> 1/3 vs 1/4 — afecta poco al corte pero mucho a tu nota individual.</li>
+  <li><strong>Número de presentados:</strong> con más opositores la competencia sube.</li>
+</ol>
+
+<h2>Cómo planificar tu nota objetivo</h2>
+<p>
+  Si tu objetivo es aprobar en 2026, plantea como meta interna sacar <strong>55/70</strong> en el
+  primer ejercicio. Eso te deja margen de seguridad para fallos del día y para subir al 2º
+  examen sin presión.
+</p>
+
+<h3>Qué hacer si tu media de simulacros está por debajo</h3>
+<ul>
+  <li>Identifica los 3 temas con peor nota y dedícales 2 semanas exclusivas.</li>
+  <li>Aumenta simulacros completos a 2/semana.</li>
+  <li>Repasa tus errores con análisis IA (OpoRuta lo hace pregunta a pregunta).</li>
+</ul>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+  <li><a href="/oposiciones/hacienda">Oposición Agente de Hacienda</a></li>
+  <li><a href="/blog/examen-agente-hacienda-2024-analisis-preguntas-tipicas">Análisis examen 2024</a></li>
+  <li><a href="/blog/segundo-examen-agente-hacienda-2026-fase-2-supuestos">Segundo examen Hacienda 2026</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Calcula tu nota real con simulacros oficiales</a></strong> en OpoRuta.</p>
+`,
+    faqs: [
+      { question: '¿Cuál fue la nota de corte exacta 2024?', answer: 'En torno a 47/70 puntos en el primer ejercicio y 27/40 en el segundo. Variable según destino y especialidad.' },
+      { question: '¿La nota de corte es la misma para toda España?', answer: 'Sí. La nota de corte se aplica nacional. Lo que varía por destino es la nota necesaria para elegir plaza concreta.' },
+      { question: '¿Por qué sube la nota de corte cada año?', answer: 'Mayor preparación de los opositores gracias a plataformas online y academias. La oposición es más competitiva, no más difícil.' },
+      { question: '¿Qué pasa si suspendo el primer ejercicio por décimas?', answer: 'No pasas a la fase 2. La nota es eliminatoria. Conviene apuntar a 5+ puntos por encima del corte estimado.' },
+      { question: '¿Sirve la nota de la convocatoria anterior como referencia?', answer: 'Sí, pero ajustando por número de plazas. Mira la ratio plazas/presentados, no solo la nota absoluta.' },
+    ],
+  },
+  // ─── Post 14 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'segundo-examen-agente-hacienda-2026-fase-2-supuestos',
+    title: 'Segundo examen Agente Hacienda 2026: supuestos prácticos y temas',
+    description:
+      'Qué cae en el segundo examen del Agente de Hacienda 2026: supuestos prácticos IRPF, IVA y LGT, criterios de corrección y plan de entrenamiento de fase 2.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'segundo examen agente de hacienda 2026',
+      'fase 2 agente hacienda',
+      'supuesto practico hacienda',
+      'examen practico AEAT',
+      'segundo ejercicio agente hacienda',
+    ],
+    content: `
+<h2>Cómo se estructura el segundo examen</h2>
+<p>
+  El segundo ejercicio del Agente de Hacienda Pública es <strong>40 preguntas tipo test sobre un
+  supuesto práctico</strong>. La AEAT entrega un caso real de contribuyente, empresa o
+  procedimiento y tienes que aplicar IRPF, IVA, LGT y procedimiento tributario para responder.
+</p>
+
+<h2>Características del 2º ejercicio</h2>
+<ul>
+  <li><strong>40 preguntas</strong> sobre un supuesto único (en algunas convocatorias dos supuestos cortos).</li>
+  <li>Tres opciones de respuesta. Penalización 1/3 (igual que fase 1).</li>
+  <li><strong>Tiempo:</strong> 90 minutos.</li>
+  <li><strong>Eliminatorio</strong> — necesitas mínimo 20/40 para superarlo.</li>
+  <li>Permitido el uso de <strong>textos legales sin anotaciones</strong>.</li>
+</ul>
+
+<h2>Qué leyes pueden caer</h2>
+<table>
+  <thead><tr><th>Norma</th><th>Probabilidad</th><th>Bloque</th></tr></thead>
+  <tbody>
+    <tr><td>Ley 58/2003 LGT</td><td>Alta (siempre cae)</td><td>Procedimiento</td></tr>
+    <tr><td>RD 1065/2007 RGAGI</td><td>Alta</td><td>Gestión tributaria</td></tr>
+    <tr><td>Ley 35/2006 IRPF + RD 439/2007</td><td>Alta</td><td>Imposición personas físicas</td></tr>
+    <tr><td>Ley 37/1992 IVA + RD 1624/1992</td><td>Alta</td><td>Imposición indirecta</td></tr>
+    <tr><td>Ley 27/2014 IS</td><td>Media</td><td>Solo si supuesto sociedades</td></tr>
+    <tr><td>RGR (RD 939/2005)</td><td>Media</td><td>Recaudación</td></tr>
+  </tbody>
+</table>
+
+<h2>Tipos de supuesto que han caído</h2>
+<ol>
+  <li><strong>Comprobación limitada IRPF</strong>: declaración de un autónomo con incidencias en rendimientos del trabajo + actividades económicas.</li>
+  <li><strong>Sociedad mercantil con régimen general IS + IVA</strong>: liquidación de operaciones interempresariales.</li>
+  <li><strong>Procedimiento de apremio</strong>: providencia, notificación, recurso y embargo.</li>
+  <li><strong>Inspección parcial IVA</strong>: regularización con sanciones y recargos.</li>
+</ol>
+
+<h3>Lo que diferencia un supuesto de un test puro</h3>
+<p>
+  En el test general (1ª fase) las preguntas son aisladas. En el supuesto, una pregunta depende de
+  la anterior: si fallas el cálculo base imponible, encadenas error en cuota y sanciones. Por eso
+  conviene leer el supuesto entero antes de responder.
+</p>
+
+<h2>Plan de entrenamiento fase 2</h2>
+<ul>
+  <li>Empieza el bloque práctico cuando lleves el 70% del temario teórico.</li>
+  <li>Resuelve <strong>1 supuesto a la semana</strong> en condiciones reales (90 min, con textos legales).</li>
+  <li>Cronometra cada parte: lectura supuesto (10 min), preguntas 1-20 (40 min), preguntas 21-40 (40 min).</li>
+  <li>Identifica los apartados que más te frenan (suele ser cálculo IVA o procedimiento sancionador).</li>
+</ul>
+
+<h2>Materiales recomendados</h2>
+<ul>
+  <li>Compilación legal anotada (BOE consolidado o Aranzadi).</li>
+  <li>Banco de supuestos resueltos de convocatorias 2018-2024.</li>
+  <li>Plataforma con simulacros tipo supuesto (OpoRuta tiene generador IA).</li>
+</ul>
+
+<h2>Errores típicos en fase 2</h2>
+<ol>
+  <li>No leer el supuesto entero antes de empezar.</li>
+  <li>Saltar preguntas y olvidar volver.</li>
+  <li>No usar el código tributario por miedo a perder tiempo.</li>
+  <li>Abandonar tras 5 preguntas seguidas sin saber. Siempre hay 10 fáciles al final.</li>
+</ol>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+  <li><a href="/oposiciones/hacienda">Oposición Agente de Hacienda</a></li>
+  <li><a href="/blog/supuestos-practicos-agente-hacienda-ejemplos-resueltos-2026">Supuestos resueltos</a></li>
+  <li><a href="/blog/lgt-ley-58-2003-temas-clave-hacienda-2026">LGT temas clave</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Entrena supuestos prácticos AEAT</a></strong> con OpoRuta.</p>
+`,
+    faqs: [
+      { question: '¿Cuántas preguntas tiene el segundo examen?', answer: '40 preguntas tipo test sobre 1 ó 2 supuestos prácticos. 90 minutos. Penalización 1/3 igual que fase 1.' },
+      { question: '¿Qué nota necesito para aprobar fase 2?', answer: '20/40 mínimo legal, pero la nota de corte real ronda 25-28/40 según convocatoria.' },
+      { question: '¿Puedo usar el BOE durante el examen?', answer: 'Sí. Se permiten textos legales no comentados ni anotados. Conviene llevar el código tributario actualizado.' },
+      { question: '¿Cuál es el supuesto más típico?', answer: 'Comprobación limitada de IRPF de un autónomo o liquidación IVA de sociedad. Procedimiento de apremio aparece en 1 de cada 3 convocatorias.' },
+      { question: '¿Cuándo empezar a estudiar la fase 2?', answer: 'Cuando lleves al menos el 70% del temario teórico. Antes no rinde — necesitas la base normativa para entender los supuestos.' },
+    ],
+  },
+  // ─── Post 15 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'salario-agente-hacienda-2026-nomina-completa-trienios',
+    title: 'Salario Agente de Hacienda 2026: nómina completa con trienios',
+    description:
+      'Sueldo Agente de Hacienda 2026: nómina desglosada (sueldo base, complementos, productividad), evolución con trienios, comparativa neto/bruto y descuentos IRPF.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'salario agente de hacienda',
+      'sueldo agente hacienda 2026',
+      'nomina agente hacienda',
+      'cuanto cobra un agente de hacienda',
+      'trienios agente hacienda',
+    ],
+    content: `
+<h2>Resumen sueldo Agente de Hacienda 2026</h2>
+<ul>
+  <li><strong>Bruto anual:</strong> ~26.500€ (sin productividad ni horas extra).</li>
+  <li><strong>Bruto con productividad media:</strong> ~30.500€.</li>
+  <li><strong>Neto mensual:</strong> ~1.700-1.900€ (14 pagas).</li>
+  <li><strong>Tras 5 años con 1 trienio:</strong> ~32.000€ brutos.</li>
+</ul>
+
+<h2>Estructura de la nómina</h2>
+<table>
+  <thead><tr><th>Concepto</th><th>Importe mensual aprox.</th><th>Naturaleza</th></tr></thead>
+  <tbody>
+    <tr><td>Sueldo base C1</td><td>1.054€</td><td>Fijo nacional</td></tr>
+    <tr><td>Complemento de destino (nivel 18)</td><td>510€</td><td>Según puesto</td></tr>
+    <tr><td>Complemento específico</td><td>650€</td><td>Singular AEAT</td></tr>
+    <tr><td>Productividad AEAT</td><td>250-450€</td><td>Variable según objetivos</td></tr>
+    <tr><td>Pagas extras (junio + diciembre)</td><td>Sueldo base + destino</td><td>2 al año</td></tr>
+  </tbody>
+</table>
+<p>
+  La productividad AEAT es la pieza diferencial: depende de los objetivos cumplidos por la
+  delegación. En zonas con mucho trabajo (Madrid, Barcelona, Valencia) la productividad sube. En
+  delegaciones pequeñas baja.
+</p>
+
+<h2>Trienios: cuánto suben tu nómina</h2>
+<p>
+  Cada 3 años de servicio activo en la AGE acumulas un trienio del subgrupo C1. En 2026 el valor
+  aproximado es <strong>40,55€/mes</strong> por trienio.
+</p>
+<table>
+  <thead><tr><th>Antigüedad</th><th>Trienios</th><th>Suma mensual</th><th>Suma anual (14 pagas)</th></tr></thead>
+  <tbody>
+    <tr><td>3 años</td><td>1</td><td>40,55€</td><td>567€</td></tr>
+    <tr><td>6 años</td><td>2</td><td>81,10€</td><td>1.135€</td></tr>
+    <tr><td>15 años</td><td>5</td><td>202,75€</td><td>2.838€</td></tr>
+    <tr><td>30 años</td><td>10</td><td>405,50€</td><td>5.677€</td></tr>
+  </tbody>
+</table>
+
+<h2>Neto vs bruto: ejemplo real</h2>
+<p>
+  Un agente recién aprobado con destino en Madrid, sin trienios, cobra:
+</p>
+<ul>
+  <li>Bruto mensual: ~2.100€ (con productividad media).</li>
+  <li>IRPF retenido (~14%): ~295€.</li>
+  <li>Seguridad Social (clases pasivas + MUFACE): ~120€.</li>
+  <li><strong>Neto mensual: ~1.685€</strong> (12 pagas + 2 extras).</li>
+  <li>Neto anual ~24.000€.</li>
+</ul>
+
+<h2>Bonus y mejoras adicionales</h2>
+<ul>
+  <li><strong>Bolsa de horas extra</strong> en campañas Renta y Sociedades: hasta +200€/mes.</li>
+  <li><strong>Indemnización por residencia</strong> en Ceuta, Melilla, Canarias y Baleares.</li>
+  <li><strong>Productividad por inspecciones cumplidas</strong> en algunos puestos.</li>
+  <li><strong>Acción social</strong>: ayudas escolares, comedor, gimnasio.</li>
+</ul>
+
+<h2>Comparativa con otros C1</h2>
+<table>
+  <thead><tr><th>Cuerpo</th><th>Bruto anual estimado</th><th>Estabilidad</th></tr></thead>
+  <tbody>
+    <tr><td>Agente Hacienda AEAT</td><td>~30.500€</td><td>Alta</td></tr>
+    <tr><td>Auxiliar Administrativo AGE</td><td>~22.500€</td><td>Alta</td></tr>
+    <tr><td>Ayudante IIPP</td><td>~30.000€ (con turnos)</td><td>Alta</td></tr>
+    <tr><td>Cartero Correos REP</td><td>~22.000€</td><td>Alta</td></tr>
+  </tbody>
+</table>
+
+<h2>Cómo subir tu sueldo</h2>
+<ol>
+  <li>Promoción interna a Técnico de Hacienda (A2): salto a ~38.000€/año.</li>
+  <li>Promoción a Inspector de Hacienda (A1): ~55.000€/año + complementos.</li>
+  <li>Especialización en grandes empresas o aduanas (productividad alta).</li>
+</ol>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+  <li><a href="/oposiciones/hacienda">Oposición Agente de Hacienda</a></li>
+  <li><a href="/blog/agente-vs-tecnico-hacienda-2026-diferencias-sueldo-temario">Agente vs Técnico Hacienda</a></li>
+  <li><a href="/blog/nota-corte-tecnico-hacienda-2026-aprobado-real">Nota corte Técnico Hacienda</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza tu preparación gratis</a></strong> en OpoRuta.</p>
+`,
+    faqs: [
+      { question: '¿Cuánto cobra un Agente de Hacienda recién aprobado?', answer: 'Aproximadamente 1.700€ netos mensuales en 14 pagas, lo que equivale a ~24.000€ netos anuales con productividad media.' },
+      { question: '¿Cuánto suma cada trienio?', answer: 'Unos 40,55€/mes por trienio del C1 en 2026. En 14 pagas son ~567€/año por trienio.' },
+      { question: '¿Es mejor sueldo en Madrid o en provincia pequeña?', answer: 'En Madrid y Barcelona la productividad es algo mayor por volumen de trabajo. La diferencia neta ronda 100-200€/mes.' },
+      { question: '¿Hay horas extra obligatorias?', answer: 'No obligatorias. Pueden ofrecerse en campañas (Renta, Sociedades) y se pagan aparte. Suelen ser voluntarias.' },
+      { question: '¿Cuánto se cobra en pagas extras?', answer: 'Cada paga extra incluye sueldo base + complemento de destino. No incluye específico ni productividad. Aproximadamente ~1.500€ brutos por extra.' },
+    ],
+  },
+  // ─── Post 16 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'nota-corte-tecnico-hacienda-2026-aprobado-real',
+    title: 'Nota corte Técnico Hacienda 2026: aprobado real y proyección',
+    description:
+      'Nota de corte Técnico de Hacienda A2 2026: histórico de cortes 2020-2025, distribución de plazas, especialidades AEAT y nota objetivo para asegurar plaza.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'tecnico hacienda nota corte 2026',
+      'nota corte tecnico hacienda',
+      'aprobado tecnico hacienda',
+      'tecnico AEAT nota corte',
+      'oposicion tecnico hacienda',
+    ],
+    content: `
+<h2>Resumen Técnico de Hacienda</h2>
+<p>
+  El Cuerpo Técnico de Hacienda pertenece al subgrupo <strong>A2</strong>. Requiere Diplomatura,
+  Grado o equivalente. La oposición tiene 4 ejercicios y un temario de aproximadamente 60 temas
+  (más extenso que el de Agente C1).
+</p>
+
+<h2>Plazas convocadas Técnico Hacienda</h2>
+<ul>
+  <li>2022: 376 plazas.</li>
+  <li>2023: 401 plazas.</li>
+  <li>2024: 430 plazas.</li>
+  <li>2025: ~430 plazas (estimación cierre).</li>
+  <li>2026: previsión OEP ~450 plazas.</li>
+</ul>
+
+<h2>Histórico de notas de corte</h2>
+<table>
+  <thead>
+    <tr><th>Año</th><th>1er ejercicio (test)</th><th>2º ejercicio (supuestos)</th><th>3er ejercicio (oral/desarrollo)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2020</td><td>40/70</td><td>20/40</td><td>15/30</td></tr>
+    <tr><td>2021</td><td>42/70</td><td>22/40</td><td>16/30</td></tr>
+    <tr><td>2022</td><td>44/70</td><td>23/40</td><td>17/30</td></tr>
+    <tr><td>2023</td><td>46/70</td><td>24/40</td><td>17/30</td></tr>
+    <tr><td>2024</td><td>48/70</td><td>26/40</td><td>18/30</td></tr>
+    <tr><td>2025 (estim.)</td><td>~50/70</td><td>~27/40</td><td>~18/30</td></tr>
+  </tbody>
+</table>
+
+<h2>Por qué Técnico es más exigente que Agente</h2>
+<ul>
+  <li>Temario doble (60+ temas) y más profundidad jurídica.</li>
+  <li><strong>Cuatro ejercicios</strong> (test + 2 supuestos + oral o desarrollo).</li>
+  <li>Menos plazas (430 frente a 870 de Agente).</li>
+  <li>Competencia con opositores que ya son Agentes haciendo promoción interna.</li>
+</ul>
+
+<h2>Nota objetivo para 2026</h2>
+<ul>
+  <li><strong>Suficiente</strong>: 50/70 en test + 27/40 en supuestos.</li>
+  <li><strong>Holgada</strong>: 55/70 en test + 30/40 en supuestos.</li>
+  <li><strong>Plaza segura</strong>: &gt;58/70 + &gt;32/40.</li>
+</ul>
+
+<h2>Especialidades dentro de Técnico Hacienda</h2>
+<ol>
+  <li><strong>Gestión Tributaria</strong>: la especialidad mayoritaria. Cubre IRPF, IVA, IS.</li>
+  <li><strong>Inspección</strong>: trabajo en inspecciones tributarias, más exigente.</li>
+  <li><strong>Recaudación</strong>: gestión de deudas y procedimientos de apremio.</li>
+  <li><strong>Aduanas e Impuestos Especiales</strong>: control de mercancías y II.EE.</li>
+</ol>
+
+<h2>Comparativa Agente vs Técnico</h2>
+<table>
+  <thead><tr><th>Aspecto</th><th>Agente C1</th><th>Técnico A2</th></tr></thead>
+  <tbody>
+    <tr><td>Sueldo bruto anual</td><td>~30.500€</td><td>~38.000€</td></tr>
+    <tr><td>Plazas 2026 (estim.)</td><td>~870</td><td>~450</td></tr>
+    <tr><td>Temas</td><td>35</td><td>60</td></tr>
+    <tr><td>Ejercicios</td><td>2</td><td>4</td></tr>
+    <tr><td>Tiempo prep. medio</td><td>12-18 meses</td><td>24-36 meses</td></tr>
+  </tbody>
+</table>
+
+<h2>Estrategia 2026</h2>
+<ul>
+  <li>Si tu base normativa es media, plantéate Agente primero y promoción interna después.</li>
+  <li>Si tienes Grado Derecho/ADE/Económicas, ataca Técnico directo.</li>
+  <li>Para Técnico, simulacros con el formato real (test + supuesto encadenado) desde el mes 6.</li>
+</ul>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+  <li><a href="/oposiciones/hacienda">Oposición Hacienda</a></li>
+  <li><a href="/blog/tecnico-hacienda-2026-oposicion-temario-examen">Temario Técnico Hacienda</a></li>
+  <li><a href="/blog/agente-vs-tecnico-hacienda-2026-diferencias-sueldo-temario">Agente vs Técnico</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza Técnico Hacienda gratis</a></strong> con OpoRuta.</p>
+`,
+    faqs: [
+      { question: '¿Qué nota de corte tuvo Técnico Hacienda 2024?', answer: 'Aproximadamente 48/70 en el primer ejercicio, 26/40 en el segundo y 18/30 en el tercero.' },
+      { question: '¿Es Técnico Hacienda más difícil que Agente?', answer: 'Sí. Temario doble (60 vs 35 temas), 4 ejercicios y menos plazas. La preparación media es de 24-36 meses.' },
+      { question: '¿Cuántas plazas tiene Técnico Hacienda 2026?', answer: 'Se prevén unas 450 plazas, en línea con la oferta 2024-2025.' },
+      { question: '¿Necesito Grado universitario obligatoriamente?', answer: 'Sí. Técnico de Hacienda es subgrupo A2: requiere Diplomatura, Grado, Ingeniería Técnica o equivalente.' },
+      { question: '¿Conviene presentarse a Agente y Técnico a la vez?', answer: 'Mejor no en la misma convocatoria si los exámenes coinciden. Estrategia común: Agente primero, promoción interna a Técnico después.' },
+    ],
+  },
+  // ─── Post 17 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'convocatoria-agente-hacienda-2026-boe-plazas-fechas',
+    title: 'Convocatoria Agente de Hacienda 2026: BOE, plazas y fechas oficiales',
+    description:
+      'Convocatoria Agente de Hacienda Pública AEAT 2026: fechas BOE, plazas (~870), requisitos, calendario de exámenes y plan de inscripción paso a paso.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'boe convocatoria agente hacienda 2026',
+      'convocatoria AEAT 2026',
+      'plazas agente hacienda 2026',
+      'fechas examen hacienda 2026',
+      'oposicion agente hacienda 2026',
+    ],
+    content: `
+<h2>Resumen rápido convocatoria 2026</h2>
+<ul>
+  <li><strong>Cuerpo:</strong> Cuerpo General Administrativo de la AEAT, especialidad Agente de la Hacienda Pública (C1).</li>
+  <li><strong>Plazas estimadas:</strong> ~870 (turno libre + promoción interna + discapacidad).</li>
+  <li><strong>BOE:</strong> publicación prevista marzo-mayo 2026.</li>
+  <li><strong>Examen:</strong> primer ejercicio noviembre 2026 - enero 2027.</li>
+  <li><strong>Fases:</strong> 2 ejercicios eliminatorios.</li>
+</ul>
+
+<h2>Calendario probable 2026</h2>
+<table>
+  <thead><tr><th>Hito</th><th>Fecha estimada</th></tr></thead>
+  <tbody>
+    <tr><td>Aprobación OEP 2026</td><td>Diciembre 2025 - enero 2026</td></tr>
+    <tr><td>Publicación convocatoria BOE</td><td>Marzo-mayo 2026</td></tr>
+    <tr><td>Plazo inscripción</td><td>20 días hábiles desde BOE</td></tr>
+    <tr><td>Lista provisional admitidos</td><td>Junio-julio 2026</td></tr>
+    <tr><td>Lista definitiva</td><td>Septiembre 2026</td></tr>
+    <tr><td>Primer ejercicio (test 70 preg.)</td><td>Noviembre 2026 - enero 2027</td></tr>
+    <tr><td>Segundo ejercicio (supuesto práctico)</td><td>2-3 meses después del primero</td></tr>
+    <tr><td>Curso selectivo IEF</td><td>Tras aprobado, ~6 meses</td></tr>
+  </tbody>
+</table>
+
+<h2>Plazas: distribución prevista</h2>
+<ul>
+  <li><strong>Turno libre</strong>: ~80% de las plazas (~700).</li>
+  <li><strong>Promoción interna</strong>: ~15% (~130).</li>
+  <li><strong>Cupo discapacidad</strong>: ≥7% (~60).</li>
+</ul>
+<p>
+  La distribución provincial se publica con la elección de destinos, pero las delegaciones de
+  Madrid, Barcelona, Valencia, Sevilla y Málaga concentran el grueso. Las costeras y Canarias
+  tienen incentivos adicionales.
+</p>
+
+<h2>Requisitos para presentarse</h2>
+<ul>
+  <li>Nacionalidad española, UE/EEE o cónyuge de nacional UE.</li>
+  <li>Edad mínima 16 años; máxima jubilación forzosa.</li>
+  <li>Bachillerato, FP Grado Medio o equivalente homologado.</li>
+  <li>No haber sido separado del servicio.</li>
+  <li>Capacidad funcional para el desempeño.</li>
+</ul>
+
+<h2>Estructura del proceso selectivo</h2>
+<ol>
+  <li><strong>Primer ejercicio</strong>: test 70 preguntas + 5 reserva. 90 minutos. Penalización 1/3. Eliminatorio.</li>
+  <li><strong>Segundo ejercicio</strong>: 40 preguntas tipo test sobre supuesto práctico. 90 min. Eliminatorio.</li>
+  <li><strong>Curso selectivo</strong> en el Instituto de Estudios Fiscales (IEF). Aprobar = funcionario.</li>
+</ol>
+
+<h2>Tasas de inscripción</h2>
+<ul>
+  <li>Tasa estándar: ~20€.</li>
+  <li>Familia numerosa general: 50% bonificación.</li>
+  <li>Familia numerosa especial: gratuita.</li>
+  <li>Demandantes empleo &gt;1 mes: gratuita.</li>
+  <li>Personas con discapacidad ≥33%: exentos.</li>
+</ul>
+
+<h2>Cómo inscribirte (paso a paso)</h2>
+<ol>
+  <li>Accede al Punto de Acceso General o portal de la AEAT.</li>
+  <li>Localiza la convocatoria por código de cuerpo.</li>
+  <li>Rellena el modelo 790 con tus datos y titulación.</li>
+  <li>Selecciona delegación de examen.</li>
+  <li>Paga la tasa con tarjeta o domiciliación.</li>
+  <li>Guarda el justificante PDF y el código de instancia.</li>
+</ol>
+
+<h2>Qué hacer mientras esperas el BOE</h2>
+<ul>
+  <li>Estudia LGT y RGAGI: bloque inmune a cambios anuales.</li>
+  <li>Practica simulacros de IVA e IRPF con leyes consolidadas.</li>
+  <li>Suscríbete a alertas BOE (gratis en boe.es).</li>
+  <li>Solicita certificado de antecedentes (válido 3 meses).</li>
+</ul>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+  <li><a href="/oposiciones/hacienda">Oposición Agente de Hacienda</a></li>
+  <li><a href="/blog/plazas-agente-hacienda-2026-distribucion-por-delegacion">Distribución de plazas</a></li>
+  <li><a href="/blog/segundo-examen-agente-hacienda-2026-fase-2-supuestos">Segundo examen 2026</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Prepara la convocatoria 2026 ya</a></strong> — empieza gratis en OpoRuta.</p>
+`,
+    faqs: [
+      { question: '¿Cuándo sale la convocatoria oficial 2026?', answer: 'Se espera publicación en BOE entre marzo y mayo de 2026, una vez aprobada la OEP 2026.' },
+      { question: '¿Cuántas plazas habrá?', answer: 'Aproximadamente 870 plazas en línea con 2024 y 2025. Cifra exacta hasta publicación BOE.' },
+      { question: '¿Cuándo será el primer examen?', answer: 'Lo más probable es noviembre 2026 - enero 2027. La AEAT suele dejar 7-8 meses entre convocatoria y test.' },
+      { question: '¿Hay segundo examen el mismo día?', answer: 'No. El segundo ejercicio (supuesto práctico) se celebra 2-3 meses después del primero, solo si lo superas.' },
+      { question: '¿Hace falta ir al curso selectivo del IEF?', answer: 'Sí, es obligatorio tras aprobar la oposición. Dura ~6 meses y es retribuido como funcionario en prácticas.' },
+    ],
+  },
 ]

@@ -1131,4 +1131,476 @@ export const policiaNacionalPosts: BlogPost[] = [
       },
     ],
   },
+
+  // ─── 13 ────────────────────────────────────────────────────────────────────
+  {
+    slug: 'temario-policia-nacional-escala-basica-45-temas-ciencias-juridicas',
+    title: 'Temario Policía Nacional escala básica: 45 temas y 26 jurídicas',
+    description:
+      'Desglose temario Policía Nacional escala básica: 45 temas, 26 de Ciencias Jurídicas, 19 de materias sociales y técnicas. BOE referenciado.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'boe temario policía nacional escala básica 45 temas ciencias jurídicas 26',
+      'temario policia nacional 2026',
+      'temario escala basica policia nacional',
+      'ciencias juridicas policia nacional',
+      'temario cnp 2026',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Total de temas:</strong> 45 (Bloque I: 26 Ciencias Jurídicas, Bloque II: 12 Sociales, Bloque III: 7 Técnico-Científicas).</li>
+  <li><strong>Examen:</strong> 100 preguntas con 3 opciones (no 4 como Guardia Civil), penalización 1:2.</li>
+  <li><strong>Tiempo:</strong> 50 minutos. Ritmo exigido: 30 segundos por pregunta.</li>
+</ul>
+
+<h2>Estructura oficial del temario</h2>
+<p>
+  El temario de la Escala Básica del Cuerpo Nacional de Policía está publicado en BOE y se mantiene estable entre convocatorias.
+  Se divide en tres bloques con un peso muy desigual: <strong>las Ciencias Jurídicas son más de la mitad del temario</strong>
+  (26 de 45 temas, ~58 %). Esto marca dónde echar las horas.
+</p>
+
+<h2>Bloque I — Ciencias Jurídicas (26 temas)</h2>
+<ul>
+  <li>Tema 1-5: Constitución (Preliminar, Título I derechos, Corona, Cortes Generales, Gobierno).</li>
+  <li>Tema 6-9: Tribunal Constitucional, Poder Judicial, organización territorial.</li>
+  <li>Tema 10-13: UE, derechos humanos, igualdad, violencia de género.</li>
+  <li>Tema 14-18: Ley Orgánica 2/86 FCS, Ley Orgánica 9/2015 Régimen Personal CNP.</li>
+  <li>Tema 19-22: Ley de Seguridad Ciudadana, extranjería, protección de datos.</li>
+  <li>Tema 23-26: Código Penal (delitos contra autoridad, delitos de odio, integridad), procedimiento penal básico.</li>
+</ul>
+
+<h2>Bloque II — Materias Sociales (12 temas)</h2>
+<ul>
+  <li>Geografía e historia de España.</li>
+  <li>Geografía política e instituciones de la Unión Europea.</li>
+  <li>Sociología, ética profesional, deontología policial.</li>
+  <li>Inmigración, multiculturalidad y minorías.</li>
+</ul>
+
+<h2>Bloque III — Materias Técnico-Científicas (7 temas)</h2>
+<ul>
+  <li>Informática básica y ciberseguridad.</li>
+  <li>Tráfico, seguridad vial, alcoholemia.</li>
+  <li>Primeros auxilios.</li>
+  <li>Armamento, técnicas de intervención policial.</li>
+</ul>
+
+<h2>Cuántas preguntas cae cada bloque</h2>
+<table>
+  <thead><tr><th>Bloque</th><th>Temas</th><th>Preguntas medias 2019-2024</th></tr></thead>
+  <tbody>
+    <tr><td>I. Ciencias Jurídicas</td><td>26</td><td>~55 preguntas (55 %)</td></tr>
+    <tr><td>II. Sociales</td><td>12</td><td>~25 preguntas (25 %)</td></tr>
+    <tr><td>III. Técnico-Científicas</td><td>7</td><td>~20 preguntas (20 %)</td></tr>
+  </tbody>
+</table>
+
+<h2>Plan de estudio coherente con el peso del temario</h2>
+<ul>
+  <li><strong>Mes 1-4:</strong> Bloque I (Constitución + LO 2/86 + LO 9/2015). 60 % de tu tiempo.</li>
+  <li><strong>Mes 5-6:</strong> Bloque II (geografía, historia, sociales). 25 % del tiempo.</li>
+  <li><strong>Mes 7:</strong> Bloque III (técnicas, tráfico, primeros auxilios). 15 % del tiempo.</li>
+  <li><strong>Mes 8-9:</strong> repasos espaciados y simulacros completos.</li>
+</ul>
+
+<h2>Errores típicos al planificar el temario</h2>
+<ul>
+  <li>Repartir las horas a partes iguales entre temas: el tema 3 (Título I CE) cae 5-7 veces más que el tema 35.</li>
+  <li>Saltarse Régimen Personal CNP: cada año caen 4-6 preguntas.</li>
+  <li>Memorizar el Código Penal entero: solo entran delitos concretos contra autoridad y de odio.</li>
+</ul>
+
+<h2>Enlaces útiles</h2>
+<ul>
+  <li><a href="/oposiciones/seguridad/policia-nacional">Página principal Policía Nacional</a></li>
+  <li><a href="/blog/temario-policia-nacional-escala-basica-2026">Temario detallado</a></li>
+  <li><a href="/blog/temas-mas-preguntados-policia-nacional-2023-2025">Temas más preguntados</a></li>
+  <li><a href="/register">Empieza gratis</a></li>
+</ul>
+`.trim(),
+    faqs: [
+      { question: '¿Cuántos temas tiene la Escala Básica de Policía Nacional?', answer: '45 temas oficiales: 26 de Ciencias Jurídicas, 12 sociales y 7 técnico-científicas.' },
+      { question: '¿Dónde se publica el temario oficial?', answer: 'En el BOE, dentro de la convocatoria anual del Ministerio del Interior. La estructura se mantiene estable.' },
+      { question: '¿Qué bloque pesa más en el examen?', answer: 'Ciencias Jurídicas con ~55 preguntas de 100. Constitución, LO 2/86 y LO 9/2015 son los más rentables.' },
+      { question: '¿Cuántas horas necesito por bloque?', answer: 'Aproximadamente 60/25/15. Si tienes 800 horas totales: 480 al Bloque I, 200 al II y 120 al III.' },
+      { question: '¿El temario cambia cada año?', answer: 'Apenas. Las modificaciones suelen ser puntuales (alguna ley reformada). Por eso los exámenes 2018-2024 siguen siendo válidos para entrenar.' },
+    ],
+  },
+
+  // ─── 14 ────────────────────────────────────────────────────────────────────
+  {
+    slug: 'examen-policia-nacional-3-opciones-vs-4-opciones-estrategia',
+    title: 'Examen Policía Nacional 3 opciones vs Guardia Civil 4: estrategia',
+    description:
+      'El examen de Policía Nacional tiene 3 opciones y penalización 1:2; Guardia Civil 4 opciones y 1:3. Estrategia óptima para ambos.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'examen policia nacional 3 opciones penalizacion',
+      'penalizacion policia nacional',
+      'policia nacional vs guardia civil examen',
+      'estrategia examen policia nacional',
+      'examen 3 opciones policia nacional',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Policía Nacional:</strong> 3 opciones por pregunta, penalización 1:2 (cada 2 errores = 1 acierto restado).</li>
+  <li><strong>Guardia Civil:</strong> 4 opciones, penalización 1:3 (cada 3 errores = 1 acierto restado).</li>
+  <li><strong>Estrategia:</strong> en CNP arriesgar es más rentable; en GC, más conservador.</li>
+</ul>
+
+<h2>Por qué 3 opciones cambia toda la estrategia</h2>
+<p>
+  Si dejas una pregunta en blanco, sumas 0. Si fallas, te restan en función de la penalización. La pregunta clave es:
+  <strong>¿cuánto tengo que saber para que merezca la pena contestar?</strong>
+</p>
+
+<h3>Cálculo CNP (3 opciones, pen 1:2)</h3>
+<p>
+  Si contestas al azar, aciertas con probabilidad 1/3 y fallas con 2/3. Valor esperado de contestar al azar: (1/3 × 1)
+  + (2/3 × −1/2) = 1/3 − 1/3 = <strong>0</strong>. Es decir, contestar al azar tiene valor 0. Pero si descartas
+  <strong>una</strong> opción y dudas entre dos, tu probabilidad sube a 1/2. Valor esperado: (1/2 × 1) + (1/2 × −1/2)
+  = 0,5 − 0,25 = <strong>+0,25</strong>. Conclusión: si descartas una opción, <strong>contesta siempre</strong>.
+</p>
+
+<h3>Cálculo Guardia Civil (4 opciones, pen 1:3)</h3>
+<p>
+  Al azar: (1/4 × 1) + (3/4 × −1/3) = 0,25 − 0,25 = <strong>0</strong>. Si descartas una opción y dudas entre 3:
+  (1/3 × 1) + (2/3 × −1/3) = 0,33 − 0,22 = <strong>+0,11</strong>. Si descartas dos: +0,33. En GC el "descarta uno
+  y arriesga" da menos retorno que en CNP.
+</p>
+
+<h2>Tabla comparativa</h2>
+<table>
+  <thead><tr><th>Situación</th><th>CNP (3 opciones, 1:2)</th><th>GC (4 opciones, 1:3)</th></tr></thead>
+  <tbody>
+    <tr><td>Al azar puro</td><td>VE = 0</td><td>VE = 0</td></tr>
+    <tr><td>Descarto 1 opción</td><td>VE = +0,25 (contestar)</td><td>VE = +0,11 (contestar)</td></tr>
+    <tr><td>Descarto 2 opciones</td><td>—</td><td>VE = +0,33 (contestar siempre)</td></tr>
+  </tbody>
+</table>
+
+<h2>Regla de bolsillo para el día del examen</h2>
+<ul>
+  <li><strong>CNP:</strong> si dudas entre 2 opciones, contesta. Solo deja en blanco si no entiendes ni una palabra del enunciado.</li>
+  <li><strong>GC:</strong> si dudas entre 3 opciones (descartas 1), el retorno es bajo. Mejor en blanco.</li>
+  <li><strong>Ambas:</strong> si dudas entre 2 con conocimiento sólido del tema, arriesga siempre.</li>
+</ul>
+
+<h2>Diferencias adicionales</h2>
+<ul>
+  <li><strong>Tiempo:</strong> CNP 50 minutos para 100 preguntas (30 seg/pregunta). GC 90 minutos (54 seg).</li>
+  <li><strong>Reserva:</strong> CNP no suele tener preguntas de reserva; GC sí (10 preguntas de reserva).</li>
+  <li><strong>Bloques:</strong> CNP exige una nota mínima en cada bloque temático para algunos años.</li>
+</ul>
+
+<h2>Cómo entrenar en OpoRuta</h2>
+<ul>
+  <li>Configura cada simulacro con la penalización exacta de tu oposición.</li>
+  <li>Usa el modo simulacro convocatoria oficial (preguntas reales 2019, 2022, 2024).</li>
+  <li>El sistema te muestra cuántas dejaste en blanco y cuántas fallaste, para calibrar tu instinto.</li>
+</ul>
+
+<h2>Enlaces útiles</h2>
+<ul>
+  <li><a href="/oposiciones/seguridad/policia-nacional">Página principal Policía Nacional</a></li>
+  <li><a href="/blog/simulacro-policia-nacional-2026-examen-completo-online">Simulacro CNP completo</a></li>
+  <li><a href="/blog/simulacro-guardia-civil-2026-examen-completo-online">Simulacro GC completo</a></li>
+  <li><a href="/register">Empieza gratis</a></li>
+</ul>
+`.trim(),
+    faqs: [
+      { question: '¿Cuántas opciones tiene cada pregunta en CNP?', answer: '3 opciones (a, b, c). A diferencia de Guardia Civil, que tiene 4.' },
+      { question: '¿Cuál es la penalización exacta?', answer: 'En CNP cada 2 errores te restan 1 acierto (factor 0,5 por error). En GC cada 3 errores restan 1 (factor 0,33).' },
+      { question: '¿Es mejor arriesgar en CNP o en GC?', answer: 'Arriesgar es más rentable en CNP. Si descartas una opción, el valor esperado de contestar es +0,25 (vs +0,11 en GC).' },
+      { question: '¿Cuánto tiempo tengo por pregunta en CNP?', answer: '30 segundos por pregunta (50 minutos para 100 preguntas). Es más exigente en ritmo que GC.' },
+      { question: '¿Hay nota mínima por bloque?', answer: 'En algunas convocatorias se ha exigido. Revisa siempre las bases del año concreto.' },
+    ],
+  },
+
+  // ─── 15 ────────────────────────────────────────────────────────────────────
+  {
+    slug: 'historico-nota-corte-policia-nacional-2015-2024',
+    title: 'Histórico nota de corte Policía Nacional 2015-2024',
+    description:
+      'Evolución de la nota de corte Policía Nacional escala básica desde 2015 hasta 2024. Tendencia, plazas convocadas y ratio.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'nota corte policia nacional 2015',
+      'historico nota corte policia nacional',
+      'nota corte cnp 2015 2024',
+      'nota corte policia nacional escala basica',
+      'evolucion nota corte cnp',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Nota de corte 2015:</strong> rondó los 38-42 puntos netos sobre 100 (con 1.519 plazas).</li>
+  <li><strong>Nota de corte 2024:</strong> en torno a 50-55 puntos netos (con 2.633 plazas).</li>
+  <li><strong>Tendencia:</strong> al alza por mayor competencia y mejor preparación. Con más plazas, el corte sube paradójicamente porque el nivel medio de los presentados también sube.</li>
+</ul>
+
+<h2>Por qué importa el histórico</h2>
+<p>
+  Conocer la evolución de la nota de corte te dice <strong>cuánto necesitas sacar para tener garantías</strong>. No basta con
+  aprobar (5/10): hay que estar entre los mejores. La nota de corte de Policía Nacional ha subido desde 2015 por dos razones:
+  más recursos online, más academias, más material gratuito.
+</p>
+
+<h2>Tabla histórica nota de corte y plazas</h2>
+<table>
+  <thead><tr><th>Año</th><th>Plazas</th><th>Nota de corte aprox. (sobre 100)</th><th>Ratio plaza/presentado</th></tr></thead>
+  <tbody>
+    <tr><td>2015</td><td>1.519</td><td>38-42</td><td>~1:9</td></tr>
+    <tr><td>2017</td><td>1.103</td><td>40-44</td><td>~1:11</td></tr>
+    <tr><td>2019</td><td>2.506</td><td>45-48</td><td>~1:8</td></tr>
+    <tr><td>2021</td><td>2.506</td><td>48-52</td><td>~1:9</td></tr>
+    <tr><td>2022</td><td>2.610</td><td>50-54</td><td>~1:9</td></tr>
+    <tr><td>2024</td><td>2.633</td><td>50-55</td><td>~1:8</td></tr>
+  </tbody>
+</table>
+<p>Cifras orientativas tomadas de listas de admitidos publicadas en sede electrónica de Policía Nacional. Pueden variar ligeramente.</p>
+
+<h2>Lectura clave del histórico</h2>
+<ul>
+  <li><strong>Más plazas no baja el corte:</strong> entre 2015 (1.519 plazas) y 2022 (2.610), el corte subió ~10 puntos.</li>
+  <li><strong>Es sostenible aprobar con 60-65 netos:</strong> margen de seguridad sobre el corte estimado.</li>
+  <li><strong>El nivel medio sube:</strong> hay más material gratuito, más simulacros, más IA. Tienes que ir por delante.</li>
+</ul>
+
+<h2>Qué nota objetivo te marcas en 2026</h2>
+<ul>
+  <li><strong>Mínimo de seguridad:</strong> 60 puntos netos (con penalización 1:2).</li>
+  <li><strong>Holgura cómoda:</strong> 70 puntos netos.</li>
+  <li><strong>Top opositor:</strong> 80+ puntos netos.</li>
+</ul>
+
+<h2>Cómo controlar tu progreso hacia esa nota</h2>
+<ul>
+  <li>Hacer un simulacro completo cada 2 semanas a partir del mes 4.</li>
+  <li>Anotar la nota neta y el desglose por tema.</li>
+  <li>Si en el mes 7 estás por debajo de 50 netos, sube de 15 a 25 horas semanales.</li>
+</ul>
+
+<h2>Enlaces útiles</h2>
+<ul>
+  <li><a href="/oposiciones/seguridad/policia-nacional">Página principal Policía Nacional</a></li>
+  <li><a href="/blog/nota-corte-policia-nacional-2024-2025-historico">Nota de corte 2024-2025</a></li>
+  <li><a href="/simulacros-oposiciones">Simulacros oficiales</a></li>
+  <li><a href="/register">Empieza gratis</a></li>
+</ul>
+`.trim(),
+    faqs: [
+      { question: '¿Cuál fue la nota de corte de Policía Nacional en 2015?', answer: 'Rondó los 38-42 puntos netos sobre 100. Era una de las convocatorias con corte más bajo de la última década.' },
+      { question: '¿Por qué ha subido la nota de corte?', answer: 'Mejor preparación general, más recursos online y materiales gratuitos. El nivel medio de los presentados sube cada año.' },
+      { question: '¿Qué nota me garantiza plaza en 2026?', answer: 'Apuntar a 65-70 puntos netos te da holgura. El corte real suele estar entre 50 y 55.' },
+      { question: '¿Hay diferencias por turno (libre vs movilidad)?', answer: 'Sí, el turno de movilidad o reserva suele tener cortes diferentes. El turno libre es el más competido.' },
+      { question: '¿Dónde consulto la nota de corte oficial?', answer: 'En la sede electrónica de la Policía Nacional, dentro de los listados de aprobados de cada convocatoria.' },
+    ],
+  },
+
+  // ─── 16 ────────────────────────────────────────────────────────────────────
+  {
+    slug: 'test-personalidad-policial-policia-nacional-mmpi-big-five',
+    title: 'Test de personalidad policial: MMPI, Big Five y qué evalúan',
+    description:
+      'Test de personalidad para Policía Nacional, GC y Ertzaintza: MMPI-2, Big Five, NEO-PI-R. Qué miden y cómo afrontarlo sin trampas.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'test personalidad policial',
+      'test personalidad policia nacional',
+      'prueba psicotecnica personalidad policia',
+      'mmpi policia',
+      'big five policia oposicion',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Tests más usados:</strong> MMPI-2, NEO-PI-R, 16PF, Big Five.</li>
+  <li><strong>No es eliminatorio en sí:</strong> normalmente forma parte de la entrevista personal y se contrasta con ella.</li>
+  <li><strong>Regla:</strong> nunca mientas para "encajar" — hay escalas de coherencia que detectan la simulación.</li>
+</ul>
+
+<h2>Para qué sirve el test de personalidad</h2>
+<p>
+  El tribunal busca un perfil estable, equilibrado, con baja impulsividad y tolerancia a la frustración. NO buscan al
+  "policía perfecto de película" sino a alguien que, bajo presión, no pierda los nervios. Las escalas miden:
+</p>
+<ul>
+  <li>Estabilidad emocional / neuroticismo.</li>
+  <li>Extraversión y sociabilidad.</li>
+  <li>Responsabilidad y autodisciplina.</li>
+  <li>Apertura a la experiencia.</li>
+  <li>Agradabilidad / cooperación.</li>
+</ul>
+
+<h2>Tests más empleados en oposiciones de seguridad</h2>
+<table>
+  <thead><tr><th>Test</th><th>Ítems</th><th>Qué mide</th></tr></thead>
+  <tbody>
+    <tr><td>MMPI-2</td><td>567</td><td>Patología clínica + escalas de validez</td></tr>
+    <tr><td>NEO-PI-R</td><td>240</td><td>Big Five (5 dimensiones × 6 facetas)</td></tr>
+    <tr><td>16PF</td><td>185</td><td>16 factores de personalidad de Cattell</td></tr>
+    <tr><td>CPS</td><td>40-60</td><td>Cuestionario de personalidad situacional</td></tr>
+  </tbody>
+</table>
+
+<h2>Escalas de validez: por qué no se puede mentir</h2>
+<p>
+  El MMPI-2 incluye 9 escalas de validez (L, F, K, VRIN, TRIN, etc.). Detectan:
+</p>
+<ul>
+  <li><strong>Mentira (L):</strong> el opositor que se pinta perfecto. Ej: "Nunca me he enfadado con nadie" → falso.</li>
+  <li><strong>Inconsistencia (VRIN, TRIN):</strong> contradicciones entre ítems similares con distinta redacción.</li>
+  <li><strong>Defensividad (K):</strong> ocultar información o responder excesivamente moderado.</li>
+</ul>
+<p>Si activas estas escalas, el test queda <strong>invalidado</strong> y pasas automáticamente a entrevista profunda.</p>
+
+<h2>Cómo afrontar el test correctamente</h2>
+<ul>
+  <li><strong>Sé honesto, no perfecto.</strong> Admite enfados puntuales, miedos razonables, dudas. Eres humano.</li>
+  <li><strong>Coherencia interna.</strong> Si dices que eres sociable, no marques también que prefieres la soledad.</li>
+  <li><strong>No sobreanalices ítems.</strong> Responde rápido (3-5 segundos por pregunta). El sistema mide patrones, no preguntas sueltas.</li>
+  <li><strong>No marques siempre el extremo.</strong> "Totalmente de acuerdo" en todo es señal de simulación.</li>
+</ul>
+
+<h2>Errores típicos que invalidan el test</h2>
+<ul>
+  <li>Querer parecer "el candidato ideal".</li>
+  <li>Responder al azar las preguntas que no entiendes.</li>
+  <li>Cambiar de criterio cuando vuelve a aparecer un ítem similar (incoherencia).</li>
+  <li>Dejar muchas preguntas en blanco (señal de defensividad).</li>
+</ul>
+
+<h2>El test + la entrevista</h2>
+<p>
+  El psicólogo del tribunal hace la entrevista <strong>con tu test delante</strong>. Te preguntará por las puntuaciones
+  altas o bajas que llamen la atención. Si dijiste en el test que tienes muy poca tolerancia al estrés, te preguntará
+  cómo reaccionarías en una intervención compleja. Tienes que ser coherente.
+</p>
+
+<h2>Enlaces útiles</h2>
+<ul>
+  <li><a href="/oposiciones/seguridad/policia-nacional">Página principal Policía Nacional</a></li>
+  <li><a href="/blog/entrevista-personal-policia-nacional-preguntas-2026">Entrevista personal CNP</a></li>
+  <li><a href="/blog/psicotecnicos-guardia-civil-2026-tipos-ejemplos">Psicotécnicos Guardia Civil</a></li>
+  <li><a href="/register">Empieza gratis</a></li>
+</ul>
+`.trim(),
+    faqs: [
+      { question: '¿El test de personalidad es eliminatorio?', answer: 'No por sí solo en la mayoría de convocatorias. Pero si lo invalidas (escalas de mentira), pasas a entrevista profunda y puedes ser apartado.' },
+      { question: '¿Qué test se usa habitualmente en CNP?', answer: 'Una combinación de MMPI-2 y un cuestionario tipo Big Five o 16PF. Depende del tribunal.' },
+      { question: '¿Puedo prepararme el test de personalidad?', answer: 'Más que estudiar, conviene familiarizarse con el formato y entender qué buscan. Mentir es contraproducente.' },
+      { question: '¿Cuánto dura?', answer: 'Entre 60 y 90 minutos según el test. El MMPI-2 (567 ítems) suele tardar más de una hora.' },
+      { question: '¿Se hace antes o después del examen teórico?', answer: 'Después. Forma parte del bloque de pruebas que se realizan tras superar el teórico.' },
+    ],
+  },
+
+  // ─── 17 ────────────────────────────────────────────────────────────────────
+  {
+    slug: 'psicotecnicos-policia-nacional-2026-aptitudes-tipos-trucos',
+    title: 'Psicotécnicos Policía Nacional 2026: aptitudes, tipos y trucos',
+    description:
+      'Psicotécnicos Policía Nacional 2026 al detalle: razonamiento numérico, verbal, abstracto y memoria. Tiempos, ejemplos y trucos.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'psicotécnicos policía 2026',
+      'psicotecnicos policia nacional 2026',
+      'aptitudes policia nacional',
+      'tipos psicotecnicos policia',
+      'razonamiento numerico policia nacional',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Estructura:</strong> 4-5 pruebas de aptitud (numérica, verbal, abstracta, perceptiva, memoria).</li>
+  <li><strong>Tiempo total:</strong> 50-70 minutos según convocatoria.</li>
+  <li><strong>Clave:</strong> velocidad. Las preguntas son sencillas pero el tiempo se cuenta en segundos por ítem.</li>
+</ul>
+
+<h2>Aptitudes que se evalúan</h2>
+<p>
+  Los psicotécnicos miden <strong>aptitud</strong>, no conocimientos. No te van a preguntar Constitución. Te van a medir
+  cómo de rápido razonas con números, palabras, formas y memoria visual.
+</p>
+
+<h2>1. Aptitud numérica</h2>
+<ul>
+  <li>Series numéricas: <em>2, 5, 11, 23, ?</em> → 47 (cada término × 2 + 1).</li>
+  <li>Problemas de regla de tres, porcentajes, proporciones.</li>
+  <li>Cálculo mental rápido sin calculadora.</li>
+</ul>
+<p><strong>Truco:</strong> entrena tablas de multiplicar hasta 15×15. Reduce el tiempo por pregunta a la mitad.</p>
+
+<h2>2. Aptitud verbal</h2>
+<ul>
+  <li>Sinónimos y antónimos.</li>
+  <li>Analogías: <em>libro es a página como árbol es a ?</em> → hoja.</li>
+  <li>Comprensión lectora con preguntas de texto corto.</li>
+</ul>
+<p><strong>Truco:</strong> en analogías, identifica la relación primero (parte/todo, causa/efecto, contiene/contenido).</p>
+
+<h2>3. Razonamiento abstracto</h2>
+<ul>
+  <li>Series de figuras: identificar el patrón (rotación, simetría, sustracción).</li>
+  <li>Matrices tipo Raven.</li>
+</ul>
+<p><strong>Truco:</strong> mira siempre primero los cambios de un elemento (forma, color, tamaño, orientación).</p>
+
+<h2>4. Aptitud perceptiva (rapidez y exactitud)</h2>
+<ul>
+  <li>Comparación de pares: ¿son iguales o diferentes? Cadenas de letras/números.</li>
+  <li>Tachado: localizar todas las apariciones de un símbolo en una cuadrícula.</li>
+</ul>
+<p><strong>Truco:</strong> velocidad sin sacrificar exactitud. Penalizan los errores tanto como las omisiones.</p>
+
+<h2>5. Memoria visual</h2>
+<ul>
+  <li>Memorizar una imagen (rostros, escena, mapa) y responder preguntas después.</li>
+  <li>30-60 segundos de exposición, preguntas a continuación.</li>
+</ul>
+<p><strong>Truco:</strong> escanea la imagen sistemáticamente (de arriba abajo, izquierda a derecha). No te quedes en un solo elemento.</p>
+
+<h2>Plan de entrenamiento (8 semanas)</h2>
+<table>
+  <thead><tr><th>Semana</th><th>Foco</th><th>Volumen diario</th></tr></thead>
+  <tbody>
+    <tr><td>1-2</td><td>Aptitud numérica + cálculo mental</td><td>30 min</td></tr>
+    <tr><td>3-4</td><td>Verbal + analogías</td><td>30 min</td></tr>
+    <tr><td>5-6</td><td>Abstracto + matrices</td><td>30 min</td></tr>
+    <tr><td>7</td><td>Perceptivo + memoria</td><td>40 min</td></tr>
+    <tr><td>8</td><td>Simulacro completo cronometrado</td><td>1-2 h</td></tr>
+  </tbody>
+</table>
+
+<h2>Errores típicos en psicotécnicos</h2>
+<ul>
+  <li>Quedarse atascado en una pregunta. Si en 30 segundos no ves la solución, pasa.</li>
+  <li>Hacer cálculos en papel cuando se puede mental.</li>
+  <li>No entrenar con cronómetro. La presión es lo que más afecta el día del examen.</li>
+</ul>
+
+<h2>Enlaces útiles</h2>
+<ul>
+  <li><a href="/oposiciones/seguridad/policia-nacional">Página principal Policía Nacional</a></li>
+  <li><a href="/blog/psicotecnicos-guardia-civil-2026-tipos-ejemplos">Psicotécnicos Guardia Civil</a></li>
+  <li><a href="/simulacros-oposiciones">Simulacros y psicotécnicos</a></li>
+  <li><a href="/register">Empieza gratis</a></li>
+</ul>
+`.trim(),
+    faqs: [
+      { question: '¿Cuánto tiempo dura la prueba psicotécnica de CNP?', answer: 'Entre 50 y 70 minutos en total, repartidos en 4-5 sub-pruebas con tiempos individuales muy ajustados.' },
+      { question: '¿Es eliminatorio?', answer: 'Sí en la mayoría de convocatorias. Hay que alcanzar un mínimo en cada aptitud o un global determinado.' },
+      { question: '¿Se puede entrenar?', answer: 'Sí. La aptitud no se duplica, pero la velocidad y la familiaridad con el formato sí mejoran 30-50 % con 8 semanas de práctica diaria.' },
+      { question: '¿Qué tipo de pruebas son las más complicadas?', answer: 'Suele ser la perceptiva (presión + exactitud) y la memoria visual. Requieren entrenamiento específico.' },
+      { question: '¿Hay penalización?', answer: 'Algunas pruebas perceptivas penalizan errores. Otras no. Lee atentamente las instrucciones de cada prueba.' },
+    ],
+  },
 ]

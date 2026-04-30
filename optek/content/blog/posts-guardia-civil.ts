@@ -1081,4 +1081,442 @@ export const guardiaCivilPosts: BlogPost[] = [
       { question: '¿Hago el simulacro en el ordenador o en papel?', answer: 'Mejor alternar. El examen real es en papel con plantilla; los simulacros online son útiles para análisis inmediato de fallos.' },
     ],
   },
+
+  // ─── 13 ────────────────────────────────────────────────────────────────────
+  {
+    slug: 'examen-guardia-civil-2022-analisis-preguntas-clave',
+    title: 'Examen Guardia Civil 2022: análisis y preguntas clave por bloque',
+    description:
+      'Análisis del examen Guardia Civil 2022: distribución por bloques, temas que más cayeron, preguntas tipo y nota de corte real.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'examen guardia civil 2022',
+      'examenes guardia civil 2022',
+      'preguntas examen guardia civil 2022',
+      'analisis examen guardia civil 2022',
+      'temas examen guardia civil 2022',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Estructura:</strong> 100 preguntas puntuables + 10 de reserva, 4 opciones, penalización 1:3 (cada 3 errores restan 1 acierto).</li>
+  <li><strong>Duración:</strong> 90 minutos. Se celebró en convocatoria ordinaria con ~30.000 presentados.</li>
+  <li><strong>Bloque más exigente:</strong> Ciencias Jurídicas (Constitución + LO 2/86 + LO Régimen Personal).</li>
+</ul>
+
+<h2>Distribución real por bloques en 2022</h2>
+<p>
+  El examen 2022 mantuvo la estructura clásica: tres bloques (Ciencias Jurídicas, Materias Sociotécnicas y Materias Técnico-Científicas)
+  con peso aproximado 45/30/25. Si comparas con 2019 y 2024, hay continuidad: la Constitución y la LO 2/86 concentran un porcentaje
+  altísimo del Bloque I.
+</p>
+
+<table>
+  <thead><tr><th>Bloque</th><th>Preguntas aprox.</th><th>Temas con más peso</th></tr></thead>
+  <tbody>
+    <tr><td>I. Ciencias Jurídicas</td><td>~45</td><td>Constitución, LO 2/86, LO Régimen Personal Guardia Civil, derechos humanos</td></tr>
+    <tr><td>II. Sociotécnicas</td><td>~30</td><td>Geografía e historia de España, UE, educación vial, igualdad</td></tr>
+    <tr><td>III. Técnico-Científicas</td><td>~25</td><td>Topografía, armamento, primeros auxilios, informática básica</td></tr>
+  </tbody>
+</table>
+
+<h2>Preguntas tipo del examen 2022 (estilo)</h2>
+<ul>
+  <li><strong>Constitución:</strong> mayoría exigida en moción de censura (mayoría absoluta del Congreso). Aparece casi cada año.</li>
+  <li><strong>LO 2/86 FCS:</strong> funciones que la Guardia Civil ejerce con carácter exclusivo (resguardo fiscal del Estado, armas y explosivos, vías interurbanas, etc.).</li>
+  <li><strong>Topografía:</strong> escalas, curvas de nivel, equidistancia. Pregunta clásica: en una 1:50.000, ¿qué representan 2 cm reales?</li>
+  <li><strong>Sociotécnicas:</strong> CC. AA., capitales, ríos, distribución administrativa.</li>
+</ul>
+
+<h2>Qué cayó más de lo esperado</h2>
+<ul>
+  <li>Reformas del art. 13.2 (1992) y art. 135 (2011) de la Constitución.</li>
+  <li>Régimen disciplinario de la Guardia Civil (faltas leves, graves, muy graves).</li>
+  <li>Educación vial: señales, prioridades, alcoholemia.</li>
+</ul>
+
+<h2>Nota de corte 2022</h2>
+<p>
+  La nota de corte rondó los 60 aciertos netos sobre 100 (descontada penalización). Con 2.022 plazas convocadas, el ratio fue
+  cercano a 1 plaza por cada 14 presentados. Si quieres ver el histórico completo, pasa por <a href="/blog/nota-corte-guardia-civil-2024-2025-historico">notas de corte 2024-2025</a>.
+</p>
+
+<h2>Cómo entrenar este examen en OpoRuta</h2>
+<ul>
+  <li>Simulacro modo "convocatoria 2022" con las 100 preguntas reales ingestadas.</li>
+  <li>Penalización 1:3 activada por defecto.</li>
+  <li>Desglose por tema al terminar y referencia cruzada con 2019, 2022 y 2024.</li>
+</ul>
+
+<h2>Enlaces útiles</h2>
+<ul>
+  <li><a href="/oposiciones/seguridad/guardia-civil">Página principal Guardia Civil</a></li>
+  <li><a href="/simulacros-oposiciones">Simulacros oficiales</a></li>
+  <li><a href="/blog/temas-mas-preguntados-guardia-civil-2023-2025">Temas más preguntados</a></li>
+  <li><a href="/register">Empieza gratis</a></li>
+</ul>
+`.trim(),
+    faqs: [
+      { question: '¿Cuántas preguntas tuvo el examen Guardia Civil 2022?', answer: '100 puntuables más 10 de reserva, 4 opciones, penalización 1:3, 90 minutos.' },
+      { question: '¿Qué bloque pesó más en 2022?', answer: 'Ciencias Jurídicas, con ~45 preguntas. Constitución y LO 2/86 fueron los temas más cargados.' },
+      { question: '¿Qué nota de corte tuvo el examen 2022?', answer: 'Rondó los 60 aciertos netos sobre 100, en línea con 2019 y ligeramente por encima de 2024.' },
+      { question: '¿Puedo practicar el examen 2022 en OpoRuta?', answer: 'Sí: está ingestado completo. Puedes hacer el simulacro en modo convocatoria oficial con penalización real.' },
+      { question: '¿En qué se diferenció 2022 de 2024?', answer: 'En 2022 cayó más topografía y régimen disciplinario; en 2024 ganó peso la igualdad y la UE.' },
+    ],
+  },
+
+  // ─── 14 ────────────────────────────────────────────────────────────────────
+  {
+    slug: 'examen-guardia-civil-2018-conocimientos-preguntas-resueltas',
+    title: 'Examen Guardia Civil 2018: preguntas resueltas y razonadas',
+    description:
+      'Examen Guardia Civil 2018 con preguntas resueltas, explicación razonada y cita legal. Útil para entender qué busca el tribunal.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'examen guardia civil 2018',
+      'examen conocimientos guardia civil 2018',
+      'test guardia civil 2018 gratis',
+      'preguntas guardia civil 2018',
+      'examen 2018 guardia civil resuelto',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Convocatoria 2018:</strong> 2.030 plazas, ~33.000 presentados. Examen tipo test 100 + 10 reserva.</li>
+  <li><strong>Penalización:</strong> 1:3, 4 opciones, 90 minutos.</li>
+  <li><strong>Por qué interesa hoy:</strong> 2018 marcó el patrón de preguntas que se repite en 2019, 2022 y 2024.</li>
+</ul>
+
+<h2>¿Por qué estudiar el examen 2018 en 2026?</h2>
+<p>
+  El temario apenas cambia entre convocatorias. El tribunal recicla estructura y, a menudo, formulaciones. Resolver el examen
+  2018 con explicación razonada te enseña a <strong>leer enunciados con trampa</strong> y a identificar el matiz que busca el
+  redactor. No es nostalgia: es ingeniería inversa.
+</p>
+
+<h2>Preguntas tipo resueltas (estilo del examen)</h2>
+<h3>1. Constitución española</h3>
+<p>
+  <em>"La iniciativa popular para la presentación de proposiciones de ley exige un mínimo de…"</em> Respuesta: 500.000 firmas
+  acreditadas (art. 87.3 CE). Trampa habitual: te ofrecen 50.000, 100.000 o 1.000.000 como distractores.
+</p>
+
+<h3>2. LO 2/86 de Fuerzas y Cuerpos de Seguridad</h3>
+<p>
+  <em>"¿Cuál de estas funciones la ejerce con carácter exclusivo la Guardia Civil?"</em> Respuesta: el resguardo fiscal del
+  Estado y el control de armas y explosivos (art. 12). La Policía Nacional NO comparte esas competencias.
+</p>
+
+<h3>3. Topografía</h3>
+<p>
+  <em>"En un mapa a escala 1:50.000, una distancia de 4 cm equivale a…"</em> Respuesta: 2 km reales. Regla: cm en mapa × escala
+  / 100.000 = km reales.
+</p>
+
+<h3>4. Geografía de España</h3>
+<p>
+  <em>"¿Qué río atraviesa la Comunidad Foral de Navarra?"</em> Respuesta: el Ebro (también Bidasoa, Aragón). Trampa: el
+  Duero NO pasa por Navarra.
+</p>
+
+<h2>Patrón que se repite desde 2018</h2>
+<table>
+  <thead><tr><th>Tipo de pregunta</th><th>Frecuencia 2018-2024</th><th>Estrategia</th></tr></thead>
+  <tbody>
+    <tr><td>Cifra exacta CE/leyes</td><td>~20 %</td><td>Memorizar plazos, mayorías y porcentajes</td></tr>
+    <tr><td>Función exclusiva GC</td><td>3-5 preguntas/año</td><td>Dominar art. 11-12 LO 2/86</td></tr>
+    <tr><td>Topografía/escalas</td><td>2-3 preguntas</td><td>Practicar conversión cm ↔ km</td></tr>
+    <tr><td>Geografía/CC.AA.</td><td>5-7 preguntas</td><td>Mapa mental por comunidades</td></tr>
+  </tbody>
+</table>
+
+<h2>Cómo trabajar el 2018 en OpoRuta</h2>
+<ul>
+  <li>Modo simulacro convocatoria 2018 (cuando esté ingestado).</li>
+  <li>Análisis IA pregunta a pregunta con cita legal y empatía socrática.</li>
+  <li>Comparativa con 2019, 2022 y 2024 para detectar patrones repetidos.</li>
+</ul>
+
+<h2>Enlaces útiles</h2>
+<ul>
+  <li><a href="/oposiciones/seguridad/guardia-civil">Página principal Guardia Civil</a></li>
+  <li><a href="/blog/temas-mas-preguntados-guardia-civil-2023-2025">Temas más preguntados</a></li>
+  <li><a href="/simulacros-oposiciones">Simulacros oficiales</a></li>
+  <li><a href="/register">Empieza gratis</a></li>
+</ul>
+`.trim(),
+    faqs: [
+      { question: '¿Sigue siendo útil el examen 2018?', answer: 'Sí: marca el patrón de preguntas que se repite en 2019, 2022 y 2024. El temario y la estructura son prácticamente los mismos.' },
+      { question: '¿Dónde encuentro el examen 2018 oficial?', answer: 'En el BOE y en la sede del Ministerio del Interior. OpoRuta lo ingesta y lo pone como simulacro.' },
+      { question: '¿Cuántos aprobaron en 2018?', answer: 'Se cubrieron las 2.030 plazas. La nota de corte rondó los 58-60 aciertos netos.' },
+      { question: '¿Qué tema cayó más en 2018?', answer: 'Constitución y LO 2/86 concentraron casi un tercio del examen. Topografía y geografía completaron el cuadro.' },
+      { question: '¿Hay test gratis del 2018?', answer: 'Sí: la versión gratuita de OpoRuta permite ver preguntas tipo del 2018 con explicación razonada.' },
+    ],
+  },
+
+  // ─── 15 ────────────────────────────────────────────────────────────────────
+  {
+    slug: 'tema-18-guardia-civil-topografia-claves-examen',
+    title: 'Tema 18 Guardia Civil: topografía, escalas y curvas de nivel',
+    description:
+      'Tema 18 Guardia Civil al detalle: escalas, curvas de nivel, coordenadas UTM, signos convencionales y preguntas tipo del examen.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'tema 18 guardia civil',
+      'topografia guardia civil',
+      'tema 18 topografia guardia civil',
+      'escalas guardia civil examen',
+      'curvas de nivel guardia civil',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Peso del tema:</strong> 2-4 preguntas por examen (Bloque III, Materias Técnico-Científicas).</li>
+  <li><strong>Conceptos clave:</strong> escala, curvas de nivel, equidistancia, coordenadas UTM, signos convencionales.</li>
+  <li><strong>Trampa habitual:</strong> confundir escala numérica (1:50.000) con escala gráfica.</li>
+</ul>
+
+<h2>Escalas: la pregunta más repetida</h2>
+<p>
+  La escala es la relación entre la distancia en el mapa y la distancia real. Si la escala es 1:50.000, 1 cm en el mapa equivale
+  a 50.000 cm reales (es decir, 500 m o 0,5 km). Memoriza esto:
+</p>
+<ul>
+  <li><strong>1:25.000</strong> → 1 cm = 250 m. Mapas militares de detalle.</li>
+  <li><strong>1:50.000</strong> → 1 cm = 500 m. Es la escala estándar del Ejército y la Guardia Civil.</li>
+  <li><strong>1:200.000</strong> → 1 cm = 2 km. Mapas provinciales.</li>
+</ul>
+
+<h2>Curvas de nivel</h2>
+<p>
+  Líneas que unen puntos de igual altitud. La <strong>equidistancia</strong> es la diferencia de altura entre dos curvas
+  consecutivas. En un 1:50.000 la equidistancia suele ser de 20 m. Si las curvas están muy juntas, el terreno es abrupto;
+  si están separadas, es suave.
+</p>
+
+<h2>Coordenadas UTM</h2>
+<p>
+  Sistema universal: el mundo se divide en husos de 6° de longitud, numerados del 1 al 60. España está en los husos 29, 30 y 31.
+  Cada punto se localiza con un par (X, Y) en metros desde el origen del huso. Pregunta tipo: <em>"En qué huso UTM está
+  Madrid?"</em> → Huso 30.
+</p>
+
+<h2>Signos convencionales</h2>
+<table>
+  <thead><tr><th>Signo</th><th>Significado</th></tr></thead>
+  <tbody>
+    <tr><td>Línea continua negra</td><td>Carretera asfaltada</td></tr>
+    <tr><td>Línea discontinua</td><td>Camino o senda</td></tr>
+    <tr><td>Triángulo con punto</td><td>Vértice geodésico</td></tr>
+    <tr><td>Cruz</td><td>Iglesia o ermita</td></tr>
+  </tbody>
+</table>
+
+<h2>Preguntas tipo del examen</h2>
+<ul>
+  <li>"En un mapa 1:50.000, ¿cuántos km reales son 8 cm?" → 4 km.</li>
+  <li>"¿Qué representa una equidistancia de 20 m?" → la diferencia de altitud entre dos curvas de nivel consecutivas.</li>
+  <li>"¿En qué huso UTM se sitúa Bilbao?" → Huso 30.</li>
+  <li>"Las curvas de nivel muy juntas indican…" → terreno abrupto / pendiente fuerte.</li>
+</ul>
+
+<h2>Cómo dominar el tema 18 en 2 semanas</h2>
+<ul>
+  <li>Día 1-3: aprender escalas y hacer 30 conversiones cm ↔ km.</li>
+  <li>Día 4-7: curvas de nivel, equidistancia, perfiles topográficos.</li>
+  <li>Día 8-10: UTM, husos, coordenadas geográficas.</li>
+  <li>Día 11-14: signos convencionales y test mixto de 50 preguntas.</li>
+</ul>
+
+<h2>Enlaces útiles</h2>
+<ul>
+  <li><a href="/oposiciones/seguridad/guardia-civil">Página principal Guardia Civil</a></li>
+  <li><a href="/blog/temas-mas-preguntados-guardia-civil-2023-2025">Temas más preguntados</a></li>
+  <li><a href="/simulacros-oposiciones">Simulacros oficiales</a></li>
+  <li><a href="/register">Empieza gratis</a></li>
+</ul>
+`.trim(),
+    faqs: [
+      { question: '¿Cuántas preguntas de topografía caen en el examen?', answer: 'Entre 2 y 4 por convocatoria. Es un tema con alto retorno por hora estudiada.' },
+      { question: '¿Qué escala es la más típica en preguntas?', answer: '1:50.000 (la del Ejército). Domina la conversión 1 cm = 500 m y resolverás la mayoría.' },
+      { question: '¿Hay que saber UTM al detalle?', answer: 'Conocer el concepto de huso, los husos de España (29, 30 y 31) y entender que las coordenadas se miden en metros. No piden cálculos complejos.' },
+      { question: '¿Necesito un libro específico para el tema 18?', answer: 'No: con un manual oficial actualizado y práctica de tests es suficiente. Los conceptos son finitos.' },
+      { question: '¿Cuánto tiempo dedicarle?', answer: 'Entre 15 y 20 horas para dominar el tema con margen. Repasos cortos cada 2 semanas para no olvidar.' },
+    ],
+  },
+
+  // ─── 16 ────────────────────────────────────────────────────────────────────
+  {
+    slug: 'boe-convocatoria-guardia-civil-2026-fechas-plazas',
+    title: 'BOE convocatoria Guardia Civil 2026: fechas, plazas y requisitos',
+    description:
+      'Convocatoria Guardia Civil 2026 publicada en BOE: plazas, fechas de instancia, examen, requisitos oficiales y enlaces directos.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'boe guardia civil',
+      'boe guardia civil 2026',
+      'convocatoria guardia civil 2026',
+      'fechas guardia civil 2026',
+      'plazas guardia civil 2026',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Plazas previstas:</strong> en torno a 1.700 plazas para Escala de Cabos y Guardias en la convocatoria 2026.</li>
+  <li><strong>Examen teórico:</strong> previsto para otoño 2026 (octubre-noviembre, según el patrón de convocatorias anteriores).</li>
+  <li><strong>Plazo de instancias:</strong> 20 días hábiles desde la publicación oficial en BOE.</li>
+</ul>
+
+<h2>¿Dónde se publica la convocatoria?</h2>
+<p>
+  En el <strong>Boletín Oficial del Estado (BOE)</strong> y en el <strong>Boletín Oficial de la Defensa (BOD)</strong>.
+  La instrucción la firma el Ministerio del Interior junto con el Ministerio de Defensa (la Guardia Civil tiene naturaleza
+  militar). El orden de publicación es: oferta de empleo público → convocatoria oficial → bases → corrección de errores.
+</p>
+
+<h2>Fases del calendario tipo</h2>
+<table>
+  <thead><tr><th>Fase</th><th>Cuándo</th><th>Qué hacer</th></tr></thead>
+  <tbody>
+    <tr><td>Publicación BOE</td><td>Primer trimestre 2026</td><td>Leer bases completas, comprobar requisitos</td></tr>
+    <tr><td>Plazo de instancias</td><td>20 días hábiles desde publicación</td><td>Presentar solicitud y abonar tasa</td></tr>
+    <tr><td>Listas provisionales</td><td>1-2 meses después</td><td>Verificar admisión y subsanar</td></tr>
+    <tr><td>Examen teórico</td><td>Otoño 2026</td><td>Test 100 preguntas + 10 reserva</td></tr>
+    <tr><td>Pruebas físicas y psicotécnicas</td><td>Diciembre 2026 - enero 2027</td><td>Tras aprobado el teórico</td></tr>
+    <tr><td>Reconocimiento médico</td><td>Enero - febrero 2027</td><td>Causas de exclusión RD</td></tr>
+  </tbody>
+</table>
+
+<h2>Requisitos básicos (sin cambios respecto a 2024)</h2>
+<ul>
+  <li>Ser español y mayor de edad (18-40 años, ampliable según situaciones).</li>
+  <li>Título de Bachillerato o equivalente.</li>
+  <li>Carné de conducir tipo B en vigor.</li>
+  <li>No tener antecedentes penales.</li>
+  <li>Compromiso militar mínimo durante el periodo de prácticas.</li>
+</ul>
+
+<h2>Plazas por convocatoria (referencia)</h2>
+<ul>
+  <li><strong>2022:</strong> 2.022 plazas.</li>
+  <li><strong>2023:</strong> 1.880 plazas aprox.</li>
+  <li><strong>2024:</strong> 3.118 plazas (cifra alta por acumulación).</li>
+  <li><strong>2025:</strong> 1.671 plazas.</li>
+  <li><strong>2026:</strong> previsión en torno a 1.700 plazas.</li>
+</ul>
+
+<h2>Cómo no perderte la publicación oficial</h2>
+<ul>
+  <li>Suscríbete al BOE Watcher de OpoRuta: te avisa por email cuando aparezca cualquier referencia a "Guardia Civil".</li>
+  <li>Revisa el portal del INAP y de la Guardia Civil semanalmente.</li>
+  <li>Activa alertas en el buscador del BOE con la palabra clave "Cabos y Guardias".</li>
+</ul>
+
+<h2>Enlaces útiles</h2>
+<ul>
+  <li><a href="/oposiciones/seguridad/guardia-civil">Página principal Guardia Civil</a></li>
+  <li><a href="/blog/calendario-guardia-civil-2026-fechas-examen">Calendario 2026 detallado</a></li>
+  <li><a href="/blog/requisitos-guardia-civil-2026-edad-altura-estudios">Requisitos completos</a></li>
+  <li><a href="/register">Activar BOE Watcher gratis</a></li>
+</ul>
+`.trim(),
+    faqs: [
+      { question: '¿Cuándo se publica la convocatoria 2026 en el BOE?', answer: 'Habitualmente en el primer trimestre del año. La oferta de empleo público suele aparecer en enero-marzo.' },
+      { question: '¿Cuántas plazas habrá en 2026?', answer: 'La previsión ronda las 1.700 plazas, en línea con 2025 y por debajo del pico de 2024.' },
+      { question: '¿Cuánto dura el plazo de presentación de instancias?', answer: '20 días hábiles desde el día siguiente a la publicación de la convocatoria en BOE.' },
+      { question: '¿Cuál es la tasa de examen?', answer: 'Ronda los 11 € en convocatorias recientes. Se actualiza anualmente.' },
+      { question: '¿Qué titulación necesito?', answer: 'Bachillerato, Técnico de Grado Medio o equivalente. No exige titulación universitaria.' },
+    ],
+  },
+
+  // ─── 17 ────────────────────────────────────────────────────────────────────
+  {
+    slug: 'test-guardia-civil-gratis-online-2026-100-preguntas',
+    title: 'Test Guardia Civil gratis online 2026: 100 preguntas con IA',
+    description:
+      'Test Guardia Civil gratis online: 100 preguntas tipo examen, penalización 1:3 real y corrección IA. Sin registro para empezar.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'test guardia civil gratis',
+      'test guardia civil online 2026',
+      'test guardia civil 2018 gratis',
+      'test gratis guardia civil',
+      'test guardia civil 100 preguntas',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Test gratis sin tarjeta:</strong> 100 preguntas tipo examen Guardia Civil, penalización 1:3 activada.</li>
+  <li><strong>Corrección IA:</strong> análisis de cada error con cita legal y explicación socrática.</li>
+  <li><strong>Banco de preguntas:</strong> ingestadas convocatorias 2018, 2019, 2022 y 2024 reales.</li>
+</ul>
+
+<h2>Por qué hacer un test antes de pagar academia</h2>
+<p>
+  Antes de gastar 1.500 €/año en una academia presencial, haz un test real de 100 preguntas con penalización. En 90 minutos
+  sabrás:
+</p>
+<ul>
+  <li>Tu nivel de partida (¿estás cerca del corte 60 puntos netos?).</li>
+  <li>Qué bloque tienes peor (Jurídicas, Sociotécnicas o Técnicas).</li>
+  <li>Cuánto tiempo necesitas hasta el examen real.</li>
+</ul>
+
+<h2>Qué incluye el test gratis de OpoRuta</h2>
+<table>
+  <thead><tr><th>Funcionalidad</th><th>Free</th><th>Pack 49,99 €</th></tr></thead>
+  <tbody>
+    <tr><td>100 preguntas tipo examen</td><td>Sí (3 simulacros lifetime, 20 preguntas)</td><td>Ilimitado, 100 preguntas</td></tr>
+    <tr><td>Penalización 1:3 real</td><td>Sí</td><td>Sí</td></tr>
+    <tr><td>Corrección IA detallada</td><td>2 análisis gratis</td><td>Ilimitado</td></tr>
+    <tr><td>Convocatorias reales (2018, 2019, 2022, 2024)</td><td>Acceso parcial</td><td>Completo</td></tr>
+    <tr><td>Desglose por tema</td><td>Sí</td><td>Sí</td></tr>
+  </tbody>
+</table>
+
+<h2>Cómo se hace el test gratis</h2>
+<ol>
+  <li>Crea cuenta gratis en <a href="/register">/register</a> (email o Google, sin tarjeta).</li>
+  <li>Entra a <a href="/simulacros-oposiciones">/simulacros-oposiciones</a> y elige Guardia Civil.</li>
+  <li>Selecciona convocatoria (2019, 2022 o 2024) o modo mixto.</li>
+  <li>Activa la penalización 1:3 (viene por defecto).</li>
+  <li>Termina el simulacro y revisa el desglose por tema.</li>
+</ol>
+
+<h2>Cómo interpretar tu resultado</h2>
+<ul>
+  <li><strong>Por debajo de 40 netos:</strong> aún estás en fase de temario. Ataca tema a tema.</li>
+  <li><strong>Entre 40 y 55 netos:</strong> bien encaminado. Toca repasos espaciados y simulacros semanales.</li>
+  <li><strong>Más de 55 netos:</strong> estás cerca del corte. Afina técnica, ortografía y físicas.</li>
+  <li><strong>Más de 70 netos:</strong> rendimiento de aprobado holgado. Mantén el ritmo.</li>
+</ul>
+
+<h2>Errores típicos al hacer test gratis online</h2>
+<ul>
+  <li>No activar la penalización: te da una nota irreal (siempre más alta de la que sacarías en el examen).</li>
+  <li>Hacer test cortos sólo: aprendes preguntas, no resistencia. Mete simulacros completos cada semana.</li>
+  <li>Ignorar el desglose por tema: el valor está ahí. Te dice qué estudiar mañana.</li>
+</ul>
+
+<h2>Enlaces útiles</h2>
+<ul>
+  <li><a href="/oposiciones/seguridad/guardia-civil">Página principal Guardia Civil</a></li>
+  <li><a href="/simulacros-oposiciones">Simulacros oficiales</a></li>
+  <li><a href="/blog/simulacro-guardia-civil-2026-examen-completo-online">Guía simulacro completo</a></li>
+  <li><a href="/register">Empieza gratis</a></li>
+</ul>
+`.trim(),
+    faqs: [
+      { question: '¿El test es realmente gratis?', answer: 'Sí: la versión free permite hacer simulacros de 20 preguntas (3 lifetime) y tests por tema en los temas 1, 11 y 17. Sin tarjeta.' },
+      { question: '¿Tengo que registrarme?', answer: 'Para los simulacros con corrección IA sí. Solo email o Google. No pedimos tarjeta.' },
+      { question: '¿Las preguntas son reales del examen?', answer: 'Sí: las convocatorias 2018, 2019, 2022 y 2024 están ingestadas oficialmente desde el BOE.' },
+      { question: '¿Puedo hacer test sólo del examen 2018?', answer: 'Sí, eliges convocatoria al iniciar el simulacro. También puedes hacer modo mixto con preguntas de varios años.' },
+      { question: '¿Cuánto cuesta el plan completo?', answer: '49,99 € pago único por todo el ciclo de oposición. Sin suscripción ni renovación automática.' },
+    ],
+  },
 ]

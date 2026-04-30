@@ -20625,6 +20625,496 @@ const corePosts: BlogPost[] = [
       { question: '¿La experiencia en bolsa cuenta para futuras oposiciones?', answer: 'Sí. Los meses trabajados en Correos como interino se valoran como mérito en la fase de concurso de las oposiciones por turno libre.' },
     ],
   },
+  // ─── Correos: examen 2016-2017 análisis ────────────────────────────────────
+  {
+    slug: 'examen-correos-2016-2017-preguntas-resueltas-historico',
+    title: 'Examen Correos 2016 y 2017: preguntas resueltas y análisis histórico',
+    description:
+      'Análisis exámenes Correos 2016 y 2017: preguntas comentadas, temas que más cayeron, evolución de dificultad y qué seguir aprendiendo de aquellas convocatorias para 2026.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'examen correos 2016',
+      'examenes correos 2016',
+      'examen correos 2017',
+      'fecha oposiciones correos 2016',
+      'examen correos 12 septiembre',
+    ],
+    content: `
+<h2>Por qué seguir estudiando los exámenes Correos 2016 y 2017</h2>
+<p>
+  Los exámenes Correos 2016 y 2017 son referencia obligada porque marcaron el inicio de la
+  oposición tal y como la conocemos hoy: test de 100 preguntas (los actuales son 90), penalización
+  por fallo y peso fuerte de productos postales y normativa. Mucha pregunta de aquellas dos
+  convocatorias se ha repetido casi literal en 2018, 2019, 2022 y 2024.
+</p>
+
+<h2>Examen Correos 2016 — datos clave</h2>
+<ul>
+  <li><strong>Fecha:</strong> 12 de febrero de 2017 (la convocatoria es de 2016 pero el examen se celebró en 2017).</li>
+  <li><strong>Plazas:</strong> 2.295 (mayoría reparto y agente clasificación).</li>
+  <li><strong>Preguntas:</strong> 100 + 10 reserva.</li>
+  <li><strong>Tiempo:</strong> 110 minutos.</li>
+  <li><strong>Penalización:</strong> 1/3 por fallo.</li>
+</ul>
+
+<h3>Distribución de preguntas 2016</h3>
+<table>
+  <thead><tr><th>Bloque</th><th>Preguntas</th><th>Comentario</th></tr></thead>
+  <tbody>
+    <tr><td>Productos postales (cartas, paquetería)</td><td>32</td><td>Peso máximo</td></tr>
+    <tr><td>Servicios financieros</td><td>15</td><td>Servicio Correo Cash, giros</td></tr>
+    <tr><td>Reparto, admisión y clasificación</td><td>22</td><td>Procesos operativos</td></tr>
+    <tr><td>Atención al cliente y comercial</td><td>11</td><td>Habilidades sociales</td></tr>
+    <tr><td>Riesgos laborales y prevención</td><td>10</td><td>Bloque PRL</td></tr>
+    <tr><td>Sociedad estatal y normativa</td><td>10</td><td>Estructura Correos</td></tr>
+  </tbody>
+</table>
+
+<h2>Examen Correos 2017 — datos clave</h2>
+<p>
+  La convocatoria 2017 (examen celebrado el 24 de junio de 2018) consolidó el modelo. Se mantuvo
+  la estructura de 100 preguntas + 10 reserva, pero se notó subida de preguntas tipo
+  "supuesto" en productos.
+</p>
+<ul>
+  <li><strong>Plazas:</strong> 3.269.</li>
+  <li><strong>Nota corte:</strong> ~57/100 según destino.</li>
+  <li><strong>Preguntas con trampa cuidadas</strong>: dimensiones máximas, plazos de reclamación, tarifas.</li>
+</ul>
+
+<h2>Preguntas tipo (estilo 2016/2017)</h2>
+<ol>
+  <li>Dimensiones máximas de una carta certificada nacional.</li>
+  <li>Plazo de reclamación de un envío Postal Exprés.</li>
+  <li>Tipo de admisión que requiere identificación obligatoria.</li>
+  <li>Producto postal preferente para envíos urgentes a UE.</li>
+  <li>Función del IPC (Indicador de Productividad Comercial) en reparto.</li>
+</ol>
+
+<h2>Lo que sigue siendo válido para 2026</h2>
+<ul>
+  <li><strong>Productos postales</strong>: el bloque más importante sigue rondando el 30% de las preguntas.</li>
+  <li><strong>Plazos y tarifas</strong>: caen siempre, aunque cambien valores.</li>
+  <li><strong>Atención al cliente</strong>: se mantiene 10-12 preguntas por examen.</li>
+  <li><strong>PRL</strong>: bloque inmutable, mismas preguntas con redacciones nuevas.</li>
+</ul>
+
+<h2>Errores frecuentes detectados en 2016-2017</h2>
+<ol>
+  <li>Estudiar productos postales sin tablas comparativas (dimensiones, plazos, precios).</li>
+  <li>Subestimar el bloque de PRL por considerarlo "fácil".</li>
+  <li>No practicar con penalización: provoca disparar a todo en el examen real.</li>
+  <li>Memorizar textos comerciales que cambian cada año en lugar de la estructura.</li>
+</ol>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+  <li><a href="/oposiciones/correos">Oposición Correos</a></li>
+  <li><a href="/blog/historico-convocatorias-correos-2016-2024-evolucion">Histórico de convocatorias 2016-2024</a></li>
+  <li><a href="/blog/test-correos-online-gratis">Tests Correos gratis</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica con preguntas reales 2016-2024</a></strong> en OpoRuta — gratis.</p>
+`,
+    faqs: [
+      { question: '¿En qué fecha fue el examen Correos 2016?', answer: 'El examen se celebró el 12 de febrero de 2017, aunque la convocatoria es de 2016. Es el formato 100 preguntas + 10 reserva.' },
+      { question: '¿Sigue valiendo estudiar el examen 2016 para 2026?', answer: 'Sí. Cerca del 60% de las preguntas se reformulan año tras año. Productos postales y PRL caen casi idénticos.' },
+      { question: '¿Cuántas plazas hubo en 2016?', answer: '2.295 plazas para reparto, agente clasificación y atención al cliente. Una de las convocatorias medianas en plazas.' },
+      { question: '¿Qué cambió respecto a 2017?', answer: '2017 introdujo más preguntas de tipo supuesto y bajó algo el peso de productos puros, pero la estructura siguió igual.' },
+      { question: '¿Hay diferencias en penalización entre 2016 y 2026?', answer: 'No. Sigue siendo 1/3 sobre el valor de cada pregunta correcta. La novedad 2025 es bajar a 90 preguntas en lugar de 100.' },
+    ],
+  },
+  // ─── Correos: convocatoria 2026 fechas ────────────────────────────────────
+  {
+    slug: 'convocatoria-correos-2026-espana-fecha-boe-oficial',
+    title: 'Convocatoria Correos 2026 España: fecha BOE oficial y calendario',
+    description:
+      'Convocatoria Correos 2026 España: cuándo se publica en BOE, plazas previstas, fechas oficiales del examen, requisitos y plazo de inscripción paso a paso.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'convocatoria correos 2026 españa fecha',
+      'oposiciones correos 2026 fechas españa',
+      'boe oposiciones correos 2026',
+      'fecha examen correos 2026',
+    ],
+    content: `
+<h2>Resumen rápido convocatoria 2026</h2>
+<ul>
+  <li><strong>Plazas estimadas:</strong> 7.000-8.000 (reparto + ATC + agente clasificación).</li>
+  <li><strong>Publicación en BOE:</strong> primer trimestre 2026 (estimado entre febrero y abril).</li>
+  <li><strong>Examen previsto:</strong> finales 2026 / primer trimestre 2027.</li>
+  <li><strong>Modelo:</strong> 90 preguntas + 5 reserva, 110 minutos, penalización 1/3.</li>
+</ul>
+
+<h2>Calendario probable 2026</h2>
+<table>
+  <thead><tr><th>Hito</th><th>Fecha estimada</th></tr></thead>
+  <tbody>
+    <tr><td>Publicación bases en BOE</td><td>Febrero - abril 2026</td></tr>
+    <tr><td>Plazo de inscripción</td><td>20 días naturales desde BOE</td></tr>
+    <tr><td>Lista provisional admitidos</td><td>Junio-julio 2026</td></tr>
+    <tr><td>Lista definitiva</td><td>Septiembre-octubre 2026</td></tr>
+    <tr><td>Examen tipo test</td><td>Noviembre 2026 - febrero 2027</td></tr>
+    <tr><td>Resultados provisionales</td><td>1-2 meses tras examen</td></tr>
+    <tr><td>Adjudicación de destinos</td><td>3-4 meses tras resultados</td></tr>
+  </tbody>
+</table>
+
+<h2>Plazas previstas por puesto</h2>
+<ul>
+  <li><strong>Reparto a pie y motorizado (REP):</strong> ~7.500.</li>
+  <li><strong>Atención al cliente (ATC):</strong> ~250.</li>
+  <li><strong>Agente clasificación / conducción:</strong> ~200.</li>
+</ul>
+<p>
+  La convocatoria 2025 ya fue de 7.811 plazas REP + 200 ATC. La de 2026 podría mantener cifras
+  similares o subirlas ligeramente debido al volumen de jubilaciones previstas.
+</p>
+
+<h2>Requisitos generales</h2>
+<ul>
+  <li>Edad mínima 18 años.</li>
+  <li>Nacionalidad española o UE/EEE.</li>
+  <li>Título de ESO o equivalente (Bachillerato, FP, Grado).</li>
+  <li>Permiso de conducir B en vigor (obligatorio para reparto motorizado).</li>
+  <li>No haber sido separado del servicio público.</li>
+</ul>
+
+<h2>Particularidades de la convocatoria de Correos</h2>
+<p>
+  Recuerda que Correos es una <strong>sociedad estatal SA</strong>: la oposición se convoca por la
+  empresa Correos y Telégrafos, no por la AGE. Los seleccionados firman contrato laboral fijo, no
+  son funcionarios. Se rige por convenio colectivo, no por TREBEP.
+</p>
+
+<h2>Fases del proceso</h2>
+<ol>
+  <li><strong>Fase de oposición</strong> (60 puntos): test eliminatorio + supuesto si procede.</li>
+  <li><strong>Fase de méritos</strong> (40 puntos): experiencia previa, cursos, idiomas.</li>
+  <li>Adjudicación de destinos por orden de puntuación final.</li>
+</ol>
+
+<h2>Tasas de inscripción</h2>
+<ul>
+  <li>Reparto y atención al cliente: ~11€.</li>
+  <li>Agente clasificación: ~11€.</li>
+  <li>Bonificaciones para familia numerosa, demandantes de empleo y discapacidad.</li>
+</ul>
+
+<h2>Qué hacer ahora si quieres presentarte</h2>
+<ul>
+  <li>Crea cuenta en correos.com/empleo (registro gratis).</li>
+  <li>Reúne titulación, vida laboral y permiso B.</li>
+  <li>Empieza a estudiar productos postales y PRL.</li>
+  <li>Practica con tests de convocatorias 2018-2024 disponibles online.</li>
+</ul>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+  <li><a href="/oposiciones/correos">Oposición Correos</a></li>
+  <li><a href="/blog/oposiciones-correos-2026-convocatoria-plazas-fechas">Convocatoria detallada 2026</a></li>
+  <li><a href="/blog/plazo-inscripcion-correos-2026-paso-a-paso-online">Cómo inscribirte paso a paso</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza tu preparación 2026</a></strong> — gratis en OpoRuta.</p>
+`,
+    faqs: [
+      { question: '¿Cuándo sale la convocatoria oficial Correos 2026?', answer: 'Se espera publicación en BOE entre febrero y abril de 2026, en línea con calendarios anteriores.' },
+      { question: '¿Cuántas plazas habrá en 2026?', answer: 'Aproximadamente 7.000-8.000 plazas, manteniendo o ampliando el volumen de la convocatoria 2025 (7.811 + 200 ATC).' },
+      { question: '¿Es Correos una oposición de funcionario?', answer: 'No. Correos es sociedad estatal y los aprobados firman contrato laboral fijo, no estatuto funcionarial.' },
+      { question: '¿Cuándo se celebra el examen?', answer: 'Lo previsible es a finales de 2026 o primer trimestre 2027, dejando 9-10 meses entre BOE y test.' },
+      { question: '¿Necesito carné de conducir?', answer: 'Es obligatorio para reparto motorizado y conducción. Para ATC y reparto a pie no es requisito.' },
+    ],
+  },
+  // ─── Correos: tema 4 derecho administrativo ───────────────────────────────
+  {
+    slug: 'tema-4-correos-derecho-administrativo-clave-examen',
+    title: 'Tema 4 Correos: el derecho administrativo clave del examen 2026',
+    description:
+      'Tema 4 Correos 2026: organización Correos S.A., relación con el Estado, normativa básica, autoridad postal y CNMC. Resumen explicado con preguntas tipo examen.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'tema 4 correos',
+      'tema 4 oposicion correos',
+      'temario correos 2026',
+      'normativa correos examen',
+      'derecho administrativo correos',
+    ],
+    content: `
+<h2>Qué cubre el tema 4 del temario Correos</h2>
+<p>
+  El tema 4 de Correos 2026 cubre el <strong>marco normativo y estructura jurídica de Correos</strong>:
+  qué tipo de empresa es, cómo se relaciona con el Estado, quiénes son los reguladores y qué leyes
+  básicas hay que conocer para entender el resto del temario.
+</p>
+<p>
+  Es un tema de derecho administrativo aplicado: pocos números, mucha estructura. Cae con
+  regularidad 4-6 preguntas en cada examen.
+</p>
+
+<h2>Estructura básica</h2>
+<ul>
+  <li>Correos y Telégrafos S.A. — sociedad mercantil estatal 100% pública.</li>
+  <li>Adscrita al <strong>Ministerio de Hacienda</strong> a través de la SEPI.</li>
+  <li>Operadora postal designada para prestar el <strong>Servicio Postal Universal (SPU)</strong>.</li>
+  <li>Regulada por la <strong>CNMC</strong> (Comisión Nacional de los Mercados y la Competencia).</li>
+</ul>
+
+<h2>Normativa principal</h2>
+<table>
+  <thead><tr><th>Norma</th><th>Contenido</th><th>Probabilidad de caer</th></tr></thead>
+  <tbody>
+    <tr><td>Ley 43/2010 Servicio Postal Universal</td><td>Marco general SPU, derechos usuarios</td><td>Muy alta</td></tr>
+    <tr><td>Real Decreto 1829/1999</td><td>Reglamento prestación servicios postales</td><td>Alta</td></tr>
+    <tr><td>Ley 3/2013 (creación CNMC)</td><td>Regulador del sector postal</td><td>Media</td></tr>
+    <tr><td>Estatutos sociales de Correos</td><td>Forma jurídica y gobierno</td><td>Media</td></tr>
+    <tr><td>Convenio colectivo Correos</td><td>Régimen laboral del personal</td><td>Media</td></tr>
+  </tbody>
+</table>
+
+<h2>Conceptos imprescindibles del tema 4</h2>
+<ol>
+  <li><strong>Servicio Postal Universal (SPU)</strong>: conjunto de servicios postales básicos garantizados por el Estado a todos los ciudadanos.</li>
+  <li><strong>Operador designado</strong>: Correos, hasta 2030 mínimo, para prestar el SPU en territorio nacional.</li>
+  <li><strong>CNMC</strong>: regulador del sector, sanciona y arbitra.</li>
+  <li><strong>SEPI</strong>: Sociedad Estatal de Participaciones Industriales, accionista único de Correos.</li>
+  <li><strong>Plan de prestación SPU</strong>: documento que detalla cobertura, frecuencia y precios del servicio.</li>
+</ol>
+
+<h2>Preguntas tipo examen sobre tema 4</h2>
+<ol>
+  <li>¿Qué entidad es la titular de las acciones de Correos? — SEPI.</li>
+  <li>¿Quién regula el sector postal? — CNMC.</li>
+  <li>¿Hasta cuándo está designada Correos como operadora SPU? — Hasta 2030, prorrogable.</li>
+  <li>¿Cuál es la frecuencia mínima de reparto del SPU? — 5 días a la semana.</li>
+  <li>¿Qué ley regula el Servicio Postal Universal? — Ley 43/2010.</li>
+</ol>
+
+<h2>Cómo estudiar el tema 4 sin dormirte</h2>
+<ul>
+  <li>Usa <strong>esquemas en árbol</strong>: Estado → SEPI → Correos S.A. → operadora SPU.</li>
+  <li>Memoriza las 5-6 leyes principales con su número y año.</li>
+  <li>Practica con preguntas literales de exámenes 2018-2024.</li>
+  <li>No te aprendas la Ley 43/2010 entera: enfócate en artículos 21 (SPU), 22 (servicios incluidos) y 26 (designación).</li>
+</ul>
+
+<h3>Errores típicos en tema 4</h3>
+<ol>
+  <li>Confundir CNMC con la antigua CMT (extinta).</li>
+  <li>Decir que Correos es Administración (es sociedad mercantil estatal).</li>
+  <li>No saber que la SEPI es el accionista único.</li>
+  <li>Olvidar el plazo de designación 2011-2030.</li>
+</ol>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+  <li><a href="/oposiciones/correos">Oposición Correos</a></li>
+  <li><a href="/blog/temario-correos-2026-temas">Temario completo Correos</a></li>
+  <li><a href="/blog/test-correos-online-gratis">Test gratis tema 4</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica el tema 4 con preguntas reales</a></strong> en OpoRuta.</p>
+`,
+    faqs: [
+      { question: '¿Cuántas preguntas caen del tema 4 en el examen?', answer: 'Entre 4 y 6 preguntas por convocatoria. Es un tema fijo cuyo peso se mantiene estable año tras año.' },
+      { question: '¿Qué norma básica regula el SPU?', answer: 'La Ley 43/2010 del Servicio Postal Universal, complementada por el RD 1829/1999.' },
+      { question: '¿Quién es el accionista único de Correos?', answer: 'La SEPI (Sociedad Estatal de Participaciones Industriales), adscrita al Ministerio de Hacienda.' },
+      { question: '¿Es Correos una administración pública?', answer: 'No. Es una sociedad mercantil estatal con capital 100% público. Se rige por derecho privado, no por TREBEP.' },
+      { question: '¿Cuántos días de reparto garantiza el SPU?', answer: 'Mínimo 5 días a la semana. Es uno de los datos más preguntados del tema 4.' },
+    ],
+  },
+  // ─── Correos: histórico convocatorias ─────────────────────────────────────
+  {
+    slug: 'historico-convocatorias-correos-2016-2024-evolucion',
+    title: 'Histórico convocatorias Correos 2016-2024: evolución de plazas',
+    description:
+      'Histórico completo convocatorias Correos 2016-2024: plazas, fechas examen, modelos de prueba y cómo ha evolucionado la oposición. Datos para planificar tu intento 2026.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'historico convocatorias correos',
+      'examenes correos 2016',
+      'convocatorias correos 2016 2024',
+      'evolucion oposicion correos',
+      'plazas correos historico',
+    ],
+    content: `
+<h2>Qué aprende uno mirando el histórico</h2>
+<p>
+  Correos convoca con periodicidad irregular: hay años con 2.000 plazas y otros con 8.000. La
+  convocatoria de 2025 fue la mayor de la última década (8.011 entre REP y ATC). Conocer el
+  histórico ayuda a calcular probabilidades reales de plaza y planificar momentos de presentación.
+</p>
+
+<h2>Tabla histórica 2016-2024</h2>
+<table>
+  <thead>
+    <tr><th>Convocatoria</th><th>Plazas</th><th>Fecha examen</th><th>Tipo prueba</th><th>Nota corte</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2016</td><td>2.295</td><td>12-feb-2017</td><td>100 preg + 10 reserva</td><td>~52/100</td></tr>
+    <tr><td>2017</td><td>3.269</td><td>24-jun-2018</td><td>100 preg + 10 reserva</td><td>~57/100</td></tr>
+    <tr><td>2019</td><td>4.005</td><td>06-oct-2019</td><td>100 preg + 10 reserva</td><td>~55/100</td></tr>
+    <tr><td>2020</td><td>3.381</td><td>aplazado COVID</td><td>100 preg + 10 reserva</td><td>~58/100</td></tr>
+    <tr><td>2021</td><td>3.381 (acumulada)</td><td>11-jul-2021</td><td>100 preg + 10 reserva</td><td>~60/100</td></tr>
+    <tr><td>2023</td><td>7.757</td><td>nov-2023</td><td>90 preg + 10 reserva</td><td>~55/100</td></tr>
+    <tr><td>2024 (continuación 2023)</td><td>incluida</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td>2025</td><td>8.011 (7.811 REP + 200 ATC)</td><td>2026 (estimado)</td><td>90 preg + 5 reserva</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<h2>Tendencias claras</h2>
+<ul>
+  <li><strong>Las plazas suben:</strong> de 2.295 (2016) a 8.011 (2025). Tendencia clara al alza.</li>
+  <li><strong>El examen se simplifica:</strong> de 100+10 a 90+5 preguntas en 2024-2025.</li>
+  <li><strong>La nota de corte sube</strong> en convocatorias con menos plazas y baja con las grandes.</li>
+  <li><strong>Méritos pesan más</strong>: la fase 2 (40 puntos) es decisiva tras superar el corte.</li>
+</ul>
+
+<h2>Por qué es buen momento para 2026</h2>
+<p>
+  Después de la macro-convocatoria 2025, la oferta 2026 podría ser más pequeña pero también con
+  menos opositores con experiencia previa (los que se han ido a otras oposiciones tras suspender).
+  Lo más probable: <strong>5.000-7.000 plazas</strong> con notas de corte similares a las de 2023.
+</p>
+
+<h2>Cambios estructurales destacables</h2>
+<ol>
+  <li><strong>2019:</strong> primera convocatoria 100% online (inscripción y resultados).</li>
+  <li><strong>2021:</strong> se reabrió tras parón COVID con dos sedes simultáneas.</li>
+  <li><strong>2023:</strong> bajada a 90 preguntas (de 100). Más tiempo por pregunta.</li>
+  <li><strong>2025:</strong> consolidación 90 + 5 reserva como modelo estándar.</li>
+</ol>
+
+<h2>Lecciones para la preparación 2026</h2>
+<ul>
+  <li>Estudia el temario completo. Las preguntas se reciclan entre convocatorias.</li>
+  <li>Méritos no son un extra: son la palanca que decide tu puesto en lista.</li>
+  <li>Los simulacros ahora deben ser de 90 preguntas, no de 100. Adapta tu cronómetro.</li>
+  <li>Si tienes experiencia previa Correos (interino, bolsa), acumula meses ya — son puntos directos.</li>
+</ul>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+  <li><a href="/oposiciones/correos">Oposición Correos completa</a></li>
+  <li><a href="/blog/examen-correos-2016-2017-preguntas-resueltas-historico">Análisis exámenes 2016-2017</a></li>
+  <li><a href="/blog/oposiciones-correos-2026-convocatoria-plazas-fechas">Convocatoria 2026 detallada</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Practica con tests de todas las convocatorias</a></strong> en OpoRuta — gratis para empezar.</p>
+`,
+    faqs: [
+      { question: '¿Cuántas plazas tuvo Correos en 2016?', answer: '2.295 plazas para reparto, agente clasificación y atención al cliente. Pequeña en comparación con convocatorias posteriores.' },
+      { question: '¿Cuál fue la mayor convocatoria de Correos en la última década?', answer: 'La de 2025 con 8.011 plazas (7.811 reparto + 200 ATC), la más grande del histórico reciente.' },
+      { question: '¿Cuándo cambió Correos de 100 a 90 preguntas?', answer: 'En la convocatoria 2023. Desde entonces el modelo es 90 + 5 preguntas de reserva en 110 minutos.' },
+      { question: '¿Cuándo se celebra normalmente el examen?', answer: 'Suele celebrarse entre 9 y 14 meses después de publicación BOE. La media es un sábado de noviembre.' },
+      { question: '¿Tiene sentido presentarse cada convocatoria?', answer: 'Sí, especialmente las pequeñas: las grandes (5.000+) tienen más competencia, pero las pequeñas tienen menos plazas y nota corte similar.' },
+    ],
+  },
+  // ─── Correos: plazo inscripción 2026 ──────────────────────────────────────
+  {
+    slug: 'plazo-inscripcion-correos-2026-paso-a-paso-online',
+    title: 'Plazo inscripción Correos 2026: guía paso a paso para inscribirte online',
+    description:
+      'Plazo y guía paso a paso para inscribirse en la convocatoria Correos 2026: portal correos.com/empleo, documentación, méritos, errores frecuentes y consejos antes del cierre.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'plazo oposiciones correos 2016',
+      'plazo inscripcion correos 2026',
+      'inscribirse oposiciones correos',
+      'inscripcion online correos',
+      'como apuntarse oposiciones correos',
+    ],
+    content: `
+<h2>Plazo de inscripción Correos 2026</h2>
+<p>
+  El plazo de inscripción para Correos 2026 será de <strong>20 días naturales</strong> contados
+  desde el día siguiente a la publicación de la convocatoria en el BOE. Si el BOE sale, por
+  ejemplo, el 1 de marzo, el plazo cierra el 21 de marzo a las 23:59h.
+</p>
+<p>
+  En convocatorias anteriores el plazo se mantuvo en 20 días naturales (no hábiles). Atención: en
+  Correos no hay prórroga automática si el último día cae en festivo.
+</p>
+
+<h2>Antes del BOE: lo que conviene tener listo</h2>
+<ul>
+  <li>Cuenta activa en <strong>correos.com/empleo</strong>.</li>
+  <li>DNI/NIE en vigor, escaneado.</li>
+  <li>Título de ESO o equivalente escaneado.</li>
+  <li>Permiso B en vigor (si optas a reparto motorizado).</li>
+  <li>Vida laboral actualizada (importante para méritos).</li>
+  <li>Tarjeta para pagar la tasa o cuenta bancaria habilitada.</li>
+</ul>
+
+<h2>Pasos para inscribirte online</h2>
+<ol>
+  <li><strong>Crea cuenta</strong> en correos.com/empleo (si ya la tienes, actualiza datos personales).</li>
+  <li><strong>Localiza la convocatoria abierta</strong> (aparece "Inscripción 2026" cuando sale el BOE).</li>
+  <li><strong>Selecciona puesto/s</strong>: reparto a pie, motorizado, agente clasificación, ATC. Puedes elegir hasta 5 provincias.</li>
+  <li><strong>Aporta documentación</strong>: titulación, permiso B, certificado discapacidad si aplica.</li>
+  <li><strong>Aporta méritos</strong>: experiencia Correos, otros postales, idiomas, cursos. Adjunta justificantes.</li>
+  <li><strong>Paga la tasa</strong> (~11€) con tarjeta. Guarda el justificante PDF.</li>
+  <li><strong>Confirma la solicitud</strong>. Te llega un correo con número de instancia.</li>
+</ol>
+
+<h3>Errores más comunes al inscribirse</h3>
+<ol>
+  <li>Subir titulación con baja resolución o ilegible — la rechazan.</li>
+  <li>No aportar vida laboral actualizada — pierdes puntos de mérito.</li>
+  <li>Pagar la tasa pero no enviar la solicitud — queda sin presentar.</li>
+  <li>No revisar provincias seleccionadas (puedes elegir 5, no más).</li>
+  <li>Dejar la inscripción para el último día (el portal se satura).</li>
+</ol>
+
+<h2>Méritos: qué aportar y cuánto suman</h2>
+<table>
+  <thead><tr><th>Mérito</th><th>Puntos máx.</th><th>Justificante</th></tr></thead>
+  <tbody>
+    <tr><td>Experiencia Correos (laboral o bolsa)</td><td>30</td><td>Vida laboral + contratos</td></tr>
+    <tr><td>Otra experiencia postal</td><td>5</td><td>Vida laboral + contratos</td></tr>
+    <tr><td>Idiomas (inglés/francés)</td><td>3</td><td>Certificado oficial B2+</td></tr>
+    <tr><td>Cursos formación</td><td>2</td><td>Diploma o certificado horas</td></tr>
+  </tbody>
+</table>
+
+<h2>Tasas reducidas y exenciones</h2>
+<ul>
+  <li>Familia numerosa general: 50% bonificación.</li>
+  <li>Familia numerosa especial: gratuita.</li>
+  <li>Demandantes empleo &gt;1 mes: gratuita.</li>
+  <li>Discapacidad ≥33%: gratuita.</li>
+</ul>
+
+<h2>Después de inscribirte</h2>
+<ol>
+  <li>Espera la lista provisional de admitidos (1-2 meses).</li>
+  <li>Si hay error en tus datos, presenta subsanación en 10 días.</li>
+  <li>Espera lista definitiva (~2 meses después de la provisional).</li>
+  <li>Recibes en correos.com/empleo la fecha y sede del examen.</li>
+</ol>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+  <li><a href="/oposiciones/correos">Oposición Correos</a></li>
+  <li><a href="/blog/convocatoria-correos-2026-espana-fecha-boe-oficial">Convocatoria Correos 2026</a></li>
+  <li><a href="/blog/meritos-correos-2026-puntos-extra">Méritos Correos completo</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza tu preparación 2026</a></strong> mientras esperas el BOE — gratis en OpoRuta.</p>
+`,
+    faqs: [
+      { question: '¿Cuánto dura el plazo de inscripción Correos?', answer: '20 días naturales desde el día siguiente a publicación BOE. No hay prórroga si cae en festivo el último día.' },
+      { question: '¿En cuántas provincias puedo inscribirme?', answer: 'Hasta 5 provincias por convocatoria. Conviene elegir las limítrofes a tu domicilio para maximizar oportunidades.' },
+      { question: '¿Cuánto cuesta inscribirse?', answer: 'Aproximadamente 11€ por solicitud. Hay bonificaciones para familia numerosa, demandantes de empleo y discapacidad.' },
+      { question: '¿Qué pasa si pago la tasa pero no envío la solicitud?', answer: 'La inscripción queda sin presentar. Hay que confirmar el envío en el portal: si solo pagaste, te quedas fuera.' },
+      { question: '¿Puedo cambiar provincias después de inscribirme?', answer: 'Solo durante el plazo abierto. Una vez cerrado el plazo, los datos quedan fijados hasta lista definitiva (donde puedes subsanar errores formales pero no cambiar opciones).' },
+    ],
+  },
 ]
 
 export const blogPosts: BlogPost[] = [

@@ -23,20 +23,26 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oporuta.es'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Simulacros Oposiciones Online Gratis 2026: 12 oposiciones con IA | OpoRuta',
+  title: 'Simulacros Oposiciones Online Gratis 2026 — 12 oposiciones (timer + BOE)',
   description:
-    'Practica con simulacros de examen para 12 oposiciones: AGE (C2, C1, A2), Correos, Justicia, Hacienda, Penitenciarias, Guardia Civil, Policia Nacional y Ertzaintza. Examenes reales INAP + generados con IA. Timer y penalizacion oficial. Gratis.',
+    'Simulacros de examen oposiciones online gratis: AGE (C2, C1, A2), Correos, Auxilio Judicial, Tramitación, Gestión Procesal, Hacienda, Penitenciarias, Guardia Civil, Policía Nacional y Ertzaintza. Exámenes reales INAP 2018-2024 + simulacros con IA. Timer oficial y penalización -1/3.',
   keywords: [
+    'simulacros oposiciones',
+    'simulacros examen oposiciones',
     'simulacro oposiciones online gratis',
     'simulacro examen oposiciones',
     'examen oposiciones online gratis',
+    'simulacros guardia civil online',
+    'simulacro temas opos',
+    'simulacros de examen',
     'simulacro INAP gratis',
     'test oposiciones simulacro',
-    'practica examen oposiciones',
     'simulacro auxiliar administrativo',
     'simulacro correos 2026',
     'simulacro policia nacional',
     'simulacro guardia civil',
+    'simulacro auxilio judicial 2026',
+    'simulacro gestion procesal 2026',
   ],
   openGraph: {
     title: 'Simulacros Oposiciones Online Gratis 2026 | OpoRuta',

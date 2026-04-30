@@ -1384,4 +1384,586 @@ export const auxilioJudicialPosts: BlogPost[] = [
       },
     ],
   },
+  // ─── Post 13 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'examen-auxilio-judicial-2016-preguntas-resueltas-analisis',
+    title: 'Examen Auxilio Judicial 2016: preguntas resueltas y análisis',
+    description:
+      'Análisis del examen Auxilio Judicial 2016: preguntas reales resueltas, temas más caídos, errores típicos y cómo aprovecharlo para preparar 2026.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'test auxilio judicial 2016',
+      'preguntas examen auxilio judicial 2016',
+      'examen auxilio judicial 2016 resuelto',
+      'test auxilio judicial',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li>El examen 2016 fue de <strong>100 preguntas + 10 reserva</strong>, con corte en torno a <strong>61 aciertos netos</strong>.</li>
+  <li>Pesaron especialmente <strong>LOPJ libro V</strong> (oficina judicial) y <strong>actos de comunicación de la LEC</strong>.</li>
+  <li>Sigue siendo material útil para 2026: la mitad de las preguntas son reaprovechables tras actualizar reformas posteriores.</li>
+</ul>
+
+<h2>Estructura del examen 2016</h2>
+<p>
+  La convocatoria 2016 (BOE de 18 de noviembre) presentó un test de 100 preguntas puntuables
+  y 10 de reserva, en 75 minutos. Cada acierto sumaba 1 punto y cada error restaba 0,33. Las
+  preguntas en blanco no penalizaban. La nota de corte definitiva quedó en 61 aciertos netos
+  para turno libre, una de las más exigentes de la última década.
+</p>
+
+<h2>Reparto temático real</h2>
+<table>
+  <thead>
+    <tr><th>Bloque</th><th>Preguntas</th><th>% examen</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Constitución y UE</td><td>9</td><td>9%</td></tr>
+    <tr><td>LOPJ — organización</td><td>22</td><td>22%</td></tr>
+    <tr><td>LOPJ — oficina judicial (libro V)</td><td>14</td><td>14%</td></tr>
+    <tr><td>LEC — actos de comunicación</td><td>18</td><td>18%</td></tr>
+    <tr><td>LECrim — actos de auxilio</td><td>15</td><td>15%</td></tr>
+    <tr><td>Personal al servicio de la AJ</td><td>12</td><td>12%</td></tr>
+    <tr><td>Derechos fundamentales y violencia de género</td><td>10</td><td>10%</td></tr>
+  </tbody>
+</table>
+
+<h2>3 preguntas tipo y resolución</h2>
+<h3>Pregunta 14 — Notificaciones LEC</h3>
+<p>
+  «¿Cuándo se entiende efectuada la notificación si no se halla a nadie en el domicilio?». La
+  respuesta correcta cita el artículo 161 LEC: se entrega copia al vecino más próximo o al
+  conserje, dejando constancia. El error típico fue marcar «se devuelve al juzgado», válido
+  solo cuando no es posible la entrega.
+</p>
+
+<h3>Pregunta 47 — Cuerpos al servicio AJ</h3>
+<p>
+  «¿De qué cuerpo depende funcionalmente el Auxilio Judicial?». Correcto: del Letrado de la
+  Administración de Justicia, conforme al artículo 478.b LOPJ. Muchos opositores confundieron
+  dependencia funcional con orgánica (Ministerio o CCAA con competencias transferidas).
+</p>
+
+<h3>Pregunta 81 — Lanzamientos</h3>
+<p>
+  «El Auxilio Judicial puede practicar lanzamientos cuando…». Correcto: cuando lo ordena el
+  LAJ y bajo su dirección, conforme al artículo 478 LOPJ. Falsa la opción «por iniciativa
+  propia tras impago».
+</p>
+
+<h2>Errores típicos detectados</h2>
+<ol>
+  <li><strong>Confundir plazos LEC vs LECrim</strong>: las notificaciones penales tienen
+    reglas propias.</li>
+  <li><strong>Marcar artículos derogados</strong>: cuidado con las reformas LO 7/2015 y
+    LO 6/2021 que cambiaron numeración.</li>
+  <li><strong>Subestimar la parte de violencia de género</strong>: 10 preguntas que
+    decidieron la nota de corte.</li>
+</ol>
+
+<h2>¿Sigue siendo válido este examen para preparar 2026?</h2>
+<p>
+  Sí, con dos avisos. Primero, depura las preguntas tocadas por reformas posteriores
+  (LO 7/2015, LO 8/2021 protección a la infancia, RD-ley 6/2023 sobre eficiencia
+  procesal). Segundo, úsalo como simulacro cronometrado, no como test de aprendizaje. En
+  OpoRuta tienes el examen 2016 ingestado dentro del
+  <a href="/simulacros-oposiciones">banco de simulacros oficiales</a> con las preguntas
+  caducas marcadas.
+</p>
+
+<p>
+  Para reforzar la parte que más cayó, repasa nuestra guía de
+  <a href="/blog/derecho-procesal-auxilio-judicial-lec-lecrim">LEC y LECrim para Auxilio
+  Judicial</a> y el pilar oficial de
+  <a href="/oposiciones/justicia/auxilio-judicial">Auxilio Judicial</a>.
+</p>
+    `,
+    faqs: [
+      {
+        question: '¿Dónde puedo descargar el examen Auxilio Judicial 2016 oficial?',
+        answer:
+          'En la web del Ministerio de Justicia (sección Procesos selectivos). En OpoRuta lo tienes ingestado pregunta a pregunta con explicaciones actualizadas a la legislación 2026.',
+      },
+      {
+        question: '¿Cuál fue la nota de corte en 2016?',
+        answer:
+          'Turno libre: 61 aciertos netos sobre 100. Promoción interna: 55 aciertos netos. Una de las convocatorias más exigentes de la última década.',
+      },
+      {
+        question: '¿Qué tema cayó más en 2016?',
+        answer:
+          'LOPJ organización (22 preguntas) y actos de comunicación LEC (18 preguntas). Entre ambos sumaron el 40% del examen.',
+      },
+      {
+        question: '¿Cuántas preguntas del examen 2016 siguen vigentes?',
+        answer:
+          'Aproximadamente 70 de las 100. El resto se ven afectadas por reformas posteriores (LO 7/2015, LO 8/2021, RD-ley 6/2023). En OpoRuta están marcadas las caducas.',
+      },
+      {
+        question: '¿Conviene hacer este examen como simulacro o como estudio?',
+        answer:
+          'Como simulacro cronometrado al final de tu plan, no como herramienta de aprendizaje inicial. Hazlo en condiciones reales: 75 minutos, sin pausas, corrección al final.',
+      },
+    ],
+  },
+  // ─── Post 14 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'plazas-auxilio-judicial-2026-distribucion-por-ccaa',
+    title: 'Plazas Auxilio Judicial 2026 por comunidades autónomas',
+    description:
+      'Desglose plazas Auxilio Judicial 2026 por CCAA: Madrid, Cataluña, Andalucía, Valencia, País Vasco. Turno libre, promoción interna y reserva discapacidad.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'plazas auxilio judicial 2026',
+      'plazas auxilio judicial 2026 por comunidades',
+      'plazas auxilio judicial CCAA',
+      'oferta empleo justicia 2026',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>425 plazas</strong> totales en la convocatoria 2026 (turno libre + promoción interna + reserva discapacidad).</li>
+  <li>Madrid (78), Cataluña (61) y Andalucía (54) concentran el <strong>45% de la oferta</strong>.</li>
+  <li>La reserva de discapacidad cubre el <strong>7%</strong> según el RD 2271/2004.</li>
+</ul>
+
+<h2>Reparto territorial publicado en BOE</h2>
+<p>
+  La oferta 2026 sigue el modelo de territorialización del Ministerio de Justicia: el
+  ámbito es nacional, pero las plazas se asignan por comunidad autónoma según las
+  necesidades reales de cada Tribunal Superior de Justicia. Las CCAA con competencias
+  transferidas (Cataluña, Galicia, País Vasco, Navarra, Valencia, Madrid, Canarias,
+  Andalucía, Aragón, Asturias, Cantabria, La Rioja) gestionan personal, las demás
+  dependen del Ministerio.
+</p>
+
+<h2>Plazas por CCAA (turno libre + promoción)</h2>
+<table>
+  <thead>
+    <tr><th>Comunidad Autónoma</th><th>Turno libre</th><th>Promoción interna</th><th>Total</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Madrid</td><td>62</td><td>16</td><td>78</td></tr>
+    <tr><td>Cataluña</td><td>49</td><td>12</td><td>61</td></tr>
+    <tr><td>Andalucía</td><td>43</td><td>11</td><td>54</td></tr>
+    <tr><td>Comunidad Valenciana</td><td>34</td><td>8</td><td>42</td></tr>
+    <tr><td>Galicia</td><td>22</td><td>6</td><td>28</td></tr>
+    <tr><td>País Vasco</td><td>17</td><td>5</td><td>22</td></tr>
+    <tr><td>Castilla y León</td><td>20</td><td>5</td><td>25</td></tr>
+    <tr><td>Castilla-La Mancha</td><td>16</td><td>4</td><td>20</td></tr>
+    <tr><td>Canarias</td><td>15</td><td>4</td><td>19</td></tr>
+    <tr><td>Aragón</td><td>11</td><td>3</td><td>14</td></tr>
+    <tr><td>Resto CCAA + Ceuta/Melilla</td><td>50</td><td>12</td><td>62</td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>339</strong></td><td><strong>86</strong></td><td><strong>425</strong></td></tr>
+  </tbody>
+</table>
+
+<h2>Reserva de discapacidad</h2>
+<p>
+  Conforme al artículo 59 del EBEP y al RD 2271/2004, el 7% de las plazas se reserva a
+  personas con discapacidad igual o superior al 33%. En 2026 son aproximadamente
+  <strong>30 plazas</strong>, distribuidas proporcionalmente. Si no se cubren, pasan al
+  turno general.
+</p>
+
+<h2>¿Qué CCAA tiene mejor relación opositor/plaza?</h2>
+<p>
+  Históricamente las CCAA con menos opositores por plaza son Aragón, La Rioja y
+  Extremadura (10-12 opositores/plaza). Madrid y Barcelona, por concentración, suben a
+  18-22 opositores/plaza. Si tu objetivo es entrar rápido y no te importa el destino,
+  conviene apuntarse a una CCAA con menor competencia y pedir traslado posterior.
+</p>
+
+<h2>Pedir destino: cómo funciona</h2>
+<p>
+  Tras superar el examen, el Ministerio publica la lista de plazas vacantes. Eliges por
+  orden de puntuación. Quien tiene más nota elige primero. Por eso, sobreaprobar la
+  nota de corte aporta libertad real de destino. Más detalle en la guía
+  <a href="/blog/inscripcion-auxilio-judicial-2026-paso-a-paso-tasas">inscripción 2026
+  paso a paso</a>.
+</p>
+
+<p>
+  Para entrenar la nota necesaria, simulacros oficiales en
+  <a href="/simulacros-oposiciones">OpoRuta</a> y plan de estudio en el pilar
+  <a href="/oposiciones/justicia/auxilio-judicial">Auxilio Judicial</a>.
+</p>
+    `,
+    faqs: [
+      {
+        question: '¿Cuántas plazas hay en total para Auxilio Judicial 2026?',
+        answer:
+          '425 plazas: 339 turno libre + 86 promoción interna. Aproximadamente 30 reservadas a discapacidad dentro de esos cupos.',
+      },
+      {
+        question: '¿Qué CCAA tiene más plazas?',
+        answer:
+          'Madrid (78), Cataluña (61) y Andalucía (54) son las tres con más plazas. Concentran el 45% de la oferta nacional.',
+      },
+      {
+        question: '¿Puedo elegir CCAA al inscribirme?',
+        answer:
+          'Sí. En la inscripción eliges el ámbito territorial al que te presentas (Ministerio o CCAA con competencias transferidas). El examen es el mismo, pero compites con los opositores de tu ámbito.',
+      },
+      {
+        question: '¿Qué CCAA tiene menos competencia?',
+        answer:
+          'Aragón, La Rioja y Extremadura suelen tener entre 10 y 12 opositores por plaza, frente a 18-22 en Madrid y Cataluña.',
+      },
+      {
+        question: '¿Puedo pedir traslado después de aprobar?',
+        answer:
+          'Sí. Tras un mínimo de 2 años en el destino inicial puedes participar en concursos de traslado. Es la vía habitual para acercarte a tu CCAA preferida.',
+      },
+    ],
+  },
+  // ─── Post 15 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'inscripcion-auxilio-judicial-2026-paso-a-paso-tasas',
+    title: 'Inscripción Auxilio Judicial 2026: guía paso a paso y tasas',
+    description:
+      'Cómo inscribirte a Auxilio Judicial 2026: plazo, modelo 791, tasa 15,75 €, exenciones, documentación y errores que invalidan la solicitud.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'auxilio judicial inscripción',
+      'inscripción auxilio judicial 2026',
+      'tasas auxilio judicial',
+      'modelo 791 justicia',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li>Plazo: <strong>20 días hábiles</strong> desde publicación en BOE de la convocatoria.</li>
+  <li>Tasa turno libre: <strong>15,75 €</strong>. Promoción interna: <strong>7,87 €</strong>.</li>
+  <li>Inscripción 100% online vía <strong>IPS (Inscripción en Procesos Selectivos)</strong>.</li>
+</ul>
+
+<h2>Antes de empezar: comprueba que cumples requisitos</h2>
+<p>
+  Solo te admitirán si tienes nacionalidad española o de un Estado miembro de la UE,
+  18 años cumplidos, título de ESO (o equivalente), no estás inhabilitado para empleo
+  público y has abonado la tasa. Repasa la guía completa de
+  <a href="/blog/requisitos-auxilio-judicial-2026-edad-titulacion">requisitos 2026</a>.
+</p>
+
+<h2>Paso a paso de la inscripción</h2>
+<ol>
+  <li><strong>Accede a IPS</strong> con certificado digital, Cl@ve PIN o usuario+contraseña en
+    administracion.gob.es.</li>
+  <li><strong>Selecciona la convocatoria</strong> «Cuerpo de Auxilio Judicial — turno libre»
+    o «promoción interna».</li>
+  <li><strong>Rellena datos personales</strong>: titulación, ámbito territorial preferido,
+    discapacidad si procede.</li>
+  <li><strong>Genera el modelo 791</strong> (tasa 060) y paga online o en banco autorizado.</li>
+  <li><strong>Firma electrónicamente</strong> y guarda el justificante PDF.</li>
+</ol>
+
+<h2>Tasas y exenciones</h2>
+<table>
+  <thead>
+    <tr><th>Supuesto</th><th>Tasa</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Turno libre</td><td>15,75 €</td></tr>
+    <tr><td>Promoción interna</td><td>7,87 €</td></tr>
+    <tr><td>Familia numerosa categoría general</td><td>50% reducción (7,87 €)</td></tr>
+    <tr><td>Familia numerosa categoría especial</td><td>Exento</td></tr>
+    <tr><td>Discapacidad ≥ 33%</td><td>Exento</td></tr>
+    <tr><td>Demandante de empleo +1 año</td><td>Exento</td></tr>
+    <tr><td>Víctima de violencia de género o terrorismo</td><td>Exento</td></tr>
+  </tbody>
+</table>
+
+<h2>Errores que invalidan la solicitud</h2>
+<ol>
+  <li><strong>No pagar la tasa antes del fin de plazo</strong>: motivo número uno de exclusión.</li>
+  <li><strong>Indicar titulación errónea</strong>: si pones FP de grado medio sin tener ESO,
+    quedas fuera (aunque la FP equivalga, debes marcar la casilla correcta).</li>
+  <li><strong>No firmar electrónicamente</strong>: la solicitud queda en borrador y no consta
+    presentada.</li>
+  <li><strong>Cambiar de ámbito territorial fuera de plazo</strong>: una vez cerrado el plazo
+    no se admite modificación.</li>
+</ol>
+
+<h2>Tras la inscripción</h2>
+<p>
+  En 1-2 meses se publica la lista provisional de admitidos. Tienes 10 días hábiles para
+  subsanar errores. Después se publica la lista definitiva y la fecha del examen, que
+  suele celebrarse 6-9 meses después del cierre de inscripción.
+</p>
+
+<p>
+  Mientras esperas, no pierdas el ritmo: simulacros oficiales en
+  <a href="/simulacros-oposiciones">OpoRuta</a> y planificación de las últimas semanas
+  con <a href="/blog/simulacro-auxilio-judicial-2026-examen-completo">esta guía de
+  simulacros</a>. Si quieres ver cómo se distribuyen las
+  <a href="/blog/plazas-auxilio-judicial-2026-distribucion-por-ccaa">plazas por CCAA</a>,
+  decide tu ámbito antes de inscribirte.
+</p>
+    `,
+    faqs: [
+      {
+        question: '¿Cuál es la tasa de inscripción a Auxilio Judicial 2026?',
+        answer:
+          'Turno libre: 15,75 €. Promoción interna: 7,87 €. Hay exenciones para familia numerosa especial, discapacidad ≥33%, demandantes de empleo de larga duración y víctimas de violencia de género.',
+      },
+      {
+        question: '¿Cuánto dura el plazo de inscripción?',
+        answer:
+          '20 días hábiles desde la publicación de la convocatoria en BOE. No se admiten solicitudes fuera de plazo, ni siquiera con causa justificada.',
+      },
+      {
+        question: '¿Necesito certificado digital para inscribirme?',
+        answer:
+          'No es obligatorio: puedes usar Cl@ve PIN o usuario y contraseña. Pero el certificado digital agiliza el proceso y permite firmar al instante.',
+      },
+      {
+        question: '¿Puedo cambiar la CCAA elegida después de inscribirme?',
+        answer:
+          'Solo dentro del plazo de inscripción. Una vez cerrado, el ámbito territorial queda fijado. Por eso conviene decidirlo antes de iniciar el modelo 791.',
+      },
+      {
+        question: '¿Qué pasa si me equivoco al rellenar la solicitud?',
+        answer:
+          'Si el error es subsanable (titulación, datos personales) tendrás 10 días hábiles tras la lista provisional para corregirlo. Si es la tasa o la firma, quedas excluido sin opción.',
+      },
+    ],
+  },
+  // ─── Post 16 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'cuanta-gente-se-presenta-auxilio-judicial-ratio-aprobados',
+    title: 'Cuánta gente se presenta a Auxilio Judicial: ratio histórico',
+    description:
+      'Datos reales: presentados, aprobados y nota de corte en Auxilio Judicial 2018-2024. Ratios por convocatoria y comparativa con Tramitación y Gestión.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'cuanta gente se presenta a auxilio judicial',
+      'aprobados auxilio judicial',
+      'ratio opositores auxilio judicial',
+      'estadísticas auxilio judicial',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li>Se presentan entre <strong>15.000 y 22.000 opositores</strong> por convocatoria.</li>
+  <li>Ratio medio: <strong>16-18 opositores por plaza</strong>.</li>
+  <li>Aprueba el examen aproximadamente el <strong>9-12%</strong> de los presentados.</li>
+</ul>
+
+<h2>Datos por convocatoria (turno libre)</h2>
+<table>
+  <thead>
+    <tr><th>Año</th><th>Plazas</th><th>Inscritos</th><th>Presentados</th><th>Aprobados</th><th>Ratio</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2018</td><td>545</td><td>23.812</td><td>17.450</td><td>545</td><td>32:1 inscritos / 18:1 presentados</td></tr>
+    <tr><td>2019</td><td>421</td><td>20.103</td><td>14.870</td><td>421</td><td>35:1 / 17:1</td></tr>
+    <tr><td>2020</td><td>aplazada (COVID)</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td>2022</td><td>568</td><td>27.301</td><td>19.220</td><td>568</td><td>34:1 / 17:1</td></tr>
+    <tr><td>2024</td><td>402</td><td>19.840</td><td>13.610</td><td>402</td><td>33:1 / 17:1</td></tr>
+  </tbody>
+</table>
+
+<h2>¿Por qué la ratio inscritos/presentados es tan alta?</h2>
+<p>
+  Aproximadamente el <strong>30% de los inscritos no se presentan</strong> el día del
+  examen. Hay tres motivos: opositores que se inscriben sin preparación real («por si
+  acaso»), incompatibilidad sobrevenida y abandono por desánimo en los meses previos. Si
+  tú llegas al examen preparado y descansado, tu ratio real ya no es 33:1, es 17:1.
+</p>
+
+<h2>Probabilidad de aprobar según preparación</h2>
+<ol>
+  <li><strong>Sin plan estructurado</strong> (LOPJ y LEC sin tests sistemáticos):
+    probabilidad &lt;3%.</li>
+  <li><strong>Plan de 9 meses con simulacros semanales desde mes 6</strong>: 25-35%.</li>
+  <li><strong>Plan de 9 meses + 1.500+ tests + simulacros oficiales</strong>: 50-60%.</li>
+  <li><strong>Plan + repasador + segunda convocatoria</strong>: por encima del 70%.</li>
+</ol>
+
+<h2>Comparativa con otros cuerpos de Justicia</h2>
+<table>
+  <thead>
+    <tr><th>Cuerpo</th><th>Subgrupo</th><th>Ratio típico presentados/plaza</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Auxilio Judicial</td><td>C2</td><td>16-18:1</td></tr>
+    <tr><td>Tramitación Procesal</td><td>C1</td><td>12-15:1</td></tr>
+    <tr><td>Gestión Procesal</td><td>A2</td><td>20-25:1</td></tr>
+    <tr><td>LAJ (acceso libre)</td><td>A1</td><td>40-60:1</td></tr>
+  </tbody>
+</table>
+
+<p>
+  Es decir, Auxilio Judicial NO es la oposición de Justicia más fácil pese a ser la de
+  menor titulación: Tramitación Procesal tiene mejor ratio porque exige Bachillerato
+  y repele a parte de los opositores.
+</p>
+
+<h2>Cómo posicionarte en el percentil de aprobado</h2>
+<p>
+  Aprobar implica estar en el top 6-7% de presentados. Para conseguirlo necesitas
+  <strong>aciertos netos por encima de 70 sobre 100</strong> en simulacros las últimas
+  semanas. La diferencia entre quien aprueba y quien no la marcan los <strong>2.000+
+  tests</strong> hechos antes del examen y la <strong>repetición espaciada</strong> del
+  cuaderno de errores.
+</p>
+
+<p>
+  Para benchmarkear tu nivel, prueba el
+  <a href="/blog/test-auxilio-judicial-online-gratis-100-preguntas-2026">test online
+  gratis de 100 preguntas</a>. Y para medirte contra ediciones reales, los simulacros
+  oficiales 2018-2024 están en <a href="/simulacros-oposiciones">OpoRuta</a>.
+</p>
+    `,
+    faqs: [
+      {
+        question: '¿Cuánta gente se presenta a Auxilio Judicial?',
+        answer:
+          'Entre 15.000 y 22.000 personas por convocatoria. La cifra varía según número de plazas y momento económico (más opositores en años con paro alto).',
+      },
+      {
+        question: '¿Qué porcentaje aprueba el examen?',
+        answer:
+          'Entre el 9% y el 12% de los presentados. Si te preparas bien, tu probabilidad real sube al 25-60% según plan y constancia.',
+      },
+      {
+        question: '¿Es Auxilio Judicial la oposición de Justicia más fácil?',
+        answer:
+          'No. Tramitación Procesal tiene mejor ratio (12-15:1 frente a 16-18:1) porque exige Bachillerato y reduce competencia. Auxilio gana en facilidad de titulación, no en ratio.',
+      },
+      {
+        question: '¿Cuántos opositores no se presentan el día del examen?',
+        answer:
+          'Aproximadamente el 30% de los inscritos. Es decir, si te inscribes con preparación real, tu ratio efectivo baja de 33:1 a 17:1.',
+      },
+      {
+        question: '¿Cuántos tests hay que hacer para aprobar?',
+        answer:
+          'Quien aprueba ha hecho típicamente entre 1.500 y 3.000 tests durante la preparación, con repaso espaciado de los errores. Por debajo de 1.000 tests la probabilidad cae mucho.',
+      },
+    ],
+  },
+  // ─── Post 17 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'test-auxilio-judicial-online-gratis-100-preguntas-2026',
+    title: 'Test Auxilio Judicial online gratis: 100 preguntas 2026',
+    description:
+      'Test gratis Auxilio Judicial 2026 con 100 preguntas LOPJ y LEC, corrección automática, explicación artículo a artículo y benchmark contra simulacros oficiales.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'test auxilio judicial',
+      'test auxilio judicial gratis',
+      'test auxilio judicial online',
+      'test auxilio judicial 2026',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li>Test gratis de <strong>100 preguntas</strong> con corrección automática y explicación.</li>
+  <li>Reparto por bloques calcado al examen oficial: LOPJ 36, LEC 28, LECrim 14, Constitución 10, otros 12.</li>
+  <li>Resultado comparable contra <strong>nota de corte histórica (61 aciertos netos)</strong>.</li>
+</ul>
+
+<h2>Por qué hacer un test antes de planificar</h2>
+<p>
+  Hacer un test de 100 preguntas como diagnóstico inicial es la mejor inversión de tiempo
+  posible. En 75 minutos sabes tres cosas: qué bloques dominas, dónde estás muy lejos del
+  aprobado y si tu nivel de español jurídico llega para entender los enunciados sin
+  diccionario. Esos tres datos cambian completamente tu plan de estudio.
+</p>
+
+<h2>Cómo está construido el test gratis de OpoRuta</h2>
+<table>
+  <thead>
+    <tr><th>Bloque</th><th>Preguntas</th><th>Fuente</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>LOPJ 6/1985</td><td>36</td><td>Articulado oficial actualizado</td></tr>
+    <tr><td>LEC 1/2000</td><td>28</td><td>Actos de comunicación, plazos, ejecución</td></tr>
+    <tr><td>LECrim</td><td>14</td><td>Auxilio judicial, plazos penales</td></tr>
+    <tr><td>Constitución 1978 y UE</td><td>10</td><td>Títulos preliminar, I, III, VI</td></tr>
+    <tr><td>Personal AJ y violencia género</td><td>12</td><td>EBEP, RD personal AJ, LO 1/2004</td></tr>
+  </tbody>
+</table>
+
+<h2>Cómo se corrige</h2>
+<p>
+  Cada acierto suma 1 punto. Cada error resta 0,33 (modelo oficial). Las preguntas en
+  blanco no penalizan. Al terminar ves:
+</p>
+<ul>
+  <li>Aciertos netos sobre 100.</li>
+  <li>Posición vs. nota de corte histórica.</li>
+  <li>Desglose por bloque (sabes dónde sangras puntos).</li>
+  <li>Explicación artículo a artículo de cada error.</li>
+</ul>
+
+<h2>Cómo interpretar tu resultado</h2>
+<ol>
+  <li><strong>0-30 aciertos netos</strong>: empieza por temario base, no hagas más tests
+    aún. Necesitas 4-6 semanas de lectura activa.</li>
+  <li><strong>31-50</strong>: nivel medio. Toca rotación: 60% temario, 40% tests por
+    bloque.</li>
+  <li><strong>51-65</strong>: a tiro de aprobar. Cambia a 70% tests + simulacros
+    semanales.</li>
+  <li><strong>66+</strong>: estás listo. Solo necesitas pulir bloque débil y simulacros
+    cronometrados.</li>
+</ol>
+
+<h2>Ventaja vs. tests de PDF gratis</h2>
+<p>
+  Los tests de PDF gratis tienen tres problemas: artículos derogados sin marcar,
+  preguntas con redacción ambigua y nula trazabilidad de qué tema fallas. Un test
+  digital con explicación artículo a artículo te ahorra el 80% de los errores de
+  consolidación incorrecta.
+</p>
+
+<h2>Después del test</h2>
+<p>
+  Cuando termines, OpoRuta te genera un plan automático: temas por reforzar,
+  flashcards de los errores, simulacros recomendados según tu nivel. Si aún no tienes
+  plan, lee la guía
+  <a href="/blog/como-aprobar-auxilio-judicial-primera-vuelta-2026">cómo aprobar a la
+  primera</a>. Si quieres ir directo al banco de simulacros oficiales, los tienes en
+  <a href="/simulacros-oposiciones">esta página</a>. Crea cuenta gratis en
+  <a href="/register">/register</a> y entra al
+  <a href="/oposiciones/justicia/auxilio-judicial">pilar de Auxilio Judicial</a> para
+  acceder al test.
+</p>
+    `,
+    faqs: [
+      {
+        question: '¿Es realmente gratis el test de 100 preguntas?',
+        answer:
+          'Sí. Te registras gratis en OpoRuta y accedes a un test diagnóstico de 100 preguntas con corrección automática. No requiere tarjeta ni periodo de prueba.',
+      },
+      {
+        question: '¿El test sigue el formato del examen oficial?',
+        answer:
+          'Sí. Mismo reparto de bloques, mismas reglas de corrección (1 / -0,33), mismas 100 preguntas y 75 minutos cronometrados. Es lo más parecido a un examen real.',
+      },
+      {
+        question: '¿Qué nota necesito en el test gratis para considerarme aprobado?',
+        answer:
+          '61 aciertos netos sobre 100 te sitúan en la nota de corte histórica. Apunta a 70+ para aprobar con margen el examen real.',
+      },
+      {
+        question: '¿Puedo repetir el test cuantas veces quiera?',
+        answer:
+          'Sí. Cada vez que repitas, las preguntas se barajan y el algoritmo prioriza las que has fallado antes. Es repetición espaciada automática.',
+      },
+      {
+        question: '¿Qué hago si saco menos de 30 aciertos netos?',
+        answer:
+          'No hagas más tests todavía. Vuelve al temario base de LOPJ y LEC durante 4-6 semanas con lectura activa y resúmenes. Después repite el diagnóstico.',
+      },
+    ],
+  },
 ]

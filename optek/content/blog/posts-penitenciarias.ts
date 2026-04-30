@@ -1312,4 +1312,507 @@ export const penitenciariasPosts: BlogPost[] = [
       },
     ],
   },
+  // ─── Post 13 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'examen-penitenciarias-2024-analisis-preguntas-temas',
+    title: 'Examen Penitenciarías 2024: análisis preguntas, temas y nota corte',
+    description:
+      'Análisis del examen Ayudante IIPP 2024: distribución de preguntas por tema, dificultad real, nota de corte, errores frecuentes y qué cambió respecto a 2022. Datos para planificar 2026.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'examenes penitenciarias',
+      'examen penitenciarias 2024',
+      'preguntas examen IIPP 2024',
+      'nota corte ayudante IIPP 2024',
+      'analisis examen penitenciarias',
+    ],
+    content: `
+<h2>Resumen del examen 2024</h2>
+<p>
+  El examen del Cuerpo de Ayudantes de Instituciones Penitenciarias 2024 mantuvo la estructura
+  clásica: 100 preguntas tipo test (más 10 de reserva) + supuesto práctico. Tres respuestas por
+  pregunta, penalización de 1/3 por fallo y 120 minutos para resolver.
+</p>
+<p>
+  Lo relevante para quien prepara 2026 no es el aprobado o suspenso de los compañeros: es saber
+  <strong>qué temas pesaron más, qué tipo de pregunta cayó y dónde fallaron los opositores</strong>.
+</p>
+
+<h2>Distribución real de preguntas por bloque</h2>
+<table>
+  <thead>
+    <tr><th>Bloque</th><th>Temas</th><th>Preguntas 2024</th><th>%</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Derecho Penitenciario</td><td>1-9</td><td>38</td><td>38%</td></tr>
+    <tr><td>Derecho Penal y Procesal</td><td>10-13</td><td>15</td><td>15%</td></tr>
+    <tr><td>Tratamiento e intervención</td><td>14-19</td><td>22</td><td>22%</td></tr>
+    <tr><td>Organización y régimen interior</td><td>20-23</td><td>15</td><td>15%</td></tr>
+    <tr><td>Constitucional y AGE</td><td>24-25</td><td>10</td><td>10%</td></tr>
+  </tbody>
+</table>
+
+<h2>Temas con más preguntas (top 5)</h2>
+<ul>
+  <li><strong>Tema 4 (Régimen penitenciario):</strong> 7 preguntas. Cayó la clasificación interior, separación interior y traslados.</li>
+  <li><strong>Tema 6 (Permisos y libertad condicional):</strong> 6 preguntas. Dos sobre artículo 90 CP (libertad condicional).</li>
+  <li><strong>Tema 14 (Tratamiento penitenciario):</strong> 5 preguntas. Programas individualizados y JT.</li>
+  <li><strong>Tema 1 (LOGP):</strong> 5 preguntas literales. La LOGP siempre rinde.</li>
+  <li><strong>Tema 22 (Seguridad interior):</strong> 4 preguntas. Medios coercitivos y registros.</li>
+</ul>
+
+<h3>Qué cambió respecto a 2022</h3>
+<p>
+  El tribunal subió el peso del bloque de tratamiento (de 17 a 22 preguntas) y bajó el de
+  organización. También aumentaron las preguntas con enunciados largos tipo "según el artículo X
+  del Reglamento Penitenciario, ¿cuál de las siguientes afirmaciones es cierta?". Si entrenas con
+  preguntas literales cortas vas a llegar mal preparado para 2026.
+</p>
+
+<h2>Nota de corte 2024 y reflexiones</h2>
+<p>
+  La nota de corte se situó en torno a <strong>62/100 puntos</strong> en el primer ejercicio,
+  ligeramente más alta que en 2022. Con penalización 1/3, eso equivale a unas 70 aciertos netos
+  sobre 100 (asumiendo 8 fallos y el resto correctas).
+</p>
+
+<h2>Errores frecuentes detectados</h2>
+<ol>
+  <li>Confundir <strong>permisos ordinarios con extraordinarios</strong> (art. 154 vs 155 RP).</li>
+  <li>No distinguir <strong>Junta de Tratamiento</strong> de <strong>Equipo Técnico</strong>.</li>
+  <li>Datos numéricos: días de aislamiento, plazos de revisión de grado, % redenciones.</li>
+  <li>Aplicar mal la <strong>libertad condicional adelantada</strong> (90.2 CP).</li>
+</ol>
+
+<h2>Qué cambiar en tu preparación para 2026</h2>
+<ul>
+  <li>Refuerza tratamiento (bloque al alza). No te quedes solo en LOGP/RP.</li>
+  <li>Entrena <strong>preguntas tipo supuesto</strong> con enunciado largo, no solo memorización.</li>
+  <li>Haz simulacros con penalización 1/3 desde el día 1.</li>
+  <li>Calibra: si tu nota en simulacros &lt;65 a 3 meses del examen, replantea estrategia.</li>
+</ul>
+
+<h2>Enlaces útiles</h2>
+<ul>
+  <li><a href="/oposiciones/penitenciarias">Guía completa Penitenciarías</a></li>
+  <li><a href="/blog/test-penitenciarias-gratis-online-2026-100-preguntas">Test Penitenciarías gratis 2026</a></li>
+  <li><a href="/simulacros-oposiciones">Simulacros oficiales</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Entrena con preguntas reales del examen 2024</a></strong> en OpoRuta.</p>
+`,
+    faqs: [
+      { question: '¿Cuántas preguntas tuvo el examen Penitenciarías 2024?', answer: '100 preguntas puntuables más 10 de reserva, tres opciones de respuesta y penalización de 1/3 por fallo.' },
+      { question: '¿Qué nota de corte hubo en 2024?', answer: 'Aproximadamente 62/100 puntos en el primer ejercicio, una de las más altas del histórico reciente.' },
+      { question: '¿Subió la dificultad respecto a 2022?', answer: 'Sí. Aumentaron preguntas con enunciado largo tipo supuesto y se reforzó el bloque de tratamiento penitenciario.' },
+      { question: '¿Qué temas pesaron más?', answer: 'Régimen penitenciario (tema 4), permisos y libertad condicional (tema 6) y tratamiento (tema 14) concentraron casi un tercio del examen.' },
+      { question: '¿Sirve estudiar exámenes anteriores?', answer: 'Sí, pero solo si analizas tendencias (qué bloques suben y cuáles bajan). Memorizar respuestas pasadas no sirve, repetirlas literales sí.' },
+    ],
+  },
+  // ─── Post 14 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'cuantos-temas-funcionario-prisiones-bloques-distribucion',
+    title: 'Cuántos temas son para funcionario de prisiones: 25 temas explicados',
+    description:
+      'El temario oficial Ayudante IIPP tiene 25 temas distribuidos en 5 bloques. Cuántos son, qué peso tiene cada uno y cómo distribuirlos en tu plan de estudio.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'cuantos temas son funcionario de prisiones',
+      'temario ayudante IIPP',
+      'temas penitenciarias 2026',
+      'distribucion temario prisiones',
+    ],
+    content: `
+<h2>Respuesta corta</h2>
+<p>
+  El temario oficial del Cuerpo de Ayudantes de Instituciones Penitenciarias tiene
+  <strong>25 temas</strong>, distribuidos en 5 bloques temáticos. Es uno de los temarios más
+  cortos del subgrupo C1 de la AGE (a modo de comparación, Auxiliar Administrativo tiene 27
+  temas y Agente Hacienda 35).
+</p>
+
+<h2>Distribución oficial por bloques</h2>
+<table>
+  <thead>
+    <tr><th>Bloque</th><th>Materia</th><th>Temas</th><th>Carga estimada</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>I</td><td>Derecho Penitenciario</td><td>1-9</td><td>~35% del estudio</td></tr>
+    <tr><td>II</td><td>Derecho Penal y Procesal</td><td>10-13</td><td>~15%</td></tr>
+    <tr><td>III</td><td>Tratamiento e intervención</td><td>14-19</td><td>~20%</td></tr>
+    <tr><td>IV</td><td>Organización y régimen interior</td><td>20-23</td><td>~15%</td></tr>
+    <tr><td>V</td><td>Constitucional y AGE</td><td>24-25</td><td>~15%</td></tr>
+  </tbody>
+</table>
+
+<h3>Bloque I — Derecho Penitenciario (temas 1-9)</h3>
+<p>
+  Es el bloque <strong>más rentable</strong>: contiene las leyes nucleares (LOGP 1/1979, RP
+  190/1996) y representa cerca del 35-40% del examen. Si dominas este bloque tienes media oposición
+  hecha. Conviene estudiarlo a fondo en los primeros 3 meses.
+</p>
+
+<h3>Bloque II — Penal y Procesal (temas 10-13)</h3>
+<p>
+  Cubre Código Penal, LECrim y régimen disciplinario aplicado a internos. Bloque pequeño pero
+  denso. Cuidado con los plazos procesales — son el punto más eliminatorio.
+</p>
+
+<h3>Bloque III — Tratamiento (temas 14-19)</h3>
+<p>
+  Programas individualizados, intervención psicosocial, módulos de respeto, UTE. En 2024 subió de
+  17 a 22 preguntas. Apuesta firme para 2026.
+</p>
+
+<h3>Bloque IV — Organización (temas 20-23)</h3>
+<p>
+  Estructura interna del centro, departamentos, seguridad interior. Bloque memorístico.
+</p>
+
+<h3>Bloque V — Constitucional + AGE (temas 24-25)</h3>
+<p>
+  Solo 2 temas pero entran sí o sí. Constitución (derechos fundamentales) + organización del
+  Estado.
+</p>
+
+<h2>Cómo distribuir el estudio en 9 meses</h2>
+<ul>
+  <li><strong>Meses 1-3:</strong> Bloque I completo + bloque V (constitucional).</li>
+  <li><strong>Meses 4-5:</strong> Bloque III + bloque IV.</li>
+  <li><strong>Mes 6:</strong> Bloque II.</li>
+  <li><strong>Meses 7-8:</strong> Repaso integral + simulacros semanales.</li>
+  <li><strong>Mes 9:</strong> Solo simulacros con penalización + repaso de temas débiles.</li>
+</ul>
+
+<h2>Comparativa de temarios C1</h2>
+<table>
+  <thead><tr><th>Cuerpo</th><th>Nº temas</th><th>Páginas aprox.</th></tr></thead>
+  <tbody>
+    <tr><td>Ayudante IIPP</td><td>25</td><td>~600</td></tr>
+    <tr><td>Auxiliar Administrativo</td><td>27</td><td>~500</td></tr>
+    <tr><td>Agente Hacienda</td><td>35</td><td>~900</td></tr>
+    <tr><td>Tramitación Procesal</td><td>26</td><td>~700</td></tr>
+  </tbody>
+</table>
+
+<h2>Errores comunes</h2>
+<ol>
+  <li>Atacar el temario en orden (1→25) sin priorizar bloques rentables.</li>
+  <li>Subestimar los 2 temas de constitucional (son fáciles pero entran).</li>
+  <li>Memorizar tratamiento sin entender los conceptos psicosociales.</li>
+</ol>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+  <li><a href="/oposiciones/penitenciarias">Oposición Penitenciarías completa</a></li>
+  <li><a href="/blog/examen-penitenciarias-2024-analisis-preguntas-temas">Análisis examen 2024</a></li>
+  <li><a href="/register">Empieza gratis con OpoRuta</a></li>
+</ul>
+`,
+    faqs: [
+      { question: '¿Cuántos temas exactos tiene el temario de Ayudante IIPP?', answer: '25 temas en total, distribuidos en 5 bloques. Es el oficial publicado en la última convocatoria del BOE.' },
+      { question: '¿Qué bloque pesa más en el examen?', answer: 'El bloque I (Derecho Penitenciario, temas 1-9) representa cerca del 35-40% de las preguntas. Es el más rentable.' },
+      { question: '¿En cuánto tiempo se prepara el temario?', answer: 'Con dedicación a tiempo completo, 6-9 meses. Si compaginas con trabajo, 12-15 meses es lo realista.' },
+      { question: '¿Hay que estudiar todos los temas?', answer: 'Sí. Aunque algunos pesen más, todos los temas pueden caer. No hay temario reducido oficial.' },
+      { question: '¿El temario cambia cada año?', answer: 'Pocas veces. La última actualización significativa fue en 2018. Ajustes legales menores se incorporan en el BOE de cada convocatoria.' },
+    ],
+  },
+  // ─── Post 15 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'test-penitenciarias-gratis-online-2026-100-preguntas',
+    title: 'Test Penitenciarías gratis online 2026: 100 preguntas reales',
+    description:
+      'Tests Penitenciarías gratis online 2026 con preguntas reales del examen oficial. Practica los 25 temas con corrección automática, explicación de fallos y nota en tiempo real.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'test penitenciarias gratis',
+      'test ayudante IIPP online',
+      'test penitenciarias 2026',
+      'preguntas examen prisiones',
+      'simulacro penitenciarias gratis',
+    ],
+    content: `
+<h2>Tests Penitenciarías gratis: qué incluye</h2>
+<p>
+  En OpoRuta tienes acceso gratis a tests del Cuerpo de Ayudantes de Instituciones Penitenciarias
+  con preguntas extraídas de los <strong>exámenes oficiales 2018, 2020, 2022 y 2024</strong>. Sin
+  registro de pago, sin demos limitadas: tests reales con corrección automática.
+</p>
+
+<h2>Cómo funciona</h2>
+<ol>
+  <li>Te registras gratis en menos de 30 segundos.</li>
+  <li>Eliges tema (1-25) o test mixto.</li>
+  <li>Configuras: número de preguntas (10/20/50), penalización 1/3 ON/OFF, dificultad.</li>
+  <li>Resuelves el test online con cronómetro.</li>
+  <li>Recibes nota inmediata, explicación por pregunta y desglose por tema.</li>
+</ol>
+
+<h2>Tipos de test disponibles gratis</h2>
+<table>
+  <thead><tr><th>Tipo</th><th>Preguntas</th><th>Tiempo</th><th>Para qué sirve</th></tr></thead>
+  <tbody>
+    <tr><td>Test rápido por tema</td><td>10</td><td>10 min</td><td>Repasar un tema concreto</td></tr>
+    <tr><td>Test medio</td><td>20</td><td>20 min</td><td>Diagnóstico semanal</td></tr>
+    <tr><td>Test largo</td><td>50</td><td>45 min</td><td>Entreno previo a simulacro</td></tr>
+    <tr><td>Simulacro completo</td><td>100</td><td>120 min</td><td>Simular examen real</td></tr>
+  </tbody>
+</table>
+
+<h2>Por qué entrenar con preguntas reales</h2>
+<ul>
+  <li><strong>El estilo del tribunal se repite</strong>: enunciados, trampas y temas favoritos
+  vuelven a caer.</li>
+  <li>Memorizar artículos sin practicar lleva al desastre — el examen no pregunta literal puro.</li>
+  <li>Trabajar con penalización 1/3 desde el día 1 entrena tu criterio para responder o dejar en
+  blanco.</li>
+</ul>
+
+<h3>Diferencia entre test y simulacro</h3>
+<p>
+  Un <strong>test</strong> es práctica corta de un tema o bloque. Un <strong>simulacro</strong>
+  reproduce el examen completo (100 preguntas, 120 min, penalización). Ambos son necesarios. Si
+  solo haces tests cortos llegarás sin resistencia mental al día D.
+</p>
+
+<h2>Plan recomendado de tests</h2>
+<ul>
+  <li><strong>Lunes a viernes:</strong> 1 test corto del tema que estés viendo.</li>
+  <li><strong>Sábado:</strong> 1 test largo (50 preguntas) con temas mezclados.</li>
+  <li><strong>Cada 2 semanas:</strong> 1 simulacro completo de 100 preguntas.</li>
+</ul>
+
+<h2>Funciones gratis vs Premium</h2>
+<table>
+  <thead><tr><th>Función</th><th>Gratis</th><th>Premium 49,99€</th></tr></thead>
+  <tbody>
+    <tr><td>Tests por tema</td><td>5 temas</td><td>Los 25 temas</td></tr>
+    <tr><td>Simulacros oficiales</td><td>3 (20 preguntas)</td><td>Ilimitados completos</td></tr>
+    <tr><td>Análisis detallado IA</td><td>3 análisis</td><td>Ilimitados</td></tr>
+    <tr><td>Flashcards spaced repetition</td><td>—</td><td>Sí</td></tr>
+    <tr><td>Radar del Tribunal</td><td>—</td><td>Sí</td></tr>
+  </tbody>
+</table>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+  <li><a href="/oposiciones/penitenciarias">Guía oposición Penitenciarías</a></li>
+  <li><a href="/simulacros-oposiciones">Simulacros oficiales completos</a></li>
+  <li><a href="/blog/cuantos-temas-funcionario-prisiones-bloques-distribucion">Cuántos temas tiene el temario</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza tu primer test Penitenciarías gratis</a></strong> — sin tarjeta, sin compromiso.</p>
+`,
+    faqs: [
+      { question: '¿Los tests son realmente gratis?', answer: 'Sí. Tienes acceso a 5 temas, 3 simulacros y 3 análisis detallados con IA sin pagar nada. No pedimos tarjeta para registrarte.' },
+      { question: '¿Las preguntas son del examen oficial?', answer: 'Sí. Trabajamos con preguntas extraídas literalmente de los exámenes BOE 2018, 2020, 2022 y 2024.' },
+      { question: '¿Cuántas preguntas tiene cada test?', answer: 'Configurable: 10, 20, 50 o 100. El simulacro completo replica el examen real con 100 preguntas y 120 minutos.' },
+      { question: '¿Puedo repetir tests?', answer: 'Sí, ilimitadas veces. Cada test genera preguntas nuevas o las mismas según prefieras (modo refuerzo).' },
+      { question: '¿Qué diferencia el plan gratis del Premium?', answer: 'Premium da acceso a los 25 temas, simulacros ilimitados, flashcards con repetición espaciada y análisis IA ilimitados por 49,99€ pago único.' },
+    ],
+  },
+  // ─── Post 16 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'convocatoria-penitenciarias-2026-boe-fechas-plazas-requisitos',
+    title: 'Convocatoria Penitenciarías 2026: BOE, fechas, plazas y requisitos',
+    description:
+      'Convocatoria Ayudantes IIPP 2026: fechas oficiales BOE, plazas estimadas (~1.000), requisitos, tasas, plazo de inscripción y calendario completo. Guía actualizada.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'convocatoria penitenciarias 2026',
+      'BOE penitenciarias 2026',
+      'plazas IIPP 2026',
+      'fechas examen prisiones 2026',
+      'oposicion penitenciarias 2026',
+    ],
+    content: `
+<h2>Resumen rápido convocatoria 2026</h2>
+<ul>
+  <li><strong>Cuerpo:</strong> Ayudantes de Instituciones Penitenciarias (subgrupo C1).</li>
+  <li><strong>Plazas estimadas:</strong> ~1.000 (turno libre + promoción interna).</li>
+  <li><strong>Publicación BOE estimada:</strong> primavera 2026.</li>
+  <li><strong>Examen previsto:</strong> finales 2026 / principios 2027.</li>
+  <li><strong>Sistema:</strong> oposición libre, 1 ejercicio test (100 preguntas) + supuesto práctico.</li>
+</ul>
+
+<h2>Calendario probable 2026</h2>
+<table>
+  <thead><tr><th>Hito</th><th>Fecha estimada</th></tr></thead>
+  <tbody>
+    <tr><td>Publicación oferta empleo público (OEP)</td><td>Diciembre 2025 - enero 2026</td></tr>
+    <tr><td>Convocatoria BOE</td><td>Marzo - mayo 2026</td></tr>
+    <tr><td>Plazo de inscripción</td><td>20 días hábiles desde BOE</td></tr>
+    <tr><td>Lista provisional admitidos</td><td>Junio - julio 2026</td></tr>
+    <tr><td>Lista definitiva</td><td>Septiembre 2026</td></tr>
+    <tr><td>Examen primer ejercicio</td><td>Noviembre 2026 - febrero 2027</td></tr>
+    <tr><td>Curso selectivo en CEJ</td><td>Tras superar oposición (~6 meses)</td></tr>
+  </tbody>
+</table>
+
+<h2>Requisitos para presentarse</h2>
+<ul>
+  <li>Nacionalidad española (cuerpo con potestades públicas).</li>
+  <li>Edad mínima 18 años, máximo edad de jubilación forzosa.</li>
+  <li>Bachillerato, FP Grado Medio o equivalente homologado.</li>
+  <li>No haber sido separado del servicio ni inhabilitado.</li>
+  <li>Aptitud física y psíquica conforme al cuadro médico oficial.</li>
+  <li>No tener antecedentes penales (certificado vigente).</li>
+</ul>
+
+<h2>Plazas: cuántas se esperan</h2>
+<p>
+  La OEP 2024 incluyó 919 plazas para IIPP. La oferta 2025 subió a aproximadamente 1.000 plazas, y
+  fuentes sindicales apuntan a otra cifra similar para 2026 dado el déficit de plantilla en
+  centros penitenciarios. Las plazas se reparten entre <strong>turno libre</strong> (mayoría),
+  <strong>promoción interna</strong> y <strong>cupo de discapacidad</strong> (≥7%).
+</p>
+
+<h2>Tasas de inscripción</h2>
+<ul>
+  <li>Tasa general: ~30€.</li>
+  <li>Familia numerosa categoría general: 50% bonificación.</li>
+  <li>Familia numerosa especial: 100% bonificación (gratis).</li>
+  <li>Demandantes de empleo &gt;1 mes: gratuita.</li>
+  <li>Personas con discapacidad ≥33%: exentos.</li>
+</ul>
+
+<h2>Pasos para inscribirte cuando salga el BOE</h2>
+<ol>
+  <li>Accede al Punto de Acceso General (administracion.gob.es).</li>
+  <li>Localiza la convocatoria por código de cuerpo (1471 — Ayudantes IIPP).</li>
+  <li>Rellena el modelo 790, indica titulación y centro examen.</li>
+  <li>Paga la tasa con tarjeta o cargo en cuenta.</li>
+  <li>Guarda el justificante PDF — te lo pueden pedir el día del examen.</li>
+</ol>
+
+<h2>Qué hacer mientras esperas el BOE</h2>
+<ul>
+  <li>Estudia los temas del bloque I (LOGP, RP). Son inmunes a cambios.</li>
+  <li>Practica con preguntas oficiales 2018-2024.</li>
+  <li>Suscríbete a alertas BOE para no perderte la convocatoria.</li>
+  <li>Saca el certificado de antecedentes penales (válido 3 meses).</li>
+</ul>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+  <li><a href="/oposiciones/penitenciarias">Oposición Penitenciarías completa</a></li>
+  <li><a href="/blog/preparar-penitenciarias-6-meses-plan-intensivo-trabajando">Plan intensivo 6 meses</a></li>
+  <li><a href="/blog/test-penitenciarias-gratis-online-2026-100-preguntas">Tests gratis 2026</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Empieza ahora tu preparación 2026</a></strong> — gratis en OpoRuta.</p>
+`,
+    faqs: [
+      { question: '¿Cuándo sale la convocatoria oficial 2026?', answer: 'Se espera publicación en BOE entre marzo y mayo 2026. La OEP 2026 se publicará a finales de 2025 / inicio 2026.' },
+      { question: '¿Cuántas plazas habrá?', answer: 'Se estiman ~1.000 plazas, en línea con la oferta 2025. Cifra exacta hasta publicación oficial del BOE.' },
+      { question: '¿Cuánto tiempo hay para inscribirse?', answer: '20 días hábiles desde el día siguiente a publicación BOE. No esperes al último día — el portal se satura.' },
+      { question: '¿Cuándo será el examen?', answer: 'Lo más probable es finales de 2026 o principios de 2027. Entre BOE y examen suelen pasar 7-9 meses.' },
+      { question: '¿Es necesario sacarse el certificado de penales antes del BOE?', answer: 'No para inscribirte, pero sí lo necesitarás luego. Es válido 3 meses, así que mejor pedirlo cerca de las pruebas.' },
+    ],
+  },
+  // ─── Post 17 ───────────────────────────────────────────────────────────────
+  {
+    slug: 'preparar-penitenciarias-6-meses-plan-intensivo-trabajando',
+    title: 'Preparar Penitenciarías en 6 meses: plan intensivo (también trabajando)',
+    description:
+      'Plan realista para preparar Ayudantes IIPP en 6 meses, con o sin trabajo a tiempo completo. Cronograma semanal, técnicas de memorización y simulacros.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'preparar penitenciarias en 6 meses',
+      'plan estudio prisiones intensivo',
+      'opositar IIPP trabajando',
+      'cronograma penitenciarias',
+      'preparar funcionario prisiones rapido',
+    ],
+    content: `
+<h2>¿Es realista preparar Penitenciarías en 6 meses?</h2>
+<p>
+  Sí, pero solo si cumples 3 condiciones: dedicar 4-6 horas/día (full-time) o 3 horas/día
+  (compaginando con trabajo), tener una base mínima de comprensión legal y aceptar que el primer
+  intento puede no entrar en plaza pero te deja a un paso de plaza al año siguiente.
+</p>
+
+<h2>Plan a 6 meses (full-time, 5 h/día)</h2>
+<table>
+  <thead><tr><th>Mes</th><th>Foco</th><th>Bloques</th><th>Resultado esperado</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Bloque I (1-9): LOGP + RP</td><td>40 horas/sem</td><td>Tema 1-9 leídos 2 veces</td></tr>
+    <tr><td>2</td><td>Bloque I + repaso intensivo</td><td>Tests por tema diarios</td><td>5/10 en bloque I</td></tr>
+    <tr><td>3</td><td>Bloque III (tratamiento) + V</td><td>Estudio + flashcards</td><td>Temas 14-19 + 24-25</td></tr>
+    <tr><td>4</td><td>Bloque II + IV</td><td>Penal/procesal + organización</td><td>Temario completo cubierto</td></tr>
+    <tr><td>5</td><td>Repaso integral + simulacros</td><td>2 simulacros/sem</td><td>Notas 6,5+/10</td></tr>
+    <tr><td>6</td><td>Solo simulacros + temas débiles</td><td>3 simulacros/sem</td><td>Estabilidad &gt;7</td></tr>
+  </tbody>
+</table>
+
+<h2>Plan a 6 meses compaginando con trabajo</h2>
+<p>
+  Si trabajas 8 h/día, puedes preparar IIPP, pero necesitas disciplina quirúrgica. Plantilla
+  semanal:
+</p>
+<ul>
+  <li><strong>Lunes a viernes (3 h/día):</strong> 6:00-7:30 estudio activo + 21:00-22:30 tests/repaso.</li>
+  <li><strong>Sábado (5 h):</strong> Simulacro 2,5 h + corrección 1 h + flashcards 1,5 h.</li>
+  <li><strong>Domingo:</strong> Descanso real (4 h estudio máximo o cero, según fatiga).</li>
+</ul>
+<p>
+  En total: ~22 h/semana de estudio efectivo. En 6 meses son ~570 horas. Suficiente si las usas
+  bien.
+</p>
+
+<h3>Errores que hunden a quien compagina</h3>
+<ol>
+  <li>Estudiar solo de noche. La fatiga laboral mata la retención.</li>
+  <li>No hacer simulacros completos por "falta de tiempo". Sin ellos, no calibras.</li>
+  <li>Saltarse el bloque V por considerarlo fácil. Cae sí o sí.</li>
+</ol>
+
+<h2>Técnicas que multiplican el tiempo</h2>
+<ul>
+  <li><strong>Spaced repetition</strong> con flashcards (las de OpoRuta lo automatizan).</li>
+  <li><strong>Active recall</strong>: cierra el manual y reproduce el tema sin mirar.</li>
+  <li><strong>Pomodoro 50/10</strong>: 50 min estudio + 10 descanso. Cuatro bloques.</li>
+  <li><strong>Mapa mental por tema</strong>: una hoja A3 por cada uno de los 25.</li>
+</ul>
+
+<h2>Materiales mínimos</h2>
+<ul>
+  <li>Manuales actualizados al BOE de la convocatoria (Adams, MAD o Cep, son equivalentes).</li>
+  <li>Ley orgánica 1/1979 (LOGP) y RD 190/1996 (Reglamento Penitenciario) consolidados.</li>
+  <li>Plataforma de tests con preguntas oficiales (OpoRuta gratis cubre 5 temas).</li>
+  <li>Cuaderno físico para mapas mentales y errores recurrentes.</li>
+</ul>
+
+<h2>Cronograma de simulacros (últimos 3 meses)</h2>
+<table>
+  <thead><tr><th>Semana</th><th>Tipo</th><th>Objetivo</th></tr></thead>
+  <tbody>
+    <tr><td>1-4</td><td>2 tests largos + 1 simulacro 50 preg</td><td>Calibrar nota</td></tr>
+    <tr><td>5-8</td><td>1 simulacro 100 preg + 3 tests temáticos</td><td>Resistencia mental</td></tr>
+    <tr><td>9-12</td><td>2 simulacros 100 preg/sem + repaso errores</td><td>Estabilidad &gt;7</td></tr>
+  </tbody>
+</table>
+
+<h2>Enlaces relacionados</h2>
+<ul>
+  <li><a href="/oposiciones/penitenciarias">Oposición Penitenciarías</a></li>
+  <li><a href="/blog/cuantos-temas-funcionario-prisiones-bloques-distribucion">Cuántos temas tiene el temario</a></li>
+  <li><a href="/blog/test-penitenciarias-gratis-online-2026-100-preguntas">Tests gratis 2026</a></li>
+</ul>
+
+<p class="mt-6 p-4 bg-primary/5 rounded-lg text-center"><strong><a href="/register">Activa tu plan de 6 meses</a></strong> con OpoRuta — gratis para empezar.</p>
+`,
+    faqs: [
+      { question: '¿Es posible aprobar IIPP en 6 meses?', answer: 'Posible, pero exige mínimo 4-5 horas diarias o 3 horas + simulacros largos los fines de semana si compaginas con trabajo.' },
+      { question: '¿Qué pasa si no me da tiempo?', answer: 'Llegas con base sólida al examen del año siguiente. La OEP de Penitenciarías es anual, así que el esfuerzo no se pierde.' },
+      { question: '¿Cuántas horas semanales mínimo?', answer: '20 horas si compaginas, 35-40 horas full-time. Por debajo de 18 horas/semana no llegas en 6 meses.' },
+      { question: '¿Necesito academia presencial?', answer: 'No. Con manual oficial actualizado + plataforma de tests con preguntas reales + simulacros bajo presión, el plan es autosuficiente.' },
+      { question: '¿En qué orden estudio los temas?', answer: 'Bloque I (1-9) primero por peso. Después V (24-25) por facilidad. Luego III, IV y II. No estudies en orden numérico.' },
+    ],
+  },
 ]

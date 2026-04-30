@@ -897,4 +897,457 @@ export const ertzaintzaPosts: BlogPost[] = [
       { question: '¿Qué análisis genera la IA después del simulacro?', answer: 'Un informe con nota, desglose por tema, referencia cruzada con convocatorias oficiales y explicación detallada de cada error con su cita legal.' },
     ],
   },
+
+  // ─── 13 ────────────────────────────────────────────────────────────────────
+  {
+    slug: 'test-oposicion-ertzaintza-pais-vasco-online-gratis',
+    title: 'Test oposición Ertzaintza País Vasco online gratis 2026',
+    description:
+      'Test oposición Ertzaintza online gratis: País Vasco, 100 preguntas tipo examen, corrección IA y banco real de convocatorias.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'test oposición ertzaintza',
+      'test oposición ertzaintza país vasco',
+      'test oposicion ertzaintza',
+      'test ertzaintza online gratis',
+      'test ertzaintza pais vasco',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Test gratis:</strong> 20 preguntas tipo examen Ertzaintza con penalización proporcional, sin tarjeta.</li>
+  <li><strong>Examen real:</strong> 100 preguntas + 10 reserva, ~120 minutos, tipo test con 4 opciones.</li>
+  <li><strong>Convocatoria 2024:</strong> ~800 plazas, examen único en País Vasco.</li>
+</ul>
+
+<h2>Cómo funciona el test online de OpoRuta</h2>
+<p>
+  Crea cuenta gratis, entra a la sección de Ertzaintza y elige modo test (por tema, mixto o convocatoria oficial). El motor
+  carga preguntas reales o generadas con IA siempre con cita legal verificable. Al terminar, ves desglose por tema y puedes
+  pedir análisis detallado de cada error.
+</p>
+
+<h2>Estructura del examen real</h2>
+<table>
+  <thead><tr><th>Bloque</th><th>Peso aprox.</th><th>Materias clave</th></tr></thead>
+  <tbody>
+    <tr><td>Constitución y Estatuto</td><td>~25 %</td><td>CE 1978, EAPV 1979, organización institucional</td></tr>
+    <tr><td>Ley Policía País Vasco 4/1992</td><td>~20 %</td><td>Funciones, régimen estatutario, derechos y deberes</td></tr>
+    <tr><td>Derecho administrativo</td><td>~15 %</td><td>Procedimiento, acto administrativo, recursos</td></tr>
+    <tr><td>Derecho penal y seguridad</td><td>~20 %</td><td>Código Penal, ley seguridad ciudadana, extranjería</td></tr>
+    <tr><td>Sociotécnicas y técnicas</td><td>~20 %</td><td>Geografía País Vasco, tráfico, primeros auxilios, deontología</td></tr>
+  </tbody>
+</table>
+
+<h2>Cómo calibrar tu nivel con el test gratis</h2>
+<ul>
+  <li><strong>Por debajo de 40 % netos:</strong> aún en fase temario. Centra esfuerzo en CE + EAPV + Ley 4/1992.</li>
+  <li><strong>40-55 %:</strong> nivel intermedio. Toca repaso espaciado y simulacros semanales.</li>
+  <li><strong>55-70 %:</strong> nivel cercano a corte. Afina técnica y empieza a simular convocatoria completa.</li>
+  <li><strong>70 %+:</strong> nivel sólido. Mantén ritmo y prepara entrevista personal y físicas.</li>
+</ul>
+
+<h2>Diferencias del test Ertzaintza vs CNP / GC</h2>
+<ul>
+  <li>Más peso de derecho autonómico (Estatuto, Ley 4/1992).</li>
+  <li>Geografía e instituciones del País Vasco entran en cada examen.</li>
+  <li>El euskera, aunque no eliminatorio en general, suma puntos por perfiles PL2/PL3.</li>
+</ul>
+
+<h2>Cómo entrenar a partir de hoy</h2>
+<ol>
+  <li>Crea cuenta en <a href="/register">/register</a>.</li>
+  <li>Haz un test inicial en <a href="/oposiciones/seguridad/ertzaintza">tu ruta Ertzaintza</a>.</li>
+  <li>Revisa el desglose por tema y planifica la semana siguiente.</li>
+  <li>Repite cada 7-10 días un simulacro corto y cada 3 semanas uno completo.</li>
+</ol>
+
+<h2>Enlaces útiles</h2>
+<ul>
+  <li><a href="/oposiciones/seguridad/ertzaintza">Página principal Ertzaintza</a></li>
+  <li><a href="/blog/temas-mas-preguntados-ertzaintza-2023-2025">Temas más preguntados</a></li>
+  <li><a href="/blog/ley-policia-pais-vasco-4-1992-ertzaintza-temas-clave">Ley 4/1992</a></li>
+  <li><a href="/simulacros-oposiciones">Simulacros oficiales</a></li>
+</ul>
+`.trim(),
+    faqs: [
+      { question: '¿Es realmente gratis el test online?', answer: 'Sí: la versión free permite simulacros de 20 preguntas con penalización real y tests por tema. Sin tarjeta.' },
+      { question: '¿Tengo que vivir en País Vasco para opositar?', answer: 'No. Puedes presentarte desde cualquier punto de España, aunque las pruebas presenciales se hacen en País Vasco.' },
+      { question: '¿Dónde se hacen los exámenes?', answer: 'Habitualmente en sedes de Bilbao, Donostia o Vitoria-Gasteiz. La convocatoria especifica cada año.' },
+      { question: '¿Cuántas preguntas tiene el examen real?', answer: '100 puntuables y unas 10 de reserva. Tipo test con 4 opciones y penalización proporcional.' },
+      { question: '¿Necesito euskera para presentarme?', answer: 'No para acceder, pero los perfiles PL2/PL3 suman puntos en la fase de méritos.' },
+    ],
+  },
+
+  // ─── 14 ────────────────────────────────────────────────────────────────────
+  {
+    slug: 'examen-ertzaintza-bizkaia-gipuzkoa-araba-mismas-pruebas',
+    title: 'Examen Ertzaintza Bizkaia, Gipuzkoa y Araba: ¿es el mismo?',
+    description:
+      'El examen de Ertzaintza es único para todo el País Vasco: mismas pruebas en Bizkaia, Gipuzkoa y Araba. Detalles y mitos.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'test oposición ertzaintza donostia',
+      'test oposición ertzaintza gipuzkoa',
+      'examen ertzaintza bizkaia',
+      'examen ertzaintza araba',
+      'oposicion ertzaintza territorios',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Es un único examen:</strong> el temario y las pruebas son los mismos en Bizkaia, Gipuzkoa y Araba.</li>
+  <li><strong>Sede de examen:</strong> habitualmente en una ciudad por convocatoria (Bilbao, Donostia o Vitoria), no en cada territorio.</li>
+  <li><strong>Destino:</strong> el destino tras aprobar puede variar por necesidades del servicio, pero el acceso es uniforme.</li>
+</ul>
+
+<h2>Mito: "el examen de Donostia es distinto"</h2>
+<p>
+  Falso. La Ertzaintza es un cuerpo policial único de la Comunidad Autónoma del País Vasco, con un único proceso selectivo
+  para toda la CCAA. No existen "exámenes territoriales" diferenciados para Bizkaia, Gipuzkoa o Araba. La convocatoria, el
+  temario y el examen son <strong>idénticos</strong> en los tres territorios históricos.
+</p>
+
+<h2>Qué sí varía entre territorios</h2>
+<ul>
+  <li><strong>Sede del examen:</strong> según la convocatoria, el examen se celebra en uno o varios puntos (BEC en Barakaldo, Kursaal en Donostia, Iradier Arena en Vitoria).</li>
+  <li><strong>Destino tras prácticas:</strong> el destino puede asignarse en cualquier comisaría del País Vasco según necesidades.</li>
+  <li><strong>Actividad euskera:</strong> en zonas con mayor presencia de euskaldunes (Gipuzkoa) se valora más el perfil lingüístico.</li>
+</ul>
+
+<h2>Estructura común del proceso selectivo</h2>
+<table>
+  <thead><tr><th>Fase</th><th>Eliminatoria</th><th>Aplica a todos los territorios</th></tr></thead>
+  <tbody>
+    <tr><td>Examen teórico (test)</td><td>Sí</td><td>Sí</td></tr>
+    <tr><td>Pruebas físicas</td><td>Sí</td><td>Sí</td></tr>
+    <tr><td>Psicotécnicos + personalidad</td><td>Sí</td><td>Sí</td></tr>
+    <tr><td>Reconocimiento médico</td><td>Sí</td><td>Sí</td></tr>
+    <tr><td>Entrevista personal</td><td>Sí</td><td>Sí</td></tr>
+    <tr><td>Curso de formación + prácticas</td><td>Sí</td><td>Sí</td></tr>
+  </tbody>
+</table>
+
+<h2>¿Dónde te examinas?</h2>
+<p>
+  La sede se publica en la convocatoria. En 2024 el examen se hizo en BEC (Barakaldo) para todos los aspirantes. En otras
+  convocatorias se ha desdoblado por capacidad. <strong>Lo que no cambia es el contenido</strong>: las preguntas, el tiempo
+  y la penalización son las mismas vivas donde vivas.
+</p>
+
+<h2>¿Y si quiero destino concreto?</h2>
+<p>
+  Tras aprobar y completar el curso de formación en la Academia de Arkaute, los destinos se asignan según el orden de
+  puntuación final y las plazas disponibles. Es habitual rotar por varias comisarías en los primeros años. Quien quiere
+  destino fijo en Donostia o Bilbao tiene que esperar a tener antigüedad y solicitar concurso.
+</p>
+
+<h2>Recomendación práctica</h2>
+<ul>
+  <li>No pierdas tiempo buscando "test específico de Gipuzkoa" o "examen de Donostia".</li>
+  <li>Estudia el temario único oficial de Ertzaintza.</li>
+  <li>Si vives en Gipuzkoa y dominas el euskera, sácale partido en perfiles PL2/PL3 (puntos extra).</li>
+</ul>
+
+<h2>Enlaces útiles</h2>
+<ul>
+  <li><a href="/oposiciones/seguridad/ertzaintza">Página principal Ertzaintza</a></li>
+  <li><a href="/blog/euskera-ertzaintza-perfil-pl2-pl3-examen">Euskera y perfiles PL2/PL3</a></li>
+  <li><a href="/blog/calendario-ertzaintza-2026-fechas-examen">Calendario Ertzaintza 2026</a></li>
+  <li><a href="/register">Empieza gratis</a></li>
+</ul>
+`.trim(),
+    faqs: [
+      { question: '¿El examen de Ertzaintza es distinto en Bizkaia, Gipuzkoa y Araba?', answer: 'No. Es un único examen para todo el País Vasco. Mismo temario, mismas preguntas, mismas pruebas.' },
+      { question: '¿Dónde se examina en 2026?', answer: 'La sede se publica en la convocatoria oficial. En 2024 fue BEC (Barakaldo). Suele rotar entre Bilbao, Donostia y Vitoria.' },
+      { question: '¿Puedo elegir destino?', answer: 'Tras la formación, los destinos se asignan por nota y disponibilidad. La movilidad por concurso requiere antigüedad.' },
+      { question: '¿Influye dónde vivo en la nota?', answer: 'No. La selección es ciega al lugar de residencia. Solo pesan tu nota y los méritos puntuables.' },
+      { question: '¿Hay diferencias de euskera por territorio?', answer: 'En la convocatoria no, pero en zonas más euskaldunes (Gipuzkoa) un perfil PL2/PL3 puede ser determinante en el orden final.' },
+    ],
+  },
+
+  // ─── 15 ────────────────────────────────────────────────────────────────────
+  {
+    slug: 'test-personalidad-ertzaintza-perfil-psicologico-examen',
+    title: 'Test de personalidad Ertzaintza: perfil psicológico y entrevista',
+    description:
+      'Test de personalidad Ertzaintza: qué evalúa el psicólogo, escalas de validez, perfil ideal y cómo afrontarlo sin trampas.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'test personalidad ertzaintza',
+      'perfil psicologico ertzaintza',
+      'psicologo ertzaintza examen',
+      'entrevista psicologica ertzaintza',
+      'test personalidad ertzaintza eva',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Test de personalidad:</strong> habitualmente MMPI-2 + cuestionario tipo Big Five (16PF o NEO-PI-R).</li>
+  <li><strong>Combina con entrevista:</strong> el psicólogo ve tu test y pregunta por puntuaciones llamativas.</li>
+  <li><strong>Regla:</strong> sé honesto. Las escalas de validez detectan simulación al instante.</li>
+</ul>
+
+<h2>Qué busca el tribunal en un Ertzain</h2>
+<p>
+  El perfil ideal NO es el "policía duro y sin emociones" de las películas. Buscan una persona con:
+</p>
+<ul>
+  <li>Estabilidad emocional y baja impulsividad.</li>
+  <li>Tolerancia a la frustración y al estrés.</li>
+  <li>Capacidad de trabajo en equipo y comunicación.</li>
+  <li>Responsabilidad y sentido del deber.</li>
+  <li>Apertura a la diversidad cultural (entorno trilingüe euskera-castellano + situaciones multiculturales).</li>
+</ul>
+
+<h2>Tests más usados en Ertzaintza</h2>
+<table>
+  <thead><tr><th>Test</th><th>Ítems</th><th>Qué mide</th></tr></thead>
+  <tbody>
+    <tr><td>MMPI-2 / MMPI-2-RF</td><td>338-567</td><td>Patología clínica + escalas validez</td></tr>
+    <tr><td>16PF-5</td><td>185</td><td>16 factores personalidad de Cattell</td></tr>
+    <tr><td>NEO-PI-R</td><td>240</td><td>Big Five (5 factores × 6 facetas)</td></tr>
+    <tr><td>EPQ-R</td><td>83</td><td>Eysenck: extraversión, neuroticismo, psicoticismo</td></tr>
+  </tbody>
+</table>
+
+<h2>Cómo se enlaza con la entrevista</h2>
+<p>
+  El psicólogo de la Academia de Arkaute lleva delante tu perfil y profundiza en:
+</p>
+<ul>
+  <li>Motivación: ¿por qué Ertzaintza y no otra policía?</li>
+  <li>Resiliencia: ¿cómo gestionas situaciones de presión?</li>
+  <li>Trabajo en equipo: ejemplo concreto donde colaboraste bajo tensión.</li>
+  <li>Diversidad: actitud ante grupos vulnerables, inmigración, violencia de género.</li>
+  <li>Coherencia con el test: si dices ser sociable y el test marca introversión alta, te pedirá explicación.</li>
+</ul>
+
+<h2>Cómo afrontar el test correctamente</h2>
+<ul>
+  <li><strong>Velocidad:</strong> 3-5 segundos por ítem. No sobreanalices.</li>
+  <li><strong>Honestidad calibrada:</strong> admite enfados, miedos, dudas razonables. Eres humano.</li>
+  <li><strong>Coherencia:</strong> si vuelve a aparecer un ítem similar, responde igual.</li>
+  <li><strong>No marques siempre el extremo:</strong> el "totalmente de acuerdo" en todo es señal de simulación.</li>
+</ul>
+
+<h2>Errores que invalidan el test</h2>
+<ul>
+  <li>Querer parecer "el candidato perfecto sin defectos".</li>
+  <li>Dejar muchas preguntas en blanco (defensividad).</li>
+  <li>Cambiar de criterio entre ítems similares (inconsistencia).</li>
+  <li>Mentir en la entrevista cuando el psicólogo ya tiene tu test delante.</li>
+</ul>
+
+<h2>Plan de preparación corto</h2>
+<ul>
+  <li>Familiarízate con el formato: practica 1-2 tests tipo MMPI o 16PF.</li>
+  <li>Reflexiona sobre tu motivación real para ser Ertzain.</li>
+  <li>Prepara 3 ejemplos personales (trabajo en equipo, gestión del estrés, conflicto resuelto).</li>
+  <li>Habla con personas que ya hayan superado el proceso.</li>
+</ul>
+
+<h2>Enlaces útiles</h2>
+<ul>
+  <li><a href="/oposiciones/seguridad/ertzaintza">Página principal Ertzaintza</a></li>
+  <li><a href="/blog/entrevista-personal-ertzaintza-preguntas-2026">Entrevista personal Ertzaintza</a></li>
+  <li><a href="/blog/test-personalidad-policial-policia-nacional-mmpi-big-five">MMPI y Big Five explicados</a></li>
+  <li><a href="/register">Empieza gratis</a></li>
+</ul>
+`.trim(),
+    faqs: [
+      { question: '¿El test de personalidad es eliminatorio en Ertzaintza?', answer: 'Por sí solo no suele serlo, pero un perfil incompatible puede determinar el resultado de la entrevista posterior.' },
+      { question: '¿Qué test concreto se usa?', answer: 'Habitualmente una combinación MMPI-2 + cuestionario tipo Big Five (16PF o NEO-PI-R), según el equipo psicotécnico.' },
+      { question: '¿Puedo "preparar" el test de personalidad?', answer: 'Más bien familiarizarte con el formato. Mentir o "elegir respuestas correctas" suele invalidar el test.' },
+      { question: '¿Cuánto dura?', answer: 'Entre 60 y 90 minutos según el test seleccionado. El MMPI-2 completo puede llegar a 90 minutos.' },
+      { question: '¿Qué pasa si invalidan mi test?', answer: 'Te citan a entrevista profunda. Si el psicólogo no obtiene un perfil claro, puedes ser descartado en esta fase.' },
+    ],
+  },
+
+  // ─── 16 ────────────────────────────────────────────────────────────────────
+  {
+    slug: 'examen-ertzaintza-2024-analisis-preguntas-temas-cayeron',
+    title: 'Examen Ertzaintza 2024: análisis y temas que cayeron',
+    description:
+      'Análisis del examen Ertzaintza 2024: distribución por bloques, temas que cayeron, dificultad y nota de corte aproximada.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'examen ertzaintza 2024',
+      'analisis examen ertzaintza 2024',
+      'preguntas ertzaintza 2024',
+      'temas examen ertzaintza 2024',
+      'convocatoria ertzaintza 2024',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Convocatoria 2024:</strong> ~800 plazas, miles de presentados, ratio cercano a 1:10.</li>
+  <li><strong>Examen:</strong> 100 preguntas + reserva, 4 opciones, ~120 minutos, penalización proporcional.</li>
+  <li><strong>Dificultad percibida:</strong> media-alta, con énfasis en derecho administrativo y Ley 4/1992.</li>
+</ul>
+
+<h2>Distribución por bloques en 2024</h2>
+<table>
+  <thead><tr><th>Bloque</th><th>Preguntas aprox.</th><th>Comentario</th></tr></thead>
+  <tbody>
+    <tr><td>Constitución + Estatuto</td><td>~22</td><td>Título I CE y EAPV con peso muy alto</td></tr>
+    <tr><td>Ley Policía País Vasco 4/1992</td><td>~18</td><td>Régimen estatutario, derechos y deberes</td></tr>
+    <tr><td>Derecho administrativo</td><td>~16</td><td>Ley 39/2015 y 40/2015 muy presentes</td></tr>
+    <tr><td>Derecho penal y seguridad ciudadana</td><td>~18</td><td>CP y LO 4/2015</td></tr>
+    <tr><td>Sociotécnicas y técnicas</td><td>~26</td><td>Geografía País Vasco, tráfico, primeros auxilios, deontología, igualdad</td></tr>
+  </tbody>
+</table>
+
+<h2>Temas que cayeron con más fuerza</h2>
+<ul>
+  <li>Reformas de la Constitución (art. 13.2 y art. 135).</li>
+  <li>Composición y competencias del Parlamento Vasco.</li>
+  <li>Funciones de la Ertzaintza (art. 26 Ley 4/1992).</li>
+  <li>Procedimiento administrativo común: notificación, plazos, recursos.</li>
+  <li>Geografía del País Vasco: ríos, montes, comarcas y demografía.</li>
+  <li>Igualdad y violencia de género (LO 1/2004 y normativa autonómica).</li>
+</ul>
+
+<h2>Lecciones del examen 2024 para 2026</h2>
+<ul>
+  <li><strong>El bloque sociotécnico ha ganado peso:</strong> ya no es el "bloque fácil". Hay que estudiarlo en serio.</li>
+  <li><strong>Igualdad y diversidad entran cada año:</strong> es seguro tener 4-6 preguntas.</li>
+  <li><strong>Derecho administrativo:</strong> Ley 39/2015 y 40/2015 son obligatorias. No basta con leerlas una vez.</li>
+  <li><strong>Geografía del País Vasco:</strong> 3-5 preguntas garantizadas. Repasa mapa físico y comarcas.</li>
+</ul>
+
+<h2>Nota de corte aproximada en 2024</h2>
+<p>
+  Las listas de aprobados situaron el corte en torno a <strong>55-60 aciertos netos</strong> tras penalización. Con ~800
+  plazas y miles de presentados, el ratio fue cercano a 1:10. Si miras el <a href="/blog/nota-corte-ertzaintza-2024-2025-historico">histórico</a>,
+  la tendencia es estable.
+</p>
+
+<h2>Cómo entrenar el examen 2024 en OpoRuta</h2>
+<ul>
+  <li>Modo simulacro convocatoria 2024 (cuando esté ingestada completa).</li>
+  <li>Análisis IA pregunta a pregunta con cita legal.</li>
+  <li>Comparativa entre 2022, 2023 y 2024 para detectar patrones repetidos.</li>
+</ul>
+
+<h2>Enlaces útiles</h2>
+<ul>
+  <li><a href="/oposiciones/seguridad/ertzaintza">Página principal Ertzaintza</a></li>
+  <li><a href="/blog/temas-mas-preguntados-ertzaintza-2023-2025">Temas más preguntados</a></li>
+  <li><a href="/blog/nota-corte-ertzaintza-2024-2025-historico">Notas de corte</a></li>
+  <li><a href="/simulacros-oposiciones">Simulacros oficiales</a></li>
+</ul>
+`.trim(),
+    faqs: [
+      { question: '¿Cuántas plazas tuvo Ertzaintza en 2024?', answer: 'Aproximadamente 800 plazas. Una de las convocatorias más grandes de los últimos años.' },
+      { question: '¿Qué tema cayó más en 2024?', answer: 'Constitución, Estatuto y Ley 4/1992 concentraron casi la mitad. El bloque sociotécnico también ganó peso respecto a 2022.' },
+      { question: '¿Cuál fue la nota de corte?', answer: 'Rondó los 55-60 aciertos netos sobre 100, con penalización aplicada.' },
+      { question: '¿Hubo muchas preguntas anuladas?', answer: 'Como en cada convocatoria, alguna pregunta fue impugnada. Las preguntas de reserva sustituyen las anuladas.' },
+      { question: '¿Puedo practicar el examen 2024 en OpoRuta?', answer: 'Sí: a medida que se ingiere, está disponible como simulacro modo convocatoria oficial.' },
+    ],
+  },
+
+  // ─── 17 ────────────────────────────────────────────────────────────────────
+  {
+    slug: 'psicotecnicos-ertzaintza-aptitud-numerico-verbal-tipos',
+    title: 'Psicotécnicos Ertzaintza: aptitud numérica, verbal y abstracta',
+    description:
+      'Psicotécnicos Ertzaintza al detalle: razonamiento numérico, verbal, abstracto y memoria. Tiempos, ejemplos y plan de entrenamiento.',
+    date: '2026-04-30',
+    dateModified: '2026-04-30',
+    keywords: [
+      'psicotecnicos ertzaintza tipos',
+      'razonamiento numerico ertzaintza',
+      'aptitud verbal ertzaintza',
+      'psicotecnicos aptitud ertzaintza',
+      'pruebas psicotecnicas ertzaintza',
+    ],
+    content: `
+<h2>TL;DR</h2>
+<ul>
+  <li><strong>Pruebas:</strong> 4-5 sub-tests de aptitud (numérica, verbal, abstracta, perceptiva, memoria).</li>
+  <li><strong>Tiempo:</strong> 50-70 minutos en total, con cronómetro por prueba.</li>
+  <li><strong>Clave:</strong> velocidad sin sacrificar exactitud. Las preguntas son "fáciles" pero hay tiempo escaso.</li>
+</ul>
+
+<h2>Aptitud numérica</h2>
+<p>
+  Series, problemas de regla de tres, porcentajes y cálculo mental. Ejemplos:
+</p>
+<ul>
+  <li>Serie: 3, 6, 12, 24, ?  → 48.</li>
+  <li>Problema: si un coche recorre 240 km en 3 h, ¿cuánto tarda en recorrer 400 km a la misma velocidad? → 5 h.</li>
+  <li>Porcentaje: el 35 % de 240 → 84.</li>
+</ul>
+<p><strong>Truco:</strong> entrena tablas de multiplicar hasta 15×15 y reglas de tres rápidas. Reduce el tiempo por pregunta a la mitad.</p>
+
+<h2>Aptitud verbal</h2>
+<ul>
+  <li>Sinónimos / antónimos.</li>
+  <li>Analogías: "lápiz es a escribir como cuchillo es a ?" → cortar.</li>
+  <li>Comprensión lectora con texto corto.</li>
+</ul>
+<p><strong>Truco:</strong> en analogías, identifica primero la relación (instrumento/función, parte/todo, causa/efecto).</p>
+
+<h2>Razonamiento abstracto</h2>
+<ul>
+  <li>Series de figuras geométricas: identifica patrón (rotación, simetría, sustracción de elementos).</li>
+  <li>Matrices tipo Raven: 3×3 con un hueco a completar.</li>
+</ul>
+<p><strong>Truco:</strong> mira primero los cambios de UN solo atributo (forma, color, tamaño, orientación). Luego combina.</p>
+
+<h2>Aptitud perceptiva</h2>
+<ul>
+  <li>Comparación de pares: detectar si dos cadenas alfanuméricas son idénticas o tienen diferencia.</li>
+  <li>Tachado: localizar todas las apariciones de un símbolo en una cuadrícula.</li>
+</ul>
+<p><strong>Truco:</strong> exactitud > velocidad. Penalizan errores y omisiones casi por igual.</p>
+
+<h2>Memoria visual</h2>
+<ul>
+  <li>Memorizar imagen (rostros, escena, mapa) durante 30-60 segundos.</li>
+  <li>Responder preguntas inmediatamente después.</li>
+</ul>
+<p><strong>Truco:</strong> escanea la imagen sistemáticamente (de arriba abajo, izq-der). No te quedes en un solo elemento.</p>
+
+<h2>Plan de entrenamiento (8 semanas)</h2>
+<table>
+  <thead><tr><th>Semana</th><th>Foco</th><th>Volumen diario</th></tr></thead>
+  <tbody>
+    <tr><td>1-2</td><td>Numérica + cálculo mental</td><td>30 min</td></tr>
+    <tr><td>3-4</td><td>Verbal + analogías</td><td>30 min</td></tr>
+    <tr><td>5-6</td><td>Abstracto + matrices</td><td>30 min</td></tr>
+    <tr><td>7</td><td>Perceptiva + memoria</td><td>40 min</td></tr>
+    <tr><td>8</td><td>Simulacro completo cronometrado</td><td>1-2 h</td></tr>
+  </tbody>
+</table>
+
+<h2>Errores típicos</h2>
+<ul>
+  <li>Quedarse atascado más de 30 segundos en una pregunta. Si no la ves, pasa.</li>
+  <li>Hacer cálculos en papel cuando se puede mental.</li>
+  <li>No entrenar con cronómetro. La presión real es lo que más afecta el día del examen.</li>
+  <li>Ignorar la memoria visual: muchos opositores no la entrenan y pierden 3-5 puntos seguros.</li>
+</ul>
+
+<h2>Enlaces útiles</h2>
+<ul>
+  <li><a href="/oposiciones/seguridad/ertzaintza">Página principal Ertzaintza</a></li>
+  <li><a href="/blog/psicotecnicos-ertzaintza-2026-tipos-ejemplos">Psicotécnicos Ertzaintza tipos</a></li>
+  <li><a href="/blog/test-personalidad-ertzaintza-perfil-psicologico-examen">Test personalidad Ertzaintza</a></li>
+  <li><a href="/simulacros-oposiciones">Simulacros y psicotécnicos</a></li>
+</ul>
+`.trim(),
+    faqs: [
+      { question: '¿Cuánto duran los psicotécnicos de Ertzaintza?', answer: 'Entre 50 y 70 minutos en total, divididos en 4-5 sub-pruebas con cronómetro independiente cada una.' },
+      { question: '¿Son eliminatorios?', answer: 'En la mayoría de convocatorias sí, en bloque o por baremos mínimos por aptitud. Revisa siempre las bases del año.' },
+      { question: '¿Se pueden entrenar?', answer: 'Sí. Aunque la aptitud no se duplica, la velocidad y la familiaridad con el formato mejoran 30-50 % con 8 semanas de práctica.' },
+      { question: '¿Qué prueba suele dar más problemas?', answer: 'La perceptiva (presión + exactitud) y la memoria visual. Suelen ser las menos entrenadas y donde más puntos se pierden.' },
+      { question: '¿Hay penalización por error?', answer: 'Algunas pruebas (perceptiva) sí penalizan errores. Lee atentamente las instrucciones de cada sub-prueba antes de empezar.' },
+    ],
+  },
 ]
